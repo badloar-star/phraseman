@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я часто танцюю вдома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто танцюю вдома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often dance at home.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто танцую дома»",
+          "uk": "Скажіть «Я часто танцюю вдома»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "dance",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-51:i02:r1",
+          "text": "dance"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i02:r2",
+          "text": "sew"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i02:r3",
+          "text": "sell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i02:audio",
+          "transcript": "dance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-51:i02:r1",
+            "targetText": "dance",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i02:r2",
+            "targetText": "sew",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i02:r3",
+            "targetText": "sell",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `dance`, а в этом варианте — `sew`.",
+              "uk": "У записі перше слово — `dance`, а в цьому варіанті — `sew`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `dance`, а в этом варианте — `sell`.",
+              "uk": "У записі перше слово — `dance`, а в цьому варіанті — `sell`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я часто танцюю вдома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-51:i03:r1",
+          "text": "dance"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i03:r2",
+          "text": "dances"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i03:r3",
+          "text": "dancing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто танцюю вдома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто танцую дома»",
+          "uk": "Скажіть «Я часто танцюю вдома»"
+        },
+        "gappedTargetPhrase": "I often ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-51:i03:r1",
+            "text": "dance"
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i03:r2",
+            "text": "dances"
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i03:r3",
+            "text": "dancing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я часто танцюю вдома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `dance`.",
+              "uk": "Після `I` потрібне `dance`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `dance`.",
+              "uk": "Тут потрібна форма `dance`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-51:i04:p1",
+            "target": "dance",
+            "meaningByLocale": {
+              "ru": "танцевать",
+              "uk": "танцювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i04:p2",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i04:p3",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i04:p4",
+            "target": "stadium",
+            "meaningByLocale": {
+              "ru": "стадион",
+              "uk": "стадіон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dance",
+          "sell",
+          "libraries",
+          "stadium"
+        ],
+        "rightColumn": [
+          "танцювати",
+          "продавати",
+          "бібліотеки",
+          "стадіон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i05:audio",
+          "transcript": "I often dance at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often dance at home.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "dance",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте продавця «Ви продаєте книжки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте продавця «Ви продаєте книжки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you sell books?",
+        "localizedMeaning": {
+          "ru": "Спросите продавца «Вы продаёте книги?»",
+          "uk": "Запитайте продавця «Ви продаєте книжки?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "sell",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте перехожого «Де стадіон?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте перехожого «Де стадіон?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i07:audio",
+          "transcript": "Where is the stadium?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the stadium?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Ви продаєте книжки?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-51:i08:r1",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i08:r2",
+          "text": "sells"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i08:r3",
+          "text": "selling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Ви продаєте книжки?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Вы продаёте книги?»",
+          "uk": "Запитайте «Ви продаєте книжки?»"
+        },
+        "gappedTargetPhrase": "Do you ___ books?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-51:i08:r1",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i08:r2",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i08:r3",
+            "text": "selling"
+          }
+        ],
+        "testedDimension": "Запитайте «Ви продаєте книжки?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Ви продаєте книжки?»",
+            "feedbackByLocale": {
+              "ru": "После `do you` нужно `sell`.",
+              "uk": "Після `do you` потрібне `sell`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Ви продаєте книжки?»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `sell`.",
+              "uk": "Тут потрібна форма `sell`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-51:i09:r1",
+          "text": "I often dance."
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i09:r2",
+          "text": "I often sew."
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i09:r3",
+          "text": "I often hike."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i09:audio",
+          "transcript": "I often dance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-51:i09:r1",
+            "targetText": "I often dance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i09:r2",
+            "targetText": "I often sew.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i09:r3",
+            "targetText": "I often hike.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dance`, а в этом варианте — `sew`.",
+              "uk": "У записі останнє слово — `dance`, а в цьому варіанті — `sew`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dance`, а в этом варианте — `hike`.",
+              "uk": "У записі останнє слово — `dance`, а в цьому варіанті — `hike`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-51:i10:p1",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i10:p2",
+            "target": "dance",
+            "meaningByLocale": {
+              "ru": "танцевать",
+              "uk": "танцювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i10:p3",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i10:p4",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sew",
+          "dance",
+          "sell",
+          "libraries"
+        ],
+        "rightColumn": [
+          "шити",
+          "танцювати",
+          "продавати",
+          "бібліотеки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i11:audio",
+          "transcript": "Do you sell books?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you sell books?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "sell",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви дивитеся на карту міста. Запитайте друга «Де бібліотеки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви дивитеся на карту міста. Запитайте друга «Де бібліотеки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the libraries?",
+        "localizedMeaning": {
+          "ru": "Вы смотрите на карту города. Спросите друга «Где библиотеки?»",
+          "uk": "Ви дивитеся на карту міста. Запитайте друга «Де бібліотеки?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "libraries"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг розповідає про шиття. Запитайте «Ти шиєш удома?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Друг розповідає про шиття. Запитайте «Ти шиєш удома?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i13:audio",
+          "transcript": "Do you sew at home?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you sew at home?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я часто танцюю вдома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-51:i14:r1",
+          "text": "often"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто танцюю вдома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто танцую дома»",
+          "uk": "Скажіть «Я часто танцюю вдома»"
+        },
+        "gappedTargetPhrase": "I ___ dance at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-51:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Я часто танцюю вдома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often` перед `dance`.",
+              "uk": "Для «часто» потрібне `often` перед `dance`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often`; `am` перед `dance` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `dance` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-51:i15:r1",
+          "text": "Where is the stadium?"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i15:r2",
+          "text": "Where is the cinema?"
+        },
+        {
+          "responseId": "en:lesson-07:session-51:i15:r3",
+          "text": "Where is the hospital?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i15:audio",
+          "transcript": "Where is the stadium?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-51:i15:r1",
+            "targetText": "Where is the stadium?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i15:r2",
+            "targetText": "Where is the cinema?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i15:r3",
+            "targetText": "Where is the hospital?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `stadium`, а в этом варианте — `cinema`.",
+              "uk": "У записі останнє слово — `stadium`, а в цьому варіанті — `cinema`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-51:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `stadium`, а в этом варианте — `hospital`.",
+              "uk": "У записі останнє слово — `stadium`, а в цьому варіанті — `hospital`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-51:i16:p1",
+            "target": "dance",
+            "meaningByLocale": {
+              "ru": "танцевать",
+              "uk": "танцювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i16:p2",
+            "target": "stadium",
+            "meaningByLocale": {
+              "ru": "стадион",
+              "uk": "стадіон"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i16:p3",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-51:i16:p4",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dance",
+          "stadium",
+          "sew",
+          "sell"
+        ],
+        "rightColumn": [
+          "танцювати",
+          "стадіон",
+          "шити",
+          "продавати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, що Том робить удома під музику. Скажіть «Том часто танцює вдома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, що Том робить удома під музику. Скажіть «Том часто танцює вдома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:i17:audio",
+          "transcript": "Tom often dances at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often dances at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "70d9732ed1cbc631ec0686a3ff6b2e05ede01a238ade0c045c985a2eac8c75ab"
+}

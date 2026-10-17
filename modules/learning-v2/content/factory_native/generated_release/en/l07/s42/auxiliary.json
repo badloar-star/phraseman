@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-42:intro1:r2": {
+          "ru": "После `I` нужно `decorate`.",
+          "uk": "Після `I` потрібне `decorate`."
+        },
+        "en:lesson-07:session-42:intro1:r3": {
+          "ru": "Здесь нужна форма `decorate`.",
+          "uk": "Тут потрібна форма `decorate`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-42:intro2:r2": {
+          "ru": "После `we` нужно `share`.",
+          "uk": "Після `we` потрібне `share`."
+        },
+        "en:lesson-07:session-42:intro2:r3": {
+          "ru": "Здесь нужна форма `share`.",
+          "uk": "Тут потрібна форма `share`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-42:intro3:r2": {
+          "ru": "После `I` нужно `volunteer`.",
+          "uk": "Після `I` потрібне `volunteer`."
+        },
+        "en:lesson-07:session-42:intro3:r3": {
+          "ru": "Здесь нужна форма `volunteer`.",
+          "uk": "Тут потрібна форма `volunteer`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f628a778cdc0bea1cff2881b6a4f17f6c356d0e594c9e70bff2f1f7c392f5268"
+}

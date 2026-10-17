@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я часто занимаюсь сёрфингом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто занимаюсь сёрфингом»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often surf.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто занимаюсь сёрфингом»",
+          "uk": "Скажіть «Я часто займаюся серфінгом»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "surf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-53:i02:r1",
+          "text": "surf"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i02:r2",
+          "text": "ski"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i02:r3",
+          "text": "sew"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i02:audio",
+          "transcript": "surf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-53:i02:r1",
+            "targetText": "surf",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i02:r2",
+            "targetText": "ski",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i02:r3",
+            "targetText": "sew",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `surf`, а в этом варианте — `ski`.",
+              "uk": "У записі перше слово — `surf`, а в цьому варіанті — `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `surf`, а в этом варианте — `sew`.",
+              "uk": "У записі перше слово — `surf`, а в цьому варіанті — `sew`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто занимаюсь сёрфингом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-53:i03:r1",
+          "text": "surf"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i03:r2",
+          "text": "surfs"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i03:r3",
+          "text": "surfing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто занимаюсь сёрфингом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто занимаюсь сёрфингом»",
+          "uk": "Скажіть «Я часто займаюся серфінгом»"
+        },
+        "gappedTargetPhrase": "I often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-53:i03:r1",
+            "text": "surf"
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i03:r2",
+            "text": "surfs"
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i03:r3",
+            "text": "surfing"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `surf`.",
+              "uk": "Після `I` потрібне `surf`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `surf`.",
+              "uk": "Тут потрібна форма `surf`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-53:i04:p1",
+            "target": "surf",
+            "meaningByLocale": {
+              "ru": "заниматься сёрфингом",
+              "uk": "займатися серфінгом"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i04:p2",
+            "target": "donate",
+            "meaningByLocale": {
+              "ru": "отдавать на благотворительность",
+              "uk": "віддавати на благодійність"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i04:p3",
+            "target": "museum",
+            "meaningByLocale": {
+              "ru": "музей",
+              "uk": "музей"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i04:p4",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "surf",
+          "donate",
+          "museum",
+          "court"
+        ],
+        "rightColumn": [
+          "заниматься сёрфингом",
+          "отдавать на благотворительность",
+          "музей",
+          "корт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i05:audio",
+          "transcript": "I often surf."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often surf.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "surf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я часто отдаю книги на благотворительность»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто отдаю книги на благотворительность»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often donate books.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто отдаю книги на благотворительность»",
+          "uk": "Скажіть «Я часто віддаю книжки на благодійність»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "donate",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите прохожего «Где музей?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите прохожего «Где музей?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i07:audio",
+          "transcript": "Where is the museum?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the museum?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто отдаю книги на благотворительность»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-53:i08:r1",
+          "text": "donate"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i08:r2",
+          "text": "donates"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i08:r3",
+          "text": "donating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто отдаю книги на благотворительность»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто отдаю книги на благотворительность»",
+          "uk": "Скажіть «Я часто віддаю книжки на благодійність»"
+        },
+        "gappedTargetPhrase": "I often ___ books.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-53:i08:r1",
+            "text": "donate"
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i08:r2",
+            "text": "donates"
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i08:r3",
+            "text": "donating"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `donate`.",
+              "uk": "Після `I` потрібне `donate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `donate`.",
+              "uk": "Тут потрібна форма `donate`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-53:i09:r1",
+          "text": "I often surf."
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i09:r2",
+          "text": "I often ski."
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i09:r3",
+          "text": "I often dance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i09:audio",
+          "transcript": "I often surf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-53:i09:r1",
+            "targetText": "I often surf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i09:r2",
+            "targetText": "I often ski.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i09:r3",
+            "targetText": "I often dance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `surf`, а в этом варианте — `ski`.",
+              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `surf`, а в этом варианте — `dance`.",
+              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `dance`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-53:i10:p1",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i10:p2",
+            "target": "surf",
+            "meaningByLocale": {
+              "ru": "заниматься сёрфингом",
+              "uk": "займатися серфінгом"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i10:p3",
+            "target": "donate",
+            "meaningByLocale": {
+              "ru": "отдавать на благотворительность",
+              "uk": "віддавати на благодійність"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i10:p4",
+            "target": "museum",
+            "meaningByLocale": {
+              "ru": "музей",
+              "uk": "музей"
+            }
+          }
+        ],
+        "leftColumn": [
+          "uniform",
+          "surf",
+          "donate",
+          "museum"
+        ],
+        "rightColumn": [
+          "униформа",
+          "заниматься сёрфингом",
+          "отдавать на благотворительность",
+          "музей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i11:audio",
+          "transcript": "Where is the museum?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the museum?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "museum"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы пришли поиграть в теннис. Спросите сотрудника «Где корт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пришли поиграть в теннис. Спросите сотрудника «Где корт?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the court?",
+        "localizedMeaning": {
+          "ru": "Вы пришли поиграть в теннис. Спросите сотрудника «Где корт?»",
+          "uk": "Ви прийшли пограти в теніс. Запитайте працівника «Де корт?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "court"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг рассказывает о работе. Спросите «Ты носишь униформу?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Друг рассказывает о работе. Спросите «Ты носишь униформу?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i13:audio",
+          "transcript": "Do you wear a uniform?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you wear a uniform?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто занимаюсь сёрфингом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-53:i14:r1",
+          "text": "often"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто занимаюсь сёрфингом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто занимаюсь сёрфингом»",
+          "uk": "Скажіть «Я часто займаюся серфінгом»"
+        },
+        "gappedTargetPhrase": "I ___ surf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-53:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often` перед `surf`.",
+              "uk": "Для «часто» потрібне `often` перед `surf`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often`; `am` перед `surf` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `surf` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-53:i15:r1",
+          "text": "Where is the museum?"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i15:r2",
+          "text": "Where is the court?"
+        },
+        {
+          "responseId": "en:lesson-07:session-53:i15:r3",
+          "text": "Where is the pool?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i15:audio",
+          "transcript": "Where is the museum?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-53:i15:r1",
+            "targetText": "Where is the museum?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i15:r2",
+            "targetText": "Where is the court?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i15:r3",
+            "targetText": "Where is the pool?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `museum`, а в этом варианте — `court`.",
+              "uk": "У записі останнє слово — `museum`, а в цьому варіанті — `court`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-53:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `museum`, а в этом варианте — `pool`.",
+              "uk": "У записі останнє слово — `museum`, а в цьому варіанті — `pool`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-53:i16:p1",
+            "target": "surf",
+            "meaningByLocale": {
+              "ru": "заниматься сёрфингом",
+              "uk": "займатися серфінгом"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i16:p2",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i16:p3",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-53:i16:p4",
+            "target": "donate",
+            "meaningByLocale": {
+              "ru": "отдавать на благотворительность",
+              "uk": "віддавати на благодійність"
+            }
+          }
+        ],
+        "leftColumn": [
+          "surf",
+          "court",
+          "uniform",
+          "donate"
+        ],
+        "rightColumn": [
+          "заниматься сёрфингом",
+          "корт",
+          "униформа",
+          "отдавать на благотворительность"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о занятиях Тома на море. Скажите «Том часто занимается сёрфингом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о занятиях Тома на море. Скажите «Том часто занимается сёрфингом»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:i17:audio",
+          "transcript": "Tom often surfs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often surfs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5d37fe73d4d46a9dd912009bb846dfa2bec8c2e574f4a60b5afd82db4c087172"
+}

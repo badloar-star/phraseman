@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-38:intro1:r2": {
+          "ru": "После `I` нужно `iron`, без `s`.",
+          "uk": "Після `I` потрібне `iron`, без `s`."
+        },
+        "en:lesson-07:session-38:intro1:r3": {
+          "ru": "Здесь нужна форма `iron`.",
+          "uk": "Тут потрібна форма `iron`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-38:intro2:r2": {
+          "ru": "После `I` нужно `rest`.",
+          "uk": "Після `I` потрібне `rest`."
+        },
+        "en:lesson-07:session-38:intro2:r3": {
+          "ru": "Здесь нужна форма `rest`.",
+          "uk": "Тут потрібна форма `rest`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-38:intro3:r2": {
+          "ru": "После `she` нужно `calls`.",
+          "uk": "Після `she` потрібне `calls`."
+        },
+        "en:lesson-07:session-38:intro3:r3": {
+          "ru": "Здесь нужна форма `calls`.",
+          "uk": "Тут потрібна форма `calls`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "51a1c7ac014097dd63bc630883f7ae06792bb1ae7d35ad6518d841f93e16e140"
+}

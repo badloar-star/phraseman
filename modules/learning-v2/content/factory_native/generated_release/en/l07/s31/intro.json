@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "задавать вопросы о привычках, месте и времени действий",
+    "uk": "ставити запитання про звички, місце й час дій"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выходные в парке",
+        "uk": "Вихідні в парку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете с другом, как он проводит выходные. `visit` — «посещать». `Do you visit parks?` — «Ты посещаешь парки?» После `visit` здесь называем место — `parks`. Это вопрос о привычке, поэтому начинаем с `do you`. Скамейки пока не требуют записи на приём.",
+        "uk": "Ви обговорюєте з другом, як він проводить вихідні. `visit` — «відвідувати». `Do you visit parks?` — «Ти відвідуєш парки?» Після `visit` тут називаємо місце — `parks`. Це запитання про звичку, тому починаємо з `do you`. Лавки поки не вимагають запису на прийом."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга, посещает ли он парки.",
+          "uk": "Запитайте друга, чи відвідує він парки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-31:intro1:r1",
+              "text": "Do you visit parks?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro1:r2",
+              "text": "Does you visit parks?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro1:r3",
+              "text": "Do you visits parks?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-31:intro1:r1",
+              "text": "Do you visit parks?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro1:r2",
+              "text": "Does you visit parks?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro1:r3",
+              "text": "Do you visits parks?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга, посещает ли он парки.",
+          "uk": "Запитайте друга, чи відвідує він парки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Общее расписание ванной",
+        "uk": "Спільний розклад ванної"
+      },
+      "bodyByLocale": {
+        "ru": "Вы делите квартиру с другом и обсуждаете обычное время пользования ванной. `When do you shower?` — «Когда ты принимаешь душ?» `When` спрашивает о времени, затем идут `do you shower`. Здесь `shower` — действие «принимать душ».",
+        "uk": "Ви ділите квартиру з другом і обговорюєте звичний час користування ванною. `When do you shower?` — «Коли ти приймаєш душ?» `When` запитує про час, потім ідуть `do you shower`. Тут `shower` — дія «приймати душ»."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Узнайте, когда друг обычно принимает душ.",
+          "uk": "Дізнайтеся, коли друг зазвичай приймає душ."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-31:intro2:r1",
+              "text": "When do you shower?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro2:r2",
+              "text": "When does you shower?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro2:r3",
+              "text": "When do you showers?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-31:intro2:r1",
+              "text": "When do you shower?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro2:r2",
+              "text": "When does you shower?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro2:r3",
+              "text": "When do you showers?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте, когда друг обычно принимает душ.",
+          "uk": "Дізнайтеся, коли друг зазвичай приймає душ."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Место работы",
+        "uk": "Місце роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте, где работает знакомый. `Where do you work?` — «Где ты работаешь?» `Where` спрашивает о месте. После него идут `do you work`, без окончания у `work`.",
+        "uk": "Ви дізнаєтеся, де працює знайомий. `Where do you work?` — «Де ти працюєш?» `Where` запитує про місце. Після нього ідуть `do you work`, без закінчення у `work`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите знакомого: «Где ты работаешь?»",
+          "uk": "Запитайте знайомого: «Де ти працюєш?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-31:intro3:r1",
+              "text": "Where do you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro3:r2",
+              "text": "Where does you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro3:r3",
+              "text": "Where do you works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-31:intro3:r1",
+              "text": "Where do you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro3:r2",
+              "text": "Where does you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-31:intro3:r3",
+              "text": "Where do you works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите знакомого: «Где ты работаешь?»",
+          "uk": "Запитайте знайомого: «Де ти працюєш?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0c3aef6e2cb5c439432cabce01e54d22ecdf8aaf1b111a3781077072848a5a32"
+}

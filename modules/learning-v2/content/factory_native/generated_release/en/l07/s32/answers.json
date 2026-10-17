@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-32:i01",
+    "correctText": "Where do you meet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i02",
+    "correctText": "park",
+    "correctResponseId": "en:lesson-07:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i03",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-07:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i04",
+    "correctText": "en:lesson-07:session-32:i04:p1=meet\nen:lesson-07:session-32:i04:p2=park\nen:lesson-07:session-32:i04:p3=stay\nen:lesson-07:session-32:i04:p4=eat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i05",
+    "correctText": "Where do you stay?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i06",
+    "correctText": "When does Tom travel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i07",
+    "correctText": "Do you visit parks?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i08",
+    "correctText": "park",
+    "correctResponseId": "en:lesson-07:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i09",
+    "correctText": "Where do you play?",
+    "correctResponseId": "en:lesson-07:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i10",
+    "correctText": "en:lesson-07:session-32:i10:p1=play\nen:lesson-07:session-32:i10:p2=travel\nen:lesson-07:session-32:i10:p3=visit\nen:lesson-07:session-32:i10:p4=meet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i11",
+    "correctText": "When does Tom travel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i12",
+    "correctText": "Where do you park?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i13",
+    "correctText": "I don’t cheat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i14",
+    "correctText": "When",
+    "correctResponseId": "en:lesson-07:session-32:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i15",
+    "correctText": "Where do you travel?",
+    "correctResponseId": "en:lesson-07:session-32:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i16",
+    "correctText": "en:lesson-07:session-32:i16:p1=stay\nen:lesson-07:session-32:i16:p2=eat\nen:lesson-07:session-32:i16:p3=play\nen:lesson-07:session-32:i16:p4=visit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:i17",
+    "correctText": "Where does Tom stay?",
+    "correctResponseId": null
+  }
+]

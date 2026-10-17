@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-41:intro1:r2": {
+          "ru": "После `I` нужно `meditate`.",
+          "uk": "Після `I` потрібне `meditate`."
+        },
+        "en:lesson-07:session-41:intro1:r3": {
+          "ru": "Здесь нужна форма `meditate`.",
+          "uk": "Тут потрібна форма `meditate`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-41:intro2:r2": {
+          "ru": "После `I` нужно `chat`.",
+          "uk": "Після `I` потрібне `chat`."
+        },
+        "en:lesson-07:session-41:intro2:r3": {
+          "ru": "Здесь нужна форма `chat`.",
+          "uk": "Тут потрібна форма `chat`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-41:intro3:r2": {
+          "ru": "После `she` нужно `calls`.",
+          "uk": "Після `she` потрібне `calls`."
+        },
+        "en:lesson-07:session-41:intro3:r3": {
+          "ru": "Здесь нужна форма `calls`.",
+          "uk": "Тут потрібна форма `calls`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "18ac2aa301134780bf99174ed65b6e37de985c203ab3905add8a5861c91e9ed1"
+}

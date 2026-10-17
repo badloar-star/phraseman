@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я обычно езжу на работу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно езжу на работу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually commute.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно езжу на работу»",
+          "uk": "Скажіть «Я зазвичай їжджу на роботу»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "commute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-35:i02:r1",
+          "text": "commute"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i02:r2",
+          "text": "sleep"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i02:r3",
+          "text": "stay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i02:audio",
+          "transcript": "commute"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-35:i02:r1",
+            "targetText": "commute",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i02:r2",
+            "targetText": "sleep",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i02:r3",
+            "targetText": "stay",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `commute`, а в этом варианте — `sleep`.",
+              "uk": "У записі перше слово — `commute`, а в цьому варіанті — `sleep`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `commute`, а в этом варианте — `stay`.",
+              "uk": "У записі перше слово — `commute`, а в цьому варіанті — `stay`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно езжу на работу»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-35:i03:r1",
+          "text": "commute"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i03:r2",
+          "text": "commutes"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i03:r3",
+          "text": "commuting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно езжу на работу»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно езжу на работу»",
+          "uk": "Скажіть «Я зазвичай їжджу на роботу»"
+        },
+        "gappedTargetPhrase": "I usually ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-35:i03:r1",
+            "text": "commute"
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i03:r2",
+            "text": "commutes"
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i03:r3",
+            "text": "commuting"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно езжу на работу»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно езжу на работу»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `commute`.",
+              "uk": "Після `I` потрібне `commute`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно езжу на работу»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `commute`.",
+              "uk": "Тут потрібна форма `commute`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-35:i04:p1",
+            "target": "commute",
+            "meaningByLocale": {
+              "ru": "ездить на работу или учёбу",
+              "uk": "їздити на роботу або навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i04:p2",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i04:p3",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i04:p4",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "commute",
+          "sleep",
+          "photos",
+          "bracelet"
+        ],
+        "rightColumn": [
+          "ездить на работу или учёбу",
+          "спать",
+          "фотографии",
+          "браслет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i05:audio",
+          "transcript": "I usually commute."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually commute.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "commute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о дороге до магазина: «Я обычно хожу пешком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о дороге до магазина: «Я обычно хожу пешком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually walk.",
+        "localizedMeaning": {
+          "ru": "Расскажите о дороге до магазина: «Я обычно хожу пешком»",
+          "uk": "Розкажіть про дорогу до магазину: «Я зазвичай ходжу пішки»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о знакомой «Она часто звонит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите о знакомой «Она часто звонит»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i07:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She often calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она часто звонит»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-35:i08:r1",
+          "text": "calls"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i08:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i08:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она часто звонит»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она часто звонит»",
+          "uk": "Скажіть «Вона часто телефонує»"
+        },
+        "gappedTargetPhrase": "She often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-35:i08:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i08:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i08:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Скажите «Она часто звонит»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `calls`.",
+              "uk": "Після `she` потрібне `calls`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `calls`.",
+              "uk": "Тут потрібна форма `calls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-35:i09:r1",
+          "text": "I usually commute."
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i09:r2",
+          "text": "I usually walk."
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i09:r3",
+          "text": "I usually study."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i09:audio",
+          "transcript": "I usually commute."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-35:i09:r1",
+            "targetText": "I usually commute.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i09:r2",
+            "targetText": "I usually walk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i09:r3",
+            "targetText": "I usually study.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `commute`, а в этом варианте — `walk`.",
+              "uk": "У записі останнє слово — `commute`, а в цьому варіанті — `walk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `commute`, а в этом варианте — `study`.",
+              "uk": "У записі останнє слово — `commute`, а в цьому варіанті — `study`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-35:i10:p1",
+            "target": "stay",
+            "meaningByLocale": {
+              "ru": "останавливаться на время поездки",
+              "uk": "зупинятися на час поїздки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i10:p2",
+            "target": "commute",
+            "meaningByLocale": {
+              "ru": "ездить на работу или учёбу",
+              "uk": "їздити на роботу або навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i10:p3",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i10:p4",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "stay",
+          "commute",
+          "photos",
+          "sleep"
+        ],
+        "rightColumn": [
+          "останавливаться на время поездки",
+          "ездить на работу или учёбу",
+          "фотографии",
+          "спать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i11:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She often calls.",
+        "orderedTokens": [
+          "She",
+          "often",
+          "calls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы подбираете украшения. Спросите подругу «У тебя есть браслет?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы подбираете украшения. Спросите подругу «У тебя есть браслет?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a bracelet?",
+        "localizedMeaning": {
+          "ru": "Вы подбираете украшения. Спросите подругу «У тебя есть браслет?»",
+          "uk": "Ви добираєте прикраси. Запитайте подругу «У тебе є браслет?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "bracelet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Узнайте привычное место ночлега коллеги в поездках",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Узнайте привычное место ночлега коллеги в поездках",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i13:audio",
+          "transcript": "Where do you stay?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where do you stay?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно сплю здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-35:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно сплю здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно сплю здесь»",
+          "uk": "Скажіть «Я зазвичай сплю тут»"
+        },
+        "gappedTargetPhrase": "I ___ sleep here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-35:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно сплю здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно сплю здесь»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `sleep`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `sleep`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно сплю здесь»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `sleep` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `sleep` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-35:i15:r1",
+          "text": "Do you have photos?"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i15:r2",
+          "text": "Do you have tickets?"
+        },
+        {
+          "responseId": "en:lesson-07:session-35:i15:r3",
+          "text": "Do you have maps?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i15:audio",
+          "transcript": "Do you have photos?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-35:i15:r1",
+            "targetText": "Do you have photos?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i15:r2",
+            "targetText": "Do you have tickets?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i15:r3",
+            "targetText": "Do you have maps?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `photos`, а в этом варианте — `tickets`.",
+              "uk": "У записі останнє слово — `photos`, а в цьому варіанті — `tickets`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-35:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `photos`, а в этом варианте — `maps`.",
+              "uk": "У записі останнє слово — `photos`, а в цьому варіанті — `maps`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-35:i16:p1",
+            "target": "commute",
+            "meaningByLocale": {
+              "ru": "ездить на работу или учёбу",
+              "uk": "їздити на роботу або навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i16:p2",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i16:p3",
+            "target": "stay",
+            "meaningByLocale": {
+              "ru": "останавливаться на время поездки",
+              "uk": "зупинятися на час поїздки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-35:i16:p4",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          }
+        ],
+        "leftColumn": [
+          "commute",
+          "bracelet",
+          "stay",
+          "photos"
+        ],
+        "rightColumn": [
+          "ездить на работу или учёбу",
+          "браслет",
+          "останавливаться на время поездки",
+          "фотографии"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, работает ли Том дома или ездит на работу. Скажите «Том обычно ездит на работу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, работает ли Том дома или ездит на работу. Скажите «Том обычно ездит на работу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:i17:audio",
+          "transcript": "Tom usually commutes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually commutes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "495731fc1d2a12d071d231f50ba2b7cd4d91689d4362657017eab98797eebe7a"
+}

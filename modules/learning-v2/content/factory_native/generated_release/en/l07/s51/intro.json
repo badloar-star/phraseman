@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о привычках и задавать вопросы",
+    "uk": "розповідати про звички й ставити запитання"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Музыка дома",
+        "uk": "Музика вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, что вы делаете дома под музыку. `Dance` — «танцевать». `I often dance at home` — «Я часто танцую дома». `Often` стоит перед `dance`. Дома никто не просит показать билет на танцпол.",
+        "uk": "Друг запитує, що ви робите вдома під музику. `Dance` — «танцювати». `I often dance at home` — «Я часто танцюю вдома». `Often` стоїть перед `dance`. Удома ніхто не просить показати квиток на танцмайданчик."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу о своей привычке.",
+          "uk": "Розкажіть другові про свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-51:intro1:r1",
+              "text": "I often dance at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro1:r2",
+              "text": "I often dances at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro1:r3",
+              "text": "I often dancing at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-51:intro1:r1",
+              "text": "I often dance at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro1:r2",
+              "text": "I often dances at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro1:r3",
+              "text": "I often dancing at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу о своей привычке.",
+          "uk": "Розкажіть другові про свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книги в магазине",
+        "uk": "Книжки в магазині"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заходите в небольшой магазин и хотите узнать, продают ли здесь книги. `Do you sell books?` — «Вы продаёте книги?» После `do you` нужно `sell`, без окончания `s`.",
+        "uk": "Ви заходите до невеликого магазину й хочете дізнатися, чи продають тут книжки. `Do you sell books?` — «Ви продаєте книжки?» Після `do you` потрібне `sell`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите продавца о книгах.",
+          "uk": "Запитайте продавця про книжки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-51:intro2:r1",
+              "text": "Do you sell books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro2:r2",
+              "text": "Does you sell books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro2:r3",
+              "text": "Do you sells books?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-51:intro2:r1",
+              "text": "Do you sell books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro2:r2",
+              "text": "Does you sell books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro2:r3",
+              "text": "Do you sells books?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите продавца о книгах.",
+          "uk": "Запитайте продавця про книжки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ищу стадион",
+        "uk": "Шукаю стадіон"
+      },
+      "bodyByLocale": {
+        "ru": "Вы идёте на матч и спрашиваете прохожего о дороге. `Where is the stadium?` — «Где стадион?» После `where` здесь идёт `is`, затем `the stadium`.",
+        "uk": "Ви йдете на матч і запитуєте перехожого про дорогу. `Where is the stadium?` — «Де стадіон?» Після `where` тут іде `is`, потім `the stadium`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, где стадион.",
+          "uk": "Запитайте, де стадіон."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-51:intro3:r1",
+              "text": "Where is the stadium?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro3:r2",
+              "text": "Where are the stadium?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro3:r3",
+              "text": "Where the stadium is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-51:intro3:r1",
+              "text": "Where is the stadium?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro3:r2",
+              "text": "Where are the stadium?"
+            },
+            {
+              "responseId": "en:lesson-07:session-51:intro3:r3",
+              "text": "Where the stadium is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где стадион.",
+          "uk": "Запитайте, де стадіон."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "85771a183af2fe39fd095ed803530424ac220c8e61466fbd0169e4bbe75f2c78"
+}

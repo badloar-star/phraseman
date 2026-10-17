@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-30:i01",
+    "correctText": "Where do you travel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i02",
+    "correctText": "travel",
+    "correctResponseId": "en:lesson-07:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i03",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-07:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i04",
+    "correctText": "en:lesson-07:session-30:i04:p1=travel\nen:lesson-07:session-30:i04:p2=clean\nen:lesson-07:session-30:i04:p3=headphones\nen:lesson-07:session-30:i04:p4=windows",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i05",
+    "correctText": "Where do you travel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i06",
+    "correctText": "When do you clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i07",
+    "correctText": "When does she start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i08",
+    "correctText": "does",
+    "correctResponseId": "en:lesson-07:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i09",
+    "correctText": "Where do you travel?",
+    "correctResponseId": "en:lesson-07:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i10",
+    "correctText": "en:lesson-07:session-30:i10:p1=argue\nen:lesson-07:session-30:i10:p2=travel\nen:lesson-07:session-30:i10:p3=windows\nen:lesson-07:session-30:i10:p4=clean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i11",
+    "correctText": "When do you clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i12",
+    "correctText": "Do you have headphones?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i13",
+    "correctText": "I don’t argue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i14",
+    "correctText": "travel",
+    "correctResponseId": "en:lesson-07:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i15",
+    "correctText": "The windows are here.",
+    "correctResponseId": "en:lesson-07:session-30:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i16",
+    "correctText": "en:lesson-07:session-30:i16:p1=travel\nen:lesson-07:session-30:i16:p2=headphones\nen:lesson-07:session-30:i16:p3=argue\nen:lesson-07:session-30:i16:p4=windows",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-30:i17",
+    "correctText": "When does Tom travel?",
+    "correctResponseId": null
+  }
+]

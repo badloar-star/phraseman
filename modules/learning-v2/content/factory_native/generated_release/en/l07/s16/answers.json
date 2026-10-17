@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-16:i01",
+    "correctText": "Does the manager work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i02",
+    "correctText": "Does the printer work?",
+    "correctResponseId": "en:lesson-07:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i03",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i04",
+    "correctText": "en:lesson-07:session-16:i04:p1=manager\nen:lesson-07:session-16:i04:p2=machine\nen:lesson-07:session-16:i04:p3=printer\nen:lesson-07:session-16:i04:p4=screen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i05",
+    "correctText": "Does the website work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i06",
+    "correctText": "There is no screen in this room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i07",
+    "correctText": "Does the alarm work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i08",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i09",
+    "correctText": "Does the manager work here?",
+    "correctResponseId": "en:lesson-07:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i10",
+    "correctText": "en:lesson-07:session-16:i10:p1=alarm\nen:lesson-07:session-16:i10:p2=server\nen:lesson-07:session-16:i10:p3=website\nen:lesson-07:session-16:i10:p4=printer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i11",
+    "correctText": "Do they work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i12",
+    "correctText": "Does the server work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i13",
+    "correctText": "Do you have a printer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-07:session-16:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i15",
+    "correctText": "Do you have a website?",
+    "correctResponseId": "en:lesson-07:session-16:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i16",
+    "correctText": "en:lesson-07:session-16:i16:p1=manager\nen:lesson-07:session-16:i16:p2=screen\nen:lesson-07:session-16:i16:p3=alarm\nen:lesson-07:session-16:i16:p4=website",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-16:i17",
+    "correctText": "Does the manager start early?",
+    "correctResponseId": null
+  }
+]

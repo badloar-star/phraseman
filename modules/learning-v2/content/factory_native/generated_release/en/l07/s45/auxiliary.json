@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-45:intro1:r2": {
+          "ru": "После `I` нужно `donate`, без `s`.",
+          "uk": "Після `I` потрібне `donate`, без `s`."
+        },
+        "en:lesson-07:session-45:intro1:r3": {
+          "ru": "Здесь нужна форма `donate`.",
+          "uk": "Тут потрібна форма `donate`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-45:intro2:r2": {
+          "ru": "После `I` нужно `pack`.",
+          "uk": "Після `I` потрібне `pack`."
+        },
+        "en:lesson-07:session-45:intro2:r3": {
+          "ru": "Здесь нужна форма `pack`.",
+          "uk": "Тут потрібна форма `pack`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-45:intro3:r2": {
+          "ru": "После `I` нужно `walk`.",
+          "uk": "Після `I` потрібне `walk`."
+        },
+        "en:lesson-07:session-45:intro3:r3": {
+          "ru": "Здесь нужна форма `walk`.",
+          "uk": "Тут потрібна форма `walk`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6d0427f8017fdccd50ae66ea1bc219447b3cafd2d232a74a8f277c806759a6c3"
+}

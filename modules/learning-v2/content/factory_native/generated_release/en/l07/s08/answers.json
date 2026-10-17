@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-08:i01",
+    "correctText": "Do you work in a factory?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i02",
+    "correctText": "Do you have a package?",
+    "correctResponseId": "en:lesson-07:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i03",
+    "correctText": "sell",
+    "correctResponseId": "en:lesson-07:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i04",
+    "correctText": "en:lesson-07:session-08:i04:p1=factory\nen:lesson-07:session-08:i04:p2=package\nen:lesson-07:session-08:i04:p3=poster\nen:lesson-07:session-08:i04:p4=schedule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i05",
+    "correctText": "Do you have a schedule?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i06",
+    "correctText": "Do you wear glasses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i07",
+    "correctText": "There is no schedule here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i08",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-07:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i09",
+    "correctText": "Do they work here?",
+    "correctResponseId": "en:lesson-07:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i10",
+    "correctText": "en:lesson-07:session-08:i10:p1=glasses\nen:lesson-07:session-08:i10:p2=shift\nen:lesson-07:session-08:i10:p3=customer\nen:lesson-07:session-08:i10:p4=schedule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i11",
+    "correctText": "Do they deliver packages?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i12",
+    "correctText": "Are you a customer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i13",
+    "correctText": "Do you have a poster?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-07:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i15",
+    "correctText": "Are you a customer?",
+    "correctResponseId": "en:lesson-07:session-08:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i16",
+    "correctText": "en:lesson-07:session-08:i16:p1=factory\nen:lesson-07:session-08:i16:p2=glasses\nen:lesson-07:session-08:i16:p3=shift\nen:lesson-07:session-08:i16:p4=customer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-08:i17",
+    "correctText": "Do you deliver newspapers?",
+    "correctResponseId": null
+  }
+]

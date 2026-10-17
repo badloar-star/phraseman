@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "использовать often и usually перед действием и выбирать форму глагола",
+    "uk": "використовувати often і usually перед дією та вибирати форму дієслова"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Время для отдыха",
+        "uk": "Час для відпочинку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, находите ли вы время спокойно отдохнуть. `relax` — «отдыхать, расслабляться». `I often relax` — «Я часто отдыхаю». `Often` означает «часто» и стоит перед `relax`. Диван наконец получил работу по специальности.",
+        "uk": "Друг запитує, чи знаходите ви час спокійно відпочити. `relax` — «відпочивати, розслаблятися». `I often relax` — «Я часто відпочиваю». `Often` означає «часто» і стоїть перед `relax`. Диван нарешті отримав роботу за фахом."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу: «Я часто отдыхаю».",
+          "uk": "Розкажіть другові: «Я часто відпочиваю»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-36:intro1:r1",
+              "text": "I often relax."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro1:r2",
+              "text": "I often relaxes."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro1:r3",
+              "text": "I often relaxing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-36:intro1:r1",
+              "text": "I often relax."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro1:r2",
+              "text": "I often relaxes."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro1:r3",
+              "text": "I often relaxing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу: «Я часто отдыхаю».",
+          "uk": "Розкажіть другові: «Я часто відпочиваю»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пешком до магазина",
+        "uk": "Пішки до магазину"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, как вы обычно добираетесь до магазина. `I usually walk` — «Я обычно хожу пешком». `Usually` стоит перед `walk` и описывает обычный способ передвижения.",
+        "uk": "Сусід запитує, як ви зазвичай дістаєтеся магазину. `I usually walk` — «Я зазвичай ходжу пішки». `Usually` стоїть перед `walk` й описує звичний спосіб пересування."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте соседу: «Я обычно хожу пешком».",
+          "uk": "Відповідайте сусідові: «Я зазвичай ходжу пішки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-36:intro2:r1",
+              "text": "I usually walk."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro2:r2",
+              "text": "I usually walks."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro2:r3",
+              "text": "I usually walking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-36:intro2:r1",
+              "text": "I usually walk."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro2:r2",
+              "text": "I usually walks."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro2:r3",
+              "text": "I usually walking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте соседу: «Я обычно хожу пешком».",
+          "uk": "Відповідайте сусідові: «Я зазвичай ходжу пішки»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "На связи",
+        "uk": "На зв’язку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` ставим перед `calls`; после `she` у действия остаётся `s`.",
+        "uk": "Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` ставимо перед `calls`; після `she` у дії залишається `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о знакомой: «Она часто звонит».",
+          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-36:intro3:r1",
+              "text": "She often calls."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro3:r2",
+              "text": "She often call."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro3:r3",
+              "text": "She often calling."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-36:intro3:r1",
+              "text": "She often calls."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro3:r2",
+              "text": "She often call."
+            },
+            {
+              "responseId": "en:lesson-07:session-36:intro3:r3",
+              "text": "She often calling."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о знакомой: «Она часто звонит».",
+          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99a46b522e12f163f932165936abdcf222c7f11f9d80f265bced3e720f0c0354"
+}

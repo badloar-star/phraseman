@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-12:i01",
+    "correctText": "Does the alarm work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i02",
+    "correctText": "alarm",
+    "correctResponseId": "en:lesson-07:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i04",
+    "correctText": "en:lesson-07:session-12:i04:p1=alarm\nen:lesson-07:session-12:i04:p2=table\nen:lesson-07:session-12:i04:p3=notebook\nen:lesson-07:session-12:i04:p4=glasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i05",
+    "correctText": "Does the alarm work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i06",
+    "correctText": "There are no glasses on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i07",
+    "correctText": "Does she start early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i09",
+    "correctText": "Does she start early?",
+    "correctResponseId": "en:lesson-07:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i10",
+    "correctText": "en:lesson-07:session-12:i10:p1=paint\nen:lesson-07:session-12:i10:p2=alarm\nen:lesson-07:session-12:i10:p3=table\nen:lesson-07:session-12:i10:p4=notebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i11",
+    "correctText": "Does it work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i12",
+    "correctText": "Do you have a notebook?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i13",
+    "correctText": "The alarm is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-07:session-12:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i15",
+    "correctText": "Do you paint here?",
+    "correctResponseId": "en:lesson-07:session-12:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i16",
+    "correctText": "en:lesson-07:session-12:i16:p1=alarm\nen:lesson-07:session-12:i16:p2=glasses\nen:lesson-07:session-12:i16:p3=paint\nen:lesson-07:session-12:i16:p4=notebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-12:i17",
+    "correctText": "Does Anna paint here?",
+    "correctResponseId": null
+  }
+]

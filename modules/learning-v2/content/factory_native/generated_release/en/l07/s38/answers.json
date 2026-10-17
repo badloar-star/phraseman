@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-38:i01",
+    "correctText": "I often iron.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i02",
+    "correctText": "iron",
+    "correctResponseId": "en:lesson-07:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i03",
+    "correctText": "iron",
+    "correctResponseId": "en:lesson-07:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i04",
+    "correctText": "en:lesson-07:session-38:i04:p1=iron\nen:lesson-07:session-38:i04:p2=rest\nen:lesson-07:session-38:i04:p3=ticket\nen:lesson-07:session-38:i04:p4=laptop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i05",
+    "correctText": "I often iron.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i06",
+    "correctText": "I usually rest here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i09",
+    "correctText": "I often iron.",
+    "correctResponseId": "en:lesson-07:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i10",
+    "correctText": "en:lesson-07:session-38:i10:p1=travel\nen:lesson-07:session-38:i10:p2=iron\nen:lesson-07:session-38:i10:p3=ticket\nen:lesson-07:session-38:i10:p4=rest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i11",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i12",
+    "correctText": "Do you have a laptop?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i13",
+    "correctText": "Where do you travel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-38:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i15",
+    "correctText": "Do you have a ticket?",
+    "correctResponseId": "en:lesson-07:session-38:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i16",
+    "correctText": "en:lesson-07:session-38:i16:p1=iron\nen:lesson-07:session-38:i16:p2=laptop\nen:lesson-07:session-38:i16:p3=travel\nen:lesson-07:session-38:i16:p4=ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:i17",
+    "correctText": "Tom often irons.",
+    "correctResponseId": null
+  }
+]

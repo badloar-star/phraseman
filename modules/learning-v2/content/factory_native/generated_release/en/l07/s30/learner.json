@@ -1,0 +1,946 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Узнайте обычные направления поездок: «Куда ты путешествуешь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте обычные направления поездок: «Куда ты путешествуешь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do you travel?",
+        "localizedMeaning": {
+          "ru": "Узнайте обычные направления поездок: «Куда ты путешествуешь?»",
+          "uk": "Дізнайтеся звичні напрямки поїздок: «Куди ти подорожуєш?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "travel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-30:i02:r1",
+          "text": "travel"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i02:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i02:r3",
+          "text": "headphones"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i02:audio",
+          "transcript": "travel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-30:i02:r1",
+            "targetText": "travel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i02:r2",
+            "targetText": "clean",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i02:r3",
+            "targetText": "headphones",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `travel`, а в этом варианте — `clean`.",
+              "uk": "У записі перше слово — `travel`, а в цьому варіанті — `clean`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `travel`, а в этом варианте — `headphones`.",
+              "uk": "У записі перше слово — `travel`, а в цьому варіанті — `headphones`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите об обычных направлениях поездок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-30:i03:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i03:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите об обычных направлениях поездок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите об обычных направлениях поездок",
+          "uk": "Запитайте про звичні напрямки поїздок"
+        },
+        "gappedTargetPhrase": "Where ___ you travel?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-30:i03:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i03:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Спросите об обычных направлениях поездок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите об обычных направлениях поездок",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `do`.",
+              "uk": "З `you` потрібне `do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите об обычных направлениях поездок",
+            "feedbackByLocale": {
+              "ru": "Вопрос о привычном действии `travel` строим с `do`.",
+              "uk": "Запитання про звичну дію `travel` будуємо з `do`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-30:i04:p1",
+            "target": "travel",
+            "meaningByLocale": {
+              "ru": "путешествовать",
+              "uk": "подорожувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i04:p2",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "убирать",
+              "uk": "прибирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i04:p3",
+            "target": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i04:p4",
+            "target": "windows",
+            "meaningByLocale": {
+              "ru": "окна",
+              "uk": "вікна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "travel",
+          "clean",
+          "headphones",
+          "windows"
+        ],
+        "rightColumn": [
+          "путешествовать",
+          "убирать",
+          "наушники",
+          "окна"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i05:audio",
+          "transcript": "Where do you travel?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where do you travel?",
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "travel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Узнайте обычное время уборки: «Когда ты убираешь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте обычное время уборки: «Когда ты убираешь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "When do you clean?",
+        "localizedMeaning": {
+          "ru": "Узнайте обычное время уборки: «Когда ты убираешь?»",
+          "uk": "Дізнайтеся звичний час прибирання: «Коли ти прибираєш?»"
+        },
+        "orderedTokens": [
+          "When",
+          "do",
+          "you",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i07:audio",
+          "transcript": "When does she start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does she start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о начале её работы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-30:i08:r1",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i08:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о начале её работы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о начале её работы",
+          "uk": "Запитайте про початок її роботи"
+        },
+        "gappedTargetPhrase": "When ___ she start?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-30:i08:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i08:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Спросите о начале её работы",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите о начале её работы",
+            "feedbackByLocale": {
+              "ru": "С `she` нужно `does`.",
+              "uk": "З `she` потрібне `does`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите о начале её работы",
+            "feedbackByLocale": {
+              "ru": "Вопрос о действии `start` с `she` строим с `does`.",
+              "uk": "Запитання про дію `start` з `she` будуємо з `does`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-30:i09:r1",
+          "text": "Where do you travel?"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i09:r2",
+          "text": "When do you travel?"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i09:r3",
+          "text": "Where do you work?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i09:audio",
+          "transcript": "Where do you travel?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-30:i09:r1",
+            "targetText": "Where do you travel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i09:r2",
+            "targetText": "When do you travel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i09:r3",
+            "targetText": "Where do you work?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `travel`, а в этом варианте — `work`.",
+              "uk": "У записі останнє слово — `travel`, а в цьому варіанті — `work`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-30:i10:p1",
+            "target": "argue",
+            "meaningByLocale": {
+              "ru": "спорить",
+              "uk": "сперечатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i10:p2",
+            "target": "travel",
+            "meaningByLocale": {
+              "ru": "путешествовать",
+              "uk": "подорожувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i10:p3",
+            "target": "windows",
+            "meaningByLocale": {
+              "ru": "окна",
+              "uk": "вікна"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i10:p4",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "убирать",
+              "uk": "прибирати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "argue",
+          "travel",
+          "windows",
+          "clean"
+        ],
+        "rightColumn": [
+          "спорить",
+          "путешествовать",
+          "окна",
+          "убирать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i11:audio",
+          "transcript": "When do you clean?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "When do you clean?",
+        "orderedTokens": [
+          "When",
+          "do",
+          "you",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед прогулкой спросите друга «У тебя есть наушники?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед прогулкой спросите друга «У тебя есть наушники?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have headphones?",
+        "localizedMeaning": {
+          "ru": "Перед прогулкой спросите друга «У тебя есть наушники?»",
+          "uk": "Перед прогулянкою запитайте друга «У тебе є навушники?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "headphones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Обсуждая поведение при разногласиях, скажите «Я не спорю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Обсуждая поведение при разногласиях, скажите «Я не спорю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i13:audio",
+          "transcript": "I don’t argue."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I don’t argue.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Узнайте, куда Том обычно путешествует",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-30:i14:r1",
+          "text": "travel"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i14:r2",
+          "text": "travels"
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i14:r3",
+          "text": "is travel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте, куда Том обычно путешествует",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Узнайте, куда Том обычно путешествует",
+          "uk": "Дізнайтеся, куди Том зазвичай подорожує"
+        },
+        "gappedTargetPhrase": "Where does Tom ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-30:i14:r1",
+            "text": "travel"
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i14:r2",
+            "text": "travels"
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i14:r3",
+            "text": "is travel"
+          }
+        ],
+        "testedDimension": "Узнайте, куда Том обычно путешествует",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-30:i14:r2",
+            "correct": false,
+            "testedDimension": "Узнайте, куда Том обычно путешествует",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `travel`.",
+              "uk": "Після `does` потрібне `travel`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i14:r3",
+            "correct": false,
+            "testedDimension": "Узнайте, куда Том обычно путешествует",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `travel`, без `is`.",
+              "uk": "Тут потрібне `travel`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где окна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-30:i15:r1",
+          "text": "The windows are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i15:r2",
+          "text": "The windows are there."
+        },
+        {
+          "responseId": "en:lesson-07:session-30:i15:r3",
+          "text": "The windows are upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где окна",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i15:audio",
+          "transcript": "The windows are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-30:i15:r1",
+            "targetText": "The windows are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i15:r2",
+            "targetText": "The windows are there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i15:r3",
+            "targetText": "The windows are upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-30:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где окна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-30:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где окна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-30:i16:p1",
+            "target": "travel",
+            "meaningByLocale": {
+              "ru": "путешествовать",
+              "uk": "подорожувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i16:p2",
+            "target": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i16:p3",
+            "target": "argue",
+            "meaningByLocale": {
+              "ru": "спорить",
+              "uk": "сперечатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-30:i16:p4",
+            "target": "windows",
+            "meaningByLocale": {
+              "ru": "окна",
+              "uk": "вікна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "travel",
+          "headphones",
+          "argue",
+          "windows"
+        ],
+        "rightColumn": [
+          "путешествовать",
+          "наушники",
+          "спорить",
+          "окна"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы обсуждаете привычное время поездок Тома. Спросите «Когда Том путешествует?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Вы обсуждаете привычное время поездок Тома. Спросите «Когда Том путешествует?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-30:i17:audio",
+          "transcript": "When does Tom travel?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does Tom travel?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1fbf271ff81ca3442c48fd66371e16b6b5d8a335083c2d3cbf26d0ef81bd073e"
+}

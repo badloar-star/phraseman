@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-20:i01",
+    "correctText": "I don’t shout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i02",
+    "correctText": "shout",
+    "correctResponseId": "en:lesson-07:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i03",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-07:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i04",
+    "correctText": "en:lesson-07:session-20:i04:p1=shout\nen:lesson-07:session-20:i04:p2=cook\nen:lesson-07:session-20:i04:p3=scarf\nen:lesson-07:session-20:i04:p4=maps",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i05",
+    "correctText": "I don’t shout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i06",
+    "correctText": "Does the alarm work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i07",
+    "correctText": "There are no maps here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i08",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i09",
+    "correctText": "I don’t shout.",
+    "correctResponseId": "en:lesson-07:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i10",
+    "correctText": "en:lesson-07:session-20:i10:p1=alarm\nen:lesson-07:session-20:i10:p2=shout\nen:lesson-07:session-20:i10:p3=cook\nen:lesson-07:session-20:i10:p4=scarf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i11",
+    "correctText": "Does the alarm work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i12",
+    "correctText": "Do you have a scarf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i13",
+    "correctText": "The maps are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-07:session-20:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i15",
+    "correctText": "I don’t cook.",
+    "correctResponseId": "en:lesson-07:session-20:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i16",
+    "correctText": "en:lesson-07:session-20:i16:p1=maps\nen:lesson-07:session-20:i16:p2=alarm\nen:lesson-07:session-20:i16:p3=shout\nen:lesson-07:session-20:i16:p4=cook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-20:i17",
+    "correctText": "Tom doesn’t shout.",
+    "correctResponseId": null
+  }
+]

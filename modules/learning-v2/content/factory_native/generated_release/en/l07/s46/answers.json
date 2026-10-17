@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-46:i01",
+    "correctText": "I usually organize my books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i02",
+    "correctText": "organize",
+    "correctResponseId": "en:lesson-07:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i03",
+    "correctText": "organize",
+    "correctResponseId": "en:lesson-07:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i04",
+    "correctText": "en:lesson-07:session-46:i04:p1=organize\nen:lesson-07:session-46:i04:p2=iron\nen:lesson-07:session-46:i04:p3=airport\nen:lesson-07:session-46:i04:p4=ferry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i05",
+    "correctText": "I usually organize my books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i06",
+    "correctText": "I usually iron in the morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i07",
+    "correctText": "Where is the airport?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i08",
+    "correctText": "iron",
+    "correctResponseId": "en:lesson-07:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i09",
+    "correctText": "I usually organize my books.",
+    "correctResponseId": "en:lesson-07:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i10",
+    "correctText": "en:lesson-07:session-46:i10:p1=iron\nen:lesson-07:session-46:i10:p2=organize\nen:lesson-07:session-46:i10:p3=mug\nen:lesson-07:session-46:i10:p4=airport",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i11",
+    "correctText": "Where is the airport?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i12",
+    "correctText": "Where is the ferry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i13",
+    "correctText": "Do you have a mug?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-46:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i15",
+    "correctText": "Where is the airport?",
+    "correctResponseId": "en:lesson-07:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i16",
+    "correctText": "en:lesson-07:session-46:i16:p1=organize\nen:lesson-07:session-46:i16:p2=ferry\nen:lesson-07:session-46:i16:p3=iron\nen:lesson-07:session-46:i16:p4=mug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-46:i17",
+    "correctText": "Tom usually organizes his books.",
+    "correctResponseId": null
+  }
+]

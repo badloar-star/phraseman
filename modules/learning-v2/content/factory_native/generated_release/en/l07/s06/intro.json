@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "различать вопрос о человеке и вопрос о его действиях",
+    "uk": "розрізняти запитання про людину й запитання про її дії"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто перед вами",
+        "uk": "Хто перед вами"
+      },
+      "bodyByLocale": {
+        "ru": "`customer` — «клиент» или «покупатель». У стойки стоит человек без рабочей формы. `Are you a customer?` — «Вы клиент?» Здесь называем, кто человек, поэтому начинаем с `Are you`. Не каждый, кто стоит за стойкой, уже устроился туда на работу.",
+        "uk": "`customer` — «клієнт» або «покупець». Біля стійки стоїть людина без робочої форми. `Are you a customer?` — «Ви клієнт?» Тут називаємо, хто людина, тому починаємо з `Are you`. Не кожен, хто стоїть за стійкою, уже влаштувався туди на роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите человека «Вы клиент?»",
+          "uk": "Запитайте людину «Ви клієнт?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-06:intro1:r1",
+              "text": "Are you a customer?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro1:r2",
+              "text": "Do you a customer?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro1:r3",
+              "text": "Are you customer?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-06:intro1:r1",
+              "text": "Are you a customer?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro1:r2",
+              "text": "Do you a customer?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro1:r3",
+              "text": "Are you customer?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите человека «Вы клиент?»",
+          "uk": "Запитайте людину «Ви клієнт?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чем занимается мастерская",
+        "uk": "Чим займається майстерня"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли сотрудника и хотите узнать, ремонтируют ли здесь велосипеды. `Do you repair bicycles?` — «Вы ремонтируете велосипеды?» Здесь спрашиваем о действии, поэтому `Do you repair`, без `are`. `Customer` называет человека, а `repair` — то, что он делает.",
+        "uk": "Ви знайшли працівника й хочете дізнатися, чи ремонтують тут велосипеди. `Do you repair bicycles?` — «Ви ремонтуєте велосипеди?» Тут запитуємо про дію, тому `Do you repair`, без `are`. `Customer` називає людину, а `repair` — те, що вона робить."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите сотрудника «Вы ремонтируете велосипеды?»",
+          "uk": "Запитайте працівника «Ви ремонтуєте велосипеди?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-06:intro2:r1",
+              "text": "Do you repair bicycles?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro2:r2",
+              "text": "Are you repair bicycles?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro2:r3",
+              "text": "Do you repairs bicycles?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-06:intro2:r1",
+              "text": "Do you repair bicycles?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro2:r2",
+              "text": "Are you repair bicycles?"
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro2:r3",
+              "text": "Do you repairs bicycles?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите сотрудника «Вы ремонтируете велосипеды?»",
+          "uk": "Запитайте працівника «Ви ремонтуєте велосипеди?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нужна ручка",
+        "uk": "Потрібна ручка"
+      },
+      "bodyByLocale": {
+        "ru": "Покупателю нужно записать номер телефона. Вы проверили стол: `There is no pen here` — «Здесь нет ручки». Одна ручка — `There is no pen`. Эта фраза сообщает об отсутствии ручки, а не спрашивает о ней.",
+        "uk": "Покупцеві потрібно записати номер телефону. Ви перевірили стіл: `There is no pen here` — «Тут немає ручки». Одна ручка — `There is no pen`. Ця фраза повідомляє про відсутність ручки, а не запитує про неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите покупателю «Здесь нет ручки».",
+          "uk": "Скажіть покупцеві «Тут немає ручки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-06:intro3:r1",
+              "text": "There is no pen here."
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro3:r2",
+              "text": "There are no pen here."
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro3:r3",
+              "text": "There no pen here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-06:intro3:r1",
+              "text": "There is no pen here."
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro3:r2",
+              "text": "There are no pen here."
+            },
+            {
+              "responseId": "en:lesson-07:session-06:intro3:r3",
+              "text": "There no pen here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите покупателю «Здесь нет ручки».",
+          "uk": "Скажіть покупцеві «Тут немає ручки»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "76cdd4a1c51167b2309407ef5ce6888cf8c2c41c15adbc2c8325f7042c839da0"
+}

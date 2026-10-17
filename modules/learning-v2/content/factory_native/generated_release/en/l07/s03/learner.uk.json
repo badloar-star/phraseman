@@ -1,0 +1,949 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «У вас є плакат?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «У вас є плакат?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a poster?",
+        "localizedMeaning": {
+          "ru": "Спросите «У вас есть плакат?»",
+          "uk": "Запитайте «У вас є плакат?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "poster"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-03:i02:r1",
+          "text": "poster"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i02:r2",
+          "text": "parcel"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i02:r3",
+          "text": "desk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i02:audio",
+          "transcript": "poster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-03:i02:r1",
+            "targetText": "poster",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i02:r2",
+            "targetText": "parcel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i02:r3",
+            "targetText": "desk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `poster`, а в этом варианте — `parcel`.",
+              "uk": "У записі перше слово — `poster`, а в цьому варіанті — `parcel`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `poster`, а в этом варианте — `desk`.",
+              "uk": "У записі перше слово — `poster`, а в цьому варіанті — `desk`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Вони продають плакати?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-03:i03:r1",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i03:r2",
+          "text": "sells"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i03:r3",
+          "text": "are sell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Вони продають плакати?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Они продают плакаты?»",
+          "uk": "Запитайте «Вони продають плакати?»"
+        },
+        "gappedTargetPhrase": "Do they ___ posters?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-03:i03:r1",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i03:r2",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i03:r3",
+            "text": "are sell"
+          }
+        ],
+        "testedDimension": "Запитайте «Вони продають плакати?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Вони продають плакати?»",
+            "feedbackByLocale": {
+              "ru": "После `Do they` нужно `sell`.",
+              "uk": "Після `Do they` потрібне `sell`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Вони продають плакати?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do they sell?`, без `are`.",
+              "uk": "Потрібно `Do they sell?`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-03:i04:p1",
+            "target": "poster",
+            "meaningByLocale": {
+              "ru": "плакат",
+              "uk": "плакат"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i04:p2",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i04:p3",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книга"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i04:p4",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "poster",
+          "sell",
+          "book",
+          "desk"
+        ],
+        "rightColumn": [
+          "плакат",
+          "продавати",
+          "книга",
+          "письмовий стіл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i05:audio",
+          "transcript": "Do you have a poster?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have a poster?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "poster"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте друга про магазин «Вони продають плакати?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга про магазин «Вони продають плакати?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do they sell posters?",
+        "localizedMeaning": {
+          "ru": "Спросите друга о магазине «Они продают плакаты?»",
+          "uk": "Запитайте друга про магазин «Вони продають плакати?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "they",
+          "sell",
+          "posters"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишіть кімнату «Над письмовим столом немає плаката»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Опишіть кімнату «Над письмовим столом немає плаката»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i07:audio",
+          "transcript": "There is no poster above the desk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is no poster above the desk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте нового сусіда «У вас є письмовий стіл?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-03:i08:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i08:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i08:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте нового сусіда «У вас є письмовий стіл?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите нового соседа «У вас есть письменный стол?»",
+          "uk": "Запитайте нового сусіда «У вас є письмовий стіл?»"
+        },
+        "gappedTargetPhrase": "___ you have a desk?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-03:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Запитайте нового сусіда «У вас є письмовий стіл?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте нового сусіда «У вас є письмовий стіл?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you have?`, без `are`.",
+              "uk": "Потрібно `Do you have?`, без `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте нового сусіда «У вас є письмовий стіл?»",
+            "feedbackByLocale": {
+              "ru": "С `you have` здесь нужно `Do`.",
+              "uk": "З `you have` тут потрібне `Do`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, про яку річ запитує друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-03:i09:r1",
+          "text": "Do you have a poster?"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i09:r2",
+          "text": "Do you have a book?"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i09:r3",
+          "text": "Do you have a parcel?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, про яку річ запитує друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i09:audio",
+          "transcript": "Do you have a poster?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-03:i09:r1",
+            "targetText": "Do you have a poster?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i09:r2",
+            "targetText": "Do you have a book?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i09:r3",
+            "targetText": "Do you have a parcel?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, про яку річ запитує друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `poster`, а в этом варианте — `book`.",
+              "uk": "У записі останнє слово — `poster`, а в цьому варіанті — `book`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, про яку річ запитує друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `poster`, а в этом варианте — `parcel`.",
+              "uk": "У записі останнє слово — `poster`, а в цьому варіанті — `parcel`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-03:i10:p1",
+            "target": "parcel",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i10:p2",
+            "target": "poster",
+            "meaningByLocale": {
+              "ru": "плакат",
+              "uk": "плакат"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i10:p3",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i10:p4",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "parcel",
+          "poster",
+          "desk",
+          "sell"
+        ],
+        "rightColumn": [
+          "посилка",
+          "плакат",
+          "письмовий стіл",
+          "продавати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i11:audio",
+          "transcript": "Do they sell books?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do they sell books?",
+        "orderedTokens": [
+          "Do",
+          "they",
+          "sell",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?» Використайте parcel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?» Використайте parcel",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a parcel?",
+        "localizedMeaning": {
+          "ru": "У стойки отправки спросите посетителя «У вас есть посылка?» Используйте parcel",
+          "uk": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?» Використайте parcel"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "parcel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг радить магазин. Запитайте «Вони продають книги?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i13:audio"
+      ],
+      "accessibilityLabel": "Друг радить магазин. Запитайте «Вони продають книги?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i13:audio",
+          "transcript": "Do they sell books?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do they sell books?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Тут немає плаката»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-03:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Тут немає плаката»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь нет плаката»",
+          "uk": "Повідомте «Тут немає плаката»"
+        },
+        "gappedTargetPhrase": "There ___ no poster here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-03:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Повідомте «Тут немає плаката»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i14:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає плаката»",
+            "feedbackByLocale": {
+              "ru": "Один плакат: `There is no poster`.",
+              "uk": "Один плакат: `There is no poster`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i14:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає плаката»",
+            "feedbackByLocale": {
+              "ru": "Нужно `There is no`; `am` подходит к `I`.",
+              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, про який товар запитує друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-03:i15:r1",
+          "text": "Do they sell posters?"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i15:r2",
+          "text": "Do they sell books?"
+        },
+        {
+          "responseId": "en:lesson-07:session-03:i15:r3",
+          "text": "Do they sell newspapers?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, про який товар запитує друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i15:audio",
+          "transcript": "Do they sell posters?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-03:i15:r1",
+            "targetText": "Do they sell posters?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i15:r2",
+            "targetText": "Do they sell books?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i15:r3",
+            "targetText": "Do they sell newspapers?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-03:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, про який товар запитує друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `posters`, а в этом варианте — `books`.",
+              "uk": "У записі останнє слово — `posters`, а в цьому варіанті — `books`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-03:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, про який товар запитує друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `posters`, а в этом варианте — `newspapers`.",
+              "uk": "У записі останнє слово — `posters`, а в цьому варіанті — `newspapers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-03:i16:p1",
+            "target": "poster",
+            "meaningByLocale": {
+              "ru": "плакат",
+              "uk": "плакат"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i16:p2",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книга"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i16:p3",
+            "target": "parcel",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-03:i16:p4",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "poster",
+          "book",
+          "parcel",
+          "sell"
+        ],
+        "rightColumn": [
+          "плакат",
+          "книга",
+          "посилка",
+          "продавати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви зайшли до незнайомого магазину. Запитайте працівника «Ви продаєте плакати?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Ви зайшли до незнайомого магазину. Запитайте працівника «Ви продаєте плакати?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-03:i17:audio",
+          "transcript": "Do you sell posters?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you sell posters?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "70b867e825db7a4d3cae73eed6c3fccaa165191a30ea7229946981d8a2015b5c"
+}

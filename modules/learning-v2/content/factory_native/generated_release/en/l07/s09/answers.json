@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-09:i01",
+    "correctText": "Does the manager work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i02",
+    "correctText": "manager",
+    "correctResponseId": "en:lesson-07:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i04",
+    "correctText": "en:lesson-07:session-09:i04:p1=manager\nen:lesson-07:session-09:i04:p2=factory\nen:lesson-07:session-09:i04:p3=charger\nen:lesson-07:session-09:i04:p4=door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i05",
+    "correctText": "Does the manager work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i06",
+    "correctText": "Does she work in a factory?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i07",
+    "correctText": "Does he start early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i08",
+    "correctText": "Does",
+    "correctResponseId": "en:lesson-07:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i09",
+    "correctText": "Does he start early?",
+    "correctResponseId": "en:lesson-07:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i10",
+    "correctText": "en:lesson-07:session-09:i10:p1=start\nen:lesson-07:session-09:i10:p2=manager\nen:lesson-07:session-09:i10:p3=factory\nen:lesson-07:session-09:i10:p4=charger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i11",
+    "correctText": "Does she work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i12",
+    "correctText": "Do you have a charger?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i13",
+    "correctText": "The door is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i14",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-07:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i15",
+    "correctText": "Does she work here?",
+    "correctResponseId": "en:lesson-07:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i16",
+    "correctText": "en:lesson-07:session-09:i16:p1=manager\nen:lesson-07:session-09:i16:p2=door\nen:lesson-07:session-09:i16:p3=start\nen:lesson-07:session-09:i16:p4=charger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:i17",
+    "correctText": "Does Tom work here?",
+    "correctResponseId": null
+  }
+]

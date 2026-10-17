@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о работе сайта и привычках людей, сообщить об отсутствии расписания",
+    "uk": "запитати про роботу сайту й звички людей, повідомити про відсутність розкладу"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Страница не открывается",
+        "uk": "Сторінка не відкривається"
+      },
+      "bodyByLocale": {
+        "ru": "`website` — «веб-сайт», обычно просто «сайт». Вы пытаетесь открыть сайт клуба. `Does the website work?` — «Сайт работает?» Об одном сайте спрашиваем с `Does`, затем `the website work`. После `Does` к `work` не добавляем `s`.",
+        "uk": "`website` — «вебсайт», зазвичай просто «сайт». Ви намагаєтеся відкрити сайт клубу. `Does the website work?` — «Сайт працює?» Про один сайт запитуємо з `Does`, потім `the website work`. Після `Does` до `work` не додаємо `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «Сайт работает?»",
+          "uk": "Запитайте друга «Сайт працює?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-15:intro1:r1",
+              "text": "Does the website work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro1:r2",
+              "text": "Do the website work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro1:r3",
+              "text": "Does the website works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-15:intro1:r1",
+              "text": "Does the website work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro1:r2",
+              "text": "Do the website work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro1:r3",
+              "text": "Does the website works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «Сайт работает?»",
+          "uk": "Запитайте друга «Сайт працює?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужной информации нет",
+        "uk": "Потрібної інформації немає"
+      },
+      "bodyByLocale": {
+        "ru": "Сайт открылся, но вы не нашли расписание. `There is no schedule here` — «Здесь нет расписания». Это сообщение об отсутствии расписания, а не о поломке сайта. Сайт может работать прекрасно и всё равно не отвечать на ваш единственный вопрос.",
+        "uk": "Сайт відкрився, але ви не знайшли розклад. `There is no schedule here` — «Тут немає розкладу». Це повідомлення про відсутність розкладу, а не про несправність сайту. Сайт може працювати чудово й усе одно не відповідати на ваше єдине запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите другу «Здесь нет расписания».",
+          "uk": "Повідомте другові «Тут немає розкладу»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-15:intro2:r1",
+              "text": "There is no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro2:r2",
+              "text": "There are no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro2:r3",
+              "text": "There no schedule here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-15:intro2:r1",
+              "text": "There is no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro2:r2",
+              "text": "There are no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro2:r3",
+              "text": "There no schedule here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите другу «Здесь нет расписания».",
+          "uk": "Повідомте другові «Тут немає розкладу»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто выступает в клубе",
+        "uk": "Хто виступає в клубі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказал, что Анна поёт. Вы уточняете о клубе `Does she sing here?` — «Она поёт здесь?» С `she` используем `Does`, после него `sing`, без `s`. Спрашиваем, выступает ли она здесь обычно.",
+        "uk": "Друг розповів, що Анна співає. Ви уточнюєте про клуб `Does she sing here?` — «Вона співає тут?» Із `she` використовуємо `Does`, після нього `sing`, без `s`. Запитуємо, чи виступає вона тут зазвичай."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите друга об Анне «Она поёт здесь?»",
+          "uk": "Запитайте друга про Анну «Вона співає тут?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-15:intro3:r1",
+              "text": "Does she sing here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro3:r2",
+              "text": "Do she sing here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro3:r3",
+              "text": "Does she sings here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-15:intro3:r1",
+              "text": "Does she sing here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro3:r2",
+              "text": "Do she sing here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-15:intro3:r3",
+              "text": "Does she sings here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга об Анне «Она поёт здесь?»",
+          "uk": "Запитайте друга про Анну «Вона співає тут?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d1bbb4e52fa2d31036229699c1d8b10d01fa9aa3028628b0c704d952f2890dd3"
+}

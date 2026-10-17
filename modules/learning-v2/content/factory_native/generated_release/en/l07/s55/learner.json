@@ -1,0 +1,946 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я часто смотрю фильмы онлайн»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто смотрю фильмы онлайн»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often stream films.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто смотрю фильмы онлайн»",
+          "uk": "Скажіть «Я часто дивлюся фільми онлайн»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "stream",
+          "films"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-55:i02:r1",
+          "text": "stream"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i02:r2",
+          "text": "surf"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i02:r3",
+          "text": "browse"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i02:audio",
+          "transcript": "stream"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-55:i02:r1",
+            "targetText": "stream",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i02:r2",
+            "targetText": "surf",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i02:r3",
+            "targetText": "browse",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `stream`, а в этом варианте — `surf`.",
+              "uk": "У записі перше слово — `stream`, а в цьому варіанті — `surf`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `stream`, а в этом варианте — `browse`.",
+              "uk": "У записі перше слово — `stream`, а в цьому варіанті — `browse`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто смотрю фильмы онлайн»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-55:i03:r1",
+          "text": "stream"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i03:r2",
+          "text": "streams"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i03:r3",
+          "text": "streaming"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто смотрю фильмы онлайн»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто смотрю фильмы онлайн»",
+          "uk": "Скажіть «Я часто дивлюся фільми онлайн»"
+        },
+        "gappedTargetPhrase": "I often ___ films.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-55:i03:r1",
+            "text": "stream"
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i03:r2",
+            "text": "streams"
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i03:r3",
+            "text": "streaming"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто смотрю фильмы онлайн»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто смотрю фильмы онлайн»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `stream`.",
+              "uk": "Після `I` потрібне `stream`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто смотрю фильмы онлайн»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `stream`.",
+              "uk": "Тут потрібна форма `stream`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-55:i04:p1",
+            "target": "stream",
+            "meaningByLocale": {
+              "ru": "смотреть онлайн",
+              "uk": "дивитися онлайн"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i04:p2",
+            "target": "photograph",
+            "meaningByLocale": {
+              "ru": "фотографировать",
+              "uk": "фотографувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i04:p3",
+            "target": "cafes",
+            "meaningByLocale": {
+              "ru": "кафе",
+              "uk": "кафе"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i04:p4",
+            "target": "artist",
+            "meaningByLocale": {
+              "ru": "художник",
+              "uk": "художник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "stream",
+          "photograph",
+          "cafes",
+          "artist"
+        ],
+        "rightColumn": [
+          "смотреть онлайн",
+          "фотографировать",
+          "кафе",
+          "художник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i05:audio",
+          "transcript": "I often stream films."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often stream films.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "stream",
+          "films"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я часто фотографирую птиц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто фотографирую птиц»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often photograph birds.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто фотографирую птиц»",
+          "uk": "Скажіть «Я часто фотографую птахів»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "photograph",
+          "birds"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга о нескольких кафе: «Где кафе?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите друга о нескольких кафе: «Где кафе?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i07:audio",
+          "transcript": "Where are the cafes?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where are the cafes?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто фотографирую птиц»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-55:i08:r1",
+          "text": "photograph"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i08:r2",
+          "text": "photographs"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i08:r3",
+          "text": "photographing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто фотографирую птиц»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто фотографирую птиц»",
+          "uk": "Скажіть «Я часто фотографую птахів»"
+        },
+        "gappedTargetPhrase": "I often ___ birds.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-55:i08:r1",
+            "text": "photograph"
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i08:r2",
+            "text": "photographs"
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i08:r3",
+            "text": "photographing"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто фотографирую птиц»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `photograph`.",
+              "uk": "Після `I` потрібне `photograph`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `photograph`.",
+              "uk": "Тут потрібна форма `photograph`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-55:i09:r1",
+          "text": "I often stream films."
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i09:r2",
+          "text": "We often stream films."
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i09:r3",
+          "text": "They often stream films."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i09:audio",
+          "transcript": "I often stream films."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-55:i09:r1",
+            "targetText": "I often stream films.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i09:r2",
+            "targetText": "We often stream films.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i09:r3",
+            "targetText": "They often stream films.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `I`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `They`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-55:i10:p1",
+            "target": "mural",
+            "meaningByLocale": {
+              "ru": "настенная роспись",
+              "uk": "настінний розпис"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i10:p2",
+            "target": "stream",
+            "meaningByLocale": {
+              "ru": "смотреть онлайн",
+              "uk": "дивитися онлайн"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i10:p3",
+            "target": "photograph",
+            "meaningByLocale": {
+              "ru": "фотографировать",
+              "uk": "фотографувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i10:p4",
+            "target": "cafes",
+            "meaningByLocale": {
+              "ru": "кафе",
+              "uk": "кафе"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mural",
+          "stream",
+          "photograph",
+          "cafes"
+        ],
+        "rightColumn": [
+          "настенная роспись",
+          "смотреть онлайн",
+          "фотографировать",
+          "кафе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i11:audio",
+          "transcript": "Where are the cafes?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where are the cafes?",
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "cafes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ищете настенную роспись, о которой рассказал друг. Спросите «Где настенная роспись?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете настенную роспись, о которой рассказал друг. Спросите «Где настенная роспись?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the mural?",
+        "localizedMeaning": {
+          "ru": "Вы ищете настенную роспись, о которой рассказал друг. Спросите «Где настенная роспись?»",
+          "uk": "Ви шукаєте настінний розпис, про який розповів друг. Запитайте «Де настінний розпис?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "mural"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы рассматриваете рисунки Тома. Спросите его подругу «Том художник?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i13:audio"
+      ],
+      "accessibilityLabel": "Вы рассматриваете рисунки Тома. Спросите его подругу «Том художник?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i13:audio",
+          "transcript": "Is Tom an artist?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is Tom an artist?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто смотрю фильмы онлайн»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-55:i14:r1",
+          "text": "often"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто смотрю фильмы онлайн»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто смотрю фильмы онлайн»",
+          "uk": "Скажіть «Я часто дивлюся фільми онлайн»"
+        },
+        "gappedTargetPhrase": "I ___ stream films.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-55:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто смотрю фильмы онлайн»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто смотрю фильмы онлайн»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often` перед `stream`.",
+              "uk": "Для «часто» потрібне `often` перед `stream`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто смотрю фильмы онлайн»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often`; `am` перед `stream` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `stream` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-55:i15:r1",
+          "text": "Where are the cafes?"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i15:r2",
+          "text": "Where are the restaurants?"
+        },
+        {
+          "responseId": "en:lesson-07:session-55:i15:r3",
+          "text": "Where are the hotels?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i15:audio",
+          "transcript": "Where are the cafes?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-55:i15:r1",
+            "targetText": "Where are the cafes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i15:r2",
+            "targetText": "Where are the restaurants?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i15:r3",
+            "targetText": "Where are the hotels?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-55:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cafes`, а в этом варианте — `restaurants`.",
+              "uk": "У записі останнє слово — `cafes`, а в цьому варіанті — `restaurants`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-55:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cafes`, а в этом варианте — `hotels`.",
+              "uk": "У записі останнє слово — `cafes`, а в цьому варіанті — `hotels`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-55:i16:p1",
+            "target": "stream",
+            "meaningByLocale": {
+              "ru": "смотреть онлайн",
+              "uk": "дивитися онлайн"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i16:p2",
+            "target": "artist",
+            "meaningByLocale": {
+              "ru": "художник",
+              "uk": "художник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i16:p3",
+            "target": "mural",
+            "meaningByLocale": {
+              "ru": "настенная роспись",
+              "uk": "настінний розпис"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-55:i16:p4",
+            "target": "photograph",
+            "meaningByLocale": {
+              "ru": "фотографировать",
+              "uk": "фотографувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "stream",
+          "artist",
+          "mural",
+          "photograph"
+        ],
+        "rightColumn": [
+          "смотреть онлайн",
+          "художник",
+          "настенная роспись",
+          "фотографировать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, как Том смотрит фильмы. Скажите «Том часто смотрит фильмы онлайн»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, как Том смотрит фильмы. Скажите «Том часто смотрит фильмы онлайн»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-55:i17:audio",
+          "transcript": "Tom often streams films."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often streams films.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "89e867668d41db59cd7d337d24f2ec1c1992e289c0fd778cd46e2e5695980635"
+}

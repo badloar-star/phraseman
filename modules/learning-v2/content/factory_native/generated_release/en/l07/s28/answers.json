@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-28:i01",
+    "correctText": "Where do you eat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i02",
+    "correctText": "eat",
+    "correctResponseId": "en:lesson-07:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i03",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-07:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i04",
+    "correctText": "en:lesson-07:session-28:i04:p1=eat\nen:lesson-07:session-28:i04:p2=stretch\nen:lesson-07:session-28:i04:p3=keycard\nen:lesson-07:session-28:i04:p4=chairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i05",
+    "correctText": "Where do you eat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i06",
+    "correctText": "Where do you stretch?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i07",
+    "correctText": "When does she start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i08",
+    "correctText": "does",
+    "correctResponseId": "en:lesson-07:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i09",
+    "correctText": "Where do you eat?",
+    "correctResponseId": "en:lesson-07:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i10",
+    "correctText": "en:lesson-07:session-28:i10:p1=shout\nen:lesson-07:session-28:i10:p2=eat\nen:lesson-07:session-28:i10:p3=chairs\nen:lesson-07:session-28:i10:p4=stretch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i11",
+    "correctText": "Where do you stretch?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i12",
+    "correctText": "Do you have a keycard?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i13",
+    "correctText": "I don’t shout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i14",
+    "correctText": "eat",
+    "correctResponseId": "en:lesson-07:session-28:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i15",
+    "correctText": "The chairs are here.",
+    "correctResponseId": "en:lesson-07:session-28:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i16",
+    "correctText": "en:lesson-07:session-28:i16:p1=eat\nen:lesson-07:session-28:i16:p2=keycard\nen:lesson-07:session-28:i16:p3=shout\nen:lesson-07:session-28:i16:p4=chairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:i17",
+    "correctText": "When does Tom eat?",
+    "correctResponseId": null
+  }
+]

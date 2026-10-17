@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-35:i01",
+    "correctText": "I usually commute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i02",
+    "correctText": "commute",
+    "correctResponseId": "en:lesson-07:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i03",
+    "correctText": "commute",
+    "correctResponseId": "en:lesson-07:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i04",
+    "correctText": "en:lesson-07:session-35:i04:p1=commute\nen:lesson-07:session-35:i04:p2=sleep\nen:lesson-07:session-35:i04:p3=photos\nen:lesson-07:session-35:i04:p4=bracelet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i05",
+    "correctText": "I usually commute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i06",
+    "correctText": "I usually walk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i09",
+    "correctText": "I usually commute.",
+    "correctResponseId": "en:lesson-07:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i10",
+    "correctText": "en:lesson-07:session-35:i10:p1=stay\nen:lesson-07:session-35:i10:p2=commute\nen:lesson-07:session-35:i10:p3=photos\nen:lesson-07:session-35:i10:p4=sleep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i11",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i12",
+    "correctText": "Do you have a bracelet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i13",
+    "correctText": "Where do you stay?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-35:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i15",
+    "correctText": "Do you have photos?",
+    "correctResponseId": "en:lesson-07:session-35:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i16",
+    "correctText": "en:lesson-07:session-35:i16:p1=commute\nen:lesson-07:session-35:i16:p2=bracelet\nen:lesson-07:session-35:i16:p3=stay\nen:lesson-07:session-35:i16:p4=photos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:i17",
+    "correctText": "Tom usually commutes.",
+    "correctResponseId": null
+  }
+]

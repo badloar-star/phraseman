@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-49:i01",
+    "correctText": "I often camp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i02",
+    "correctText": "camp",
+    "correctResponseId": "en:lesson-07:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i03",
+    "correctText": "camp",
+    "correctResponseId": "en:lesson-07:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i04",
+    "correctText": "en:lesson-07:session-49:i04:p1=camp\nen:lesson-07:session-49:i04:p2=meditate\nen:lesson-07:session-49:i04:p3=hospital\nen:lesson-07:session-49:i04:p4=garage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i05",
+    "correctText": "I often camp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i06",
+    "correctText": "I usually meditate at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i07",
+    "correctText": "Where is the hospital?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i08",
+    "correctText": "meditate",
+    "correctResponseId": "en:lesson-07:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i09",
+    "correctText": "I often camp.",
+    "correctResponseId": "en:lesson-07:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i10",
+    "correctText": "en:lesson-07:session-49:i10:p1=meditate\nen:lesson-07:session-49:i10:p2=camp\nen:lesson-07:session-49:i10:p3=newspaper\nen:lesson-07:session-49:i10:p4=hospital",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i11",
+    "correctText": "Where is the hospital?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i12",
+    "correctText": "Where is the garage?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i13",
+    "correctText": "Where is my newspaper?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-49:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i15",
+    "correctText": "Where is the hospital?",
+    "correctResponseId": "en:lesson-07:session-49:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i16",
+    "correctText": "en:lesson-07:session-49:i16:p1=camp\nen:lesson-07:session-49:i16:p2=garage\nen:lesson-07:session-49:i16:p3=meditate\nen:lesson-07:session-49:i16:p4=newspaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:i17",
+    "correctText": "Tom often camps.",
+    "correctResponseId": null
+  }
+]

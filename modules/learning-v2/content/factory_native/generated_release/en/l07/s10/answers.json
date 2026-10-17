@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-10:i01",
+    "correctText": "Does the machine work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i02",
+    "correctText": "machine",
+    "correctResponseId": "en:lesson-07:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i04",
+    "correctText": "en:lesson-07:session-10:i04:p1=machine\nen:lesson-07:session-10:i04:p2=lock\nen:lesson-07:session-10:i04:p3=pocket\nen:lesson-07:session-10:i04:p4=package",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i05",
+    "correctText": "Does the machine work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i06",
+    "correctText": "Does it work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i07",
+    "correctText": "There is no key in my pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i08",
+    "correctText": "Does",
+    "correctResponseId": "en:lesson-07:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i09",
+    "correctText": "Does the machine work?",
+    "correctResponseId": "en:lesson-07:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i10",
+    "correctText": "en:lesson-07:session-10:i10:p1=practice\nen:lesson-07:session-10:i10:p2=machine\nen:lesson-07:session-10:i10:p3=lock\nen:lesson-07:session-10:i10:p4=pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i11",
+    "correctText": "Does it work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i12",
+    "correctText": "Do you have a package?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i13",
+    "correctText": "Does the lock work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i14",
+    "correctText": "practice",
+    "correctResponseId": "en:lesson-07:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i15",
+    "correctText": "Does the lock work?",
+    "correctResponseId": "en:lesson-07:session-10:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i16",
+    "correctText": "en:lesson-07:session-10:i16:p1=machine\nen:lesson-07:session-10:i16:p2=package\nen:lesson-07:session-10:i16:p3=practice\nen:lesson-07:session-10:i16:p4=pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-10:i17",
+    "correctText": "Does the charger work?",
+    "correctResponseId": null
+  }
+]

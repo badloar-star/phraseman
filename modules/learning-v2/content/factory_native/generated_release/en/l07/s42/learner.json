@@ -1,0 +1,949 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я обычно украшаю комнату»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно украшаю комнату»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually decorate the room.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно украшаю комнату»",
+          "uk": "Скажіть «Я зазвичай прикрашаю кімнату»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "decorate",
+          "the",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-42:i02:r1",
+          "text": "decorate"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i02:r2",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i02:r3",
+          "text": "volunteer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i02:audio",
+          "transcript": "decorate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-42:i02:r1",
+            "targetText": "decorate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i02:r2",
+            "targetText": "share",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i02:r3",
+            "targetText": "volunteer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `decorate`, а в этом варианте — `share`.",
+              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `share`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `decorate`, а в этом варианте — `volunteer`.",
+              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `volunteer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно украшаю комнату»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-42:i03:r1",
+          "text": "decorate"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i03:r2",
+          "text": "decorates"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i03:r3",
+          "text": "decorating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно украшаю комнату»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно украшаю комнату»",
+          "uk": "Скажіть «Я зазвичай прикрашаю кімнату»"
+        },
+        "gappedTargetPhrase": "I usually ___ the room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-42:i03:r1",
+            "text": "decorate"
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i03:r2",
+            "text": "decorates"
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i03:r3",
+            "text": "decorating"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно украшаю комнату»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно украшаю комнату»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `decorate`.",
+              "uk": "Після `I` потрібне `decorate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно украшаю комнату»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `decorate`.",
+              "uk": "Тут потрібна форма `decorate`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-42:i04:p1",
+            "target": "decorate",
+            "meaningByLocale": {
+              "ru": "украшать",
+              "uk": "прикрашати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i04:p2",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i04:p3",
+            "target": "bathroom",
+            "meaningByLocale": {
+              "ru": "ванная комната",
+              "uk": "ванна кімната"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i04:p4",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "decorate",
+          "share",
+          "bathroom",
+          "scooter"
+        ],
+        "rightColumn": [
+          "украшать",
+          "пользоваться вместе",
+          "ванная комната",
+          "самокат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i05:audio",
+          "transcript": "I usually decorate the room."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually decorate the room.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "decorate",
+          "the",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните «Мы пользуемся одним самокатом вместе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните «Мы пользуемся одним самокатом вместе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We share a scooter.",
+        "localizedMeaning": {
+          "ru": "Объясните «Мы пользуемся одним самокатом вместе»",
+          "uk": "Поясніть «Ми користуємося одним самокатом разом»"
+        },
+        "orderedTokens": [
+          "We",
+          "share",
+          "a",
+          "scooter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я часто помогаю как волонтёр»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я часто помогаю как волонтёр»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i07:audio",
+          "transcript": "I often volunteer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often volunteer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите о совместном пользовании самокатом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-42:i08:r1",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i08:r2",
+          "text": "shares"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i08:r3",
+          "text": "sharing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о совместном пользовании самокатом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите о совместном пользовании самокатом",
+          "uk": "Скажіть про спільне користування самокатом"
+        },
+        "gappedTargetPhrase": "We ___ a scooter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-42:i08:r1",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i08:r2",
+            "text": "shares"
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i08:r3",
+            "text": "sharing"
+          }
+        ],
+        "testedDimension": "Скажите о совместном пользовании самокатом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите о совместном пользовании самокатом",
+            "feedbackByLocale": {
+              "ru": "После `we` нужно `share`.",
+              "uk": "Після `we` потрібне `share`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите о совместном пользовании самокатом",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `share`.",
+              "uk": "Тут потрібна форма `share`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-42:i09:r1",
+          "text": "I usually decorate the room."
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i09:r2",
+          "text": "I usually decorate the kitchen."
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i09:r3",
+          "text": "I usually decorate the bathroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i09:audio",
+          "transcript": "I usually decorate the room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-42:i09:r1",
+            "targetText": "I usually decorate the room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i09:r2",
+            "targetText": "I usually decorate the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i09:r3",
+            "targetText": "I usually decorate the bathroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `room`, а в этом варианте — `kitchen`.",
+              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `kitchen`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `room`, а в этом варианте — `bathroom`.",
+              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `bathroom`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-42:i10:p1",
+            "target": "volunteer",
+            "meaningByLocale": {
+              "ru": "быть волонтёром",
+              "uk": "бути волонтером"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i10:p2",
+            "target": "decorate",
+            "meaningByLocale": {
+              "ru": "украшать",
+              "uk": "прикрашати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i10:p3",
+            "target": "bathroom",
+            "meaningByLocale": {
+              "ru": "ванная комната",
+              "uk": "ванна кімната"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i10:p4",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "volunteer",
+          "decorate",
+          "bathroom",
+          "share"
+        ],
+        "rightColumn": [
+          "быть волонтёром",
+          "украшать",
+          "ванная комната",
+          "пользоваться вместе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i11:audio",
+          "transcript": "We share a scooter."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We share a scooter.",
+        "orderedTokens": [
+          "We",
+          "share",
+          "a",
+          "scooter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед прогулкой спросите друга «У тебя есть самокат?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед прогулкой спросите друга «У тебя есть самокат?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a scooter?",
+        "localizedMeaning": {
+          "ru": "Перед прогулкой спросите друга «У тебя есть самокат?»",
+          "uk": "Перед прогулянкою запитайте друга «У тебе є самокат?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "scooter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите гостю «Ванная здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите гостю «Ванная здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i13:audio",
+          "transcript": "The bathroom is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bathroom is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто помогаю как волонтёр»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-42:i14:r1",
+          "text": "often"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто помогаю как волонтёр»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто помогаю как волонтёр»",
+          "uk": "Скажіть «Я часто допомагаю як волонтер»"
+        },
+        "gappedTargetPhrase": "I ___ volunteer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-42:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто помогаю как волонтёр»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-42:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто помогаю как волонтёр»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often` перед `volunteer`.",
+              "uk": "Для «часто» потрібне `often` перед `volunteer`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто помогаю как волонтёр»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often`; `am` перед `volunteer` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `volunteer` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где ванная",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-42:i15:r1",
+          "text": "The bathroom is here."
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i15:r2",
+          "text": "The bathroom is there."
+        },
+        {
+          "responseId": "en:lesson-07:session-42:i15:r3",
+          "text": "The bathroom is upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где ванная",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i15:audio",
+          "transcript": "The bathroom is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-42:i15:r1",
+            "targetText": "The bathroom is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i15:r2",
+            "targetText": "The bathroom is there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i15:r3",
+            "targetText": "The bathroom is upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-42:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где ванная",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-42:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где ванная",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-42:i16:p1",
+            "target": "decorate",
+            "meaningByLocale": {
+              "ru": "украшать",
+              "uk": "прикрашати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i16:p2",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i16:p3",
+            "target": "volunteer",
+            "meaningByLocale": {
+              "ru": "быть волонтёром",
+              "uk": "бути волонтером"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-42:i16:p4",
+            "target": "bathroom",
+            "meaningByLocale": {
+              "ru": "ванная комната",
+              "uk": "ванна кімната"
+            }
+          }
+        ],
+        "leftColumn": [
+          "decorate",
+          "scooter",
+          "volunteer",
+          "bathroom"
+        ],
+        "rightColumn": [
+          "украшать",
+          "самокат",
+          "быть волонтёром",
+          "ванная комната"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-42:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о подготовке комнаты к праздникам. Скажите «Том обычно украшает комнату»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о подготовке комнаты к праздникам. Скажите «Том обычно украшает комнату»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-42:i17:audio",
+          "transcript": "Tom usually decorates the room."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually decorates the room.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a3554c9901f59e58f5d36e8f10b91a23b100bb2dc9ec2234d4c3b71a7a1219c7"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-44:i01",
+    "correctText": "I usually polish the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i02",
+    "correctText": "polish",
+    "correctResponseId": "en:lesson-07:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i03",
+    "correctText": "polish",
+    "correctResponseId": "en:lesson-07:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i04",
+    "correctText": "en:lesson-07:session-44:i04:p1=polish\nen:lesson-07:session-44:i04:p2=relax\nen:lesson-07:session-44:i04:p3=hotels\nen:lesson-07:session-44:i04:p4=bicycle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i05",
+    "correctText": "I usually polish the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i06",
+    "correctText": "I usually relax here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i09",
+    "correctText": "I usually polish the table.",
+    "correctResponseId": "en:lesson-07:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i10",
+    "correctText": "en:lesson-07:session-44:i10:p1=relax\nen:lesson-07:session-44:i10:p2=polish\nen:lesson-07:session-44:i10:p3=hotels\nen:lesson-07:session-44:i10:p4=hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i11",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i12",
+    "correctText": "Do you have a bicycle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i13",
+    "correctText": "Do you have a hat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-44:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i15",
+    "correctText": "The hotels are here.",
+    "correctResponseId": "en:lesson-07:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i16",
+    "correctText": "en:lesson-07:session-44:i16:p1=polish\nen:lesson-07:session-44:i16:p2=bicycle\nen:lesson-07:session-44:i16:p3=relax\nen:lesson-07:session-44:i16:p4=hotels",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:i17",
+    "correctText": "Tom usually polishes the table.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-02:i01",
+    "correctText": "Do you have a package?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i02",
+    "correctText": "package",
+    "correctResponseId": "en:lesson-07:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i03",
+    "correctText": "deliver",
+    "correctResponseId": "en:lesson-07:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i04",
+    "correctText": "en:lesson-07:session-02:i04:p1=package\nen:lesson-07:session-02:i04:p2=deliver\nen:lesson-07:session-02:i04:p3=folder\nen:lesson-07:session-02:i04:p4=apple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i05",
+    "correctText": "Do you have a package?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i06",
+    "correctText": "Do they deliver packages?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i07",
+    "correctText": "There is no package here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i09",
+    "correctText": "Do you have a package?",
+    "correctResponseId": "en:lesson-07:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i10",
+    "correctText": "en:lesson-07:session-02:i10:p1=apple\nen:lesson-07:session-02:i10:p2=folder\nen:lesson-07:session-02:i10:p3=package\nen:lesson-07:session-02:i10:p4=deliver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i11",
+    "correctText": "Do they deliver packages?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i12",
+    "correctText": "Do they have folders?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i13",
+    "correctText": "Do you have an apple?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-07:session-02:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i15",
+    "correctText": "Do they deliver here?",
+    "correctResponseId": "en:lesson-07:session-02:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i16",
+    "correctText": "en:lesson-07:session-02:i16:p1=deliver\nen:lesson-07:session-02:i16:p2=package\nen:lesson-07:session-02:i16:p3=apple\nen:lesson-07:session-02:i16:p4=folder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:i17",
+    "correctText": "Do you deliver packages?",
+    "correctResponseId": null
+  }
+]

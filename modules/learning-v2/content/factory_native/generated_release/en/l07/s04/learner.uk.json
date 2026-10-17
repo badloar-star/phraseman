@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Ви носите окуляри?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Ви носите окуляри?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you wear glasses?",
+        "localizedMeaning": {
+          "ru": "Спросите «Вы носите очки?»",
+          "uk": "Запитайте «Ви носите окуляри?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "wear",
+          "glasses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-04:i02:r1",
+          "text": "glasses"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i02:r2",
+          "text": "curtain"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i02:r3",
+          "text": "receipt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i02:audio",
+          "transcript": "glasses"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-04:i02:r1",
+            "targetText": "glasses",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i02:r2",
+            "targetText": "curtain",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i02:r3",
+            "targetText": "receipt",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `glasses`, а в этом варианте — `curtain`.",
+              "uk": "У записі перше слово — `glasses`, а в цьому варіанті — `curtain`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `glasses`, а в этом варианте — `receipt`.",
+              "uk": "У записі перше слово — `glasses`, а в цьому варіанті — `receipt`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Вони носять окуляри?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-04:i03:r1",
+          "text": "wear"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i03:r2",
+          "text": "wears"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i03:r3",
+          "text": "are wear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Вони носять окуляри?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Они носят очки?»",
+          "uk": "Запитайте «Вони носять окуляри?»"
+        },
+        "gappedTargetPhrase": "Do they ___ glasses?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i03:r1",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i03:r2",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i03:r3",
+            "text": "are wear"
+          }
+        ],
+        "testedDimension": "Запитайте «Вони носять окуляри?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Вони носять окуляри?»",
+            "feedbackByLocale": {
+              "ru": "После `Do they` нужно `wear`.",
+              "uk": "Після `Do they` потрібне `wear`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Вони носять окуляри?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do they wear?`, без `are`.",
+              "uk": "Потрібно `Do they wear?`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-04:i04:p1",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "очки",
+              "uk": "окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i04:p2",
+            "target": "wear",
+            "meaningByLocale": {
+              "ru": "носить одежду на себе",
+              "uk": "носити одяг на собі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i04:p3",
+            "target": "bag",
+            "meaningByLocale": {
+              "ru": "сумка",
+              "uk": "сумка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i04:p4",
+            "target": "curtain",
+            "meaningByLocale": {
+              "ru": "занавеска",
+              "uk": "завіска"
+            }
+          }
+        ],
+        "leftColumn": [
+          "glasses",
+          "wear",
+          "bag",
+          "curtain"
+        ],
+        "rightColumn": [
+          "окуляри",
+          "носити одяг на собі",
+          "сумка",
+          "завіска"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i05:audio",
+          "transcript": "Do you wear glasses?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you wear glasses?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "wear",
+          "glasses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте друга про батьків «Вони носять окуляри?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга про батьків «Вони носять окуляри?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do they wear glasses?",
+        "localizedMeaning": {
+          "ru": "Спросите друга о родителях «Они носят очки?»",
+          "uk": "Запитайте друга про батьків «Вони носять окуляри?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "they",
+          "wear",
+          "glasses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви перевірили стіл. Повідомте «Тут немає окулярів»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Ви перевірили стіл. Повідомте «Тут немає окулярів»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i07:audio",
+          "transcript": "There are no glasses here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are no glasses here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перед виходом запитайте друга «У тебе є сумка?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-04:i08:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i08:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i08:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед виходом запитайте друга «У тебе є сумка?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перед выходом спросите друга «У тебя есть сумка?»",
+          "uk": "Перед виходом запитайте друга «У тебе є сумка?»"
+        },
+        "gappedTargetPhrase": "___ you have a bag?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Перед виходом запитайте друга «У тебе є сумка?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Перед виходом запитайте друга «У тебе є сумка?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you have?`, без `are`.",
+              "uk": "Потрібно `Do you have?`, без `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Перед виходом запитайте друга «У тебе є сумка?»",
+            "feedbackByLocale": {
+              "ru": "С `you have` здесь нужно `Do`.",
+              "uk": "З `you have` тут потрібне `Do`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, про що запитує колега",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-04:i09:r1",
+          "text": "Do you wear glasses?"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i09:r2",
+          "text": "Do you wear hats?"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i09:r3",
+          "text": "Do you wear uniforms?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, про що запитує колега",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i09:audio",
+          "transcript": "Do you wear glasses?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-04:i09:r1",
+            "targetText": "Do you wear glasses?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i09:r2",
+            "targetText": "Do you wear hats?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i09:r3",
+            "targetText": "Do you wear uniforms?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, про що запитує колега",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `glasses`, а в этом варианте — `hats`.",
+              "uk": "У записі останнє слово — `glasses`, а в цьому варіанті — `hats`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, про що запитує колега",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `glasses`, а в этом варианте — `uniforms`.",
+              "uk": "У записі останнє слово — `glasses`, а в цьому варіанті — `uniforms`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-04:i10:p1",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i10:p2",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "очки",
+              "uk": "окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i10:p3",
+            "target": "bag",
+            "meaningByLocale": {
+              "ru": "сумка",
+              "uk": "сумка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i10:p4",
+            "target": "curtain",
+            "meaningByLocale": {
+              "ru": "занавеска",
+              "uk": "завіска"
+            }
+          }
+        ],
+        "leftColumn": [
+          "receipt",
+          "glasses",
+          "bag",
+          "curtain"
+        ],
+        "rightColumn": [
+          "чек",
+          "окуляри",
+          "сумка",
+          "завіска"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i11:audio",
+          "transcript": "Do they have a receipt?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do they have a receipt?",
+        "orderedTokens": [
+          "Do",
+          "they",
+          "have",
+          "a",
+          "receipt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг несе покупки в руках. Запитайте «У тебе є сумка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг несе покупки в руках. Запитайте «У тебе є сумка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a bag?",
+        "localizedMeaning": {
+          "ru": "Друг несёт покупки в руках. Спросите «У тебя есть сумка?»",
+          "uk": "Друг несе покупки в руках. Запитайте «У тебе є сумка?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг допомагає батькам повернути покупку. Запитайте «У них є чек?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Друг допомагає батькам повернути покупку. Запитайте «У них є чек?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i13:audio",
+          "transcript": "Do they have a receipt?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do they have a receipt?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Тут немає окулярів»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-04:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Тут немає окулярів»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь нет очков»",
+          "uk": "Повідомте «Тут немає окулярів»"
+        },
+        "gappedTargetPhrase": "There ___ no glasses here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-04:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Повідомте «Тут немає окулярів»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i14:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає окулярів»",
+            "feedbackByLocale": {
+              "ru": "С `glasses` нужно `are`.",
+              "uk": "З `glasses` потрібне `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i14:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає окулярів»",
+            "feedbackByLocale": {
+              "ru": "Нужно `There are no`; `am` подходит к `I`.",
+              "uk": "Потрібно `There are no`; `am` підходить до `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, яку річ шукає друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-04:i15:r1",
+          "text": "Do you have a receipt?"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i15:r2",
+          "text": "Do you have a bag?"
+        },
+        {
+          "responseId": "en:lesson-07:session-04:i15:r3",
+          "text": "Do you have a curtain?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, яку річ шукає друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i15:audio",
+          "transcript": "Do you have a receipt?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-04:i15:r1",
+            "targetText": "Do you have a receipt?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i15:r2",
+            "targetText": "Do you have a bag?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i15:r3",
+            "targetText": "Do you have a curtain?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ шукає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `receipt`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `receipt`, а в цьому варіанті — `bag`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-04:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ шукає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `receipt`, а в этом варианте — `curtain`.",
+              "uk": "У записі останнє слово — `receipt`, а в цьому варіанті — `curtain`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-04:i16:p1",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "очки",
+              "uk": "окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i16:p2",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i16:p3",
+            "target": "curtain",
+            "meaningByLocale": {
+              "ru": "занавеска",
+              "uk": "завіска"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-04:i16:p4",
+            "target": "wear",
+            "meaningByLocale": {
+              "ru": "носить на себе",
+              "uk": "носити на собі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "glasses",
+          "receipt",
+          "curtain",
+          "wear"
+        ],
+        "rightColumn": [
+          "окуляри",
+          "чек",
+          "завіска",
+          "носити на собі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг шукає окуляри перед читанням. Уточніть, чи є в нього окуляри: «У тебе є окуляри?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Друг шукає окуляри перед читанням. Уточніть, чи є в нього окуляри: «У тебе є окуляри?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:i17:audio",
+          "transcript": "Do you have glasses?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have glasses?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e7af565879760a1caeb954de58edab69f31bce611252ee773bc412d53249f276"
+}

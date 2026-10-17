@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-30:intro1:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-30:intro1:r3": {
+          "ru": "После `where` здесь нужно `do`.",
+          "uk": "Після `where` тут потрібне `do`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-30:intro2:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-30:intro2:r3": {
+          "ru": "После `do you` нужно `clean`, без `s`.",
+          "uk": "Після `do you` потрібне `clean`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-30:intro3:r2": {
+          "ru": "С `she` нужно `does`.",
+          "uk": "З `she` потрібне `does`."
+        },
+        "en:lesson-07:session-30:intro3:r3": {
+          "ru": "После `does` нужно `start`.",
+          "uk": "Після `does` потрібне `start`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "90c6a1b09f22fbc49c04a18342178d3ca9d5d58eb7d5f847a6dbc2169197b73b"
+}

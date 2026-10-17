@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-27:i01",
+    "correctText": "Where do you stay?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i02",
+    "correctText": "stay",
+    "correctResponseId": "en:lesson-07:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i03",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-07:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i04",
+    "correctText": "en:lesson-07:session-27:i04:p1=stay\nen:lesson-07:session-27:i04:p2=exercise\nen:lesson-07:session-27:i04:p3=passport\nen:lesson-07:session-27:i04:p4=cars",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i05",
+    "correctText": "Where do you stay?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i06",
+    "correctText": "Where do you exercise?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i07",
+    "correctText": "When does she start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i08",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-07:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i09",
+    "correctText": "Where do you stay?",
+    "correctResponseId": "en:lesson-07:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i10",
+    "correctText": "en:lesson-07:session-27:i10:p1=complain\nen:lesson-07:session-27:i10:p2=stay\nen:lesson-07:session-27:i10:p3=cars\nen:lesson-07:session-27:i10:p4=exercise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i11",
+    "correctText": "Where do you exercise?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i12",
+    "correctText": "Do you have a passport?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i13",
+    "correctText": "I don’t complain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i14",
+    "correctText": "stay",
+    "correctResponseId": "en:lesson-07:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i15",
+    "correctText": "The cars are here.",
+    "correctResponseId": "en:lesson-07:session-27:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i16",
+    "correctText": "en:lesson-07:session-27:i16:p1=stay\nen:lesson-07:session-27:i16:p2=passport\nen:lesson-07:session-27:i16:p3=complain\nen:lesson-07:session-27:i16:p4=cars",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:i17",
+    "correctText": "Where does Tom exercise?",
+    "correctResponseId": null
+  }
+]

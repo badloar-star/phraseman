@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-33:i01",
+    "correctText": "I usually recycle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i02",
+    "correctText": "recycle",
+    "correctResponseId": "en:lesson-07:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i03",
+    "correctText": "recycle",
+    "correctResponseId": "en:lesson-07:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i04",
+    "correctText": "en:lesson-07:session-33:i04:p1=recycle\nen:lesson-07:session-33:i04:p2=study\nen:lesson-07:session-33:i04:p3=phone\nen:lesson-07:session-33:i04:p4=watch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i05",
+    "correctText": "I usually recycle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i06",
+    "correctText": "I usually walk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i09",
+    "correctText": "I usually recycle.",
+    "correctResponseId": "en:lesson-07:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i10",
+    "correctText": "en:lesson-07:session-33:i10:p1=meet\nen:lesson-07:session-33:i10:p2=recycle\nen:lesson-07:session-33:i10:p3=phone\nen:lesson-07:session-33:i10:p4=study",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i11",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i12",
+    "correctText": "Do you have a watch?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i13",
+    "correctText": "Where do you meet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-33:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i15",
+    "correctText": "Do you have a phone?",
+    "correctResponseId": "en:lesson-07:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i16",
+    "correctText": "en:lesson-07:session-33:i16:p1=recycle\nen:lesson-07:session-33:i16:p2=watch\nen:lesson-07:session-33:i16:p3=meet\nen:lesson-07:session-33:i16:p4=phone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:i17",
+    "correctText": "Tom often calls.",
+    "correctResponseId": null
+  }
+]

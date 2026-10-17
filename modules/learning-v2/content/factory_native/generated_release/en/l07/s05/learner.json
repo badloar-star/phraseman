@@ -1,0 +1,953 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Вы начинаете свою смену рано?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Вы начинаете свою смену рано?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you start your shift early?",
+        "localizedMeaning": {
+          "ru": "Спросите «Вы начинаете свою смену рано?»",
+          "uk": "Запитайте «Ви починаєте свою зміну рано?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "start",
+          "your",
+          "shift",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-05:i02:r1",
+          "text": "shift"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i02:r2",
+          "text": "map"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i02:r3",
+          "text": "drawer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i02:audio",
+          "transcript": "shift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-05:i02:r1",
+            "targetText": "shift",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i02:r2",
+            "targetText": "map",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i02:r3",
+            "targetText": "drawer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shift`, а в этом варианте — `map`.",
+              "uk": "У записі перше слово — `shift`, а в цьому варіанті — `map`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shift`, а в этом варианте — `drawer`.",
+              "uk": "У записі перше слово — `shift`, а в цьому варіанті — `drawer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о раннем начале смены",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-05:i03:r1",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i03:r2",
+          "text": "starts"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i03:r3",
+          "text": "are start"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о раннем начале смены",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о раннем начале смены",
+          "uk": "Запитайте про ранній початок зміни"
+        },
+        "gappedTargetPhrase": "Do you ___ your shift early?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-05:i03:r1",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i03:r2",
+            "text": "starts"
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i03:r3",
+            "text": "are start"
+          }
+        ],
+        "testedDimension": "Спросите о раннем начале смены",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите о раннем начале смены",
+            "feedbackByLocale": {
+              "ru": "После `Do you` нужно `start`.",
+              "uk": "Після `Do you` потрібне `start`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите о раннем начале смены",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you start?`, без `are`.",
+              "uk": "Потрібно `Do you start?`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-05:i04:p1",
+            "target": "shift",
+            "meaningByLocale": {
+              "ru": "рабочая смена",
+              "uk": "робоча зміна"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i04:p2",
+            "target": "map",
+            "meaningByLocale": {
+              "ru": "карта",
+              "uk": "карта"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i04:p3",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "ящик",
+              "uk": "шухляда"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i04:p4",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shift",
+          "map",
+          "drawer",
+          "keychain"
+        ],
+        "rightColumn": [
+          "рабочая смена",
+          "карта",
+          "ящик",
+          "брелок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i05:audio",
+          "transcript": "Do you start your shift early?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you start your shift early?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "start",
+          "your",
+          "shift",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите сотрудника «У вас есть форма?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите сотрудника «У вас есть форма?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a uniform?",
+        "localizedMeaning": {
+          "ru": "Спросите сотрудника «У вас есть форма?»",
+          "uk": "Запитайте працівника «У вас є форма?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "uniform"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите «В ящике нет брелока»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Сообщите «В ящике нет брелока»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i07:audio",
+          "transcript": "There is no keychain in the drawer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is no keychain in the drawer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У входа спросите человека «Вы работаете здесь?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-05:i08:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i08:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i08:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У входа спросите человека «Вы работаете здесь?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У входа спросите человека «Вы работаете здесь?»",
+          "uk": "Біля входу запитайте людину «Ви працюєте тут?»"
+        },
+        "gappedTargetPhrase": "___ you work here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-05:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "У входа спросите человека «Вы работаете здесь?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "У входа спросите человека «Вы работаете здесь?»",
+            "feedbackByLocale": {
+              "ru": "С действием `work` здесь нужно `Do you work?`.",
+              "uk": "З дією `work` тут потрібно `Do you work?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "У входа спросите человека «Вы работаете здесь?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you work?`.",
+              "uk": "Потрібно `Do you work?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос коллеги о смене",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-05:i09:r1",
+          "text": "Do you start your shift early?"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i09:r2",
+          "text": "Do you start your shift late?"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i09:r3",
+          "text": "Do you start your shift here?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос коллеги о смене",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i09:audio",
+          "transcript": "Do you start your shift early?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-05:i09:r1",
+            "targetText": "Do you start your shift early?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i09:r2",
+            "targetText": "Do you start your shift late?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i09:r3",
+            "targetText": "Do you start your shift here?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос коллеги о смене",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
+              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос коллеги о смене",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
+              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-05:i10:p1",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i10:p2",
+            "target": "shift",
+            "meaningByLocale": {
+              "ru": "рабочая смена",
+              "uk": "робоча зміна"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i10:p3",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "ящик",
+              "uk": "шухляда"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i10:p4",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "uniform",
+          "shift",
+          "drawer",
+          "keychain"
+        ],
+        "rightColumn": [
+          "униформа",
+          "рабочая смена",
+          "ящик",
+          "брелок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i11:audio",
+          "transcript": "Do you have a uniform?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have a uniform?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "uniform"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ищете дорогу к фабрике. Спросите друга «У тебя есть карта?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете дорогу к фабрике. Спросите друга «У тебя есть карта?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a map?",
+        "localizedMeaning": {
+          "ru": "Вы ищете дорогу к фабрике. Спросите друга «У тебя есть карта?»",
+          "uk": "Ви шукаєте дорогу до фабрики. Запитайте друга «У тебе є карта?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "map"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега упомянул Анну и Тома. Спросите «Они работают здесь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Коллега упомянул Анну и Тома. Спросите «Они работают здесь?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i13:audio",
+          "transcript": "Do they work here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do they work here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сообщите «В ящике нет брелока»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-05:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите «В ящике нет брелока»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «В ящике нет брелока»",
+          "uk": "Повідомте «У шухляді немає брелока»"
+        },
+        "gappedTargetPhrase": "There ___ no keychain in the drawer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-05:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сообщите «В ящике нет брелока»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i14:r2",
+            "correct": false,
+            "testedDimension": "Сообщите «В ящике нет брелока»",
+            "feedbackByLocale": {
+              "ru": "Один брелок: `There is no keychain`.",
+              "uk": "Один брелок: `There is no keychain`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i14:r3",
+            "correct": false,
+            "testedDimension": "Сообщите «В ящике нет брелока»",
+            "feedbackByLocale": {
+              "ru": "Нужно `There is no`; `am` подходит к `I`.",
+              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о какой вещи спрашивает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-05:i15:r1",
+          "text": "Do you have a map?"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i15:r2",
+          "text": "Do you have a uniform?"
+        },
+        {
+          "responseId": "en:lesson-07:session-05:i15:r3",
+          "text": "Do you have a keychain?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о какой вещи спрашивает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i15:audio",
+          "transcript": "Do you have a map?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-05:i15:r1",
+            "targetText": "Do you have a map?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i15:r2",
+            "targetText": "Do you have a uniform?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i15:r3",
+            "targetText": "Do you have a keychain?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-05:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о какой вещи спрашивает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `map`, а в этом варианте — `uniform`.",
+              "uk": "У записі останнє слово — `map`, а в цьому варіанті — `uniform`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-05:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о какой вещи спрашивает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `map`, а в этом варианте — `keychain`.",
+              "uk": "У записі останнє слово — `map`, а в цьому варіанті — `keychain`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-05:i16:p1",
+            "target": "shift",
+            "meaningByLocale": {
+              "ru": "рабочая смена",
+              "uk": "робоча зміна"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i16:p2",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i16:p3",
+            "target": "map",
+            "meaningByLocale": {
+              "ru": "карта",
+              "uk": "карта"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-05:i16:p4",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shift",
+          "uniform",
+          "map",
+          "keychain"
+        ],
+        "rightColumn": [
+          "рабочая смена",
+          "униформа",
+          "карта",
+          "брелок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотите встретиться с коллегой утром. Уточните «Вы начинаете свою смену поздно?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Вы хотите встретиться с коллегой утром. Уточните «Вы начинаете свою смену поздно?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-05:i17:audio",
+          "transcript": "Do you start your shift late?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you start your shift late?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "92b9e9efde2bbbfd84a7ff21e0ba0ea359d74464bb82238f6d616f4231fcd2b9"
+}

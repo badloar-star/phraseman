@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-31:intro1:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-31:intro1:r3": {
+          "ru": "После `do you` нужно `visit`, без `s`.",
+          "uk": "Після `do you` потрібне `visit`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-31:intro2:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-31:intro2:r3": {
+          "ru": "После `do you` нужно `shower`, без `s`.",
+          "uk": "Після `do you` потрібне `shower`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-31:intro3:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-31:intro3:r3": {
+          "ru": "После `do you` нужно `work`, без `s`.",
+          "uk": "Після `do you` потрібне `work`, без `s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "96577f143b7968ce8b93e15626f927789020c95ec8ab44748fd35d05168051a6"
+}

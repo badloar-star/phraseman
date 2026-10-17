@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-32:intro1:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-32:intro1:r3": {
+          "ru": "После `where` здесь нужно `do`.",
+          "uk": "Після `where` тут потрібне `do`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-32:intro2:r2": {
+          "ru": "Для Тома нужно `does`.",
+          "uk": "Для Тома потрібне `does`."
+        },
+        "en:lesson-07:session-32:intro2:r3": {
+          "ru": "После `does` нужно `travel`, без `s`.",
+          "uk": "Після `does` потрібне `travel`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-32:intro3:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-32:intro3:r3": {
+          "ru": "После `do you` нужно `stay`, без `s`.",
+          "uk": "Після `do you` потрібне `stay`, без `s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6a76751deed6f06e047d8f1e7aff2b8f768116554e78154e3e27649388bbd6d6"
+}

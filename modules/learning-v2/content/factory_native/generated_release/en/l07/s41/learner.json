@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я часто медитирую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто медитирую»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often meditate.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто медитирую»",
+          "uk": "Скажіть «Я часто медитую»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "meditate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-41:i02:r1",
+          "text": "meditate"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i02:r2",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i02:r3",
+          "text": "recycle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i02:audio",
+          "transcript": "meditate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-41:i02:r1",
+            "targetText": "meditate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i02:r2",
+            "targetText": "chat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i02:r3",
+            "targetText": "recycle",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `meditate`, а в этом варианте — `chat`.",
+              "uk": "У записі перше слово — `meditate`, а в цьому варіанті — `chat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `meditate`, а в этом варианте — `recycle`.",
+              "uk": "У записі перше слово — `meditate`, а в цьому варіанті — `recycle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто медитирую»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-41:i03:r1",
+          "text": "meditate"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i03:r2",
+          "text": "meditates"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i03:r3",
+          "text": "meditating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто медитирую»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто медитирую»",
+          "uk": "Скажіть «Я часто медитую»"
+        },
+        "gappedTargetPhrase": "I often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i03:r1",
+            "text": "meditate"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i03:r2",
+            "text": "meditates"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i03:r3",
+            "text": "meditating"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто медитирую»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто медитирую»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `meditate`.",
+              "uk": "Після `I` потрібне `meditate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто медитирую»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `meditate`.",
+              "uk": "Тут потрібна форма `meditate`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-41:i04:p1",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i04:p2",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "бесідувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i04:p3",
+            "target": "kitchen",
+            "meaningByLocale": {
+              "ru": "кухня",
+              "uk": "кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i04:p4",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "meditate",
+          "chat",
+          "kitchen",
+          "locker"
+        ],
+        "rightColumn": [
+          "медитировать",
+          "беседовать",
+          "кухня",
+          "шкафчик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i05:audio",
+          "transcript": "I often meditate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often meditate.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "meditate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите место для бесед: «Я обычно беседую здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите место для бесед: «Я обычно беседую здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually chat here.",
+        "localizedMeaning": {
+          "ru": "Покажите место для бесед: «Я обычно беседую здесь»",
+          "uk": "Покажіть місце для бесід: «Я зазвичай бесідую тут»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "chat",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о знакомой «Она часто звонит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите о знакомой «Она часто звонит»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i07:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She often calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она часто звонит»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-41:i08:r1",
+          "text": "calls"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i08:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i08:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она часто звонит»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она часто звонит»",
+          "uk": "Скажіть «Вона часто телефонує»"
+        },
+        "gappedTargetPhrase": "She often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i08:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i08:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i08:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Скажите «Она часто звонит»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `calls`.",
+              "uk": "Після `she` потрібне `calls`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `calls`.",
+              "uk": "Тут потрібна форма `calls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-41:i09:r1",
+          "text": "I often meditate."
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i09:r2",
+          "text": "I often walk."
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i09:r3",
+          "text": "I often call."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i09:audio",
+          "transcript": "I often meditate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-41:i09:r1",
+            "targetText": "I often meditate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i09:r2",
+            "targetText": "I often walk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i09:r3",
+            "targetText": "I often call.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `meditate`, а в этом варианте — `walk`.",
+              "uk": "У записі останнє слово — `meditate`, а в цьому варіанті — `walk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `meditate`, а в этом варианте — `call`.",
+              "uk": "У записі останнє слово — `meditate`, а в цьому варіанті — `call`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-41:i10:p1",
+            "target": "recycle",
+            "meaningByLocale": {
+              "ru": "сдавать на переработку",
+              "uk": "здавати на переробку"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i10:p2",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i10:p3",
+            "target": "kitchen",
+            "meaningByLocale": {
+              "ru": "кухня",
+              "uk": "кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i10:p4",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "бесідувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "recycle",
+          "meditate",
+          "kitchen",
+          "chat"
+        ],
+        "rightColumn": [
+          "сдавать на переработку",
+          "медитировать",
+          "кухня",
+          "беседовать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i11:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She often calls.",
+        "orderedTokens": [
+          "She",
+          "often",
+          "calls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы обсуждаете хранение вещей в спортзале. Спросите подругу «У тебя есть шкафчик?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы обсуждаете хранение вещей в спортзале. Спросите подругу «У тебя есть шкафчик?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a locker?",
+        "localizedMeaning": {
+          "ru": "Вы обсуждаете хранение вещей в спортзале. Спросите подругу «У тебя есть шкафчик?»",
+          "uk": "Ви обговорюєте зберігання речей у спортзалі. Запитайте подругу «У тебе є шафка?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "locker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сосед спрашивает о пригодных для переработки отходах. Скажите «Я обычно сдаю отходы на переработку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Сосед спрашивает о пригодных для переработки отходах. Скажите «Я обычно сдаю отходы на переработку»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i13:audio",
+          "transcript": "I usually recycle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I usually recycle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно беседую здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-41:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно беседую здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно беседую здесь»",
+          "uk": "Скажіть «Я зазвичай бесідую тут»"
+        },
+        "gappedTargetPhrase": "I ___ chat here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно беседую здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-41:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно беседую здесь»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `chat`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `chat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно беседую здесь»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `chat` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `chat` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-41:i15:r1",
+          "text": "Do you have a kitchen?"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i15:r2",
+          "text": "Do you have a locker?"
+        },
+        {
+          "responseId": "en:lesson-07:session-41:i15:r3",
+          "text": "Do you have a phone?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i15:audio",
+          "transcript": "Do you have a kitchen?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-41:i15:r1",
+            "targetText": "Do you have a kitchen?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i15:r2",
+            "targetText": "Do you have a locker?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i15:r3",
+            "targetText": "Do you have a phone?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-41:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kitchen`, а в этом варианте — `locker`.",
+              "uk": "У записі останнє слово — `kitchen`, а в цьому варіанті — `locker`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kitchen`, а в этом варианте — `phone`.",
+              "uk": "У записі останнє слово — `kitchen`, а в цьому варіанті — `phone`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-41:i16:p1",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i16:p2",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i16:p3",
+            "target": "recycle",
+            "meaningByLocale": {
+              "ru": "сдавать на переработку",
+              "uk": "здавати на переробку"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-41:i16:p4",
+            "target": "kitchen",
+            "meaningByLocale": {
+              "ru": "кухня",
+              "uk": "кухня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "meditate",
+          "locker",
+          "recycle",
+          "kitchen"
+        ],
+        "rightColumn": [
+          "медитировать",
+          "шкафчик",
+          "сдавать на переработку",
+          "кухня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о привычке Тома медитировать. Скажите «Том часто медитирует»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о привычке Тома медитировать. Скажите «Том часто медитирует»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-41:i17:audio",
+          "transcript": "Tom often meditates."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often meditates.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "30f0f8c69324da17c75cb541783afaa34cff376eac0d887fe031fae934203934"
+}

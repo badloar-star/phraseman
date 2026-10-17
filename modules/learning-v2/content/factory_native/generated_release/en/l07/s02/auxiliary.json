@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-02:intro1:r2": {
+          "ru": "Нужно `Do you have?`, без `are`.",
+          "uk": "Потрібно `Do you have?`, без `are`."
+        },
+        "en:lesson-07:session-02:intro1:r3": {
+          "ru": "После `Do you` нужно `have`.",
+          "uk": "Після `Do you` потрібне `have`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-02:intro2:r2": {
+          "ru": "После `Do they` нужно `deliver`.",
+          "uk": "Після `Do they` потрібне `deliver`."
+        },
+        "en:lesson-07:session-02:intro2:r3": {
+          "ru": "Нужно `Do they deliver?`, без `are`.",
+          "uk": "Потрібно `Do they deliver?`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-02:intro3:r2": {
+          "ru": "Одна посылка: `There is no package`.",
+          "uk": "Одна посилка: `There is no package`."
+        },
+        "en:lesson-07:session-02:intro3:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "04807aef92e9d24cb05e49b9795119b49a4f1c0b6d30c07a674df2740c720107"
+}

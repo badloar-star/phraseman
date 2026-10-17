@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-10:intro1:r2": {
+          "ru": "Один автомат: `Does the machine`.",
+          "uk": "Один автомат: `Does the machine`."
+        },
+        "en:lesson-07:session-10:intro1:r3": {
+          "ru": "После `Does` нужно `work`, без `s`.",
+          "uk": "Після `Does` потрібне `work`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-10:intro2:r2": {
+          "ru": "С `it` нужно `Does`.",
+          "uk": "З `it` потрібне `Does`."
+        },
+        "en:lesson-07:session-10:intro2:r3": {
+          "ru": "После `Does it` нужно `work`.",
+          "uk": "Після `Does it` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-10:intro3:r2": {
+          "ru": "Один ключ: `There is no key`.",
+          "uk": "Один ключ: `There is no key`."
+        },
+        "en:lesson-07:session-10:intro3:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7b467bb118c98f9d3acf1cb729a6bf7e45ad9520260411453c31cbcdfee15a2b"
+}

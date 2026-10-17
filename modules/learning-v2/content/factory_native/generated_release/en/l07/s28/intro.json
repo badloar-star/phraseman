@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "спрашивать о месте и времени привычных действий с where и when",
+    "uk": "запитувати про місце й час звичних дій з where і when"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обеденный перерыв",
+        "uk": "Обідня перерва"
+      },
+      "bodyByLocale": {
+        "ru": "Вы недавно устроились на работу и спрашиваете коллегу, где он обычно ест в перерыв. `eat` — «есть, принимать пищу». `Where do you eat?` — «Где ты ешь?» `Where` спрашивает о месте; затем идут `do you eat`. Обед лучше искать по адресу, чем по урчанию живота.",
+        "uk": "Ви нещодавно влаштувалися на роботу й запитуєте колегу, де він зазвичай їсть під час перерви. `eat` — «їсти». `Where do you eat?` — «Де ти їси?» `Where` запитує про місце; потім ідуть `do you eat`. Обід краще шукати за адресою, ніж за бурчанням живота."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Узнайте обычное место обеда коллеги: «Где ты ешь?»",
+          "uk": "Дізнайтеся звичне місце обіду колеги: «Де ти їси?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-28:intro1:r1",
+              "text": "Where do you eat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro1:r2",
+              "text": "Where does you eat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro1:r3",
+              "text": "Where you eat?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-28:intro1:r1",
+              "text": "Where do you eat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro1:r2",
+              "text": "Where does you eat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro1:r3",
+              "text": "Where you eat?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте обычное место обеда коллеги: «Где ты ешь?»",
+          "uk": "Дізнайтеся звичне місце обіду колеги: «Де ти їси?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Место разминки",
+        "uk": "Місце розминки"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказывает, что регулярно разминается перед тренировкой. `Where do you stretch?` — «Где ты разминаешься?» Здесь речь о разминке с растяжкой. Вопрос начинается с `where do you`, затем `stretch`, без окончания.",
+        "uk": "Друг розповідає, що регулярно розминається перед тренуванням. `Where do you stretch?` — «Де ти розминаєшся?» Тут ідеться про розминку з розтягуванням. Запитання починається з `where do you`, потім `stretch`, без закінчення."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Узнайте, где друг обычно делает растяжку.",
+          "uk": "Дізнайтеся, де друг зазвичай робить розтяжку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-28:intro2:r1",
+              "text": "Where do you stretch?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro2:r2",
+              "text": "Where does you stretch?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro2:r3",
+              "text": "Where do you stretches?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-28:intro2:r1",
+              "text": "Where do you stretch?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro2:r2",
+              "text": "Where does you stretch?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro2:r3",
+              "text": "Where do you stretches?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте, где друг обычно делает растяжку.",
+          "uk": "Дізнайтеся, де друг зазвичай робить розтяжку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рабочее расписание",
+        "uk": "Робочий розклад"
+      },
+      "bodyByLocale": {
+        "ru": "Вы договариваетесь о рабочей встрече и уточняете начало работы коллеги. `When does she start?` — «Когда она начинает?» Здесь имеется в виду её рабочий день. `When` спрашивает о времени, затем идут `does she start`.",
+        "uk": "Ви домовляєтеся про робочу зустріч і уточнюєте початок роботи колеги. `When does she start?` — «Коли вона починає?» Тут мається на увазі її робочий день. `When` запитує про час, потім ідуть `does she start`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о начале её рабочего дня.",
+          "uk": "Запитайте про початок її робочого дня."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-28:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-28:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-28:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о начале её рабочего дня.",
+          "uk": "Запитайте про початок її робочого дня."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "62c4cf126c43f8f4345e6712c309a3b106d88d992cfc6360649891fa28308127"
+}

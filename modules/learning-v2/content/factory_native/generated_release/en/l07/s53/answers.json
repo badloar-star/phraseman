@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-53:i01",
+    "correctText": "I often surf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i02",
+    "correctText": "surf",
+    "correctResponseId": "en:lesson-07:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i03",
+    "correctText": "surf",
+    "correctResponseId": "en:lesson-07:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i04",
+    "correctText": "en:lesson-07:session-53:i04:p1=surf\nen:lesson-07:session-53:i04:p2=donate\nen:lesson-07:session-53:i04:p3=museum\nen:lesson-07:session-53:i04:p4=court",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i05",
+    "correctText": "I often surf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i06",
+    "correctText": "I often donate books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i07",
+    "correctText": "Where is the museum?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i08",
+    "correctText": "donate",
+    "correctResponseId": "en:lesson-07:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i09",
+    "correctText": "I often surf.",
+    "correctResponseId": "en:lesson-07:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i10",
+    "correctText": "en:lesson-07:session-53:i10:p1=uniform\nen:lesson-07:session-53:i10:p2=surf\nen:lesson-07:session-53:i10:p3=donate\nen:lesson-07:session-53:i10:p4=museum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i11",
+    "correctText": "Where is the museum?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i12",
+    "correctText": "Where is the court?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i13",
+    "correctText": "Do you wear a uniform?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-53:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i15",
+    "correctText": "Where is the museum?",
+    "correctResponseId": "en:lesson-07:session-53:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i16",
+    "correctText": "en:lesson-07:session-53:i16:p1=surf\nen:lesson-07:session-53:i16:p2=court\nen:lesson-07:session-53:i16:p3=uniform\nen:lesson-07:session-53:i16:p4=donate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:i17",
+    "correctText": "Tom often surfs.",
+    "correctResponseId": null
+  }
+]

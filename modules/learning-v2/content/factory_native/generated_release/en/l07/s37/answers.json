@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-37:i01",
+    "correctText": "I usually pack early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i02",
+    "correctText": "pack",
+    "correctResponseId": "en:lesson-07:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i03",
+    "correctText": "pack",
+    "correctResponseId": "en:lesson-07:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i04",
+    "correctText": "en:lesson-07:session-37:i04:p1=pack\nen:lesson-07:session-37:i04:p2=shop\nen:lesson-07:session-37:i04:p3=car\nen:lesson-07:session-37:i04:p4=earrings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i05",
+    "correctText": "I usually pack early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i06",
+    "correctText": "I often shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i09",
+    "correctText": "I usually pack early.",
+    "correctResponseId": "en:lesson-07:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i10",
+    "correctText": "en:lesson-07:session-37:i10:p1=play\nen:lesson-07:session-37:i10:p2=pack\nen:lesson-07:session-37:i10:p3=car\nen:lesson-07:session-37:i10:p4=shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i11",
+    "correctText": "I often shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i12",
+    "correctText": "Do you have earrings?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i13",
+    "correctText": "Where do you play?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-37:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i15",
+    "correctText": "Do you have a car?",
+    "correctResponseId": "en:lesson-07:session-37:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i16",
+    "correctText": "en:lesson-07:session-37:i16:p1=pack\nen:lesson-07:session-37:i16:p2=earrings\nen:lesson-07:session-37:i16:p3=play\nen:lesson-07:session-37:i16:p4=car",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:i17",
+    "correctText": "Tom usually packs early.",
+    "correctResponseId": null
+  }
+]

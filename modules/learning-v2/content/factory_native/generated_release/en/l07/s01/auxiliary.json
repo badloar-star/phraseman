@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-01:intro1:r2": {
+          "ru": "С действием `work` здесь нужен вопрос `Do you work?`.",
+          "uk": "З дією `work` тут потрібне запитання `Do you work?`."
+        },
+        "en:lesson-07:session-01:intro1:r3": {
+          "ru": "После `Do you` нужно `work`, без `s`.",
+          "uk": "Після `Do you` потрібне `work`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-01:intro2:r2": {
+          "ru": "Здесь нужно `Do they work?`, без `are`.",
+          "uk": "Тут потрібно `Do they work?`, без `are`."
+        },
+        "en:lesson-07:session-01:intro2:r3": {
+          "ru": "После `Do they` нужно `work`.",
+          "uk": "Після `Do they` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-01:intro3:r2": {
+          "ru": "Нужно `Do you have?`, без `are`.",
+          "uk": "Потрібно `Do you have?`, без `are`."
+        },
+        "en:lesson-07:session-01:intro3:r3": {
+          "ru": "После `Do you` нужно `have`.",
+          "uk": "Після `Do you` потрібне `have`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ffad9a04a62b3d8abdfbc101012a369dc249713848e8582b647ac0a0a67b34e3"
+}

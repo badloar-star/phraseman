@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о привычках и спрашивать о месте",
+    "uk": "розповідати про звички й запитувати про місце"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Доска и волны",
+        "uk": "Дошка й хвилі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, чем вы часто занимаетесь на море. `Surf` — «заниматься сёрфингом, кататься на доске по волнам». `I often surf` — «Я часто занимаюсь сёрфингом». `Often` стоит перед `surf`. Доску здесь берут для волн, а не чтобы нарезать бутерброды.",
+        "uk": "Друг запитує, чим ви часто займаєтеся на морі. `Surf` — «займатися серфінгом, кататися на дошці по хвилях». `I often surf` — «Я часто займаюся серфінгом». `Often` стоїть перед `surf`. Дошку тут беруть для хвиль, а не щоб нарізати бутерброди."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу о своём занятии на море.",
+          "uk": "Розкажіть другові про своє заняття на морі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-53:intro1:r1",
+              "text": "I often surf."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro1:r2",
+              "text": "I often surfs."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro1:r3",
+              "text": "I often surfing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-53:intro1:r1",
+              "text": "I often surf."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro1:r2",
+              "text": "I often surfs."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro1:r3",
+              "text": "I often surfing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу о своём занятии на море.",
+          "uk": "Розкажіть другові про своє заняття на морі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книги для других",
+        "uk": "Книжки для інших"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга замечает коробку книг, которую вы отдаёте на благотворительность. `I often donate books` — «Я часто отдаю книги на благотворительность». `Often` стоит перед `donate`; `books` говорит, что именно вы отдаёте.",
+        "uk": "Подруга помічає коробку книжок, яку ви віддаєте на благодійність. `I often donate books` — «Я часто віддаю книжки на благодійність». `Often` стоїть перед `donate`; `books` говорить, що саме ви віддаєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите подруге о своей привычке.",
+          "uk": "Розкажіть подрузі про свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-53:intro2:r1",
+              "text": "I often donate books."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro2:r2",
+              "text": "I often donates books."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro2:r3",
+              "text": "I often donating books."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-53:intro2:r1",
+              "text": "I often donate books."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro2:r2",
+              "text": "I often donates books."
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro2:r3",
+              "text": "I often donating books."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите подруге о своей привычке.",
+          "uk": "Розкажіть подрузі про свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ищу музей",
+        "uk": "Шукаю музей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите попасть на выставку и просите прохожего показать музей. `Where is the museum?` — «Где музей?» После `where` здесь идёт `is`, затем `the museum`.",
+        "uk": "Ви хочете потрапити на виставку й просите перехожого показати музей. `Where is the museum?` — «Де музей?» Після `where` тут іде `is`, потім `the museum`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите прохожего о музее.",
+          "uk": "Запитайте перехожого про музей."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-53:intro3:r1",
+              "text": "Where is the museum?"
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro3:r2",
+              "text": "Where are the museum?"
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro3:r3",
+              "text": "Where the museum is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-53:intro3:r1",
+              "text": "Where is the museum?"
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro3:r2",
+              "text": "Where are the museum?"
+            },
+            {
+              "responseId": "en:lesson-07:session-53:intro3:r3",
+              "text": "Where the museum is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите прохожего о музее.",
+          "uk": "Запитайте перехожого про музей."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "54104f1bfbb499141530a235b7645c06584f83ad82b90117a88c46518880397f"
+}

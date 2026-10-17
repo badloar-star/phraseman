@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-07:i01",
+    "correctText": "Do you have a schedule?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i02",
+    "correctText": "schedule",
+    "correctResponseId": "en:lesson-07:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i03",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i04",
+    "correctText": "en:lesson-07:session-07:i04:p1=schedule\nen:lesson-07:session-07:i04:p2=cup\nen:lesson-07:session-07:i04:p3=remote\nen:lesson-07:session-07:i04:p4=calendar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i05",
+    "correctText": "Do you have a schedule?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i06",
+    "correctText": "Do you work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i07",
+    "correctText": "There is no schedule here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i08",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i09",
+    "correctText": "Do you have a schedule?",
+    "correctResponseId": "en:lesson-07:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i10",
+    "correctText": "en:lesson-07:session-07:i10:p1=artist\nen:lesson-07:session-07:i10:p2=schedule\nen:lesson-07:session-07:i10:p3=calendar\nen:lesson-07:session-07:i10:p4=cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i11",
+    "correctText": "Do they work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i12",
+    "correctText": "Are you an artist?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i13",
+    "correctText": "Do you have a calendar?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-07:session-07:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i15",
+    "correctText": "Do you have a cup?",
+    "correctResponseId": "en:lesson-07:session-07:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i16",
+    "correctText": "en:lesson-07:session-07:i16:p1=schedule\nen:lesson-07:session-07:i16:p2=artist\nen:lesson-07:session-07:i16:p3=remote\nen:lesson-07:session-07:i16:p4=cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-07:i17",
+    "correctText": "Do they have a schedule?",
+    "correctResponseId": null
+  }
+]

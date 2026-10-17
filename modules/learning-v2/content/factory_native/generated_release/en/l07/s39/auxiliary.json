@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-39:intro1:r2": {
+          "ru": "После `I` нужно `bake`.",
+          "uk": "Після `I` потрібне `bake`."
+        },
+        "en:lesson-07:session-39:intro1:r3": {
+          "ru": "Здесь нужна форма `bake`.",
+          "uk": "Тут потрібна форма `bake`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-39:intro2:r2": {
+          "ru": "После `I` нужно `cycle`.",
+          "uk": "Після `I` потрібне `cycle`."
+        },
+        "en:lesson-07:session-39:intro2:r3": {
+          "ru": "Здесь нужна форма `cycle`.",
+          "uk": "Тут потрібна форма `cycle`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-39:intro3:r2": {
+          "ru": "После `she` нужно `calls`.",
+          "uk": "Після `she` потрібне `calls`."
+        },
+        "en:lesson-07:session-39:intro3:r3": {
+          "ru": "Здесь нужна форма `calls`.",
+          "uk": "Тут потрібна форма `calls`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "70f2500769c594455fc0417898bff5c9ed1e5ecd9d05ac2e4b404d12b2b06d8c"
+}

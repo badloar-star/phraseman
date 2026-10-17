@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Узнайте обычное место обеда: «Где ты ешь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте обычное место обеда: «Где ты ешь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do you eat?",
+        "localizedMeaning": {
+          "ru": "Узнайте обычное место обеда: «Где ты ешь?»",
+          "uk": "Дізнайтеся звичне місце обіду: «Де ти їси?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "eat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-28:i02:r1",
+          "text": "eat"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i02:r2",
+          "text": "stretch"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i02:r3",
+          "text": "keycard"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i02:audio",
+          "transcript": "eat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-28:i02:r1",
+            "targetText": "eat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i02:r2",
+            "targetText": "stretch",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i02:r3",
+            "targetText": "keycard",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `eat`, а в этом варианте — `stretch`.",
+              "uk": "У записі перше слово — `eat`, а в цьому варіанті — `stretch`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `eat`, а в этом варианте — `keycard`.",
+              "uk": "У записі перше слово — `eat`, а в цьому варіанті — `keycard`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о привычном месте приёма пищи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-28:i03:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i03:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о привычном месте приёма пищи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о привычном месте приёма пищи",
+          "uk": "Запитайте про звичне місце приймання їжі"
+        },
+        "gappedTargetPhrase": "Where ___ you eat?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-28:i03:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i03:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Спросите о привычном месте приёма пищи",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите о привычном месте приёма пищи",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `do`.",
+              "uk": "З `you` потрібне `do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите о привычном месте приёма пищи",
+            "feedbackByLocale": {
+              "ru": "Вопрос о привычном действии `eat` строим с `do`.",
+              "uk": "Запитання про звичну дію `eat` будуємо з `do`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-28:i04:p1",
+            "target": "eat",
+            "meaningByLocale": {
+              "ru": "есть",
+              "uk": "їсти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i04:p2",
+            "target": "stretch",
+            "meaningByLocale": {
+              "ru": "делать растяжку",
+              "uk": "робити розтяжку"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i04:p3",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i04:p4",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "eat",
+          "stretch",
+          "keycard",
+          "chairs"
+        ],
+        "rightColumn": [
+          "есть",
+          "делать растяжку",
+          "ключ-карта",
+          "стулья"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i05:audio",
+          "transcript": "Where do you eat?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where do you eat?",
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "eat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите друга, где он обычно делает растяжку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга, где он обычно делает растяжку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do you stretch?",
+        "localizedMeaning": {
+          "ru": "Спросите друга, где он обычно делает растяжку",
+          "uk": "Запитайте друга, де він зазвичай робить розтяжку"
+        },
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "stretch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i07:audio",
+          "transcript": "When does she start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does she start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о начале её работы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-28:i08:r1",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i08:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о начале её работы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о начале её работы",
+          "uk": "Запитайте про початок її роботи"
+        },
+        "gappedTargetPhrase": "When ___ she start?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-28:i08:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i08:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Спросите о начале её работы",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите о начале её работы",
+            "feedbackByLocale": {
+              "ru": "С `she` нужно `does`.",
+              "uk": "З `she` потрібне `does`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите о начале её работы",
+            "feedbackByLocale": {
+              "ru": "Вопрос о действии `start` с `she` строим с `does`.",
+              "uk": "Запитання про дію `start` з `she` будуємо з `does`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-28:i09:r1",
+          "text": "Where do you eat?"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i09:r2",
+          "text": "When do you eat?"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i09:r3",
+          "text": "Where do you work?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i09:audio",
+          "transcript": "Where do you eat?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-28:i09:r1",
+            "targetText": "Where do you eat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i09:r2",
+            "targetText": "When do you eat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i09:r3",
+            "targetText": "Where do you work?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `eat`, а в этом варианте — `work`.",
+              "uk": "У записі останнє слово — `eat`, а в цьому варіанті — `work`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-28:i10:p1",
+            "target": "shout",
+            "meaningByLocale": {
+              "ru": "кричать",
+              "uk": "кричати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i10:p2",
+            "target": "eat",
+            "meaningByLocale": {
+              "ru": "есть",
+              "uk": "їсти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i10:p3",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i10:p4",
+            "target": "stretch",
+            "meaningByLocale": {
+              "ru": "делать растяжку",
+              "uk": "робити розтяжку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shout",
+          "eat",
+          "chairs",
+          "stretch"
+        ],
+        "rightColumn": [
+          "кричать",
+          "есть",
+          "стулья",
+          "делать растяжку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i11:audio",
+          "transcript": "Where do you stretch?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where do you stretch?",
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "stretch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У двери номера спросите друга «У тебя есть ключ-карта?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У двери номера спросите друга «У тебя есть ключ-карта?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a keycard?",
+        "localizedMeaning": {
+          "ru": "У двери номера спросите друга «У тебя есть ключ-карта?»",
+          "uk": "Біля дверей номера запитайте друга «У тебе є ключ-картка?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "keycard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Обсуждая поведение в спорах, скажите «Я не кричу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Обсуждая поведение в спорах, скажите «Я не кричу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i13:audio",
+          "transcript": "I don’t shout."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I don’t shout.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Узнайте, где Том обычно ест",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-28:i14:r1",
+          "text": "eat"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i14:r2",
+          "text": "eats"
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i14:r3",
+          "text": "is eat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте, где Том обычно ест",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Узнайте, где Том обычно ест",
+          "uk": "Дізнайтеся, де Том зазвичай їсть"
+        },
+        "gappedTargetPhrase": "Where does Tom ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-28:i14:r1",
+            "text": "eat"
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i14:r2",
+            "text": "eats"
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i14:r3",
+            "text": "is eat"
+          }
+        ],
+        "testedDimension": "Узнайте, где Том обычно ест",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-28:i14:r2",
+            "correct": false,
+            "testedDimension": "Узнайте, где Том обычно ест",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `eat`.",
+              "uk": "Після `does` потрібне `eat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i14:r3",
+            "correct": false,
+            "testedDimension": "Узнайте, где Том обычно ест",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `eat`, без `is`.",
+              "uk": "Тут потрібне `eat`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где стулья",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-28:i15:r1",
+          "text": "The chairs are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i15:r2",
+          "text": "The chairs are there."
+        },
+        {
+          "responseId": "en:lesson-07:session-28:i15:r3",
+          "text": "The chairs are outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где стулья",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i15:audio",
+          "transcript": "The chairs are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-28:i15:r1",
+            "targetText": "The chairs are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i15:r2",
+            "targetText": "The chairs are there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i15:r3",
+            "targetText": "The chairs are outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-28:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где стулья",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-28:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где стулья",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-28:i16:p1",
+            "target": "eat",
+            "meaningByLocale": {
+              "ru": "есть",
+              "uk": "їсти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i16:p2",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i16:p3",
+            "target": "shout",
+            "meaningByLocale": {
+              "ru": "кричать",
+              "uk": "кричати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-28:i16:p4",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "eat",
+          "keycard",
+          "shout",
+          "chairs"
+        ],
+        "rightColumn": [
+          "есть",
+          "ключ-карта",
+          "кричать",
+          "стулья"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-28:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы составляете распорядок рабочего дня Тома. Спросите «Когда Том ест?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Вы составляете распорядок рабочего дня Тома. Спросите «Когда Том ест?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-28:i17:audio",
+          "transcript": "When does Tom eat?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does Tom eat?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "99e1ed3a3bf54f1754d66e0932f8f3eac348fedef0fe1296a98be48f4c60d39a"
+}

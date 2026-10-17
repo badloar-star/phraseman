@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть «Я не граю в азартні ігри»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть «Я не граю в азартні ігри»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I don’t gamble.",
+        "localizedMeaning": {
+          "ru": "Объясните «Я не играю в азартные игры»",
+          "uk": "Поясніть «Я не граю в азартні ігри»"
+        },
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "gamble"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-18:i02:r1",
+          "text": "gamble"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i02:r2",
+          "text": "smile"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i02:r3",
+          "text": "gloves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i02:audio",
+          "transcript": "gamble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-18:i02:r1",
+            "targetText": "gamble",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i02:r2",
+            "targetText": "smile",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i02:r3",
+            "targetText": "gloves",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `gamble`, а в этом варианте — `smile`.",
+              "uk": "У записі перше слово — `gamble`, а в цьому варіанті — `smile`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `gamble`, а в этом варианте — `gloves`.",
+              "uk": "У записі перше слово — `gamble`, а в цьому варіанті — `gloves`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я не граю в азартні ігри»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-18:i03:r1",
+          "text": "don’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i03:r2",
+          "text": "doesn’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i03:r3",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не граю в азартні ігри»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не играю в азартные игры»",
+          "uk": "Скажіть «Я не граю в азартні ігри»"
+        },
+        "gappedTargetPhrase": "I ___ gamble.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-18:i03:r1",
+            "text": "don’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i03:r2",
+            "text": "doesn’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i03:r3",
+            "text": "not"
+          }
+        ],
+        "testedDimension": "Скажіть «Я не граю в азартні ігри»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не граю в азартні ігри»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `don’t`.",
+              "uk": "Після `I` потрібне `don’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не граю в азартні ігри»",
+            "feedbackByLocale": {
+              "ru": "Для отрицания действия нужно `don’t`.",
+              "uk": "Для заперечення дії потрібне `don’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-18:i04:p1",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i04:p2",
+            "target": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться",
+              "uk": "усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i04:p3",
+            "target": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки",
+              "uk": "рукавички"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i04:p4",
+            "target": "boxes",
+            "meaningByLocale": {
+              "ru": "коробки",
+              "uk": "коробки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gamble",
+          "smile",
+          "gloves",
+          "boxes"
+        ],
+        "rightColumn": [
+          "грати в азартні ігри",
+          "усміхатися",
+          "рукавички",
+          "коробки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i05:audio",
+          "transcript": "I don’t gamble."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I don’t gamble.",
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "gamble"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попередьте «Пристрій не працює»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попередьте «Пристрій не працює»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The machine doesn’t work.",
+        "localizedMeaning": {
+          "ru": "Предупредите «Устройство не работает»",
+          "uk": "Попередьте «Пристрій не працює»"
+        },
+        "orderedTokens": [
+          "The",
+          "machine",
+          "doesn’t",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Тут немає рукавичок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Тут немає рукавичок»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i07:audio",
+          "transcript": "There are no gloves here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are no gloves here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Пристрій не працює»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-18:i08:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i08:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i08:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Пристрій не працює»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Устройство не работает»",
+          "uk": "Повідомте «Пристрій не працює»"
+        },
+        "gappedTargetPhrase": "The machine doesn’t ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-18:i08:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i08:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i08:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Повідомте «Пристрій не працює»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Пристрій не працює»",
+            "feedbackByLocale": {
+              "ru": "После `doesn’t` нужно `work`.",
+              "uk": "Після `doesn’t` потрібне `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Пристрій не працює»",
+            "feedbackByLocale": {
+              "ru": "Нужно `doesn’t work`, без `is`.",
+              "uk": "Потрібно `doesn’t work`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чого не робить співрозмовник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-18:i09:r1",
+          "text": "I don’t gamble."
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i09:r2",
+          "text": "I don’t smoke."
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i09:r3",
+          "text": "I don’t drive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i09:audio",
+          "transcript": "I don’t gamble."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-18:i09:r1",
+            "targetText": "I don’t gamble.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i09:r2",
+            "targetText": "I don’t smoke.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i09:r3",
+            "targetText": "I don’t drive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `gamble`, а в этом варианте — `smoke`.",
+              "uk": "У записі останнє слово — `gamble`, а в цьому варіанті — `smoke`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `gamble`, а в этом варианте — `drive`.",
+              "uk": "У записі останнє слово — `gamble`, а в цьому варіанті — `drive`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-18:i10:p1",
+            "target": "machine",
+            "meaningByLocale": {
+              "ru": "устройство",
+              "uk": "пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i10:p2",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i10:p3",
+            "target": "boxes",
+            "meaningByLocale": {
+              "ru": "коробки",
+              "uk": "коробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i10:p4",
+            "target": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться",
+              "uk": "усміхатися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "machine",
+          "gamble",
+          "boxes",
+          "smile"
+        ],
+        "rightColumn": [
+          "пристрій",
+          "грати в азартні ігри",
+          "коробки",
+          "усміхатися"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i11:audio",
+          "transcript": "The machine doesn’t work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The machine doesn’t work.",
+        "orderedTokens": [
+          "The",
+          "machine",
+          "doesn’t",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед виходом запитайте друга «У тебе є рукавички?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед виходом запитайте друга «У тебе є рукавички?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have gloves?",
+        "localizedMeaning": {
+          "ru": "Перед выходом спросите друга «У тебя есть перчатки?»",
+          "uk": "Перед виходом запитайте друга «У тебе є рукавички?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "gloves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажіть колезі «Коробки тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Покажіть колезі «Коробки тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i13:audio",
+          "transcript": "The boxes are here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The boxes are here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Тут немає рукавичок»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-18:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Тут немає рукавичок»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Здесь нет перчаток»",
+          "uk": "Скажіть «Тут немає рукавичок»"
+        },
+        "gappedTargetPhrase": "There ___ no gloves here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-18:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Тут немає рукавичок»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Тут немає рукавичок»",
+            "feedbackByLocale": {
+              "ru": "`Gloves` — множественное число: `are`.",
+              "uk": "`Gloves` — множина: `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Тут немає рукавичок»",
+            "feedbackByLocale": {
+              "ru": "С `gloves` нужно `are`.",
+              "uk": "З `gloves` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де немає рукавичок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-18:i15:r1",
+          "text": "There are no gloves here."
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i15:r2",
+          "text": "There are no gloves there."
+        },
+        {
+          "responseId": "en:lesson-07:session-18:i15:r3",
+          "text": "There are no gloves upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де немає рукавичок",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i15:audio",
+          "transcript": "There are no gloves here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-18:i15:r1",
+            "targetText": "There are no gloves here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i15:r2",
+            "targetText": "There are no gloves there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i15:r3",
+            "targetText": "There are no gloves upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де немає рукавичок",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де немає рукавичок",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-18:i16:p1",
+            "target": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки",
+              "uk": "рукавички"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i16:p2",
+            "target": "machine",
+            "meaningByLocale": {
+              "ru": "устройство",
+              "uk": "пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i16:p3",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-18:i16:p4",
+            "target": "boxes",
+            "meaningByLocale": {
+              "ru": "коробки",
+              "uk": "коробки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gloves",
+          "machine",
+          "gamble",
+          "boxes"
+        ],
+        "rightColumn": [
+          "рукавички",
+          "пристрій",
+          "грати в азартні ігри",
+          "коробки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг хоче запросити Тома грати на гроші. Поясніть «Том не грає в азартні ігри»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Друг хоче запросити Тома грати на гроші. Поясніть «Том не грає в азартні ігри»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-18:i17:audio",
+          "transcript": "Tom doesn’t gamble."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom doesn’t gamble.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e4d85707285472702a160c841470863897aa57e86fd7a0612539ea87f67dedf6"
+}

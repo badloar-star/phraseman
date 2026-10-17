@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно задавать вопросы с where и when, выбирая do или does",
+    "uk": "самостійно ставити запитання з where і when, вибираючи do або does"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место встречи друзей",
+        "uk": "Місце зустрічі друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказывает, что его компания регулярно встречается. `Where do you meet?` — «Где вы встречаетесь?» `Where` спрашивает о месте, затем идут `do you meet`. Здесь `you` — друг и его компания. Точка на карте надёжнее инструкции «там, где все».",
+        "uk": "Друг розповідає, що його компанія регулярно зустрічається. `Where do you meet?` — «Де ви зустрічаєтеся?» `Where` запитує про місце, потім ідуть `do you meet`. Тут `you` — друг і його компанія. Точка на карті надійніша за вказівку «там, де всі»."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Узнайте привычное место встреч компании.",
+          "uk": "Дізнайтеся звичне місце зустрічей компанії."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-32:intro1:r1",
+              "text": "Where do you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro1:r2",
+              "text": "Where does you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro1:r3",
+              "text": "Where you meet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-32:intro1:r1",
+              "text": "Where do you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro1:r2",
+              "text": "Where does you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro1:r3",
+              "text": "Where you meet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте привычное место встреч компании.",
+          "uk": "Дізнайтеся звичне місце зустрічей компанії."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Время поездок",
+        "uk": "Час поїздок"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомый рассказывает, что Том часто путешествует. `When does Tom travel?` — «Когда Том путешествует?» Вы уточняете обычное время его поездок. `When` спрашивает о времени, а для Тома используем `does` и `travel`, без `s`.",
+        "uk": "Знайомий розповідає, що Том часто подорожує. `When does Tom travel?` — «Коли Том подорожує?» Ви уточнюєте звичний час його поїздок. `When` запитує про час, а для Тома використовуємо `does` і `travel`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Узнайте, когда Том обычно путешествует.",
+          "uk": "Дізнайтеся, коли Том зазвичай подорожує."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-32:intro2:r1",
+              "text": "When does Tom travel?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro2:r2",
+              "text": "When do Tom travel?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro2:r3",
+              "text": "When does Tom travels?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-32:intro2:r1",
+              "text": "When does Tom travel?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro2:r2",
+              "text": "When do Tom travel?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro2:r3",
+              "text": "When does Tom travels?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте, когда Том обычно путешествует.",
+          "uk": "Дізнайтеся, коли Том зазвичай подорожує."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Привычный ночлег",
+        "uk": "Звична ночівля"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомый часто ездит в один город. `Where do you stay?` — «Где ты останавливаешься?» Здесь `stay` означает временно проживать во время поездки. Вы спрашиваете о его привычном месте ночлега: `where do you stay`.",
+        "uk": "Знайомий часто їздить до одного міста. `Where do you stay?` — «Де ти зупиняєшся?» Тут `stay` означає тимчасово проживати під час поїздки. Ви запитуєте про його звичне місце ночівлі: `where do you stay`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Узнайте, где знакомый обычно останавливается в поездках.",
+          "uk": "Дізнайтеся, де знайомий зазвичай зупиняється в поїздках."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-32:intro3:r1",
+              "text": "Where do you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro3:r2",
+              "text": "Where does you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro3:r3",
+              "text": "Where do you stays?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-32:intro3:r1",
+              "text": "Where do you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro3:r2",
+              "text": "Where does you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:intro3:r3",
+              "text": "Where do you stays?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте, где знакомый обычно останавливается в поездках.",
+          "uk": "Дізнайтеся, де знайомий зазвичай зупиняється в поїздках."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5589517829886216c95fb9fea3116eecc0ac278fbe099ef892effb1f38e1a623"
+}

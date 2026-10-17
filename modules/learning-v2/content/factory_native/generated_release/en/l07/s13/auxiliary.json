@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-13:intro1:r2": {
+          "ru": "Один экран: `Does the screen`.",
+          "uk": "Один екран: `Does the screen`."
+        },
+        "en:lesson-07:session-13:intro1:r3": {
+          "ru": "После `Does` нужно `work`.",
+          "uk": "Після `Does` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-13:intro2:r2": {
+          "ru": "Один зонт: `There is no umbrella`.",
+          "uk": "Одна парасоля: `There is no umbrella`."
+        },
+        "en:lesson-07:session-13:intro2:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-13:intro3:r2": {
+          "ru": "С `she` нужно `Does`.",
+          "uk": "Із `she` потрібне `Does`."
+        },
+        "en:lesson-07:session-13:intro3:r3": {
+          "ru": "После `Does she` нужно `start`.",
+          "uk": "Після `Does she` потрібне `start`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "40efc11ff3d4e2288f049ad438dc1fc8b30db4ee009d633ac7a3979bfec7a868"
+}

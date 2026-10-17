@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-06:i01",
+    "correctText": "Are you a customer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i02",
+    "correctText": "customer",
+    "correctResponseId": "en:lesson-07:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i03",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-07:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i04",
+    "correctText": "en:lesson-07:session-06:i04:p1=customer\nen:lesson-07:session-06:i04:p2=repair\nen:lesson-07:session-06:i04:p3=pen\nen:lesson-07:session-06:i04:p4=bookmark",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i05",
+    "correctText": "Are you a customer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i06",
+    "correctText": "Do you repair bicycles?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i07",
+    "correctText": "There is no pen here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i09",
+    "correctText": "Are you a customer?",
+    "correctResponseId": "en:lesson-07:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i10",
+    "correctText": "en:lesson-07:session-06:i10:p1=ceiling\nen:lesson-07:session-06:i10:p2=customer\nen:lesson-07:session-06:i10:p3=repair\nen:lesson-07:session-06:i10:p4=pen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i11",
+    "correctText": "Do you repair bicycles?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i12",
+    "correctText": "Do you have a pen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i13",
+    "correctText": "Do they repair bicycles?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-07:session-06:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i15",
+    "correctText": "Do you have a pen?",
+    "correctResponseId": "en:lesson-07:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i16",
+    "correctText": "en:lesson-07:session-06:i16:p1=customer\nen:lesson-07:session-06:i16:p2=ceiling\nen:lesson-07:session-06:i16:p3=bookmark\nen:lesson-07:session-06:i16:p4=repair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:i17",
+    "correctText": "Do you repair roofs?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-20:intro1:r2": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        },
+        "en:lesson-07:session-20:intro1:r3": {
+          "ru": "Для отрицания действия нужно `don’t`.",
+          "uk": "Для заперечення дії потрібне `don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-20:intro2:r2": {
+          "ru": "Один будильник: нужно `does`.",
+          "uk": "Один будильник: потрібне `does`."
+        },
+        "en:lesson-07:session-20:intro2:r3": {
+          "ru": "После `does` нужно `work`, без `s`.",
+          "uk": "Після `does` потрібне `work`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-20:intro3:r2": {
+          "ru": "С `maps` нужно `are`.",
+          "uk": "З `maps` потрібне `are`."
+        },
+        "en:lesson-07:session-20:intro3:r3": {
+          "ru": "Без `no` фраза сообщает, что карты есть.",
+          "uk": "Без `no` фраза повідомляє, що карти є."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "510823a14146089f02b44ac0b0ea5ccda83c811ba68e27502e48173d3300e35d"
+}

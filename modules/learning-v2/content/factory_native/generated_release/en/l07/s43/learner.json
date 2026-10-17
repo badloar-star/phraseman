@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я часто шью»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто шью»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often sew.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто шью»",
+          "uk": "Скажіть «Я часто шию»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "sew"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-43:i02:r1",
+          "text": "sew"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i02:r2",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i02:r3",
+          "text": "commute"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i02:audio",
+          "transcript": "sew"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-43:i02:r1",
+            "targetText": "sew",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i02:r2",
+            "targetText": "speak",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i02:r3",
+            "targetText": "commute",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sew`, а в этом варианте — `speak`.",
+              "uk": "У записі перше слово — `sew`, а в цьому варіанті — `speak`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sew`, а в этом варианте — `commute`.",
+              "uk": "У записі перше слово — `sew`, а в цьому варіанті — `commute`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто шью»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-43:i03:r1",
+          "text": "sew"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i03:r2",
+          "text": "sews"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i03:r3",
+          "text": "sewing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто шью»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто шью»",
+          "uk": "Скажіть «Я часто шию»"
+        },
+        "gappedTargetPhrase": "I often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-43:i03:r1",
+            "text": "sew"
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i03:r2",
+            "text": "sews"
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i03:r3",
+            "text": "sewing"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто шью»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто шью»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `sew`.",
+              "uk": "Після `I` потрібне `sew`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто шью»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `sew`.",
+              "uk": "Тут потрібна форма `sew`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-43:i04:p1",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i04:p2",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i04:p3",
+            "target": "commute",
+            "meaningByLocale": {
+              "ru": "ездить на работу или учёбу",
+              "uk": "їздити на роботу або навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i04:p4",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sew",
+          "speak",
+          "commute",
+          "bedrooms"
+        ],
+        "rightColumn": [
+          "шить",
+          "говорить",
+          "ездить на работу или учёбу",
+          "спальни"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i05:audio",
+          "transcript": "I often sew."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often sew.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "sew"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о работе вне дома «Я обычно езжу на работу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о работе вне дома «Я обычно езжу на работу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually commute.",
+        "localizedMeaning": {
+          "ru": "Скажите о работе вне дома «Я обычно езжу на работу»",
+          "uk": "Скажіть про роботу поза домом «Я зазвичай їжджу на роботу»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "commute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о знакомой «Она часто звонит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите о знакомой «Она часто звонит»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i07:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She often calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она часто звонит»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-43:i08:r1",
+          "text": "calls"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i08:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i08:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она часто звонит»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она часто звонит»",
+          "uk": "Скажіть «Вона часто телефонує»"
+        },
+        "gappedTargetPhrase": "She often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-43:i08:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i08:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i08:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Скажите «Она часто звонит»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `calls`.",
+              "uk": "Після `she` потрібне `calls`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `calls`.",
+              "uk": "Тут потрібна форма `calls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-43:i09:r1",
+          "text": "I often sew."
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i09:r2",
+          "text": "I often bake."
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i09:r3",
+          "text": "I often iron."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i09:audio",
+          "transcript": "I often sew."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-43:i09:r1",
+            "targetText": "I often sew.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i09:r2",
+            "targetText": "I often bake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i09:r3",
+            "targetText": "I often iron.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sew`, а в этом варианте — `bake`.",
+              "uk": "У записі останнє слово — `sew`, а в цьому варіанті — `bake`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sew`, а в этом варианте — `iron`.",
+              "uk": "У записі останнє слово — `sew`, а в цьому варіанті — `iron`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-43:i10:p1",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i10:p2",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i10:p3",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i10:p4",
+            "target": "commute",
+            "meaningByLocale": {
+              "ru": "ездить на работу или учёбу",
+              "uk": "їздити на роботу або навчання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bedrooms",
+          "sew",
+          "speak",
+          "commute"
+        ],
+        "rightColumn": [
+          "спальни",
+          "шить",
+          "говорить",
+          "ездить на работу или учёбу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i11:audio",
+          "transcript": "I usually commute."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually commute.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "commute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите знакомого «Ты говоришь по-английски?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите знакомого «Ты говоришь по-английски?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you speak English?",
+        "localizedMeaning": {
+          "ru": "Спросите знакомого «Ты говоришь по-английски?»",
+          "uk": "Запитайте знайомого «Ти говориш англійською?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "speak",
+          "English"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите гостю «Спальни наверху»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите гостю «Спальни наверху»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i13:audio",
+          "transcript": "The bedrooms are upstairs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bedrooms are upstairs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно езжу на работу»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-43:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно езжу на работу»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно езжу на работу»",
+          "uk": "Скажіть «Я зазвичай їжджу на роботу»"
+        },
+        "gappedTargetPhrase": "I ___ commute.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-43:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно езжу на работу»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно езжу на работу»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `commute`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `commute`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно езжу на работу»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `commute` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `commute` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где спальни",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-43:i15:r1",
+          "text": "The bedrooms are upstairs."
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i15:r2",
+          "text": "The bedrooms are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-43:i15:r3",
+          "text": "The bedrooms are there."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где спальни",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i15:audio",
+          "transcript": "The bedrooms are upstairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-43:i15:r1",
+            "targetText": "The bedrooms are upstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i15:r2",
+            "targetText": "The bedrooms are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i15:r3",
+            "targetText": "The bedrooms are there.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где спальни",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `here`.",
+              "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где спальни",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `there`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-43:i16:p1",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i16:p2",
+            "target": "commute",
+            "meaningByLocale": {
+              "ru": "ездить на работу или учёбу",
+              "uk": "їздити на роботу або навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i16:p3",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-43:i16:p4",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sew",
+          "commute",
+          "bedrooms",
+          "speak"
+        ],
+        "rightColumn": [
+          "шить",
+          "ездить на работу или учёбу",
+          "спальни",
+          "говорить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает об увлечении Тома шитьём. Скажите «Том часто шьёт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает об увлечении Тома шитьём. Скажите «Том часто шьёт»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:i17:audio",
+          "transcript": "Tom often sews."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often sews.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0feaaedb0d993aed60ce4f30f23c26852d68f0bde6ed65718df29137fcd49f24"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-47:i01",
+    "correctText": "I often photograph birds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i02",
+    "correctText": "photograph",
+    "correctResponseId": "en:lesson-07:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i03",
+    "correctText": "photograph",
+    "correctResponseId": "en:lesson-07:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i04",
+    "correctText": "en:lesson-07:session-47:i04:p1=photograph\nen:lesson-07:session-47:i04:p2=bake\nen:lesson-07:session-47:i04:p3=restaurants\nen:lesson-07:session-47:i04:p4=subway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i05",
+    "correctText": "I often photograph birds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i06",
+    "correctText": "I usually bake at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i07",
+    "correctText": "Where are the restaurants?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i08",
+    "correctText": "bake",
+    "correctResponseId": "en:lesson-07:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i09",
+    "correctText": "I often photograph birds.",
+    "correctResponseId": "en:lesson-07:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i10",
+    "correctText": "en:lesson-07:session-47:i10:p1=bake\nen:lesson-07:session-47:i10:p2=photograph\nen:lesson-07:session-47:i10:p3=glove\nen:lesson-07:session-47:i10:p4=restaurants",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i11",
+    "correctText": "I usually bake at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i12",
+    "correctText": "Where is the subway?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i13",
+    "correctText": "Where is my glove?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-47:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i15",
+    "correctText": "Where are the restaurants?",
+    "correctResponseId": "en:lesson-07:session-47:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i16",
+    "correctText": "en:lesson-07:session-47:i16:p1=photograph\nen:lesson-07:session-47:i16:p2=subway\nen:lesson-07:session-47:i16:p3=bake\nen:lesson-07:session-47:i16:p4=glove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:i17",
+    "correctText": "Tom often photographs birds.",
+    "correctResponseId": null
+  }
+]

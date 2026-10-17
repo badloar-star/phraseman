@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-54:intro1:r2": {
+          "ru": "После `I` нужно `browse`.",
+          "uk": "Після `I` потрібне `browse`."
+        },
+        "en:lesson-07:session-54:intro1:r3": {
+          "ru": "Здесь нужна форма `browse`.",
+          "uk": "Тут потрібна форма `browse`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-54:intro2:r2": {
+          "ru": "После `I` нужно `organize`.",
+          "uk": "Після `I` потрібне `organize`."
+        },
+        "en:lesson-07:session-54:intro2:r3": {
+          "ru": "Здесь нужна форма `organize`.",
+          "uk": "Тут потрібна форма `organize`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-54:intro3:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-54:intro3:r3": {
+          "ru": "После `do you` нужно `repair`.",
+          "uk": "Після `do you` потрібне `repair`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "312820745ab651723cbc5d3c0c6514aa78631c16b6fa9244437ab425eeae5576"
+}

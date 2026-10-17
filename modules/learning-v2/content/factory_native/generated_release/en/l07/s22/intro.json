@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать привычное действие, спрашивать с do и сообщать об отсутствии вещей",
+    "uk": "заперечувати звичну дію, запитувати з do й повідомляти про відсутність речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Без спора",
+        "uk": "Без суперечки"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, вступаете ли вы в споры, когда ваши мнения расходятся. `argue` — «спорить». `I don’t argue` — «Я не спорю». Здесь вы описываете обычное поведение: после `I` ставим `don’t`, затем `argue`. Последнее слово можно оставить собеседнику — это не потерянный кошелёк.",
+        "uk": "Друг запитує, чи вступаєте ви в суперечки, коли ваші думки розходяться. `argue` — «сперечатися». `I don’t argue` — «Я не сперечаюся». Тут ви описуєте звичну поведінку: після `I` ставимо `don’t`, потім `argue`. Останнє слово можна залишити співрозмовникові — це не загублений гаманець."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу о своей привычке: «Я не спорю».",
+          "uk": "Скажіть другові про свою звичку: «Я не сперечаюся»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-22:intro1:r1",
+              "text": "I don’t argue."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro1:r2",
+              "text": "I doesn’t argue."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro1:r3",
+              "text": "I not argue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-22:intro1:r1",
+              "text": "I don’t argue."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro1:r2",
+              "text": "I doesn’t argue."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro1:r3",
+              "text": "I not argue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу о своей привычке: «Я не спорю».",
+          "uk": "Скажіть другові про свою звичку: «Я не сперечаюся»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Разговор о книгах",
+        "uk": "Розмова про книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите узнать, читает ли новый знакомый книги. `Do you read books?` — «Ты читаешь книги?» Вопрос о привычке с `you` начинаем с `do`, затем `you read books`. Здесь не спрашивают, читает ли человек прямо сейчас.",
+        "uk": "Ви хочете дізнатися, чи читає новий знайомий книжки. `Do you read books?` — «Ти читаєш книжки?» Запитання про звичку з `you` починаємо з `do`, потім `you read books`. Тут не запитують, чи читає людина просто зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите знакомого о привычке: «Ты читаешь книги?»",
+          "uk": "Запитайте знайомого про звичку: «Ти читаєш книжки?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-22:intro2:r1",
+              "text": "Do you read books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro2:r2",
+              "text": "Does you read books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro2:r3",
+              "text": "Do you reads books?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-22:intro2:r1",
+              "text": "Do you read books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro2:r2",
+              "text": "Does you read books?"
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro2:r3",
+              "text": "Do you reads books?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите знакомого о привычке: «Ты читаешь книги?»",
+          "uk": "Запитайте знайомого про звичку: «Ти читаєш книжки?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чашек не оказалось",
+        "uk": "Чашок не виявилося"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь налить гостям чай и проверили шкафчик. `There are no cups here` — «Здесь нет чашек». `Cups` — множественное число, поэтому `are no`. Фраза сообщает об отсутствии чашек именно здесь.",
+        "uk": "Ви збираєтеся налити гостям чай і перевірили шафку. `There are no cups here` — «Тут немає чашок». `Cups` — множина, тому `are no`. Фраза повідомляє про відсутність чашок саме тут."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите гостю: «Здесь нет чашек».",
+          "uk": "Скажіть гостеві: «Тут немає чашок»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-22:intro3:r1",
+              "text": "There are no cups here."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro3:r2",
+              "text": "There is no cups here."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro3:r3",
+              "text": "There are cups here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-22:intro3:r1",
+              "text": "There are no cups here."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro3:r2",
+              "text": "There is no cups here."
+            },
+            {
+              "responseId": "en:lesson-07:session-22:intro3:r3",
+              "text": "There are cups here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите гостю: «Здесь нет чашек».",
+          "uk": "Скажіть гостеві: «Тут немає чашок»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0681a03408713d3f0488a1d44168067650b10f1dc7b96a37db594d134a59d1a4"
+}

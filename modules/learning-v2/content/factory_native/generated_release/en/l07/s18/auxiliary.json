@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-18:intro1:r2": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        },
+        "en:lesson-07:session-18:intro1:r3": {
+          "ru": "Для отрицания действия нужно `don’t`.",
+          "uk": "Для заперечення дії потрібне `don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-18:intro2:r2": {
+          "ru": "С одним устройством нужно `doesn’t`.",
+          "uk": "З одним пристроєм потрібне `doesn’t`."
+        },
+        "en:lesson-07:session-18:intro2:r3": {
+          "ru": "После `doesn’t` нужно `work`, без `s`.",
+          "uk": "Після `doesn’t` потрібне `work`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-18:intro3:r2": {
+          "ru": "С `gloves` нужно `are`.",
+          "uk": "З `gloves` потрібне `are`."
+        },
+        "en:lesson-07:session-18:intro3:r3": {
+          "ru": "Эта фраза говорит, что перчатки есть. Для «нет» добавьте `no`.",
+          "uk": "Ця фраза означає, що рукавички є. Для «немає» додайте `no`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6023b9e362ea88e0e1ae7bae0b38203447cc16be057830bc168af38e634a1c9a"
+}

@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Ти відвідуєш парки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Ти відвідуєш парки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you visit parks?",
+        "localizedMeaning": {
+          "ru": "Спросите «Ты посещаешь парки?»",
+          "uk": "Запитайте «Ти відвідуєш парки?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "visit",
+          "parks"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-31:i02:r1",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i02:r2",
+          "text": "shower"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i02:r3",
+          "text": "guitar"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i02:audio",
+          "transcript": "visit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-31:i02:r1",
+            "targetText": "visit",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i02:r2",
+            "targetText": "shower",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i02:r3",
+            "targetText": "guitar",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `visit`, а в этом варианте — `shower`.",
+              "uk": "У записі перше слово — `visit`, а в цьому варіанті — `shower`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `visit`, а в этом варианте — `guitar`.",
+              "uk": "У записі перше слово — `visit`, а в цьому варіанті — `guitar`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про звичку відвідувати парки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-31:i03:r1",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i03:r2",
+          "text": "visits"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i03:r3",
+          "text": "is visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про звичку відвідувати парки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о привычке посещать парки",
+          "uk": "Запитайте про звичку відвідувати парки"
+        },
+        "gappedTargetPhrase": "Do you ___ parks?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-31:i03:r1",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i03:r2",
+            "text": "visits"
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i03:r3",
+            "text": "is visit"
+          }
+        ],
+        "testedDimension": "Запитайте про звичку відвідувати парки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про звичку відвідувати парки",
+            "feedbackByLocale": {
+              "ru": "После `do you` нужно `visit`.",
+              "uk": "Після `do you` потрібне `visit`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про звичку відвідувати парки",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `visit`, без `is`.",
+              "uk": "Тут потрібне `visit`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-31:i04:p1",
+            "target": "visit",
+            "meaningByLocale": {
+              "ru": "посещать",
+              "uk": "відвідувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i04:p2",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i04:p3",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i04:p4",
+            "target": "parks",
+            "meaningByLocale": {
+              "ru": "парки",
+              "uk": "парки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "visit",
+          "shower",
+          "guitar",
+          "parks"
+        ],
+        "rightColumn": [
+          "відвідувати",
+          "приймати душ",
+          "гітара",
+          "парки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i05:audio",
+          "transcript": "Do you visit parks?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you visit parks?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "visit",
+          "parks"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дізнайтеся звичний час душу: «Коли ти приймаєш душ?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дізнайтеся звичний час душу: «Коли ти приймаєш душ?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "When do you shower?",
+        "localizedMeaning": {
+          "ru": "Узнайте обычное время душа: «Когда ты принимаешь душ?»",
+          "uk": "Дізнайтеся звичний час душу: «Коли ти приймаєш душ?»"
+        },
+        "orderedTokens": [
+          "When",
+          "do",
+          "you",
+          "shower"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте «Де ти працюєш?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте «Де ти працюєш?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i07:audio",
+          "transcript": "Where do you work?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where do you work?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дізнайтеся місце роботи знайомого",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-31:i08:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i08:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дізнайтеся місце роботи знайомого",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Узнайте место работы знакомого",
+          "uk": "Дізнайтеся місце роботи знайомого"
+        },
+        "gappedTargetPhrase": "Where ___ you work?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-31:i08:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i08:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дізнайтеся місце роботи знайомого",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Дізнайтеся місце роботи знайомого",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `do`.",
+              "uk": "З `you` потрібне `do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Дізнайтеся місце роботи знайомого",
+            "feedbackByLocale": {
+              "ru": "Вопрос о действии `work` здесь строим с `do`.",
+              "uk": "Запитання про дію `work` тут будуємо з `do`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-31:i09:r1",
+          "text": "Do you visit parks?"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i09:r2",
+          "text": "Do you visit shops?"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i09:r3",
+          "text": "Do you visit schools?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i09:audio",
+          "transcript": "Do you visit parks?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-31:i09:r1",
+            "targetText": "Do you visit parks?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i09:r2",
+            "targetText": "Do you visit shops?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i09:r3",
+            "targetText": "Do you visit schools?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `parks`, а в этом варианте — `shops`.",
+              "uk": "У записі останнє слово — `parks`, а в цьому варіанті — `shops`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `parks`, а в этом варианте — `schools`.",
+              "uk": "У записі останнє слово — `parks`, а в цьому варіанті — `schools`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-31:i10:p1",
+            "target": "cheat",
+            "meaningByLocale": {
+              "ru": "жульничать",
+              "uk": "шахрувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i10:p2",
+            "target": "visit",
+            "meaningByLocale": {
+              "ru": "посещать",
+              "uk": "відвідувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i10:p3",
+            "target": "parks",
+            "meaningByLocale": {
+              "ru": "парки",
+              "uk": "парки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i10:p4",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cheat",
+          "visit",
+          "parks",
+          "shower"
+        ],
+        "rightColumn": [
+          "шахрувати",
+          "відвідувати",
+          "парки",
+          "приймати душ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i11:audio",
+          "transcript": "When do you shower?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "When do you shower?",
+        "orderedTokens": [
+          "When",
+          "do",
+          "you",
+          "shower"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг розповідає про гру на гітарі. Запитайте «У тебе є гітара?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг розповідає про гру на гітарі. Запитайте «У тебе є гітара?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a guitar?",
+        "localizedMeaning": {
+          "ru": "Друг рассказывает об игре на гитаре. Спросите «У тебя есть гитара?»",
+          "uk": "Друг розповідає про гру на гітарі. Запитайте «У тебе є гітара?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "guitar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед настільною грою скажіть «Я не шахрую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Перед настільною грою скажіть «Я не шахрую»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i13:audio",
+          "transcript": "I don’t cheat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I don’t cheat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дізнайтеся, чи відвідує Том парки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-31:i14:r1",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i14:r2",
+          "text": "visits"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i14:r3",
+          "text": "is visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дізнайтеся, чи відвідує Том парки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Узнайте, посещает ли Том парки",
+          "uk": "Дізнайтеся, чи відвідує Том парки"
+        },
+        "gappedTargetPhrase": "Does Tom ___ parks?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-31:i14:r1",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i14:r2",
+            "text": "visits"
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i14:r3",
+            "text": "is visit"
+          }
+        ],
+        "testedDimension": "Дізнайтеся, чи відвідує Том парки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-31:i14:r2",
+            "correct": false,
+            "testedDimension": "Дізнайтеся, чи відвідує Том парки",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `visit`.",
+              "uk": "Після `does` потрібне `visit`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i14:r3",
+            "correct": false,
+            "testedDimension": "Дізнайтеся, чи відвідує Том парки",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `visit`, без `is`.",
+              "uk": "Тут потрібне `visit`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-31:i15:r1",
+          "text": "Where do you work?"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i15:r2",
+          "text": "When do you work?"
+        },
+        {
+          "responseId": "en:lesson-07:session-31:i15:r3",
+          "text": "Where do you stay?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i15:audio",
+          "transcript": "Where do you work?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-31:i15:r1",
+            "targetText": "Where do you work?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i15:r2",
+            "targetText": "When do you work?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i15:r3",
+            "targetText": "Where do you stay?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-31:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-31:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `stay`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `stay`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-31:i16:p1",
+            "target": "visit",
+            "meaningByLocale": {
+              "ru": "посещать",
+              "uk": "відвідувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i16:p2",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i16:p3",
+            "target": "cheat",
+            "meaningByLocale": {
+              "ru": "жульничать",
+              "uk": "шахрувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-31:i16:p4",
+            "target": "parks",
+            "meaningByLocale": {
+              "ru": "парки",
+              "uk": "парки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "visit",
+          "guitar",
+          "cheat",
+          "parks"
+        ],
+        "rightColumn": [
+          "відвідувати",
+          "гітара",
+          "шахрувати",
+          "парки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг розповідає про прогулянки Тома парками. Уточніть «Коли Том відвідує парки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Друг розповідає про прогулянки Тома парками. Уточніть «Коли Том відвідує парки?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:i17:audio",
+          "transcript": "When does Tom visit parks?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does Tom visit parks?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aff0c33677ebe5526630981e4bd389e3ae791e558526765c93edde4af59115c6"
+}

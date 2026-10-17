@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-51:i01",
+    "correctText": "I often dance at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i02",
+    "correctText": "dance",
+    "correctResponseId": "en:lesson-07:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i03",
+    "correctText": "dance",
+    "correctResponseId": "en:lesson-07:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i04",
+    "correctText": "en:lesson-07:session-51:i04:p1=dance\nen:lesson-07:session-51:i04:p2=sell\nen:lesson-07:session-51:i04:p3=libraries\nen:lesson-07:session-51:i04:p4=stadium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i05",
+    "correctText": "I often dance at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i06",
+    "correctText": "Do you sell books?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i07",
+    "correctText": "Where is the stadium?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i08",
+    "correctText": "sell",
+    "correctResponseId": "en:lesson-07:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i09",
+    "correctText": "I often dance.",
+    "correctResponseId": "en:lesson-07:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i10",
+    "correctText": "en:lesson-07:session-51:i10:p1=sew\nen:lesson-07:session-51:i10:p2=dance\nen:lesson-07:session-51:i10:p3=sell\nen:lesson-07:session-51:i10:p4=libraries",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i11",
+    "correctText": "Do you sell books?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i12",
+    "correctText": "Where are the libraries?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i13",
+    "correctText": "Do you sew at home?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-51:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i15",
+    "correctText": "Where is the stadium?",
+    "correctResponseId": "en:lesson-07:session-51:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i16",
+    "correctText": "en:lesson-07:session-51:i16:p1=dance\nen:lesson-07:session-51:i16:p2=stadium\nen:lesson-07:session-51:i16:p3=sew\nen:lesson-07:session-51:i16:p4=sell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:i17",
+    "correctText": "Tom often dances at home.",
+    "correctResponseId": null
+  }
+]

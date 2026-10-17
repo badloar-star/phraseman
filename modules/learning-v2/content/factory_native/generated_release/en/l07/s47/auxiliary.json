@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-47:intro1:r2": {
+          "ru": "После `I` нужно `photograph`, без `s`.",
+          "uk": "Після `I` потрібне `photograph`, без `s`."
+        },
+        "en:lesson-07:session-47:intro1:r3": {
+          "ru": "Здесь нужна форма `photograph`.",
+          "uk": "Тут потрібна форма `photograph`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-47:intro2:r2": {
+          "ru": "После `I` нужно `bake`.",
+          "uk": "Після `I` потрібне `bake`."
+        },
+        "en:lesson-07:session-47:intro2:r3": {
+          "ru": "Здесь нужна форма `bake`.",
+          "uk": "Тут потрібна форма `bake`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-47:intro3:r2": {
+          "ru": "Ресторанов несколько: нужно `are`.",
+          "uk": "Ресторанів кілька: потрібне `are`."
+        },
+        "en:lesson-07:session-47:intro3:r3": {
+          "ru": "В этом вопросе `are` стоит перед `the restaurants`.",
+          "uk": "У цьому запитанні `are` стоїть перед `the restaurants`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "95cc07c37c25657f2e9f1e36fa812b9dc0ada35f21772d80771b55809b9eebb3"
+}

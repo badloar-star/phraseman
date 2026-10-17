@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-15:i01",
+    "correctText": "Does the website work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i02",
+    "correctText": "website",
+    "correctResponseId": "en:lesson-07:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i04",
+    "correctText": "en:lesson-07:session-15:i04:p1=website\nen:lesson-07:session-15:i04:p2=schedule\nen:lesson-07:session-15:i04:p3=coat\nen:lesson-07:session-15:i04:p4=helmet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i05",
+    "correctText": "Does the website work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i06",
+    "correctText": "There is no schedule here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i07",
+    "correctText": "Does she sing here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i09",
+    "correctText": "Does she sing here?",
+    "correctResponseId": "en:lesson-07:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i10",
+    "correctText": "en:lesson-07:session-15:i10:p1=sing\nen:lesson-07:session-15:i10:p2=website\nen:lesson-07:session-15:i10:p3=coat\nen:lesson-07:session-15:i10:p4=schedule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i11",
+    "correctText": "Does it work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i12",
+    "correctText": "Do you have a helmet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i13",
+    "correctText": "Whose coat is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i14",
+    "correctText": "sing",
+    "correctResponseId": "en:lesson-07:session-15:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i15",
+    "correctText": "Do you have a schedule?",
+    "correctResponseId": "en:lesson-07:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i16",
+    "correctText": "en:lesson-07:session-15:i16:p1=website\nen:lesson-07:session-15:i16:p2=helmet\nen:lesson-07:session-15:i16:p3=sing\nen:lesson-07:session-15:i16:p4=schedule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-15:i17",
+    "correctText": "Do they have a website?",
+    "correctResponseId": null
+  }
+]

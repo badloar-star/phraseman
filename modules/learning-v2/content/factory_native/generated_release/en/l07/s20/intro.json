@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать привычные действия, спрашивать о работе устройства и сообщать об отсутствии вещей",
+    "uk": "заперечувати звичні дії, запитувати про роботу пристрою й повідомляти про відсутність речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спокойный спор",
+        "uk": "Спокійна суперечка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, повышаете ли вы голос во время споров. `shout` — «кричать». `I don’t shout` — «Я не кричу». Здесь вы описываете своё обычное поведение: после `I` ставим `don’t`, затем `shout`. Убедительный довод не обязан будить соседей.",
+        "uk": "Друг запитує, чи підвищуєте ви голос під час суперечок. `shout` — «кричати». `I don’t shout` — «Я не кричу». Тут ви описуєте свою звичну поведінку: після `I` ставимо `don’t`, потім `shout`. Переконливий аргумент не зобов’язаний будити сусідів."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу о своём поведении: «Я не кричу».",
+          "uk": "Розкажіть другові про свою поведінку: «Я не кричу»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-20:intro1:r1",
+              "text": "I don’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro1:r2",
+              "text": "I doesn’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro1:r3",
+              "text": "I not shout."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-20:intro1:r1",
+              "text": "I don’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro1:r2",
+              "text": "I doesn’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro1:r3",
+              "text": "I not shout."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу о своём поведении: «Я не кричу».",
+          "uk": "Розкажіть другові про свою поведінку: «Я не кричу»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверяем будильник",
+        "uk": "Перевіряємо будильник"
+      },
+      "bodyByLocale": {
+        "ru": "Перед ранним подъёмом вы проверяете старый будильник. `Does the alarm work?` — «Будильник работает?» Здесь `alarm` означает будильник. Вопрос об одном устройстве начинается с `does`, а действие остаётся в форме `work`, без `s`.",
+        "uk": "Перед раннім підйомом ви перевіряєте старий будильник. `Does the alarm work?` — «Будильник працює?» Тут `alarm` означає будильник. Запитання про один пристрій починається з `does`, а дія залишається у формі `work`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите друга: «Будильник работает?»",
+          "uk": "Запитайте друга: «Будильник працює?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-20:intro2:r1",
+              "text": "Does the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro2:r2",
+              "text": "Do the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro2:r3",
+              "text": "Does the alarm works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-20:intro2:r1",
+              "text": "Does the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro2:r2",
+              "text": "Do the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro2:r3",
+              "text": "Does the alarm works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга: «Будильник работает?»",
+          "uk": "Запитайте друга: «Будильник працює?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ищем карты",
+        "uk": "Шукаємо карти"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили полку с дорожными картами: карт там нет. `There are no maps here` — «Здесь нет карт». `Maps` — множественное число, поэтому используем `are no`.",
+        "uk": "Ви перевірили полицю з дорожніми картами: карт там немає. `There are no maps here` — «Тут немає карт». `Maps` — множина, тому використовуємо `are no`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите спутнику: «Здесь нет карт».",
+          "uk": "Повідомте супутникові: «Тут немає карт»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-20:intro3:r1",
+              "text": "There are no maps here."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro3:r2",
+              "text": "There is no maps here."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro3:r3",
+              "text": "There are maps here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-20:intro3:r1",
+              "text": "There are no maps here."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro3:r2",
+              "text": "There is no maps here."
+            },
+            {
+              "responseId": "en:lesson-07:session-20:intro3:r3",
+              "text": "There are maps here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите спутнику: «Здесь нет карт».",
+          "uk": "Повідомте супутникові: «Тут немає карт»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e9ae78f41866b80b8d70a96893a36bbc2e62dd5ecd5e1bcdb07cc2bce18a9f02"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-13:i01",
+    "correctText": "Does the screen work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i02",
+    "correctText": "screen",
+    "correctResponseId": "en:lesson-07:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i04",
+    "correctText": "en:lesson-07:session-13:i04:p1=screen\nen:lesson-07:session-13:i04:p2=window\nen:lesson-07:session-13:i04:p3=umbrella\nen:lesson-07:session-13:i04:p4=shift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i05",
+    "correctText": "Does the screen work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i06",
+    "correctText": "There is no umbrella near the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i07",
+    "correctText": "Does she start her shift early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i09",
+    "correctText": "Does she start her shift early?",
+    "correctResponseId": "en:lesson-07:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i10",
+    "correctText": "en:lesson-07:session-13:i10:p1=swim\nen:lesson-07:session-13:i10:p2=screen\nen:lesson-07:session-13:i10:p3=window\nen:lesson-07:session-13:i10:p4=umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i11",
+    "correctText": "Does it work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i12",
+    "correctText": "Do you have an umbrella?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i13",
+    "correctText": "The screen is near the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i14",
+    "correctText": "swim",
+    "correctResponseId": "en:lesson-07:session-13:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i15",
+    "correctText": "Do you swim here?",
+    "correctResponseId": "en:lesson-07:session-13:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i16",
+    "correctText": "en:lesson-07:session-13:i16:p1=screen\nen:lesson-07:session-13:i16:p2=shift\nen:lesson-07:session-13:i16:p3=swim\nen:lesson-07:session-13:i16:p4=umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-13:i17",
+    "correctText": "Does Anna swim here?",
+    "correctResponseId": null
+  }
+]

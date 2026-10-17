@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-44:intro1:r2": {
+          "ru": "После `I` нужно `polish`, без `es`.",
+          "uk": "Після `I` потрібне `polish`, без `es`."
+        },
+        "en:lesson-07:session-44:intro1:r3": {
+          "ru": "Здесь нужна форма `polish`.",
+          "uk": "Тут потрібна форма `polish`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-44:intro2:r2": {
+          "ru": "После `I` нужно `relax`.",
+          "uk": "Після `I` потрібне `relax`."
+        },
+        "en:lesson-07:session-44:intro2:r3": {
+          "ru": "Здесь нужна форма `relax`.",
+          "uk": "Тут потрібна форма `relax`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-44:intro3:r2": {
+          "ru": "После `she` нужно `calls`.",
+          "uk": "Після `she` потрібне `calls`."
+        },
+        "en:lesson-07:session-44:intro3:r3": {
+          "ru": "Здесь нужна форма `calls`.",
+          "uk": "Тут потрібна форма `calls`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ea60ba1de9895a11d51c4fef21e72c611b5eac025c9d0e07a281314efc0cee86"
+}

@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я часто медитирую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто медитирую»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often meditate.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто медитирую»",
+          "uk": "Скажіть «Я часто медитую»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "meditate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-48:i02:r1",
+          "text": "decorate"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i02:r2",
+          "text": "donate"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i02:r3",
+          "text": "meditate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i02:audio",
+          "transcript": "decorate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-48:i02:r1",
+            "targetText": "decorate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i02:r2",
+            "targetText": "donate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i02:r3",
+            "targetText": "meditate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `decorate`, а в этом варианте — `donate`.",
+              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `donate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `decorate`, а в этом варианте — `meditate`.",
+              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `meditate`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто шью дома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-48:i03:r1",
+          "text": "sew"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i03:r2",
+          "text": "sews"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i03:r3",
+          "text": "sewing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто шью дома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто шью дома»",
+          "uk": "Скажіть «Я часто шию вдома»"
+        },
+        "gappedTargetPhrase": "I often ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-48:i03:r1",
+            "text": "sew"
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i03:r2",
+            "text": "sews"
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i03:r3",
+            "text": "sewing"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто шью дома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто шью дома»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `sew`.",
+              "uk": "Після `I` потрібне `sew`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто шью дома»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `sew`.",
+              "uk": "Тут потрібна форма `sew`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-48:i04:p1",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i04:p2",
+            "target": "decorate",
+            "meaningByLocale": {
+              "ru": "украшать",
+              "uk": "прикрашати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i04:p3",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i04:p4",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "meditate",
+          "decorate",
+          "sew",
+          "polish"
+        ],
+        "rightColumn": [
+          "медитировать",
+          "украшать",
+          "шить",
+          "полировать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i05:audio",
+          "transcript": "I often sew at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often sew at home.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "sew",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об уходе за столом: «Я обычно полирую стол»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об уходе за столом: «Я обычно полирую стол»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually polish the table.",
+        "localizedMeaning": {
+          "ru": "Расскажите об уходе за столом: «Я обычно полирую стол»",
+          "uk": "Розкажіть про догляд за столом: «Я зазвичай полірую стіл»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "polish",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i07:audio",
+          "transcript": "Tom often donates books."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often donates books.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-48:i08:r1",
+          "text": "donates"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i08:r2",
+          "text": "donate"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i08:r3",
+          "text": "donating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том часто отдаёт книги на благотворительность»",
+          "uk": "Скажіть «Том часто віддає книжки на благодійність»"
+        },
+        "gappedTargetPhrase": "Tom often ___ books.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-48:i08:r1",
+            "text": "donates"
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i08:r2",
+            "text": "donate"
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i08:r3",
+            "text": "donating"
+          }
+        ],
+        "testedDimension": "Скажите «Том часто отдаёт книги на благотворительность»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Том часто отдаёт книги на благотворительность»",
+            "feedbackByLocale": {
+              "ru": "После `Tom` нужно `donates`.",
+              "uk": "Після `Tom` потрібне `donates`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Том часто отдаёт книги на благотворительность»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `donates`.",
+              "uk": "Тут потрібна форма `donates`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-48:i09:r1",
+          "text": "I often photograph birds."
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i09:r2",
+          "text": "I often photograph cats."
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i09:r3",
+          "text": "I often photograph dogs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i09:audio",
+          "transcript": "I often photograph birds."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-48:i09:r1",
+            "targetText": "I often photograph birds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i09:r2",
+            "targetText": "I often photograph cats.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i09:r3",
+            "targetText": "I often photograph dogs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `birds`, а в этом варианте — `cats`.",
+              "uk": "У записі останнє слово — `birds`, а в цьому варіанті — `cats`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `birds`, а в этом варианте — `dogs`.",
+              "uk": "У записі останнє слово — `birds`, а в цьому варіанті — `dogs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-48:i10:p1",
+            "target": "donate",
+            "meaningByLocale": {
+              "ru": "отдавать на благотворительность",
+              "uk": "віддавати на благодійність"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i10:p2",
+            "target": "organize",
+            "meaningByLocale": {
+              "ru": "упорядочивать",
+              "uk": "упорядковувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i10:p3",
+            "target": "photograph",
+            "meaningByLocale": {
+              "ru": "фотографировать",
+              "uk": "фотографувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i10:p4",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "donate",
+          "organize",
+          "photograph",
+          "sew"
+        ],
+        "rightColumn": [
+          "отдавать на благотворительность",
+          "упорядочивать",
+          "фотографировать",
+          "шить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i11:audio",
+          "transcript": "I usually organize my books."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually organize my books.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "organize",
+          "my",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите друга «Ты часто медитируешь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга «Ты часто медитируешь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you often meditate?",
+        "localizedMeaning": {
+          "ru": "Спросите друга «Ты часто медитируешь?»",
+          "uk": "Запитайте друга «Ти часто медитуєш?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "often",
+          "meditate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы видите машинку Тома. Спросите его подругу «Том часто шьёт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Вы видите машинку Тома. Спросите его подругу «Том часто шьёт?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i13:audio",
+          "transcript": "Does Tom often sew?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does Tom often sew?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я часто фотографирую птиц»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-48:i14:r1",
+          "text": "often"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я часто фотографирую птиц»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто фотографирую птиц»",
+          "uk": "Скажіть «Я часто фотографую птахів»"
+        },
+        "gappedTargetPhrase": "I ___ photograph birds.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-48:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я часто фотографирую птиц»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-48:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often` перед `photograph`.",
+              "uk": "Для «часто» потрібне `often` перед `photograph`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often`; `am` перед `photograph` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `photograph` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-48:i15:r1",
+          "text": "I usually polish the table."
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i15:r2",
+          "text": "I usually polish the desk."
+        },
+        {
+          "responseId": "en:lesson-07:session-48:i15:r3",
+          "text": "I usually polish the chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i15:audio",
+          "transcript": "I usually polish the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-48:i15:r1",
+            "targetText": "I usually polish the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i15:r2",
+            "targetText": "I usually polish the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i15:r3",
+            "targetText": "I usually polish the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-48:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `desk`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `desk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-48:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `chair`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `chair`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-48:i16:p1",
+            "target": "decorate",
+            "meaningByLocale": {
+              "ru": "украшать",
+              "uk": "прикрашати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i16:p2",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i16:p3",
+            "target": "organize",
+            "meaningByLocale": {
+              "ru": "упорядочивать",
+              "uk": "упорядковувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-48:i16:p4",
+            "target": "photograph",
+            "meaningByLocale": {
+              "ru": "фотографировать",
+              "uk": "фотографувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "decorate",
+          "polish",
+          "organize",
+          "photograph"
+        ],
+        "rightColumn": [
+          "украшать",
+          "полировать",
+          "упорядочивать",
+          "фотографировать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о снимках Тома. Скажите «Том часто фотографирует птиц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о снимках Тома. Скажите «Том часто фотографирует птиц»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:i17:audio",
+          "transcript": "Tom often photographs birds."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often photographs birds.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "54bb5bbe3587f6dacc87282fa2f51537dee965c28deded27aa6d31096a65c2bb"
+}

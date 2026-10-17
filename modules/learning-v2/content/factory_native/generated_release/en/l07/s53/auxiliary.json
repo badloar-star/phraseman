@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-53:intro1:r2": {
+          "ru": "После `I` нужно `surf`.",
+          "uk": "Після `I` потрібне `surf`."
+        },
+        "en:lesson-07:session-53:intro1:r3": {
+          "ru": "Здесь нужна форма `surf`.",
+          "uk": "Тут потрібна форма `surf`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-53:intro2:r2": {
+          "ru": "После `I` нужно `donate`.",
+          "uk": "Після `I` потрібне `donate`."
+        },
+        "en:lesson-07:session-53:intro2:r3": {
+          "ru": "Здесь нужна форма `donate`.",
+          "uk": "Тут потрібна форма `donate`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-53:intro3:r2": {
+          "ru": "Музей один: нужно `is`.",
+          "uk": "Музей один: потрібне `is`."
+        },
+        "en:lesson-07:session-53:intro3:r3": {
+          "ru": "В этом вопросе `is` стоит перед `the museum`.",
+          "uk": "У цьому запитанні `is` стоїть перед `the museum`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "635dc2fcd1848d43be9f85a9136477b328259b95ef11f6b05984d294e798f9b8"
+}

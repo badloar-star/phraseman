@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о привычках и задавать знакомые вопросы",
+    "uk": "розповідати про звички й ставити знайомі запитання"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На снегу",
+        "uk": "На снігу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, чем вы обычно занимаетесь на зимнем отдыхе. `Ski` — «кататься на лыжах». `I usually ski` — «Я обычно катаюсь на лыжах». `Usually` стоит перед `ski`. Если лыжи всё время лежат в гараже, это пока отдых для лыж.",
+        "uk": "Друг запитує, чим ви зазвичай займаєтеся під час зимового відпочинку. `Ski` — «кататися на лижах». `I usually ski` — «Я зазвичай катаюся на лижах». `Usually` стоїть перед `ski`. Якщо лижі весь час лежать у гаражі, це поки що відпочинок для лиж."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите о своём обычном занятии на зимнем отдыхе.",
+          "uk": "Розкажіть про своє звичне заняття під час зимового відпочинку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-52:intro1:r1",
+              "text": "I usually ski."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro1:r2",
+              "text": "I usually skis."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro1:r3",
+              "text": "I usually skiing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-52:intro1:r1",
+              "text": "I usually ski."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro1:r2",
+              "text": "I usually skis."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro1:r3",
+              "text": "I usually skiing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о своём обычном занятии на зимнем отдыхе.",
+          "uk": "Розкажіть про своє звичне заняття під час зимового відпочинку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уход за столом",
+        "uk": "Догляд за столом"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга спрашивает, как вы обычно ухаживаете за деревянным столом. `I usually polish the table` — «Я обычно полирую стол». `Usually` стоит перед `polish`; `the table` — стол, о котором вы говорите.",
+        "uk": "Подруга запитує, як ви зазвичай доглядаєте за дерев’яним столом. `I usually polish the table` — «Я зазвичай полірую стіл». `Usually` стоїть перед `polish`; `the table` — стіл, про який ви говорите."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите о своей привычке.",
+          "uk": "Розкажіть про свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-52:intro2:r1",
+              "text": "I usually polish the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro2:r2",
+              "text": "I usually polishes the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro2:r3",
+              "text": "I usually polishing the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-52:intro2:r1",
+              "text": "I usually polish the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro2:r2",
+              "text": "I usually polishes the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro2:r3",
+              "text": "I usually polishing the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о своей привычке.",
+          "uk": "Розкажіть про свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ищу бассейн",
+        "uk": "Шукаю басейн"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли в спортивный центр и спрашиваете сотрудника, где бассейн. `Where is the pool?` — «Где бассейн?» После `where` здесь идёт `is`, затем `the pool`.",
+        "uk": "Ви прийшли до спортивного центру й запитуєте працівника, де басейн. `Where is the pool?` — «Де басейн?» Після `where` тут іде `is`, потім `the pool`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите сотрудника о бассейне.",
+          "uk": "Запитайте працівника про басейн."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-52:intro3:r1",
+              "text": "Where is the pool?"
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro3:r2",
+              "text": "Where are the pool?"
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro3:r3",
+              "text": "Where the pool is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-52:intro3:r1",
+              "text": "Where is the pool?"
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro3:r2",
+              "text": "Where are the pool?"
+            },
+            {
+              "responseId": "en:lesson-07:session-52:intro3:r3",
+              "text": "Where the pool is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите сотрудника о бассейне.",
+          "uk": "Запитайте працівника про басейн."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "880cd11fa54fa103d31f56afe14df37cd0cffe2da0a78d160f8ea8d0d9a21600"
+}

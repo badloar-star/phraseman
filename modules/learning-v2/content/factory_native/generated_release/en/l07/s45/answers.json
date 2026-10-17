@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-45:i01",
+    "correctText": "I often donate books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i02",
+    "correctText": "donate",
+    "correctResponseId": "en:lesson-07:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i03",
+    "correctText": "donate",
+    "correctResponseId": "en:lesson-07:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i04",
+    "correctText": "en:lesson-07:session-45:i04:p1=donate\nen:lesson-07:session-45:i04:p2=pack\nen:lesson-07:session-45:i04:p3=office\nen:lesson-07:session-45:i04:p4=motorbike",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i05",
+    "correctText": "I often donate books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i06",
+    "correctText": "I usually pack early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i07",
+    "correctText": "I usually walk to the office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i08",
+    "correctText": "pack",
+    "correctResponseId": "en:lesson-07:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i09",
+    "correctText": "I often donate books.",
+    "correctResponseId": "en:lesson-07:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i10",
+    "correctText": "en:lesson-07:session-45:i10:p1=pack\nen:lesson-07:session-45:i10:p2=donate\nen:lesson-07:session-45:i10:p3=pencil\nen:lesson-07:session-45:i10:p4=office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i11",
+    "correctText": "I usually pack early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i12",
+    "correctText": "Do you have a motorbike?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i13",
+    "correctText": "Do you have a pencil?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-45:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i15",
+    "correctText": "The office is here.",
+    "correctResponseId": "en:lesson-07:session-45:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i16",
+    "correctText": "en:lesson-07:session-45:i16:p1=donate\nen:lesson-07:session-45:i16:p2=motorbike\nen:lesson-07:session-45:i16:p3=pack\nen:lesson-07:session-45:i16:p4=pencil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-45:i17",
+    "correctText": "Tom often donates books.",
+    "correctResponseId": null
+  }
+]

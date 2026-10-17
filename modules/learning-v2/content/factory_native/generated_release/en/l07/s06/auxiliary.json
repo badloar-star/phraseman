@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-06:intro1:r2": {
+          "ru": "Здесь нет действия: нужно `Are you a customer?`.",
+          "uk": "Тут немає дії: потрібно `Are you a customer?`."
+        },
+        "en:lesson-07:session-06:intro1:r3": {
+          "ru": "Перед `customer` здесь нужно `a`.",
+          "uk": "Перед `customer` тут потрібне `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-06:intro2:r2": {
+          "ru": "С действием `repair` здесь нужно `Do you repair?`.",
+          "uk": "З дією `repair` тут потрібно `Do you repair?`."
+        },
+        "en:lesson-07:session-06:intro2:r3": {
+          "ru": "После `Do you` нужно `repair`.",
+          "uk": "Після `Do you` потрібне `repair`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-06:intro3:r2": {
+          "ru": "Одна ручка: `There is no pen`.",
+          "uk": "Одна ручка: `There is no pen`."
+        },
+        "en:lesson-07:session-06:intro3:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b213e048f67f7897f747401e9c19609a6396ed4f33e4584afba32597bb136476"
+}

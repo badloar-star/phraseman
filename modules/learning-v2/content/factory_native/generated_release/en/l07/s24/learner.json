@@ -1,0 +1,941 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните коллеге «Я не курю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните коллеге «Я не курю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I don’t smoke.",
+        "localizedMeaning": {
+          "ru": "Объясните коллеге «Я не курю»",
+          "uk": "Поясніть колезі «Я не курю»"
+        },
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "smoke"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-24:i02:r1",
+          "text": "complain"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i02:r2",
+          "text": "argue"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i02:r3",
+          "text": "cheat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i02:audio",
+          "transcript": "complain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-24:i02:r1",
+            "targetText": "complain",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i02:r2",
+            "targetText": "argue",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i02:r3",
+            "targetText": "cheat",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `complain`, а в этом варианте — `argue`.",
+              "uk": "У записі перше слово — `complain`, а в цьому варіанті — `argue`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `complain`, а в этом варианте — `cheat`.",
+              "uk": "У записі перше слово — `complain`, а в цьому варіанті — `cheat`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я не играю в азартные игры»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-24:i03:r1",
+          "text": "don’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i03:r2",
+          "text": "doesn’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i03:r3",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я не играю в азартные игры»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не играю в азартные игры»",
+          "uk": "Скажіть «Я не граю в азартні ігри»"
+        },
+        "gappedTargetPhrase": "I ___ gamble.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-24:i03:r1",
+            "text": "don’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i03:r2",
+            "text": "doesn’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i03:r3",
+            "text": "not"
+          }
+        ],
+        "testedDimension": "Скажите «Я не играю в азартные игры»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я не играю в азартные игры»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `don’t`.",
+              "uk": "Після `I` потрібне `don’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я не играю в азартные игры»",
+            "feedbackByLocale": {
+              "ru": "Для отрицания действия нужно `don’t`.",
+              "uk": "Для заперечення дії потрібне `don’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-24:i04:p1",
+            "target": "smoke",
+            "meaningByLocale": {
+              "ru": "курить",
+              "uk": "курити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i04:p2",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i04:p3",
+            "target": "complain",
+            "meaningByLocale": {
+              "ru": "жаловаться",
+              "uk": "скаржитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i04:p4",
+            "target": "shout",
+            "meaningByLocale": {
+              "ru": "кричать",
+              "uk": "кричати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "smoke",
+          "gamble",
+          "complain",
+          "shout"
+        ],
+        "rightColumn": [
+          "курить",
+          "играть в азартные игры",
+          "жаловаться",
+          "кричать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i05:audio",
+          "transcript": "I don’t lie."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I don’t lie.",
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "lie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Опишите привычное поведение Тома: «Том не спорит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите привычное поведение Тома: «Том не спорит»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tom doesn’t argue.",
+        "localizedMeaning": {
+          "ru": "Опишите привычное поведение Тома: «Том не спорит»",
+          "uk": "Опишіть звичну поведінку Тома: «Том не сперечається»"
+        },
+        "orderedTokens": [
+          "Tom",
+          "doesn’t",
+          "argue"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите «Ты жульничаешь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите «Ты жульничаешь?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i07:audio",
+          "transcript": "Do you cheat?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you cheat?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите «Том курит?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-24:i08:r1",
+          "text": "smoke"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i08:r2",
+          "text": "smokes"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i08:r3",
+          "text": "is smoke"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Том курит?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Том курит?»",
+          "uk": "Запитайте «Том курить?»"
+        },
+        "gappedTargetPhrase": "Does Tom ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-24:i08:r1",
+            "text": "smoke"
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i08:r2",
+            "text": "smokes"
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i08:r3",
+            "text": "is smoke"
+          }
+        ],
+        "testedDimension": "Спросите «Том курит?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите «Том курит?»",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `smoke`.",
+              "uk": "Після `does` потрібне `smoke`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите «Том курит?»",
+            "feedbackByLocale": {
+              "ru": "В этом вопросе нужно `smoke`, без `is`.",
+              "uk": "У цьому запитанні потрібне `smoke`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чего не делает собеседник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-24:i09:r1",
+          "text": "I don’t complain."
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i09:r2",
+          "text": "I don’t shout."
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i09:r3",
+          "text": "I don’t lie."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чего не делает собеседник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i09:audio",
+          "transcript": "I don’t complain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-24:i09:r1",
+            "targetText": "I don’t complain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i09:r2",
+            "targetText": "I don’t shout.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i09:r3",
+            "targetText": "I don’t lie.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чего не делает собеседник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complain`, а в этом варианте — `shout`.",
+              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `shout`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чего не делает собеседник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complain`, а в этом варианте — `lie`.",
+              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `lie`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-24:i10:p1",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i10:p2",
+            "target": "argue",
+            "meaningByLocale": {
+              "ru": "спорить",
+              "uk": "сперечатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i10:p3",
+            "target": "cheat",
+            "meaningByLocale": {
+              "ru": "жульничать",
+              "uk": "шахрувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i10:p4",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lie",
+          "argue",
+          "cheat",
+          "gamble"
+        ],
+        "rightColumn": [
+          "лгать",
+          "спорить",
+          "жульничать",
+          "играть в азартные игры"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i11:audio",
+          "transcript": "Tom doesn’t shout."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom doesn’t shout.",
+        "orderedTokens": [
+          "Tom",
+          "doesn’t",
+          "shout"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите друга о привычках: «Ты играешь в азартные игры?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга о привычках: «Ты играешь в азартные игры?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you gamble?",
+        "localizedMeaning": {
+          "ru": "Спросите друга о привычках: «Ты играешь в азартные игры?»",
+          "uk": "Запитайте друга про звички: «Ти граєш в азартні ігри?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "gamble"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы проверили конверт. Сообщите «Здесь нет билетов»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Вы проверили конверт. Сообщите «Здесь нет билетов»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i13:audio",
+          "transcript": "There are no tickets here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are no tickets here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Том не жульничает»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-24:i14:r1",
+          "text": "doesn’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i14:r2",
+          "text": "don’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i14:r3",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Том не жульничает»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том не жульничает»",
+          "uk": "Скажіть «Том не шахрує»"
+        },
+        "gappedTargetPhrase": "Tom ___ cheat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-24:i14:r1",
+            "text": "doesn’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i14:r2",
+            "text": "don’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i14:r3",
+            "text": "not"
+          }
+        ],
+        "testedDimension": "Скажите «Том не жульничает»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Том не жульничает»",
+            "feedbackByLocale": {
+              "ru": "Для Тома нужно `doesn’t`.",
+              "uk": "Для Тома потрібне `doesn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Том не жульничает»",
+            "feedbackByLocale": {
+              "ru": "Для отрицания действия здесь нужно `doesn’t`.",
+              "uk": "Для заперечення дії тут потрібне `doesn’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чего не делает собеседник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-24:i15:r1",
+          "text": "I don’t argue."
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i15:r2",
+          "text": "I don’t cheat."
+        },
+        {
+          "responseId": "en:lesson-07:session-24:i15:r3",
+          "text": "I don’t smoke."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чего не делает собеседник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i15:audio",
+          "transcript": "I don’t argue."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-24:i15:r1",
+            "targetText": "I don’t argue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i15:r2",
+            "targetText": "I don’t cheat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i15:r3",
+            "targetText": "I don’t smoke.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чего не делает собеседник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `argue`, а в этом варианте — `cheat`.",
+              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `cheat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-24:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чего не делает собеседник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `argue`, а в этом варианте — `smoke`.",
+              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `smoke`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-24:i16:p1",
+            "target": "complain",
+            "meaningByLocale": {
+              "ru": "жаловаться",
+              "uk": "скаржитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i16:p2",
+            "target": "shout",
+            "meaningByLocale": {
+              "ru": "кричать",
+              "uk": "кричати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i16:p3",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i16:p4",
+            "target": "cheat",
+            "meaningByLocale": {
+              "ru": "жульничать",
+              "uk": "шахрувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "complain",
+          "shout",
+          "lie",
+          "cheat"
+        ],
+        "rightColumn": [
+          "жаловаться",
+          "кричать",
+          "лгать",
+          "жульничать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг предлагает пригласить Тома сыграть на деньги. Уточните «Том играет в азартные игры?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Друг предлагает пригласить Тома сыграть на деньги. Уточните «Том играет в азартные игры?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:i17:audio",
+          "transcript": "Does Tom gamble?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does Tom gamble?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "625c7d516841654af2370319f2175123cb2a9ddca406c49720341f54632e2d34"
+}

@@ -1,0 +1,945 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Автомат работает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Автомат работает?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does the machine work?",
+        "localizedMeaning": {
+          "ru": "Спросите «Автомат работает?»",
+          "uk": "Запитайте «Автомат працює?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "machine",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-10:i02:r1",
+          "text": "machine"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i02:r2",
+          "text": "pocket"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i02:r3",
+          "text": "package"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i02:audio",
+          "transcript": "machine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-10:i02:r1",
+            "targetText": "machine",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i02:r2",
+            "targetText": "pocket",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i02:r3",
+            "targetText": "package",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `machine`, а в этом варианте — `pocket`.",
+              "uk": "У записі перше слово — `machine`, а в цьому варіанті — `pocket`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `machine`, а в этом варианте — `package`.",
+              "uk": "У записі перше слово — `machine`, а в цьому варіанті — `package`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, работает ли автомат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-10:i03:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i03:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i03:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, работает ли автомат",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, работает ли автомат",
+          "uk": "Запитайте, чи працює автомат"
+        },
+        "gappedTargetPhrase": "Does the machine ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-10:i03:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i03:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i03:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Спросите, работает ли автомат",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите, работает ли автомат",
+            "feedbackByLocale": {
+              "ru": "После `Does` нужно `work`.",
+              "uk": "Після `Does` потрібне `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите, работает ли автомат",
+            "feedbackByLocale": {
+              "ru": "Нужно `Does the machine work?`, без `is`.",
+              "uk": "Потрібно `Does the machine work?`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-10:i04:p1",
+            "target": "machine",
+            "meaningByLocale": {
+              "ru": "устройство",
+              "uk": "пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i04:p2",
+            "target": "lock",
+            "meaningByLocale": {
+              "ru": "замок",
+              "uk": "замок"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i04:p3",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i04:p4",
+            "target": "package",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "machine",
+          "lock",
+          "pocket",
+          "package"
+        ],
+        "rightColumn": [
+          "устройство",
+          "замок",
+          "карман",
+          "посылка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i05:audio",
+          "transcript": "Does the machine work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does the machine work?",
+        "orderedTokens": [
+          "Does",
+          "the",
+          "machine",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите на автомат и спросите «Он работает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите на автомат и спросите «Он работает?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does it work?",
+        "localizedMeaning": {
+          "ru": "Покажите на автомат и спросите «Он работает?»",
+          "uk": "Покажіть на автомат і запитайте «Він працює?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "it",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите другу «В моём кармане нет ключа»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Сообщите другу «В моём кармане нет ключа»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i07:audio",
+          "transcript": "There is no key in my pocket."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is no key in my pocket.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите об автомате «Он работает?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-10:i08:r1",
+          "text": "Does"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i08:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i08:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите об автомате «Он работает?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите об автомате «Он работает?»",
+          "uk": "Запитайте про автомат «Він працює?»"
+        },
+        "gappedTargetPhrase": "___ it work?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-10:i08:r1",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i08:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Спросите об автомате «Он работает?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите об автомате «Он работает?»",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `Does`.",
+              "uk": "З `it` потрібне `Does`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите об автомате «Он работает?»",
+            "feedbackByLocale": {
+              "ru": "С действием `work` здесь нужно `Does it work?`.",
+              "uk": "З дією `work` тут потрібно `Does it work?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос об устройстве",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-10:i09:r1",
+          "text": "Does the machine work?"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i09:r2",
+          "text": "Does the machine open?"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i09:r3",
+          "text": "Does the machine start?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос об устройстве",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i09:audio",
+          "transcript": "Does the machine work?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-10:i09:r1",
+            "targetText": "Does the machine work?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i09:r2",
+            "targetText": "Does the machine open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i09:r3",
+            "targetText": "Does the machine start?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос об устройстве",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `open`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос об устройстве",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `start`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `start`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-10:i10:p1",
+            "target": "practice",
+            "meaningByLocale": {
+              "ru": "практиковаться",
+              "uk": "практикуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i10:p2",
+            "target": "machine",
+            "meaningByLocale": {
+              "ru": "устройство",
+              "uk": "пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i10:p3",
+            "target": "lock",
+            "meaningByLocale": {
+              "ru": "замок",
+              "uk": "замок"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i10:p4",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "practice",
+          "machine",
+          "lock",
+          "pocket"
+        ],
+        "rightColumn": [
+          "практиковаться",
+          "устройство",
+          "замок",
+          "карман"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i11:audio",
+          "transcript": "Does it work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does it work?",
+        "orderedTokens": [
+          "Does",
+          "it",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У стойки отправки спросите посетителя «У вас есть посылка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У стойки отправки спросите посетителя «У вас есть посылка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a package?",
+        "localizedMeaning": {
+          "ru": "У стойки отправки спросите посетителя «У вас есть посылка?»",
+          "uk": "Біля стійки відправлення запитайте відвідувача «У вас є посилка?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "package"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед покупкой замка спросите продавца «Замок работает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "Перед покупкой замка спросите продавца «Замок работает?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i13:audio",
+          "transcript": "Does the lock work?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the lock work?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Узнайте у друга, где он занимается: «Ты практикуешься здесь?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-10:i14:r1",
+          "text": "practice"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i14:r2",
+          "text": "practices"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i14:r3",
+          "text": "are practice"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Узнайте у друга, где он занимается: «Ты практикуешься здесь?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Узнайте у друга, где он занимается: «Ты практикуешься здесь?»",
+          "uk": "Дізнайтеся в друга, де він займається: «Ти практикуєшся тут?»"
+        },
+        "gappedTargetPhrase": "Do you ___ here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-10:i14:r1",
+            "text": "practice"
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i14:r2",
+            "text": "practices"
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i14:r3",
+            "text": "are practice"
+          }
+        ],
+        "testedDimension": "Узнайте у друга, где он занимается: «Ты практикуешься здесь?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-10:i14:r2",
+            "correct": false,
+            "testedDimension": "Узнайте у друга, где он занимается: «Ты практикуешься здесь?»",
+            "feedbackByLocale": {
+              "ru": "После `Do you` нужно `practice`.",
+              "uk": "Після `Do you` потрібне `practice`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i14:r3",
+            "correct": false,
+            "testedDimension": "Узнайте у друга, где он занимается: «Ты практикуешься здесь?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you practice?`, без `are`.",
+              "uk": "Потрібно `Do you practice?`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о замке",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-10:i15:r1",
+          "text": "Does the lock work?"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i15:r2",
+          "text": "Does the lock open?"
+        },
+        {
+          "responseId": "en:lesson-07:session-10:i15:r3",
+          "text": "Does the lock close?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о замке",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i15:audio",
+          "transcript": "Does the lock work?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-10:i15:r1",
+            "targetText": "Does the lock work?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i15:r2",
+            "targetText": "Does the lock open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i15:r3",
+            "targetText": "Does the lock close?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-10:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о замке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `open`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-10:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о замке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `close`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `close`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-10:i16:p1",
+            "target": "machine",
+            "meaningByLocale": {
+              "ru": "устройство",
+              "uk": "пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i16:p2",
+            "target": "package",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i16:p3",
+            "target": "practice",
+            "meaningByLocale": {
+              "ru": "практиковаться",
+              "uk": "практикуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-10:i16:p4",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "machine",
+          "package",
+          "practice",
+          "pocket"
+        ],
+        "rightColumn": [
+          "устройство",
+          "посылка",
+          "практиковаться",
+          "карман"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-10:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг предлагает вам зарядное устройство. Уточните «Зарядное устройство работает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Друг предлагает вам зарядное устройство. Уточните «Зарядное устройство работает?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-10:i17:audio",
+          "transcript": "Does the charger work?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the charger work?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "833e1628e25e66b7eebb57da199af10ab19681692cb77e7ecec5fb5a70ea4037"
+}

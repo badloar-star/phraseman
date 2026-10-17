@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-05:intro1:r2": {
+          "ru": "Нужно `Do you start?`, без `are`.",
+          "uk": "Потрібно `Do you start?`, без `are`."
+        },
+        "en:lesson-07:session-05:intro1:r3": {
+          "ru": "После `Do you` нужно `start`.",
+          "uk": "Після `Do you` потрібне `start`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-05:intro2:r2": {
+          "ru": "Здесь нужно `Do you have?`.",
+          "uk": "Тут потрібно `Do you have?`."
+        },
+        "en:lesson-07:session-05:intro2:r3": {
+          "ru": "Перед `uniform` нужно `a`.",
+          "uk": "Перед `uniform` потрібне `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-05:intro3:r2": {
+          "ru": "Один брелок: `There is no keychain`.",
+          "uk": "Один брелок: `There is no keychain`."
+        },
+        "en:lesson-07:session-05:intro3:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "39ef64e65525e0f6f5f1ee576f86ba30dbe5394a816b1a3714eef22d118cb308"
+}

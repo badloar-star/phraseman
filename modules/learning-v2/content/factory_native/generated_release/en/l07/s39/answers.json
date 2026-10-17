@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-39:i01",
+    "correctText": "I usually bake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i02",
+    "correctText": "bake",
+    "correctResponseId": "en:lesson-07:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i03",
+    "correctText": "bake",
+    "correctResponseId": "en:lesson-07:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i04",
+    "correctText": "en:lesson-07:session-39:i04:p1=bake\nen:lesson-07:session-39:i04:p2=cycle\nen:lesson-07:session-39:i04:p3=bottles\nen:lesson-07:session-39:i04:p4=violin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i05",
+    "correctText": "I usually bake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i06",
+    "correctText": "I usually cycle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i09",
+    "correctText": "I usually bake.",
+    "correctResponseId": "en:lesson-07:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i10",
+    "correctText": "en:lesson-07:session-39:i10:p1=visit\nen:lesson-07:session-39:i10:p2=bake\nen:lesson-07:session-39:i10:p3=bottles\nen:lesson-07:session-39:i10:p4=cycle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i11",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i12",
+    "correctText": "Do you have a violin?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i13",
+    "correctText": "Do you visit parks?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-39:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i15",
+    "correctText": "Do you have bottles?",
+    "correctResponseId": "en:lesson-07:session-39:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i16",
+    "correctText": "en:lesson-07:session-39:i16:p1=bake\nen:lesson-07:session-39:i16:p2=violin\nen:lesson-07:session-39:i16:p3=visit\nen:lesson-07:session-39:i16:p4=bottles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-39:i17",
+    "correctText": "Tom usually bakes.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о начале рабочей смены и наличии нужных вещей",
+    "uk": "запитати про початок робочої зміни й наявність потрібних речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Раннее начало",
+        "uk": "Ранній початок"
+      },
+      "bodyByLocale": {
+        "ru": "`shift` — «смена», часть дня, когда человек работает. `Do you start your shift early?` — «Вы начинаете свою смену рано?» `Start your shift` — начать свою смену, `early` — рано. После `Do you` используем `start`, без `s`.",
+        "uk": "`shift` — «зміна», частина дня, коли людина працює. `Do you start your shift early?` — «Ви починаєте свою зміну рано?» `Start your shift` — почати свою зміну, `early` — рано. Після `Do you` використовуємо `start`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите коллегу «Вы начинаете свою смену рано?»",
+          "uk": "Запитайте колегу «Ви починаєте свою зміну рано?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-05:intro1:r1",
+              "text": "Do you start your shift early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro1:r2",
+              "text": "Are you start your shift early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro1:r3",
+              "text": "Do you starts your shift early?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-05:intro1:r1",
+              "text": "Do you start your shift early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro1:r2",
+              "text": "Are you start your shift early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro1:r3",
+              "text": "Do you starts your shift early?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллегу «Вы начинаете свою смену рано?»",
+          "uk": "Запитайте колегу «Ви починаєте свою зміну рано?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вещи для работы",
+        "uk": "Речі для роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Перед первым рабочим днём коллега проверяет, всё ли у вас есть. `Do you have a uniform?` — «У вас есть форма?» После `Do you` нужно `have`. Перед `uniform` стоит `a`: первый звук в слове — «й». Наличие формы ещё не означает, что смена уже началась: сначала уточняем, есть ли что надеть.",
+        "uk": "Перед першим робочим днем колега перевіряє, чи все у вас є. `Do you have a uniform?` — «У вас є форма?» Після `Do you` потрібне `have`. Перед `uniform` стоїть `a`: перший звук у слові — «й». Наявність форми ще не означає, що зміна вже почалася: спочатку уточнюємо, чи є що вдягнути."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите нового сотрудника «У вас есть форма?»",
+          "uk": "Запитайте нового працівника «У вас є форма?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-05:intro2:r1",
+              "text": "Do you have a uniform?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro2:r2",
+              "text": "Are you have a uniform?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro2:r3",
+              "text": "Do you have an uniform?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-05:intro2:r1",
+              "text": "Do you have a uniform?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro2:r2",
+              "text": "Are you have a uniform?"
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro2:r3",
+              "text": "Do you have an uniform?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите нового сотрудника «У вас есть форма?»",
+          "uk": "Запитайте нового працівника «У вас є форма?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пустой ящик",
+        "uk": "Порожня шухляда"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет брелок. Вы открыли ящик и убедились, что его там нет. `There is no keychain in the drawer` — «В ящике нет брелока». `There is no keychain` сообщает об отсутствии, а `in the drawer` уточняет место. Ящик проверен — второй раз открывать его ради чуда пока не будем.",
+        "uk": "Друг шукає брелок. Ви відкрили шухляду й переконалися, що його там немає. `There is no keychain in the drawer` — «У шухляді немає брелока». `There is no keychain` повідомляє про відсутність, а `in the drawer` уточнює місце. Шухляду перевірено — вдруге відкривати її заради дива поки не будемо."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите другу «В ящике нет брелока».",
+          "uk": "Повідомте другові «У шухляді немає брелока»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-05:intro3:r1",
+              "text": "There is no keychain in the drawer."
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro3:r2",
+              "text": "There are no keychain in the drawer."
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro3:r3",
+              "text": "There no keychain in the drawer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-05:intro3:r1",
+              "text": "There is no keychain in the drawer."
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro3:r2",
+              "text": "There are no keychain in the drawer."
+            },
+            {
+              "responseId": "en:lesson-07:session-05:intro3:r3",
+              "text": "There no keychain in the drawer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите другу «В ящике нет брелока».",
+          "uk": "Повідомте другові «У шухляді немає брелока»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d9b35f0a52940ca301a5c8c718a672bc4f508fbbc8e2305d3223d50195d31880"
+}

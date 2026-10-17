@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-21:i01",
+    "correctText": "I don’t lie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i02",
+    "correctText": "lie",
+    "correctResponseId": "en:lesson-07:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i03",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-07:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i04",
+    "correctText": "en:lesson-07:session-21:i04:p1=lie\nen:lesson-07:session-21:i04:p2=write\nen:lesson-07:session-21:i04:p3=necklace\nen:lesson-07:session-21:i04:p4=pens",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i05",
+    "correctText": "I don’t lie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i06",
+    "correctText": "Does Tom write books?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i07",
+    "correctText": "There are no pens here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i08",
+    "correctText": "write",
+    "correctResponseId": "en:lesson-07:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i09",
+    "correctText": "I don’t lie.",
+    "correctResponseId": "en:lesson-07:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i10",
+    "correctText": "en:lesson-07:session-21:i10:p1=screen\nen:lesson-07:session-21:i10:p2=lie\nen:lesson-07:session-21:i10:p3=write\nen:lesson-07:session-21:i10:p4=necklace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i11",
+    "correctText": "Does Tom write books?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i12",
+    "correctText": "Do you have a necklace?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i13",
+    "correctText": "The screen doesn’t work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-07:session-21:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i15",
+    "correctText": "The pens are here.",
+    "correctResponseId": "en:lesson-07:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i16",
+    "correctText": "en:lesson-07:session-21:i16:p1=pens\nen:lesson-07:session-21:i16:p2=screen\nen:lesson-07:session-21:i16:p3=lie\nen:lesson-07:session-21:i16:p4=write",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:i17",
+    "correctText": "Tom doesn’t lie.",
+    "correctResponseId": null
+  }
+]

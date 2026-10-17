@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-09:intro1:r2": {
+          "ru": "Один руководитель: начинаем с `Does`.",
+          "uk": "Один керівник: починаємо з `Does`."
+        },
+        "en:lesson-07:session-09:intro1:r3": {
+          "ru": "После `Does` нужно `work`, без `s`.",
+          "uk": "Після `Does` потрібне `work`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-09:intro2:r2": {
+          "ru": "С `she` нужен вопрос с `Does`.",
+          "uk": "Із `she` потрібне запитання з `Does`."
+        },
+        "en:lesson-07:session-09:intro2:r3": {
+          "ru": "После `Does` нужно `work`.",
+          "uk": "Після `Does` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-09:intro3:r2": {
+          "ru": "После `Does he` нужно `start`.",
+          "uk": "Після `Does he` потрібне `start`."
+        },
+        "en:lesson-07:session-09:intro3:r3": {
+          "ru": "С действием `start` здесь нужен вопрос `Does he start?`.",
+          "uk": "З дією `start` тут потрібне запитання `Does he start?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4291bb0b4995bd09f779333dc6da6782c08851553f4901c62849e1b52488fee2"
+}

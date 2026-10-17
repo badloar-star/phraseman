@@ -1,0 +1,945 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я не брешу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не брешу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I don’t lie.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я не лгу»",
+          "uk": "Скажіть «Я не брешу»"
+        },
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "lie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-21:i02:r1",
+          "text": "lie"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i02:r2",
+          "text": "write"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i02:r3",
+          "text": "screen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i02:audio",
+          "transcript": "lie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-21:i02:r1",
+            "targetText": "lie",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i02:r2",
+            "targetText": "write",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i02:r3",
+            "targetText": "screen",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `lie`, а в этом варианте — `write`.",
+              "uk": "У записі перше слово — `lie`, а в цьому варіанті — `write`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `lie`, а в этом варианте — `screen`.",
+              "uk": "У записі перше слово — `lie`, а в цьому варіанті — `screen`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я не брешу»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-21:i03:r1",
+          "text": "don’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i03:r2",
+          "text": "doesn’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i03:r3",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не брешу»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не лгу»",
+          "uk": "Скажіть «Я не брешу»"
+        },
+        "gappedTargetPhrase": "I ___ lie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i03:r1",
+            "text": "don’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i03:r2",
+            "text": "doesn’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i03:r3",
+            "text": "not"
+          }
+        ],
+        "testedDimension": "Скажіть «Я не брешу»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не брешу»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `don’t`.",
+              "uk": "Після `I` потрібне `don’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не брешу»",
+            "feedbackByLocale": {
+              "ru": "Для отрицания действия нужно `don’t`.",
+              "uk": "Для заперечення дії потрібне `don’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-21:i04:p1",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i04:p2",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i04:p3",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i04:p4",
+            "target": "pens",
+            "meaningByLocale": {
+              "ru": "ручки",
+              "uk": "ручки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lie",
+          "write",
+          "necklace",
+          "pens"
+        ],
+        "rightColumn": [
+          "брехати",
+          "писати",
+          "намисто",
+          "ручки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i05:audio",
+          "transcript": "I don’t lie."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I don’t lie.",
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "lie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Том пише книжки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Том пише книжки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does Tom write books?",
+        "localizedMeaning": {
+          "ru": "Спросите «Том пишет книги?»",
+          "uk": "Запитайте «Том пише книжки?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "Tom",
+          "write",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте «Тут немає ручок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i07:audio"
+      ],
+      "accessibilityLabel": "Повідомте «Тут немає ручок»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i07:audio",
+          "transcript": "There are no pens here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are no pens here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Том пише книжки?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-21:i08:r1",
+          "text": "write"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i08:r2",
+          "text": "writes"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i08:r3",
+          "text": "is write"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Том пише книжки?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Том пишет книги?»",
+          "uk": "Запитайте «Том пише книжки?»"
+        },
+        "gappedTargetPhrase": "Does Tom ___ books?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i08:r1",
+            "text": "write"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i08:r2",
+            "text": "writes"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i08:r3",
+            "text": "is write"
+          }
+        ],
+        "testedDimension": "Запитайте «Том пише книжки?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Том пише книжки?»",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `write`.",
+              "uk": "Після `does` потрібне `write`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Том пише книжки?»",
+            "feedbackByLocale": {
+              "ru": "В этом вопросе нужно `write`, без `is`.",
+              "uk": "У цьому запитанні потрібне `write`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чого не робить співрозмовник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-21:i09:r1",
+          "text": "I don’t lie."
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i09:r2",
+          "text": "I don’t shout."
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i09:r3",
+          "text": "I don’t smoke."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i09:audio",
+          "transcript": "I don’t lie."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-21:i09:r1",
+            "targetText": "I don’t lie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i09:r2",
+            "targetText": "I don’t shout.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i09:r3",
+            "targetText": "I don’t smoke.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `lie`, а в этом варианте — `shout`.",
+              "uk": "У записі останнє слово — `lie`, а в цьому варіанті — `shout`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `lie`, а в этом варианте — `smoke`.",
+              "uk": "У записі останнє слово — `lie`, а в цьому варіанті — `smoke`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-21:i10:p1",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i10:p2",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i10:p3",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i10:p4",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          }
+        ],
+        "leftColumn": [
+          "screen",
+          "lie",
+          "write",
+          "necklace"
+        ],
+        "rightColumn": [
+          "екран",
+          "брехати",
+          "писати",
+          "намисто"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i11:audio",
+          "transcript": "Does Tom write books?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does Tom write books?",
+        "orderedTokens": [
+          "Does",
+          "Tom",
+          "write",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви добираєте прикраси до вбрання. Запитайте подругу «У тебе є намисто?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви добираєте прикраси до вбрання. Запитайте подругу «У тебе є намисто?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a necklace?",
+        "localizedMeaning": {
+          "ru": "Вы выбираете украшения к наряду. Спросите подругу «У тебя есть ожерелье?»",
+          "uk": "Ви добираєте прикраси до вбрання. Запитайте подругу «У тебе є намисто?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "necklace"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попередьте колегу «Екран не працює»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Попередьте колегу «Екран не працює»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i13:audio",
+          "transcript": "The screen doesn’t work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The screen doesn’t work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Тут немає ручок»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-21:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Тут немає ручок»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь нет ручек»",
+          "uk": "Повідомте «Тут немає ручок»"
+        },
+        "gappedTargetPhrase": "There ___ no pens here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Повідомте «Тут немає ручок»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-21:i14:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає ручок»",
+            "feedbackByLocale": {
+              "ru": "С `pens` нужно `are`.",
+              "uk": "З `pens` потрібне `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i14:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає ручок»",
+            "feedbackByLocale": {
+              "ru": "С `pens` нужно `are`.",
+              "uk": "З `pens` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де ручки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-21:i15:r1",
+          "text": "The pens are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i15:r2",
+          "text": "The pens are there."
+        },
+        {
+          "responseId": "en:lesson-07:session-21:i15:r3",
+          "text": "The pens are upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де ручки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i15:audio",
+          "transcript": "The pens are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-21:i15:r1",
+            "targetText": "The pens are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i15:r2",
+            "targetText": "The pens are there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i15:r3",
+            "targetText": "The pens are upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-21:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де ручки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де ручки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-21:i16:p1",
+            "target": "pens",
+            "meaningByLocale": {
+              "ru": "ручки",
+              "uk": "ручки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i16:p2",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i16:p3",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-21:i16:p4",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pens",
+          "screen",
+          "lie",
+          "write"
+        ],
+        "rightColumn": [
+          "ручки",
+          "екран",
+          "брехати",
+          "писати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи буває, що Том навмисно каже неправду. Скажіть «Том не бреше»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи буває, що Том навмисно каже неправду. Скажіть «Том не бреше»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-21:i17:audio",
+          "transcript": "Tom doesn’t lie."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom doesn’t lie.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "12cfcc31b53e0ebb8c95add2c1e211d2b4f01a9b2cc804cb6521f4d9ab1fd9b9"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-54:i01",
+    "correctText": "I usually browse online.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i02",
+    "correctText": "browse",
+    "correctResponseId": "en:lesson-07:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i03",
+    "correctText": "browse",
+    "correctResponseId": "en:lesson-07:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i04",
+    "correctText": "en:lesson-07:session-54:i04:p1=browse\nen:lesson-07:session-54:i04:p2=repair\nen:lesson-07:session-54:i04:p3=kiosk\nen:lesson-07:session-54:i04:p4=striped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i05",
+    "correctText": "I usually browse online.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i06",
+    "correctText": "I usually organize my books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i07",
+    "correctText": "Do you repair phones?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i08",
+    "correctText": "repair",
+    "correctResponseId": "en:lesson-07:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i09",
+    "correctText": "I usually browse online.",
+    "correctResponseId": "en:lesson-07:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i10",
+    "correctText": "en:lesson-07:session-54:i10:p1=organize\nen:lesson-07:session-54:i10:p2=browse\nen:lesson-07:session-54:i10:p3=repair\nen:lesson-07:session-54:i10:p4=striped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i11",
+    "correctText": "Do you repair phones?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i12",
+    "correctText": "Where is the kiosk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i13",
+    "correctText": "My shirt is striped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-54:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i15",
+    "correctText": "Where is the kiosk?",
+    "correctResponseId": "en:lesson-07:session-54:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i16",
+    "correctText": "en:lesson-07:session-54:i16:p1=browse\nen:lesson-07:session-54:i16:p2=kiosk\nen:lesson-07:session-54:i16:p3=striped\nen:lesson-07:session-54:i16:p4=organize",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-54:i17",
+    "correctText": "Tom usually browses online.",
+    "correctResponseId": null
+  }
+]

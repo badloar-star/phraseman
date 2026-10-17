@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-55:intro1:r2": {
+          "ru": "После `I` нужно `stream`.",
+          "uk": "Після `I` потрібне `stream`."
+        },
+        "en:lesson-07:session-55:intro1:r3": {
+          "ru": "Здесь нужна форма `stream`.",
+          "uk": "Тут потрібна форма `stream`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-55:intro2:r2": {
+          "ru": "После `I` нужно `photograph`.",
+          "uk": "Після `I` потрібне `photograph`."
+        },
+        "en:lesson-07:session-55:intro2:r3": {
+          "ru": "Здесь нужна форма `photograph`.",
+          "uk": "Тут потрібна форма `photograph`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-55:intro3:r2": {
+          "ru": "Кафе несколько: нужно `are`.",
+          "uk": "Кафе кілька: потрібне `are`."
+        },
+        "en:lesson-07:session-55:intro3:r3": {
+          "ru": "В этом вопросе `are` стоит перед `the cafes`.",
+          "uk": "У цьому запитанні `are` стоїть перед `the cafes`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7868f990a3a81070f5e1ad920fb71c4018c546aef82d3f352b7d50aaeca9af0e"
+}

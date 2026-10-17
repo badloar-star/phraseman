@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я зазвичай полірую стіл»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай полірую стіл»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually polish the table.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно полирую стол»",
+          "uk": "Скажіть «Я зазвичай полірую стіл»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "polish",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-44:i02:r1",
+          "text": "polish"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i02:r2",
+          "text": "relax"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i02:r3",
+          "text": "hat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i02:audio",
+          "transcript": "polish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-44:i02:r1",
+            "targetText": "polish",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i02:r2",
+            "targetText": "relax",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i02:r3",
+            "targetText": "hat",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `polish`, а в этом варианте — `relax`.",
+              "uk": "У записі перше слово — `polish`, а в цьому варіанті — `relax`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `polish`, а в этом варианте — `hat`.",
+              "uk": "У записі перше слово — `polish`, а в цьому варіанті — `hat`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай полірую стіл»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-44:i03:r1",
+          "text": "polish"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i03:r2",
+          "text": "polishes"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i03:r3",
+          "text": "polishing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай полірую стіл»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно полирую стол»",
+          "uk": "Скажіть «Я зазвичай полірую стіл»"
+        },
+        "gappedTargetPhrase": "I usually ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i03:r1",
+            "text": "polish"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i03:r2",
+            "text": "polishes"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i03:r3",
+            "text": "polishing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай полірую стіл»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай полірую стіл»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `polish`.",
+              "uk": "Після `I` потрібне `polish`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай полірую стіл»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `polish`.",
+              "uk": "Тут потрібна форма `polish`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-44:i04:p1",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i04:p2",
+            "target": "relax",
+            "meaningByLocale": {
+              "ru": "расслабляться",
+              "uk": "розслаблятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i04:p3",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i04:p4",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          }
+        ],
+        "leftColumn": [
+          "polish",
+          "relax",
+          "hotels",
+          "bicycle"
+        ],
+        "rightColumn": [
+          "полірувати",
+          "розслаблятися",
+          "готелі",
+          "велосипед"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i05:audio",
+          "transcript": "I usually polish the table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually polish the table.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "polish",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть крісло: «Я зазвичай розслабляюся тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть крісло: «Я зазвичай розслабляюся тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually relax here.",
+        "localizedMeaning": {
+          "ru": "Покажите кресло: «Я обычно расслабляюсь здесь»",
+          "uk": "Покажіть крісло: «Я зазвичай розслабляюся тут»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "relax",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про знайому «Вона часто телефонує»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть про знайому «Вона часто телефонує»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i07:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She often calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона часто телефонує»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-44:i08:r1",
+          "text": "calls"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i08:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i08:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона часто телефонує»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она часто звонит»",
+          "uk": "Скажіть «Вона часто телефонує»"
+        },
+        "gappedTargetPhrase": "She often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i08:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i08:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i08:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона часто телефонує»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `calls`.",
+              "uk": "Після `she` потрібне `calls`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `calls`.",
+              "uk": "Тут потрібна форма `calls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-44:i09:r1",
+          "text": "I usually polish the table."
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i09:r2",
+          "text": "I usually polish the desk."
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i09:r3",
+          "text": "I usually polish the chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i09:audio",
+          "transcript": "I usually polish the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-44:i09:r1",
+            "targetText": "I usually polish the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i09:r2",
+            "targetText": "I usually polish the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i09:r3",
+            "targetText": "I usually polish the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `desk`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `desk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `chair`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `chair`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-44:i10:p1",
+            "target": "relax",
+            "meaningByLocale": {
+              "ru": "расслабляться",
+              "uk": "розслаблятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i10:p2",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i10:p3",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i10:p4",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "головной убор",
+              "uk": "головний убір"
+            }
+          }
+        ],
+        "leftColumn": [
+          "relax",
+          "polish",
+          "hotels",
+          "hat"
+        ],
+        "rightColumn": [
+          "розслаблятися",
+          "полірувати",
+          "готелі",
+          "головний убір"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i11:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She often calls.",
+        "orderedTokens": [
+          "She",
+          "often",
+          "calls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обговорюєте прогулянку. Запитайте подругу «У тебе є велосипед?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обговорюєте прогулянку. Запитайте подругу «У тебе є велосипед?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a bicycle?",
+        "localizedMeaning": {
+          "ru": "Вы обсуждаете прогулку. Спросите подругу «У тебя есть велосипед?»",
+          "uk": "Ви обговорюєте прогулянку. Запитайте подругу «У тебе є велосипед?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "bicycle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед виходом на сонце запитайте друга «У тебе є головний убір?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Перед виходом на сонце запитайте друга «У тебе є головний убір?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i13:audio",
+          "transcript": "Do you have a hat?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a hat?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай розслабляюся тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-44:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай розслабляюся тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно расслабляюсь здесь»",
+          "uk": "Скажіть «Я зазвичай розслабляюся тут»"
+        },
+        "gappedTargetPhrase": "I ___ relax here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай розслабляюся тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-44:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай розслабляюся тут»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `relax`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `relax`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай розслабляюся тут»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `relax` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `relax` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-44:i15:r1",
+          "text": "The hotels are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i15:r2",
+          "text": "The hotels are there."
+        },
+        {
+          "responseId": "en:lesson-07:session-44:i15:r3",
+          "text": "The hotels are outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i15:audio",
+          "transcript": "The hotels are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-44:i15:r1",
+            "targetText": "The hotels are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i15:r2",
+            "targetText": "The hotels are there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i15:r3",
+            "targetText": "The hotels are outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-44:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-44:i16:p1",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i16:p2",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i16:p3",
+            "target": "relax",
+            "meaningByLocale": {
+              "ru": "расслабляться",
+              "uk": "розслаблятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-44:i16:p4",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "polish",
+          "bicycle",
+          "relax",
+          "hotels"
+        ],
+        "rightColumn": [
+          "полірувати",
+          "велосипед",
+          "розслаблятися",
+          "готелі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про домашні справи Тома. Скажіть «Том зазвичай полірує стіл»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про домашні справи Тома. Скажіть «Том зазвичай полірує стіл»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-44:i17:audio",
+          "transcript": "Tom usually polishes the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually polishes the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3233b5a495c0f0648d1dbfec7b377c57a771e50622d25e9ba2f4c529cd40fbc8"
+}

@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Сайт працює?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Сайт працює?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does the website work?",
+        "localizedMeaning": {
+          "ru": "Спросите «Сайт работает?»",
+          "uk": "Запитайте «Сайт працює?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "website",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-15:i02:r1",
+          "text": "website"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i02:r2",
+          "text": "schedule"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i02:r3",
+          "text": "helmet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i02:audio",
+          "transcript": "website"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-15:i02:r1",
+            "targetText": "website",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i02:r2",
+            "targetText": "schedule",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i02:r3",
+            "targetText": "helmet",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `website`, а в этом варианте — `schedule`.",
+              "uk": "У записі перше слово — `website`, а в цьому варіанті — `schedule`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `website`, а в этом варианте — `helmet`.",
+              "uk": "У записі перше слово — `website`, а в цьому варіанті — `helmet`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи працює сайт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-15:i03:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i03:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i03:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи працює сайт",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, работает ли сайт",
+          "uk": "Запитайте, чи працює сайт"
+        },
+        "gappedTargetPhrase": "Does the website ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i03:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i03:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i03:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Запитайте, чи працює сайт",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи працює сайт",
+            "feedbackByLocale": {
+              "ru": "После `Does` нужно `work`.",
+              "uk": "Після `Does` потрібне `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи працює сайт",
+            "feedbackByLocale": {
+              "ru": "Нужно `Does the website work?`, без `is`.",
+              "uk": "Потрібно `Does the website work?`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-15:i04:p1",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i04:p2",
+            "target": "schedule",
+            "meaningByLocale": {
+              "ru": "расписание",
+              "uk": "розклад"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i04:p3",
+            "target": "coat",
+            "meaningByLocale": {
+              "ru": "пальто",
+              "uk": "пальто"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i04:p4",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "website",
+          "schedule",
+          "coat",
+          "helmet"
+        ],
+        "rightColumn": [
+          "сайт",
+          "розклад",
+          "пальто",
+          "шолом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i05:audio",
+          "transcript": "Does the website work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does the website work?",
+        "orderedTokens": [
+          "Does",
+          "the",
+          "website",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви перевірили сайт. Повідомте «Тут немає розкладу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви перевірили сайт. Повідомте «Тут немає розкладу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is no schedule here.",
+        "localizedMeaning": {
+          "ru": "Вы проверили сайт. Сообщите «Здесь нет расписания»",
+          "uk": "Ви перевірили сайт. Повідомте «Тут немає розкладу»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "no",
+          "schedule",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте про Анну «Вона співає тут?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте про Анну «Вона співає тут?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i07:audio",
+          "transcript": "Does she sing here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does she sing here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте знайомого про клуб «Ти співаєш тут?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-15:i08:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i08:r2",
+          "text": "Does"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i08:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте знайомого про клуб «Ти співаєш тут?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите знакомого о клубе «Ты поёшь здесь?»",
+          "uk": "Запитайте знайомого про клуб «Ти співаєш тут?»"
+        },
+        "gappedTargetPhrase": "___ you sing here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i08:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i08:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Запитайте знайомого про клуб «Ти співаєш тут?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте знайомого про клуб «Ти співаєш тут?»",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `Do`.",
+              "uk": "З `you` потрібне `Do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте знайомого про клуб «Ти співаєш тут?»",
+            "feedbackByLocale": {
+              "ru": "С действием `sing` здесь нужно `Do you sing?`.",
+              "uk": "З дією `sing` тут потрібно `Do you sing?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання про місце виступів",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-15:i09:r1",
+          "text": "Does she sing here?"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i09:r2",
+          "text": "Does she sing there?"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i09:r3",
+          "text": "Does she sing outside?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про місце виступів",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i09:audio",
+          "transcript": "Does she sing here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-15:i09:r1",
+            "targetText": "Does she sing here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i09:r2",
+            "targetText": "Does she sing there?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i09:r3",
+            "targetText": "Does she sing outside?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про місце виступів",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про місце виступів",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-15:i10:p1",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i10:p2",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i10:p3",
+            "target": "coat",
+            "meaningByLocale": {
+              "ru": "пальто",
+              "uk": "пальто"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i10:p4",
+            "target": "schedule",
+            "meaningByLocale": {
+              "ru": "расписание",
+              "uk": "розклад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sing",
+          "website",
+          "coat",
+          "schedule"
+        ],
+        "rightColumn": [
+          "співати",
+          "сайт",
+          "пальто",
+          "розклад"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i11:audio",
+          "transcript": "Does it work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does it work?",
+        "orderedTokens": [
+          "Does",
+          "it",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг збирається їхати велосипедом. Запитайте «У тебе є шолом?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг збирається їхати велосипедом. Запитайте «У тебе є шолом?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a helmet?",
+        "localizedMeaning": {
+          "ru": "Друг собирается ехать на велосипеде. Спросите «У тебя есть шлем?»",
+          "uk": "Друг збирається їхати велосипедом. Запитайте «У тебе є шолом?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "helmet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Біля виходу залишилося пальто. Запитайте «Чиє це пальто?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Біля виходу залишилося пальто. Запитайте «Чиє це пальто?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i13:audio",
+          "transcript": "Whose coat is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose coat is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про виступи Тома «Том співає тут?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-15:i14:r1",
+          "text": "sing"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i14:r2",
+          "text": "sings"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i14:r3",
+          "text": "is sing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про виступи Тома «Том співає тут?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о выступлениях Тома «Том поёт здесь?»",
+          "uk": "Запитайте про виступи Тома «Том співає тут?»"
+        },
+        "gappedTargetPhrase": "Does Tom ___ here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-15:i14:r1",
+            "text": "sing"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i14:r2",
+            "text": "sings"
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i14:r3",
+            "text": "is sing"
+          }
+        ],
+        "testedDimension": "Запитайте про виступи Тома «Том співає тут?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-15:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про виступи Тома «Том співає тут?»",
+            "feedbackByLocale": {
+              "ru": "После `Does Tom` нужно `sing`.",
+              "uk": "Після `Does Tom` потрібне `sing`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про виступи Тома «Том співає тут?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Does Tom sing?`, без `is`.",
+              "uk": "Потрібно `Does Tom sing?`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що потрібно відвідувачеві",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-15:i15:r1",
+          "text": "Do you have a schedule?"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i15:r2",
+          "text": "Do you have a coat?"
+        },
+        {
+          "responseId": "en:lesson-07:session-15:i15:r3",
+          "text": "Do you have a helmet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що потрібно відвідувачеві",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i15:audio",
+          "transcript": "Do you have a schedule?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-15:i15:r1",
+            "targetText": "Do you have a schedule?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i15:r2",
+            "targetText": "Do you have a coat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i15:r3",
+            "targetText": "Do you have a helmet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-15:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що потрібно відвідувачеві",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `schedule`, а в этом варианте — `coat`.",
+              "uk": "У записі останнє слово — `schedule`, а в цьому варіанті — `coat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-15:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що потрібно відвідувачеві",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `schedule`, а в этом варианте — `helmet`.",
+              "uk": "У записі останнє слово — `schedule`, а в цьому варіанті — `helmet`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-15:i16:p1",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i16:p2",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i16:p3",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-15:i16:p4",
+            "target": "schedule",
+            "meaningByLocale": {
+              "ru": "расписание",
+              "uk": "розклад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "website",
+          "helmet",
+          "sing",
+          "schedule"
+        ],
+        "rightColumn": [
+          "сайт",
+          "шолом",
+          "співати",
+          "розклад"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг радить іншу школу. Щоб знайти інформацію про неї, запитайте «У них є сайт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Друг радить іншу школу. Щоб знайти інформацію про неї, запитайте «У них є сайт?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-15:i17:audio",
+          "transcript": "Do they have a website?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do they have a website?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "80bd6aed4c9e5ad5acbd1d156ca413d0f4cfe28e1a4298f55a76f0c43a787283"
+}

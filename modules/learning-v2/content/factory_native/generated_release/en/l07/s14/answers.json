@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-14:i01",
+    "correctText": "Does the server work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i02",
+    "correctText": "server",
+    "correctResponseId": "en:lesson-07:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i04",
+    "correctText": "en:lesson-07:session-14:i04:p1=server\nen:lesson-07:session-14:i04:p2=picture\nen:lesson-07:session-14:i04:p3=suitcase\nen:lesson-07:session-14:i04:p4=customer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i05",
+    "correctText": "Does the server work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i06",
+    "correctText": "There is no server in this room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i07",
+    "correctText": "Does Anna work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i09",
+    "correctText": "Does Anna work here?",
+    "correctResponseId": "en:lesson-07:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i10",
+    "correctText": "en:lesson-07:session-14:i10:p1=laugh\nen:lesson-07:session-14:i10:p2=server\nen:lesson-07:session-14:i10:p3=picture\nen:lesson-07:session-14:i10:p4=suitcase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i11",
+    "correctText": "Does it work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i12",
+    "correctText": "Are you a customer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i13",
+    "correctText": "Do you have a suitcase?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-07:session-14:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i15",
+    "correctText": "Do you have a picture?",
+    "correctResponseId": "en:lesson-07:session-14:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i16",
+    "correctText": "en:lesson-07:session-14:i16:p1=server\nen:lesson-07:session-14:i16:p2=customer\nen:lesson-07:session-14:i16:p3=laugh\nen:lesson-07:session-14:i16:p4=suitcase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-14:i17",
+    "correctText": "Does the manager work here?",
+    "correctResponseId": null
+  }
+]

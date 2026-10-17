@@ -1,0 +1,945 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я зазвичай катаюся на лижах»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай катаюся на лижах»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually ski.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно катаюсь на лыжах»",
+          "uk": "Скажіть «Я зазвичай катаюся на лижах»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "ski"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-52:i02:r1",
+          "text": "ski"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i02:r2",
+          "text": "sew"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i02:r3",
+          "text": "hike"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i02:audio",
+          "transcript": "ski"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-52:i02:r1",
+            "targetText": "ski",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i02:r2",
+            "targetText": "sew",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i02:r3",
+            "targetText": "hike",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ski`, а в этом варианте — `sew`.",
+              "uk": "У записі перше слово — `ski`, а в цьому варіанті — `sew`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ski`, а в этом варианте — `hike`.",
+              "uk": "У записі перше слово — `ski`, а в цьому варіанті — `hike`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай катаюся на лижах»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-52:i03:r1",
+          "text": "ski"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i03:r2",
+          "text": "skis"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i03:r3",
+          "text": "skiing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай катаюся на лижах»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно катаюсь на лыжах»",
+          "uk": "Скажіть «Я зазвичай катаюся на лижах»"
+        },
+        "gappedTargetPhrase": "I usually ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-52:i03:r1",
+            "text": "ski"
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i03:r2",
+            "text": "skis"
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i03:r3",
+            "text": "skiing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай катаюся на лижах»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай катаюся на лижах»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `ski`.",
+              "uk": "Після `I` потрібне `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай катаюся на лижах»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `ski`.",
+              "uk": "Тут потрібна форма `ski`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-52:i04:p1",
+            "target": "ski",
+            "meaningByLocale": {
+              "ru": "кататься на лыжах",
+              "uk": "кататися на лижах"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i04:p2",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i04:p3",
+            "target": "stations",
+            "meaningByLocale": {
+              "ru": "станции",
+              "uk": "станції"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i04:p4",
+            "target": "pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ski",
+          "polish",
+          "stations",
+          "pool"
+        ],
+        "rightColumn": [
+          "кататися на лижах",
+          "полірувати",
+          "станції",
+          "басейн"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i05:audio",
+          "transcript": "I usually ski."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually ski.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "ski"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я зазвичай полірую стіл»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай полірую стіл»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually polish the table.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно полирую стол»",
+          "uk": "Скажіть «Я зазвичай полірую стіл»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "polish",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте працівника «Де басейн?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте працівника «Де басейн?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i07:audio",
+          "transcript": "Where is the pool?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the pool?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай полірую стіл»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-52:i08:r1",
+          "text": "polish"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i08:r2",
+          "text": "polishes"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i08:r3",
+          "text": "polishing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай полірую стіл»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно полирую стол»",
+          "uk": "Скажіть «Я зазвичай полірую стіл»"
+        },
+        "gappedTargetPhrase": "I usually ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-52:i08:r1",
+            "text": "polish"
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i08:r2",
+            "text": "polishes"
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i08:r3",
+            "text": "polishing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай полірую стіл»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай полірую стіл»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `polish`.",
+              "uk": "Після `I` потрібне `polish`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай полірую стіл»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `polish`.",
+              "uk": "Тут потрібна форма `polish`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-52:i09:r1",
+          "text": "I usually ski."
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i09:r2",
+          "text": "I usually hike."
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i09:r3",
+          "text": "I usually camp."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i09:audio",
+          "transcript": "I usually ski."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-52:i09:r1",
+            "targetText": "I usually ski.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i09:r2",
+            "targetText": "I usually hike.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i09:r3",
+            "targetText": "I usually camp.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ski`, а в этом варианте — `hike`.",
+              "uk": "У записі останнє слово — `ski`, а в цьому варіанті — `hike`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ski`, а в этом варианте — `camp`.",
+              "uk": "У записі останнє слово — `ski`, а в цьому варіанті — `camp`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-52:i10:p1",
+            "target": "wear",
+            "meaningByLocale": {
+              "ru": "носить одежду",
+              "uk": "носити одяг"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i10:p2",
+            "target": "ski",
+            "meaningByLocale": {
+              "ru": "кататься на лыжах",
+              "uk": "кататися на лижах"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i10:p3",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i10:p4",
+            "target": "stations",
+            "meaningByLocale": {
+              "ru": "станции",
+              "uk": "станції"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wear",
+          "ski",
+          "polish",
+          "stations"
+        ],
+        "rightColumn": [
+          "носити одяг",
+          "кататися на лижах",
+          "полірувати",
+          "станції"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i11:audio",
+          "transcript": "Where is the pool?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the pool?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "pool"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вивчаєте карту залізниці. Запитайте друга «Де станції?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вивчаєте карту залізниці. Запитайте друга «Де станції?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the stations?",
+        "localizedMeaning": {
+          "ru": "Вы изучаете карту железной дороги. Спросите друга «Где станции?»",
+          "uk": "Ви вивчаєте карту залізниці. Запитайте друга «Де станції?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "stations"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обговорюєте звички в холодну погоду. Запитайте друга «Ти носиш головний убір?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Ви обговорюєте звички в холодну погоду. Запитайте друга «Ти носиш головний убір?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i13:audio",
+          "transcript": "Do you wear a hat?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you wear a hat?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай катаюся на лижах»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-52:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай катаюся на лижах»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно катаюсь на лыжах»",
+          "uk": "Скажіть «Я зазвичай катаюся на лижах»"
+        },
+        "gappedTargetPhrase": "I ___ ski.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-52:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай катаюся на лижах»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай катаюся на лижах»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `ski`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай катаюся на лижах»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `ski` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `ski` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-52:i15:r1",
+          "text": "Where is the pool?"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i15:r2",
+          "text": "Where is the stadium?"
+        },
+        {
+          "responseId": "en:lesson-07:session-52:i15:r3",
+          "text": "Where is the cinema?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i15:audio",
+          "transcript": "Where is the pool?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-52:i15:r1",
+            "targetText": "Where is the pool?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i15:r2",
+            "targetText": "Where is the stadium?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i15:r3",
+            "targetText": "Where is the cinema?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-52:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `pool`, а в этом варианте — `stadium`.",
+              "uk": "У записі останнє слово — `pool`, а в цьому варіанті — `stadium`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-52:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `pool`, а в этом варианте — `cinema`.",
+              "uk": "У записі останнє слово — `pool`, а в цьому варіанті — `cinema`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-52:i16:p1",
+            "target": "ski",
+            "meaningByLocale": {
+              "ru": "кататься на лыжах",
+              "uk": "кататися на лижах"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i16:p2",
+            "target": "pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i16:p3",
+            "target": "wear",
+            "meaningByLocale": {
+              "ru": "носить одежду",
+              "uk": "носити одяг"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-52:i16:p4",
+            "target": "polish",
+            "meaningByLocale": {
+              "ru": "полировать",
+              "uk": "полірувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ski",
+          "pool",
+          "wear",
+          "polish"
+        ],
+        "rightColumn": [
+          "кататися на лижах",
+          "басейн",
+          "носити одяг",
+          "полірувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про зимовий відпочинок Тома. Скажіть «Том зазвичай катається на лижах»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про зимовий відпочинок Тома. Скажіть «Том зазвичай катається на лижах»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-52:i17:audio",
+          "transcript": "Tom usually skis."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually skis.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d1fd497ed0e5a6f1f5d4ab706dd124a0624a9ceb73c315a5dda3b575b60e2ca6"
+}

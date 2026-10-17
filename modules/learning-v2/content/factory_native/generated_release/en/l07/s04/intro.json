@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "спросить об очках и вещах, сообщить об их отсутствии",
+    "uk": "запитати про окуляри й речі, повідомити про їх відсутність"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Знакомство с коллегой",
+        "uk": "Знайомство з колегою"
+      },
+      "bodyByLocale": {
+        "ru": "`glasses` — «очки». `Do you wear glasses?` — «Вы носите очки?» Это вопрос о привычке. После `Do you` ставим `wear`. Слово `glasses` здесь обозначает очки для зрения; перед ним не ставим `a`.",
+        "uk": "`glasses` — «окуляри». `Do you wear glasses?` — «Ви носите окуляри?» Це запитання про звичку. Після `Do you` ставимо `wear`. Слово `glasses` тут позначає окуляри для зору; перед ним не ставимо `a`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите коллегу «Вы носите очки?»",
+          "uk": "Запитайте колегу «Ви носите окуляри?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-04:intro1:r1",
+              "text": "Do you wear glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro1:r2",
+              "text": "Are you wear glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro1:r3",
+              "text": "Do you wear a glasses?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-04:intro1:r1",
+              "text": "Do you wear glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro1:r2",
+              "text": "Are you wear glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro1:r3",
+              "text": "Do you wear a glasses?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллегу «Вы носите очки?»",
+          "uk": "Запитайте колегу «Ви носите окуляри?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Очки родителей",
+        "uk": "Окуляри батьків"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказывает о своих родителях. Вы спрашиваете `Do they wear glasses?` — «Они носят очки?» Теперь после `Do` стоит `they`, а `wear` остаётся без `s`. Речь о том, носят ли родители очки обычно, а не о том, где очки лежат.",
+        "uk": "Друг розповідає про своїх батьків. Ви запитуєте `Do they wear glasses?` — «Вони носять окуляри?» Тепер після `Do` стоїть `they`, а `wear` залишається без `s`. Ідеться про те, чи носять батьки окуляри зазвичай, а не про те, де окуляри лежать."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите о родителях «Они носят очки?»",
+          "uk": "Запитайте про батьків «Вони носять окуляри?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-04:intro2:r1",
+              "text": "Do they wear glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro2:r2",
+              "text": "Do they wears glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro2:r3",
+              "text": "Are they wear glasses?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-04:intro2:r1",
+              "text": "Do they wear glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro2:r2",
+              "text": "Do they wears glasses?"
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro2:r3",
+              "text": "Are they wear glasses?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о родителях «Они носят очки?»",
+          "uk": "Запитайте про батьків «Вони носять окуляри?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поиски в комнате",
+        "uk": "Пошуки в кімнаті"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет очки. Вы осмотрели стол и говорите `There are no glasses here` — «Здесь нет очков». С `glasses` нужно `are`, даже если ищем одни очки. Они могут оказаться у друга на голове, но стол вы уже проверили.",
+        "uk": "Друг шукає окуляри. Ви оглянули стіл і кажете `There are no glasses here` — «Тут немає окулярів». З `glasses` потрібне `are`, навіть якщо шукаємо одні окуляри. Вони можуть виявитися в друга на голові, але стіл ви вже перевірили."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите другу «Здесь нет очков».",
+          "uk": "Повідомте другові «Тут немає окулярів»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-04:intro3:r1",
+              "text": "There are no glasses here."
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro3:r2",
+              "text": "There is no glasses here."
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro3:r3",
+              "text": "There no glasses here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-04:intro3:r1",
+              "text": "There are no glasses here."
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro3:r2",
+              "text": "There is no glasses here."
+            },
+            {
+              "responseId": "en:lesson-07:session-04:intro3:r3",
+              "text": "There no glasses here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите другу «Здесь нет очков».",
+          "uk": "Повідомте другові «Тут немає окулярів»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9121ab886b41ea98afde06a4523d18cd6d491ac31c68b03167ec5aef14ac1dd8"
+}

@@ -229,6 +229,38 @@ describe('засчитывание по типам', () => {
     expect(grants.filter((g) => g.kind === 'video')).toHaveLength(1);
   });
 
+  // зачем (аудит Optimistic UI 17.10, п.1): счётчик меняется сразу, до записи на диск; событие не засчитывается дважды
+  it('Optimistic UI: прогресс виден синхронно, очередь не применяет событие второй раз', async () => {
+    await startDayWith(['cards', 'dialog', 'lesson']);
+    const pending = recordTodayTaskActivity({ kind: 'cards', unitKey: 'card:a', source: 'test' });
+    expect(task('cards').units).toBe(1); // до await — уже показано
+    await pending;
+    await flush();
+    expect(task('cards').units).toBe(1);
+    void recordTodayTaskActivity({ kind: 'cards', source: 'test' }); // без ключа — тоже ровно одна единица
+    await flush();
+    expect(task('cards').units).toBe(2);
+  });
+
+  // зачем (аудит Optimistic UI 17.10, п.2): сбой выдачи монет повторяется сам через 30 с, а не только при следующем событии
+  it('сбой выдачи монет — один отложенный повтор, выплата одна', async () => {
+    jest.useFakeTimers({ doNotFake: ['nextTick', 'setImmediate', 'queueMicrotask'] });
+    try {
+      await startDayWith(['lesson', 'dialog', 'cards']);
+      failGrant = true;
+      await recordTodayTaskActivity({ kind: 'lesson', unitKey: 'lesson:1', source: 'test' });
+      expect(task('lesson')).toMatchObject({ done: true, rewardStatus: 'pending' });
+      failGrant = false;
+      jest.advanceTimersByTime(30_000);
+      jest.useRealTimers();
+      await flush();
+      expect(task('lesson').rewardStatus).toBe('granted');
+      expect(grants.filter((g) => g.kind === 'lesson')).toHaveLength(1);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   it('тип не из набора дня не меняет состояние', async () => {
     await startDayWith(['lesson', 'dialog', 'cards']);
     const before = peekTodayTasks();

@@ -27,7 +27,7 @@ import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { useTodayTasks } from '../hooks/use_today_tasks';
 import { safeRouterBack } from './navigation_back';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
-import { readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
+import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
 import BackButton from '../components/v2/BackButton';
 
 /**
@@ -59,7 +59,12 @@ export default function TodayTasksScreen() {
   // зачем: «до» привязано к дню И набору задач — если набор дня сменился (язык, Пик), кольцо не докручивается от чужих чисел
   const seenKey = `${todayTasks.dayKey}|${tasks.map((task) => task.kind).join(',')}`;
   const progress = ringProgress(tasks);
-  const [ringFrom, setRingFrom] = useState<RingFrom | null>(null);
+  // зачем (аудит Optimistic UI 17.10, п.7): повторное открытие за запуск — «до» из памяти синхронно, кольцо в первом кадре без пустого места
+  const [ringFrom, setRingFrom] = useState<RingFrom | null>(() => {
+    const memo = peekTodayRingFrom(seenKey);
+    return memo ? { seenKey, from: memo } : null;
+  });
+  const openingRef = useRef(0);
   const openedAtRef = useRef(Date.now());
   const loggedOpenRef = useRef(false);
 
@@ -74,7 +79,10 @@ export default function TodayTasksScreen() {
       console.log('[TODAY-RING] ring:skip флаг moments_v3 выключен — только строки'); // guard-ok: ранний выход
       return undefined;
     }
-    if (ringFrom?.seenKey === seenKey) return undefined;
+    if (ringFrom?.seenKey === seenKey) {
+      console.log('[TODAY-RING] ring:from_ready', JSON.stringify({ source: 'memory_first_frame' })); // guard-ok: ранний выход — «до» уже есть
+      return undefined;
+    }
     let alive = true;
     void readTodayRingFrom(seenKey).then(({ from, source }) => {
       if (!alive) {
@@ -103,6 +111,13 @@ export default function TodayTasksScreen() {
   const ringReady = ringFrom !== null && ringFrom.seenKey === seenKey;
 
   const openTask = (task: TodayTask) => {
+    // зачем (аудит Optimistic UI 17.10, п.6): у dismissTo нет защиты от двойного тапа (у nav.push есть) — второй тап за 600 мс гасим с журналом
+    const now = Date.now();
+    if (now - openingRef.current < 600) {
+      console.log('[TODAY-RING] task:open_ignored', JSON.stringify({ kind: task.kind, reason: 'double_tap', sinceMs: now - openingRef.current })); // guard-ok: ранний выход
+      return;
+    }
+    openingRef.current = now;
     console.log('[TODAY-RING] task:open', JSON.stringify({ kind: task.kind, route: task.route, progress: task.progress, target: task.target, done: task.done })); // guard-ok: одна строка на тап
     // зачем: вкладки (Видео, Пик в «Сообществе») — экран «Сегодня» закрывается и открывается вкладка (dismissTo; navigate оставлял экран поверх вкладки —
     // эмулятор 17.10: Пик грузился ПОД «Сегодня»); остальное — защищённый от двойного тапа push

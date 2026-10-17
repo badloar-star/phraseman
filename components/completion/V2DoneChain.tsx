@@ -100,7 +100,7 @@ export type DoneChainProviderProps = Readonly<{
   lang: Lang;
   /** Цепочка доиграла (или досмотрена тапом) — экран может открывать следующие окна (m09, рубеж серии). */
   onFinished?: () => void;
-  /** Только dev-превью (dev_moments_preview?state=donechain): готовое «после» вместо живых сторов серии и задач дня. */
+  /** Только dev-превью моментов (состояние donechain): готовое «после» вместо живых сторов серии и задач дня. */
   previewAfter?: DoneChainAfter;
   children: (skip: () => void) => ReactNode;
 }>;

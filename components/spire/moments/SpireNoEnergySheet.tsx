@@ -25,6 +25,7 @@ import { spireGameText } from '../spire_game_strings';
 import { useSpirePalette } from '../useSpirePalette';
 import { useSpireShadow } from '../useSpireShadow';
 import { noEnergySheetText } from './no_energy_sheet_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 export type SpireNoEnergySheetProps = Readonly<{
   lang: Lang;
@@ -100,7 +101,7 @@ function SpireNoEnergySheet({ lang, visible, onPlus, onClose, testID = 'no-energ
       )}
     >
       <View>
-        <Text style={[s.title, { color: p.text }]} accessibilityRole="header">{noEnergySheetText(lang, 'title')}</Text>
+        <Text style={[s.title, { color: p.text }]} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{noEnergySheetText(lang, 'title')}</Text>
         <Text style={[s.sub, { color: p.textSecondary }]} testID={`${testID}-sub`}>{noEnergySheetText(lang, 'sub', { t: clock })}</Text>
         <View style={[s.benefit, { backgroundColor: p.card }, sh.plate]}>
           <Ionicons name="checkmark" size={18} color={p.accentTextSafe} />

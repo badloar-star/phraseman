@@ -111,7 +111,10 @@ function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS
   useEffect(() => {
     const before = prev.current;
     prev.current = values;
-    if (!before || reduceMotion) return undefined; // первый показ и reduceMotion — без вспышек: кольца просто на месте
+    if (!before || reduceMotion) {
+      if (__DEV__) console.log('[TODAY-RING] sparks:skip', JSON.stringify({ reason: !before ? 'first_show' : 'reduce_motion' })); // guard-ok: ранний выход — первый показ и reduceMotion без вспышек
+      return undefined;
+    }
     const timers: ReturnType<typeof setTimeout>[] = [];
     values.forEach((x, i) => {
       if (x >= 1 && before[i] < 1) {

@@ -87,6 +87,13 @@ let queue: Promise<unknown> = Promise.resolve();
 const listeners = new Set<(state: TodayTasksDayState | null) => void>();
 // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
 onAccountOwnerChanged('today_tasks', () => {
+  // зачем (аудит Optimistic UI 17.10, п.4): несохранённый день прежнего владельца дописываем в ЕГО ключ, а флаг сбрасываем —
+  // иначе повтор записи взял бы состояние нового владельца по флагу старого.
+  const previous = current;
+  if (unsavedSince !== null && previous) {
+    void persist(previous).then((ok) => log('owner_change:unsaved_flushed', { ok, dayKey: previous.dayKey }));
+  }
+  unsavedSince = null;
   current = null;
   listeners.forEach((listener) => listener(null));
 });
@@ -163,6 +170,19 @@ async function persist(state: TodayTasksDayState): Promise<boolean> {
   }
 }
 
+/**
+ * Записать и при сбое пометить «не сохранено» — тот же путь повтора, что у событий.
+ * зачем (аудит Optimistic UI 17.10, п.3): новый день, замена/закрепление задач и отметка выплаты писались без проверки результата —
+ * при сбое записи после перезапуска день «прыгал» назад, а повтора не было.
+ */
+async function persistOrMarkUnsaved(state: TodayTasksDayState, reason: string): Promise<boolean> {
+  if (await persist(state)) return true;
+  if (unsavedSince === null) unsavedSince = deps.now();
+  hookBackgroundRetry();
+  warn('persist:kept_unsaved', { reason, dayKey: state.dayKey, retry: 'next_event|home_open|app_background' });
+  return false;
+}
+
 /** Повторить запись несохранённого состояния. Вызывать только внутри serialized. Возвращает true, если на диске актуально. */
 async function retryUnsaved(trigger: string): Promise<boolean> {
   if (unsavedSince === null) return true;
@@ -232,8 +252,8 @@ async function loadDay(): Promise<TodayTasksDayState> {
     available: kinds,
     picked: fresh.tasks.map((t) => t.kind),
   });
-  await persist(fresh);
   publish(fresh);
+  await persistOrMarkUnsaved(fresh, 'new_day');
   return fresh;
 }
 
@@ -276,15 +296,61 @@ async function settlePendingRewards(state: TodayTasksDayState): Promise<TodayTas
         ops: requests.map((r) => `${r.requestId.slice(0, 20)}…:${r.giftId}`),
       });
     } catch (error) {
-      // Остаётся pending: следующий вызов (событие/открытие Главной) повторит тем же ключом.
-      warn('reward:grant_failed', { kind: task.kind, dayKey: state.dayKey, error: errText(error), status: 'stays_pending' });
+      // Остаётся pending: следующий вызов (событие/открытие Главной) повторит тем же ключом; плюс один отложенный повтор.
+      warn('reward:grant_failed', { kind: task.kind, dayKey: state.dayKey, error: errText(error), status: 'stays_pending', retryInMs: REWARD_RETRY_MS });
+      scheduleRewardRetry();
     }
   }
   if (next !== state) {
-    await persist(next);
     publish(next);
+    await persistOrMarkUnsaved(next, 'reward_granted');
   }
   return next;
+}
+
+/**
+ * зачем (аудит Optimistic UI 17.10, п.2): сбой выдачи монет ждал следующего события или открытия Главной — человек с галочкой
+ * мог час не получить монеты. Один отложенный повтор тем же идемпотентным ключом (двойной выплаты нет); таймер один на процесс.
+ */
+const REWARD_RETRY_MS = 30_000;
+let rewardRetryTimer: ReturnType<typeof setTimeout> | null = null;
+function scheduleRewardRetry(): void {
+  if (rewardRetryTimer) return;
+  rewardRetryTimer = setTimeout(() => {
+    rewardRetryTimer = null;
+    void serialized(async () => {
+      const state = current;
+      if (!state || !state.tasks.some((task) => task.rewardStatus === 'pending')) {
+        log('reward:retry_skip', { reason: state ? 'nothing_pending' : 'no_state' });
+        return;
+      }
+      log('reward:retry', { dayKey: state.dayKey });
+      await settlePendingRewards(state);
+    }).catch((error: unknown) => warn('reward:retry_failed', { error: errText(error) }));
+  }, REWARD_RETRY_MS);
+}
+
+/**
+ * Применить событие к дню в памяти сразу (без диска). null — дня в памяти нет, он вчерашний или событие ничего не меняет:
+ * тогда всё делает очередь, как раньше. Событие применяется ровно один раз — очередь его уже не применяет.
+ */
+function applyOptimisticTodayEvent(event: TodayTaskEvent): Readonly<{ ownerKey: string; dayKey: string; outcome: string }> | null {
+  const state = current;
+  if (!state) return null;
+  const today = todayLocalDayKey(deps.now());
+  if (state.dayKey !== today) {
+    log('event:optimistic_skip', { kind: event.kind, reason: 'day_rollover', from: state.dayKey, to: today });
+    return null;
+  }
+  const result = applyTodayTaskEvent(state, event, deps.now());
+  const fields = { kind: event.kind, source: event.source, unitKey: event.unitKey ? event.unitKey.slice(0, 40) : null, units: event.units ?? 1, dayKey: state.dayKey, outcome: result.outcome, progress: `${result.before}→${result.after}` };
+  if (result.state === state) {
+    log('event:no_change', fields);
+    return null;
+  }
+  log(result.outcome === 'completed' ? 'event:completed' : 'event:counted', { ...fields, shown: 'instant' });
+  publish(result.state);
+  return { ownerKey: state.ownerKey, dayKey: state.dayKey, outcome: result.outcome };
 }
 
 /**
@@ -297,9 +363,19 @@ export function recordTodayTaskActivity(event: TodayTaskEvent): Promise<void> {
   void import('../../app/hall_of_fame_utils')
     .then((m) => m.touchStreakForToday(`activity:${event.kind}`))
     .catch((error: unknown) => warn('streak_touch:import_failed', { error: errText(error) }));
+  // зачем (аудит Optimistic UI 17.10, п.1): счётчик и кольцо менялись только после записи на диск (и после чужих задач в очереди, в т.ч.
+  // выдачи монет без таймаута) — человек видел 0/1 после урока. Если день в памяти — применяем СРАЗУ и показываем; очередь только пишет.
+  const optimistic = applyOptimisticTodayEvent(event);
   return serialized(async () => {
     try {
       await retryUnsaved(`event:${event.kind}`);
+      if (optimistic && current && current.ownerKey === optimistic.ownerKey && current.dayKey === optimistic.dayKey) {
+        const saved = await persistOrMarkUnsaved(current, `event:${event.kind}`);
+        log('event:persisted_after_optimistic', { kind: event.kind, outcome: optimistic.outcome, saved, dayKey: current.dayKey });
+        if (saved && optimistic.outcome === 'completed') await settlePendingRewards(current);
+        return;
+      }
+      if (optimistic) log('event:optimistic_superseded', { kind: event.kind, reason: current ? 'owner_or_day_changed' : 'state_reset', action: 'reapply_to_loaded_day' });
       const day = await loadDay();
       const result = applyTodayTaskEvent(day, event, deps.now());
       const fields = {
@@ -357,8 +433,8 @@ export function refreshTodayTasks(
       if (swap.replaced.length > 0) {
         day = swap.state;
         log('day:replaced_unavailable', { replaced: swap.replaced, available: normalized });
-        await persist(day);
         publish(day);
+        await persistOrMarkUnsaved(day, 'replaced_unavailable');
       }
       // D144: закреплённые типы (готовые «Мои ошибки») обязаны быть в дне.
       const pinnedNow = pinnedKinds.filter((kind) => normalized.includes(kind));
@@ -366,8 +442,8 @@ export function refreshTodayTasks(
       if (pin.pinned.length > 0) {
         day = pin.state;
         log('day:pinned', { pinned: pin.pinned, pinnedKinds: pinnedNow });
-        await persist(day);
         publish(day);
+        await persistOrMarkUnsaved(day, 'pinned');
       } else if (pinnedNow.length > 0) {
         log('day:pin_kept', { pinnedKinds: pinnedNow, kinds: day.tasks.map((task) => task.kind) });
       }
@@ -397,6 +473,8 @@ export const __todayTasksStoreTestHooks = Object.freeze({
     deps = Object.freeze({ ...DEFAULT_DEPS, ...next });
   },
   reset(): void {
+    if (rewardRetryTimer) clearTimeout(rewardRetryTimer);
+    rewardRetryTimer = null;
     deps = DEFAULT_DEPS;
     current = null;
     unsavedSince = null;
@@ -406,6 +484,8 @@ export const __todayTasksStoreTestHooks = Object.freeze({
   },
   /** Сбросить только память процесса (имитация перезапуска приложения). */
   simulateRestart(): void {
+    if (rewardRetryTimer) clearTimeout(rewardRetryTimer);
+    rewardRetryTimer = null;
     current = null;
     unsavedSince = null;
     availableKinds = null;

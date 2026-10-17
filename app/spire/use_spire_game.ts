@@ -350,7 +350,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         setOutcome({ ...view, kind: 'save_failed', local: base });
         return;
       }
-      setWeek(res.local); if (kind === 'floor' || kind === 'summit') flush('floor_closed'); else if (spireNearWeekEnd(Date.now())) flush('week_end'); // 💸 закрыт этаж — место меняется; последний час недели (Ревизор 17.10) — каждая ступень, чтобы попала в подсчёт пн 00:01
+      setWeek(res.local); if (kind === 'floor' || kind === 'summit') flush('floor_closed'); else if (spireNearWeekEnd(Date.now())) flush('week_end'); void import('./spire_home_place').then((m) => m.refreshSpireHomePlaceFromMemory(ids.uid, lang as SpireLang)); // бейдж места на Главной — после ступени, комната из памяти, без сети; // 💸 закрыт этаж — место меняется; последний час недели (Ревизор 17.10) — каждая ступень, чтобы попала в подсчёт пн 00:01
       // зачем (D49 + PM-280-A2, «Сегодня»): пройденная НОВАЯ ступень, легшая на
       // диск, засчитывает «Пройти N ступеней Шпиля». Провал и повтор того же отчёта
       // не считаются; ключ — reportId (повтор записи не двигает счётчик дважды).

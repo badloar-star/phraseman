@@ -124,7 +124,13 @@ export function useTodayTasks(lang: Lang, studyTarget: LearningLanguageTarget): 
           return refreshTodayTasks(kinds, pinned);
         })
         .then((next) => {
-          if (alive && next) setState(next);
+          // зачем (аудит Optimistic UI 17.10, п.5): ответ refresh мог затереть более свежее состояние из подписки — берём текущий снимок store
+          const latest = peekTodayTasks() ?? next;
+          if (!alive || !latest) {
+            console.log(`[TODAY-TASKS] hook:refresh_dropped ${JSON.stringify({ reason, alive, hasState: Boolean(latest) })}`);
+            return;
+          }
+          setState(latest);
         });
     };
     const armMidnight = () => {

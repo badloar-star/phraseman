@@ -15,6 +15,8 @@ import type { SpireRoomSnapshot } from '../../modules/spire/room_rows';
 export type SpireHomePlace = Readonly<{ lang: SpireLang; place: number }>;
 
 let current: SpireHomePlace | null = null;
+/** зачем (аудит Optimistic UI 17.10, п.10): два пересчёта подряд — публикуем только последний, поздний старый не затирает свежий. */
+let refreshSeq = 0;
 const listeners = new Set<() => void>();
 
 function log(step: string, data: Readonly<Record<string, unknown>>): void {
@@ -50,6 +52,7 @@ export function spireHomePlaceFrom(rows: readonly Readonly<{ isMe: boolean; step
  */
 export async function refreshSpireHomePlace(uid: string, lang: SpireLang, room: SpireRoomSnapshot): Promise<number | null> {
   const startedAt = Date.now();
+  const seq = ++refreshSeq;
   try {
     const [{ peekSpireConfig, warmSpireConfigFromDisk }, { readCurrentLocalWeek }, { spireBuildRoomRows }, { spireResolveRankBy }] = await Promise.all([
       import('../spire_config_client'),
@@ -72,13 +75,28 @@ export async function refreshSpireHomePlace(uid: string, lang: SpireLang, room: 
       nowMs: Date.now(), tuning: config.residents, rankBy, fillMissingWeekCoinsForPreview: false,
     });
     const place = spireHomePlaceFrom(rows);
+    if (seq !== refreshSeq) {
+      log('stale', { lang, place, seq, latest: refreshSeq, action: 'dropped' });
+      return place;
+    }
     log('done', { lang, place, why: place === null ? 'newcomer_no_steps' : 'room_rows', rows: rows.length, mySteps: mine?.stepsCleared ?? 0, rankBy, ms: Date.now() - startedAt });
     publish(place === null ? null : { lang, place });
     return place;
   } catch (error: unknown) {
-    log('failed', { lang, error: error instanceof Error ? error.message : String(error) });
+    log('failed', { lang, error: error instanceof Error ? error.message : String(error), kept: current ? `${current.lang}:${current.place}` : null });
     return null;
   }
+}
+
+/** После ступени: комната из памяти процесса (Пик её уже держит). Нет комнаты — пропуск с журналом, без сети. */
+export async function refreshSpireHomePlaceFromMemory(uid: string, lang: SpireLang): Promise<number | null> {
+  const { peekSpireRoom } = await import('./spire_room_client');
+  const room = peekSpireRoom(uid, lang);
+  if (!room) {
+    log('skip', { why: 'no_room_in_memory', lang, trigger: 'step_finish' });
+    return null;
+  }
+  return refreshSpireHomePlace(uid, lang, room);
 }
 
 /** Только для тестов. */

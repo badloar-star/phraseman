@@ -6,7 +6,7 @@
 // с ключом и причиной. «Играть» = СНАЧАЛА закрыть окно (локальное состояние), потом onClimb; «Plus» — закрыть шторку и открыть общий пейвол (premium_modal, context no_energy) через защищённую навигацию.
 // Показ идёт из памяти решений (0 чтений сети); непоказанное не копится (хук Ядра пересчитывает по текущим данным).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import { useGuardedNav } from '../../../hooks/use-guarded-nav';
@@ -50,8 +50,19 @@ function SpirePositionMomentsHost({ lang, coinRank, positions, blocked, busy, on
     positions.consume(candidate.kind, candidate.key);
   }, [active, candidate, positions]);
 
+  // зачем (аудит Optimistic UI 17.10, п.12): `active` из замыкания — два тапа в одном кадре (или «назад» мимо fire()) оба проходили и onClimb шёл дважды; защёлка по ключу окна
+  const finishedKeyRef = useRef<string | null>(null);
   const finish = useCallback((reason: string, then?: () => void) => {
-    if (!active) return;
+    if (!active) {
+      console.log(`[SPIRE-POSITION] закрыть: окна нет причина=${reason}`); // guard-ok: ранний выход
+      return;
+    }
+    const windowKey = `${active.kind}:${active.key}`;
+    if (finishedKeyRef.current === windowKey) {
+      console.log(`[SPIRE-POSITION] закрыть повторно — пропуск key=${windowKey} причина=${reason}`); // guard-ok: ранний выход — двойной тап
+      return;
+    }
+    finishedKeyRef.current = windowKey;
     console.log(`[SPIRE-POSITION] закрыто kind=${active.kind} key=${active.key} причина=${reason}`); // guard-ok: единичный журнал закрытия
     setClosed((prev) => [...prev, `${active.kind}:${active.key}`]);
     setActive(null);

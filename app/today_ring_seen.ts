@@ -31,6 +31,14 @@ export function todayRingFrom(seen: TodayRingSeen | null, dayKey: string): Today
   return seen && seen.dayKey === dayKey ? seen.progress : ZERO;
 }
 
+/**
+ * Синхронно из памяти процесса (повторное открытие за запуск) — кольцо стоит уже в первом кадре.
+ * зачем (аудит Optimistic UI 17.10, п.7): раньше место под кольцо было пустым до ответа асинхронного чтения (до 300 мс). null — памяти нет, читаем диск.
+ */
+export function peekTodayRingFrom(dayKey: string): TodayRingProgress | null {
+  return memory ? todayRingFrom(memory, dayKey) : null;
+}
+
 /** Прогресс «до» для экрана: память → диск (с потолком) → ноль. Источник всегда в журнале. */
 export async function readTodayRingFrom(dayKey: string): Promise<Readonly<{ from: TodayRingProgress; source: TodayRingFromSource }>> {
   if (memory) {

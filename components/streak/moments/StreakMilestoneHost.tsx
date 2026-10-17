@@ -35,7 +35,9 @@ function StreakMilestoneHost({ lang, onOpenChange }: StreakMilestoneHostProps) {
 
   useEffect(() => {
     let cancelled = false;
+    // зачем (аудит Optimistic UI 17.10, п.9): без try/catch сбой чтения диска оставлял рубеж «ожидающим» навсегда — он держал паузу остальных окон
     void (async () => {
+      try {
       const pending = peekStreakMilestonePending();
       const today = getLocalDayKey();
       const decision = decideStreakMilestone({ momentsV3: true, pending, today, fact: peekStreakDayState() });
@@ -46,7 +48,10 @@ function StreakMilestoneHost({ lang, onOpenChange }: StreakMilestoneHostProps) {
         show = false;
         reason = `already_shown_on_disk key=${key}`;
       }
-      if (cancelled) return;
+      if (cancelled) {
+        console.log('[STREAK-MILESTONE] gate:cancelled экран ушёл до решения'); // guard-ok: ранний выход
+        return;
+      }
       console.log(`[STREAK-MILESTONE] gate: рубеж=${pending ? pending.days : 'нет'} день=${pending ? pending.dayKey : '—'} сегодня=${today} флаг=true решение=${show ? 'показать' : 'не показывать'} причина=${reason}`); // guard-ok: журнал решения [STREAK-MILESTONE] нужен и в сборке (правило владельца: логи на ветвлениях)
       if (show && decision.show && key !== null) {
         // зачем (Дизайн 15.10): пауза для окон m09/m17 не должна мигать — сначала «открыто», потом забираем ожидающий (hold непрерывно true)
@@ -60,6 +65,10 @@ function StreakMilestoneHost({ lang, onOpenChange }: StreakMilestoneHostProps) {
         console.log(`[STREAK-MILESTONE] показ рубеж=${decision.milestone} вид=${streakMomentKind(decision.milestone)} монета=${String(coinRank)}`); // guard-ok: единичный журнал показа
       } else {
         // устаревший или уже показанный рубеж не должен висеть и держать другие окна
+        consumeStreakMilestonePending();
+      }
+      } catch (error: unknown) {
+        console.warn('[STREAK-MILESTONE] gate:failed — рубеж снят, окна не держим', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
         consumeStreakMilestonePending();
       }
     })();

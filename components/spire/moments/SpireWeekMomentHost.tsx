@@ -52,14 +52,15 @@ export function spireWeekGapToTop5(result: SpireWeekMomentShow['result']): numbe
 function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemind, testID = 'spire-week-moment' }: SpireWeekMomentHostProps) {
   const { result, outcome } = decision;
   // зачем (координатор 14.10, аудит Optimistic UI; эталон v3-all: «Играть» — человек сам начинает новую неделю): сначала синхронно закрываем окно, потом ведём в Пик; повторный тап не уводит дважды
-  const playedRef = useRef(false);
+  // зачем (аудит Optimistic UI 17.10, п.11): защёлка привязана к самому решению — новое решение в том же окне снова даёт «Играть»
+  const playedRef = useRef<SpireWeekMomentShow | null>(null);
   const handlePlay = useCallback(() => {
-    if (playedRef.current) { console.log('[WEEK-MOMENT] кнопка Играть повторно — пропуск'); return; }
-    playedRef.current = true;
+    if (playedRef.current === decision) { console.log('[WEEK-MOMENT] кнопка Играть повторно — пропуск'); return; } // guard-ok: ранний выход — двойной тап
+    playedRef.current = decision;
     console.log(`[WEEK-MOMENT] кнопка Играть: окно закрыто, переход в Пик=${String(Boolean(onPlay))}`); // guard-ok: единичный лог действия
     onClose();
     onPlay?.();
-  }, [onClose, onPlay]);
+  }, [decision, onClose, onPlay]);
   const rows = useMemo(() => spireWeekLadderRows(result.ladder), [result.ladder]);
   // зачем (координатор 15.10, m01 вариант B): «Поделиться» — системное окно с текстом из строк (лига, место, монеты недели; без имени и идентификаторов), на наш сервер ничего не уходит; пока окно открыто, второе не открываем
   const sharingRef = useRef(false);

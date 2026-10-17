@@ -2273,7 +2273,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               pl: 'Wstecz',
             })}
           >
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+            <BackGlyph size={28} color={t.textPrimary} />
           </TouchableOpacity>
 
           {/* Аватар: иконка сценария в свете сцены */}
@@ -3722,3 +3722,5 @@ export default function AiDialogSessionRoute() {
     </AiDialogConsentGate>
   );
 }
+
+import BackGlyph from '../components/v2/BackGlyph';

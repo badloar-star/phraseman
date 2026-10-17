@@ -39,6 +39,7 @@ import {
   normalizeSpeechRate,
   type UserSettings,
 } from './user_settings_store';
+import BackGlyph from '../components/v2/BackGlyph';
 
 // зачем (Ревизор 15.10, 🟡 к e6392a5a7): выбор голоса шёл только среди en-* — теперь по изучаемому языку; фраза превью на нём же
 const PREVIEW_PHRASE: Readonly<Record<VoiceStudyLang, string>> = {
@@ -363,7 +364,7 @@ export default function FlashcardsVoicePickerScreen() {
               onPress={leave}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              <BackGlyph size={28} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} testID="fc-voice-picker-title">
               {/* язык в заголовке — изучаемый (EN / ES / FR / DE / IT), а не всегда EN */}

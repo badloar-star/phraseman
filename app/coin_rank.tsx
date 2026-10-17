@@ -367,7 +367,7 @@ export default function CoinRankScreen() {
           scaleTo={0.94}
           style={styles.backButton}
         >
-          <Ionicons name="chevron-back" size={21} color={p.text} />
+          <BackGlyph size={21} color={p.text} />
         </V2Pressable>
       </View>
       {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как кошелёк и профиль. */}
@@ -585,3 +585,5 @@ const styles = StyleSheet.create({
   footNote: { ...V2_TYPE.subtitle, textAlign: 'center', marginTop: 10 },
 });
 
+
+import BackGlyph from '../components/v2/BackGlyph';

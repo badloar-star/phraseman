@@ -39,6 +39,7 @@ import PhraseCard, { useFcReduceMotion, type PhraseCardPackTheme } from './Phras
 import { isLowPowerEffective } from './low_power';
 import type { WordStrength } from './word_strength';
 import { CardItem, resolveFlashcardBackText, type FlashcardContentLang } from './types';
+import BackGlyph from '../../components/v2/BackGlyph';
 
 /** Подложки стека (§3.2): scale 0.95/0.90, translateY 12/24. */
 const UNDER_1 = { scale: 0.95, ty: 12 } as const;
@@ -571,7 +572,7 @@ export default function CollectionDeckView({
           style={{ width: 54, height: 54, borderRadius: 27, opacity: index <= 0 ? 0.42 : 1 }}
         >
           <View style={{ width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl }}>
-            <Ionicons name="chevron-back" size={26} color={index <= 0 ? g.mutedText : g.text} />
+            <BackGlyph size={26} color={index <= 0 ? g.mutedText : g.text} />
           </View>
         </PressableHybrid>
         {/*

@@ -18,7 +18,6 @@ import { triLang } from '../constants/i18n';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { PressableScale } from '../components/feedback/PressableScale';
 import HomeV2TodayCard from '../components/home/v2/HomeV2TodayCard';
 import type { TodayTask } from '../components/home/v2/home_v2_types';
 import { todayRingColors, useStreakColors } from '../components/streak/moments/use_streak_colors';
@@ -29,6 +28,7 @@ import { useTodayTasks } from '../hooks/use_today_tasks';
 import { safeRouterBack } from './navigation_back';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
 import { readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
+import BackButton from '../components/v2/BackButton';
 
 /**
  * Высота блока колец: кольцо 222 (макет Б) + отступы TodayRings 2/14 + отступы блока 26/12 (в макете 28 сверху / 26 снизу).
@@ -114,16 +114,13 @@ export default function TodayTasksScreen() {
     <View testID="today-tasks-screen" style={[s.root, { backgroundColor: p.bg }]}>
       <SafeAreaView style={s.root} edges={['top']}>
         <View style={s.header}>
-          <PressableScale
+          {/* зачем (Темы 17.10): круг «назад» на opaqueControl сливался со страницей (1,00 на светлых, 1,25 на тёмных при пороге 1,5) — общая кнопка BackButton на buttonFill (≥ 1,71) */}
+          <BackButton
             testID="today-tasks-back"
+            screen="today_tasks"
             onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
-            variant="flat"
-            accessibilityRole="button"
             accessibilityLabel={backLabel}
-            style={[s.back, { backgroundColor: p.control }]}
-          >
-            <Ionicons name="chevron-back" size={23} color={p.text} />
-          </PressableScale>
+          />
           <Text accessibilityRole="header" numberOfLines={1} style={[s.title, { color: p.text }]}>{title}</Text>
         </View>
         <ScrollView contentContainerStyle={s.content} decelerationRate="fast">
@@ -146,7 +143,6 @@ export default function TodayTasksScreen() {
 const s = StyleSheet.create({
   root: { flex: 1 },
   header: { height: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap },
-  back: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center' },
   // зачем (макет Б, сверка Макетов 837f89983 п.3): заголовок экрана «Сегодня» 28/34 (общий V2_TYPE.title — 24/30), вес и трекинг — общие
   title: { flex: 1, ...V2_TYPE.title, fontSize: 28, lineHeight: 34 },
   content: { paddingHorizontal: V2.screenPad - 6, paddingTop: 8, paddingBottom: 32, gap: 8 },

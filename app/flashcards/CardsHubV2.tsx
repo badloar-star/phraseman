@@ -18,6 +18,7 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { isDevAnimationsOff, subscribeDevAnimationsOff } from '../dev_animations_off';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import BackGlyph from '../../components/v2/BackGlyph';
 
 export type CardsHubTile = Readonly<{
   id: 'saved' | 'mine' | 'video' | 'community';
@@ -140,7 +141,7 @@ function CardsHubV2Inner({
       <View style={[styles.topbar, fs > 1 && { height: undefined, minHeight: 44 }]}>
         <Pressable testID="fc-cards-hub-back" accessibilityRole="button" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8}
           style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
-          <Ionicons name="arrow-back" size={20} color={g.text} />
+          <BackGlyph size={20} color={g.text} />
         </Pressable>
         <View style={styles.topRight}>
           {limitLabel ? (

@@ -411,7 +411,7 @@ function AiCompanionSession() {
               backgroundColor: glassFill(t.bgSurface, 0.56),
             }}
           >
-            <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
+            <BackGlyph size={22} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.h3, lineHeight: Math.round(f.h3 * 1.12) }}>
@@ -708,3 +708,5 @@ export default function AiCompanionSessionRoute() {
     </AiCompanionPlusGate>
   );
 }
+
+import BackGlyph from '../components/v2/BackGlyph';

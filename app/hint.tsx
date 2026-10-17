@@ -24,10 +24,11 @@ import TheoryLessonView, {
 } from '../components/theory/TheoryLessonView';
 import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
-import { theoryContentKey, theoryEntryFor } from '../constants/i18n';
+import { THEORY_FALLBACK, theoryContentKey, theoryEntryFor, theoryHasOwnText } from '../constants/i18n';
 import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { RowDivider } from '../components/v2/RowDivider';
+import BackGlyph from '../components/v2/BackGlyph';
 
 function L(
   lang: Lang,
@@ -1476,7 +1477,8 @@ function HintScreen() {
 
   // Новая теория «дорогой минимализм» — для всех уроков с готовым контентом
   // (реестр theory_content_registry, уроки 1-32). Остальные — прежняя шпаргалка.
-  if (hasTheoryContent(lessonId)) {
+  // зачем (координатор 17.10): без своей теории (English в режиме hide) — 9-язычная шпаргалка ниже, а не испанская теория
+  if (hasTheoryContent(lessonId) && (theoryHasOwnText(lang) || THEORY_FALLBACK === 'es')) {
     return <LessonTheoryNew lessonId={lessonId} />;
   }
 
@@ -1513,7 +1515,7 @@ function HintScreen() {
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14 }}>
         <RowDivider edge="bottom" color={t.border} />
         <TapScale onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={{ marginRight: 12 }}>
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+          <BackGlyph size={28} color={t.textPrimary} />
         </TapScale>
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textMuted, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.7 }}>

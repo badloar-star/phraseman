@@ -63,6 +63,7 @@ import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { traceAccountDeleteUi } from './account_delete_ui_trace';
 import { DebugLogger } from './debug-logger';
 import { prewarmAccountWipeModules, warmAuthSignInCallables } from './cloud_sync';
+import BackGlyph from '../components/v2/BackGlyph';
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   ru: 'ru-RU',
@@ -255,7 +256,7 @@ export default function AccountDetailsScreen() {
               // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
               contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              <Ionicons name="chevron-back" size={21} color={glass.text} />
+              <BackGlyph size={21} color={glass.text} />
             </PressableHybrid>
             <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}

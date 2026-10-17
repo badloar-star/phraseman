@@ -11,6 +11,7 @@ import KitTouchable from '../components/KitTouchable';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { decidePerfectMoment, perfectMomentKey } from '../components/lesson_moments/perfect_moment_gate';
 import { streakMilestoneHostLoadFailed, useStreakMilestoneHold } from './streak_milestone_pending';
+import BackGlyph from '../components/v2/BackGlyph';
 // зачем (координатор 15.10): окно рубежа серии грузится лениво и только когда есть ожидающий или открытый рубеж при moments_v3; идёт ПЕРВЫМ, остальные окна экрана ждут
 // зачем (R64): модуль не загрузился — снимаем удержание слота #36, иначе следующий момент ждёт вечно
 const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
@@ -1696,7 +1697,7 @@ export default function LessonComplete() {
           overflow: 'hidden',
         }}
       >
-        <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+        <BackGlyph size={20} color={t.textPrimary} />
       </TapScale>
       )}
       <ContentWrap>

@@ -33,6 +33,7 @@ import PackLanguagePicker from './PackLanguagePicker';
 import type { PackLanguage } from './pack_languages';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
+import BackGlyph from '../../components/v2/BackGlyph';
 
 const VIEW_TOGGLE_SIZE = 40;
 const VIEW_TOGGLE_ICON_SIZE = 18;
@@ -303,7 +304,7 @@ export default function CollectionHeader({
             style={{ width: 40, minHeight: 44, justifyContent: 'center' }}
             hitSlop={{ top:12,bottom:12,left:12,right:12 }}
           >
-            <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+            <BackGlyph size={24} color={t.textPrimary} />
           </TouchableOpacity>
         )}
         {/*

@@ -33,6 +33,7 @@ import { PlateFill, plateBoxShadow, useShadowGlass } from '../components/v2/Shad
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { safeRouterBack } from './navigation_back';
+import BackGlyph from '../components/v2/BackGlyph';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -276,7 +277,7 @@ export default function DialogueV2MemoryRoute() {
         accessibilityLabel={copy.back}
         style={{ width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center', backgroundColor: p.control }}
       >
-        <Ionicons name="chevron-back" size={23} color={p.text} />
+        <BackGlyph size={23} color={p.text} />
       </PressableScale>
       <Text accessibilityRole="header" style={{ flex: 1, color: p.text, ...V2_TYPE.title }}>{copy.title}</Text>
     </View>

@@ -39,7 +39,8 @@ describe('approved Cards hub entry', () => {
     expect(hub).toContain("safeRouterBack(router, '/(tabs)/home' as never)");
     const view = read('app', 'flashcards', 'CardsHubV2.tsx');
     expect(view).toContain('testID="fc-cards-hub-back"');
-    expect(view).toContain('name="arrow-back"');
+    // 17.10 (слово владельца): «назад» — общий значок BackGlyph вместо системной стрелки
+    expect(view).toContain('<BackGlyph');
     expect(view).toContain('accessibilityLabel={labels.back}');
     expect(hub).toContain('back: copy.back');
   });

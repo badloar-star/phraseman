@@ -58,6 +58,7 @@ import { actionToastTri, emitAppEvent } from './events';
 import { fill, onboardingCopy, type OnboardingCopyKey } from '../components/onboarding/clean_onboarding_copy';
 import { languageNameOf } from '../components/onboarding/clean_onboarding_options';
 import { IS_STORE_RELEASE } from './config';
+import BackGlyph from '../components/v2/BackGlyph';
 
 const EXEMPT_COLOR_1 = '#E3ECFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
 const EXEMPT_COLOR_2 = '#C6D3FF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
@@ -323,7 +324,7 @@ export default function LanguageWelcomeScreen() {
           accessibilityRole="button"
           style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}
         >
-          <Ionicons name="chevron-back" size={30} color={EXEMPT_COLOR_9} />
+          <BackGlyph size={30} color={EXEMPT_COLOR_9} />
         </Pressable>
         <View style={styles.dotsRow}>
           {[0, 1, 2].map((i) => (

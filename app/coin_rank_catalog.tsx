@@ -15,6 +15,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { V2 } from '../constants/v2Style';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
+import BackGlyph from '../components/v2/BackGlyph';
 
 // зачем (владелец 11.10, журнал 35): каталог рангов монет — ОТДЕЛЬНЫЙ экран по макету coins.html (`rankCatalog`: «назад», заголовок
 // «Ранги монеты», сетка 4×5 «монета 50 + Ранг N», текущий ранг подсвечен), вход — ссылка «Все ранги» с экрана «Повысить ранг».
@@ -42,7 +43,7 @@ export default function CoinRankCatalogScreen() {
           scaleTo={0.94}
           style={styles.backButton}
         >
-          <Ionicons name="chevron-back" size={21} color={p.text} />
+          <BackGlyph size={21} color={p.text} />
         </V2Pressable>
       </View>
       <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{coinRankCatalogTitle(lang)}</Text>

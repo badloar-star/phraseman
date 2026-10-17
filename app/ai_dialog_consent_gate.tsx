@@ -31,6 +31,7 @@ import {
   setAiDialogConsent,
   subscribeAiDialogConsent,
 } from './ai_dialog_consent';
+import BackGlyph from '../components/v2/BackGlyph';
 
 export default function AiDialogConsentGate({ children, onDeclined }: {
   children: React.ReactNode;
@@ -170,7 +171,7 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
         style={[styles.backAction, { backgroundColor: glass.opaqueCard }]}
       >
         <View style={styles.actionContent}>
-          <Ionicons name="chevron-back" size={18} color={glass.secondary} />
+          <BackGlyph size={18} color={glass.secondary} />
           <Text style={[styles.secondaryActionText, { color: glass.secondary }]}>
             {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
           </Text>

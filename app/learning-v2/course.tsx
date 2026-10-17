@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "expo-router";
+import { Redirect, usePathname } from "expo-router";
 import LessonsTab from "../(tabs)/lessons";
 import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from "../learning_v2_visibility_switch";
 
@@ -11,6 +11,13 @@ import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } 
  * map inline; opening another plaque collapses the previous one.
  */
 export default function LearningV2CourseScreen() {
+  // зачем (эмулятор 17.10: диплинк на занятие вёл на карту, LessonsTab монтировалась ×2; «сперва логи»): кто и с каким путём открыл карту курса
+  const pathname = usePathname();
+  React.useEffect(() => {
+    console.log("[V2-DEEPLINK] course:mount", JSON.stringify({ pathname, atMs: Date.now() })); // guard-ok: строка на монтирование
+    return () => console.log("[V2-DEEPLINK] course:unmount", JSON.stringify({ pathname })); // guard-ok: строка на уход
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал монтирования
+  }, []);
   // зачем (план Б 16.10): при скрытом V2 старая ссылка на курс ведёт на Главную, а не в пустой раздел.
   if (isLearningV2Hidden()) {
     logLearningV2Hidden("route_learning_v2_course", LEARNING_V2_HIDDEN_REDIRECT);

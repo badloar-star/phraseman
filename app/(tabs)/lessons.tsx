@@ -1,3 +1,4 @@
+import { peekLearningV2DevUnlockAll, rememberLearningV2DevUnlockAll } from "../learning_v2_dev_unlock_memory";
 import { LEARNING_V2_OWNER_EN_TITLES_RU } from "../../components/learning-v2/learningV2OwnerLayout";
 import LearningV2ChaptersCourse from "../../components/learning-v2/LearningV2ChaptersCourse";
 import React, {
@@ -2655,7 +2656,7 @@ export default function LessonsTab({
   // кнопочка». Поле раскрывается НАД рядом, поэтому ряд чипов не сдвигается.
   const [legacyLessonQuery, setLegacyLessonQuery] = useState("");
   const [learningV2DevUnlockAllRequested, setLearningV2DevUnlockAllRequested] =
-    useState(false);
+    useState(peekLearningV2DevUnlockAll); // зачем (эмулятор 17.10): вторая копия вкладки (диплинк) не сбрасывает dev-разблокировку
   const learningV2DevUnlockAllActive =
     __DEV__ && ENABLE_DEV_TOOLS && learningV2DevUnlockAllRequested;
   const [expandedLearningV2Lesson, setExpandedLearningV2Lesson] = useState<
@@ -4894,7 +4895,7 @@ export default function LessonsTab({
         pl: "Odblokuj wszystkie sesje do testów",
       })}
       onPress={() => {
-        setLearningV2DevUnlockAllRequested((current) => !current);
+        setLearningV2DevUnlockAllRequested((current) => { rememberLearningV2DevUnlockAll(!current); return !current; });
       }}
       variant="icon"
       style={{

@@ -2241,7 +2241,14 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
 // зачем (план Б 16.10, координатор 14.10): при скрытом V2 занятие по старой ссылке не открывается — Главная и [V2-HIDDEN].
 // Проверка в обёртке, а не внутри экрана: у экрана хуки, ранний return до них нарушил бы порядок хуков.
 export default function LearningV2SessionRoute() {
-  const { id } = useLocalSearchParams<{ id?: string | string[] }>();
+  const { id, sessionRunId, previewMode } = useLocalSearchParams<{ id?: string | string[]; sessionRunId?: string | string[]; previewMode?: string | string[] }>();
+  // зачем (эмулятор 17.10: диплинк на L01 s56 вёл на карту, LessonsTab монтировалась ×2; «сперва логи»): что пришло в маршрут занятия —
+  // без sessionRunId занятие не подготовлено картой (ready-handoff), это решает дальнейший путь
+  React.useEffect(() => {
+    console.log("[V2-DEEPLINK] session:mount", JSON.stringify({ id: first(id) ?? null, hasRunId: Boolean(first(sessionRunId)), previewMode: first(previewMode) ?? null, hidden: isLearningV2Hidden() })); // guard-ok: строка на вход в маршрут
+    return () => console.log("[V2-DEEPLINK] session:unmount", JSON.stringify({ id: first(id) ?? null })); // guard-ok: строка на уход
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал монтирования
+  }, []);
   if (isLearningV2Hidden()) {
     logLearningV2Hidden("route_learning_v2_session", LEARNING_V2_HIDDEN_REDIRECT, `session=${first(id) ?? "none"}`);
     return <Redirect href={LEARNING_V2_HIDDEN_REDIRECT} />;

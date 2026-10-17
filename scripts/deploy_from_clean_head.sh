@@ -44,7 +44,8 @@ echo "[DEPLOY-CLEAN] грязных путей в рабочем дереве (�
 # 1) выгрузка HEAD: только то, что нужно сборке functions, правилам и хостингам
 # functions-* — прочие кодовые базы firebase.json: CLI проверяет их папки, сами они не собираются и не выкладываются.
 PATHS=(functions functions-admin functions-content functions-english-test modules shared content/arena-multilingual tests scripts app components constants specs knowly-www admin/v2
-  package.json package-lock.json app.config.js app.json tsconfig.json firebase.json .firebaserc firestore.rules firestore.indexes.json storage.rules)
+  package.json package-lock.json app.config.js app.json tsconfig.json firebase.json .firebaserc firestore.rules firestore.indexes.json storage.rules
+  legal terms.html privacy.html admin/oauth-privacy.html)
 EXIST=()
 for p in "${PATHS[@]}"; do [ -n "$(git ls-tree --name-only HEAD -- "$p")" ] && EXIST+=("$p"); done
 for nm in "$X/node_modules" "$X/functions/node_modules"; do
@@ -76,8 +77,31 @@ if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions'; then
   echo "[DEPLOY-CLEAN] сборка functions и паритет рантайма — OK"
 fi
 
+# 4) сайт (выкладка сайта и политики, координатор 17.10): каркас сайта + политика в страницах = канон legal/*.json
+# зачем: страницы политики генерирует legal:sync; если в коммите страница разошлась с JSON, на сайт уехал бы не тот текст.
+# Синк гоняем в чистой копии (он идемпотентен) и сверяем, что ни одна страница не поменялась.
+if printf '%s
+' "${TARGETS[@]}" | grep -q '^hosting:knowlywww$'; then
+  node scripts/verify_website_surface_contract.mjs --root knowly-www > "$X.site.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL каркас сайта — $X.site.log"; tail -10 "$X.site.log"; exit 1; }
+  echo "[DEPLOY-CLEAN] каркас сайта — OK"
+  LEGAL_PAGES=(knowly-www/legal/terms/index.html knowly-www/legal/privacy/index.html knowly-www/legal/privacy-ios/index.html knowly-www/legal/data-deletion/index.html)
+  for f in "${LEGAL_PAGES[@]}"; do [ -f "$f" ] || { echo "[DEPLOY-CLEAN] FAIL нет страницы политики $f"; exit 1; }; cp "$f" "$f.head"; done
+  node scripts/sync-legal-html.mjs > "$X.legal.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL legal:sync — $X.legal.log"; tail -10 "$X.legal.log"; exit 1; }
+  DRIFT=0
+  for f in "${LEGAL_PAGES[@]}"; do
+    # сравниваем текст без \r: выгрузка идёт с autocrlf, синк переносит часть \r из JSON — это не расхождение текста
+    if ! cmp -s <(tr -d '\015' < "$f") <(tr -d '\015' < "$f.head"); then echo "[DEPLOY-CLEAN] FAIL политика: $f в коммите расходится с legal/*.json (нужен npm run legal:sync + коммит)"; DRIFT=1; fi
+    rm -f "$f.head"
+  done
+  [ $DRIFT -eq 0 ] || exit 1
+  echo "[DEPLOY-CLEAN] страницы политики = legal/*.json — OK ($(grep -o 'October [0-9]*, 2026' knowly-www/legal/privacy/index.html | head -1))"
+fi
+
 CMD=(firebase deploy --only "$ONLY" --project "$PROJECT")
 if [ $EXECUTE -ne 1 ]; then
+  # проверка самим Firebase CLI без выкладки (для хостинга — сверка конфига и файлов; ничего не публикует)
+  "${CMD[@]}" --dry-run > "$X.dryrun.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL firebase --dry-run — $X.dryrun.log"; tail -15 "$X.dryrun.log"; exit 1; }
+  echo "[DEPLOY-CLEAN] firebase --dry-run — OK ($X.dryrun.log)"
   echo "[DEPLOY-CLEAN] PASS сухой прогон HEAD=$SHORT. Выкладка (только по слову владельца): bash scripts/deploy_from_clean_head.sh --only \"$ONLY\" --execute"
   echo "[DEPLOY-CLEAN] Команда, которая выполнится в $X: ${CMD[*]}"
   exit 0

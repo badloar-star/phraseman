@@ -1,22 +1,42 @@
 [
   {
+    "interactionId": "en:lesson-01:session-47:word:dangerous",
+    "correctText": "dangerous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:word:slippery",
+    "correctText": "slippery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:word:deep",
+    "correctText": "deep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:word:rusty",
+    "correctText": "rusty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-47:i01",
     "correctText": "It is dangerous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i02",
-    "correctText": "It is dangerous.",
+    "correctText": "They are slippery.",
     "correctResponseId": "en:lesson-01:session-47:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i03",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-47:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i04",
-    "correctText": "en:lesson-01:session-47:i04:p1=dangerous\nen:lesson-01:session-47:i04:p2=brave\nen:lesson-01:session-47:i04:p3=useful\nen:lesson-01:session-47:i04:p4=useless",
+    "correctText": "en:lesson-01:session-47:i04:p1=dangerous\nen:lesson-01:session-47:i04:p2=slippery\nen:lesson-01:session-47:i04:p3=deep\nen:lesson-01:session-47:i04:p4=rusty",
     "correctResponseId": null
   },
   {
@@ -31,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i07",
-    "correctText": "It's dangerous.",
+    "correctText": "It's rusty.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i09",
-    "correctText": "He is brave.",
+    "correctText": "It is deep.",
     "correctResponseId": "en:lesson-01:session-47:i09:r1"
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i11",
-    "correctText": "They're dangerous.",
+    "correctText": "They're slippery.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i13",
-    "correctText": "I am brave.",
+    "correctText": "They are rusty.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i16",
-    "correctText": "en:lesson-01:session-47:i16:p1=dangerous\nen:lesson-01:session-47:i16:p2=brave\nen:lesson-01:session-47:i16:p3=honest\nen:lesson-01:session-47:i16:p4=polite",
+    "correctText": "en:lesson-01:session-47:i16:p1=careful\nen:lesson-01:session-47:i16:p2=afraid\nen:lesson-01:session-47:i16:p3=steep\nen:lesson-01:session-47:i16:p4=wet",
     "correctResponseId": null
   },
   {

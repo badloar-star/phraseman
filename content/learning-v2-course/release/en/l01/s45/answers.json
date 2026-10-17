@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-45:word:useful",
+    "correctText": "useful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-45:word:packed",
+    "correctText": "packed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-45:word:spacious",
+    "correctText": "spacious",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-45:word:sturdy",
+    "correctText": "sturdy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-45:i01",
     "correctText": "It is useful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i02",
-    "correctText": "They are useful.",
+    "correctText": "They are packed.",
     "correctResponseId": "en:lesson-01:session-45:i02:r1"
   },
   {
@@ -16,17 +36,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-45:i04",
-    "correctText": "en:lesson-01:session-45:i04:p1=useful\nen:lesson-01:session-45:i04:p2=lonely\nen:lesson-01:session-45:i04:p3=curious\nen:lesson-01:session-45:i04:p4=patient",
+    "correctText": "en:lesson-01:session-45:i04:p1=useful\nen:lesson-01:session-45:i04:p2=packed\nen:lesson-01:session-45:i04:p3=spacious\nen:lesson-01:session-45:i04:p4=sturdy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i05",
-    "correctText": "It's useful.",
+    "correctText": "It's spacious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i06",
-    "correctText": "They are useful.",
+    "correctText": "They are packed.",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-01:session-45:i09",
-    "correctText": "He is lonely.",
+    "correctText": "It is sturdy.",
     "correctResponseId": "en:lesson-01:session-45:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i10",
-    "correctText": "en:lesson-01:session-45:i10:p1=It's\nen:lesson-01:session-45:i10:p2=They're\nen:lesson-01:session-45:i10:p3=He's\nen:lesson-01:session-45:i10:p4=She's",
+    "correctText": "en:lesson-01:session-45:i10:p1=It's\nen:lesson-01:session-45:i10:p2=They're\nen:lesson-01:session-45:i10:p3=I'm\nen:lesson-01:session-45:i10:p4=We're",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i11",
-    "correctText": "They're useful.",
+    "correctText": "They're sturdy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i12",
-    "correctText": "I am lonely.",
+    "correctText": "I am packed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i13",
-    "correctText": "It is useful.",
+    "correctText": "It is spacious.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-45:i15",
-    "correctText": "She's lonely.",
+    "correctText": "We're packed.",
     "correctResponseId": "en:lesson-01:session-45:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i16",
-    "correctText": "en:lesson-01:session-45:i16:p1=I'm\nen:lesson-01:session-45:i16:p2=We're\nen:lesson-01:session-45:i16:p3=useful\nen:lesson-01:session-45:i16:p4=lonely",
+    "correctText": "en:lesson-01:session-45:i16:p1=fragile\nen:lesson-01:session-45:i16:p2=heavy\nen:lesson-01:session-45:i16:p3=empty\nen:lesson-01:session-45:i16:p4=messy",
     "correctResponseId": null
   },
   {

@@ -14022,15 +14022,111 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "It is cheap.",
-          "file": "8e51cf5b045b393cfc3470e26314342d03238f5bfa032e0acd21b2fc297b7d7a.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e51cf5b045b393cfc3470e26314342d03238f5bfa032e0acd21b2fc297b7d7a.mp3",
-          "contentHash": "5a5da6e0358d3f4eea7e3de5048c06af1fd47be7352b09eea03a88497e04aa78",
-          "byteSize": 38784
+          "text": "It's cheap.",
+          "file": "106c41b66a51b0142a6632c6e2b2471f39c67535107f150793137a4d7d167d37.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/106c41b66a51b0142a6632c6e2b2471f39c67535107f150793137a4d7d167d37.mp3",
+          "contentHash": "f3cd43a7a336b662fbc54ad09340f1c75a1ed11058135c67981dc8aa9e6a3acc",
+          "byteSize": 24192
         }
       ]
     },
     "l01/s49/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's secondhand.",
+          "file": "acb858e8191ad6942305b4b902543a202ca8a72d376f35de7925a7e924053011.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/acb858e8191ad6942305b4b902543a202ca8a72d376f35de7925a7e924053011.mp3",
+          "contentHash": "f8e295bd704814db00fb578f3674e2f09c5db257317d6b8a277c18037f419547",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l01/s49/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's rare.",
+          "file": "4ac08b0af99743604f63a48fe481ceedabab06df8a26fed43e295e79e53d9317.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4ac08b0af99743604f63a48fe481ceedabab06df8a26fed43e295e79e53d9317.mp3",
+          "contentHash": "69701c7288a88d88bbeefc962402f418ec8a485812cf47997457aea31e1c37ad",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l01/s49/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "cheap",
+          "file": "30008b4f790dd4c4473f1c5d948e7712a7aa3bd716fced82284931d12de15ac6.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6f556046e0c00469fe2824a-coral.mp3",
+          "contentHash": "7f23f646daca768ca861dd93c0454b96b34dd8c6e976db2ec8cb8fe504170a53",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l01/s49/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "secondhand",
+          "file": "3d97212a847c351a44be1da66236d57f61acb72ea106353fa688708dfbc6eb7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d97212a847c351a44be1da66236d57f61acb72ea106353fa688708dfbc6eb7e.mp3",
+          "contentHash": "495ab0d10dc39a73b1a88d37aed58f9930c5452dda65dcafaabc576ed2b77b57",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l01/s49/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "colorful",
+          "file": "cbc388774c167834c4a6888e2b3a0938ada13c4f619cc89e23ac2694bd613d52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cbc388774c167834c4a6888e2b3a0938ada13c4f619cc89e23ac2694bd613d52.mp3",
+          "contentHash": "801f646cad5140d728e1a0851d08c940bf5ec8d96dd42adcd050a443c2f4a34b",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l01/s49/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "rare",
+          "file": "967bf0148b27a267d6de40535210a0f645db20a7f819b1252ea0a6aa5a29194a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/967bf0148b27a267d6de40535210a0f645db20a7f819b1252ea0a6aa5a29194a.mp3",
+          "contentHash": "73fd93f569c1ababd5f84317c2121b1d082790ff5e16ec4835fe518ce4d2cad5",
+          "byteSize": 11520
+        }
+      ]
+    },
+    "l01/s49/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is cheap.",
+          "file": "3a61d697d620ddd0d639ba5dd2297f1e62a570d47da9fd6856fc7ac11bb60a8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a61d697d620ddd0d639ba5dd2297f1e62a570d47da9fd6856fc7ac11bb60a8f.mp3",
+          "contentHash": "34e97319ab9759f6e7841da574e7b335b2c4f74671008db5b3af3e8578d2b897",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l01/s49/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is rare.",
+          "file": "3859b47484c2fc731d8176335a740db039bcfbd2871384d8a474c64d7da87e66.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3859b47484c2fc731d8176335a740db039bcfbd2871384d8a474c64d7da87e66.mp3",
+          "contentHash": "16d8b1d682a1bc06192763d1f30c901398a953048f42adaedb14babdeb35f51a",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l01/s49/task/6": {
       "voice": "onyx",
       "clips": [
         {
@@ -14042,124 +14138,76 @@
         }
       ]
     },
-    "l01/s49/intro/2": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "He is honest.",
-          "file": "9e4675e3a178704e8c8d637cd8e9c0b1f9ac21ae8cff6696894969efe97a14be.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e4675e3a178704e8c8d637cd8e9c0b1f9ac21ae8cff6696894969efe97a14be.mp3",
-          "contentHash": "6bef49c23712c78bcfdb168dc70cecf0cf8546face355fca21fb6844d3dc5a0f",
-          "byteSize": 36480
-        }
-      ]
-    },
-    "l01/s49/task/0": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "It is cheap.",
-          "file": "831ac7e8dba98112f421d6639b5204850f64b5a95519c2b1540e48a572e41239.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/831ac7e8dba98112f421d6639b5204850f64b5a95519c2b1540e48a572e41239.mp3",
-          "contentHash": "666fb5812ba593b3eb4a156f6b69e2a8fe35e369a67f8d4d3bbbe9d3f1e63333",
-          "byteSize": 28416
-        }
-      ]
-    },
-    "l01/s49/task/1": {
+    "l01/s49/task/7": {
       "voice": "onyx",
-      "clips": [
-        {
-          "text": "It is cheap.",
-          "file": "9b798957782d95a760f4565bc28a3071c9f6796ed5424e80eea9d54d17289876.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9b798957782d95a760f4565bc28a3071c9f6796ed5424e80eea9d54d17289876.mp3",
-          "contentHash": "16b214fea7e9e1ce74d45251ee91dc9d66db749d1b5cbd1af518984915f41662",
-          "byteSize": 29184
-        }
-      ]
-    },
-    "l01/s49/task/2": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "They are cheap.",
-          "file": "c87e1d774ca7b1c9637d0906281e2cc6c67c69107179606eb9ada86b9f3237c7.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c87e1d774ca7b1c9637d0906281e2cc6c67c69107179606eb9ada86b9f3237c7.mp3",
-          "contentHash": "d7ecd1a09b03c839e8124a2e9c5fa62fe4c15ad532281198af4f44f40772a33e",
-          "byteSize": 42624
-        }
-      ]
-    },
-    "l01/s49/task/3": {
-      "voice": "nova",
       "clips": [
         {
           "text": "cheap",
-          "file": "547ceb2320293392cbcc34f96594159729f8d4cfd58ab8451062e766330ff535.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6f556046e0c00469fe2824a-nova.mp3",
-          "contentHash": "185b721b84bede7d804748bb165004119969354de2dd0ca67002b9a21c3bc1a4",
-          "byteSize": 12288
+          "file": "8e8551c6ec969cf6712cabaeb389d6a4e0baa69796396ffb70511e048a4d6ddf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6f556046e0c00469fe2824a-onyx.mp3",
+          "contentHash": "196ffa926aee8330ad7fcd4f5b9cc9d1196e125e55d7423dfcf934d0d68d5b3c",
+          "byteSize": 18816
         },
         {
-          "text": "honest",
-          "file": "26344a45daf48b083a6978945a043ef90ba338bdc1edd467eea87042d634950b.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/bf5b6382c2ea46ede3117c02-nova.mp3",
-          "contentHash": "549cfff1da6a8241d35fe7cafbd52c23ccfa43c22eb57451161932065d96ea88",
-          "byteSize": 20352
+          "text": "secondhand",
+          "file": "3d97212a847c351a44be1da66236d57f61acb72ea106353fa688708dfbc6eb7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d97212a847c351a44be1da66236d57f61acb72ea106353fa688708dfbc6eb7e.mp3",
+          "contentHash": "495ab0d10dc39a73b1a88d37aed58f9930c5452dda65dcafaabc576ed2b77b57",
+          "byteSize": 23040
         },
         {
-          "text": "useful",
-          "file": "5ab59dc99590476e47f3c38618a35b1a7e32e4042665568cc56144771bb0886b.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ab59dc99590476e47f3c38618a35b1a7e32e4042665568cc56144771bb0886b.mp3",
-          "contentHash": "e2e3cd99fafc1330a34f28ce9076711c5a5f38ddf368c1983d983d1c2ecfcea2",
-          "byteSize": 21120
+          "text": "colorful",
+          "file": "d556fa22320be25c3b509311e1deec0cb33dae9ee0a0498f13dd393e4ecaacd7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d556fa22320be25c3b509311e1deec0cb33dae9ee0a0498f13dd393e4ecaacd7.mp3",
+          "contentHash": "eda58b7b080de79488bdb28be9d81a98f6e0072c084265eea54f5a3e8d80c6ff",
+          "byteSize": 21888
         },
         {
-          "text": "polite",
-          "file": "f410f8457cf0a4594661d1628d68e8759e9bc8c47a42e26dadae08174b6d90d8.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/cad2a80df44e3abf27b7cc4c-nova.mp3",
-          "contentHash": "e0d641db6ff131fc92d0e085ac1d3e9300061ab9f2ebc2e3e9969c2237434992",
-          "byteSize": 17280
+          "text": "rare",
+          "file": "9d57e462660fd18111b97f206a10def41bda7a170a8b03885ff03b55bb51ab51.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d57e462660fd18111b97f206a10def41bda7a170a8b03885ff03b55bb51ab51.mp3",
+          "contentHash": "2291b86db57438cc7cb796a3255e8a86bca0bb53bfee604247a5770379453adf",
+          "byteSize": 26880
         }
       ]
     },
-    "l01/s49/task/4": {
+    "l01/s49/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's colorful.",
+          "file": "7c821e0c884aaca8637d771533a97736e7de719c60f6ce3585636be8ae7f63c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c821e0c884aaca8637d771533a97736e7de719c60f6ce3585636be8ae7f63c4.mp3",
+          "contentHash": "4af2410440ce0e561f5ac320b3592669f979fc1005eecf8bb340693ca6d03988",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l01/s49/task/9": {
       "voice": "nova",
       "clips": [
         {
-          "text": "It's cheap.",
-          "file": "7dabc8115f5156c2b39e76827d9dfce9363390cb6cd42f89835930472ea18ee2.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7dabc8115f5156c2b39e76827d9dfce9363390cb6cd42f89835930472ea18ee2.mp3",
-          "contentHash": "c5f1b555c7ba175207b398e4512e532ea7ec21b1f58e9fac8dbd227f22e89652",
-          "byteSize": 19584
+          "text": "They are secondhand.",
+          "file": "66703f844a238071006b96e5ad02ce400a438c919502a6c3d50e161dd18f4cf0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/66703f844a238071006b96e5ad02ce400a438c919502a6c3d50e161dd18f4cf0.mp3",
+          "contentHash": "57115a26213ae9f8b2bb481c9e5d4782d74b8625b9d468e9ec44ddf59e6d69d9",
+          "byteSize": 33792
         }
       ]
     },
-    "l01/s49/task/5": {
-      "voice": "nova",
+    "l01/s49/task/10": {
+      "voice": "ash",
       "clips": [
         {
-          "text": "They are cheap.",
-          "file": "f82777f43d2240b78e6e75ada06c53e1f5c3193607b2272102f02e171a9e359a.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f82777f43d2240b78e6e75ada06c53e1f5c3193607b2272102f02e171a9e359a.mp3",
-          "contentHash": "da5c31df6948791d6427377460e169ae8f68754c1a2ee7f105ff16484081223f",
-          "byteSize": 31488
+          "text": "It's colorful.",
+          "file": "e14a427f60c4db4931a166d3968b2386cd00c3adac322ddfaeff4f7a1e5a900f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e14a427f60c4db4931a166d3968b2386cd00c3adac322ddfaeff4f7a1e5a900f.mp3",
+          "contentHash": "a04acfa705c77b774dc7fd9978f64f576a9874d8e683b366ddf59299999a247e",
+          "byteSize": 35712
         }
       ]
     },
-    "l01/s49/task/6": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "It's cheap.",
-          "file": "d01a92b06bfa1833a19a0bba1030e71041a5f480a58dfcbf0e83e20dfa68ea00.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d01a92b06bfa1833a19a0bba1030e71041a5f480a58dfcbf0e83e20dfa68ea00.mp3",
-          "contentHash": "8e2d7a74d38c96c890c5d78d6f3b216474eea0ddcff85b0c9e34f5c120a3ea37",
-          "byteSize": 22656
-        }
-      ]
-    },
-    "l01/s49/task/7": {
+    "l01/s49/task/11": {
       "voice": "onyx",
       "clips": [
         {
@@ -14171,84 +14219,15 @@
         }
       ]
     },
-    "l01/s49/task/8": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "He is honest.",
-          "file": "9e4675e3a178704e8c8d637cd8e9c0b1f9ac21ae8cff6696894969efe97a14be.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e4675e3a178704e8c8d637cd8e9c0b1f9ac21ae8cff6696894969efe97a14be.mp3",
-          "contentHash": "6bef49c23712c78bcfdb168dc70cecf0cf8546face355fca21fb6844d3dc5a0f",
-          "byteSize": 36480
-        }
-      ]
-    },
-    "l01/s49/task/9": {
-      "voice": "nova",
-      "clips": [
-        {
-          "text": "It's",
-          "file": "7c01938afb3fe6cbc2eb8700e7acaab0e2b21e81b61c723603d11116dc4048ad.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c01938afb3fe6cbc2eb8700e7acaab0e2b21e81b61c723603d11116dc4048ad.mp3",
-          "contentHash": "7a5df471853e35dab99c10c3e5e0b9d4eacfd2c8a55aec0b89d28c92918eef86",
-          "byteSize": 17280
-        },
-        {
-          "text": "They're",
-          "file": "39f9d873dbaec690d0c51c7c5831870e10b39712922436bb0437d9de803418ed.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/39f9d873dbaec690d0c51c7c5831870e10b39712922436bb0437d9de803418ed.mp3",
-          "contentHash": "0e6b5185189c650204734a6b07a4d083fca27d2e8db31e10e308082b207fc41e",
-          "byteSize": 12672
-        },
-        {
-          "text": "He's",
-          "file": "9865b92902f22f0dca8b9211bc7f2c744eda0fceb910b5fce2ea6436b6180254.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9865b92902f22f0dca8b9211bc7f2c744eda0fceb910b5fce2ea6436b6180254.mp3",
-          "contentHash": "f77083600aacba530a72d55b49b00bb70403d56334981697810d17d1da4a135b",
-          "byteSize": 19584
-        },
-        {
-          "text": "She's",
-          "file": "55515d4371a9a9a279c72e28acf1511c7b16ef518701523bd2c0553b799feab3.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/55515d4371a9a9a279c72e28acf1511c7b16ef518701523bd2c0553b799feab3.mp3",
-          "contentHash": "a1b3527295add26b73d73ed8b2e0db9dada7123c8d327e37b876ae9e6da4eae2",
-          "byteSize": 14976
-        }
-      ]
-    },
-    "l01/s49/task/10": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "They're cheap.",
-          "file": "be3dce64c721ad0c45fe3951b53fe9d74505363edd460fabbd19c8c328ca6e0c.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be3dce64c721ad0c45fe3951b53fe9d74505363edd460fabbd19c8c328ca6e0c.mp3",
-          "contentHash": "4bf4c58373c7ff0ac366bb4dfa8a2fe96edb37efc56f413b2b6df64f40bc7fd1",
-          "byteSize": 30720
-        }
-      ]
-    },
-    "l01/s49/task/11": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "She is honest.",
-          "file": "67f7390a6bbf15b34058ea4305d0965da5476b0eebb3161e02c9ac9be528ce4e.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/67f7390a6bbf15b34058ea4305d0965da5476b0eebb3161e02c9ac9be528ce4e.mp3",
-          "contentHash": "6670353cbb7b3e25ada02e62156b694e919b5da6e2225702a3a71112b0695703",
-          "byteSize": 32256
-        }
-      ]
-    },
     "l01/s49/task/12": {
       "voice": "nova",
       "clips": [
         {
-          "text": "It is useful.",
-          "file": "cf07495e4177802c82da5279350249ae8bf32774936ac4e05828fbf10cd6ec39.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf07495e4177802c82da5279350249ae8bf32774936ac4e05828fbf10cd6ec39.mp3",
-          "contentHash": "6c118752a9b486b19566932bc7cbcf16339b74b3a3534db893c226330bbce58e",
-          "byteSize": 35712
+          "text": "He is honest.",
+          "file": "95fc7c57bfd0f09cc3c020487e0fcac25847ea649e093df764ed3d2c019d839a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/95fc7c57bfd0f09cc3c020487e0fcac25847ea649e093df764ed3d2c019d839a.mp3",
+          "contentHash": "727cc3f2d411451eca15f7ab4d6bfb44b86381ad15b8f1eb4fe761171dec73da",
+          "byteSize": 20352
         }
       ]
     },
@@ -14256,10 +14235,31 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "It is cheap.",
-          "file": "831ac7e8dba98112f421d6639b5204850f64b5a95519c2b1540e48a572e41239.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/831ac7e8dba98112f421d6639b5204850f64b5a95519c2b1540e48a572e41239.mp3",
-          "contentHash": "666fb5812ba593b3eb4a156f6b69e2a8fe35e369a67f8d4d3bbbe9d3f1e63333",
+          "text": "It's",
+          "file": "6a2b0fbca84c4b6cd86fcb4afb3d6f16fd83e695276121efd74b88dc2cea4f1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a2b0fbca84c4b6cd86fcb4afb3d6f16fd83e695276121efd74b88dc2cea4f1e.mp3",
+          "contentHash": "a8f48970107ed11b93b5d9d1c2d10a785c748cda522ab0e0532568549933d6fd",
+          "byteSize": 20352
+        },
+        {
+          "text": "They're",
+          "file": "7e9c145bb800e711e2f86f3507aac2cacca6c8e1c81c3f352de2bdc382a2a007.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e9c145bb800e711e2f86f3507aac2cacca6c8e1c81c3f352de2bdc382a2a007.mp3",
+          "contentHash": "a528f3fba046893a1acb78f2a73e52a484b2a908760e61a1f555dfe16c70e3b7",
+          "byteSize": 32256
+        },
+        {
+          "text": "He's",
+          "file": "a4940c110e48d5e8d4b91283e733a1a11959fc4da5d02bf5e6f9f8ccb3033c1d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a4940c110e48d5e8d4b91283e733a1a11959fc4da5d02bf5e6f9f8ccb3033c1d.mp3",
+          "contentHash": "fdd58005e700300faaae42b47094a57b43e771468cbde1f6c773031b11c8bcdd",
+          "byteSize": 31488
+        },
+        {
+          "text": "She's",
+          "file": "b4f7e0a9a10a838eadd9f6a6a8375b6a16a14238763f2d94854cb93ae9f96d8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b4f7e0a9a10a838eadd9f6a6a8375b6a16a14238763f2d94854cb93ae9f96d8c.mp3",
+          "contentHash": "d8fc0c65c42689541d5f661d333980b68ddb383a7f59978c0437a08105e8b06c",
           "byteSize": 28416
         }
       ]
@@ -14268,11 +14268,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "It's cheap.",
-          "file": "7dabc8115f5156c2b39e76827d9dfce9363390cb6cd42f89835930472ea18ee2.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7dabc8115f5156c2b39e76827d9dfce9363390cb6cd42f89835930472ea18ee2.mp3",
-          "contentHash": "c5f1b555c7ba175207b398e4512e532ea7ec21b1f58e9fac8dbd227f22e89652",
-          "byteSize": 19584
+          "text": "They're cheap.",
+          "file": "994da7d984049a8a800a732ba6636f079eb254a89f5d7e54ecac4763cb39990b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/994da7d984049a8a800a732ba6636f079eb254a89f5d7e54ecac4763cb39990b.mp3",
+          "contentHash": "42a1945d29abd342f48e69616803f62205ed4bf749fae6228691fc295b1cfa52",
+          "byteSize": 20352
         }
       ]
     },
@@ -14280,32 +14280,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "cheap",
-          "file": "45c7ab3c18ca7bfa8bff5bee3848fa28bf00b7e52c1a1c220a174d83d20404d7.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6f556046e0c00469fe2824a-ash.mp3",
-          "contentHash": "3a72cc38f3689de188e1888604f1bad1bd62fc52bd2eb139ed3d69cb39af2bdc",
-          "byteSize": 34560
-        },
-        {
-          "text": "honest",
-          "file": "e1b0f0eb158de180deae20c8e463709ecc547cca4732476068770511d256e4b9.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/bf5b6382c2ea46ede3117c02-ash.mp3",
-          "contentHash": "23bf4cc68f341cd2f1a75db5cf248d907dd1754ec57a6c8d9458f2ef26b74c75",
-          "byteSize": 36480
-        },
-        {
-          "text": "useful",
-          "file": "ea441a80d30a130f763327e68b47f3d504c0741647d7be3789e4048df15b2760.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ea441a80d30a130f763327e68b47f3d504c0741647d7be3789e4048df15b2760.mp3",
-          "contentHash": "0700eab9202dc9565a35c21f83fce72cf69fdefd051305b86f22caddd0d97d01",
-          "byteSize": 32256
-        },
-        {
-          "text": "useless",
-          "file": "b35cbb6f21588879f8bd70ef14173781f5119ba18a03d0031934a8725615b6be.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b35cbb6f21588879f8bd70ef14173781f5119ba18a03d0031934a8725615b6be.mp3",
-          "contentHash": "6906f48610cd8ddfc522eb2fb4b80a1bbb7d2a176c390f93096d099dcc608567",
-          "byteSize": 25344
+          "text": "She is honest.",
+          "file": "7f846ed5df9e63ee374f3d2157f02a181a55bfef577122673b7d8e51fed3efb9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f846ed5df9e63ee374f3d2157f02a181a55bfef577122673b7d8e51fed3efb9.mp3",
+          "contentHash": "cdd3030f09c6c1ad3079096e960d2f590807ff3e139ac1ae93f3b99dedeb9485",
+          "byteSize": 43008
         }
       ]
     },
@@ -14313,11 +14292,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "It is cheap.",
-          "file": "831ac7e8dba98112f421d6639b5204850f64b5a95519c2b1540e48a572e41239.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/831ac7e8dba98112f421d6639b5204850f64b5a95519c2b1540e48a572e41239.mp3",
-          "contentHash": "666fb5812ba593b3eb4a156f6b69e2a8fe35e369a67f8d4d3bbbe9d3f1e63333",
-          "byteSize": 28416
+          "text": "It is useful.",
+          "file": "c6e19876ea3e51949b589e85ea9f4fac390676aecf8a3290db75c7930982f511.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6e19876ea3e51949b589e85ea9f4fac390676aecf8a3290db75c7930982f511.mp3",
+          "contentHash": "a4c438521d210e0518f5df2b80042bb3e9e334539e23aea2f7907ad2c0d1a99b",
+          "byteSize": 54912
         }
       ]
     },
@@ -135476,6 +135455,75 @@
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86c3317f60c20f7a31591ca08cddaa950f68b83e9209a3b971a41496e91a65b6.mp3",
           "contentHash": "9ac50e0f93cc5d39dbecc89844c6bcdc952da0a702418ae2b5f090bbece4a940",
           "byteSize": 29952
+        }
+      ]
+    },
+    "l01/s49/task/17": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is rare.",
+          "file": "899f10e7530032a091a02374213540cc93782e881adbff3256cebbd983bba924.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/899f10e7530032a091a02374213540cc93782e881adbff3256cebbd983bba924.mp3",
+          "contentHash": "0b713fecb69475ae45eeefc7c09f978b5b849d1dc8bd0a67b8153a422e003471",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l01/s49/task/18": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It's secondhand.",
+          "file": "e2c610681af6a4c25a920ea223f609711b39ac0aac37d30068215402aef5a1ca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2c610681af6a4c25a920ea223f609711b39ac0aac37d30068215402aef5a1ca.mp3",
+          "contentHash": "356c90bb58949e3244762e17b0b44e461b88a204231058a2512097a43f82b36e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l01/s49/task/19": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "cheap",
+          "file": "547ceb2320293392cbcc34f96594159729f8d4cfd58ab8451062e766330ff535.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6f556046e0c00469fe2824a-nova.mp3",
+          "contentHash": "185b721b84bede7d804748bb165004119969354de2dd0ca67002b9a21c3bc1a4",
+          "byteSize": 12288
+        },
+        {
+          "text": "honest",
+          "file": "26344a45daf48b083a6978945a043ef90ba338bdc1edd467eea87042d634950b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/bf5b6382c2ea46ede3117c02-nova.mp3",
+          "contentHash": "549cfff1da6a8241d35fe7cafbd52c23ccfa43c22eb57451161932065d96ea88",
+          "byteSize": 20352
+        },
+        {
+          "text": "useful",
+          "file": "5ab59dc99590476e47f3c38618a35b1a7e32e4042665568cc56144771bb0886b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ab59dc99590476e47f3c38618a35b1a7e32e4042665568cc56144771bb0886b.mp3",
+          "contentHash": "e2e3cd99fafc1330a34f28ce9076711c5a5f38ddf368c1983d983d1c2ecfcea2",
+          "byteSize": 21120
+        },
+        {
+          "text": "rare",
+          "file": "967bf0148b27a267d6de40535210a0f645db20a7f819b1252ea0a6aa5a29194a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/967bf0148b27a267d6de40535210a0f645db20a7f819b1252ea0a6aa5a29194a.mp3",
+          "contentHash": "73fd93f569c1ababd5f84317c2121b1d082790ff5e16ec4835fe518ce4d2cad5",
+          "byteSize": 11520
+        }
+      ]
+    },
+    "l01/s49/task/20": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It is cheap.",
+          "file": "8e51cf5b045b393cfc3470e26314342d03238f5bfa032e0acd21b2fc297b7d7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e51cf5b045b393cfc3470e26314342d03238f5bfa032e0acd21b2fc297b7d7a.mp3",
+          "contentHash": "5a5da6e0358d3f4eea7e3de5048c06af1fd47be7352b09eea03a88497e04aa78",
+          "byteSize": 38784
         }
       ]
     }

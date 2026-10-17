@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-48",
   "learningOutcomeByLocale": {
-    "ru": "выбрать точную оценку человека, предмета или действия словами шестой главы",
-    "uk": "вибрати точну оцінку людини, предмета або дії словами шостого розділу"
+    "ru": "коротко оценить вещи в мастерской It's и They're: что острое, что липкое, что сделано руками и что чудесное, и повторить слова главы",
+    "uk": "коротко оцінити речі в майстерні It's і They're: що гостре, що липке, що зроблено руками і що чудове, і повторити слова розділу"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Какой именно человек",
-        "uk": "Яка саме людина"
+        "ru": "Нож на верстаке",
+        "uk": "Ніж на верстаті"
       },
       "bodyByLocale": {
-        "ru": "Вспомните четыре разные оценки: `honest` — честный, `polite` — вежливый, `patient` — терпеливый, `curious` — любопытный. Человек может сочетать эти качества, но в ответе выбирайте то, о котором вас спрашивают.",
-        "uk": "Згадайте чотири різні оцінки: `honest` — чесний, `polite` — ввічливий, `patient` — терплячий, `curious` — допитливий. Людина може поєднувати ці якості, але у відповіді вибирайте ту, про яку вас запитують."
+        "ru": "Лена вырезает ложку из деревянной заготовки и на минуту отходит к телефону. Её шестилетний сын Миша тут же тянется к ножу на верстаке. sharp — «острый». It is sharp, коротко It's sharp — «Он острый». Про нож говорим It.",
+        "uk": "Лена вирізає ложку з дерев’яної заготовки й на хвилину відходить до телефона. Її шестирічний син Миша одразу тягнеться до ножа на верстаті. sharp — «гострий». It is sharp, коротко It's sharp — «Він гострий». Про ніж кажемо It."
       },
       "question": {
         "interactionId": "en:lesson-01:session-48:intro1:q",
         "promptByLocale": {
-          "ru": "Подруга спокойно ждёт, пока вы закончите работу, и не торопит вас. Назовите именно её терпение.",
-          "uk": "Подруга спокійно чекає, поки ви закінчите роботу, і не квапить вас. Назвіть саме її терплячість."
+          "ru": "Миша уже взял нож за ручку. Скажите ему коротко, что нож острый.",
+          "uk": "Миша вже взяв ніж за ручку. Скажіть йому коротко, що ніж гострий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-48:intro1:r1",
-              "text": "She is patient."
+              "text": "It's sharp."
             },
             {
               "responseId": "en:lesson-01:session-48:intro1:r2",
-              "text": "She is curious."
+              "text": "It's loose."
             },
             {
               "responseId": "en:lesson-01:session-48:intro1:r3",
-              "text": "She are patient."
+              "text": "He's sharp."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-48:intro1:r1",
-              "text": "She is patient."
+              "text": "It's sharp."
             },
             {
               "responseId": "en:lesson-01:session-48:intro1:r2",
-              "text": "She is curious."
+              "text": "It's loose."
             },
             {
               "responseId": "en:lesson-01:session-48:intro1:r3",
-              "text": "She are patient."
+              "text": "He's sharp."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга спокойно ждёт, пока вы закончите работу, и не торопит вас. Назовите именно её терпение.",
-          "uk": "Подруга спокійно чекає, поки ви закінчите роботу, і не квапить вас. Назвіть саме її терплячість."
+          "ru": "Миша уже взял нож за ручку. Скажите ему коротко, что нож острый.",
+          "uk": "Миша вже взяв ніж за ручку. Скажіть йому коротко, що ніж гострий."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Полезно или бесполезно",
-        "uk": "Корисне чи марне"
+        "ru": "Свежий лак",
+        "uk": "Свіжий лак"
       },
       "bodyByLocale": {
-        "ru": "`useful` — полезный, `useless` — бесполезный. Оценивайте вещь для конкретной задачи. Карта вашего города помогает найти выставку; карта другого города для этого поиска бесполезна. Зато на ней можно очень уверенно заблудиться.",
-        "uk": "`useful` — корисний, `useless` — марний. Оцінюйте річ для конкретного завдання. Карта вашого міста допомагає знайти виставку; карта іншого міста для цього пошуку марна. Зате з нею можна дуже впевнено заблукати."
+        "ru": "Олег только что покрыл лаком пять деревянных рамок. Вы трогаете одну пальцем, и палец прилипает, а на лаке остаётся отпечаток. sticky — «липкий». They are sticky, коротко They're sticky — «Они липкие». Рамок пять, поэтому They.",
+        "uk": "Олег щойно вкрив лаком п’ять дерев’яних рамок. Ви торкаєтеся однієї пальцем, і палець прилипає, а на лаку лишається відбиток. sticky — «липкий». They are sticky, коротко They're sticky — «Вони липкі». Рамок п’ять, тому They."
       },
       "question": {
         "interactionId": "en:lesson-01:session-48:intro2:q",
         "promptByLocale": {
-          "ru": "Карта показывает нужную улицу и помогает найти выставку. Назовите её полезной.",
-          "uk": "Карта показує потрібну вулицю й допомагає знайти виставку. Назвіть її корисною."
+          "ru": "Олег хочет прямо сейчас повесить рамки на стену. Объясните коротко, что они липкие.",
+          "uk": "Олег хоче просто зараз повісити рамки на стіну. Поясніть коротко, що вони липкі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-48:intro2:r1",
-              "text": "It is useful."
+              "text": "They're sticky."
             },
             {
               "responseId": "en:lesson-01:session-48:intro2:r2",
-              "text": "It is useless."
+              "text": "They're sturdy."
             },
             {
               "responseId": "en:lesson-01:session-48:intro2:r3",
-              "text": "They are useful."
+              "text": "It's sticky."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-48:intro2:r1",
-              "text": "It is useful."
+              "text": "They're sticky."
             },
             {
               "responseId": "en:lesson-01:session-48:intro2:r2",
-              "text": "It is useless."
+              "text": "They're sturdy."
             },
             {
               "responseId": "en:lesson-01:session-48:intro2:r3",
-              "text": "They are useful."
+              "text": "It's sticky."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Карта показывает нужную улицу и помогает найти выставку. Назовите её полезной.",
-          "uk": "Карта показує потрібну вулицю й допомагає знайти виставку. Назвіть її корисною."
+          "ru": "Олег хочет прямо сейчас повесить рамки на стену. Объясните коротко, что они липкие.",
+          "uk": "Олег хоче просто зараз повісити рамки на стіну. Поясніть коротко, що вони липкі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Коротко и точно",
-        "uk": "Коротко й точно"
+        "ru": "Чашка не из магазина",
+        "uk": "Чашка не з крамниці"
       },
       "bodyByLocale": {
-        "ru": "`dangerous` — опасный. `It is dangerous` можно сократить до `It's dangerous`. Смысл не меняется. Для нескольких опасных вещей: `They are dangerous`, коротко `They're dangerous`.",
-        "uk": "`dangerous` — небезпечний. `It is dangerous` можна скоротити до `It's dangerous`. Зміст не змінюється. Для кількох небезпечних речей: `They are dangerous`, коротко `They're dangerous`."
+        "ru": "Выставка началась. Посетительница вертит в руках глиняную чашку с неровным краем и ищет наклейку с ценой и названием фабрики. А чашку Лена слепила сама. handmade — «сделан вручную». It is handmade, коротко It's handmade — «Она сделана вручную».",
+        "uk": "Виставка почалася. Відвідувачка крутить у руках глиняну чашку з нерівним краєм і шукає наліпку з ціною та назвою фабрики. А чашку Лена виліпила сама. handmade — «зроблений вручну». It is handmade, коротко It's handmade — «Вона зроблена вручну»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-48:intro3:q",
         "promptByLocale": {
-          "ru": "Одна повреждённая лестница может обрушиться. Коротко предупредите о её опасности.",
-          "uk": "Одна пошкоджена драбина може обвалитися. Коротко попередьте про її небезпеку."
+          "ru": "Посетительница спрашивает, в каком магазине продают такие чашки. Ответьте коротко, что эта сделана вручную.",
+          "uk": "Відвідувачка питає, у якій крамниці продають такі чашки. Відповідайте коротко, що ця зроблена вручну."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-48:intro3:r1",
-              "text": "It's dangerous."
+              "text": "It's handmade."
             },
             {
               "responseId": "en:lesson-01:session-48:intro3:r2",
-              "text": "They're dangerous."
+              "text": "It's new."
             },
             {
               "responseId": "en:lesson-01:session-48:intro3:r3",
-              "text": "It's useless."
+              "text": "She's handmade."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-48:intro3:r1",
-              "text": "It's dangerous."
+              "text": "It's handmade."
             },
             {
               "responseId": "en:lesson-01:session-48:intro3:r2",
-              "text": "They're dangerous."
+              "text": "It's new."
             },
             {
               "responseId": "en:lesson-01:session-48:intro3:r3",
-              "text": "It's useless."
+              "text": "She's handmade."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Одна повреждённая лестница может обрушиться. Коротко предупредите о её опасности.",
-          "uk": "Одна пошкоджена драбина може обвалитися. Коротко попередьте про її небезпеку."
+          "ru": "Посетительница спрашивает, в каком магазине продают такие чашки. Ответьте коротко, что эта сделана вручную.",
+          "uk": "Відвідувачка питає, у якій крамниці продають такі чашки. Відповідайте коротко, що ця зроблена вручну."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e2cfcf8bc87c0c5c92f9cbf5fe0bf3f8cacb077a4d71a425225f6730d1056e68"
+  "introFingerprint": "192734dcaff6bc6f93e02f65d084b571984686d3dd524cad4a32927b1e22c12a"
 }

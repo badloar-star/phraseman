@@ -1,27 +1,47 @@
 [
   {
+    "interactionId": "en:lesson-01:session-48:word:sharp",
+    "correctText": "sharp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:word:sticky",
+    "correctText": "sticky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:word:handmade",
+    "correctText": "handmade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:word:lovely",
+    "correctText": "lovely",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-48:i01",
     "correctText": "He is honest.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i02",
-    "correctText": "She is polite.",
+    "correctText": "They are sticky.",
     "correctResponseId": "en:lesson-01:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-48:i03",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-48:i04",
-    "correctText": "en:lesson-01:session-48:i04:p1=honest\nen:lesson-01:session-48:i04:p2=polite\nen:lesson-01:session-48:i04:p3=patient\nen:lesson-01:session-48:i04:p4=curious",
+    "correctText": "en:lesson-01:session-48:i04:p1=sharp\nen:lesson-01:session-48:i04:p2=sticky\nen:lesson-01:session-48:i04:p3=handmade\nen:lesson-01:session-48:i04:p4=lovely",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i05",
-    "correctText": "I'm curious.",
+    "correctText": "It's handmade.",
     "correctResponseId": null
   },
   {
@@ -31,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-48:i07",
-    "correctText": "It's useless.",
+    "correctText": "It's lovely.",
     "correctResponseId": null
   },
   {
@@ -41,22 +61,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-48:i09",
-    "correctText": "He is honest.",
+    "correctText": "It is lovely.",
     "correctResponseId": "en:lesson-01:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-48:i10",
-    "correctText": "en:lesson-01:session-48:i10:p1=useful\nen:lesson-01:session-48:i10:p2=useless\nen:lesson-01:session-48:i10:p3=dangerous\nen:lesson-01:session-48:i10:p4=curious",
+    "correctText": "en:lesson-01:session-48:i10:p1=useful\nen:lesson-01:session-48:i10:p2=useless\nen:lesson-01:session-48:i10:p3=dangerous\nen:lesson-01:session-48:i10:p4=slippery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i11",
-    "correctText": "They're polite.",
+    "correctText": "They're handmade.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i12",
-    "correctText": "I am curious.",
+    "correctText": "I am proud.",
     "correctResponseId": null
   },
   {
@@ -71,7 +91,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-48:i15",
-    "correctText": "It's useful.",
+    "correctText": "It's sharp.",
     "correctResponseId": "en:lesson-01:session-48:i15:r1"
   },
   {
@@ -81,7 +101,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-48:i17",
-    "correctText": "She is honest.",
+    "correctText": "They are sharp.",
     "correctResponseId": null
   }
 ]

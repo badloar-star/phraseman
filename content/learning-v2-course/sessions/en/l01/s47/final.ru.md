@@ -1,138 +1,154 @@
 # Английский · Урок 1 · Занятие 47 — За ограждением
 
-**Ситуация.** На прогулке вы обсуждаете закрытый участок старого пирса и вспоминаете смелый поступок друга.
+**Ситуация.** Вы гуляете у моря с подругой Аней и её младшим братом Тёмой. Старый пирс закрыт лентой, но Тёма всё время рвётся за ограждение.
 
-**Что вы освоите:** назвать место или действие опасным и отличить опасность от смелости
-**Новые слова:** dangerous
+**Что вы освоите:** коротко предупредить It's и They're об опасном месте: что опасно, скользко, глубоко и ржаво, и похвалить смелость
+**Новые слова:** dangerous, slippery, deep, rusty
+**Возвращаются:** brave, careful, afraid, steep, wet
 
 ---
 
 ## Интро 1
 
-### Опасно
+### Под лентой
 
-`dangerous` — «опасный». `It is dangerous` — «Это опасно». Так можно оценить действие или место. Старый пирс закрыт: доски провалились. Короткий путь к воде получился слишком коротким.
+Пока Аня покупала мороженое, Тёма пролез под лентой и уже стоит на старом пирсе. Перед ним провалились две доски, в дыре видна вода. dangerous — «опасный». It is dangerous, коротко It's dangerous — «Это опасно». Так говорят о месте или о том, что кто-то делает.
 
-**Выход на повреждённый пирс грозит падением. Назовите это опасным.**
+**Тёма машет вам с пирса: «Идите сюда!» Крикните ему коротко, что там опасно.**
 
-- ✅ **It is dangerous.**
-- ❌ It is useful. — *`useful` — «полезно». Здесь вы предупреждаете об опасности: `dangerous`.*
-- ❌ It are dangerous. — *После `It` нужно `is`.*
+- ✅ **It's dangerous.**
+- ❌ It's okay. — *okay — «нормально». Доски провалились, это не нормально: dangerous.*
+- ❌ He's dangerous. — *Так вы скажете, что опасен сам Тёма. О месте говорим It's.*
 
 ---
 
 ## Интро 2
 
-### Один участок и два
+### Ступени к воде
 
-Про один участок — `It is dangerous`. Про два опасных участка — `They are dangerous`. Коротко: `It's dangerous` и `They're dangerous`. Слово `dangerous` не меняется.
+Тёму вернули, и все спускаются к воде по каменным ступеням. Ступени мокрые и зелёные от мха, Аня на второй уже взмахнула руками. slippery — «скользкий». They are slippery, коротко They're slippery — «Они скользкие». Ступеней много, поэтому They.
 
-**Оба прохода ведут на повреждённые доски. Скажите, что они опасны.**
+**Тёма прыгает вниз через ступеньку. Предупредите его коротко, что ступени скользкие.**
 
-- ✅ **They are dangerous.**
-- ❌ They is dangerous. — *После `They` нужно `are`.*
-- ❌ They are brave. — *`brave` — «смелые». Проходы здесь опасны: `dangerous`.*
+- ✅ **They're slippery.**
+- ❌ They're steep. — *steep — «крутые». Вы предупреждаете про мокрый мох: slippery.*
+- ❌ It's slippery. — *It's — про одну вещь, а ступеней много: They're slippery.*
 
 ---
 
 ## Интро 3
 
-### Смелость — о человеке
+### Без дна
 
-`brave` — «смелый», а `dangerous` — «опасный». `He is brave` хвалит смелость человека. `He is dangerous` говорит, что человек представляет опасность. Это разные оценки. Смелый поступок не обязательно связан с риском: можно решиться признать свою ошибку.
+Внизу Тёма снимает кроссовки и хочет зайти в воду. Вода тёмная, дна не видно, а рыбак рядом говорит, что у пирса сразу с головой. deep — «глубокий». It is deep, коротко It's deep — «Здесь глубоко». Про воду говорим It.
 
-**Друг боялся признаться в ошибке, но всё же признался. Назовите его смелым.**
+**Тёма спрашивает, можно ли тут поплавать. Ответьте коротко, что здесь глубоко.**
 
-- ✅ **He is brave.**
-- ❌ He is dangerous. — *Это значит, что он опасен. Вы хвалите смелость: `brave`.*
-- ❌ He are brave. — *После `He` нужно `is`.*
+- ✅ **It's deep.**
+- ❌ It's cold. — *cold — «холодная». Вы предупреждаете, что дна не достать: deep.*
+- ❌ They're deep. — *They're — про несколько вещей. О воде говорим It's deep.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · На закрытом пирсе провалились доски. Соберите предупреждение об опасности этого места**
+**1 · Карточка слова — dangerous**
+<!-- interaction_id: en:lesson-01:session-47:word:dangerous; family: word_card -->
+> **dangerous** — опасный. It's dangerous — «Это опасно». О месте, вещи или поступке, который грозит бедой.
+
+**2 · Карточка слова — slippery**
+<!-- interaction_id: en:lesson-01:session-47:word:slippery; family: word_card -->
+> **slippery** — скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.
+
+**3 · Карточка слова — deep**
+<!-- interaction_id: en:lesson-01:session-47:word:deep; family: word_card -->
+> **deep** — глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.
+
+**4 · Карточка слова — rusty**
+<!-- interaction_id: en:lesson-01:session-47:word:rusty; family: word_card -->
+> **rusty** — ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.
+
+**5 · На пирсе провалились доски. Соберите предупреждение для Тёмы**
 <!-- interaction_id: en:lesson-01:session-47:i01; family: phrase_builder -->
 Плитки: `dangerous` `is` `It` `are` → **It is dangerous.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is dangerous.`)*
 
-**2 · Послушайте и выберите услышанное**
+**6 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-47:i02; family: listen_choose -->
-🔊 *It is dangerous.* → **It is dangerous.** · It is useful. · It is useless.
-- It is useful. — *В записи последнее слово — `dangerous`, а в этом варианте — `useful`.*
-- It is useless. — *В записи последнее слово — `dangerous`, а в этом варианте — `useless`.*
+🔊 *They are slippery.* → **They are slippery.** · We are slippery. · They are rusty.
+- We are slippery. — *В записи первое слово — `They`, а в этом варианте — `We`.*
+- They are rusty. — *В записи последнее слово — `slippery`, а в этом варианте — `rusty`.*
 
-**3 · Два прохода ведут на сломанные доски. Дополните предупреждение**
+**7 · На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде**
 <!-- interaction_id: en:lesson-01:session-47:i03; family: context_gap_grammar -->
-They ___ dangerous. → **are** · am · is
-- am — *После `They` нужно `are`.*
-- is — *Про два прохода — `They are`.*
+It ___ deep. → **is** · am · are
+- am — *После `It` нужно `is`.*
+- are — *Вода — это `It`, поэтому `It is`.*
 
-**4 · Соедините слова со значениями**
+**8 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-47:i04; family: speed_match -->
-dangerous — опасный · brave — смелый · useful — полезный · useless — бесполезный
+dangerous — опасный · slippery — скользкий · deep — глубокий · rusty — ржавый
 
-**5 · Послушайте и соберите короткое предупреждение**
+**9 · Послушайте и соберите короткое предупреждение**
 <!-- interaction_id: en:lesson-01:session-47:i05; family: listen_build_dictation -->
 🔊 *It's dangerous.* Плитки: `dangerous` `It's` `He's` → **It's dangerous.**
 *(плитка `He's` лишняя: здесь нужно `It's` — `It's dangerous.`)*
 
-**6 · Обе лестницы повреждены и могут обрушиться. Скажите, что они опасны**
+**10 · Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны**
 <!-- interaction_id: en:lesson-01:session-47:i06; family: phrase_builder -->
 Плитки: `dangerous` `are` `They` `is` → **They are dangerous.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are dangerous.`)*
 
-**7 · Коротко скажите, что выходить на повреждённый пирс опасно**
+**11 · Аня хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый**
 <!-- interaction_id: en:lesson-01:session-47:i07; family: scripted_repeat_compare -->
-🎙 **It's dangerous.**
+🎙 **It's rusty.**
 
-**8 · Друг преодолел страх и признал свою ошибку. Похвалите его смелость**
+**12 · Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость**
 <!-- interaction_id: en:lesson-01:session-47:i08; family: context_gap_grammar -->
-He is ___ . → **brave** · dangerous · useless
-- dangerous — *Это «опасный». Здесь похвала смелости: `brave`.*
-- useless — *Это «бесполезный», а нужно «смелый»: `brave`.*
+He is ___ . → **brave** · dangerous · deep
+- dangerous — *Так вы скажете, что Тёма опасен. Хвалим смелость: `brave`.*
+- deep — *`deep` — «глубокий», это про воду. Смелость — `brave`.*
 
-**9 · Послушайте фразу о друге**
+**13 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-47:i09; family: listen_choose -->
-🔊 *He is brave.* → **He is brave.** · He is dangerous. · He is curious.
-- He is dangerous. — *В записи последнее слово — `brave`, а в этом варианте — `dangerous`.*
-- He is curious. — *В записи последнее слово — `brave`, а в этом варианте — `curious`.*
+🔊 *It is deep.* → **It is deep.** · He is deep. · It is steep.
+- He is deep. — *В записи первое слово — `It`, а в этом варианте — `He`.*
+- It is steep. — *В записи последнее слово — `deep`, а в этом варианте — `steep`.*
 
-**10 · Соедините короткие начала с полными**
+**14 · Соедините короткие начала с полными**
 <!-- interaction_id: en:lesson-01:session-47:i10; family: speed_match -->
 It's — It is · They're — They are · He's — He is · She's — She is
 
-**11 · Послушайте и соберите фразу об участках пирса**
+**15 · Послушайте и соберите короткую фразу о ступенях**
 <!-- interaction_id: en:lesson-01:session-47:i11; family: listen_build_dictation -->
-🔊 *They're dangerous.* Плитки: `dangerous` `They're` `We're` → **They're dangerous.**
-*(плитка `We're` лишняя: здесь нужно `They're` — `They're dangerous.`)*
+🔊 *They're slippery.* Плитки: `slippery` `They're` `We're` → **They're slippery.**
+*(плитка `We're` лишняя: здесь нужно `They're` — `They're slippery.`)*
 
-**12 · Подруга боялась выступать, но решилась рассказать свою историю со сцены. Назовите её смелой**
+**16 · Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой**
 <!-- interaction_id: en:lesson-01:session-47:i12; family: phrase_builder -->
 Плитки: `brave` `is` `She` `are` → **She is brave.**
 *(плитка `are` лишняя: здесь нужно `is` — `She is brave.`)*
 
-**13 · Вы решились признать свою ошибку, хотя боялись. Скажите о себе: «Я смелый»**
+**17 · Из досок пирса торчат старые гвозди в рыжих пятнах. Скажите Ане, что они ржавые**
 <!-- interaction_id: en:lesson-01:session-47:i13; family: scripted_repeat_compare -->
-🎙 **I am brave.**
+🎙 **They are rusty.**
 
-**14 · Одна повреждённая лестница может обрушиться. Дополните предупреждение о ней**
+**18 · Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней**
 <!-- interaction_id: en:lesson-01:session-47:i14; family: context_gap_grammar -->
-It ___ dangerous. → **is** · am · are
+It ___ slippery. → **is** · am · are
 - am — *После `It` нужно `is`.*
-- are — *Про одну лестницу — `It is`.*
+- are — *Доска одна, поэтому `It is`.*
 
-**15 · Послушайте короткую фразу и выберите её**
+**19 · Послушайте и выберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-47:i15; family: listen_choose -->
-🔊 *It's dangerous.* → **It's dangerous.** · It's useful. · It's useless.
-- It's useful. — *В записи последнее слово — `dangerous`, а в этом варианте — `useful`.*
-- It's useless. — *В записи последнее слово — `dangerous`, а в этом варианте — `useless`.*
+🔊 *It's dangerous.* → **It's dangerous.** · They're dangerous. · It's deep.
+- They're dangerous. — *В записи первое слово — `It's`, а в этом варианте — `They're`.*
+- It's deep. — *В записи последнее слово — `dangerous`, а в этом варианте — `deep`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-01:session-47:i16; family: speed_match -->
-dangerous — представляет опасность · brave — проявляет смелость · honest — честный · polite — вежливый
+careful — осторожный · afraid — боится · steep — крутой · wet — мокрый
 
-**17 · На другом конце парка мостик повреждён: идти по нему — риск упасть. Предупредите спутника об опасности этого действия**
+**21 · Во дворе рабочие выкопали яму и оставили её без ограждения. Предупредите соседа, что это опасно**
 <!-- interaction_id: en:lesson-01:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is dangerous.**
-

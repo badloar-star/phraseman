@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-47",
   "learningOutcomeByLocale": {
-    "ru": "назвать место или действие опасным и отличить опасность от смелости",
-    "uk": "назвати місце або дію небезпечними й відрізнити небезпеку від сміливості"
+    "ru": "коротко предупредить It's и They're об опасном месте: что опасно, скользко, глубоко и ржаво, и похвалить смелость",
+    "uk": "коротко попередити It's і They're про небезпечне місце: що небезпечно, слизько, глибоко й іржаво, і похвалити сміливість"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Опасно",
-        "uk": "Небезпечно"
+        "ru": "Под лентой",
+        "uk": "Під стрічкою"
       },
       "bodyByLocale": {
-        "ru": "`dangerous` — «опасный». `It is dangerous` — «Это опасно». Так можно оценить действие или место. Старый пирс закрыт: доски провалились. Короткий путь к воде получился слишком коротким.",
-        "uk": "`dangerous` — «небезпечний». `It is dangerous` — «Це небезпечно». Так можна оцінити дію або місце. Старий пірс закритий: дошки провалилися. Короткий шлях до води виявився надто коротким."
+        "ru": "Пока Аня покупала мороженое, Тёма пролез под лентой и уже стоит на старом пирсе. Перед ним провалились две доски, в дыре видна вода. dangerous — «опасный». It is dangerous, коротко It's dangerous — «Это опасно». Так говорят о месте или о том, что кто-то делает.",
+        "uk": "Поки Аня купувала морозиво, Тьома проліз під стрічкою й уже стоїть на старому пірсі. Перед ним провалилися дві дошки, у дірі видно воду. dangerous — «небезпечний». It is dangerous, коротко It's dangerous — «Це небезпечно». Так кажуть про місце або про те, що хтось робить."
       },
       "question": {
         "interactionId": "en:lesson-01:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Выход на повреждённый пирс грозит падением. Назовите это опасным.",
-          "uk": "Вихід на пошкоджений пірс загрожує падінням. Назвіть це небезпечним."
+          "ru": "Тёма машет вам с пирса: «Идите сюда!» Крикните ему коротко, что там опасно.",
+          "uk": "Тьома махає вам із пірса: «Ідіть сюди!» Гукніть йому коротко, що там небезпечно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-47:intro1:r1",
-              "text": "It is dangerous."
+              "text": "It's dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r2",
-              "text": "It is useful."
+              "text": "It's okay."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r3",
-              "text": "It are dangerous."
+              "text": "He's dangerous."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-47:intro1:r1",
-              "text": "It is dangerous."
+              "text": "It's dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r2",
-              "text": "It is useful."
+              "text": "It's okay."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r3",
-              "text": "It are dangerous."
+              "text": "He's dangerous."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Выход на повреждённый пирс грозит падением. Назовите это опасным.",
-          "uk": "Вихід на пошкоджений пірс загрожує падінням. Назвіть це небезпечним."
+          "ru": "Тёма машет вам с пирса: «Идите сюда!» Крикните ему коротко, что там опасно.",
+          "uk": "Тьома махає вам із пірса: «Ідіть сюди!» Гукніть йому коротко, що там небезпечно."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Один участок и два",
-        "uk": "Одна ділянка й дві"
+        "ru": "Ступени к воде",
+        "uk": "Сходи до води"
       },
       "bodyByLocale": {
-        "ru": "Про один участок — `It is dangerous`. Про два опасных участка — `They are dangerous`. Коротко: `It's dangerous` и `They're dangerous`. Слово `dangerous` не меняется.",
-        "uk": "Про одну ділянку — `It is dangerous`. Про дві небезпечні ділянки — `They are dangerous`. Коротко: `It's dangerous` і `They're dangerous`. Слово `dangerous` не змінюється."
+        "ru": "Тёму вернули, и все спускаются к воде по каменным ступеням. Ступени мокрые и зелёные от мха, Аня на второй уже взмахнула руками. slippery — «скользкий». They are slippery, коротко They're slippery — «Они скользкие». Ступеней много, поэтому They.",
+        "uk": "Тьому повернули, і всі спускаються до води кам’яними сходами. Сходинки мокрі й зелені від моху, Аня на другій уже змахнула руками. slippery — «слизький». They are slippery, коротко They're slippery — «Вони слизькі». Сходинок багато, тому They."
       },
       "question": {
         "interactionId": "en:lesson-01:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Оба прохода ведут на повреждённые доски. Скажите, что они опасны.",
-          "uk": "Обидва проходи ведуть на пошкоджені дошки. Скажіть, що вони небезпечні."
+          "ru": "Тёма прыгает вниз через ступеньку. Предупредите его коротко, что ступени скользкие.",
+          "uk": "Тьома стрибає вниз через сходинку. Попередьте його коротко, що сходинки слизькі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-47:intro2:r1",
-              "text": "They are dangerous."
+              "text": "They're slippery."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r2",
-              "text": "They is dangerous."
+              "text": "They're steep."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r3",
-              "text": "They are brave."
+              "text": "It's slippery."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-47:intro2:r1",
-              "text": "They are dangerous."
+              "text": "They're slippery."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r2",
-              "text": "They is dangerous."
+              "text": "They're steep."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r3",
-              "text": "They are brave."
+              "text": "It's slippery."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Оба прохода ведут на повреждённые доски. Скажите, что они опасны.",
-          "uk": "Обидва проходи ведуть на пошкоджені дошки. Скажіть, що вони небезпечні."
+          "ru": "Тёма прыгает вниз через ступеньку. Предупредите его коротко, что ступени скользкие.",
+          "uk": "Тьома стрибає вниз через сходинку. Попередьте його коротко, що сходинки слизькі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Смелость — о человеке",
-        "uk": "Сміливість — про людину"
+        "ru": "Без дна",
+        "uk": "Без дна"
       },
       "bodyByLocale": {
-        "ru": "`brave` — «смелый», а `dangerous` — «опасный». `He is brave` хвалит смелость человека. `He is dangerous` говорит, что человек представляет опасность. Это разные оценки. Смелый поступок не обязательно связан с риском: можно решиться признать свою ошибку.",
-        "uk": "`brave` — «сміливий», а `dangerous` — «небезпечний». `He is brave` хвалить сміливість людини. `He is dangerous` каже, що людина становить небезпеку. Це різні оцінки. Сміливий вчинок не обов’язково пов’язаний із ризиком: можна наважитися визнати свою помилку."
+        "ru": "Внизу Тёма снимает кроссовки и хочет зайти в воду. Вода тёмная, дна не видно, а рыбак рядом говорит, что у пирса сразу с головой. deep — «глубокий». It is deep, коротко It's deep — «Здесь глубоко». Про воду говорим It.",
+        "uk": "Унизу Тьома знімає кросівки й хоче зайти у воду. Вода темна, дна не видно, а рибалка поруч каже, що біля пірса одразу з головою. deep — «глибокий». It is deep, коротко It's deep — «Тут глибоко». Про воду кажемо It."
       },
       "question": {
         "interactionId": "en:lesson-01:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Друг боялся признаться в ошибке, но всё же признался. Назовите его смелым.",
-          "uk": "Друг боявся зізнатися в помилці, але все ж зізнався. Назвіть його сміливим."
+          "ru": "Тёма спрашивает, можно ли тут поплавать. Ответьте коротко, что здесь глубоко.",
+          "uk": "Тьома питає, чи можна тут поплавати. Відповідайте коротко, що тут глибоко."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-47:intro3:r1",
-              "text": "He is brave."
+              "text": "It's deep."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r2",
-              "text": "He is dangerous."
+              "text": "It's cold."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r3",
-              "text": "He are brave."
+              "text": "They're deep."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-47:intro3:r1",
-              "text": "He is brave."
+              "text": "It's deep."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r2",
-              "text": "He is dangerous."
+              "text": "It's cold."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r3",
-              "text": "He are brave."
+              "text": "They're deep."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг боялся признаться в ошибке, но всё же признался. Назовите его смелым.",
-          "uk": "Друг боявся зізнатися в помилці, але все ж зізнався. Назвіть його сміливим."
+          "ru": "Тёма спрашивает, можно ли тут поплавать. Ответьте коротко, что здесь глубоко.",
+          "uk": "Тьома питає, чи можна тут поплавати. Відповідайте коротко, що тут глибоко."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "753484b18dc15b42f734f60487b9090c873e4c07781c5511086d45f5b56b54a6"
+  "introFingerprint": "2af9eba8fd4f96a39e1d6dc3f66d55ac069e5e771ae48fa4fb6bd66e352a98de"
 }

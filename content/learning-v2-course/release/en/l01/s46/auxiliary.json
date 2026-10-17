@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-46:intro1:r2": {
-          "ru": "`useful` — «полезная». Для этого поиска карта не помогает: `useless`.",
-          "uk": "`useful` — «корисна». Для цього пошуку карта не допомагає: `useless`."
+          "ru": "useful — «полезный», это наоборот. Кабель не подошёл: useless.",
+          "uk": "useful — «корисний», це навпаки. Кабель не підійшов: useless."
         },
         "en:lesson-01:session-46:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "They're — про несколько вещей. Кабель один: It's useless.",
+          "uk": "They're — про кілька речей. Кабель один: It's useless."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-46:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "We're — это про вас с Костей. Про провода говорим They're.",
+          "uk": "We're — це про вас із Костею. Про дроти кажемо They're."
         },
         "en:lesson-01:session-46:intro2:r3": {
-          "ru": "Для этого телефона кабели не подходят: `useless`.",
-          "uk": "Для цього телефона кабелі не підходять: `useless`."
+          "ru": "It's — про одну вещь, а проводов несколько: They're tangled.",
+          "uk": "It's — про одну річ, а дротів кілька: They're tangled."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-46:intro3:r2": {
-          "ru": "Сигнал позволил отправить сообщение. Здесь нужно сказать о его слабости: `weak`.",
-          "uk": "Сигнал дозволив надіслати повідомлення. Тут треба сказати про його слабкість: `weak`."
+          "ru": "useless — «бесполезный». Пауэрбанк полный и пригодится: charged.",
+          "uk": "useless — «марний». Павербанк повний і знадобиться: charged."
         },
         "en:lesson-01:session-46:intro3:r3": {
-          "ru": "Это о человеке. Про сигнал используйте `It`.",
-          "uk": "Це про людину. Про сигнал використовуйте `It`."
+          "ru": "I'm — о себе. О пауэрбанке говорим It's.",
+          "uk": "I'm — про себе. Про павербанк кажемо It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6649849c989feeaab50e67a95a0a9a9d851d2e09fb12f5300770e76e0313ac26"
+  "auxiliaryFingerprint": "da2ad4ffc986c68e1c880414ab4eb430a101833e2de0acd16b7834fbf9e8fcab"
 }

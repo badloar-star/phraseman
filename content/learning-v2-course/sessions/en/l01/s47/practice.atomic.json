@@ -1,0 +1,2431 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-47",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-47:word:dangerous",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dangerous",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:dangerous:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dangerous",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:dangerous:audio",
+            "transcript": "dangerous"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:dangerous:r1",
+              "targetText": "dangerous",
+              "meaningByLocale": {
+                "ru": "опасный. It's dangerous — «Это опасно». О месте, вещи или поступке, который грозит бедой.",
+                "uk": "небезпечний. It's dangerous — «Це небезпечно». Про місце, річ або вчинок, що загрожує бідою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dangerous",
+            "definitionByLocale": {
+              "ru": "опасный. It's dangerous — «Это опасно». О месте, вещи или поступке, который грозит бедой.",
+              "uk": "небезпечний. It's dangerous — «Це небезпечно». Про місце, річ або вчинок, що загрожує бідою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:word:slippery",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — slippery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:slippery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — slippery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:slippery:audio",
+            "transcript": "slippery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:slippery:r1",
+              "targetText": "slippery",
+              "meaningByLocale": {
+                "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
+                "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slippery",
+            "definitionByLocale": {
+              "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
+              "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:word:deep",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — deep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:deep:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — deep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:deep:audio",
+            "transcript": "deep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:deep:r1",
+              "targetText": "deep",
+              "meaningByLocale": {
+                "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
+                "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deep",
+            "definitionByLocale": {
+              "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
+              "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:word:rusty",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rusty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:rusty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rusty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:rusty:audio",
+            "transcript": "rusty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:rusty:r1",
+              "targetText": "rusty",
+              "meaningByLocale": {
+                "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
+                "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rusty",
+            "definitionByLocale": {
+              "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
+              "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is dangerous.",
+          "localizedMeaning": {
+            "ru": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+            "uk": "На пірсі провалилися дошки. Складіть попередження для Тьоми"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is dangerous.`",
+                "uk": "тут потрібно `is` — `It is dangerous.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i02:r1",
+            "text": "They are slippery."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r2",
+            "text": "We are slippery."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r3",
+            "text": "They are rusty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i02:audio",
+            "transcript": "They are slippery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:i02:r1",
+              "targetText": "They are slippery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r2",
+              "targetText": "We are slippery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r3",
+              "targetText": "They are rusty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `slippery`, а в этом варианте — `rusty`.",
+                "uk": "У записі останнє слово — `slippery`, а в цьому варіанті — `rusty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде",
+            "uk": "На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду"
+          },
+          "gappedTargetPhrase": "It ___ deep.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-47:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде",
+              "feedbackByLocale": {
+                "ru": "Вода — это `It`, поэтому `It is`.",
+                "uk": "Вода — це `It`, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-47:i04:p1",
+              "target": "dangerous",
+              "meaningByLocale": {
+                "ru": "опасный",
+                "uk": "небезпечний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i04:p2",
+              "target": "slippery",
+              "meaningByLocale": {
+                "ru": "скользкий",
+                "uk": "слизький"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i04:p3",
+              "target": "deep",
+              "meaningByLocale": {
+                "ru": "глубокий",
+                "uk": "глибокий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i04:p4",
+              "target": "rusty",
+              "meaningByLocale": {
+                "ru": "ржавый",
+                "uk": "іржавий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dangerous",
+            "slippery",
+            "deep",
+            "rusty"
+          ],
+          "rightColumn": [
+            "опасный",
+            "скользкий",
+            "глубокий",
+            "ржавый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткое предупреждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткое предупреждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i05:audio",
+            "transcript": "It's dangerous."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's dangerous.",
+          "orderedTokens": [
+            "It's",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткое предупреждение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's dangerous.`",
+                "uk": "тут потрібно `It's` — `It's dangerous.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are dangerous.",
+          "localizedMeaning": {
+            "ru": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+            "uk": "Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are dangerous.`",
+                "uk": "тут потрібно `are` — `They are dangerous.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Аня хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i07:audio"
+        ],
+        "accessibilityLabel": "Аня хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i07:audio",
+            "transcript": "It's rusty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's rusty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i08:r1",
+            "text": "brave"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i08:r2",
+            "text": "dangerous"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i08:r3",
+            "text": "deep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+            "uk": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-47:i08:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r2",
+              "text": "dangerous"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r3",
+              "text": "deep"
+            }
+          ],
+          "testedDimension": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+              "feedbackByLocale": {
+                "ru": "Так вы скажете, что Тёма опасен. Хвалим смелость: `brave`.",
+                "uk": "Так ви скажете, що Тьома небезпечний. Хвалимо сміливість: `brave`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+              "feedbackByLocale": {
+                "ru": "`deep` — «глубокий», это про воду. Смелость — `brave`.",
+                "uk": "`deep` — «глибокий», це про воду. Сміливість — `brave`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i09:r1",
+            "text": "It is deep."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i09:r2",
+            "text": "He is deep."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i09:r3",
+            "text": "It is steep."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i09:audio",
+            "transcript": "It is deep."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:i09:r1",
+              "targetText": "It is deep.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i09:r2",
+              "targetText": "He is deep.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i09:r3",
+              "targetText": "It is steep.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `deep`, а в этом варианте — `steep`.",
+                "uk": "У записі останнє слово — `deep`, а в цьому варіанті — `steep`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-47:i10:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i10:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i10:p3",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i10:p4",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "He's",
+            "She's"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "He is",
+            "She is"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу о ступенях",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу о ступенях",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i11:audio",
+            "transcript": "They're slippery."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're slippery.",
+          "orderedTokens": [
+            "They're",
+            "slippery"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу о ступенях",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're slippery.`",
+                "uk": "тут потрібно `They're` — `They're slippery.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is brave.",
+          "localizedMeaning": {
+            "ru": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+            "uk": "Аня першою спустилася слизькими сходами й подала руку братові. Назвіть її сміливою"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "brave"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is brave.`",
+                "uk": "тут потрібно `is` — `She is brave.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Из досок пирса торчат старые гвозди в рыжих пятнах. Скажите Ане, что они ржавые",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i13:audio"
+        ],
+        "accessibilityLabel": "Из досок пирса торчат старые гвозди в рыжих пятнах. Скажите Ане, что они ржавые",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i13:audio",
+            "transcript": "They are rusty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are rusty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+            "uk": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї"
+          },
+          "gappedTargetPhrase": "It ___ slippery.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-47:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i14:r2",
+              "correct": false,
+              "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i14:r3",
+              "correct": false,
+              "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+              "feedbackByLocale": {
+                "ru": "Доска одна, поэтому `It is`.",
+                "uk": "Дошка одна, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i15:r1",
+            "text": "It's dangerous."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i15:r2",
+            "text": "They're dangerous."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i15:r3",
+            "text": "It's deep."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i15:audio",
+            "transcript": "It's dangerous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:i15:r1",
+              "targetText": "It's dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i15:r2",
+              "targetText": "They're dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i15:r3",
+              "targetText": "It's deep.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `deep`.",
+                "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `deep`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-47:i16:p1",
+              "target": "careful",
+              "meaningByLocale": {
+                "ru": "осторожный",
+                "uk": "обережний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i16:p2",
+              "target": "afraid",
+              "meaningByLocale": {
+                "ru": "боится",
+                "uk": "боїться"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i16:p3",
+              "target": "steep",
+              "meaningByLocale": {
+                "ru": "крутой",
+                "uk": "крутий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i16:p4",
+              "target": "wet",
+              "meaningByLocale": {
+                "ru": "мокрый",
+                "uk": "мокрий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "careful",
+            "afraid",
+            "steep",
+            "wet"
+          ],
+          "rightColumn": [
+            "осторожный",
+            "боится",
+            "крутой",
+            "мокрый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Во дворе рабочие выкопали яму и оставили её без ограждения. Предупредите соседа, что это опасно",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Во дворе рабочие выкопали яму и оставили её без ограждения. Предупредите соседа, что это опасно",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i17:audio",
+            "transcript": "It is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is dangerous.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-47:word:dangerous",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dangerous",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:dangerous:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dangerous",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:dangerous:audio",
+            "transcript": "dangerous"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:dangerous:r1",
+              "targetText": "dangerous",
+              "meaningByLocale": {
+                "ru": "опасный. It's dangerous — «Это опасно». О месте, вещи или поступке, который грозит бедой.",
+                "uk": "небезпечний. It's dangerous — «Це небезпечно». Про місце, річ або вчинок, що загрожує бідою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dangerous",
+            "definitionByLocale": {
+              "ru": "опасный. It's dangerous — «Это опасно». О месте, вещи или поступке, который грозит бедой.",
+              "uk": "небезпечний. It's dangerous — «Це небезпечно». Про місце, річ або вчинок, що загрожує бідою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:word:slippery",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — slippery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:slippery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — slippery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:slippery:audio",
+            "transcript": "slippery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:slippery:r1",
+              "targetText": "slippery",
+              "meaningByLocale": {
+                "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
+                "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slippery",
+            "definitionByLocale": {
+              "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
+              "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:word:deep",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — deep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:deep:audio"
+        ],
+        "accessibilityLabel": "Картка слова — deep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:deep:audio",
+            "transcript": "deep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:deep:r1",
+              "targetText": "deep",
+              "meaningByLocale": {
+                "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
+                "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deep",
+            "definitionByLocale": {
+              "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
+              "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:word:rusty",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rusty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:word:rusty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rusty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:word:rusty:audio",
+            "transcript": "rusty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:word:rusty:r1",
+              "targetText": "rusty",
+              "meaningByLocale": {
+                "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
+                "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rusty",
+            "definitionByLocale": {
+              "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
+              "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На пірсі провалилися дошки. Складіть попередження для Тьоми",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На пірсі провалилися дошки. Складіть попередження для Тьоми",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is dangerous.",
+          "localizedMeaning": {
+            "ru": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+            "uk": "На пірсі провалилися дошки. Складіть попередження для Тьоми"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "На пірсі провалилися дошки. Складіть попередження для Тьоми",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is dangerous.`",
+                "uk": "тут потрібно `is` — `It is dangerous.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i02:r1",
+            "text": "They are slippery."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r2",
+            "text": "We are slippery."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r3",
+            "text": "They are rusty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i02:audio",
+            "transcript": "They are slippery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:i02:r1",
+              "targetText": "They are slippery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r2",
+              "targetText": "We are slippery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r3",
+              "targetText": "They are rusty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `slippery`, а в этом варианте — `rusty`.",
+                "uk": "У записі останнє слово — `slippery`, а в цьому варіанті — `rusty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде",
+            "uk": "На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду"
+          },
+          "gappedTargetPhrase": "It ___ deep.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-47:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду",
+              "feedbackByLocale": {
+                "ru": "Вода — это `It`, поэтому `It is`.",
+                "uk": "Вода — це `It`, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-47:i04:p1",
+              "target": "dangerous",
+              "meaningByLocale": {
+                "ru": "опасный",
+                "uk": "небезпечний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i04:p2",
+              "target": "slippery",
+              "meaningByLocale": {
+                "ru": "скользкий",
+                "uk": "слизький"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i04:p3",
+              "target": "deep",
+              "meaningByLocale": {
+                "ru": "глубокий",
+                "uk": "глибокий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i04:p4",
+              "target": "rusty",
+              "meaningByLocale": {
+                "ru": "ржавый",
+                "uk": "іржавий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dangerous",
+            "slippery",
+            "deep",
+            "rusty"
+          ],
+          "rightColumn": [
+            "небезпечний",
+            "слизький",
+            "глибокий",
+            "іржавий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротке попередження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротке попередження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i05:audio",
+            "transcript": "It's dangerous."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's dangerous.",
+          "orderedTokens": [
+            "It's",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротке попередження",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's dangerous.`",
+                "uk": "тут потрібно `It's` — `It's dangerous.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are dangerous.",
+          "localizedMeaning": {
+            "ru": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+            "uk": "Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are dangerous.`",
+                "uk": "тут потрібно `are` — `They are dangerous.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Аня хоче спертися на залізний стовп біля пірса, а він увесь рудий. Скажіть їй коротко, що стовп іржавий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i07:audio"
+        ],
+        "accessibilityLabel": "Аня хоче спертися на залізний стовп біля пірса, а він увесь рудий. Скажіть їй коротко, що стовп іржавий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i07:audio",
+            "transcript": "It's rusty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's rusty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i08:r1",
+            "text": "brave"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i08:r2",
+            "text": "dangerous"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i08:r3",
+            "text": "deep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+            "uk": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-47:i08:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r2",
+              "text": "dangerous"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r3",
+              "text": "deep"
+            }
+          ],
+          "testedDimension": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість",
+              "feedbackByLocale": {
+                "ru": "Так вы скажете, что Тёма опасен. Хвалим смелость: `brave`.",
+                "uk": "Так ви скажете, що Тьома небезпечний. Хвалимо сміливість: `brave`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість",
+              "feedbackByLocale": {
+                "ru": "`deep` — «глубокий», это про воду. Смелость — `brave`.",
+                "uk": "`deep` — «глибокий», це про воду. Сміливість — `brave`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i09:r1",
+            "text": "It is deep."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i09:r2",
+            "text": "He is deep."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i09:r3",
+            "text": "It is steep."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i09:audio",
+            "transcript": "It is deep."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:i09:r1",
+              "targetText": "It is deep.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i09:r2",
+              "targetText": "He is deep.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i09:r3",
+              "targetText": "It is steep.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `deep`, а в этом варианте — `steep`.",
+                "uk": "У записі останнє слово — `deep`, а в цьому варіанті — `steep`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-47:i10:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i10:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i10:p3",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i10:p4",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "He's",
+            "She's"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "He is",
+            "She is"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу про сходинки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу про сходинки",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i11:audio",
+            "transcript": "They're slippery."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're slippery.",
+          "orderedTokens": [
+            "They're",
+            "slippery"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу про сходинки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're slippery.`",
+                "uk": "тут потрібно `They're` — `They're slippery.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Аня першою спустилася слизькими сходами й подала руку братові. Назвіть її сміливою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Аня першою спустилася слизькими сходами й подала руку братові. Назвіть її сміливою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is brave.",
+          "localizedMeaning": {
+            "ru": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+            "uk": "Аня першою спустилася слизькими сходами й подала руку братові. Назвіть її сміливою"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "brave"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Аня першою спустилася слизькими сходами й подала руку братові. Назвіть її сміливою",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is brave.`",
+                "uk": "тут потрібно `is` — `She is brave.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "З дощок пірса стирчать старі цвяхи в рудих плямах. Скажіть Ані, що вони іржаві",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i13:audio"
+        ],
+        "accessibilityLabel": "З дощок пірса стирчать старі цвяхи в рудих плямах. Скажіть Ані, що вони іржаві",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i13:audio",
+            "transcript": "They are rusty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are rusty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+            "uk": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї"
+          },
+          "gappedTargetPhrase": "It ___ slippery.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-47:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i14:r2",
+              "correct": false,
+              "testedDimension": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i14:r3",
+              "correct": false,
+              "testedDimension": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї",
+              "feedbackByLocale": {
+                "ru": "Доска одна, поэтому `It is`.",
+                "uk": "Дошка одна, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i15:r1",
+            "text": "It's dangerous."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i15:r2",
+            "text": "They're dangerous."
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i15:r3",
+            "text": "It's deep."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i15:audio",
+            "transcript": "It's dangerous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-47:i15:r1",
+              "targetText": "It's dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i15:r2",
+              "targetText": "They're dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i15:r3",
+              "targetText": "It's deep.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `deep`.",
+                "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `deep`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-47:i16:p1",
+              "target": "careful",
+              "meaningByLocale": {
+                "ru": "осторожный",
+                "uk": "обережний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i16:p2",
+              "target": "afraid",
+              "meaningByLocale": {
+                "ru": "боится",
+                "uk": "боїться"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i16:p3",
+              "target": "steep",
+              "meaningByLocale": {
+                "ru": "крутой",
+                "uk": "крутий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-47:i16:p4",
+              "target": "wet",
+              "meaningByLocale": {
+                "ru": "мокрый",
+                "uk": "мокрий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "careful",
+            "afraid",
+            "steep",
+            "wet"
+          ],
+          "rightColumn": [
+            "обережний",
+            "боїться",
+            "крутий",
+            "мокрий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-47:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У дворі робітники викопали яму й залишили її без огорожі. Попередьте сусіда, що це небезпечно",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "У дворі робітники викопали яму й залишили її без огорожі. Попередьте сусіда, що це небезпечно",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-47:i17:audio",
+            "transcript": "It is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is dangerous.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-47:word:dangerous",
+      "correctText": "dangerous",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:word:slippery",
+      "correctText": "slippery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:word:deep",
+      "correctText": "deep",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:word:rusty",
+      "correctText": "rusty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i01",
+      "correctText": "It is dangerous.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i02",
+      "correctText": "They are slippery.",
+      "correctResponseId": "en:lesson-01:session-47:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-47:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i05",
+      "correctText": "It's dangerous.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i06",
+      "correctText": "They are dangerous.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i07",
+      "correctText": "It's rusty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i08",
+      "correctText": "brave",
+      "correctResponseId": "en:lesson-01:session-47:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i09",
+      "correctText": "It is deep.",
+      "correctResponseId": "en:lesson-01:session-47:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i11",
+      "correctText": "They're slippery.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i12",
+      "correctText": "She is brave.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i13",
+      "correctText": "They are rusty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-47:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i15",
+      "correctText": "It's dangerous.",
+      "correctResponseId": "en:lesson-01:session-47:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i17",
+      "correctText": "It is dangerous.",
+      "correctResponseId": null
+    }
+  ]
+}

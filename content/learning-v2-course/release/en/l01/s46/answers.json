@@ -1,22 +1,42 @@
 [
   {
+    "interactionId": "en:lesson-01:session-46:word:useless",
+    "correctText": "useless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:word:tangled",
+    "correctText": "tangled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:word:charged",
+    "correctText": "charged",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:word:loose",
+    "correctText": "loose",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-46:i01",
     "correctText": "It is useless.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i02",
-    "correctText": "It is useless.",
+    "correctText": "They are tangled.",
     "correctResponseId": "en:lesson-01:session-46:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i03",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-46:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i04",
-    "correctText": "en:lesson-01:session-46:i04:p1=useless\nen:lesson-01:session-46:i04:p2=useful\nen:lesson-01:session-46:i04:p3=weak\nen:lesson-01:session-46:i04:p4=missing",
+    "correctText": "en:lesson-01:session-46:i04:p1=useless\nen:lesson-01:session-46:i04:p2=tangled\nen:lesson-01:session-46:i04:p3=charged\nen:lesson-01:session-46:i04:p4=loose",
     "correctResponseId": null
   },
   {
@@ -31,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i07",
-    "correctText": "It's useless.",
+    "correctText": "It's loose.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i09",
-    "correctText": "It is weak.",
+    "correctText": "It is charged.",
     "correctResponseId": "en:lesson-01:session-46:i09:r1"
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i11",
-    "correctText": "They're useless.",
+    "correctText": "They're tangled.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i13",
-    "correctText": "He is weak.",
+    "correctText": "They are charged.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i15",
-    "correctText": "It's useful.",
+    "correctText": "It's useless.",
     "correctResponseId": "en:lesson-01:session-46:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i16",
-    "correctText": "en:lesson-01:session-46:i16:p1=useless\nen:lesson-01:session-46:i16:p2=useful\nen:lesson-01:session-46:i16:p3=weak\nen:lesson-01:session-46:i16:p4=correct",
+    "correctText": "en:lesson-01:session-46:i16:p1=weak\nen:lesson-01:session-46:i16:p2=missing\nen:lesson-01:session-46:i16:p3=ready\nen:lesson-01:session-46:i16:p4=packed",
     "correctResponseId": null
   },
   {

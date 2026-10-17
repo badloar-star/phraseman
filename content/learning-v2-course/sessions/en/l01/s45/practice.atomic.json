@@ -1,0 +1,2431 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-45:word:useful",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — useful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:useful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — useful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:useful:audio",
+            "transcript": "useful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:useful:r1",
+              "targetText": "useful",
+              "meaningByLocale": {
+                "ru": "полезный, пригодился. It's useful — «Он пригодился». Так говорят о вещи или совете, который помог.",
+                "uk": "корисний, знадобився. It's useful — «Він знадобився». Так кажуть про річ або пораду, яка допомогла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "useful",
+            "definitionByLocale": {
+              "ru": "полезный, пригодился. It's useful — «Он пригодился». Так говорят о вещи или совете, который помог.",
+              "uk": "корисний, знадобився. It's useful — «Він знадобився». Так кажуть про річ або пораду, яка допомогла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:word:packed",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — packed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:packed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — packed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:packed:audio",
+            "transcript": "packed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:packed:r1",
+              "targetText": "packed",
+              "meaningByLocale": {
+                "ru": "упакован, сложен в коробки. They're packed — «Они упакованы». О себе: I'm packed — «Я собрался».",
+                "uk": "спакований, складений у коробки. They're packed — «Вони спаковані». Про себе: I'm packed — «Я зібрався»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packed",
+            "definitionByLocale": {
+              "ru": "упакован, сложен в коробки. They're packed — «Они упакованы». О себе: I'm packed — «Я собрался».",
+              "uk": "спакований, складений у коробки. They're packed — «Вони спаковані». Про себе: I'm packed — «Я зібрався»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:word:spacious",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spacious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:spacious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spacious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:spacious:audio",
+            "transcript": "spacious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:spacious:r1",
+              "targetText": "spacious",
+              "meaningByLocale": {
+                "ru": "просторный. It's spacious — «Здесь просторно». О комнате, квартире или машине, где много места.",
+                "uk": "просторий. It's spacious — «Тут просторо». Про кімнату, квартиру чи машину, де багато місця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spacious",
+            "definitionByLocale": {
+              "ru": "просторный. It's spacious — «Здесь просторно». О комнате, квартире или машине, где много места.",
+              "uk": "просторий. It's spacious — «Тут просторо». Про кімнату, квартиру чи машину, де багато місця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:word:sturdy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sturdy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:sturdy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sturdy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:sturdy:audio",
+            "transcript": "sturdy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:sturdy:r1",
+              "targetText": "sturdy",
+              "meaningByLocale": {
+                "ru": "крепкий, прочный. It's sturdy — «Она крепкая». О коробке, столе или стуле, которые выдержат вес.",
+                "uk": "міцний, надійний. It's sturdy — «Вона міцна». Про коробку, стіл чи стілець, які витримають вагу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sturdy",
+            "definitionByLocale": {
+              "ru": "крепкий, прочный. It's sturdy — «Она крепкая». О коробке, столе или стуле, которые выдержат вес.",
+              "uk": "міцний, надійний. It's sturdy — «Вона міцна». Про коробку, стіл чи стілець, які витримають вагу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Маркер помог подписать все коробки. Соберите фразу о его пользе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маркер помог подписать все коробки. Соберите фразу о его пользе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is useful.",
+          "localizedMeaning": {
+            "ru": "Маркер помог подписать все коробки. Соберите фразу о его пользе",
+            "uk": "Маркер допоміг підписати всі коробки. Складіть фразу про його користь"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "useful"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Маркер помог подписать все коробки. Соберите фразу о его пользе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is useful.`",
+                "uk": "тут потрібно `It` — `It is useful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i02:r1",
+            "text": "They are packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i02:r2",
+            "text": "We are packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i02:r3",
+            "text": "They are empty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i02:audio",
+            "transcript": "They are packed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:i02:r1",
+              "targetText": "They are packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i02:r2",
+              "targetText": "We are packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i02:r3",
+              "targetText": "They are empty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `packed`, а в этом варианте — `empty`.",
+                "uk": "У записі останнє слово — `packed`, а в цьому варіанті — `empty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дима поставил на коробку стопку книг, и она даже не прогнулась. Дополните фразу о коробке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дима поставил на коробку стопку книг, и она даже не прогнулась. Дополните фразу о коробке",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дима поставил на коробку стопку книг, и она даже не прогнулась. Дополните фразу о коробке",
+            "uk": "Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку"
+          },
+          "gappedTargetPhrase": "It ___ sturdy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-45:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дима поставил на коробку стопку книг, и она даже не прогнулась. Дополните фразу о коробке",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Дима поставил на коробку стопку книг, и она даже не прогнулась. Дополните фразу о коробке",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Дима поставил на коробку стопку книг, и она даже не прогнулась. Дополните фразу о коробке",
+              "feedbackByLocale": {
+                "ru": "Коробка одна, поэтому `It is`.",
+                "uk": "Коробка одна, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-45:i04:p1",
+              "target": "useful",
+              "meaningByLocale": {
+                "ru": "полезный",
+                "uk": "корисний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i04:p2",
+              "target": "packed",
+              "meaningByLocale": {
+                "ru": "упакованный",
+                "uk": "спакований"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i04:p3",
+              "target": "spacious",
+              "meaningByLocale": {
+                "ru": "просторный",
+                "uk": "просторий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i04:p4",
+              "target": "sturdy",
+              "meaningByLocale": {
+                "ru": "крепкий",
+                "uk": "міцний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "useful",
+            "packed",
+            "spacious",
+            "sturdy"
+          ],
+          "rightColumn": [
+            "полезный",
+            "упакованный",
+            "просторный",
+            "крепкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i05:audio",
+            "transcript": "It's spacious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's spacious.",
+          "orderedTokens": [
+            "It's",
+            "spacious"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's spacious.`",
+                "uk": "тут потрібно `It's` — `It's spacious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Две коробки с посудой заклеены и подписаны. Скажите Диме, что они упакованы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две коробки с посудой заклеены и подписаны. Скажите Диме, что они упакованы",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are packed.",
+          "localizedMeaning": {
+            "ru": "Две коробки с посудой заклеены и подписаны. Скажите Диме, что они упакованы",
+            "uk": "Дві коробки з посудом заклеєні й підписані. Скажіть Дімі, що вони спаковані"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "packed"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Две коробки с посудой заклеены и подписаны. Скажите Диме, что они упакованы",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are packed.`",
+                "uk": "тут потрібно `are` — `They are packed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дима нашёл в прихожей рулетку и сразу измерил дверь для дивана. Скажите коротко, что рулетка пригодилась",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Дима нашёл в прихожей рулетку и сразу измерил дверь для дивана. Скажите коротко, что рулетка пригодилась",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i07:audio",
+            "transcript": "It's useful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's useful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вечером Дима один в новой квартире, и ему грустно без друзей. Назовите его чувство",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i08:r1",
+            "text": "lonely"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r2",
+            "text": "spacious"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r3",
+            "text": "packed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вечером Дима один в новой квартире, и ему грустно без друзей. Назовите его чувство",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вечером Дима один в новой квартире, и ему грустно без друзей. Назовите его чувство",
+            "uk": "Увечері Діма сам у новій квартирі, і йому сумно без друзів. Назвіть його почуття"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-45:i08:r1",
+              "text": "lonely"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i08:r2",
+              "text": "spacious"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i08:r3",
+              "text": "packed"
+            }
+          ],
+          "testedDimension": "Вечером Дима один в новой квартире, и ему грустно без друзей. Назовите его чувство",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Вечером Дима один в новой квартире, и ему грустно без друзей. Назовите его чувство",
+              "feedbackByLocale": {
+                "ru": "`spacious` — «просторный», это про комнату. О грусти без друзей — `lonely`.",
+                "uk": "`spacious` — «просторий», це про кімнату. Про сум без друзів — `lonely`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Вечером Дима один в новой квартире, и ему грустно без друзей. Назовите его чувство",
+              "feedbackByLocale": {
+                "ru": "`packed` — «собрался, упакован». Чувство одиночества — `lonely`.",
+                "uk": "`packed` — «зібрався, спакований». Почуття самотності — `lonely`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i09:r1",
+            "text": "It is sturdy."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i09:r2",
+            "text": "He is sturdy."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i09:r3",
+            "text": "It is heavy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i09:audio",
+            "transcript": "It is sturdy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:i09:r1",
+              "targetText": "It is sturdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i09:r2",
+              "targetText": "He is sturdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i09:r3",
+              "targetText": "It is heavy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sturdy`, а в этом варианте — `heavy`.",
+                "uk": "У записі останнє слово — `sturdy`, а в цьому варіанті — `heavy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-45:i10:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i10:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i10:p3",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i10:p4",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "I'm",
+            "We're"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "I am",
+            "We are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу о стульях",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу о стульях",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i11:audio",
+            "transcript": "They're sturdy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're sturdy.",
+          "orderedTokens": [
+            "They're",
+            "sturdy"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу о стульях",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're sturdy.`",
+                "uk": "тут потрібно `They're` — `They're sturdy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши вещи уже в рюкзаке, можно ехать. Скажите Диме о себе, что вы собрались",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши вещи уже в рюкзаке, можно ехать. Скажите Диме о себе, что вы собрались",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am packed.",
+          "localizedMeaning": {
+            "ru": "Ваши вещи уже в рюкзаке, можно ехать. Скажите Диме о себе, что вы собрались",
+            "uk": "Ваші речі вже в рюкзаку, можна їхати. Скажіть Дімі про себе, що ви зібралися"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "packed"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ваши вещи уже в рюкзаке, можно ехать. Скажите Диме о себе, что вы собрались",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am packed.`",
+                "uk": "тут потрібно `am` — `I am packed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На новой кухне Димы помещается большой стол, и ещё остаётся место. Скажите Диме, что кухня просторная",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "На новой кухне Димы помещается большой стол, и ещё остаётся место. Скажите Диме, что кухня просторная",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i13:audio",
+            "transcript": "It is spacious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is spacious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Две старые табуретки скрипят, но спокойно выдерживают вес. Скажите Диме, что они крепкие",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две старые табуретки скрипят, но спокойно выдерживают вес. Скажите Диме, что они крепкие",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две старые табуретки скрипят, но спокойно выдерживают вес. Скажите Диме, что они крепкие",
+            "uk": "Дві старі табуретки рипять, але спокійно витримують вагу. Скажіть Дімі, що вони міцні"
+          },
+          "gappedTargetPhrase": "They ___ sturdy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-45:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Две старые табуретки скрипят, но спокойно выдерживают вес. Скажите Диме, что они крепкие",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Две старые табуретки скрипят, но спокойно выдерживают вес. Скажите Диме, что они крепкие",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Две старые табуретки скрипят, но спокойно выдерживают вес. Скажите Диме, что они крепкие",
+              "feedbackByLocale": {
+                "ru": "Табуреток две, поэтому `They are`.",
+                "uk": "Табуреток дві, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i15:r1",
+            "text": "We're packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i15:r2",
+            "text": "They're packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i15:r3",
+            "text": "We're ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i15:audio",
+            "transcript": "We're packed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:i15:r1",
+              "targetText": "We're packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i15:r2",
+              "targetText": "They're packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i15:r3",
+              "targetText": "We're ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `packed`, а в этом варианте — `ready`.",
+                "uk": "У записі останнє слово — `packed`, а в цьому варіанті — `ready`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-45:i16:p1",
+              "target": "fragile",
+              "meaningByLocale": {
+                "ru": "хрупкий",
+                "uk": "крихкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i16:p2",
+              "target": "heavy",
+              "meaningByLocale": {
+                "ru": "тяжёлый",
+                "uk": "важкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i16:p3",
+              "target": "empty",
+              "meaningByLocale": {
+                "ru": "пустой",
+                "uk": "порожній"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i16:p4",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "в беспорядке",
+                "uk": "у безладі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fragile",
+            "heavy",
+            "empty",
+            "messy"
+          ],
+          "rightColumn": [
+            "хрупкий",
+            "тяжёлый",
+            "пустой",
+            "в беспорядке"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега показал вам таблицу, где сразу видно, кто из команды в отпуске. Скажите коллеге, что таблица полезная",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Коллега показал вам таблицу, где сразу видно, кто из команды в отпуске. Скажите коллеге, что таблица полезная",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i17:audio",
+            "transcript": "It is useful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is useful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-45:word:useful",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — useful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:useful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — useful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:useful:audio",
+            "transcript": "useful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:useful:r1",
+              "targetText": "useful",
+              "meaningByLocale": {
+                "ru": "полезный, пригодился. It's useful — «Он пригодился». Так говорят о вещи или совете, который помог.",
+                "uk": "корисний, знадобився. It's useful — «Він знадобився». Так кажуть про річ або пораду, яка допомогла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "useful",
+            "definitionByLocale": {
+              "ru": "полезный, пригодился. It's useful — «Он пригодился». Так говорят о вещи или совете, который помог.",
+              "uk": "корисний, знадобився. It's useful — «Він знадобився». Так кажуть про річ або пораду, яка допомогла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:word:packed",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — packed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:packed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — packed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:packed:audio",
+            "transcript": "packed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:packed:r1",
+              "targetText": "packed",
+              "meaningByLocale": {
+                "ru": "упакован, сложен в коробки. They're packed — «Они упакованы». О себе: I'm packed — «Я собрался».",
+                "uk": "спакований, складений у коробки. They're packed — «Вони спаковані». Про себе: I'm packed — «Я зібрався»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packed",
+            "definitionByLocale": {
+              "ru": "упакован, сложен в коробки. They're packed — «Они упакованы». О себе: I'm packed — «Я собрался».",
+              "uk": "спакований, складений у коробки. They're packed — «Вони спаковані». Про себе: I'm packed — «Я зібрався»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:word:spacious",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spacious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:spacious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spacious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:spacious:audio",
+            "transcript": "spacious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:spacious:r1",
+              "targetText": "spacious",
+              "meaningByLocale": {
+                "ru": "просторный. It's spacious — «Здесь просторно». О комнате, квартире или машине, где много места.",
+                "uk": "просторий. It's spacious — «Тут просторо». Про кімнату, квартиру чи машину, де багато місця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spacious",
+            "definitionByLocale": {
+              "ru": "просторный. It's spacious — «Здесь просторно». О комнате, квартире или машине, где много места.",
+              "uk": "просторий. It's spacious — «Тут просторо». Про кімнату, квартиру чи машину, де багато місця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:word:sturdy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sturdy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:word:sturdy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sturdy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:word:sturdy:audio",
+            "transcript": "sturdy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:word:sturdy:r1",
+              "targetText": "sturdy",
+              "meaningByLocale": {
+                "ru": "крепкий, прочный. It's sturdy — «Она крепкая». О коробке, столе или стуле, которые выдержат вес.",
+                "uk": "міцний, надійний. It's sturdy — «Вона міцна». Про коробку, стіл чи стілець, які витримають вагу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sturdy",
+            "definitionByLocale": {
+              "ru": "крепкий, прочный. It's sturdy — «Она крепкая». О коробке, столе или стуле, которые выдержат вес.",
+              "uk": "міцний, надійний. It's sturdy — «Вона міцна». Про коробку, стіл чи стілець, які витримають вагу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Маркер допоміг підписати всі коробки. Складіть фразу про його користь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маркер допоміг підписати всі коробки. Складіть фразу про його користь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is useful.",
+          "localizedMeaning": {
+            "ru": "Маркер помог подписать все коробки. Соберите фразу о его пользе",
+            "uk": "Маркер допоміг підписати всі коробки. Складіть фразу про його користь"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "useful"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Маркер допоміг підписати всі коробки. Складіть фразу про його користь",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is useful.`",
+                "uk": "тут потрібно `It` — `It is useful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i02:r1",
+            "text": "They are packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i02:r2",
+            "text": "We are packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i02:r3",
+            "text": "They are empty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i02:audio",
+            "transcript": "They are packed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:i02:r1",
+              "targetText": "They are packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i02:r2",
+              "targetText": "We are packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i02:r3",
+              "targetText": "They are empty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `packed`, а в этом варианте — `empty`.",
+                "uk": "У записі останнє слово — `packed`, а в цьому варіанті — `empty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дима поставил на коробку стопку книг, и она даже не прогнулась. Дополните фразу о коробке",
+            "uk": "Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку"
+          },
+          "gappedTargetPhrase": "It ___ sturdy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-45:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку",
+              "feedbackByLocale": {
+                "ru": "Коробка одна, поэтому `It is`.",
+                "uk": "Коробка одна, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-45:i04:p1",
+              "target": "useful",
+              "meaningByLocale": {
+                "ru": "полезный",
+                "uk": "корисний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i04:p2",
+              "target": "packed",
+              "meaningByLocale": {
+                "ru": "упакованный",
+                "uk": "спакований"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i04:p3",
+              "target": "spacious",
+              "meaningByLocale": {
+                "ru": "просторный",
+                "uk": "просторий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i04:p4",
+              "target": "sturdy",
+              "meaningByLocale": {
+                "ru": "крепкий",
+                "uk": "міцний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "useful",
+            "packed",
+            "spacious",
+            "sturdy"
+          ],
+          "rightColumn": [
+            "корисний",
+            "спакований",
+            "просторий",
+            "міцний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i05:audio",
+            "transcript": "It's spacious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's spacious.",
+          "orderedTokens": [
+            "It's",
+            "spacious"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's spacious.`",
+                "uk": "тут потрібно `It's` — `It's spacious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дві коробки з посудом заклеєні й підписані. Скажіть Дімі, що вони спаковані",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві коробки з посудом заклеєні й підписані. Скажіть Дімі, що вони спаковані",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are packed.",
+          "localizedMeaning": {
+            "ru": "Две коробки с посудой заклеены и подписаны. Скажите Диме, что они упакованы",
+            "uk": "Дві коробки з посудом заклеєні й підписані. Скажіть Дімі, що вони спаковані"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "packed"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Дві коробки з посудом заклеєні й підписані. Скажіть Дімі, що вони спаковані",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are packed.`",
+                "uk": "тут потрібно `are` — `They are packed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Діма знайшов у передпокої рулетку й одразу виміряв двері для дивана. Скажіть коротко, що рулетка знадобилася",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Діма знайшов у передпокої рулетку й одразу виміряв двері для дивана. Скажіть коротко, що рулетка знадобилася",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i07:audio",
+            "transcript": "It's useful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's useful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Увечері Діма сам у новій квартирі, і йому сумно без друзів. Назвіть його почуття",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i08:r1",
+            "text": "lonely"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r2",
+            "text": "spacious"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r3",
+            "text": "packed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Увечері Діма сам у новій квартирі, і йому сумно без друзів. Назвіть його почуття",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вечером Дима один в новой квартире, и ему грустно без друзей. Назовите его чувство",
+            "uk": "Увечері Діма сам у новій квартирі, і йому сумно без друзів. Назвіть його почуття"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-45:i08:r1",
+              "text": "lonely"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i08:r2",
+              "text": "spacious"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i08:r3",
+              "text": "packed"
+            }
+          ],
+          "testedDimension": "Увечері Діма сам у новій квартирі, і йому сумно без друзів. Назвіть його почуття",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Увечері Діма сам у новій квартирі, і йому сумно без друзів. Назвіть його почуття",
+              "feedbackByLocale": {
+                "ru": "`spacious` — «просторный», это про комнату. О грусти без друзей — `lonely`.",
+                "uk": "`spacious` — «просторий», це про кімнату. Про сум без друзів — `lonely`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Увечері Діма сам у новій квартирі, і йому сумно без друзів. Назвіть його почуття",
+              "feedbackByLocale": {
+                "ru": "`packed` — «собрался, упакован». Чувство одиночества — `lonely`.",
+                "uk": "`packed` — «зібрався, спакований». Почуття самотності — `lonely`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i09:r1",
+            "text": "It is sturdy."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i09:r2",
+            "text": "He is sturdy."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i09:r3",
+            "text": "It is heavy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i09:audio",
+            "transcript": "It is sturdy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:i09:r1",
+              "targetText": "It is sturdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i09:r2",
+              "targetText": "He is sturdy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i09:r3",
+              "targetText": "It is heavy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sturdy`, а в этом варианте — `heavy`.",
+                "uk": "У записі останнє слово — `sturdy`, а в цьому варіанті — `heavy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-45:i10:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i10:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i10:p3",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i10:p4",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "I'm",
+            "We're"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "I am",
+            "We are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу про стільці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу про стільці",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i11:audio",
+            "transcript": "They're sturdy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're sturdy.",
+          "orderedTokens": [
+            "They're",
+            "sturdy"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу про стільці",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're sturdy.`",
+                "uk": "тут потрібно `They're` — `They're sturdy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші речі вже в рюкзаку, можна їхати. Скажіть Дімі про себе, що ви зібралися",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші речі вже в рюкзаку, можна їхати. Скажіть Дімі про себе, що ви зібралися",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am packed.",
+          "localizedMeaning": {
+            "ru": "Ваши вещи уже в рюкзаке, можно ехать. Скажите Диме о себе, что вы собрались",
+            "uk": "Ваші речі вже в рюкзаку, можна їхати. Скажіть Дімі про себе, що ви зібралися"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "packed"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ваші речі вже в рюкзаку, можна їхати. Скажіть Дімі про себе, що ви зібралися",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am packed.`",
+                "uk": "тут потрібно `am` — `I am packed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На новій кухні Діми вміщається великий стіл, і ще лишається місце. Скажіть Дімі, що кухня простора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "На новій кухні Діми вміщається великий стіл, і ще лишається місце. Скажіть Дімі, що кухня простора",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i13:audio",
+            "transcript": "It is spacious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is spacious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дві старі табуретки рипять, але спокійно витримують вагу. Скажіть Дімі, що вони міцні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві старі табуретки рипять, але спокійно витримують вагу. Скажіть Дімі, що вони міцні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две старые табуретки скрипят, но спокойно выдерживают вес. Скажите Диме, что они крепкие",
+            "uk": "Дві старі табуретки рипять, але спокійно витримують вагу. Скажіть Дімі, що вони міцні"
+          },
+          "gappedTargetPhrase": "They ___ sturdy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-45:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дві старі табуретки рипять, але спокійно витримують вагу. Скажіть Дімі, що вони міцні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Дві старі табуретки рипять, але спокійно витримують вагу. Скажіть Дімі, що вони міцні",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Дві старі табуретки рипять, але спокійно витримують вагу. Скажіть Дімі, що вони міцні",
+              "feedbackByLocale": {
+                "ru": "Табуреток две, поэтому `They are`.",
+                "uk": "Табуреток дві, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i15:r1",
+            "text": "We're packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i15:r2",
+            "text": "They're packed."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i15:r3",
+            "text": "We're ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i15:audio",
+            "transcript": "We're packed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-45:i15:r1",
+              "targetText": "We're packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i15:r2",
+              "targetText": "They're packed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i15:r3",
+              "targetText": "We're ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `packed`, а в этом варианте — `ready`.",
+                "uk": "У записі останнє слово — `packed`, а в цьому варіанті — `ready`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-45:i16:p1",
+              "target": "fragile",
+              "meaningByLocale": {
+                "ru": "хрупкий",
+                "uk": "крихкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i16:p2",
+              "target": "heavy",
+              "meaningByLocale": {
+                "ru": "тяжёлый",
+                "uk": "важкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i16:p3",
+              "target": "empty",
+              "meaningByLocale": {
+                "ru": "пустой",
+                "uk": "порожній"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-45:i16:p4",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "в беспорядке",
+                "uk": "у безладі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fragile",
+            "heavy",
+            "empty",
+            "messy"
+          ],
+          "rightColumn": [
+            "крихкий",
+            "важкий",
+            "порожній",
+            "у безладі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега показав вам таблицю, де одразу видно, хто з команди у відпустці. Скажіть колезі, що таблиця корисна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Колега показав вам таблицю, де одразу видно, хто з команди у відпустці. Скажіть колезі, що таблиця корисна",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-45:i17:audio",
+            "transcript": "It is useful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is useful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-45:word:useful",
+      "correctText": "useful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:word:packed",
+      "correctText": "packed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:word:spacious",
+      "correctText": "spacious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:word:sturdy",
+      "correctText": "sturdy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i01",
+      "correctText": "It is useful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i02",
+      "correctText": "They are packed.",
+      "correctResponseId": "en:lesson-01:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i05",
+      "correctText": "It's spacious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i06",
+      "correctText": "They are packed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i07",
+      "correctText": "It's useful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i08",
+      "correctText": "lonely",
+      "correctResponseId": "en:lesson-01:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i09",
+      "correctText": "It is sturdy.",
+      "correctResponseId": "en:lesson-01:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i11",
+      "correctText": "They're sturdy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i12",
+      "correctText": "I am packed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i13",
+      "correctText": "It is spacious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-45:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i15",
+      "correctText": "We're packed.",
+      "correctResponseId": "en:lesson-01:session-45:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i17",
+      "correctText": "It is useful.",
+      "correctResponseId": null
+    }
+  ]
+}

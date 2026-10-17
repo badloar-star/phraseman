@@ -157,7 +157,18 @@ function drainFrames(raw: string, from: number, final = false): { frames: Stream
  * Прогрев стримингового инстанса. Тот же приём, что и у callable-версии:
  * ping бесплатный и выходит из функции до любых чтений Firestore.
  */
+/** Не чаще раза в 30 минут на цель обучения (зачем: расходы, координатор 17.10 — каждый прогрев поток-инстанса стоит как вызов на полном ядре). */
+const STREAM_WARM_TTL_MS = 30 * 60 * 1000;
+const streamWarmedAt = new Map<string, number>();
+
 export function warmPremiumDialogStream(studyTarget: string): void {
+  const nowMs = Date.now();
+  const last = streamWarmedAt.get(studyTarget);
+  if (last !== undefined && nowMs - last >= 0 && nowMs - last < STREAM_WARM_TTL_MS) {
+    console.log('[COST-CUT] premium_dialog_stream_warm skipped reason=ttl_not_expired', JSON.stringify({ studyTarget, ageMs: nowMs - last, ttlMs: STREAM_WARM_TTL_MS })); // guard-ok: ранний выход называет причину
+    return;
+  }
+  streamWarmedAt.set(studyTarget, nowMs); // guard-ok: Map в памяти процесса, не Firestore
   void (async () => {
     try {
       const token = await auth().currentUser?.getIdToken();

@@ -41,7 +41,7 @@ describe('app messages background refresh contract', () => {
     expect(inboxSource).toContain('BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(pollBlock).toContain('readCachedAppMessagesSnapshot()');
     // зачем (смета Ядра e72a5417b №2, 13.10): открытая шторка читает сеть не чаще раза в 60 с (было 0 — до 240 чтений на открытие).
-    expect(inboxSource).toContain('INBOX_OPEN_REFRESH_MIN_INTERVAL_MS = 60_000');
+    expect(inboxSource).toContain('INBOX_OPEN_REFRESH_MIN_INTERVAL_MS = 60 * 60_000');
     expect(pollBlock).toContain('const minIntervalMs = effectiveVisible ? INBOX_OPEN_REFRESH_MIN_INTERVAL_MS : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS;');
     expect(pollBlock).not.toMatch(/effectiveVisible \? 0 :/);
     expect(pollBlock).toContain('[INBOX-REFRESH]');

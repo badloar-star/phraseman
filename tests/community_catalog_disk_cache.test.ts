@@ -67,9 +67,9 @@ describe('каталог маркета: диск и дедуп', () => {
     expect(networkGets).toBe(0);
   });
 
-  test('протухшая копия (старше 6 ч) идёт в сеть', async () => {
+  test('протухшая копия (старше 24 ч) идёт в сеть', async () => {
     const mod = loadModule();
-    disk.set(`${mod.COMMUNITY_CATALOG_DISK_PREFIX}community:en`, JSON.stringify({ at: Date.now() - 7 * 3600_000, packs: [] }));
+    disk.set(`${mod.COMMUNITY_CATALOG_DISK_PREFIX}community:en`, JSON.stringify({ at: Date.now() - 25 * 3600_000, packs: [] }));
     await mod.loadPublishedCommunityMarketPacks('en');
     expect(networkGets).toBe(COMMUNITY_QUERIES);
   });

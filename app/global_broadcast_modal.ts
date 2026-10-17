@@ -376,7 +376,8 @@ function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): b
  * Ответ «активных нет» помним 3 ч для этого uid (значение сверяет uid — чужой аккаунт кэш не использует). Есть рассылки — запись
  * снимается. Новая рассылка доходит не позже чем через 3 ч. Ключ device_only (config/phone-state-legacy-inventory.v1.json).
  */
-export const GLOBAL_BROADCAST_EMPTY_TTL_MS = 3 * 60 * 60 * 1000;
+// зачем (расходы, координатор 17.10, пункт в): пустой ответ рассылки живёт в кэше 12 ч (было 3 ч)
+export const GLOBAL_BROADCAST_EMPTY_TTL_MS = 12 * 60 * 60 * 1000;
 
 async function readBroadcastEmptyAgeMs(uid: string, nowMs: number): Promise<number | null> {
   try {

@@ -1622,6 +1622,7 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     const lastRefreshMs = await readLastBackgroundRefreshMs();
     if (lastRefreshMs > 0 && nowMs - lastRefreshMs < minIntervalMs) {
       DebugLogger.info('[STARTUP-READS]', `app_messages: cache (ageMs=${nowMs - lastRefreshMs} < minIntervalMs=${minIntervalMs}) -> network skipped`);
+      console.log('[COST-CUT] app_messages skipped reason=ttl_not_expired', JSON.stringify({ ageMs: nowMs - lastRefreshMs, minIntervalMs })); // guard-ok: ранний выход называет причину
       options.onOutcome?.({ source: 'cache_interval', ageMs: nowMs - lastRefreshMs, minIntervalMs });
       return cached;
     }

@@ -16,7 +16,8 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
  * одновременно не шлют двойной прогрев. Ошибка прогрева ни на что не влияет — только лог.
  * minInstances не используем (решение владельца нужно отдельно).
  */
-export const DIALOGUE_V2_WARM_INTERVAL_MS = 10 * 60 * 1000;
+// зачем (расходы, координатор 17.10, пункт 5 клиентского аудита): было 10 минут -> 30; каждый прогрев — 2 вызова на полном ядре
+export const DIALOGUE_V2_WARM_INTERVAL_MS = 30 * 60 * 1000;
 const STORAGE_KEY = 'dialogue_v2_warm_last_at_v1';
 const FUNCTIONS_REGION = 'us-central1';
 const WARM_FUNCTIONS = ['dialogueV2SessionStart', 'dialogueV2TextTurn'] as const;
@@ -50,6 +51,7 @@ export function createDialogueV2Warmup(dependencies: DialogueV2WarmupDependencie
     const now = dependencies.nowMs();
     if (lastWarmAtMs !== null && now - lastWarmAtMs >= 0 && now - lastWarmAtMs < DIALOGUE_V2_WARM_INTERVAL_MS) {
       console.log(LOG, JSON.stringify({ event: 'throttled', source, ageMs: now - lastWarmAtMs }));
+      console.log('[COST-CUT] dialogue_v2_warm skipped reason=ttl_not_expired', JSON.stringify({ source, ageMs: now - lastWarmAtMs, ttlMs: DIALOGUE_V2_WARM_INTERVAL_MS })); // guard-ok: ранний выход называет причину
       return 'throttled';
     }
     lastWarmAtMs = now;

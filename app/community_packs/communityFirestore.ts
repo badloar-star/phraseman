@@ -215,7 +215,8 @@ export const sortCommunityMarketPacksByRating = sortCommunityMarketPacksBySocial
  * медленно (модерация), поэтому 6 часов — безопасный TTL; pull-to-refresh и
  * явная кнопка «Повторить» проходят мимо кэша через `forceRemote`.
  */
-const COMMUNITY_CATALOG_TTL_MS = 6 * 60 * 60 * 1000;
+// зачем (расходы, координатор 17.10, пункт б клиентского аудита): TTL каталога наборов 6 ч -> 24 ч; обновление — pull-to-refresh и по истечении при входе в раздел
+const COMMUNITY_CATALOG_TTL_MS = 24 * 60 * 60 * 1000;
 let _communityCatalogCache: {
   key: string;
   at: number;
@@ -357,7 +358,9 @@ const VIDEO_PACKS_LIMIT = 60;
 export function peekVideoMarketPacks(studyTarget?: RuntimeStudyTarget): FlashcardMarketPack[] | null {
   const key = String(studyTarget ?? 'default');
   if (!_videoCatalogCache || _videoCatalogCache.key !== key) return null;
-  return Date.now() - _videoCatalogCache.at <= COMMUNITY_CATALOG_TTL_MS ? _videoCatalogCache.packs : null;
+  const fresh = Date.now() - _videoCatalogCache.at <= COMMUNITY_CATALOG_TTL_MS;
+  if (fresh) console.log('[COST-CUT] video_pack_catalog skipped reason=cache_hit', JSON.stringify({ key, ageMin: Math.round((Date.now() - _videoCatalogCache.at) / 60000) })); // guard-ok: ранний выход называет причину
+  return fresh ? _videoCatalogCache.packs : null;
 }
 
 /**
@@ -456,6 +459,7 @@ export async function loadPublishedCommunityMarketPacks(
     const disk = await readCatalogFromDisk('community', cacheKey);
     if (disk && Date.now() - disk.at <= COMMUNITY_CATALOG_TTL_MS && generation === catalogGeneration) {
       _communityCatalogCache = disk;
+      console.log('[COST-CUT] community_catalog skipped reason=disk_ttl_not_expired', cacheKey); // guard-ok: ранний выход называет причину
       console.log('[PACKS-CATALOG] load DISK', JSON.stringify({ key: cacheKey, packs: disk.packs.length, ageMin: Math.round((Date.now() - disk.at) / 60000) }));
       return disk.packs;
     }

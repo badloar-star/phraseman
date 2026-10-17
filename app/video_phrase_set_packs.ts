@@ -23,7 +23,8 @@ const LOG = '[VIDEO-PACKS]';
 // а сеть фоном дописывает длительность (без экрана ожидания).
 const CACHE_KEY = 'video_phrase_set_packs_cache_v2';
 const LEGACY_CACHE_KEY = 'video_phrase_set_packs_cache_v1';
-export const VIDEO_PHRASE_SET_PACKS_TTL_MS = 6 * 60 * 60 * 1000;
+// зачем (расходы, координатор 17.10, пункт б): TTL каталога наборов из видео 6 ч -> 24 ч
+export const VIDEO_PHRASE_SET_PACKS_TTL_MS = 24 * 60 * 60 * 1000;
 const SETS_LIMIT = 200;
 /** Префикс id: отличает набор фраз ролика от community-набора при открытии. */
 export const VIDEO_PHRASE_SET_PACK_PREFIX = 'video:';
@@ -237,7 +238,8 @@ export async function loadVideoPhraseSetPacks(options?: { forceRemote?: boolean 
   }
   const fresh = memory && Date.now() - memory.savedAtMs < VIDEO_PHRASE_SET_PACKS_TTL_MS;
   if (fresh && !options?.forceRemote) {
-    DebugLogger.info(LOG, `source=cache наборов ${memory!.packs.length} (сеть пропущена: кэш свежее 6 ч)`);
+    DebugLogger.info(LOG, `source=cache наборов ${memory!.packs.length} (сеть пропущена: кэш свежее 24 ч)`);
+    console.log('[COST-CUT] video_phrase_set_packs skipped reason=ttl_not_expired', JSON.stringify({ ageMin: Math.round((Date.now() - memory!.savedAtMs) / 60000) })); // guard-ok: ранний выход называет причину
     return memory!.packs;
   }
   if (inFlight) return inFlight;

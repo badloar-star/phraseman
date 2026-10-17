@@ -126,7 +126,7 @@ import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
 import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
-import { isLearningV2Hidden } from '../learning_v2_visibility_switch';
+import { isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
 
@@ -556,7 +556,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeDialoguesVisible = isLearningSurfaceReady(studyTarget, 'dialogues');
     // зачем (владелец 01.10: диалоги «ДОЛЖНЫ» прогреваться): плитка «Диалоги» видна —
     // греем функции старта/хода после первого кадра, не чаще раза в 10 минут.
-    useDialogueV2Warmup(homeDialoguesVisible, 'home_tile');
+    // зачем (расходы, координатор 17.10): прогрев Диалогов с Главной выключен — греем только при переходе в Диалоги (DialogsTabContent), не чаще раза в 30 мин
+    useDialogueV2Warmup(false, 'home_tile');
     const homeFlashcardsVisible = isLearningSurfaceReady(studyTarget, 'flashcards');
     const homeVideosVisible = isLearningSurfaceReady(studyTarget, 'videos');
     const homeDailyPhraseVisible = isLearningSurfaceReady(studyTarget, 'daily_phrase');
@@ -810,7 +811,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         () => resolveHomeContinuePlaces({ marks: continueMarks, dialoguesVisible: homeDialoguesVisible, flashcardsVisible: homeFlashcardsVisible, lang }),
         [continueMarks.dialog, continueMarks.cards, homeDialoguesVisible, homeFlashcardsVisible, lang], // eslint-disable-line react-hooks/exhaustive-deps -- зачем: нужны только эти две метки
     );
-    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED ? continueMarks.v2 : null, dialog: continuePlaces.dialog, cards: continuePlaces.cards };
+    // зачем (R92): карточка «Продолжить» не ведёт в курс V2, если у курса нет пояснений на языке интерфейса (есть только ru/uk)
+    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED && isLearningV2OpenForUiLangV1(lang, 'home_continue') ? continueMarks.v2 : null, dialog: continuePlaces.dialog, cards: continuePlaces.cards };
     const continueChoice = pickHomeContinue(continueInput);
     const continueV2 = continueChoice.kind === 'v2' ? continueInput.v2 : null;
     const continuePlace = continueChoice.kind === 'dialog' ? continuePlaces.dialog : continueChoice.kind === 'cards' ? continuePlaces.cards : null;

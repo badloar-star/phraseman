@@ -1,0 +1,2433 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-38",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-38:word:starving",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — starving",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:starving:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — starving",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:starving:audio",
+            "transcript": "starving"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:starving:r1",
+              "targetText": "starving",
+              "meaningByLocale": {
+                "ru": "очень голодный, «умираю с голоду». I'm starving — «Я ужасно хочу есть». Сильнее, чем hungry.",
+                "uk": "дуже голодний, «помираю з голоду». I'm starving — «Я страшенно хочу їсти». Сильніше, ніж hungry."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "starving",
+            "definitionByLocale": {
+              "ru": "очень голодный, «умираю с голоду». I'm starving — «Я ужасно хочу есть». Сильнее, чем hungry.",
+              "uk": "дуже голодний, «помираю з голоду». I'm starving — «Я страшенно хочу їсти». Сильніше, ніж hungry."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:word:dusty",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dusty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:dusty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dusty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:dusty:audio",
+            "transcript": "dusty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:dusty:r1",
+              "targetText": "dusty",
+              "meaningByLocale": {
+                "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
+                "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dusty",
+            "definitionByLocale": {
+              "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
+              "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:word:sunburned",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sunburned",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:sunburned:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sunburned",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:sunburned:audio",
+            "transcript": "sunburned"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:sunburned:r1",
+              "targetText": "sunburned",
+              "meaningByLocale": {
+                "ru": "обгорел на солнце. He's sunburned — «Он обгорел». Кожа красная и болит.",
+                "uk": "обгорів на сонці. He's sunburned — «Він обгорів». Шкіра червона й болить."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunburned",
+            "definitionByLocale": {
+              "ru": "обгорел на солнце. He's sunburned — «Он обгорел». Кожа красная и болит.",
+              "uk": "обгорів на сонці. He's sunburned — «Він обгорів». Шкіра червона й болить."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:word:sore",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sore",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:sore:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sore",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:sore:audio",
+            "transcript": "sore"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:sore:r1",
+              "targetText": "sore",
+              "meaningByLocale": {
+                "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
+                "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sore",
+            "definitionByLocale": {
+              "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
+              "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am starving.",
+          "localizedMeaning": {
+            "ru": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
+            "uk": "Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "starving"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am starving.`",
+                "uk": "тут потрібно `am` — `I am starving.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i02:r1",
+            "text": "He is sunburned."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r2",
+            "text": "She is sunburned."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r3",
+            "text": "He is weak."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i02:audio",
+            "transcript": "He is sunburned."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:i02:r1",
+              "targetText": "He is sunburned.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i02:r2",
+              "targetText": "She is sunburned.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i02:r3",
+              "targetText": "He is weak.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sunburned`, а в этом варианте — `weak`.",
+                "uk": "У записі останнє слово — `sunburned`, а в цьому варіанті — `weak`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+            "uk": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї"
+          },
+          "gappedTargetPhrase": "She ___ weak.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-38:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `is`.",
+                "uk": "Після `She` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+              "feedbackByLocale": {
+                "ru": "Про сестру здесь `She is`.",
+                "uk": "Про сестру тут `She is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-38:i04:p1",
+              "target": "starving",
+              "meaningByLocale": {
+                "ru": "очень голодный",
+                "uk": "дуже голодний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i04:p2",
+              "target": "dusty",
+              "meaningByLocale": {
+                "ru": "пыльный",
+                "uk": "запилений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i04:p3",
+              "target": "sunburned",
+              "meaningByLocale": {
+                "ru": "обгорел на солнце",
+                "uk": "обгорів на сонці"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i04:p4",
+              "target": "sore",
+              "meaningByLocale": {
+                "ru": "ноет, болит",
+                "uk": "ниє, болить"
+              }
+            }
+          ],
+          "leftColumn": [
+            "starving",
+            "dusty",
+            "sunburned",
+            "sore"
+          ],
+          "rightColumn": [
+            "очень голодный",
+            "пыльный",
+            "обгорел на солнце",
+            "ноет, болит"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "На подоконнике серый налёт. Послушайте и соберите фразу о нём",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "На подоконнике серый налёт. Послушайте и соберите фразу о нём",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i05:audio",
+            "transcript": "It is dusty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is dusty.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "dusty"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "На подоконнике серый налёт. Послушайте и соберите фразу о нём",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is dusty.`",
+                "uk": "тут потрібно `is` — `It is dusty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с братом весь день таскали чемоданы, и у обоих ноют плечи. Соберите фразу от вас двоих",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с братом весь день таскали чемоданы, и у обоих ноют плечи. Соберите фразу от вас двоих",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are sore.",
+          "localizedMeaning": {
+            "ru": "Вы с братом весь день таскали чемоданы, и у обоих ноют плечи. Соберите фразу от вас двоих",
+            "uk": "Ви з братом цілий день тягали валізи, і в обох ниють плечі. Складіть фразу від вас двох"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с братом весь день таскали чемоданы, и у обоих ноют плечи. Соберите фразу от вас двоих",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are sore.`",
+                "uk": "тут потрібно `We` — `We are sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коротко скажите о своём состоянии: у вас мало сил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i07:audio"
+        ],
+        "accessibilityLabel": "Коротко скажите о своём состоянии: у вас мало сил",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i07:audio",
+            "transcript": "I'm weak."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm weak.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i08:r1",
+            "text": "missing"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r2",
+            "text": "alive"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r3",
+            "text": "dead"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+            "uk": "Гаманця немає серед речей, і ви його шукаєте. Назвіть пропажу"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-38:i08:r1",
+              "text": "missing"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i08:r2",
+              "text": "alive"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i08:r3",
+              "text": "dead"
+            }
+          ],
+          "testedDimension": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+              "feedbackByLocale": {
+                "ru": "`alive` — «живой». Про пропавший кошелёк нужно `missing`.",
+                "uk": "`alive` — «живий». Про зниклий гаманець потрібно `missing`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+              "feedbackByLocale": {
+                "ru": "`dead` — «мёртвый». Здесь кошелька нет: `missing`.",
+                "uk": "`dead` — «мертвий». Тут гаманця немає: `missing`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу о растении",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i09:r1",
+            "text": "It is alive."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i09:r2",
+            "text": "It is dead."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i09:r3",
+            "text": "It is missing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу о растении",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i09:audio",
+            "transcript": "It is alive."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:i09:r1",
+              "targetText": "It is alive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i09:r2",
+              "targetText": "It is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i09:r3",
+              "targetText": "It is missing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о растении",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `alive`, а в этом варианте — `dead`.",
+                "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `dead`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о растении",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `alive`, а в этом варианте — `missing`.",
+                "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `missing`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-38:i10:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i10:p2",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i10:p3",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i10:p4",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "He's",
+            "It's",
+            "We're"
+          ],
+          "rightColumn": [
+            "I am",
+            "He is",
+            "It is",
+            "We are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Утром после дороги ноют ноги. Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Утром после дороги ноют ноги. Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i11:audio",
+            "transcript": "I'm sore."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'm sore.",
+          "orderedTokens": [
+            "I'm",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Утром после дороги ноют ноги. Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm sore.`",
+                "uk": "тут потрібно `I'm` — `I'm sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Одно растение, к сожалению, погибло. Соберите фразу об этом растении",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одно растение, к сожалению, погибло. Соберите фразу об этом растении",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is dead.",
+          "localizedMeaning": {
+            "ru": "Одно растение, к сожалению, погибло. Соберите фразу об этом растении",
+            "uk": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "dead"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Одно растение, к сожалению, погибло. Соберите фразу об этом растении",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is dead.`",
+                "uk": "тут потрібно `is` — `It is dead.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Два других растения сохранились и растут. Скажите о них: «Они живы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i13:audio"
+        ],
+        "accessibilityLabel": "Два других растения сохранились и растут. Скажите о них: «Они живы»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i13:audio",
+            "transcript": "They are alive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are alive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Старые книги на полке покрыты пылью. Дополните фразу о них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Старые книги на полке покрыты пылью. Дополните фразу о них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Старые книги на полке покрыты пылью. Дополните фразу о них",
+            "uk": "Старі книжки на полиці вкриті пилом. Доповніть фразу про них"
+          },
+          "gappedTargetPhrase": "They ___ dusty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-38:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Старые книги на полке покрыты пылью. Дополните фразу о них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i14:r2",
+              "correct": false,
+              "testedDimension": "Старые книги на полке покрыты пылью. Дополните фразу о них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i14:r3",
+              "correct": false,
+              "testedDimension": "Старые книги на полке покрыты пылью. Дополните фразу о них",
+              "feedbackByLocale": {
+                "ru": "Книг несколько, поэтому `They are`.",
+                "uk": "Книжок кілька, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i15:r1",
+            "text": "We're starving."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i15:r2",
+            "text": "They're starving."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i15:r3",
+            "text": "We're weak."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i15:audio",
+            "transcript": "We're starving."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:i15:r1",
+              "targetText": "We're starving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i15:r2",
+              "targetText": "They're starving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i15:r3",
+              "targetText": "We're weak.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `starving`, а в этом варианте — `weak`.",
+                "uk": "У записі останнє слово — `starving`, а в цьому варіанті — `weak`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-38:i16:p1",
+              "target": "sore",
+              "meaningByLocale": {
+                "ru": "ноет после нагрузки",
+                "uk": "ниє після навантаження"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i16:p2",
+              "target": "weak",
+              "meaningByLocale": {
+                "ru": "слабый",
+                "uk": "слабкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i16:p3",
+              "target": "dusty",
+              "meaningByLocale": {
+                "ru": "пыльный",
+                "uk": "запилений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i16:p4",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sore",
+            "weak",
+            "dusty",
+            "alive"
+          ],
+          "rightColumn": [
+            "ноет после нагрузки",
+            "слабый",
+            "пыльный",
+            "живой"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В кафе связь едва работает. Вы описываете другу именно слабый сигнал. Скажите короткую фразу о нём",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "В кафе связь едва работает. Вы описываете другу именно слабый сигнал. Скажите короткую фразу о нём",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i17:audio",
+            "transcript": "It is weak."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is weak.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-38:word:starving",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — starving",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:starving:audio"
+        ],
+        "accessibilityLabel": "Картка слова — starving",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:starving:audio",
+            "transcript": "starving"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:starving:r1",
+              "targetText": "starving",
+              "meaningByLocale": {
+                "ru": "очень голодный, «умираю с голоду». I'm starving — «Я ужасно хочу есть». Сильнее, чем hungry.",
+                "uk": "дуже голодний, «помираю з голоду». I'm starving — «Я страшенно хочу їсти». Сильніше, ніж hungry."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "starving",
+            "definitionByLocale": {
+              "ru": "очень голодный, «умираю с голоду». I'm starving — «Я ужасно хочу есть». Сильнее, чем hungry.",
+              "uk": "дуже голодний, «помираю з голоду». I'm starving — «Я страшенно хочу їсти». Сильніше, ніж hungry."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:word:dusty",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dusty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:dusty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dusty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:dusty:audio",
+            "transcript": "dusty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:dusty:r1",
+              "targetText": "dusty",
+              "meaningByLocale": {
+                "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
+                "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dusty",
+            "definitionByLocale": {
+              "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
+              "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:word:sunburned",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sunburned",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:sunburned:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sunburned",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:sunburned:audio",
+            "transcript": "sunburned"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:sunburned:r1",
+              "targetText": "sunburned",
+              "meaningByLocale": {
+                "ru": "обгорел на солнце. He's sunburned — «Он обгорел». Кожа красная и болит.",
+                "uk": "обгорів на сонці. He's sunburned — «Він обгорів». Шкіра червона й болить."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunburned",
+            "definitionByLocale": {
+              "ru": "обгорел на солнце. He's sunburned — «Он обгорел». Кожа красная и болит.",
+              "uk": "обгорів на сонці. He's sunburned — «Він обгорів». Шкіра червона й болить."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:word:sore",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sore",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:word:sore:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sore",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:word:sore:audio",
+            "transcript": "sore"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:word:sore:r1",
+              "targetText": "sore",
+              "meaningByLocale": {
+                "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
+                "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sore",
+            "definitionByLocale": {
+              "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
+              "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am starving.",
+          "localizedMeaning": {
+            "ru": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
+            "uk": "Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "starving"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am starving.`",
+                "uk": "тут потрібно `am` — `I am starving.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i02:r1",
+            "text": "He is sunburned."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r2",
+            "text": "She is sunburned."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r3",
+            "text": "He is weak."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i02:audio",
+            "transcript": "He is sunburned."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:i02:r1",
+              "targetText": "He is sunburned.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i02:r2",
+              "targetText": "She is sunburned.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i02:r3",
+              "targetText": "He is weak.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sunburned`, а в этом варианте — `weak`.",
+                "uk": "У записі останнє слово — `sunburned`, а в цьому варіанті — `weak`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+            "uk": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї"
+          },
+          "gappedTargetPhrase": "She ___ weak.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-38:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `is`.",
+                "uk": "Після `She` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+              "feedbackByLocale": {
+                "ru": "Про сестру здесь `She is`.",
+                "uk": "Про сестру тут `She is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-38:i04:p1",
+              "target": "starving",
+              "meaningByLocale": {
+                "ru": "очень голодный",
+                "uk": "дуже голодний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i04:p2",
+              "target": "dusty",
+              "meaningByLocale": {
+                "ru": "пыльный",
+                "uk": "запилений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i04:p3",
+              "target": "sunburned",
+              "meaningByLocale": {
+                "ru": "обгорел на солнце",
+                "uk": "обгорів на сонці"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i04:p4",
+              "target": "sore",
+              "meaningByLocale": {
+                "ru": "ноет, болит",
+                "uk": "ниє, болить"
+              }
+            }
+          ],
+          "leftColumn": [
+            "starving",
+            "dusty",
+            "sunburned",
+            "sore"
+          ],
+          "rightColumn": [
+            "дуже голодний",
+            "запилений",
+            "обгорів на сонці",
+            "ниє, болить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "На підвіконні сірий наліт. Послухайте й складіть фразу про нього",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "На підвіконні сірий наліт. Послухайте й складіть фразу про нього",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i05:audio",
+            "transcript": "It is dusty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is dusty.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "dusty"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "На підвіконні сірий наліт. Послухайте й складіть фразу про нього",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is dusty.`",
+                "uk": "тут потрібно `is` — `It is dusty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з братом цілий день тягали валізи, і в обох ниють плечі. Складіть фразу від вас двох",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з братом цілий день тягали валізи, і в обох ниють плечі. Складіть фразу від вас двох",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are sore.",
+          "localizedMeaning": {
+            "ru": "Вы с братом весь день таскали чемоданы, и у обоих ноют плечи. Соберите фразу от вас двоих",
+            "uk": "Ви з братом цілий день тягали валізи, і в обох ниють плечі. Складіть фразу від вас двох"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з братом цілий день тягали валізи, і в обох ниють плечі. Складіть фразу від вас двох",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are sore.`",
+                "uk": "тут потрібно `We` — `We are sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коротко скажіть про свій стан: у вас мало сил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i07:audio"
+        ],
+        "accessibilityLabel": "Коротко скажіть про свій стан: у вас мало сил",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i07:audio",
+            "transcript": "I'm weak."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm weak.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гаманця немає серед речей, і ви його шукаєте. Назвіть пропажу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i08:r1",
+            "text": "missing"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r2",
+            "text": "alive"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r3",
+            "text": "dead"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гаманця немає серед речей, і ви його шукаєте. Назвіть пропажу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+            "uk": "Гаманця немає серед речей, і ви його шукаєте. Назвіть пропажу"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-38:i08:r1",
+              "text": "missing"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i08:r2",
+              "text": "alive"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i08:r3",
+              "text": "dead"
+            }
+          ],
+          "testedDimension": "Гаманця немає серед речей, і ви його шукаєте. Назвіть пропажу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Гаманця немає серед речей, і ви його шукаєте. Назвіть пропажу",
+              "feedbackByLocale": {
+                "ru": "`alive` — «живой». Про пропавший кошелёк нужно `missing`.",
+                "uk": "`alive` — «живий». Про зниклий гаманець потрібно `missing`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Гаманця немає серед речей, і ви його шукаєте. Назвіть пропажу",
+              "feedbackByLocale": {
+                "ru": "`dead` — «мёртвый». Здесь кошелька нет: `missing`.",
+                "uk": "`dead` — «мертвий». Тут гаманця немає: `missing`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про рослину",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i09:r1",
+            "text": "It is alive."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i09:r2",
+            "text": "It is dead."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i09:r3",
+            "text": "It is missing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про рослину",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i09:audio",
+            "transcript": "It is alive."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:i09:r1",
+              "targetText": "It is alive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i09:r2",
+              "targetText": "It is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i09:r3",
+              "targetText": "It is missing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про рослину",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `alive`, а в этом варианте — `dead`.",
+                "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `dead`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про рослину",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `alive`, а в этом варианте — `missing`.",
+                "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `missing`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-38:i10:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i10:p2",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i10:p3",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i10:p4",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "He's",
+            "It's",
+            "We're"
+          ],
+          "rightColumn": [
+            "I am",
+            "He is",
+            "It is",
+            "We are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уранці після дороги ниють ноги. Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Уранці після дороги ниють ноги. Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i11:audio",
+            "transcript": "I'm sore."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'm sore.",
+          "orderedTokens": [
+            "I'm",
+            "sore"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Уранці після дороги ниють ноги. Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm sore.`",
+                "uk": "тут потрібно `I'm` — `I'm sore.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is dead.",
+          "localizedMeaning": {
+            "ru": "Одно растение, к сожалению, погибло. Соберите фразу об этом растении",
+            "uk": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "dead"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is dead.`",
+                "uk": "тут потрібно `is` — `It is dead.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дві інші рослини збереглися й ростуть. Скажіть про них: «Вони живі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i13:audio"
+        ],
+        "accessibilityLabel": "Дві інші рослини збереглися й ростуть. Скажіть про них: «Вони живі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i13:audio",
+            "transcript": "They are alive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are alive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Старі книжки на полиці вкриті пилом. Доповніть фразу про них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Старі книжки на полиці вкриті пилом. Доповніть фразу про них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Старые книги на полке покрыты пылью. Дополните фразу о них",
+            "uk": "Старі книжки на полиці вкриті пилом. Доповніть фразу про них"
+          },
+          "gappedTargetPhrase": "They ___ dusty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-38:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Старі книжки на полиці вкриті пилом. Доповніть фразу про них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i14:r2",
+              "correct": false,
+              "testedDimension": "Старі книжки на полиці вкриті пилом. Доповніть фразу про них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i14:r3",
+              "correct": false,
+              "testedDimension": "Старі книжки на полиці вкриті пилом. Доповніть фразу про них",
+              "feedbackByLocale": {
+                "ru": "Книг несколько, поэтому `They are`.",
+                "uk": "Книжок кілька, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i15:r1",
+            "text": "We're starving."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i15:r2",
+            "text": "They're starving."
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i15:r3",
+            "text": "We're weak."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i15:audio",
+            "transcript": "We're starving."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-38:i15:r1",
+              "targetText": "We're starving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i15:r2",
+              "targetText": "They're starving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i15:r3",
+              "targetText": "We're weak.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-38:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-38:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `starving`, а в этом варианте — `weak`.",
+                "uk": "У записі останнє слово — `starving`, а в цьому варіанті — `weak`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-38:i16:p1",
+              "target": "sore",
+              "meaningByLocale": {
+                "ru": "ноет после нагрузки",
+                "uk": "ниє після навантаження"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i16:p2",
+              "target": "weak",
+              "meaningByLocale": {
+                "ru": "слабый",
+                "uk": "слабкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i16:p3",
+              "target": "dusty",
+              "meaningByLocale": {
+                "ru": "пыльный",
+                "uk": "запилений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-38:i16:p4",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sore",
+            "weak",
+            "dusty",
+            "alive"
+          ],
+          "rightColumn": [
+            "ниє після навантаження",
+            "слабкий",
+            "запилений",
+            "живий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-38:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У кафе зв’язок ледве працює. Ви описуєте другові саме слабкий сигнал. Скажіть коротку фразу про нього",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "У кафе зв’язок ледве працює. Ви описуєте другові саме слабкий сигнал. Скажіть коротку фразу про нього",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-38:i17:audio",
+            "transcript": "It is weak."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is weak.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-38:word:starving",
+      "correctText": "starving",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:word:dusty",
+      "correctText": "dusty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:word:sunburned",
+      "correctText": "sunburned",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:word:sore",
+      "correctText": "sore",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i01",
+      "correctText": "I am starving.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i02",
+      "correctText": "He is sunburned.",
+      "correctResponseId": "en:lesson-01:session-38:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-38:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i05",
+      "correctText": "It is dusty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i06",
+      "correctText": "We are sore.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i07",
+      "correctText": "I'm weak.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i08",
+      "correctText": "missing",
+      "correctResponseId": "en:lesson-01:session-38:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i09",
+      "correctText": "It is alive.",
+      "correctResponseId": "en:lesson-01:session-38:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i11",
+      "correctText": "I'm sore.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i12",
+      "correctText": "It is dead.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i13",
+      "correctText": "They are alive.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-38:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i15",
+      "correctText": "We're starving.",
+      "correctResponseId": "en:lesson-01:session-38:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i17",
+      "correctText": "It is weak.",
+      "correctResponseId": null
+    }
+  ]
+}

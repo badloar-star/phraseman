@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-39:word:hilarious",
+    "correctText": "hilarious",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:word:embarrassed",
+    "correctText": "embarrassed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:word:speechless",
+    "correctText": "speechless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:word:thrilled",
+    "correctText": "thrilled",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-39:i01",
     "correctText": "You are brave.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i02",
-    "correctText": "He is brave.",
+    "correctText": "He is hilarious.",
     "correctResponseId": "en:lesson-01:session-39:i02:r1"
   },
   {
@@ -16,12 +36,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-39:i04",
-    "correctText": "en:lesson-01:session-39:i04:p1=brave\nen:lesson-01:session-39:i04:p2=equal\nen:lesson-01:session-39:i04:p3=similar\nen:lesson-01:session-39:i04:p4=separate",
+    "correctText": "en:lesson-01:session-39:i04:p1=hilarious\nen:lesson-01:session-39:i04:p2=embarrassed\nen:lesson-01:session-39:i04:p3=speechless\nen:lesson-01:session-39:i04:p4=thrilled",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i05",
-    "correctText": "She's brave.",
+    "correctText": "I'm thrilled.",
     "correctResponseId": null
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-39:i11",
-    "correctText": "We are brave.",
+    "correctText": "We are thrilled.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-39:i15",
-    "correctText": "They're brave.",
+    "correctText": "They're hilarious.",
     "correctResponseId": "en:lesson-01:session-39:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-39:i16",
-    "correctText": "en:lesson-01:session-39:i16:p1=similar\nen:lesson-01:session-39:i16:p2=separate\nen:lesson-01:session-39:i16:p3=equal\nen:lesson-01:session-39:i16:p4=brave",
+    "correctText": "en:lesson-01:session-39:i16:p1=speechless\nen:lesson-01:session-39:i16:p2=embarrassed\nen:lesson-01:session-39:i16:p3=brave\nen:lesson-01:session-39:i16:p4=separate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i17",
-    "correctText": "She is brave.",
+    "correctText": "She is thrilled.",
     "correctResponseId": null
   }
 ]

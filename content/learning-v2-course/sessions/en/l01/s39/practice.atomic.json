@@ -1,0 +1,2433 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-39:word:hilarious",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hilarious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:hilarious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hilarious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:hilarious:audio",
+            "transcript": "hilarious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:hilarious:r1",
+              "targetText": "hilarious",
+              "meaningByLocale": {
+                "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+                "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hilarious",
+            "definitionByLocale": {
+              "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+              "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:embarrassed",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — embarrassed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:embarrassed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — embarrassed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:embarrassed:audio",
+            "transcript": "embarrassed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:embarrassed:r1",
+              "targetText": "embarrassed",
+              "meaningByLocale": {
+                "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+                "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "embarrassed",
+            "definitionByLocale": {
+              "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+              "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:speechless",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — speechless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:speechless:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — speechless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:speechless:audio",
+            "transcript": "speechless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:speechless:r1",
+              "targetText": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+                "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speechless",
+            "definitionByLocale": {
+              "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+              "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:thrilled",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thrilled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:thrilled:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thrilled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:thrilled:audio",
+            "transcript": "thrilled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:thrilled:r1",
+              "targetText": "thrilled",
+              "meaningByLocale": {
+                "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+                "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thrilled",
+            "definitionByLocale": {
+              "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+              "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You are brave.",
+          "localizedMeaning": {
+            "ru": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
+            "uk": "Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою"
+          },
+          "orderedTokens": [
+            "You",
+            "are",
+            "brave"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `You are brave.`",
+                "uk": "тут потрібно `are` — `You are brave.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i02:r1",
+            "text": "He is hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i02:r2",
+            "text": "She is hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i02:r3",
+            "text": "He is brave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i02:audio",
+            "transcript": "He is hilarious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:i02:r1",
+              "targetText": "He is hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i02:r2",
+              "targetText": "She is hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i02:r3",
+              "targetText": "He is brave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hilarious`, а в этом варианте — `brave`.",
+                "uk": "У записі останнє слово — `hilarious`, а в цьому варіанті — `brave`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+            "uk": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово"
+          },
+          "gappedTargetPhrase": "She ___ embarrassed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-39:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `is`.",
+                "uk": "Після `She` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "Здесь `She is embarrassed`.",
+                "uk": "Тут `She is embarrassed`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-39:i04:p1",
+              "target": "hilarious",
+              "meaningByLocale": {
+                "ru": "уморительный",
+                "uk": "дуже смішний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i04:p2",
+              "target": "embarrassed",
+              "meaningByLocale": {
+                "ru": "неловко",
+                "uk": "ніяково"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i04:p3",
+              "target": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов",
+                "uk": "немає слів"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i04:p4",
+              "target": "thrilled",
+              "meaningByLocale": {
+                "ru": "в восторге",
+                "uk": "у захваті"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hilarious",
+            "embarrassed",
+            "speechless",
+            "thrilled"
+          ],
+          "rightColumn": [
+            "уморительный",
+            "неловко",
+            "нет слов",
+            "в восторге"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вас позвали выступить ещё раз в следующую субботу. Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Вас позвали выступить ещё раз в следующую субботу. Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i05:audio",
+            "transcript": "I'm thrilled."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'm thrilled.",
+          "orderedTokens": [
+            "I'm",
+            "thrilled"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Вас позвали выступить ещё раз в следующую субботу. Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm thrilled.`",
+                "uk": "тут потрібно `I'm` — `I'm thrilled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are brave.",
+          "localizedMeaning": {
+            "ru": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
+            "uk": "Двоє друзів подолали страх і вийшли на сцену. Ви розповідаєте про них. Складіть фразу про їхню сміливість"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "brave"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are brave.`",
+                "uk": "тут потрібно `They` — `They are brave.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Похвалите друга за смелость короткой фразой, обращаясь прямо к нему",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i07:audio"
+        ],
+        "accessibilityLabel": "Похвалите друга за смелость короткой фразой, обращаясь прямо к нему",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i07:audio",
+            "transcript": "You're brave."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You're brave.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i08:r1",
+            "text": "separate"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i08:r2",
+            "text": "equal"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i08:r3",
+            "text": "similar"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+            "uk": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі"
+          },
+          "gappedTargetPhrase": "They are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-39:i08:r1",
+              "text": "separate"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i08:r2",
+              "text": "equal"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i08:r3",
+              "text": "similar"
+            }
+          ],
+          "testedDimension": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+              "feedbackByLocale": {
+                "ru": "`equal` — «равные». Здесь важно, что выступления отдельные: `separate`.",
+                "uk": "`equal` — «рівні». Тут важливо, що виступи окремі: `separate`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+              "feedbackByLocale": {
+                "ru": "`similar` — «похожие». Отдельность передаёт `separate`.",
+                "uk": "`similar` — «схожі». Окремість передає `separate`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу об отрезках времени",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i09:r1",
+            "text": "They are equal."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i09:r2",
+            "text": "They are similar."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i09:r3",
+            "text": "They are separate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу об отрезках времени",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i09:audio",
+            "transcript": "They are equal."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:i09:r1",
+              "targetText": "They are equal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i09:r2",
+              "targetText": "They are similar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i09:r3",
+              "targetText": "They are separate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об отрезках времени",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `equal`, а в этом варианте — `similar`.",
+                "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `similar`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об отрезках времени",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `equal`, а в этом варианте — `separate`.",
+                "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `separate`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-39:i10:p1",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i10:p2",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i10:p3",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i10:p4",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "You're",
+            "She's",
+            "We're",
+            "They're"
+          ],
+          "rightColumn": [
+            "You are",
+            "She is",
+            "We are",
+            "They are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i11:audio",
+            "transcript": "We are thrilled."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are thrilled.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "thrilled"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `We are thrilled.`",
+                "uk": "тут потрібно `are` — `We are thrilled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are similar.",
+          "localizedMeaning": {
+            "ru": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
+            "uk": "Малюнки на двох афішах схожі, хоча відрізняються деталями. Складіть фразу про їхню схожість"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "similar"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are similar.`",
+                "uk": "тут потрібно `are` — `They are similar.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы тоже решились выступить несмотря на страх. Назовите себя смелым человеком знакомой короткой фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i13:audio"
+        ],
+        "accessibilityLabel": "Вы тоже решились выступить несмотря на страх. Назовите себя смелым человеком знакомой короткой фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i13:audio",
+            "transcript": "I am brave."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am brave.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+            "uk": "Ви й подруга подолали страх. Похваліть вас обох за сміливість"
+          },
+          "gappedTargetPhrase": "We ___ brave.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-39:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+              "feedbackByLocale": {
+                "ru": "После `We` нужно `are`.",
+                "uk": "Після `We` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+              "feedbackByLocale": {
+                "ru": "Здесь `We are brave`.",
+                "uk": "Тут `We are brave`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i15:r1",
+            "text": "They're hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i15:r2",
+            "text": "We're hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i15:r3",
+            "text": "They're brave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i15:audio",
+            "transcript": "They're hilarious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:i15:r1",
+              "targetText": "They're hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i15:r2",
+              "targetText": "We're hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i15:r3",
+              "targetText": "They're brave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hilarious`, а в этом варианте — `brave`.",
+                "uk": "У записі останнє слово — `hilarious`, а в цьому варіанті — `brave`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-39:i16:p1",
+              "target": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов",
+                "uk": "немає слів"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i16:p2",
+              "target": "embarrassed",
+              "meaningByLocale": {
+                "ru": "неловко",
+                "uk": "ніяково"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i16:p3",
+              "target": "brave",
+              "meaningByLocale": {
+                "ru": "смелый",
+                "uk": "сміливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i16:p4",
+              "target": "separate",
+              "meaningByLocale": {
+                "ru": "отдельные",
+                "uk": "окремі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "speechless",
+            "embarrassed",
+            "brave",
+            "separate"
+          ],
+          "rightColumn": [
+            "нет слов",
+            "неловко",
+            "смелый",
+            "отдельные"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестру взяли в театральную студию, и она прыгает от радости. Расскажите брату, что она в восторге",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Сестру взяли в театральную студию, и она прыгает от радости. Расскажите брату, что она в восторге",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i17:audio",
+            "transcript": "She is thrilled."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is thrilled.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-39:word:hilarious",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hilarious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:hilarious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hilarious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:hilarious:audio",
+            "transcript": "hilarious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:hilarious:r1",
+              "targetText": "hilarious",
+              "meaningByLocale": {
+                "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+                "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hilarious",
+            "definitionByLocale": {
+              "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+              "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:embarrassed",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — embarrassed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:embarrassed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — embarrassed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:embarrassed:audio",
+            "transcript": "embarrassed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:embarrassed:r1",
+              "targetText": "embarrassed",
+              "meaningByLocale": {
+                "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+                "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "embarrassed",
+            "definitionByLocale": {
+              "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+              "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:speechless",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — speechless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:speechless:audio"
+        ],
+        "accessibilityLabel": "Картка слова — speechless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:speechless:audio",
+            "transcript": "speechless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:speechless:r1",
+              "targetText": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+                "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speechless",
+            "definitionByLocale": {
+              "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+              "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:thrilled",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thrilled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:thrilled:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thrilled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:thrilled:audio",
+            "transcript": "thrilled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:thrilled:r1",
+              "targetText": "thrilled",
+              "meaningByLocale": {
+                "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+                "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thrilled",
+            "definitionByLocale": {
+              "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+              "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You are brave.",
+          "localizedMeaning": {
+            "ru": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
+            "uk": "Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою"
+          },
+          "orderedTokens": [
+            "You",
+            "are",
+            "brave"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `You are brave.`",
+                "uk": "тут потрібно `are` — `You are brave.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i02:r1",
+            "text": "He is hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i02:r2",
+            "text": "She is hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i02:r3",
+            "text": "He is brave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i02:audio",
+            "transcript": "He is hilarious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:i02:r1",
+              "targetText": "He is hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i02:r2",
+              "targetText": "She is hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i02:r3",
+              "targetText": "He is brave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hilarious`, а в этом варианте — `brave`.",
+                "uk": "У записі останнє слово — `hilarious`, а в цьому варіанті — `brave`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+            "uk": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово"
+          },
+          "gappedTargetPhrase": "She ___ embarrassed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-39:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `is`.",
+                "uk": "Після `She` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "Здесь `She is embarrassed`.",
+                "uk": "Тут `She is embarrassed`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-39:i04:p1",
+              "target": "hilarious",
+              "meaningByLocale": {
+                "ru": "уморительный",
+                "uk": "дуже смішний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i04:p2",
+              "target": "embarrassed",
+              "meaningByLocale": {
+                "ru": "неловко",
+                "uk": "ніяково"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i04:p3",
+              "target": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов",
+                "uk": "немає слів"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i04:p4",
+              "target": "thrilled",
+              "meaningByLocale": {
+                "ru": "в восторге",
+                "uk": "у захваті"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hilarious",
+            "embarrassed",
+            "speechless",
+            "thrilled"
+          ],
+          "rightColumn": [
+            "дуже смішний",
+            "ніяково",
+            "немає слів",
+            "у захваті"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вас запросили виступити ще раз наступної суботи. Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Вас запросили виступити ще раз наступної суботи. Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i05:audio",
+            "transcript": "I'm thrilled."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'm thrilled.",
+          "orderedTokens": [
+            "I'm",
+            "thrilled"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Вас запросили виступити ще раз наступної суботи. Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm thrilled.`",
+                "uk": "тут потрібно `I'm` — `I'm thrilled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоє друзів подолали страх і вийшли на сцену. Ви розповідаєте про них. Складіть фразу про їхню сміливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє друзів подолали страх і вийшли на сцену. Ви розповідаєте про них. Складіть фразу про їхню сміливість",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are brave.",
+          "localizedMeaning": {
+            "ru": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
+            "uk": "Двоє друзів подолали страх і вийшли на сцену. Ви розповідаєте про них. Складіть фразу про їхню сміливість"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "brave"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоє друзів подолали страх і вийшли на сцену. Ви розповідаєте про них. Складіть фразу про їхню сміливість",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are brave.`",
+                "uk": "тут потрібно `They` — `They are brave.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Похваліть друга за сміливість короткою фразою, звертаючись просто до нього",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i07:audio"
+        ],
+        "accessibilityLabel": "Похваліть друга за сміливість короткою фразою, звертаючись просто до нього",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i07:audio",
+            "transcript": "You're brave."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You're brave.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i08:r1",
+            "text": "separate"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i08:r2",
+            "text": "equal"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i08:r3",
+            "text": "similar"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+            "uk": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі"
+          },
+          "gappedTargetPhrase": "They are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-39:i08:r1",
+              "text": "separate"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i08:r2",
+              "text": "equal"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i08:r3",
+              "text": "similar"
+            }
+          ],
+          "testedDimension": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі",
+              "feedbackByLocale": {
+                "ru": "`equal` — «равные». Здесь важно, что выступления отдельные: `separate`.",
+                "uk": "`equal` — «рівні». Тут важливо, що виступи окремі: `separate`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі",
+              "feedbackByLocale": {
+                "ru": "`similar` — «похожие». Отдельность передаёт `separate`.",
+                "uk": "`similar` — «схожі». Окремість передає `separate`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про відрізки часу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i09:r1",
+            "text": "They are equal."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i09:r2",
+            "text": "They are similar."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i09:r3",
+            "text": "They are separate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про відрізки часу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i09:audio",
+            "transcript": "They are equal."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:i09:r1",
+              "targetText": "They are equal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i09:r2",
+              "targetText": "They are similar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i09:r3",
+              "targetText": "They are separate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про відрізки часу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `equal`, а в этом варианте — `similar`.",
+                "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `similar`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про відрізки часу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `equal`, а в этом варианте — `separate`.",
+                "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `separate`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-39:i10:p1",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i10:p2",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i10:p3",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i10:p4",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "You're",
+            "She's",
+            "We're",
+            "They're"
+          ],
+          "rightColumn": [
+            "You are",
+            "She is",
+            "We are",
+            "They are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Після вечора ви з Машею обидві дуже раді, як усе минуло. Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Після вечора ви з Машею обидві дуже раді, як усе минуло. Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i11:audio",
+            "transcript": "We are thrilled."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are thrilled.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "thrilled"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Після вечора ви з Машею обидві дуже раді, як усе минуло. Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `We are thrilled.`",
+                "uk": "тут потрібно `are` — `We are thrilled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Малюнки на двох афішах схожі, хоча відрізняються деталями. Складіть фразу про їхню схожість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Малюнки на двох афішах схожі, хоча відрізняються деталями. Складіть фразу про їхню схожість",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are similar.",
+          "localizedMeaning": {
+            "ru": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
+            "uk": "Малюнки на двох афішах схожі, хоча відрізняються деталями. Складіть фразу про їхню схожість"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "similar"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Малюнки на двох афішах схожі, хоча відрізняються деталями. Складіть фразу про їхню схожість",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are similar.`",
+                "uk": "тут потрібно `are` — `They are similar.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви теж наважилися виступити попри страх. Назвіть себе сміливою людиною знайомою короткою фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i13:audio"
+        ],
+        "accessibilityLabel": "Ви теж наважилися виступити попри страх. Назвіть себе сміливою людиною знайомою короткою фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i13:audio",
+            "transcript": "I am brave."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am brave.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+            "uk": "Ви й подруга подолали страх. Похваліть вас обох за сміливість"
+          },
+          "gappedTargetPhrase": "We ___ brave.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-39:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+              "feedbackByLocale": {
+                "ru": "После `We` нужно `are`.",
+                "uk": "Після `We` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+              "feedbackByLocale": {
+                "ru": "Здесь `We are brave`.",
+                "uk": "Тут `We are brave`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i15:r1",
+            "text": "They're hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i15:r2",
+            "text": "We're hilarious."
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i15:r3",
+            "text": "They're brave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i15:audio",
+            "transcript": "They're hilarious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:i15:r1",
+              "targetText": "They're hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i15:r2",
+              "targetText": "We're hilarious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i15:r3",
+              "targetText": "They're brave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-39:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-39:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hilarious`, а в этом варианте — `brave`.",
+                "uk": "У записі останнє слово — `hilarious`, а в цьому варіанті — `brave`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-39:i16:p1",
+              "target": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов",
+                "uk": "немає слів"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i16:p2",
+              "target": "embarrassed",
+              "meaningByLocale": {
+                "ru": "неловко",
+                "uk": "ніяково"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i16:p3",
+              "target": "brave",
+              "meaningByLocale": {
+                "ru": "смелый",
+                "uk": "сміливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-39:i16:p4",
+              "target": "separate",
+              "meaningByLocale": {
+                "ru": "отдельные",
+                "uk": "окремі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "speechless",
+            "embarrassed",
+            "brave",
+            "separate"
+          ],
+          "rightColumn": [
+            "немає слів",
+            "ніяково",
+            "сміливий",
+            "окремі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестру взяли до театральної студії, і вона стрибає від радості. Розкажіть братові, що вона в захваті",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Сестру взяли до театральної студії, і вона стрибає від радості. Розкажіть братові, що вона в захваті",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:i17:audio",
+            "transcript": "She is thrilled."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is thrilled.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-39:word:hilarious",
+      "correctText": "hilarious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:word:embarrassed",
+      "correctText": "embarrassed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:word:speechless",
+      "correctText": "speechless",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:word:thrilled",
+      "correctText": "thrilled",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i01",
+      "correctText": "You are brave.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i02",
+      "correctText": "He is hilarious.",
+      "correctResponseId": "en:lesson-01:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i05",
+      "correctText": "I'm thrilled.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i06",
+      "correctText": "They are brave.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i07",
+      "correctText": "You're brave.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i08",
+      "correctText": "separate",
+      "correctResponseId": "en:lesson-01:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i09",
+      "correctText": "They are equal.",
+      "correctResponseId": "en:lesson-01:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i11",
+      "correctText": "We are thrilled.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i12",
+      "correctText": "They are similar.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i13",
+      "correctText": "I am brave.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-39:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i15",
+      "correctText": "They're hilarious.",
+      "correctResponseId": "en:lesson-01:session-39:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i17",
+      "correctText": "She is thrilled.",
+      "correctResponseId": null
+    }
+  ]
+}

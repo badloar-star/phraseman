@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-37:intro1:r2": {
-          "ru": "После `I` нужно `am`: `I am lonely`.",
-          "uk": "Після `I` потрібно `am`: `I am lonely`."
+          "ru": "alone говорит только, что рядом никого нет. О чувстве — lonely.",
+          "uk": "alone каже лише, що поруч нікого немає. Про почуття — lonely."
         },
         "en:lesson-01:session-37:intro1:r3": {
-          "ru": "`local` — «местный». Здесь речь о чувстве: `lonely`.",
-          "uk": "`local` — «місцевий». Тут ідеться про почуття: `lonely`."
+          "ru": "В короткой форме остаётся 'm: I'm lonely.",
+          "uk": "У короткій формі лишається 'm: I'm lonely."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-37:intro2:r2": {
-          "ru": "`He` — про него. Про сестру нужно `She`.",
-          "uk": "`He` — про нього. Про сестру потрібно `She`."
+          "ru": "hungry — «голодный». Пирог тут ни при чём: вы скучаете по дому — homesick.",
+          "uk": "hungry — «голодний». Пиріг тут ні до чого: ви сумуєте за домом — homesick."
         },
         "en:lesson-01:session-37:intro2:r3": {
-          "ru": "После `She` нужна форма `is`.",
-          "uk": "Після `She` потрібна форма `is`."
+          "ru": "She's — про неё. О себе говорим I'm.",
+          "uk": "She's — про неї. Про себе кажемо I'm."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-37:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-37:intro3:r2": {
-          "ru": "`foreign` — «иностранный». Про формат в интернете скажем `online`.",
-          "uk": "`foreign` — «іноземний». Про формат в інтернеті скажемо `online`."
+          "ru": "clean — «чистый», это наоборот. Беспорядок — messy.",
+          "uk": "clean — «чистий», це навпаки. Безлад — messy."
         },
         "en:lesson-01:session-37:intro3:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "He's — про человека. Про комнату говорим It's.",
+          "uk": "He's — про людину. Про кімнату кажемо It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "418e6dbf8eb1b49d346adeebea7d9c451f4dd147f10bfe45e94ff437cd97f8e9"
+  "auxiliaryFingerprint": "424b75db1d1c0b2d929a514e7865c5849b4c7a874fe4d80dc5186e56870b6a6b"
 }

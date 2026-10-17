@@ -1,0 +1,2433 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-37:word:lonely",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lonely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:lonely:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lonely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:lonely:audio",
+            "transcript": "lonely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:lonely:r1",
+              "targetText": "lonely",
+              "meaningByLocale": {
+                "ru": "одиноко, не хватает людей рядом. I'm lonely — «Мне одиноко». Людей вокруг может быть много, а близких нет.",
+                "uk": "самотньо, бракує людей поруч. I'm lonely — «Мені самотньо». Людей навколо може бути багато, а близьких немає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lonely",
+            "definitionByLocale": {
+              "ru": "одиноко, не хватает людей рядом. I'm lonely — «Мне одиноко». Людей вокруг может быть много, а близких нет.",
+              "uk": "самотньо, бракує людей поруч. I'm lonely — «Мені самотньо». Людей навколо може бути багато, а близьких немає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:word:homesick",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — homesick",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:homesick:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — homesick",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:homesick:audio",
+            "transcript": "homesick"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:homesick:r1",
+              "targetText": "homesick",
+              "meaningByLocale": {
+                "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
+                "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "homesick",
+            "definitionByLocale": {
+              "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
+              "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:word:messy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — messy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:messy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — messy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:messy:audio",
+            "transcript": "messy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:messy:r1",
+              "targetText": "messy",
+              "meaningByLocale": {
+                "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
+                "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "messy",
+            "definitionByLocale": {
+              "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
+              "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:word:cozy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cozy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:cozy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cozy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:cozy:audio",
+            "transcript": "cozy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:cozy:r1",
+              "targetText": "cozy",
+              "meaningByLocale": {
+                "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
+                "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cozy",
+            "definitionByLocale": {
+              "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
+              "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В новом городе вам не хватает людей рядом. Соберите фразу о своём чувстве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В новом городе вам не хватает людей рядом. Соберите фразу о своём чувстве",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am lonely.",
+          "localizedMeaning": {
+            "ru": "В новом городе вам не хватает людей рядом. Соберите фразу о своём чувстве",
+            "uk": "У новому місті вам бракує людей поруч. Складіть фразу про своє почуття"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "lonely"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "В новом городе вам не хватает людей рядом. Соберите фразу о своём чувстве",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am lonely.`",
+                "uk": "тут потрібно `am` — `I am lonely.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i02:r1",
+            "text": "She is homesick."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i02:r2",
+            "text": "He is homesick."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i02:r3",
+            "text": "She is lonely."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i02:audio",
+            "transcript": "She is homesick."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:i02:r1",
+              "targetText": "She is homesick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i02:r2",
+              "targetText": "He is homesick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i02:r3",
+              "targetText": "She is lonely.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `homesick`, а в этом варианте — `lonely`.",
+                "uk": "У записі останнє слово — `homesick`, а в цьому варіанті — `lonely`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В комнате открытые коробки и вещи на полу. Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В комнате открытые коробки и вещи на полу. Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В комнате открытые коробки и вещи на полу. Вставьте слово",
+            "uk": "У кімнаті відкриті коробки й речі на підлозі. Вставте слово"
+          },
+          "gappedTargetPhrase": "It ___ messy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-37:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В комнате открытые коробки и вещи на полу. Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "В комнате открытые коробки и вещи на полу. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "`am` ставим после `I`. Здесь `It is`.",
+                "uk": "`am` ставимо після `I`. Тут `It is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "В комнате открытые коробки и вещи на полу. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-37:i04:p1",
+              "target": "lonely",
+              "meaningByLocale": {
+                "ru": "одиноко",
+                "uk": "самотньо"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i04:p2",
+              "target": "homesick",
+              "meaningByLocale": {
+                "ru": "скучает по дому",
+                "uk": "сумує за домом"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i04:p3",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "неубрано",
+                "uk": "неприбрано"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i04:p4",
+              "target": "cozy",
+              "meaningByLocale": {
+                "ru": "уютно",
+                "uk": "затишно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lonely",
+            "homesick",
+            "messy",
+            "cozy"
+          ],
+          "rightColumn": [
+            "одиноко",
+            "скучает по дому",
+            "неубрано",
+            "уютно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы постелили плед и включили лампу. Послушайте и соберите фразу о комнате",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Вы постелили плед и включили лампу. Послушайте и соберите фразу о комнате",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i05:audio",
+            "transcript": "It is cozy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is cozy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "cozy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы постелили плед и включили лампу. Послушайте и соберите фразу о комнате",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is cozy.`",
+                "uk": "тут потрібно `is` — `It is cozy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are homesick.",
+          "localizedMeaning": {
+            "ru": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+            "uk": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "homesick"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are homesick.`",
+                "uk": "тут потрібно `We` — `We are homesick.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В разговоре с другом коротко назовите своё чувство: вам одиноко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "В разговоре с другом коротко назовите своё чувство: вам одиноко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i07:audio",
+            "transcript": "I'm lonely."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm lonely.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i08:r1",
+            "text": "local"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i08:r2",
+            "text": "lonely"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i08:r3",
+            "text": "foreign"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+            "uk": "Клуб організували мешканці вашого міста, і він працює тут. Скажіть саме про те, що він місцевий"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-37:i08:r1",
+              "text": "local"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r2",
+              "text": "lonely"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r3",
+              "text": "foreign"
+            }
+          ],
+          "testedDimension": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+              "feedbackByLocale": {
+                "ru": "`lonely` описывает одиночество. Здесь нужно «местный»: `local`.",
+                "uk": "`lonely` описує самотність. Тут потрібно «місцевий»: `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+              "feedbackByLocale": {
+                "ru": "`foreign` — «иностранный». Здесь клуб местный: `local`.",
+                "uk": "`foreign` — «іноземний». Тут клуб місцевий: `local`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте описание встречи",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i09:r1",
+            "text": "It is online."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i09:r2",
+            "text": "It is local."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i09:r3",
+            "text": "It is foreign."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте описание встречи",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i09:audio",
+            "transcript": "It is online."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:i09:r1",
+              "targetText": "It is online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i09:r2",
+              "targetText": "It is local.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i09:r3",
+              "targetText": "It is foreign.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте описание встречи",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `online`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `online`, а в цьому варіанті — `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте описание встречи",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `online`, а в этом варианте — `foreign`.",
+                "uk": "У записі останнє слово — `online`, а в цьому варіанті — `foreign`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-37:i10:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i10:p2",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i10:p3",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i10:p4",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "It's",
+            "We're",
+            "They're"
+          ],
+          "rightColumn": [
+            "I am",
+            "It is",
+            "We are",
+            "They are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг смотрит по видео на коробки. Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Друг смотрит по видео на коробки. Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i11:audio",
+            "transcript": "It's messy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's messy.",
+          "orderedTokens": [
+            "It's",
+            "messy"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг смотрит по видео на коробки. Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's messy.`",
+                "uk": "тут потрібно `It's` — `It's messy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is foreign.",
+          "localizedMeaning": {
+            "ru": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
+            "uk": "Для зустрічі кіноклубу вибрали фільм іншої країни. Складіть фразу про те, що він іноземний"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "foreign"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is foreign.`",
+                "uk": "тут потрібно `is` — `It is foreign.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Двое друзей признались вам, что чувствуют одиночество. Расскажите сестре именно об этом их чувстве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Двое друзей признались вам, что чувствуют одиночество. Расскажите сестре именно об этом их чувстве",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i13:audio",
+            "transcript": "They are lonely."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are lonely.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+            "uk": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово"
+          },
+          "gappedTargetPhrase": "You ___ lonely.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-37:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "После `You` нужно `are`.",
+                "uk": "Після `You` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "К одному другу тоже обращаемся `You are`.",
+                "uk": "До одного друга теж звертаємося `You are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i15:r1",
+            "text": "It's cozy."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i15:r2",
+            "text": "It's messy."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i15:r3",
+            "text": "It's local."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i15:audio",
+            "transcript": "It's cozy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:i15:r1",
+              "targetText": "It's cozy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i15:r2",
+              "targetText": "It's messy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i15:r3",
+              "targetText": "It's local.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cozy`, а в этом варианте — `messy`.",
+                "uk": "У записі останнє слово — `cozy`, а в цьому варіанті — `messy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cozy`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `cozy`, а в цьому варіанті — `local`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-37:i16:p1",
+              "target": "cozy",
+              "meaningByLocale": {
+                "ru": "уютно",
+                "uk": "затишно"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i16:p2",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "в беспорядке",
+                "uk": "безлад"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i16:p3",
+              "target": "homesick",
+              "meaningByLocale": {
+                "ru": "тоскует по дому",
+                "uk": "тужить за домом"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i16:p4",
+              "target": "local",
+              "meaningByLocale": {
+                "ru": "местный",
+                "uk": "місцевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cozy",
+            "messy",
+            "homesick",
+            "local"
+          ],
+          "rightColumn": [
+            "уютно",
+            "в беспорядке",
+            "тоскует по дому",
+            "местный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга учится в другой стране и говорит, что ей очень хочется домой, к своим. Объясните брату, что она скучает по дому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга учится в другой стране и говорит, что ей очень хочется домой, к своим. Объясните брату, что она скучает по дому",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i17:audio",
+            "transcript": "She is homesick."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is homesick.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-37:word:lonely",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lonely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:lonely:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lonely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:lonely:audio",
+            "transcript": "lonely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:lonely:r1",
+              "targetText": "lonely",
+              "meaningByLocale": {
+                "ru": "одиноко, не хватает людей рядом. I'm lonely — «Мне одиноко». Людей вокруг может быть много, а близких нет.",
+                "uk": "самотньо, бракує людей поруч. I'm lonely — «Мені самотньо». Людей навколо може бути багато, а близьких немає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lonely",
+            "definitionByLocale": {
+              "ru": "одиноко, не хватает людей рядом. I'm lonely — «Мне одиноко». Людей вокруг может быть много, а близких нет.",
+              "uk": "самотньо, бракує людей поруч. I'm lonely — «Мені самотньо». Людей навколо може бути багато, а близьких немає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:word:homesick",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — homesick",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:homesick:audio"
+        ],
+        "accessibilityLabel": "Картка слова — homesick",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:homesick:audio",
+            "transcript": "homesick"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:homesick:r1",
+              "targetText": "homesick",
+              "meaningByLocale": {
+                "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
+                "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "homesick",
+            "definitionByLocale": {
+              "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
+              "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:word:messy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — messy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:messy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — messy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:messy:audio",
+            "transcript": "messy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:messy:r1",
+              "targetText": "messy",
+              "meaningByLocale": {
+                "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
+                "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "messy",
+            "definitionByLocale": {
+              "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
+              "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:word:cozy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cozy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:word:cozy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cozy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:word:cozy:audio",
+            "transcript": "cozy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:word:cozy:r1",
+              "targetText": "cozy",
+              "meaningByLocale": {
+                "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
+                "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cozy",
+            "definitionByLocale": {
+              "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
+              "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У новому місті вам бракує людей поруч. Складіть фразу про своє почуття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У новому місті вам бракує людей поруч. Складіть фразу про своє почуття",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am lonely.",
+          "localizedMeaning": {
+            "ru": "В новом городе вам не хватает людей рядом. Соберите фразу о своём чувстве",
+            "uk": "У новому місті вам бракує людей поруч. Складіть фразу про своє почуття"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "lonely"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "У новому місті вам бракує людей поруч. Складіть фразу про своє почуття",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am lonely.`",
+                "uk": "тут потрібно `am` — `I am lonely.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i02:r1",
+            "text": "She is homesick."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i02:r2",
+            "text": "He is homesick."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i02:r3",
+            "text": "She is lonely."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i02:audio",
+            "transcript": "She is homesick."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:i02:r1",
+              "targetText": "She is homesick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i02:r2",
+              "targetText": "He is homesick.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i02:r3",
+              "targetText": "She is lonely.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `homesick`, а в этом варианте — `lonely`.",
+                "uk": "У записі останнє слово — `homesick`, а в цьому варіанті — `lonely`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У кімнаті відкриті коробки й речі на підлозі. Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кімнаті відкриті коробки й речі на підлозі. Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В комнате открытые коробки и вещи на полу. Вставьте слово",
+            "uk": "У кімнаті відкриті коробки й речі на підлозі. Вставте слово"
+          },
+          "gappedTargetPhrase": "It ___ messy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-37:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У кімнаті відкриті коробки й речі на підлозі. Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "У кімнаті відкриті коробки й речі на підлозі. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "`am` ставим после `I`. Здесь `It is`.",
+                "uk": "`am` ставимо після `I`. Тут `It is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "У кімнаті відкриті коробки й речі на підлозі. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-37:i04:p1",
+              "target": "lonely",
+              "meaningByLocale": {
+                "ru": "одиноко",
+                "uk": "самотньо"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i04:p2",
+              "target": "homesick",
+              "meaningByLocale": {
+                "ru": "скучает по дому",
+                "uk": "сумує за домом"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i04:p3",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "неубрано",
+                "uk": "неприбрано"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i04:p4",
+              "target": "cozy",
+              "meaningByLocale": {
+                "ru": "уютно",
+                "uk": "затишно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lonely",
+            "homesick",
+            "messy",
+            "cozy"
+          ],
+          "rightColumn": [
+            "самотньо",
+            "сумує за домом",
+            "неприбрано",
+            "затишно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви постелили плед і ввімкнули лампу. Послухайте й складіть фразу про кімнату",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Ви постелили плед і ввімкнули лампу. Послухайте й складіть фразу про кімнату",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i05:audio",
+            "transcript": "It is cozy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is cozy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "cozy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви постелили плед і ввімкнули лампу. Послухайте й складіть фразу про кімнату",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is cozy.`",
+                "uk": "тут потрібно `is` — `It is cozy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are homesick.",
+          "localizedMeaning": {
+            "ru": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+            "uk": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "homesick"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are homesick.`",
+                "uk": "тут потрібно `We` — `We are homesick.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У розмові з другом коротко назвіть своє почуття: вам самотньо",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "У розмові з другом коротко назвіть своє почуття: вам самотньо",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i07:audio",
+            "transcript": "I'm lonely."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm lonely.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Клуб організували мешканці вашого міста, і він працює тут. Скажіть саме про те, що він місцевий",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i08:r1",
+            "text": "local"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i08:r2",
+            "text": "lonely"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i08:r3",
+            "text": "foreign"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клуб організували мешканці вашого міста, і він працює тут. Скажіть саме про те, що він місцевий",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+            "uk": "Клуб організували мешканці вашого міста, і він працює тут. Скажіть саме про те, що він місцевий"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-37:i08:r1",
+              "text": "local"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r2",
+              "text": "lonely"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r3",
+              "text": "foreign"
+            }
+          ],
+          "testedDimension": "Клуб організували мешканці вашого міста, і він працює тут. Скажіть саме про те, що він місцевий",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Клуб організували мешканці вашого міста, і він працює тут. Скажіть саме про те, що він місцевий",
+              "feedbackByLocale": {
+                "ru": "`lonely` описывает одиночество. Здесь нужно «местный»: `local`.",
+                "uk": "`lonely` описує самотність. Тут потрібно «місцевий»: `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Клуб організували мешканці вашого міста, і він працює тут. Скажіть саме про те, що він місцевий",
+              "feedbackByLocale": {
+                "ru": "`foreign` — «иностранный». Здесь клуб местный: `local`.",
+                "uk": "`foreign` — «іноземний». Тут клуб місцевий: `local`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте опис зустрічі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i09:r1",
+            "text": "It is online."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i09:r2",
+            "text": "It is local."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i09:r3",
+            "text": "It is foreign."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте опис зустрічі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i09:audio",
+            "transcript": "It is online."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:i09:r1",
+              "targetText": "It is online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i09:r2",
+              "targetText": "It is local.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i09:r3",
+              "targetText": "It is foreign.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте опис зустрічі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `online`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `online`, а в цьому варіанті — `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте опис зустрічі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `online`, а в этом варианте — `foreign`.",
+                "uk": "У записі останнє слово — `online`, а в цьому варіанті — `foreign`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-37:i10:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i10:p2",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i10:p3",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i10:p4",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "It's",
+            "We're",
+            "They're"
+          ],
+          "rightColumn": [
+            "I am",
+            "It is",
+            "We are",
+            "They are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг дивиться по відео на коробки. Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Друг дивиться по відео на коробки. Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i11:audio",
+            "transcript": "It's messy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's messy.",
+          "orderedTokens": [
+            "It's",
+            "messy"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг дивиться по відео на коробки. Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's messy.`",
+                "uk": "тут потрібно `It's` — `It's messy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для зустрічі кіноклубу вибрали фільм іншої країни. Складіть фразу про те, що він іноземний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для зустрічі кіноклубу вибрали фільм іншої країни. Складіть фразу про те, що він іноземний",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is foreign.",
+          "localizedMeaning": {
+            "ru": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
+            "uk": "Для зустрічі кіноклубу вибрали фільм іншої країни. Складіть фразу про те, що він іноземний"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "foreign"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Для зустрічі кіноклубу вибрали фільм іншої країни. Складіть фразу про те, що він іноземний",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is foreign.`",
+                "uk": "тут потрібно `is` — `It is foreign.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Двоє друзів зізналися вам, що відчувають самотність. Розкажіть сестрі саме про це їхнє почуття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Двоє друзів зізналися вам, що відчувають самотність. Розкажіть сестрі саме про це їхнє почуття",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i13:audio",
+            "transcript": "They are lonely."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are lonely.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+            "uk": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово"
+          },
+          "gappedTargetPhrase": "You ___ lonely.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-37:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово",
+              "feedbackByLocale": {
+                "ru": "После `You` нужно `are`.",
+                "uk": "Після `You` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово",
+              "feedbackByLocale": {
+                "ru": "К одному другу тоже обращаемся `You are`.",
+                "uk": "До одного друга теж звертаємося `You are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i15:r1",
+            "text": "It's cozy."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i15:r2",
+            "text": "It's messy."
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i15:r3",
+            "text": "It's local."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i15:audio",
+            "transcript": "It's cozy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-37:i15:r1",
+              "targetText": "It's cozy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i15:r2",
+              "targetText": "It's messy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i15:r3",
+              "targetText": "It's local.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cozy`, а в этом варианте — `messy`.",
+                "uk": "У записі останнє слово — `cozy`, а в цьому варіанті — `messy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cozy`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `cozy`, а в цьому варіанті — `local`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-37:i16:p1",
+              "target": "cozy",
+              "meaningByLocale": {
+                "ru": "уютно",
+                "uk": "затишно"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i16:p2",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "в беспорядке",
+                "uk": "безлад"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i16:p3",
+              "target": "homesick",
+              "meaningByLocale": {
+                "ru": "тоскует по дому",
+                "uk": "тужить за домом"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-37:i16:p4",
+              "target": "local",
+              "meaningByLocale": {
+                "ru": "местный",
+                "uk": "місцевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cozy",
+            "messy",
+            "homesick",
+            "local"
+          ],
+          "rightColumn": [
+            "затишно",
+            "безлад",
+            "тужить за домом",
+            "місцевий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга навчається в іншій країні й каже, що їй дуже хочеться додому, до своїх. Поясніть братові, що вона сумує за домом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга навчається в іншій країні й каже, що їй дуже хочеться додому, до своїх. Поясніть братові, що вона сумує за домом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-37:i17:audio",
+            "transcript": "She is homesick."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is homesick.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-37:word:lonely",
+      "correctText": "lonely",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:word:homesick",
+      "correctText": "homesick",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:word:messy",
+      "correctText": "messy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:word:cozy",
+      "correctText": "cozy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i01",
+      "correctText": "I am lonely.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i02",
+      "correctText": "She is homesick.",
+      "correctResponseId": "en:lesson-01:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i05",
+      "correctText": "It is cozy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i06",
+      "correctText": "We are homesick.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i07",
+      "correctText": "I'm lonely.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i08",
+      "correctText": "local",
+      "correctResponseId": "en:lesson-01:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i09",
+      "correctText": "It is online.",
+      "correctResponseId": "en:lesson-01:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i11",
+      "correctText": "It's messy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i12",
+      "correctText": "It is foreign.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i13",
+      "correctText": "They are lonely.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-37:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i15",
+      "correctText": "It's cozy.",
+      "correctResponseId": "en:lesson-01:session-37:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i17",
+      "correctText": "She is homesick.",
+      "correctResponseId": null
+    }
+  ]
+}

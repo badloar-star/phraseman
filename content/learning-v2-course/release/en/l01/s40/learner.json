@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-40:i01",
+      "interactionId": "en:lesson-01:session-40:word:muted",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — muted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:word:muted:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — muted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:word:muted:audio",
+          "transcript": "muted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:word:muted:r1",
+            "targetText": "muted",
+            "meaningByLocale": {
+              "ru": "микрофон выключен, звука нет. You're muted — «У тебя выключен звук». Так говорят на видеозвонке.",
+              "uk": "мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muted",
+          "definitionByLocale": {
+            "ru": "микрофон выключен, звука нет. You're muted — «У тебя выключен звук». Так говорят на видеозвонке.",
+            "uk": "мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:word:frozen",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — frozen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:word:frozen:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — frozen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:word:frozen:audio",
+          "transcript": "frozen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:word:frozen:r1",
+            "targetText": "frozen",
+            "meaningByLocale": {
+              "ru": "застыл, завис. She's frozen — «У неё зависла картинка». Ещё так говорят про лёд и замёрзшую воду.",
+              "uk": "завмер, завис. She's frozen — «У неї зависла картинка». Ще так кажуть про лід і замерзлу воду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frozen",
+          "definitionByLocale": {
+            "ru": "застыл, завис. She's frozen — «У неё зависла картинка». Ещё так говорят про лёд и замёрзшую воду.",
+            "uk": "завмер, завис. She's frozen — «У неї зависла картинка». Ще так кажуть про лід і замерзлу воду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:word:sunny",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sunny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:word:sunny:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sunny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:word:sunny:audio",
+          "transcript": "sunny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:word:sunny:r1",
+            "targetText": "sunny",
+            "meaningByLocale": {
+              "ru": "солнечный. It's sunny — «Солнечно». Про погоду говорим It.",
+              "uk": "сонячний. It's sunny — «Сонячно». Про погоду кажемо It."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunny",
+          "definitionByLocale": {
+            "ru": "солнечный. It's sunny — «Солнечно». Про погоду говорим It.",
+            "uk": "сонячний. It's sunny — «Сонячно». Про погоду кажемо It."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:word:freezing",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — freezing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:word:freezing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — freezing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:word:freezing:audio",
+          "transcript": "freezing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:word:freezing:r1",
+            "targetText": "freezing",
+            "meaningByLocale": {
+              "ru": "очень холодно, мороз. It's freezing — «Ужасно холодно». Сильнее, чем cold.",
+              "uk": "дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freezing",
+          "definitionByLocale": {
+            "ru": "очень холодно, мороз. It's freezing — «Ужасно холодно». Сильнее, чем cold.",
+            "uk": "дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -19,7 +191,7 @@
         "targetPhrase": "I'm okay.",
         "localizedMeaning": {
           "ru": "У вас всё нормально. Соберите короткую фразу о себе",
-          "uk": "У вас усе гаразд. Складіть коротку фразу про себе"
+          "uk": "У вас усе нормально. Складіть коротку фразу про себе"
         },
         "orderedTokens": [
           "I'm",
@@ -48,7 +220,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -56,15 +228,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-40:i02:r1",
-          "text": "She's ill."
+          "text": "She's frozen."
         },
         {
           "responseId": "en:lesson-01:session-40:i02:r2",
-          "text": "He's ill."
+          "text": "He's frozen."
         },
         {
           "responseId": "en:lesson-01:session-40:i02:r3",
-          "text": "She's sleepy."
+          "text": "She's ill."
         }
       ],
       "mediaIds": [],
@@ -76,23 +248,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-40:i02:audio",
-          "transcript": "She's ill."
+          "transcript": "She's frozen."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-40:i02:r1",
-            "targetText": "She's ill.",
+            "targetText": "She's frozen.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-40:i02:r2",
-            "targetText": "He's ill.",
+            "targetText": "He's frozen.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-40:i02:r3",
-            "targetText": "She's sleepy.",
+            "targetText": "She's ill.",
             "meaningByLocale": null
           }
         ],
@@ -112,8 +284,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ill`, а в этом варианте — `sleepy`.",
-              "uk": "У записі останнє слово — `ill`, а в цьому варіанті — `sleepy`."
+              "ru": "В записи последнее слово — `frozen`, а в этом варианте — `ill`.",
+              "uk": "У записі останнє слово — `frozen`, а в цьому варіанті — `ill`."
             }
           }
         ],
@@ -124,7 +296,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -193,62 +365,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-40:i04:p1",
-            "target": "okay",
+            "target": "muted",
             "meaningByLocale": {
-              "ru": "в порядке",
-              "uk": "у порядку"
+              "ru": "звука нет",
+              "uk": "звуку немає"
             }
           },
           {
             "pairId": "en:lesson-01:session-40:i04:p2",
-            "target": "afraid",
+            "target": "frozen",
             "meaningByLocale": {
-              "ru": "боится",
-              "uk": "боїться"
+              "ru": "завис",
+              "uk": "завис"
             }
           },
           {
             "pairId": "en:lesson-01:session-40:i04:p3",
-            "target": "ill",
+            "target": "sunny",
             "meaningByLocale": {
-              "ru": "болеет",
-              "uk": "хворіє"
+              "ru": "солнечно",
+              "uk": "сонячно"
             }
           },
           {
             "pairId": "en:lesson-01:session-40:i04:p4",
-            "target": "sleepy",
+            "target": "freezing",
             "meaningByLocale": {
-              "ru": "хочется спать",
-              "uk": "хочеться спати"
+              "ru": "очень холодно",
+              "uk": "дуже холодно"
             }
           }
         ],
         "leftColumn": [
-          "okay",
-          "afraid",
-          "ill",
-          "sleepy"
+          "muted",
+          "frozen",
+          "sunny",
+          "freezing"
         ],
         "rightColumn": [
-          "в порядке",
-          "боится",
-          "болеет",
-          "хочется спать"
+          "звука нет",
+          "завис",
+          "солнечно",
+          "очень холодно"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,8 +438,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -313,8 +485,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Сигнал связи слабый. Соберите фразу именно о сигнале",
@@ -357,7 +529,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -390,7 +562,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -450,7 +622,7 @@
             "testedDimension": "Вам не хватает близкого общения. Назовите чувство одиночества",
             "feedbackByLocale": {
               "ru": "`ill` — «болею». Здесь нужно назвать одиночество: `lonely`.",
-              "uk": "`ill` — «хворію». Тут треба назвати самотність: `lonely`."
+              "uk": "`ill` — «хворію». Тут потрібно назвати самотність: `lonely`."
             }
           }
         ]
@@ -459,7 +631,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -535,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините короткие начала с полными",
@@ -608,40 +780,40 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Подруга говорит, но вы её не слышите. Послушайте и соберите короткую фразу для неё",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Подруга говорит, но вы её не слышите. Послушайте и соберите короткую фразу для неё",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-40:i11:audio",
-          "transcript": "We're okay."
+          "transcript": "You're muted."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We're okay.",
+        "hiddenTargetPhrase": "You're muted.",
         "orderedTokens": [
-          "We're",
-          "okay"
+          "You're",
+          "muted"
         ],
         "authoredDistractorTokens": [
-          "They're"
+          "I'm"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-40:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Подруга говорит, но вы её не слышите. Послушайте и соберите короткую фразу для неё",
             "feedbackByLocale": {
-              "ru": "здесь нужно `We're` — `We're okay.`",
-              "uk": "тут потрібно `We're` — `We're okay.`"
+              "ru": "здесь нужно `You're` — `You're muted.`",
+              "uk": "тут потрібно `You're` — `You're muted.`"
             }
           }
         ],
@@ -654,7 +826,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -698,7 +870,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -731,15 +903,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Двое друзей честно признались в ошибке, хотя боялись. Отметьте их смелость",
+      "prompt": "У друга на севере за окном минус тридцать. Дополните фразу о погоде у него",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-40:i14:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-01:session-40:i14:r2",
@@ -747,23 +919,23 @@
         },
         {
           "responseId": "en:lesson-01:session-40:i14:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двое друзей честно признались в ошибке, хотя боялись. Отметьте их смелость",
+      "accessibilityLabel": "У друга на севере за окном минус тридцать. Дополните фразу о погоде у него",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Двое друзей честно признались в ошибке, хотя боялись. Отметьте их смелость",
-          "uk": "Двоє друзів чесно зізналися в помилці, хоча боялися. Відзначте їхню сміливість"
+          "ru": "У друга на севере за окном минус тридцать. Дополните фразу о погоде у него",
+          "uk": "У друга на півночі за вікном мінус тридцять. Доповніть фразу про погоду в нього"
         },
-        "gappedTargetPhrase": "They ___ brave.",
+        "gappedTargetPhrase": "It ___ freezing.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-40:i14:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-01:session-40:i14:r2",
@@ -771,27 +943,27 @@
           },
           {
             "responseId": "en:lesson-01:session-40:i14:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "Двое друзей честно признались в ошибке, хотя боялись. Отметьте их смелость",
+        "testedDimension": "У друга на севере за окном минус тридцать. Дополните фразу о погоде у него",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-40:i14:r2",
             "correct": false,
-            "testedDimension": "Двое друзей честно признались в ошибке, хотя боялись. Отметьте их смелость",
+            "testedDimension": "У друга на севере за окном минус тридцать. Дополните фразу о погоде у него",
             "feedbackByLocale": {
-              "ru": "После `They` нужно `are`.",
-              "uk": "Після `They` потрібно `are`."
+              "ru": "`am` ставим после `I`. Здесь `It is`.",
+              "uk": "`am` ставимо після `I`. Тут `It is`."
             }
           },
           {
             "responseId": "en:lesson-01:session-40:i14:r3",
             "correct": false,
-            "testedDimension": "Двое друзей честно признались в ошибке, хотя боялись. Отметьте их смелость",
+            "testedDimension": "У друга на севере за окном минус тридцать. Дополните фразу о погоде у него",
             "feedbackByLocale": {
-              "ru": "Здесь `They are brave`.",
-              "uk": "Тут `They are brave`."
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
             }
           }
         ]
@@ -800,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -808,15 +980,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-40:i15:r1",
-          "text": "He's weak."
+          "text": "It's freezing."
         },
         {
           "responseId": "en:lesson-01:session-40:i15:r2",
-          "text": "She's weak."
+          "text": "It's sunny."
         },
         {
           "responseId": "en:lesson-01:session-40:i15:r3",
-          "text": "He's sleepy."
+          "text": "It's okay."
         }
       ],
       "mediaIds": [],
@@ -828,23 +1000,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-40:i15:audio",
-          "transcript": "He's weak."
+          "transcript": "It's freezing."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-40:i15:r1",
-            "targetText": "He's weak.",
+            "targetText": "It's freezing.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-40:i15:r2",
-            "targetText": "She's weak.",
+            "targetText": "It's sunny.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-40:i15:r3",
-            "targetText": "He's sleepy.",
+            "targetText": "It's okay.",
             "meaningByLocale": null
           }
         ],
@@ -855,8 +1027,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `He's`, а в этом варианте — `She's`.",
-              "uk": "У записі перше слово — `He's`, а в цьому варіанті — `She's`."
+              "ru": "В записи последнее слово — `freezing`, а в этом варианте — `sunny`.",
+              "uk": "У записі останнє слово — `freezing`, а в цьому варіанті — `sunny`."
             }
           },
           {
@@ -864,8 +1036,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `weak`, а в этом варианте — `sleepy`.",
-              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `sleepy`."
+              "ru": "В записи последнее слово — `freezing`, а в этом варианте — `okay`.",
+              "uk": "У записі останнє слово — `freezing`, а в цьому варіанті — `okay`."
             }
           }
         ],
@@ -876,7 +1048,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -890,18 +1062,18 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-40:i16:p1",
-            "target": "lonely",
+            "target": "muted",
             "meaningByLocale": {
-              "ru": "чувствует одиночество",
-              "uk": "відчуває самотність"
+              "ru": "микрофон выключен",
+              "uk": "мікрофон вимкнений"
             }
           },
           {
             "pairId": "en:lesson-01:session-40:i16:p2",
-            "target": "weak",
+            "target": "lonely",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "одиноко",
+              "uk": "самотньо"
             }
           },
           {
@@ -914,24 +1086,24 @@
           },
           {
             "pairId": "en:lesson-01:session-40:i16:p4",
-            "target": "afraid",
+            "target": "weak",
             "meaningByLocale": {
-              "ru": "боится",
-              "uk": "боїться"
+              "ru": "слабый",
+              "uk": "слабкий"
             }
           }
         ],
         "leftColumn": [
+          "muted",
           "lonely",
-          "weak",
           "brave",
-          "afraid"
+          "weak"
         ],
         "rightColumn": [
-          "чувствует одиночество",
-          "слабый",
+          "микрофон выключен",
+          "одиноко",
           "смелый",
-          "боится"
+          "слабый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,25 +1121,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вечером вы читаете книгу, но вас клонит в сон. Назовите близкому человеку своё состояние",
+      "prompt": "Подруга с юга рассказывает, что у неё ясно и светит солнце. Передайте Олегу, какая у неё погода",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Вечером вы читаете книгу, но вас клонит в сон. Назовите близкому человеку своё состояние",
+      "accessibilityLabel": "Подруга с юга рассказывает, что у неё ясно и светит солнце. Передайте Олегу, какая у неё погода",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-40:i17:audio",
-          "transcript": "I am sleepy."
+          "transcript": "It is sunny."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am sleepy.",
+        "targetPhrase": "It is sunny.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "55670c714c5802c36c9aac8eb90fda276fa4559b8d4ef010d7d2e32f24200d66"
+  "learnerFingerprint": "e47ebd927302d2968f9c976aaa831dfdf1d8a50140da243b7b39c10dd386bc6b"
 }

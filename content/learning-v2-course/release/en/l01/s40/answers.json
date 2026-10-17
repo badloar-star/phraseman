@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-40:word:muted",
+    "correctText": "muted",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:word:frozen",
+    "correctText": "frozen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:word:sunny",
+    "correctText": "sunny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:word:freezing",
+    "correctText": "freezing",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-40:i01",
     "correctText": "I'm okay.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i02",
-    "correctText": "She's ill.",
+    "correctText": "She's frozen.",
     "correctResponseId": "en:lesson-01:session-40:i02:r1"
   },
   {
@@ -16,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-40:i04",
-    "correctText": "en:lesson-01:session-40:i04:p1=okay\nen:lesson-01:session-40:i04:p2=afraid\nen:lesson-01:session-40:i04:p3=ill\nen:lesson-01:session-40:i04:p4=sleepy",
+    "correctText": "en:lesson-01:session-40:i04:p1=muted\nen:lesson-01:session-40:i04:p2=frozen\nen:lesson-01:session-40:i04:p3=sunny\nen:lesson-01:session-40:i04:p4=freezing",
     "correctResponseId": null
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-40:i11",
-    "correctText": "We're okay.",
+    "correctText": "You're muted.",
     "correctResponseId": null
   },
   {
@@ -66,22 +86,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-40:i14",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-40:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i15",
-    "correctText": "He's weak.",
+    "correctText": "It's freezing.",
     "correctResponseId": "en:lesson-01:session-40:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i16",
-    "correctText": "en:lesson-01:session-40:i16:p1=lonely\nen:lesson-01:session-40:i16:p2=weak\nen:lesson-01:session-40:i16:p3=brave\nen:lesson-01:session-40:i16:p4=afraid",
+    "correctText": "en:lesson-01:session-40:i16:p1=muted\nen:lesson-01:session-40:i16:p2=lonely\nen:lesson-01:session-40:i16:p3=brave\nen:lesson-01:session-40:i16:p4=weak",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i17",
-    "correctText": "I am sleepy.",
+    "correctText": "It is sunny.",
     "correctResponseId": null
   }
 ]

@@ -3,6 +3,7 @@
 Governance-ID: TG-1E8EB2EBE35A
 Governance-ID: TG-AE23A1F2B77A
 Governance-ID: TG-077D2F48205B
+Governance-ID: TG-6DDC5D1614AF
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: прямое слово владельца 17.10 со скрином: «Цифры будут СПРАВА от иконки, а не внизу»; эталон Макетов `docs/design/v2-app/cards-section.shadow.html#hub` (2ad48d298).

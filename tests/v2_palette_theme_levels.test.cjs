@@ -36,8 +36,11 @@ test('accent keeps the calm background and glass, colours CTA and progress', () 
       assert.equal(acc[key], calm[key], `${id}: ${key}`);
     }
     const g = liquidGlassTokens(id, v('accent'));
-    assert.equal(acc.cta, g.accent);
-    assert.equal(acc.ctaText, g.accentInk);
+    // зачем (R115, 17.10): заливка главной кнопки палитры — пара ctaFill/ctaFillInk (владелец 13.10 №35: пастельный accent сливался с фоном светлых градиентных тем,
+    // кнопка к фону ≥3:1, подпись ≥4,5:1). Раньше ждали сырой accent — ожидание устарело. Уровни по-прежнему различимы: цвет темы живёт в прогрессе, ссылках и значках.
+    assert.equal(acc.cta, g.ctaFill);
+    assert.equal(acc.ctaText, g.ctaFillInk);
+    assert.notEqual(acc.progressFill, calm.progressFill, id + ': Акцент красит прогресс цветом темы, Тон — нет');
     assert.equal(acc.progressFill, g.accentGraphic);
     assert.equal(acc.accentText, g.accentText);
   }
@@ -53,5 +56,5 @@ test('max tints background and glass, boosts smoke; light flips to light surface
   assert.equal(light.bg, g.bg);
   assert.equal(light.text, g.text);
   assert.equal(light.card, g.opaqueCard);
-  assert.equal(light.cta, g.accent);
+  assert.equal(light.cta, g.ctaFill); // зачем (R115, 17.10): заливка главной кнопки — ctaFill, см. выше
 });

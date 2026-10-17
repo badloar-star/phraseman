@@ -65,7 +65,8 @@ const Tile = memo(function Tile({ label, tone, disabled, onPress, testID }: Read
     // верная пара гаснет быстро, ease-out: подтверждение, а не событие
     Animated.timing(fade, { toValue: tone === 'matched' ? 0.28 : 1, duration: FADE_MS, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
   }, [fade, tone]);
-  const bg = tone === 'selected' ? lv2Alpha(p.accent, 0.16)
+  // зачем (храповик light_accent_graphics): заливка выбранной плитки — графика темы, берём accentGraphic (в тёмном = accent, в светлом виден)
+  const bg = tone === 'selected' ? lv2Alpha(p.accentGraphic, 0.16)
     : tone === 'wrong' ? lv2Alpha(p.wrong, 0.12)
       : tone === 'matched' ? lv2Alpha(p.correct, 0.12)
         : p.card;

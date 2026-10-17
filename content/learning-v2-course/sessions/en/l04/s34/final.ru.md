@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 34 — Поручень у входа
+# Английский · Урок 4 · Занятие 34 — Лестница без поручней
 
-**Ситуация.** Вы осматриваете помещение перед встречей. У входа ищете поручень, на кухне находите кошелёк на столешнице, а затем замечаете, что ваша учётная запись неактивна.
+**Ситуация.** Вы осматриваете лестницу в доме, куда переезжаете. Хозяйка и соседи показывают, чего на ней не хватает. Вы учитесь сказать, что нет ни одного из нескольких предметов, фразой There aren’t any …
 
-**Что вы освоите:** назвать поручень, сообщить о его наличии или отсутствии и описать положение кошелька
-**Новые слова:** handrail
+**Что вы освоите:** сказать, что нет ни одного из нескольких предметов, фразой There aren’t any …
+**Новые слова:** handrail, bulb, sign, tile
+**Возвращаются:** stairs, wall, floor, lamp, ceiling, hall, lift, chair
 
 ---
 
 ## Интро 1
 
-### За что держаться
+### Хозяйка ведёт вниз
 
-`handrail` — «поручень»: за него держатся рукой, например на лестнице. Один поручень — `a handrail`. `This is a handrail` — «Это поручень». Если за него держатся три человека, поручень не становится тремя: всё ещё `a handrail`.
+Хозяйка ведёт вас вниз по лестнице. Ступеньки крутые, вам хочется за что-то держаться, но стены гладкие. handrail — «поручень». Когда нет ни одного из нескольких предметов, говорят aren’t any и ставят -s: There aren’t any handrails — «Поручней нет».
 
-**Покажите один поручень рядом.**
+**Хозяйка спрашивает про лестницу. Скажите ей, что поручней нет.**
 
-- ✅ **This is a handrail.**
-- ❌ This is handrail. — *Перед одним поручнем нужно `a`: `a handrail`.*
-- ❌ These are handrails. — *Здесь один поручень: `This is a handrail`.*
+- ✅ **There aren’t any handrails.**
+- ❌ There isn’t any handrails. — *Поручни — несколько предметов, поэтому нужно aren’t, а не isn’t.*
+- ❌ There aren’t any handrail. — *После any слово ставят во множественном числе: handrails.*
 
 ---
 
 ## Интро 2
 
-### Кошелёк на кухне
+### Площадка без света
 
-`wallet` — «кошелёк», `worktop` — «кухонная столешница». `The wallet is on the worktop` — «Кошелёк на столешнице». `on` здесь означает на поверхности. `The wallet is under the worktop` — «Кошелёк под столешницей»: стоит сменить предлог, и искать придётся в другом месте.
+Вечером сосед поднимается по лестнице и спотыкается: на площадке темно, а ступенек не видно. Он задирает голову, а под потолком торчат пустые патроны. bulb — «лампочка». Лампочек несколько, поэтому снова aren’t any: There aren’t any bulbs — «Лампочек нет».
 
-**Кошелёк лежит на поверхности столешницы. Выберите описание.**
+**Сосед спрашивает, почему так темно. Скажите ему, что лампочек нет.**
 
-- ✅ **The wallet is on the worktop.**
-- ❌ The wallet is under the worktop. — *`under` — под; на поверхности — `on`.*
-- ❌ The wallet are on the worktop. — *Один кошелёк: `The wallet is`.*
+- ✅ **There aren’t any bulbs.**
+- ❌ There aren’t bulbs. — *Для «нет ни одной» нужно слово any: aren’t any bulbs.*
+- ❌ There are any bulbs. — *Лампочек нет, поэтому перед any нужно aren’t, а не are.*
 
 ---
 
 ## Интро 3
 
-### Есть, нет и неактивно
+### Новая соседка
 
-`Is there a handrail?` — «Есть поручень?» Если его нет: `There isn’t a handrail`. Нет ни одного поручня: `There aren’t any handrails`. `inactive` — «неактивный». О неактивной учётной записи можно сказать `It is inactive` или короче `It’s inactive`. Неактивная запись существует, но не активна; это не то же самое, что её вообще нет.
+В доме поселилась новая соседка. Она ходит по этажам и ищет таблички с номерами квартир, но на стенах пусто, а ей надо найти нужную дверь. sign — «табличка». There aren’t any signs — «Табличек нет». После any табличек несколько, поэтому -s.
 
-**Учётная запись существует, но неактивна. Выберите описание с сокращением.**
+**Соседка ищет таблички с номерами. Скажите ей, что табличек нет.**
 
-- ✅ **It's inactive.**
-- ❌ It's active. — *`active` — активная; здесь нужно `inactive`.*
-- ❌ It are inactive. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **There aren’t any signs.**
+- ❌ There isn’t any signs. — *Таблички — несколько предметов, поэтому нужно aren’t, а не isn’t.*
+- ❌ There aren’t any sign. — *После any слово ставят во множественном числе: signs.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Учётная запись неактивна. Скажите об этом без сокращения**
-<!-- interaction_id: en:lesson-04:session-34:i01; family: phrase_builder -->
-Плитки: `inactive` `is` `It` `are` → **It is inactive.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is inactive.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-34:i01; family: speed_match -->
+handrail — поручень · bulb — лампочка · sign — табличка, знак · tile — плитка
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-34:i02; family: listen_choose -->
-🔊 *handrail* → **handrail** · handrails · doorbell
-- handrails — *В записи первое слово — `handrail`, а в этом варианте — `handrails`.*
-- doorbell — *В записи первое слово — `handrail`, а в этом варианте — `doorbell`.*
+**2 · Карточка слова — handrail**
+<!-- interaction_id: en:lesson-04:session-34:word:handrail; family: word_card -->
+> **handrail** — поручень. There aren’t any handrails. — «Поручней нет». О перекладине вдоль лестницы, за которую держатся рукой.
 
-**3 · Назовите поручень одним словом**
-<!-- interaction_id: en:lesson-04:session-34:i03; family: context_gap_grammar -->
-___ → **handrail** · wallet · worktop
-- wallet — *`wallet` — кошелёк; поручень — `handrail`.*
-- worktop — *`worktop` — столешница; поручень — `handrail`.*
+**3 · Хозяйка показывает планку вдоль стены лестницы, за которую держатся рукой, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-34:i02; family: scripted_repeat_compare -->
+🎙 **handrail**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-34:i04; family: speed_match -->
-handrail — поручень · inactive — неактивный · wallet — кошелёк · worktop — кухонная столешница
+**4 · Хозяйка спрашивает про лестницу. Скажите ей полной фразой: на лестнице нет поручней**
+<!-- interaction_id: en:lesson-04:session-34:i03; family: phrase_builder -->
+Плитки: `handrails` `any` `on` `the` `stairs` `aren’t` `There` `isn’t` → **There aren’t any handrails on the stairs.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any handrails on the stairs.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-34:i05; family: listen_build_dictation -->
-🔊 *This is a handrail.* Плитки: `handrail` `a` `is` `This` `are` → **This is a handrail.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a handrail.`)*
+**5 · Карточка слова — bulb**
+<!-- interaction_id: en:lesson-04:session-34:word:bulb; family: word_card -->
+> **bulb** — лампочка. There aren’t any bulbs. — «Лампочек нет». О стеклянном шарике в лампе, который даёт свет.
 
-**6 · Кошелёк на столешнице. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-34:i06; family: phrase_builder -->
-Плитки: `worktop` `the` `on` `is` `wallet` `The` `are` → **The wallet is on the worktop.**
-*(плитка `are` лишняя: здесь нужно `is` — `The wallet is on the worktop.`)*
+**6 · Сосед вкручивает в лампу стеклянный шарик, который даёт свет. Как этот шарик называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-34:i04; family: context_gap_grammar -->
+___ → **bulb** · lamp · switch
+- lamp — *lamp — это сама лампа, а стеклянный шарик внутри называется bulb.*
+- switch — *switch — это выключатель, а стеклянный шарик, который даёт свет, называется bulb.*
 
-**7 · Друг спрашивает о вашей учётной записи. Она неактивна. Ответьте с сокращением**
-<!-- interaction_id: en:lesson-04:session-34:i07; family: scripted_repeat_compare -->
-🎙 **It's inactive.**
+**7 · Послушайте соседа**
+<!-- interaction_id: en:lesson-04:session-34:i05; family: listen_choose -->
+🔊 *There aren’t any bulbs.* → **There aren’t any bulbs.** · There aren’t any lamps. · There isn’t a bulb.
+- There aren’t any lamps. — *В записи `bulbs`, а в этом варианте `lamps`.*
+- There isn’t a bulb. — *В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — один предмет.*
 
-**8 · Поручня нет. Выберите форму**
+**8 · Карточка слова — sign**
+<!-- interaction_id: en:lesson-04:session-34:word:sign; family: word_card -->
+> **sign** — табличка, знак. There aren’t any signs. — «Табличек нет». О пластине с надписью или номером.
+
+**9 · Соседка показывает табличку с номером этажа на стене, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-34:i06; family: scripted_repeat_compare -->
+🎙 **sign**
+
+**10 · Послушайте соседку и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-34:i07; family: listen_build_dictation -->
+🔊 *There aren’t any signs on the wall.* Плитки: `signs` `any` `on` `the` `wall` `aren’t` `There` `isn’t` → **There aren’t any signs on the wall.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any signs on the wall.`)*
+
+**11 · Карточка слова — tile**
+<!-- interaction_id: en:lesson-04:session-34:word:tile; family: word_card -->
+> **tile** — плитка. There aren’t any tiles. — «Плиток нет». О квадратике из керамики, которым покрывают пол или стену.
+
+**12 · Хозяйка стелит на пол в ванной квадратики из керамики. Как называется один такой квадратик по-английски?**
 <!-- interaction_id: en:lesson-04:session-34:i08; family: context_gap_grammar -->
-There ___ a handrail. → **isn't** · is · aren't
-- is — *`is` сообщает о наличии; здесь нет: `isn’t`.*
-- aren't — *Один поручень: `isn’t a handrail`.*
+___ → **tile** · mat · rug
+- mat — *mat — это коврик, а квадратик из керамики называется tile.*
+- rug — *rug — это ковёр, а квадратик из керамики называется tile.*
 
-**9 · Послушайте, что здесь есть**
-<!-- interaction_id: en:lesson-04:session-34:i09; family: listen_choose -->
-🔊 *There is a handrail.* → **There is a handrail.** · There is a doorbell. · There is a sink.
-- There is a doorbell. — *В записи последнее слово — `handrail`, а в этом варианте — `doorbell`.*
-- There is a sink. — *В записи последнее слово — `handrail`, а в этом варианте — `sink`.*
+**13 · Хозяйка смотрит на пол в ванной. Скажите ей полной фразой: на полу нет плиток**
+<!-- interaction_id: en:lesson-04:session-34:i09; family: phrase_builder -->
+Плитки: `tiles` `any` `on` `the` `floor` `aren’t` `There` `isn’t` → **There aren’t any tiles on the floor.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any tiles on the floor.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-34:i10; family: speed_match -->
-handrail — поручень · inactive — неактивный · wallet — кошелёк · worktop — кухонная столешница
+tile — плитка · sign — табличка, знак · bulb — лампочка · lamp — лампа
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-34:i11; family: listen_build_dictation -->
-🔊 *There aren't any handrails.* Плитки: `handrails` `any` `aren't` `There` → **There aren't any handrails.**
+**15 · Послушайте соседку**
+<!-- interaction_id: en:lesson-04:session-34:i11; family: listen_choose -->
+🔊 *There aren’t any lifts.* → **There aren’t any lifts.** · There aren’t any stairs. · There isn’t a lift.
+- There aren’t any stairs. — *В записи `lifts`, а в этом варианте `stairs`.*
+- There isn’t a lift. — *В записи `aren’t any` — несколько лифтов, а в этом варианте `isn’t a` — один.*
 
-**12 · Кошелёк упал под столешницу. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-34:i12; family: phrase_builder -->
-Плитки: `worktop` `the` `under` `is` `wallet` `The` `are` → **The wallet is under the worktop.**
-*(плитка `are` лишняя: здесь нужно `is` — `The wallet is under the worktop.`)*
+**16 · Сосед смотрит в холл: лампочек там нет. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-34:i12; family: context_gap_grammar -->
+There ___ any bulbs in the hall. → **aren’t** · isn’t · is
+- isn’t — *Лампочки — несколько предметов, поэтому нужно aren’t, а не isn’t.*
+- is — *is значит «есть», а лампочек нет: нужно aren’t.*
 
-**13 · Вы ещё не видели вход. Спросите, есть ли поручень**
-<!-- interaction_id: en:lesson-04:session-34:i13; family: scripted_repeat_compare -->
-🎙 **Is there a handrail?**
+**17 · Послушайте хозяйку и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-34:i13; family: listen_build_dictation -->
+🔊 *There aren’t any lamps on the ceiling.* Плитки: `lamps` `any` `on` `the` `ceiling` `aren’t` `There` `isn’t` → **There aren’t any lamps on the ceiling.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any lamps on the ceiling.`)*
 
-**14 · Кошелёк внутри сумки, не на ней и не под ней. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-34:i14; family: context_gap_grammar -->
-The wallet is ___ the bag. → **in** · on · under
-- on — *`on` — на поверхности; внутри — `in`.*
-- under — *`under` — под; внутри — `in`.*
+**18 · Хозяйка спрашивает про окна на лестнице. Скажите ей: «Здесь нет окон»**
+<!-- interaction_id: en:lesson-04:session-34:i14; family: scripted_repeat_compare -->
+🎙 **There aren’t any windows here.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-34:i15; family: listen_choose -->
-🔊 *That is a handrail.* → **That is a handrail.** · This is a handrail. · That is a table.
-- This is a handrail. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a table. — *В записи последнее слово — `handrail`, а в этом варианте — `table`.*
+**19 · Сосед спрашивает про холл. Скажите ему полной фразой: в холле нет стульев**
+<!-- interaction_id: en:lesson-04:session-34:i15; family: phrase_builder -->
+Плитки: `chairs` `any` `in` `the` `hall` `aren’t` `There` `isn’t` → **There aren’t any chairs in the hall.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any chairs in the hall.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-34:i16; family: speed_match -->
-handrail — поручень · inactive — неактивный · wallet — кошелёк · worktop — кухонная столешница
+handrail — поручень · bulb — лампочка · sign — табличка, знак · tile — плитка
 
-**17 · У другого входа друг ищет поручень, но его нет. Скажите «Поручня нет»**
+**21 · На другой лестнице сосед ищет, за что держаться. Скажите ему: «Здесь нет поручней»**
 <!-- interaction_id: en:lesson-04:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a handrail.**
-
+🎙 **There aren’t any handrails here.**

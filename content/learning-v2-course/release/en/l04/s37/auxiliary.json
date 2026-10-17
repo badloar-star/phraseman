@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-37:intro1:r2": {
-          "ru": "Перед одним постаматом нужно `a`: `a parcel locker`.",
-          "uk": "Перед одним поштоматом потрібне `a`: `a parcel locker`."
+          "ru": "Вы говорите об одном почтомате, поэтому isn’t a, а не aren’t any.",
+          "uk": "Ви говорите про один поштомат, тому isn’t a, а не aren’t any."
         },
         "en:lesson-04:session-37:intro1:r3": {
-          "ru": "Здесь один постамат: `This is a parcel locker`.",
-          "uk": "Тут один поштомат: `This is a parcel locker`."
+          "ru": "Почтомат один, поэтому после isn’t нужно a: isn’t a parcel locker.",
+          "uk": "Поштомат один, тому після isn’t потрібно a: isn’t a parcel locker."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-37:intro2:r2": {
-          "ru": "`in` — внутри; здесь рядом: `next to`.",
-          "uk": "`in` — усередині; тут поруч: `next to`."
+          "ru": "Поддоны — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Піддони — кілька предметів, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-37:intro2:r3": {
-          "ru": "Одна машина: `The car is`.",
-          "uk": "Одна машина: `The car is`."
+          "ru": "После any слово ставят во множественном числе: pallets.",
+          "uk": "Після any слово ставлять у множині: pallets."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-37:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-37:intro3:r2": {
-          "ru": "`unofficial` — неофициально; здесь информация официальная: `official`.",
-          "uk": "`unofficial` — неофіційно; тут інформація офіційна: `official`."
+          "ru": "Слово crate начинается с согласного звука, поэтому нужно a, а не an.",
+          "uk": "Слово crate починається з приголосного звуку, тому потрібно a, а не an."
         },
         "en:lesson-04:session-37:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Ящик один, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Ящик один, тому потрібно isn’t, а не aren’t."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3da300be38ac989158b0cede8626af6068ea76314b67dcf25b3442d79266295a"
+  "auxiliaryFingerprint": "f48262797da31bc31beed8208816b6dcc2b0fafed55d25c73bce8e7bb7022458"
 }

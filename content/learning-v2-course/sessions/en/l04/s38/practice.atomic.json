@@ -1,0 +1,2393 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-38",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-38:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-38:i01:p1",
+              "target": "bicycle rack",
+              "meaningByLocale": {
+                "ru": "велосипедная стойка",
+                "uk": "велосипедна стійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i01:p2",
+              "target": "lawn",
+              "meaningByLocale": {
+                "ru": "газон",
+                "uk": "газон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i01:p3",
+              "target": "washing line",
+              "meaningByLocale": {
+                "ru": "верёвка для белья",
+                "uk": "мотузка для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i01:p4",
+              "target": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок",
+                "uk": "навісний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bicycle rack",
+            "lawn",
+            "washing line",
+            "padlock"
+          ],
+          "rightColumn": [
+            "велосипедная стойка",
+            "газон",
+            "верёвка для белья",
+            "навесной замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:bicycle rack",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bicycle rack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:bicycle rack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bicycle rack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:bicycle rack:audio",
+            "transcript": "bicycle rack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:bicycle rack:r1",
+              "targetText": "bicycle rack",
+              "meaningByLocale": {
+                "ru": "велосипедная стойка. There isn’t a bicycle rack. — «Велосипедной стойки нет». О железной стойке, к которой пристёгивают велосипед.",
+                "uk": "велосипедна стійка. There isn’t a bicycle rack. — «Велосипедної стійки немає». Про залізну стійку, до якої пристібають велосипед."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bicycle rack",
+            "definitionByLocale": {
+              "ru": "велосипедная стойка. There isn’t a bicycle rack. — «Велосипедной стойки нет». О железной стойке, к которой пристёгивают велосипед.",
+              "uk": "велосипедна стійка. There isn’t a bicycle rack. — «Велосипедної стійки немає». Про залізну стійку, до якої пристібають велосипед."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед показывает железную стойку, к которой пристёгивают велосипед, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Сосед показывает железную стойку, к которой пристёгивают велосипед, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i02:audio",
+            "transcript": "bicycle rack"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bicycle rack",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед ищет, куда поставить велосипед. Скажите ему полной фразой: за сараем нет велосипедной стойки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед ищет, куда поставить велосипед. Скажите ему полной фразой: за сараем нет велосипедной стойки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a bicycle rack behind the shed.",
+          "localizedMeaning": {
+            "ru": "Сосед ищет, куда поставить велосипед. Скажите ему полной фразой: за сараем нет велосипедной стойки",
+            "uk": "Сусід шукає, куди поставити велосипед. Скажіть йому повною фразою: за сараєм немає велосипедної стійки"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "bicycle",
+            "rack",
+            "behind",
+            "the",
+            "shed"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед ищет, куда поставить велосипед. Скажите ему полной фразой: за сараем нет велосипедной стойки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a bicycle rack behind the shed.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a bicycle rack behind the shed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:lawn",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lawn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:lawn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lawn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:lawn:audio",
+            "transcript": "lawn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:lawn:r1",
+              "targetText": "lawn",
+              "meaningByLocale": {
+                "ru": "газон. There isn’t a lawn. — «Газона нет». О ровном участке подстриженной травы перед домом.",
+                "uk": "газон. There isn’t a lawn. — «Газону немає». Про рівну ділянку підстриженої трави перед будинком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lawn",
+            "definitionByLocale": {
+              "ru": "газон. There isn’t a lawn. — «Газона нет». О ровном участке подстриженной травы перед домом.",
+              "uk": "газон. There isn’t a lawn. — «Газону немає». Про рівну ділянку підстриженої трави перед будинком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i04:r1",
+            "text": "lawn"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i04:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i04:r3",
+            "text": "fence"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?",
+            "uk": "Сусідка сидить на рівній підстриженій траві перед будинком. Як називається така ділянка трави англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-38:i04:r1",
+              "text": "lawn"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i04:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i04:r3",
+              "text": "fence"
+            }
+          ],
+          "testedDimension": "Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i04:r2",
+              "correct": false,
+              "testedDimension": "Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?",
+              "feedbackByLocale": {
+                "ru": "tree — это дерево, а ровный участок подстриженной травы называется lawn.",
+                "uk": "tree — це дерево, а рівна ділянка підстриженої трави називається lawn."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i04:r3",
+              "correct": false,
+              "testedDimension": "Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?",
+              "feedbackByLocale": {
+                "ru": "fence — это забор, а ровный участок подстриженной травы называется lawn.",
+                "uk": "fence — це паркан, а рівна ділянка підстриженої трави називається lawn."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i05:r1",
+            "text": "There isn’t a lawn behind the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i05:r2",
+            "text": "There isn’t a lawn next to the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i05:r3",
+            "text": "There aren’t any lawns behind the shed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i05:audio",
+            "transcript": "There isn’t a lawn behind the shed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:i05:r1",
+              "targetText": "There isn’t a lawn behind the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i05:r2",
+              "targetText": "There isn’t a lawn next to the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i05:r3",
+              "targetText": "There aren’t any lawns behind the shed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи `behind` — за сараем, а в этом варианте `next to` — рядом с ним.",
+                "uk": "У записі `behind` — за сараєм, а в цьому варіанті `next to` — поруч із ним."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи `isn’t a` — один газон, а в этом варианте `aren’t any` — несколько.",
+                "uk": "У записі `isn’t a` — один газон, а в цьому варіанті `aren’t any` — кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:washing line",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — washing line",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:washing line:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — washing line",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:washing line:audio",
+            "transcript": "washing line"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:washing line:r1",
+              "targetText": "washing line",
+              "meaningByLocale": {
+                "ru": "верёвка для белья. There isn’t a washing line. — «Верёвки для белья нет». О верёвке, натянутой между столбами, на которой сушат одежду.",
+                "uk": "мотузка для білизни. There isn’t a washing line. — «Мотузки для білизни немає». Про мотузку, натягнуту між стовпами, на якій сушать одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washing line",
+            "definitionByLocale": {
+              "ru": "верёвка для белья. There isn’t a washing line. — «Верёвки для белья нет». О верёвке, натянутой между столбами, на которой сушат одежду.",
+              "uk": "мотузка для білизни. There isn’t a washing line. — «Мотузки для білизни немає». Про мотузку, натягнуту між стовпами, на якій сушать одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает верёвку, натянутую во дворе, на которой сушат бельё, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает верёвку, натянутую во дворе, на которой сушат бельё, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i06:audio",
+            "transcript": "washing line"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "washing line",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i07:audio",
+            "transcript": "There isn’t a washing line in the garden."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a washing line in the garden.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "washing",
+            "line",
+            "in",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a washing line in the garden.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a washing line in the garden.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:padlock",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — padlock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:padlock:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — padlock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:padlock:audio",
+            "transcript": "padlock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:padlock:r1",
+              "targetText": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок. There isn’t a padlock on the gate. — «На калитке нет навесного замка». О замке с дужкой, который вешают на калитку или сарай.",
+                "uk": "навісний замок. There isn’t a padlock on the gate. — «На хвіртці немає навісного замка». Про замок із дужкою, який вішають на хвіртку або сарай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "padlock",
+            "definitionByLocale": {
+              "ru": "навесной замок. There isn’t a padlock on the gate. — «На калитке нет навесного замка». О замке с дужкой, который вешают на калитку или сарай.",
+              "uk": "навісний замок. There isn’t a padlock on the gate. — «На хвіртці немає навісного замка». Про замок із дужкою, який вішають на хвіртку або сарай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i08:r1",
+            "text": "padlock"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i08:r2",
+            "text": "key"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i08:r3",
+            "text": "bell"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?",
+            "uk": "Сусід вішає на хвіртку маленький металевий замок із дужкою. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-38:i08:r1",
+              "text": "padlock"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i08:r2",
+              "text": "key"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i08:r3",
+              "text": "bell"
+            }
+          ],
+          "testedDimension": "Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "key — это ключ, а маленький замок с дужкой называется padlock.",
+                "uk": "key — це ключ, а маленький замок із дужкою називається padlock."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bell — это звонок, а маленький замок с дужкой называется padlock.",
+                "uk": "bell — це дзвінок, а маленький замок із дужкою називається padlock."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед хочет запереть калитку. Скажите ему полной фразой: на калитке нет навесного замка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед хочет запереть калитку. Скажите ему полной фразой: на калитке нет навесного замка",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a padlock on the gate.",
+          "localizedMeaning": {
+            "ru": "Сосед хочет запереть калитку. Скажите ему полной фразой: на калитке нет навесного замка",
+            "uk": "Сусід хоче замкнути хвіртку. Скажіть йому повною фразою: на хвіртці немає навісного замка"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "padlock",
+            "on",
+            "the",
+            "gate"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед хочет запереть калитку. Скажите ему полной фразой: на калитке нет навесного замка",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a padlock on the gate.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a padlock on the gate.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-38:i10:p1",
+              "target": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок",
+                "uk": "навісний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i10:p2",
+              "target": "lawn",
+              "meaningByLocale": {
+                "ru": "газон",
+                "uk": "газон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i10:p3",
+              "target": "gate",
+              "meaningByLocale": {
+                "ru": "ворота, калитка",
+                "uk": "ворота, хвіртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i10:p4",
+              "target": "fence",
+              "meaningByLocale": {
+                "ru": "забор",
+                "uk": "паркан"
+              }
+            }
+          ],
+          "leftColumn": [
+            "padlock",
+            "lawn",
+            "gate",
+            "fence"
+          ],
+          "rightColumn": [
+            "навесной замок",
+            "газон",
+            "ворота, калитка",
+            "забор"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i11:r1",
+            "text": "There aren’t any bicycles next to the fence."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i11:r2",
+            "text": "There aren’t any bicycles near the fence."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i11:r3",
+            "text": "There isn’t a bicycle next to the fence."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i11:audio",
+            "transcript": "There aren’t any bicycles next to the fence."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:i11:r1",
+              "targetText": "There aren’t any bicycles next to the fence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i11:r2",
+              "targetText": "There aren’t any bicycles near the fence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i11:r3",
+              "targetText": "There isn’t a bicycle next to the fence.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `next to` — вплотную к забору, а в этом варианте `near` — просто рядом.",
+                "uk": "У записі `next to` — упритул до паркану, а в цьому варіанті `near` — просто поруч."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — один велосипед.",
+                "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — один велосипед."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i12:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i12:r2",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово",
+            "uk": "Подруга дивиться за сарай: дерев там немає. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There ___ any trees behind the shed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-38:i12:r1",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i12:r2",
+              "text": "isn’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Деревья — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+                "uk": "Дерева — кілька предметів, тому потрібно aren’t, а не isn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "is значит «есть», а деревьев нет: нужно aren’t.",
+                "uk": "is означає «є», а дерев немає: потрібно aren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i13:audio",
+            "transcript": "There aren’t any benches under the tree."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any benches under the tree.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "benches",
+            "under",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any benches under the tree.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any benches under the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает про двор. Скажите ему: «Под навесом нет велосипедов»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает про двор. Скажите ему: «Под навесом нет велосипедов»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i14:audio",
+            "transcript": "There aren’t any bicycles under the awning."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any bicycles under the awning.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет вход во двор. Скажите ей полной фразой: в заборе нет калитки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет вход во двор. Скажите ей полной фразой: в заборе нет калитки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a gate in the fence.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет вход во двор. Скажите ей полной фразой: в заборе нет калитки",
+            "uk": "Подруга шукає вхід у двір. Скажіть їй повною фразою: у паркані немає хвіртки"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "gate",
+            "in",
+            "the",
+            "fence"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет вход во двор. Скажите ей полной фразой: в заборе нет калитки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a gate in the fence.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a gate in the fence.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-38:i16:p1",
+              "target": "bicycle rack",
+              "meaningByLocale": {
+                "ru": "велосипедная стойка",
+                "uk": "велосипедна стійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i16:p2",
+              "target": "lawn",
+              "meaningByLocale": {
+                "ru": "газон",
+                "uk": "газон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i16:p3",
+              "target": "washing line",
+              "meaningByLocale": {
+                "ru": "верёвка для белья",
+                "uk": "мотузка для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i16:p4",
+              "target": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок",
+                "uk": "навісний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bicycle rack",
+            "lawn",
+            "washing line",
+            "padlock"
+          ],
+          "rightColumn": [
+            "велосипедная стойка",
+            "газон",
+            "верёвка для белья",
+            "навесной замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В другом дворе сосед ищет велосипедную стойку. Скажите ему: «Рядом с воротами нет велосипедной стойки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "В другом дворе сосед ищет велосипедную стойку. Скажите ему: «Рядом с воротами нет велосипедной стойки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i17:audio",
+            "transcript": "There isn’t a bicycle rack next to the gate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a bicycle rack next to the gate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-38:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-38:i01:p1",
+              "target": "bicycle rack",
+              "meaningByLocale": {
+                "ru": "велосипедная стойка",
+                "uk": "велосипедна стійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i01:p2",
+              "target": "lawn",
+              "meaningByLocale": {
+                "ru": "газон",
+                "uk": "газон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i01:p3",
+              "target": "washing line",
+              "meaningByLocale": {
+                "ru": "верёвка для белья",
+                "uk": "мотузка для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i01:p4",
+              "target": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок",
+                "uk": "навісний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bicycle rack",
+            "lawn",
+            "washing line",
+            "padlock"
+          ],
+          "rightColumn": [
+            "велосипедна стійка",
+            "газон",
+            "мотузка для білизни",
+            "навісний замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:bicycle rack",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bicycle rack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:bicycle rack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bicycle rack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:bicycle rack:audio",
+            "transcript": "bicycle rack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:bicycle rack:r1",
+              "targetText": "bicycle rack",
+              "meaningByLocale": {
+                "ru": "велосипедная стойка. There isn’t a bicycle rack. — «Велосипедной стойки нет». О железной стойке, к которой пристёгивают велосипед.",
+                "uk": "велосипедна стійка. There isn’t a bicycle rack. — «Велосипедної стійки немає». Про залізну стійку, до якої пристібають велосипед."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bicycle rack",
+            "definitionByLocale": {
+              "ru": "велосипедная стойка. There isn’t a bicycle rack. — «Велосипедной стойки нет». О железной стойке, к которой пристёгивают велосипед.",
+              "uk": "велосипедна стійка. There isn’t a bicycle rack. — «Велосипедної стійки немає». Про залізну стійку, до якої пристібають велосипед."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід показує залізну стійку, до якої пристібають велосипед, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Сусід показує залізну стійку, до якої пристібають велосипед, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i02:audio",
+            "transcript": "bicycle rack"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bicycle rack",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід шукає, куди поставити велосипед. Скажіть йому повною фразою: за сараєм немає велосипедної стійки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід шукає, куди поставити велосипед. Скажіть йому повною фразою: за сараєм немає велосипедної стійки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a bicycle rack behind the shed.",
+          "localizedMeaning": {
+            "ru": "Сосед ищет, куда поставить велосипед. Скажите ему полной фразой: за сараем нет велосипедной стойки",
+            "uk": "Сусід шукає, куди поставити велосипед. Скажіть йому повною фразою: за сараєм немає велосипедної стійки"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "bicycle",
+            "rack",
+            "behind",
+            "the",
+            "shed"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід шукає, куди поставити велосипед. Скажіть йому повною фразою: за сараєм немає велосипедної стійки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a bicycle rack behind the shed.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a bicycle rack behind the shed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:lawn",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lawn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:lawn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lawn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:lawn:audio",
+            "transcript": "lawn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:lawn:r1",
+              "targetText": "lawn",
+              "meaningByLocale": {
+                "ru": "газон. There isn’t a lawn. — «Газона нет». О ровном участке подстриженной травы перед домом.",
+                "uk": "газон. There isn’t a lawn. — «Газону немає». Про рівну ділянку підстриженої трави перед будинком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lawn",
+            "definitionByLocale": {
+              "ru": "газон. There isn’t a lawn. — «Газона нет». О ровном участке подстриженной травы перед домом.",
+              "uk": "газон. There isn’t a lawn. — «Газону немає». Про рівну ділянку підстриженої трави перед будинком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусідка сидить на рівній підстриженій траві перед будинком. Як називається така ділянка трави англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i04:r1",
+            "text": "lawn"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i04:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i04:r3",
+            "text": "fence"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка сидить на рівній підстриженій траві перед будинком. Як називається така ділянка трави англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?",
+            "uk": "Сусідка сидить на рівній підстриженій траві перед будинком. Як називається така ділянка трави англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-38:i04:r1",
+              "text": "lawn"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i04:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i04:r3",
+              "text": "fence"
+            }
+          ],
+          "testedDimension": "Сусідка сидить на рівній підстриженій траві перед будинком. Як називається така ділянка трави англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i04:r2",
+              "correct": false,
+              "testedDimension": "Сусідка сидить на рівній підстриженій траві перед будинком. Як називається така ділянка трави англійською?",
+              "feedbackByLocale": {
+                "ru": "tree — это дерево, а ровный участок подстриженной травы называется lawn.",
+                "uk": "tree — це дерево, а рівна ділянка підстриженої трави називається lawn."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i04:r3",
+              "correct": false,
+              "testedDimension": "Сусідка сидить на рівній підстриженій траві перед будинком. Як називається така ділянка трави англійською?",
+              "feedbackByLocale": {
+                "ru": "fence — это забор, а ровный участок подстриженной травы называется lawn.",
+                "uk": "fence — це паркан, а рівна ділянка підстриженої трави називається lawn."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i05:r1",
+            "text": "There isn’t a lawn behind the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i05:r2",
+            "text": "There isn’t a lawn next to the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i05:r3",
+            "text": "There aren’t any lawns behind the shed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i05:audio",
+            "transcript": "There isn’t a lawn behind the shed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:i05:r1",
+              "targetText": "There isn’t a lawn behind the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i05:r2",
+              "targetText": "There isn’t a lawn next to the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i05:r3",
+              "targetText": "There aren’t any lawns behind the shed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи `behind` — за сараем, а в этом варианте `next to` — рядом с ним.",
+                "uk": "У записі `behind` — за сараєм, а в цьому варіанті `next to` — поруч із ним."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи `isn’t a` — один газон, а в этом варианте `aren’t any` — несколько.",
+                "uk": "У записі `isn’t a` — один газон, а в цьому варіанті `aren’t any` — кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:washing line",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — washing line",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:washing line:audio"
+        ],
+        "accessibilityLabel": "Картка слова — washing line",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:washing line:audio",
+            "transcript": "washing line"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:washing line:r1",
+              "targetText": "washing line",
+              "meaningByLocale": {
+                "ru": "верёвка для белья. There isn’t a washing line. — «Верёвки для белья нет». О верёвке, натянутой между столбами, на которой сушат одежду.",
+                "uk": "мотузка для білизни. There isn’t a washing line. — «Мотузки для білизни немає». Про мотузку, натягнуту між стовпами, на якій сушать одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washing line",
+            "definitionByLocale": {
+              "ru": "верёвка для белья. There isn’t a washing line. — «Верёвки для белья нет». О верёвке, натянутой между столбами, на которой сушат одежду.",
+              "uk": "мотузка для білизни. There isn’t a washing line. — «Мотузки для білизни немає». Про мотузку, натягнуту між стовпами, на якій сушать одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує мотузку, натягнуту у дворі, на якій сушать білизну, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показує мотузку, натягнуту у дворі, на якій сушать білизну, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i06:audio",
+            "transcript": "washing line"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "washing line",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i07:audio",
+            "transcript": "There isn’t a washing line in the garden."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a washing line in the garden.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "washing",
+            "line",
+            "in",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a washing line in the garden.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a washing line in the garden.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:word:padlock",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — padlock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:word:padlock:audio"
+        ],
+        "accessibilityLabel": "Картка слова — padlock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:word:padlock:audio",
+            "transcript": "padlock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:word:padlock:r1",
+              "targetText": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок. There isn’t a padlock on the gate. — «На калитке нет навесного замка». О замке с дужкой, который вешают на калитку или сарай.",
+                "uk": "навісний замок. There isn’t a padlock on the gate. — «На хвіртці немає навісного замка». Про замок із дужкою, який вішають на хвіртку або сарай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "padlock",
+            "definitionByLocale": {
+              "ru": "навесной замок. There isn’t a padlock on the gate. — «На калитке нет навесного замка». О замке с дужкой, который вешают на калитку или сарай.",
+              "uk": "навісний замок. There isn’t a padlock on the gate. — «На хвіртці немає навісного замка». Про замок із дужкою, який вішають на хвіртку або сарай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід вішає на хвіртку маленький металевий замок із дужкою. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i08:r1",
+            "text": "padlock"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i08:r2",
+            "text": "key"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i08:r3",
+            "text": "bell"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід вішає на хвіртку маленький металевий замок із дужкою. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?",
+            "uk": "Сусід вішає на хвіртку маленький металевий замок із дужкою. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-38:i08:r1",
+              "text": "padlock"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i08:r2",
+              "text": "key"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i08:r3",
+              "text": "bell"
+            }
+          ],
+          "testedDimension": "Сусід вішає на хвіртку маленький металевий замок із дужкою. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Сусід вішає на хвіртку маленький металевий замок із дужкою. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "key — это ключ, а маленький замок с дужкой называется padlock.",
+                "uk": "key — це ключ, а маленький замок із дужкою називається padlock."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Сусід вішає на хвіртку маленький металевий замок із дужкою. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bell — это звонок, а маленький замок с дужкой называется padlock.",
+                "uk": "bell — це дзвінок, а маленький замок із дужкою називається padlock."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід хоче замкнути хвіртку. Скажіть йому повною фразою: на хвіртці немає навісного замка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід хоче замкнути хвіртку. Скажіть йому повною фразою: на хвіртці немає навісного замка",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a padlock on the gate.",
+          "localizedMeaning": {
+            "ru": "Сосед хочет запереть калитку. Скажите ему полной фразой: на калитке нет навесного замка",
+            "uk": "Сусід хоче замкнути хвіртку. Скажіть йому повною фразою: на хвіртці немає навісного замка"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "padlock",
+            "on",
+            "the",
+            "gate"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід хоче замкнути хвіртку. Скажіть йому повною фразою: на хвіртці немає навісного замка",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a padlock on the gate.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a padlock on the gate.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-38:i10:p1",
+              "target": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок",
+                "uk": "навісний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i10:p2",
+              "target": "lawn",
+              "meaningByLocale": {
+                "ru": "газон",
+                "uk": "газон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i10:p3",
+              "target": "gate",
+              "meaningByLocale": {
+                "ru": "ворота, калитка",
+                "uk": "ворота, хвіртка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i10:p4",
+              "target": "fence",
+              "meaningByLocale": {
+                "ru": "забор",
+                "uk": "паркан"
+              }
+            }
+          ],
+          "leftColumn": [
+            "padlock",
+            "lawn",
+            "gate",
+            "fence"
+          ],
+          "rightColumn": [
+            "навісний замок",
+            "газон",
+            "ворота, хвіртка",
+            "паркан"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i11:r1",
+            "text": "There aren’t any bicycles next to the fence."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i11:r2",
+            "text": "There aren’t any bicycles near the fence."
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i11:r3",
+            "text": "There isn’t a bicycle next to the fence."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i11:audio",
+            "transcript": "There aren’t any bicycles next to the fence."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-38:i11:r1",
+              "targetText": "There aren’t any bicycles next to the fence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i11:r2",
+              "targetText": "There aren’t any bicycles near the fence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i11:r3",
+              "targetText": "There isn’t a bicycle next to the fence.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `next to` — вплотную к забору, а в этом варианте `near` — просто рядом.",
+                "uk": "У записі `next to` — упритул до паркану, а в цьому варіанті `near` — просто поруч."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — один велосипед.",
+                "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — один велосипед."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга дивиться за сарай: дерев там немає. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-38:i12:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i12:r2",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-38:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дивиться за сарай: дерев там немає. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово",
+            "uk": "Подруга дивиться за сарай: дерев там немає. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There ___ any trees behind the shed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-38:i12:r1",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i12:r2",
+              "text": "isn’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга дивиться за сарай: дерев там немає. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга дивиться за сарай: дерев там немає. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Деревья — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+                "uk": "Дерева — кілька предметів, тому потрібно aren’t, а не isn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга дивиться за сарай: дерев там немає. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "is значит «есть», а деревьев нет: нужно aren’t.",
+                "uk": "is означає «є», а дерев немає: потрібно aren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i13:audio",
+            "transcript": "There aren’t any benches under the tree."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There aren’t any benches under the tree.",
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "benches",
+            "under",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any benches under the tree.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any benches under the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає про двір. Скажіть йому: «Під навісом немає велосипедів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Сусід питає про двір. Скажіть йому: «Під навісом немає велосипедів»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i14:audio",
+            "transcript": "There aren’t any bicycles under the awning."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any bicycles under the awning.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає вхід у двір. Скажіть їй повною фразою: у паркані немає хвіртки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає вхід у двір. Скажіть їй повною фразою: у паркані немає хвіртки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a gate in the fence.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет вход во двор. Скажите ей полной фразой: в заборе нет калитки",
+            "uk": "Подруга шукає вхід у двір. Скажіть їй повною фразою: у паркані немає хвіртки"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "gate",
+            "in",
+            "the",
+            "fence"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-38:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає вхід у двір. Скажіть їй повною фразою: у паркані немає хвіртки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a gate in the fence.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a gate in the fence.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-38:i16:p1",
+              "target": "bicycle rack",
+              "meaningByLocale": {
+                "ru": "велосипедная стойка",
+                "uk": "велосипедна стійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i16:p2",
+              "target": "lawn",
+              "meaningByLocale": {
+                "ru": "газон",
+                "uk": "газон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i16:p3",
+              "target": "washing line",
+              "meaningByLocale": {
+                "ru": "верёвка для белья",
+                "uk": "мотузка для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-38:i16:p4",
+              "target": "padlock",
+              "meaningByLocale": {
+                "ru": "навесной замок",
+                "uk": "навісний замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bicycle rack",
+            "lawn",
+            "washing line",
+            "padlock"
+          ],
+          "rightColumn": [
+            "велосипедна стійка",
+            "газон",
+            "мотузка для білизни",
+            "навісний замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-38:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В іншому дворі сусід шукає велосипедну стійку. Скажіть йому: «Поруч із воротами немає велосипедної стійки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "В іншому дворі сусід шукає велосипедну стійку. Скажіть йому: «Поруч із воротами немає велосипедної стійки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-38:i17:audio",
+            "transcript": "There isn’t a bicycle rack next to the gate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a bicycle rack next to the gate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-38:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:word:bicycle rack",
+      "correctText": "bicycle rack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i02",
+      "correctText": "bicycle rack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i03",
+      "correctText": "There isn’t a bicycle rack behind the shed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:word:lawn",
+      "correctText": "lawn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i04",
+      "correctText": "lawn",
+      "correctResponseId": "en:lesson-04:session-38:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i05",
+      "correctText": "There isn’t a lawn behind the shed.",
+      "correctResponseId": "en:lesson-04:session-38:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:word:washing line",
+      "correctText": "washing line",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i06",
+      "correctText": "washing line",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i07",
+      "correctText": "There isn’t a washing line in the garden.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:word:padlock",
+      "correctText": "padlock",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i08",
+      "correctText": "padlock",
+      "correctResponseId": "en:lesson-04:session-38:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i09",
+      "correctText": "There isn’t a padlock on the gate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i11",
+      "correctText": "There aren’t any bicycles next to the fence.",
+      "correctResponseId": "en:lesson-04:session-38:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i12",
+      "correctText": "aren’t",
+      "correctResponseId": "en:lesson-04:session-38:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i13",
+      "correctText": "There aren’t any benches under the tree.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i14",
+      "correctText": "There aren’t any bicycles under the awning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i15",
+      "correctText": "There isn’t a gate in the fence.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:i17",
+      "correctText": "There isn’t a bicycle rack next to the gate.",
+      "correctResponseId": null
+    }
+  ]
+}

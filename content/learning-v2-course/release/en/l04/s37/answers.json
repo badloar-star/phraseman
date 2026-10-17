@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-37:i01",
-    "correctText": "It is official.",
+    "correctText": "en:lesson-04:session-37:i01:p1=parcel locker\nen:lesson-04:session-37:i01:p2=pallet\nen:lesson-04:session-37:i01:p3=crate\nen:lesson-04:session-37:i01:p4=loading bay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-37:word:parcel locker",
+    "correctText": "parcel locker",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i02",
     "correctText": "parcel locker",
-    "correctResponseId": "en:lesson-04:session-37:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-37:i03",
-    "correctText": "parcel locker",
-    "correctResponseId": "en:lesson-04:session-37:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-37:i04",
-    "correctText": "en:lesson-04:session-37:i04:p1=parcel locker\nen:lesson-04:session-37:i04:p2=official\nen:lesson-04:session-37:i04:p3=car\nen:lesson-04:session-37:i04:p4=bus stop",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-37:i03",
+    "correctText": "There isn’t a parcel locker in the yard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-37:word:pallet",
+    "correctText": "pallet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-37:i04",
+    "correctText": "pallet",
+    "correctResponseId": "en:lesson-04:session-37:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-37:i05",
-    "correctText": "This is a parcel locker.",
+    "correctText": "There aren’t any pallets.",
+    "correctResponseId": "en:lesson-04:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-37:word:crate",
+    "correctText": "crate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i06",
-    "correctText": "The car is next to the shop.",
+    "correctText": "crate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i07",
-    "correctText": "It's official.",
+    "correctText": "There isn’t a crate near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-37:word:loading bay",
+    "correctText": "loading bay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i08",
-    "correctText": "isn't",
+    "correctText": "loading bay",
     "correctResponseId": "en:lesson-04:session-37:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-37:i09",
-    "correctText": "The bus stop is next to the hotel.",
-    "correctResponseId": "en:lesson-04:session-37:i09:r1"
+    "correctText": "There isn’t a loading bay behind the building.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i10",
-    "correctText": "en:lesson-04:session-37:i10:p1=parcel locker\nen:lesson-04:session-37:i10:p2=official\nen:lesson-04:session-37:i10:p3=car\nen:lesson-04:session-37:i10:p4=bus stop",
+    "correctText": "en:lesson-04:session-37:i10:p1=loading bay\nen:lesson-04:session-37:i10:p2=crate\nen:lesson-04:session-37:i10:p3=parcel\nen:lesson-04:session-37:i10:p4=trolley",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i11",
-    "correctText": "There aren't any parcel lockers.",
-    "correctResponseId": null
+    "correctText": "There aren’t any parcels.",
+    "correctResponseId": "en:lesson-04:session-37:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-37:i12",
-    "correctText": "There is a parcel locker.",
-    "correctResponseId": null
+    "correctText": "aren’t",
+    "correctResponseId": "en:lesson-04:session-37:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-37:i13",
-    "correctText": "Is there a parcel locker?",
+    "correctText": "There aren’t any trolleys near the entrance.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-37:i14:r1"
+    "correctText": "There aren’t any pallets here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i15",
-    "correctText": "That is a parcel locker.",
-    "correctResponseId": "en:lesson-04:session-37:i15:r1"
+    "correctText": "There isn’t a label on the box.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i16",
-    "correctText": "en:lesson-04:session-37:i16:p1=parcel locker\nen:lesson-04:session-37:i16:p2=official\nen:lesson-04:session-37:i16:p3=car\nen:lesson-04:session-37:i16:p4=bus stop",
+    "correctText": "en:lesson-04:session-37:i16:p1=parcel locker\nen:lesson-04:session-37:i16:p2=pallet\nen:lesson-04:session-37:i16:p3=crate\nen:lesson-04:session-37:i16:p4=loading bay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-37:i17",
-    "correctText": "The parcel locker is next to the hotel.",
+    "correctText": "There isn’t a parcel locker here.",
     "correctResponseId": null
   }
 ]

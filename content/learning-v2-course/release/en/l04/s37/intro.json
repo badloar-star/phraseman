@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-37",
   "learningOutcomeByLocale": {
-    "ru": "назвать постамат, спросить о его наличии и объяснить расположение",
-    "uk": "назвати поштомат, запитати про його наявність і пояснити розташування"
+    "ru": "выбрать isn’t a или aren’t any по числу предметов",
+    "uk": "вибрати isn’t a або aren’t any за кількістю предметів"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Посылка в ячейке",
-        "uk": "Посилка в комірці"
+        "ru": "Куда сложат посылки",
+        "uk": "Куди складуть посилки"
       },
       "bodyByLocale": {
-        "ru": "`parcel locker` — «постамат»: устройство с ячейками для получения или отправки посылок. Два слова называют один объект: `a parcel locker`. `This is a parcel locker` — «Это постамат». У постамата может быть много дверец, но адрес для встречи всё равно один.",
-        "uk": "`parcel locker` — «поштомат»: пристрій із комірками для отримання чи відправлення посилок. Два слова називають один об’єкт: `a parcel locker`. `This is a parcel locker` — «Це поштомат». У поштомата може бути багато дверцят, але адреса для зустрічі все одно одна."
+        "ru": "Соседка ждёт посылку и боится, что курьер оставит её под дождём. Она ищет во дворе железный шкаф с ячейками, куда курьер кладёт посылки, пока никого нет дома. parcel locker — «почтомат». Он один: There isn’t a parcel locker — «Почтомата нет».",
+        "uk": "Сусідка чекає посилку й боїться, що кур’єр залишить її під дощем. Вона шукає у дворі залізну шафу з комірками, куди кур’єр кладе посилки, поки нікого немає вдома. parcel locker — «поштомат». Він один: There isn’t a parcel locker — «Поштомату немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-37:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один постамат рядом.",
-          "uk": "Назвіть один поштомат поруч."
+          "ru": "Соседка ищет шкаф для посылок. Скажите ей, что почтомата нет.",
+          "uk": "Сусідка шукає шафу для посилок. Скажіть їй, що поштомату немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-37:intro1:r1",
-              "text": "This is a parcel locker."
+              "text": "There isn’t a parcel locker."
             },
             {
               "responseId": "en:lesson-04:session-37:intro1:r2",
-              "text": "This is parcel locker."
+              "text": "There aren’t any parcel lockers."
             },
             {
               "responseId": "en:lesson-04:session-37:intro1:r3",
-              "text": "These are parcel lockers."
+              "text": "There isn’t parcel locker."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-37:intro1:r1",
-              "text": "This is a parcel locker."
+              "text": "There isn’t a parcel locker."
             },
             {
               "responseId": "en:lesson-04:session-37:intro1:r2",
-              "text": "This is parcel locker."
+              "text": "There aren’t any parcel lockers."
             },
             {
               "responseId": "en:lesson-04:session-37:intro1:r3",
-              "text": "These are parcel lockers."
+              "text": "There isn’t parcel locker."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один постамат рядом.",
-          "uk": "Назвіть один поштомат поруч."
+          "ru": "Соседка ищет шкаф для посылок. Скажите ей, что почтомата нет.",
+          "uk": "Сусідка шукає шафу для посилок. Скажіть їй, що поштомату немає."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Остановка и машина",
-        "uk": "Зупинка й машина"
+        "ru": "Много коробок",
+        "uk": "Багато коробок"
       },
       "bodyByLocale": {
-        "ru": "`bus stop` — «автобусная остановка», `car` — «машина». `The parcel locker is next to the bus stop` — «Постамат рядом с остановкой». `The car is next to the shop` — «Машина рядом с магазином». `next to` помогает назвать соседний ориентир.",
-        "uk": "`bus stop` — «автобусна зупинка», `car` — «машина». `The parcel locker is next to the bus stop` — «Поштомат поруч із зупинкою». `The car is next to the shop` — «Машина поруч із магазином». `next to` допомагає назвати сусідній орієнтир."
+        "ru": "Курьер привёз во двор десятки коробок для всего дома. Ставить их прямо на мокрую землю нельзя, и он ищет плоские деревянные платформы, на которые коробки поднимают. pallet — «поддон». Их нужно несколько: There aren’t any pallets — «Поддонов нет».",
+        "uk": "Кур’єр привіз у двір десятки коробок для всього будинку. Ставити їх просто на мокру землю не можна, і він шукає пласкі дерев’яні платформи, на які коробки піднімають. pallet — «піддон». Їх потрібно кілька: There aren’t any pallets — «Піддонів немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-37:intro2:q",
         "promptByLocale": {
-          "ru": "Машина рядом с магазином. Выберите описание.",
-          "uk": "Машина поруч із магазином. Виберіть опис."
+          "ru": "Курьер ищет поддоны. Скажите ему, что поддонов нет.",
+          "uk": "Кур’єр шукає піддони. Скажіть йому, що піддонів немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-37:intro2:r1",
-              "text": "The car is next to the shop."
+              "text": "There aren’t any pallets."
             },
             {
               "responseId": "en:lesson-04:session-37:intro2:r2",
-              "text": "The car is in the shop."
+              "text": "There isn’t any pallets."
             },
             {
               "responseId": "en:lesson-04:session-37:intro2:r3",
-              "text": "The car are next to the shop."
+              "text": "There aren’t any pallet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-37:intro2:r1",
-              "text": "The car is next to the shop."
+              "text": "There aren’t any pallets."
             },
             {
               "responseId": "en:lesson-04:session-37:intro2:r2",
-              "text": "The car is in the shop."
+              "text": "There isn’t any pallets."
             },
             {
               "responseId": "en:lesson-04:session-37:intro2:r3",
-              "text": "The car are next to the shop."
+              "text": "There aren’t any pallet."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Машина рядом с магазином. Выберите описание.",
-          "uk": "Машина поруч із магазином. Виберіть опис."
+          "ru": "Курьер ищет поддоны. Скажите ему, что поддонов нет.",
+          "uk": "Кур’єр шукає піддони. Скажіть йому, що піддонів немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подтверждено официально",
-        "uk": "Підтверджено офіційно"
+        "ru": "Банки и бутылки",
+        "uk": "Банки й пляшки"
       },
       "bodyByLocale": {
-        "ru": "`official` — «официальный»: например, информация подтверждена ответственной организацией, а не передана как слух. `It is official` — «Это официально», короче `It’s official`. `Is there a parcel locker?` — «Есть постамат?» Если его нет: `There isn’t a parcel locker`. `There aren’t any parcel lockers` — «Нет ни одного постамата».",
-        "uk": "`official` — «офіційний»: наприклад, інформацію підтвердила відповідальна організація, а не передали як чутку. `It is official` — «Це офіційно», коротше `It’s official`. `Is there a parcel locker?` — «Є поштомат?» Якщо його немає: `There isn’t a parcel locker`. `There aren’t any parcel lockers` — «Немає жодного поштомата»."
+        "ru": "Управляющий двора собирает пустые банки и бутылки, чтобы отвезти их на переработку. Ему нужен один большой деревянный ящик со щелями в стенках, но он не может его найти. Не носить же бутылки в руках. crate — «ящик». There isn’t a crate — «Ящика нет».",
+        "uk": "Управитель двору збирає порожні банки й пляшки, щоб відвезти їх на переробку. Йому потрібен один великий дерев’яний ящик зі щілинами в стінках, але він не може його знайти. Не нести ж пляшки в руках. crate — «ящик». There isn’t a crate — «Ящика немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-37:intro3:q",
         "promptByLocale": {
-          "ru": "Организация подтвердила информацию. Скажите «Это официально» с сокращением.",
-          "uk": "Організація підтвердила інформацію. Скажіть «Це офіційно» зі скороченням."
+          "ru": "Управляющий ищет ящик. Скажите ему, что ящика нет.",
+          "uk": "Управитель шукає ящик. Скажіть йому, що ящика немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-37:intro3:r1",
-              "text": "It's official."
+              "text": "There isn’t a crate."
             },
             {
               "responseId": "en:lesson-04:session-37:intro3:r2",
-              "text": "It's unofficial."
+              "text": "There isn’t an crate."
             },
             {
               "responseId": "en:lesson-04:session-37:intro3:r3",
-              "text": "It are official."
+              "text": "There aren’t a crate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-37:intro3:r1",
-              "text": "It's official."
+              "text": "There isn’t a crate."
             },
             {
               "responseId": "en:lesson-04:session-37:intro3:r2",
-              "text": "It's unofficial."
+              "text": "There isn’t an crate."
             },
             {
               "responseId": "en:lesson-04:session-37:intro3:r3",
-              "text": "It are official."
+              "text": "There aren’t a crate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Организация подтвердила информацию. Скажите «Это официально» с сокращением.",
-          "uk": "Організація підтвердила інформацію. Скажіть «Це офіційно» зі скороченням."
+          "ru": "Управляющий ищет ящик. Скажите ему, что ящика нет.",
+          "uk": "Управитель шукає ящик. Скажіть йому, що ящика немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bcc23014695612c002ac53f34639f65a23287e0b647c1b882abc891ac8e8cf32"
+  "introFingerprint": "45f5d0edee074a3eb975385d6125386917319abcb54d5df0d490fbe54dea7092"
 }

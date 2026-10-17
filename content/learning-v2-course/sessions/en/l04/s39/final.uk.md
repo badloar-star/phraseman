@@ -1,137 +1,152 @@
-# Англійська · Урок 4 · Заняття 39 — Запитання про опалення
+# Англійська · Урок 4 · Заняття 39 — Холодна квартира
 
-**Ситуація.** Ви оглядаєте будинок. Запитуєте про опалювальний котел, помічаєте пляшки на столі й парковку поруч. Друг уточнює, чи стосується запитання обговорення опалення.
+**Ситуація.** У новій квартирі холодно, і ви пояснюєте господареві й майстрові, що не так. Якщо предмета немає взагалі, ви кажете There isn’t a …, а якщо мова про знайомий предмет, то The … isn’t …
 
-**Що ви опануєте:** назвати опалювальний котел, запитати про його наявність і сказати, що інформація стосується теми
-**Нові слова:** boiler
+**Що ви опануєте:** відрізнити «такого предмета немає» від «цього відомого предмета тут немає або він не такий»
+**Нові слова:** boiler, tap, pipe, heater
+**Повертаються:** radiator, sink, basement, bed, wall, floor, hot, broken
 
 ---
 
 ## Інтро 1
 
-### Тепло в будинку
+### Немає бака для води
 
-`boiler` — «опалювальний котел»: тут пристрій, який нагріває воду для опалення будинку. Один котел — `a boiler`. `This is a boiler` — «Це опалювальний котел». Він гріє воду для будинку, але чай у ньому ми не заварюємо.
+У квартирі холодно, і з крана тече крижана вода. Господар просить вас знайти великий бак, який гріє воду. Ви обходите всю квартиру, але такого бака немає взагалі. boiler — «бойлер». There isn’t a boiler — «Бойлера немає». Так кажуть, коли предмета немає зовсім.
 
-**Назвіть один опалювальний котел.**
+**Господар питає, де бойлер. Скажіть йому, що в квартирі бойлера немає взагалі.**
 
-- ✅ **This is a boiler.**
-- ❌ This is boiler. — *Перед одним котлом потрібне `a`: `a boiler`.*
-- ❌ These are boilers. — *Тут один котел: `This is a boiler`.*
+- ✅ **There isn’t a boiler.**
+- ❌ The boiler isn’t here. — *Так кажуть про бойлер, який існує, але лежить в іншому місці. У вас бойлера немає зовсім.*
+- ❌ There is a boiler. — *is означає «є», а бойлера немає: потрібно isn’t.*
 
 ---
 
 ## Інтро 2
 
-### Пляшки й парковка
+### Новий кран
 
-`bottles` — «пляшки», `car park` — «парковка». `The bottles are on the table` — «Пляшки на столі». `The car park is next to the house` — «Парковка поруч із будинком». Кілька пляшок — `are`, одна парковка — `is`.
+Господар сказав по телефону: новий кран уже лежить у вас на раковині. Ви заходите у ванну, а там стара раковина з порожнім отвором, і крана ніде не видно. tap — «кран». Про кран, про який ви вже знаєте, кажуть The tap isn’t here — «Крана тут немає».
 
-**Пляшки на поверхні столу. Виберіть опис.**
+**Господар питає про новий кран. Скажіть йому, що цього крана тут немає.**
 
-- ✅ **The bottles are on the table.**
-- ❌ The bottles is on the table. — *Кілька пляшок: `The bottles are`.*
-- ❌ The bottles are under the table. — *`under` — під; на поверхні — `on`.*
+- ✅ **The tap isn’t here.**
+- ❌ There isn’t a tap. — *Так кажуть, коли крана немає взагалі. Але господар уже назвав цей кран, тому: The tap.*
+- ❌ The tap aren’t here. — *Кран один, тому потрібно isn’t, а не aren’t.*
 
 ---
 
 ## Інтро 3
 
-### Стосується теми
+### Холодна труба
 
-`relevant` — «доречний, пов’язаний з обговорюваною темою». Ви обговорюєте опалення; запитання про котел стосується теми: `It is relevant`, коротше `It’s relevant`. Це не просто «цікаво»: інформація пов’язана з тим, що обговорюють. `Is there a boiler?` — «Є опалювальний котел?» `There isn’t a boiler` — «Опалювального котла немає».
+Майстер просить відчинити шафку під раковиною й помацати трубу, якою йде гаряча вода. Труба на місці, ви її бачите, але вона холодна, як лід, і майстер супиться. pipe — «труба». Про відому трубу кажуть The pipe isn’t hot — «Труба не гаряча».
 
-**Запитання про котел стосується обговорення опалення. Скажіть «Це стосується теми» зі скороченням.**
+**Майстер питає про трубу. Скажіть йому, що труба не гаряча.**
 
-- ✅ **It's relevant.**
-- ❌ It's irrelevant. — *`irrelevant` — не стосується теми; тут `relevant`.*
-- ❌ It are relevant. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **The pipe isn’t hot.**
+- ❌ There isn’t a pipe. — *Так кажуть, коли труби немає взагалі, а ви її бачите й торкаєтеся: The pipe.*
+- ❌ The pipe aren’t hot. — *Труба одна, тому потрібно isn’t, а не aren’t.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Інформація стосується обговорюваної теми. Скажіть про це без скорочення**
-<!-- interaction_id: en:lesson-04:session-39:i01; family: phrase_builder -->
-Плитки: `relevant` `is` `It` `are` → **It is relevant.**
-*(плитка `are` зайва: тут потрібно `is` — `It is relevant.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-39:i01; family: speed_match -->
+boiler — бойлер, котел · tap — кран · pipe — труба · heater — обігрівач
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-39:i02; family: listen_choose -->
-🔊 *boiler* → **boiler** · boilers · doorbell
-- boilers — *У записі перше слово — `boiler`, а в цьому варіанті — `boilers`.*
-- doorbell — *У записі перше слово — `boiler`, а в цьому варіанті — `doorbell`.*
+**2 · Картка слова — boiler**
+<!-- interaction_id: en:lesson-04:session-39:word:boiler; family: word_card -->
+> **boiler** — бойлер, котел. There isn’t a boiler. — «Бойлера немає». Про великий бак або котел, який гріє воду для всієї квартири.
 
-**3 · Назвіть опалювальний котел одним словом**
-<!-- interaction_id: en:lesson-04:session-39:i03; family: context_gap_grammar -->
-___ → **boiler** · sink · handrail
-- sink — *`sink` — раковина; котел — `boiler`.*
-- handrail — *`handrail` — поручень; котел — `boiler`.*
+**3 · Господар показує великий бак, який гріє воду для всієї квартири, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-39:i02; family: scripted_repeat_compare -->
+🎙 **boiler**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-39:i04; family: speed_match -->
-boiler — опалювальний котел · relevant — пов’язаний із темою · bottles — пляшки · car park — парковка
+**4 · Господар питає про підвал. Скажіть йому повною фразою: у підвалі немає бойлера**
+<!-- interaction_id: en:lesson-04:session-39:i03; family: phrase_builder -->
+Плитки: `boiler` `a` `in` `the` `basement` `isn’t` `There` `aren’t` → **There isn’t a boiler in the basement.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a boiler in the basement.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-39:i05; family: listen_build_dictation -->
-🔊 *This is a boiler.* Плитки: `boiler` `a` `is` `This` `are` → **This is a boiler.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a boiler.`)*
+**5 · Картка слова — tap**
+<!-- interaction_id: en:lesson-04:session-39:word:tap; family: word_card -->
+> **tap** — кран. The tap isn’t here. — «Крана тут немає». Про деталь над раковиною, з якої ллється вода.
 
-**6 · Пляшки на столі. Скажіть, де вони**
-<!-- interaction_id: en:lesson-04:session-39:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `are` `bottles` `The` `is` → **The bottles are on the table.**
-*(плитка `is` зайва: тут потрібно `are` — `The bottles are on the table.`)*
+**6 · Господар повертає рукоятку над раковиною, і ллється вода. Як називається ця деталь англійською?**
+<!-- interaction_id: en:lesson-04:session-39:i04; family: context_gap_grammar -->
+___ → **tap** · handle · bucket
+- handle — *handle — це ручка, а деталь над раковиною, з якої ллється вода, називається tap.*
+- bucket — *bucket — це відро, а деталь над раковиною, з якої ллється вода, називається tap.*
 
-**7 · Ви обговорюєте опалення. Запитання про котел стосується теми. Скажіть про це зі скороченням**
-<!-- interaction_id: en:lesson-04:session-39:i07; family: scripted_repeat_compare -->
-🎙 **It's relevant.**
+**7 · Послухайте господаря**
+<!-- interaction_id: en:lesson-04:session-39:i05; family: listen_choose -->
+🔊 *The tap isn’t here.* → **The tap isn’t here.** · The tap isn’t hot. · There isn’t a tap.
+- The tap isn’t hot. — *У записі `here` — «тут», а в цьому варіанті `hot` — «гарячий».*
+- There isn’t a tap. — *У записі говорять про знайомий кран (`The tap`), а в цьому варіанті крана немає взагалі (`There isn’t a tap`).*
 
-**8 · Опалювального котла немає. Виберіть форму**
+**8 · Картка слова — pipe**
+<!-- interaction_id: en:lesson-04:session-39:word:pipe; family: word_card -->
+> **pipe** — труба. The pipe isn’t hot. — «Труба не гаряча». Про трубу, якою йде вода або тепло.
+
+**9 · Майстер показує металеву трубу, якою йде вода, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-39:i06; family: scripted_repeat_compare -->
+🎙 **pipe**
+
+**10 · Послухайте майстра й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-39:i07; family: listen_build_dictation -->
+🔊 *The pipe isn’t new.* Плитки: `pipe` `The` `isn’t` `new` `aren’t` → **The pipe isn’t new.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `The pipe isn’t new.`)*
+
+**11 · Картка слова — heater**
+<!-- interaction_id: en:lesson-04:session-39:word:heater; family: word_card -->
+> **heater** — обігрівач. There isn’t a heater. — «Обігрівача немає». Про прилад, який гріє кімнату.
+
+**12 · Господар вмикає в розетку електричний прилад, який гріє кімнату. Як він називається англійською?**
 <!-- interaction_id: en:lesson-04:session-39:i08; family: context_gap_grammar -->
-There ___ a boiler. → **isn't** · is · aren't
-- is — *`is` повідомляє про наявність; тут відсутність: `isn’t`.*
-- aren't — *Один котел: `isn’t a boiler`.*
+___ → **heater** · kettle · lamp
+- kettle — *kettle — це чайник, а прилад, який гріє кімнату, називається heater.*
+- lamp — *lamp — це лампа, а прилад, який гріє кімнату, називається heater.*
 
-**9 · Послухайте, де парковка**
-<!-- interaction_id: en:lesson-04:session-39:i09; family: listen_choose -->
-🔊 *The car park is next to the house.* → **The car park is next to the house.** · The car park is next to the hotel. · The car park is next to the shop.
-- The car park is next to the hotel. — *У записі останнє слово — `house`, а в цьому варіанті — `hotel`.*
-- The car park is next to the shop. — *У записі останнє слово — `house`, а в цьому варіанті — `shop`.*
+**13 · Господар шукає обігрівач. Скажіть йому повною фразою: поруч із ліжком немає обігрівача**
+<!-- interaction_id: en:lesson-04:session-39:i09; family: phrase_builder -->
+Плитки: `heater` `a` `near` `the` `bed` `isn’t` `There` `aren’t` → **There isn’t a heater near the bed.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a heater near the bed.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-39:i10; family: speed_match -->
-boiler — опалювальний котел · relevant — пов’язаний із темою · bottles — пляшки · car park — парковка
+heater — обігрівач · pipe — труба · tap — кран · radiator — радіатор опалення
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-39:i11; family: listen_build_dictation -->
-🔊 *There aren't any boilers.* Плитки: `boilers` `any` `aren't` `There` → **There aren't any boilers.**
+**15 · Послухайте майстра**
+<!-- interaction_id: en:lesson-04:session-39:i11; family: listen_choose -->
+🔊 *The boiler isn’t broken.* → **The boiler isn’t broken.** · The boiler isn’t here. · There isn’t a boiler.
+- The boiler isn’t here. — *У записі `broken` — «зламаний», а в цьому варіанті `here` — «тут».*
+- There isn’t a boiler. — *У записі говорять про знайомий бойлер (`The boiler`), а в цьому варіанті бойлера немає взагалі (`There isn’t a boiler`).*
 
-**12 · Тут є опалювальний котел. Повідомте про це**
-<!-- interaction_id: en:lesson-04:session-39:i12; family: phrase_builder -->
-Плитки: `boiler` `a` `is` `There` `are` → **There is a boiler.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a boiler.`)*
+**16 · Майстер говорить про бойлер, який ви бачили вчора: сьогодні його винесли. Виберіть потрібне слово**
+<!-- interaction_id: en:lesson-04:session-39:i12; family: context_gap_grammar -->
+The boiler ___ here. → **isn’t** · aren’t · are
+- aren’t — *Бойлер один, тому потрібно isn’t, а не aren’t.*
+- are — *are не підходить до одного бойлера: потрібно isn’t.*
 
-**13 · Ви ще не оглянули будинок. Запитайте, чи є опалювальний котел**
-<!-- interaction_id: en:lesson-04:session-39:i13; family: scripted_repeat_compare -->
-🎙 **Is there a boiler?**
+**17 · Послухайте господаря й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-39:i13; family: listen_build_dictation -->
+🔊 *The heater isn’t broken.* Плитки: `heater` `The` `isn’t` `broken` `aren’t` → **The heater isn’t broken.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `The heater isn’t broken.`)*
 
-**14 · Пляшки всередині сумки, не на ній і не під нею. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-39:i14; family: context_gap_grammar -->
-The bottles are ___ the bag. → **in** · on · under
-- on — *`on` — на поверхні; всередині — `in`.*
-- under — *`under` — під; всередині — `in`.*
+**18 · Господар питає про батареї в холі. Скажіть йому: «У холі немає батарей»**
+<!-- interaction_id: en:lesson-04:session-39:i14; family: scripted_repeat_compare -->
+🎙 **There aren’t any radiators in the hall.**
 
-**15 · Послухайте, що показує друг**
-<!-- interaction_id: en:lesson-04:session-39:i15; family: listen_choose -->
-🔊 *That is a boiler.* → **That is a boiler.** · This is a boiler. · That is a sink.
-- This is a boiler. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- That is a sink. — *У записі останнє слово — `boiler`, а в цьому варіанті — `sink`.*
+**19 · Майстер зазирнув під раковину. Скажіть йому повною фразою: під раковиною немає труб**
+<!-- interaction_id: en:lesson-04:session-39:i15; family: phrase_builder -->
+Плитки: `pipes` `any` `under` `the` `sink` `aren’t` `There` `isn’t` → **There aren’t any pipes under the sink.**
+*(плитка `isn’t` зайва: тут потрібно `aren’t` — `There aren’t any pipes under the sink.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-39:i16; family: speed_match -->
-boiler — опалювальний котел · relevant — пов’язаний із темою · bottles — пляшки · car park — парковка
+boiler — бойлер, котел · tap — кран · pipe — труба · heater — обігрівач
 
-**17 · Ви оглянули інший будинок: опалювального котла там немає. Повідомте про це однією фразою**
+**21 · Господар питає про бойлер, який ви бачили вчора. Скажіть йому: «Бойлера тут немає»**
 <!-- interaction_id: en:lesson-04:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a boiler.**
-
+🎙 **The boiler isn’t here.**

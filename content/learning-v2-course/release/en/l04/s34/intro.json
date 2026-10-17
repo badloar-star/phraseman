@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-34",
   "learningOutcomeByLocale": {
-    "ru": "назвать поручень, сообщить о его наличии или отсутствии и описать положение кошелька",
-    "uk": "назвати поручень, повідомити про його наявність чи відсутність і описати розташування гаманця"
+    "ru": "сказать, что нет ни одного из нескольких предметов, фразой There aren’t any …",
+    "uk": "сказати, що немає жодного з кількох предметів, фразою There aren’t any …"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "За что держаться",
-        "uk": "За що триматися"
+        "ru": "Хозяйка ведёт вниз",
+        "uk": "Господиня веде вниз"
       },
       "bodyByLocale": {
-        "ru": "`handrail` — «поручень»: за него держатся рукой, например на лестнице. Один поручень — `a handrail`. `This is a handrail` — «Это поручень». Если за него держатся три человека, поручень не становится тремя: всё ещё `a handrail`.",
-        "uk": "`handrail` — «поручень»: за нього тримаються рукою, наприклад на сходах. Один поручень — `a handrail`. `This is a handrail` — «Це поручень». Якщо за нього тримаються троє людей, поручень не стає трьома: усе ще `a handrail`."
+        "ru": "Хозяйка ведёт вас вниз по лестнице. Ступеньки крутые, вам хочется за что-то держаться, но стены гладкие. handrail — «поручень». Когда нет ни одного из нескольких предметов, говорят aren’t any и ставят -s: There aren’t any handrails — «Поручней нет».",
+        "uk": "Господиня веде вас униз сходами. Сходинки круті, вам хочеться за щось триматися, але стіни гладенькі. handrail — «поручень». Коли немає жодного з кількох предметів, кажуть aren’t any й додають -s: There aren’t any handrails — «Поручнів немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите один поручень рядом.",
-          "uk": "Покажіть один поручень поруч."
+          "ru": "Хозяйка спрашивает про лестницу. Скажите ей, что поручней нет.",
+          "uk": "Господиня питає про сходи. Скажіть їй, що поручнів немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-34:intro1:r1",
-              "text": "This is a handrail."
+              "text": "There aren’t any handrails."
             },
             {
               "responseId": "en:lesson-04:session-34:intro1:r2",
-              "text": "This is handrail."
+              "text": "There isn’t any handrails."
             },
             {
               "responseId": "en:lesson-04:session-34:intro1:r3",
-              "text": "These are handrails."
+              "text": "There aren’t any handrail."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-34:intro1:r1",
-              "text": "This is a handrail."
+              "text": "There aren’t any handrails."
             },
             {
               "responseId": "en:lesson-04:session-34:intro1:r2",
-              "text": "This is handrail."
+              "text": "There isn’t any handrails."
             },
             {
               "responseId": "en:lesson-04:session-34:intro1:r3",
-              "text": "These are handrails."
+              "text": "There aren’t any handrail."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите один поручень рядом.",
-          "uk": "Покажіть один поручень поруч."
+          "ru": "Хозяйка спрашивает про лестницу. Скажите ей, что поручней нет.",
+          "uk": "Господиня питає про сходи. Скажіть їй, що поручнів немає."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кошелёк на кухне",
-        "uk": "Гаманець на кухні"
+        "ru": "Площадка без света",
+        "uk": "Майданчик без світла"
       },
       "bodyByLocale": {
-        "ru": "`wallet` — «кошелёк», `worktop` — «кухонная столешница». `The wallet is on the worktop` — «Кошелёк на столешнице». `on` здесь означает на поверхности. `The wallet is under the worktop` — «Кошелёк под столешницей»: стоит сменить предлог, и искать придётся в другом месте.",
-        "uk": "`wallet` — «гаманець», `worktop` — «кухонна стільниця». `The wallet is on the worktop` — «Гаманець на стільниці». `on` тут означає на поверхні. `The wallet is under the worktop` — «Гаманець під стільницею»: варто змінити прийменник, і шукати доведеться в іншому місці."
+        "ru": "Вечером сосед поднимается по лестнице и спотыкается: на площадке темно, а ступенек не видно. Он задирает голову, а под потолком торчат пустые патроны. bulb — «лампочка». Лампочек несколько, поэтому снова aren’t any: There aren’t any bulbs — «Лампочек нет».",
+        "uk": "Ввечері сусід піднімається сходами й перечіпляється: на майданчику темно, а сходинок не видно. Він задирає голову, а під стелею стирчать порожні патрони. bulb — «лампочка». Лампочок кілька, тому знову aren’t any: There aren’t any bulbs — «Лампочок немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "Кошелёк лежит на поверхности столешницы. Выберите описание.",
-          "uk": "Гаманець лежить на поверхні стільниці. Виберіть опис."
+          "ru": "Сосед спрашивает, почему так темно. Скажите ему, что лампочек нет.",
+          "uk": "Сусід питає, чому так темно. Скажіть йому, що лампочок немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-34:intro2:r1",
-              "text": "The wallet is on the worktop."
+              "text": "There aren’t any bulbs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro2:r2",
-              "text": "The wallet is under the worktop."
+              "text": "There aren’t bulbs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro2:r3",
-              "text": "The wallet are on the worktop."
+              "text": "There are any bulbs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-34:intro2:r1",
-              "text": "The wallet is on the worktop."
+              "text": "There aren’t any bulbs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro2:r2",
-              "text": "The wallet is under the worktop."
+              "text": "There aren’t bulbs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro2:r3",
-              "text": "The wallet are on the worktop."
+              "text": "There are any bulbs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кошелёк лежит на поверхности столешницы. Выберите описание.",
-          "uk": "Гаманець лежить на поверхні стільниці. Виберіть опис."
+          "ru": "Сосед спрашивает, почему так темно. Скажите ему, что лампочек нет.",
+          "uk": "Сусід питає, чому так темно. Скажіть йому, що лампочок немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Есть, нет и неактивно",
-        "uk": "Є, немає й неактивний"
+        "ru": "Новая соседка",
+        "uk": "Нова сусідка"
       },
       "bodyByLocale": {
-        "ru": "`Is there a handrail?` — «Есть поручень?» Если его нет: `There isn’t a handrail`. Нет ни одного поручня: `There aren’t any handrails`. `inactive` — «неактивный». О неактивной учётной записи можно сказать `It is inactive` или короче `It’s inactive`. Неактивная запись существует, но не активна; это не то же самое, что её вообще нет.",
-        "uk": "`Is there a handrail?` — «Є поручень?» Якщо його немає: `There isn’t a handrail`. Немає жодного поручня: `There aren’t any handrails`. `inactive` — «неактивний». Про неактивний обліковий запис можна сказати `It is inactive` або коротше `It’s inactive`. Неактивний запис існує, але не активний; це не те саме, що його взагалі немає."
+        "ru": "В доме поселилась новая соседка. Она ходит по этажам и ищет таблички с номерами квартир, но на стенах пусто, а ей надо найти нужную дверь. sign — «табличка». There aren’t any signs — «Табличек нет». После any табличек несколько, поэтому -s.",
+        "uk": "У домі оселилася нова сусідка. Вона ходить поверхами й шукає таблички з номерами квартир, але на стінах порожньо, а їй треба знайти потрібні двері. sign — «табличка». There aren’t any signs — «Табличок немає». Після any табличок кілька, тому -s."
       },
       "question": {
         "interactionId": "en:lesson-04:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "Учётная запись существует, но неактивна. Выберите описание с сокращением.",
-          "uk": "Обліковий запис існує, але неактивний. Виберіть опис зі скороченням."
+          "ru": "Соседка ищет таблички с номерами. Скажите ей, что табличек нет.",
+          "uk": "Сусідка шукає таблички з номерами. Скажіть їй, що табличок немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-34:intro3:r1",
-              "text": "It's inactive."
+              "text": "There aren’t any signs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro3:r2",
-              "text": "It's active."
+              "text": "There isn’t any signs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro3:r3",
-              "text": "It are inactive."
+              "text": "There aren’t any sign."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-34:intro3:r1",
-              "text": "It's inactive."
+              "text": "There aren’t any signs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro3:r2",
-              "text": "It's active."
+              "text": "There isn’t any signs."
             },
             {
               "responseId": "en:lesson-04:session-34:intro3:r3",
-              "text": "It are inactive."
+              "text": "There aren’t any sign."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Учётная запись существует, но неактивна. Выберите описание с сокращением.",
-          "uk": "Обліковий запис існує, але неактивний. Виберіть опис зі скороченням."
+          "ru": "Соседка ищет таблички с номерами. Скажите ей, что табличек нет.",
+          "uk": "Сусідка шукає таблички з номерами. Скажіть їй, що табличок немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fff56adc0983c904e39cf8df5e2d6ad9b9c4f96fd2d4a9cc4054a51902d72076"
+  "introFingerprint": "d173e5a0cb8d171612763643f6a543e41931b1948beb80aca8d271d78d09c744"
 }

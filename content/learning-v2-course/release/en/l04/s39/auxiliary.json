@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-39:intro1:r2": {
-          "ru": "Перед одним котлом нужно `a`: `a boiler`.",
-          "uk": "Перед одним котлом потрібне `a`: `a boiler`."
+          "ru": "Так говорят о бойлере, который существует, но лежит в другом месте. У вас бойлера нет совсем.",
+          "uk": "Так кажуть про бойлер, який існує, але лежить в іншому місці. У вас бойлера немає зовсім."
         },
         "en:lesson-04:session-39:intro1:r3": {
-          "ru": "Здесь один котёл: `This is a boiler`.",
-          "uk": "Тут один котел: `This is a boiler`."
+          "ru": "is значит «есть», а бойлера нет: нужно isn’t.",
+          "uk": "is означає «є», а бойлера немає: потрібно isn’t."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-39:intro2:r2": {
-          "ru": "Несколько бутылок: `The bottles are`.",
-          "uk": "Кілька пляшок: `The bottles are`."
+          "ru": "Так говорят, когда крана нет вообще. Но хозяин уже назвал этот кран, поэтому: The tap.",
+          "uk": "Так кажуть, коли крана немає взагалі. Але господар уже назвав цей кран, тому: The tap."
         },
         "en:lesson-04:session-39:intro2:r3": {
-          "ru": "`under` — под; на поверхности — `on`.",
-          "uk": "`under` — під; на поверхні — `on`."
+          "ru": "Кран один, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Кран один, тому потрібно isn’t, а не aren’t."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-39:intro3:r2": {
-          "ru": "`irrelevant` — не относится к теме; здесь `relevant`.",
-          "uk": "`irrelevant` — не стосується теми; тут `relevant`."
+          "ru": "Так говорят, когда трубы нет вообще, а вы её видите и трогаете: The pipe.",
+          "uk": "Так кажуть, коли труби немає взагалі, а ви її бачите й торкаєтеся: The pipe."
         },
         "en:lesson-04:session-39:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Труба одна, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Труба одна, тому потрібно isn’t, а не aren’t."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f80ae7c124ac31e77e4c905f0de01d4d9bd6114d9973cbcc478dd5549c7fe332"
+  "auxiliaryFingerprint": "90bb74782680b71eb784bd8ec0d16ffdfae9faf32ab32dec0620ea1fb49d081c"
 }

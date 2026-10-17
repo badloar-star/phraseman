@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro1:r2": {
-          "ru": "Перед одним поручнем нужно `a`: `a handrail`.",
-          "uk": "Перед одним поручнем потрібне `a`: `a handrail`."
+          "ru": "Поручни — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Поручні — кілька предметів, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-34:intro1:r3": {
-          "ru": "Здесь один поручень: `This is a handrail`.",
-          "uk": "Тут один поручень: `This is a handrail`."
+          "ru": "После any слово ставят во множественном числе: handrails.",
+          "uk": "Після any слово ставлять у множині: handrails."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro2:r2": {
-          "ru": "`under` — под; на поверхности — `on`.",
-          "uk": "`under` — під; на поверхні — `on`."
+          "ru": "Для «нет ни одной» нужно слово any: aren’t any bulbs.",
+          "uk": "Для «немає жодної» потрібне слово any: aren’t any bulbs."
         },
         "en:lesson-04:session-34:intro2:r3": {
-          "ru": "Один кошелёк: `The wallet is`.",
-          "uk": "Один гаманець: `The wallet is`."
+          "ru": "Лампочек нет, поэтому перед any нужно aren’t, а не are.",
+          "uk": "Лампочок немає, тому перед any потрібно aren’t, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro3:r2": {
-          "ru": "`active` — активная; здесь нужно `inactive`.",
-          "uk": "`active` — активний; тут потрібне `inactive`."
+          "ru": "Таблички — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Таблички — кілька предметів, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-34:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "После any слово ставят во множественном числе: signs.",
+          "uk": "Після any слово ставлять у множині: signs."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6ba48c65b1ff7a4ef1972d5da3f64c01808bee1f2e849359f0dfb28cf52fa76a"
+  "auxiliaryFingerprint": "c10d9211188e75c6b36ea08f152fe79f5c5527707d2b17ad0183c7b9079753a3"
 }

@@ -1,135 +1,152 @@
 # Англійська · Урок 4 · Заняття 33 — Біля дверей без дзвінка
 
-**Ситуація.** Ви прийшли до нового приміщення. Біля входу немає дверного дзвінка, у кімнаті немає телефона, а на кухні немає раковини. Ваш активний друг уже обговорює, що сюди поставити.
+**Ситуація.** Ви приймаєте нову квартиру. До вас ідуть кур’єр, подруга й сусідка, але біля входу багато чого бракує. Ви вчитеся сказати, що чогось одного немає, фразою There isn’t a …
 
-**Що ви опануєте:** повідомити, що одного чи кількох предметів немає
-**Нові слова:** doorbell
+**Що ви опануєте:** сказати, що одного предмета немає, фразою There isn’t a …
+**Нові слова:** doorbell, intercom, letterbox, peephole
+**Повертаються:** door, wall, hall, key, lock, mailbox, button, bell
 
 ---
 
 ## Інтро 1
 
-### Дзвінок біля дверей
+### Кур’єр біля дверей
 
-`doorbell` — «дверний дзвінок». Один дзвінок — `a doorbell`. `This is a doorbell` — «Це дверний дзвінок». Навіть якщо натиснути десять разів, дзвінок залишиться один; зміниться лише настрій господаря.
+Кур’єр приніс вам коробку й стоїть біля вхідних дверей. Він шукає поруч із дверима кнопку, щоб у домі задзвеніло, але на стіні порожньо, і дзвонити нікуди. doorbell — «дверний дзвінок». Коли одного предмета немає, кажуть isn’t a: There isn’t a doorbell — «Дзвінка немає».
 
-**Назвіть один дверний дзвінок.**
+**Кур’єр шукає дзвінок. Скажіть йому, що дзвінка немає.**
 
-- ✅ **This is a doorbell.**
-- ❌ This is doorbell. — *Перед одним дзвінком потрібне `a`: `a doorbell`.*
-- ❌ These are doorbells. — *Тут один дзвінок: `This is a doorbell`.*
+- ✅ **There isn’t a doorbell.**
+- ❌ There is a doorbell. — *is означає «є», а дзвінка немає: потрібно isn’t.*
+- ❌ There isn’t doorbell. — *Дзвінок один, тому після isn’t потрібно a: isn’t a doorbell.*
 
 ---
 
 ## Інтро 2
 
-### Одного предмета немає
+### Подруга внизу
 
-`There is a doorbell` — «Є дверний дзвінок». Щоб сказати, що його немає, додайте `not`: `There is not a doorbell`. Зазвичай кажуть коротше: `There isn’t a doorbell` — «Дверного дзвінка немає». `phone` — «телефон», `sink` — «раковина»: `There isn’t a phone`; `There isn’t a sink`. Після `isn’t` перед одним таким предметом залишається `a`.
+Подруга приїхала в гості й стоїть унизу біля під’їзду. Зазвичай вона говорить у панель на стіні, а ви відчиняєте їй двері, але такої панелі немає. intercom — «домофон». Слово починається з голосного звуку, тому замість a ставлять an: There isn’t an intercom — «Домофона немає».
 
-**У кімнаті немає телефона. Виберіть фразу.**
+**Подруга шукає домофон. Скажіть їй, що домофона немає.**
 
-- ✅ **There isn’t a phone.**
-- ❌ There is a phone. — *`is` повідомляє, що телефон є; для відсутності потрібне `isn’t`.*
-- ❌ There aren’t a phone. — *Один телефон: `There isn’t a phone`.*
+- ✅ **There isn’t an intercom.**
+- ❌ There isn’t a intercom. — *Слово intercom починається з голосного звуку, тому потрібно an: an intercom.*
+- ❌ There is an intercom. — *is означає «є», а домофона немає: потрібно isn’t.*
 
 ---
 
 ## Інтро 3
 
-### Жодного з кількох
+### Лист для сусіда
 
-Для кількох предметів: `There aren’t any chairs` — «Немає жодного стільця». `aren’t` — скорочення `are not`, `any` тут підкреслює відсутність: жодного. Порівняйте: `There isn’t a chair` і `There aren’t any chairs`. `active` — «активний»: `He is active` — «Він активний». Це опис людини; про наявність речей говорять із `there`.
+Сусідка принесла вам листа й хоче залишити його, поки вас немає вдома. Вона шукає в дверях вузьку щілину, куди опускають листи, але двері суцільні. Не класти ж листа на підлогу. letterbox — «отвір для листів у дверях». There isn’t a letterbox — «Отвору для листів немає».
 
-**У приміщенні немає стільців. Виберіть фразу з chairs.**
+**Сусідка шукає, куди засунути листа. Скажіть їй, що отвору для листів немає.**
 
-- ✅ **There aren’t any chairs.**
-- ❌ There are some chairs. — *Так ви повідомляєте, що стільці є; тут їх немає: `aren’t any`.*
-- ❌ There isn’t any chairs. — *З кількома стільцями, `chairs`, потрібне `aren’t`.*
+- ✅ **There isn’t a letterbox.**
+- ❌ There aren’t a letterbox. — *Отвір один, тому потрібно isn’t, а не aren’t.*
+- ❌ There is a letterbox. — *is означає «є», а отвору немає: потрібно isn’t.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Друг активний. Скажіть про це без скорочення**
-<!-- interaction_id: en:lesson-04:session-33:i01; family: phrase_builder -->
-Плитки: `active` `is` `He` `are` → **He is active.**
-*(плитка `are` зайва: тут потрібно `is` — `He is active.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-33:i01; family: speed_match -->
+doorbell — дверний дзвінок · intercom — домофон · letterbox — отвір для листів у дверях · peephole — вічко в дверях
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-33:i02; family: listen_choose -->
-🔊 *doorbell* → **doorbell** · doorbells · door
-- doorbells — *У записі перше слово — `doorbell`, а в цьому варіанті — `doorbells`.*
-- door — *У записі перше слово — `doorbell`, а в цьому варіанті — `door`.*
+**2 · Картка слова — doorbell**
+<!-- interaction_id: en:lesson-04:session-33:word:doorbell; family: word_card -->
+> **doorbell** — дверний дзвінок. There isn’t a doorbell. — «Дзвінка немає». Про кнопку біля дверей, на яку натискають, щоб у домі задзвеніло.
 
-**3 · Назвіть дверний дзвінок одним словом**
-<!-- interaction_id: en:lesson-04:session-33:i03; family: context_gap_grammar -->
-___ → **doorbell** · phone · sink
-- phone — *`phone` — телефон; дверний дзвінок — `doorbell`.*
-- sink — *`sink` — раковина; дверний дзвінок — `doorbell`.*
+**3 · Кур’єр показує кнопку біля дверей, на яку натискають, щоб подзвонити, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-33:i02; family: scripted_repeat_compare -->
+🎙 **doorbell**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-33:i04; family: speed_match -->
-doorbell — дверний дзвінок · active — активний · phone — телефон · sink — раковина
+**4 · Кур’єр шукає дзвінок на стіні. Скажіть йому повною фразою: на стіні немає дзвінка**
+<!-- interaction_id: en:lesson-04:session-33:i03; family: phrase_builder -->
+Плитки: `doorbell` `a` `on` `the` `wall` `isn’t` `There` `is` → **There isn’t a doorbell on the wall.**
+*(плитка `is` зайва: тут потрібно `isn’t` — `There isn’t a doorbell on the wall.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-33:i05; family: listen_build_dictation -->
-🔊 *This is a doorbell.* Плитки: `doorbell` `a` `is` `This` `are` → **This is a doorbell.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a doorbell.`)*
+**5 · Картка слова — intercom**
+<!-- interaction_id: en:lesson-04:session-33:word:intercom; family: word_card -->
+> **intercom** — домофон. There isn’t an intercom. — «Домофона немає». Про панель біля під’їзду, через яку говорять із мешканцем.
 
-**6 · У кімнаті немає телефона. Складіть фразу**
-<!-- interaction_id: en:lesson-04:session-33:i06; family: phrase_builder -->
-Плитки: `phone` `a` `isn't` `There` → **There isn't a phone.**
+**6 · Подруга говорить біля під’їзду в панель на стіні, і ви відчиняєте їй двері. Як називається ця панель англійською?**
+<!-- interaction_id: en:lesson-04:session-33:i04; family: context_gap_grammar -->
+___ → **intercom** · button · bell
+- button — *button — це кнопка, а панель, через яку говорять із мешканцем, називається intercom.*
+- bell — *bell — це дзвоник, а панель, через яку говорять із мешканцем, називається intercom.*
 
-**7 · На кухні немає раковини. Повідомте про це**
-<!-- interaction_id: en:lesson-04:session-33:i07; family: scripted_repeat_compare -->
-🎙 **There isn't a sink.**
+**7 · Послухайте подругу**
+<!-- interaction_id: en:lesson-04:session-33:i05; family: listen_choose -->
+🔊 *There isn’t an intercom.* → **There isn’t an intercom.** · There isn’t a doorbell. · There is an intercom.
+- There isn’t a doorbell. — *У записі `intercom`, а в цьому варіанті `doorbell`.*
+- There is an intercom. — *У записі `isn’t` — «немає», а в цьому варіанті `is` — «є».*
 
-**8 · Дверного дзвінка немає. Виберіть форму**
+**8 · Картка слова — letterbox**
+<!-- interaction_id: en:lesson-04:session-33:word:letterbox; family: word_card -->
+> **letterbox** — отвір для листів у дверях. There isn’t a letterbox. — «Отвору для листів немає». Про вузький отвір у дверях, куди опускають листи.
+
+**9 · Сусідка показує вузьку щілину в дверях, куди опускають листи, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-33:i06; family: scripted_repeat_compare -->
+🎙 **letterbox**
+
+**10 · Послухайте сусідку й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-33:i07; family: listen_build_dictation -->
+🔊 *There isn’t a letterbox in the door.* Плитки: `letterbox` `a` `in` `the` `door` `isn’t` `There` `is` → **There isn’t a letterbox in the door.**
+*(плитка `is` зайва: тут потрібно `isn’t` — `There isn’t a letterbox in the door.`)*
+
+**11 · Картка слова — peephole**
+<!-- interaction_id: en:lesson-04:session-33:word:peephole; family: word_card -->
+> **peephole** — вічко в дверях. There isn’t a peephole. — «Вічка немає». Про малий отвір, через який дивляться, хто стоїть за дверима.
+
+**12 · Брат дивиться, хто прийшов, через малий отвір у дверях. Як він називається англійською?**
 <!-- interaction_id: en:lesson-04:session-33:i08; family: context_gap_grammar -->
-There ___ a doorbell. → **isn't** · is · aren't
-- is — *`is` — є; тут немає: `isn’t`.*
-- aren't — *Один дзвінок: `isn’t a doorbell`.*
+___ → **peephole** · lock · key
+- lock — *lock — це замок, а малий отвір для погляду називається peephole.*
+- key — *key — це ключ, а малий отвір для погляду називається peephole.*
 
-**9 · Послухайте, чого немає**
-<!-- interaction_id: en:lesson-04:session-33:i09; family: listen_choose -->
-🔊 *There aren't any chairs.* → **There aren't any chairs.** · There aren't any tables. · There aren't any cups.
-- There aren't any tables. — *У записі останнє слово — `chairs`, а в цьому варіанті — `tables`.*
-- There aren't any cups. — *У записі останнє слово — `chairs`, а в цьому варіанті — `cups`.*
+**13 · Подруга хоче подивитися, хто за дверима. Скажіть їй повною фразою: у дверях немає вічка**
+<!-- interaction_id: en:lesson-04:session-33:i09; family: phrase_builder -->
+Плитки: `peephole` `a` `in` `the` `door` `isn’t` `There` `is` → **There isn’t a peephole in the door.**
+*(плитка `is` зайва: тут потрібно `isn’t` — `There isn’t a peephole in the door.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-33:i10; family: speed_match -->
-doorbell — дверний дзвінок · active — активний · phone — телефон · sink — раковина
+peephole — вічко в дверях · letterbox — отвір для листів у дверях · mailbox — поштова скринька · lock — замок
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-33:i11; family: listen_build_dictation -->
-🔊 *There aren't any tables.* Плитки: `tables` `any` `aren't` `There` → **There aren't any tables.**
+**15 · Послухайте господаря**
+<!-- interaction_id: en:lesson-04:session-33:i11; family: listen_choose -->
+🔊 *There isn’t a key.* → **There isn’t a key.** · There isn’t a lock. · There is a key.
+- There isn’t a lock. — *У записі `key`, а в цьому варіанті `lock`.*
+- There is a key. — *У записі `isn’t` — «немає», а в цьому варіанті `is` — «є».*
 
-**12 · У приміщенні немає чашок. Складіть фразу**
-<!-- interaction_id: en:lesson-04:session-33:i12; family: phrase_builder -->
-Плитки: `cups` `any` `aren't` `There` → **There aren't any cups.**
+**16 · Домофона біля під’їзду немає. Виберіть потрібне слово**
+<!-- interaction_id: en:lesson-04:session-33:i12; family: context_gap_grammar -->
+There ___ an intercom at the entrance. → **isn’t** · is · aren’t
+- is — *is означає «є», а домофона немає: потрібно isn’t.*
+- aren’t — *Домофон один, тому потрібно isn’t, а не aren’t.*
 
-**13 · Немає столу. Скажіть про один предмет**
-<!-- interaction_id: en:lesson-04:session-33:i13; family: scripted_repeat_compare -->
-🎙 **There isn't a table.**
+**17 · Послухайте господаря й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-33:i13; family: listen_build_dictation -->
+🔊 *There isn’t a mailbox.* Плитки: `mailbox` `a` `isn’t` `There` `is` → **There isn’t a mailbox.**
+*(плитка `is` зайва: тут потрібно `isn’t` — `There isn’t a mailbox.`)*
 
-**14 · У приміщенні немає вікон. Виберіть форму**
-<!-- interaction_id: en:lesson-04:session-33:i14; family: context_gap_grammar -->
-There ___ any windows. → **aren't** · are · isn't
-- are — *Тут відсутність: `There aren’t any windows`.*
-- isn't — *Кілька вікон, `windows`: потрібне `aren’t`.*
+**18 · Подруга хоче замкнути двері. Скажіть їй: «На дверях немає замка»**
+<!-- interaction_id: en:lesson-04:session-33:i14; family: scripted_repeat_compare -->
+🎙 **There isn’t a lock on the door.**
 
-**15 · Послухайте, якого предмета немає**
-<!-- interaction_id: en:lesson-04:session-33:i15; family: listen_choose -->
-🔊 *There isn't a chair.* → **There isn't a chair.** · There isn't a phone. · There isn't a sink.
-- There isn't a phone. — *У записі останнє слово — `chair`, а в цьому варіанті — `phone`.*
-- There isn't a sink. — *У записі останнє слово — `chair`, а в цьому варіанті — `sink`.*
+**19 · Брат шукає ключ. Скажіть йому повною фразою: на столі немає ключа**
+<!-- interaction_id: en:lesson-04:session-33:i15; family: phrase_builder -->
+Плитки: `key` `a` `on` `the` `table` `isn’t` `There` `is` → **There isn’t a key on the table.**
+*(плитка `is` зайва: тут потрібно `isn’t` — `There isn’t a key on the table.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-33:i16; family: speed_match -->
-doorbell — дверний дзвінок · active — активний · phone — телефон · sink — раковина
+doorbell — дверний дзвінок · intercom — домофон · letterbox — отвір для листів у дверях · peephole — вічко в дверях
 
-**17 · Ви прийшли до інших дверей і хочете подзвонити, але дзвінка тут немає. Повідомте «Дверного дзвінка немає»**
+**21 · В іншому під’їзді подруга шукає дзвінок. Скажіть їй: «Тут немає дзвінка»**
 <!-- interaction_id: en:lesson-04:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a doorbell.**
-
+🎙 **There isn’t a doorbell here.**

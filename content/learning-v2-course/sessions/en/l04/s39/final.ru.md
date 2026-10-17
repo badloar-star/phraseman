@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 39 — Вопрос об отоплении
+# Английский · Урок 4 · Занятие 39 — Холодная квартира
 
-**Ситуация.** Вы осматриваете дом. Спрашиваете об отопительном котле, замечаете бутылки на столе и парковку рядом. Друг уточняет, относится ли вопрос к обсуждению отопления.
+**Ситуация.** В новой квартире холодно, и вы объясняете хозяину и мастеру, что не так. Если предмета нет вообще, вы говорите There isn’t a …, а если речь о знакомом предмете, то The … isn’t …
 
-**Что вы освоите:** назвать отопительный котёл, спросить о его наличии и сказать, что информация относится к теме
-**Новые слова:** boiler
+**Что вы освоите:** отличить «такого предмета нет» от «этого известного предмета здесь нет или он не такой»
+**Новые слова:** boiler, tap, pipe, heater
+**Возвращаются:** radiator, sink, basement, bed, wall, floor, hot, broken
 
 ---
 
 ## Интро 1
 
-### Тепло в доме
+### Нет бака для воды
 
-`boiler` — «отопительный котёл»: здесь устройство, нагревающее воду для отопления дома. Один котёл — `a boiler`. `This is a boiler` — «Это отопительный котёл». Он греет воду для дома, но чай в нём мы не завариваем.
+В квартире холодно, и из крана течёт ледяная вода. Хозяин просит вас найти большой бак, который греет воду. Вы обходите всю квартиру, но такого бака нет вообще. boiler — «бойлер». There isn’t a boiler — «Бойлера нет». Так говорят, когда предмета нет совсем.
 
-**Назовите один отопительный котёл.**
+**Хозяин спрашивает, где бойлер. Скажите ему, что в квартире бойлера нет вообще.**
 
-- ✅ **This is a boiler.**
-- ❌ This is boiler. — *Перед одним котлом нужно `a`: `a boiler`.*
-- ❌ These are boilers. — *Здесь один котёл: `This is a boiler`.*
+- ✅ **There isn’t a boiler.**
+- ❌ The boiler isn’t here. — *Так говорят о бойлере, который существует, но лежит в другом месте. У вас бойлера нет совсем.*
+- ❌ There is a boiler. — *is значит «есть», а бойлера нет: нужно isn’t.*
 
 ---
 
 ## Интро 2
 
-### Бутылки и парковка
+### Новый кран
 
-`bottles` — «бутылки», `car park` — «парковка». `The bottles are on the table` — «Бутылки на столе». `The car park is next to the house` — «Парковка рядом с домом». Несколько бутылок — `are`, одна парковка — `is`.
+Хозяин сказал по телефону: новый кран уже лежит у вас на раковине. Вы заходите в ванную, а там старая раковина с пустой дыркой, и крана нигде не видно. tap — «кран». О кране, про который вы уже знаете, говорят The tap isn’t here — «Крана здесь нет».
 
-**Бутылки на поверхности стола. Выберите описание.**
+**Хозяин спрашивает про новый кран. Скажите ему, что этого крана здесь нет.**
 
-- ✅ **The bottles are on the table.**
-- ❌ The bottles is on the table. — *Несколько бутылок: `The bottles are`.*
-- ❌ The bottles are under the table. — *`under` — под; на поверхности — `on`.*
+- ✅ **The tap isn’t here.**
+- ❌ There isn’t a tap. — *Так говорят, когда крана нет вообще. Но хозяин уже назвал этот кран, поэтому: The tap.*
+- ❌ The tap aren’t here. — *Кран один, поэтому нужно isn’t, а не aren’t.*
 
 ---
 
 ## Интро 3
 
-### Относится к теме
+### Холодная труба
 
-`relevant` — «относящийся к делу, к обсуждаемой теме». Вы обсуждаете отопление; вопрос о котле относится к теме: `It is relevant`, короче `It’s relevant`. Это не просто «интересно»: информация связана с тем, что обсуждают. `Is there a boiler?` — «Есть отопительный котёл?» `There isn’t a boiler` — «Отопительного котла нет».
+Мастер просит открыть шкафчик под раковиной и потрогать трубу, по которой идёт горячая вода. Труба на месте, вы её видите, но она холодная, как лёд, и мастер хмурится. pipe — «труба». Об известной трубе говорят The pipe isn’t hot — «Труба не горячая».
 
-**Вопрос о котле относится к обсуждению отопления. Скажите «Это относится к теме» с сокращением.**
+**Мастер спрашивает про трубу. Скажите ему, что труба не горячая.**
 
-- ✅ **It's relevant.**
-- ❌ It's irrelevant. — *`irrelevant` — не относится к теме; здесь `relevant`.*
-- ❌ It are relevant. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **The pipe isn’t hot.**
+- ❌ There isn’t a pipe. — *Так говорят, когда трубы нет вообще, а вы её видите и трогаете: The pipe.*
+- ❌ The pipe aren’t hot. — *Труба одна, поэтому нужно isn’t, а не aren’t.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Информация относится к обсуждаемой теме. Скажите об этом без сокращения**
-<!-- interaction_id: en:lesson-04:session-39:i01; family: phrase_builder -->
-Плитки: `relevant` `is` `It` `are` → **It is relevant.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is relevant.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-39:i01; family: speed_match -->
+boiler — бойлер, котёл · tap — кран · pipe — труба · heater — обогреватель
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-39:i02; family: listen_choose -->
-🔊 *boiler* → **boiler** · boilers · doorbell
-- boilers — *В записи первое слово — `boiler`, а в этом варианте — `boilers`.*
-- doorbell — *В записи первое слово — `boiler`, а в этом варианте — `doorbell`.*
+**2 · Карточка слова — boiler**
+<!-- interaction_id: en:lesson-04:session-39:word:boiler; family: word_card -->
+> **boiler** — бойлер, котёл. There isn’t a boiler. — «Бойлера нет». О большом баке или котле, который греет воду для всей квартиры.
 
-**3 · Назовите отопительный котёл одним словом**
-<!-- interaction_id: en:lesson-04:session-39:i03; family: context_gap_grammar -->
-___ → **boiler** · sink · handrail
-- sink — *`sink` — раковина; котёл — `boiler`.*
-- handrail — *`handrail` — поручень; котёл — `boiler`.*
+**3 · Хозяин показывает большой бак, который греет воду для всей квартиры, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-39:i02; family: scripted_repeat_compare -->
+🎙 **boiler**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-39:i04; family: speed_match -->
-boiler — отопительный котёл · relevant — относящийся к теме · bottles — бутылки · car park — парковка
+**4 · Хозяин спрашивает про подвал. Скажите ему полной фразой: в подвале нет бойлера**
+<!-- interaction_id: en:lesson-04:session-39:i03; family: phrase_builder -->
+Плитки: `boiler` `a` `in` `the` `basement` `isn’t` `There` `aren’t` → **There isn’t a boiler in the basement.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a boiler in the basement.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-39:i05; family: listen_build_dictation -->
-🔊 *This is a boiler.* Плитки: `boiler` `a` `is` `This` `are` → **This is a boiler.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a boiler.`)*
+**5 · Карточка слова — tap**
+<!-- interaction_id: en:lesson-04:session-39:word:tap; family: word_card -->
+> **tap** — кран. The tap isn’t here. — «Крана здесь нет». О детали над раковиной, из которой льётся вода.
 
-**6 · Бутылки на столе. Скажите, где они**
-<!-- interaction_id: en:lesson-04:session-39:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `are` `bottles` `The` `is` → **The bottles are on the table.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bottles are on the table.`)*
+**6 · Хозяин поворачивает рукоятку над раковиной, и льётся вода. Как называется эта деталь по-английски?**
+<!-- interaction_id: en:lesson-04:session-39:i04; family: context_gap_grammar -->
+___ → **tap** · handle · bucket
+- handle — *handle — это ручка, а деталь над раковиной, из которой льётся вода, называется tap.*
+- bucket — *bucket — это ведро, а деталь над раковиной, из которой льётся вода, называется tap.*
 
-**7 · Вы обсуждаете отопление. Вопрос о котле относится к теме. Скажите об этом с сокращением**
-<!-- interaction_id: en:lesson-04:session-39:i07; family: scripted_repeat_compare -->
-🎙 **It's relevant.**
+**7 · Послушайте хозяина**
+<!-- interaction_id: en:lesson-04:session-39:i05; family: listen_choose -->
+🔊 *The tap isn’t here.* → **The tap isn’t here.** · The tap isn’t hot. · There isn’t a tap.
+- The tap isn’t hot. — *В записи `here` — «здесь», а в этом варианте `hot` — «горячий».*
+- There isn’t a tap. — *В записи говорят о знакомом кране (`The tap`), а в этом варианте крана нет вообще (`There isn’t a tap`).*
 
-**8 · Отопительного котла нет. Выберите форму**
+**8 · Карточка слова — pipe**
+<!-- interaction_id: en:lesson-04:session-39:word:pipe; family: word_card -->
+> **pipe** — труба. The pipe isn’t hot. — «Труба не горячая». О трубе, по которой идёт вода или тепло.
+
+**9 · Мастер показывает металлическую трубу, по которой идёт вода, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-39:i06; family: scripted_repeat_compare -->
+🎙 **pipe**
+
+**10 · Послушайте мастера и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-39:i07; family: listen_build_dictation -->
+🔊 *The pipe isn’t new.* Плитки: `pipe` `The` `isn’t` `new` `aren’t` → **The pipe isn’t new.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `The pipe isn’t new.`)*
+
+**11 · Карточка слова — heater**
+<!-- interaction_id: en:lesson-04:session-39:word:heater; family: word_card -->
+> **heater** — обогреватель. There isn’t a heater. — «Обогревателя нет». О приборе, который греет комнату.
+
+**12 · Хозяин включает в розетку электрический прибор, который греет комнату. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-39:i08; family: context_gap_grammar -->
-There ___ a boiler. → **isn't** · is · aren't
-- is — *`is` сообщает о наличии; здесь отсутствие: `isn’t`.*
-- aren't — *Один котёл: `isn’t a boiler`.*
+___ → **heater** · kettle · lamp
+- kettle — *kettle — это чайник, а прибор, который греет комнату, называется heater.*
+- lamp — *lamp — это лампа, а прибор, который греет комнату, называется heater.*
 
-**9 · Послушайте, где парковка**
-<!-- interaction_id: en:lesson-04:session-39:i09; family: listen_choose -->
-🔊 *The car park is next to the house.* → **The car park is next to the house.** · The car park is next to the hotel. · The car park is next to the shop.
-- The car park is next to the hotel. — *В записи последнее слово — `house`, а в этом варианте — `hotel`.*
-- The car park is next to the shop. — *В записи последнее слово — `house`, а в этом варианте — `shop`.*
+**13 · Хозяин ищет обогреватель. Скажите ему полной фразой: рядом с кроватью нет обогревателя**
+<!-- interaction_id: en:lesson-04:session-39:i09; family: phrase_builder -->
+Плитки: `heater` `a` `near` `the` `bed` `isn’t` `There` `aren’t` → **There isn’t a heater near the bed.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a heater near the bed.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-39:i10; family: speed_match -->
-boiler — отопительный котёл · relevant — относящийся к теме · bottles — бутылки · car park — парковка
+heater — обогреватель · pipe — труба · tap — кран · radiator — батарея отопления
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-39:i11; family: listen_build_dictation -->
-🔊 *There aren't any boilers.* Плитки: `boilers` `any` `aren't` `There` → **There aren't any boilers.**
+**15 · Послушайте мастера**
+<!-- interaction_id: en:lesson-04:session-39:i11; family: listen_choose -->
+🔊 *The boiler isn’t broken.* → **The boiler isn’t broken.** · The boiler isn’t here. · There isn’t a boiler.
+- The boiler isn’t here. — *В записи `broken` — «сломан», а в этом варианте `here` — «здесь».*
+- There isn’t a boiler. — *В записи говорят о знакомом бойлере (`The boiler`), а в этом варианте бойлера нет вообще (`There isn’t a boiler`).*
 
-**12 · Здесь есть отопительный котёл. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-39:i12; family: phrase_builder -->
-Плитки: `boiler` `a` `is` `There` `are` → **There is a boiler.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a boiler.`)*
+**16 · Мастер говорит о бойлере, который вы видели вчера: сегодня его унесли. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-39:i12; family: context_gap_grammar -->
+The boiler ___ here. → **isn’t** · aren’t · are
+- aren’t — *Бойлер один, поэтому нужно isn’t, а не aren’t.*
+- are — *are не подходит к одному бойлеру: нужно isn’t.*
 
-**13 · Вы ещё не осмотрели дом. Спросите, есть ли отопительный котёл**
-<!-- interaction_id: en:lesson-04:session-39:i13; family: scripted_repeat_compare -->
-🎙 **Is there a boiler?**
+**17 · Послушайте хозяина и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-39:i13; family: listen_build_dictation -->
+🔊 *The heater isn’t broken.* Плитки: `heater` `The` `isn’t` `broken` `aren’t` → **The heater isn’t broken.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `The heater isn’t broken.`)*
 
-**14 · Бутылки внутри сумки, не на ней и не под ней. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-39:i14; family: context_gap_grammar -->
-The bottles are ___ the bag. → **in** · on · under
-- on — *`on` — на поверхности; внутри — `in`.*
-- under — *`under` — под; внутри — `in`.*
+**18 · Хозяин спрашивает про батареи в холле. Скажите ему: «В холле нет батарей»**
+<!-- interaction_id: en:lesson-04:session-39:i14; family: scripted_repeat_compare -->
+🎙 **There aren’t any radiators in the hall.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-39:i15; family: listen_choose -->
-🔊 *That is a boiler.* → **That is a boiler.** · This is a boiler. · That is a sink.
-- This is a boiler. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a sink. — *В записи последнее слово — `boiler`, а в этом варианте — `sink`.*
+**19 · Мастер заглянул под раковину. Скажите ему полной фразой: под раковиной нет труб**
+<!-- interaction_id: en:lesson-04:session-39:i15; family: phrase_builder -->
+Плитки: `pipes` `any` `under` `the` `sink` `aren’t` `There` `isn’t` → **There aren’t any pipes under the sink.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any pipes under the sink.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-39:i16; family: speed_match -->
-boiler — отопительный котёл · relevant — относящийся к теме · bottles — бутылки · car park — парковка
+boiler — бойлер, котёл · tap — кран · pipe — труба · heater — обогреватель
 
-**17 · Вы осмотрели другой дом: отопительного котла там нет. Сообщите об этом одной фразой**
+**21 · Хозяин спрашивает про бойлер, который вы видели вчера. Скажите ему: «Бойлера здесь нет»**
 <!-- interaction_id: en:lesson-04:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a boiler.**
-
+🎙 **The boiler isn’t here.**

@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 40 — Осматриваем новый дом
+# Английский · Урок 4 · Занятие 40 — Акт приёмки
 
-**Ситуация.** Вы осматриваете дом и двор. Уточняете, есть ли котёл, термостат и дымовой извещатель, а затем показываете другу знакомые объекты у входа.
+**Ситуация.** Вы подписываете с хозяином акт приёмки новой квартиры и записываете, чего в ней нет. Новой грамматики нет: вы сами выбираете, про один предмет сказать isn’t a или про несколько aren’t any.
 
-**Что вы освоите:** назвать термостат и повторить вопросы о наличии и описания расположения
-**Новые слова:** thermostat
+**Что вы освоите:** самому сказать, что нет одного или нескольких предметов, без двойного отрицания
+**Новые слова:** thermostat, mattress, cooker, blind
+**Возвращаются:** boiler, heater, radiator, bed, window, wall, hall, sink
 
 ---
 
 ## Интро 1
 
-### Нужная температура
+### Строка в акте
 
-`thermostat` — «термостат»: устройство для поддержания заданной температуры. В доме с его помощью задают температуру для отопления. Один прибор — `a thermostat`. `This is a thermostat` — «Это термостат». Он следит за температурой, но спорить с вами о том, кому жарко, не умеет. `boiler` — отопительный котёл; это другое устройство.
+Хозяин диктует вам акт приёмки и доходит до строки про отопление. На стене должен висеть прибор с кнопками, которым выставляют, насколько тепло в квартире, но стена пуста. thermostat — «термостат». There isn’t a thermostat — «Термостата нет».
 
-**Назовите один термостат.**
+**Хозяин диктует акт. Скажите ему, что термостата нет.**
 
-- ✅ **This is a thermostat.**
-- ❌ This is thermostat. — *Перед одним прибором нужно `a`: `a thermostat`.*
-- ❌ These are thermostats. — *Здесь один прибор: `This is a thermostat`.*
+- ✅ **There isn’t a thermostat.**
+- ❌ There aren’t a thermostat. — *Термостат один, поэтому нужно isn’t, а не aren’t.*
+- ❌ There isn’t thermostat. — *Термостат один, поэтому после isn’t нужно a: isn’t a thermostat.*
 
 ---
 
 ## Интро 2
 
-### Что есть в доме
+### Голые кровати
 
-`doorbell` — дверной звонок, `smoke alarm` — дымовой пожарный извещатель. `Is there a boiler?` — «Есть отопительный котёл?» `There is a thermostat` — «Есть термостат». `There isn’t a doorbell` — «Дверного звонка нет». `There aren’t any smoke alarms` — «Нет ни одного дымового пожарного извещателя». Для одного предмета — `is`, для нескольких — `are`; в отрицании `isn’t` и `aren’t`.
+Хозяин читает вслух строку акта: в спальне две кровати, и на каждой должна лежать мягкая толстая подстилка для сна. Вы смотрите: на кроватях одни голые доски, лечь не на что. mattress — «матрас». Их два, поэтому There aren’t any mattresses — «Матрасов нет».
 
-**У двери нет звонка. Выберите фразу.**
+**Хозяин спрашивает про спальню. Скажите ему, что матрасов нет.**
 
-- ✅ **There isn’t a doorbell.**
-- ❌ There is a doorbell. — *Так вы говорите, что звонок есть; здесь нужно `isn’t`.*
-- ❌ There aren’t a doorbell. — *Один звонок: `There isn’t a doorbell`.*
+- ✅ **There aren’t any mattresses.**
+- ❌ There isn’t any mattresses. — *Матрасы — несколько предметов, поэтому нужно aren’t, а не isn’t.*
+- ❌ There aren’t any mattress. — *После any слово ставят во множественном числе: mattresses.*
 
 ---
 
 ## Интро 3
 
-### Что видно снаружи
+### Суп на новоселье
 
-`handrail` — поручень, `ramp` — пандус, `fountain` — фонтан. `parcel locker` — постамат, `bike shed` — сарай для велосипедов. `The handrail is next to the ramp` — «Поручень рядом с пандусом». `The parcel locker is next to the bike shed` — «Постамат рядом с сараем для велосипедов». `The fountain is between the shops` — «Фонтан между магазинами».
+Подруга пришла на новоселье с кастрюлей супа, который стынет, и ищет, на чём его разогреть. Между шкафчиками осталась пустая ниша, а кухонной плиты в ней нет. cooker — «плита». Одного «нет» хватает: There isn’t a cooker, без второго отрицания.
 
-**Фонтан между двумя магазинами. Выберите описание.**
+**Подруга ищет плиту. Скажите ей, что плиты нет.**
 
-- ✅ **The fountain is between the shops.**
-- ❌ The fountain is in the shops. — *`in` — внутри; здесь между: `between`.*
-- ❌ The fountain are between the shops. — *Один фонтан: `The fountain is`.*
+- ✅ **There isn’t a cooker.**
+- ❌ There isn’t no cooker. — *Слова isn’t уже достаточно для «нет». Второе отрицание no не нужно.*
+- ❌ There aren’t a cooker. — *Плита одна, поэтому нужно isn’t, а не aren’t.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите, есть ли отопительный котёл**
-<!-- interaction_id: en:lesson-04:session-40:i01; family: phrase_builder -->
-Плитки: `boiler` `a` `there` `Is` → **Is there a boiler?**
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-40:i01; family: speed_match -->
+thermostat — термостат · mattress — матрас · cooker — плита (кухонная) · blind — жалюзи, штора
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-40:i02; family: listen_choose -->
-🔊 *thermostat* → **thermostat** · thermostats · boiler
-- thermostats — *В записи первое слово — `thermostat`, а в этом варианте — `thermostats`.*
-- boiler — *В записи первое слово — `thermostat`, а в этом варианте — `boiler`.*
+**2 · Карточка слова — thermostat**
+<!-- interaction_id: en:lesson-04:session-40:word:thermostat; family: word_card -->
+> **thermostat** — термостат. There isn’t a thermostat. — «Термостата нет». О приборе на стене, которым выставляют температуру отопления.
 
-**3 · Назовите термостат одним словом**
-<!-- interaction_id: en:lesson-04:session-40:i03; family: context_gap_grammar -->
-___ → **thermostat** · doorbell · handrail
-- doorbell — *`doorbell` — дверной звонок; здесь `thermostat`.*
-- handrail — *`handrail` — поручень; здесь `thermostat`.*
+**3 · Хозяин показывает на стене прибор, которым выставляют температуру отопления, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-40:i02; family: scripted_repeat_compare -->
+🎙 **thermostat**
 
-**4 · Соедините приборы со значениями**
-<!-- interaction_id: en:lesson-04:session-40:i04; family: speed_match -->
-thermostat — термостат · boiler — отопительный котёл · doorbell — дверной звонок · smoke alarm — дымовой пожарный извещатель
+**4 · Хозяин заполняет акт приёмки. Скажите ему полной фразой: на стене нет термостата**
+<!-- interaction_id: en:lesson-04:session-40:i03; family: phrase_builder -->
+Плитки: `thermostat` `a` `on` `the` `wall` `isn’t` `There` `aren’t` → **There isn’t a thermostat on the wall.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a thermostat on the wall.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-40:i05; family: listen_build_dictation -->
-🔊 *This is a thermostat.* Плитки: `thermostat` `a` `is` `This` `are` → **This is a thermostat.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a thermostat.`)*
+**5 · Карточка слова — mattress**
+<!-- interaction_id: en:lesson-04:session-40:word:mattress; family: word_card -->
+> **mattress** — матрас. There aren’t any mattresses. — «Матрасов нет». О мягкой плотной подушке для сна, которую кладут на кровать.
 
-**6 · Поручень рядом с пандусом. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-40:i06; family: phrase_builder -->
-Плитки: `ramp` `the` `to` `next` `is` `handrail` `The` `are` → **The handrail is next to the ramp.**
-*(плитка `are` лишняя: здесь нужно `is` — `The handrail is next to the ramp.`)*
+**6 · Хозяин показывает мягкую плотную подушку, которую кладут на кровать для сна. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-40:i04; family: context_gap_grammar -->
+___ → **mattress** · pillow · rug
+- pillow — *pillow — это подушка под голову, а плотная подушка на всю кровать называется mattress.*
+- rug — *rug — это ковёр, а плотная подушка на всю кровать называется mattress.*
 
-**7 · В доме нет ни одного дымового пожарного извещателя. Сообщите об этом, используя множественное число**
-<!-- interaction_id: en:lesson-04:session-40:i07; family: scripted_repeat_compare -->
-🎙 **There aren't any smoke alarms.**
+**7 · Послушайте хозяина**
+<!-- interaction_id: en:lesson-04:session-40:i05; family: listen_choose -->
+🔊 *There aren’t any mattresses.* → **There aren’t any mattresses.** · There aren’t any pillows. · There isn’t a mattress.
+- There aren’t any pillows. — *В записи `mattresses`, а в этом варианте `pillows`.*
+- There isn’t a mattress. — *В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — один.*
 
-**8 · Дверного звонка нет. Выберите форму**
+**8 · Карточка слова — cooker**
+<!-- interaction_id: en:lesson-04:session-40:word:cooker; family: word_card -->
+> **cooker** — плита (кухонная). There isn’t a cooker. — «Плиты нет». О приборе на кухне, на котором варят еду.
+
+**9 · Подруга показывает на кухне прибор, на котором варят суп, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-40:i06; family: scripted_repeat_compare -->
+🎙 **cooker**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-40:i07; family: listen_build_dictation -->
+🔊 *There isn’t a cooker next to the sink.* Плитки: `cooker` `a` `next` `to` `the` `sink` `isn’t` `There` `aren’t` → **There isn’t a cooker next to the sink.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a cooker next to the sink.`)*
+
+**11 · Карточка слова — blind**
+<!-- interaction_id: en:lesson-04:session-40:word:blind; family: word_card -->
+> **blind** — жалюзи, штора. There aren’t any blinds. — «Жалюзи нет». О шторе из реек или ткани, которой закрывают окно от солнца.
+
+**12 · Хозяин закрывает окно шторой из реек, чтобы не было солнца. Как называется такая штора по-английски?**
 <!-- interaction_id: en:lesson-04:session-40:i08; family: context_gap_grammar -->
-There ___ a doorbell. → **isn't** · is · aren't
-- is — *`is` — есть; здесь нет: `isn’t`.*
-- aren't — *Один звонок: `isn’t a doorbell`.*
+___ → **blind** · rug · bucket
+- rug — *rug — это ковёр, а штора из реек на окне называется blind.*
+- bucket — *bucket — это ведро, а штора из реек на окне называется blind.*
 
-**9 · Послушайте, где фонтан**
-<!-- interaction_id: en:lesson-04:session-40:i09; family: listen_choose -->
-🔊 *The fountain is next to the hotel.* → **The fountain is next to the hotel.** · The fountain is next to the shop. · The fountain is next to the gym.
-- The fountain is next to the shop. — *В записи последнее слово — `hotel`, а в этом варианте — `shop`.*
-- The fountain is next to the gym. — *В записи последнее слово — `hotel`, а в этом варианте — `gym`.*
+**13 · Хозяин смотрит на окна. Скажите ему полной фразой: на окнах нет жалюзи**
+<!-- interaction_id: en:lesson-04:session-40:i09; family: phrase_builder -->
+Плитки: `blinds` `any` `on` `the` `windows` `aren’t` `There` `isn’t` → **There aren’t any blinds on the windows.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any blinds on the windows.`)*
 
-**10 · Соедините названия со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-40:i10; family: speed_match -->
-handrail — поручень · ramp — пандус · fountain — фонтан · parcel locker — постамат
+blind — жалюзи, штора · cooker — плита (кухонная) · boiler — бойлер, котёл · heater — обогреватель
 
-**11 · Послушайте и соберите описание**
-<!-- interaction_id: en:lesson-04:session-40:i11; family: listen_build_dictation -->
-🔊 *The parcel locker is next to the bike shed.* Плитки: `shed` `bike` `the` `to` `next` `is` `locker` `parcel` `The` `are` → **The parcel locker is next to the bike shed.**
-*(плитка `are` лишняя: здесь нужно `is` — `The parcel locker is next to the bike shed.`)*
+**15 · Послушайте хозяина**
+<!-- interaction_id: en:lesson-04:session-40:i11; family: listen_choose -->
+🔊 *There isn’t a thermostat in the hall.* → **There isn’t a thermostat in the hall.** · There isn’t a thermostat in the lobby. · There aren’t any thermostats in the hall.
+- There isn’t a thermostat in the lobby. — *В записи `hall` — холл, а в этом варианте `lobby` — вестибюль.*
+- There aren’t any thermostats in the hall. — *В записи `isn’t a` — один, а в этом варианте `aren’t any` — несколько.*
 
-**12 · Здесь есть термостат. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-40:i12; family: phrase_builder -->
-Плитки: `thermostat` `a` `is` `There` `are` → **There is a thermostat.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a thermostat.`)*
+**16 · Подруга ищет плиту, но плиты нет. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-40:i12; family: context_gap_grammar -->
+There isn’t ___ cooker near the sink. → **a** · no · an
+- no — *Слова isn’t уже достаточно для «нет»: второе отрицание no не нужно.*
+- an — *Слово cooker начинается с согласного звука, поэтому нужно a, а не an.*
 
-**13 · Вы ещё не осмотрели комнату. Спросите, есть ли термостат**
-<!-- interaction_id: en:lesson-04:session-40:i13; family: scripted_repeat_compare -->
-🎙 **Is there a thermostat?**
+**17 · Послушайте хозяина и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-40:i13; family: listen_build_dictation -->
+🔊 *There aren’t any mattresses on the beds.* Плитки: `mattresses` `any` `on` `the` `beds` `aren’t` `There` `isn’t` → **There aren’t any mattresses on the beds.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any mattresses on the beds.`)*
 
-**14 · Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-40:i14; family: context_gap_grammar -->
-The fountain is ___ the shops. → **between** · in · under
-- in — *`in` — внутри; между — `between`.*
-- under — *`under` — под; между — `between`.*
+**18 · Подруга спрашивает про кухню. Скажите ей: «Здесь нет плиты»**
+<!-- interaction_id: en:lesson-04:session-40:i14; family: scripted_repeat_compare -->
+🎙 **There isn’t a cooker here.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-40:i15; family: listen_choose -->
-🔊 *That is a thermostat.* → **That is a thermostat.** · This is a thermostat. · That is a boiler.
-- This is a thermostat. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a boiler. — *В записи последнее слово — `thermostat`, а в этом варианте — `boiler`.*
+**19 · Хозяин проверяет холл. Скажите ему полной фразой: под окном нет батареи**
+<!-- interaction_id: en:lesson-04:session-40:i15; family: phrase_builder -->
+Плитки: `radiator` `a` `under` `the` `window` `isn’t` `There` `aren’t` → **There isn’t a radiator under the window.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a radiator under the window.`)*
 
-**16 · Соедините названия со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-40:i16; family: speed_match -->
-bike shed — сарай для велосипедов · ramp — пандус · handrail — поручень · thermostat — термостат
+thermostat — термостат · mattress — матрас · cooker — плита (кухонная) · blind — жалюзи, штора
 
-**17 · Вы осмотрели другую комнату: термостата нет. Сообщите об этом одной фразой**
+**21 · В другой квартире хозяин ищет термостат. Скажите ему: «Термостата здесь нет»**
 <!-- interaction_id: en:lesson-04:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a thermostat.**
-
+🎙 **There isn’t a thermostat here.**

@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 38 — Где оставить велосипед
+# Английский · Урок 4 · Занятие 38 — Двор за домом
 
-**Ситуация.** Вы приехали к месту встречи на велосипеде. Ищете сарай для велосипедов у указателя, проверяете билет и обсуждаете неофициальную информацию о встрече.
+**Ситуация.** Вы осматриваете двор за новым домом вместе с соседями. Вы говорите, чего там нет, и сразу называете место: рядом, за, между, в, на, под.
 
-**Что вы освоите:** назвать сарай для велосипедов, спросить о его наличии и уточнить расположение
-**Новые слова:** bike shed
+**Что вы освоите:** сказать, чего нет, и назвать место снаружи
+**Новые слова:** bicycle rack, lawn, washing line, padlock
+**Возвращаются:** shed, yard, gate, fence, garden, tree, bench, awning
 
 ---
 
 ## Интро 1
 
-### Домик для велосипедов
+### Велосипед без места
 
-`bike shed` — «сарай для велосипедов», небольшое строение для их хранения. Два слова называют один объект: `a bike shed`. `This is a bike shed` — «Это сарай для велосипедов». Велосипедам отдельные спальни не нужны: в одном сарае их может быть несколько.
+Сосед приехал во двор на велосипеде и хочет его пристегнуть, чтобы не украли. Он ищет железную стойку рядом с сараем, но там только трава и камни. bicycle rack — «велосипедная стойка». There isn’t a bicycle rack next to the shed — «Рядом с сараем нет велосипедной стойки».
 
-**Назовите одно такое строение рядом.**
+**Сосед ищет стойку. Скажите ему, что рядом с сараем нет велосипедной стойки.**
 
-- ✅ **This is a bike shed.**
-- ❌ This is bike shed. — *Перед одним строением нужно `a`: `a bike shed`.*
-- ❌ These are bike sheds. — *Здесь одно строение: `This is a bike shed`.*
+- ✅ **There isn’t a bicycle rack next to the shed.**
+- ❌ There isn’t a bicycle rack in the shed. — *in значит «внутри», а стойку ищут рядом с сараем: next to.*
+- ❌ There aren’t any bicycle racks next to the shed. — *Вы говорите об одной стойке, поэтому isn’t a, а не aren’t any.*
 
 ---
 
 ## Интро 2
 
-### Указатель и билет
+### Трава для ребёнка
 
-`signpost` — «столб с указателями», `ticket` — «билет». `The bike shed is next to the signpost` — «Сарай для велосипедов рядом со столбом с указателями». `The ticket is in the bag` — «Билет в сумке». Сначала найдите билет, а потом место для велосипеда: указатель билет не заменит.
+Соседка хочет посидеть с маленьким сыном на мягкой траве, пока тепло. Она заходит за дом, а там только серый бетон, камни и ни одной травинки. lawn — «газон»: ровная подстриженная трава. There isn’t a lawn behind the building — «За домом нет газона».
 
-**Билет внутри сумки. Выберите описание.**
+**Соседка ищет траву. Скажите ей, что за домом нет газона.**
 
-- ✅ **The ticket is in the bag.**
-- ❌ The ticket is on the bag. — *`on` — на поверхности; внутри — `in`.*
-- ❌ The ticket are in the bag. — *Один билет: `The ticket is`.*
+- ✅ **There isn’t a lawn behind the building.**
+- ❌ There isn’t a lawn under the building. — *under значит «под», а газона нет за домом: behind.*
+- ❌ There aren’t a lawn behind the building. — *Газон один, поэтому нужно isn’t, а не aren’t.*
 
 ---
 
 ## Интро 3
 
-### Пока неофициально
+### Мокрые простыни
 
-`unofficial` — «неофициальный»: информацию передал знакомый, но организаторы её не подтверждали. `It is unofficial` — «Это неофициально», короче `It’s unofficial`. `Is there a bike shed?` — «Есть сарай для велосипедов?» Если его нет: `There isn’t a bike shed`. `There aren’t any bike sheds` — «Нет ни одного сарая для велосипедов».
+Подруга постирала простыни и несёт их мокрыми по двору. Ей нужна верёвка, натянутая в воздухе, чтобы развесить бельё. washing line — «верёвка для белья». There isn’t a washing line between the shed and the fence — «Между сараем и забором нет верёвки».
 
-**Информация не от организаторов и официально не подтверждена. Скажите «Это неофициально» с сокращением.**
+**Подруга ищет, где сушить простыни. Скажите ей, что между сараем и забором нет верёвки для белья.**
 
-- ✅ **It's unofficial.**
-- ❌ It's official. — *`official` — официально; здесь `unofficial`.*
-- ❌ It are unofficial. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ✅ **There isn’t a washing line between the shed and the fence.**
+- ❌ There isn’t a washing line between the shed. — *Для between нужны два места: the shed and the fence.*
+- ❌ There aren’t a washing line between the shed and the fence. — *Верёвка одна, поэтому нужно isn’t, а не aren’t.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Информация не от организаторов. Скажите «Это неофициально» без сокращения**
-<!-- interaction_id: en:lesson-04:session-38:i01; family: phrase_builder -->
-Плитки: `unofficial` `is` `It` `are` → **It is unofficial.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is unofficial.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-38:i01; family: speed_match -->
+bicycle rack — велосипедная стойка · lawn — газон · washing line — верёвка для белья · padlock — навесной замок
 
-**2 · Послушайте и выберите название**
-<!-- interaction_id: en:lesson-04:session-38:i02; family: listen_choose -->
-🔊 *bike shed* → **bike shed** · bike sheds · signpost
-- bike sheds — *В записи последнее слово — `shed`, а в этом варианте — `sheds`.*
-- signpost — *В записи первое слово — `bike`, а в этом варианте — `signpost`.*
+**2 · Карточка слова — bicycle rack**
+<!-- interaction_id: en:lesson-04:session-38:word:bicycle rack; family: word_card -->
+> **bicycle rack** — велосипедная стойка. There isn’t a bicycle rack. — «Велосипедной стойки нет». О железной стойке, к которой пристёгивают велосипед.
 
-**3 · Назовите сарай для велосипедов**
-<!-- interaction_id: en:lesson-04:session-38:i03; family: context_gap_grammar -->
-___ → **bike shed** · car park · parcel locker
-- car park — *`car park` — парковка для машин; здесь `bike shed`.*
-- parcel locker — *`parcel locker` — постамат; здесь `bike shed`.*
+**3 · Сосед показывает железную стойку, к которой пристёгивают велосипед, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-38:i02; family: scripted_repeat_compare -->
+🎙 **bicycle rack**
 
-**4 · Соедините названия со значениями**
-<!-- interaction_id: en:lesson-04:session-38:i04; family: speed_match -->
-bike shed — сарай для велосипедов · unofficial — неофициальный · ticket — билет · signpost — столб с указателями
+**4 · Сосед ищет, куда поставить велосипед. Скажите ему полной фразой: за сараем нет велосипедной стойки**
+<!-- interaction_id: en:lesson-04:session-38:i03; family: phrase_builder -->
+Плитки: `bicycle` `rack` `a` `behind` `the` `shed` `isn’t` `There` `aren’t` → **There isn’t a bicycle rack behind the shed.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a bicycle rack behind the shed.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-38:i05; family: listen_build_dictation -->
-🔊 *This is a bike shed.* Плитки: `shed` `bike` `a` `is` `This` `are` → **This is a bike shed.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a bike shed.`)*
+**5 · Карточка слова — lawn**
+<!-- interaction_id: en:lesson-04:session-38:word:lawn; family: word_card -->
+> **lawn** — газон. There isn’t a lawn. — «Газона нет». О ровном участке подстриженной травы перед домом.
 
-**6 · Билет в сумке. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-38:i06; family: phrase_builder -->
-Плитки: `bag` `the` `in` `is` `ticket` `The` `are` → **The ticket is in the bag.**
-*(плитка `are` лишняя: здесь нужно `is` — `The ticket is in the bag.`)*
+**6 · Соседка сидит на ровной подстриженной траве перед домом. Как называется такой участок травы по-английски?**
+<!-- interaction_id: en:lesson-04:session-38:i04; family: context_gap_grammar -->
+___ → **lawn** · tree · fence
+- tree — *tree — это дерево, а ровный участок подстриженной травы называется lawn.*
+- fence — *fence — это забор, а ровный участок подстриженной травы называется lawn.*
 
-**7 · Знакомый передал информацию, которую организаторы не подтверждали. Скажите «Это неофициально» с сокращением**
-<!-- interaction_id: en:lesson-04:session-38:i07; family: scripted_repeat_compare -->
-🎙 **It's unofficial.**
+**7 · Послушайте соседку**
+<!-- interaction_id: en:lesson-04:session-38:i05; family: listen_choose -->
+🔊 *There isn’t a lawn behind the shed.* → **There isn’t a lawn behind the shed.** · There isn’t a lawn next to the shed. · There aren’t any lawns behind the shed.
+- There isn’t a lawn next to the shed. — *В записи `behind` — за сараем, а в этом варианте `next to` — рядом с ним.*
+- There aren’t any lawns behind the shed. — *В записи `isn’t a` — один газон, а в этом варианте `aren’t any` — несколько.*
 
-**8 · Сарая для велосипедов нет. Выберите форму**
+**8 · Карточка слова — washing line**
+<!-- interaction_id: en:lesson-04:session-38:word:washing line; family: word_card -->
+> **washing line** — верёвка для белья. There isn’t a washing line. — «Верёвки для белья нет». О верёвке, натянутой между столбами, на которой сушат одежду.
+
+**9 · Подруга показывает верёвку, натянутую во дворе, на которой сушат бельё, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-38:i06; family: scripted_repeat_compare -->
+🎙 **washing line**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-38:i07; family: listen_build_dictation -->
+🔊 *There isn’t a washing line in the garden.* Плитки: `washing` `line` `a` `in` `the` `garden` `isn’t` `There` `aren’t` → **There isn’t a washing line in the garden.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a washing line in the garden.`)*
+
+**11 · Карточка слова — padlock**
+<!-- interaction_id: en:lesson-04:session-38:word:padlock; family: word_card -->
+> **padlock** — навесной замок. There isn’t a padlock on the gate. — «На калитке нет навесного замка». О замке с дужкой, который вешают на калитку или сарай.
+
+**12 · Сосед вешает на калитку маленький металлический замок с дужкой. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-38:i08; family: context_gap_grammar -->
-There ___ a bike shed. → **isn't** · is · aren't
-- is — *`is` сообщает о наличии; здесь отсутствие: `isn’t`.*
-- aren't — *Одно строение: `isn’t a bike shed`.*
+___ → **padlock** · key · bell
+- key — *key — это ключ, а маленький замок с дужкой называется padlock.*
+- bell — *bell — это звонок, а маленький замок с дужкой называется padlock.*
 
-**9 · Послушайте, где сарай для велосипедов**
-<!-- interaction_id: en:lesson-04:session-38:i09; family: listen_choose -->
-🔊 *The bike shed is next to the signpost.* → **The bike shed is next to the signpost.** · The bike shed is next to the hotel. · The bike shed is next to the shop.
-- The bike shed is next to the hotel. — *В записи последнее слово — `signpost`, а в этом варианте — `hotel`.*
-- The bike shed is next to the shop. — *В записи последнее слово — `signpost`, а в этом варианте — `shop`.*
+**13 · Сосед хочет запереть калитку. Скажите ему полной фразой: на калитке нет навесного замка**
+<!-- interaction_id: en:lesson-04:session-38:i09; family: phrase_builder -->
+Плитки: `padlock` `a` `on` `the` `gate` `isn’t` `There` `aren’t` → **There isn’t a padlock on the gate.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a padlock on the gate.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-38:i10; family: speed_match -->
-bike shed — сарай для велосипедов · unofficial — неофициальный · ticket — билет · signpost — столб с указателями
+padlock — навесной замок · lawn — газон · gate — ворота, калитка · fence — забор
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-38:i11; family: listen_build_dictation -->
-🔊 *There aren't any bike sheds.* Плитки: `sheds` `bike` `any` `aren't` `There` → **There aren't any bike sheds.**
+**15 · Послушайте соседа**
+<!-- interaction_id: en:lesson-04:session-38:i11; family: listen_choose -->
+🔊 *There aren’t any bicycles next to the fence.* → **There aren’t any bicycles next to the fence.** · There aren’t any bicycles near the fence. · There isn’t a bicycle next to the fence.
+- There aren’t any bicycles near the fence. — *В записи `next to` — вплотную к забору, а в этом варианте `near` — просто рядом.*
+- There isn’t a bicycle next to the fence. — *В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — один велосипед.*
 
-**12 · Здесь есть сарай для велосипедов. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-38:i12; family: phrase_builder -->
-Плитки: `shed` `bike` `a` `is` `There` `are` → **There is a bike shed.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a bike shed.`)*
+**16 · Подруга смотрит за сарай: деревьев там нет. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-38:i12; family: context_gap_grammar -->
+There ___ any trees behind the shed. → **aren’t** · isn’t · is
+- isn’t — *Деревья — несколько предметов, поэтому нужно aren’t, а не isn’t.*
+- is — *is значит «есть», а деревьев нет: нужно aren’t.*
 
-**13 · Вы у другого здания. Спросите, есть ли сарай для велосипедов**
-<!-- interaction_id: en:lesson-04:session-38:i13; family: scripted_repeat_compare -->
-🎙 **Is there a bike shed?**
+**17 · Послушайте соседку и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-38:i13; family: listen_build_dictation -->
+🔊 *There aren’t any benches under the tree.* Плитки: `benches` `any` `under` `the` `tree` `aren’t` `There` `isn’t` → **There aren’t any benches under the tree.**
+*(плитка `isn’t` лишняя: здесь нужно `aren’t` — `There aren’t any benches under the tree.`)*
 
-**14 · Билет упал под стол. Он не на поверхности и не внутри стола. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-38:i14; family: context_gap_grammar -->
-The ticket is ___ the table. → **under** · on · in
-- on — *`on` — на поверхности; под — `under`.*
-- in — *`in` — внутри; под — `under`.*
+**18 · Сосед спрашивает про двор. Скажите ему: «Под навесом нет велосипедов»**
+<!-- interaction_id: en:lesson-04:session-38:i14; family: scripted_repeat_compare -->
+🎙 **There aren’t any bicycles under the awning.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-38:i15; family: listen_choose -->
-🔊 *That is a bike shed.* → **That is a bike shed.** · This is a bike shed. · There is a bike shed.
-- This is a bike shed. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- There is a bike shed. — *В записи первое слово — `That`, а в этом варианте — `There`.*
+**19 · Подруга ищет вход во двор. Скажите ей полной фразой: в заборе нет калитки**
+<!-- interaction_id: en:lesson-04:session-38:i15; family: phrase_builder -->
+Плитки: `gate` `a` `in` `the` `fence` `isn’t` `There` `aren’t` → **There isn’t a gate in the fence.**
+*(плитка `aren’t` лишняя: здесь нужно `isn’t` — `There isn’t a gate in the fence.`)*
 
-**16 · Соедините названия со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-38:i16; family: speed_match -->
-bike shed — сарай для велосипедов · unofficial — неофициальный · ticket — билет · signpost — столб с указателями
+bicycle rack — велосипедная стойка · lawn — газон · washing line — верёвка для белья · padlock — навесной замок
 
-**17 · В другом городе сарай для велосипедов рядом с отелем. Объясните другу, где он, полной фразой**
+**21 · В другом дворе сосед ищет велосипедную стойку. Скажите ему: «Рядом с воротами нет велосипедной стойки»**
 <!-- interaction_id: en:lesson-04:session-38:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The bike shed is next to the hotel.**
-
+🎙 **There isn’t a bicycle rack next to the gate.**

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-35",
   "learningOutcomeByLocale": {
-    "ru": "назвать пандус, спросить о его наличии и описать расположение фотографий",
-    "uk": "назвати пандус, запитати про його наявність і описати розташування фотографій"
+    "ru": "выбрать isn’t a для одного предмета и aren’t any для нескольких",
+    "uk": "вибрати isn’t a для одного предмета й aren’t any для кількох"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Плавный подъём",
-        "uk": "Плавний підйом"
+        "ru": "Коляска у входа",
+        "uk": "Візок біля входу"
       },
       "bodyByLocale": {
-        "ru": "`ramp` — «пандус»: наклонная поверхность для подъёма или спуска без ступеней. Один пандус — `a ramp`. `This is a ramp` — «Это пандус». У пандуса нет ступеней: считать их здесь — очень короткое занятие.",
-        "uk": "`ramp` — «пандус»: похила поверхня для підйому чи спуску без сходинок. Один пандус — `a ramp`. `This is a ramp` — «Це пандус». У пандуса немає сходинок: рахувати їх тут — дуже коротке заняття."
+        "ru": "Соседка с детской коляской, в которой спит ребёнок, подходит к входу в дом. Перед дверью две ступеньки, и она ищет вместо них пологий подъём, по которому можно въехать. ramp — «пандус». Он один, поэтому isn’t a: There isn’t a ramp — «Пандуса нет».",
+        "uk": "Сусідка з дитячим візком, у якому спить дитина, підходить до входу в будинок. Перед дверима дві сходинки, і вона шукає замість них похилий підйом, яким можна в’їхати. ramp — «пандус». Він один, тому isn’t a: There isn’t a ramp — «Пандуса немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-35:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один пандус рядом.",
-          "uk": "Назвіть один пандус поруч."
+          "ru": "Соседка ищет пандус. Скажите ей, что пандуса нет.",
+          "uk": "Сусідка шукає пандус. Скажіть їй, що пандуса немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-35:intro1:r1",
-              "text": "This is a ramp."
+              "text": "There isn’t a ramp."
             },
             {
               "responseId": "en:lesson-04:session-35:intro1:r2",
-              "text": "This is ramp."
+              "text": "There aren’t a ramp."
             },
             {
               "responseId": "en:lesson-04:session-35:intro1:r3",
-              "text": "These are ramps."
+              "text": "There isn’t ramp."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-35:intro1:r1",
-              "text": "This is a ramp."
+              "text": "There isn’t a ramp."
             },
             {
               "responseId": "en:lesson-04:session-35:intro1:r2",
-              "text": "This is ramp."
+              "text": "There aren’t a ramp."
             },
             {
               "responseId": "en:lesson-04:session-35:intro1:r3",
-              "text": "These are ramps."
+              "text": "There isn’t ramp."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один пандус рядом.",
-          "uk": "Назвіть один пандус поруч."
+          "ru": "Соседка ищет пандус. Скажите ей, что пандуса нет.",
+          "uk": "Сусідка шукає пандус. Скажіть їй, що пандуса немає."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Под навесом",
-        "uk": "Під навісом"
+        "ru": "Тяжёлые сумки",
+        "uk": "Важкі сумки"
       },
       "bodyByLocale": {
-        "ru": "`awning` — «навес», `photos` — «фотографии». `The ramp is under the awning` — «Пандус под навесом». `The photos are next to the door` — «Фотографии рядом с дверью». Один пандус требует `is`, несколько фотографий — `are`.",
-        "uk": "`awning` — «навіс», `photos` — «фотографії». `The ramp is under the awning` — «Пандус під навісом». `The photos are next to the door` — «Фотографії поруч із дверима». Один пандус потребує `is`, кілька фотографій — `are`."
+        "ru": "Подруга вернулась с рынка с двумя тяжёлыми сумками и вздыхает: опять подниматься. Но вход в соседнее здание ровный, подниматься не надо, и ей сразу легче. step — «ступенька». Ступенек несколько, поэтому aren’t any: There aren’t any steps — «Ступенек нет».",
+        "uk": "Подруга повернулася з ринку з двома важкими сумками й зітхає: знову підійматися. Але вхід у сусідню будівлю рівний, підійматися не треба, і їй одразу легше. step — «сходинка». Сходинок кілька, тому aren’t any: There aren’t any steps — «Сходинок немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-35:intro2:q",
         "promptByLocale": {
-          "ru": "Фотографии рядом с дверью. Выберите описание.",
-          "uk": "Фотографії поруч із дверима. Виберіть опис."
+          "ru": "Подруга спрашивает про соседний вход. Скажите ей, что ступенек нет.",
+          "uk": "Подруга питає про сусідній вхід. Скажіть їй, що сходинок немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-35:intro2:r1",
-              "text": "The photos are next to the door."
+              "text": "There aren’t any steps."
             },
             {
               "responseId": "en:lesson-04:session-35:intro2:r2",
-              "text": "The photos is next to the door."
+              "text": "There isn’t any steps."
             },
             {
               "responseId": "en:lesson-04:session-35:intro2:r3",
-              "text": "The photos are under the door."
+              "text": "There aren’t any step."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-35:intro2:r1",
-              "text": "The photos are next to the door."
+              "text": "There aren’t any steps."
             },
             {
               "responseId": "en:lesson-04:session-35:intro2:r2",
-              "text": "The photos is next to the door."
+              "text": "There isn’t any steps."
             },
             {
               "responseId": "en:lesson-04:session-35:intro2:r3",
-              "text": "The photos are under the door."
+              "text": "There aren’t any step."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Фотографии рядом с дверью. Выберите описание.",
-          "uk": "Фотографії поруч із дверима. Виберіть опис."
+          "ru": "Подруга спрашивает про соседний вход. Скажите ей, что ступенек нет.",
+          "uk": "Подруга питає про сусідній вхід. Скажіть їй, що сходинок немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Есть ли пандус",
-        "uk": "Чи є пандус"
+        "ru": "Усталый дедушка",
+        "uk": "Змучений дідусь"
       },
       "bodyByLocale": {
-        "ru": "`Is there a ramp?` — «Есть пандус?» `There isn’t a ramp` — «Пандуса нет». `There aren’t any ramps` — «Нет ни одного пандуса». `formal` — «официальный»: о характере встречи можно сказать `It is formal`, короче `It’s formal`. Это описание встречи, а вопрос с `there` — о наличии пандуса.",
-        "uk": "`Is there a ramp?` — «Є пандус?» `There isn’t a ramp` — «Пандуса немає». `There aren’t any ramps` — «Немає жодного пандуса». `formal` — «офіційний»: про характер зустрічі можна сказати `It is formal`, коротше `It’s formal`. Це опис зустрічі, а запитання з `there` — про наявність пандуса."
+        "ru": "Дедушка приехал с вами в клинику и очень устал, еле стоит на ногах. Он просит у администратора кресло на колёсах, чтобы доехать до врача, но у стойки такого кресла нет. wheelchair — «инвалидная коляска». Она одна, поэтому isn’t a: There isn’t a wheelchair.",
+        "uk": "Дідусь приїхав із вами в клініку й дуже втомився, ледве стоїть на ногах. Він просить в адміністратора крісло на колесах, щоб доїхати до лікаря, але біля стійки такого крісла немає. wheelchair — «інвалідний візок». Він один, тому isn’t a: There isn’t a wheelchair."
       },
       "question": {
         "interactionId": "en:lesson-04:session-35:intro3:q",
         "promptByLocale": {
-          "ru": "Встреча проходит в строгом официальном формате. Выберите описание с сокращением.",
-          "uk": "Зустріч проходить у строгому офіційному форматі. Виберіть опис зі скороченням."
+          "ru": "Дедушка просит коляску. Скажите ему, что коляски нет.",
+          "uk": "Дідусь просить візок. Скажіть йому, що візка немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-35:intro3:r1",
-              "text": "It's formal."
+              "text": "There isn’t a wheelchair."
             },
             {
               "responseId": "en:lesson-04:session-35:intro3:r2",
-              "text": "It's informal."
+              "text": "There aren’t any wheelchair."
             },
             {
               "responseId": "en:lesson-04:session-35:intro3:r3",
-              "text": "It are formal."
+              "text": "There isn’t wheelchair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-35:intro3:r1",
-              "text": "It's formal."
+              "text": "There isn’t a wheelchair."
             },
             {
               "responseId": "en:lesson-04:session-35:intro3:r2",
-              "text": "It's informal."
+              "text": "There aren’t any wheelchair."
             },
             {
               "responseId": "en:lesson-04:session-35:intro3:r3",
-              "text": "It are formal."
+              "text": "There isn’t wheelchair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Встреча проходит в строгом официальном формате. Выберите описание с сокращением.",
-          "uk": "Зустріч проходить у строгому офіційному форматі. Виберіть опис зі скороченням."
+          "ru": "Дедушка просит коляску. Скажите ему, что коляски нет.",
+          "uk": "Дідусь просить візок. Скажіть йому, що візка немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "56c474582721254866a0a2ca546bd0e219b695a6381df1f669d7db52856a9aa4"
+  "introFingerprint": "9d6dc7b95fe49f642ff62756aac25411fc9ff016f6aff6b0d139804afbc195e2"
 }

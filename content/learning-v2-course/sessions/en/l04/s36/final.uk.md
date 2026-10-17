@@ -1,137 +1,152 @@
-# Англійська · Урок 4 · Заняття 36 — Неформальна зустріч
+# Англійська · Урок 4 · Заняття 36 — Аркуш безпеки
 
-**Ситуація.** Ви прийшли на дружню зустріч у новому приміщенні. Друг показує пожежний сповіщувач, діти розглядають фотографії, а ви пояснюєте гостю, де вхід у провулку.
+**Ситуація.** Інспектор диктує вам аркуш безпеки для нової квартири, а ви записуєте, чого в ній немає. Ви вчитеся чути різницю: isn’t звучить, коли предмет один, aren’t — коли їх кілька.
 
-**Що ви опануєте:** назвати димовий пожежний сповіщувач і запитати про його наявність
-**Нові слова:** smoke alarm
+**Що ви опануєте:** на слух розрізнити isn’t для одного предмета й aren’t для кількох
+**Нові слова:** smoke alarm, fire extinguisher, torch, fuse box
+**Повертаються:** hall, wall, door, ceiling, cupboard, battery, socket, box
 
 ---
 
 ## Інтро 1
 
-### Сигнал у разі диму
+### Тиша під стелею
 
-`smoke alarm` — «димовий пожежний сповіщувач»: пристрій, який подає звуковий сигнал у разі виявлення диму. Два слова називають один прилад: `a smoke alarm`. `This is a smoke alarm` — «Це димовий пожежний сповіщувач». Навіть якщо сигнал чують десятеро гостей, прилад залишається один.
+Інспектор іде коридором з аркушем безпеки й піднімає очі до стелі. Там має висіти кругла біла коробочка, яка голосно пищить, якщо в домі дим, але стеля гладенька. smoke alarm — «датчик диму». There isn’t a smoke alarm — «Датчика диму немає».
 
-**Назвіть один такий прилад поруч.**
+**Інспектор диктує аркуш. Скажіть йому, що датчика диму немає.**
 
-- ✅ **This is a smoke alarm.**
-- ❌ This is smoke alarm. — *Перед одним приладом потрібне `a`: `a smoke alarm`.*
-- ❌ These are smoke alarms. — *Тут один прилад: `This is a smoke alarm`.*
+- ✅ **There isn’t a smoke alarm.**
+- ❌ There aren’t any smoke alarms. — *Ви говорите про один датчик, тому isn’t a, а не aren’t any.*
+- ❌ There is a smoke alarm. — *is означає «є», а датчика немає: потрібно isn’t.*
 
 ---
 
 ## Інтро 2
 
-### Діти й провулок
+### Червоний балон
 
-`children` — «діти», `alley` — «вузький провулок». `The children are next to the table` — «Діти поруч зі столом». `The door is in the alley` — «Двері в провулку». З `children` потрібне `are`: це кілька дітей, хоча закінчення `s` немає.
+Сусід по сходовому майданчику питає, що робити, якщо загориться кухня. Ви обоє шукаєте на стіні червоний балон зі шлангом, з якого йде піна, але стіна порожня. fire extinguisher — «вогнегасник». There isn’t a fire extinguisher — «Вогнегасника немає».
 
-**Діти поруч зі столом. Виберіть опис.**
+**Сусід шукає вогнегасник. Скажіть йому, що вогнегасника немає.**
 
-- ✅ **The children are next to the table.**
-- ❌ The children is next to the table. — *`children` — кілька дітей: потрібне `are`.*
-- ❌ The children are under the table. — *`under` — під; тут поруч: `next to`.*
+- ✅ **There isn’t a fire extinguisher.**
+- ❌ There isn’t an fire extinguisher. — *Слово fire починається з приголосного звуку, тому потрібно a, а не an.*
+- ❌ There aren’t a fire extinguisher. — *Вогнегасник один, тому потрібно isn’t, а не aren’t.*
 
 ---
 
 ## Інтро 3
 
-### Неформально, але зрозуміло
+### Світло згасло
 
-`informal` — «неформальний». Дружня зустріч без строгого офіційного формату: `It is informal`, коротше `It’s informal`. Про прилад можна запитати: `Is there a smoke alarm?` — «Є димовий пожежний сповіщувач?» Якщо його немає: `There isn’t a smoke alarm`. `There aren’t any smoke alarms` — «Немає жодного димового пожежного сповіщувача».
+У під’їзді згасло світло, і подруга просить вас знайти в шухляді маленькі лампи з кнопкою, які тримають у руці. Ви нишпорите в шухляді, але там порожньо. torch — «ліхтарик». Ліхтариків зазвичай кілька, тому чути aren’t: There aren’t any torches — «Ліхтариків немає».
 
-**Зустріч дружня, без строгого офіційного формату. Виберіть опис зі скороченням.**
+**Подруга шукає ліхтарики. Скажіть їй, що ліхтариків немає.**
 
-- ✅ **It's informal.**
-- ❌ It's formal. — *`formal` — у строгому офіційному форматі; тут `informal`.*
-- ❌ It are informal. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **There aren’t any torches.**
+- ❌ There isn’t any torches. — *Ліхтарики — кілька предметів, тому потрібно aren’t, а не isn’t.*
+- ❌ There aren’t any torch. — *Після any слово ставлять у множині: torches.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Зустріч дружня, без строгого офіційного формату. Скажіть без скорочення**
-<!-- interaction_id: en:lesson-04:session-36:i01; family: phrase_builder -->
-Плитки: `informal` `is` `It` `are` → **It is informal.**
-*(плитка `are` зайва: тут потрібно `is` — `It is informal.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-36:i01; family: speed_match -->
+smoke alarm — датчик диму · fire extinguisher — вогнегасник · torch — ліхтарик · fuse box — електрощиток
 
-**2 · Послухайте й виберіть назву**
-<!-- interaction_id: en:lesson-04:session-36:i02; family: listen_choose -->
-🔊 *smoke alarm* → **smoke alarm** · smoke alarms · doorbell
-- smoke alarms — *У записі останнє слово — `alarm`, а в цьому варіанті — `alarms`.*
-- doorbell — *У записі перше слово — `smoke`, а в цьому варіанті — `doorbell`.*
+**2 · Картка слова — smoke alarm**
+<!-- interaction_id: en:lesson-04:session-36:word:smoke alarm; family: word_card -->
+> **smoke alarm** — датчик диму. There isn’t a smoke alarm. — «Датчика диму немає». Про коробочку під стелею, яка пищить, якщо в домі дим.
 
-**3 · Назвіть прилад, що подає сигнал у разі диму**
-<!-- interaction_id: en:lesson-04:session-36:i03; family: context_gap_grammar -->
-___ → **smoke alarm** · doorbell · handrail
-- doorbell — *`doorbell` — дверний дзвінок; тут `smoke alarm`.*
-- handrail — *`handrail` — поручень; тут `smoke alarm`.*
+**3 · Інспектор показує під стелею круглу білу коробочку, яка пищить від диму, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-36:i02; family: scripted_repeat_compare -->
+🎙 **smoke alarm**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-36:i04; family: speed_match -->
-smoke alarm — димовий пожежний сповіщувач · informal — неформальний · children — діти · alley — вузький провулок
+**4 · Інспектор диктує аркуш. Скажіть йому повною фразою: у холі немає датчика диму**
+<!-- interaction_id: en:lesson-04:session-36:i03; family: phrase_builder -->
+Плитки: `smoke` `alarm` `a` `in` `the` `hall` `isn’t` `There` `aren’t` → **There isn’t a smoke alarm in the hall.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a smoke alarm in the hall.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-36:i05; family: listen_build_dictation -->
-🔊 *This is a smoke alarm.* Плитки: `alarm` `smoke` `a` `is` `This` `are` → **This is a smoke alarm.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a smoke alarm.`)*
+**5 · Картка слова — fire extinguisher**
+<!-- interaction_id: en:lesson-04:session-36:word:fire extinguisher; family: word_card -->
+> **fire extinguisher** — вогнегасник. There isn’t a fire extinguisher. — «Вогнегасника немає». Про червоний балон, з якого під час пожежі йде піна.
 
-**6 · Діти поруч зі столом. Скажіть, де вони**
-<!-- interaction_id: en:lesson-04:session-36:i06; family: phrase_builder -->
-Плитки: `table` `the` `to` `next` `are` `children` `The` `is` → **The children are next to the table.**
-*(плитка `is` зайва: тут потрібно `are` — `The children are next to the table.`)*
+**6 · Сусід показує червоний балон на стіні, з якого під час пожежі йде піна. Як він називається англійською?**
+<!-- interaction_id: en:lesson-04:session-36:i04; family: context_gap_grammar -->
+___ → **fire extinguisher** · lamp · bucket
+- lamp — *lamp — це лампа, а червоний балон із піною називається fire extinguisher.*
+- bucket — *bucket — це відро, а червоний балон із піною називається fire extinguisher.*
 
-**7 · Друг запитує про формат зустрічі. Вона дружня, неформальна. Дайте відповідь зі скороченням**
-<!-- interaction_id: en:lesson-04:session-36:i07; family: scripted_repeat_compare -->
-🎙 **It's informal.**
+**7 · Послухайте інспектора**
+<!-- interaction_id: en:lesson-04:session-36:i05; family: listen_choose -->
+🔊 *There isn’t a fire extinguisher.* → **There isn’t a fire extinguisher.** · There isn’t a smoke alarm. · There aren’t any fire extinguishers.
+- There isn’t a smoke alarm. — *У записі `fire extinguisher`, а в цьому варіанті `smoke alarm`.*
+- There aren’t any fire extinguishers. — *У записі `isn’t a` — один, а в цьому варіанті `aren’t any` — кілька.*
 
-**8 · Димового пожежного сповіщувача немає. Виберіть форму**
+**8 · Картка слова — torch**
+<!-- interaction_id: en:lesson-04:session-36:word:torch; family: word_card -->
+> **torch** — ліхтарик. There aren’t any torches. — «Ліхтариків немає». Про маленьку ручну лампу з кнопкою, яка світить у темряві.
+
+**9 · Подруга показує маленьку ручну лампу з кнопкою, яка світить у темряві, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-36:i06; family: scripted_repeat_compare -->
+🎙 **torch**
+
+**10 · Послухайте подругу й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-36:i07; family: listen_build_dictation -->
+🔊 *There aren’t any torches in the cupboard.* Плитки: `torches` `any` `in` `the` `cupboard` `aren’t` `There` `isn’t` → **There aren’t any torches in the cupboard.**
+*(плитка `isn’t` зайва: тут потрібно `aren’t` — `There aren’t any torches in the cupboard.`)*
+
+**11 · Картка слова — fuse box**
+<!-- interaction_id: en:lesson-04:session-36:word:fuse box; family: word_card -->
+> **fuse box** — електрощиток. There isn’t a fuse box. — «Електрощитка немає». Про сіру коробку на стіні, у якій зібрані пробки світла в квартирі.
+
+**12 · Господар відчиняє сіру коробку на стіні, де зібрані пробки світла в квартирі. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-36:i08; family: context_gap_grammar -->
-There ___ a smoke alarm. → **isn't** · is · aren't
-- is — *`is` повідомляє про наявність; тут відсутність: `isn’t`.*
-- aren't — *Один прилад: `isn’t a smoke alarm`.*
+___ → **fuse box** · socket · switch
+- socket — *socket — це розетка, а сіра коробка з пробками називається fuse box.*
+- switch — *switch — це вимикач, а сіра коробка з пробками називається fuse box.*
 
-**9 · Послухайте, де двері**
-<!-- interaction_id: en:lesson-04:session-36:i09; family: listen_choose -->
-🔊 *The door is in the alley.* → **The door is in the alley.** · The door is in the hotel. · The door is in the shop.
-- The door is in the hotel. — *У записі останнє слово — `alley`, а в цьому варіанті — `hotel`.*
-- The door is in the shop. — *У записі останнє слово — `alley`, а в цьому варіанті — `shop`.*
+**13 · Інспектор шукає щиток. Скажіть йому повною фразою: на стіні немає електрощитка**
+<!-- interaction_id: en:lesson-04:session-36:i09; family: phrase_builder -->
+Плитки: `fuse` `box` `a` `on` `the` `wall` `isn’t` `There` `aren’t` → **There isn’t a fuse box on the wall.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a fuse box on the wall.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-36:i10; family: speed_match -->
-smoke alarm — димовий пожежний сповіщувач · informal — неформальний · children — діти · alley — вузький провулок
+fuse box — електрощиток · torch — ліхтарик · battery — батарейка · socket — розетка
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-36:i11; family: listen_build_dictation -->
-🔊 *There aren't any smoke alarms.* Плитки: `alarms` `smoke` `any` `aren't` `There` → **There aren't any smoke alarms.**
+**15 · Послухайте подругу**
+<!-- interaction_id: en:lesson-04:session-36:i11; family: listen_choose -->
+🔊 *There aren’t any batteries.* → **There aren’t any batteries.** · There isn’t a battery. · There aren’t any sockets.
+- There isn’t a battery. — *У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — одна.*
+- There aren’t any sockets. — *У записі `batteries`, а в цьому варіанті `sockets`.*
 
-**12 · Тут є димовий пожежний сповіщувач. Повідомте про це**
-<!-- interaction_id: en:lesson-04:session-36:i12; family: phrase_builder -->
-Плитки: `alarm` `smoke` `a` `is` `There` `are` → **There is a smoke alarm.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a smoke alarm.`)*
+**16 · Подруга зазирнула в коробку: ліхтариків там немає. Виберіть потрібне слово**
+<!-- interaction_id: en:lesson-04:session-36:i12; family: context_gap_grammar -->
+There ___ any torches in the box. → **aren’t** · isn’t · is
+- isn’t — *Ліхтарики — кілька предметів, тому потрібно aren’t, а не isn’t.*
+- is — *is означає «є», а ліхтариків немає: потрібно aren’t.*
 
-**13 · Ви ще не оглянули кімнату. Запитайте, чи є димовий пожежний сповіщувач**
-<!-- interaction_id: en:lesson-04:session-36:i13; family: scripted_repeat_compare -->
-🎙 **Is there a smoke alarm?**
+**17 · Послухайте інспектора й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-36:i13; family: listen_build_dictation -->
+🔊 *There isn’t a socket in the hall.* Плитки: `socket` `a` `in` `the` `hall` `isn’t` `There` `aren’t` → **There isn’t a socket in the hall.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a socket in the hall.`)*
 
-**14 · Діти в кімнаті. Виберіть форму**
-<!-- interaction_id: en:lesson-04:session-36:i14; family: context_gap_grammar -->
-The children ___ in the room. → **are** · is · am
-- is — *`children` — діти, кілька людей: `are`.*
-- am — *`am` використовують з I; з children потрібне `are`.*
+**18 · Інспектор диктує аркуш. Скажіть йому: «На стіні немає розеток»**
+<!-- interaction_id: en:lesson-04:session-36:i14; family: scripted_repeat_compare -->
+🎙 **There aren’t any sockets on the wall.**
 
-**15 · Послухайте, що показує друг**
-<!-- interaction_id: en:lesson-04:session-36:i15; family: listen_choose -->
-🔊 *That is a smoke alarm.* → **That is a smoke alarm.** · This is a smoke alarm. · There is a smoke alarm.
-- This is a smoke alarm. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- There is a smoke alarm. — *У записі перше слово — `That`, а в цьому варіанті — `There`.*
+**19 · Господар перевіряє вихід. Скажіть йому повною фразою: біля дверей немає вогнегасника**
+<!-- interaction_id: en:lesson-04:session-36:i15; family: phrase_builder -->
+Плитки: `fire` `extinguisher` `a` `near` `the` `door` `isn’t` `There` `aren’t` → **There isn’t a fire extinguisher near the door.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a fire extinguisher near the door.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-36:i16; family: speed_match -->
-smoke alarm — димовий пожежний сповіщувач · informal — неформальний · children — діти · alley — вузький провулок
+smoke alarm — датчик диму · fire extinguisher — вогнегасник · torch — ліхтарик · fuse box — електрощиток
 
-**17 · В іншому приміщенні такого приладу немає. Повідомте «Димового пожежного сповіщувача немає»**
+**21 · В іншій квартирі інспектор шукає датчик диму. Скажіть йому: «Датчика диму тут немає»**
 <!-- interaction_id: en:lesson-04:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There isn't a smoke alarm.**
-
+🎙 **There isn’t a smoke alarm here.**

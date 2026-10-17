@@ -1,137 +1,152 @@
-# Англійська · Урок 4 · Заняття 37 — Посилка біля зупинки
+# Англійська · Урок 4 · Заняття 37 — Двір без шафи для посилок
 
-**Ситуація.** Ви шукаєте поштомат поруч з автобусною зупинкою. Друг чекає біля машини й уточнює, чи офіційно підтверджено інформацію про нове місце видачі.
+**Ситуація.** Ви оглядаєте зону доставки біля нового будинку: сусідка чекає посилку, кур’єр привіз багато коробок, а управитель хоче навести лад. Ви вибираєте: про один предмет isn’t a, про кілька aren’t any.
 
-**Що ви опануєте:** назвати поштомат, запитати про його наявність і пояснити розташування
-**Нові слова:** parcel locker
+**Що ви опануєте:** вибрати isn’t a або aren’t any за кількістю предметів
+**Нові слова:** parcel locker, pallet, crate, loading bay
+**Повертаються:** parcel, box, label, trolley, yard, entrance, door, building
 
 ---
 
 ## Інтро 1
 
-### Посилка в комірці
+### Куди складуть посилки
 
-`parcel locker` — «поштомат»: пристрій із комірками для отримання чи відправлення посилок. Два слова називають один об’єкт: `a parcel locker`. `This is a parcel locker` — «Це поштомат». У поштомата може бути багато дверцят, але адреса для зустрічі все одно одна.
+Сусідка чекає посилку й боїться, що кур’єр залишить її під дощем. Вона шукає у дворі залізну шафу з комірками, куди кур’єр кладе посилки, поки нікого немає вдома. parcel locker — «поштомат». Він один: There isn’t a parcel locker — «Поштомату немає».
 
-**Назвіть один поштомат поруч.**
+**Сусідка шукає шафу для посилок. Скажіть їй, що поштомату немає.**
 
-- ✅ **This is a parcel locker.**
-- ❌ This is parcel locker. — *Перед одним поштоматом потрібне `a`: `a parcel locker`.*
-- ❌ These are parcel lockers. — *Тут один поштомат: `This is a parcel locker`.*
+- ✅ **There isn’t a parcel locker.**
+- ❌ There aren’t any parcel lockers. — *Ви говорите про один поштомат, тому isn’t a, а не aren’t any.*
+- ❌ There isn’t parcel locker. — *Поштомат один, тому після isn’t потрібно a: isn’t a parcel locker.*
 
 ---
 
 ## Інтро 2
 
-### Зупинка й машина
+### Багато коробок
 
-`bus stop` — «автобусна зупинка», `car` — «машина». `The parcel locker is next to the bus stop` — «Поштомат поруч із зупинкою». `The car is next to the shop` — «Машина поруч із магазином». `next to` допомагає назвати сусідній орієнтир.
+Кур’єр привіз у двір десятки коробок для всього будинку. Ставити їх просто на мокру землю не можна, і він шукає пласкі дерев’яні платформи, на які коробки піднімають. pallet — «піддон». Їх потрібно кілька: There aren’t any pallets — «Піддонів немає».
 
-**Машина поруч із магазином. Виберіть опис.**
+**Кур’єр шукає піддони. Скажіть йому, що піддонів немає.**
 
-- ✅ **The car is next to the shop.**
-- ❌ The car is in the shop. — *`in` — усередині; тут поруч: `next to`.*
-- ❌ The car are next to the shop. — *Одна машина: `The car is`.*
+- ✅ **There aren’t any pallets.**
+- ❌ There isn’t any pallets. — *Піддони — кілька предметів, тому потрібно aren’t, а не isn’t.*
+- ❌ There aren’t any pallet. — *Після any слово ставлять у множині: pallets.*
 
 ---
 
 ## Інтро 3
 
-### Підтверджено офіційно
+### Банки й пляшки
 
-`official` — «офіційний»: наприклад, інформацію підтвердила відповідальна організація, а не передали як чутку. `It is official` — «Це офіційно», коротше `It’s official`. `Is there a parcel locker?` — «Є поштомат?» Якщо його немає: `There isn’t a parcel locker`. `There aren’t any parcel lockers` — «Немає жодного поштомата».
+Управитель двору збирає порожні банки й пляшки, щоб відвезти їх на переробку. Йому потрібен один великий дерев’яний ящик зі щілинами в стінках, але він не може його знайти. Не нести ж пляшки в руках. crate — «ящик». There isn’t a crate — «Ящика немає».
 
-**Організація підтвердила інформацію. Скажіть «Це офіційно» зі скороченням.**
+**Управитель шукає ящик. Скажіть йому, що ящика немає.**
 
-- ✅ **It's official.**
-- ❌ It's unofficial. — *`unofficial` — неофіційно; тут інформація офіційна: `official`.*
-- ❌ It are official. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **There isn’t a crate.**
+- ❌ There isn’t an crate. — *Слово crate починається з приголосного звуку, тому потрібно a, а не an.*
+- ❌ There aren’t a crate. — *Ящик один, тому потрібно isn’t, а не aren’t.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Інформацію офіційно підтверджено. Скажіть «Це офіційно» без скорочення**
-<!-- interaction_id: en:lesson-04:session-37:i01; family: phrase_builder -->
-Плитки: `official` `is` `It` `are` → **It is official.**
-*(плитка `are` зайва: тут потрібно `is` — `It is official.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-37:i01; family: speed_match -->
+parcel locker — поштомат (шафа для посилок) · pallet — піддон · crate — ящик (для вантажу) · loading bay — майданчик для розвантаження
 
-**2 · Послухайте й виберіть назву**
-<!-- interaction_id: en:lesson-04:session-37:i02; family: listen_choose -->
-🔊 *parcel locker* → **parcel locker** · parcel lockers · doorbell
-- parcel lockers — *У записі останнє слово — `locker`, а в цьому варіанті — `lockers`.*
-- doorbell — *У записі перше слово — `parcel`, а в цьому варіанті — `doorbell`.*
+**2 · Картка слова — parcel locker**
+<!-- interaction_id: en:lesson-04:session-37:word:parcel locker; family: word_card -->
+> **parcel locker** — поштомат. There isn’t a parcel locker. — «Поштомату немає». Про шафу з комірками, до якої кур’єр кладе посилки для мешканців.
 
-**3 · Назвіть поштомат**
-<!-- interaction_id: en:lesson-04:session-37:i03; family: context_gap_grammar -->
-___ → **parcel locker** · bus stop · car park
-- bus stop — *`bus stop` — зупинка; поштомат — `parcel locker`.*
-- car park — *`car park` — парковка; поштомат — `parcel locker`.*
+**3 · Сусідка показує залізну шафу з комірками для посилок, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-37:i02; family: scripted_repeat_compare -->
+🎙 **parcel locker**
 
-**4 · З’єднайте назви зі значеннями**
-<!-- interaction_id: en:lesson-04:session-37:i04; family: speed_match -->
-parcel locker — поштомат · official — офіційний · car — машина · bus stop — автобусна зупинка
+**4 · Кур’єр шукає, куди покласти посилки. Скажіть йому повною фразою: у дворі немає поштомата**
+<!-- interaction_id: en:lesson-04:session-37:i03; family: phrase_builder -->
+Плитки: `parcel` `locker` `a` `in` `the` `yard` `isn’t` `There` `aren’t` → **There isn’t a parcel locker in the yard.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a parcel locker in the yard.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-37:i05; family: listen_build_dictation -->
-🔊 *This is a parcel locker.* Плитки: `locker` `parcel` `a` `is` `This` `are` → **This is a parcel locker.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a parcel locker.`)*
+**5 · Картка слова — pallet**
+<!-- interaction_id: en:lesson-04:session-37:word:pallet; family: word_card -->
+> **pallet** — піддон. There aren’t any pallets. — «Піддонів немає». Про пласку дерев’яну платформу, на яку ставлять коробки.
 
-**6 · Машина поруч із магазином. Скажіть, де вона**
-<!-- interaction_id: en:lesson-04:session-37:i06; family: phrase_builder -->
-Плитки: `shop` `the` `to` `next` `is` `car` `The` `are` → **The car is next to the shop.**
-*(плитка `are` зайва: тут потрібно `is` — `The car is next to the shop.`)*
+**6 · Кур’єр ставить коробки на пласку дерев’яну платформу, щоб їх підняти навантажувачем. Як вона називається англійською?**
+<!-- interaction_id: en:lesson-04:session-37:i04; family: context_gap_grammar -->
+___ → **pallet** · shelf · tray
+- shelf — *shelf — це полиця, а пласка дерев’яна платформа для коробок називається pallet.*
+- tray — *tray — це піднос, а пласка дерев’яна платформа для коробок називається pallet.*
 
-**7 · Друг вважає інформацію чуткою, але організація її підтвердила. Скажіть «Це офіційно» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-37:i07; family: scripted_repeat_compare -->
-🎙 **It's official.**
+**7 · Послухайте кур’єра**
+<!-- interaction_id: en:lesson-04:session-37:i05; family: listen_choose -->
+🔊 *There aren’t any pallets.* → **There aren’t any pallets.** · There aren’t any boxes. · There isn’t a pallet.
+- There aren’t any boxes. — *У записі `pallets`, а в цьому варіанті `boxes`.*
+- There isn’t a pallet. — *У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — один.*
 
-**8 · Поштомата немає. Виберіть форму**
+**8 · Картка слова — crate**
+<!-- interaction_id: en:lesson-04:session-37:word:crate; family: word_card -->
+> **crate** — ящик. There isn’t a crate. — «Ящика немає». Про великий дерев’яний або пластиковий ящик для вантажу.
+
+**9 · Управитель показує великий дерев’яний ящик зі щілинами для пляшок, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-37:i06; family: scripted_repeat_compare -->
+🎙 **crate**
+
+**10 · Послухайте управителя й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-37:i07; family: listen_build_dictation -->
+🔊 *There isn’t a crate near the door.* Плитки: `crate` `a` `near` `the` `door` `isn’t` `There` `aren’t` → **There isn’t a crate near the door.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a crate near the door.`)*
+
+**11 · Картка слова — loading bay**
+<!-- interaction_id: en:lesson-04:session-37:word:loading bay; family: word_card -->
+> **loading bay** — майданчик для розвантаження. There isn’t a loading bay. — «Майданчика для розвантаження немає». Про місце біля будівлі, де машина зупиняється й розвантажує вантаж.
+
+**12 · Кур’єр шукає місце біля будівлі, де машина зупиняється й розвантажує вантаж. Як воно називається англійською?**
 <!-- interaction_id: en:lesson-04:session-37:i08; family: context_gap_grammar -->
-There ___ a parcel locker. → **isn't** · is · aren't
-- is — *`is` повідомляє про наявність; тут відсутність: `isn’t`.*
-- aren't — *Один поштомат: `isn’t a parcel locker`.*
+___ → **loading bay** · entrance · yard
+- entrance — *entrance — це вхід, а місце, де машина розвантажує вантаж, називається loading bay.*
+- yard — *yard — це двір, а місце, де машина розвантажує вантаж, називається loading bay.*
 
-**9 · Послухайте, де зупинка**
-<!-- interaction_id: en:lesson-04:session-37:i09; family: listen_choose -->
-🔊 *The bus stop is next to the hotel.* → **The bus stop is next to the hotel.** · The bus stop is next to the shop. · The bus stop is next to the gym.
-- The bus stop is next to the shop. — *У записі останнє слово — `hotel`, а в цьому варіанті — `shop`.*
-- The bus stop is next to the gym. — *У записі останнє слово — `hotel`, а в цьому варіанті — `gym`.*
+**13 · Кур’єр шукає розвантаження. Скажіть йому повною фразою: за будівлею немає майданчика для розвантаження**
+<!-- interaction_id: en:lesson-04:session-37:i09; family: phrase_builder -->
+Плитки: `loading` `bay` `a` `behind` `the` `building` `isn’t` `There` `aren’t` → **There isn’t a loading bay behind the building.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a loading bay behind the building.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-37:i10; family: speed_match -->
-parcel locker — поштомат · official — офіційний · car — машина · bus stop — автобусна зупинка
+loading bay — майданчик для розвантаження · crate — ящик (для вантажу) · parcel — посилка · trolley — візок для покупок
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-37:i11; family: listen_build_dictation -->
-🔊 *There aren't any parcel lockers.* Плитки: `lockers` `parcel` `any` `aren't` `There` → **There aren't any parcel lockers.**
+**15 · Послухайте сусідку**
+<!-- interaction_id: en:lesson-04:session-37:i11; family: listen_choose -->
+🔊 *There aren’t any parcels.* → **There aren’t any parcels.** · There isn’t a parcel. · There aren’t any boxes.
+- There isn’t a parcel. — *У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — одна.*
+- There aren’t any boxes. — *У записі `parcels`, а в цьому варіанті `boxes`.*
 
-**12 · Тут є поштомат. Повідомте про це**
-<!-- interaction_id: en:lesson-04:session-37:i12; family: phrase_builder -->
-Плитки: `locker` `parcel` `a` `is` `There` `are` → **There is a parcel locker.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a parcel locker.`)*
+**16 · Управитель зазирнув у двір: ящиків там немає. Виберіть потрібне слово**
+<!-- interaction_id: en:lesson-04:session-37:i12; family: context_gap_grammar -->
+There ___ any crates in the yard. → **aren’t** · isn’t · is
+- isn’t — *Ящики — кілька предметів, тому потрібно aren’t, а не isn’t.*
+- is — *is означає «є», а ящиків немає: потрібно aren’t.*
 
-**13 · Ви в новому районі. Запитайте, чи є поштомат**
-<!-- interaction_id: en:lesson-04:session-37:i13; family: scripted_repeat_compare -->
-🎙 **Is there a parcel locker?**
+**17 · Послухайте управителя й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-37:i13; family: listen_build_dictation -->
+🔊 *There aren’t any trolleys near the entrance.* Плитки: `trolleys` `any` `near` `the` `entrance` `aren’t` `There` `isn’t` → **There aren’t any trolleys near the entrance.**
+*(плитка `isn’t` зайва: тут потрібно `aren’t` — `There aren’t any trolleys near the entrance.`)*
 
-**14 · Машина між двома магазинами, не всередині й не під ними. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-37:i14; family: context_gap_grammar -->
-The car is ___ the shops. → **between** · in · under
-- in — *`in` — усередині; між — `between`.*
-- under — *`under` — під; між — `between`.*
+**18 · Кур’єр питає про склад. Скажіть йому: «Тут немає піддонів»**
+<!-- interaction_id: en:lesson-04:session-37:i14; family: scripted_repeat_compare -->
+🎙 **There aren’t any pallets here.**
 
-**15 · Послухайте, що показує друг**
-<!-- interaction_id: en:lesson-04:session-37:i15; family: listen_choose -->
-🔊 *That is a parcel locker.* → **That is a parcel locker.** · This is a parcel locker. · There is a parcel locker.
-- This is a parcel locker. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- There is a parcel locker. — *У записі перше слово — `That`, а в цьому варіанті — `There`.*
+**19 · Сусідка перевіряє посилку. Скажіть їй повною фразою: на коробці немає наклейки**
+<!-- interaction_id: en:lesson-04:session-37:i15; family: phrase_builder -->
+Плитки: `label` `a` `on` `the` `box` `isn’t` `There` `aren’t` → **There isn’t a label on the box.**
+*(плитка `aren’t` зайва: тут потрібно `isn’t` — `There isn’t a label on the box.`)*
 
-**16 · З’єднайте назви зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-37:i16; family: speed_match -->
-parcel locker — поштомат · official — офіційний · car — машина · bus stop — автобусна зупинка
+parcel locker — поштомат (шафа для посилок) · pallet — піддон · crate — ящик (для вантажу) · loading bay — майданчик для розвантаження
 
-**17 · В іншому місті друг шукає поштомат. Він поруч із готелем. Скажіть «Поштомат поруч із готелем»**
+**21 · В іншому дворі кур’єр шукає шафу для посилок. Скажіть йому: «Поштомата тут немає»**
 <!-- interaction_id: en:lesson-04:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The parcel locker is next to the hotel.**
-
+🎙 **There isn’t a parcel locker here.**

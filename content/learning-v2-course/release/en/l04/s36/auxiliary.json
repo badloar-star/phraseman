@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-36:intro1:r2": {
-          "ru": "Перед одним прибором нужно `a`: `a smoke alarm`.",
-          "uk": "Перед одним приладом потрібне `a`: `a smoke alarm`."
+          "ru": "Вы говорите об одном датчике, поэтому isn’t a, а не aren’t any.",
+          "uk": "Ви говорите про один датчик, тому isn’t a, а не aren’t any."
         },
         "en:lesson-04:session-36:intro1:r3": {
-          "ru": "Здесь один прибор: `This is a smoke alarm`.",
-          "uk": "Тут один прилад: `This is a smoke alarm`."
+          "ru": "is значит «есть», а датчика нет: нужно isn’t.",
+          "uk": "is означає «є», а датчика немає: потрібно isn’t."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-36:intro2:r2": {
-          "ru": "`children` — несколько детей: нужно `are`.",
-          "uk": "`children` — кілька дітей: потрібне `are`."
+          "ru": "Слово fire начинается с согласного звука, поэтому нужно a, а не an.",
+          "uk": "Слово fire починається з приголосного звуку, тому потрібно a, а не an."
         },
         "en:lesson-04:session-36:intro2:r3": {
-          "ru": "`under` — под; здесь рядом: `next to`.",
-          "uk": "`under` — під; тут поруч: `next to`."
+          "ru": "Огнетушитель один, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Вогнегасник один, тому потрібно isn’t, а не aren’t."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-36:intro3:r2": {
-          "ru": "`formal` — в строгом официальном формате; здесь `informal`.",
-          "uk": "`formal` — у строгому офіційному форматі; тут `informal`."
+          "ru": "Фонарики — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Ліхтарики — кілька предметів, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-36:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "После any слово ставят во множественном числе: torches.",
+          "uk": "Після any слово ставлять у множині: torches."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b8220bf64ec5961f6e7a44e92658a64420045c882e1db6e46b7d5b2e174f8320"
+  "auxiliaryFingerprint": "f23566a727ccf5d61c6e352eda839339045a126d18b690ece9464de0589168e8"
 }

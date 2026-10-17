@@ -1,0 +1,2389 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-35:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-35:i01:p1",
+              "target": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус",
+                "uk": "пандус"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i01:p2",
+              "target": "step",
+              "meaningByLocale": {
+                "ru": "ступенька",
+                "uk": "сходинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i01:p3",
+              "target": "wheelchair",
+              "meaningByLocale": {
+                "ru": "инвалидная коляска",
+                "uk": "інвалідний візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i01:p4",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ramp",
+            "step",
+            "wheelchair",
+            "kerb"
+          ],
+          "rightColumn": [
+            "пандус",
+            "ступенька",
+            "инвалидная коляска",
+            "бордюр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:ramp",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ramp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:ramp:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ramp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:ramp:audio",
+            "transcript": "ramp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:ramp:r1",
+              "targetText": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус. There isn’t a ramp. — «Пандуса нет». О пологом подъёме вместо ступенек, по которому въезжают с коляской.",
+                "uk": "пандус. There isn’t a ramp. — «Пандуса немає». Про похилий підйом замість сходинок, яким в’їжджають із візком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ramp",
+            "definitionByLocale": {
+              "ru": "пандус. There isn’t a ramp. — «Пандуса нет». О пологом подъёме вместо ступенек, по которому въезжают с коляской.",
+              "uk": "пандус. There isn’t a ramp. — «Пандуса немає». Про похилий підйом замість сходинок, яким в’їжджають із візком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка с коляской показывает пологий подъём вместо ступенек, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Соседка с коляской показывает пологий подъём вместо ступенек, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i02:audio",
+            "transcript": "ramp"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "ramp",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка спрашивает про вход. Скажите ей полной фразой: у входа нет пандуса",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка спрашивает про вход. Скажите ей полной фразой: у входа нет пандуса",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a ramp at the entrance.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает про вход. Скажите ей полной фразой: у входа нет пандуса",
+            "uk": "Сусідка питає про вхід. Скажіть їй повною фразою: біля входу немає пандуса"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "ramp",
+            "at",
+            "the",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка спрашивает про вход. Скажите ей полной фразой: у входа нет пандуса",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a ramp at the entrance.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a ramp at the entrance.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:step",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — step",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:step:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — step",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:step:audio",
+            "transcript": "step"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:step:r1",
+              "targetText": "step",
+              "meaningByLocale": {
+                "ru": "ступенька. There aren’t any steps. — «Ступенек нет». О каждой плоской перекладине лестницы, на которую ставят ногу.",
+                "uk": "сходинка. There aren’t any steps. — «Сходинок немає». Про кожну пласку перекладину сходів, на яку ставлять ногу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "step",
+            "definitionByLocale": {
+              "ru": "ступенька. There aren’t any steps. — «Ступенек нет». О каждой плоской перекладине лестницы, на которую ставят ногу.",
+              "uk": "сходинка. There aren’t any steps. — «Сходинок немає». Про кожну пласку перекладину сходів, на яку ставлять ногу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Управляющий показывает на лестнице одну плоскую перекладину, на которую ставят ногу. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i04:r1",
+            "text": "step"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i04:r2",
+            "text": "stairs"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i04:r3",
+            "text": "floor"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Управляющий показывает на лестнице одну плоскую перекладину, на которую ставят ногу. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Управляющий показывает на лестнице одну плоскую перекладину, на которую ставят ногу. Как она называется по-английски?",
+            "uk": "Управитель показує на сходах одну пласку перекладину, на яку ставлять ногу. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-35:i04:r1",
+              "text": "step"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i04:r2",
+              "text": "stairs"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i04:r3",
+              "text": "floor"
+            }
+          ],
+          "testedDimension": "Управляющий показывает на лестнице одну плоскую перекладину, на которую ставят ногу. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i04:r2",
+              "correct": false,
+              "testedDimension": "Управляющий показывает на лестнице одну плоскую перекладину, на которую ставят ногу. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "stairs — это вся лестница, а одна перекладина, на которую ставят ногу, называется step.",
+                "uk": "stairs — це всі сходи, а одна перекладина, на яку ставлять ногу, називається step."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i04:r3",
+              "correct": false,
+              "testedDimension": "Управляющий показывает на лестнице одну плоскую перекладину, на которую ставят ногу. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а перекладина лестницы называется step.",
+                "uk": "floor — це підлога, а перекладина сходів називається step."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте управляющего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i05:r1",
+            "text": "There aren’t any steps."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i05:r2",
+            "text": "There aren’t any stairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i05:r3",
+            "text": "There isn’t a step."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте управляющего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i05:audio",
+            "transcript": "There aren’t any steps."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:i05:r1",
+              "targetText": "There aren’t any steps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i05:r2",
+              "targetText": "There aren’t any stairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i05:r3",
+              "targetText": "There isn’t a step.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте управляющего",
+              "feedbackByLocale": {
+                "ru": "В записи `steps`, а в этом варианте `stairs`.",
+                "uk": "У записі `steps`, а в цьому варіанті `stairs`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте управляющего",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — одна.",
+                "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — одна."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:wheelchair",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wheelchair",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:wheelchair:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wheelchair",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:wheelchair:audio",
+            "transcript": "wheelchair"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:wheelchair:r1",
+              "targetText": "wheelchair",
+              "meaningByLocale": {
+                "ru": "инвалидная коляска. There isn’t a wheelchair. — «Инвалидной коляски нет». О кресле на колёсах для человека, который не может долго идти.",
+                "uk": "інвалідний візок. There isn’t a wheelchair. — «Інвалідного візка немає». Про крісло на колесах для людини, яка не може довго йти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wheelchair",
+            "definitionByLocale": {
+              "ru": "инвалидная коляска. There isn’t a wheelchair. — «Инвалидной коляски нет». О кресле на колёсах для человека, который не может долго идти.",
+              "uk": "інвалідний візок. There isn’t a wheelchair. — «Інвалідного візка немає». Про крісло на колесах для людини, яка не може довго йти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дедушка показывает кресло на колёсах у стойки, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i06:audio"
+        ],
+        "accessibilityLabel": "Дедушка показывает кресло на колёсах у стойки, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i06:audio",
+            "transcript": "wheelchair"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "wheelchair",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте дедушку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте дедушку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i07:audio",
+            "transcript": "There isn’t a wheelchair in the hall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a wheelchair in the hall.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "wheelchair",
+            "in",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте дедушку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a wheelchair in the hall.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a wheelchair in the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:kerb",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kerb",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:kerb:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kerb",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:kerb:audio",
+            "transcript": "kerb"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:kerb:r1",
+              "targetText": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр. There aren’t any kerbs. — «Бордюров нет». О каменном крае тротуара, о который можно споткнуться.",
+                "uk": "бордюр. There aren’t any kerbs. — «Бордюрів немає». Про кам’яний край тротуару, об який можна перечепитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kerb",
+            "definitionByLocale": {
+              "ru": "бордюр. There aren’t any kerbs. — «Бордюров нет». О каменном крае тротуара, о который можно споткнуться.",
+              "uk": "бордюр. There aren’t any kerbs. — «Бордюрів немає». Про кам’яний край тротуару, об який можна перечепитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга споткнулась о каменный край тротуара у входа. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i08:r1",
+            "text": "kerb"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i08:r2",
+            "text": "wall"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i08:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга споткнулась о каменный край тротуара у входа. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга споткнулась о каменный край тротуара у входа. Как он называется по-английски?",
+            "uk": "Подруга перечепилася об кам’яний край тротуару біля входу. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-35:i08:r1",
+              "text": "kerb"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i08:r2",
+              "text": "wall"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i08:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "Подруга споткнулась о каменный край тротуара у входа. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга споткнулась о каменный край тротуара у входа. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а каменный край тротуара называется kerb.",
+                "uk": "wall — це стіна, а кам’яний край тротуару називається kerb."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга споткнулась о каменный край тротуара у входа. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а каменный край тротуара называется kerb.",
+                "uk": "bench — це лавка, а кам’яний край тротуару називається kerb."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет препятствия у входа. Скажите ей полной фразой: у входа нет бордюров",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет препятствия у входа. Скажите ей полной фразой: у входа нет бордюров",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren’t any kerbs at the entrance.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет препятствия у входа. Скажите ей полной фразой: у входа нет бордюров",
+            "uk": "Подруга шукає перешкоди біля входу. Скажіть їй повною фразою: біля входу немає бордюрів"
+          },
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "kerbs",
+            "at",
+            "the",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет препятствия у входа. Скажите ей полной фразой: у входа нет бордюров",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any kerbs at the entrance.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any kerbs at the entrance.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-35:i10:p1",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i10:p2",
+              "target": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус",
+                "uk": "пандус"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i10:p3",
+              "target": "lift",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i10:p4",
+              "target": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница",
+                "uk": "сходи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kerb",
+            "ramp",
+            "lift",
+            "stairs"
+          ],
+          "rightColumn": [
+            "бордюр",
+            "пандус",
+            "лифт",
+            "лестница"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте управляющего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i11:r1",
+            "text": "There isn’t a lift."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i11:r2",
+            "text": "There aren’t any lifts."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i11:r3",
+            "text": "There isn’t a ramp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте управляющего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i11:audio",
+            "transcript": "There isn’t a lift."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:i11:r1",
+              "targetText": "There isn’t a lift.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i11:r2",
+              "targetText": "There aren’t any lifts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i11:r3",
+              "targetText": "There isn’t a ramp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте управляющего",
+              "feedbackByLocale": {
+                "ru": "В записи `isn’t a` — один лифт, а в этом варианте `aren’t any` — несколько.",
+                "uk": "У записі `isn’t a` — один ліфт, а в цьому варіанті `aren’t any` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте управляющего",
+              "feedbackByLocale": {
+                "ru": "В записи `lift`, а в этом варианте `ramp`.",
+                "uk": "У записі `lift`, а в цьому варіанті `ramp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Управляющий показывает на дверь: ступенек перед ней нет. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i12:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i12:r2",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Управляющий показывает на дверь: ступенек перед ней нет. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Управляющий показывает на дверь: ступенек перед ней нет. Выберите нужное слово",
+            "uk": "Управитель показує на двері: сходинок перед ними немає. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There ___ any steps at the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-35:i12:r1",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i12:r2",
+              "text": "isn’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Управляющий показывает на дверь: ступенек перед ней нет. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Управляющий показывает на дверь: ступенек перед ней нет. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "Ступеньки — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+                "uk": "Сходинки — кілька предметів, тому потрібно aren’t, а не isn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Управляющий показывает на дверь: ступенек перед ней нет. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "is значит «есть», а ступенек нет: нужно aren’t.",
+                "uk": "is означає «є», а сходинок немає: потрібно aren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте управляющего и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте управляющего и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i13:audio",
+            "transcript": "There isn’t a lift in the building."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a lift in the building.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "lift",
+            "in",
+            "the",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте управляющего и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a lift in the building.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a lift in the building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает про вход. Скажите ей: «Здесь нет ступенек»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про вход. Скажите ей: «Здесь нет ступенек»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i14:audio",
+            "transcript": "There aren’t any steps here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any steps here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дедушка хочет присесть у входа. Скажите ему полной фразой: у входа нет скамейки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дедушка хочет присесть у входа. Скажите ему полной фразой: у входа нет скамейки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a bench near the entrance.",
+          "localizedMeaning": {
+            "ru": "Дедушка хочет присесть у входа. Скажите ему полной фразой: у входа нет скамейки",
+            "uk": "Дідусь хоче присісти біля входу. Скажіть йому повною фразою: біля входу немає лавки"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "bench",
+            "near",
+            "the",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Дедушка хочет присесть у входа. Скажите ему полной фразой: у входа нет скамейки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a bench near the entrance.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a bench near the entrance.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-35:i16:p1",
+              "target": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус",
+                "uk": "пандус"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i16:p2",
+              "target": "step",
+              "meaningByLocale": {
+                "ru": "ступенька",
+                "uk": "сходинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i16:p3",
+              "target": "wheelchair",
+              "meaningByLocale": {
+                "ru": "инвалидная коляска",
+                "uk": "інвалідний візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i16:p4",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ramp",
+            "step",
+            "wheelchair",
+            "kerb"
+          ],
+          "rightColumn": [
+            "пандус",
+            "ступенька",
+            "инвалидная коляска",
+            "бордюр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В другой клинике соседка с коляской ищет пандус. Скажите ей: «Пандуса здесь нет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "В другой клинике соседка с коляской ищет пандус. Скажите ей: «Пандуса здесь нет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i17:audio",
+            "transcript": "There isn’t a ramp here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a ramp here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-35:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-35:i01:p1",
+              "target": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус",
+                "uk": "пандус"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i01:p2",
+              "target": "step",
+              "meaningByLocale": {
+                "ru": "ступенька",
+                "uk": "сходинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i01:p3",
+              "target": "wheelchair",
+              "meaningByLocale": {
+                "ru": "инвалидная коляска",
+                "uk": "інвалідний візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i01:p4",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ramp",
+            "step",
+            "wheelchair",
+            "kerb"
+          ],
+          "rightColumn": [
+            "пандус",
+            "сходинка",
+            "інвалідний візок",
+            "бордюр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:ramp",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ramp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:ramp:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ramp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:ramp:audio",
+            "transcript": "ramp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:ramp:r1",
+              "targetText": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус. There isn’t a ramp. — «Пандуса нет». О пологом подъёме вместо ступенек, по которому въезжают с коляской.",
+                "uk": "пандус. There isn’t a ramp. — «Пандуса немає». Про похилий підйом замість сходинок, яким в’їжджають із візком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ramp",
+            "definitionByLocale": {
+              "ru": "пандус. There isn’t a ramp. — «Пандуса нет». О пологом подъёме вместо ступенек, по которому въезжают с коляской.",
+              "uk": "пандус. There isn’t a ramp. — «Пандуса немає». Про похилий підйом замість сходинок, яким в’їжджають із візком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка з візком показує похилий підйом замість сходинок, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Сусідка з візком показує похилий підйом замість сходинок, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i02:audio",
+            "transcript": "ramp"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "ramp",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка питає про вхід. Скажіть їй повною фразою: біля входу немає пандуса",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка питає про вхід. Скажіть їй повною фразою: біля входу немає пандуса",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a ramp at the entrance.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает про вход. Скажите ей полной фразой: у входа нет пандуса",
+            "uk": "Сусідка питає про вхід. Скажіть їй повною фразою: біля входу немає пандуса"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "ramp",
+            "at",
+            "the",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка питає про вхід. Скажіть їй повною фразою: біля входу немає пандуса",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a ramp at the entrance.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a ramp at the entrance.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:step",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — step",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:step:audio"
+        ],
+        "accessibilityLabel": "Картка слова — step",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:step:audio",
+            "transcript": "step"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:step:r1",
+              "targetText": "step",
+              "meaningByLocale": {
+                "ru": "ступенька. There aren’t any steps. — «Ступенек нет». О каждой плоской перекладине лестницы, на которую ставят ногу.",
+                "uk": "сходинка. There aren’t any steps. — «Сходинок немає». Про кожну пласку перекладину сходів, на яку ставлять ногу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "step",
+            "definitionByLocale": {
+              "ru": "ступенька. There aren’t any steps. — «Ступенек нет». О каждой плоской перекладине лестницы, на которую ставят ногу.",
+              "uk": "сходинка. There aren’t any steps. — «Сходинок немає». Про кожну пласку перекладину сходів, на яку ставлять ногу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Управитель показує на сходах одну пласку перекладину, на яку ставлять ногу. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i04:r1",
+            "text": "step"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i04:r2",
+            "text": "stairs"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i04:r3",
+            "text": "floor"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Управитель показує на сходах одну пласку перекладину, на яку ставлять ногу. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Управляющий показывает на лестнице одну плоскую перекладину, на которую ставят ногу. Как она называется по-английски?",
+            "uk": "Управитель показує на сходах одну пласку перекладину, на яку ставлять ногу. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-35:i04:r1",
+              "text": "step"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i04:r2",
+              "text": "stairs"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i04:r3",
+              "text": "floor"
+            }
+          ],
+          "testedDimension": "Управитель показує на сходах одну пласку перекладину, на яку ставлять ногу. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i04:r2",
+              "correct": false,
+              "testedDimension": "Управитель показує на сходах одну пласку перекладину, на яку ставлять ногу. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "stairs — это вся лестница, а одна перекладина, на которую ставят ногу, называется step.",
+                "uk": "stairs — це всі сходи, а одна перекладина, на яку ставлять ногу, називається step."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i04:r3",
+              "correct": false,
+              "testedDimension": "Управитель показує на сходах одну пласку перекладину, на яку ставлять ногу. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а перекладина лестницы называется step.",
+                "uk": "floor — це підлога, а перекладина сходів називається step."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте управителя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i05:r1",
+            "text": "There aren’t any steps."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i05:r2",
+            "text": "There aren’t any stairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i05:r3",
+            "text": "There isn’t a step."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте управителя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i05:audio",
+            "transcript": "There aren’t any steps."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:i05:r1",
+              "targetText": "There aren’t any steps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i05:r2",
+              "targetText": "There aren’t any stairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i05:r3",
+              "targetText": "There isn’t a step.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте управителя",
+              "feedbackByLocale": {
+                "ru": "В записи `steps`, а в этом варианте `stairs`.",
+                "uk": "У записі `steps`, а в цьому варіанті `stairs`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте управителя",
+              "feedbackByLocale": {
+                "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — одна.",
+                "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — одна."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:wheelchair",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wheelchair",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:wheelchair:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wheelchair",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:wheelchair:audio",
+            "transcript": "wheelchair"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:wheelchair:r1",
+              "targetText": "wheelchair",
+              "meaningByLocale": {
+                "ru": "инвалидная коляска. There isn’t a wheelchair. — «Инвалидной коляски нет». О кресле на колёсах для человека, который не может долго идти.",
+                "uk": "інвалідний візок. There isn’t a wheelchair. — «Інвалідного візка немає». Про крісло на колесах для людини, яка не може довго йти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wheelchair",
+            "definitionByLocale": {
+              "ru": "инвалидная коляска. There isn’t a wheelchair. — «Инвалидной коляски нет». О кресле на колёсах для человека, который не может долго идти.",
+              "uk": "інвалідний візок. There isn’t a wheelchair. — «Інвалідного візка немає». Про крісло на колесах для людини, яка не може довго йти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дідусь показує крісло на колесах біля стійки, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i06:audio"
+        ],
+        "accessibilityLabel": "Дідусь показує крісло на колесах біля стійки, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i06:audio",
+            "transcript": "wheelchair"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "wheelchair",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте дідуся й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте дідуся й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i07:audio",
+            "transcript": "There isn’t a wheelchair in the hall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a wheelchair in the hall.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "wheelchair",
+            "in",
+            "the",
+            "hall"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте дідуся й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a wheelchair in the hall.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a wheelchair in the hall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:word:kerb",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kerb",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:word:kerb:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kerb",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:word:kerb:audio",
+            "transcript": "kerb"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:word:kerb:r1",
+              "targetText": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр. There aren’t any kerbs. — «Бордюров нет». О каменном крае тротуара, о который можно споткнуться.",
+                "uk": "бордюр. There aren’t any kerbs. — «Бордюрів немає». Про кам’яний край тротуару, об який можна перечепитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kerb",
+            "definitionByLocale": {
+              "ru": "бордюр. There aren’t any kerbs. — «Бордюров нет». О каменном крае тротуара, о который можно споткнуться.",
+              "uk": "бордюр. There aren’t any kerbs. — «Бордюрів немає». Про кам’яний край тротуару, об який можна перечепитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга перечепилася об кам’яний край тротуару біля входу. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i08:r1",
+            "text": "kerb"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i08:r2",
+            "text": "wall"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i08:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга перечепилася об кам’яний край тротуару біля входу. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга споткнулась о каменный край тротуара у входа. Как он называется по-английски?",
+            "uk": "Подруга перечепилася об кам’яний край тротуару біля входу. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-35:i08:r1",
+              "text": "kerb"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i08:r2",
+              "text": "wall"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i08:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "Подруга перечепилася об кам’яний край тротуару біля входу. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга перечепилася об кам’яний край тротуару біля входу. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а каменный край тротуара называется kerb.",
+                "uk": "wall — це стіна, а кам’яний край тротуару називається kerb."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга перечепилася об кам’яний край тротуару біля входу. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а каменный край тротуара называется kerb.",
+                "uk": "bench — це лавка, а кам’яний край тротуару називається kerb."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає перешкоди біля входу. Скажіть їй повною фразою: біля входу немає бордюрів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає перешкоди біля входу. Скажіть їй повною фразою: біля входу немає бордюрів",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren’t any kerbs at the entrance.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет препятствия у входа. Скажите ей полной фразой: у входа нет бордюров",
+            "uk": "Подруга шукає перешкоди біля входу. Скажіть їй повною фразою: біля входу немає бордюрів"
+          },
+          "orderedTokens": [
+            "There",
+            "aren’t",
+            "any",
+            "kerbs",
+            "at",
+            "the",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [
+            "isn’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає перешкоди біля входу. Скажіть їй повною фразою: біля входу немає бордюрів",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren’t` — `There aren’t any kerbs at the entrance.`",
+                "uk": "тут потрібно `aren’t` — `There aren’t any kerbs at the entrance.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-35:i10:p1",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i10:p2",
+              "target": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус",
+                "uk": "пандус"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i10:p3",
+              "target": "lift",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i10:p4",
+              "target": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница",
+                "uk": "сходи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kerb",
+            "ramp",
+            "lift",
+            "stairs"
+          ],
+          "rightColumn": [
+            "бордюр",
+            "пандус",
+            "ліфт",
+            "сходи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте управителя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i11:r1",
+            "text": "There isn’t a lift."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i11:r2",
+            "text": "There aren’t any lifts."
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i11:r3",
+            "text": "There isn’t a ramp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте управителя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i11:audio",
+            "transcript": "There isn’t a lift."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-35:i11:r1",
+              "targetText": "There isn’t a lift.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i11:r2",
+              "targetText": "There aren’t any lifts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i11:r3",
+              "targetText": "There isn’t a ramp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте управителя",
+              "feedbackByLocale": {
+                "ru": "В записи `isn’t a` — один лифт, а в этом варианте `aren’t any` — несколько.",
+                "uk": "У записі `isn’t a` — один ліфт, а в цьому варіанті `aren’t any` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте управителя",
+              "feedbackByLocale": {
+                "ru": "В записи `lift`, а в этом варианте `ramp`.",
+                "uk": "У записі `lift`, а в цьому варіанті `ramp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Управитель показує на двері: сходинок перед ними немає. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i12:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i12:r2",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Управитель показує на двері: сходинок перед ними немає. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Управляющий показывает на дверь: ступенек перед ней нет. Выберите нужное слово",
+            "uk": "Управитель показує на двері: сходинок перед ними немає. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "There ___ any steps at the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-35:i12:r1",
+              "text": "aren’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i12:r2",
+              "text": "isn’t"
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Управитель показує на двері: сходинок перед ними немає. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Управитель показує на двері: сходинок перед ними немає. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "Ступеньки — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+                "uk": "Сходинки — кілька предметів, тому потрібно aren’t, а не isn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Управитель показує на двері: сходинок перед ними немає. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "is значит «есть», а ступенек нет: нужно aren’t.",
+                "uk": "is означає «є», а сходинок немає: потрібно aren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте управителя й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте управителя й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i13:audio",
+            "transcript": "There isn’t a lift in the building."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn’t a lift in the building.",
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "lift",
+            "in",
+            "the",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте управителя й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a lift in the building.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a lift in the building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про вхід. Скажіть їй: «Тут немає сходинок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про вхід. Скажіть їй: «Тут немає сходинок»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i14:audio",
+            "transcript": "There aren’t any steps here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren’t any steps here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дідусь хоче присісти біля входу. Скажіть йому повною фразою: біля входу немає лавки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дідусь хоче присісти біля входу. Скажіть йому повною фразою: біля входу немає лавки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn’t a bench near the entrance.",
+          "localizedMeaning": {
+            "ru": "Дедушка хочет присесть у входа. Скажите ему полной фразой: у входа нет скамейки",
+            "uk": "Дідусь хоче присісти біля входу. Скажіть йому повною фразою: біля входу немає лавки"
+          },
+          "orderedTokens": [
+            "There",
+            "isn’t",
+            "a",
+            "bench",
+            "near",
+            "the",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [
+            "aren’t"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-35:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Дідусь хоче присісти біля входу. Скажіть йому повною фразою: біля входу немає лавки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn’t` — `There isn’t a bench near the entrance.`",
+                "uk": "тут потрібно `isn’t` — `There isn’t a bench near the entrance.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-35:i16:p1",
+              "target": "ramp",
+              "meaningByLocale": {
+                "ru": "пандус",
+                "uk": "пандус"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i16:p2",
+              "target": "step",
+              "meaningByLocale": {
+                "ru": "ступенька",
+                "uk": "сходинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i16:p3",
+              "target": "wheelchair",
+              "meaningByLocale": {
+                "ru": "инвалидная коляска",
+                "uk": "інвалідний візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-35:i16:p4",
+              "target": "kerb",
+              "meaningByLocale": {
+                "ru": "бордюр",
+                "uk": "бордюр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ramp",
+            "step",
+            "wheelchair",
+            "kerb"
+          ],
+          "rightColumn": [
+            "пандус",
+            "сходинка",
+            "інвалідний візок",
+            "бордюр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В іншій клініці сусідка з візком шукає пандус. Скажіть їй: «Пандуса тут немає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "В іншій клініці сусідка з візком шукає пандус. Скажіть їй: «Пандуса тут немає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-35:i17:audio",
+            "transcript": "There isn’t a ramp here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn’t a ramp here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-35:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:word:ramp",
+      "correctText": "ramp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i02",
+      "correctText": "ramp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i03",
+      "correctText": "There isn’t a ramp at the entrance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:word:step",
+      "correctText": "step",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i04",
+      "correctText": "step",
+      "correctResponseId": "en:lesson-04:session-35:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i05",
+      "correctText": "There aren’t any steps.",
+      "correctResponseId": "en:lesson-04:session-35:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:word:wheelchair",
+      "correctText": "wheelchair",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i06",
+      "correctText": "wheelchair",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i07",
+      "correctText": "There isn’t a wheelchair in the hall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:word:kerb",
+      "correctText": "kerb",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i08",
+      "correctText": "kerb",
+      "correctResponseId": "en:lesson-04:session-35:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i09",
+      "correctText": "There aren’t any kerbs at the entrance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i11",
+      "correctText": "There isn’t a lift.",
+      "correctResponseId": "en:lesson-04:session-35:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i12",
+      "correctText": "aren’t",
+      "correctResponseId": "en:lesson-04:session-35:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i13",
+      "correctText": "There isn’t a lift in the building.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i14",
+      "correctText": "There aren’t any steps here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i15",
+      "correctText": "There isn’t a bench near the entrance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i17",
+      "correctText": "There isn’t a ramp here.",
+      "correctResponseId": null
+    }
+  ]
+}

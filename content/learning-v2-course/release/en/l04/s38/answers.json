@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-38:i01",
-    "correctText": "It is unofficial.",
+    "correctText": "en:lesson-04:session-38:i01:p1=bicycle rack\nen:lesson-04:session-38:i01:p2=lawn\nen:lesson-04:session-38:i01:p3=washing line\nen:lesson-04:session-38:i01:p4=padlock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:word:bicycle rack",
+    "correctText": "bicycle rack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i02",
-    "correctText": "bike shed",
-    "correctResponseId": "en:lesson-04:session-38:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-38:i03",
-    "correctText": "bike shed",
-    "correctResponseId": "en:lesson-04:session-38:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-38:i04",
-    "correctText": "en:lesson-04:session-38:i04:p1=bike shed\nen:lesson-04:session-38:i04:p2=unofficial\nen:lesson-04:session-38:i04:p3=ticket\nen:lesson-04:session-38:i04:p4=signpost",
+    "correctText": "bicycle rack",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-38:i03",
+    "correctText": "There isn’t a bicycle rack behind the shed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:word:lawn",
+    "correctText": "lawn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i04",
+    "correctText": "lawn",
+    "correctResponseId": "en:lesson-04:session-38:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-38:i05",
-    "correctText": "This is a bike shed.",
+    "correctText": "There isn’t a lawn behind the shed.",
+    "correctResponseId": "en:lesson-04:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:word:washing line",
+    "correctText": "washing line",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i06",
-    "correctText": "The ticket is in the bag.",
+    "correctText": "washing line",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i07",
-    "correctText": "It's unofficial.",
+    "correctText": "There isn’t a washing line in the garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:word:padlock",
+    "correctText": "padlock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i08",
-    "correctText": "isn't",
+    "correctText": "padlock",
     "correctResponseId": "en:lesson-04:session-38:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-38:i09",
-    "correctText": "The bike shed is next to the signpost.",
-    "correctResponseId": "en:lesson-04:session-38:i09:r1"
+    "correctText": "There isn’t a padlock on the gate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i10",
-    "correctText": "en:lesson-04:session-38:i10:p1=bike shed\nen:lesson-04:session-38:i10:p2=unofficial\nen:lesson-04:session-38:i10:p3=ticket\nen:lesson-04:session-38:i10:p4=signpost",
+    "correctText": "en:lesson-04:session-38:i10:p1=padlock\nen:lesson-04:session-38:i10:p2=lawn\nen:lesson-04:session-38:i10:p3=gate\nen:lesson-04:session-38:i10:p4=fence",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i11",
-    "correctText": "There aren't any bike sheds.",
-    "correctResponseId": null
+    "correctText": "There aren’t any bicycles next to the fence.",
+    "correctResponseId": "en:lesson-04:session-38:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-38:i12",
-    "correctText": "There is a bike shed.",
-    "correctResponseId": null
+    "correctText": "aren’t",
+    "correctResponseId": "en:lesson-04:session-38:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-38:i13",
-    "correctText": "Is there a bike shed?",
+    "correctText": "There aren’t any benches under the tree.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i14",
-    "correctText": "under",
-    "correctResponseId": "en:lesson-04:session-38:i14:r1"
+    "correctText": "There aren’t any bicycles under the awning.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i15",
-    "correctText": "That is a bike shed.",
-    "correctResponseId": "en:lesson-04:session-38:i15:r1"
+    "correctText": "There isn’t a gate in the fence.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i16",
-    "correctText": "en:lesson-04:session-38:i16:p1=bike shed\nen:lesson-04:session-38:i16:p2=unofficial\nen:lesson-04:session-38:i16:p3=ticket\nen:lesson-04:session-38:i16:p4=signpost",
+    "correctText": "en:lesson-04:session-38:i16:p1=bicycle rack\nen:lesson-04:session-38:i16:p2=lawn\nen:lesson-04:session-38:i16:p3=washing line\nen:lesson-04:session-38:i16:p4=padlock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-38:i17",
-    "correctText": "The bike shed is next to the hotel.",
+    "correctText": "There isn’t a bicycle rack next to the gate.",
     "correctResponseId": null
   }
 ]

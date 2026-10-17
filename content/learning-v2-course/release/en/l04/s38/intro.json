@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-38",
   "learningOutcomeByLocale": {
-    "ru": "назвать сарай для велосипедов, спросить о его наличии и уточнить расположение",
-    "uk": "назвати сарай для велосипедів, запитати про його наявність і уточнити розташування"
+    "ru": "сказать, чего нет, и назвать место снаружи",
+    "uk": "сказати, чого немає, й назвати місце надворі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Домик для велосипедов",
-        "uk": "Будиночок для велосипедів"
+        "ru": "Велосипед без места",
+        "uk": "Велосипед без місця"
       },
       "bodyByLocale": {
-        "ru": "`bike shed` — «сарай для велосипедов», небольшое строение для их хранения. Два слова называют один объект: `a bike shed`. `This is a bike shed` — «Это сарай для велосипедов». Велосипедам отдельные спальни не нужны: в одном сарае их может быть несколько.",
-        "uk": "`bike shed` — «сарай для велосипедів», невелика споруда для їх зберігання. Два слова називають один об’єкт: `a bike shed`. `This is a bike shed` — «Це сарай для велосипедів». Велосипедам окремі спальні не потрібні: в одному сараї їх може бути кілька."
+        "ru": "Сосед приехал во двор на велосипеде и хочет его пристегнуть, чтобы не украли. Он ищет железную стойку рядом с сараем, но там только трава и камни. bicycle rack — «велосипедная стойка». There isn’t a bicycle rack next to the shed — «Рядом с сараем нет велосипедной стойки».",
+        "uk": "Сусід приїхав у двір на велосипеді й хоче його пристебнути, щоб не вкрали. Він шукає залізну стійку поруч із сараєм, але там лише трава й каміння. bicycle rack — «велосипедна стійка». There isn’t a bicycle rack next to the shed — «Поруч із сараєм немає велосипедної стійки»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-38:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите одно такое строение рядом.",
-          "uk": "Назвіть одну таку споруду поруч."
+          "ru": "Сосед ищет стойку. Скажите ему, что рядом с сараем нет велосипедной стойки.",
+          "uk": "Сусід шукає стійку. Скажіть йому, що поруч із сараєм немає велосипедної стійки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-38:intro1:r1",
-              "text": "This is a bike shed."
+              "text": "There isn’t a bicycle rack next to the shed."
             },
             {
               "responseId": "en:lesson-04:session-38:intro1:r2",
-              "text": "This is bike shed."
+              "text": "There isn’t a bicycle rack in the shed."
             },
             {
               "responseId": "en:lesson-04:session-38:intro1:r3",
-              "text": "These are bike sheds."
+              "text": "There aren’t any bicycle racks next to the shed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-38:intro1:r1",
-              "text": "This is a bike shed."
+              "text": "There isn’t a bicycle rack next to the shed."
             },
             {
               "responseId": "en:lesson-04:session-38:intro1:r2",
-              "text": "This is bike shed."
+              "text": "There isn’t a bicycle rack in the shed."
             },
             {
               "responseId": "en:lesson-04:session-38:intro1:r3",
-              "text": "These are bike sheds."
+              "text": "There aren’t any bicycle racks next to the shed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите одно такое строение рядом.",
-          "uk": "Назвіть одну таку споруду поруч."
+          "ru": "Сосед ищет стойку. Скажите ему, что рядом с сараем нет велосипедной стойки.",
+          "uk": "Сусід шукає стійку. Скажіть йому, що поруч із сараєм немає велосипедної стійки."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Указатель и билет",
-        "uk": "Вказівник і квиток"
+        "ru": "Трава для ребёнка",
+        "uk": "Трава для дитини"
       },
       "bodyByLocale": {
-        "ru": "`signpost` — «столб с указателями», `ticket` — «билет». `The bike shed is next to the signpost` — «Сарай для велосипедов рядом со столбом с указателями». `The ticket is in the bag` — «Билет в сумке». Сначала найдите билет, а потом место для велосипеда: указатель билет не заменит.",
-        "uk": "`signpost` — «стовп із вказівниками», `ticket` — «квиток». `The bike shed is next to the signpost` — «Сарай для велосипедів поруч зі стовпом із вказівниками». `The ticket is in the bag` — «Квиток у сумці». Спочатку знайдіть квиток, а потім місце для велосипеда: вказівник квиток не замінить."
+        "ru": "Соседка хочет посидеть с маленьким сыном на мягкой траве, пока тепло. Она заходит за дом, а там только серый бетон, камни и ни одной травинки. lawn — «газон»: ровная подстриженная трава. There isn’t a lawn behind the building — «За домом нет газона».",
+        "uk": "Сусідка хоче посидіти з маленьким сином на м’якій траві, поки тепло. Вона заходить за будинок, а там лише сірий бетон, каміння й жодної травинки. lawn — «газон»: рівна підстрижена трава. There isn’t a lawn behind the building — «За будинком немає газону»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-38:intro2:q",
         "promptByLocale": {
-          "ru": "Билет внутри сумки. Выберите описание.",
-          "uk": "Квиток усередині сумки. Виберіть опис."
+          "ru": "Соседка ищет траву. Скажите ей, что за домом нет газона.",
+          "uk": "Сусідка шукає траву. Скажіть їй, що за будинком немає газону."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-38:intro2:r1",
-              "text": "The ticket is in the bag."
+              "text": "There isn’t a lawn behind the building."
             },
             {
               "responseId": "en:lesson-04:session-38:intro2:r2",
-              "text": "The ticket is on the bag."
+              "text": "There isn’t a lawn under the building."
             },
             {
               "responseId": "en:lesson-04:session-38:intro2:r3",
-              "text": "The ticket are in the bag."
+              "text": "There aren’t a lawn behind the building."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-38:intro2:r1",
-              "text": "The ticket is in the bag."
+              "text": "There isn’t a lawn behind the building."
             },
             {
               "responseId": "en:lesson-04:session-38:intro2:r2",
-              "text": "The ticket is on the bag."
+              "text": "There isn’t a lawn under the building."
             },
             {
               "responseId": "en:lesson-04:session-38:intro2:r3",
-              "text": "The ticket are in the bag."
+              "text": "There aren’t a lawn behind the building."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Билет внутри сумки. Выберите описание.",
-          "uk": "Квиток усередині сумки. Виберіть опис."
+          "ru": "Соседка ищет траву. Скажите ей, что за домом нет газона.",
+          "uk": "Сусідка шукає траву. Скажіть їй, що за будинком немає газону."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пока неофициально",
-        "uk": "Поки неофіційно"
+        "ru": "Мокрые простыни",
+        "uk": "Мокрі простирадла"
       },
       "bodyByLocale": {
-        "ru": "`unofficial` — «неофициальный»: информацию передал знакомый, но организаторы её не подтверждали. `It is unofficial` — «Это неофициально», короче `It’s unofficial`. `Is there a bike shed?` — «Есть сарай для велосипедов?» Если его нет: `There isn’t a bike shed`. `There aren’t any bike sheds` — «Нет ни одного сарая для велосипедов».",
-        "uk": "`unofficial` — «неофіційний»: інформацію передав знайомий, але організатори її не підтверджували. `It is unofficial` — «Це неофіційно», коротше `It’s unofficial`. `Is there a bike shed?` — «Є сарай для велосипедів?» Якщо його немає: `There isn’t a bike shed`. `There aren’t any bike sheds` — «Немає жодного сараю для велосипедів»."
+        "ru": "Подруга постирала простыни и несёт их мокрыми по двору. Ей нужна верёвка, натянутая в воздухе, чтобы развесить бельё. washing line — «верёвка для белья». There isn’t a washing line between the shed and the fence — «Между сараем и забором нет верёвки».",
+        "uk": "Подруга випрала простирадла й несе їх мокрими по двору. Їй потрібна мотузка, натягнута в повітрі, щоб розвісити білизну. washing line — «мотузка для білизни». There isn’t a washing line between the shed and the fence — «Між сараєм і парканом немає мотузки»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-38:intro3:q",
         "promptByLocale": {
-          "ru": "Информация не от организаторов и официально не подтверждена. Скажите «Это неофициально» с сокращением.",
-          "uk": "Інформація не від організаторів і офіційно не підтверджена. Скажіть «Це неофіційно» зі скороченням."
+          "ru": "Подруга ищет, где сушить простыни. Скажите ей, что между сараем и забором нет верёвки для белья.",
+          "uk": "Подруга шукає, де сушити простирадла. Скажіть їй, що між сараєм і парканом немає мотузки для білизни."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-38:intro3:r1",
-              "text": "It's unofficial."
+              "text": "There isn’t a washing line between the shed and the fence."
             },
             {
               "responseId": "en:lesson-04:session-38:intro3:r2",
-              "text": "It's official."
+              "text": "There isn’t a washing line between the shed."
             },
             {
               "responseId": "en:lesson-04:session-38:intro3:r3",
-              "text": "It are unofficial."
+              "text": "There aren’t a washing line between the shed and the fence."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-38:intro3:r1",
-              "text": "It's unofficial."
+              "text": "There isn’t a washing line between the shed and the fence."
             },
             {
               "responseId": "en:lesson-04:session-38:intro3:r2",
-              "text": "It's official."
+              "text": "There isn’t a washing line between the shed."
             },
             {
               "responseId": "en:lesson-04:session-38:intro3:r3",
-              "text": "It are unofficial."
+              "text": "There aren’t a washing line between the shed and the fence."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Информация не от организаторов и официально не подтверждена. Скажите «Это неофициально» с сокращением.",
-          "uk": "Інформація не від організаторів і офіційно не підтверджена. Скажіть «Це неофіційно» зі скороченням."
+          "ru": "Подруга ищет, где сушить простыни. Скажите ей, что между сараем и забором нет верёвки для белья.",
+          "uk": "Подруга шукає, де сушити простирадла. Скажіть їй, що між сараєм і парканом немає мотузки для білизни."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0e34ecf829f10b17e3e97096590e0057ae0fba5a69736a337fa7e0c6e34593f3"
+  "introFingerprint": "d3b732ef72eeb71b1fe652b544fc0bc294c4df06bfb719b236c816f4c0a62d19"
 }

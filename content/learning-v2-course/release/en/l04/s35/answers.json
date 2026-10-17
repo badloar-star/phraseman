@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-35:i01",
-    "correctText": "It is formal.",
+    "correctText": "en:lesson-04:session-35:i01:p1=ramp\nen:lesson-04:session-35:i01:p2=step\nen:lesson-04:session-35:i01:p3=wheelchair\nen:lesson-04:session-35:i01:p4=kerb",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:word:ramp",
+    "correctText": "ramp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i02",
     "correctText": "ramp",
-    "correctResponseId": "en:lesson-04:session-35:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-35:i03",
-    "correctText": "ramp",
-    "correctResponseId": "en:lesson-04:session-35:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-35:i04",
-    "correctText": "en:lesson-04:session-35:i04:p1=ramp\nen:lesson-04:session-35:i04:p2=formal\nen:lesson-04:session-35:i04:p3=photos\nen:lesson-04:session-35:i04:p4=awning",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-35:i03",
+    "correctText": "There isn’t a ramp at the entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:word:step",
+    "correctText": "step",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i04",
+    "correctText": "step",
+    "correctResponseId": "en:lesson-04:session-35:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-35:i05",
-    "correctText": "This is a ramp.",
+    "correctText": "There aren’t any steps.",
+    "correctResponseId": "en:lesson-04:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:word:wheelchair",
+    "correctText": "wheelchair",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i06",
-    "correctText": "The ramp is under the awning.",
+    "correctText": "wheelchair",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i07",
-    "correctText": "It's formal.",
+    "correctText": "There isn’t a wheelchair in the hall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:word:kerb",
+    "correctText": "kerb",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i08",
-    "correctText": "isn't",
+    "correctText": "kerb",
     "correctResponseId": "en:lesson-04:session-35:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-35:i09",
-    "correctText": "The photos are next to the door.",
-    "correctResponseId": "en:lesson-04:session-35:i09:r1"
+    "correctText": "There aren’t any kerbs at the entrance.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i10",
-    "correctText": "en:lesson-04:session-35:i10:p1=ramp\nen:lesson-04:session-35:i10:p2=formal\nen:lesson-04:session-35:i10:p3=photos\nen:lesson-04:session-35:i10:p4=awning",
+    "correctText": "en:lesson-04:session-35:i10:p1=kerb\nen:lesson-04:session-35:i10:p2=ramp\nen:lesson-04:session-35:i10:p3=lift\nen:lesson-04:session-35:i10:p4=stairs",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i11",
-    "correctText": "There aren't any ramps.",
-    "correctResponseId": null
+    "correctText": "There isn’t a lift.",
+    "correctResponseId": "en:lesson-04:session-35:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-35:i12",
-    "correctText": "There is a ramp.",
-    "correctResponseId": null
+    "correctText": "aren’t",
+    "correctResponseId": "en:lesson-04:session-35:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-35:i13",
-    "correctText": "Is there a ramp?",
+    "correctText": "There isn’t a lift in the building.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i14",
-    "correctText": "on",
-    "correctResponseId": "en:lesson-04:session-35:i14:r1"
+    "correctText": "There aren’t any steps here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i15",
-    "correctText": "That is a ramp.",
-    "correctResponseId": "en:lesson-04:session-35:i15:r1"
+    "correctText": "There isn’t a bench near the entrance.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i16",
-    "correctText": "en:lesson-04:session-35:i16:p1=ramp\nen:lesson-04:session-35:i16:p2=formal\nen:lesson-04:session-35:i16:p3=photos\nen:lesson-04:session-35:i16:p4=awning",
+    "correctText": "en:lesson-04:session-35:i16:p1=ramp\nen:lesson-04:session-35:i16:p2=step\nen:lesson-04:session-35:i16:p3=wheelchair\nen:lesson-04:session-35:i16:p4=kerb",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-35:i17",
-    "correctText": "There isn't a ramp.",
+    "correctText": "There isn’t a ramp here.",
     "correctResponseId": null
   }
 ]

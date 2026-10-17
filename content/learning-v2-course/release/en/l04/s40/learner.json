@@ -7,196 +7,18 @@
       "interactionId": "en:lesson-04:session-40:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Спросите, есть ли отопительный котёл",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, есть ли отопительный котёл",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is there a boiler?",
-        "localizedMeaning": {
-          "ru": "Спросите, есть ли отопительный котёл",
-          "uk": "Запитайте, чи є опалювальний котел"
-        },
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "boiler"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-40:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-40:i02:r1",
-          "text": "thermostat"
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i02:r2",
-          "text": "thermostats"
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i02:r3",
-          "text": "boiler"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-40:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-40:i02:audio",
-          "transcript": "thermostat"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-40:i02:r1",
-            "targetText": "thermostat",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i02:r2",
-            "targetText": "thermostats",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i02:r3",
-            "targetText": "boiler",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-40:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `thermostat`, а в этом варианте — `thermostats`.",
-              "uk": "У записі перше слово — `thermostat`, а в цьому варіанті — `thermostats`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `thermostat`, а в этом варианте — `boiler`.",
-              "uk": "У записі перше слово — `thermostat`, а в цьому варіанті — `boiler`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-40:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите термостат одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-40:i03:r1",
-          "text": "thermostat"
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i03:r2",
-          "text": "doorbell"
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i03:r3",
-          "text": "handrail"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите термостат одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите термостат одним словом",
-          "uk": "Назвіть термостат одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-40:i03:r1",
-            "text": "thermostat"
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i03:r2",
-            "text": "doorbell"
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i03:r3",
-            "text": "handrail"
-          }
-        ],
-        "testedDimension": "Назовите термостат одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-40:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите термостат одним словом",
-            "feedbackByLocale": {
-              "ru": "`doorbell` — дверной звонок; здесь `thermostat`.",
-              "uk": "`doorbell` — дверний дзвінок; тут `thermostat`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите термостат одним словом",
-            "feedbackByLocale": {
-              "ru": "`handrail` — поручень; здесь `thermostat`.",
-              "uk": "`handrail` — поручень; тут `thermostat`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-40:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините приборы со значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините приборы со значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-40:i04:p1",
+            "pairId": "en:lesson-04:session-40:i01:p1",
             "target": "thermostat",
             "meaningByLocale": {
               "ru": "термостат",
@@ -204,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-40:i04:p2",
-            "target": "boiler",
+            "pairId": "en:lesson-04:session-40:i01:p2",
+            "target": "mattress",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "матрас",
+              "uk": "матрац"
             }
           },
           {
-            "pairId": "en:lesson-04:session-40:i04:p3",
-            "target": "doorbell",
+            "pairId": "en:lesson-04:session-40:i01:p3",
+            "target": "cooker",
             "meaningByLocale": {
-              "ru": "дверной звонок",
-              "uk": "дверний дзвінок"
+              "ru": "плита (кухонная)",
+              "uk": "плита (кухонна)"
             }
           },
           {
-            "pairId": "en:lesson-04:session-40:i04:p4",
-            "target": "smoke alarm",
+            "pairId": "en:lesson-04:session-40:i01:p4",
+            "target": "blind",
             "meaningByLocale": {
-              "ru": "дымовой пожарный извещатель",
-              "uk": "димовий пожежний сповіщувач"
+              "ru": "жалюзи, штора",
+              "uk": "жалюзі, штора"
             }
           }
         ],
         "leftColumn": [
           "thermostat",
-          "boiler",
-          "doorbell",
-          "smoke alarm"
+          "mattress",
+          "cooker",
+          "blind"
         ],
         "rightColumn": [
           "термостат",
-          "отопительный котёл",
-          "дверной звонок",
-          "дымовой пожарный извещатель"
+          "матрас",
+          "плита (кухонная)",
+          "жалюзи, штора"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,122 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-40:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-40:word:thermostat",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thermostat",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-40:i05:audio"
+        "en:lesson-04:session-40:word:thermostat:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Карточка слова — thermostat",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-40:i05:audio",
-          "transcript": "This is a thermostat."
+          "audioTargetId": "en:lesson-04:session-40:word:thermostat:audio",
+          "transcript": "thermostat"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a thermostat.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "thermostat"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-40:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a thermostat.`",
-              "uk": "тут потрібно `is` — `This is a thermostat.`"
+            "responseId": "en:lesson-04:session-40:word:thermostat:r1",
+            "targetText": "thermostat",
+            "meaningByLocale": {
+              "ru": "термостат. There isn’t a thermostat. — «Термостата нет». О приборе на стене, которым выставляют температуру отопления.",
+              "uk": "термостат. There isn’t a thermostat. — «Термостата немає». Про прилад на стіні, яким виставляють температуру опалення."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thermostat",
+          "definitionByLocale": {
+            "ru": "термостат. There isn’t a thermostat. — «Термостата нет». О приборе на стене, которым выставляют температуру отопления.",
+            "uk": "термостат. There isn’t a thermostat. — «Термостата немає». Про прилад на стіні, яким виставляють температуру опалення."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-40:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поручень рядом с пандусом. Скажите, где он",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Поручень рядом с пандусом. Скажите, где он",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The handrail is next to the ramp.",
-        "localizedMeaning": {
-          "ru": "Поручень рядом с пандусом. Скажите, где он",
-          "uk": "Поручень поруч із пандусом. Скажіть, де він"
-        },
-        "orderedTokens": [
-          "The",
-          "handrail",
-          "is",
-          "next",
-          "to",
-          "the",
-          "ramp"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-40:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Поручень рядом с пандусом. Скажите, где он",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The handrail is next to the ramp.`",
-              "uk": "тут потрібно `is` — `The handrail is next to the ramp.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-40:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-40:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В доме нет ни одного дымового пожарного извещателя. Сообщите об этом, используя множественное число",
+      "prompt": "Хозяин показывает на стене прибор, которым выставляют температуру отопления, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-40:i07:audio"
+        "en:lesson-04:session-40:i02:audio"
       ],
-      "accessibilityLabel": "В доме нет ни одного дымового пожарного извещателя. Сообщите об этом, используя множественное число",
+      "accessibilityLabel": "Хозяин показывает на стене прибор, которым выставляют температуру отопления, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-40:i07:audio",
-          "transcript": "There aren't any smoke alarms."
+          "audioTargetId": "en:lesson-04:session-40:i02:audio",
+          "transcript": "thermostat"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There aren't any smoke alarms.",
+        "targetPhrase": "thermostat",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -384,68 +153,159 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-40:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хозяин заполняет акт приёмки. Скажите ему полной фразой: на стене нет термостата",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хозяин заполняет акт приёмки. Скажите ему полной фразой: на стене нет термостата",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a thermostat on the wall.",
+        "localizedMeaning": {
+          "ru": "Хозяин заполняет акт приёмки. Скажите ему полной фразой: на стене нет термостата",
+          "uk": "Господар заповнює акт приймання. Скажіть йому повною фразою: на стіні немає термостата"
+        },
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "thermostat",
+          "on",
+          "the",
+          "wall"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-40:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Хозяин заполняет акт приёмки. Скажите ему полной фразой: на стене нет термостата",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a thermostat on the wall.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a thermostat on the wall.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:word:mattress",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mattress",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-40:word:mattress:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mattress",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-40:word:mattress:audio",
+          "transcript": "mattress"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-40:word:mattress:r1",
+            "targetText": "mattress",
+            "meaningByLocale": {
+              "ru": "матрас. There aren’t any mattresses. — «Матрасов нет». О мягкой плотной подушке для сна, которую кладут на кровать.",
+              "uk": "матрац. There aren’t any mattresses. — «Матраців немає». Про м’яку щільну подушку для сну, яку кладуть на ліжко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mattress",
+          "definitionByLocale": {
+            "ru": "матрас. There aren’t any mattresses. — «Матрасов нет». О мягкой плотной подушке для сна, которую кладут на кровать.",
+            "uk": "матрац. There aren’t any mattresses. — «Матраців немає». Про м’яку щільну подушку для сну, яку кладуть на ліжко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дверного звонка нет. Выберите форму",
+      "prompt": "Хозяин показывает мягкую плотную подушку, которую кладут на кровать для сна. Как она называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-40:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-40:i04:r1",
+          "text": "mattress"
         },
         {
-          "responseId": "en:lesson-04:session-40:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-40:i04:r2",
+          "text": "pillow"
         },
         {
-          "responseId": "en:lesson-04:session-40:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-40:i04:r3",
+          "text": "rug"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дверного звонка нет. Выберите форму",
+      "accessibilityLabel": "Хозяин показывает мягкую плотную подушку, которую кладут на кровать для сна. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дверного звонка нет. Выберите форму",
-          "uk": "Дверного дзвінка немає. Виберіть форму"
+          "ru": "Хозяин показывает мягкую плотную подушку, которую кладут на кровать для сна. Как она называется по-английски?",
+          "uk": "Господар показує м’яку щільну подушку, яку кладуть на ліжко для сну. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a doorbell.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-40:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-40:i04:r1",
+            "text": "mattress"
           },
           {
-            "responseId": "en:lesson-04:session-40:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-40:i04:r2",
+            "text": "pillow"
           },
           {
-            "responseId": "en:lesson-04:session-40:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-40:i04:r3",
+            "text": "rug"
           }
         ],
-        "testedDimension": "Дверного звонка нет. Выберите форму",
+        "testedDimension": "Хозяин показывает мягкую плотную подушку, которую кладут на кровать для сна. Как она называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-40:i08:r2",
+            "responseId": "en:lesson-04:session-40:i04:r2",
             "correct": false,
-            "testedDimension": "Дверного звонка нет. Выберите форму",
+            "testedDimension": "Хозяин показывает мягкую плотную подушку, которую кладут на кровать для сна. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`is` — есть; здесь нет: `isn’t`.",
-              "uk": "`is` — є; тут немає: `isn’t`."
+              "ru": "pillow — это подушка под голову, а плотная подушка на всю кровать называется mattress.",
+              "uk": "pillow — це подушка під голову, а щільна подушка на все ліжко називається mattress."
             }
           },
           {
-            "responseId": "en:lesson-04:session-40:i08:r3",
+            "responseId": "en:lesson-04:session-40:i04:r3",
             "correct": false,
-            "testedDimension": "Дверного звонка нет. Выберите форму",
+            "testedDimension": "Хозяин показывает мягкую плотную подушку, которую кладут на кровать для сна. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Один звонок: `isn’t a doorbell`.",
-              "uk": "Один дзвінок: `isn’t a doorbell`."
+              "ru": "rug — это ковёр, а плотная подушка на всю кровать называется mattress.",
+              "uk": "rug — це килим, а щільна подушка на все ліжко називається mattress."
             }
           }
         ]
@@ -453,73 +313,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-40:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где фонтан",
+      "prompt": "Послушайте хозяина",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-40:i09:r1",
-          "text": "The fountain is next to the hotel."
+          "responseId": "en:lesson-04:session-40:i05:r1",
+          "text": "There aren’t any mattresses."
         },
         {
-          "responseId": "en:lesson-04:session-40:i09:r2",
-          "text": "The fountain is next to the shop."
+          "responseId": "en:lesson-04:session-40:i05:r2",
+          "text": "There aren’t any pillows."
         },
         {
-          "responseId": "en:lesson-04:session-40:i09:r3",
-          "text": "The fountain is next to the gym."
+          "responseId": "en:lesson-04:session-40:i05:r3",
+          "text": "There isn’t a mattress."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-40:i09:audio"
+        "en:lesson-04:session-40:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте, где фонтан",
+      "accessibilityLabel": "Послушайте хозяина",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-40:i09:audio",
-          "transcript": "The fountain is next to the hotel."
+          "audioTargetId": "en:lesson-04:session-40:i05:audio",
+          "transcript": "There aren’t any mattresses."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-40:i09:r1",
-            "targetText": "The fountain is next to the hotel.",
+            "responseId": "en:lesson-04:session-40:i05:r1",
+            "targetText": "There aren’t any mattresses.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-40:i09:r2",
-            "targetText": "The fountain is next to the shop.",
+            "responseId": "en:lesson-04:session-40:i05:r2",
+            "targetText": "There aren’t any pillows.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-40:i09:r3",
-            "targetText": "The fountain is next to the gym.",
+            "responseId": "en:lesson-04:session-40:i05:r3",
+            "targetText": "There isn’t a mattress.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-40:i09:r2",
+            "responseId": "en:lesson-04:session-40:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где фонтан",
+            "testedDimension": "Послушайте хозяина",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `shop`."
+              "ru": "В записи `mattresses`, а в этом варианте `pillows`.",
+              "uk": "У записі `mattresses`, а в цьому варіанті `pillows`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-40:i09:r3",
+            "responseId": "en:lesson-04:session-40:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где фонтан",
+            "testedDimension": "Послушайте хозяина",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `gym`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `gym`."
+              "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — один.",
+              "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — один."
             }
           }
         ],
@@ -529,63 +389,351 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-40:i10",
+      "interactionId": "en:lesson-04:session-40:word:cooker",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cooker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-40:word:cooker:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cooker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-40:word:cooker:audio",
+          "transcript": "cooker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-40:word:cooker:r1",
+            "targetText": "cooker",
+            "meaningByLocale": {
+              "ru": "плита (кухонная). There isn’t a cooker. — «Плиты нет». О приборе на кухне, на котором варят еду.",
+              "uk": "плита (кухонна). There isn’t a cooker. — «Плити немає». Про прилад на кухні, на якому варять їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cooker",
+          "definitionByLocale": {
+            "ru": "плита (кухонная). There isn’t a cooker. — «Плиты нет». О приборе на кухне, на котором варят еду.",
+            "uk": "плита (кухонна). There isn’t a cooker. — «Плити немає». Про прилад на кухні, на якому варять їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга показывает на кухне прибор, на котором варят суп, а вы повторяете за ней слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Подруга показывает на кухне прибор, на котором варят суп, а вы повторяете за ней слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-40:i06:audio",
+          "transcript": "cooker"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "cooker",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "Соедините названия со значениями",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте подругу и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-40:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-40:i07:audio",
+          "transcript": "There isn’t a cooker next to the sink."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There isn’t a cooker next to the sink.",
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "cooker",
+          "next",
+          "to",
+          "the",
+          "sink"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-40:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a cooker next to the sink.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a cooker next to the sink.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:word:blind",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-40:word:blind:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-40:word:blind:audio",
+          "transcript": "blind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-40:word:blind:r1",
+            "targetText": "blind",
+            "meaningByLocale": {
+              "ru": "жалюзи, штора. There aren’t any blinds. — «Жалюзи нет». О шторе из реек или ткани, которой закрывают окно от солнца.",
+              "uk": "жалюзі, штора. There aren’t any blinds. — «Жалюзі немає». Про штору з планок або тканини, якою закривають вікно від сонця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blind",
+          "definitionByLocale": {
+            "ru": "жалюзи, штора. There aren’t any blinds. — «Жалюзи нет». О шторе из реек или ткани, которой закрывают окно от солнца.",
+            "uk": "жалюзі, штора. There aren’t any blinds. — «Жалюзі немає». Про штору з планок або тканини, якою закривають вікно від сонця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хозяин закрывает окно шторой из реек, чтобы не было солнца. Как называется такая штора по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-40:i08:r1",
+          "text": "blind"
+        },
+        {
+          "responseId": "en:lesson-04:session-40:i08:r2",
+          "text": "rug"
+        },
+        {
+          "responseId": "en:lesson-04:session-40:i08:r3",
+          "text": "bucket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хозяин закрывает окно шторой из реек, чтобы не было солнца. Как называется такая штора по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хозяин закрывает окно шторой из реек, чтобы не было солнца. Как называется такая штора по-английски?",
+          "uk": "Господар закриває вікно шторою з планок, щоб не було сонця. Як називається така штора англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-40:i08:r1",
+            "text": "blind"
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i08:r2",
+            "text": "rug"
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i08:r3",
+            "text": "bucket"
+          }
+        ],
+        "testedDimension": "Хозяин закрывает окно шторой из реек, чтобы не было солнца. Как называется такая штора по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Хозяин закрывает окно шторой из реек, чтобы не было солнца. Как называется такая штора по-английски?",
+            "feedbackByLocale": {
+              "ru": "rug — это ковёр, а штора из реек на окне называется blind.",
+              "uk": "rug — це килим, а штора з планок на вікні називається blind."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Хозяин закрывает окно шторой из реек, чтобы не было солнца. Как называется такая штора по-английски?",
+            "feedbackByLocale": {
+              "ru": "bucket — это ведро, а штора из реек на окне называется blind.",
+              "uk": "bucket — це відро, а штора з планок на вікні називається blind."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хозяин смотрит на окна. Скажите ему полной фразой: на окнах нет жалюзи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините названия со значениями",
+      "accessibilityLabel": "Хозяин смотрит на окна. Скажите ему полной фразой: на окнах нет жалюзи",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There aren’t any blinds on the windows.",
+        "localizedMeaning": {
+          "ru": "Хозяин смотрит на окна. Скажите ему полной фразой: на окнах нет жалюзи",
+          "uk": "Господар дивиться на вікна. Скажіть йому повною фразою: на вікнах немає жалюзі"
+        },
+        "orderedTokens": [
+          "There",
+          "aren’t",
+          "any",
+          "blinds",
+          "on",
+          "the",
+          "windows"
+        ],
+        "authoredDistractorTokens": [
+          "isn’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-40:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Хозяин смотрит на окна. Скажите ему полной фразой: на окнах нет жалюзи",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `aren’t` — `There aren’t any blinds on the windows.`",
+              "uk": "тут потрібно `aren’t` — `There aren’t any blinds on the windows.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-40:i10:p1",
-            "target": "handrail",
+            "target": "blind",
             "meaningByLocale": {
-              "ru": "поручень",
-              "uk": "поручень"
+              "ru": "жалюзи, штора",
+              "uk": "жалюзі, штора"
             }
           },
           {
             "pairId": "en:lesson-04:session-40:i10:p2",
-            "target": "ramp",
+            "target": "cooker",
             "meaningByLocale": {
-              "ru": "пандус",
-              "uk": "пандус"
+              "ru": "плита (кухонная)",
+              "uk": "плита (кухонна)"
             }
           },
           {
             "pairId": "en:lesson-04:session-40:i10:p3",
-            "target": "fountain",
+            "target": "boiler",
             "meaningByLocale": {
-              "ru": "фонтан",
-              "uk": "фонтан"
+              "ru": "бойлер, котёл",
+              "uk": "бойлер, котел"
             }
           },
           {
             "pairId": "en:lesson-04:session-40:i10:p4",
-            "target": "parcel locker",
+            "target": "heater",
             "meaningByLocale": {
-              "ru": "постамат",
-              "uk": "поштомат"
+              "ru": "обогреватель",
+              "uk": "обігрівач"
             }
           }
         ],
         "leftColumn": [
-          "handrail",
-          "ramp",
-          "fountain",
-          "parcel locker"
+          "blind",
+          "cooker",
+          "boiler",
+          "heater"
         ],
         "rightColumn": [
-          "поручень",
-          "пандус",
-          "фонтан",
-          "постамат"
+          "жалюзи, штора",
+          "плита (кухонная)",
+          "бойлер, котёл",
+          "обогреватель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -603,92 +751,190 @@
     },
     {
       "interactionId": "en:lesson-04:session-40:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите описание",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте хозяина",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-40:i11:r1",
+          "text": "There isn’t a thermostat in the hall."
+        },
+        {
+          "responseId": "en:lesson-04:session-40:i11:r2",
+          "text": "There isn’t a thermostat in the lobby."
+        },
+        {
+          "responseId": "en:lesson-04:session-40:i11:r3",
+          "text": "There aren’t any thermostats in the hall."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-40:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите описание",
+      "accessibilityLabel": "Послушайте хозяина",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-40:i11:audio",
-          "transcript": "The parcel locker is next to the bike shed."
+          "transcript": "There isn’t a thermostat in the hall."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The parcel locker is next to the bike shed.",
-        "orderedTokens": [
-          "The",
-          "parcel",
-          "locker",
-          "is",
-          "next",
-          "to",
-          "the",
-          "bike",
-          "shed"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-40:i11:tile:d1",
+            "responseId": "en:lesson-04:session-40:i11:r1",
+            "targetText": "There isn’t a thermostat in the hall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i11:r2",
+            "targetText": "There isn’t a thermostat in the lobby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i11:r3",
+            "targetText": "There aren’t any thermostats in the hall.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-40:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите описание",
+            "testedDimension": "Послушайте хозяина",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The parcel locker is next to the bike shed.`",
-              "uk": "тут потрібно `is` — `The parcel locker is next to the bike shed.`"
+              "ru": "В записи `hall` — холл, а в этом варианте `lobby` — вестибюль.",
+              "uk": "У записі `hall` — хол, а в цьому варіанті `lobby` — вестибюль."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте хозяина",
+            "feedbackByLocale": {
+              "ru": "В записи `isn’t a` — один, а в этом варианте `aren’t any` — несколько.",
+              "uk": "У записі `isn’t a` — один, а в цьому варіанті `aren’t any` — кілька."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-40:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Здесь есть термостат. Сообщите об этом",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга ищет плиту, но плиты нет. Выберите нужное слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-40:i12:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-40:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "en:lesson-04:session-40:i12:r3",
+          "text": "an"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Здесь есть термостат. Сообщите об этом",
+      "accessibilityLabel": "Подруга ищет плиту, но плиты нет. Выберите нужное слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a thermostat.",
-        "localizedMeaning": {
-          "ru": "Здесь есть термостат. Сообщите об этом",
-          "uk": "Тут є термостат. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга ищет плиту, но плиты нет. Выберите нужное слово",
+          "uk": "Подруга шукає плиту, але плити немає. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "There isn’t ___ cooker near the sink.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-40:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i12:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i12:r3",
+            "text": "an"
+          }
+        ],
+        "testedDimension": "Подруга ищет плиту, но плиты нет. Выберите нужное слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Подруга ищет плиту, но плиты нет. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "Слова isn’t уже достаточно для «нет»: второе отрицание no не нужно.",
+              "uk": "Слова isn’t уже достатньо для «немає»: друге заперечення no не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Подруга ищет плиту, но плиты нет. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "Слово cooker начинается с согласного звука, поэтому нужно a, а не an.",
+              "uk": "Слово cooker починається з приголосного звуку, тому потрібно a, а не an."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте хозяина и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-40:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте хозяина и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-40:i13:audio",
+          "transcript": "There aren’t any mattresses on the beds."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren’t any mattresses on the beds.",
         "orderedTokens": [
           "There",
-          "is",
-          "a",
-          "thermostat"
+          "aren’t",
+          "any",
+          "mattresses",
+          "on",
+          "the",
+          "beds"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "isn’t"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-40:i12:tile:d1",
+            "responseId": "en:lesson-04:session-40:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Здесь есть термостат. Сообщите об этом",
+            "testedDimension": "Послушайте хозяина и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a thermostat.`",
-              "uk": "тут потрібно `is` — `There is a thermostat.`"
+              "ru": "здесь нужно `aren’t` — `There aren’t any mattresses on the beds.`",
+              "uk": "тут потрібно `aren’t` — `There aren’t any mattresses on the beds.`"
             }
           }
         ],
@@ -700,26 +946,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-40:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-40:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ещё не осмотрели комнату. Спросите, есть ли термостат",
+      "prompt": "Подруга спрашивает про кухню. Скажите ей: «Здесь нет плиты»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-40:i13:audio"
+        "en:lesson-04:session-40:i14:audio"
       ],
-      "accessibilityLabel": "Вы ещё не осмотрели комнату. Спросите, есть ли термостат",
+      "accessibilityLabel": "Подруга спрашивает про кухню. Скажите ей: «Здесь нет плиты»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-40:i13:audio",
-          "transcript": "Is there a thermostat?"
+          "audioTargetId": "en:lesson-04:session-40:i14:audio",
+          "transcript": "There isn’t a cooker here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a thermostat?",
+        "targetPhrase": "There isn’t a cooker here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -733,208 +979,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-40:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-40:i14:r1",
-          "text": "between"
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i14:r2",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хозяин проверяет холл. Скажите ему полной фразой: под окном нет батареи",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
+      "accessibilityLabel": "Хозяин проверяет холл. Скажите ему полной фразой: под окном нет батареи",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
-          "uk": "Фонтан між двома магазинами, не всередині й не під ними. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a radiator under the window.",
+        "localizedMeaning": {
+          "ru": "Хозяин проверяет холл. Скажите ему полной фразой: под окном нет батареи",
+          "uk": "Господар перевіряє хол. Скажіть йому повною фразою: під вікном немає батареї"
         },
-        "gappedTargetPhrase": "The fountain is ___ the shops.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "radiator",
+          "under",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-40:i14:r1",
-            "text": "between"
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i14:r2",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-40:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Хозяин проверяет холл. Скажите ему полной фразой: под окном нет батареи",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a radiator under the window.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a radiator under the window.`"
+            }
           }
         ],
-        "testedDimension": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-40:i14:r2",
-            "correct": false,
-            "testedDimension": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; между — `between`.",
-              "uk": "`in` — усередині; між — `between`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i14:r3",
-            "correct": false,
-            "testedDimension": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; между — `between`.",
-              "uk": "`under` — під; між — `between`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-40:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте, что показывает друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-40:i15:r1",
-          "text": "That is a thermostat."
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i15:r2",
-          "text": "This is a thermostat."
-        },
-        {
-          "responseId": "en:lesson-04:session-40:i15:r3",
-          "text": "That is a boiler."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-40:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте, что показывает друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-40:i15:audio",
-          "transcript": "That is a thermostat."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-40:i15:r1",
-            "targetText": "That is a thermostat.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i15:r2",
-            "targetText": "This is a thermostat.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i15:r3",
-            "targetText": "That is a boiler.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-40:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-40:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `thermostat`, а в этом варианте — `boiler`.",
-              "uk": "У записі останнє слово — `thermostat`, а в цьому варіанті — `boiler`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-40:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините названия со значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините названия со значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-40:i16:p1",
-            "target": "bike shed",
-            "meaningByLocale": {
-              "ru": "сарай для велосипедов",
-              "uk": "сарай для велосипедів"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-40:i16:p2",
-            "target": "ramp",
-            "meaningByLocale": {
-              "ru": "пандус",
-              "uk": "пандус"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-40:i16:p3",
-            "target": "handrail",
-            "meaningByLocale": {
-              "ru": "поручень",
-              "uk": "поручень"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-40:i16:p4",
             "target": "thermostat",
             "meaningByLocale": {
               "ru": "термостат",
               "uk": "термостат"
             }
+          },
+          {
+            "pairId": "en:lesson-04:session-40:i16:p2",
+            "target": "mattress",
+            "meaningByLocale": {
+              "ru": "матрас",
+              "uk": "матрац"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-40:i16:p3",
+            "target": "cooker",
+            "meaningByLocale": {
+              "ru": "плита (кухонная)",
+              "uk": "плита (кухонна)"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-40:i16:p4",
+            "target": "blind",
+            "meaningByLocale": {
+              "ru": "жалюзи, штора",
+              "uk": "жалюзі, штора"
+            }
           }
         ],
         "leftColumn": [
-          "bike shed",
-          "ramp",
-          "handrail",
-          "thermostat"
+          "thermostat",
+          "mattress",
+          "cooker",
+          "blind"
         ],
         "rightColumn": [
-          "сарай для велосипедов",
-          "пандус",
-          "поручень",
-          "термостат"
+          "термостат",
+          "матрас",
+          "плита (кухонная)",
+          "жалюзи, штора"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1101,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-40:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы осмотрели другую комнату: термостата нет. Сообщите об этом одной фразой",
+      "prompt": "В другой квартире хозяин ищет термостат. Скажите ему: «Термостата здесь нет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Вы осмотрели другую комнату: термостата нет. Сообщите об этом одной фразой",
+      "accessibilityLabel": "В другой квартире хозяин ищет термостат. Скажите ему: «Термостата здесь нет»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-40:i17:audio",
-          "transcript": "There isn't a thermostat."
+          "transcript": "There isn’t a thermostat here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There isn't a thermostat.",
+        "targetPhrase": "There isn’t a thermostat here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1141,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "58870891169e986ebdc125711ec05a845e7176c43b8fda721c778d05fe46018e"
+  "learnerFingerprint": "3d99daf925ed0407ff4af31e88d677f91447f9f247380658a46ff49587bb6ce1"
 }

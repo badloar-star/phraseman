@@ -58,8 +58,10 @@ const LEGAL_FILES = [
   // 17.10 (координатор, вариант (а) по замечанию Ревизора 3.01/3.02): старые сборки в сторах ещё зовут explainMistake — абзац о согласии
   // и «mistake explanations» в §11 возвращены с пометкой «only in app versions earlier than 2.0.0»; в 2.0.0 обе функции выключены
   // (MISTAKE_EXPLAIN_ENABLED = false). Снять отдельной правкой, когда старые версии уйдут и explainMistake удалят с сервера.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '3c0a5654f1789d68d4ce04c741f0e0c6adbdcd93296b3088ec3ccbc24f1739b9'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '36a76ed6bacc0a6f04ee9a3c1952a55fb49118915070ba0f67529fbb32ee4d2a'],
+  // 17.10 (координатор, R111 итог 1fa264c86/dff2faabb, Ревизор f23e972a6): §4 — счётчики восстановления по коду: хэш с секретом (HMAC)
+  // учётки входа, восстанавливаемого аккаунта/введённой почты и IP; сам IP не хранится; удаляются в течение двух суток (окно 24 ч + TTL).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'eb6b5802a9e9691abc65694f14f46113c7c1ace32e7891183e876ffa40e72538'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'cb939f3d680b29f345a86e83534e72dbcf3a6b5d0bf70d8384721561e496df34'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],

@@ -107,7 +107,7 @@ function completionLabels(lang: Lang) {
     done: triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe', fr: 'Terminé', de: 'Fertig' }),
     // зачем (решение владельца 13.10, dialogs.html D2: под «Готово» «Добить: Ещё учу (N)» при ошибках; в карточке «Ошибки» — «Повторить ошибки»): N — ошибки диалога, записанные в «Мои ошибки»
     finishMistakes: (n: number) => triLang(lang, {
-      ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish: Still learning (${n})`, es: `Terminar: Aún aprendo (${n})`,
+      ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish the rest (${n})`, es: `Terminar: Aún aprendo (${n})`,
       'pt-BR': `Finalizar: Aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Belajar (${n})`,
       // зачем (Сверка, R1_LONG_TRANSLATIONS 13.10): pt-BR/pl/id/tr были длиннее en (30–34 знака) — кнопка переносилась; теперь ≤ en.
       tr: `Bitir: Öğreniyorum (${n})`, pl: `Dokończ: Uczę się (${n})`, fr: `Finir : encore à apprendre (${n})`, de: `Abschließen: Noch am Lernen (${n})`,

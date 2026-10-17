@@ -127,7 +127,7 @@ const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
 const EMPTY_MISTAKE_IDS: readonly string[] = [];
 // «Добить: Ещё учу (N)» — подпись под главной кнопкой итога урока (learn.html E; 9 языков, число — в скобках).
 const finishMistakesLabels = (n: number) => ({
-  ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish: Still learning (${n})`, es: `Terminar: Aún aprendo (${n})`,
+  ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish the rest (${n})`, es: `Terminar: Aún aprendo (${n})`,
   'pt-BR': `Finalizar: Aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Belajar (${n})`,
   // зачем (Сверка, R1_LONG_TRANSLATIONS 13.10): pt-BR/pl/id/tr были длиннее en (30–34 знака) — кнопка переносилась; теперь ≤ en.
   tr: `Bitir: Öğreniyorum (${n})`, pl: `Dokończ: Uczę się (${n})`,
@@ -143,7 +143,7 @@ type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dis
 const MAIN_COURSE_ACCESS_BODY: Record<Lang, string> = {
   ru: 'Дальше курс ведёт от простых фраз до свободного разговора. С Plus открывается весь курс, а с ним и всё остальное: разговоры вслух, тренировки без счётчика и статистика.',
   uk: 'Далі курс веде від простих висловів до вільної розмови. З Plus відкривається увесь курс, а з ним і все інше: розмови вголос, тренування без лічильника і статистика.',
-  en: 'Next, the course takes you from simple phrases to free conversation. Plus opens the whole course, and everything else with it: speaking out loud, training without a counter and statistics.',
+  en: 'Next, the course takes you from simple phrases to real conversation. Plus unlocks the whole course and everything else: speaking practice, unlimited training and stats.',
   es: 'Después, el curso te lleva de las frases simples a la conversación libre. Con Plus se abre el curso completo y, con él, todo lo demás: hablar en voz alta, entrenamientos sin contador y estadísticas.',
   'pt-BR': 'Daqui em diante, o curso vai das frases simples à conversa livre. Com o Plus abre o curso inteiro e, junto com ele, todo o resto: falar em voz alta, treinos sem contador e estatísticas.',
   vi: 'Tiếp theo, khóa học đưa bạn từ câu đơn giản đến trò chuyện tự nhiên. Với Plus, cả khóa học mở ra, cùng mọi thứ khác: nói thành tiếng, luyện tập không giới hạn lượt và thống kê.',
@@ -408,7 +408,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       'pt-BR': 'Nova lição liberada', vi: 'Đã mở bài học mới', id: 'Pelajaran baru terbuka', tr: 'Yeni ders açıldı', pl: 'Nowa lekcja otwarta',
     });
     modalSub = triLang(lang, {
-      ru: 'Продолжай обучение, когда захочешь.', en: 'Keep learning whenever you are ready.', uk: 'Продовжуй навчання, коли захочеш.',
+      ru: 'Продолжай обучение, когда захочешь.', en: 'Keep learning whenever you’re ready.', uk: 'Продовжуй навчання, коли захочеш.',
       es: 'Sigue aprendiendo cuando estés listo.', 'pt-BR': 'Continue estudando quando estiver pronto.', vi: 'Tiếp tục học khi bạn sẵn sàng.',
       id: 'Lanjutkan belajar kapan pun kamu siap.', tr: 'Hazır olduğunda öğrenmeye devam et.', pl: 'Ucz się dalej, kiedy będziesz gotowy.',
     });
@@ -1339,7 +1339,7 @@ export default function LessonComplete() {
           emitAppEvent('action_toast', actionToastTri('error', {
             ru: 'Не получилось. Попробуй ещё раз.',
             uk: 'Не вийшло. Спробуй ще раз.',
-            en: 'That did not work. Try again.',
+            en: 'That didn’t work. Try again.',
             es: 'No funcionó. Inténtalo de nuevo.',
             'pt-BR': 'Não deu certo. Tente de novo.',
             vi: 'Không thành công. Thử lại nhé.',
@@ -1517,7 +1517,7 @@ export default function LessonComplete() {
               coinsGained={practiceRunes.runes}
               plusNote={completionRequiresPremium ? {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
-                body: triLang(lang, { ru: 'Первые три урока открыты бесплатно. Дальше — с Plus.', en: 'The first three lessons are free. After that — with Plus.', uk: 'Перші три уроки відкриті безкоштовно. Далі — з Plus.', es: 'Las tres primeras lecciones son gratis. Después, con Plus.', 'pt-BR': 'As três primeiras lições são grátis. Depois, com Plus.', vi: 'Ba bài đầu miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran pertama gratis. Selanjutnya dengan Plus.', tr: 'İlk üç ders ücretsiz. Sonrası Plus ile.', pl: 'Pierwsze trzy lekcje są darmowe. Dalej — z Plus.' }),
+                body: triLang(lang, { ru: 'Первые три урока открыты бесплатно. Дальше — с Plus.', en: 'The first three lessons are free. The rest come with Plus.', uk: 'Перші три уроки відкриті безкоштовно. Далі — з Plus.', es: 'Las tres primeras lecciones son gratis. Después, con Plus.', 'pt-BR': 'As três primeiras lições são grátis. Depois, com Plus.', vi: 'Ba bài đầu miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran pertama gratis. Selanjutnya dengan Plus.', tr: 'İlk üç ders ücretsiz. Sonrası Plus ile.', pl: 'Pierwsze trzy lekcje są darmowe. Dalej — z Plus.' }),
               } : undefined}
               feedbackSlot={lessonSoftUpsellVisible || (isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
                 <View style={{ width: '100%', gap: 12 }}>
@@ -1563,7 +1563,7 @@ export default function LessonComplete() {
                     'pt-BR': 'Deu para entender tudo?', vi: 'Mọi thứ có dễ hiểu không?',
                     id: 'Semuanya jelas?', tr: 'Her şey anlaşıldı mı?', pl: 'Wszystko było jasne?',
                   })}
-                  placeholder={triLang(lang, { ru: 'Где застрял? Что объяснить иначе?', en: 'Where did you get stuck? What to explain better?', uk: 'Де застряг? Що пояснити інакше?', es: '¿Dónde te atascaste? ¿Qué explicar mejor?',
+                  placeholder={triLang(lang, { ru: 'Где застрял? Что объяснить иначе?', en: 'Where did you get stuck? What should we explain better?', uk: 'Де застряг? Що пояснити інакше?', es: '¿Dónde te atascaste? ¿Qué explicar mejor?',
                     'pt-BR': 'Onde travou? O que explicar melhor?', vi: 'Bạn mắc ở đâu? Cần giải thích lại điều gì?',
                     id: 'Di mana kamu tersendat? Apa yang perlu dijelaskan ulang?', tr: 'Nerede takıldın? Ne daha iyi anlatılmalı?', pl: 'Gdzie utknąłeś? Co wyjaśnić inaczej?',
                   })}
@@ -1585,7 +1585,7 @@ export default function LessonComplete() {
               ) : undefined}
               // зачем (макет learn.html E1–E4): у каждого исхода свои кнопки.
               primaryLabel={completionRequiresPremium
-                ? triLang(lang, { ru: 'Открыть Plus', en: 'Open Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
+                ? triLang(lang, { ru: 'Открыть Plus', en: 'Get Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
                 : !isComboCompletion && resultStars === 1
                   ? triLang(lang, { ru: 'Повторить урок', en: 'Repeat the lesson', uk: 'Повторити урок', es: 'Repetir la lección', 'pt-BR': 'Repetir a lição', vi: 'Học lại bài', id: 'Ulangi pelajaran', tr: 'Dersi tekrarla', pl: 'Powtórz lekcję' })
                   : isComboCompletion
@@ -1610,7 +1610,7 @@ export default function LessonComplete() {
               secondaryLabel={isComboCompletion ? undefined : completionRequiresPremium
                 ? triLang(lang, { ru: 'Остаться на бесплатном', en: 'Stay on Free', uk: 'Залишитися на безкоштовному', es: 'Seguir en gratis', 'pt-BR': 'Ficar no grátis', vi: 'Tiếp tục bản miễn phí', id: 'Tetap gratis', tr: 'Ücretsiz devam et', pl: 'Zostań przy darmowym' })
                 : resultStars === 1
-                  ? triLang(lang, { ru: 'К списку уроков', en: 'To the lesson list', uk: 'До списку уроків', es: 'A la lista de lecciones', 'pt-BR': 'Para a lista de lições', vi: 'Về danh sách bài', id: 'Ke daftar pelajaran', tr: 'Ders listesine', pl: 'Do listy lekcji' })
+                  ? triLang(lang, { ru: 'К списку уроков', en: 'Back to lessons', uk: 'До списку уроків', es: 'A la lista de lecciones', 'pt-BR': 'Para a lista de lições', vi: 'Về danh sách bài', id: 'Ke daftar pelajaran', tr: 'Ders listesine', pl: 'Do listy lekcji' })
                   : runMistakeIds.length > 0
                     // зачем (решение владельца 13.10, learn.html E): под «Следующий урок» — «Добить: Ещё учу (N)», N = ошибки прохода, записанные в «Мои ошибки»; без ошибок остаётся «Пройти ещё раз».
                     ? triLang(lang, finishMistakesLabels(runMistakeIds.length))
@@ -1839,7 +1839,7 @@ export default function LessonComplete() {
                   {triLang(lang, { ru: 'Следующий урок закрыт', en: 'Next lesson is locked', uk: 'Наступний урок закрито', es: 'La siguiente lección está bloqueada', 'pt-BR': 'Próxima lição bloqueada', vi: 'Bài tiếp theo đã bị khóa', id: 'Pelajaran berikutnya terkunci', tr: 'Sonraki ders kilitli', pl: 'Następna lekcja jest zablokowana' })}
                 </Text>
                 <Text style={{ color: liquidGlassTokens(liquidGlassThemeId).ctaInk, fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
-                  {triLang(lang, { ru: 'Открыть Plus — продолжить →', en: 'Open Plus — continue →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
+                  {triLang(lang, { ru: 'Открыть Plus — продолжить →', en: 'Get Plus and continue →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
               </KitTouchable>
               <KitTouchable
@@ -1852,7 +1852,7 @@ export default function LessonComplete() {
                 }}
               >
                 <Text style={{ color: t.textGhost, fontSize: f.caption, textDecorationLine: 'underline' }}>
-                  {triLang(lang, { ru: 'Остаться на обычном аккаунте', en: 'Stay on free', uk: 'Залишитись на безкоштовному', es: 'Quedarme con la versión gratuita', 'pt-BR': 'Ficar no gratuito', vi: 'Tiếp tục miễn phí', id: 'Tetap di gratis', tr: 'Ücretsiz kalmak istiyorum', pl: 'Zostań w darmowej wersji' })}
+                  {triLang(lang, { ru: 'Остаться на обычном аккаунте', en: 'Stay on Free', uk: 'Залишитись на безкоштовному', es: 'Quedarme con la versión gratuita', 'pt-BR': 'Ficar no gratuito', vi: 'Tiếp tục miễn phí', id: 'Tetap di gratis', tr: 'Ücretsiz kalmak istiyorum', pl: 'Zostań w darmowej wersji' })}
                 </Text>
               </KitTouchable>
             </Animated.View>

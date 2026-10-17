@@ -146,7 +146,8 @@ const s = StyleSheet.create({
   root: { flex: 1 },
   header: { height: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap },
   back: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center' },
-  title: { flex: 1, ...V2_TYPE.title },
+  // зачем (макет Б, сверка Макетов 837f89983 п.3): заголовок экрана «Сегодня» 28/34 (общий V2_TYPE.title — 24/30), вес и трекинг — общие
+  title: { flex: 1, ...V2_TYPE.title, fontSize: 28, lineHeight: 34 },
   content: { paddingHorizontal: V2.screenPad - 6, paddingTop: 8, paddingBottom: 32, gap: 8 },
   rings: { minHeight: RINGS_BLOCK_HEIGHT, paddingTop: 26, paddingBottom: 12 },
 });

@@ -94,3 +94,9 @@ describe('кольца 222 (макет Б): толщина 16, зазор 7, м�
     expect(rings).toContain('delayMs={fromProgress ? i * RING_STAGGER_MS : 0}');
   });
 });
+
+describe('заголовок экрана «Сегодня» 28/34 (макет Б), остальные экраны — общий стиль', () => {
+  it('размер только здесь', () => {
+    expect(read('app/today_tasks.tsx')).toContain('title: { flex: 1, ...V2_TYPE.title, fontSize: 28, lineHeight: 34 },');
+  });
+});

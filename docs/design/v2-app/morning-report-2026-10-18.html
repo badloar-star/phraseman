@@ -63,6 +63,11 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
 .fnl > div b { color: var(--tx); }
 .fnl code { display: block; margin-top: 4px; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--mu); overflow-wrap: anywhere; }
 .fnl .warn { margin-top: 6px; color: var(--wip); font-size: 14px; }
+.night { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+.night .nk { color: var(--sec); font-weight: 700; font-size: 14px; }
+.night .card { background: var(--raised); }
+.night .card h3 { margin: 0; font-size: 18px; line-height: 24px; }
+.night .card p { margin: 6px 0 0; color: var(--sec); font-size: 15px; }
 .foot { margin-top: 48px; color: var(--mu); font-size: 13px; }
 @media (max-width: 560px) { .it { grid-template-columns: 44px 1fr; } .it .st { grid-column: 2; justify-self: start; margin-top: 6px; } h1 { font-size: 28px; line-height: 34px; } .thumbs { grid-template-columns: 1fr; } }
 </style>
@@ -73,22 +78,22 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <p class="lead">Всё, что сделано за 17.10, что ещё в работе, сколько стоит сервер и какие решения нужны от вас сегодня. Статусы: <span class="st ok">готово</span> <span class="st wip">в работе</span> <span class="st red">мешает сборке</span> <span class="st own">ждёт вашего решения</span></p>
 
   <div class="kpis">
-    <div class="kpi"><b id="k-done">17 из 38</b><span>задач дня готово</span></div>
+    <div class="kpi"><b id="k-done">23 из 40</b><span>задач дня готово</span></div>
     <div class="kpi"><b id="k-open">205</b><span>занятий нового курса открыто</span></div>
-    <div class="kpi"><b id="k-rew">84 из 441</b><span>занятий переписано</span></div>
-    <div class="kpi"><b id="k-voice">444 → 0</b><span>голосов с расхождением текста, цель к 07:45</span></div>
+    <div class="kpi"><b id="k-rew">136 из 441</b><span>занятий переписано (100 уже в приложении)</span></div>
+    <div class="kpi"><b id="k-voice">0 из 444</b><span>голосов с расхождением текста — исправлено</span></div>
     <div class="kpi"><b>≈&nbsp;62&nbsp;€ → ≈&nbsp;50&nbsp;€</b><span>сервер в месяц, дальше цель ≈ 6–9 €</span></div>
-    <div class="kpi"><b>10</b><span>решений ждут вас</span></div>
+    <div class="kpi"><b>9</b><span>решений ждут вас + 3 для сведения</span></div>
   </div>
 
   <nav aria-label="Разделы">
-    <a href="#done">1 · Сделано</a><a href="#modals">2 · Анимированные окна</a><a href="#course">3 · Новый курс</a><a href="#cost">4 · Расходы</a><a href="#decide">5 · Ваши решения</a><a href="#left">6 · Осталось и риски</a>
+    <a href="#done">1 · Сделано</a><a href="#night">1б · За ночь</a><a href="#modals">2 · Анимированные окна</a><a href="#course">3 · Новый курс</a><a href="#cost">4 · Расходы</a><a href="#decide">5 · Ваши решения</a><a href="#left">6 · Осталось и риски</a>
   </nav>
 
   <!-- ─────────────────────────── 1 ─────────────────────────── -->
   <section id="done">
     <h2><span class="n">1</span>Что сделано за 17.10</h2>
-    <p class="sub">Задачи R79–R116 из журнала выпуска. Хеш — номер изменения в коде, по нему всё находится.</p>
+    <p class="sub">Задачи R79–R118 из журнала выпуска. Хеш — номер изменения в коде, по нему всё находится.</p>
     <div class="list">
       <div class="it"><span class="id">R79</span><div><div class="t">Новый курс открыт целиком</div><div class="d">Все 8 уроков в каталоге (441 занятие), человеку доступно 205; звук для них есть и проверен. <code>9543b98c2</code> <code>2d7da68ad</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R80</span><div><div class="t">Вкладка «Обучение» открывает новые уроки</div><div class="d">Старые уроки — отдельной кнопкой на месте «Новые уроки». Кадры Сверки — в работе. <code>98f738846</code> <code>c92f7585d</code></div></div><span class="st ok">готово</span></div>
@@ -103,10 +108,10 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="it"><span class="id">R89</span><div><div class="t">Иконки уроков и глав нового курса + свой узор у каждой главы</div><div class="d">Уроки 1–8, у главы — открыта / пройдена / закрыта. Кадры Сверки — в работе. <code>16566bd7d</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R90</span><div><div class="t">Карточка «Продолжить: последнее место» на Главной</div><div class="d">Занятие, классический урок, диалог или набор карточек — где остановились. <code>719e4c771</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R91</span><div><div class="t">Размытый текст во вступлении занятия</div><div class="d">Поставлены подробные журналы, причина ищется по ним. <code>37f546656</code></div></div><span class="st red">мешает сборке</span></div>
-      <div class="it"><span class="id">R92</span><div><div class="t">Новый курс — только там, где для языка интерфейса есть тексты</div><div class="d">В работе у Ядра.</div></div><span class="st wip">в работе</span></div>
-      <div class="it"><span class="id">R93</span><div><div class="t">Переписывание занятий нового курса</div><div class="d">84 из 441: урок 1 целиком, урок 2 — по 28-е. Заморозка для сборки — 18.10 08:00. Подробно — раздел 3.</div></div><span class="st wip">в работе</span></div>
-      <div class="it"><span class="id">R94</span><div><div class="t">Кнопка «назад» — ваш значок везде</div><div class="d">Все экраны переведены на общий значок; проверка Сверкой — в работе. <code>37f546656</code> <code>89a360603</code> <code>8317a2ffc</code> <code>3b742cb2d</code> <code>b57613ea1</code></div></div><span class="st wip">в работе</span></div>
-      <div class="it"><span class="id">R95</span><div><div class="t">Английский язык интерфейса</div><div class="d">Шпаргалки и заголовки переведены, «навсегда» про Plus убрано; в список языков ещё не открыт. <code>31fa965f7</code> <code>e380c2107</code> <code>c409ac0f8</code></div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R92</span><div><div class="t">Новый курс — только там, где для языка интерфейса есть пояснения</div><div class="d">Русский и украинский — новый курс; остальные языки — вкладка «Обучение» открывает классический курс, «Продолжить» на Главной не ведёт в новый.</div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R93</span><div><div class="t">Переписывание занятий нового курса</div><div class="d">136 из 441: уроки 1 и 2 целиком, урок 3 — по 24-е. В приложение уже перенесены 100 (урок 1 и урок 2 по 44-е). Подробно — раздел 3.</div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R94</span><div><div class="t">Кнопка «назад» — ваш значок везде</div><div class="d">Все экраны переведены на общий значок; кадры Сверки — утром.</div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R95</span><div><div class="t">Английский язык интерфейса открыт</div><div class="d">Тексты вычитаны глазами носителя (пейвол, настройки, Карточки, Диалоги, Пик, знакомство, «Сегодня»); телефон на языке, которого у нас нет, стартует на английском.</div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R96</span><div><div class="t">Справка по уведомлениям: что уходит, когда, какие тексты</div><div class="d">В работе у Ядра.</div></div><span class="st wip">в работе</span></div>
       <div class="it"><span class="id">R97</span><div><div class="t">Пик: щедрее время и все пары на одном экране</div><div class="d">Время = «комфортно» × лига × этаж (лига 1, этаж 1: выбор ответа ≈ 20 с); поле пар — две колонки. <code>cf8df70c3</code> <code>8ab7d49e0</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R98</span><div><div class="t">Все анимированные окна — проход Сверки</div><div class="d">Таблица к 07:00 — раздел 2.</div></div><span class="st wip">в работе</span></div>
@@ -119,15 +124,33 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="it"><span class="id">R105</span><div><div class="t">Выкладка сайта и политики</div><div class="d">Подготовлена из чистой копии, пробный прогон прошёл. Решение — раздел 5. <code>e3c6aaf04</code></div></div><span class="st own">ваше решение</span></div>
       <div class="it"><span class="id">R106</span><div><div class="t">«Посмотреть видео» засчитывается после 10 минут</div><div class="d">Подписи «хотя бы минуту» нет; счёт минут не теряется при перезапуске. <code>715073062</code> <code>33cee2830</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R107</span><div><div class="t">Новые опросы, несколько в день</div><div class="d">Набор из 36 вопросов готов, старые не удаляются. Решение — раздел 5. <code>1b3e47a38</code></div></div><span class="st own">ваше решение</span></div>
-      <div class="it"><span class="id">R108</span><div><div class="t">Главная: 4 плитки — Уроки, Диалоги, Карточки, Пик</div><div class="d">Три варианта на выбор; пока вы не выбрали, в коде делается вариант (в). <code>d5913e0f5</code></div></div><span class="st own">ваше решение</span></div>
-      <div class="it"><span class="id">R109</span><div><div class="t">Карточки: число справа от иконки</div><div class="d">Эталон готов, «6 наборов» → «6»; в коде — в работе. <code>2ad48d298</code></div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R108</span><div><div class="t">Главная: 4 плитки — Уроки, Диалоги, Карточки, Пик</div><div class="d">Сделан вариант (в): плитки-иконки, у Пика бейдж «N место». Если выберете другой — переделаем.</div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R109</span><div><div class="t">Карточки: число справа от иконки</div><div class="d">На всех четырёх плитках хаба; «6 наборов» → «6».</div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R110</span><div><div class="t">Админка: автоназвание набора из видео</div><div class="d">После опросов; серверная часть — только с вашего «да».</div></div><span class="st wip">в работе</span></div>
-      <div class="it"><span class="id">R111</span><div><div class="t">Восстановление аккаунта по коду не работает</div><div class="d">Сервер требует проверку подлинности приложения, которой у приложения нет с 01.10 — и в рабочей версии, и в новой. Нужна правка кода с проверкой безопасности и выкладка. Решение — раздел 5.</div></div><span class="st red">мешает сборке</span></div>
-      <div class="it"><span class="id">R112</span><div><div class="t">Пик: неделя 43 с 19.10 (рейтинг по монетам)</div><div class="d">Старое расписание на сервере не пишет новую таблицу — выложить его или вернуть прежние правила до 19.10. Решение — раздел 5.</div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R111</span><div><div class="t">Восстановление аккаунта по коду</div><div class="d">Код исправлен (проверка подлинности приложения снята, добавлен дневной предел неверных кодов) и прошёл проверку безопасности; нужна выкладка функций восстановления — раздел 5.</div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R112</span><div><div class="t">Пик: неделя 43 с 19.10</div><div class="d">Проверено: на сервере рейтинг по монетам не включён — ничего делать не нужно.</div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R113</span><div><div class="t">ИИ-диалоги: компаньон «Тео» молчит (квота списывается), «Как сказать…» — ошибка, es/de отвечают по-английски</div><div class="d">Сломано и в версии 1.6.24 из стора (~4 недели). Решение — раздел 5, первым пунктом (R103-AI).</div></div><span class="st own">ваше решение</span></div>
-      <div class="it"><span class="id">R114</span><div><div class="t">Голоса нового курса: 444 записи не совпадают с текстом</div><div class="d">Урок 1 (s02–s56) и урок 2 (s01–s12); цель — 0 к 07:45.</div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R114</span><div><div class="t">Голоса нового курса совпадают с текстом</div><div class="d">Было 444 расхождения — стало 0; звук всех 441 занятий прошёл проверку.</div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R115</span><div><div class="t">69 красных проверок кода</div><div class="d">Список собран, чинят владельцы участков (макеты и паритет — «Макеты»).</div></div><span class="st red">мешает сборке</span></div>
-      <div class="it"><span class="id">R116</span><div><div class="t">Опросы 2.0: макет и 36 вопросов готовы</div><div class="d">Ждут четырёх ваших решений — раздел 5. <code>1b3e47a38</code></div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R116</span><div><div class="t">Опросы 2.0: макет и 36 вопросов готовы</div><div class="d">Переведены на 9 языков. Ждут четырёх ваших решений — раздел 5.</div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R117</span><div><div class="t">«Сегодня»: прогресс задания мог теряться</div><div class="d">Гонка между выплатой награды и новым событием задания. Чинится; функцию наград выкладывать только после этого фикса.</div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R118</span><div><div class="t">Проверка, что починка красных сторожей их не ослабила</div><div class="d">Ревизор проверил перепривязки — честные.</div></div><span class="st wip">в работе</span></div>
+    </div>
+  </section>
+
+  <section id="night">
+    <h2><span class="n">1б</span>Сделано за ночь</h2>
+    <p class="sub">С 20:00 17.10 — 121 изменение. Коротко по участкам; номера изменений спрятаны под «хэши».</p>
+    <div class="grid2">
+      <div class="card"><div style="font-weight:700">Новый курс</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Урок 2 переписан целиком, урок 3 — по 24-е занятие.</li><li>Уроки 1 и 2 (по 44-е) перенесены в приложение: тексты, карточки, звук.</li><li>Голоса совпадают с текстом: было 444 расхождения — стало 0; звук всех 441 занятий прошёл проверку.</li><li>Новый курс — только для русского и украинского интерфейса, остальным — классический.</li></ul><details><summary>хэши</summary><span class="hash">f5dd4f747 851b14a35 fd447f448 241d7b4e4 d5acec0a4 da9191fb8 05cf3a61b a151b0dec 89b824857</span></details></div>
+      <div class="card"><div style="font-weight:700">Переводчик</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Английский интерфейс открыт; тексты вычитаны глазами носителя.</li><li>Телефон на неизвестном языке стартует на английском.</li><li>Опросы 2.0 — 36 вопросов на 9 языках.</li><li>Бейдж места у Пика не обрезается на длинных языках.</li></ul><details><summary>хэши</summary><span class="hash">67fc0e3ec 0c1d1b8c6 bd24810cb 6295aff78 a4679d16e fe6c96bd9 0cb2d532c c409ac0f8 31fa965f7 e380c2107</span></details></div>
+      <div class="card"><div style="font-weight:700">Вход и друзья</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Восстановление по коду исправлено и прошло проверку безопасности (нужна выкладка).</li><li>Ошибки при входе и в друзьях больше не теряются молча — пишут причину.</li><li>Заявка в друзья видна при следующем открытии.</li></ul><details><summary>хэши</summary><span class="hash">40ad95e86 454976a16 d8604cb92 a25d669cb 37aef247d 834cced52</span></details></div>
+      <div class="card"><div style="font-weight:700">Моменты и Главная</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Пик — четвёртая плитка с местом в лиге.</li><li>«Сегодня», кольца и награды отзываются сразу, без ожидания сервера.</li><li>Починено «Поделиться» в недельном моменте.</li><li>Главная перерисовывается реже — быстрее.</li></ul><details><summary>хэши</summary><span class="hash">47876f843 f1b855998 75a5b74b1 47250af15 df39f5374</span></details></div>
+      <div class="card"><div style="font-weight:700">Дизайн и Темы</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Кнопка «назад» — один значок во всех экранах.</li><li>Контраст кнопок и плеера нового курса на светлых темах.</li><li>Хаб Карточек: числа справа от иконки.</li><li>Шторка голоса прокручивается на низких экранах.</li></ul><details><summary>хэши</summary><span class="hash">37f546656 89a360603 8317a2ffc 3b742cb2d b57613ea1 5d2051c7e fa2faa583 0b974b1d9 53d0f8288 d117e0995</span></details></div>
+      <div class="card"><div style="font-weight:700">Пик</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Все пары на одном экране; щедрее время на ступени.</li><li>Ступени последнего часа недели досылаются к подсчёту.</li><li>Меньше обращений к серверу.</li></ul><details><summary>хэши</summary><span class="hash">8ab7d49e0 cf8df70c3 c0980560c aa245884a c85084e56 0d5cc54d2</span></details></div>
+      <div class="card"><div style="font-weight:700">Ревизор и сервер</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>План утренней выкладки 7 функций с порядком и проверкой после каждой.</li><li>ИИ-диалоги: найдена поломка и в версии из стора; лечение готово.</li><li>Пик W43 — ничего делать не нужно.</li><li>Клиентские прогревы реже — дешевле.</li></ul><details><summary>хэши</summary><span class="hash">c15e8bd32 2341dfb71 936750601 6e652645a ec28dd324 db44eece1</span></details></div>
+      <div class="card"><div style="font-weight:700">Сайт</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Админка без вкладок Джарвиса, «Стадия роста» считает сама.</li><li>Выкладка сайта и политики подготовлена.</li></ul><details><summary>хэши</summary><span class="hash">86aa201b6 e3c6aaf04 1b3e47a38</span></details></div>
+      <div class="card"><div style="font-weight:700">Макеты и Сверка</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Иконки уроков и глав нового курса — в коде.</li><li>Эталоны подогнаны под вечерний код (Главная, Карточки, шторка, «Сегодня»).</li><li>Реестр сверки больше не теряет строки при пересборке.</li><li>Сценарии проверки друзей для Сверки.</li></ul><details><summary>хэши</summary><span class="hash">16566bd7d 4e71be616 1c9ccfdd6 d5a41525e 5f5c8fa9c</span></details></div>
     </div>
   </section>
 
@@ -204,7 +227,13 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <!-- ─────────────────────────── 5 ─────────────────────────── -->
   <section id="decide">
     <h2><span class="n">5</span>Решения на утро</h2>
-    <p class="sub">Десять вопросов. Почти по каждому есть рекомендация, она отмечена цветом.</p>
+    <p class="sub">Сначала — три решения, уже принятые ночью (для сведения). Дальше девять вопросов; почти по каждому есть рекомендация, она отмечена цветом.</p>
+    <div class="night">
+      <div class="nk">Решения, принятые ночью координатором — для сведения</div>
+      <div class="card"><h3>а. Язык у тех, кто уже установил приложение (R119)</h3><p>У старых установок язык не меняется сам. Узбекский, азербайджанский, армянский, грузинский, таджикский и туркменский телефоны получают русский; португальский (Португалия) — бразильский португальский.</p><div class="opts"><span class="rec">Согласен</span><span>Иначе</span></div></div>
+      <div class="card"><h3>б. Звук всех 441 занятий нового курса одобрен</h3><p>Одобрил координатор по проверке Ревизора (звук прошёл полностью, расхождений с текстом нет). Нужно ваше подтверждение.</p><div class="opts"><span class="rec">Согласен</span><span>Иначе</span></div></div>
+      <div class="card"><h3>в. Размер приложения</h3><p>Звук курса вырос с 64 до 121 МБ; итог — после пробной сборки Ядра. Если основной файл приложения будет больше 150 МБ — вариант: уроки догружаются по сети при первом открытии.</p><div class="opts"><span class="rec">Согласен</span><span>Иначе</span></div></div>
+    </div>
     <div class="dec">
       <div class="card"><h3>0. ИИ-диалоги сломаны — выложить первыми (R103-AI)</h3>
         <p><b style="color:var(--tx)">Сломано и в текущей версии 1.6.24 из стора — уже около 4 недель, и в 2.0.</b> Сценарные диалоги и компаньон «Тео» (Plus) не отвечают, а квота при этом списывается и OpenAI оплачен. «Как сказать…» выдаёт ошибку. На испанском и немецком ИИ отвечает по-английски.</p>
@@ -226,9 +255,6 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="card"><h3>1а. Восстановление аккаунта по коду (R111)</h3>
         <p>Не работает ни на сервере, ни в новой версии: сервер требует проверку подлинности приложения, которой у приложения нет с 01.10. Нужна правка кода с проверкой безопасности и выкладка шести функций восстановления.</p>
         <div class="opts"><span class="rec">Править и выложить утром</span><span>Оставить как есть до следующей версии</span></div></div>
-      <div class="card"><h3>1б. Пик: неделя 43 с 19.10 (R112)</h3>
-        <p>С 19.10 рейтинг Пика по монетам, а старое расписание на сервере не пишет новую таблицу — рейтинг будет пустым.</p>
-        <div class="opts"><span class="rec">Выложить новое расписание до 19.10</span><span>Вернуть прежние правила недели</span></div></div>
       <div class="card"><h3>2. Выкладка сайта и политики (R105)</h3>
         <p>Собрано из чистой копии, политика — из тех же текстов, что в приложении; пробный прогон прошёл.</p>
         <div class="opts"><span class="rec">Выкладывать</span><span>Сначала показать сайт</span></div></div>
@@ -259,6 +285,10 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <!-- ─────────────────────────── 6 ─────────────────────────── -->
   <section id="left">
     <h2><span class="n">6</span>Что осталось и риски</h2>
+    <div class="card" style="margin-bottom:12px"><div style="font-weight:700;color:var(--red)">Найдено ночью и чинится</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
+      <li><b>«Сегодня» (R117)</b> — прогресс задания дня мог теряться: выплата награды и новое событие задания шли наперегонки. Чинится; функцию наград (levelSpinStarGrant) выкладывать только после этого фикса.</li>
+      <li><b>Восстановление по коду (R111)</b> — добавлен дневной предел неверных кодов, чтобы код нельзя было подобрать; код прошёл проверку безопасности, ждёт выкладки.</li>
+    </ul></div>
     <div class="grid2">
       <div class="card"><div style="font-weight:700;color:var(--red)">Мешает сборке</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
         <li><b>Восстановление по коду (R111)</b> — не работает, нужна правка и выкладка.</li>

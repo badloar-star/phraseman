@@ -2692,10 +2692,17 @@ export default function LessonsTab({
   const [learningV2FounderNickPending, setLearningV2FounderNickPending] = useState<boolean | null>(null);
   useEffect(() => {
     let alive = true;
+    // зачем (Ревизор 2.98): номер чтения — поздний ответ старого чтения (например, до смены аккаунта) не перекрывает свежий
+    let readSeq = 0;
     const readPending = (reason: string) => {
+      const seq = ++readSeq;
       void AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY)
         .then((value) => {
           if (!alive) return;
+          if (seq !== readSeq) {
+            console.log("[FOUNDER-PASS] pending:read stale — ответ старого чтения отброшен", JSON.stringify({ reason, seq, latest: readSeq })); // guard-ok: ранний выход с причиной
+            return;
+          }
           setLearningV2FounderNickPending(value !== null);
           console.log("[FOUNDER-PASS] pending:read", JSON.stringify({ reason, pending: value !== null })); // guard-ok: одна строка на чтение
         })

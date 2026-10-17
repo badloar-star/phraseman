@@ -61,6 +61,8 @@ describe('founder pass prints the nickname only once it is confirmed', () => {
     expect(tab).toContain('AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY)');
     expect(tab).toContain('onAppEvent("cloud_profile_hydrated", () => readPending("cloud_profile_hydrated"))');
     expect(tab).toContain('nickname={learningV2FounderNickname}');
+    // Ревизор 2.98: поздний ответ старого чтения флага не перекрывает свежий
+    expect(tab).toMatch(/const seq = \+\+readSeq;[\s\S]{0,200}?if \(seq !== readSeq\) \{/);
     // окно не ждёт ник: гейт показа его не получает
     const gate = tab.slice(tab.indexOf('resolveLearningV2FounderPassGateV1({'), tab.indexOf('});', tab.indexOf('resolveLearningV2FounderPassGateV1({')));
     expect(gate).not.toMatch(/nick/i);

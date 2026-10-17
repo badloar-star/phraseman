@@ -406,18 +406,18 @@ const MESSAGES_FR_TARGET_UK = [
 // зачем (координатор 12.10, подготовка к английскому интерфейсу): английские пуши. Используются только при включённом
 // ENGLISH_UI_LOCALE_ENABLED (см. normalizeNotificationLang); планировщик (когда и сколько шлём) не менялся.
 const MESSAGES_EN = [
-  { title: '🔥 Your streak is waiting!',   body: '5 minutes a day — and the streak grows' },
-  { title: '📚 Time to practice',          body: 'One round today — confidence for life' },
-  { title: '🎯 Daily goal',                body: 'Just a little left to finish today’s challenges!' },
-  { title: '💪 Keep it up!',               body: 'You’ve come so far. Continue today' },
+  { title: '🔥 Your streak is waiting!',   body: '5 minutes a day keeps your streak growing' },
+  { title: '📚 Time to practice',          body: 'One round today — and you’ll feel more sure of yourself' },
+  { title: '🎯 Daily goal',                body: 'You’re almost done with today’s challenges!' },
+  { title: '💪 Keep it up!',               body: 'You’ve come so far — keep going today' },
   { title: '🧠 Review yesterday',          body: 'The best time to review is now' },
 ];
 
 const MESSAGES_FR_TARGET_EN = [
   { title: '🔥 Your streak is waiting!',   body: 'Don’t break the streak — 5 minutes a day change everything' },
-  { title: '📚 Time to practice',          body: 'One lesson today — confidence for life' },
-  { title: '🎯 Daily goal',                body: 'Just a little left to finish today’s tasks!' },
-  { title: '💪 Don’t stop!',               body: 'You’ve come so far. Continue today' },
+  { title: '📚 Time to practice',          body: 'One lesson today — and you’ll feel more sure of yourself' },
+  { title: '🎯 Daily goal',                body: 'You’re almost done with today’s tasks!' },
+  { title: '💪 Don’t stop!',               body: 'You’ve come so far — keep going today' },
   { title: '🧠 Review yesterday',          body: 'The best time to review is now' },
 ];
 
@@ -1059,9 +1059,9 @@ export const scheduleIntroExpiringNotification = async (
       pl: 'Twoje Plus wygasa za 2 godziny',
     }));
     const body = pickNotif(lang, notificationCopy({
-      ru: 'Ты выучил первые фразы — не останавливайся. Сохрани доступ к урокам и энергии навсегда.',
-      uk: 'Ти вивчив перші вислови — не зупиняйся. Збережи доступ до уроків і енергії назавжди.',
-      es: 'Ya aprendiste tus primeras frases. No pares ahora — conserva el acceso ilimitado.', en: 'You learned your first phrases — keep going. Keep access to lessons and energy for good.',
+      ru: 'Ты выучил первые фразы — не останавливайся. С Plus уроки и энергия без ограничений.',
+      uk: 'Ти вивчив перші вислови — не зупиняйся. З Plus уроки й енергія без обмежень.',
+      es: 'Ya aprendiste tus primeras frases. No pares ahora — conserva el acceso ilimitado.', en: 'You learned your first phrases — keep going. With Plus, lessons and energy have no limits.',
       'pt-BR': 'Você aprendeu suas primeiras frases. Não pare agora — mantenha o acesso ilimitado.',
       vi: 'Bạn đã học những cụm từ đầu tiên — đừng dừng lại. Giữ quyền truy cập không giới hạn.',
       id: 'Kamu sudah belajar frasa pertama — jangan berhenti. Pertahankan akses tak terbatas.',
@@ -1161,7 +1161,7 @@ export const scheduleUpsellNotifications = async (
         title: pickNotif(lang, notificationCopy({
           ru: 'Энергия мешает учиться?',
           uk: 'Енергія заважає вчитися?',
-          es: '¿La energía te frena?', en: 'Is energy getting in the way?',
+          es: '¿La energía te frena?', en: 'Running out of energy?',
           'pt-BR': 'A energia está te travando?',
           vi: 'Năng lượng đang cản trở bạn?',
           id: 'Energi menghambatmu belajar?',
@@ -1186,7 +1186,7 @@ export const scheduleUpsellNotifications = async (
         title: pickNotif(lang, notificationCopy({
           ru: '2 недели — и ты всё ещё здесь.',
           uk: '2 тижні — і ти все ще тут.',
-          es: '2 semanas y sigues aquí.', en: '2 weeks — and you’re still here.',
+          es: '2 semanas y sigues aquí.', en: 'Two weeks in — and you’re still here.',
           'pt-BR': '2 semanas e você ainda está aqui.',
           vi: '2 tuần — và bạn vẫn còn đây.',
           id: '2 minggu — dan kamu masih di sini.',
@@ -1273,7 +1273,7 @@ export const schedulePaywallAbandonedNotification = async (
     const body = pickNotif(lang, notificationCopy({
       ru: 'Твой путь ждёт. Продолжим?',
       uk: 'Твій шлях чекає. Продовжимо?',
-      es: 'Tu progreso te espera. ¿Seguimos?', en: 'Your journey is waiting. Shall we continue?',
+      es: 'Tu progreso te espera. ¿Seguimos?', en: 'Your journey is waiting. Ready to continue?',
       'pt-BR': 'Seu progresso espera. Continuamos?',
       vi: 'Tiến trình đang chờ bạn. Tiếp tục nhé?',
       id: 'Progresmu menunggu. Lanjut?',
@@ -2655,8 +2655,8 @@ export const schedulePhraseOfDayNotification = async (
     ];
     const TEASERS_EN = [
       `"${phrase.english}" — do you know what it means?`,
-      `"${phrase.english}" — open the app to find out the meaning.`,
-      `"${phrase.english}" — natives say this every day. Do you know why?`,
+      `"${phrase.english}" — open the app to find out what it means.`,
+      `"${phrase.english}" — native speakers say this every day. Do you know why?`,
       `"${phrase.english}" — it’s not what you think.`,
       `"${phrase.english}" — one phrase that will level up your ${studyWord}.`,
     ];

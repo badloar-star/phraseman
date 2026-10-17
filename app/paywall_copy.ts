@@ -495,12 +495,12 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
   theme: {
     title: { en: 'Choose how it will look', 'pt-BR': 'Escolha como vai ficar', vi: 'Chọn giao diện bạn muốn', id: 'Pilih tampilannya', tr: 'Nasıl görüneceğini seç', pl: 'Wybierz, jak ma wyglądać' },
     subtitle: {
-      en: 'Dark, warm, high-contrast — a theme changes the whole app and stays with you for good. It comes with the subscription along with the course, dialogues and training.',
-      'pt-BR': 'Escuro, quente, de alto contraste: o tema muda o app inteiro e fica com você para sempre. Vem na assinatura junto com o curso, os diálogos e os treinos.',
-      vi: 'Tối, ấm, tương phản cao — chủ đề đổi toàn bộ ứng dụng và ở lại với bạn mãi mãi. Nó đi kèm gói đăng ký cùng khóa học, hội thoại và luyện tập.',
-      id: 'Gelap, hangat, kontras tinggi — tema mengubah seluruh aplikasi dan jadi milikmu selamanya. Termasuk dalam langganan bersama kursus, dialog, dan latihan.',
-      tr: 'Koyu, sıcak, yüksek kontrast — tema uygulamanın tamamını değiştirir ve sonsuza dek sende kalır. Kurs, diyaloglar ve antrenmanlarla birlikte abonelikte gelir.',
-      pl: 'Ciemny, ciepły, kontrastowy — motyw zmienia całą aplikację i zostaje z tobą na zawsze. Wchodzi w skład subskrypcji razem z kursem, dialogami i treningami.',
+      en: 'Dark, warm, high-contrast — a theme changes the whole app. It comes with the subscription along with the course, dialogues and training.',
+      'pt-BR': 'Escuro, quente, de alto contraste: o tema muda o app inteiro. Vem na assinatura junto com o curso, os diálogos e os treinos.',
+      vi: 'Tối, ấm, tương phản cao — chủ đề đổi toàn bộ ứng dụng. Nó đi kèm gói đăng ký cùng khóa học, hội thoại và luyện tập.',
+      id: 'Gelap, hangat, kontras tinggi — tema mengubah seluruh aplikasi. Termasuk dalam langganan bersama kursus, dialog, dan latihan.',
+      tr: 'Koyu, sıcak, yüksek kontrast — tema uygulamanın tamamını değiştirir. Kurs, diyaloglar ve antrenmanlarla birlikte abonelikte gelir.',
+      pl: 'Ciemny, ciepły, kontrastowy — motyw zmienia całą aplikację. Wchodzi w skład subskrypcji razem z kursem, dialogami i treningami.',
     },
   },
   club: {

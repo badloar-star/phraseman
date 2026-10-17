@@ -873,6 +873,7 @@
 |---|---|---|---|---|
 | 1 | Старт занятия · голосовой лимит | Шторка · «Сумерки» | ✅ | `components/learning-v2/LearningV2VoiceHeadsupSheet.tsx`, `app/learning_v2_voice_headsup_v1.ts`, `app/learning_v2_direct_session_player_v1.tsx` (1c2823b95) — шторка снизу при старте занятия, если остатка голоса меньше, чем голосовых заданий (вариант 1 владельца, D194) |
 | 2 | Старт занятия · голосовой лимит | Шторка · «Океан» | ✅ | `components/learning-v2/LearningV2VoiceHeadsupSheet.tsx`, `app/learning_v2_voice_headsup_v1.ts`, `app/learning_v2_direct_session_player_v1.tsx` (1c2823b95) — та же шторка в тёмной паре «Океан» |
+| 5 | Старт занятия · голосовой лимит | Шторка · крупный шрифт, 360×640 · «Сумерки» | ✅ | `components/learning-v2/LearningV2VoiceHeadsupSheet.tsx` (53d0f8288) — шторка не выше 92 % экрана, текст в прокрутке, кнопки всегда видны |
 
 ## Итог сверки
 

@@ -44279,18 +44279,19 @@
       "source": "OWNER_ORDER_2026-10-11",
       "mockup": {
         "file": "docs/design/v2-app/home-by-language-mockup.html",
-        "phone": 1,
-        "label": "Главная по языкам · английский (3 плитки)",
+        "phone": 10,
+        "label": "Английский · 4 плитки с Пиком + фраза дня",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "приказ владельца 11.10, ledger п.57: «Сегодня» без фона, остальные плашки с фоном 50% (текст и значки 100%), без тёмных пятен — образец приведён к коду 9ffbfb41a (components/home/v2/homePlate.ts)",
+      "mockup_pinned": "приказ владельца 11.10, ledger п.57: «Сегодня» без фона, остальные плашки с фоном 50% (текст и значки 100%), без тёмных пятен — образец приведён к коду 9ffbfb41a (components/home/v2/homePlate.ts) · 17.10: перепривязка к телефону 10 после перестройки страницы (вариант (в) первым, (а)/(б) в конце)",
       "screen": "Главная",
-      "state": "Главная · по языкам (тёмная)",
+      "state": "Главная · английский — 4 плитки (Уроки, Диалоги, Карточки, Пик) с местом в лиге",
       "code": [
+        "components/home/v2/HomeV2FeatureTiles.tsx",
+        "app/spire/spire_home_place.ts",
         "app/(tabs)/home.tsx",
         "components/home/v2/HomeV2Header.tsx",
         "components/home/v2/HomeV2ContinueCard.tsx",
-        "components/home/v2/HomeV2FeatureTiles.tsx",
         "components/home/v2/HomeV2TodayCard.tsx",
         "components/home/v2/HomeV2VideoRail.tsx",
         "components/home/v2/homePlate.ts",
@@ -44448,8 +44449,8 @@
       "source": "COORDINATOR_2026-10-12_DECISIONS",
       "mockup": {
         "file": "docs/design/v2-app/home-by-language-mockup.html",
-        "phone": 2,
-        "label": "Главная по языкам · испанский (2 плитки + фраза дня)",
+        "phone": 11,
+        "label": "Испанский · 3 плитки (Диалоги, Карточки, Пик) + фраза дня",
         "mapping": "by_construction"
       },
       "screen": "Главная",
@@ -44492,15 +44493,16 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (кадр Сверки, полный кадр без обрезки, склейка PARITY_FIT=width, поэлементно): Главная · испанский: состав экрана приложения иной, чем в образце (кадр полный).",
       "shot_at": "2026-10-12T20:56:09.901Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "mockup_pinned": "17.10: перепривязка к телефону 11 после перестройки страницы (вариант (в) первым, (а)/(б) в конце)"
     },
     {
       "id": "home-005",
       "source": "COORDINATOR_2026-10-12_DECISIONS",
       "mockup": {
         "file": "docs/design/v2-app/home-by-language-mockup.html",
-        "phone": 3,
-        "label": "Главная по языкам · немецкий (2 плитки + фраза дня)",
+        "phone": 12,
+        "label": "Немецкий · 3 плитки + фраза дня",
         "mapping": "by_construction"
       },
       "screen": "Главная",
@@ -44543,15 +44545,16 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (кадр Сверки, полный кадр без обрезки, склейка PARITY_FIT=width, поэлементно): Главная · немецкий: то же расхождение, что у home-004.",
       "shot_at": "2026-10-12T20:56:09.901Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "mockup_pinned": "17.10: перепривязка к телефону 12 после перестройки страницы (вариант (в) первым, (а)/(б) в конце)"
     },
     {
       "id": "home-006",
       "source": "COORDINATOR_2026-10-12_DECISIONS",
       "mockup": {
         "file": "docs/design/v2-app/home-by-language-mockup.html",
-        "phone": 5,
-        "label": "Главная по языкам · итальянский (1 раздел в таббаре + фраза дня)",
+        "phone": 14,
+        "label": "Итальянский · Карточки, Пик, Наборы из видео + фраза дня",
         "mapping": "by_construction"
       },
       "screen": "Главная",
@@ -44593,7 +44596,113 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (кадр Сверки, полный кадр без обрезки, склейка PARITY_FIT=width, поэлементно): Главная · итальянский: приложение показывает плитки «Карточки / Шпиль / Наборы из видео», «СЕГОДНЯ» с «Посмотреть видео 0/1…», «ФРАЗА ДНЯ avere la puzza sotto il naso» — в образце «1 раздел в таббаре».",
       "shot_at": "2026-10-12T20:56:09.901Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "mockup_pinned": "17.10: перепривязка к телефону 14 после перестройки страницы (вариант (в) первым, (а)/(б) в конце)"
+    },
+    {
+      "id": "home-007",
+      "source": "COORDINATOR_2026-10-17_HOME4",
+      "mockup": {
+        "file": "docs/design/v2-app/home-by-language-mockup.html",
+        "phone": 1,
+        "label": "(в) иконки + место в лиге · «Сумерки» · 360 dp",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон Главной — вариант (в), 4 плитки-иконки с местом в лиге (код 47876f843)",
+      "screen": "Главная · ряд из 4 плиток",
+      "state": "4 плитки с Пиком, бейдж «N место», тема «Сумерки»",
+      "code": [
+        "components/home/v2/HomeV2FeatureTiles.tsx",
+        "app/spire/spire_home_place.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "shot_at": null,
+      "shot_at_source": null,
+      "added_reason": "координатор 17.10: вариант (в) — основной эталон"
+    },
+    {
+      "id": "home-008",
+      "source": "COORDINATOR_2026-10-17_HOME4",
+      "mockup": {
+        "file": "docs/design/v2-app/home-by-language-mockup.html",
+        "phone": 3,
+        "label": "(в) иконки + место в лиге · «Океан» · 360 dp",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон Главной — вариант (в), 4 плитки-иконки с местом в лиге (код 47876f843)",
+      "screen": "Главная · ряд из 4 плиток",
+      "state": "4 плитки с Пиком, бейдж «N место», тема «Океан»",
+      "code": [
+        "components/home/v2/HomeV2FeatureTiles.tsx",
+        "app/spire/spire_home_place.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "shot_at": null,
+      "shot_at_source": null,
+      "added_reason": "координатор 17.10: вариант (в) — основной эталон"
+    },
+    {
+      "id": "lessons-classic-tab-001",
+      "source": "COORDINATOR_2026-10-17_R92",
+      "mockup": {
+        "file": null,
+        "phone": null,
+        "label": null,
+        "mapping": "no_page"
+      },
+      "screen": "Вкладка «Обучение» · язык интерфейса без пояснений V2 (en, pt-BR, es, vi, id, tr, pl)",
+      "state": "вкладка «Обучение» открывает классический курс; кнопки, плитки и «Продолжить» на V2 нет",
+      "code": [
+        "app/(tabs)/lessons.tsx",
+        "app/learning_v2_visibility_switch.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "shot_at": null,
+      "shot_at_source": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "no_mockup",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=en&onboarding=done&intros=seen&overlays=off&studyTarget=en&next=/(tabs)/lessons",
+        "taps": "вкладка «Обучение» (uiLang en и pt-BR)",
+        "log": "[V2-LOCALE-GATE] decision=hidden"
+      },
+      "added_reason": "координатор 17.10: эталона нового нет — сверка с прежним экраном классического курса",
+      "note": "эталон = прежний экран классического курса (05cf3a61b, R92, координатор 17.10); отдельного макета нет — кадр сравнивается с прежним экраном классического курса; язык интерфейса ru/uk — карта V2 (learning-v2.html)"
     },
     {
       "id": "cards-v2-088",
@@ -45428,6 +45537,46 @@
         "log": "[VOICE-HEADSUP] decision=show"
       },
       "added_reason": "координатор 17.10: строка под шторку 1c2823b95",
+      "note": "шторка показывается, если остаток голоса меньше числа голосовых заданий занятия; lv2voice=1 (если в занятии одно голосовое — lv2voice=0); плашка в окне старта (#plate, телефоны 3–4) владелец не выбрал — строк нет"
+    },
+    {
+      "id": "voice-limit-session-start-005",
+      "source": "STATE_CHECKLIST",
+      "mockup": {
+        "file": "docs/design/v2-app/voice-limit-session-start.html",
+        "phone": 5,
+        "label": "Шторка · крупный шрифт, 360×640 · «Сумерки»",
+        "mapping": "label_match"
+      },
+      "mockup_pinned": "Координатор 17.10: шторка голоса со скроллом (53d0f8288) — низкий экран и крупный шрифт",
+      "screen": "Курс V2 · старт занятия — предупреждение о голосовом лимите",
+      "state": "шторка на низком экране с крупным шрифтом: текст прокручивается, кнопки на месте",
+      "code": [
+        "components/learning-v2/LearningV2VoiceHeadsupSheet.tsx"
+      ],
+      "matrix_status": "✅",
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает снизу, затемнение"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&theme=marine&lv2voice=1&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "системный шрифт ×1,3, экран 360×640 (эмулятор с низким экраном); открыть занятие — шторка при старте",
+        "log": "[VOICE-HEADSUP] decision=show"
+      },
+      "added_reason": "координатор 17.10: эталоны под вечерний код",
       "note": "шторка показывается, если остаток голоса меньше числа голосовых заданий занятия; lv2voice=1 (если в занятии одно голосовое — lv2voice=0); плашка в окне старта (#plate, телефоны 3–4) владелец не выбрал — строк нет"
     },
     {

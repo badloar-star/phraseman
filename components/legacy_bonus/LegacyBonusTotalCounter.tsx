@@ -21,6 +21,8 @@ export type LegacyBonusTotalCounterHandle = Readonly<{
   bump: (add: number) => void;
   /** Показать итог сразу (уменьшить движение / повторный показ). */
   settle: (value: number) => void;
+  /** Страховка: если к концу сценария счётчик не дошёл до итога — встать на итог. Возвращает показанное до страховки. */
+  ensure: (value: number) => number;
 }>;
 
 type Props = Readonly<{
@@ -77,6 +79,19 @@ const LegacyBonusTotalCounter = forwardRef<LegacyBonusTotalCounterHandle, Props>
       anchorRef.current = shownRef.current;
       t0Ref.current = Date.now();
       if (!timerRef.current) timerRef.current = setInterval(tick, TICK_MS);
+    },
+    ensure: (value: number) => {
+      const before = shownRef.current;
+      if (before >= value && targetRef.current >= value) return before;
+      stop();
+      targetRef.current = value;
+      anchorRef.current = value;
+      put(value);
+      if (!reachedRef.current) {
+        reachedRef.current = true;
+        onReachedRef.current();
+      }
+      return before;
     },
     settle: (value: number) => {
       stop();

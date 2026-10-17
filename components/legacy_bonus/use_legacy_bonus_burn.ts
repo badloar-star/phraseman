@@ -18,6 +18,8 @@ export const LEGACY_BONUS_ROW_GAP_MS = 720;
 export const LEGACY_BONUS_COINS_PER_ROW = 6;
 /** Пауза между открытием шторки и стартом сценария (шторка выезжает 440 мс). */
 export const LEGACY_BONUS_START_DELAY_MS = 700;
+/** Хвост после последней строки: полёт монет (640 + разброс) + досчёт (900) + запас. */
+export const LEGACY_BONUS_WATCHDOG_TAIL_MS = 2200;
 
 type Placed = Readonly<{ x: number; y: number; width: number; height: number }>;
 
@@ -95,6 +97,15 @@ export function useLegacyBonusBurn({ rows, total, reduceMotion }: Input) {
     const contributions = fitRowCoinsToTotal(rows, total);
     console.log(`[LEGACY-BONUS] сценарий: строк=${rows.length} итог=${total} вклады=${contributions.join(',')}`); // guard-ok: вход сценария
     rows.forEach((_, i) => after(LEGACY_BONUS_FIRST_ROW_MS + i * LEGACY_BONUS_ROW_GAP_MS, () => burnRow(i, contributions[i] ?? 0)));
+    // зачем (координатор 17.10, 🔴 «Итого 0 монет» при показанных бонусах): итог растёт от 0 по мере «сгорания» строк; если сценарий
+    // сорвался (нет разметки строк, прерванный таймер), под строками навсегда оставался 0. Страховка: к концу сценария — точный итог сервера.
+    const watchdogMs = LEGACY_BONUS_FIRST_ROW_MS + rows.length * LEGACY_BONUS_ROW_GAP_MS + LEGACY_BONUS_WATCHDOG_TAIL_MS;
+    after(watchdogMs, () => {
+      const shownBefore = heroRef.current?.ensure(total) ?? null;
+      if (shownBefore === null) console.warn(`[LEGACY-BONUS] watchdog: нет счётчика итога (окно закрыто?) итог=${total}`); // guard-ok: ранний выход
+      else if (shownBefore < total) console.warn(`[LEGACY-BONUS] watchdog: счётчик застрял на ${shownBefore} из ${total} — поставлен точный итог`); // guard-ok: страховка сработала
+      else console.log(`[LEGACY-BONUS] watchdog: итог ${total} на месте через ${watchdogMs} мс`); // guard-ok: итог проверен
+    });
   }, [after, burnRow, reduceMotion, rows, total]);
 
   // старт после выезда шторки; размонтирование гасит все отложенные шаги. Эффект один раз на показ: play берём из ref, чтобы смена

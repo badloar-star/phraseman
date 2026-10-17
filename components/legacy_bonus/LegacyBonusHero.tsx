@@ -27,6 +27,8 @@ export type LegacyBonusHeroHandle = Readonly<{
   celebrate: () => void;
   /** Сразу показать итог без движения. */
   settle: (value: number) => void;
+  /** Страховка счётчика итога (см. LegacyBonusTotalCounter.ensure). */
+  ensure: (value: number) => number;
 }>;
 
 type Props = Readonly<{
@@ -65,6 +67,7 @@ const LegacyBonusHero = forwardRef<LegacyBonusHeroHandle, Props>(function Legacy
       sweep.value = withTiming(1, { duration: 820, easing: EASE_SWEEP });
     },
     settle: (value: number) => counterRef.current?.settle(value),
+    ensure: (value: number) => counterRef.current?.ensure(value) ?? value,
   }), [coinScale, numScale, reduceMotion, ring, sweep]);
 
   const coinStyle = useAnimatedStyle(() => ({ transform: [{ scale: coinScale.value }] }));

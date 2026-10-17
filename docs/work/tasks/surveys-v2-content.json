@@ -1,0 +1,3211 @@
+{
+  "_about": "Опросы 2.0 (R116): 13 опросов, 36 вопросов, только одиночный выбор — формат, который понимает текущий клиент. Переводчику: заполнить пустые строки для uk, es, pt-BR, vi, id, tr, pl. Коротко, разговорно, эмодзи сохранить. Скрипт scripts/shard_surveys_v2_seed.mjs не пишет опрос, пока у него не заполнены все 9 языков.",
+  "langs": [
+    "ru",
+    "en",
+    "uk",
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "common": {
+    "subtitle_n": {
+      "ru": "{n} коротких вопроса",
+      "en": "{n} quick questions",
+      "uk": "",
+      "es": "",
+      "pt-BR": "",
+      "vi": "",
+      "id": "",
+      "tr": "",
+      "pl": ""
+    },
+    "subtitle_1": {
+      "ru": "Один короткий вопрос",
+      "en": "One quick question",
+      "uk": "",
+      "es": "",
+      "pt-BR": "",
+      "vi": "",
+      "id": "",
+      "tr": "",
+      "pl": ""
+    },
+    "final_title": {
+      "ru": "Спасибо!",
+      "en": "Thank you!",
+      "uk": "",
+      "es": "",
+      "pt-BR": "",
+      "vi": "",
+      "id": "",
+      "tr": "",
+      "pl": ""
+    },
+    "final_subtitle": {
+      "ru": "Твои ответы помогут сделать Phraseman лучше.",
+      "en": "Your answers help us make Phraseman better.",
+      "uk": "",
+      "es": "",
+      "pt-BR": "",
+      "vi": "",
+      "id": "",
+      "tr": "",
+      "pl": ""
+    }
+  },
+  "surveys": [
+    {
+      "id": "survey_v2_01",
+      "tier": "any",
+      "title": {
+        "ru": "Познакомимся",
+        "en": "Let's get to know you",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "a1",
+          "text": {
+            "ru": "Зачем тебе язык?",
+            "en": "Why are you learning?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "work",
+              "label": {
+                "ru": "Работа",
+                "en": "Work",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "travel",
+              "label": {
+                "ru": "Поездки",
+                "en": "Travel",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "move",
+              "label": {
+                "ru": "Переезд",
+                "en": "Moving abroad",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "exam",
+              "label": {
+                "ru": "Учёба или экзамен",
+                "en": "Study or an exam",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "media",
+              "label": {
+                "ru": "Фильмы и музыка",
+                "en": "Films and music",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "people",
+              "label": {
+                "ru": "Общение",
+                "en": "Talking to people",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "text": {
+            "ru": "Какой у тебя уровень?",
+            "en": "What's your level?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "zero",
+              "label": {
+                "ru": "С нуля",
+                "en": "Beginner from zero",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "basic",
+              "label": {
+                "ru": "Начальный",
+                "en": "Elementary",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "mid",
+              "label": {
+                "ru": "Средний",
+                "en": "Intermediate",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "good",
+              "label": {
+                "ru": "Уверенный",
+                "en": "Confident",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "a3",
+          "text": {
+            "ru": "Сколько минут в день готов?",
+            "en": "How many minutes a day?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "m3",
+              "label": {
+                "ru": "3 минуты",
+                "en": "3 minutes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "m5",
+              "label": {
+                "ru": "5 минут",
+                "en": "5 minutes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "m10",
+              "label": {
+                "ru": "10 минут",
+                "en": "10 minutes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "m15",
+              "label": {
+                "ru": "15 и больше",
+                "en": "15 or more",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_02",
+      "tier": "any",
+      "title": {
+        "ru": "Твой режим",
+        "en": "Your routine",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "a4",
+          "text": {
+            "ru": "Когда удобнее заниматься?",
+            "en": "When do you usually study?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "morning",
+              "label": {
+                "ru": "Утром",
+                "en": "In the morning",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "day",
+              "label": {
+                "ru": "Днём",
+                "en": "During the day",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "evening",
+              "label": {
+                "ru": "Вечером",
+                "en": "In the evening",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "night",
+              "label": {
+                "ru": "Перед сном",
+                "en": "Before bed",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "any",
+              "label": {
+                "ru": "Когда как",
+                "en": "It varies",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "a5",
+          "text": {
+            "ru": "Что сложнее всего?",
+            "en": "What's hardest for you?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "speak",
+              "label": {
+                "ru": "Говорить",
+                "en": "Speaking",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "listen",
+              "label": {
+                "ru": "Понимать на слух",
+                "en": "Listening",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "words",
+              "label": {
+                "ru": "Запоминать слова",
+                "en": "Remembering words",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "grammar",
+              "label": {
+                "ru": "Грамматика",
+                "en": "Grammar",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "write",
+              "label": {
+                "ru": "Писать",
+                "en": "Writing",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "a6",
+          "text": {
+            "ru": "Есть срок?",
+            "en": "Do you have a deadline?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "month",
+              "label": {
+                "ru": "Да, до месяца",
+                "en": "Yes, within a month",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "q",
+              "label": {
+                "ru": "1–3 месяца",
+                "en": "1–3 months",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "half",
+              "label": {
+                "ru": "Через полгода и больше",
+                "en": "Six months or more",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "none",
+              "label": {
+                "ru": "Нет, для себя",
+                "en": "No, just for me",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_03",
+      "tier": "any",
+      "title": {
+        "ru": "Как идут занятия",
+        "en": "How lessons are going",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "b2",
+          "text": {
+            "ru": "Сложность уроков?",
+            "en": "Lesson difficulty?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "easy",
+              "label": {
+                "ru": "Легко",
+                "en": "Easy",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "ok",
+              "label": {
+                "ru": "В самый раз",
+                "en": "Just right",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "hard",
+              "label": {
+                "ru": "Тяжело",
+                "en": "Hard",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "text": {
+            "ru": "Длина уроков?",
+            "en": "Lesson length?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "short",
+              "label": {
+                "ru": "Коротко",
+                "en": "Too short",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "ok",
+              "label": {
+                "ru": "Нормально",
+                "en": "Just right",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "long",
+              "label": {
+                "ru": "Длинно",
+                "en": "Too long",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "text": {
+            "ru": "Озвучка понятна?",
+            "en": "Is the audio clear?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "yes",
+              "label": {
+                "ru": "Да",
+                "en": "Yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "fast",
+              "label": {
+                "ru": "Быстро",
+                "en": "Too fast",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "slow",
+              "label": {
+                "ru": "Медленно",
+                "en": "Too slow",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "bad",
+              "label": {
+                "ru": "Плохо слышно",
+                "en": "Hard to hear",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_04",
+      "tier": "any",
+      "title": {
+        "ru": "Про уроки",
+        "en": "About lessons",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "b1",
+          "text": {
+            "ru": "Как тебе последний урок?",
+            "en": "How was your last lesson?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "l5",
+              "label": {
+                "ru": "🤩 Отлично",
+                "en": "🤩 Great",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "l4",
+              "label": {
+                "ru": "🙂 Хорошо",
+                "en": "🙂 Good",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "l3",
+              "label": {
+                "ru": "😐 Нормально",
+                "en": "😐 Okay",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "l2",
+              "label": {
+                "ru": "😕 Так себе",
+                "en": "😕 Meh",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "l1",
+              "label": {
+                "ru": "😫 Плохо",
+                "en": "😫 Bad",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "text": {
+            "ru": "Чего не хватает в уроках?",
+            "en": "What do lessons lack most?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "examples",
+              "label": {
+                "ru": "Примеров",
+                "en": "Examples",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "explain",
+              "label": {
+                "ru": "Объяснений",
+                "en": "Explanations",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "audio",
+              "label": {
+                "ru": "Озвучки",
+                "en": "Audio",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "speak",
+              "label": {
+                "ru": "Практики речи",
+                "en": "Speaking practice",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "nothing",
+              "label": {
+                "ru": "Всего хватает",
+                "en": "Nothing",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "text": {
+            "ru": "Говорить вслух — комфортно?",
+            "en": "Comfortable speaking aloud?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "s5",
+              "label": {
+                "ru": "Очень",
+                "en": "Very much",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Mostly yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s3",
+              "label": {
+                "ru": "Средне",
+                "en": "So-so",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Mostly not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s1",
+              "label": {
+                "ru": "Совсем нет",
+                "en": "Not at all",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_05",
+      "tier": "any",
+      "title": {
+        "ru": "Новый курс",
+        "en": "The new course",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "c1",
+          "text": {
+            "ru": "Новый курс лучше прежнего?",
+            "en": "Is the new course better?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "better",
+              "label": {
+                "ru": "Лучше",
+                "en": "Better",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "same",
+              "label": {
+                "ru": "Так же",
+                "en": "The same",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "worse",
+              "label": {
+                "ru": "Хуже",
+                "en": "Worse",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "dunno",
+              "label": {
+                "ru": "Не помню прежний",
+                "en": "Don't remember the old one",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "text": {
+            "ru": "Понятно, что делать дальше?",
+            "en": "Is it clear what to do next?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "s5",
+              "label": {
+                "ru": "Очень",
+                "en": "Very much",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Mostly yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s3",
+              "label": {
+                "ru": "Средне",
+                "en": "So-so",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Mostly not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s1",
+              "label": {
+                "ru": "Совсем нет",
+                "en": "Not at all",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "text": {
+            "ru": "Чувствуешь прогресс?",
+            "en": "Do you feel progress?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "s5",
+              "label": {
+                "ru": "Очень",
+                "en": "Very much",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Mostly yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s3",
+              "label": {
+                "ru": "Средне",
+                "en": "So-so",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Mostly not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s1",
+              "label": {
+                "ru": "Совсем нет",
+                "en": "Not at all",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_06",
+      "tier": "any",
+      "title": {
+        "ru": "Задания и Пик",
+        "en": "Exercises and Peak",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "c4",
+          "text": {
+            "ru": "Какое задание любимое?",
+            "en": "Favourite exercise type?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "choice",
+              "label": {
+                "ru": "Выбор ответа",
+                "en": "Choosing an answer",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "build",
+              "label": {
+                "ru": "Сборка фразы",
+                "en": "Building a phrase",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "speak",
+              "label": {
+                "ru": "Речь",
+                "en": "Speaking",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "listen",
+              "label": {
+                "ru": "На слух",
+                "en": "Listening",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "pairs",
+              "label": {
+                "ru": "Пары",
+                "en": "Matching pairs",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "text": {
+            "ru": "Сложность Пика?",
+            "en": "Peak difficulty?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "easy",
+              "label": {
+                "ru": "Легко",
+                "en": "Easy",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "ok",
+              "label": {
+                "ru": "В самый раз",
+                "en": "Just right",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "hard",
+              "label": {
+                "ru": "Тяжело",
+                "en": "Hard",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "unfair",
+              "label": {
+                "ru": "Нечестно",
+                "en": "Unfair",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "no_peak",
+              "label": {
+                "ru": "Не играю в Пик",
+                "en": "I don't play Peak",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "text": {
+            "ru": "Хватает времени на ступень?",
+            "en": "Enough time per step?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "plenty",
+              "label": {
+                "ru": "С запасом",
+                "en": "Plenty",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "tight",
+              "label": {
+                "ru": "Впритык",
+                "en": "Just enough",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "short",
+              "label": {
+                "ru": "Не хватает",
+                "en": "Not enough",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "no_peak",
+              "label": {
+                "ru": "Не играю в Пик",
+                "en": "I don't play Peak",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_07",
+      "tier": "any",
+      "title": {
+        "ru": "Пик и карточки",
+        "en": "Peak and cards",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "d3",
+          "text": {
+            "ru": "Что держит в Пике?",
+            "en": "What keeps you in Peak?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "climb",
+              "label": {
+                "ru": "Подъём",
+                "en": "The climb",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "coins",
+              "label": {
+                "ru": "Монеты",
+                "en": "Coins",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "rivals",
+              "label": {
+                "ru": "Соперники",
+                "en": "Rivals",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "habit",
+              "label": {
+                "ru": "Привычка",
+                "en": "Habit",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "no_peak",
+              "label": {
+                "ru": "Не играю в Пик",
+                "en": "I don't play Peak",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "d4",
+          "text": {
+            "ru": "Энергии хватает?",
+            "en": "Is energy enough?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "yes",
+              "label": {
+                "ru": "Да",
+                "en": "Yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "sometimes",
+              "label": {
+                "ru": "Иногда нет",
+                "en": "Sometimes not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "often",
+              "label": {
+                "ru": "Часто нет",
+                "en": "Often not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "e1",
+          "text": {
+            "ru": "Как часто повторяешь карточки?",
+            "en": "How often do you review cards?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "daily",
+              "label": {
+                "ru": "Каждый день",
+                "en": "Every day",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "weekly",
+              "label": {
+                "ru": "Пару раз в неделю",
+                "en": "A few times a week",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "rare",
+              "label": {
+                "ru": "Редко",
+                "en": "Rarely",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "no_use",
+              "label": {
+                "ru": "Не пользуюсь",
+                "en": "I don't use it",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_08",
+      "tier": "any",
+      "title": {
+        "ru": "Карточки и диалоги",
+        "en": "Cards and dialogues",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "e2",
+          "text": {
+            "ru": "Карточки помогают запомнить?",
+            "en": "Do cards help you remember?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "s5",
+              "label": {
+                "ru": "Очень",
+                "en": "Very much",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Mostly yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s3",
+              "label": {
+                "ru": "Средне",
+                "en": "So-so",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Mostly not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s1",
+              "label": {
+                "ru": "Совсем нет",
+                "en": "Not at all",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "no_use",
+              "label": {
+                "ru": "Не пользуюсь",
+                "en": "I don't use it",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "e3",
+          "text": {
+            "ru": "Какая тема диалогов интереснее?",
+            "en": "Which dialogue topic interests you most?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "work",
+              "label": {
+                "ru": "Работа",
+                "en": "Work",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "travel",
+              "label": {
+                "ru": "Поездки",
+                "en": "Travel",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "home",
+              "label": {
+                "ru": "Быт",
+                "en": "Everyday life",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "dating",
+              "label": {
+                "ru": "Знакомства",
+                "en": "Meeting people",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "health",
+              "label": {
+                "ru": "Здоровье",
+                "en": "Health",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "shop",
+              "label": {
+                "ru": "Покупки",
+                "en": "Shopping",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "e4",
+          "text": {
+            "ru": "Диалоги — уровень по силам?",
+            "en": "Dialogues: right level?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "easy",
+              "label": {
+                "ru": "Легко",
+                "en": "Easy",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "ok",
+              "label": {
+                "ru": "В самый раз",
+                "en": "Just right",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "hard",
+              "label": {
+                "ru": "Тяжело",
+                "en": "Hard",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "no_use",
+              "label": {
+                "ru": "Не пользуюсь",
+                "en": "I don't use it",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_09",
+      "tier": "any",
+      "title": {
+        "ru": "Привычка",
+        "en": "Your habit",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "f1",
+          "text": {
+            "ru": "Напоминаний сколько надо?",
+            "en": "How many reminders?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "more",
+              "label": {
+                "ru": "Больше",
+                "en": "More",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "ok",
+              "label": {
+                "ru": "Так хорошо",
+                "en": "This is fine",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "less",
+              "label": {
+                "ru": "Меньше",
+                "en": "Fewer",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "none",
+              "label": {
+                "ru": "Не нужны",
+                "en": "None",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "f2",
+          "text": {
+            "ru": "Серия дней мотивирует?",
+            "en": "Does the streak motivate you?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "s5",
+              "label": {
+                "ru": "Очень",
+                "en": "Very much",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Mostly yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s3",
+              "label": {
+                "ru": "Средне",
+                "en": "So-so",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Mostly not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s1",
+              "label": {
+                "ru": "Совсем нет",
+                "en": "Not at all",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "f3",
+          "text": {
+            "ru": "Что мешает заниматься?",
+            "en": "What stops you from studying?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "time",
+              "label": {
+                "ru": "Нет времени",
+                "en": "No time",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "forget",
+              "label": {
+                "ru": "Забываю",
+                "en": "I forget",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "boring",
+              "label": {
+                "ru": "Скучно",
+                "en": "Boring",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "hard",
+              "label": {
+                "ru": "Сложно",
+                "en": "Too hard",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "result",
+              "label": {
+                "ru": "Не вижу результата",
+                "en": "I don't see results",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_10",
+      "tier": "any",
+      "title": {
+        "ru": "Как тебе Phraseman",
+        "en": "How you like Phraseman",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "g1",
+          "text": {
+            "ru": "Посоветуешь Phraseman другу?",
+            "en": "Would you recommend Phraseman?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "n5",
+              "label": {
+                "ru": "Точно посоветую",
+                "en": "Definitely",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "n4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Probably",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "n3",
+              "label": {
+                "ru": "Пока не знаю",
+                "en": "Not sure yet",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "n2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Probably not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "n1",
+              "label": {
+                "ru": "Точно нет",
+                "en": "Definitely not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "text": {
+            "ru": "Насколько доволен Phraseman?",
+            "en": "How happy are you with Phraseman?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "h5",
+              "label": {
+                "ru": "🤩 Очень",
+                "en": "🤩 Very",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "h4",
+              "label": {
+                "ru": "🙂 Доволен",
+                "en": "🙂 Happy",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "h3",
+              "label": {
+                "ru": "😐 Нормально",
+                "en": "😐 Okay",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "h2",
+              "label": {
+                "ru": "😕 Не очень",
+                "en": "😕 Not really",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "h1",
+              "label": {
+                "ru": "😫 Недоволен",
+                "en": "😫 Unhappy",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "g3",
+          "text": {
+            "ru": "Что улучшить первым?",
+            "en": "What should we improve first?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "course",
+              "label": {
+                "ru": "Курс",
+                "en": "The course",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "speak",
+              "label": {
+                "ru": "Речь",
+                "en": "Speaking",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "cards",
+              "label": {
+                "ru": "Карточки",
+                "en": "Cards",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "peak",
+              "label": {
+                "ru": "Пик",
+                "en": "Peak",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "speed",
+              "label": {
+                "ru": "Скорость",
+                "en": "Speed",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "design",
+              "label": {
+                "ru": "Дизайн",
+                "en": "Design",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_11",
+      "tier": "any",
+      "title": {
+        "ru": "Что дальше",
+        "en": "What's next",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "g4",
+          "text": {
+            "ru": "Приложение работает быстро?",
+            "en": "Does the app feel fast?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "s5",
+              "label": {
+                "ru": "Очень",
+                "en": "Very much",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Mostly yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s3",
+              "label": {
+                "ru": "Средне",
+                "en": "So-so",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Mostly not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s1",
+              "label": {
+                "ru": "Совсем нет",
+                "en": "Not at all",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "g5",
+          "text": {
+            "ru": "За что готов платить?",
+            "en": "What would you pay for?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "course",
+              "label": {
+                "ru": "Весь курс",
+                "en": "The full course",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "voice",
+              "label": {
+                "ru": "Безлимит речи",
+                "en": "Unlimited speaking",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "energy",
+              "label": {
+                "ru": "Без энергии",
+                "en": "No energy limits",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "peak",
+              "label": {
+                "ru": "Пик без ограничений",
+                "en": "Unlimited Peak",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "nothing",
+              "label": {
+                "ru": "Ни за что",
+                "en": "Nothing",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "g9",
+          "text": {
+            "ru": "Что добавить в приложение?",
+            "en": "What should we add?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "ai",
+              "label": {
+                "ru": "Разговор с ИИ",
+                "en": "AI conversation",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "langs",
+              "label": {
+                "ru": "Больше языков",
+                "en": "More languages",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "offline",
+              "label": {
+                "ru": "Офлайн",
+                "en": "Offline mode",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "friends",
+              "label": {
+                "ru": "Игры с друзьями",
+                "en": "Games with friends",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "exams",
+              "label": {
+                "ru": "Экзамены",
+                "en": "Exam prep",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_12",
+      "tier": "free",
+      "title": {
+        "ru": "Про Plus",
+        "en": "About Plus",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "g6",
+          "text": {
+            "ru": "Удобная цена Plus в месяц?",
+            "en": "Comfortable Plus price per month?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "p1",
+              "label": {
+                "ru": "До 2 €",
+                "en": "Up to €2",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "p2",
+              "label": {
+                "ru": "2–4 €",
+                "en": "€2–4",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "p3",
+              "label": {
+                "ru": "4–7 €",
+                "en": "€4–7",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "p4",
+              "label": {
+                "ru": "Больше",
+                "en": "More",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "p0",
+              "label": {
+                "ru": "Не куплю",
+                "en": "I won't buy",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "g7",
+          "text": {
+            "ru": "Что мешает оформить Plus?",
+            "en": "What stops you from getting Plus?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "price",
+              "label": {
+                "ru": "Цена",
+                "en": "Price",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "value",
+              "label": {
+                "ru": "Не вижу пользы",
+                "en": "I don't see the value",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "rare",
+              "label": {
+                "ru": "Мало занимаюсь",
+                "en": "I don't study enough",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "trust",
+              "label": {
+                "ru": "Не доверяю подпискам",
+                "en": "I don't trust subscriptions",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey_v2_13",
+      "tier": "premium",
+      "title": {
+        "ru": "Твой Plus",
+        "en": "Your Plus",
+        "uk": "",
+        "es": "",
+        "pt-BR": "",
+        "vi": "",
+        "id": "",
+        "tr": "",
+        "pl": ""
+      },
+      "questions": [
+        {
+          "id": "g8",
+          "text": {
+            "ru": "Plus оправдывает цену?",
+            "en": "Is Plus worth it?",
+            "uk": "",
+            "es": "",
+            "pt-BR": "",
+            "vi": "",
+            "id": "",
+            "tr": "",
+            "pl": ""
+          },
+          "options": [
+            {
+              "id": "s5",
+              "label": {
+                "ru": "Очень",
+                "en": "Very much",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s4",
+              "label": {
+                "ru": "Скорее да",
+                "en": "Mostly yes",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s3",
+              "label": {
+                "ru": "Средне",
+                "en": "So-so",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s2",
+              "label": {
+                "ru": "Скорее нет",
+                "en": "Mostly not",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            },
+            {
+              "id": "s1",
+              "label": {
+                "ru": "Совсем нет",
+                "en": "Not at all",
+                "uk": "",
+                "es": "",
+                "pt-BR": "",
+                "vi": "",
+                "id": "",
+                "tr": "",
+                "pl": ""
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

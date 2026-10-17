@@ -71,18 +71,22 @@ Firebase Console → Hosting → нужный сайт (knowlyapps / phraseman-e
 канонический текст, его показывают все 9 языков интерфейса), поэтому абзац — EN; RU — для чтения владельцем.
 
 **ИТОГ (решение координатора 17.10: HMAC с существующим секретом кодов, expireAt по окну, TTL-политику включает владелец в R103).**
+Поправка Ревизора f23e972a6: TTL Firestore удаляет документ не сразу, а в пределах ~48 ч после expireAt → «within two days»/«shortly after».
+Ключи HMAC в HEAD — 07818d3da (лимиты вызывающего и неверных кодов). Лимит писем по stableId (`send_target_…`) Вход переводит на
+HMAC — в рабочем дереве, в HEAD ещё нет; правка legal/*.json — только после этого коммита.
 Сверено с рабочим деревом Входа (auth_recovery.ts, ещё не закоммичено на момент записи): ключи счётчиков — `createHmac('sha256',
 secret)` от вида и значения; `expireAt` = начало окна + окно (1 ч для запросов, 24 ч для неверных кодов) — то есть не дольше суток.
 
 > **EN (канон, финал):** To protect account recovery against code guessing and other abuse, the App keeps short-lived counters of
 > recovery requests and incorrect codes. Each counter is identified by a keyed hash (made with a secret key) of your sign-in account
 > identifier or of the IP address the request came from; we do not store the IP address itself. A counter contains only a number and
-> timestamps, is used only to limit repeated attempts, and is kept for no longer than one day.
+> timestamps, is used only to limit repeated attempts, and is deleted automatically shortly after the limit period ends (at most two days).
 
 > **RU (для владельца):** Чтобы защитить восстановление доступа от подбора кода и других злоупотреблений, приложение хранит
 > краткосрочные счётчики запросов на восстановление и неверных кодов. Каждый счётчик обозначен хэшем с секретным ключом от
 > идентификатора вашего аккаунта входа или IP-адреса, с которого пришёл запрос; сам IP-адрес мы не храним. Счётчик содержит только
-> число и отметки времени, используется только для ограничения повторных попыток и хранится не дольше суток.
+> число и отметки времени, используется только для ограничения повторных попыток и удаляется автоматически вскоре после окончания
+> окна ограничения (не позже чем через двое суток).
 
 Условия, при которых абзац верен (проверить утром перед правкой политики): (1) коммит Входа с HMAC и expireAt есть в HEAD;
 (2) TTL-политика Firestore на `auth_recovery_rate_limits.expireAt` включена (R103, владелец) — без неё «не дольше суток» держится
@@ -139,3 +143,29 @@ node scripts/shard_surveys_retire_v1.mjs --restore .codex-tmp/survey-retire/chec
 - **Таргетинг:** только free/Plus, число уроков, платформа — «только игравшим в Пик/карточки» нельзя.
 **Минимум в клиенте для полной версии:** мультивыбор + ряд-шкала (≈ 1 день, один компонент), сервер: N опросов в день (кулдаун в часах) — деплой функций.
 Скрипт заведения опросов (по образцу retire) НЕ написан — закончился лимит сессии; это следующий шаг, если владелец выберет «без сборки».
+
+### 5.2. Скрипт заведения опросов 2.0 (без новой сборки) — готов, НЕ выполнен
+`scripts/shard_surveys_v2_seed.mjs` + тексты `docs/work/tasks/surveys-v2-content.json`: 13 опросов, 36 вопросов, только одиночный
+выбор. Мультивыбор → «главное» (A1, A5, B4, C4, D3, E3, F3, G5). Шкалы → 5 строк «Очень… Совсем нет». Эмодзи-оценки → 5 строк
+с эмодзи. NPS → «Точно посоветую… Точно нет». В вопросы про Пик и карточки добавлено «Не играю в Пик» / «Не пользуюсь», потому что
+сервер не умеет показывать опрос только игравшим. «Про Plus» — только free, «Твой Plus» — только Plus. 1 опрос в день, свежий
+первым (survey_v2_01 → 13). Проверка — тем же кодом, что у сервера (functions/lib: validateSurveyConfigForWrite, parseSurveyConfig,
+missingSurveyLocaleKeys).
+
+План 17.10 (только чтение): ошибок 0, в проде таких id нет. Готовы 0 из 13 — нет переводов на uk/es/pt-BR/vi/id/tr/pl.
+Скрипт не пишет ни одного опроса без всех 9 языков: сервер такой не покажет.
+
+```bash
+node scripts/shard_surveys_v2_seed.mjs
+```
+Утром словом владельца — сначала заведение, потом выключение старых:
+```bash
+node scripts/shard_surveys_v2_seed.mjs --write --confirm SHARD_SURVEYS_V2_SEED
+```
+```bash
+node scripts/shard_surveys_retire_v1.mjs --write --confirm SHARD_SURVEYS_RETIRE_V1
+```
+Пока ротация жива, сервер показывает опрос ротации, поэтому дубля не будет. После выключения ротации сервер сам уйдёт на новые.
+Откат заведения: `--restore .codex-tmp/survey-v2-seed/checkpoint-<время>.json --write --confirm SHARD_SURVEYS_V2_SEED`. Новые
+опросы выключаются, ничего не удаляется. Откат старых — по 5.
+Награды за опрос нет (PM-058, выплата 0); поле `rewardShards: 1` нужно только для валидации.

@@ -233,7 +233,7 @@ test("production update gate blocks stale Learning V2 app content", () => {
     updateReleaseGate,
     /['"]Learning V2 release parity['"][\s\S]{0,160}['"]learning-v2:release-parity-gate['"]/u,
   );
-  assert.match(updateReleaseGate, /if\s*\(!run\(label, command, commandArgs\)\)\s*process\.exit\(1\)/u);
+  assert.match(updateReleaseGate, /if\s*\(!run\(label, command, commandArgs, env\)\)\s*process\.exit\(1\)/u);
 });
 
 test("the routed gate owns the source-to-release semantic check", () => {
@@ -246,11 +246,14 @@ test("the routed gate owns the source-to-release semantic check", () => {
 
 test("the routed production gate blocks on release-quality evidence", () => {
   const gate = fs.readFileSync("scripts/learning_v2_release_parity_gate.mjs", "utf8");
-  assert.match(gate, /const qualityResult\s*=\s*validateReleaseQuality\(\)/u);
+  // зачем (15.10, «гейт проверяет только выпущенное»): качество считается в пределах потолка — scoped(validateReleaseQuality(), …)
+  assert.match(gate, /const qualityResult\s*=\s*scoped\(validateReleaseQuality\(\)/u);
   assert.match(gate, /printQualityResult\(qualityResult\)/u);
   assert.match(
     gate,
-    /scopeResult\.ready\s*&&\s*semanticResult\.ready\s*&&\s*qualityResult\.ready\s*&&\s*copyResult\.ready/u,
+    // зачем (владелец 15.10): смысловой дрейф исходники ↔ выпуск в выпущенном — справка (isReleasedSemanticDriftAdvisory,
+    // проверяется в learning_v2_release_parity_released_scope); состав, качество и файлы — по-прежнему обязательны
+    /scopeResult\.ready\s*&&\s*\(semanticResult\.ready\s*\|\|\s*semanticAdvisory\)\s*&&\s*qualityResult\.ready\s*&&\s*copyResult\.ready/u,
   );
 });
 
@@ -271,6 +274,11 @@ test("the packaged EAS gate emits a deliberate release-quality block without omi
   fs.copyFileSync(
     path.resolve("scripts/learning_v2_release_parity_gate.mjs"),
     path.join(scriptsDir, "learning_v2_release_parity_gate.mjs"),
+  );
+  // зачем: ворота читают потолок через learning_v2_plan_b_gates.mjs — он едет в архиве EAS (тест .easignore выше), заготовка повторяет архив
+  fs.copyFileSync(
+    path.resolve("scripts/learning_v2_plan_b_gates.mjs"),
+    path.join(scriptsDir, "learning_v2_plan_b_gates.mjs"),
   );
 
   try {

@@ -133,12 +133,30 @@ export function releasedSessionOrdinal(pathOrId) {
  * зачем (координатор 17.10): закрыть такое занятие = закрыть весь курс после него (выпуск — сплошной префикс).
  * Убрать запись, когда Codex исправит выпуск и сборщик примет новую версию.
  */
+// зачем (17.10, потолок 441): сессия переписывания коммитит новые тексты выпуска раньше, чем переносит их в приложение
+// (звук новой версии ещё готовится). До переноса приложение держит прежнюю ОЗВУЧЕННУЮ версию — она проверена
+// single-voice --check и звуковыми воротами. Такие занятия перечисляются явно, с причиной, в
+// scripts/learning_v2_transfer_pending.v1.json (ведёт сессия переписывания: добавляет при коммите выпуска без переноса,
+// убирает в коммите переноса). Ворота не ослаблены: занятие вне списка с расхождением — блок; запись в списке
+// без расхождения — устаревшая, о ней пишется [V2-RELEASE-PARITY] stale_pin.
+const TRANSFER_PENDING_FILE = path.join(path.dirname(fileURLToPath(import.meta.url)), "learning_v2_transfer_pending.v1.json");
+const TRANSFER_PENDING = (() => {
+  try {
+    if (!fs.existsSync(TRANSFER_PENDING_FILE)) return {};
+    const raw = JSON.parse(fs.readFileSync(TRANSFER_PENDING_FILE, "utf8"));
+    return raw && typeof raw.sessions === "object" && raw.sessions ? raw.sessions : {};
+  } catch (error) {
+    console.error(`[V2-RELEASE-PARITY] transfer_pending_unreadable ${TRANSFER_PENDING_FILE}: ${error instanceof Error ? error.message : String(error)} — список не применяется`);
+    return {};
+  }
+})();
 const PINNED_PREVIOUS_RELEASE = Object.freeze({
+  ...Object.fromEntries(Object.entries(TRANSFER_PENDING).map(([identity, reason]) => [identity, `перенос ожидается: ${String(reason)}`])),
   "en/l01/s09": "выпуск Codex 16.10: интро 3 ru — варианты ответа расходятся с проверенным исходником; в приложении версия s09, выпущенная 16.10",
 });
 
 export function splitByReleasedScope(issues, ceiling, keyOf = (issue) => issue.interactionId ?? issue.path) {
-  if (!Number.isInteger(ceiling) || ceiling < 0) return { blocking: issues, deferred: [] };
+  if (!Number.isInteger(ceiling) || ceiling < 0) return { blocking: issues, deferred: [], pinnedHits: new Map() };
   const blocking = [];
   const deferred = [];
   const pinnedHits = new Map();
@@ -155,7 +173,7 @@ export function splitByReleasedScope(issues, ceiling, keyOf = (issue) => issue.i
   }
   for (const [identity, count] of pinnedHits)
     console.log(`[V2-RELEASE-PARITY] ${identity}: ${count} расхождений — закреплена прежняя выпущенная версия (${PINNED_PREVIOUS_RELEASE[identity]}) — справка, не блок`);
-  return { blocking, deferred };
+  return { blocking, deferred, pinnedHits };
 }
 
 export function releasedSessionScope(ceiling) {
@@ -172,8 +190,14 @@ function readReleasedCeiling() {
   }
 }
 
-function scoped(result, ceiling, label) {
-  const { blocking, deferred } = splitByReleasedScope(result.issues, ceiling);
+function scoped(result, ceiling, label, { reportStalePins = false } = {}) {
+  const { blocking, deferred, pinnedHits } = splitByReleasedScope(result.issues, ceiling);
+  // зачем: запись «перенос ожидается» без единого расхождения канон ↔ копия — перенос уже сделан, запись надо убрать
+  if (reportStalePins) {
+    for (const identity of Object.keys(TRANSFER_PENDING)) {
+      if (!pinnedHits.has(identity)) console.warn(`[V2-RELEASE-PARITY] stale_pin ${identity}: в списке «перенос ожидается», но расхождений нет — убрать из scripts/learning_v2_transfer_pending.v1.json`);
+    }
+  }
   if (deferred.length > 0) console.log(`[V2-RELEASE-PARITY] ${label}: за потолком ${ceiling} — ${deferred.length} (справка, не блок)`);
   return { ...result, issues: blocking, ready: blocking.length === 0 };
 }
@@ -700,7 +724,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const scopeResult = validateEnglishReleaseScope();
     const semanticResult = runSourceReleaseSemanticParity({ releasedScope: ceiling === null ? null : releasedSessionScope(ceiling) });
     const qualityResult = scoped(validateReleaseQuality(), ceiling, "качество");
-    const copyResult = scoped(validateReleaseParity(DEFAULT_CANONICAL_ROOT, DEFAULT_APP_COPY_ROOT), ceiling, "файлы канон ↔ копия");
+    const copyResult = scoped(validateReleaseParity(DEFAULT_CANONICAL_ROOT, DEFAULT_APP_COPY_ROOT), ceiling, "файлы канон ↔ копия", { reportStalePins: true });
     printScopeResult(scopeResult);
     printSemanticResult(semanticResult);
     // зачем: владелец 15.10: выпуск принят как есть, исходники Codex — WIP следующей версии (справка с полным списком выше, не блок)

@@ -16,10 +16,14 @@ test('невыпущенное не влияет, выпущенное с зам
     { code: 'AUDIO_EVIDENCE_UNVERIFIED', interactionId: 'en:lesson-01:session-30:i4' },
   ];
   assert.deepEqual(splitByReleasedScope(issues, 11).blocking, []);
-  const withReleased = [...issues, { code: 'AUDIO_EVIDENCE_UNVERIFIED', interactionId: 'en:lesson-01:session-09:i14' }, { code: 'ONLY_CANONICAL', path: 'index.json' }];
+  // зачем (17.10): s09 закреплён на прежней выпущенной версии (PINNED_PREVIOUS_RELEASE) — пример «выпущенное с замечанием» берём на s08
+  const withReleased = [...issues, { code: 'AUDIO_EVIDENCE_UNVERIFIED', interactionId: 'en:lesson-01:session-08:i14' }, { code: 'ONLY_CANONICAL', path: 'index.json' }];
   const split = splitByReleasedScope(withReleased, 11);
   assert.equal(split.blocking.length, 2);
   assert.equal(split.deferred.length, 2);
+  // закреплённое занятие — справка, а не блок
+  const pinned = splitByReleasedScope([{ code: 'CONTENT_MISMATCH', path: 'l01/s09/intro.json' }], 11);
+  assert.deepEqual([pinned.blocking.length, pinned.deferred.length], [0, 1]);
 });
 
 test('потолок не прочитан — строго, весь курс', () => {

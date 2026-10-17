@@ -36,6 +36,10 @@ test("Learning V2 parity failure cannot masquerade as a missing EAS secret", (t)
     "store_release_stubs_gate.mjs",
     // зачем (Ядро 12.10): гейт пакетов фразы дня (.dpk) подключён в precheck — без заглушки копия падала бы «модуль не найден».
     "daily_phrase_dpk_assets_gate.mjs",
+    // зачем (Ядро 17.10): гейт «потолок V2 = закоммиченному» (4d305eb5d) и гейт импортов, исключённых из архива EAS, подключены
+    // в precheck — без заглушек копия падала «модуль не найден», сторож считал 3 провала вместо 1 (красный не по своей причине).
+    "learning_v2_ceiling_committed_gate.mjs",
+    "easignore_runtime_imports_gate.mjs",
   ]) {
     fs.writeFileSync(path.join(scripts, script), "process.exitCode = 0;\n");
   }

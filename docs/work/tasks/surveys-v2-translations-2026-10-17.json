@@ -1,0 +1,2140 @@
+{
+  "schema": "phraseman_surveys_v2_copy_v1",
+  "source": "docs/work/tasks/surveys-v2-2026-10-17.md",
+  "status": "draft — переводы готовы к утверждению владельцем набора; в код не подключено",
+  "translator": "сессия «Специалист по переводам», 17.10.2026",
+  "locales": [
+    "ru",
+    "uk",
+    "en",
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "chipLimitChars": 24,
+  "common": {
+    "notNow": {
+      "ru": "Не сейчас",
+      "uk": "Не зараз",
+      "en": "Not now",
+      "es": "Ahora no",
+      "pt-BR": "Agora não",
+      "vi": "Để sau",
+      "id": "Nanti saja",
+      "tr": "Şimdi değil",
+      "pl": "Nie teraz"
+    },
+    "thanks": {
+      "ru": "Спасибо!",
+      "uk": "Дякуємо!",
+      "en": "Thank you!",
+      "es": "¡Gracias!",
+      "pt-BR": "Obrigado!",
+      "vi": "Cảm ơn bạn!",
+      "id": "Terima kasih!",
+      "tr": "Teşekkürler!",
+      "pl": "Dzięki!"
+    },
+    "noted": {
+      "ru": "Учтём",
+      "uk": "Врахуємо",
+      "en": "Got it",
+      "es": "Lo tendremos en cuenta",
+      "pt-BR": "Vamos levar em conta",
+      "vi": "Đã ghi nhận",
+      "id": "Kami catat",
+      "tr": "Not aldık",
+      "pl": "Weźmiemy to pod uwagę"
+    },
+    "pickUpTo3": {
+      "ru": "Можно выбрать до 3",
+      "uk": "Можна вибрати до 3",
+      "en": "Pick up to 3",
+      "es": "Elige hasta 3",
+      "pt-BR": "Escolha até 3",
+      "vi": "Chọn tối đa 3",
+      "id": "Pilih maksimal 3",
+      "tr": "En fazla 3 seç",
+      "pl": "Wybierz do 3"
+    },
+    "next": {
+      "ru": "Дальше",
+      "uk": "Далі",
+      "en": "Next",
+      "es": "Siguiente",
+      "pt-BR": "Próxima",
+      "vi": "Tiếp",
+      "id": "Lanjut",
+      "tr": "İleri",
+      "pl": "Dalej"
+    }
+  },
+  "questions": [
+    {
+      "id": "A1",
+      "type": "multi",
+      "question": {
+        "ru": "Зачем тебе язык?",
+        "uk": "Навіщо тобі мова?",
+        "en": "Why are you learning?",
+        "es": "¿Para qué aprendes?",
+        "pt-BR": "Por que você está aprendendo?",
+        "vi": "Bạn học để làm gì?",
+        "id": "Kenapa kamu belajar?",
+        "tr": "Neden öğreniyorsun?",
+        "pl": "Po co ci język?"
+      },
+      "options": [
+        {
+          "ru": "Работа",
+          "uk": "Робота",
+          "en": "Work",
+          "es": "Trabajo",
+          "pt-BR": "Trabalho",
+          "vi": "Công việc",
+          "id": "Kerja",
+          "tr": "İş",
+          "pl": "Praca"
+        },
+        {
+          "ru": "Поездки",
+          "uk": "Подорожі",
+          "en": "Travel",
+          "es": "Viajes",
+          "pt-BR": "Viagens",
+          "vi": "Du lịch",
+          "id": "Jalan-jalan",
+          "tr": "Seyahat",
+          "pl": "Podróże"
+        },
+        {
+          "ru": "Переезд",
+          "uk": "Переїзд",
+          "en": "Moving abroad",
+          "es": "Mudarme",
+          "pt-BR": "Mudar de país",
+          "vi": "Ra nước ngoài",
+          "id": "Pindah negara",
+          "tr": "Yurt dışına taşınma",
+          "pl": "Przeprowadzka"
+        },
+        {
+          "ru": "Учёба/экзамен",
+          "uk": "Навчання/іспит",
+          "en": "Study/exam",
+          "es": "Estudios/examen",
+          "pt-BR": "Estudo/prova",
+          "vi": "Học/thi",
+          "id": "Sekolah/ujian",
+          "tr": "Okul/sınav",
+          "pl": "Nauka/egzamin"
+        },
+        {
+          "ru": "Фильмы и музыка",
+          "uk": "Фільми й музика",
+          "en": "Films and music",
+          "es": "Cine y música",
+          "pt-BR": "Filmes e música",
+          "vi": "Phim và nhạc",
+          "id": "Film dan musik",
+          "tr": "Dizi ve müzik",
+          "pl": "Filmy i muzyka"
+        },
+        {
+          "ru": "Общение",
+          "uk": "Спілкування",
+          "en": "Talking to people",
+          "es": "Hablar con gente",
+          "pt-BR": "Conversar",
+          "vi": "Giao tiếp",
+          "id": "Ngobrol",
+          "tr": "Sohbet",
+          "pl": "Rozmowy"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "A2",
+      "type": "chips",
+      "question": {
+        "ru": "Какой у тебя уровень?",
+        "uk": "Який у тебе рівень?",
+        "en": "What's your level?",
+        "es": "¿Cuál es tu nivel?",
+        "pt-BR": "Qual é o seu nível?",
+        "vi": "Trình độ của bạn?",
+        "id": "Level kamu?",
+        "tr": "Seviyen ne?",
+        "pl": "Jaki masz poziom?"
+      },
+      "options": [
+        {
+          "ru": "С нуля",
+          "uk": "З нуля",
+          "en": "Beginner",
+          "es": "Desde cero",
+          "pt-BR": "Do zero",
+          "vi": "Mới bắt đầu",
+          "id": "Dari nol",
+          "tr": "Sıfırdan",
+          "pl": "Od zera"
+        },
+        {
+          "ru": "Начальный",
+          "uk": "Початковий",
+          "en": "Elementary",
+          "es": "Básico",
+          "pt-BR": "Básico",
+          "vi": "Sơ cấp",
+          "id": "Dasar",
+          "tr": "Temel",
+          "pl": "Podstawowy"
+        },
+        {
+          "ru": "Средний",
+          "uk": "Середній",
+          "en": "Intermediate",
+          "es": "Intermedio",
+          "pt-BR": "Intermediário",
+          "vi": "Trung cấp",
+          "id": "Menengah",
+          "tr": "Orta",
+          "pl": "Średni"
+        },
+        {
+          "ru": "Уверенный",
+          "uk": "Впевнений",
+          "en": "Confident",
+          "es": "Avanzado",
+          "pt-BR": "Avançado",
+          "vi": "Khá tốt",
+          "id": "Mahir",
+          "tr": "İleri",
+          "pl": "Zaawansowany"
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "type": "chips",
+      "question": {
+        "ru": "Сколько минут в день готов?",
+        "uk": "Скільки хвилин на день готовий?",
+        "en": "How many minutes a day?",
+        "es": "¿Cuántos minutos al día?",
+        "pt-BR": "Quantos minutos por dia?",
+        "vi": "Mỗi ngày bao nhiêu phút?",
+        "id": "Berapa menit sehari?",
+        "tr": "Günde kaç dakika?",
+        "pl": "Ile minut dziennie?"
+      },
+      "options": [
+        {
+          "ru": "3",
+          "uk": "3",
+          "en": "3",
+          "es": "3",
+          "pt-BR": "3",
+          "vi": "3",
+          "id": "3",
+          "tr": "3",
+          "pl": "3"
+        },
+        {
+          "ru": "5",
+          "uk": "5",
+          "en": "5",
+          "es": "5",
+          "pt-BR": "5",
+          "vi": "5",
+          "id": "5",
+          "tr": "5",
+          "pl": "5"
+        },
+        {
+          "ru": "10",
+          "uk": "10",
+          "en": "10",
+          "es": "10",
+          "pt-BR": "10",
+          "vi": "10",
+          "id": "10",
+          "tr": "10",
+          "pl": "10"
+        },
+        {
+          "ru": "15+",
+          "uk": "15+",
+          "en": "15+",
+          "es": "15+",
+          "pt-BR": "15+",
+          "vi": "15+",
+          "id": "15+",
+          "tr": "15+",
+          "pl": "15+"
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "type": "chips",
+      "question": {
+        "ru": "Когда удобнее заниматься?",
+        "uk": "Коли зручніше займатися?",
+        "en": "When do you usually study?",
+        "es": "¿Cuándo sueles estudiar?",
+        "pt-BR": "Quando você costuma estudar?",
+        "vi": "Bạn thường học lúc nào?",
+        "id": "Biasanya belajar kapan?",
+        "tr": "Genelde ne zaman çalışırsın?",
+        "pl": "Kiedy zwykle się uczysz?"
+      },
+      "options": [
+        {
+          "ru": "Утром",
+          "uk": "Вранці",
+          "en": "Morning",
+          "es": "Por la mañana",
+          "pt-BR": "De manhã",
+          "vi": "Buổi sáng",
+          "id": "Pagi",
+          "tr": "Sabah",
+          "pl": "Rano"
+        },
+        {
+          "ru": "Днём",
+          "uk": "Удень",
+          "en": "Afternoon",
+          "es": "Por la tarde",
+          "pt-BR": "À tarde",
+          "vi": "Buổi trưa",
+          "id": "Siang",
+          "tr": "Öğlen",
+          "pl": "W ciągu dnia"
+        },
+        {
+          "ru": "Вечером",
+          "uk": "Увечері",
+          "en": "Evening",
+          "es": "Por la noche",
+          "pt-BR": "À noite",
+          "vi": "Buổi tối",
+          "id": "Malam",
+          "tr": "Akşam",
+          "pl": "Wieczorem"
+        },
+        {
+          "ru": "Перед сном",
+          "uk": "Перед сном",
+          "en": "Before bed",
+          "es": "Antes de dormir",
+          "pt-BR": "Antes de dormir",
+          "vi": "Trước khi ngủ",
+          "id": "Sebelum tidur",
+          "tr": "Yatmadan önce",
+          "pl": "Przed snem"
+        },
+        {
+          "ru": "Когда как",
+          "uk": "По-різному",
+          "en": "It varies",
+          "es": "Depende",
+          "pt-BR": "Depende",
+          "vi": "Tùy hôm",
+          "id": "Tidak tentu",
+          "tr": "Değişir",
+          "pl": "Różnie"
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "type": "multi",
+      "question": {
+        "ru": "Что сложнее всего?",
+        "uk": "Що найскладніше?",
+        "en": "What's hardest for you?",
+        "es": "¿Qué te cuesta más?",
+        "pt-BR": "O que é mais difícil?",
+        "vi": "Điều gì khó nhất?",
+        "id": "Apa yang paling sulit?",
+        "tr": "En zor ne?",
+        "pl": "Co jest najtrudniejsze?"
+      },
+      "options": [
+        {
+          "ru": "Говорить",
+          "uk": "Говорити",
+          "en": "Speaking",
+          "es": "Hablar",
+          "pt-BR": "Falar",
+          "vi": "Nói",
+          "id": "Bicara",
+          "tr": "Konuşmak",
+          "pl": "Mówienie"
+        },
+        {
+          "ru": "Понимать на слух",
+          "uk": "Розуміти на слух",
+          "en": "Listening",
+          "es": "Entender al oír",
+          "pt-BR": "Entender ouvindo",
+          "vi": "Nghe hiểu",
+          "id": "Mendengar",
+          "tr": "Dinleyip anlamak",
+          "pl": "Słuchanie"
+        },
+        {
+          "ru": "Слова",
+          "uk": "Слова",
+          "en": "Words",
+          "es": "Vocabulario",
+          "pt-BR": "Vocabulário",
+          "vi": "Từ vựng",
+          "id": "Kosakata",
+          "tr": "Kelimeler",
+          "pl": "Słówka"
+        },
+        {
+          "ru": "Грамматика",
+          "uk": "Граматика",
+          "en": "Grammar",
+          "es": "Gramática",
+          "pt-BR": "Gramática",
+          "vi": "Ngữ pháp",
+          "id": "Tata bahasa",
+          "tr": "Dilbilgisi",
+          "pl": "Gramatyka"
+        },
+        {
+          "ru": "Писать",
+          "uk": "Писати",
+          "en": "Writing",
+          "es": "Escribir",
+          "pt-BR": "Escrever",
+          "vi": "Viết",
+          "id": "Menulis",
+          "tr": "Yazmak",
+          "pl": "Pisanie"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "A6",
+      "type": "chips",
+      "question": {
+        "ru": "Есть срок?",
+        "uk": "Є термін?",
+        "en": "Do you have a deadline?",
+        "es": "¿Tienes una fecha límite?",
+        "pt-BR": "Você tem um prazo?",
+        "vi": "Bạn có hạn chót không?",
+        "id": "Ada tenggat waktu?",
+        "tr": "Bir son tarihin var mı?",
+        "pl": "Masz termin?"
+      },
+      "options": [
+        {
+          "ru": "Да, до месяца",
+          "uk": "Так, до місяця",
+          "en": "Yes, within a month",
+          "es": "Sí, en un mes",
+          "pt-BR": "Sim, em até 1 mês",
+          "vi": "Có, trong 1 tháng",
+          "id": "Ya, dalam sebulan",
+          "tr": "Evet, bir ay içinde",
+          "pl": "Tak, do miesiąca"
+        },
+        {
+          "ru": "1–3 месяца",
+          "uk": "1–3 місяці",
+          "en": "1–3 months",
+          "es": "1–3 meses",
+          "pt-BR": "1–3 meses",
+          "vi": "1–3 tháng",
+          "id": "1–3 bulan",
+          "tr": "1–3 ay",
+          "pl": "1–3 miesiące"
+        },
+        {
+          "ru": "Через полгода+",
+          "uk": "Через пів року+",
+          "en": "6 months or more",
+          "es": "En 6 meses o más",
+          "pt-BR": "Em 6 meses ou mais",
+          "vi": "Từ 6 tháng trở lên",
+          "id": "6 bulan atau lebih",
+          "tr": "6 ay veya daha fazla",
+          "pl": "Za pół roku lub dłużej"
+        },
+        {
+          "ru": "Нет, для себя",
+          "uk": "Ні, для себе",
+          "en": "No, just for me",
+          "es": "No, es para mí",
+          "pt-BR": "Não, é para mim",
+          "vi": "Không, học cho mình",
+          "id": "Tidak, buat sendiri",
+          "tr": "Hayır, kendim için",
+          "pl": "Nie, dla siebie"
+        }
+      ]
+    },
+    {
+      "id": "B1",
+      "type": "emoji",
+      "question": {
+        "ru": "Как этот урок?",
+        "uk": "Як цей урок?",
+        "en": "How was this lesson?",
+        "es": "¿Qué tal esta lección?",
+        "pt-BR": "Como foi esta lição?",
+        "vi": "Bài học này thế nào?",
+        "id": "Gimana pelajaran ini?",
+        "tr": "Bu ders nasıldı?",
+        "pl": "Jak ci poszła ta lekcja?"
+      },
+      "emoji": [
+        "😫",
+        "😕",
+        "😐",
+        "🙂",
+        "🤩"
+      ]
+    },
+    {
+      "id": "B2",
+      "type": "chips",
+      "question": {
+        "ru": "Сложность урока?",
+        "uk": "Складність уроку?",
+        "en": "Lesson difficulty?",
+        "es": "¿Dificultad de la lección?",
+        "pt-BR": "Dificuldade da lição?",
+        "vi": "Độ khó của bài?",
+        "id": "Tingkat kesulitan?",
+        "tr": "Dersin zorluğu?",
+        "pl": "Trudność lekcji?"
+      },
+      "options": [
+        {
+          "ru": "Легко",
+          "uk": "Легко",
+          "en": "Easy",
+          "es": "Fácil",
+          "pt-BR": "Fácil",
+          "vi": "Dễ",
+          "id": "Mudah",
+          "tr": "Kolay",
+          "pl": "Łatwa"
+        },
+        {
+          "ru": "В самый раз",
+          "uk": "Саме те",
+          "en": "Just right",
+          "es": "Justo",
+          "pt-BR": "Na medida",
+          "vi": "Vừa sức",
+          "id": "Pas",
+          "tr": "Tam kararında",
+          "pl": "W sam raz"
+        },
+        {
+          "ru": "Тяжело",
+          "uk": "Важко",
+          "en": "Hard",
+          "es": "Difícil",
+          "pt-BR": "Difícil",
+          "vi": "Khó",
+          "id": "Sulit",
+          "tr": "Zor",
+          "pl": "Trudna"
+        }
+      ]
+    },
+    {
+      "id": "B3",
+      "type": "chips",
+      "question": {
+        "ru": "Длина урока?",
+        "uk": "Довжина уроку?",
+        "en": "Lesson length?",
+        "es": "¿Duración de la lección?",
+        "pt-BR": "Duração da lição?",
+        "vi": "Độ dài bài học?",
+        "id": "Panjang pelajaran?",
+        "tr": "Dersin uzunluğu?",
+        "pl": "Długość lekcji?"
+      },
+      "options": [
+        {
+          "ru": "Коротко",
+          "uk": "Коротко",
+          "en": "Too short",
+          "es": "Corta",
+          "pt-BR": "Curta",
+          "vi": "Ngắn",
+          "id": "Pendek",
+          "tr": "Kısa",
+          "pl": "Krótka"
+        },
+        {
+          "ru": "Нормально",
+          "uk": "Нормально",
+          "en": "Fine",
+          "es": "Bien",
+          "pt-BR": "Boa",
+          "vi": "Vừa phải",
+          "id": "Pas",
+          "tr": "İyi",
+          "pl": "W sam raz"
+        },
+        {
+          "ru": "Длинно",
+          "uk": "Довго",
+          "en": "Too long",
+          "es": "Larga",
+          "pt-BR": "Longa",
+          "vi": "Dài",
+          "id": "Panjang",
+          "tr": "Uzun",
+          "pl": "Długa"
+        }
+      ]
+    },
+    {
+      "id": "B4",
+      "type": "multi",
+      "question": {
+        "ru": "Чего не хватило?",
+        "uk": "Чого бракувало?",
+        "en": "What was missing?",
+        "es": "¿Qué faltó?",
+        "pt-BR": "O que faltou?",
+        "vi": "Còn thiếu gì?",
+        "id": "Apa yang kurang?",
+        "tr": "Ne eksikti?",
+        "pl": "Czego zabrakło?"
+      },
+      "options": [
+        {
+          "ru": "Примеров",
+          "uk": "Прикладів",
+          "en": "Examples",
+          "es": "Ejemplos",
+          "pt-BR": "Exemplos",
+          "vi": "Ví dụ",
+          "id": "Contoh",
+          "tr": "Örnek",
+          "pl": "Przykładów"
+        },
+        {
+          "ru": "Объяснений",
+          "uk": "Пояснень",
+          "en": "Explanations",
+          "es": "Explicaciones",
+          "pt-BR": "Explicações",
+          "vi": "Giải thích",
+          "id": "Penjelasan",
+          "tr": "Açıklama",
+          "pl": "Wyjaśnień"
+        },
+        {
+          "ru": "Озвучки",
+          "uk": "Озвучення",
+          "en": "Audio",
+          "es": "Audio",
+          "pt-BR": "Áudio",
+          "vi": "Âm thanh",
+          "id": "Audio",
+          "tr": "Ses",
+          "pl": "Nagrań"
+        },
+        {
+          "ru": "Практики речи",
+          "uk": "Практики мовлення",
+          "en": "Speaking practice",
+          "es": "Práctica oral",
+          "pt-BR": "Prática de fala",
+          "vi": "Luyện nói",
+          "id": "Latihan bicara",
+          "tr": "Konuşma pratiği",
+          "pl": "Mówienia"
+        },
+        {
+          "ru": "Ничего",
+          "uk": "Нічого",
+          "en": "Nothing",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Không thiếu gì",
+          "id": "Tidak ada",
+          "tr": "Hiçbir şey",
+          "pl": "Niczego"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "B5",
+      "type": "chips",
+      "question": {
+        "ru": "Озвучка понятна?",
+        "uk": "Озвучення зрозуміле?",
+        "en": "Is the audio clear?",
+        "es": "¿Se entiende el audio?",
+        "pt-BR": "O áudio está claro?",
+        "vi": "Âm thanh có rõ không?",
+        "id": "Audionya jelas?",
+        "tr": "Ses anlaşılır mı?",
+        "pl": "Nagranie jest zrozumiałe?"
+      },
+      "options": [
+        {
+          "ru": "Да",
+          "uk": "Так",
+          "en": "Yes",
+          "es": "Sí",
+          "pt-BR": "Sim",
+          "vi": "Rõ",
+          "id": "Jelas",
+          "tr": "Evet",
+          "pl": "Tak"
+        },
+        {
+          "ru": "Быстро",
+          "uk": "Швидко",
+          "en": "Too fast",
+          "es": "Muy rápido",
+          "pt-BR": "Rápido demais",
+          "vi": "Nhanh quá",
+          "id": "Terlalu cepat",
+          "tr": "Çok hızlı",
+          "pl": "Za szybko"
+        },
+        {
+          "ru": "Медленно",
+          "uk": "Повільно",
+          "en": "Too slow",
+          "es": "Muy lento",
+          "pt-BR": "Lento demais",
+          "vi": "Chậm quá",
+          "id": "Terlalu lambat",
+          "tr": "Çok yavaş",
+          "pl": "Za wolno"
+        },
+        {
+          "ru": "Плохо слышно",
+          "uk": "Погано чутно",
+          "en": "Hard to hear",
+          "es": "Se oye mal",
+          "pt-BR": "Difícil de ouvir",
+          "vi": "Khó nghe",
+          "id": "Kurang terdengar",
+          "tr": "Zor duyuluyor",
+          "pl": "Słabo słychać"
+        }
+      ]
+    },
+    {
+      "id": "B6",
+      "type": "scale",
+      "question": {
+        "ru": "Говорить вслух — комфортно?",
+        "uk": "Говорити вголос — комфортно?",
+        "en": "Comfortable speaking aloud?",
+        "es": "¿Te resulta cómodo hablar en voz alta?",
+        "pt-BR": "Você fica à vontade falando em voz alta?",
+        "vi": "Nói thành tiếng có thoải mái không?",
+        "id": "Nyaman bicara keras-keras?",
+        "tr": "Sesli konuşmak rahat mı?",
+        "pl": "Mówienie na głos jest dla ciebie wygodne?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Нет",
+          "uk": "Ні",
+          "en": "Not at all",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Không",
+          "id": "Tidak",
+          "tr": "Hiç",
+          "pl": "Nie"
+        },
+        "max": {
+          "ru": "Легко",
+          "uk": "Легко",
+          "en": "Easy",
+          "es": "Sin problema",
+          "pt-BR": "Tranquilo",
+          "vi": "Dễ dàng",
+          "id": "Gampang",
+          "tr": "Kolay",
+          "pl": "Łatwo"
+        }
+      }
+    },
+    {
+      "id": "C1",
+      "type": "chips",
+      "question": {
+        "ru": "Новый курс лучше прежнего?",
+        "uk": "Новий курс кращий за попередній?",
+        "en": "Is the new course better?",
+        "es": "¿El curso nuevo es mejor?",
+        "pt-BR": "O curso novo é melhor?",
+        "vi": "Khóa học mới tốt hơn không?",
+        "id": "Kursus baru lebih baik?",
+        "tr": "Yeni kurs daha mı iyi?",
+        "pl": "Nowy kurs jest lepszy?"
+      },
+      "options": [
+        {
+          "ru": "Лучше",
+          "uk": "Кращий",
+          "en": "Better",
+          "es": "Mejor",
+          "pt-BR": "Melhor",
+          "vi": "Tốt hơn",
+          "id": "Lebih baik",
+          "tr": "Daha iyi",
+          "pl": "Lepszy"
+        },
+        {
+          "ru": "Так же",
+          "uk": "Так само",
+          "en": "Same",
+          "es": "Igual",
+          "pt-BR": "Igual",
+          "vi": "Như cũ",
+          "id": "Sama",
+          "tr": "Aynı",
+          "pl": "Taki sam"
+        },
+        {
+          "ru": "Хуже",
+          "uk": "Гірший",
+          "en": "Worse",
+          "es": "Peor",
+          "pt-BR": "Pior",
+          "vi": "Tệ hơn",
+          "id": "Lebih buruk",
+          "tr": "Daha kötü",
+          "pl": "Gorszy"
+        },
+        {
+          "ru": "Не помню прежний",
+          "uk": "Не пам’ятаю попередній",
+          "en": "Don't recall the old one",
+          "es": "No recuerdo el anterior",
+          "pt-BR": "Não lembro do antigo",
+          "vi": "Không nhớ bản cũ",
+          "id": "Lupa yang lama",
+          "tr": "Eskisini hatırlamıyorum",
+          "pl": "Nie pamiętam starego"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "type": "scale",
+      "question": {
+        "ru": "Понятно, что делать дальше?",
+        "uk": "Зрозуміло, що робити далі?",
+        "en": "Is it clear what to do next?",
+        "es": "¿Está claro qué hacer después?",
+        "pt-BR": "Fica claro o que fazer depois?",
+        "vi": "Có rõ bước tiếp theo không?",
+        "id": "Jelas langkah berikutnya?",
+        "tr": "Sırada ne var, belli mi?",
+        "pl": "Wiadomo, co robić dalej?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Совсем нет",
+          "uk": "Зовсім ні",
+          "en": "Not at all",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Hoàn toàn không",
+          "id": "Sama sekali tidak",
+          "tr": "Hiç",
+          "pl": "Wcale"
+        },
+        "max": {
+          "ru": "Очень",
+          "uk": "Дуже",
+          "en": "Very much",
+          "es": "Mucho",
+          "pt-BR": "Muito",
+          "vi": "Rất nhiều",
+          "id": "Sangat",
+          "tr": "Çok",
+          "pl": "Bardzo"
+        }
+      }
+    },
+    {
+      "id": "C3",
+      "type": "scale",
+      "question": {
+        "ru": "Чувствуешь прогресс?",
+        "uk": "Відчуваєш прогрес?",
+        "en": "Do you feel progress?",
+        "es": "¿Notas tu progreso?",
+        "pt-BR": "Você sente que está evoluindo?",
+        "vi": "Bạn thấy mình tiến bộ không?",
+        "id": "Merasa ada kemajuan?",
+        "tr": "İlerlediğini hissediyor musun?",
+        "pl": "Czujesz postęp?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Совсем нет",
+          "uk": "Зовсім ні",
+          "en": "Not at all",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Hoàn toàn không",
+          "id": "Sama sekali tidak",
+          "tr": "Hiç",
+          "pl": "Wcale"
+        },
+        "max": {
+          "ru": "Очень",
+          "uk": "Дуже",
+          "en": "Very much",
+          "es": "Mucho",
+          "pt-BR": "Muito",
+          "vi": "Rất nhiều",
+          "id": "Sangat",
+          "tr": "Çok",
+          "pl": "Bardzo"
+        }
+      }
+    },
+    {
+      "id": "C4",
+      "type": "multi",
+      "question": {
+        "ru": "Какие задания любимые?",
+        "uk": "Які завдання улюблені?",
+        "en": "Favourite exercise types?",
+        "es": "¿Tus ejercicios favoritos?",
+        "pt-BR": "Exercícios favoritos?",
+        "vi": "Dạng bài bạn thích?",
+        "id": "Latihan favorit?",
+        "tr": "En sevdiğin alıştırmalar?",
+        "pl": "Ulubione zadania?"
+      },
+      "options": [
+        {
+          "ru": "Выбор",
+          "uk": "Вибір",
+          "en": "Multiple choice",
+          "es": "Elegir",
+          "pt-BR": "Escolher",
+          "vi": "Chọn đáp án",
+          "id": "Pilihan",
+          "tr": "Seçmeli",
+          "pl": "Wybór"
+        },
+        {
+          "ru": "Сборка фразы",
+          "uk": "Збирання фрази",
+          "en": "Build the phrase",
+          "es": "Armar la frase",
+          "pt-BR": "Montar a frase",
+          "vi": "Ghép câu",
+          "id": "Susun frasa",
+          "tr": "Cümle kurma",
+          "pl": "Układanie zdań"
+        },
+        {
+          "ru": "Речь",
+          "uk": "Мовлення",
+          "en": "Speaking",
+          "es": "Hablar",
+          "pt-BR": "Falar",
+          "vi": "Nói",
+          "id": "Bicara",
+          "tr": "Konuşma",
+          "pl": "Mówienie"
+        },
+        {
+          "ru": "На слух",
+          "uk": "На слух",
+          "en": "Listening",
+          "es": "Escuchar",
+          "pt-BR": "Ouvir",
+          "vi": "Nghe",
+          "id": "Mendengar",
+          "tr": "Dinleme",
+          "pl": "Słuchanie"
+        },
+        {
+          "ru": "Пары",
+          "uk": "Пари",
+          "en": "Matching pairs",
+          "es": "Parejas",
+          "pt-BR": "Pares",
+          "vi": "Nối cặp",
+          "id": "Pasangan",
+          "tr": "Eşleştirme",
+          "pl": "Pary"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "D1",
+      "type": "chips",
+      "question": {
+        "ru": "Сложность Пика?",
+        "uk": "Складність Піку?",
+        "en": "Peak difficulty?",
+        "es": "¿Dificultad de Pico?",
+        "pt-BR": "Dificuldade do Pico?",
+        "vi": "Độ khó của Đỉnh?",
+        "id": "Kesulitan Puncak?",
+        "tr": "Zirve’nin zorluğu?",
+        "pl": "Trudność Szczytu?"
+      },
+      "options": [
+        {
+          "ru": "Легко",
+          "uk": "Легко",
+          "en": "Easy",
+          "es": "Fácil",
+          "pt-BR": "Fácil",
+          "vi": "Dễ",
+          "id": "Mudah",
+          "tr": "Kolay",
+          "pl": "Łatwo"
+        },
+        {
+          "ru": "В самый раз",
+          "uk": "Саме те",
+          "en": "Just right",
+          "es": "Justo",
+          "pt-BR": "Na medida",
+          "vi": "Vừa sức",
+          "id": "Pas",
+          "tr": "Tam kararında",
+          "pl": "W sam raz"
+        },
+        {
+          "ru": "Тяжело",
+          "uk": "Важко",
+          "en": "Hard",
+          "es": "Difícil",
+          "pt-BR": "Difícil",
+          "vi": "Khó",
+          "id": "Sulit",
+          "tr": "Zor",
+          "pl": "Trudno"
+        },
+        {
+          "ru": "Нечестно",
+          "uk": "Нечесно",
+          "en": "Unfair",
+          "es": "Injusto",
+          "pt-BR": "Injusto",
+          "vi": "Không công bằng",
+          "id": "Tidak adil",
+          "tr": "Haksız",
+          "pl": "Nieuczciwie"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "type": "chips",
+      "question": {
+        "ru": "Хватает времени на ступень?",
+        "uk": "Вистачає часу на сходинку?",
+        "en": "Enough time per step?",
+        "es": "¿Te alcanza el tiempo por escalón?",
+        "pt-BR": "Dá tempo em cada degrau?",
+        "vi": "Đủ thời gian mỗi bậc không?",
+        "id": "Waktu per anak tangga cukup?",
+        "tr": "Basamak için süre yetiyor mu?",
+        "pl": "Wystarcza czasu na stopień?"
+      },
+      "options": [
+        {
+          "ru": "С запасом",
+          "uk": "З запасом",
+          "en": "Plenty",
+          "es": "De sobra",
+          "pt-BR": "Sobra",
+          "vi": "Dư dả",
+          "id": "Lebih dari cukup",
+          "tr": "Bol bol",
+          "pl": "Z zapasem"
+        },
+        {
+          "ru": "Впритык",
+          "uk": "Впритул",
+          "en": "Just barely",
+          "es": "Justo",
+          "pt-BR": "No limite",
+          "vi": "Vừa khít",
+          "id": "Pas-pasan",
+          "tr": "Ancak yetiyor",
+          "pl": "Na styk"
+        },
+        {
+          "ru": "Не хватает",
+          "uk": "Не вистачає",
+          "en": "Not enough",
+          "es": "No alcanza",
+          "pt-BR": "Não dá",
+          "vi": "Không đủ",
+          "id": "Kurang",
+          "tr": "Yetmiyor",
+          "pl": "Za mało"
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "type": "multi",
+      "question": {
+        "ru": "Что держит в Пике?",
+        "uk": "Що тримає в Піку?",
+        "en": "What keeps you in Peak?",
+        "es": "¿Qué te engancha a Pico?",
+        "pt-BR": "O que te prende no Pico?",
+        "vi": "Điều gì giữ bạn ở Đỉnh?",
+        "id": "Apa yang bikin betah di Puncak?",
+        "tr": "Seni Zirve’de ne tutuyor?",
+        "pl": "Co trzyma cię w Szczycie?"
+      },
+      "options": [
+        {
+          "ru": "Подъём",
+          "uk": "Підйом",
+          "en": "The climb",
+          "es": "Subir",
+          "pt-BR": "A subida",
+          "vi": "Leo lên",
+          "id": "Naik",
+          "tr": "Tırmanış",
+          "pl": "Wspinaczka"
+        },
+        {
+          "ru": "Монеты",
+          "uk": "Монети",
+          "en": "Coins",
+          "es": "Monedas",
+          "pt-BR": "Moedas",
+          "vi": "Xu",
+          "id": "Koin",
+          "tr": "Jeton",
+          "pl": "Monety"
+        },
+        {
+          "ru": "Соперники",
+          "uk": "Суперники",
+          "en": "Rivals",
+          "es": "Rivales",
+          "pt-BR": "Rivais",
+          "vi": "Đối thủ",
+          "id": "Lawan",
+          "tr": "Rakipler",
+          "pl": "Rywale"
+        },
+        {
+          "ru": "Привычка",
+          "uk": "Звичка",
+          "en": "Habit",
+          "es": "Costumbre",
+          "pt-BR": "Hábito",
+          "vi": "Thói quen",
+          "id": "Kebiasaan",
+          "tr": "Alışkanlık",
+          "pl": "Nawyk"
+        },
+        {
+          "ru": "Ничего",
+          "uk": "Нічого",
+          "en": "Nothing",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Không gì cả",
+          "id": "Tidak ada",
+          "tr": "Hiçbir şey",
+          "pl": "Nic"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "D4",
+      "type": "chips",
+      "question": {
+        "ru": "Энергии хватает?",
+        "uk": "Енергії вистачає?",
+        "en": "Is energy enough?",
+        "es": "¿Te alcanza la energía?",
+        "pt-BR": "A energia é suficiente?",
+        "vi": "Năng lượng có đủ không?",
+        "id": "Energinya cukup?",
+        "tr": "Enerji yetiyor mu?",
+        "pl": "Wystarcza ci energii?"
+      },
+      "options": [
+        {
+          "ru": "Да",
+          "uk": "Так",
+          "en": "Yes",
+          "es": "Sí",
+          "pt-BR": "Sim",
+          "vi": "Đủ",
+          "id": "Cukup",
+          "tr": "Evet",
+          "pl": "Tak"
+        },
+        {
+          "ru": "Иногда нет",
+          "uk": "Іноді ні",
+          "en": "Sometimes not",
+          "es": "A veces no",
+          "pt-BR": "Às vezes não",
+          "vi": "Đôi khi không",
+          "id": "Kadang tidak",
+          "tr": "Bazen yetmiyor",
+          "pl": "Czasem nie"
+        },
+        {
+          "ru": "Часто нет",
+          "uk": "Часто ні",
+          "en": "Often not",
+          "es": "A menudo no",
+          "pt-BR": "Muitas vezes não",
+          "vi": "Thường không",
+          "id": "Sering tidak",
+          "tr": "Çoğu zaman yetmiyor",
+          "pl": "Często nie"
+        }
+      ]
+    },
+    {
+      "id": "E1",
+      "type": "chips",
+      "question": {
+        "ru": "Как часто повторяешь карточки?",
+        "uk": "Як часто повторюєш картки?",
+        "en": "How often do you review cards?",
+        "es": "¿Cada cuánto repasas tarjetas?",
+        "pt-BR": "Com que frequência você revisa cartões?",
+        "vi": "Bạn ôn thẻ thường xuyên không?",
+        "id": "Seberapa sering mengulang kartu?",
+        "tr": "Kartları ne sıklıkla tekrar edersin?",
+        "pl": "Jak często powtarzasz karty?"
+      },
+      "options": [
+        {
+          "ru": "Каждый день",
+          "uk": "Щодня",
+          "en": "Every day",
+          "es": "A diario",
+          "pt-BR": "Todo dia",
+          "vi": "Mỗi ngày",
+          "id": "Tiap hari",
+          "tr": "Her gün",
+          "pl": "Codziennie"
+        },
+        {
+          "ru": "Пару раз в неделю",
+          "uk": "Кілька разів на тиждень",
+          "en": "A few times a week",
+          "es": "Varias veces por semana",
+          "pt-BR": "Algumas vezes por semana",
+          "vi": "Vài lần một tuần",
+          "id": "Beberapa kali seminggu",
+          "tr": "Haftada birkaç kez",
+          "pl": "Kilka razy w tygodniu"
+        },
+        {
+          "ru": "Редко",
+          "uk": "Рідко",
+          "en": "Rarely",
+          "es": "Pocas veces",
+          "pt-BR": "Raramente",
+          "vi": "Hiếm khi",
+          "id": "Jarang",
+          "tr": "Nadiren",
+          "pl": "Rzadko"
+        },
+        {
+          "ru": "Не пользуюсь",
+          "uk": "Не користуюся",
+          "en": "I don't use them",
+          "es": "No las uso",
+          "pt-BR": "Não uso",
+          "vi": "Không dùng",
+          "id": "Tidak pakai",
+          "tr": "Kullanmıyorum",
+          "pl": "Nie używam"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "type": "scale",
+      "question": {
+        "ru": "Карточки помогают запомнить?",
+        "uk": "Картки допомагають запам’ятати?",
+        "en": "Do cards help you remember?",
+        "es": "¿Las tarjetas te ayudan a recordar?",
+        "pt-BR": "Os cartões ajudam a lembrar?",
+        "vi": "Thẻ có giúp bạn nhớ không?",
+        "id": "Kartu membantu mengingat?",
+        "tr": "Kartlar hatırlamana yardım ediyor mu?",
+        "pl": "Karty pomagają zapamiętać?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Совсем нет",
+          "uk": "Зовсім ні",
+          "en": "Not at all",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Hoàn toàn không",
+          "id": "Sama sekali tidak",
+          "tr": "Hiç",
+          "pl": "Wcale"
+        },
+        "max": {
+          "ru": "Очень",
+          "uk": "Дуже",
+          "en": "Very much",
+          "es": "Mucho",
+          "pt-BR": "Muito",
+          "vi": "Rất nhiều",
+          "id": "Sangat",
+          "tr": "Çok",
+          "pl": "Bardzo"
+        }
+      }
+    },
+    {
+      "id": "E3",
+      "type": "multi",
+      "question": {
+        "ru": "Темы диалогов — какие интереснее?",
+        "uk": "Теми діалогів — які цікавіші?",
+        "en": "Which dialogue topics?",
+        "es": "¿Qué temas de diálogo te interesan?",
+        "pt-BR": "Quais temas de diálogo?",
+        "vi": "Chủ đề hội thoại nào hay hơn?",
+        "id": "Topik dialog yang menarik?",
+        "tr": "Hangi diyalog konuları?",
+        "pl": "Jakie tematy dialogów?"
+      },
+      "options": [
+        {
+          "ru": "Работа",
+          "uk": "Робота",
+          "en": "Work",
+          "es": "Trabajo",
+          "pt-BR": "Trabalho",
+          "vi": "Công việc",
+          "id": "Kerja",
+          "tr": "İş",
+          "pl": "Praca"
+        },
+        {
+          "ru": "Поездки",
+          "uk": "Подорожі",
+          "en": "Travel",
+          "es": "Viajes",
+          "pt-BR": "Viagens",
+          "vi": "Du lịch",
+          "id": "Jalan-jalan",
+          "tr": "Seyahat",
+          "pl": "Podróże"
+        },
+        {
+          "ru": "Быт",
+          "uk": "Побут",
+          "en": "Everyday life",
+          "es": "Día a día",
+          "pt-BR": "Dia a dia",
+          "vi": "Đời thường",
+          "id": "Sehari-hari",
+          "tr": "Günlük hayat",
+          "pl": "Codzienność"
+        },
+        {
+          "ru": "Знакомства",
+          "uk": "Знайомства",
+          "en": "Meeting people",
+          "es": "Conocer gente",
+          "pt-BR": "Conhecer pessoas",
+          "vi": "Làm quen",
+          "id": "Kenalan",
+          "tr": "Tanışma",
+          "pl": "Poznawanie ludzi"
+        },
+        {
+          "ru": "Здоровье",
+          "uk": "Здоров’я",
+          "en": "Health",
+          "es": "Salud",
+          "pt-BR": "Saúde",
+          "vi": "Sức khỏe",
+          "id": "Kesehatan",
+          "tr": "Sağlık",
+          "pl": "Zdrowie"
+        },
+        {
+          "ru": "Покупки",
+          "uk": "Покупки",
+          "en": "Shopping",
+          "es": "Compras",
+          "pt-BR": "Compras",
+          "vi": "Mua sắm",
+          "id": "Belanja",
+          "tr": "Alışveriş",
+          "pl": "Zakupy"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "E4",
+      "type": "chips",
+      "question": {
+        "ru": "Диалоги — уровень по силам?",
+        "uk": "Діалоги — рівень під силу?",
+        "en": "Dialogues: right level?",
+        "es": "Diálogos: ¿nivel adecuado?",
+        "pt-BR": "Diálogos: nível certo?",
+        "vi": "Hội thoại: vừa sức không?",
+        "id": "Dialog: levelnya pas?",
+        "tr": "Diyaloglar: seviye uygun mu?",
+        "pl": "Dialogi: poziom w sam raz?"
+      },
+      "options": [
+        {
+          "ru": "Легко",
+          "uk": "Легко",
+          "en": "Easy",
+          "es": "Fácil",
+          "pt-BR": "Fácil",
+          "vi": "Dễ",
+          "id": "Mudah",
+          "tr": "Kolay",
+          "pl": "Łatwo"
+        },
+        {
+          "ru": "В самый раз",
+          "uk": "Саме те",
+          "en": "Just right",
+          "es": "Justo",
+          "pt-BR": "Na medida",
+          "vi": "Vừa sức",
+          "id": "Pas",
+          "tr": "Tam kararında",
+          "pl": "W sam raz"
+        },
+        {
+          "ru": "Тяжело",
+          "uk": "Важко",
+          "en": "Hard",
+          "es": "Difícil",
+          "pt-BR": "Difícil",
+          "vi": "Khó",
+          "id": "Sulit",
+          "tr": "Zor",
+          "pl": "Trudno"
+        }
+      ]
+    },
+    {
+      "id": "F1",
+      "type": "chips",
+      "question": {
+        "ru": "Напоминаний сколько надо?",
+        "uk": "Скільки потрібно нагадувань?",
+        "en": "How many reminders?",
+        "es": "¿Cuántos recordatorios quieres?",
+        "pt-BR": "Quantos lembretes?",
+        "vi": "Bạn muốn bao nhiêu lời nhắc?",
+        "id": "Berapa banyak pengingat?",
+        "tr": "Kaç hatırlatma istersin?",
+        "pl": "Ile przypomnień?"
+      },
+      "options": [
+        {
+          "ru": "Больше",
+          "uk": "Більше",
+          "en": "More",
+          "es": "Más",
+          "pt-BR": "Mais",
+          "vi": "Nhiều hơn",
+          "id": "Lebih banyak",
+          "tr": "Daha çok",
+          "pl": "Więcej"
+        },
+        {
+          "ru": "Так хорошо",
+          "uk": "Так добре",
+          "en": "This is fine",
+          "es": "Así está bien",
+          "pt-BR": "Assim está bom",
+          "vi": "Như này ổn",
+          "id": "Segini pas",
+          "tr": "Böyle iyi",
+          "pl": "Tak jest dobrze"
+        },
+        {
+          "ru": "Меньше",
+          "uk": "Менше",
+          "en": "Fewer",
+          "es": "Menos",
+          "pt-BR": "Menos",
+          "vi": "Ít hơn",
+          "id": "Lebih sedikit",
+          "tr": "Daha az",
+          "pl": "Mniej"
+        },
+        {
+          "ru": "Не нужны",
+          "uk": "Не потрібні",
+          "en": "None",
+          "es": "Ninguno",
+          "pt-BR": "Nenhum",
+          "vi": "Không cần",
+          "id": "Tidak perlu",
+          "tr": "İstemiyorum",
+          "pl": "Wcale"
+        }
+      ]
+    },
+    {
+      "id": "F2",
+      "type": "scale",
+      "question": {
+        "ru": "Серия дней мотивирует?",
+        "uk": "Серія днів мотивує?",
+        "en": "Does the streak motivate you?",
+        "es": "¿La racha te motiva?",
+        "pt-BR": "A sequência te motiva?",
+        "vi": "Chuỗi ngày có tạo động lực không?",
+        "id": "Runtunan bikin semangat?",
+        "tr": "Seri seni motive ediyor mu?",
+        "pl": "Seria dni cię motywuje?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Совсем нет",
+          "uk": "Зовсім ні",
+          "en": "Not at all",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Hoàn toàn không",
+          "id": "Sama sekali tidak",
+          "tr": "Hiç",
+          "pl": "Wcale"
+        },
+        "max": {
+          "ru": "Очень",
+          "uk": "Дуже",
+          "en": "Very much",
+          "es": "Mucho",
+          "pt-BR": "Muito",
+          "vi": "Rất nhiều",
+          "id": "Sangat",
+          "tr": "Çok",
+          "pl": "Bardzo"
+        }
+      }
+    },
+    {
+      "id": "F3",
+      "type": "multi",
+      "question": {
+        "ru": "Что мешает заниматься?",
+        "uk": "Що заважає займатися?",
+        "en": "What stops you from studying?",
+        "es": "¿Qué te impide estudiar?",
+        "pt-BR": "O que te impede de estudar?",
+        "vi": "Điều gì cản bạn học?",
+        "id": "Apa yang menghalangi belajar?",
+        "tr": "Çalışmana ne engel oluyor?",
+        "pl": "Co przeszkadza ci w nauce?"
+      },
+      "options": [
+        {
+          "ru": "Нет времени",
+          "uk": "Немає часу",
+          "en": "No time",
+          "es": "No tengo tiempo",
+          "pt-BR": "Falta de tempo",
+          "vi": "Không có thời gian",
+          "id": "Tidak ada waktu",
+          "tr": "Vaktim yok",
+          "pl": "Brak czasu"
+        },
+        {
+          "ru": "Забываю",
+          "uk": "Забуваю",
+          "en": "I forget",
+          "es": "Se me olvida",
+          "pt-BR": "Eu esqueço",
+          "vi": "Hay quên",
+          "id": "Lupa",
+          "tr": "Unutuyorum",
+          "pl": "Zapominam"
+        },
+        {
+          "ru": "Скучно",
+          "uk": "Нудно",
+          "en": "Boring",
+          "es": "Me aburre",
+          "pt-BR": "É chato",
+          "vi": "Chán",
+          "id": "Bosan",
+          "tr": "Sıkıcı",
+          "pl": "Nudno"
+        },
+        {
+          "ru": "Сложно",
+          "uk": "Складно",
+          "en": "Too hard",
+          "es": "Es difícil",
+          "pt-BR": "É difícil",
+          "vi": "Khó quá",
+          "id": "Terlalu sulit",
+          "tr": "Zor",
+          "pl": "Za trudno"
+        },
+        {
+          "ru": "Нет результата",
+          "uk": "Немає результату",
+          "en": "No results",
+          "es": "No veo resultados",
+          "pt-BR": "Não vejo resultado",
+          "vi": "Không thấy kết quả",
+          "id": "Tidak ada hasil",
+          "tr": "Sonuç yok",
+          "pl": "Brak efektów"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "G1",
+      "type": "nps",
+      "question": {
+        "ru": "Посоветуешь Phraseman другу?",
+        "uk": "Порадиш Phraseman другові?",
+        "en": "Would you recommend Phraseman?",
+        "es": "¿Recomendarías Phraseman?",
+        "pt-BR": "Você indicaria o Phraseman?",
+        "vi": "Bạn có giới thiệu Phraseman không?",
+        "id": "Mau rekomendasikan Phraseman?",
+        "tr": "Phraseman’i önerir misin?",
+        "pl": "Polecisz Phraseman znajomym?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Точно нет",
+          "uk": "Точно ні",
+          "en": "Not likely",
+          "es": "Para nada",
+          "pt-BR": "De jeito nenhum",
+          "vi": "Chắc chắn không",
+          "id": "Pasti tidak",
+          "tr": "Kesinlikle hayır",
+          "pl": "Na pewno nie"
+        },
+        "max": {
+          "ru": "Точно да",
+          "uk": "Точно так",
+          "en": "Very likely",
+          "es": "Seguro que sí",
+          "pt-BR": "Com certeza",
+          "vi": "Chắc chắn có",
+          "id": "Pasti",
+          "tr": "Kesinlikle evet",
+          "pl": "Na pewno tak"
+        }
+      }
+    },
+    {
+      "id": "G2",
+      "type": "emoji",
+      "question": {
+        "ru": "Насколько доволен сегодня?",
+        "uk": "Наскільки задоволений сьогодні?",
+        "en": "How happy are you today?",
+        "es": "¿Qué tan contento estás hoy?",
+        "pt-BR": "Você está satisfeito hoje?",
+        "vi": "Hôm nay bạn hài lòng không?",
+        "id": "Seberapa puas hari ini?",
+        "tr": "Bugün ne kadar memnunsun?",
+        "pl": "Jak bardzo jesteś dziś zadowolony?"
+      },
+      "emoji": [
+        "😫",
+        "😕",
+        "😐",
+        "🙂",
+        "🤩"
+      ]
+    },
+    {
+      "id": "G3",
+      "type": "chips",
+      "question": {
+        "ru": "Что улучшить первым?",
+        "uk": "Що покращити першим?",
+        "en": "What should we improve first?",
+        "es": "¿Qué mejoramos primero?",
+        "pt-BR": "O que melhorar primeiro?",
+        "vi": "Nên cải thiện gì trước?",
+        "id": "Apa yang diperbaiki dulu?",
+        "tr": "Önce neyi iyileştirelim?",
+        "pl": "Co poprawić najpierw?"
+      },
+      "options": [
+        {
+          "ru": "Курс",
+          "uk": "Курс",
+          "en": "Course",
+          "es": "Curso",
+          "pt-BR": "Curso",
+          "vi": "Khóa học",
+          "id": "Kursus",
+          "tr": "Kurs",
+          "pl": "Kurs"
+        },
+        {
+          "ru": "Речь",
+          "uk": "Мовлення",
+          "en": "Speaking",
+          "es": "Hablar",
+          "pt-BR": "Fala",
+          "vi": "Luyện nói",
+          "id": "Bicara",
+          "tr": "Konuşma",
+          "pl": "Mówienie"
+        },
+        {
+          "ru": "Карточки",
+          "uk": "Картки",
+          "en": "Cards",
+          "es": "Tarjetas",
+          "pt-BR": "Cartões",
+          "vi": "Thẻ học",
+          "id": "Kartu",
+          "tr": "Kartlar",
+          "pl": "Karty"
+        },
+        {
+          "ru": "Пик",
+          "uk": "Пік",
+          "en": "Peak",
+          "es": "Pico",
+          "pt-BR": "Pico",
+          "vi": "Đỉnh",
+          "id": "Puncak",
+          "tr": "Zirve",
+          "pl": "Szczyt"
+        },
+        {
+          "ru": "Скорость",
+          "uk": "Швидкість",
+          "en": "Speed",
+          "es": "Velocidad",
+          "pt-BR": "Velocidade",
+          "vi": "Tốc độ",
+          "id": "Kecepatan",
+          "tr": "Hız",
+          "pl": "Szybkość"
+        },
+        {
+          "ru": "Дизайн",
+          "uk": "Дизайн",
+          "en": "Design",
+          "es": "Diseño",
+          "pt-BR": "Design",
+          "vi": "Giao diện",
+          "id": "Desain",
+          "tr": "Tasarım",
+          "pl": "Wygląd"
+        }
+      ]
+    },
+    {
+      "id": "G4",
+      "type": "scale",
+      "question": {
+        "ru": "Приложение работает быстро?",
+        "uk": "Застосунок працює швидко?",
+        "en": "Does the app feel fast?",
+        "es": "¿La app va rápido?",
+        "pt-BR": "O app é rápido?",
+        "vi": "Ứng dụng có nhanh không?",
+        "id": "Aplikasinya cepat?",
+        "tr": "Uygulama hızlı mı?",
+        "pl": "Aplikacja działa szybko?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Совсем нет",
+          "uk": "Зовсім ні",
+          "en": "Not at all",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Hoàn toàn không",
+          "id": "Sama sekali tidak",
+          "tr": "Hiç",
+          "pl": "Wcale"
+        },
+        "max": {
+          "ru": "Очень",
+          "uk": "Дуже",
+          "en": "Very much",
+          "es": "Mucho",
+          "pt-BR": "Muito",
+          "vi": "Rất nhiều",
+          "id": "Sangat",
+          "tr": "Çok",
+          "pl": "Bardzo"
+        }
+      }
+    },
+    {
+      "id": "G5",
+      "type": "multi",
+      "question": {
+        "ru": "За что готов платить?",
+        "uk": "За що готовий платити?",
+        "en": "What would you pay for?",
+        "es": "¿Por qué pagarías?",
+        "pt-BR": "Pelo que você pagaria?",
+        "vi": "Bạn sẵn sàng trả tiền cho gì?",
+        "id": "Mau bayar untuk apa?",
+        "tr": "Neye para verirdin?",
+        "pl": "Za co zapłacisz?"
+      },
+      "options": [
+        {
+          "ru": "Весь курс",
+          "uk": "Весь курс",
+          "en": "Full course",
+          "es": "Curso completo",
+          "pt-BR": "Curso completo",
+          "vi": "Toàn bộ khóa học",
+          "id": "Kursus lengkap",
+          "tr": "Kursun tamamı",
+          "pl": "Cały kurs"
+        },
+        {
+          "ru": "Безлимит речи",
+          "uk": "Безліміт мовлення",
+          "en": "Unlimited speaking",
+          "es": "Hablar sin límite",
+          "pt-BR": "Fala ilimitada",
+          "vi": "Nói không giới hạn",
+          "id": "Bicara tanpa batas",
+          "tr": "Sınırsız konuşma",
+          "pl": "Mówienie bez limitu"
+        },
+        {
+          "ru": "Без энергии",
+          "uk": "Без енергії",
+          "en": "No energy limit",
+          "es": "Sin energía",
+          "pt-BR": "Sem energia",
+          "vi": "Không cần năng lượng",
+          "id": "Tanpa energi",
+          "tr": "Enerjisiz",
+          "pl": "Bez energii"
+        },
+        {
+          "ru": "Пик без ограничений",
+          "uk": "Пік без обмежень",
+          "en": "Unlimited Peak",
+          "es": "Pico sin límites",
+          "pt-BR": "Pico sem limites",
+          "vi": "Đỉnh không giới hạn",
+          "id": "Puncak tanpa batas",
+          "tr": "Sınırsız Zirve",
+          "pl": "Szczyt bez limitu"
+        },
+        {
+          "ru": "Ни за что",
+          "uk": "Ні за що",
+          "en": "Nothing",
+          "es": "Por nada",
+          "pt-BR": "Nada",
+          "vi": "Không gì cả",
+          "id": "Tidak ada",
+          "tr": "Hiçbir şey",
+          "pl": "Za nic"
+        }
+      ],
+      "maxPick": 3
+    },
+    {
+      "id": "G6",
+      "type": "chips",
+      "question": {
+        "ru": "Удобная цена Plus в месяц?",
+        "uk": "Зручна ціна Plus на місяць?",
+        "en": "Comfortable Plus price/month?",
+        "es": "¿Precio cómodo de Plus al mes?",
+        "pt-BR": "Preço ideal do Plus por mês?",
+        "vi": "Giá Plus mỗi tháng hợp lý?",
+        "id": "Harga Plus per bulan yang pas?",
+        "tr": "Aylık Plus için uygun fiyat?",
+        "pl": "Dobra cena Plus za miesiąc?"
+      },
+      "options": [
+        {
+          "ru": "До 2 €",
+          "uk": "До 2 €",
+          "en": "Under €2",
+          "es": "Hasta 2 €",
+          "pt-BR": "Até 2 €",
+          "vi": "Dưới 2 €",
+          "id": "Di bawah 2 €",
+          "tr": "2 €’ya kadar",
+          "pl": "Do 2 €"
+        },
+        {
+          "ru": "2–4 €",
+          "uk": "2–4 €",
+          "en": "€2–4",
+          "es": "2–4 €",
+          "pt-BR": "2–4 €",
+          "vi": "2–4 €",
+          "id": "2–4 €",
+          "tr": "2–4 €",
+          "pl": "2–4 €"
+        },
+        {
+          "ru": "4–7 €",
+          "uk": "4–7 €",
+          "en": "€4–7",
+          "es": "4–7 €",
+          "pt-BR": "4–7 €",
+          "vi": "4–7 €",
+          "id": "4–7 €",
+          "tr": "4–7 €",
+          "pl": "4–7 €"
+        },
+        {
+          "ru": "Больше",
+          "uk": "Більше",
+          "en": "More",
+          "es": "Más",
+          "pt-BR": "Mais",
+          "vi": "Cao hơn",
+          "id": "Lebih",
+          "tr": "Daha fazla",
+          "pl": "Więcej"
+        },
+        {
+          "ru": "Не куплю",
+          "uk": "Не куплю",
+          "en": "I won't buy",
+          "es": "No lo compraré",
+          "pt-BR": "Não vou comprar",
+          "vi": "Sẽ không mua",
+          "id": "Tidak akan beli",
+          "tr": "Almam",
+          "pl": "Nie kupię"
+        }
+      ],
+      "note": "Суммы — в валюте магазина; формат числа и знак валюты подставляет приложение."
+    },
+    {
+      "id": "G7",
+      "type": "chips",
+      "question": {
+        "ru": "Что мешает оформить Plus?",
+        "uk": "Що заважає оформити Plus?",
+        "en": "What stops you from getting Plus?",
+        "es": "¿Qué te frena para tener Plus?",
+        "pt-BR": "O que te impede de assinar o Plus?",
+        "vi": "Điều gì khiến bạn chưa dùng Plus?",
+        "id": "Apa yang menghalangi ambil Plus?",
+        "tr": "Plus almana ne engel oluyor?",
+        "pl": "Co powstrzymuje cię przed Plus?"
+      },
+      "options": [
+        {
+          "ru": "Цена",
+          "uk": "Ціна",
+          "en": "Price",
+          "es": "El precio",
+          "pt-BR": "O preço",
+          "vi": "Giá",
+          "id": "Harga",
+          "tr": "Fiyat",
+          "pl": "Cena"
+        },
+        {
+          "ru": "Не вижу пользы",
+          "uk": "Не бачу користі",
+          "en": "Don't see the value",
+          "es": "No veo el valor",
+          "pt-BR": "Não vejo vantagem",
+          "vi": "Chưa thấy lợi ích",
+          "id": "Belum lihat manfaatnya",
+          "tr": "Faydasını görmüyorum",
+          "pl": "Nie widzę korzyści"
+        },
+        {
+          "ru": "Мало занимаюсь",
+          "uk": "Мало займаюся",
+          "en": "I don't study much",
+          "es": "Estudio poco",
+          "pt-BR": "Estudo pouco",
+          "vi": "Ít khi học",
+          "id": "Jarang belajar",
+          "tr": "Az çalışıyorum",
+          "pl": "Mało się uczę"
+        },
+        {
+          "ru": "Не доверяю подпискам",
+          "uk": "Не довіряю підпискам",
+          "en": "Wary of subscriptions",
+          "es": "Prefiero no suscribirme",
+          "pt-BR": "Desconfio de assinaturas",
+          "vi": "Ngại gói đăng ký",
+          "id": "Tidak percaya langganan",
+          "tr": "Aboneliğe güvenmiyorum",
+          "pl": "Nie ufam subskrypcjom"
+        }
+      ],
+      "audience": "free"
+    },
+    {
+      "id": "G8",
+      "type": "scale",
+      "question": {
+        "ru": "Plus оправдывает цену?",
+        "uk": "Plus вартий своєї ціни?",
+        "en": "Is Plus worth it?",
+        "es": "¿Plus vale lo que cuesta?",
+        "pt-BR": "O Plus vale o preço?",
+        "vi": "Plus có đáng tiền không?",
+        "id": "Plus sepadan harganya?",
+        "tr": "Plus parasına değiyor mu?",
+        "pl": "Plus jest wart swojej ceny?"
+      },
+      "scale": {
+        "min": {
+          "ru": "Совсем нет",
+          "uk": "Зовсім ні",
+          "en": "Not at all",
+          "es": "Nada",
+          "pt-BR": "Nada",
+          "vi": "Hoàn toàn không",
+          "id": "Sama sekali tidak",
+          "tr": "Hiç",
+          "pl": "Wcale"
+        },
+        "max": {
+          "ru": "Очень",
+          "uk": "Дуже",
+          "en": "Very much",
+          "es": "Mucho",
+          "pt-BR": "Muito",
+          "vi": "Rất nhiều",
+          "id": "Sangat",
+          "tr": "Çok",
+          "pl": "Bardzo"
+        }
+      },
+      "audience": "plus"
+    },
+    {
+      "id": "G9",
+      "type": "chips",
+      "question": {
+        "ru": "Что добавить в приложение?",
+        "uk": "Що додати в застосунок?",
+        "en": "What should we add?",
+        "es": "¿Qué añadimos?",
+        "pt-BR": "O que devemos adicionar?",
+        "vi": "Nên thêm gì vào ứng dụng?",
+        "id": "Apa yang perlu ditambah?",
+        "tr": "Uygulamaya ne ekleyelim?",
+        "pl": "Co dodać do aplikacji?"
+      },
+      "options": [
+        {
+          "ru": "Разговор с ИИ",
+          "uk": "Розмова з ШІ",
+          "en": "AI conversation",
+          "es": "Hablar con IA",
+          "pt-BR": "Conversa com IA",
+          "vi": "Trò chuyện với AI",
+          "id": "Ngobrol dengan AI",
+          "tr": "Yapay zekâyla sohbet",
+          "pl": "Rozmowa z AI"
+        },
+        {
+          "ru": "Больше языков",
+          "uk": "Більше мов",
+          "en": "More languages",
+          "es": "Más idiomas",
+          "pt-BR": "Mais idiomas",
+          "vi": "Thêm ngôn ngữ",
+          "id": "Lebih banyak bahasa",
+          "tr": "Daha fazla dil",
+          "pl": "Więcej języków"
+        },
+        {
+          "ru": "Офлайн",
+          "uk": "Офлайн",
+          "en": "Offline mode",
+          "es": "Sin conexión",
+          "pt-BR": "Modo offline",
+          "vi": "Ngoại tuyến",
+          "id": "Mode offline",
+          "tr": "Çevrimdışı",
+          "pl": "Tryb offline"
+        },
+        {
+          "ru": "Игры с друзьями",
+          "uk": "Ігри з друзями",
+          "en": "Games with friends",
+          "es": "Juegos con amigos",
+          "pt-BR": "Jogos com amigos",
+          "vi": "Chơi với bạn bè",
+          "id": "Main dengan teman",
+          "tr": "Arkadaşlarla oyun",
+          "pl": "Gry ze znajomymi"
+        },
+        {
+          "ru": "Экзамены",
+          "uk": "Іспити",
+          "en": "Exams",
+          "es": "Exámenes",
+          "pt-BR": "Provas",
+          "vi": "Bài thi",
+          "id": "Ujian",
+          "tr": "Sınavlar",
+          "pl": "Egzaminy"
+        }
+      ]
+    }
+  ]
+}

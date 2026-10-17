@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-23:intro1:r2": {
-          "ru": "Между `It` и `valid` нужно `is`.",
-          "uk": "Між `It` і `valid` потрібно `is`."
+          "ru": "Так звучит утверждение «Он действителен». Чтобы спросить, ставим Is вперёд: Is it valid?",
+          "uk": "Так звучить твердження «Він дійсний». Щоб запитати, ставимо Is наперед: Is it valid?"
         },
         "en:lesson-02:session-23:intro1:r3": {
-          "ru": "Это значит, что билет недействителен. Кассир подтвердил обратное.",
-          "uk": "Це означає, що квиток недійсний. Касир підтвердив протилежне."
+          "ru": "С it нужно is: Is it valid?",
+          "uk": "З it потрібно is: Is it valid?"
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-23:intro2:r2": {
-          "ru": "С `they` нужно `are`.",
-          "uk": "З `they` потрібно `are`."
+          "ru": "С not выходит «Он без субтитров». А в программке они указаны: It's subtitled.",
+          "uk": "Із not виходить «Він без субтитрів». А в програмці вони вказані: It's subtitled."
         },
         "en:lesson-02:session-23:intro2:r3": {
-          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `they`.",
-          "uk": "Це повідомлення. Для запитання поставте `Are` перед `they`."
+          "ru": "They're — про несколько вещей, а фильм один: It's subtitled.",
+          "uk": "They're — про кілька речей, а фільм один: It's subtitled."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-23:intro3:r2": {
-          "ru": "Так вы подтвердите, что билет действует. В условии он был только на вчера.",
-          "uk": "Так ви підтвердите, що квиток діє. За умовою він був лише на вчора."
+          "ru": "Без not выходит «Он дублирован». А в программке только субтитры: It's not dubbed.",
+          "uk": "Без not виходить «Він дубльований». А в програмці тільки субтитри: It's not dubbed."
         },
         "en:lesson-02:session-23:intro3:r3": {
-          "ru": "После `it` нужно `is`.",
-          "uk": "Після `it` потрібно `is`."
+          "ru": "Субтитры как раз есть. Нет переозвучки: It's not dubbed.",
+          "uk": "Субтитри якраз є. Немає переозвучення: It's not dubbed."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2cec080d9b79c578a5df75e893a87fc0ed34e29702eede95dcf872ffbca84bea"
+  "auxiliaryFingerprint": "48e7603b154599b2288d904787407a695a34a3997c82d70828562809c2df6735"
 }

@@ -16,12 +16,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-21:i04",
-    "correctText": "en:lesson-02:session-21:i04:p1=no\nen:lesson-02:session-21:i04:p2=broken\nen:lesson-02:session-21:i04:p3=inside\nen:lesson-02:session-21:i04:p4=outside",
+    "correctText": "en:lesson-02:session-21:i04:p1=unplugged\nen:lesson-02:session-21:i04:p2=straight\nen:lesson-02:session-21:i04:p3=torn\nen:lesson-02:session-21:i04:p4=tidy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-21:word:unplugged",
+    "correctText": "unplugged",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i05",
-    "correctText": "Yes, she is.",
+    "correctText": "It's unplugged.",
     "correctResponseId": null
   },
   {
@@ -30,8 +35,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-21:word:straight",
+    "correctText": "straight",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-21:i07",
-    "correctText": "They're broken.",
+    "correctText": "It's straight.",
     "correctResponseId": null
   },
   {
@@ -40,8 +50,13 @@
     "correctResponseId": "en:lesson-02:session-21:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-21:word:torn",
+    "correctText": "torn",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-21:i09",
-    "correctText": "They are outside.",
+    "correctText": "They are not torn.",
     "correctResponseId": "en:lesson-02:session-21:i09:r1"
   },
   {
@@ -50,8 +65,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-21:word:tidy",
+    "correctText": "tidy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-21:i11",
-    "correctText": "It's not broken.",
+    "correctText": "It is not tidy.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-21:i15",
-    "correctText": "It is not public.",
+    "correctText": "It is not private.",
     "correctResponseId": "en:lesson-02:session-21:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-21:i16",
-    "correctText": "en:lesson-02:session-21:i16:p1=inside\nen:lesson-02:session-21:i16:p2=outside\nen:lesson-02:session-21:i16:p3=upstairs\nen:lesson-02:session-21:i16:p4=public",
+    "correctText": "en:lesson-02:session-21:i16:p1=inside\nen:lesson-02:session-21:i16:p2=outside\nen:lesson-02:session-21:i16:p3=private\nen:lesson-02:session-21:i16:p4=yes",
     "correctResponseId": null
   },
   {

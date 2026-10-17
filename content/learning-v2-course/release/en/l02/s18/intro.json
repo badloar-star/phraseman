@@ -11,18 +11,18 @@
       "pageId": "en:lesson-02:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мне нездоровится",
-        "uk": "Мені нездужається"
+        "ru": "Звонок утром",
+        "uk": "Дзвінок уранці"
       },
       "bodyByLocale": {
-        "ru": "`unwell` — «плохо себя чувствующий». `I am unwell` — «Мне нездоровится», коротко `I'm unwell`. Слово не называет причину или болезнь. Сегодня можно объяснить своё состояние одной фразой; монолог на три страницы подождёт репетиции.",
-        "uk": "`unwell` — «той, хто погано почувається». `I am unwell` — «Мені нездужається», коротко `I'm unwell`. Слово не називає причину чи хворобу. Сьогодні можна пояснити свій стан однією фразою; монолог на три сторінки зачекає репетиції."
+        "ru": "Утром у вас болит голова и ломит всё тело. До репетиции два часа, и вы звоните руководительнице кружка. unwell — «плохо себя чувствующий». I am unwell, коротко I'm unwell — «Мне нездоровится».",
+        "uk": "Уранці у вас болить голова й ломить усе тіло. До репетиції дві години, і ви телефонуєте керівниці гуртка. unwell — «який погано почувається». I am unwell, коротко I'm unwell — «Мені зле»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-18:intro1:q",
         "promptByLocale": {
-          "ru": "Вы плохо себя чувствуете и хотите уйти домой. Коротко сообщите о самочувствии.",
-          "uk": "Ви погано почуваєтеся й хочете піти додому. Коротко повідомте про самопочуття."
+          "ru": "Руководительница спрашивает, что случилось. Коротко скажите, что вам нездоровится.",
+          "uk": "Керівниця питає, що сталося. Коротко скажіть, що вам зле."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы плохо себя чувствуете и хотите уйти домой. Коротко сообщите о самочувствии.",
-          "uk": "Ви погано почуваєтеся й хочете піти додому. Коротко повідомте про самопочуття."
+          "ru": "Руководительница спрашивает, что случилось. Коротко скажите, что вам нездоровится.",
+          "uk": "Керівниця питає, що сталося. Коротко скажіть, що вам зле."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Да — на какой вопрос?",
-        "uk": "Так — на яке запитання?"
+        "ru": "Кот на сцене",
+        "uk": "Кіт на сцені"
       },
       "bodyByLocale": {
-        "ru": "`Are you unwell?` — «Вам нездоровится?» Если вам плохо, ответ `Yes, I am` подтверждает это. А на `Are you well?` в той же ситуации нужен ответ `No, I am not`. Сначала услышьте, о чём спрашивают: о хорошем самочувствии или о плохом.",
-        "uk": "`Are you unwell?` — «Вам нездужається?» Якщо вам недобре, відповідь `Yes, I am` це підтверджує. А на `Are you well?` у тій самій ситуації потрібна відповідь `No, I am not`. Спочатку почуйте, про що запитують: про добре самопочуття чи про погане."
+        "ru": "Для спектакля на репетицию принесли кота. Ваш партнёр по сцене сразу начинает чихать, глаза у него красные. allergic — «с аллергией». Руководительница спрашивает вас: Is he allergic? Коротко подтверждаем: Yes, he is.",
+        "uk": "Для вистави на репетицію принесли кота. Ваш партнер по сцені одразу починає чхати, очі в нього червоні. allergic — «з алергією». Керівниця питає вас: Is he allergic? Коротко підтверджуємо: Yes, he is."
       },
       "question": {
         "interactionId": "en:lesson-02:session-18:intro2:q",
         "promptByLocale": {
-          "ru": "Вам нездоровится. Друг спрашивает: `Are you unwell?` Ответьте коротким «да».",
-          "uk": "Вам нездужається. Друг запитує: `Are you unwell?` Дайте коротку відповідь «так»."
+          "ru": "Руководительница спрашивает о партнёре: Is he allergic? Ответьте коротким «да».",
+          "uk": "Керівниця питає про партнера: Is he allergic? Відповідайте коротким «так»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-18:intro2:r1",
-              "text": "Yes, I am."
+              "text": "Yes, he is."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r2",
-              "text": "No, I am not."
+              "text": "No, he is not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r3",
-              "text": "Yes, you are."
+              "text": "Yes, is he."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-18:intro2:r1",
-              "text": "Yes, I am."
+              "text": "Yes, he is."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r2",
-              "text": "No, I am not."
+              "text": "No, he is not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r3",
-              "text": "Yes, you are."
+              "text": "Yes, is he."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам нездоровится. Друг спрашивает: `Are you unwell?` Ответьте коротким «да».",
-          "uk": "Вам нездужається. Друг запитує: `Are you unwell?` Дайте коротку відповідь «так»."
+          "ru": "Руководительница спрашивает о партнёре: Is he allergic? Ответьте коротким «да».",
+          "uk": "Керівниця питає про партнера: Is he allergic? Відповідайте коротким «так»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Слово уже содержит плохое самочувствие",
-        "uk": "Слово вже містить погане самопочуття"
+        "ru": "Открытые окна",
+        "uk": "Відчинені вікна"
       },
       "bodyByLocale": {
-        "ru": "`She is unwell` — «Ей нездоровится». Добавлять `not`, чтобы получить этот смысл, не нужно. `She is not unwell` отрицает плохое самочувствие. На `Is she unwell?` можно коротко ответить `No, she is not`, если ей хорошо.",
-        "uk": "`She is unwell` — «Їй нездужається». Додавати `not`, щоб отримати цей зміст, не потрібно. `She is not unwell` заперечує погане самопочуття. На `Is she unwell?` можна коротко відповісти `No, she is not`, якщо їй добре."
+        "ru": "В зале было жарко и нечем дышать, и вы открыли все окна. Теперь там свежо. stuffy — «душный». Руководительница заходит и спрашивает: Is it stuffy? Для «нет» после is ставим not: No, it is not.",
+        "uk": "У залі було спекотно й нічим дихати, і ви відчинили всі вікна. Тепер там свіжо. stuffy — «задушливий». Керівниця заходить і питає: Is it stuffy? Для «ні» після is ставимо not: No, it is not."
       },
       "question": {
         "interactionId": "en:lesson-02:session-18:intro3:q",
         "promptByLocale": {
-          "ru": "Анна хорошо себя чувствует. Друг спрашивает: `Is she unwell?` Ответьте коротким «нет».",
-          "uk": "Анна добре почувається. Друг запитує: `Is she unwell?` Дайте коротку відповідь «ні»."
+          "ru": "Руководительница спрашивает о зале: Is it stuffy? Ответьте коротким «нет».",
+          "uk": "Керівниця питає про зал: Is it stuffy? Відповідайте коротким «ні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-18:intro3:r1",
-              "text": "No, she is not."
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r2",
-              "text": "Yes, she is."
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r3",
-              "text": "No, she not."
+              "text": "No, it not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-18:intro3:r1",
-              "text": "No, she is not."
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r2",
-              "text": "Yes, she is."
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r3",
-              "text": "No, she not."
+              "text": "No, it not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна хорошо себя чувствует. Друг спрашивает: `Is she unwell?` Ответьте коротким «нет».",
-          "uk": "Анна добре почувається. Друг запитує: `Is she unwell?` Дайте коротку відповідь «ні»."
+          "ru": "Руководительница спрашивает о зале: Is it stuffy? Ответьте коротким «нет».",
+          "uk": "Керівниця питає про зал: Is it stuffy? Відповідайте коротким «ні»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "acf5f5a46557810394f4f263a0a111f64b8ced6f6b190ca09e30946342b1905c"
+  "introFingerprint": "abaab17c58f734741ae91347ce036e9717beafa9edf674dfa735b15ddce9540e"
 }

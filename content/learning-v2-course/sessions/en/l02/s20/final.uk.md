@@ -1,138 +1,154 @@
-# Англійська · Урок 2 · Заняття 20 — Фарба не його
+# Англійська · Урок 2 · Заняття 20 — Пляма на скатертині
 
-**Ситуація.** Ви допомагаєте підготувати кімнату до зустрічі. На скатертині пляма фарби; спочатку підозрюють Олега, але з’ясовується, що він до цього не причетний.
+**Ситуація.** Ви з мамою, братом і сестрою готуєте кімнату до приходу гостей. На святковій скатертині синя пляма фарби. Спершу всі думають на молодшого брата, але з’ясовується, що він ні до чого.
 
-**Що ви опануєте:** підтвердити невинуватість і правильно вибрати так або ні за запитанням
-**Нові слова:** yes, innocent
+**Що ви опануєте:** підтвердити невинуватість і правильно вибрати так чи ні за запитанням
+**Нові слова:** innocent, suspicious, spotless, washable
+**Повертаються:** guilty, gone, greedy, sneaky, private, prepared, careful, lost
 
 ---
 
 ## Інтро 1
 
-### Не винний
+### Синя й червона
 
-`innocent` — «невинний». `He is innocent` — «Він невинний». Це той самий основний зміст, що й у `He is not guilty`. Фарба на скатертині з’явилася раніше за Олега. Пляма має чудове алібі для нього: вона встигла висохнути до його приходу.
+Молодший брат уранці малював за цим столом, і всі одразу дивляться на нього. Але в брата лише червона фарба, а пляма на скатертині синя. innocent — «невинний». He is innocent — «Він невинний».
 
-**Олег не забруднив скатертину: пляма з’явилася до нього. Скажіть, що він невинний.**
+**Мама сердито дивиться на брата. Скажіть їй, що він невинний.**
 
 - ✅ **He is innocent.**
-- ❌ He is guilty. — *Це «Він винний». За умовою Олег не причетний.*
-- ❌ He innocent. — *Після `He` потрібно `is`.*
+- ❌ He is guilty. — *Це «Він винен». А його фарба червона, пляма синя: He is innocent.*
+- ❌ He innocent. — *Потрібно is: He is innocent.*
 
 ---
 
 ## Інтро 2
 
-### Так підтверджує запитання
+### Ярлик на розі
 
-`yes` — «так». Ви вже зустрічали це слово в коротких відповідях. На `Is he innocent?` відповідь `Yes, he is` підтверджує невинуватість. А на `Is he guilty?` про ту саму невинну людину відповідь буде `No, he is not`. Зміст залежить від запитання.
+Мама перевертає скатертину й знаходить ярлик. На ньому намальовано тазик із водою: отже, прати можна. washable — «який можна прати». Мама не бачить без окулярів і питає: Is it washable? Коротко підтверджуємо: Yes, it is.
 
-**Олег не причетний до плями. Друг запитує: `Is he innocent?` Дайте коротку відповідь «так».**
+**Мама питає про скатертину: Is it washable? Відповідайте коротким «так».**
 
-- ✅ **Yes, he is.**
-- ❌ No, he is not. — *Це заперечувало б невинуватість. Тут підтвердьте її.*
-- ❌ Yes, is he. — *У відповіді порядок `he is`, а не `is he`.*
+- ✅ **Yes, it is.**
+- ❌ No, it is not. — *Це «ні». А на ярлику тазик із водою: Yes, it is.*
+- ❌ Yes, is it. — *У відповіді спочатку it, потім is: Yes, it is.*
 
 ---
 
 ## Інтро 3
 
-### Не загубіть not
+### Після прання
 
-`She is innocent` — «Вона невинна». `She is not innocent` — «Вона не є невинною»: ви вже заперечуєте невинуватість. Не додавайте `not` лише тому, що в українському слові «невинна» є «не».
+Мама випрала скатертину й повісила її сушитися. Ви оглядаєте її з усіх боків: від плями не залишилося й сліду. spotless — «без жодної плями». It is spotless, коротко It's spotless — «На ній ані плямки».
 
-**Анна не чіпала фарбу. Коротко скажіть, що вона невинна.**
+**Мама питає, чи відпралася пляма. Коротко скажіть, що на скатертині ані плямки.**
 
-- ✅ **She's innocent.**
-- ❌ She's not innocent. — *Це заперечує невинуватість Анни. Тут `not` не потрібно.*
-- ❌ He's innocent. — *Анна — `she`, а не `he`.*
+- ✅ **It's spotless.**
+- ❌ It's not spotless. — *Це «Вона не без плям», тобто пляма залишилася. А сліду немає: It's spotless.*
+- ❌ They're spotless. — *Скатертина одна, тому It's.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Олег прийшов після того, як на скатертині з’явилася фарба. Він не причетний. Скажіть, що він невинний**
+**1 · Картка слова — innocent**
+<!-- interaction_id: en:lesson-02:session-20:word:innocent; family: word_card -->
+> **innocent** — невинний. He is innocent — «Він невинний». Про того, кого підозрювали даремно.
+
+**2 · Пляма синя, а фарба в брата червона. Скажіть мамі, що він невинний**
 <!-- interaction_id: en:lesson-02:session-20:i01; family: phrase_builder -->
 Плитки: `innocent` `is` `He` `are` → **He is innocent.**
 *(плитка `are` зайва: тут потрібно `is` — `He is innocent.`)*
 
-**2 · Послухайте запитання про Анну**
+**3 · Послухайте запитання мами про сестру**
 <!-- interaction_id: en:lesson-02:session-20:i02; family: listen_choose -->
 🔊 *Is she prepared?* → **Is she prepared?** · Is she careful? · Is she lost?
 - Is she careful? — *У записі останнє слово — `prepared`, а в цьому варіанті — `careful`.*
 - Is she lost? — *У записі останнє слово — `prepared`, а в цьому варіанті — `lost`.*
 
-**3 · Олег невинний. На «Is he innocent?» доповніть коротку відповідь «так»**
+**4 · Брат невинний. Мама питає: «Is he innocent?» Доповніть коротке «так»**
 <!-- interaction_id: en:lesson-02:session-20:i03; family: context_gap_grammar -->
 Yes, he ___. → **is** · am · are
 - am — *З `he` потрібно `is`.*
 - are — *Відповідь — `Yes, he is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-20:i04; family: speed_match -->
-yes — так · innocent — невинний · prepared — підготовлений · careful — обережний
+innocent — невинний · suspicious — підозрілий · spotless — без жодної плями · washable — який можна прати
 
-**5 · Послухайте й складіть коротку відповідь**
+**6 · Брат і сестра не чіпали синьої фарби. Мама питає: «Are they guilty?» Послухайте й складіть вашу відповідь**
 <!-- interaction_id: en:lesson-02:session-20:i05; family: listen_build_dictation -->
 🔊 *No, they are not.* Плитки: `not` `are` `they` `No,` `Yes,` → **No, they are not.**
 *(плитка `Yes,` зайва: тут потрібно `No,` — `No, they are not.`)*
 
-**6 · Олег невинний. На «Is he guilty?» дайте коротку відповідь «ні»**
+**7 · Брат невинний. Мама питає: «Is he guilty?» Відповідайте коротким «ні»**
 <!-- interaction_id: en:lesson-02:session-20:i06; family: phrase_builder -->
 Плитки: `not` `is` `he` `No,` `Yes,` → **No, he is not.**
 *(плитка `Yes,` зайва: тут потрібно `No,` — `No, he is not.`)*
 
-**7 · Анна не розливала фарбу. Коротко скажіть, що вона невинна**
+**8 · Сестра синю фарбу навіть не відкривала. Коротко скажіть мамі, що вона невинна**
 <!-- interaction_id: en:lesson-02:session-20:i07; family: scripted_repeat_compare -->
 🎙 **She's innocent.**
 
-**8 · На зустріч пускають лише запрошених. На «Is it private?» доповніть коротку відповідь «так»**
+**9 · На зустріч пускають лише запрошених. Мама питає: «Is it private?» Доповніть коротке «так»**
 <!-- interaction_id: en:lesson-02:session-20:i08; family: context_gap_grammar -->
 Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Про зустріч — `it is`.*
 
-**9 · Послухайте фразу про Олега**
+**10 · Картка слова — suspicious**
+<!-- interaction_id: en:lesson-02:session-20:word:suspicious; family: word_card -->
+> **suspicious** — підозрілий. He is suspicious — «Він підозрілий». Про людину, яка поводиться дивно, або про дивний дзвінок.
+
+**11 · Брат ховає руки за спину. Послухайте, що шепоче вам сестра**
 <!-- interaction_id: en:lesson-02:session-20:i09; family: listen_choose -->
-🔊 *He is not lost.* → **He is not lost.** · He is not prepared. · He is not innocent.
-- He is not prepared. — *У записі останнє слово — `lost`, а в цьому варіанті — `prepared`.*
-- He is not innocent. — *У записі останнє слово — `lost`, а в цьому варіанті — `innocent`.*
+🔊 *He is suspicious.* → **He is suspicious.** · He is prepared. · He is innocent.
+- He is prepared. — *У записі останнє слово — `suspicious`, а в цьому варіанті — `prepared`.*
+- He is innocent. — *У записі останнє слово — `suspicious`, а в цьому варіанті — `innocent`.*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте знайомі слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-20:i10; family: speed_match -->
-lost — той, хто заблукав · private — приватний, не для всіх · innocent — невинний · yes — так
+lost — який заблукав · private — приватний, не для всіх · prepared — підготовлений · careful — обережний
 
-**11 · Послухайте й складіть коротку фразу**
+**13 · Картка слова — spotless**
+<!-- interaction_id: en:lesson-02:session-20:word:spotless; family: word_card -->
+> **spotless** — без жодної плями, бездоганно чистий. It's spotless — «На ній ані плямки». Про скатертину, сорочку, кухню.
+
+**14 · Мама знімає скатертину із сушарки. Послухайте й складіть, що вона каже**
 <!-- interaction_id: en:lesson-02:session-20:i11; family: listen_build_dictation -->
-🔊 *We're prepared.* Плитки: `prepared` `We're` `He's` → **We're prepared.**
-*(плитка `He's` зайва: тут потрібно `We're` — `We're prepared.`)*
+🔊 *It's spotless.* Плитки: `spotless` `It's` `They're` → **It's spotless.**
+*(плитка `They're` зайва: тут потрібно `It's` — `It's spotless.`)*
 
-**12 · Анна й Олег уже все підготували. На «Are they prepared?» дайте коротку відповідь «так»**
+**15 · Брат і сестра вже накрили на стіл. Мама питає: «Are they prepared?» Відповідайте коротким «так»**
 <!-- interaction_id: en:lesson-02:session-20:i12; family: phrase_builder -->
 Плитки: `are` `they` `Yes,` `No,` → **Yes, they are.**
 *(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, they are.`)*
 
-**13 · Ви знаєте дорогу до місця зустрічі. Друг запитує: «Are you lost?» Дайте коротку відповідь «ні»**
+**16 · Ви їдете до магазину по нову фарбу й знаєте дорогу. Мама телефонує й питає: «Are you lost?» Відповідайте коротким «ні»**
 <!-- interaction_id: en:lesson-02:session-20:i13; family: scripted_repeat_compare -->
 🎙 **No, I am not.**
 
-**14 · Друг береться нести відкриту банку фарби. Запитайте, чи він обережний**
-<!-- interaction_id: en:lesson-02:session-20:i14; family: context_gap_grammar -->
-___ you careful? → **Are** · Am · Is
-- Am — *З `you` потрібно `Are`.*
-- Is — *До співрозмовника — `Are you`.*
+**17 · Картка слова — washable**
+<!-- interaction_id: en:lesson-02:session-20:word:washable; family: word_card -->
+> **washable** — який можна прати. Is it washable? — «Це можна прати?» Про скатертину, куртку, килим.
 
-**15 · Послухайте фразу про Анну**
+**18 · Фарба потрапила й на серветку. Запитайте маму, чи її можна прати**
+<!-- interaction_id: en:lesson-02:session-20:i14; family: context_gap_grammar -->
+___ it washable? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Про одну серветку — `Is it`.*
+
+**19 · Послухайте, що брат каже про сестру**
 <!-- interaction_id: en:lesson-02:session-20:i15; family: listen_choose -->
 🔊 *She is innocent.* → **She is innocent.** · She is prepared. · She is careful.
 - She is prepared. — *У записі останнє слово — `innocent`, а в цьому варіанті — `prepared`.*
 - She is careful. — *У записі останнє слово — `innocent`, а в цьому варіанті — `careful`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова минулого заняття зі значеннями**
 <!-- interaction_id: en:lesson-02:session-20:i16; family: speed_match -->
-prepared — підготовлений · careful — обережний · lost — той, хто заблукав · private — приватний, не для всіх
+guilty — винний · gone — зниклий · greedy — жадібний · sneaky — хитрий
 
-**17 · Ви не розливали фарбу. Друг запитує: «Are you innocent?» Дайте коротку відповідь «так», не повторюючи innocent**
+**21 · Ви не розливали фарбу. Мама питає: «Are you innocent?» Відповідайте коротким «так», не повторюючи innocent**
 <!-- interaction_id: en:lesson-02:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Yes, I am.**
-

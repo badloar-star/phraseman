@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-02:session-13:word:shady",
+    "correctText": "shady",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-13:i01",
-    "correctText": "Is it public?",
+    "correctText": "Is it shady?",
     "correctResponseId": null
   },
   {
@@ -16,12 +21,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-13:i04",
-    "correctText": "en:lesson-02:session-13:i04:p1=public\nen:lesson-02:session-13:i04:p2=private\nen:lesson-02:session-13:i04:p3=big\nen:lesson-02:session-13:i04:p4=small",
+    "correctText": "en:lesson-02:session-13:i04:p1=shady\nen:lesson-02:session-13:i04:p2=fenced\nen:lesson-02:session-13:i04:p3=windy\nen:lesson-02:session-13:i04:p4=pretty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:word:fenced",
+    "correctText": "fenced",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i05",
-    "correctText": "It's not public.",
+    "correctText": "It's not fenced.",
     "correctResponseId": null
   },
   {
@@ -40,13 +50,18 @@
     "correctResponseId": "en:lesson-02:session-13:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-13:word:windy",
+    "correctText": "windy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-13:i09",
-    "correctText": "It is public.",
+    "correctText": "It is not windy.",
     "correctResponseId": "en:lesson-02:session-13:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-13:i10",
-    "correctText": "en:lesson-02:session-13:i10:p1=real\nen:lesson-02:session-13:i10:p2=clean\nen:lesson-02:session-13:i10:p3=small\nen:lesson-02:session-13:i10:p4=public",
+    "correctText": "en:lesson-02:session-13:i10:p1=real\nen:lesson-02:session-13:i10:p2=clean\nen:lesson-02:session-13:i10:p3=small\nen:lesson-02:session-13:i10:p4=big",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-13:word:pretty",
+    "correctText": "pretty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-13:i13",
-    "correctText": "It's big.",
+    "correctText": "It's pretty.",
     "correctResponseId": null
   },
   {
@@ -76,12 +96,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-13:i16",
-    "correctText": "en:lesson-02:session-13:i16:p1=big\nen:lesson-02:session-13:i16:p2=small\nen:lesson-02:session-13:i16:p3=clean\nen:lesson-02:session-13:i16:p4=real",
+    "correctText": "en:lesson-02:session-13:i16:p1=private\nen:lesson-02:session-13:i16:p2=public\nen:lesson-02:session-13:i16:p3=printed\nen:lesson-02:session-13:i16:p4=cute",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i17",
-    "correctText": "Is it public?",
+    "correctText": "Is it fenced?",
     "correctResponseId": null
   }
 ]

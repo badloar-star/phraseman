@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Охотно делится",
-        "uk": "Охоче ділиться"
+        "ru": "Тост в тостере",
+        "uk": "Тост у тостері"
       },
       "bodyByLocale": {
-        "ru": "`generous` — «щедрый». Анна купила продукты на всех и с удовольствием угощает друзей: `She is generous`. Щедрость не измеряется размером кошелька. Отдать другу последний круассан тоже щедро. Особенно если вы ещё не завтракали.",
-        "uk": "`generous` — «щедрий». Анна купила продукти для всіх і залюбки пригощає друзів: `She is generous`. Щедрість не вимірюється розміром гаманця. Віддати другові останній круасан теж щедро. Особливо якщо ви ще не снідали."
+        "ru": "Подруга поставила тосты и ушла в коридор отвечать на звонок. Через минуту на кухне пахнет гарью, а тост в тостере чёрный по краям. burnt — «подгоревший». It's burnt — «Он подгорел».",
+        "uk": "Подруга поставила тости й вийшла в коридор відповісти на дзвінок. За хвилину на кухні пахне горілим, а тост у тостері чорний по краях. burnt — «підгорілий». It's burnt — «Він підгорів»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-27:intro1:q",
         "promptByLocale": {
-          "ru": "Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая.",
-          "uk": "Анна охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра."
+          "ru": "Подруга спрашивает из коридора: Is it burnt? Скажите коротко, что тост подгорел.",
+          "uk": "Подруга питає з коридору: Is it burnt? Скажіть коротко, що тост підгорів."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-27:intro1:r1",
-              "text": "She is generous."
+              "text": "It's burnt."
             },
             {
               "responseId": "en:lesson-02:session-27:intro1:r2",
-              "text": "She generous."
+              "text": "It's not burnt."
             },
             {
               "responseId": "en:lesson-02:session-27:intro1:r3",
-              "text": "She is not generous."
+              "text": "They're burnt."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-27:intro1:r1",
-              "text": "She is generous."
+              "text": "It's burnt."
             },
             {
               "responseId": "en:lesson-02:session-27:intro1:r2",
-              "text": "She generous."
+              "text": "It's not burnt."
             },
             {
               "responseId": "en:lesson-02:session-27:intro1:r3",
-              "text": "She is not generous."
+              "text": "They're burnt."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая.",
-          "uk": "Анна охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра."
+          "ru": "Подруга спрашивает из коридора: Is it burnt? Скажите коротко, что тост подгорел.",
+          "uk": "Подруга питає з коридору: Is it burnt? Скажіть коротко, що тост підгорів."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спит или уже нет",
-        "uk": "Спить чи вже ні"
+        "ru": "Красный соус",
+        "uk": "Червоний соус"
       },
       "bodyByLocale": {
-        "ru": "`awake` — «не спит, проснулся», `asleep` — «спит». `Is he awake?` — «Он уже не спит?» Если Олег всё ещё спит, ответьте `No, he is not`. На вопрос `Is he asleep?` в той же ситуации ответ будет `Yes, he is`. Не выбирайте «да» или «нет», пока не дослушали вопрос.",
-        "uk": "`awake` — «не спить, прокинувся», `asleep` — «спить». `Is he awake?` — «Він уже не спить?» Якщо Олег досі спить, дайте відповідь `No, he is not`. На запитання `Is he asleep?` у тій самій ситуації відповідь буде `Yes, he is`. Не обирайте «так» чи «ні», поки не дослухали запитання."
+        "ru": "Хозяин ставит на стол бутылочку красного соуса к яичнице. Вы не любите острое и хотите узнать заранее, прежде чем поливать. spicy — «острый», когда речь о еде. Is it spicy? — «Он острый?»",
+        "uk": "Господар ставить на стіл пляшечку червоного соусу до яєчні. Ви не любите гострого й хочете дізнатися заздалегідь, перш ніж поливати. spicy — «гострий», коли йдеться про їжу. Is it spicy? — «Він гострий?»"
       },
       "question": {
         "interactionId": "en:lesson-02:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "Олег ещё спит. Анна спрашивает: `Is he awake?` Ответьте коротким «нет».",
-          "uk": "Олег ще спить. Анна запитує: `Is he awake?` Дайте коротку відповідь «ні»."
+          "ru": "Спросите хозяина, острый ли соус.",
+          "uk": "Запитайте господаря, чи гострий соус."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-27:intro2:r1",
-              "text": "No, he is not."
+              "text": "Is it spicy?"
             },
             {
               "responseId": "en:lesson-02:session-27:intro2:r2",
-              "text": "Yes, he is."
+              "text": "It is spicy."
             },
             {
               "responseId": "en:lesson-02:session-27:intro2:r3",
-              "text": "No, he are not."
+              "text": "Are it spicy?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-27:intro2:r1",
-              "text": "No, he is not."
+              "text": "Is it spicy?"
             },
             {
               "responseId": "en:lesson-02:session-27:intro2:r2",
-              "text": "Yes, he is."
+              "text": "It is spicy."
             },
             {
               "responseId": "en:lesson-02:session-27:intro2:r3",
-              "text": "No, he are not."
+              "text": "Are it spicy?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Олег ещё спит. Анна спрашивает: `Is he awake?` Ответьте коротким «нет».",
-          "uk": "Олег ще спить. Анна запитує: `Is he awake?` Дайте коротку відповідь «ні»."
+          "ru": "Спросите хозяина, острый ли соус.",
+          "uk": "Запитайте господаря, чи гострий соус."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Свободно ли место",
-        "uk": "Чи вільне місце"
+        "ru": "Кофе из кофейника",
+        "uk": "Кава з кавника"
       },
       "bodyByLocale": {
-        "ru": "`available` — «доступный, свободный». Про стол, которым можно воспользоваться: `It is available`. Спросить — `Is it available?`. А чтобы узнать, где Анна, нужен другой вопрос: `Where is she?`. Первый допускает ответ «да», второй спрашивает место.",
-        "uk": "`available` — «доступний, вільний». Про стіл, яким можна скористатися: `It is available`. Запитати — `Is it available?`. А щоб дізнатися, де Анна, потрібне інше запитання: `Where is she?`. Перше допускає відповідь «так», друге запитує про місце."
+        "ru": "Друг наливает себе кофе из большого кофейника и медлит: вчера в кафе ему попался очень горький кофе. Вы уже выпили чашку этого, он мягкий. bitter — «горький». It's not bitter — «Он не горький».",
+        "uk": "Друг наливає собі каву з великого кавника й вагається: учора в кафе йому трапилася дуже гірка кава. Ви вже випили чашку цієї, вона м’яка. bitter — «гіркий». It's not bitter — «Вона не гірка»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-27:intro3:q",
         "promptByLocale": {
-          "ru": "Вы хотите сесть за большой стол, но не знаете, свободен ли он для вас. Спросите об этом.",
-          "uk": "Ви хочете сісти за великий стіл, але не знаєте, чи він вільний для вас. Запитайте про це."
+          "ru": "Друг спрашивает: Is it bitter? Скажите коротко, что кофе не горький.",
+          "uk": "Друг питає: Is it bitter? Скажіть коротко, що кава не гірка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-27:intro3:r1",
-              "text": "Is it available?"
+              "text": "It's not bitter."
             },
             {
               "responseId": "en:lesson-02:session-27:intro3:r2",
-              "text": "Where is it?"
+              "text": "It's bitter."
             },
             {
               "responseId": "en:lesson-02:session-27:intro3:r3",
-              "text": "It is available."
+              "text": "It's not spicy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-27:intro3:r1",
-              "text": "Is it available?"
+              "text": "It's not bitter."
             },
             {
               "responseId": "en:lesson-02:session-27:intro3:r2",
-              "text": "Where is it?"
+              "text": "It's bitter."
             },
             {
               "responseId": "en:lesson-02:session-27:intro3:r3",
-              "text": "It is available."
+              "text": "It's not spicy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы хотите сесть за большой стол, но не знаете, свободен ли он для вас. Спросите об этом.",
-          "uk": "Ви хочете сісти за великий стіл, але не знаєте, чи він вільний для вас. Запитайте про це."
+          "ru": "Друг спрашивает: Is it bitter? Скажите коротко, что кофе не горький.",
+          "uk": "Друг питає: Is it bitter? Скажіть коротко, що кава не гірка."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a993826e6a912566660569a5ec9aab648435f640005ff1f7b42d406975c0b8a6"
+  "introFingerprint": "224789e1773bca3984ffcd49bd45abe882ec653e376ea64d8b933216f73d4851"
 }

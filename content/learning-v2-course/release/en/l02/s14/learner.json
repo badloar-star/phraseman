@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-14:i01",
+      "interactionId": "en:lesson-02:session-14:word:obvious",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — obvious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-14:word:obvious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — obvious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-14:word:obvious:audio",
+          "transcript": "obvious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-14:word:obvious:r1",
+            "targetText": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный, это легко понять. It's obvious — «Это очевидно». О подделке, ошибке, ответе.",
+              "uk": "очевидний, це легко зрозуміти. It's obvious — «Це очевидно». Про підробку, помилку, відповідь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "obvious",
+          "definitionByLocale": {
+            "ru": "очевидный, это легко понять. It's obvious — «Это очевидно». О подделке, ошибке, ответе.",
+            "uk": "очевидний, це легко зрозуміти. It's obvious — «Це очевидно». Про підробку, помилку, відповідь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-14:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На пластиковом лимоне виден шов. Вы обсуждаете, заметно ли, что он искусственный. Скажите, что это очевидно",
+      "prompt": "На пластиковом лимоне виден шов. Подруга спрашивает, заметно ли, что он искусственный. Скажите, что это очевидно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На пластиковом лимоне виден шов. Вы обсуждаете, заметно ли, что он искусственный. Скажите, что это очевидно",
+      "accessibilityLabel": "На пластиковом лимоне виден шов. Подруга спрашивает, заметно ли, что он искусственный. Скажите, что это очевидно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is obvious.",
         "localizedMeaning": {
-          "ru": "На пластиковом лимоне виден шов. Вы обсуждаете, заметно ли, что он искусственный. Скажите, что это очевидно",
-          "uk": "На пластиковому лимоні видно шов. Ви обговорюєте, чи помітно, що він штучний. Скажіть, що це очевидно"
+          "ru": "На пластиковом лимоне виден шов. Подруга спрашивает, заметно ли, что он искусственный. Скажите, что это очевидно",
+          "uk": "На пластиковому лимоні видно шов. Подруга питає, чи помітно, що він штучний. Скажіть, що це очевидно"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-14:i01:tile:d1",
             "correct": false,
-            "testedDimension": "На пластиковом лимоне виден шов. Вы обсуждаете, заметно ли, что он искусственный. Скажите, что это очевидно",
+            "testedDimension": "На пластиковом лимоне виден шов. Подруга спрашивает, заметно ли, что он искусственный. Скажите, что это очевидно",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is obvious.`",
               "uk": "тут потрібно `is` — `It is obvious.`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о мастерской",
+      "prompt": "Послушайте вопрос прохожего о мастерской",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-14:i02:r1",
@@ -65,14 +108,14 @@
         },
         {
           "responseId": "en:lesson-02:session-14:i02:r3",
-          "text": "Is it dirty?"
+          "text": "Is it clean?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о мастерской",
+      "accessibilityLabel": "Послушайте вопрос прохожего о мастерской",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -93,7 +136,7 @@
           },
           {
             "responseId": "en:lesson-02:session-14:i02:r3",
-            "targetText": "Is it dirty?",
+            "targetText": "Is it clean?",
             "meaningByLocale": null
           }
         ],
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-14:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о мастерской",
+            "testedDimension": "Послушайте вопрос прохожего о мастерской",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
               "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
@@ -111,10 +154,10 @@
           {
             "responseId": "en:lesson-02:session-14:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о мастерской",
+            "testedDimension": "Послушайте вопрос прохожего о мастерской",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `open`, а в этом варианте — `dirty`.",
-              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `dirty`."
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `clean`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `clean`."
             }
           }
         ],
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
+      "prompt": "Вы с подругой обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-14:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
+      "accessibilityLabel": "Вы с подругой обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
-          "uk": "Ви обговорюєте, чи зрозумілий шлях до входу. Запитайте, чи це очевидно"
+          "ru": "Вы с подругой обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
+          "uk": "Ви з подругою обговорюєте, чи зрозумілий шлях до входу. Запитайте, чи це очевидно"
         },
         "gappedTargetPhrase": "___ it obvious?",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Вы обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
+        "testedDimension": "Вы с подругой обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-14:i03:r2",
             "correct": false,
-            "testedDimension": "Вы обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
+            "testedDimension": "Вы с подругой обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-14:i03:r3",
             "correct": false,
-            "testedDimension": "Вы обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
+            "testedDimension": "Вы с подругой обсуждаете, понятен ли путь ко входу. Спросите, очевидно ли это",
             "feedbackByLocale": {
               "ru": "Вопрос начинается с `Is it`.",
               "uk": "Запитання починається з `Is it`."
@@ -194,15 +237,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -224,32 +267,32 @@
           },
           {
             "pairId": "en:lesson-02:session-14:i04:p3",
-            "target": "open",
+            "target": "shiny",
             "meaningByLocale": {
-              "ru": "открытый",
-              "uk": "відкритий"
+              "ru": "блестящий",
+              "uk": "блискучий"
             }
           },
           {
             "pairId": "en:lesson-02:session-14:i04:p4",
-            "target": "closed",
+            "target": "neat",
             "meaningByLocale": {
-              "ru": "закрытый",
-              "uk": "закритий"
+              "ru": "аккуратный",
+              "uk": "охайний"
             }
           }
         ],
         "leftColumn": [
           "obvious",
           "dirty",
-          "open",
-          "closed"
+          "shiny",
+          "neat"
         ],
         "rightColumn": [
           "очевидный",
           "грязный",
-          "открытый",
-          "закрытый"
+          "блестящий",
+          "аккуратный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,17 +310,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Подруга спрашивает, понятно ли прохожим, где вход. Послушайте и соберите ваш ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Подруга спрашивает, понятно ли прохожим, где вход. Послушайте и соберите ваш ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -298,7 +341,7 @@
           {
             "responseId": "en:lesson-02:session-14:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Подруга спрашивает, понятно ли прохожим, где вход. Послушайте и соберите ваш ответ",
             "feedbackByLocale": {
               "ru": "здесь нужно `It's` — `It's not obvious.`",
               "uk": "тут потрібно `It's` — `It's not obvious.`"
@@ -314,7 +357,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -328,7 +371,7 @@
         "targetPhrase": "It is not closed.",
         "localizedMeaning": {
           "ru": "Мастерская принимает посетителей. Скажите, что она не закрыта",
-          "uk": "Майстерня приймає відвідувачів. Скажіть, що вона не закрита"
+          "uk": "Майстерня приймає відвідувачів. Скажіть, що вона не зачинена"
         },
         "orderedTokens": [
           "It",
@@ -359,17 +402,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i07",
-      "ordinal": 10,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Лимон в витрине похож на настоящий. Спросите друга, искусственный ли он",
+      "prompt": "Лимон в витрине похож на настоящий. Спросите подругу, искусственный ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i07:audio"
       ],
-      "accessibilityLabel": "Лимон в витрине похож на настоящий. Спросите друга, искусственный ли он",
+      "accessibilityLabel": "Лимон в витрине похож на настоящий. Спросите подругу, искусственный ли он",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -391,8 +434,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-14:word:dirty",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dirty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-14:word:dirty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dirty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-14:word:dirty:audio",
+          "transcript": "dirty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-14:word:dirty:r1",
+            "targetText": "dirty",
+            "meaningByLocale": {
+              "ru": "грязный. Is it dirty? — «Оно грязное?» О стекле, полке, обуви, чашке.",
+              "uk": "брудний. Is it dirty? — «Воно брудне?» Про скло, полицю, взуття, чашку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dirty",
+          "definitionByLocale": {
+            "ru": "грязный. Is it dirty? — «Оно грязное?» О стекле, полке, обуви, чашке.",
+            "uk": "брудний. Is it dirty? — «Воно брудне?» Про скло, полицю, взуття, чашку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-14:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -461,11 +547,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу",
+      "prompt": "Послушайте, что подруга говорит о лимоне",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-14:i09:r1",
@@ -484,7 +570,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-14:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу",
+      "accessibilityLabel": "Послушайте, что подруга говорит о лимоне",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -514,7 +600,7 @@
           {
             "responseId": "en:lesson-02:session-14:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что подруга говорит о лимоне",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `fake`, а в этом варианте — `dirty`.",
               "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `dirty`."
@@ -523,7 +609,7 @@
           {
             "responseId": "en:lesson-02:session-14:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что подруга говорит о лимоне",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `fake`, а в этом варианте — `open`.",
               "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `open`."
@@ -537,15 +623,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -559,40 +645,40 @@
           },
           {
             "pairId": "en:lesson-02:session-14:i10:p2",
-            "target": "obvious",
+            "target": "open",
             "meaningByLocale": {
-              "ru": "очевидный",
-              "uk": "очевидний"
+              "ru": "открытый",
+              "uk": "відчинений"
             }
           },
           {
             "pairId": "en:lesson-02:session-14:i10:p3",
-            "target": "open",
+            "target": "closed",
             "meaningByLocale": {
-              "ru": "открытый",
-              "uk": "відкритий"
+              "ru": "закрытый",
+              "uk": "зачинений"
             }
           },
           {
             "pairId": "en:lesson-02:session-14:i10:p4",
-            "target": "dirty",
+            "target": "clean",
             "meaningByLocale": {
-              "ru": "грязный",
-              "uk": "брудний"
+              "ru": "чистый",
+              "uk": "чистий"
             }
           }
         ],
         "leftColumn": [
           "fake",
-          "obvious",
           "open",
-          "dirty"
+          "closed",
+          "clean"
         ],
         "rightColumn": [
           "поддельный",
-          "очевидный",
           "открытый",
-          "грязный"
+          "закрытый",
+          "чистый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,29 +695,72 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-14:i11",
-      "ordinal": 14,
+      "interactionId": "en:lesson-02:session-14:word:shiny",
+      "ordinal": 16,
       "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shiny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-14:word:shiny:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shiny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-14:word:shiny:audio",
+          "transcript": "shiny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-14:word:shiny:r1",
+            "targetText": "shiny",
+            "meaningByLocale": {
+              "ru": "блестящий. They are shiny — «Они блестят». О ручках, ложках, новой обуви.",
+              "uk": "блискучий. They are shiny — «Вони блищать». Про ручки, ложки, нове взуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shiny",
+          "definitionByLocale": {
+            "ru": "блестящий. They are shiny — «Они блестят». О ручках, ложках, новой обуви.",
+            "uk": "блискучий. They are shiny — «Вони блищать». Про ручки, ложки, нове взуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-14:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Подруга отложила тряпку и смотрит на дверные ручки. Послушайте и соберите, что она говорит",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Подруга отложила тряпку и смотрит на дверные ручки. Послушайте и соберите, что она говорит",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-14:i11:audio",
-          "transcript": "They're closed."
+          "transcript": "They're shiny."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They're closed.",
+        "hiddenTargetPhrase": "They're shiny.",
         "orderedTokens": [
           "They're",
-          "closed"
+          "shiny"
         ],
         "authoredDistractorTokens": [
           "It's"
@@ -640,10 +769,10 @@
           {
             "responseId": "en:lesson-02:session-14:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Подруга отложила тряпку и смотрит на дверные ручки. Послушайте и соберите, что она говорит",
             "feedbackByLocale": {
-              "ru": "здесь нужно `They're` — `They're closed.`",
-              "uk": "тут потрібно `They're` — `They're closed.`"
+              "ru": "здесь нужно `They're` — `They're shiny.`",
+              "uk": "тут потрібно `They're` — `They're shiny.`"
             }
           }
         ],
@@ -656,21 +785,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Посетители путают вход со служебной дверью. Вы обсуждаете, понятно ли, куда идти. Скажите, что это неочевидно",
+      "prompt": "Прохожие путают вход со служебной дверью. Подруга спрашивает, понятно ли, куда идти. Скажите, что это неочевидно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Посетители путают вход со служебной дверью. Вы обсуждаете, понятно ли, куда идти. Скажите, что это неочевидно",
+      "accessibilityLabel": "Прохожие путают вход со служебной дверью. Подруга спрашивает, понятно ли, куда идти. Скажите, что это неочевидно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is not obvious.",
         "localizedMeaning": {
-          "ru": "Посетители путают вход со служебной дверью. Вы обсуждаете, понятно ли, куда идти. Скажите, что это неочевидно",
-          "uk": "Відвідувачі плутають вхід зі службовими дверима. Ви обговорюєте, чи зрозуміло, куди йти. Скажіть, що це неочевидно"
+          "ru": "Прохожие путают вход со служебной дверью. Подруга спрашивает, понятно ли, куда идти. Скажите, что это неочевидно",
+          "uk": "Перехожі плутають вхід зі службовими дверима. Подруга питає, чи зрозуміло, куди йти. Скажіть, що це неочевидно"
         },
         "orderedTokens": [
           "It",
@@ -685,7 +814,7 @@
           {
             "responseId": "en:lesson-02:session-14:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Посетители путают вход со служебной дверью. Вы обсуждаете, понятно ли, куда идти. Скажите, что это неочевидно",
+            "testedDimension": "Прохожие путают вход со служебной дверью. Подруга спрашивает, понятно ли, куда идти. Скажите, что это неочевидно",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is not obvious.`",
               "uk": "тут потрібно `is` — `It is not obvious.`"
@@ -700,26 +829,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-14:word:neat",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — neat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-14:word:neat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — neat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-14:word:neat:audio",
+          "transcript": "neat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-14:word:neat:r1",
+            "targetText": "neat",
+            "meaningByLocale": {
+              "ru": "аккуратный, ровный. They're neat — «Они аккуратные». О рядах на полке, почерке, причёске.",
+              "uk": "охайний, рівний. They're neat — «Вони охайні». Про ряди на полиці, почерк, зачіску."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "neat",
+          "definitionByLocale": {
+            "ru": "аккуратный, ровный. They're neat — «Они аккуратные». О рядах на полке, почерке, причёске.",
+            "uk": "охайний, рівний. They're neat — «Вони охайні». Про ряди на полиці, почерк, зачіску."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-14:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Мастерская уже принимает гостей. Коротко скажите, что она открыта",
+      "prompt": "Подруга разложила браслеты на полке ровными рядами. Коротко скажите, что они аккуратные",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i13:audio"
       ],
-      "accessibilityLabel": "Мастерская уже принимает гостей. Коротко скажите, что она открыта",
+      "accessibilityLabel": "Подруга разложила браслеты на полке ровными рядами. Коротко скажите, что они аккуратные",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-14:i13:audio",
-          "transcript": "It's open."
+          "transcript": "They're neat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's open.",
+        "targetPhrase": "They're neat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +906,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В витрине два яблока. Спросите, искусственные ли они",
+      "prompt": "В витрине два яблока. Спросите подругу, искусственные ли они",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-14:i14:r1",
@@ -755,12 +927,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В витрине два яблока. Спросите, искусственные ли они",
+      "accessibilityLabel": "В витрине два яблока. Спросите подругу, искусственные ли они",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В витрине два яблока. Спросите, искусственные ли они",
-          "uk": "У вітрині два яблука. Запитайте, чи вони штучні"
+          "ru": "В витрине два яблока. Спросите подругу, искусственные ли они",
+          "uk": "У вітрині два яблука. Запитайте подругу, чи вони штучні"
         },
         "gappedTargetPhrase": "___ they fake?",
         "gapOptions": [
@@ -777,12 +949,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "В витрине два яблока. Спросите, искусственные ли они",
+        "testedDimension": "В витрине два яблока. Спросите подругу, искусственные ли они",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-14:i14:r2",
             "correct": false,
-            "testedDimension": "В витрине два яблока. Спросите, искусственные ли они",
+            "testedDimension": "В витрине два яблока. Спросите подругу, искусственные ли они",
             "feedbackByLocale": {
               "ru": "С `they` нужно `Are`.",
               "uk": "З `they` потрібно `Are`."
@@ -791,7 +963,7 @@
           {
             "responseId": "en:lesson-02:session-14:i14:r3",
             "correct": false,
-            "testedDimension": "В витрине два яблока. Спросите, искусственные ли они",
+            "testedDimension": "В витрине два яблока. Спросите подругу, искусственные ли они",
             "feedbackByLocale": {
               "ru": "Про два яблока — `Are they`.",
               "uk": "Про два яблука — `Are they`."
@@ -803,11 +975,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу",
+      "prompt": "Подруга вымыла стекло. Послушайте, что она говорит",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-14:i15:r1",
@@ -826,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-14:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу",
+      "accessibilityLabel": "Подруга вымыла стекло. Послушайте, что она говорит",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -856,7 +1028,7 @@
           {
             "responseId": "en:lesson-02:session-14:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Подруга вымыла стекло. Послушайте, что она говорит",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `dirty`, а в этом варианте — `fake`.",
               "uk": "У записі останнє слово — `dirty`, а в цьому варіанті — `fake`."
@@ -865,7 +1037,7 @@
           {
             "responseId": "en:lesson-02:session-14:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Подруга вымыла стекло. Послушайте, что она говорит",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `dirty`, а в этом варианте — `closed`.",
               "uk": "У записі останнє слово — `dirty`, а в цьому варіанті — `closed`."
@@ -879,62 +1051,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова прошлого занятия со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-14:i16:p1",
-            "target": "dirty",
+            "target": "shady",
             "meaningByLocale": {
-              "ru": "грязный",
-              "uk": "брудний"
+              "ru": "тенистый",
+              "uk": "тінистий"
             }
           },
           {
             "pairId": "en:lesson-02:session-14:i16:p2",
-            "target": "open",
+            "target": "fenced",
             "meaningByLocale": {
-              "ru": "открытый",
-              "uk": "відкритий"
+              "ru": "огороженный",
+              "uk": "огороджений"
             }
           },
           {
             "pairId": "en:lesson-02:session-14:i16:p3",
-            "target": "closed",
+            "target": "windy",
             "meaningByLocale": {
-              "ru": "закрытый",
-              "uk": "закритий"
+              "ru": "ветреный",
+              "uk": "вітряний"
             }
           },
           {
             "pairId": "en:lesson-02:session-14:i16:p4",
-            "target": "fake",
+            "target": "pretty",
             "meaningByLocale": {
-              "ru": "поддельный",
-              "uk": "підроблений"
+              "ru": "красивый",
+              "uk": "гарний"
             }
           }
         ],
         "leftColumn": [
-          "dirty",
-          "open",
-          "closed",
-          "fake"
+          "shady",
+          "fenced",
+          "windy",
+          "pretty"
         ],
         "rightColumn": [
-          "грязный",
-          "открытый",
-          "закрытый",
-          "поддельный"
+          "тенистый",
+          "огороженный",
+          "ветреный",
+          "красивый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-14:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы заменили непонятный символ стрелкой. Вы с другом обсуждаете, легко ли теперь найти вход. Спросите, очевидно ли это",
+      "prompt": "Вы заменили непонятный символ на двери стрелкой. Спросите подругу, очевидно ли теперь, где вход",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i17:audio"
       ],
-      "accessibilityLabel": "Вы заменили непонятный символ стрелкой. Вы с другом обсуждаете, легко ли теперь найти вход. Спросите, очевидно ли это",
+      "accessibilityLabel": "Вы заменили непонятный символ на двери стрелкой. Спросите подругу, очевидно ли теперь, где вход",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d96115d5e593047a9aa3f78bb9c0d281aae67dcee88f6e4bcaafd03bd4e258aa"
+  "learnerFingerprint": "75775aed9d66935f721734d5f74746edb561707c25e80daa58f9bb20ee28d85a"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-27:intro1:r2": {
-          "ru": "Между `She` и `generous` нужно `is`.",
-          "uk": "Між `She` і `generous` потрібно `is`."
+          "ru": "С not выходит «Он не подгорел». А края чёрные: It's burnt.",
+          "uk": "Із not виходить «Він не підгорів». А краї чорні: It's burnt."
         },
         "en:lesson-02:session-27:intro1:r3": {
-          "ru": "Это отрицает щедрость. В условии Анна охотно делится.",
-          "uk": "Це заперечує щедрість. За умовою Анна охоче ділиться."
+          "ru": "They're — про несколько вещей, а тост один: It's burnt.",
+          "uk": "They're — про кілька речей, а тост один: It's burnt."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-27:intro2:r2": {
-          "ru": "Это подтвердит, что Олег не спит. По условию он спит.",
-          "uk": "Це підтвердить, що Олег не спить. За умовою він спить."
+          "ru": "Так звучит утверждение «Он острый». Чтобы спросить, ставим Is вперёд: Is it spicy?",
+          "uk": "Так звучить твердження «Він гострий». Щоб запитати, ставимо Is наперед: Is it spicy?"
         },
         "en:lesson-02:session-27:intro2:r3": {
-          "ru": "С `he` нужно `is`.",
-          "uk": "З `he` потрібно `is`."
+          "ru": "С it нужно is: Is it spicy?",
+          "uk": "З it потрібно is: Is it spicy?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-27:intro3:r2": {
-          "ru": "Это «Где он?» Стол вы уже видите.",
-          "uk": "Це «Де він?» Стіл ви вже бачите."
+          "ru": "Без not выходит «Он горький». А кофе мягкий: It's not bitter.",
+          "uk": "Без not виходить «Вона гірка». А кава м’яка: It's not bitter."
         },
         "en:lesson-02:session-27:intro3:r3": {
-          "ru": "Это сообщение. Чтобы спросить, поставьте `Is` перед `it`.",
-          "uk": "Це повідомлення. Щоб запитати, поставте `Is` перед `it`."
+          "ru": "spicy — «острый». Друг спрашивает, горчит ли кофе: It's not bitter.",
+          "uk": "spicy — «гострий». Друг питає, чи гірчить кава: It's not bitter."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "419a5dd3e7c38bff8b640d33822b0fb7f9690a8e7c50776dc3ca850204c8b1a8"
+  "auxiliaryFingerprint": "fb421146dd6c733de4a5a9feb0187806c888f725e5deb8154192f7c07fb63b3a"
 }

@@ -9,17 +9,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
+      "prompt": "Подруга спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
+      "accessibilityLabel": "Подруга спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Yes, I am.",
         "localizedMeaning": {
-          "ru": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
-          "uk": "Господар запитує: «Are you well?» Ви добре почуваєтеся. Складіть коротку відповідь «так»"
+          "ru": "Подруга спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
+          "uk": "Подруга питає: «Are you well?» Ви добре почуваєтеся. Складіть коротке «так»"
         },
         "orderedTokens": [
           "Yes,",
@@ -33,7 +33,7 @@
           {
             "responseId": "en:lesson-02:session-17:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
+            "testedDimension": "Подруга спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
             "feedbackByLocale": {
               "ru": "здесь нужно `Yes,` — `Yes, I am.`",
               "uk": "тут потрібно `Yes,` — `Yes, I am.`"
@@ -48,12 +48,55 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-17:i02",
+      "interactionId": "en:lesson-02:session-17:word:well",
       "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Анне",
+      "prompt": "Карточка слова — well",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:word:well:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — well",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:word:well:audio",
+          "transcript": "well"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:word:well:r1",
+            "targetText": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий. Are you well? — «Как вы себя чувствуете? Всё хорошо?» О человеке после дороги или болезни.",
+              "uk": "який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "well",
+          "definitionByLocale": {
+            "ru": "хорошо себя чувствующий. Are you well? — «Как вы себя чувствуете? Всё хорошо?» О человеке после дороги или болезни.",
+            "uk": "який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Через час сестра встала с дивана. Послушайте, что говорит брат",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-17:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Анне",
+      "accessibilityLabel": "Через час сестра встала с дивана. Послушайте, что говорит брат",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-17:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Через час сестра встала с дивана. Послушайте, что говорит брат",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `well`, а в этом варианте — `safe`.",
               "uk": "У записі останнє слово — `well`, а в цьому варіанті — `safe`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-17:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Через час сестра встала с дивана. Послушайте, что говорит брат",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `well`, а в этом варианте — `right`.",
               "uk": "У записі останнє слово — `well`, а в цьому варіанті — `right`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+      "prompt": "Брат хорошо себя чувствует. Подруга спрашивает: «Is he well?» Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+      "accessibilityLabel": "Брат хорошо себя чувствует. Подруга спрашивает: «Is he well?» Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
-          "uk": "Олег добре почувається. На «Is he well?» доповніть коротку відповідь «так»"
+          "ru": "Брат хорошо себя чувствует. Подруга спрашивает: «Is he well?» Дополните короткое «да»",
+          "uk": "Брат добре почувається. Подруга питає: «Is he well?» Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, he ___.",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+        "testedDimension": "Брат хорошо себя чувствует. Подруга спрашивает: «Is he well?» Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-17:i03:r2",
             "correct": false,
-            "testedDimension": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+            "testedDimension": "Брат хорошо себя чувствует. Подруга спрашивает: «Is he well?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `he` нужно `is`.",
               "uk": "З `he` потрібно `is`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-17:i03:r3",
             "correct": false,
-            "testedDimension": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+            "testedDimension": "Брат хорошо себя чувствует. Подруга спрашивает: «Is he well?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Короткий ответ: `Yes, he is`.",
               "uk": "Коротка відповідь: `Yes, he is`."
@@ -194,15 +237,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините значения слов о людях",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините значения слов о людях",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -211,45 +254,45 @@
             "target": "well",
             "meaningByLocale": {
               "ru": "хорошо себя чувствующий",
-              "uk": "той, хто добре почувається"
+              "uk": "який добре почувається"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i04:p2",
-            "target": "welcome",
+            "target": "carsick",
             "meaningByLocale": {
-              "ru": "желанный гость",
-              "uk": "бажаний гість"
+              "ru": "укачанный в дороге",
+              "uk": "заколисаний у дорозі"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i04:p3",
-            "target": "safe",
+            "target": "stiff",
             "meaningByLocale": {
-              "ru": "в безопасности",
-              "uk": "у безпеці"
+              "ru": "затёкший",
+              "uk": "затерплий"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i04:p4",
-            "target": "right",
+            "target": "unpacked",
             "meaningByLocale": {
-              "ru": "правый, не ошибающийся",
-              "uk": "правий, той, хто не помиляється"
+              "ru": "распакованный",
+              "uk": "розпакований"
             }
           }
         ],
         "leftColumn": [
           "well",
-          "welcome",
-          "safe",
-          "right"
+          "carsick",
+          "stiff",
+          "unpacked"
         ],
         "rightColumn": [
           "хорошо себя чувствующий",
-          "желанный гость",
-          "в безопасности",
-          "правый, не ошибающийся"
+          "укачанный в дороге",
+          "затёкший",
+          "распакованный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,17 +310,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Сестре всё ещё нехорошо. Подруга спрашивает: «Is she well?» Послушайте и соберите ваш ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Сестре всё ещё нехорошо. Подруга спрашивает: «Is she well?» Послушайте и соберите ваш ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -299,7 +342,7 @@
           {
             "responseId": "en:lesson-02:session-17:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Сестре всё ещё нехорошо. Подруга спрашивает: «Is she well?» Послушайте и соберите ваш ответ",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, she is not.`",
               "uk": "тут потрібно `No,` — `No, she is not.`"
@@ -315,21 +358,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
+      "prompt": "Подруга хочет перенести ужин в ресторане на завтра и спрашивает: «Is it possible?» Завтра утром вы уезжаете. Ответьте коротким «нет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
+      "accessibilityLabel": "Подруга хочет перенести ужин в ресторане на завтра и спрашивает: «Is it possible?» Завтра утром вы уезжаете. Ответьте коротким «нет»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "No, it is not.",
         "localizedMeaning": {
-          "ru": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
-          "uk": "Перенести зустріч не можна. На «Is it possible?» дайте коротку відповідь «ні»"
+          "ru": "Подруга хочет перенести ужин в ресторане на завтра и спрашивает: «Is it possible?» Завтра утром вы уезжаете. Ответьте коротким «нет»",
+          "uk": "Подруга хоче перенести вечерю в ресторані на завтра й питає: «Is it possible?» Завтра вранці ви їдете. Відповідайте коротким «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -344,7 +387,7 @@
           {
             "responseId": "en:lesson-02:session-17:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
+            "testedDimension": "Подруга хочет перенести ужин в ресторане на завтра и спрашивает: «Is it possible?» Завтра утром вы уезжаете. Ответьте коротким «нет»",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, it is not.`",
               "uk": "тут потрібно `No,` — `No, it is not.`"
@@ -360,17 +403,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i07",
-      "ordinal": 10,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о себе: «Am I welcome?» Ему здесь рады. Ответьте ему коротким «да»",
+      "prompt": "Брат стесняется и тихо спрашивает вас: «Am I welcome?» Подруга ему рада. Ответьте ему коротким «да»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i07:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о себе: «Am I welcome?» Ему здесь рады. Ответьте ему коротким «да»",
+      "accessibilityLabel": "Брат стесняется и тихо спрашивает вас: «Am I welcome?» Подруга ему рада. Ответьте ему коротким «да»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -393,11 +436,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i08",
-      "ordinal": 11,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+      "prompt": "Вы уже стоите у её подъезда. Подруга звонит и спрашивает: «Are you lost?» Дополните короткое «нет» о себе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i08:r1",
@@ -414,12 +457,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+      "accessibilityLabel": "Вы уже стоите у её подъезда. Подруга звонит и спрашивает: «Are you lost?» Дополните короткое «нет» о себе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
-          "uk": "Ви помилилися з адресою. На «Are you right?» доповніть коротку відповідь «ні» про себе"
+          "ru": "Вы уже стоите у её подъезда. Подруга звонит и спрашивает: «Are you lost?» Дополните короткое «нет» о себе",
+          "uk": "Ви вже стоїте біля її під’їзду. Подруга телефонує й питає: «Are you lost?» Доповніть коротке «ні» про себе"
         },
         "gappedTargetPhrase": "No, I ___ not.",
         "gapOptions": [
@@ -436,12 +479,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+        "testedDimension": "Вы уже стоите у её подъезда. Подруга звонит и спрашивает: «Are you lost?» Дополните короткое «нет» о себе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-17:i08:r2",
             "correct": false,
-            "testedDimension": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+            "testedDimension": "Вы уже стоите у её подъезда. Подруга звонит и спрашивает: «Are you lost?» Дополните короткое «нет» о себе",
             "feedbackByLocale": {
               "ru": "Про себя — `I am not`.",
               "uk": "Про себе — `I am not`."
@@ -450,7 +493,7 @@
           {
             "responseId": "en:lesson-02:session-17:i08:r3",
             "correct": false,
-            "testedDimension": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+            "testedDimension": "Вы уже стоите у её подъезда. Подруга звонит и спрашивает: «Are you lost?» Дополните короткое «нет» о себе",
             "feedbackByLocale": {
               "ru": "С `I` нужно `am`, даже если в вопросе было `Are you`.",
               "uk": "З `I` потрібно `am`, навіть якщо в запитанні було `Are you`."
@@ -462,11 +505,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i09",
-      "ordinal": 12,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i09:r1",
@@ -485,7 +528,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-17:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -515,7 +558,7 @@
           {
             "responseId": "en:lesson-02:session-17:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `possible`, а в этом варианте — `safe`.",
               "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `safe`."
@@ -524,7 +567,7 @@
           {
             "responseId": "en:lesson-02:session-17:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `possible`, а в этом варианте — `right`.",
               "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `right`."
@@ -538,36 +581,20 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i10",
-      "ordinal": 13,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-17:i10:p1",
-            "target": "possible",
-            "meaningByLocale": {
-              "ru": "возможный",
-              "uk": "можливий"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-17:i10:p2",
-            "target": "well",
-            "meaningByLocale": {
-              "ru": "хорошо себя чувствующий",
-              "uk": "той, хто добре почувається"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-17:i10:p3",
             "target": "safe",
             "meaningByLocale": {
               "ru": "в безопасности",
@@ -575,25 +602,41 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-17:i10:p4",
+            "pairId": "en:lesson-02:session-17:i10:p2",
             "target": "welcome",
             "meaningByLocale": {
               "ru": "желанный гость",
               "uk": "бажаний гість"
             }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i10:p3",
+            "target": "right",
+            "meaningByLocale": {
+              "ru": "правый, не ошибающийся",
+              "uk": "правий, який не помиляється"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i10:p4",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудившийся",
+              "uk": "який заблукав"
+            }
           }
         ],
         "leftColumn": [
-          "possible",
-          "well",
           "safe",
-          "welcome"
+          "welcome",
+          "right",
+          "lost"
         ],
         "rightColumn": [
-          "возможный",
-          "хорошо себя чувствующий",
           "в безопасности",
-          "желанный гость"
+          "желанный гость",
+          "правый, не ошибающийся",
+          "заблудившийся"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,17 +654,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i11",
-      "ordinal": 14,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Сестра и брат разобрали сумки. Подруга снова спрашивает: «Are they unpacked?» Послушайте и соберите ваш ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Сестра и брат разобрали сумки. Подруга снова спрашивает: «Are they unpacked?» Послушайте и соберите ваш ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -642,7 +685,7 @@
           {
             "responseId": "en:lesson-02:session-17:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Сестра и брат разобрали сумки. Подруга снова спрашивает: «Are they unpacked?» Послушайте и соберите ваш ответ",
             "feedbackByLocale": {
               "ru": "здесь нужно `Yes,` — `Yes, they are.`",
               "uk": "тут потрібно `Yes,` — `Yes, they are.`"
@@ -658,21 +701,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
+      "prompt": "Сестре и брату нехорошо после дороги. Подруга спрашивает: «Are they well?» Ответьте коротким «нет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
+      "accessibilityLabel": "Сестре и брату нехорошо после дороги. Подруга спрашивает: «Are they well?» Ответьте коротким «нет»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "No, they are not.",
         "localizedMeaning": {
-          "ru": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
-          "uk": "Анні й Олегу недобре. На «Are they well?» дайте коротку відповідь «ні»"
+          "ru": "Сестре и брату нехорошо после дороги. Подруга спрашивает: «Are they well?» Ответьте коротким «нет»",
+          "uk": "Сестрі й братові недобре після дороги. Подруга питає: «Are they well?» Відповідайте коротким «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -687,7 +730,7 @@
           {
             "responseId": "en:lesson-02:session-17:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
+            "testedDimension": "Сестре и брату нехорошо после дороги. Подруга спрашивает: «Are they well?» Ответьте коротким «нет»",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, they are not.`",
               "uk": "тут потрібно `No,` — `No, they are not.`"
@@ -702,26 +745,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-17:word:stiff",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stiff",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:word:stiff:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stiff",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:word:stiff:audio",
+          "transcript": "stiff"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:word:stiff:r1",
+            "targetText": "stiff",
+            "meaningByLocale": {
+              "ru": "затёкший, скованный. I'm stiff — «У меня всё затекло». После долгой дороги, сна в неудобной позе, тренировки.",
+              "uk": "затерплий, скутий. I'm stiff — «У мене все затерпло». Після довгої дороги, сну в незручній позі, тренування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stiff",
+          "definitionByLocale": {
+            "ru": "затёкший, скованный. I'm stiff — «У меня всё затекло». После долгой дороги, сна в неудобной позе, тренировки.",
+            "uk": "затерплий, скутий. I'm stiff — «У мене все затерпло». Після довгої дороги, сну в незручній позі, тренування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-17:i13",
-      "ordinal": 16,
+      "ordinal": 18,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы с другом уже добрались до безопасного места. Хозяин спрашивает вас обоих: «Are you safe?» Ответьте коротким «да» за двоих",
+      "prompt": "Вы шесть часов просидели в автобусе и с трудом разгибаетесь. Коротко скажите подруге, что у вас всё затекло",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i13:audio"
       ],
-      "accessibilityLabel": "Вы с другом уже добрались до безопасного места. Хозяин спрашивает вас обоих: «Are you safe?» Ответьте коротким «да» за двоих",
+      "accessibilityLabel": "Вы шесть часов просидели в автобусе и с трудом разгибаетесь. Коротко скажите подруге, что у вас всё затекло",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-17:i13:audio",
-          "transcript": "Yes, we are."
+          "transcript": "I'm stiff."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Yes, we are.",
+        "targetPhrase": "I'm stiff.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,16 +821,59 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-17:word:unpacked",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unpacked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:word:unpacked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unpacked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:word:unpacked:audio",
+          "transcript": "unpacked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:word:unpacked:r1",
+            "targetText": "unpacked",
+            "meaningByLocale": {
+              "ru": "распакованный. They are unpacked — «Они распакованы». О сумках, чемоданах, коробках.",
+              "uk": "розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unpacked",
+          "definitionByLocale": {
+            "ru": "распакованный. They are unpacked — «Они распакованы». О сумках, чемоданах, коробках.",
+            "uk": "розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-17:i14",
-      "ordinal": 17,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
+      "prompt": "Вы достали из обеих сумок все вещи. Дополните фразу о сумках",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i14:r1",
-          "text": "is"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-02:session-17:i14:r2",
@@ -752,23 +881,23 @@
         },
         {
           "responseId": "en:lesson-02:session-17:i14:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
+      "accessibilityLabel": "Вы достали из обеих сумок все вещи. Дополните фразу о сумках",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
-          "uk": "Перенести зустріч можна. На «Is it possible?» доповніть коротку відповідь «так»"
+          "ru": "Вы достали из обеих сумок все вещи. Дополните фразу о сумках",
+          "uk": "Ви дістали з обох сумок усі речі. Доповніть фразу про сумки"
         },
-        "gappedTargetPhrase": "Yes, it ___.",
+        "gappedTargetPhrase": "They ___ unpacked.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-17:i14:r1",
-            "text": "is"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-02:session-17:i14:r2",
@@ -776,27 +905,27 @@
           },
           {
             "responseId": "en:lesson-02:session-17:i14:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
+        "testedDimension": "Вы достали из обеих сумок все вещи. Дополните фразу о сумках",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-17:i14:r2",
             "correct": false,
-            "testedDimension": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
+            "testedDimension": "Вы достали из обеих сумок все вещи. Дополните фразу о сумках",
             "feedbackByLocale": {
-              "ru": "С `it` нужно `is`.",
-              "uk": "З `it` потрібно `is`."
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
             }
           },
           {
             "responseId": "en:lesson-02:session-17:i14:r3",
             "correct": false,
-            "testedDimension": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
+            "testedDimension": "Вы достали из обеих сумок все вещи. Дополните фразу о сумках",
             "feedbackByLocale": {
-              "ru": "В ответе — `it is`.",
-              "uk": "У відповіді — `it is`."
+              "ru": "Сумок две — `They are`.",
+              "uk": "Сумок дві — `They are`."
             }
           }
         ]
@@ -804,52 +933,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-17:i15",
-      "ordinal": 18,
+      "interactionId": "en:lesson-02:session-17:word:carsick",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Карточка слова — carsick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:word:carsick:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — carsick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:word:carsick:audio",
+          "transcript": "carsick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:word:carsick:r1",
+            "targetText": "carsick",
+            "meaningByLocale": {
+              "ru": "которого укачало в дороге. Is she carsick? — «Её укачало?» В машине, автобусе.",
+              "uk": "якого заколисало в дорозі. Is she carsick? — «Її заколисало?» У машині, автобусі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carsick",
+          "definitionByLocale": {
+            "ru": "которого укачало в дороге. Is she carsick? — «Её укачало?» В машине, автобусе.",
+            "uk": "якого заколисало в дорозі. Is she carsick? — «Її заколисало?» У машині, автобусі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i15:r1",
-          "text": "He is not well."
+          "text": "He is not carsick."
         },
         {
           "responseId": "en:lesson-02:session-17:i15:r2",
-          "text": "He is not right."
+          "text": "He is not safe."
         },
         {
           "responseId": "en:lesson-02:session-17:i15:r3",
-          "text": "He is not safe."
+          "text": "He is not well."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-17:i15:audio",
-          "transcript": "He is not well."
+          "transcript": "He is not carsick."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-17:i15:r1",
-            "targetText": "He is not well.",
+            "targetText": "He is not carsick.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-17:i15:r2",
-            "targetText": "He is not right.",
+            "targetText": "He is not safe.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-17:i15:r3",
-            "targetText": "He is not safe.",
+            "targetText": "He is not well.",
             "meaningByLocale": null
           }
         ],
@@ -858,19 +1030,19 @@
           {
             "responseId": "en:lesson-02:session-17:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `well`, а в этом варианте — `right`.",
-              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `right`."
+              "ru": "В записи последнее слово — `carsick`, а в этом варианте — `safe`.",
+              "uk": "У записі останнє слово — `carsick`, а в цьому варіанті — `safe`."
             }
           },
           {
             "responseId": "en:lesson-02:session-17:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `well`, а в этом варианте — `safe`.",
-              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `safe`."
+              "ru": "В записи последнее слово — `carsick`, а в этом варианте — `well`.",
+              "uk": "У записі останнє слово — `carsick`, а в цьому варіанті — `well`."
             }
           }
         ],
@@ -881,62 +1053,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова прошлого занятия со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-17:i16:p1",
-            "target": "well",
+            "target": "long",
             "meaningByLocale": {
-              "ru": "хорошо себя чувствующий",
-              "uk": "той, хто добре почувається"
+              "ru": "длинный",
+              "uk": "довгий"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i16:p2",
-            "target": "right",
+            "target": "scary",
             "meaningByLocale": {
-              "ru": "правый, не ошибающийся",
-              "uk": "правий, той, хто не помиляється"
+              "ru": "страшный",
+              "uk": "страшний"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i16:p3",
-            "target": "possible",
+            "target": "boring",
             "meaningByLocale": {
-              "ru": "возможный",
-              "uk": "можливий"
+              "ru": "скучный",
+              "uk": "нудний"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i16:p4",
-            "target": "welcome",
+            "target": "romantic",
             "meaningByLocale": {
-              "ru": "желанный гость",
-              "uk": "бажаний гість"
+              "ru": "романтичный",
+              "uk": "романтичний"
             }
           }
         ],
         "leftColumn": [
-          "well",
-          "right",
-          "possible",
-          "welcome"
+          "long",
+          "scary",
+          "boring",
+          "romantic"
         ],
         "rightColumn": [
-          "хорошо себя чувствующий",
-          "правый, не ошибающийся",
-          "возможный",
-          "желанный гость"
+          "длинный",
+          "страшный",
+          "скучный",
+          "романтичный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -954,17 +1126,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После дороги вы плохо себя чувствуете. Хозяин спрашивает: «Are you well?» Ответьте коротким «нет», не повторяя well",
+      "prompt": "Вечером у вас разболелась голова. Подруга спрашивает: «Are you well?» Ответьте коротким «нет», не повторяя well",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i17:audio"
       ],
-      "accessibilityLabel": "После дороги вы плохо себя чувствуете. Хозяин спрашивает: «Are you well?» Ответьте коротким «нет», не повторяя well",
+      "accessibilityLabel": "Вечером у вас разболелась голова. Подруга спрашивает: «Are you well?» Ответьте коротким «нет», не повторяя well",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -994,11 +1166,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bd0c5c179b489916e26d8a5482b314f407010f97f3cd8f5ab1a16c65015325b5"
+  "learnerFingerprint": "aa4fea24ff48a373224666201c2a460dbbb848d6b5f9c2e19b6f3828786bc1bb"
 }

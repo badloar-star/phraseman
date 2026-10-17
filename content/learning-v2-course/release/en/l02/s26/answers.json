@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-26:word:careless",
+    "correctText": "careless",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-26:i01",
     "correctText": "He is careless.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-26:i04",
-    "correctText": "en:lesson-02:session-26:i04:p1=careless\nen:lesson-02:session-26:i04:p2=bored\nen:lesson-02:session-26:i04:p3=confused\nen:lesson-02:session-26:i04:p4=worried",
+    "correctText": "en:lesson-02:session-26:i04:p1=careless\nen:lesson-02:session-26:i04:p2=smooth\nen:lesson-02:session-26:i04:p3=glossy\nen:lesson-02:session-26:i04:p4=ugly",
     "correctResponseId": null
   },
   {
@@ -25,8 +30,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-26:word:ugly",
+    "correctText": "ugly",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-26:i06",
-    "correctText": "Is he unwell?",
+    "correctText": "Is it ugly?",
     "correctResponseId": null
   },
   {
@@ -40,8 +50,13 @@
     "correctResponseId": "en:lesson-02:session-26:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-26:word:glossy",
+    "correctText": "glossy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-26:i09",
-    "correctText": "He is unwell.",
+    "correctText": "It is glossy.",
     "correctResponseId": "en:lesson-02:session-26:i09:r1"
   },
   {
@@ -50,8 +65,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-26:word:smooth",
+    "correctText": "smooth",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-26:i11",
-    "correctText": "They are not worried.",
+    "correctText": "They are smooth.",
     "correctResponseId": null
   },
   {

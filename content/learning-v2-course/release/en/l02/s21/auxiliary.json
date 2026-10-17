@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-21:intro1:r2": {
-          "ru": "Это отрицание поломки. В условии лампа сломана.",
-          "uk": "Це заперечення поломки. За умовою лампа зламана."
+          "ru": "Yes подтвердит, что лампа сломана. А она цела: No, it's unplugged.",
+          "uk": "Yes підтвердить, що лампа зламана. А вона ціла: No, it's unplugged."
         },
         "en:lesson-02:session-21:intro1:r3": {
-          "ru": "Речь об одной лампе: `It's`.",
-          "uk": "Йдеться про одну лампу: `It's`."
+          "ru": "Выходит «Нет, она сломана», одно спорит с другим. Лампа цела: No, it's unplugged.",
+          "uk": "Виходить «Ні, вона зламана», одне суперечить іншому. Лампа ціла: No, it's unplugged."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-21:intro2:r2": {
-          "ru": "Между `it` и `not` нужно `is`.",
-          "uk": "Між `it` і `not` потрібно `is`."
+          "ru": "Без not выходит «Она висит ровно». А левый угол ниже: It's not straight.",
+          "uk": "Без not виходить «Вона висить рівно». А лівий кут нижчий: It's not straight."
         },
         "en:lesson-02:session-21:intro2:r3": {
-          "ru": "Так вы подтвердите поломку. Запасная лампа исправна.",
-          "uk": "Так ви підтвердите поломку. Запасна лампа справна."
+          "ru": "They're — про несколько вещей, а фотография одна: It's not straight.",
+          "uk": "They're — про кілька речей, а фотографія одна: It's not straight."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-21:intro3:r2": {
-          "ru": "С `they` нужно `are`.",
-          "uk": "З `they` потрібно `are`."
+          "ru": "Без not выходит «Они порваны». А края целые: They're not torn.",
+          "uk": "Без not виходить «Вони порвані». А краї цілі: They're not torn."
         },
         "en:lesson-02:session-21:intro3:r3": {
-          "ru": "Это подтвердит, что они внутри. В условии они снаружи.",
-          "uk": "Це підтвердить, що вони всередині. За умовою вони надворі."
+          "ru": "It's — про одну вещь, а афиш две: They're not torn.",
+          "uk": "It's — про одну річ, а афіш дві: They're not torn."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "600b984e9ec10a27bdc1c1e39e241b83c0fc452102078a022dcd19809b9e6ca7"
+  "auxiliaryFingerprint": "fd865fae903933ec2b0ade16c1158b775af1a405c062087ad500d693c646d68e"
 }

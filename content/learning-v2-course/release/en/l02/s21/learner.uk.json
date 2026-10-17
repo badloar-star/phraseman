@@ -9,17 +9,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У лампи пошкоджений дріт. Скажіть повною фразою, що вона зламана",
+      "prompt": "У другої лампи перебитий дріт. Скажіть повною фразою, що вона зламана",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У лампи пошкоджений дріт. Скажіть повною фразою, що вона зламана",
+      "accessibilityLabel": "У другої лампи перебитий дріт. Скажіть повною фразою, що вона зламана",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is broken.",
         "localizedMeaning": {
-          "ru": "У лампы повреждён провод. Скажите полной фразой, что она сломана",
-          "uk": "У лампи пошкоджений дріт. Скажіть повною фразою, що вона зламана"
+          "ru": "У второй лампы перебит провод. Скажите полной фразой, что она сломана",
+          "uk": "У другої лампи перебитий дріт. Скажіть повною фразою, що вона зламана"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +33,7 @@
           {
             "responseId": "en:lesson-02:session-21:i01:tile:d1",
             "correct": false,
-            "testedDimension": "У лампи пошкоджений дріт. Скажіть повною фразою, що вона зламана",
+            "testedDimension": "У другої лампи перебитий дріт. Скажіть повною фразою, що вона зламана",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is broken.`",
               "uk": "тут потрібно `is` — `It is broken.`"
@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про Олега",
+      "prompt": "Послухайте запитання подруги про друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-21:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про Олега",
+      "accessibilityLabel": "Послухайте запитання подруги про друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-02:session-21:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про Олега",
+            "testedDimension": "Послухайте запитання подруги про друга",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `inside`.",
               "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `inside`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-02:session-21:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про Олега",
+            "testedDimension": "Послухайте запитання подруги про друга",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `outside`.",
               "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `outside`."
@@ -129,7 +129,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запасна лампа працює. На «Is it broken?» доповніть коротку відповідь «ні»",
+      "prompt": "Запасна лампа працює. Друг питає: «Is it broken?» Доповніть коротку відповідь «ні»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i03:r1",
@@ -146,12 +146,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запасна лампа працює. На «Is it broken?» доповніть коротку відповідь «ні»",
+      "accessibilityLabel": "Запасна лампа працює. Друг питає: «Is it broken?» Доповніть коротку відповідь «ні»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Запасная лампа работает. На «Is it broken?» дополните короткое «нет»",
-          "uk": "Запасна лампа працює. На «Is it broken?» доповніть коротку відповідь «ні»"
+          "ru": "Запасная лампа работает. Друг спрашивает: «Is it broken?» Дополните короткое «нет»",
+          "uk": "Запасна лампа працює. Друг питає: «Is it broken?» Доповніть коротку відповідь «ні»"
         },
         "gappedTargetPhrase": "No, it ___ not.",
         "gapOptions": [
@@ -168,12 +168,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Запасна лампа працює. На «Is it broken?» доповніть коротку відповідь «ні»",
+        "testedDimension": "Запасна лампа працює. Друг питає: «Is it broken?» Доповніть коротку відповідь «ні»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-21:i03:r2",
             "correct": false,
-            "testedDimension": "Запасна лампа працює. На «Is it broken?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Запасна лампа працює. Друг питає: «Is it broken?» Доповніть коротку відповідь «ні»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -182,7 +182,7 @@
           {
             "responseId": "en:lesson-02:session-21:i03:r3",
             "correct": false,
-            "testedDimension": "Запасна лампа працює. На «Is it broken?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Запасна лампа працює. Друг питає: «Is it broken?» Доповніть коротку відповідь «ні»",
             "feedbackByLocale": {
               "ru": "Ответ — `No, it is not`.",
               "uk": "Відповідь — `No, it is not`."
@@ -198,58 +198,58 @@
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-21:i04:p1",
-            "target": "no",
+            "target": "unplugged",
             "meaningByLocale": {
-              "ru": "нет",
-              "uk": "ні"
+              "ru": "выключенный из розетки",
+              "uk": "вимкнений з розетки"
             }
           },
           {
             "pairId": "en:lesson-02:session-21:i04:p2",
-            "target": "broken",
+            "target": "straight",
             "meaningByLocale": {
-              "ru": "сломанный",
-              "uk": "зламаний"
+              "ru": "ровный",
+              "uk": "рівний"
             }
           },
           {
             "pairId": "en:lesson-02:session-21:i04:p3",
-            "target": "inside",
+            "target": "torn",
             "meaningByLocale": {
-              "ru": "внутри",
-              "uk": "усередині"
+              "ru": "порванный",
+              "uk": "порваний"
             }
           },
           {
             "pairId": "en:lesson-02:session-21:i04:p4",
-            "target": "outside",
+            "target": "tidy",
             "meaningByLocale": {
-              "ru": "снаружи",
-              "uk": "зовні"
+              "ru": "убранный, аккуратный",
+              "uk": "прибраний, охайний"
             }
           }
         ],
         "leftColumn": [
-          "no",
-          "broken",
-          "inside",
-          "outside"
+          "unplugged",
+          "straight",
+          "torn",
+          "tidy"
         ],
         "rightColumn": [
-          "ні",
-          "зламаний",
-          "усередині",
-          "зовні"
+          "вимкнений з розетки",
+          "рівний",
+          "порваний",
+          "прибраний, охайний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +266,84 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-21:i05",
+      "interactionId": "en:lesson-02:session-21:word:unplugged",
       "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unplugged",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-21:word:unplugged:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unplugged",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-21:word:unplugged:audio",
+          "transcript": "unplugged"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-21:word:unplugged:r1",
+            "targetText": "unplugged",
+            "meaningByLocale": {
+              "ru": "выключенный из розетки. It's unplugged — «Она не включена в розетку». О лампе, чайнике, телевизоре, зарядке.",
+              "uk": "вимкнений з розетки. It's unplugged — «Вона не ввімкнена в розетку». Про лампу, чайник, телевізор, зарядку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unplugged",
+          "definitionByLocale": {
+            "ru": "выключенный из розетки. It's unplugged — «Она не включена в розетку». О лампе, чайнике, телевизоре, зарядке.",
+            "uk": "вимкнений з розетки. It's unplugged — «Вона не ввімкнена в розетку». Про лампу, чайник, телевізор, зарядку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-21:i05",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Друг знайшов ще одну темну лампу й бачить, що вилка не в розетці. Послухайте його й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-21:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Друг знайшов ще одну темну лампу й бачить, що вилка не в розетці. Послухайте його й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-21:i05:audio",
-          "transcript": "Yes, she is."
+          "transcript": "It's unplugged."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, she is.",
+        "hiddenTargetPhrase": "It's unplugged.",
         "orderedTokens": [
-          "Yes,",
-          "she",
-          "is"
+          "It's",
+          "unplugged"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "They're"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-21:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Друг знайшов ще одну темну лампу й бачить, що вилка не в розетці. Послухайте його й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, she is.`",
-              "uk": "тут потрібно `Yes,` — `Yes, she is.`"
+              "ru": "лампа одна — `It's unplugged.`",
+              "uk": "лампа одна — `It's unplugged.`"
             }
           }
         ],
@@ -314,21 +356,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна й Олег на подвір’ї. На «Are they inside?» дайте коротку відповідь «ні»",
+      "prompt": "Подруга з братом на подвір’ї. Друг питає: «Are they inside?» Дайте коротку відповідь «ні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна й Олег на подвір’ї. На «Are they inside?» дайте коротку відповідь «ні»",
+      "accessibilityLabel": "Подруга з братом на подвір’ї. Друг питає: «Are they inside?» Дайте коротку відповідь «ні»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "No, they are not.",
         "localizedMeaning": {
-          "ru": "Анна и Олег во дворе. На «Are they inside?» ответьте коротким «нет»",
-          "uk": "Анна й Олег на подвір’ї. На «Are they inside?» дайте коротку відповідь «ні»"
+          "ru": "Подруга с братом во дворе. Друг спрашивает: «Are they inside?» Ответьте коротким «нет»",
+          "uk": "Подруга з братом на подвір’ї. Друг питає: «Are they inside?» Дайте коротку відповідь «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -343,7 +385,7 @@
           {
             "responseId": "en:lesson-02:session-21:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна й Олег на подвір’ї. На «Are they inside?» дайте коротку відповідь «ні»",
+            "testedDimension": "Подруга з братом на подвір’ї. Друг питає: «Are they inside?» Дайте коротку відповідь «ні»",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, they are not.`",
               "uk": "тут потрібно `No,` — `No, they are not.`"
@@ -358,26 +400,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-21:word:straight",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — straight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-21:word:straight:audio"
+      ],
+      "accessibilityLabel": "Картка слова — straight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-21:word:straight:audio",
+          "transcript": "straight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-21:word:straight:r1",
+            "targetText": "straight",
+            "meaningByLocale": {
+              "ru": "ровный, прямой. It's not straight — «Она висит неровно». О картине, полке, линии.",
+              "uk": "рівний, прямий. It's not straight — «Вона висить нерівно». Про картину, полицю, лінію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "straight",
+          "definitionByLocale": {
+            "ru": "ровный, прямой. It's not straight — «Она висит неровно». О картине, полке, линии.",
+            "uk": "рівний, прямий. It's not straight — «Вона висить нерівно». Про картину, полицю, лінію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-21:i07",
-      "ordinal": 10,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Дві рамки зламалися під час перевезення. Коротко скажіть, що вони зламані",
+      "prompt": "Друг поправив фотографію над сходами, і тепер кути на одному рівні. Скажіть коротко, що вона висить рівно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-21:i07:audio"
       ],
-      "accessibilityLabel": "Дві рамки зламалися під час перевезення. Коротко скажіть, що вони зламані",
+      "accessibilityLabel": "Друг поправив фотографію над сходами, і тепер кути на одному рівні. Скажіть коротко, що вона висить рівно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-21:i07:audio",
-          "transcript": "They're broken."
+          "transcript": "It's straight."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're broken.",
+        "targetPhrase": "It's straight.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,7 +477,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,52 +545,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-21:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-21:word:torn",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Анну й Олега",
+      "prompt": "Картка слова — torn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-21:word:torn:audio"
+      ],
+      "accessibilityLabel": "Картка слова — torn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-21:word:torn:audio",
+          "transcript": "torn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-21:word:torn:r1",
+            "targetText": "torn",
+            "meaningByLocale": {
+              "ru": "порванный. They're not torn — «Они не порваны». Об афише, пакете, джинсах, билете.",
+              "uk": "порваний. They're not torn — «Вони не порвані». Про афішу, пакет, джинси, квиток."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "torn",
+          "definitionByLocale": {
+            "ru": "порванный. They're not torn — «Они не порваны». Об афише, пакете, джинсах, билете.",
+            "uk": "порваний. They're not torn — «Вони не порвані». Про афішу, пакет, джинси, квиток."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що друг каже про афіші",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i09:r1",
-          "text": "They are outside."
+          "text": "They are not torn."
         },
         {
           "responseId": "en:lesson-02:session-21:i09:r2",
-          "text": "They are inside."
+          "text": "They are not broken."
         },
         {
           "responseId": "en:lesson-02:session-21:i09:r3",
-          "text": "They are upstairs."
+          "text": "They are not straight."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-21:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Анну й Олега",
+      "accessibilityLabel": "Послухайте, що друг каже про афіші",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-21:i09:audio",
-          "transcript": "They are outside."
+          "transcript": "They are not torn."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-21:i09:r1",
-            "targetText": "They are outside.",
+            "targetText": "They are not torn.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-21:i09:r2",
-            "targetText": "They are inside.",
+            "targetText": "They are not broken.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-21:i09:r3",
-            "targetText": "They are upstairs.",
+            "targetText": "They are not straight.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +642,19 @@
           {
             "responseId": "en:lesson-02:session-21:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну й Олега",
+            "testedDimension": "Послухайте, що друг каже про афіші",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `outside`, а в этом варианте — `inside`.",
-              "uk": "У записі останнє слово — `outside`, а в цьому варіанті — `inside`."
+              "ru": "В записи последнее слово — `torn`, а в этом варианте — `broken`.",
+              "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `broken`."
             }
           },
           {
             "responseId": "en:lesson-02:session-21:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну й Олега",
+            "testedDimension": "Послухайте, що друг каже про афіші",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `outside`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `outside`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи последнее слово — `torn`, а в этом варианте — `straight`.",
+              "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `straight`."
             }
           }
         ],
@@ -537,15 +665,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -609,42 +737,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-21:word:tidy",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tidy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-21:word:tidy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tidy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-21:word:tidy:audio",
+          "transcript": "tidy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-21:word:tidy:r1",
+            "targetText": "tidy",
+            "meaningByLocale": {
+              "ru": "убранный, аккуратный. It's not tidy — «Там не убрано». О комнате, столе, шкафе.",
+              "uk": "прибраний, охайний. It's not tidy — «Там не прибрано». Про кімнату, стіл, шафу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tidy",
+          "definitionByLocale": {
+            "ru": "убранный, аккуратный. It's not tidy — «Там не убрано». О комнате, столе, шкафе.",
+            "uk": "прибраний, охайний. It's not tidy — «Там не прибрано». Про кімнату, стіл, шафу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-21:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу",
+      "prompt": "Друг зазирнув у кімнату нагорі: там коробки й пил. Послухайте його й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-21:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "accessibilityLabel": "Друг зазирнув у кімнату нагорі: там коробки й пил. Послухайте його й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-21:i11:audio",
-          "transcript": "It's not broken."
+          "transcript": "It is not tidy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's not broken.",
+        "hiddenTargetPhrase": "It is not tidy.",
         "orderedTokens": [
-          "It's",
+          "It",
+          "is",
           "not",
-          "broken"
+          "tidy"
         ],
         "authoredDistractorTokens": [
-          "They're"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-21:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу",
+            "testedDimension": "Друг зазирнув у кімнату нагорі: там коробки й пил. Послухайте його й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's not broken.`",
-              "uk": "тут потрібно `It's` — `It's not broken.`"
+              "ru": "здесь нужно `is` — `It is not tidy.`",
+              "uk": "тут потрібно `is` — `It is not tidy.`"
             }
           }
         ],
@@ -657,21 +829,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег на верхньому поверсі. На «Is he upstairs?» дайте коротку відповідь «так»",
+      "prompt": "Друг на верхньому поверсі. Подруга питає вас: «Is he upstairs?» Дайте коротку відповідь «так»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег на верхньому поверсі. На «Is he upstairs?» дайте коротку відповідь «так»",
+      "accessibilityLabel": "Друг на верхньому поверсі. Подруга питає вас: «Is he upstairs?» Дайте коротку відповідь «так»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Yes, he is.",
         "localizedMeaning": {
-          "ru": "Олег на верхнем этаже. На «Is he upstairs?» ответьте коротким «да»",
-          "uk": "Олег на верхньому поверсі. На «Is he upstairs?» дайте коротку відповідь «так»"
+          "ru": "Друг на верхнем этаже. Подруга спрашивает вас: «Is he upstairs?» Ответьте коротким «да»",
+          "uk": "Друг на верхньому поверсі. Подруга питає вас: «Is he upstairs?» Дайте коротку відповідь «так»"
         },
         "orderedTokens": [
           "Yes,",
@@ -685,7 +857,7 @@
           {
             "responseId": "en:lesson-02:session-21:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Олег на верхньому поверсі. На «Is he upstairs?» дайте коротку відповідь «так»",
+            "testedDimension": "Друг на верхньому поверсі. Подруга питає вас: «Is he upstairs?» Дайте коротку відповідь «так»",
             "feedbackByLocale": {
               "ru": "здесь нужно `Yes,` — `Yes, he is.`",
               "uk": "тут потрібно `Yes,` — `Yes, he is.`"
@@ -701,17 +873,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви з другом на подвір’ї. Анна запитує вас обох: «Are you inside?» Дайте коротку відповідь «ні» за двох",
+      "prompt": "Ви з другом на подвір’ї. Подруга питає вас обох: «Are you inside?» Дайте коротку відповідь «ні» за двох",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-21:i13:audio"
       ],
-      "accessibilityLabel": "Ви з другом на подвір’ї. Анна запитує вас обох: «Are you inside?» Дайте коротку відповідь «ні» за двох",
+      "accessibilityLabel": "Ви з другом на подвір’ї. Подруга питає вас обох: «Are you inside?» Дайте коротку відповідь «ні» за двох",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -734,11 +906,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дві запасні лампи справні. Доповніть фразу про те, що вони не зламані",
+      "prompt": "Обидві афіші цілі. Доповніть фразу про те, що вони не порвані",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i14:r1",
@@ -755,14 +927,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дві запасні лампи справні. Доповніть фразу про те, що вони не зламані",
+      "accessibilityLabel": "Обидві афіші цілі. Доповніть фразу про те, що вони не порвані",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Две запасные лампы исправны. Дополните фразу о том, что они не сломаны",
-          "uk": "Дві запасні лампи справні. Доповніть фразу про те, що вони не зламані"
+          "ru": "Обе афиши целые. Дополните фразу о том, что они не порваны",
+          "uk": "Обидві афіші цілі. Доповніть фразу про те, що вони не порвані"
         },
-        "gappedTargetPhrase": "They ___ not broken.",
+        "gappedTargetPhrase": "They ___ not torn.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-21:i14:r1",
@@ -777,12 +949,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Дві запасні лампи справні. Доповніть фразу про те, що вони не зламані",
+        "testedDimension": "Обидві афіші цілі. Доповніть фразу про те, що вони не порвані",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-21:i14:r2",
             "correct": false,
-            "testedDimension": "Дві запасні лампи справні. Доповніть фразу про те, що вони не зламані",
+            "testedDimension": "Обидві афіші цілі. Доповніть фразу про те, що вони не порвані",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -791,10 +963,10 @@
           {
             "responseId": "en:lesson-02:session-21:i14:r3",
             "correct": false,
-            "testedDimension": "Дві запасні лампи справні. Доповніть фразу про те, що вони не зламані",
+            "testedDimension": "Обидві афіші цілі. Доповніть фразу про те, що вони не порвані",
             "feedbackByLocale": {
-              "ru": "Про две лампы — `They are not`.",
-              "uk": "Про дві лампи — `They are not`."
+              "ru": "Афиш две — `They are not torn`.",
+              "uk": "Афіш дві — `They are not torn`."
             }
           }
         ]
@@ -803,51 +975,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу",
+      "prompt": "Послухайте, що друг каже про виставку",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-21:i15:r1",
-          "text": "It is not public."
+          "text": "It is not private."
         },
         {
           "responseId": "en:lesson-02:session-21:i15:r2",
-          "text": "It is not broken."
+          "text": "It is not public."
         },
         {
           "responseId": "en:lesson-02:session-21:i15:r3",
-          "text": "It is not private."
+          "text": "It is not tidy."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-21:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу",
+      "accessibilityLabel": "Послухайте, що друг каже про виставку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-21:i15:audio",
-          "transcript": "It is not public."
+          "transcript": "It is not private."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-21:i15:r1",
-            "targetText": "It is not public.",
+            "targetText": "It is not private.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-21:i15:r2",
-            "targetText": "It is not broken.",
+            "targetText": "It is not public.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-21:i15:r3",
-            "targetText": "It is not private.",
+            "targetText": "It is not tidy.",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1028,19 @@
           {
             "responseId": "en:lesson-02:session-21:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу",
+            "testedDimension": "Послухайте, що друг каже про виставку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `public`, а в этом варианте — `broken`.",
-              "uk": "У записі останнє слово — `public`, а в цьому варіанті — `broken`."
+              "ru": "В записи последнее слово — `private`, а в этом варианте — `public`.",
+              "uk": "У записі останнє слово — `private`, а в цьому варіанті — `public`."
             }
           },
           {
             "responseId": "en:lesson-02:session-21:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу",
+            "testedDimension": "Послухайте, що друг каже про виставку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `public`, а в этом варианте — `private`.",
-              "uk": "У записі останнє слово — `public`, а в цьому варіанті — `private`."
+              "ru": "В записи последнее слово — `private`, а в этом варианте — `tidy`.",
+              "uk": "У записі останнє слово — `private`, а в цьому варіанті — `tidy`."
             }
           }
         ],
@@ -879,15 +1051,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -904,37 +1076,37 @@
             "target": "outside",
             "meaningByLocale": {
               "ru": "снаружи",
-              "uk": "зовні"
+              "uk": "надворі"
             }
           },
           {
             "pairId": "en:lesson-02:session-21:i16:p3",
-            "target": "upstairs",
+            "target": "private",
             "meaningByLocale": {
-              "ru": "наверху, на верхнем этаже",
-              "uk": "нагорі, на верхньому поверсі"
+              "ru": "личный",
+              "uk": "особистий"
             }
           },
           {
             "pairId": "en:lesson-02:session-21:i16:p4",
-            "target": "public",
+            "target": "yes",
             "meaningByLocale": {
-              "ru": "общедоступный",
-              "uk": "загальнодоступний"
+              "ru": "да",
+              "uk": "так"
             }
           }
         ],
         "leftColumn": [
           "inside",
           "outside",
-          "upstairs",
-          "public"
+          "private",
+          "yes"
         ],
         "rightColumn": [
           "усередині",
-          "зовні",
-          "нагорі, на верхньому поверсі",
-          "загальнодоступний"
+          "надворі",
+          "особистий",
+          "так"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-21:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг показує на справну запасну лампу й запитує: «Is it broken?» Дайте коротку відповідь «ні», не повторюючи broken",
+      "prompt": "Друг показує на справну запасну лампу й питає: «Is it broken?» Дайте коротку відповідь «ні», не повторюючи broken",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-21:i17:audio"
       ],
-      "accessibilityLabel": "Друг показує на справну запасну лампу й запитує: «Is it broken?» Дайте коротку відповідь «ні», не повторюючи broken",
+      "accessibilityLabel": "Друг показує на справну запасну лампу й питає: «Is it broken?» Дайте коротку відповідь «ні», не повторюючи broken",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4ba5448791f73493c20511554f3720c8d07e5311304f4fd81f9ee9435832bf8b"
+  "learnerFingerprint": "045086368d2a83bc83be9c6acc41ef63f587843c6e18f03c00972304509d9f78"
 }

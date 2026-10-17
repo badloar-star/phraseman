@@ -5,6 +5,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-17:word:well",
+    "correctText": "well",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-17:i02",
     "correctText": "She is well.",
     "correctResponseId": "en:lesson-02:session-17:i02:r1"
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-17:i04",
-    "correctText": "en:lesson-02:session-17:i04:p1=well\nen:lesson-02:session-17:i04:p2=welcome\nen:lesson-02:session-17:i04:p3=safe\nen:lesson-02:session-17:i04:p4=right",
+    "correctText": "en:lesson-02:session-17:i04:p1=well\nen:lesson-02:session-17:i04:p2=carsick\nen:lesson-02:session-17:i04:p3=stiff\nen:lesson-02:session-17:i04:p4=unpacked",
     "correctResponseId": null
   },
   {
@@ -46,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-17:i10",
-    "correctText": "en:lesson-02:session-17:i10:p1=possible\nen:lesson-02:session-17:i10:p2=well\nen:lesson-02:session-17:i10:p3=safe\nen:lesson-02:session-17:i10:p4=welcome",
+    "correctText": "en:lesson-02:session-17:i10:p1=safe\nen:lesson-02:session-17:i10:p2=welcome\nen:lesson-02:session-17:i10:p3=right\nen:lesson-02:session-17:i10:p4=lost",
     "correctResponseId": null
   },
   {
@@ -60,23 +65,38 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-17:word:stiff",
+    "correctText": "stiff",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-17:i13",
-    "correctText": "Yes, we are.",
+    "correctText": "I'm stiff.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-17:word:unpacked",
+    "correctText": "unpacked",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-17:i14",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-17:i14:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-17:word:carsick",
+    "correctText": "carsick",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-17:i15",
-    "correctText": "He is not well.",
+    "correctText": "He is not carsick.",
     "correctResponseId": "en:lesson-02:session-17:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-17:i16",
-    "correctText": "en:lesson-02:session-17:i16:p1=well\nen:lesson-02:session-17:i16:p2=right\nen:lesson-02:session-17:i16:p3=possible\nen:lesson-02:session-17:i16:p4=welcome",
+    "correctText": "en:lesson-02:session-17:i16:p1=long\nen:lesson-02:session-17:i16:p2=scary\nen:lesson-02:session-17:i16:p3=boring\nen:lesson-02:session-17:i16:p4=romantic",
     "correctResponseId": null
   },
   {

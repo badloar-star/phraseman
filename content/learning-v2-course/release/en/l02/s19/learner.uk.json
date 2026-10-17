@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-19:i01",
+      "interactionId": "en:lesson-02:session-19:word:guilty",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guilty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-19:word:guilty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guilty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-19:word:guilty:audio",
+          "transcript": "guilty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-19:word:guilty:r1",
+            "targetText": "guilty",
+            "meaningByLocale": {
+              "ru": "виноватый. I'm guilty — «Я виноват». О том, кто сделал что-то не так.",
+              "uk": "винний. I'm guilty — «Я винен». Про того, хто зробив щось не так."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guilty",
+          "definitionByLocale": {
+            "ru": "виноватый. I'm guilty — «Я виноват». О том, кто сделал что-то не так.",
+            "uk": "винний. I'm guilty — «Я винен». Про того, хто зробив щось не так."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-19:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви з’їли печиво для гостей. Визнайте провину повною фразою",
+      "prompt": "Ви взяли печиво для гостей. Зізнайтеся мамі повною фразою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з’їли печиво для гостей. Визнайте провину повною фразою",
+      "accessibilityLabel": "Ви взяли печиво для гостей. Зізнайтеся мамі повною фразою",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am guilty.",
         "localizedMeaning": {
-          "ru": "Вы съели печенье для гостей. Признайте вину полной фразой",
-          "uk": "Ви з’їли печиво для гостей. Визнайте провину повною фразою"
+          "ru": "Вы взяли печенье для гостей. Признайтесь маме полной фразой",
+          "uk": "Ви взяли печиво для гостей. Зізнайтеся мамі повною фразою"
         },
         "orderedTokens": [
           "I",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-19:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ви з’їли печиво для гостей. Визнайте провину повною фразою",
+            "testedDimension": "Ви взяли печиво для гостей. Зізнайтеся мамі повною фразою",
             "feedbackByLocale": {
               "ru": "здесь нужно `am` — `I am guilty.`",
               "uk": "тут потрібно `am` — `I am guilty.`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про Олега",
+      "prompt": "Послухайте запитання мами про брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-19:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про Олега",
+      "accessibilityLabel": "Послухайте запитання мами про брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-19:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про Олега",
+            "testedDimension": "Послухайте запитання мами про брата",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `alone`, а в этом варианте — `nearby`.",
               "uk": "У записі останнє слово — `alone`, а в цьому варіанті — `nearby`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-19:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про Олега",
+            "testedDimension": "Послухайте запитання мами про брата",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `alone`, а в этом варианте — `guilty`.",
               "uk": "У записі останнє слово — `alone`, а в цьому варіанті — `guilty`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+      "prompt": "Сестра не чіпала печиво. Мама питає: «Is she guilty?» Доповніть коротке «ні»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+      "accessibilityLabel": "Сестра не чіпала печиво. Мама питає: «Is she guilty?» Доповніть коротке «ні»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна не трогала печенье. На «Is she guilty?» дополните короткое «нет»",
-          "uk": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»"
+          "ru": "Сестра не трогала печенье. Мама спрашивает: «Is she guilty?» Дополните короткое «нет»",
+          "uk": "Сестра не чіпала печиво. Мама питає: «Is she guilty?» Доповніть коротке «ні»"
         },
         "gappedTargetPhrase": "No, she ___ not.",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+        "testedDimension": "Сестра не чіпала печиво. Мама питає: «Is she guilty?» Доповніть коротке «ні»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-19:i03:r2",
             "correct": false,
-            "testedDimension": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Сестра не чіпала печиво. Мама питає: «Is she guilty?» Доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "С `she` нужно `is`.",
               "uk": "З `she` потрібно `is`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-19:i03:r3",
             "correct": false,
-            "testedDimension": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Сестра не чіпала печиво. Мама питає: «Is she guilty?» Доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "Ответ: `No, she is not`.",
               "uk": "Відповідь: `No, she is not`."
@@ -194,15 +237,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -210,46 +253,46 @@
             "pairId": "en:lesson-02:session-19:i04:p1",
             "target": "guilty",
             "meaningByLocale": {
-              "ru": "виновный",
+              "ru": "виноватый",
               "uk": "винний"
             }
           },
           {
             "pairId": "en:lesson-02:session-19:i04:p2",
-            "target": "together",
+            "target": "gone",
             "meaningByLocale": {
-              "ru": "вместе",
-              "uk": "разом"
+              "ru": "пропавший",
+              "uk": "зниклий"
             }
           },
           {
             "pairId": "en:lesson-02:session-19:i04:p3",
-            "target": "alone",
+            "target": "greedy",
             "meaningByLocale": {
-              "ru": "один, без других",
-              "uk": "сам, без інших"
+              "ru": "жадный",
+              "uk": "жадібний"
             }
           },
           {
             "pairId": "en:lesson-02:session-19:i04:p4",
-            "target": "nearby",
+            "target": "sneaky",
             "meaningByLocale": {
-              "ru": "поблизости",
-              "uk": "поблизу"
+              "ru": "хитрый",
+              "uk": "хитрий"
             }
           }
         ],
         "leftColumn": [
           "guilty",
-          "together",
-          "alone",
-          "nearby"
+          "gone",
+          "greedy",
+          "sneaky"
         ],
         "rightColumn": [
           "винний",
-          "разом",
-          "сам, без інших",
-          "поблизу"
+          "зниклий",
+          "жадібний",
+          "хитрий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,17 +310,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Брат з’їв останнє печиво й питає вас про себе: «Am I guilty?» Послухайте й складіть вашу відповідь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-19:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Брат з’їв останнє печиво й питає вас про себе: «Am I guilty?» Послухайте й складіть вашу відповідь",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -298,7 +341,7 @@
           {
             "responseId": "en:lesson-02:session-19:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Брат з’їв останнє печиво й питає вас про себе: «Am I guilty?» Послухайте й складіть вашу відповідь",
             "feedbackByLocale": {
               "ru": "здесь нужно `Yes,` — `Yes, you are.`",
               "uk": "тут потрібно `Yes,` — `Yes, you are.`"
@@ -314,21 +357,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна не їла печива. Скажіть, що вона не винна",
+      "prompt": "Сестра печива не їла. Скажіть мамі, що вона не винна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна не їла печива. Скажіть, що вона не винна",
+      "accessibilityLabel": "Сестра печива не їла. Скажіть мамі, що вона не винна",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is not guilty.",
         "localizedMeaning": {
-          "ru": "Анна не ела печенье. Скажите, что она не виновата",
-          "uk": "Анна не їла печива. Скажіть, що вона не винна"
+          "ru": "Сестра печенье не ела. Скажите маме, что она не виновата",
+          "uk": "Сестра печива не їла. Скажіть мамі, що вона не винна"
         },
         "orderedTokens": [
           "She",
@@ -343,7 +386,7 @@
           {
             "responseId": "en:lesson-02:session-19:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна не їла печива. Скажіть, що вона не винна",
+            "testedDimension": "Сестра печива не їла. Скажіть мамі, що вона не винна",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is not guilty.`",
               "uk": "тут потрібно `is` — `She is not guilty.`"
@@ -359,17 +402,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i07",
-      "ordinal": 10,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви з другом ідете до господаря разом. Господар запитує вас обох: «Are you together?» Дайте коротку відповідь «так» за двох",
+      "prompt": "Ви із сестрою йдете зустрічати гостей разом. Мама питає вас обох: «Are you together?» Відповідайте коротким «так» за двох",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-19:i07:audio"
       ],
-      "accessibilityLabel": "Ви з другом ідете до господаря разом. Господар запитує вас обох: «Are you together?» Дайте коротку відповідь «так» за двох",
+      "accessibilityLabel": "Ви із сестрою йдете зустрічати гостей разом. Мама питає вас обох: «Are you together?» Відповідайте коротким «так» за двох",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -391,12 +434,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-19:word:greedy",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — greedy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-19:word:greedy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — greedy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-19:word:greedy:audio",
+          "transcript": "greedy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-19:word:greedy:r1",
+            "targetText": "greedy",
+            "meaningByLocale": {
+              "ru": "жадный. Is he greedy? — «Он жадный?» О человеке, который не делится.",
+              "uk": "жадібний. Is he greedy? — «Він жадібний?» Про людину, яка не ділиться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "greedy",
+          "definitionByLocale": {
+            "ru": "жадный. Is he greedy? — «Он жадный?» О человеке, который не делится.",
+            "uk": "жадібний. Is he greedy? — «Він жадібний?» Про людину, яка не ділиться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-19:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг просить купити ще печива. Запитайте, чи це терміново",
+      "prompt": "Брат узяв собі з другої тарілки п’ять печив одразу. Запитайте маму, чи він не жадібний",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i08:r1",
@@ -413,14 +499,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг просить купити ще печива. Запитайте, чи це терміново",
+      "accessibilityLabel": "Брат узяв собі з другої тарілки п’ять печив одразу. Запитайте маму, чи він не жадібний",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг просит купить ещё печенья. Спросите, срочно ли это",
-          "uk": "Друг просить купити ще печива. Запитайте, чи це терміново"
+          "ru": "Брат взял себе со второй тарелки пять печений сразу. Спросите маму, не жадный ли он",
+          "uk": "Брат узяв собі з другої тарілки п’ять печив одразу. Запитайте маму, чи він не жадібний"
         },
-        "gappedTargetPhrase": "___ it urgent?",
+        "gappedTargetPhrase": "___ he greedy?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-19:i08:r1",
@@ -435,24 +521,24 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Друг просить купити ще печива. Запитайте, чи це терміново",
+        "testedDimension": "Брат узяв собі з другої тарілки п’ять печив одразу. Запитайте маму, чи він не жадібний",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-19:i08:r2",
             "correct": false,
-            "testedDimension": "Друг просить купити ще печива. Запитайте, чи це терміново",
+            "testedDimension": "Брат узяв собі з другої тарілки п’ять печив одразу. Запитайте маму, чи він не жадібний",
             "feedbackByLocale": {
-              "ru": "С `it` нужно `Is`.",
-              "uk": "З `it` потрібно `Is`."
+              "ru": "С `he` нужно `Is`.",
+              "uk": "З `he` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-19:i08:r3",
             "correct": false,
-            "testedDimension": "Друг просить купити ще печива. Запитайте, чи це терміново",
+            "testedDimension": "Брат узяв собі з другої тарілки п’ять печив одразу. Запитайте маму, чи він не жадібний",
             "feedbackByLocale": {
-              "ru": "Вопрос начинается с `Is it`.",
-              "uk": "Запитання починається з `Is it`."
+              "ru": "Про брата — `Is he`.",
+              "uk": "Про брата — `Is he`."
             }
           }
         ]
@@ -461,11 +547,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Анну й Олега",
+      "prompt": "Послухайте, що мама каже про брата й сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i09:r1",
@@ -484,7 +570,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-19:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Анну й Олега",
+      "accessibilityLabel": "Послухайте, що мама каже про брата й сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -514,7 +600,7 @@
           {
             "responseId": "en:lesson-02:session-19:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну й Олега",
+            "testedDimension": "Послухайте, що мама каже про брата й сестру",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `together`, а в этом варианте — `nearby`.",
               "uk": "У записі останнє слово — `together`, а в цьому варіанті — `nearby`."
@@ -523,7 +609,7 @@
           {
             "responseId": "en:lesson-02:session-19:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну й Олега",
+            "testedDimension": "Послухайте, що мама каже про брата й сестру",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `together`, а в этом варианте — `guilty`.",
               "uk": "У записі останнє слово — `together`, а в цьому варіанті — `guilty`."
@@ -537,32 +623,32 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-19:i10:p1",
-            "target": "urgent",
+            "target": "together",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "вместе",
+              "uk": "разом"
             }
           },
           {
             "pairId": "en:lesson-02:session-19:i10:p2",
-            "target": "guilty",
+            "target": "alone",
             "meaningByLocale": {
-              "ru": "виновный",
-              "uk": "винний"
+              "ru": "один, без других",
+              "uk": "сам, без інших"
             }
           },
           {
@@ -575,24 +661,24 @@
           },
           {
             "pairId": "en:lesson-02:session-19:i10:p4",
-            "target": "alone",
+            "target": "hungry",
             "meaningByLocale": {
-              "ru": "один, без других",
-              "uk": "сам, без інших"
+              "ru": "голодный",
+              "uk": "голодний"
             }
           }
         ],
         "leftColumn": [
-          "urgent",
-          "guilty",
+          "together",
+          "alone",
           "nearby",
-          "alone"
+          "hungry"
         ],
         "rightColumn": [
-          "терміновий",
-          "винний",
+          "разом",
+          "сам, без інших",
           "поблизу",
-          "сам, без інших"
+          "голодний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,17 +696,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу",
+      "prompt": "Із шафи зникла й шоколадка. Ви її не чіпали. Послухайте й складіть, що ви кажете мамі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-19:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "accessibilityLabel": "Із шафи зникла й шоколадка. Ви її не чіпали. Послухайте й складіть, що ви кажете мамі",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -641,7 +727,7 @@
           {
             "responseId": "en:lesson-02:session-19:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу",
+            "testedDimension": "Із шафи зникла й шоколадка. Ви її не чіпали. Послухайте й складіть, що ви кажете мамі",
             "feedbackByLocale": {
               "ru": "здесь нужно `I'm` — `I'm not guilty.`",
               "uk": "тут потрібно `I'm` — `I'm not guilty.`"
@@ -657,21 +743,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег прийшов з Анною. На «Is he alone?» дайте коротку відповідь «ні»",
+      "prompt": "Брат прийшов на кухню разом із сестрою. Мама питає: «Is he alone?» Відповідайте коротким «ні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег прийшов з Анною. На «Is he alone?» дайте коротку відповідь «ні»",
+      "accessibilityLabel": "Брат прийшов на кухню разом із сестрою. Мама питає: «Is he alone?» Відповідайте коротким «ні»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "No, he is not.",
         "localizedMeaning": {
-          "ru": "Олег пришёл с Анной. На «Is he alone?» ответьте коротким «нет»",
-          "uk": "Олег прийшов з Анною. На «Is he alone?» дайте коротку відповідь «ні»"
+          "ru": "Брат пришёл на кухню вместе с сестрой. Мама спрашивает: «Is he alone?» Ответьте коротким «нет»",
+          "uk": "Брат прийшов на кухню разом із сестрою. Мама питає: «Is he alone?» Відповідайте коротким «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -686,7 +772,7 @@
           {
             "responseId": "en:lesson-02:session-19:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Олег прийшов з Анною. На «Is he alone?» дайте коротку відповідь «ні»",
+            "testedDimension": "Брат прийшов на кухню разом із сестрою. Мама питає: «Is he alone?» Відповідайте коротким «ні»",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, he is not.`",
               "uk": "тут потрібно `No,` — `No, he is not.`"
@@ -701,26 +787,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-19:word:sneaky",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sneaky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-19:word:sneaky:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sneaky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-19:word:sneaky:audio",
+          "transcript": "sneaky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-19:word:sneaky:r1",
+            "targetText": "sneaky",
+            "meaningByLocale": {
+              "ru": "хитрый, делающий что-то тайком. He's sneaky — «Он хитрый». О том, кто берёт что-то незаметно.",
+              "uk": "хитрий, який робить щось потай. He's sneaky — «Він хитрий». Про того, хто бере щось непомітно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sneaky",
+          "definitionByLocale": {
+            "ru": "хитрый, делающий что-то тайком. He's sneaky — «Он хитрый». О том, кто берёт что-то незаметно.",
+            "uk": "хитрий, який робить щось потай. He's sneaky — «Він хитрий». Про того, хто бере щось непомітно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-19:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна й Олег уже біля сусіднього будинку. Коротко скажіть, що вони поблизу",
+      "prompt": "Брат брав печиво, поки всі дивилися телевізор, і ніхто не помітив. Коротко скажіть мамі, що він хитрий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-19:i13:audio"
       ],
-      "accessibilityLabel": "Анна й Олег уже біля сусіднього будинку. Коротко скажіть, що вони поблизу",
+      "accessibilityLabel": "Брат брав печиво, поки всі дивилися телевізор, і ніхто не помітив. Коротко скажіть мамі, що він хитрий",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-19:i13:audio",
-          "transcript": "They're nearby."
+          "transcript": "He's sneaky."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're nearby.",
+        "targetPhrase": "He's sneaky.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,11 +864,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i14",
-      "ordinal": 17,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви з’їли печиво. На «Are you guilty?» доповніть коротку відповідь «так»",
+      "prompt": "Ви взяли печиво. Мама питає: «Are you guilty?» Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i14:r1",
@@ -756,12 +885,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з’їли печиво. На «Are you guilty?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Ви взяли печиво. Мама питає: «Are you guilty?» Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы съели печенье. На «Are you guilty?» дополните короткое «да»",
-          "uk": "Ви з’їли печиво. На «Are you guilty?» доповніть коротку відповідь «так»"
+          "ru": "Вы взяли печенье. Мама спрашивает: «Are you guilty?» Дополните короткое «да»",
+          "uk": "Ви взяли печиво. Мама питає: «Are you guilty?» Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, I ___.",
         "gapOptions": [
@@ -778,12 +907,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Ви з’їли печиво. На «Are you guilty?» доповніть коротку відповідь «так»",
+        "testedDimension": "Ви взяли печиво. Мама питає: «Are you guilty?» Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-19:i14:r2",
             "correct": false,
-            "testedDimension": "Ви з’їли печиво. На «Are you guilty?» доповніть коротку відповідь «так»",
+            "testedDimension": "Ви взяли печиво. Мама питає: «Are you guilty?» Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "О себе — `I am`.",
               "uk": "Про себе — `I am`."
@@ -792,7 +921,7 @@
           {
             "responseId": "en:lesson-02:session-19:i14:r3",
             "correct": false,
-            "testedDimension": "Ви з’їли печиво. На «Are you guilty?» доповніть коротку відповідь «так»",
+            "testedDimension": "Ви взяли печиво. Мама питає: «Are you guilty?» Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "Вопрос к вам, но ответ о себе: `Yes, I am`.",
               "uk": "Запитання до вас, але відповідь про себе: `Yes, I am`."
@@ -803,52 +932,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-19:i15",
-      "ordinal": 18,
+      "interactionId": "en:lesson-02:session-19:word:gone",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу",
+      "prompt": "Картка слова — gone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-19:word:gone:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-19:word:gone:audio",
+          "transcript": "gone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-19:word:gone:r1",
+            "targetText": "gone",
+            "meaningByLocale": {
+              "ru": "пропавший, закончившийся. They are gone — «Их больше нет». О печенье, деньгах, ключах.",
+              "uk": "зниклий, який закінчився. They are gone — «Їх більше немає». Про печиво, гроші, ключі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gone",
+          "definitionByLocale": {
+            "ru": "пропавший, закончившийся. They are gone — «Их больше нет». О печенье, деньгах, ключах.",
+            "uk": "зниклий, який закінчився. They are gone — «Їх більше немає». Про печиво, гроші, ключі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-19:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Мама відкриває коробку із запасним печивом. Послухайте, що вона каже",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i15:r1",
-          "text": "It is not urgent."
+          "text": "They are gone."
         },
         {
           "responseId": "en:lesson-02:session-19:i15:r2",
-          "text": "It is not possible."
+          "text": "They are together."
         },
         {
           "responseId": "en:lesson-02:session-19:i15:r3",
-          "text": "It is not obvious."
+          "text": "They are nearby."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-19:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу",
+      "accessibilityLabel": "Мама відкриває коробку із запасним печивом. Послухайте, що вона каже",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-19:i15:audio",
-          "transcript": "It is not urgent."
+          "transcript": "They are gone."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-19:i15:r1",
-            "targetText": "It is not urgent.",
+            "targetText": "They are gone.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-19:i15:r2",
-            "targetText": "It is not possible.",
+            "targetText": "They are together.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-19:i15:r3",
-            "targetText": "It is not obvious.",
+            "targetText": "They are nearby.",
             "meaningByLocale": null
           }
         ],
@@ -857,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-19:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу",
+            "testedDimension": "Мама відкриває коробку із запасним печивом. Послухайте, що вона каже",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `urgent`, а в этом варианте — `possible`.",
-              "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `possible`."
+              "ru": "В записи последнее слово — `gone`, а в этом варианте — `together`.",
+              "uk": "У записі останнє слово — `gone`, а в цьому варіанті — `together`."
             }
           },
           {
             "responseId": "en:lesson-02:session-19:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу",
+            "testedDimension": "Мама відкриває коробку із запасним печивом. Послухайте, що вона каже",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `urgent`, а в этом варианте — `obvious`.",
-              "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `obvious`."
+              "ru": "В записи последнее слово — `gone`, а в этом варианте — `nearby`.",
+              "uk": "У записі останнє слово — `gone`, а в цьому варіанті — `nearby`."
             }
           }
         ],
@@ -880,62 +1052,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте слова минулого заняття зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте слова минулого заняття зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-19:i16:p1",
-            "target": "together",
+            "target": "unwell",
             "meaningByLocale": {
-              "ru": "вместе",
-              "uk": "разом"
+              "ru": "плохо себя чувствующий",
+              "uk": "який погано почувається"
             }
           },
           {
             "pairId": "en:lesson-02:session-19:i16:p2",
-            "target": "alone",
+            "target": "allergic",
             "meaningByLocale": {
-              "ru": "один, без других",
-              "uk": "сам, без інших"
+              "ru": "с аллергией",
+              "uk": "з алергією"
             }
           },
           {
             "pairId": "en:lesson-02:session-19:i16:p3",
-            "target": "nearby",
+            "target": "feverish",
             "meaningByLocale": {
-              "ru": "поблизости",
-              "uk": "поблизу"
+              "ru": "с температурой",
+              "uk": "з температурою"
             }
           },
           {
             "pairId": "en:lesson-02:session-19:i16:p4",
-            "target": "urgent",
+            "target": "stuffy",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "душный",
+              "uk": "задушливий"
             }
           }
         ],
         "leftColumn": [
-          "together",
-          "alone",
-          "nearby",
-          "urgent"
+          "unwell",
+          "allergic",
+          "feverish",
+          "stuffy"
         ],
         "rightColumn": [
-          "разом",
-          "сам, без інших",
-          "поблизу",
-          "терміновий"
+          "який погано почувається",
+          "з алергією",
+          "з температурою",
+          "задушливий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,17 +1125,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-19:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви печиво не чіпали. Господар запитує: «Are you guilty?» Дайте коротку відповідь «ні», не повторюючи guilty",
+      "prompt": "Ви шоколадку не чіпали. Мама питає: «Are you guilty?» Відповідайте коротким «ні», не повторюючи guilty",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-19:i17:audio"
       ],
-      "accessibilityLabel": "Ви печиво не чіпали. Господар запитує: «Are you guilty?» Дайте коротку відповідь «ні», не повторюючи guilty",
+      "accessibilityLabel": "Ви шоколадку не чіпали. Мама питає: «Are you guilty?» Відповідайте коротким «ні», не повторюючи guilty",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -993,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ad3e29a1ad0f2f64207128ee7e2879898371c5cce61974984aff54aae18362d2"
+  "learnerFingerprint": "08c80f6fb77d0b5d56c8821e8ea0120fc769e24baf1bbecddbc6ad910c63abb8"
 }

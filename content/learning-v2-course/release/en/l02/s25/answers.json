@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-25:word:who",
+    "correctText": "who",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-25:i01",
     "correctText": "Who is absent?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:word:where",
+    "correctText": "where",
     "correctResponseId": null
   },
   {
@@ -16,12 +26,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-25:i04",
-    "correctText": "en:lesson-02:session-25:i04:p1=absent\nen:lesson-02:session-25:i04:p2=proud\nen:lesson-02:session-25:i04:p3=ashamed\nen:lesson-02:session-25:i04:p4=surprised",
+    "correctText": "en:lesson-02:session-25:i04:p1=who\nen:lesson-02:session-25:i04:p2=where\nen:lesson-02:session-25:i04:p3=what\nen:lesson-02:session-25:i04:p4=absent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-25:i05",
     "correctText": "Who is she?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:word:absent",
+    "correctText": "absent",
     "correctResponseId": null
   },
   {
@@ -32,6 +47,11 @@
   {
     "interactionId": "en:lesson-02:session-25:i07",
     "correctText": "Where is he?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:word:what",
+    "correctText": "what",
     "correctResponseId": null
   },
   {
@@ -46,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-25:i10",
-    "correctText": "en:lesson-02:session-25:i10:p1=well\nen:lesson-02:session-25:i10:p2=absent\nen:lesson-02:session-25:i10:p3=proud\nen:lesson-02:session-25:i10:p4=ashamed",
+    "correctText": "en:lesson-02:session-25:i10:p1=proud\nen:lesson-02:session-25:i10:p2=ashamed\nen:lesson-02:session-25:i10:p3=surprised\nen:lesson-02:session-25:i10:p4=well",
     "correctResponseId": null
   },
   {

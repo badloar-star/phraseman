@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-22:word:complete",
+    "correctText": "complete",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-22:i01",
     "correctText": "It is complete.",
     "correctResponseId": null
@@ -16,12 +21,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-22:i04",
-    "correctText": "en:lesson-02:session-22:i04:p1=complete\nen:lesson-02:session-22:i04:p2=rich\nen:lesson-02:session-22:i04:p3=poor\nen:lesson-02:session-22:i04:p4=famous",
+    "correctText": "en:lesson-02:session-22:i04:p1=complete\nen:lesson-02:session-22:i04:p2=bent\nen:lesson-02:session-22:i04:p3=extra\nen:lesson-02:session-22:i04:p4=square",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:word:bent",
+    "correctText": "bent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i05",
-    "correctText": "It is not complete.",
+    "correctText": "It is bent.",
     "correctResponseId": null
   },
   {
@@ -30,8 +40,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-22:word:square",
+    "correctText": "square",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-22:i07",
-    "correctText": "It's complete.",
+    "correctText": "It's square.",
     "correctResponseId": null
   },
   {
@@ -40,13 +55,18 @@
     "correctResponseId": "en:lesson-02:session-22:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-22:word:extra",
+    "correctText": "extra",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-22:i09",
-    "correctText": "It is obvious.",
+    "correctText": "They are extra.",
     "correctResponseId": "en:lesson-02:session-22:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-22:i10",
-    "correctText": "en:lesson-02:session-22:i10:p1=obvious\nen:lesson-02:session-22:i10:p2=complete\nen:lesson-02:session-22:i10:p3=rich\nen:lesson-02:session-22:i10:p4=poor",
+    "correctText": "en:lesson-02:session-22:i10:p1=obvious\nen:lesson-02:session-22:i10:p2=famous\nen:lesson-02:session-22:i10:p3=rich\nen:lesson-02:session-22:i10:p4=poor",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-22:i15",
-    "correctText": "Is it complete?",
+    "correctText": "Is it square?",
     "correctResponseId": "en:lesson-02:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-22:i16",
-    "correctText": "en:lesson-02:session-22:i16:p1=famous\nen:lesson-02:session-22:i16:p2=obvious\nen:lesson-02:session-22:i16:p3=complete\nen:lesson-02:session-22:i16:p4=poor",
+    "correctText": "en:lesson-02:session-22:i16:p1=square\nen:lesson-02:session-22:i16:p2=extra\nen:lesson-02:session-22:i16:p3=broken\nen:lesson-02:session-22:i16:p4=famous",
     "correctResponseId": null
   },
   {

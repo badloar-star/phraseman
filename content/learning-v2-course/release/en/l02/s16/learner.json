@@ -9,17 +9,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
+      "prompt": "Вы просите друга начать показ на час позже. Спросите, возможно ли это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
+      "accessibilityLabel": "Вы просите друга начать показ на час позже. Спросите, возможно ли это",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Is it possible?",
         "localizedMeaning": {
-          "ru": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
-          "uk": "Адміністратор зрозумів прохання перенести показ. Запитайте, чи це можливо"
+          "ru": "Вы просите друга начать показ на час позже. Спросите, возможно ли это",
+          "uk": "Ви просите друга почати показ на годину пізніше. Запитайте, чи це можливо"
         },
         "orderedTokens": [
           "Is",
@@ -33,7 +33,7 @@
           {
             "responseId": "en:lesson-02:session-16:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
+            "testedDimension": "Вы просите друга начать показ на час позже. Спросите, возможно ли это",
             "feedbackByLocale": {
               "ru": "здесь нужно `Is` — `Is it possible?`",
               "uk": "тут потрібно `Is` — `Is it possible?`"
@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу",
+      "prompt": "Послушайте, что друг говорит о новой лампочке для проектора",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-16:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу",
+      "accessibilityLabel": "Послушайте, что друг говорит о новой лампочке для проектора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-02:session-16:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что друг говорит о новой лампочке для проектора",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `urgent`, а в этом варианте — `possible`.",
               "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `possible`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-02:session-16:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что друг говорит о новой лампочке для проектора",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `urgent`, а в этом варианте — `obvious`.",
               "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `obvious`."
@@ -129,7 +129,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
+      "prompt": "Друг зовёт на показ только соседей по подъезду. Спросите, частный ли он",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i03:r1",
@@ -146,12 +146,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
+      "accessibilityLabel": "Друг зовёт на показ только соседей по подъезду. Спросите, частный ли он",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
-          "uk": "Ви обговорюєте показ у сусідньому залі. Запитайте, чи він приватний"
+          "ru": "Друг зовёт на показ только соседей по подъезду. Спросите, частный ли он",
+          "uk": "Друг кличе на показ лише сусідів із під’їзду. Запитайте, чи він приватний"
         },
         "gappedTargetPhrase": "___ it private?",
         "gapOptions": [
@@ -168,12 +168,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
+        "testedDimension": "Друг зовёт на показ только соседей по подъезду. Спросите, частный ли он",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-16:i03:r2",
             "correct": false,
-            "testedDimension": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
+            "testedDimension": "Друг зовёт на показ только соседей по подъезду. Спросите, частный ли он",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +182,10 @@
           {
             "responseId": "en:lesson-02:session-16:i03:r3",
             "correct": false,
-            "testedDimension": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
+            "testedDimension": "Друг зовёт на показ только соседей по подъезду. Спросите, частный ли он",
             "feedbackByLocale": {
-              "ru": "Про этот показ — `Is it`.",
-              "uk": "Про цей показ — `Is it`."
+              "ru": "Про один показ — `Is it`.",
+              "uk": "Про один показ — `Is it`."
             }
           }
         ]
@@ -198,58 +198,58 @@
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-16:i04:p1",
-            "target": "possible",
+            "target": "long",
             "meaningByLocale": {
-              "ru": "возможный",
-              "uk": "можливий"
+              "ru": "длинный",
+              "uk": "довгий"
             }
           },
           {
             "pairId": "en:lesson-02:session-16:i04:p2",
-            "target": "impossible",
+            "target": "scary",
             "meaningByLocale": {
-              "ru": "невозможный",
-              "uk": "неможливий"
+              "ru": "страшный",
+              "uk": "страшний"
             }
           },
           {
             "pairId": "en:lesson-02:session-16:i04:p3",
-            "target": "urgent",
+            "target": "boring",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "скучный",
+              "uk": "нудний"
             }
           },
           {
             "pairId": "en:lesson-02:session-16:i04:p4",
-            "target": "private",
+            "target": "romantic",
             "meaningByLocale": {
-              "ru": "частный, не для всех",
-              "uk": "приватний, не для всіх"
+              "ru": "романтичный",
+              "uk": "романтичний"
             }
           }
         ],
         "leftColumn": [
-          "possible",
-          "impossible",
-          "urgent",
-          "private"
+          "long",
+          "scary",
+          "boring",
+          "romantic"
         ],
         "rightColumn": [
-          "возможный",
-          "невозможный",
-          "срочный",
-          "частный, не для всех"
+          "длинный",
+          "страшный",
+          "скучный",
+          "романтичный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -271,13 +271,13 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Сестра друга пытается подключить старый проектор к новому ноутбуку. Послушайте и соберите, что она говорит",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Сестра друга пытается подключить старый проектор к новому ноутбуку. Послушайте и соберите, что она говорит",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -297,7 +297,7 @@
           {
             "responseId": "en:lesson-02:session-16:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Сестра друга пытается подключить старый проектор к новому ноутбуку. Послушайте и соберите, что она говорит",
             "feedbackByLocale": {
               "ru": "здесь нужно `It's` — `It's impossible.`",
               "uk": "тут потрібно `It's` — `It's impossible.`"
@@ -317,17 +317,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
+      "prompt": "На показ пускают только приглашённых соседей. Скажите, что он не общедоступный",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
+      "accessibilityLabel": "На показ пускают только приглашённых соседей. Скажите, что он не общедоступный",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is not public.",
         "localizedMeaning": {
-          "ru": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
-          "uk": "На ваш показ пускають лише запрошених. Скажіть, що він не загальнодоступний"
+          "ru": "На показ пускают только приглашённых соседей. Скажите, что он не общедоступный",
+          "uk": "На показ пускають лише запрошених сусідів. Скажіть, що він не загальнодоступний"
         },
         "orderedTokens": [
           "It",
@@ -342,7 +342,7 @@
           {
             "responseId": "en:lesson-02:session-16:i06:tile:d1",
             "correct": false,
-            "testedDimension": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
+            "testedDimension": "На показ пускают только приглашённых соседей. Скажите, что он не общедоступный",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is not public.`",
               "uk": "тут потрібно `is` — `It is not public.`"
@@ -362,13 +362,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг проверяет видео в наушниках. Спросите, без звука ли видео",
+      "prompt": "Друг включил начало фильма, но вы ничего не слышите. Спросите, без звука ли оно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i07:audio"
       ],
-      "accessibilityLabel": "Друг проверяет видео в наушниках. Спросите, без звука ли видео",
+      "accessibilityLabel": "Друг включил начало фильма, но вы ничего не слышите. Спросите, без звука ли оно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -395,7 +395,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
+      "prompt": "Две соседки громко обсуждают фильм прямо во время показа. Скажите, что они не молчат",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i08:r1",
@@ -412,12 +412,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
+      "accessibilityLabel": "Две соседки громко обсуждают фильм прямо во время показа. Скажите, что они не молчат",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
-          "uk": "Анна й Олег обговорюють фільм, поки ви перевіряєте запис. Скажіть, що вони не мовчать"
+          "ru": "Две соседки громко обсуждают фильм прямо во время показа. Скажите, что они не молчат",
+          "uk": "Дві сусідки голосно обговорюють фільм просто під час показу. Скажіть, що вони не мовчать"
         },
         "gappedTargetPhrase": "They ___ not silent.",
         "gapOptions": [
@@ -434,12 +434,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
+        "testedDimension": "Две соседки громко обсуждают фильм прямо во время показа. Скажите, что они не молчат",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-16:i08:r2",
             "correct": false,
-            "testedDimension": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
+            "testedDimension": "Две соседки громко обсуждают фильм прямо во время показа. Скажите, что они не молчат",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -448,10 +448,10 @@
           {
             "responseId": "en:lesson-02:session-16:i08:r3",
             "correct": false,
-            "testedDimension": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
+            "testedDimension": "Две соседки громко обсуждают фильм прямо во время показа. Скажите, что они не молчат",
             "feedbackByLocale": {
-              "ru": "Про Анну и Олега — `They are not`.",
-              "uk": "Про Анну й Олега — `They are not`."
+              "ru": "Про двух соседок — `They are not`.",
+              "uk": "Про двох сусідок — `They are not`."
             }
           }
         ]
@@ -459,52 +459,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-16:i09",
+      "interactionId": "en:lesson-02:session-16:word:scary",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Карточка слова — scary",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-16:word:scary:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scary",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:word:scary:audio",
+          "transcript": "scary"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-16:word:scary:r1",
+            "targetText": "scary",
+            "meaningByLocale": {
+              "ru": "страшный. It's not scary — «Он не страшный». О фильме, собаке, тёмной улице.",
+              "uk": "страшний. It's not scary — «Він не страшний». Про фільм, собаку, темну вулицю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scary",
+          "definitionByLocale": {
+            "ru": "страшный. It's not scary — «Он не страшный». О фильме, собаке, тёмной улице.",
+            "uk": "страшний. It's not scary — «Він не страшний». Про фільм, собаку, темну вулицю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i09",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос соседки о фильме",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i09:r1",
-          "text": "Is it obvious?"
+          "text": "Is it scary?"
         },
         {
           "responseId": "en:lesson-02:session-16:i09:r2",
-          "text": "Is it possible?"
+          "text": "Is it urgent?"
         },
         {
           "responseId": "en:lesson-02:session-16:i09:r3",
-          "text": "Is it urgent?"
+          "text": "Is it possible?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос соседки о фильме",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-16:i09:audio",
-          "transcript": "Is it obvious?"
+          "transcript": "Is it scary?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-16:i09:r1",
-            "targetText": "Is it obvious?",
+            "targetText": "Is it scary?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-16:i09:r2",
-            "targetText": "Is it possible?",
+            "targetText": "Is it urgent?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-16:i09:r3",
-            "targetText": "Is it urgent?",
+            "targetText": "Is it possible?",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +556,19 @@
           {
             "responseId": "en:lesson-02:session-16:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос соседки о фильме",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `possible`.",
-              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `possible`."
+              "ru": "В записи последнее слово — `scary`, а в этом варианте — `urgent`.",
+              "uk": "У записі останнє слово — `scary`, а в цьому варіанті — `urgent`."
             }
           },
           {
             "responseId": "en:lesson-02:session-16:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос соседки о фильме",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `urgent`.",
-              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `urgent`."
+              "ru": "В записи последнее слово — `scary`, а в этом варианте — `possible`.",
+              "uk": "У записі останнє слово — `scary`, а в цьому варіанті — `possible`."
             }
           }
         ],
@@ -536,62 +579,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-16:i10",
-      "ordinal": 13,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова второй главы со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова второй главы со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-16:i10:p1",
+            "target": "possible",
+            "meaningByLocale": {
+              "ru": "возможный",
+              "uk": "можливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-16:i10:p2",
+            "target": "urgent",
+            "meaningByLocale": {
+              "ru": "срочный",
+              "uk": "терміновий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-16:i10:p3",
+            "target": "private",
+            "meaningByLocale": {
+              "ru": "частный",
+              "uk": "приватний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-16:i10:p4",
             "target": "public",
             "meaningByLocale": {
               "ru": "общедоступный",
               "uk": "загальнодоступний"
             }
-          },
-          {
-            "pairId": "en:lesson-02:session-16:i10:p2",
-            "target": "private",
-            "meaningByLocale": {
-              "ru": "частный, не для всех",
-              "uk": "приватний, не для всіх"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-16:i10:p3",
-            "target": "obvious",
-            "meaningByLocale": {
-              "ru": "очевидный",
-              "uk": "очевидний"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-16:i10:p4",
-            "target": "silent",
-            "meaningByLocale": {
-              "ru": "беззвучный",
-              "uk": "беззвучний"
-            }
           }
         ],
         "leftColumn": [
-          "public",
+          "possible",
+          "urgent",
           "private",
-          "obvious",
-          "silent"
+          "public"
         ],
         "rightColumn": [
-          "общедоступный",
-          "частный, не для всех",
-          "очевидный",
-          "беззвучный"
+          "возможный",
+          "срочный",
+          "частный",
+          "общедоступный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -608,30 +651,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-16:word:boring",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boring",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-16:word:boring:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boring",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:word:boring:audio",
+          "transcript": "boring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-16:word:boring:r1",
+            "targetText": "boring",
+            "meaningByLocale": {
+              "ru": "скучный. It's boring — «Он скучный». О фильме, книге, уроке.",
+              "uk": "нудний. It's boring — «Він нудний». Про фільм, книжку, урок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boring",
+          "definitionByLocale": {
+            "ru": "скучный. It's boring — «Он скучный». О фильме, книге, уроке.",
+            "uk": "нудний. It's boring — «Він нудний». Про фільм, книжку, урок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-16:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Друг спрашивает, как вам середина фильма. Послушайте и соберите ваш ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Друг спрашивает, как вам середина фильма. Послушайте и соберите ваш ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-16:i11:audio",
-          "transcript": "It's not impossible."
+          "transcript": "It's boring."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's not impossible.",
+        "hiddenTargetPhrase": "It's boring.",
         "orderedTokens": [
           "It's",
-          "not",
-          "impossible"
+          "boring"
         ],
         "authoredDistractorTokens": [
           "They're"
@@ -640,10 +725,10 @@
           {
             "responseId": "en:lesson-02:session-16:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Друг спрашивает, как вам середина фильма. Послушайте и соберите ваш ответ",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's not impossible.`",
-              "uk": "тут потрібно `It's` — `It's not impossible.`"
+              "ru": "здесь нужно `It's` — `It's boring.`",
+              "uk": "тут потрібно `It's` — `It's boring.`"
             }
           }
         ],
@@ -656,21 +741,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-16:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
+      "prompt": "Гости придут через час, а в приглашении неверный адрес. Скажите другу, что исправить его срочно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
+      "accessibilityLabel": "Гости придут через час, а в приглашении неверный адрес. Скажите другу, что исправить его срочно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is urgent.",
         "localizedMeaning": {
-          "ru": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
-          "uk": "Гості скоро прийдуть, а адреса в запрошенні неправильна. Друг знає про помилку. Скажіть, що її виправлення термінове"
+          "ru": "Гости придут через час, а в приглашении неверный адрес. Скажите другу, что исправить его срочно",
+          "uk": "Гості прийдуть за годину, а в запрошенні неправильна адреса. Скажіть другові, що виправити її терміново"
         },
         "orderedTokens": [
           "It",
@@ -684,7 +769,7 @@
           {
             "responseId": "en:lesson-02:session-16:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
+            "testedDimension": "Гости придут через час, а в приглашении неверный адрес. Скажите другу, что исправить его срочно",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is urgent.`",
               "uk": "тут потрібно `is` — `It is urgent.`"
@@ -699,26 +784,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-16:word:romantic",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — romantic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-16:word:romantic:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — romantic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:word:romantic:audio",
+          "transcript": "romantic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-16:word:romantic:r1",
+            "targetText": "romantic",
+            "meaningByLocale": {
+              "ru": "романтичный. It's romantic — «Он романтичный». О фильме, ужине при свечах, прогулке.",
+              "uk": "романтичний. It's romantic — «Він романтичний». Про фільм, вечерю при свічках, прогулянку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "romantic",
+          "definitionByLocale": {
+            "ru": "романтичный. It's romantic — «Он романтичный». О фильме, ужине при свечах, прогулке.",
+            "uk": "романтичний. It's romantic — «Він романтичний». Про фільм, вечерю при свічках, прогулянку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-16:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы обсуждаете, понятно ли гостям, где вход. Указателя нет, и все путаются. Коротко скажите, что это неочевидно",
+      "prompt": "Следующий фильм — о двух людях, которые влюбляются в Париже. Коротко скажите, что он романтичный",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i13:audio"
       ],
-      "accessibilityLabel": "Вы обсуждаете, понятно ли гостям, где вход. Указателя нет, и все путаются. Коротко скажите, что это неочевидно",
+      "accessibilityLabel": "Следующий фильм — о двух людях, которые влюбляются в Париже. Коротко скажите, что он романтичный",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-16:i13:audio",
-          "transcript": "It's not obvious."
+          "transcript": "It's romantic."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's not obvious.",
+        "targetPhrase": "It's romantic.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -732,12 +860,55 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-16:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-02:session-16:word:long",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — long",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-16:word:long:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — long",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:word:long:audio",
+          "transcript": "long"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-16:word:long:r1",
+            "targetText": "long",
+            "meaningByLocale": {
+              "ru": "длинный, долгий. Is it long? — «Он длинный?» О фильме, дороге, очереди.",
+              "uk": "довгий. Is it long? — «Він довгий?» Про фільм, дорогу, чергу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "long",
+          "definitionByLocale": {
+            "ru": "длинный, долгий. Is it long? — «Он длинный?» О фильме, дороге, очереди.",
+            "uk": "довгий. Is it long? — «Він довгий?» Про фільм, дорогу, чергу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+      "prompt": "Друг предлагает посмотреть второй фильм. Уже поздно. Спросите, длинный ли он",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i14:r1",
@@ -754,14 +925,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+      "accessibilityLabel": "Друг предлагает посмотреть второй фильм. Уже поздно. Спросите, длинный ли он",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
-          "uk": "У сусідньому залі теж показують фільм. Запитайте, чи той показ загальнодоступний"
+          "ru": "Друг предлагает посмотреть второй фильм. Уже поздно. Спросите, длинный ли он",
+          "uk": "Друг пропонує подивитися другий фільм. Уже пізно. Запитайте, чи він довгий"
         },
-        "gappedTargetPhrase": "___ it public?",
+        "gappedTargetPhrase": "___ it long?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-16:i14:r1",
@@ -776,12 +947,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+        "testedDimension": "Друг предлагает посмотреть второй фильм. Уже поздно. Спросите, длинный ли он",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-16:i14:r2",
             "correct": false,
-            "testedDimension": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+            "testedDimension": "Друг предлагает посмотреть второй фильм. Уже поздно. Спросите, длинный ли он",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -790,10 +961,10 @@
           {
             "responseId": "en:lesson-02:session-16:i14:r3",
             "correct": false,
-            "testedDimension": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+            "testedDimension": "Друг предлагает посмотреть второй фильм. Уже поздно. Спросите, длинный ли он",
             "feedbackByLocale": {
-              "ru": "Вопрос начинается с `Is it`.",
-              "uk": "Запитання починається з `Is it`."
+              "ru": "Вопрос про один фильм — `Is it`.",
+              "uk": "Запитання про один фільм — `Is it`."
             }
           }
         ]
@@ -802,11 +973,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-16:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу",
+      "prompt": "Послушайте, что друг говорит о показе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i15:r1",
@@ -825,7 +996,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-16:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу",
+      "accessibilityLabel": "Послушайте, что друг говорит о показе",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -855,7 +1026,7 @@
           {
             "responseId": "en:lesson-02:session-16:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что друг говорит о показе",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `private`, а в этом варианте — `public`.",
               "uk": "У записі останнє слово — `private`, а в цьому варіанті — `public`."
@@ -864,7 +1035,7 @@
           {
             "responseId": "en:lesson-02:session-16:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что друг говорит о показе",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `private`, а в этом варианте — `silent`.",
               "uk": "У записі останнє слово — `private`, а в цьому варіанті — `silent`."
@@ -878,62 +1049,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-16:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова прошлого занятия со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-16:i16:p1",
-            "target": "urgent",
+            "target": "silent",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "молчащий",
+              "uk": "мовчазний"
             }
           },
           {
             "pairId": "en:lesson-02:session-16:i16:p2",
-            "target": "obvious",
+            "target": "easy",
             "meaningByLocale": {
-              "ru": "очевидный",
-              "uk": "очевидний"
+              "ru": "лёгкий",
+              "uk": "легкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-16:i16:p3",
-            "target": "impossible",
+            "target": "difficult",
             "meaningByLocale": {
-              "ru": "невозможный",
-              "uk": "неможливий"
+              "ru": "трудный",
+              "uk": "складний"
             }
           },
           {
             "pairId": "en:lesson-02:session-16:i16:p4",
-            "target": "silent",
+            "target": "awkward",
             "meaningByLocale": {
-              "ru": "молчащий",
-              "uk": "той, хто мовчить"
+              "ru": "неловкий",
+              "uk": "незручний"
             }
           }
         ],
         "leftColumn": [
-          "urgent",
-          "obvious",
-          "impossible",
-          "silent"
+          "silent",
+          "easy",
+          "difficult",
+          "awkward"
         ],
         "rightColumn": [
-          "срочный",
-          "очевидный",
-          "невозможный",
-          "молчащий"
+          "молчащий",
+          "лёгкий",
+          "трудный",
+          "неловкий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,25 +1122,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-16:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг просит вас отойти от проектора и обсудить новую идею. Вы не знаете, может ли разговор подождать. Спросите, срочно ли это",
+      "prompt": "Соседка из другого подъезда хочет привести на показ маленькую дочь. Спросите друга, страшный ли фильм",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Друг просит вас отойти от проектора и обсудить новую идею. Вы не знаете, может ли разговор подождать. Спросите, срочно ли это",
+      "accessibilityLabel": "Соседка из другого подъезда хочет привести на показ маленькую дочь. Спросите друга, страшный ли фильм",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-16:i17:audio",
-          "transcript": "Is it urgent?"
+          "transcript": "Is it scary?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it urgent?",
+        "targetPhrase": "Is it scary?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -991,11 +1162,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b41d380be347e486ebdcdde5fb9a2ea431db6f8e63dbe7e6dfa665d6ad2052bd"
+  "learnerFingerprint": "09fca42aafa24637cc2fe63f2e63994808fecc968c773195380fa3cdf0a2c44c"
 }

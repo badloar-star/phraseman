@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-17:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-17:intro1:r2": {
-          "ru": "Вопрос к вам. О себе отвечайте `I am`.",
-          "uk": "Запитання до вас. Про себе відповідайте `I am`."
+          "ru": "Спрашивают о вас. О себе отвечаем I am: Yes, I am.",
+          "uk": "Питають про вас. Про себе відповідаємо I am: Yes, I am."
         },
         "en:lesson-02:session-17:intro1:r3": {
-          "ru": "В таком коротком ответе нельзя заканчивать на `I'm`: нужно `I am`.",
-          "uk": "У такій короткій відповіді не можна закінчувати на `I'm`: потрібно `I am`."
+          "ru": "Короткий ответ нельзя заканчивать на I'm. Нужно Yes, I am.",
+          "uk": "Коротку відповідь не можна закінчувати на I'm. Потрібно Yes, I am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-17:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-17:intro2:r2": {
-          "ru": "Между `she` и `not` нужно `is`.",
-          "uk": "Між `she` і `not` потрібно `is`."
+          "ru": "Это «нет». А сестру укачало: Yes, she is.",
+          "uk": "Це «ні». А сестру заколисало: Yes, she is."
         },
         "en:lesson-02:session-17:intro2:r3": {
-          "ru": "В ответе порядок `she is not`, а не `is she not`.",
-          "uk": "У відповіді порядок `she is not`, а не `is she not`."
+          "ru": "Короткий ответ нельзя заканчивать на she's. Нужно Yes, she is.",
+          "uk": "Коротку відповідь не можна закінчувати на she's. Потрібно Yes, she is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-17:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-17:intro3:r2": {
-          "ru": "С `they` нужно `are`.",
-          "uk": "З `they` потрібно `are`."
+          "ru": "Это «да». А сумки ещё застёгнуты: No, they are not.",
+          "uk": "Це «так». А сумки ще застебнуті: No, they are not."
         },
         "en:lesson-02:session-17:intro3:r3": {
-          "ru": "Короткий ответ заканчивается полной формой `they are`, не `they're`.",
-          "uk": "Коротка відповідь закінчується повною формою `they are`, не `they're`."
+          "ru": "Между they и not нужно are: No, they are not.",
+          "uk": "Між they і not потрібно are: No, they are not."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "374af9173b89fc8b6ced516b05aa52b12e2e2c09fba7ee6c5b4db358d91f347b"
+  "auxiliaryFingerprint": "02b130fb277cf1e37b8a17b8ce4da14d93b8b2620798cb2583951059e7dd1958"
 }

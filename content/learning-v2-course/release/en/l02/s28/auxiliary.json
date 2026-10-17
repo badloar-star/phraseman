@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-28:intro1:r2": {
-          "ru": "Между `I` и `flexible` нужно `am`.",
-          "uk": "Між `I` і `flexible` потрібно `am`."
+          "ru": "С not выходит «Мне подходит не всякий вариант». А вам удобны оба дня: I am flexible.",
+          "uk": "Із not виходить «Мені підходить не кожен варіант». А вам зручні обидва дні: I am flexible."
         },
         "en:lesson-02:session-28:intro1:r3": {
-          "ru": "Это отрицает готовность подстраиваться. Вы готовы изменить день.",
-          "uk": "Це заперечує готовність підлаштовуватися. Ви готові змінити день."
+          "ru": "Между I и flexible нужно am: I am flexible.",
+          "uk": "Між I і flexible потрібно am: I am flexible."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-28:intro2:r2": {
-          "ru": "Это «Я уверен». Нужно сообщить, что сама дата верна.",
-          "uk": "Це «Я впевнений». Потрібно повідомити, що сама дата правильна."
+          "ru": "Так звучит утверждение «Она толстая». Чтобы спросить, ставим Is вперёд: Is it thick?",
+          "uk": "Так звучить твердження «Вона товста». Щоб запитати, ставимо Is наперед: Is it thick?"
         },
         "en:lesson-02:session-28:intro2:r3": {
-          "ru": "Между `It` и `correct` нужно `is`.",
-          "uk": "Між `It` і `correct` потрібно `is`."
+          "ru": "С it нужно is: Is it thick?",
+          "uk": "З it потрібно is: Is it thick?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-28:intro3:r2": {
-          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `you`.",
-          "uk": "Це повідомлення. Для запитання поставте `Are` перед `you`."
+          "ru": "С not выходит «Она не просрочена». А срок прошёл неделю назад: It's overdue.",
+          "uk": "Із not виходить «Вона не прострочена». А термін минув тиждень тому: It's overdue."
         },
         "en:lesson-02:session-28:intro3:r3": {
-          "ru": "Это вопрос о том, прав ли собеседник, а вы уточняете, не шутит ли он.",
-          "uk": "Це запитання про те, чи співрозмовник має рацію, а ви уточнюєте, чи він не жартує."
+          "ru": "They're — про несколько вещей, а книга одна: It's overdue.",
+          "uk": "They're — про кілька речей, а книжка одна: It's overdue."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d9692a88b4450180f8f4c29a1aba71aeab949d78bf686c6cbdbcfbf448b4962b"
+  "auxiliaryFingerprint": "855b19340932346e6a3e52a8444bdc625ba520ed99add68310d2ceb5da098d12"
 }

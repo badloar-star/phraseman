@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-24:intro1:r2": {
-          "ru": "Так вы отрицаете плохое самочувствие Анны.",
-          "uk": "Так ви заперечуєте погане самопочуття Анни."
+          "ru": "С not выходит «Дождя нет». А по стеклу текут капли: It's rainy.",
+          "uk": "Із not виходить «Дощу немає». А по склу стікають краплі: It's rainy."
         },
         "en:lesson-02:session-24:intro1:r3": {
-          "ru": "С `she` нужно `is`.",
-          "uk": "З `she` потрібно `is`."
+          "ru": "О погоде говорим It's: It's rainy.",
+          "uk": "Про погоду кажемо It's: It's rainy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-24:intro2:r2": {
-          "ru": "Это подтвердит, что всё собрано. Детали пока не хватает.",
-          "uk": "Це підтвердить, що все складено. Деталі поки бракує."
+          "ru": "Без not выходит «Оно сладкое». А сахара в печенье нет: It's not sweet.",
+          "uk": "Без not виходить «Воно солодке». А цукру в печиві немає: It's not sweet."
         },
         "en:lesson-02:session-24:intro2:r3": {
-          "ru": "С `it` нужно `is`.",
-          "uk": "З `it` потрібно `is`."
+          "ru": "crunchy — «хрустящий». Друг спрашивает про сахар: It's not sweet.",
+          "uk": "crunchy — «хрусткий». Друг питає про цукор: It's not sweet."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-24:intro3:r2": {
-          "ru": "Анна не трогала печенье. Здесь нужно `innocent`.",
-          "uk": "Анна не чіпала печиво. Тут потрібно `innocent`."
+          "ru": "С not выходит «Они не хрустят». А хлебец громко хрустит: They're crunchy.",
+          "uk": "Із not виходить «Вони не хрумтять». А хлібець голосно хрумтить: They're crunchy."
         },
         "en:lesson-02:session-24:intro3:r3": {
-          "ru": "Речь об Анне: `She's`.",
-          "uk": "Йдеться про Анну: `She's`."
+          "ru": "It's — про одну вещь, а хлебцев целая пачка: They're crunchy.",
+          "uk": "It's — про одну річ, а хлібців ціла пачка: They're crunchy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "66f853154be1440ac85fe812c9fae971d5b8012c66c3d1f6ffef9ecdb9ecb278"
+  "auxiliaryFingerprint": "2b845271f2f7765fcd7ea65aa1f16cbf742efe873f684f64fb39eebf73e7138e"
 }

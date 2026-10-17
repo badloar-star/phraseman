@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-23:word:valid",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — valid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:valid:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — valid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:valid:audio",
+            "transcript": "valid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:valid:r1",
+              "targetText": "valid",
+              "meaningByLocale": {
+                "ru": "действительный. Is it valid? — «Он действителен?» О билете, паспорте, пропуске, скидке.",
+                "uk": "дійсний. Is it valid? — «Він дійсний?» Про квиток, паспорт, перепустку, знижку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "valid",
+            "definitionByLocale": {
+              "ru": "действительный. Is it valid? — «Он действителен?» О билете, паспорте, пропуске, скидке.",
+              "uk": "дійсний. Is it valid? — «Він дійсний?» Про квиток, паспорт, перепустку, знижку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Контролёр подтвердил, что билет действует. Сообщите это подруге полной фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Контролёр подтвердил, что билет действует. Сообщите это подруге полной фразой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is valid.",
+          "localizedMeaning": {
+            "ru": "Контролёр подтвердил, что билет действует. Сообщите это подруге полной фразой",
+            "uk": "Контролер підтвердив, що квиток дійсний. Повідомте це подрузі повною фразою"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "valid"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Контролёр подтвердил, что билет действует. Сообщите это подруге полной фразой",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is valid.`",
+                "uk": "тут потрібно `is` — `It is valid.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что друг говорит о подруге",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i02:r1",
+            "text": "She is married."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i02:r2",
+            "text": "She is single."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i02:r3",
+            "text": "She is silent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что друг говорит о подруге",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i02:audio",
+            "transcript": "She is married."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:i02:r1",
+              "targetText": "She is married.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i02:r2",
+              "targetText": "She is single.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i02:r3",
+              "targetText": "She is silent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что друг говорит о подруге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `married`, а в этом варианте — `single`.",
+                "uk": "У записі останнє слово — `married`, а в цьому варіанті — `single`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что друг говорит о подруге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `married`, а в этом варианте — `silent`.",
+                "uk": "У записі останнє слово — `married`, а в цьому варіанті — `silent`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы показываете контролёру два билета. Спросите, действительны ли они",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете контролёру два билета. Спросите, действительны ли они",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете контролёру два билета. Спросите, действительны ли они",
+            "uk": "Ви показуєте контролерові два квитки. Запитайте, чи дійсні вони"
+          },
+          "gappedTargetPhrase": "___ they valid?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-23:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Вы показываете контролёру два билета. Спросите, действительны ли они",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы показываете контролёру два билета. Спросите, действительны ли они",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы показываете контролёру два билета. Спросите, действительны ли они",
+              "feedbackByLocale": {
+                "ru": "Вопрос о двух билетах — `Are they valid?`.",
+                "uk": "Запитання про два квитки — `Are they valid?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-23:i04:p1",
+              "target": "valid",
+              "meaningByLocale": {
+                "ru": "действительный",
+                "uk": "дійсний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i04:p2",
+              "target": "subtitled",
+              "meaningByLocale": {
+                "ru": "с субтитрами",
+                "uk": "із субтитрами"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i04:p3",
+              "target": "dubbed",
+              "meaningByLocale": {
+                "ru": "дублированный",
+                "uk": "дубльований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i04:p4",
+              "target": "touching",
+              "meaningByLocale": {
+                "ru": "трогательный",
+                "uk": "зворушливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "valid",
+            "subtitled",
+            "dubbed",
+            "touching"
+          ],
+          "rightColumn": [
+            "действительный",
+            "с субтитрами",
+            "дублированный",
+            "трогательный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:word:dubbed",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dubbed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:dubbed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dubbed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:dubbed:audio",
+            "transcript": "dubbed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:dubbed:r1",
+              "targetText": "dubbed",
+              "meaningByLocale": {
+                "ru": "дублированный, переозвученный. It's not dubbed — «Он не дублирован». О фильме, мультфильме, сериале.",
+                "uk": "дубльований, переозвучений. It's not dubbed — «Він не дубльований». Про фільм, мультфільм, серіал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dubbed",
+            "definitionByLocale": {
+              "ru": "дублированный, переозвученный. It's not dubbed — «Он не дублирован». О фильме, мультфильме, сериале.",
+              "uk": "дубльований, переозвучений. It's not dubbed — «Він не дубльований». Про фільм, мультфільм, серіал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кассир отвечает другу про мультфильм. Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Кассир отвечает другу про мультфильм. Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i05:audio",
+            "transcript": "It is not dubbed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not dubbed.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "dubbed"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Кассир отвечает другу про мультфильм. Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not dubbed.`",
+                "uk": "тут потрібно `is` — `It is not dubbed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У вас с другом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас с другом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are different.",
+          "localizedMeaning": {
+            "ru": "У вас с другом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
+            "uk": "У вас із другом квитки на різні фільми. Скажіть повною фразою, що квитки різні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "different"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "У вас с другом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are different.`",
+                "uk": "тут потрібно `are` — `They are different.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг ни с кем не встречается. Коротко скажите, что он без пары",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Друг ни с кем не встречается. Коротко скажите, что он без пары",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i07:audio",
+            "transcript": "He's single."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's single.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга замужем. Друг спрашивает вас: «Is she married?» Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга замужем. Друг спрашивает вас: «Is she married?» Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга замужем. Друг спрашивает вас: «Is she married?» Дополните короткое «да»",
+            "uk": "Подруга заміжня. Друг питає вас: «Is she married?» Доповніть коротку відповідь «так»"
+          },
+          "gappedTargetPhrase": "Yes, she ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-23:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга замужем. Друг спрашивает вас: «Is she married?» Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга замужем. Друг спрашивает вас: «Is she married?» Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `she` нужно `is`.",
+                "uk": "З `she` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга замужем. Друг спрашивает вас: «Is she married?» Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Короткий ответ — `Yes, she is`.",
+                "uk": "Коротка відповідь — `Yes, she is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:word:subtitled",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — subtitled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:subtitled:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — subtitled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:subtitled:audio",
+            "transcript": "subtitled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:subtitled:r1",
+              "targetText": "subtitled",
+              "meaningByLocale": {
+                "ru": "с субтитрами. It's subtitled — «Он с субтитрами». О фильме, сериале, видео.",
+                "uk": "із субтитрами. It's subtitled — «Він із субтитрами». Про фільм, серіал, відео."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "subtitled",
+            "definitionByLocale": {
+              "ru": "с субтитрами. It's subtitled — «Он с субтитрами». О фильме, сериале, видео.",
+              "uk": "із субтитрами. It's subtitled — «Він із субтитрами». Про фільм, серіал, відео."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о французском фильме",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i09:r1",
+            "text": "It is subtitled."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i09:r2",
+            "text": "It is silent."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i09:r3",
+            "text": "It is touching."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о французском фильме",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i09:audio",
+            "transcript": "It is subtitled."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:i09:r1",
+              "targetText": "It is subtitled.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i09:r2",
+              "targetText": "It is silent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i09:r3",
+              "targetText": "It is touching.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о французском фильме",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `subtitled`, а в этом варианте — `silent`.",
+                "uk": "У записі останнє слово — `subtitled`, а в цьому варіанті — `silent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о французском фильме",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `subtitled`, а в этом варианте — `touching`.",
+                "uk": "У записі останнє слово — `subtitled`, а в цьому варіанті — `touching`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-23:i10:p1",
+              "target": "silent",
+              "meaningByLocale": {
+                "ru": "беззвучный, немой",
+                "uk": "беззвучний, німий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i10:p2",
+              "target": "married",
+              "meaningByLocale": {
+                "ru": "женатый, замужняя",
+                "uk": "одружений, заміжня"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i10:p3",
+              "target": "single",
+              "meaningByLocale": {
+                "ru": "без пары",
+                "uk": "без пари"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i10:p4",
+              "target": "different",
+              "meaningByLocale": {
+                "ru": "разный, другой",
+                "uk": "різний, інший"
+              }
+            }
+          ],
+          "leftColumn": [
+            "silent",
+            "married",
+            "single",
+            "different"
+          ],
+          "rightColumn": [
+            "беззвучный, немой",
+            "женатый, замужняя",
+            "без пары",
+            "разный, другой"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткий ответ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткий ответ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i11:audio",
+            "transcript": "No, they are not."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "No, they are not.",
+          "orderedTokens": [
+            "No,",
+            "they",
+            "are",
+            "not"
+          ],
+          "authoredDistractorTokens": [
+            "Yes,"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткий ответ",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `No,` — `No, they are not.`",
+                "uk": "тут потрібно `No,` — `No, they are not.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i12",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В программке есть старый фильм без звука. Спросите друга, немой ли он",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В программке есть старый фильм без звука. Спросите друга, немой ли он",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it silent?",
+          "localizedMeaning": {
+            "ru": "В программке есть старый фильм без звука. Спросите друга, немой ли он",
+            "uk": "У програмці є старий фільм без звуку. Запитайте друга, чи він німий"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "silent"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "В программке есть старый фильм без звука. Спросите друга, немой ли он",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it silent?`",
+                "uk": "тут потрібно `Is` — `Is it silent?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:word:touching",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — touching",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:touching:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — touching",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:touching:audio",
+            "transcript": "touching"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:touching:r1",
+              "targetText": "touching",
+              "meaningByLocale": {
+                "ru": "трогательный. It's touching — «Он трогательный». О фильме, письме, истории, песне.",
+                "uk": "зворушливий. It's touching — «Він зворушливий». Про фільм, лист, історію, пісню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "touching",
+            "definitionByLocale": {
+              "ru": "трогательный. It's touching — «Он трогательный». О фильме, письме, истории, песне.",
+              "uk": "зворушливий. It's touching — «Він зворушливий». Про фільм, лист, історію, пісню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "После фильма подруга вытирает глаза. Скажите коротко, что фильм трогательный",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "После фильма подруга вытирает глаза. Скажите коротко, что фильм трогательный",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i13:audio",
+            "transcript": "It's touching."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's touching.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг не женат. Дополните фразу об этом",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг не женат. Дополните фразу об этом",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг не женат. Дополните фразу об этом",
+            "uk": "Друг не одружений. Доповніть фразу про це"
+          },
+          "gappedTargetPhrase": "He ___ not married.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-23:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг не женат. Дополните фразу об этом",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Друг не женат. Дополните фразу об этом",
+              "feedbackByLocale": {
+                "ru": "После `He` нужно `is`.",
+                "uk": "Після `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Друг не женат. Дополните фразу об этом",
+              "feedbackByLocale": {
+                "ru": "Про друга — `He is not married`.",
+                "uk": "Про друга — `He is not married`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос друга о билетах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i15:r1",
+            "text": "Are they different?"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i15:r2",
+            "text": "Are they valid?"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i15:r3",
+            "text": "Are they silent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос друга о билетах",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i15:audio",
+            "transcript": "Are they different?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:i15:r1",
+              "targetText": "Are they different?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i15:r2",
+              "targetText": "Are they valid?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i15:r3",
+              "targetText": "Are they silent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос друга о билетах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `different`, а в этом варианте — `valid`.",
+                "uk": "У записі останнє слово — `different`, а в цьому варіанті — `valid`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос друга о билетах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `different`, а в этом варианте — `silent`.",
+                "uk": "У записі останнє слово — `different`, а в цьому варіанті — `silent`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-23:i16:p1",
+              "target": "dubbed",
+              "meaningByLocale": {
+                "ru": "дублированный",
+                "uk": "дубльований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i16:p2",
+              "target": "touching",
+              "meaningByLocale": {
+                "ru": "трогательный",
+                "uk": "зворушливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i16:p3",
+              "target": "silent",
+              "meaningByLocale": {
+                "ru": "беззвучный, немой",
+                "uk": "беззвучний, німий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i16:p4",
+              "target": "different",
+              "meaningByLocale": {
+                "ru": "разный, другой",
+                "uk": "різний, інший"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dubbed",
+            "touching",
+            "silent",
+            "different"
+          ],
+          "rightColumn": [
+            "дублированный",
+            "трогательный",
+            "беззвучный, немой",
+            "разный, другой"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Контролёр подтвердил: оба билета действуют. Подруга спрашивает вас о билетах: «Are they valid?» Ответьте коротким «да», не повторяя valid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Контролёр подтвердил: оба билета действуют. Подруга спрашивает вас о билетах: «Are they valid?» Ответьте коротким «да», не повторяя valid",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i17:audio",
+            "transcript": "Yes, they are."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, they are.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-23:word:valid",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — valid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:valid:audio"
+        ],
+        "accessibilityLabel": "Картка слова — valid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:valid:audio",
+            "transcript": "valid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:valid:r1",
+              "targetText": "valid",
+              "meaningByLocale": {
+                "ru": "действительный. Is it valid? — «Он действителен?» О билете, паспорте, пропуске, скидке.",
+                "uk": "дійсний. Is it valid? — «Він дійсний?» Про квиток, паспорт, перепустку, знижку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "valid",
+            "definitionByLocale": {
+              "ru": "действительный. Is it valid? — «Он действителен?» О билете, паспорте, пропуске, скидке.",
+              "uk": "дійсний. Is it valid? — «Він дійсний?» Про квиток, паспорт, перепустку, знижку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Контролер підтвердив, що квиток дійсний. Повідомте це подрузі повною фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Контролер підтвердив, що квиток дійсний. Повідомте це подрузі повною фразою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is valid.",
+          "localizedMeaning": {
+            "ru": "Контролёр подтвердил, что билет действует. Сообщите это подруге полной фразой",
+            "uk": "Контролер підтвердив, що квиток дійсний. Повідомте це подрузі повною фразою"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "valid"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Контролер підтвердив, що квиток дійсний. Повідомте це подрузі повною фразою",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is valid.`",
+                "uk": "тут потрібно `is` — `It is valid.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що друг каже про подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i02:r1",
+            "text": "She is married."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i02:r2",
+            "text": "She is single."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i02:r3",
+            "text": "She is silent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що друг каже про подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i02:audio",
+            "transcript": "She is married."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:i02:r1",
+              "targetText": "She is married.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i02:r2",
+              "targetText": "She is single.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i02:r3",
+              "targetText": "She is silent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що друг каже про подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `married`, а в этом варианте — `single`.",
+                "uk": "У записі останнє слово — `married`, а в цьому варіанті — `single`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що друг каже про подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `married`, а в этом варианте — `silent`.",
+                "uk": "У записі останнє слово — `married`, а в цьому варіанті — `silent`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви показуєте контролерові два квитки. Запитайте, чи дійсні вони",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте контролерові два квитки. Запитайте, чи дійсні вони",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете контролёру два билета. Спросите, действительны ли они",
+            "uk": "Ви показуєте контролерові два квитки. Запитайте, чи дійсні вони"
+          },
+          "gappedTargetPhrase": "___ they valid?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-23:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Ви показуєте контролерові два квитки. Запитайте, чи дійсні вони",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви показуєте контролерові два квитки. Запитайте, чи дійсні вони",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви показуєте контролерові два квитки. Запитайте, чи дійсні вони",
+              "feedbackByLocale": {
+                "ru": "Вопрос о двух билетах — `Are they valid?`.",
+                "uk": "Запитання про два квитки — `Are they valid?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-23:i04:p1",
+              "target": "valid",
+              "meaningByLocale": {
+                "ru": "действительный",
+                "uk": "дійсний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i04:p2",
+              "target": "subtitled",
+              "meaningByLocale": {
+                "ru": "с субтитрами",
+                "uk": "із субтитрами"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i04:p3",
+              "target": "dubbed",
+              "meaningByLocale": {
+                "ru": "дублированный",
+                "uk": "дубльований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i04:p4",
+              "target": "touching",
+              "meaningByLocale": {
+                "ru": "трогательный",
+                "uk": "зворушливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "valid",
+            "subtitled",
+            "dubbed",
+            "touching"
+          ],
+          "rightColumn": [
+            "дійсний",
+            "із субтитрами",
+            "дубльований",
+            "зворушливий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:word:dubbed",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dubbed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:dubbed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dubbed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:dubbed:audio",
+            "transcript": "dubbed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:dubbed:r1",
+              "targetText": "dubbed",
+              "meaningByLocale": {
+                "ru": "дублированный, переозвученный. It's not dubbed — «Он не дублирован». О фильме, мультфильме, сериале.",
+                "uk": "дубльований, переозвучений. It's not dubbed — «Він не дубльований». Про фільм, мультфільм, серіал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dubbed",
+            "definitionByLocale": {
+              "ru": "дублированный, переозвученный. It's not dubbed — «Он не дублирован». О фильме, мультфильме, сериале.",
+              "uk": "дубльований, переозвучений. It's not dubbed — «Він не дубльований». Про фільм, мультфільм, серіал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Касир відповідає другові про мультфільм. Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Касир відповідає другові про мультфільм. Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i05:audio",
+            "transcript": "It is not dubbed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not dubbed.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "dubbed"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Касир відповідає другові про мультфільм. Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not dubbed.`",
+                "uk": "тут потрібно `is` — `It is not dubbed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У вас із другом квитки на різні фільми. Скажіть повною фразою, що квитки різні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас із другом квитки на різні фільми. Скажіть повною фразою, що квитки різні",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are different.",
+          "localizedMeaning": {
+            "ru": "У вас с другом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
+            "uk": "У вас із другом квитки на різні фільми. Скажіть повною фразою, що квитки різні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "different"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "У вас із другом квитки на різні фільми. Скажіть повною фразою, що квитки різні",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are different.`",
+                "uk": "тут потрібно `are` — `They are different.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг ні з ким не зустрічається. Коротко скажіть, що він без пари",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Друг ні з ким не зустрічається. Коротко скажіть, що він без пари",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i07:audio",
+            "transcript": "He's single."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's single.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга заміжня. Друг питає вас: «Is she married?» Доповніть коротку відповідь «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга заміжня. Друг питає вас: «Is she married?» Доповніть коротку відповідь «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга замужем. Друг спрашивает вас: «Is she married?» Дополните короткое «да»",
+            "uk": "Подруга заміжня. Друг питає вас: «Is she married?» Доповніть коротку відповідь «так»"
+          },
+          "gappedTargetPhrase": "Yes, she ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-23:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга заміжня. Друг питає вас: «Is she married?» Доповніть коротку відповідь «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга заміжня. Друг питає вас: «Is she married?» Доповніть коротку відповідь «так»",
+              "feedbackByLocale": {
+                "ru": "С `she` нужно `is`.",
+                "uk": "З `she` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга заміжня. Друг питає вас: «Is she married?» Доповніть коротку відповідь «так»",
+              "feedbackByLocale": {
+                "ru": "Короткий ответ — `Yes, she is`.",
+                "uk": "Коротка відповідь — `Yes, she is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:word:subtitled",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — subtitled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:subtitled:audio"
+        ],
+        "accessibilityLabel": "Картка слова — subtitled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:subtitled:audio",
+            "transcript": "subtitled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:subtitled:r1",
+              "targetText": "subtitled",
+              "meaningByLocale": {
+                "ru": "с субтитрами. It's subtitled — «Он с субтитрами». О фильме, сериале, видео.",
+                "uk": "із субтитрами. It's subtitled — «Він із субтитрами». Про фільм, серіал, відео."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "subtitled",
+            "definitionByLocale": {
+              "ru": "с субтитрами. It's subtitled — «Он с субтитрами». О фильме, сериале, видео.",
+              "uk": "із субтитрами. It's subtitled — «Він із субтитрами». Про фільм, серіал, відео."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про французький фільм",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i09:r1",
+            "text": "It is subtitled."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i09:r2",
+            "text": "It is silent."
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i09:r3",
+            "text": "It is touching."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про французький фільм",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i09:audio",
+            "transcript": "It is subtitled."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:i09:r1",
+              "targetText": "It is subtitled.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i09:r2",
+              "targetText": "It is silent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i09:r3",
+              "targetText": "It is touching.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про французький фільм",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `subtitled`, а в этом варианте — `silent`.",
+                "uk": "У записі останнє слово — `subtitled`, а в цьому варіанті — `silent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про французький фільм",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `subtitled`, а в этом варианте — `touching`.",
+                "uk": "У записі останнє слово — `subtitled`, а в цьому варіанті — `touching`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-23:i10:p1",
+              "target": "silent",
+              "meaningByLocale": {
+                "ru": "беззвучный, немой",
+                "uk": "беззвучний, німий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i10:p2",
+              "target": "married",
+              "meaningByLocale": {
+                "ru": "женатый, замужняя",
+                "uk": "одружений, заміжня"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i10:p3",
+              "target": "single",
+              "meaningByLocale": {
+                "ru": "без пары",
+                "uk": "без пари"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i10:p4",
+              "target": "different",
+              "meaningByLocale": {
+                "ru": "разный, другой",
+                "uk": "різний, інший"
+              }
+            }
+          ],
+          "leftColumn": [
+            "silent",
+            "married",
+            "single",
+            "different"
+          ],
+          "rightColumn": [
+            "беззвучний, німий",
+            "одружений, заміжня",
+            "без пари",
+            "різний, інший"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку відповідь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i11:audio",
+            "transcript": "No, they are not."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "No, they are not.",
+          "orderedTokens": [
+            "No,",
+            "they",
+            "are",
+            "not"
+          ],
+          "authoredDistractorTokens": [
+            "Yes,"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку відповідь",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `No,` — `No, they are not.`",
+                "uk": "тут потрібно `No,` — `No, they are not.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i12",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У програмці є старий фільм без звуку. Запитайте друга, чи він німий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У програмці є старий фільм без звуку. Запитайте друга, чи він німий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it silent?",
+          "localizedMeaning": {
+            "ru": "В программке есть старый фильм без звука. Спросите друга, немой ли он",
+            "uk": "У програмці є старий фільм без звуку. Запитайте друга, чи він німий"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "silent"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У програмці є старий фільм без звуку. Запитайте друга, чи він німий",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it silent?`",
+                "uk": "тут потрібно `Is` — `Is it silent?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:word:touching",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — touching",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:word:touching:audio"
+        ],
+        "accessibilityLabel": "Картка слова — touching",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:word:touching:audio",
+            "transcript": "touching"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:word:touching:r1",
+              "targetText": "touching",
+              "meaningByLocale": {
+                "ru": "трогательный. It's touching — «Он трогательный». О фильме, письме, истории, песне.",
+                "uk": "зворушливий. It's touching — «Він зворушливий». Про фільм, лист, історію, пісню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "touching",
+            "definitionByLocale": {
+              "ru": "трогательный. It's touching — «Он трогательный». О фильме, письме, истории, песне.",
+              "uk": "зворушливий. It's touching — «Він зворушливий». Про фільм, лист, історію, пісню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Після фільму подруга витирає очі. Скажіть коротко, що фільм зворушливий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Після фільму подруга витирає очі. Скажіть коротко, що фільм зворушливий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i13:audio",
+            "transcript": "It's touching."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's touching.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг не одружений. Доповніть фразу про це",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг не одружений. Доповніть фразу про це",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг не женат. Дополните фразу об этом",
+            "uk": "Друг не одружений. Доповніть фразу про це"
+          },
+          "gappedTargetPhrase": "He ___ not married.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-23:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг не одружений. Доповніть фразу про це",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Друг не одружений. Доповніть фразу про це",
+              "feedbackByLocale": {
+                "ru": "После `He` нужно `is`.",
+                "uk": "Після `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Друг не одружений. Доповніть фразу про це",
+              "feedbackByLocale": {
+                "ru": "Про друга — `He is not married`.",
+                "uk": "Про друга — `He is not married`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання друга про квитки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i15:r1",
+            "text": "Are they different?"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i15:r2",
+            "text": "Are they valid?"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i15:r3",
+            "text": "Are they silent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання друга про квитки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i15:audio",
+            "transcript": "Are they different?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-23:i15:r1",
+              "targetText": "Are they different?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i15:r2",
+              "targetText": "Are they valid?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i15:r3",
+              "targetText": "Are they silent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання друга про квитки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `different`, а в этом варианте — `valid`.",
+                "uk": "У записі останнє слово — `different`, а в цьому варіанті — `valid`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання друга про квитки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `different`, а в этом варианте — `silent`.",
+                "uk": "У записі останнє слово — `different`, а в цьому варіанті — `silent`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-23:i16:p1",
+              "target": "dubbed",
+              "meaningByLocale": {
+                "ru": "дублированный",
+                "uk": "дубльований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i16:p2",
+              "target": "touching",
+              "meaningByLocale": {
+                "ru": "трогательный",
+                "uk": "зворушливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i16:p3",
+              "target": "silent",
+              "meaningByLocale": {
+                "ru": "беззвучный, немой",
+                "uk": "беззвучний, німий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-23:i16:p4",
+              "target": "different",
+              "meaningByLocale": {
+                "ru": "разный, другой",
+                "uk": "різний, інший"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dubbed",
+            "touching",
+            "silent",
+            "different"
+          ],
+          "rightColumn": [
+            "дубльований",
+            "зворушливий",
+            "беззвучний, німий",
+            "різний, інший"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Контролер підтвердив: обидва квитки дійсні. Подруга питає вас про квитки: «Are they valid?» Дайте коротку відповідь «так», не повторюючи valid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Контролер підтвердив: обидва квитки дійсні. Подруга питає вас про квитки: «Are they valid?» Дайте коротку відповідь «так», не повторюючи valid",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i17:audio",
+            "transcript": "Yes, they are."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, they are.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-23:word:valid",
+      "correctText": "valid",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i01",
+      "correctText": "It is valid.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i02",
+      "correctText": "She is married.",
+      "correctResponseId": "en:lesson-02:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i03",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-02:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:word:dubbed",
+      "correctText": "dubbed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i05",
+      "correctText": "It is not dubbed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i06",
+      "correctText": "They are different.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i07",
+      "correctText": "He's single.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:word:subtitled",
+      "correctText": "subtitled",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i09",
+      "correctText": "It is subtitled.",
+      "correctResponseId": "en:lesson-02:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i11",
+      "correctText": "No, they are not.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i12",
+      "correctText": "Is it silent?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:word:touching",
+      "correctText": "touching",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i13",
+      "correctText": "It's touching.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-23:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i15",
+      "correctText": "Are they different?",
+      "correctResponseId": "en:lesson-02:session-23:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i17",
+      "correctText": "Yes, they are.",
+      "correctResponseId": null
+    }
+  ]
+}

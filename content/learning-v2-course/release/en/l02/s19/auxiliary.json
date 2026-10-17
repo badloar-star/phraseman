@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-19:intro1:r2": {
-          "ru": "Это обвинение в его адрес. Здесь признаётесь вы: `I'm`.",
-          "uk": "Це звинувачення на його адресу. Тут зізнаєтеся ви: `I'm`."
+          "ru": "Так вы сваливаете вину на брата. А печенье брали вы: I'm guilty.",
+          "uk": "Так ви перекладаєте провину на брата. А печиво брали ви: I'm guilty."
         },
         "en:lesson-02:session-19:intro1:r3": {
-          "ru": "Это отрицание вины. В условии печенье съели вы.",
-          "uk": "Це заперечення провини. За умовою печиво з’їли ви."
+          "ru": "Это «Я не виноват». Но печенье взяли вы.",
+          "uk": "Це «Я не винен». Але печиво взяли ви."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-19:intro2:r2": {
-          "ru": "Так вы подтвердите её вину. Анна печенье не трогала.",
-          "uk": "Так ви підтвердите її провину. Анна печиво не чіпала."
+          "ru": "Печенья было много, поэтому they: Yes, they are.",
+          "uk": "Печива було багато, тому they: Yes, they are."
         },
         "en:lesson-02:session-19:intro2:r3": {
-          "ru": "Между `she` и `not` нужно `is`.",
-          "uk": "Між `she` і `not` потрібно `is`."
+          "ru": "Это «нет». А на тарелке одни крошки: Yes, they are.",
+          "uk": "Це «ні». А на тарілці самі крихти: Yes, they are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-19:intro3:r2": {
-          "ru": "Это признание вашей вины. Отвечаем Олегу про него: `you are`.",
-          "uk": "Це визнання вашої провини. Відповідаємо Олегові про нього: `you are`."
+          "ru": "Это «да». А брат поделился с сестрой: No, he is not.",
+          "uk": "Це «так». А брат поділився із сестрою: No, he is not."
         },
         "en:lesson-02:session-19:intro3:r3": {
-          "ru": "С `you` нужно `are`.",
-          "uk": "З `you` потрібно `are`."
+          "ru": "Между he и not нужно is: No, he is not.",
+          "uk": "Між he і not потрібно is: No, he is not."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a77264d12fc406f74068d8b6ddad0b78ce1e29f5190d73280e1bfaf148954507"
+  "auxiliaryFingerprint": "a2675c7cead8b3f15b7cd32da57e33c310b8afb5cc0a3eddd99aca4530378f65"
 }

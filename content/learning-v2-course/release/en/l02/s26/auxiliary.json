@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-26:intro1:r2": {
-          "ru": "Между `He` и `careless` нужно `is`.",
-          "uk": "Між `He` і `careless` потрібно `is`."
+          "ru": "С not выходит «Он осторожен». А банка стоит на самом краю: He is careless.",
+          "uk": "Із not виходить «Він обережний». А банка стоїть на самому краю: He is careless."
         },
         "en:lesson-02:session-26:intro1:r3": {
-          "ru": "Это отрицает неосторожность. В условии Олег обращается с краской неосторожно.",
-          "uk": "Це заперечує необережність. За умовою Олег поводиться з фарбою необережно."
+          "ru": "Между He и careless нужно is: He is careless.",
+          "uk": "Між He і careless потрібно is: He is careless."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-26:intro2:r2": {
-          "ru": "Это «Я неосторожен», а вы говорите о беспокойстве.",
-          "uk": "Це «Я необережний», а ви говорите про хвилювання."
+          "ru": "С not выходит «Она не гладкая». А шероховатостей не осталось: It's smooth.",
+          "uk": "Із not виходить «Вона не гладка». А шорсткостей не лишилося: It's smooth."
         },
         "en:lesson-02:session-26:intro2:r3": {
-          "ru": "Вы говорите о себе: `I'm`.",
-          "uk": "Ви говорите про себе: `I'm`."
+          "ru": "They're — про несколько вещей, а лошадка одна: It's smooth.",
+          "uk": "They're — про кілька речей, а конячка одна: It's smooth."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-26:intro3:r2": {
-          "ru": "Это вопрос о месте: «Где он?»",
-          "uk": "Це запитання про місце: «Де він?»"
+          "ru": "Без not выходит «Он уродливый». А вам медведь нравится: It's not ugly.",
+          "uk": "Без not виходить «Він потворний». А вам ведмідь подобається: It's not ugly."
         },
         "en:lesson-02:session-26:intro3:r3": {
-          "ru": "Так вы спрашиваете о конкретном мужчине. Нужно узнать, кто именно неосторожен.",
-          "uk": "Так ви запитуєте про конкретного чоловіка. Потрібно дізнатися, хто саме необережний."
+          "ru": "She's — о женщине. Про медведя говорим It's: It's not ugly.",
+          "uk": "She's — про жінку. Про ведмедя кажемо It's: It's not ugly."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ef6ec353085c174e5020e5fd64742cf6bf15d70eefb9c5097d1290165ccbede3"
+  "auxiliaryFingerprint": "d1c0daafe4502de301ee315fa8bba73ae4c78919a4e2bd3ec054316cd43b3c56"
 }

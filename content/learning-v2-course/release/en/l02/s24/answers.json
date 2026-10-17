@@ -16,12 +16,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-24:i04",
-    "correctText": "en:lesson-02:session-24:i04:p1=well\nen:lesson-02:session-24:i04:p2=unwell\nen:lesson-02:session-24:i04:p3=yes\nen:lesson-02:session-24:i04:p4=no",
+    "correctText": "en:lesson-02:session-24:i04:p1=rainy\nen:lesson-02:session-24:i04:p2=cloudy\nen:lesson-02:session-24:i04:p3=sweet\nen:lesson-02:session-24:i04:p4=crunchy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:word:rainy",
+    "correctText": "rainy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-24:i05",
-    "correctText": "They are not valid.",
+    "correctText": "It is rainy.",
     "correctResponseId": null
   },
   {
@@ -30,8 +35,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-24:word:cloudy",
+    "correctText": "cloudy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-24:i07",
-    "correctText": "It's broken.",
+    "correctText": "It's cloudy.",
     "correctResponseId": null
   },
   {
@@ -40,8 +50,13 @@
     "correctResponseId": "en:lesson-02:session-24:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-24:word:sweet",
+    "correctText": "sweet",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-24:i09",
-    "correctText": "It is complete.",
+    "correctText": "It is sweet.",
     "correctResponseId": "en:lesson-02:session-24:i09:r1"
   },
   {
@@ -55,8 +70,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-24:word:crunchy",
+    "correctText": "crunchy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-24:i12",
-    "correctText": "No, it is not.",
+    "correctText": "They are crunchy.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-24:i16",
-    "correctText": "en:lesson-02:session-24:i16:p1=valid\nen:lesson-02:session-24:i16:p2=complete\nen:lesson-02:session-24:i16:p3=yes\nen:lesson-02:session-24:i16:p4=no",
+    "correctText": "en:lesson-02:session-24:i16:p1=valid\nen:lesson-02:session-24:i16:p2=complete\nen:lesson-02:session-24:i16:p3=broken\nen:lesson-02:session-24:i16:p4=no",
     "correctResponseId": null
   },
   {

@@ -9,17 +9,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
+      "prompt": "Подруга охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
+      "accessibilityLabel": "Подруга охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is generous.",
         "localizedMeaning": {
-          "ru": "Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
-          "uk": "Анна охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра"
+          "ru": "Подруга охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
+          "uk": "Подруга охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра"
         },
         "orderedTokens": [
           "She",
@@ -33,7 +33,7 @@
           {
             "responseId": "en:lesson-02:session-27:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
+            "testedDimension": "Подруга охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is generous.`",
               "uk": "тут потрібно `is` — `She is generous.`"
@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Послушайте фразу о друге",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Послушайте фразу о друге",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-02:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте фразу о друге",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `asleep`, а в этом варианте — `awake`.",
               "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `awake`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-02:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте фразу о друге",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `asleep`, а в этом варианте — `guilty`.",
               "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `guilty`."
@@ -129,7 +129,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы спрашиваете Олега об Анне: щедрая ли она?",
+      "prompt": "Вы спрашиваете друга о подруге: щедрая ли она?",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i03:r1",
@@ -146,12 +146,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы спрашиваете Олега об Анне: щедрая ли она?",
+      "accessibilityLabel": "Вы спрашиваете друга о подруге: щедрая ли она?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы спрашиваете Олега об Анне: щедрая ли она?",
-          "uk": "Ви запитуєте Олега про Анну: чи вона щедра?"
+          "ru": "Вы спрашиваете друга о подруге: щедрая ли она?",
+          "uk": "Ви запитуєте друга про подругу: чи вона щедра?"
         },
         "gappedTargetPhrase": "___ she generous?",
         "gapOptions": [
@@ -168,12 +168,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Вы спрашиваете Олега об Анне: щедрая ли она?",
+        "testedDimension": "Вы спрашиваете друга о подруге: щедрая ли она?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-27:i03:r2",
             "correct": false,
-            "testedDimension": "Вы спрашиваете Олега об Анне: щедрая ли она?",
+            "testedDimension": "Вы спрашиваете друга о подруге: щедрая ли она?",
             "feedbackByLocale": {
               "ru": "С `she` нужно `Is`.",
               "uk": "З `she` потрібно `Is`."
@@ -182,7 +182,7 @@
           {
             "responseId": "en:lesson-02:session-27:i03:r3",
             "correct": false,
-            "testedDimension": "Вы спрашиваете Олега об Анне: щедрая ли она?",
+            "testedDimension": "Вы спрашиваете друга о подруге: щедрая ли она?",
             "feedbackByLocale": {
               "ru": "Вопрос — `Is she generous?`.",
               "uk": "Запитання — `Is she generous?`."
@@ -208,48 +208,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-27:i04:p1",
-            "target": "generous",
+            "target": "burnt",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "подгоревший",
+              "uk": "підгорілий"
             }
           },
           {
             "pairId": "en:lesson-02:session-27:i04:p2",
-            "target": "awake",
+            "target": "spicy",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "острый",
+              "uk": "гострий"
             }
           },
           {
             "pairId": "en:lesson-02:session-27:i04:p3",
-            "target": "asleep",
+            "target": "bitter",
             "meaningByLocale": {
-              "ru": "спит",
-              "uk": "спить"
+              "ru": "горький",
+              "uk": "гіркий"
             }
           },
           {
             "pairId": "en:lesson-02:session-27:i04:p4",
-            "target": "available",
+            "target": "crispy",
             "meaningByLocale": {
-              "ru": "доступный, свободный",
-              "uk": "доступний, вільний"
+              "ru": "хрустящий, поджаристый",
+              "uk": "хрусткий, підсмажений"
             }
           }
         ],
         "leftColumn": [
-          "generous",
-          "awake",
-          "asleep",
-          "available"
+          "burnt",
+          "spicy",
+          "bitter",
+          "crispy"
         ],
         "rightColumn": [
-          "щедрый",
-          "не спит",
-          "спит",
-          "доступный, свободный"
+          "подгоревший",
+          "острый",
+          "горький",
+          "хрустящий, поджаристый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -319,17 +319,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна вышла из столовой. Спросите, где она",
+      "prompt": "Подруга вышла из столовой. Спросите, где она",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна вышла из столовой. Спросите, где она",
+      "accessibilityLabel": "Подруга вышла из столовой. Спросите, где она",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where is she?",
         "localizedMeaning": {
-          "ru": "Анна вышла из столовой. Спросите, где она",
-          "uk": "Анна вийшла з їдальні. Запитайте, де вона"
+          "ru": "Подруга вышла из столовой. Спросите, где она",
+          "uk": "Подруга вийшла з їдальні. Запитайте, де вона"
         },
         "orderedTokens": [
           "Where",
@@ -343,7 +343,7 @@
           {
             "responseId": "en:lesson-02:session-27:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна вышла из столовой. Спросите, где она",
+            "testedDimension": "Подруга вышла из столовой. Спросите, где она",
             "feedbackByLocale": {
               "ru": "здесь нужно `Where` — `Where is she?`",
               "uk": "тут потрібно `Where` — `Where is she?`"
@@ -363,13 +363,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег проснулся и разговаривает с вами. Коротко скажите, что он не спит",
+      "prompt": "Друг проснулся и разговаривает с вами. Коротко скажите, что он не спит",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i07:audio"
       ],
-      "accessibilityLabel": "Олег проснулся и разговаривает с вами. Коротко скажите, что он не спит",
+      "accessibilityLabel": "Друг проснулся и разговаривает с вами. Коротко скажите, что он не спит",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -396,7 +396,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»",
+      "prompt": "Хозяин разрешил вам занять свободный стол. Друг спрашивает: «Is it available?» Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i08:r1",
@@ -413,12 +413,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»",
+      "accessibilityLabel": "Хозяин разрешил вам занять свободный стол. Друг спрашивает: «Is it available?» Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»",
-          "uk": "Господар дозволив вам зайняти вільний стіл. На «Is it available?» доповніть коротку відповідь «так»"
+          "ru": "Хозяин разрешил вам занять свободный стол. Друг спрашивает: «Is it available?» Дополните короткое «да»",
+          "uk": "Господар дозволив вам зайняти вільний стіл. Друг питає: «Is it available?» Доповніть коротку відповідь «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -435,12 +435,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»",
+        "testedDimension": "Хозяин разрешил вам занять свободный стол. Друг спрашивает: «Is it available?» Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-27:i08:r2",
             "correct": false,
-            "testedDimension": "Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»",
+            "testedDimension": "Хозяин разрешил вам занять свободный стол. Друг спрашивает: «Is it available?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -449,7 +449,7 @@
           {
             "responseId": "en:lesson-02:session-27:i08:r3",
             "correct": false,
-            "testedDimension": "Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»",
+            "testedDimension": "Хозяин разрешил вам занять свободный стол. Друг спрашивает: «Is it available?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, it is`.",
               "uk": "Відповідь — `Yes, it is`."
@@ -460,52 +460,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-27:i09",
+      "interactionId": "en:lesson-02:session-27:word:burnt",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Карточка слова — burnt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:word:burnt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — burnt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:word:burnt:audio",
+          "transcript": "burnt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-27:word:burnt:r1",
+            "targetText": "burnt",
+            "meaningByLocale": {
+              "ru": "подгоревший. It's burnt — «Он подгорел». О тосте, каше, пироге, котлете.",
+              "uk": "підгорілий. It's burnt — «Він підгорів». Про тост, кашу, пиріг, котлету."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "burnt",
+          "definitionByLocale": {
+            "ru": "подгоревший. It's burnt — «Он подгорел». О тосте, каше, пироге, котлете.",
+            "uk": "підгорілий. It's burnt — «Він підгорів». Про тост, кашу, пиріг, котлету."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i09",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что подруга говорит о первом тосте",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i09:r1",
-          "text": "Who is guilty?"
+          "text": "It is burnt."
         },
         {
           "responseId": "en:lesson-02:session-27:i09:r2",
-          "text": "Who is generous?"
+          "text": "It is available."
         },
         {
           "responseId": "en:lesson-02:session-27:i09:r3",
-          "text": "Who is awake?"
+          "text": "It is broken."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте, что подруга говорит о первом тосте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-27:i09:audio",
-          "transcript": "Who is guilty?"
+          "transcript": "It is burnt."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-27:i09:r1",
-            "targetText": "Who is guilty?",
+            "targetText": "It is burnt.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i09:r2",
-            "targetText": "Who is generous?",
+            "targetText": "It is available.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i09:r3",
-            "targetText": "Who is awake?",
+            "targetText": "It is broken.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +557,19 @@
           {
             "responseId": "en:lesson-02:session-27:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте, что подруга говорит о первом тосте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `guilty`, а в этом варианте — `generous`.",
-              "uk": "У записі останнє слово — `guilty`, а в цьому варіанті — `generous`."
+              "ru": "В записи последнее слово — `burnt`, а в этом варианте — `available`.",
+              "uk": "У записі останнє слово — `burnt`, а в цьому варіанті — `available`."
             }
           },
           {
             "responseId": "en:lesson-02:session-27:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте, что подруга говорит о первом тосте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `guilty`, а в этом варианте — `awake`.",
-              "uk": "У записі останнє слово — `guilty`, а в цьому варіанті — `awake`."
+              "ru": "В записи последнее слово — `burnt`, а в этом варианте — `broken`.",
+              "uk": "У записі останнє слово — `burnt`, а в цьому варіанті — `broken`."
             }
           }
         ],
@@ -537,7 +580,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-27:i10",
-      "ordinal": 13,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -609,30 +652,73 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-27:word:crispy",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crispy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:word:crispy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crispy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:word:crispy:audio",
+          "transcript": "crispy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-27:word:crispy:r1",
+            "targetText": "crispy",
+            "meaningByLocale": {
+              "ru": "хрустящий, поджаристый. They are crispy — «Они хрустящие». О беконе, картошке, корочке хлеба.",
+              "uk": "хрусткий, підсмажений. They are crispy — «Вони хрусткі». Про бекон, картоплю, скоринку хліба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crispy",
+          "definitionByLocale": {
+            "ru": "хрустящий, поджаристый. They are crispy — «Они хрустящие». О беконе, картошке, корочке хлеба.",
+            "uk": "хрусткий, підсмажений. They are crispy — «Вони хрусткі». Про бекон, картоплю, скоринку хліба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-27:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Хозяин ставит на стол тарелку бекона. Послушайте его и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Хозяин ставит на стол тарелку бекона. Послушайте его и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-27:i11:audio",
-          "transcript": "They are asleep."
+          "transcript": "They are crispy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are asleep.",
+        "hiddenTargetPhrase": "They are crispy.",
         "orderedTokens": [
           "They",
           "are",
-          "asleep"
+          "crispy"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -641,10 +727,10 @@
           {
             "responseId": "en:lesson-02:session-27:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Хозяин ставит на стол тарелку бекона. Послушайте его и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are asleep.`",
-              "uk": "тут потрібно `are` — `They are asleep.`"
+              "ru": "здесь нужно `are` — `They are crispy.`",
+              "uk": "тут потрібно `are` — `They are crispy.`"
             }
           }
         ],
@@ -656,27 +742,70 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-27:word:bitter",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bitter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:word:bitter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bitter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:word:bitter:audio",
+          "transcript": "bitter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-27:word:bitter:r1",
+            "targetText": "bitter",
+            "meaningByLocale": {
+              "ru": "горький. It's not bitter — «Он не горький». О кофе, чае, лекарстве, шоколаде.",
+              "uk": "гіркий. It's not bitter — «Вона не гірка». Про каву, чай, ліки, шоколад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bitter",
+          "definitionByLocale": {
+            "ru": "горький. It's not bitter — «Он не горький». О кофе, чае, лекарстве, шоколаде.",
+            "uk": "гіркий. It's not bitter — «Вона не гірка». Про каву, чай, ліки, шоколад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-27:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы без спроса взяли чужой завтрак, хотя договорились каждый брать свой. Признайте полной фразой, что вы виноваты",
+      "prompt": "Друг заварил себе крепкий чай без сахара и поморщился. Скажите полной фразой, что чай горький",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы без спроса взяли чужой завтрак, хотя договорились каждый брать свой. Признайте полной фразой, что вы виноваты",
+      "accessibilityLabel": "Друг заварил себе крепкий чай без сахара и поморщился. Скажите полной фразой, что чай горький",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am guilty.",
+        "targetPhrase": "It is bitter.",
         "localizedMeaning": {
-          "ru": "Вы без спроса взяли чужой завтрак, хотя договорились каждый брать свой. Признайте полной фразой, что вы виноваты",
-          "uk": "Ви без дозволу взяли чужий сніданок, хоча домовилися, що кожен бере свій. Визнайте повною фразою, що ви винні"
+          "ru": "Друг заварил себе крепкий чай без сахара и поморщился. Скажите полной фразой, что чай горький",
+          "uk": "Друг заварив собі міцний чай без цукру й скривився. Скажіть повною фразою, що чай гіркий"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "guilty"
+          "It",
+          "is",
+          "bitter"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -685,10 +814,10 @@
           {
             "responseId": "en:lesson-02:session-27:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы без спроса взяли чужой завтрак, хотя договорились каждый брать свой. Признайте полной фразой, что вы виноваты",
+            "testedDimension": "Друг заварил себе крепкий чай без сахара и поморщился. Скажите полной фразой, что чай горький",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am guilty.`",
-              "uk": "тут потрібно `am` — `I am guilty.`"
+              "ru": "здесь нужно `is` — `It is bitter.`",
+              "uk": "тут потрібно `is` — `It is bitter.`"
             }
           }
         ],
@@ -701,17 +830,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-27:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна снова предлагает поделиться своим завтраком. Коротко скажите, что она щедрая",
+      "prompt": "Подруга снова предлагает поделиться своим завтраком. Коротко скажите, что она щедрая",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i13:audio"
       ],
-      "accessibilityLabel": "Анна снова предлагает поделиться своим завтраком. Коротко скажите, что она щедрая",
+      "accessibilityLabel": "Подруга снова предлагает поделиться своим завтраком. Коротко скажите, что она щедрая",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -734,11 +863,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-27:i14",
-      "ordinal": 17,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег проснулся. На «Is he asleep?» дополните короткое «нет»",
+      "prompt": "Друг проснулся. Подруга спрашивает: «Is he asleep?» Дополните короткое «нет»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i14:r1",
@@ -755,12 +884,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег проснулся. На «Is he asleep?» дополните короткое «нет»",
+      "accessibilityLabel": "Друг проснулся. Подруга спрашивает: «Is he asleep?» Дополните короткое «нет»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег проснулся. На «Is he asleep?» дополните короткое «нет»",
-          "uk": "Олег прокинувся. На «Is he asleep?» доповніть коротку відповідь «ні»"
+          "ru": "Друг проснулся. Подруга спрашивает: «Is he asleep?» Дополните короткое «нет»",
+          "uk": "Друг прокинувся. Подруга питає: «Is he asleep?» Доповніть коротку відповідь «ні»"
         },
         "gappedTargetPhrase": "No, he ___ not.",
         "gapOptions": [
@@ -777,12 +906,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег проснулся. На «Is he asleep?» дополните короткое «нет»",
+        "testedDimension": "Друг проснулся. Подруга спрашивает: «Is he asleep?» Дополните короткое «нет»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-27:i14:r2",
             "correct": false,
-            "testedDimension": "Олег проснулся. На «Is he asleep?» дополните короткое «нет»",
+            "testedDimension": "Друг проснулся. Подруга спрашивает: «Is he asleep?» Дополните короткое «нет»",
             "feedbackByLocale": {
               "ru": "С `he` нужно `is`.",
               "uk": "З `he` потрібно `is`."
@@ -791,7 +920,7 @@
           {
             "responseId": "en:lesson-02:session-27:i14:r3",
             "correct": false,
-            "testedDimension": "Олег проснулся. На «Is he asleep?» дополните короткое «нет»",
+            "testedDimension": "Друг проснулся. Подруга спрашивает: «Is he asleep?» Дополните короткое «нет»",
             "feedbackByLocale": {
               "ru": "Ответ — `No, he is not`.",
               "uk": "Відповідь — `No, he is not`."
@@ -802,52 +931,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-27:i15",
-      "ordinal": 18,
+      "interactionId": "en:lesson-02:session-27:word:spicy",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Карточка слова — spicy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:word:spicy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spicy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:word:spicy:audio",
+          "transcript": "spicy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-27:word:spicy:r1",
+            "targetText": "spicy",
+            "meaningByLocale": {
+              "ru": "острый, о еде. Is it spicy? — «Он острый?» О соусе, супе, перце, блюде.",
+              "uk": "гострий, про їжу. Is it spicy? — «Він гострий?» Про соус, суп, перець, страву."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spicy",
+          "definitionByLocale": {
+            "ru": "острый, о еде. Is it spicy? — «Он острый?» О соусе, супе, перце, блюде.",
+            "uk": "гострий, про їжу. Is it spicy? — «Він гострий?» Про соус, суп, перець, страву."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос друга о соусе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i15:r1",
-          "text": "Is it available?"
+          "text": "Is it spicy?"
         },
         {
           "responseId": "en:lesson-02:session-27:i15:r2",
-          "text": "Is it complete?"
+          "text": "Is it available?"
         },
         {
           "responseId": "en:lesson-02:session-27:i15:r3",
-          "text": "Is it broken?"
+          "text": "Is it burnt?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос друга о соусе",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-27:i15:audio",
-          "transcript": "Is it available?"
+          "transcript": "Is it spicy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-27:i15:r1",
-            "targetText": "Is it available?",
+            "targetText": "Is it spicy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i15:r2",
-            "targetText": "Is it complete?",
+            "targetText": "Is it available?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i15:r3",
-            "targetText": "Is it broken?",
+            "targetText": "Is it burnt?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1028,19 @@
           {
             "responseId": "en:lesson-02:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос друга о соусе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `available`, а в этом варианте — `complete`.",
-              "uk": "У записі останнє слово — `available`, а в цьому варіанті — `complete`."
+              "ru": "В записи последнее слово — `spicy`, а в этом варианте — `available`.",
+              "uk": "У записі останнє слово — `spicy`, а в цьому варіанті — `available`."
             }
           },
           {
             "responseId": "en:lesson-02:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос друга о соусе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `available`, а в этом варианте — `broken`.",
-              "uk": "У записі останнє слово — `available`, а в цьому варіанті — `broken`."
+              "ru": "В записи последнее слово — `spicy`, а в этом варианте — `burnt`.",
+              "uk": "У записі останнє слово — `spicy`, а в цьому варіанті — `burnt`."
             }
           }
         ],
@@ -879,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-27:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-27:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег рассказал, что один из гостей охотно покупает завтрак на всех. Вы не знаете, о ком речь. Спросите, кто щедрый",
+      "prompt": "Друг рассказал, что один из гостей охотно покупает завтрак на всех. Вы не знаете, о ком речь. Спросите, кто щедрый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i17:audio"
       ],
-      "accessibilityLabel": "Олег рассказал, что один из гостей охотно покупает завтрак на всех. Вы не знаете, о ком речь. Спросите, кто щедрый",
+      "accessibilityLabel": "Друг рассказал, что один из гостей охотно покупает завтрак на всех. Вы не знаете, о ком речь. Спросите, кто щедрый",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ccba1d0dde6b2ad1667202badf03135931eb531f272291a596a9279254b519fb"
+  "learnerFingerprint": "be2044b8e536d80c3522b2ffaa5a5e3cb0da4cf96a98db341788b2eb00592739"
 }

@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-13",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-13:word:shady",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shady",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:shady:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shady",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:shady:audio",
+            "transcript": "shady"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:shady:r1",
+              "targetText": "shady",
+              "meaningByLocale": {
+                "ru": "тенистый, там есть тень. Is it shady? — «Там есть тень?» О сквере, дворе, скамейке под деревьями.",
+                "uk": "тінистий, там є тінь. Is it shady? — «Там є тінь?» Про сквер, подвір’я, лавку під деревами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shady",
+            "definitionByLocale": {
+              "ru": "тенистый, там есть тень. Is it shady? — «Там есть тень?» О сквере, дворе, скамейке под деревьями.",
+              "uk": "тінистий, там є тінь. Is it shady? — «Там є тінь?» Про сквер, подвір’я, лавку під деревами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга предлагает встретиться в сквере у реки. Спросите, есть ли там тень",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга предлагает встретиться в сквере у реки. Спросите, есть ли там тень",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it shady?",
+          "localizedMeaning": {
+            "ru": "Подруга предлагает встретиться в сквере у реки. Спросите, есть ли там тень",
+            "uk": "Подруга пропонує зустрітися в сквері біля річки. Запитайте, чи є там тінь"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "shady"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга предлагает встретиться в сквере у реки. Спросите, есть ли там тень",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it shady?`",
+                "uk": "тут потрібно `Is` — `Is it shady?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги о сквере",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i02:r1",
+            "text": "Is it big?"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i02:r2",
+            "text": "Is it small?"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i02:r3",
+            "text": "Is it clean?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги о сквере",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i02:audio",
+            "transcript": "Is it big?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:i02:r1",
+              "targetText": "Is it big?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i02:r2",
+              "targetText": "Is it small?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i02:r3",
+              "targetText": "Is it clean?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о сквере",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `small`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `small`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о сквере",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `clean`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `clean`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В сквер пускают всех. Дополните фразу о том, что он общедоступный",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В сквер пускают всех. Дополните фразу о том, что он общедоступный",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сквер пускают всех. Дополните фразу о том, что он общедоступный",
+            "uk": "До скверу пускають усіх. Доповніть фразу про те, що він загальнодоступний"
+          },
+          "gappedTargetPhrase": "It ___ public.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-13:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В сквер пускают всех. Дополните фразу о том, что он общедоступный",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "В сквер пускают всех. Дополните фразу о том, что он общедоступный",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "В сквер пускают всех. Дополните фразу о том, что он общедоступный",
+              "feedbackByLocale": {
+                "ru": "Про один сквер — `It is`.",
+                "uk": "Про один сквер — `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-13:i04:p1",
+              "target": "shady",
+              "meaningByLocale": {
+                "ru": "тенистый",
+                "uk": "тінистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i04:p2",
+              "target": "fenced",
+              "meaningByLocale": {
+                "ru": "огороженный",
+                "uk": "огороджений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i04:p3",
+              "target": "windy",
+              "meaningByLocale": {
+                "ru": "ветреный",
+                "uk": "вітряний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i04:p4",
+              "target": "pretty",
+              "meaningByLocale": {
+                "ru": "красивый",
+                "uk": "гарний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shady",
+            "fenced",
+            "windy",
+            "pretty"
+          ],
+          "rightColumn": [
+            "тенистый",
+            "огороженный",
+            "ветреный",
+            "красивый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:word:fenced",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fenced",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:fenced:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fenced",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:fenced:audio",
+            "transcript": "fenced"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:fenced:r1",
+              "targetText": "fenced",
+              "meaningByLocale": {
+                "ru": "огороженный, за забором. It's not fenced — «Он не огорожен». О дворе, саде, площадке.",
+                "uk": "огороджений, за парканом. It's not fenced — «Воно не огороджене». Про подвір’я, сад, майданчик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fenced",
+            "definitionByLocale": {
+              "ru": "огороженный, за забором. It's not fenced — «Он не огорожен». О дворе, саде, площадке.",
+              "uk": "огороджений, за парканом. It's not fenced — «Воно не огороджене». Про подвір’я, сад, майданчик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает про двор у её дома. Послушайте и соберите ваш ответ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про двор у её дома. Послушайте и соберите ваш ответ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i05:audio",
+            "transcript": "It's not fenced."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's not fenced.",
+          "orderedTokens": [
+            "It's",
+            "not",
+            "fenced"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про двор у её дома. Послушайте и соберите ваш ответ",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's not fenced.`",
+                "uk": "тут потрібно `It's` — `It's not fenced.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сквер просторный. Скажите, что он не маленький",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сквер просторный. Скажите, что он не маленький",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not small.",
+          "localizedMeaning": {
+            "ru": "Сквер просторный. Скажите, что он не маленький",
+            "uk": "Сквер просторий. Скажіть, що він не маленький"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "small"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сквер просторный. Скажите, что он не маленький",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not small.`",
+                "uk": "тут потрібно `is` — `It is not small.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы хотите посидеть в сквере на траве. Спросите подругу, чисто ли там",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i07:audio"
+        ],
+        "accessibilityLabel": "Вы хотите посидеть в сквере на траве. Спросите подругу, чисто ли там",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i07:audio",
+            "transcript": "Is it clean?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it clean?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На фото сквера у пруда стоят два лебедя, похожих на игрушечных. Спросите подругу, настоящие ли они",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i08:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На фото сквера у пруда стоят два лебедя, похожих на игрушечных. Спросите подругу, настоящие ли они",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На фото сквера у пруда стоят два лебедя, похожих на игрушечных. Спросите подругу, настоящие ли они",
+            "uk": "На фото скверу біля ставка стоять два лебеді, схожі на іграшкових. Запитайте подругу, чи вони справжні"
+          },
+          "gappedTargetPhrase": "___ they real?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-13:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i08:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "На фото сквера у пруда стоят два лебедя, похожих на игрушечных. Спросите подругу, настоящие ли они",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "На фото сквера у пруда стоят два лебедя, похожих на игрушечных. Спросите подругу, настоящие ли они",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "На фото сквера у пруда стоят два лебедя, похожих на игрушечных. Спросите подругу, настоящие ли они",
+              "feedbackByLocale": {
+                "ru": "Про двух лебедей — `Are they`.",
+                "uk": "Про двох лебедів — `Are they`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:word:windy",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — windy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:windy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — windy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:windy:audio",
+            "transcript": "windy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:windy:r1",
+              "targetText": "windy",
+              "meaningByLocale": {
+                "ru": "ветреный. It is not windy — «Там не ветрено». О набережной, крыше, улице.",
+                "uk": "вітряний. It is not windy — «Там не вітряно». Про набережну, дах, вулицю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "windy",
+            "definitionByLocale": {
+              "ru": "ветреный. It is not windy — «Там не ветрено». О набережной, крыше, улице.",
+              "uk": "вітряний. It is not windy — «Там не вітряно». Про набережну, дах, вулицю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что вы говорите подруге про скамейки у реки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i09:r1",
+            "text": "It is not windy."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i09:r2",
+            "text": "It is not shady."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i09:r3",
+            "text": "It is not clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что вы говорите подруге про скамейки у реки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i09:audio",
+            "transcript": "It is not windy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:i09:r1",
+              "targetText": "It is not windy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i09:r2",
+              "targetText": "It is not shady.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i09:r3",
+              "targetText": "It is not clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что вы говорите подруге про скамейки у реки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `shady`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `shady`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что вы говорите подруге про скамейки у реки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `clean`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `clean`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-13:i10:p1",
+              "target": "real",
+              "meaningByLocale": {
+                "ru": "настоящий",
+                "uk": "справжній"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i10:p2",
+              "target": "clean",
+              "meaningByLocale": {
+                "ru": "чистый",
+                "uk": "чистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i10:p3",
+              "target": "small",
+              "meaningByLocale": {
+                "ru": "маленький",
+                "uk": "маленький"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i10:p4",
+              "target": "big",
+              "meaningByLocale": {
+                "ru": "большой",
+                "uk": "великий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "real",
+            "clean",
+            "small",
+            "big"
+          ],
+          "rightColumn": [
+            "настоящий",
+            "чистый",
+            "маленький",
+            "большой"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга рассмотрела фото лебедей поближе. Послушайте и соберите её ответ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Подруга рассмотрела фото лебедей поближе. Послушайте и соберите её ответ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i11:audio",
+            "transcript": "They're not real."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're not real.",
+          "orderedTokens": [
+            "They're",
+            "not",
+            "real"
+          ],
+          "authoredDistractorTokens": [
+            "It's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга рассмотрела фото лебедей поближе. Послушайте и соберите её ответ",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're not real.`",
+                "uk": "тут потрібно `They're` — `They're not real.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i12",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Во двор соседнего дома пускают только жильцов. Скажите, что он не общедоступный",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Во двор соседнего дома пускают только жильцов. Скажите, что он не общедоступный",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not public.",
+          "localizedMeaning": {
+            "ru": "Во двор соседнего дома пускают только жильцов. Скажите, что он не общедоступный",
+            "uk": "На подвір’я сусіднього будинку пускають лише мешканців. Скажіть, що воно не загальнодоступне"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "public"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Во двор соседнего дома пускают только жильцов. Скажите, что он не общедоступный",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not public.`",
+                "uk": "тут потрібно `is` — `It is not public.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:word:pretty",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pretty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:pretty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pretty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:pretty:audio",
+            "transcript": "pretty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:pretty:r1",
+              "targetText": "pretty",
+              "meaningByLocale": {
+                "ru": "красивый, симпатичный. It's pretty — «Он красивый». О сквере, улице, платье.",
+                "uk": "гарний, симпатичний. It's pretty — «Він гарний». Про сквер, вулицю, сукню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pretty",
+            "definitionByLocale": {
+              "ru": "красивый, симпатичный. It's pretty — «Он красивый». О сквере, улице, платье.",
+              "uk": "гарний, симпатичний. It's pretty — «Він гарний». Про сквер, вулицю, сукню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает фото сквера: клумбы, фонтан, старые липы. Коротко скажите, что он красивый",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает фото сквера: клумбы, фонтан, старые липы. Коротко скажите, что он красивый",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i13:audio",
+            "transcript": "It's pretty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's pretty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На калитке табличка, но её не разобрать. Спросите подругу, частный ли это сад",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На калитке табличка, но её не разобрать. Спросите подругу, частный ли это сад",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На калитке табличка, но её не разобрать. Спросите подругу, частный ли это сад",
+            "uk": "На хвіртці табличка, але її не розібрати. Запитайте подругу, чи це приватний сад"
+          },
+          "gappedTargetPhrase": "___ it private?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-13:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "На калитке табличка, но её не разобрать. Спросите подругу, частный ли это сад",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i14:r2",
+              "correct": false,
+              "testedDimension": "На калитке табличка, но её не разобрать. Спросите подругу, частный ли это сад",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i14:r3",
+              "correct": false,
+              "testedDimension": "На калитке табличка, но её не разобрать. Спросите подругу, частный ли это сад",
+              "feedbackByLocale": {
+                "ru": "Вопрос про один сад — `Is it`.",
+                "uk": "Запитання про один сад — `Is it`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о дворе после дождя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i15:r1",
+            "text": "It is not clean."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i15:r2",
+            "text": "It is not big."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i15:r3",
+            "text": "It is not public."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о дворе после дождя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i15:audio",
+            "transcript": "It is not clean."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:i15:r1",
+              "targetText": "It is not clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i15:r2",
+              "targetText": "It is not big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i15:r3",
+              "targetText": "It is not public.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о дворе после дождя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `clean`, а в этом варианте — `big`.",
+                "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `big`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о дворе после дождя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `clean`, а в этом варианте — `public`.",
+                "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `public`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова прошлого занятия со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-13:i16:p1",
+              "target": "private",
+              "meaningByLocale": {
+                "ru": "личный",
+                "uk": "особистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i16:p2",
+              "target": "public",
+              "meaningByLocale": {
+                "ru": "общедоступный",
+                "uk": "загальнодоступний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i16:p3",
+              "target": "printed",
+              "meaningByLocale": {
+                "ru": "напечатанный",
+                "uk": "надрукований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i16:p4",
+              "target": "cute",
+              "meaningByLocale": {
+                "ru": "милый",
+                "uk": "милий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "private",
+            "public",
+            "printed",
+            "cute"
+          ],
+          "rightColumn": [
+            "личный",
+            "общедоступный",
+            "напечатанный",
+            "милый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга прислала фото двора, но ограды на нём не видно. Спросите её, огорожен ли двор",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга прислала фото двора, но ограды на нём не видно. Спросите её, огорожен ли двор",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i17:audio",
+            "transcript": "Is it fenced?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it fenced?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-13:word:shady",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shady",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:shady:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shady",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:shady:audio",
+            "transcript": "shady"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:shady:r1",
+              "targetText": "shady",
+              "meaningByLocale": {
+                "ru": "тенистый, там есть тень. Is it shady? — «Там есть тень?» О сквере, дворе, скамейке под деревьями.",
+                "uk": "тінистий, там є тінь. Is it shady? — «Там є тінь?» Про сквер, подвір’я, лавку під деревами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shady",
+            "definitionByLocale": {
+              "ru": "тенистый, там есть тень. Is it shady? — «Там есть тень?» О сквере, дворе, скамейке под деревьями.",
+              "uk": "тінистий, там є тінь. Is it shady? — «Там є тінь?» Про сквер, подвір’я, лавку під деревами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга пропонує зустрітися в сквері біля річки. Запитайте, чи є там тінь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга пропонує зустрітися в сквері біля річки. Запитайте, чи є там тінь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it shady?",
+          "localizedMeaning": {
+            "ru": "Подруга предлагает встретиться в сквере у реки. Спросите, есть ли там тень",
+            "uk": "Подруга пропонує зустрітися в сквері біля річки. Запитайте, чи є там тінь"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "shady"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга пропонує зустрітися в сквері біля річки. Запитайте, чи є там тінь",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it shady?`",
+                "uk": "тут потрібно `Is` — `Is it shady?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги про сквер",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i02:r1",
+            "text": "Is it big?"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i02:r2",
+            "text": "Is it small?"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i02:r3",
+            "text": "Is it clean?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги про сквер",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i02:audio",
+            "transcript": "Is it big?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:i02:r1",
+              "targetText": "Is it big?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i02:r2",
+              "targetText": "Is it small?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i02:r3",
+              "targetText": "Is it clean?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про сквер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `small`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `small`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про сквер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `clean`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `clean`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "До скверу пускають усіх. Доповніть фразу про те, що він загальнодоступний",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "До скверу пускають усіх. Доповніть фразу про те, що він загальнодоступний",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сквер пускают всех. Дополните фразу о том, что он общедоступный",
+            "uk": "До скверу пускають усіх. Доповніть фразу про те, що він загальнодоступний"
+          },
+          "gappedTargetPhrase": "It ___ public.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-13:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "До скверу пускають усіх. Доповніть фразу про те, що він загальнодоступний",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "До скверу пускають усіх. Доповніть фразу про те, що він загальнодоступний",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "До скверу пускають усіх. Доповніть фразу про те, що він загальнодоступний",
+              "feedbackByLocale": {
+                "ru": "Про один сквер — `It is`.",
+                "uk": "Про один сквер — `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-13:i04:p1",
+              "target": "shady",
+              "meaningByLocale": {
+                "ru": "тенистый",
+                "uk": "тінистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i04:p2",
+              "target": "fenced",
+              "meaningByLocale": {
+                "ru": "огороженный",
+                "uk": "огороджений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i04:p3",
+              "target": "windy",
+              "meaningByLocale": {
+                "ru": "ветреный",
+                "uk": "вітряний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i04:p4",
+              "target": "pretty",
+              "meaningByLocale": {
+                "ru": "красивый",
+                "uk": "гарний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shady",
+            "fenced",
+            "windy",
+            "pretty"
+          ],
+          "rightColumn": [
+            "тінистий",
+            "огороджений",
+            "вітряний",
+            "гарний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:word:fenced",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fenced",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:fenced:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fenced",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:fenced:audio",
+            "transcript": "fenced"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:fenced:r1",
+              "targetText": "fenced",
+              "meaningByLocale": {
+                "ru": "огороженный, за забором. It's not fenced — «Он не огорожен». О дворе, саде, площадке.",
+                "uk": "огороджений, за парканом. It's not fenced — «Воно не огороджене». Про подвір’я, сад, майданчик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fenced",
+            "definitionByLocale": {
+              "ru": "огороженный, за забором. It's not fenced — «Он не огорожен». О дворе, саде, площадке.",
+              "uk": "огороджений, за парканом. It's not fenced — «Воно не огороджене». Про подвір’я, сад, майданчик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає про подвір’я біля її будинку. Послухайте й складіть вашу відповідь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про подвір’я біля її будинку. Послухайте й складіть вашу відповідь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i05:audio",
+            "transcript": "It's not fenced."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's not fenced.",
+          "orderedTokens": [
+            "It's",
+            "not",
+            "fenced"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає про подвір’я біля її будинку. Послухайте й складіть вашу відповідь",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's not fenced.`",
+                "uk": "тут потрібно `It's` — `It's not fenced.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сквер просторий. Скажіть, що він не маленький",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сквер просторий. Скажіть, що він не маленький",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not small.",
+          "localizedMeaning": {
+            "ru": "Сквер просторный. Скажите, что он не маленький",
+            "uk": "Сквер просторий. Скажіть, що він не маленький"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "small"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сквер просторий. Скажіть, що він не маленький",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not small.`",
+                "uk": "тут потрібно `is` — `It is not small.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви хочете посидіти в сквері на траві. Запитайте подругу, чи там чисто",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i07:audio"
+        ],
+        "accessibilityLabel": "Ви хочете посидіти в сквері на траві. Запитайте подругу, чи там чисто",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i07:audio",
+            "transcript": "Is it clean?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it clean?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На фото скверу біля ставка стоять два лебеді, схожі на іграшкових. Запитайте подругу, чи вони справжні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i08:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На фото скверу біля ставка стоять два лебеді, схожі на іграшкових. Запитайте подругу, чи вони справжні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На фото сквера у пруда стоят два лебедя, похожих на игрушечных. Спросите подругу, настоящие ли они",
+            "uk": "На фото скверу біля ставка стоять два лебеді, схожі на іграшкових. Запитайте подругу, чи вони справжні"
+          },
+          "gappedTargetPhrase": "___ they real?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-13:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i08:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "На фото скверу біля ставка стоять два лебеді, схожі на іграшкових. Запитайте подругу, чи вони справжні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "На фото скверу біля ставка стоять два лебеді, схожі на іграшкових. Запитайте подругу, чи вони справжні",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "На фото скверу біля ставка стоять два лебеді, схожі на іграшкових. Запитайте подругу, чи вони справжні",
+              "feedbackByLocale": {
+                "ru": "Про двух лебедей — `Are they`.",
+                "uk": "Про двох лебедів — `Are they`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:word:windy",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — windy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:windy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — windy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:windy:audio",
+            "transcript": "windy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:windy:r1",
+              "targetText": "windy",
+              "meaningByLocale": {
+                "ru": "ветреный. It is not windy — «Там не ветрено». О набережной, крыше, улице.",
+                "uk": "вітряний. It is not windy — «Там не вітряно». Про набережну, дах, вулицю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "windy",
+            "definitionByLocale": {
+              "ru": "ветреный. It is not windy — «Там не ветрено». О набережной, крыше, улице.",
+              "uk": "вітряний. It is not windy — «Там не вітряно». Про набережну, дах, вулицю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що ви кажете подрузі про лавки біля річки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i09:r1",
+            "text": "It is not windy."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i09:r2",
+            "text": "It is not shady."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i09:r3",
+            "text": "It is not clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що ви кажете подрузі про лавки біля річки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i09:audio",
+            "transcript": "It is not windy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:i09:r1",
+              "targetText": "It is not windy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i09:r2",
+              "targetText": "It is not shady.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i09:r3",
+              "targetText": "It is not clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що ви кажете подрузі про лавки біля річки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `shady`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `shady`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що ви кажете подрузі про лавки біля річки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `clean`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `clean`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-13:i10:p1",
+              "target": "real",
+              "meaningByLocale": {
+                "ru": "настоящий",
+                "uk": "справжній"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i10:p2",
+              "target": "clean",
+              "meaningByLocale": {
+                "ru": "чистый",
+                "uk": "чистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i10:p3",
+              "target": "small",
+              "meaningByLocale": {
+                "ru": "маленький",
+                "uk": "маленький"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i10:p4",
+              "target": "big",
+              "meaningByLocale": {
+                "ru": "большой",
+                "uk": "великий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "real",
+            "clean",
+            "small",
+            "big"
+          ],
+          "rightColumn": [
+            "справжній",
+            "чистий",
+            "маленький",
+            "великий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга роздивилася фото лебедів ближче. Послухайте й складіть її відповідь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Подруга роздивилася фото лебедів ближче. Послухайте й складіть її відповідь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i11:audio",
+            "transcript": "They're not real."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're not real.",
+          "orderedTokens": [
+            "They're",
+            "not",
+            "real"
+          ],
+          "authoredDistractorTokens": [
+            "It's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга роздивилася фото лебедів ближче. Послухайте й складіть її відповідь",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're not real.`",
+                "uk": "тут потрібно `They're` — `They're not real.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i12",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На подвір’я сусіднього будинку пускають лише мешканців. Скажіть, що воно не загальнодоступне",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На подвір’я сусіднього будинку пускають лише мешканців. Скажіть, що воно не загальнодоступне",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not public.",
+          "localizedMeaning": {
+            "ru": "Во двор соседнего дома пускают только жильцов. Скажите, что он не общедоступный",
+            "uk": "На подвір’я сусіднього будинку пускають лише мешканців. Скажіть, що воно не загальнодоступне"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "public"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На подвір’я сусіднього будинку пускають лише мешканців. Скажіть, що воно не загальнодоступне",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not public.`",
+                "uk": "тут потрібно `is` — `It is not public.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:word:pretty",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pretty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:word:pretty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pretty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:word:pretty:audio",
+            "transcript": "pretty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:word:pretty:r1",
+              "targetText": "pretty",
+              "meaningByLocale": {
+                "ru": "красивый, симпатичный. It's pretty — «Он красивый». О сквере, улице, платье.",
+                "uk": "гарний, симпатичний. It's pretty — «Він гарний». Про сквер, вулицю, сукню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pretty",
+            "definitionByLocale": {
+              "ru": "красивый, симпатичный. It's pretty — «Он красивый». О сквере, улице, платье.",
+              "uk": "гарний, симпатичний. It's pretty — «Він гарний». Про сквер, вулицю, сукню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує фото скверу: клумби, фонтан, старі липи. Коротко скажіть, що він гарний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показує фото скверу: клумби, фонтан, старі липи. Коротко скажіть, що він гарний",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i13:audio",
+            "transcript": "It's pretty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's pretty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На хвіртці табличка, але її не розібрати. Запитайте подругу, чи це приватний сад",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На хвіртці табличка, але її не розібрати. Запитайте подругу, чи це приватний сад",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На калитке табличка, но её не разобрать. Спросите подругу, частный ли это сад",
+            "uk": "На хвіртці табличка, але її не розібрати. Запитайте подругу, чи це приватний сад"
+          },
+          "gappedTargetPhrase": "___ it private?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-13:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "На хвіртці табличка, але її не розібрати. Запитайте подругу, чи це приватний сад",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i14:r2",
+              "correct": false,
+              "testedDimension": "На хвіртці табличка, але її не розібрати. Запитайте подругу, чи це приватний сад",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i14:r3",
+              "correct": false,
+              "testedDimension": "На хвіртці табличка, але її не розібрати. Запитайте подругу, чи це приватний сад",
+              "feedbackByLocale": {
+                "ru": "Вопрос про один сад — `Is it`.",
+                "uk": "Запитання про один сад — `Is it`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про подвір’я після дощу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-13:i15:r1",
+            "text": "It is not clean."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i15:r2",
+            "text": "It is not big."
+          },
+          {
+            "responseId": "en:lesson-02:session-13:i15:r3",
+            "text": "It is not public."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про подвір’я після дощу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i15:audio",
+            "transcript": "It is not clean."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-13:i15:r1",
+              "targetText": "It is not clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i15:r2",
+              "targetText": "It is not big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i15:r3",
+              "targetText": "It is not public.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-13:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про подвір’я після дощу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `clean`, а в этом варианте — `big`.",
+                "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `big`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-13:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про подвір’я після дощу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `clean`, а в этом варианте — `public`.",
+                "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `public`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова минулого заняття зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова минулого заняття зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-13:i16:p1",
+              "target": "private",
+              "meaningByLocale": {
+                "ru": "личный",
+                "uk": "особистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i16:p2",
+              "target": "public",
+              "meaningByLocale": {
+                "ru": "общедоступный",
+                "uk": "загальнодоступний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i16:p3",
+              "target": "printed",
+              "meaningByLocale": {
+                "ru": "напечатанный",
+                "uk": "надрукований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-13:i16:p4",
+              "target": "cute",
+              "meaningByLocale": {
+                "ru": "милый",
+                "uk": "милий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "private",
+            "public",
+            "printed",
+            "cute"
+          ],
+          "rightColumn": [
+            "особистий",
+            "загальнодоступний",
+            "надрукований",
+            "милий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-13:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга надіслала фото подвір’я, але огорожі на ньому не видно. Запитайте її, чи огороджене подвір’я",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга надіслала фото подвір’я, але огорожі на ньому не видно. Запитайте її, чи огороджене подвір’я",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-13:i17:audio",
+            "transcript": "Is it fenced?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it fenced?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-13:word:shady",
+      "correctText": "shady",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i01",
+      "correctText": "Is it shady?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i02",
+      "correctText": "Is it big?",
+      "correctResponseId": "en:lesson-02:session-13:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-13:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:word:fenced",
+      "correctText": "fenced",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i05",
+      "correctText": "It's not fenced.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i06",
+      "correctText": "It is not small.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i07",
+      "correctText": "Is it clean?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i08",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-02:session-13:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:word:windy",
+      "correctText": "windy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i09",
+      "correctText": "It is not windy.",
+      "correctResponseId": "en:lesson-02:session-13:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i11",
+      "correctText": "They're not real.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i12",
+      "correctText": "It is not public.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:word:pretty",
+      "correctText": "pretty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i13",
+      "correctText": "It's pretty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i14",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-13:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i15",
+      "correctText": "It is not clean.",
+      "correctResponseId": "en:lesson-02:session-13:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i17",
+      "correctText": "Is it fenced?",
+      "correctResponseId": null
+    }
+  ]
+}

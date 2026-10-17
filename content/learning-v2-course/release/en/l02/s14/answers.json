@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-14:word:obvious",
+    "correctText": "obvious",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-14:i01",
     "correctText": "It is obvious.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-14:i04",
-    "correctText": "en:lesson-02:session-14:i04:p1=obvious\nen:lesson-02:session-14:i04:p2=dirty\nen:lesson-02:session-14:i04:p3=open\nen:lesson-02:session-14:i04:p4=closed",
+    "correctText": "en:lesson-02:session-14:i04:p1=obvious\nen:lesson-02:session-14:i04:p2=dirty\nen:lesson-02:session-14:i04:p3=shiny\nen:lesson-02:session-14:i04:p4=neat",
     "correctResponseId": null
   },
   {
@@ -35,6 +40,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-14:word:dirty",
+    "correctText": "dirty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-14:i08",
     "correctText": "are",
     "correctResponseId": "en:lesson-02:session-14:i08:r1"
@@ -46,12 +56,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-14:i10",
-    "correctText": "en:lesson-02:session-14:i10:p1=fake\nen:lesson-02:session-14:i10:p2=obvious\nen:lesson-02:session-14:i10:p3=open\nen:lesson-02:session-14:i10:p4=dirty",
+    "correctText": "en:lesson-02:session-14:i10:p1=fake\nen:lesson-02:session-14:i10:p2=open\nen:lesson-02:session-14:i10:p3=closed\nen:lesson-02:session-14:i10:p4=clean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:word:shiny",
+    "correctText": "shiny",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i11",
-    "correctText": "They're closed.",
+    "correctText": "They're shiny.",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-14:word:neat",
+    "correctText": "neat",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-14:i13",
-    "correctText": "It's open.",
+    "correctText": "They're neat.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-14:i16",
-    "correctText": "en:lesson-02:session-14:i16:p1=dirty\nen:lesson-02:session-14:i16:p2=open\nen:lesson-02:session-14:i16:p3=closed\nen:lesson-02:session-14:i16:p4=fake",
+    "correctText": "en:lesson-02:session-14:i16:p1=shady\nen:lesson-02:session-14:i16:p2=fenced\nen:lesson-02:session-14:i16:p3=windy\nen:lesson-02:session-14:i16:p4=pretty",
     "correctResponseId": null
   },
   {

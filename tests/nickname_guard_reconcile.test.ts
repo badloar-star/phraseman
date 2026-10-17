@@ -249,3 +249,58 @@ test('исчерпание бюджета ретраев снимает AppState
     addSpy.mockRestore();
   }
 });
+
+// зачем (координатор 17.10, 💸): резерв сервера не терялся при пропуске применения — повтор берёт то же имя без вызова.
+test('ответ пришёл, пока аккаунт активировался: повтор применяет то же имя без второго вызова сервера', async () => {
+  const AsyncStorage = require('@react-native-async-storage/async-storage').default
+    ?? require('@react-native-async-storage/async-storage');
+  await AsyncStorage.multiSet([
+    ['generated_nickname_pending_v1', JSON.stringify({ createdAt: 1 })],
+    ['user_profile', JSON.stringify({ name: '' })],
+  ]);
+  let resolveRequest!: (value: unknown) => void;
+  mockGenerateAndReserveNickname.mockReturnValueOnce(new Promise((resolve) => { resolveRequest = resolve; }));
+  const guard = require('../app/nickname_guard');
+  const generation = require('../app/account_generation');
+
+  const flight = guard.resumePendingGeneratedNickname();
+  // ждём, пока запрос реально ушёл на сервер (токен поколения уже снят)
+  for (let i = 0; i < 50 && mockGenerateAndReserveNickname.mock.calls.length === 0; i++) {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  }
+  expect(mockGenerateAndReserveNickname).toHaveBeenCalledTimes(1);
+  // поколение того же владельца сменилось во время запроса, флаг не стёрт
+  generation.invalidateAccountGeneration();
+  generation.beginAccountGeneration(mockStableId);
+  resolveRequest({ status: 'ok', name: 'Neon 39486', stableId: mockStableId });
+  await flight;
+  expect(await AsyncStorage.getItem('user_name')).toBeNull();
+  expect(JSON.parse(await AsyncStorage.getItem('generated_nickname_pending_v1'))).toMatchObject({
+    reservedName: 'Neon 39486',
+    reservedFor: mockStableId,
+  });
+
+  guard.cancelPendingGeneratedNicknameRetry();
+  await guard.resumePendingGeneratedNickname();
+
+  expect(mockGenerateAndReserveNickname).toHaveBeenCalledTimes(1);
+  expect(await AsyncStorage.getItem('user_name')).toBe('Neon 39486');
+  expect(JSON.parse(await AsyncStorage.getItem('user_profile'))).toMatchObject({ name: 'Neon 39486' });
+  expect(await AsyncStorage.getItem('generated_nickname_pending_v1')).toBeNull();
+});
+
+test('резерв другого владельца не применяется — сервер спрашивается для текущего', async () => {
+  const AsyncStorage = require('@react-native-async-storage/async-storage').default
+    ?? require('@react-native-async-storage/async-storage');
+  await AsyncStorage.multiSet([
+    ['generated_nickname_pending_v1', JSON.stringify({ createdAt: 1, reservedName: 'Neon 11111', reservedFor: 'other-owner' })],
+    ['user_profile', JSON.stringify({ name: '' })],
+  ]);
+  mockGenerateAndReserveNickname.mockResolvedValue({ status: 'ok', name: 'Delta 22222', stableId: mockStableId });
+  const { resumePendingGeneratedNickname } = require('../app/nickname_guard');
+
+  await resumePendingGeneratedNickname();
+
+  expect(mockGenerateAndReserveNickname).toHaveBeenCalledTimes(1);
+  expect(await AsyncStorage.getItem('user_name')).toBe('Delta 22222');
+});

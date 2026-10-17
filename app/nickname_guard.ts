@@ -149,6 +149,24 @@ export function cancelPendingGeneratedNicknameRetry(): void {
   pendingNicknameRetryAttempt = 0;
 }
 
+function parsePendingRecord(raw: string): Record<string, unknown> {
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    return parsed && typeof parsed === 'object' ? parsed as Record<string, unknown> : {};
+  } catch (e) {
+    // старый не-JSON флаг — дописываем резерв в чистую запись
+    DebugLogger.error('nickname_guard:parsePendingRecord', e instanceof Error ? e : new Error(String(e)), 'warning');
+    return {};
+  }
+}
+
+/** Резерв сервера, запомненный во флаге pending: имя и владелец, для которого оно выдано. */
+function readPendingReservation(record: Record<string, unknown>): { reservedName: string; reservedFor: string } | null {
+  const reservedName = String(record.reservedName ?? '').trim();
+  const reservedFor = String(record.reservedFor ?? '').trim();
+  return reservedName.length >= 2 && reservedFor ? { reservedName, reservedFor } : null;
+}
+
 export function resumePendingGeneratedNickname(): Promise<void> {
   if (pendingNicknameFlight) return pendingNicknameFlight;
   pendingNicknameFlight = (async () => {
@@ -163,33 +181,58 @@ export function resumePendingGeneratedNickname(): Promise<void> {
     // вошли через Apple/Google — сервер сделает из него «Имя N». Старый флаг без
     // baseName (или не-JSON) даёт прежний случайный ник — обратная совместимость.
     let baseName: string | undefined;
+    let pendingRecord: Record<string, unknown> = {};
     try {
-      const parsed = JSON.parse(pending) as { baseName?: unknown };
+      const parsed = JSON.parse(pending) as Record<string, unknown>;
+      if (parsed && typeof parsed === 'object') pendingRecord = parsed;
       const candidate = String(parsed?.baseName ?? '').trim();
       if (candidate) baseName = candidate;
     } catch (e) {
       // старый формат флага — без базового имени
       DebugLogger.error('nickname_guard:candidate', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-    const { generateAndReserveNickname } = await import('./firestore_leaderboard');
-    const result = await generateAndReserveNickname(baseName);
+    // зачем (координатор 17.10, 💸): имя, которое сервер уже зарезервировал, раньше жило только в памяти вызова — при
+    // пропуске применения (аккаунт ещё активировался) следующий повтор снова звал nameGenerateAndReserve и мог получить
+    // ДРУГОЕ имя («＠Neon 39486» сменялось через ~20 с). Резерв пишется во флаг и повтор берёт его без сервера — только для
+    // того же владельца (флаг стирается при смене аккаунта, плюс явная сверка reservedFor с активным stableId).
+    const reserved = readPendingReservation(pendingRecord);
+    const activeOwner = peekStableId();
+    const reuseReserved = reserved !== null && Boolean(activeOwner) && reserved.reservedFor === activeOwner;
+    let result: { status: string; name?: string; stableId?: string };
+    if (reuseReserved && reserved) {
+      result = { status: 'ok', name: reserved.reservedName, stableId: reserved.reservedFor };
+    } else {
+      const { generateAndReserveNickname } = await import('./firestore_leaderboard');
+      result = await generateAndReserveNickname(baseName);
+    }
     const name = result.status === 'ok' ? String(result.name ?? '').trim() : '';
     const resultStableId = String(result.stableId ?? '').trim();
     // зачем (координатор 15.10, логи до починки): после входа ~20 с в Настройках временный ник — не отсюда ли он.
-    console.log('[NICK-GEN]', JSON.stringify({ step: 'generated', status: result.status, namePresent: Boolean(name), owner: resultStableId.slice(0, 8) || null, tokenOwner: (accountToken.stableId ?? '').slice(0, 8) || null, hasBaseName: Boolean(baseName) }));
+    console.log('[NICK-GEN]', JSON.stringify({ step: 'generated', source: reuseReserved ? 'cached' : 'server', reservedOwnerMatch: reserved === null ? null : reserved.reservedFor === activeOwner, status: result.status, namePresent: Boolean(name), owner: resultStableId.slice(0, 8) || null, tokenOwner: (accountToken.stableId ?? '').slice(0, 8) || null, hasBaseName: Boolean(baseName) }));
     if (!name || !resultStableId) {
       schedulePendingNicknameRetry();
       return;
     }
     let applied = false;
+    let keptForRetry = false;
     await withAccountTransitionLock(async () => {
       const stillPending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(noteSwallowedAs('nickname_guard:promise_8', null));
+      if (stillPending && !reuseReserved) {
+        // Флаг ещё живой (не стёрт сменой аккаунта) — запоминаем резерв сервера для повтора.
+        await AsyncStorage.setItem(GENERATED_NICKNAME_PENDING_KEY, JSON.stringify({
+          ...parsePendingRecord(stillPending),
+          reservedName: name,
+          reservedFor: resultStableId,
+        })).catch(noteSwallowedHandler('nickname_guard:remember_reservation'));
+      }
       if (!stillPending || !isCurrentAccountGeneration(accountToken, resultStableId)) {
-        console.log('[NICK-GEN]', JSON.stringify({ step: 'skip_apply', stillPending: Boolean(stillPending), generationCurrent: isCurrentAccountGeneration(accountToken, resultStableId) }));
+        keptForRetry = Boolean(stillPending);
+        console.log('[NICK-GEN]', JSON.stringify({ step: 'skip_apply', stillPending: Boolean(stillPending), generationCurrent: isCurrentAccountGeneration(accountToken, resultStableId), keptForRetry }));
         return;
       }
       const activeStableId = peekStableId();
       if (resultStableId !== activeStableId) {
+        keptForRetry = true;
         console.log('[NICK-GEN]', JSON.stringify({ step: 'skip_owner_mismatch', owner: resultStableId.slice(0, 8), active: (activeStableId ?? '').slice(0, 8) || null }));
         return;
       }
@@ -208,8 +251,12 @@ export function resumePendingGeneratedNickname(): Promise<void> {
       await AsyncStorage.removeItem(GENERATED_NICKNAME_PENDING_KEY);
       applied = true;
     });
-    console.log('[NICK-GEN]', JSON.stringify({ step: applied ? 'applied_user_name' : 'not_applied', owner: resultStableId.slice(0, 8) }));
-    if (!applied) return;
+    console.log('[NICK-GEN]', JSON.stringify({ step: applied ? 'applied_user_name' : 'not_applied', source: reuseReserved ? 'cached' : 'server', keptForRetry, owner: resultStableId.slice(0, 8) }));
+    if (!applied) {
+      // Флаг жив — повтор (бюджет 3 попытки) применит запомненный резерв без вызова сервера.
+      if (keptForRetry) schedulePendingNicknameRetry();
+      return;
+    }
     cancelPendingGeneratedNicknameRetry();
     emitAppEvent('cloud_profile_hydrated');
   })().catch((e: unknown) => {

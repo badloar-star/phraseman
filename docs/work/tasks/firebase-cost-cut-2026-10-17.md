@@ -100,3 +100,56 @@
 - 🟡 A3 (журнал «Ошибок») и A10 (кроны срока Plus) — менять с тестами восстановления/проекции.
 - 🟡 Удалённая callable, которую зовёт старая версия приложения, вернёт `not-found`: перед удалением B8 — убедиться, что версия без вызова раскатана.
 - Решение владельца: «да» на шаги 1–3 (без клиента) даёт ≈ −35 $/мес сразу; шаг 4 — со следующей сборкой.
+
+
+## 6. Исполнение 17.10 (владелец: «ДА — все 3 шага», подтверждено и лично в сессии Ревизора)
+
+### Шаг 1 — Джарвис ✅
+- `jarvis_control/global.mode = 'off'` (changedBy `revizor-cost-cut-2026-10-17`; снимок до — в рабочих файлах Ревизора).
+- `canRun` проверяет только `jarvisDailyDepartmentsCron` → все три задания Scheduler Джарвиса поставлены на **PAUSED** (обратимо).
+
+### Шаг 2 — доля ядра и кроны ✅ (с откатом части)
+- Прямой `gcloud run services update` невозможен: образы `gcf-artifacts` удалены политикой очистки. Новая ревизия создаётся только сборкой.
+- Деплой с HEAD **не делали**: код функций в проде от 12.09–11.10, HEAD увёз бы неотпущенные серверные изменения (D91). Каждая функция **пересобрана из её же прод-архива** (`gs://gcf-v2-sources-…/<name>/function-source.zip`, сверка generation) с другими только `cpu` / `concurrency` / `max-instances`. Метки, переменные, IAM и триггер сохранены.
+- Переведено на долю ядра (22): фоновые callable, кроны и наименее чувствительные к задержке.
+- **Откат на полное ядро** после замера и жалобы владельца на Пик (p95 Пика 3–5 с → 7–9,5 с; старт +30–50 %): `arenaV2Home`, `arenaExpansionHome`, `leagueJoinOrUpdateGroup`, `authEnsureStableLink`, `publicProfileProjectMine`, `getActiveShardSurvey`, `globalBroadcastListActive`, `revenueCatPremiumReconcileMine`.
+- Код: `setGlobalOptions({ maxInstances: 30, cpu: 'gcf_gen1' })` + **белый список полного ядра** (fef378a62): `HOT_CALLABLE_OPTIONS` (все горячие пользовательские, включая `spire*`, `authEnsureStableLink`), `globalBroadcastListActive`, `revenueCatPremiumReconcileMine`, `dialogueV2SessionStart`, `dialogueV2TextTurn`, `premiumDialogStream`.
+- Кроны в Scheduler и в коде: `adminAlertRecoveryCron` 1 → 15 мин, `accountMergeOutboxRetryCron` 5 → 30 мин, `accountDeleteRetryCron` 30 → 120 мин. `supportOpsCron` (обещание «3 ч ± 10 мин») и YouTube (15 мин) не трогали.
+- Проверка Сверки (501558120): первый кадр Главной 867 мс, вход ok ~3,8 с, Пик 1,55 с, синк «Ошибок» без ошибок.
+
+### НЕ УДАЛЯТЬ до ухода старых версий из сторов
+Функции **есть в проде с живым трафиком, но их НЕТ в коде HEAD** (их зовёт сборка в сторах). Полный деплой с HEAD предложит их удалить — Пик, награды и подарки старой сборки сломаются.
+
+| Функция | вызовов за 7 сут |
+|---|---|
+| `videoWatchRunesClaim` | 6697 |
+| `arenaV2Home` | 1495 |
+| `arenaExpansionHome` | 1490 |
+| `collectiblesClaimDrop` | 1086 |
+| `cosmeticAssetCatalogGet` | 738 |
+| `leagueJoinOrUpdateGroup` | 620 |
+| `welcomeGiftClaim` | 263 |
+| `levelRewardSpinStatus` | 187 |
+| `levelRewardSpinEnrollV1` | 171 |
+| `arenaV2CleanupHourly` | 168 |
+| `leagueResidentsTickCron` | 168 |
+| `friendGetActiveQuest` | 151 |
+| `leaderboardUpdateDailyAnalytics` | 100 |
+| `questGetActive` | 28 |
+| `friendSendGift` | 8 |
+| `computeLeaderboardStatsCron` | 7 |
+| `recalcCoinExchangeRate` | 7 |
+| `arenaV2InviteStatus` | 2 |
+| `leagueActivateGroupBoost` | 2 |
+| `leagueUpdateMyMember` | 2 |
+| `leagueFinalizeCron` | 1 |
+| `levelGiftReserve` | 1 |
+| `resetWeeklyXpCron` | 1 |
+| `seasonRedeemConsumable` | 1 |
+| `shardsApplyDelta` | 1 |
+
+### Правило выкладки функций (и для релиза 18.10)
+1. **Только адресный деплой**: `firebase deploy --only functions:имя1,functions:имя2`. **Без `--force`.** Полный деплой `--only functions` с HEAD **запрещён**, пока таблица выше не пуста.
+2. Перед деплоем — `gcloud functions list` в лог; после — сверка списка и ошибок (Cloud Monitoring `request_count` 5xx).
+3. Пересборка без смены логики — из прод-архива функции (как в шаге 2), а не с HEAD.
+4. На запрос CLI «удалить функции, которых нет в коде?» — всегда **No**.

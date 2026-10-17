@@ -78,7 +78,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
     <div class="kpi"><b id="k-rew">84 из 441</b><span>занятий переписано</span></div>
     <div class="kpi"><b id="k-voice">444 → 0</b><span>голосов с расхождением текста, цель к 07:45</span></div>
     <div class="kpi"><b>≈&nbsp;62&nbsp;€ → ≈&nbsp;50&nbsp;€</b><span>сервер в месяц, дальше цель ≈ 6–9 €</span></div>
-    <div class="kpi"><b>9</b><span>решений ждут вас</span></div>
+    <div class="kpi"><b>10</b><span>решений ждут вас</span></div>
   </div>
 
   <nav aria-label="Разделы">
@@ -204,7 +204,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <!-- ─────────────────────────── 5 ─────────────────────────── -->
   <section id="decide">
     <h2><span class="n">5</span>Решения на утро</h2>
-    <p class="sub">Девять вопросов. По каждому есть рекомендация, она отмечена цветом.</p>
+    <p class="sub">Десять вопросов. Почти по каждому есть рекомендация, она отмечена цветом.</p>
     <div class="dec">
       <div class="card"><h3>0. ИИ-диалоги сломаны — выложить первыми (R103-AI)</h3>
         <p><b style="color:var(--tx)">Сломано и в текущей версии 1.6.24 из стора — уже около 4 недель, и в 2.0.</b> Сценарные диалоги и компаньон «Тео» (Plus) не отвечают, а квота при этом списывается и OpenAI оплачен. «Как сказать…» выдаёт ошибку. На испанском и немецком ИИ отвечает по-английски.</p>
@@ -232,6 +232,10 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="card"><h3>2. Выкладка сайта и политики (R105)</h3>
         <p>Собрано из чистой копии, политика — из тех же текстов, что в приложении; пробный прогон прошёл.</p>
         <div class="opts"><span class="rec">Выкладывать</span><span>Сначала показать сайт</span></div></div>
+      <div class="card"><h3>2а. Админка без Джарвиса</h3>
+        <p>Вкладки Джарвиса из админки удалены (сам он выключен 17.10), «Стадия роста» теперь считает сама. Выкладывается одной командой отдельно от приложения. <span class="hash">86aa201b6</span></p>
+        <p><code class="hash">bash scripts/deploy_from_clean_head.sh --only "hosting:admin" --execute</code></p>
+        <div class="opts"><span class="rec">Выложить вместе с сайтом</span><span>Отдельно позже</span></div></div>
       <div class="card"><h3>3. Главная: какой ряд из 4 плиток (R108)</h3>
         <p>Пока вы не выбрали, в коде делается (в). 4 плитки видны только там, где доступны все четыре раздела; иначе остаётся 3.</p>
         <div class="thumbs">

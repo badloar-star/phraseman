@@ -3,7 +3,7 @@
 > Подготовил «9 · САЙТ» 17.10 вечером по заданию координатора. Ничего не выложено. Выкладка — только по слову владельца.
 > Функции из R103 (в том числе R110 автоназвание и R111 восстановление по коду) — отдельной строкой реестра, здесь только хостинг.
 
-**Порядок на утро одной строкой (для отчёта Макетов):** сайт `hosting:knowlywww` (с абзацем §4 — ✅ в HEAD) → админка `hosting:admin` → функции R111 (только после сайта с абзацем §4) → опросы: `shard_surveys_v2_seed --write` (когда «ready 13 из 13») → `shard_surveys_retire_v1 --write`; всё — словом владельца, откат у каждого шага ниже.
+**Порядок на утро одной строкой (для отчёта Макетов):** **0) владелец включает TTL по `expireAt` на `auth_recovery_rate_limits` и `auth_recovery_clean_rate_limits` (Ревизор 3.29, 19ddf5fed); без TTL сайт с текущим абзацем §4 НЕ выкладывать — сначала запасной абзац (§3.1)** → сайт `hosting:knowlywww` (с абзацем §4 — ✅ в HEAD) → админка `hosting:admin` → функции R111 (только после сайта с абзацем §4) → опросы: `shard_surveys_v2_seed --write` (когда «ready 13 из 13») → `shard_surveys_retire_v1 --write`; всё — словом владельца, откат у каждого шага ниже.
 
 ## 1. Сухой прогон (чистая выгрузка HEAD, без --execute)
 
@@ -98,6 +98,34 @@ secret)` от вида и значения; `expireAt` = начало окна +
 Условия, при которых абзац верен (проверить утром перед правкой политики): (1) коммит Входа с HMAC и expireAt есть в HEAD;
 (2) TTL-политика Firestore на `auth_recovery_rate_limits.expireAt` включена (R103, владелец) — без неё «не дольше суток» держится
 только на логике окна, а документы физически остаются; (3) выкладка функций R111 — не раньше выкладки сайта с этим абзацем.
+
+### 3.1. Жёсткий порядок «TTL → сайт» и запасной абзац §4 (Ревизор 3.29, 19ddf5fed)
+
+В HEAD (fc101659f) абзац §4 обещает «deleted automatically within two days». Это правда только при включённой TTL-политике Firestore
+по полю `expireAt` на **обеих** коллекциях — `auth_recovery_rate_limits` и `auth_recovery_clean_rate_limits`. Код ставит `expireAt`
+(окно 1 ч / 24 ч), но удаляет документ только TTL (в пределах ~24 ч после `expireAt`).
+
+1. **Владелец** включает TTL: Firebase Console → Firestore → TTL → «Create policy» → коллекция `auth_recovery_rate_limits`, поле
+   `expireAt`; то же для `auth_recovery_clean_rate_limits`. Статус политики должен стать «Serving».
+2. Только после этого — выкладка сайта (`hosting:knowlywww`), потом функции R111.
+3. **Если TTL утром НЕ включён — сайт с текущим абзацем не выкладывать.** Сначала заменить последнюю фразу абзаца запасной, затем
+   legal:sync, перепин хэшей, коммит, повторный сухой прогон и только потом выкладка.
+
+**Запасной вариант (без обещания срока).** Формулировку «removed after the limit period» не беру: без TTL документы физически
+остаются, и это была бы неправда. Честная замена — без срока, со ссылкой на общий раздел хранения §19, где уже есть
+«fraud-prevention records may be retained longer where needed for … abuse prevention»:
+
+> **EN (запасной, канон):** … A counter contains only a number and timestamps, is used only to limit repeated attempts during its
+> limit period (at most one day), and is otherwise retained only as described in the "Retention" section below.
+
+> **RU (для владельца):** … Счётчик содержит только число и отметки времени, используется только для ограничения повторных
+> попыток в пределах своего окна (не больше суток), а в остальном хранится так, как описано в разделе «Хранение» ниже.
+
+Замена — одна фраза в обоих файлах (`legal/privacy_policy_en.json`, `legal/privacy_policy_en_ios.json`):
+«and is deleted automatically within two days.» → «is used only to limit repeated attempts during its limit period (at most one
+day), and is otherwise retained only as described in the "Retention" section below.» (вместе с предшествующим «is used only to
+limit repeated attempts,» — фраза пишется целиком заново). Затем `npm run legal:sync`, перепин двух хэшей в
+`tests/legal_document_liquid_glass_source_contract.test.mjs`, юр-сторожа, `bash scripts/deploy_from_clean_head.sh --only "hosting:knowlywww"`.
 
 ## 4. Автоназвание наборов из видео (R110) — что уходит в OpenAI
 

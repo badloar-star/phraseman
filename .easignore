@@ -158,6 +158,10 @@ assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/*
 !assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-4.mp3
 !assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-5.mp3
 
+# зачем (Ядро 18.10, Ревизор 3.27): мастерская стиля для Codex (~288 МБ картинок-проб) приложение не импортирует —
+# только утяжеляла архив загрузки EAS. Файлы на месте, исключены лишь из архива.
+/ART_STYLE_FOR_CODEX/
+
 # Learning V2 audio is fetched as a verified durable lesson pack.
 assets/audio/learning-v2/
 # The complete four-voice audio for the first session is the only bundled

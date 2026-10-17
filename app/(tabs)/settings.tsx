@@ -818,7 +818,7 @@ export default function SettingsMain() {
       case 'referral':
         return L('Plus за приглашения', 'Plus за запрошення', 'Plus for referrals', 'Plus por invitaciones', 'Plus por convites', 'Plus nhờ mời bạn bè', 'Plus dari undangan', 'Davet Plus', 'Plus za zaproszenia');
       case 'survey_vip':
-        return L('Plus за опрос', 'Plus за опитування', 'Plus for survey', 'Plus por encuesta', 'Plus por pesquisa', 'Plus từ khảo sát', 'Plus dari survei', 'Anket Plus', 'Plus za ankietę');
+        return L('Plus за опрос', 'Plus за опитування', 'Plus for a survey', 'Plus por encuesta', 'Plus por pesquisa', 'Plus từ khảo sát', 'Plus dari survei', 'Anket Plus', 'Plus za ankietę');
       case 'idea_reward':
         return L('Plus за идею', 'Plus за ідею', 'Plus for an idea', 'Plus por idea', 'Plus por ideia', 'Plus cho ý tưởng', 'Plus untuk ide', 'Fikir Plus', 'Plus za pomysł');
       case 'telegram_tester':
@@ -1511,7 +1511,7 @@ export default function SettingsMain() {
                 {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
-                {L('Не закрывай приложение', 'Не закривай застосунок', 'Do not close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
+                {L('Не закрывай приложение', 'Не закривай застосунок', 'Don’t close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
               </Text>
             </View>
           </View>
@@ -1541,7 +1541,7 @@ export default function SettingsMain() {
               {L(
                 'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
                 "Поточний прогрес залишиться прив\'язаним до акаунта, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
-                'Your current progress will stay linked to the account you are logged in with now. To come back to it — log in with that account again.',
+                'Your current progress stays linked to the account you’re signed in with now. To get back to it, sign in with that account again.',
                 'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
                 'Seu progresso atual ficará vinculado à conta em que você está conectado agora. Para voltar, entre nela novamente.',
                 'Tiến độ hiện tại sẽ gắn với tài khoản bạn đang đăng nhập. Muốn quay lại, hãy đăng nhập lại bằng tài khoản đó.',
@@ -1561,7 +1561,7 @@ export default function SettingsMain() {
               {L(
                 'Перед выходом надёжно сохраним прогресс. Если не будет интернета — отменим смену аккаунта, чтобы ничего не потерялось.',
                 'Перед виходом надійно збережемо прогрес. Якщо не буде інтернету — скасуємо зміну акаунта, щоб нічого не загубилося.',
-                'Before you log out, we’ll safely save your progress. If there’s no internet, we’ll cancel the account switch so nothing is lost.',
+                'Before you sign out, we’ll safely save your progress. If there’s no internet, we’ll cancel the account switch so nothing is lost.',
                 'Antes de cerrar sesión guardaremos tu progreso de forma segura. Si no hay internet, cancelaremos el cambio de cuenta para que no pierdas nada.',
                 'Antes de sair, salvaremos seu progresso com segurança. Se não houver internet, cancelaremos a troca de conta para que nada se perca.',
                 'Trước khi đăng xuất, chúng tôi sẽ lưu tiến độ của bạn an toàn. Nếu không có mạng, việc đổi tài khoản sẽ bị hủy để không mất gì.',
@@ -1674,7 +1674,7 @@ export default function SettingsMain() {
                         L(
                           'Защитная проверка не разрешила удалить локальные данные. Всё осталось на месте — попробуй снова позже.',
                           'Захисна перевірка не дозволила видалити локальні дані. Усе залишилося на місці — спробуй ще раз пізніше.',
-                          'The safety check did not allow deleting local data. Everything stayed in place — try again later.',
+                          'The safety check stopped us from deleting local data. Everything is still in place — try again later.',
                           'La comprobación de seguridad no permitió borrar los datos locales. Todo sigue en su lugar; inténtalo más tarde.',
                           'A verificação de segurança não permitiu apagar os dados locais. Tudo continua no lugar; tente novamente mais tarde.',
                           'Kiểm tra an toàn không cho phép xóa dữ liệu cục bộ. Mọi thứ vẫn nguyên; hãy thử lại sau.',
@@ -1795,7 +1795,7 @@ export default function SettingsMain() {
                       L(
                         'Смена аккаунта отменена: локальная очередь монет повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
                         'Зміну акаунта скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
-                        'Account switch canceled: the local coin queue is corrupted or belongs to an unknown account. Data was kept for recovery.',
+                        'Account switch canceled: we couldn’t verify the coins on this phone. Nothing was deleted.',
                         'El cambio de cuenta se canceló: la cola local de monedas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
                         'A troca de conta foi cancelada: a fila local de moedas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
                         'Đã hủy đổi tài khoản: hàng đợi xu cục bộ bị hỏng hoặc thuộc về tài khoản không xác định. Dữ liệu đã được giữ lại để khôi phục.',

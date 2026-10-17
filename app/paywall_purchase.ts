@@ -229,7 +229,7 @@ export function showUnverifiedPurchaseAlert(lang: Lang, certainty: PurchaseCerta
     triLang(lang, {
       ru: 'Неизвестно, прошла ли оплата. Сначала проверь покупки в магазине или нажми «Восстановить» на этом экране. Не покупай повторно, пока не выяснишь статус.',
       uk: 'Невідомо, чи пройшла оплата. Спершу перевір покупки в магазині або натисни «Відновити» на цьому екрані. Не купуй повторно, доки не з’ясуєш статус.',
-      en: 'We cannot confirm whether payment went through. Check your store purchases or tap Restore on this screen first. Do not buy again until you know the status.',
+      en: 'We can’t confirm the payment yet. Check your store purchases or tap Restore on this screen first. Don’t buy again until you know the status.',
       es: 'No podemos confirmar si se realizó el pago. Primero revisa tus compras en la tienda o toca Restaurar en esta pantalla. No vuelvas a comprar hasta confirmar el estado.',
       'pt-BR': 'Não podemos confirmar se o pagamento foi concluído. Confira as compras na loja ou toque em Restaurar nesta tela. Não compre novamente antes de confirmar o status.',
       vi: 'Chưa thể xác nhận thanh toán đã hoàn tất hay chưa. Hãy kiểm tra giao dịch trong cửa hàng hoặc chọn Khôi phục trên màn hình này. Đừng mua lại trước khi xác nhận trạng thái.',

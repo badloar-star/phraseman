@@ -38,7 +38,7 @@ export function previousAccountPurchaseCopy(lang: Lang, certainty: PurchaseCerta
     message: triLang(lang, {
       ru: 'Если оплата прошла, она на предыдущем аккаунте — войди в него, Plus будет там.',
       uk: 'Якщо оплата пройшла, вона на попередньому акаунті — увійди в нього, Plus буде там.',
-      en: 'If the payment went through, it is on your previous account. Sign in to it and Plus will be there.',
+      en: 'If the payment went through, it’s on your previous account. Sign in to it and Plus will be there.',
       es: 'Si el pago se realizó, está en tu cuenta anterior. Inicia sesión en ella y Plus estará allí.',
       'pt-BR': 'Se o pagamento foi concluído, ele está na sua conta anterior. Entre nela e o Plus estará lá.',
       vi: 'Nếu thanh toán đã hoàn tất, giao dịch nằm ở tài khoản trước đó. Hãy đăng nhập vào đó, Plus sẽ có ở đấy.',

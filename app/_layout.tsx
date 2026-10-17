@@ -2590,7 +2590,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
               messageRu: 'Облако сейчас недоступно. Открой приложение позже, чтобы повторить восстановление.',
               messageUk: 'Хмара зараз недоступна. Відкрий застосунок пізніше, щоб повторити відновлення.',
               // зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): у тоста не было английского текста.
-              messageEn: 'The cloud is unavailable right now. Open the app later to try restoring again.',
+              messageEn: 'Restoring isn’t available right now. Open the app later and try again.',
               messageEs: 'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
               messagePtBr: 'A nuvem está indisponível no momento. Abra o aplicativo mais tarde para tentar restaurar novamente.',
               messageVi: 'Đám mây hiện không khả dụng. Hãy mở lại ứng dụng sau để thử khôi phục lần nữa.',

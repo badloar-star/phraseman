@@ -54,3 +54,6 @@ No architecture change. Меняются только значения стро�
 - Карточки: 5 по смыслу («Nothing to practice yet», «Community pack» вместо «Community set», «Popular in the community», «I didn’t know») + 14 «Could not» → «Couldn’t» на одном экране одним стилем
 - Диалоги: 15 (калька «language contour», «It goes into the field», «has not caught up», «Open Plus:», «Practise» → US «Practice», «lvl.» → «Lvl»)
 - Пик: 3 («we move down» → «you move down», «Peak» без артикля как имя раздела, «is overtaking you»)
+- Пейвол и Plus: 5 («Cancel anytime» единообразно, «We can’t confirm the payment yet… Don’t buy again», «Full access is back — all of it», «older topics come back in the mix»)
+- Профиль и Настройки: 6 (log in/out → sign in/out как во всём приложении, «coin queue is corrupted» → по-человечески, «Don’t close the app», «Plus for a survey»)
+- Уведомления и тосты: пуши — раньше (c409ac0f8, 13 строк); тосты 1 («The cloud is unavailable…» → «Restoring isn’t available right now…»). Остальные тосты вычитаны вместе с экранами.

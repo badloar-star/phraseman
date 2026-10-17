@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-36:intro1:r2": {
-          "ru": "`asleep` — уже спите. Пока только хочется спать: `sleepy`.",
-          "uk": "`asleep` — уже спите. Поки лише хочеться спати: `sleepy`."
+          "ru": "serious — «не шутит». Не любит проигрывать — competitive.",
+          "uk": "serious — «не жартує». Не любить програвати — competitive."
         },
         "en:lesson-01:session-36:intro1:r3": {
-          "ru": "После `I` нужна форма `am`: `I am sleepy`.",
-          "uk": "Після `I` потрібна форма `am`: `I am sleepy`."
+          "ru": "В короткой форме нужно 's: She's competitive.",
+          "uk": "У короткій формі потрібно 's: She's competitive."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-36:intro2:r2": {
-          "ru": "Это про него. Про Машу нужно `She`.",
-          "uk": "Це про нього. Про Машу потрібно `She`."
+          "ru": "They're — про соперников. О своей команде — We're.",
+          "uk": "They're — про суперників. Про свою команду — We're."
         },
         "en:lesson-01:session-36:intro2:r3": {
-          "ru": "После `She` ставим `is`.",
-          "uk": "Після `She` ставимо `is`."
+          "ru": "В короткой форме нужно 're: We're ahead.",
+          "uk": "У короткій формі потрібно 're: We're ahead."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-36:intro3:r2": {
-          "ru": "Это о вашей уверенности. Здесь нужно сказать о результате: `It is correct`.",
-          "uk": "Це про вашу впевненість. Тут треба сказати про результат: `It is correct`."
+          "ru": "Так вы скажете, что безнадёжен сам Олег. О положении в игре — It's.",
+          "uk": "Так ви скажете, що безнадійний сам Олег. Про становище в грі — It's."
         },
         "en:lesson-01:session-36:intro3:r3": {
-          "ru": "`sleepy` — «сонный». Результат подсчёта не хочет спать: он `correct`.",
-          "uk": "`sleepy` — «сонний». Результат підрахунку не хоче спати: він `correct`."
+          "ru": "В короткой форме нужно 's: It's hopeless.",
+          "uk": "У короткій формі потрібно 's: It's hopeless."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bb0668267868cba39d17258a276e633f9505f95389362508e4021b06caa4d760"
+  "auxiliaryFingerprint": "15e93f6ce9d6b12925f901acdb540a3c5254520e44f11d29deb87e074793b83c"
 }

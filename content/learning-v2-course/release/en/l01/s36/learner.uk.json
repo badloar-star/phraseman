@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-36:i01",
+      "interactionId": "en:lesson-01:session-36:word:competitive",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — competitive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:word:competitive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — competitive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:word:competitive:audio",
+          "transcript": "competitive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-36:word:competitive:r1",
+            "targetText": "competitive",
+            "meaningByLocale": {
+              "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
+              "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "competitive",
+          "definitionByLocale": {
+            "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
+            "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:word:ahead",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ahead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:word:ahead:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ahead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:word:ahead:audio",
+          "transcript": "ahead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-36:word:ahead:r1",
+            "targetText": "ahead",
+            "meaningByLocale": {
+              "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
+              "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ahead",
+          "definitionByLocale": {
+            "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
+            "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:word:hopeless",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hopeless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:word:hopeless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hopeless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:word:hopeless:audio",
+          "transcript": "hopeless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-36:word:hopeless:r1",
+            "targetText": "hopeless",
+            "meaningByLocale": {
+              "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
+              "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hopeless",
+          "definitionByLocale": {
+            "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
+            "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:word:grumpy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grumpy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:word:grumpy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grumpy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:word:grumpy:audio",
+          "transcript": "grumpy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-36:word:grumpy:r1",
+            "targetText": "grumpy",
+            "meaningByLocale": {
+              "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
+              "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grumpy",
+          "definitionByLocale": {
+            "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
+            "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +229,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-36:i02:r1",
-          "text": "He is sleepy."
+          "text": "He is grumpy."
         },
         {
           "responseId": "en:lesson-01:session-36:i02:r2",
-          "text": "She is sleepy."
+          "text": "She is grumpy."
         },
         {
           "responseId": "en:lesson-01:session-36:i02:r3",
-          "text": "He is serious."
+          "text": "He is sleepy."
         }
       ],
       "mediaIds": [],
@@ -77,23 +249,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-36:i02:audio",
-          "transcript": "He is sleepy."
+          "transcript": "He is grumpy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-36:i02:r1",
-            "targetText": "He is sleepy.",
+            "targetText": "He is grumpy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-36:i02:r2",
-            "targetText": "She is sleepy.",
+            "targetText": "She is grumpy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-36:i02:r3",
-            "targetText": "He is serious.",
+            "targetText": "He is sleepy.",
             "meaningByLocale": null
           }
         ],
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `serious`.",
-              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `serious`."
+              "ru": "В записи последнее слово — `grumpy`, а в этом варианте — `sleepy`.",
+              "uk": "У записі останнє слово — `grumpy`, а в цьому варіанті — `sleepy`."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Двоє друзів хочуть спати. Доповніть фразу про них",
+      "prompt": "У суперників на десять очок більше. Доповніть фразу про них",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-36:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двоє друзів хочуть спати. Доповніть фразу про них",
+      "accessibilityLabel": "У суперників на десять очок більше. Доповніть фразу про них",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Двое друзей хотят спать. Дополните фразу о них",
-          "uk": "Двоє друзів хочуть спати. Доповніть фразу про них"
+          "ru": "У соперников на десять очков больше. Дополните фразу о них",
+          "uk": "У суперників на десять очок більше. Доповніть фразу про них"
         },
-        "gappedTargetPhrase": "They ___ sleepy.",
+        "gappedTargetPhrase": "They ___ ahead.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-36:i03:r1",
@@ -168,12 +340,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Двоє друзів хочуть спати. Доповніть фразу про них",
+        "testedDimension": "У суперників на десять очок більше. Доповніть фразу про них",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-36:i03:r2",
             "correct": false,
-            "testedDimension": "Двоє друзів хочуть спати. Доповніть фразу про них",
+            "testedDimension": "У суперників на десять очок більше. Доповніть фразу про них",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -182,10 +354,10 @@
           {
             "responseId": "en:lesson-01:session-36:i03:r3",
             "correct": false,
-            "testedDimension": "Двоє друзів хочуть спати. Доповніть фразу про них",
+            "testedDimension": "У суперників на десять очок більше. Доповніть фразу про них",
             "feedbackByLocale": {
-              "ru": "Здесь `They are`, потому что речь о них.",
-              "uk": "Тут `They are`, адже йдеться про них."
+              "ru": "Соперников несколько, поэтому `They are`.",
+              "uk": "Суперників кілька, тому `They are`."
             }
           }
         ]
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-36:i04:p1",
-            "target": "sleepy",
+            "target": "competitive",
             "meaningByLocale": {
-              "ru": "хочется спать",
-              "uk": "хочеться спати"
+              "ru": "азартный",
+              "uk": "азартний"
             }
           },
           {
             "pairId": "en:lesson-01:session-36:i04:p2",
-            "target": "correct",
+            "target": "ahead",
             "meaningByLocale": {
-              "ru": "правильный",
-              "uk": "правильний"
+              "ru": "впереди",
+              "uk": "попереду"
             }
           },
           {
             "pairId": "en:lesson-01:session-36:i04:p3",
-            "target": "certain",
+            "target": "hopeless",
             "meaningByLocale": {
-              "ru": "уверен",
-              "uk": "упевнений"
+              "ru": "безнадёжный",
+              "uk": "безнадійний"
             }
           },
           {
             "pairId": "en:lesson-01:session-36:i04:p4",
-            "target": "serious",
+            "target": "grumpy",
             "meaningByLocale": {
-              "ru": "серьёзный",
-              "uk": "серйозний"
+              "ru": "ворчливый",
+              "uk": "буркотливий"
             }
           }
         ],
         "leftColumn": [
-          "sleepy",
-          "correct",
-          "certain",
-          "serious"
+          "competitive",
+          "ahead",
+          "hopeless",
+          "grumpy"
         ],
         "rightColumn": [
-          "хочеться спати",
-          "правильний",
-          "упевнений",
-          "серйозний"
+          "азартний",
+          "попереду",
+          "безнадійний",
+          "буркотливий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -282,13 +454,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-36:i05:audio",
-          "transcript": "She's sleepy."
+          "transcript": "She's competitive."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She's sleepy.",
+        "hiddenTargetPhrase": "She's competitive.",
         "orderedTokens": [
           "She's",
-          "sleepy"
+          "competitive"
         ],
         "authoredDistractorTokens": [
           "He's"
@@ -299,8 +471,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть коротку фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `She's` — `She's sleepy.`",
-              "uk": "тут потрібно `She's` — `She's sleepy.`"
+              "ru": "здесь нужно `She's` — `She's competitive.`",
+              "uk": "тут потрібно `She's` — `She's competitive.`"
             }
           }
         ],
@@ -313,21 +485,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви та Олег хочете спати. Складіть фразу від вас двох",
+      "prompt": "Ви та Олег хочете спати. Складіть фразу від вас обох",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви та Олег хочете спати. Складіть фразу від вас двох",
+      "accessibilityLabel": "Ви та Олег хочете спати. Складіть фразу від вас обох",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are sleepy.",
         "localizedMeaning": {
           "ru": "Вы и Олег хотите спать. Соберите фразу от вас двоих",
-          "uk": "Ви та Олег хочете спати. Складіть фразу від вас двох"
+          "uk": "Ви та Олег хочете спати. Складіть фразу від вас обох"
         },
         "orderedTokens": [
           "We",
@@ -341,7 +513,7 @@
           {
             "responseId": "en:lesson-01:session-36:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви та Олег хочете спати. Складіть фразу від вас двох",
+            "testedDimension": "Ви та Олег хочете спати. Складіть фразу від вас обох",
             "feedbackByLocale": {
               "ru": "здесь нужно `We` — `We are sleepy.`",
               "uk": "тут потрібно `We` — `We are sleepy.`"
@@ -357,7 +529,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -390,7 +562,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -402,11 +574,11 @@
         },
         {
           "responseId": "en:lesson-01:session-36:i08:r2",
-          "text": "sleepy"
+          "text": "hopeless"
         },
         {
           "responseId": "en:lesson-01:session-36:i08:r3",
-          "text": "serious"
+          "text": "ahead"
         }
       ],
       "mediaIds": [],
@@ -426,11 +598,11 @@
           },
           {
             "responseId": "en:lesson-01:session-36:i08:r2",
-            "text": "sleepy"
+            "text": "hopeless"
           },
           {
             "responseId": "en:lesson-01:session-36:i08:r3",
-            "text": "serious"
+            "text": "ahead"
           }
         ],
         "testedDimension": "Ви звірили суму очок, помилки немає. Назвіть правильність результату",
@@ -440,8 +612,8 @@
             "correct": false,
             "testedDimension": "Ви звірили суму очок, помилки немає. Назвіть правильність результату",
             "feedbackByLocale": {
-              "ru": "Сонным бывает игрок. Результат здесь правильный: `correct`.",
-              "uk": "Сонним буває гравець. Результат тут правильний: `correct`."
+              "ru": "`hopeless` — «безнадёжный». Сумма здесь без ошибки: `correct`.",
+              "uk": "`hopeless` — «безнадійний». Сума тут без помилки: `correct`."
             }
           },
           {
@@ -449,8 +621,8 @@
             "correct": false,
             "testedDimension": "Ви звірили суму очок, помилки немає. Назвіть правильність результату",
             "feedbackByLocale": {
-              "ru": "`serious` — «серьёзный». Правильность передаёт `correct`.",
-              "uk": "`serious` — «серйозний». Правильність передає `correct`."
+              "ru": "`ahead` — «впереди». Правильность передаёт `correct`.",
+              "uk": "`ahead` — «попереду». Правильність передає `correct`."
             }
           }
         ]
@@ -459,7 +631,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -467,15 +639,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-36:i09:r1",
-          "text": "I am certain."
+          "text": "It's hopeless."
         },
         {
           "responseId": "en:lesson-01:session-36:i09:r2",
-          "text": "I am sleepy."
+          "text": "It's correct."
         },
         {
           "responseId": "en:lesson-01:session-36:i09:r3",
-          "text": "I am serious."
+          "text": "He's hopeless."
         }
       ],
       "mediaIds": [],
@@ -487,23 +659,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-36:i09:audio",
-          "transcript": "I am certain."
+          "transcript": "It's hopeless."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-36:i09:r1",
-            "targetText": "I am certain.",
+            "targetText": "It's hopeless.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-36:i09:r2",
-            "targetText": "I am sleepy.",
+            "targetText": "It's correct.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-36:i09:r3",
-            "targetText": "I am serious.",
+            "targetText": "He's hopeless.",
             "meaningByLocale": null
           }
         ],
@@ -514,8 +686,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `certain`, а в этом варианте — `sleepy`.",
-              "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `sleepy`."
+              "ru": "В записи последнее слово — `hopeless`, а в этом варианте — `correct`.",
+              "uk": "У записі останнє слово — `hopeless`, а в цьому варіанті — `correct`."
             }
           },
           {
@@ -523,8 +695,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `certain`, а в этом варианте — `serious`.",
-              "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `serious`."
+              "ru": "В записи первое слово — `It's`, а в этом варианте — `He's`.",
+              "uk": "У записі перше слово — `It's`, а в цьому варіанті — `He's`."
             }
           }
         ],
@@ -535,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -551,8 +723,8 @@
             "pairId": "en:lesson-01:session-36:i10:p1",
             "target": "sleepy",
             "meaningByLocale": {
-              "ru": "сонный",
-              "uk": "сонний"
+              "ru": "хочется спать",
+              "uk": "хочеться спати"
             }
           },
           {
@@ -587,7 +759,7 @@
           "certain"
         ],
         "rightColumn": [
-          "сонний",
+          "хочеться спати",
           "спить",
           "не спить",
           "упевнений"
@@ -608,8 +780,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -623,14 +795,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-36:i11:audio",
-          "transcript": "They are sleepy."
+          "transcript": "We are ahead."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are sleepy.",
+        "hiddenTargetPhrase": "We are ahead.",
         "orderedTokens": [
-          "They",
+          "We",
           "are",
-          "sleepy"
+          "ahead"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -641,8 +813,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are sleepy.`",
-              "uk": "тут потрібно `are` — `They are sleepy.`"
+              "ru": "здесь нужно `are` — `We are ahead.`",
+              "uk": "тут потрібно `are` — `We are ahead.`"
             }
           }
         ],
@@ -655,7 +827,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -699,25 +871,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви точно пам’ятаєте правило, яке щойно прочитали. Скажіть про свою впевненість",
+      "prompt": "О першій ночі Олег бурчить на кубики й на правила. Скажіть Маші коротко, що він не в гуморі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-36:i13:audio"
       ],
-      "accessibilityLabel": "Ви точно пам’ятаєте правило, яке щойно прочитали. Скажіть про свою впевненість",
+      "accessibilityLabel": "О першій ночі Олег бурчить на кубики й на правила. Скажіть Маші коротко, що він не в гуморі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-36:i13:audio",
-          "transcript": "I am certain."
+          "transcript": "He's grumpy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am certain.",
+        "targetPhrase": "He's grumpy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -732,11 +904,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Маша зізналася, що хоче спати. Ви звертаєтеся до неї: «Ти сонна». Вставте слово",
+      "prompt": "Маша сперечається через кожне очко. Ви звертаєтеся до неї: «Ти азартна». Вставте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-36:i14:r1",
@@ -753,14 +925,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Маша зізналася, що хоче спати. Ви звертаєтеся до неї: «Ти сонна». Вставте слово",
+      "accessibilityLabel": "Маша сперечається через кожне очко. Ви звертаєтеся до неї: «Ти азартна». Вставте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово",
-          "uk": "Маша зізналася, що хоче спати. Ви звертаєтеся до неї: «Ти сонна». Вставте слово"
+          "ru": "Маша спорит из-за каждого очка. Вы обращаетесь к ней: «Ты азартная». Вставьте слово",
+          "uk": "Маша сперечається через кожне очко. Ви звертаєтеся до неї: «Ти азартна». Вставте слово"
         },
-        "gappedTargetPhrase": "You ___ sleepy.",
+        "gappedTargetPhrase": "You ___ competitive.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-36:i14:r1",
@@ -775,12 +947,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Маша зізналася, що хоче спати. Ви звертаєтеся до неї: «Ти сонна». Вставте слово",
+        "testedDimension": "Маша сперечається через кожне очко. Ви звертаєтеся до неї: «Ти азартна». Вставте слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-36:i14:r2",
             "correct": false,
-            "testedDimension": "Маша зізналася, що хоче спати. Ви звертаєтеся до неї: «Ти сонна». Вставте слово",
+            "testedDimension": "Маша сперечається через кожне очко. Ви звертаєтеся до неї: «Ти азартна». Вставте слово",
             "feedbackByLocale": {
               "ru": "С `You` используем `are`.",
               "uk": "З `You` використовуємо `are`."
@@ -789,7 +961,7 @@
           {
             "responseId": "en:lesson-01:session-36:i14:r3",
             "correct": false,
-            "testedDimension": "Маша зізналася, що хоче спати. Ви звертаєтеся до неї: «Ти сонна». Вставте слово",
+            "testedDimension": "Маша сперечається через кожне очко. Ви звертаєтеся до неї: «Ти азартна». Вставте слово",
             "feedbackByLocale": {
               "ru": "Даже к одному человеку обращаемся `You are`.",
               "uk": "Навіть до однієї людини звертаємося `You are`."
@@ -801,7 +973,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +989,7 @@
         },
         {
           "responseId": "en:lesson-01:session-36:i15:r3",
-          "text": "We're serious."
+          "text": "We're ahead."
         }
       ],
       "mediaIds": [],
@@ -845,7 +1017,7 @@
           },
           {
             "responseId": "en:lesson-01:session-36:i15:r3",
-            "targetText": "We're serious.",
+            "targetText": "We're ahead.",
             "meaningByLocale": null
           }
         ],
@@ -865,8 +1037,8 @@
             "correct": false,
             "testedDimension": "Послухайте коротку фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `serious`.",
-              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `serious`."
+              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `ahead`.",
+              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `ahead`."
             }
           }
         ],
@@ -877,7 +1049,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -891,18 +1063,18 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-36:i16:p1",
-            "target": "serious",
+            "target": "grumpy",
             "meaningByLocale": {
-              "ru": "не шутит",
-              "uk": "не жартує"
+              "ru": "не в духе",
+              "uk": "не в гуморі"
             }
           },
           {
             "pairId": "en:lesson-01:session-36:i16:p2",
-            "target": "certain",
+            "target": "competitive",
             "meaningByLocale": {
-              "ru": "уверен",
-              "uk": "упевнений"
+              "ru": "не любит проигрывать",
+              "uk": "не любить програвати"
             }
           },
           {
@@ -923,14 +1095,14 @@
           }
         ],
         "leftColumn": [
-          "serious",
-          "certain",
+          "grumpy",
+          "competitive",
           "correct",
           "sleepy"
         ],
         "rightColumn": [
-          "не жартує",
-          "упевнений",
+          "не в гуморі",
+          "не любить програвати",
           "без помилки",
           "хочеться спати"
         ],
@@ -950,17 +1122,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-36:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У поїзді брат ще не спить, але каже, що його хилить на сон. Розкажіть мамі про його стан",
+      "prompt": "У потязі брат ще не спить, але каже, що його хилить на сон. Розкажіть мамі про його стан",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-36:i17:audio"
       ],
-      "accessibilityLabel": "У поїзді брат ще не спить, але каже, що його хилить на сон. Розкажіть мамі про його стан",
+      "accessibilityLabel": "У потязі брат ще не спить, але каже, що його хилить на сон. Розкажіть мамі про його стан",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -990,11 +1162,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "131e434c9d033e2709a79c84c35f0d282696bf047df8943a480baa59973c86b1"
+  "learnerFingerprint": "5096a26a2c2cfe9ec6b062c08d201250c0f6e811bb886b642aad5f4dfdc9f21e"
 }

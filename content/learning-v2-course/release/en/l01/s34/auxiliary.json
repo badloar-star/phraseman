@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-34:intro1:r2": {
-          "ru": "После `I` нужно `am`: `I am afraid`.",
-          "uk": "Після `I` потрібно `am`: `I am afraid`."
+          "ru": "В короткой форме нужно 'm: I'm afraid.",
+          "uk": "У короткій формі потрібно 'm: I'm afraid."
         },
         "en:lesson-01:session-34:intro1:r3": {
-          "ru": "`bored` — «скучаю». Здесь нужно назвать страх: `afraid`.",
-          "uk": "`bored` — «нудьгую». Тут треба назвати страх: `afraid`."
+          "ru": "She's — про Машу. О себе говорим I'm.",
+          "uk": "She's — про Машу. Про себе кажемо I'm."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-34:intro2:r2": {
-          "ru": "После `He` нужна форма `is`.",
-          "uk": "Після `He` потрібна форма `is`."
+          "ru": "Так вы скажете, что жуткий вы сами. О месте — It's creepy.",
+          "uk": "Так ви скажете, що моторошний ви самі. Про місце — It's creepy."
         },
         "en:lesson-01:session-34:intro2:r3": {
-          "ru": "`confused` — «запутался». Олег боится, поэтому `afraid`.",
-          "uk": "`confused` — «заплутався». Олег боїться, тому `afraid`."
+          "ru": "afraid — о том, кто боится. Комната не боится, она жуткая: creepy.",
+          "uk": "afraid — про того, хто боїться. Кімната не боїться, вона моторошна: creepy."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-34:intro3:r2": {
-          "ru": "Это про них. Вы включаете себя: `We are afraid`.",
-          "uk": "Це про них. Ви включаєте себе: `We are afraid`."
+          "ru": "He's — про мужчину. Про Машу — She's.",
+          "uk": "He's — про чоловіка. Про Машу — She's."
         },
         "en:lesson-01:session-34:intro3:r3": {
-          "ru": "`bored` — «скучаем». Здесь речь о страхе: `afraid`.",
-          "uk": "`bored` — «нудьгуємо». Тут ідеться про страх: `afraid`."
+          "ru": "В короткой форме нужно 's: She's pale.",
+          "uk": "У короткій формі потрібно 's: She's pale."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2ac921646b4fcdd0209e69c32d62960e9c4fb2348b238b8fed05e9d4ccac70fb"
+  "auxiliaryFingerprint": "04421ebb7fdeef0dbc7bf116d7d5a44b64ad92ae8dd76b721d2ad27831383193"
 }

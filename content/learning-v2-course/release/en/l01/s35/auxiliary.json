@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-35:intro1:r2": {
-          "ru": "Нужно `I am ill`: после `I` остаётся `am`.",
-          "uk": "Потрібно `I am ill`: після `I` залишається `am`."
+          "ru": "В короткой форме нужно 'm: I'm ill.",
+          "uk": "У короткій формі потрібно 'm: I'm ill."
         },
         "en:lesson-01:session-35:intro1:r3": {
-          "ru": "`asleep` — «сплю». Здесь причина отмены — болезнь: `ill`.",
-          "uk": "`asleep` — «сплю». Тут причина скасування — хвороба: `ill`."
+          "ru": "He's — про него. О себе — I'm.",
+          "uk": "He's — про нього. Про себе — I'm."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-35:intro2:r2": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "She's — про неё. Про брата — He's.",
+          "uk": "She's — про неї. Про брата — He's."
         },
         "en:lesson-01:session-35:intro2:r3": {
-          "ru": "`She` — про неё. Про брата нужно `He`.",
-          "uk": "`She` — про неї. Про брата потрібно `He`."
+          "ru": "В короткой форме нужно 's: He's contagious.",
+          "uk": "У короткій формі потрібно 's: He's contagious."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-35:intro3:r2": {
-          "ru": "Спящий человек сейчас не готов к разговору. Нужное слово — `available`.",
-          "uk": "Людина, яка спить, зараз не готова до розмови. Потрібне слово — `available`."
+          "ru": "ill — «болеет» вообще. Здесь пропал голос: hoarse.",
+          "uk": "ill — «хворіє» загалом. Тут зник голос: hoarse."
         },
         "en:lesson-01:session-35:intro3:r3": {
-          "ru": "Это сообщает о болезни. Здесь нужно сообщить, что вы доступны для звонка: `available`.",
-          "uk": "Це повідомляє про хворобу. Тут треба повідомити, що ви доступні для дзвінка: `available`."
+          "ru": "В короткой форме нужно 's: She's hoarse.",
+          "uk": "У короткій формі потрібно 's: She's hoarse."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "17a427bb5242224cb3f3533a6dc5e1c9ef1df81e42f5dc328d1da7e2e22d2549"
+  "auxiliaryFingerprint": "c5572e38f6d6d5d82db62d7d4343a2a5ba6a24c2a73de3e28d9b69193653e2cb"
 }

@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-35:i01",
+      "interactionId": "en:lesson-01:session-35:word:ill",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:word:ill:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:word:ill:audio",
+          "transcript": "ill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:word:ill:r1",
+            "targetText": "ill",
+            "meaningByLocale": {
+              "ru": "болеет, болен. I'm ill — «Я болею». Это общее слово, без названия болезни.",
+              "uk": "хворіє, хворий. I'm ill — «Я хворію». Це загальне слово, без назви хвороби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ill",
+          "definitionByLocale": {
+            "ru": "болеет, болен. I'm ill — «Я болею». Это общее слово, без названия болезни.",
+            "uk": "хворіє, хворий. I'm ill — «Я хворію». Це загальне слово, без назви хвороби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:word:contagious",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — contagious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:word:contagious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — contagious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:word:contagious:audio",
+          "transcript": "contagious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:word:contagious:r1",
+            "targetText": "contagious",
+            "meaningByLocale": {
+              "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
+              "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "contagious",
+          "definitionByLocale": {
+            "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
+            "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:word:hoarse",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hoarse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:word:hoarse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hoarse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:word:hoarse:audio",
+          "transcript": "hoarse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:word:hoarse:r1",
+            "targetText": "hoarse",
+            "meaningByLocale": {
+              "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
+              "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hoarse",
+          "definitionByLocale": {
+            "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
+            "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:word:dizzy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dizzy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:word:dizzy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dizzy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:word:dizzy:audio",
+          "transcript": "dizzy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:word:dizzy:r1",
+            "targetText": "dizzy",
+            "meaningByLocale": {
+              "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
+              "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dizzy",
+          "definitionByLocale": {
+            "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
+            "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +229,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-35:i02:r1",
-          "text": "He is ill."
+          "text": "He is contagious."
         },
         {
           "responseId": "en:lesson-01:session-35:i02:r2",
-          "text": "She is ill."
+          "text": "She is contagious."
         },
         {
           "responseId": "en:lesson-01:session-35:i02:r3",
-          "text": "He is awake."
+          "text": "He is ill."
         }
       ],
       "mediaIds": [],
@@ -77,23 +249,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-35:i02:audio",
-          "transcript": "He is ill."
+          "transcript": "He is contagious."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-35:i02:r1",
-            "targetText": "He is ill.",
+            "targetText": "He is contagious.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-35:i02:r2",
-            "targetText": "She is ill.",
+            "targetText": "She is contagious.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-35:i02:r3",
-            "targetText": "He is awake.",
+            "targetText": "He is ill.",
             "meaningByLocale": null
           }
         ],
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ill`, а в этом варианте — `awake`.",
-              "uk": "У записі останнє слово — `ill`, а в цьому варіанті — `awake`."
+              "ru": "В записи последнее слово — `contagious`, а в этом варианте — `ill`.",
+              "uk": "У записі останнє слово — `contagious`, а в цьому варіанті — `ill`."
             }
           }
         ],
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,15 +366,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -216,40 +388,40 @@
           },
           {
             "pairId": "en:lesson-01:session-35:i04:p2",
-            "target": "awake",
+            "target": "contagious",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "заразный",
+              "uk": "заразний"
             }
           },
           {
             "pairId": "en:lesson-01:session-35:i04:p3",
-            "target": "asleep",
+            "target": "hoarse",
             "meaningByLocale": {
-              "ru": "спит",
-              "uk": "спить"
+              "ru": "охрип",
+              "uk": "захрип"
             }
           },
           {
             "pairId": "en:lesson-01:session-35:i04:p4",
-            "target": "available",
+            "target": "dizzy",
             "meaningByLocale": {
-              "ru": "доступен для разговора",
-              "uk": "доступний для розмови"
+              "ru": "кружится голова",
+              "uk": "паморочиться в голові"
             }
           }
         ],
         "leftColumn": [
           "ill",
-          "awake",
-          "asleep",
-          "available"
+          "contagious",
+          "hoarse",
+          "dizzy"
         ],
         "rightColumn": [
           "болеет",
-          "не спит",
-          "спит",
-          "доступен для разговора"
+          "заразный",
+          "охрип",
+          "кружится голова"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Оба ваших друга болеют. Вы здоровы и рассказываете о них. Соберите фразу",
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -468,15 +640,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-35:i09:r1",
-          "text": "She is awake."
+          "text": "She's hoarse."
         },
         {
           "responseId": "en:lesson-01:session-35:i09:r2",
-          "text": "He is awake."
+          "text": "He's hoarse."
         },
         {
           "responseId": "en:lesson-01:session-35:i09:r3",
-          "text": "She is asleep."
+          "text": "She's ill."
         }
       ],
       "mediaIds": [],
@@ -488,23 +660,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-35:i09:audio",
-          "transcript": "She is awake."
+          "transcript": "She's hoarse."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-35:i09:r1",
-            "targetText": "She is awake.",
+            "targetText": "She's hoarse.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-35:i09:r2",
-            "targetText": "He is awake.",
+            "targetText": "He's hoarse.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-35:i09:r3",
-            "targetText": "She is asleep.",
+            "targetText": "She's ill.",
             "meaningByLocale": null
           }
         ],
@@ -515,8 +687,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
-              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+              "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
             }
           },
           {
@@ -524,8 +696,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awake`, а в этом варианте — `asleep`.",
-              "uk": "У записі останнє слово — `awake`, а в цьому варіанті — `asleep`."
+              "ru": "В записи последнее слово — `hoarse`, а в этом варианте — `ill`.",
+              "uk": "У записі останнє слово — `hoarse`, а в цьому варіанті — `ill`."
             }
           }
         ],
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините короткие начала с полными",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -655,7 +827,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -699,25 +871,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы и брат заболели и остаётесь дома. Назовите вашу общую причину отказа от встречи",
+      "prompt": "Вы встали с кровати, и комната поплыла перед глазами. Скажите брату коротко, что у вас кружится голова",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-35:i13:audio"
       ],
-      "accessibilityLabel": "Вы и брат заболели и остаётесь дома. Назовите вашу общую причину отказа от встречи",
+      "accessibilityLabel": "Вы встали с кровати, и комната поплыла перед глазами. Скажите брату коротко, что у вас кружится голова",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-35:i13:audio",
-          "transcript": "We are ill."
+          "transcript": "I'm dizzy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are ill.",
+        "targetPhrase": "I'm dizzy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -732,8 +904,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вы говорите заболевшему другу: «Ты болеешь». Вставьте слово",
@@ -801,7 +973,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -877,7 +1049,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -891,6 +1063,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-35:i16:p1",
+            "target": "dizzy",
+            "meaningByLocale": {
+              "ru": "кружится голова",
+              "uk": "паморочиться в голові"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-35:i16:p2",
+            "target": "contagious",
+            "meaningByLocale": {
+              "ru": "заразный",
+              "uk": "заразний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-35:i16:p3",
             "target": "available",
             "meaningByLocale": {
               "ru": "может поговорить сейчас",
@@ -898,41 +1086,25 @@
             }
           },
           {
-            "pairId": "en:lesson-01:session-35:i16:p2",
-            "target": "ill",
-            "meaningByLocale": {
-              "ru": "болен",
-              "uk": "хворий"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-35:i16:p3",
+            "pairId": "en:lesson-01:session-35:i16:p4",
             "target": "asleep",
             "meaningByLocale": {
               "ru": "спит",
               "uk": "спить"
             }
-          },
-          {
-            "pairId": "en:lesson-01:session-35:i16:p4",
-            "target": "awake",
-            "meaningByLocale": {
-              "ru": "бодрствует",
-              "uk": "не спить"
-            }
           }
         ],
         "leftColumn": [
+          "dizzy",
+          "contagious",
           "available",
-          "ill",
-          "asleep",
-          "awake"
+          "asleep"
         ],
         "rightColumn": [
+          "кружится голова",
+          "заразный",
           "может поговорить сейчас",
-          "болен",
-          "спит",
-          "бодрствует"
+          "спит"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -950,7 +1122,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-35:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -990,11 +1162,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2dc6a693cbd46b5b08dc004b92b7fa6404b8dd1fca95a66aa18dafcf2264ffd2"
+  "learnerFingerprint": "3374697e56c3361c10abd33bafb33db3e11fd74eba1686778f1785034712f91e"
 }

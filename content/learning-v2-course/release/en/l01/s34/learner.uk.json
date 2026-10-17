@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-34:i01",
+      "interactionId": "en:lesson-01:session-34:word:afraid",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — afraid",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-34:word:afraid:audio"
+      ],
+      "accessibilityLabel": "Картка слова — afraid",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-34:word:afraid:audio",
+          "transcript": "afraid"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-34:word:afraid:r1",
+            "targetText": "afraid",
+            "meaningByLocale": {
+              "ru": "боится, ему страшно. I'm afraid — «Мне страшно». Это чувство человека, а не описание места.",
+              "uk": "боїться, йому страшно. I'm afraid — «Мені страшно». Це відчуття людини, а не опис місця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "afraid",
+          "definitionByLocale": {
+            "ru": "боится, ему страшно. I'm afraid — «Мне страшно». Это чувство человека, а не описание места.",
+            "uk": "боїться, йому страшно. I'm afraid — «Мені страшно». Це відчуття людини, а не опис місця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-34:word:creepy",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — creepy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-34:word:creepy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — creepy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-34:word:creepy:audio",
+          "transcript": "creepy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-34:word:creepy:r1",
+            "targetText": "creepy",
+            "meaningByLocale": {
+              "ru": "жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.",
+              "uk": "моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "creepy",
+          "definitionByLocale": {
+            "ru": "жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.",
+            "uk": "моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-34:word:pale",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-34:word:pale:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-34:word:pale:audio",
+          "transcript": "pale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-34:word:pale:r1",
+            "targetText": "pale",
+            "meaningByLocale": {
+              "ru": "бледный. She's pale — «Она бледная»: лицо побелело от страха, усталости или болезни.",
+              "uk": "блідий. She's pale — «Вона бліда»: обличчя побіліло від страху, утоми чи хвороби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pale",
+          "definitionByLocale": {
+            "ru": "бледный. She's pale — «Она бледная»: лицо побелело от страха, усталости или болезни.",
+            "uk": "блідий. She's pale — «Вона бліда»: обличчя побіліло від страху, утоми чи хвороби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-34:word:terrified",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — terrified",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-34:word:terrified:audio"
+      ],
+      "accessibilityLabel": "Картка слова — terrified",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-34:word:terrified:audio",
+          "transcript": "terrified"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-34:word:terrified:r1",
+            "targetText": "terrified",
+            "meaningByLocale": {
+              "ru": "в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.",
+              "uk": "нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "terrified",
+          "definitionByLocale": {
+            "ru": "в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.",
+            "uk": "нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-34:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +229,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-34:i02:r1",
-          "text": "She is afraid."
+          "text": "She is pale."
         },
         {
           "responseId": "en:lesson-01:session-34:i02:r2",
-          "text": "He is afraid."
+          "text": "He is pale."
         },
         {
           "responseId": "en:lesson-01:session-34:i02:r3",
-          "text": "She is bored."
+          "text": "She is afraid."
         }
       ],
       "mediaIds": [],
@@ -77,23 +249,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-34:i02:audio",
-          "transcript": "She is afraid."
+          "transcript": "She is pale."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-34:i02:r1",
-            "targetText": "She is afraid.",
+            "targetText": "She is pale.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-34:i02:r2",
-            "targetText": "He is afraid.",
+            "targetText": "He is pale.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-34:i02:r3",
-            "targetText": "She is bored.",
+            "targetText": "She is afraid.",
             "meaningByLocale": null
           }
         ],
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `afraid`, а в этом варианте — `bored`.",
-              "uk": "У записі останнє слово — `afraid`, а в цьому варіанті — `bored`."
+              "ru": "В записи последнее слово — `pale`, а в этом варианте — `afraid`.",
+              "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `afraid`."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег боїться. Доповніть фразу про нього",
+      "prompt": "З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-34:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег боїться. Доповніть фразу про нього",
+      "accessibilityLabel": "З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег боится. Дополните фразу о нём",
-          "uk": "Олег боїться. Доповніть фразу про нього"
+          "ru": "Из комнаты доносится скрип двери, которую никто не трогает. Дополните фразу о звуке",
+          "uk": "З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук"
         },
-        "gappedTargetPhrase": "He ___ afraid.",
+        "gappedTargetPhrase": "It ___ creepy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-34:i03:r1",
@@ -168,24 +340,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег боїться. Доповніть фразу про нього",
+        "testedDimension": "З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-34:i03:r2",
             "correct": false,
-            "testedDimension": "Олег боїться. Доповніть фразу про нього",
+            "testedDimension": "З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук",
             "feedbackByLocale": {
-              "ru": "После `He` нужно `is`.",
-              "uk": "Після `He` потрібно `is`."
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-01:session-34:i03:r3",
             "correct": false,
-            "testedDimension": "Олег боїться. Доповніть фразу про нього",
+            "testedDimension": "З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук",
             "feedbackByLocale": {
-              "ru": "Про Олега здесь `He is`.",
-              "uk": "Про Олега тут `He is`."
+              "ru": "Звук один, поэтому `It is`.",
+              "uk": "Звук один, тому `It is`."
             }
           }
         ]
@@ -194,15 +366,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -216,40 +388,40 @@
           },
           {
             "pairId": "en:lesson-01:session-34:i04:p2",
-            "target": "bored",
+            "target": "creepy",
             "meaningByLocale": {
-              "ru": "скучает",
-              "uk": "нудьгує"
+              "ru": "жуткий",
+              "uk": "моторошний"
             }
           },
           {
             "pairId": "en:lesson-01:session-34:i04:p3",
-            "target": "confused",
+            "target": "pale",
             "meaningByLocale": {
-              "ru": "запутался",
-              "uk": "заплутався"
+              "ru": "бледный",
+              "uk": "блідий"
             }
           },
           {
             "pairId": "en:lesson-01:session-34:i04:p4",
-            "target": "worried",
+            "target": "terrified",
             "meaningByLocale": {
-              "ru": "беспокоится",
-              "uk": "непокоїться"
+              "ru": "в ужасе",
+              "uk": "нажаханий"
             }
           }
         ],
         "leftColumn": [
           "afraid",
-          "bored",
-          "confused",
-          "worried"
+          "creepy",
+          "pale",
+          "terrified"
         ],
         "rightColumn": [
           "боїться",
-          "нудьгує",
-          "заплутався",
-          "непокоїться"
+          "моторошний",
+          "блідий",
+          "нажаханий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -314,38 +486,37 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви з Олегом боїтеся заходити. Складіть фразу від вас двох",
+      "prompt": "Олег затулив очі руками й не рухається з місця. Ви розповідаєте про нього Маші. Складіть коротку фразу: «Він нажаханий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з Олегом боїтеся заходити. Складіть фразу від вас двох",
+      "accessibilityLabel": "Олег затулив очі руками й не рухається з місця. Ви розповідаєте про нього Маші. Складіть коротку фразу: «Він нажаханий»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are afraid.",
+        "targetPhrase": "He's terrified.",
         "localizedMeaning": {
-          "ru": "Вы с Олегом боитесь входить. Соберите фразу от вас двоих",
-          "uk": "Ви з Олегом боїтеся заходити. Складіть фразу від вас двох"
+          "ru": "Олег закрыл глаза руками и не двигается с места. Вы рассказываете о нём Маше. Соберите короткую фразу: «Он в ужасе»",
+          "uk": "Олег затулив очі руками й не рухається з місця. Ви розповідаєте про нього Маші. Складіть коротку фразу: «Він нажаханий»"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "afraid"
+          "He's",
+          "terrified"
         ],
         "authoredDistractorTokens": [
-          "They"
+          "She's"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-34:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви з Олегом боїтеся заходити. Складіть фразу від вас двох",
+            "testedDimension": "Олег затулив очі руками й не рухається з місця. Ви розповідаєте про нього Маші. Складіть коротку фразу: «Він нажаханий»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `We` — `We are afraid.`",
-              "uk": "тут потрібно `We` — `We are afraid.`"
+              "ru": "здесь нужно `He's` — `He's terrified.`",
+              "uk": "тут потрібно `He's` — `He's terrified.`"
             }
           }
         ],
@@ -358,17 +529,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви вирішуєте залишитися зовні, бо вам страшно. Назвіть своє почуття короткою фразою",
+      "prompt": "Ви вирішуєте лишитися надворі, бо вам страшно. Назвіть своє відчуття короткою фразою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-34:i07:audio"
       ],
-      "accessibilityLabel": "Ви вирішуєте залишитися зовні, бо вам страшно. Назвіть своє почуття короткою фразою",
+      "accessibilityLabel": "Ви вирішуєте лишитися надворі, бо вам страшно. Назвіть своє відчуття короткою фразою",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -391,11 +562,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Маша чекає біля входу й нудьгує. Назвіть саме нудьгу",
+      "prompt": "Маша чекає, поки всі наважаться, і нудьгує. Назвіть саме нудьгу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-34:i08:r1",
@@ -407,17 +578,17 @@
         },
         {
           "responseId": "en:lesson-01:session-34:i08:r3",
-          "text": "confused"
+          "text": "pale"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Маша чекає біля входу й нудьгує. Назвіть саме нудьгу",
+      "accessibilityLabel": "Маша чекає, поки всі наважаться, і нудьгує. Назвіть саме нудьгу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Маша ждёт у входа и скучает. Назовите именно скуку",
-          "uk": "Маша чекає біля входу й нудьгує. Назвіть саме нудьгу"
+          "ru": "Маша ждёт, пока все решатся, и скучает. Назовите именно скуку",
+          "uk": "Маша чекає, поки всі наважаться, і нудьгує. Назвіть саме нудьгу"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -431,15 +602,15 @@
           },
           {
             "responseId": "en:lesson-01:session-34:i08:r3",
-            "text": "confused"
+            "text": "pale"
           }
         ],
-        "testedDimension": "Маша чекає біля входу й нудьгує. Назвіть саме нудьгу",
+        "testedDimension": "Маша чекає, поки всі наважаться, і нудьгує. Назвіть саме нудьгу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-34:i08:r2",
             "correct": false,
-            "testedDimension": "Маша чекає біля входу й нудьгує. Назвіть саме нудьгу",
+            "testedDimension": "Маша чекає, поки всі наважаться, і нудьгує. Назвіть саме нудьгу",
             "feedbackByLocale": {
               "ru": "`afraid` — «боится». Здесь нужно «скучает»: `bored`.",
               "uk": "`afraid` — «боїться». Тут потрібно «нудьгує»: `bored`."
@@ -448,10 +619,10 @@
           {
             "responseId": "en:lesson-01:session-34:i08:r3",
             "correct": false,
-            "testedDimension": "Маша чекає біля входу й нудьгує. Назвіть саме нудьгу",
+            "testedDimension": "Маша чекає, поки всі наважаться, і нудьгує. Назвіть саме нудьгу",
             "feedbackByLocale": {
-              "ru": "`confused` — «запуталась». Скуку передаёт `bored`.",
-              "uk": "`confused` — «заплуталася». Нудьгу передає `bored`."
+              "ru": "`pale` — «бледная». Скуку передаёт `bored`.",
+              "uk": "`pale` — «бліда». Нудьгу передає `bored`."
             }
           }
         ]
@@ -460,7 +631,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -468,15 +639,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-34:i09:r1",
-          "text": "I am worried."
+          "text": "It's creepy."
         },
         {
           "responseId": "en:lesson-01:session-34:i09:r2",
-          "text": "I am afraid."
+          "text": "It's okay."
         },
         {
           "responseId": "en:lesson-01:session-34:i09:r3",
-          "text": "I am confused."
+          "text": "I'm creepy."
         }
       ],
       "mediaIds": [],
@@ -488,23 +659,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-34:i09:audio",
-          "transcript": "I am worried."
+          "transcript": "It's creepy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-34:i09:r1",
-            "targetText": "I am worried.",
+            "targetText": "It's creepy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-34:i09:r2",
-            "targetText": "I am afraid.",
+            "targetText": "It's okay.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-34:i09:r3",
-            "targetText": "I am confused.",
+            "targetText": "I'm creepy.",
             "meaningByLocale": null
           }
         ],
@@ -515,8 +686,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `worried`, а в этом варианте — `afraid`.",
-              "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `afraid`."
+              "ru": "В записи последнее слово — `creepy`, а в этом варианте — `okay`.",
+              "uk": "У записі останнє слово — `creepy`, а в цьому варіанті — `okay`."
             }
           },
           {
@@ -524,8 +695,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `worried`, а в этом варианте — `confused`.",
-              "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `confused`."
+              "ru": "В записи первое слово — `It's`, а в этом варианте — `I'm`.",
+              "uk": "У записі перше слово — `It's`, а в цьому варіанті — `I'm`."
             }
           }
         ],
@@ -536,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте короткі початки з повними",
@@ -609,8 +780,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -655,7 +826,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -699,25 +870,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Двоє друзів біля дверей бояться заходити. Ви розповідаєте про них Маші. Назвіть їхній страх",
+      "prompt": "Двоє друзів вийшли з кімнати з білими обличчями. Ви розповідаєте про них Маші. Скажіть, що вони бліді",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-34:i13:audio"
       ],
-      "accessibilityLabel": "Двоє друзів біля дверей бояться заходити. Ви розповідаєте про них Маші. Назвіть їхній страх",
+      "accessibilityLabel": "Двоє друзів вийшли з кімнати з білими обличчями. Ви розповідаєте про них Маші. Скажіть, що вони бліді",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-34:i13:audio",
-          "transcript": "They are afraid."
+          "transcript": "They are pale."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They are afraid.",
+        "targetPhrase": "They are pale.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -732,8 +903,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Олег зізнався, що боїться. Ви звертаєтеся до нього: «Тобі страшно». Вставте слово",
@@ -801,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -809,15 +980,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-34:i15:r1",
-          "text": "We're afraid."
+          "text": "We're terrified."
         },
         {
           "responseId": "en:lesson-01:session-34:i15:r2",
-          "text": "They're afraid."
+          "text": "They're terrified."
         },
         {
           "responseId": "en:lesson-01:session-34:i15:r3",
-          "text": "We're worried."
+          "text": "We're afraid."
         }
       ],
       "mediaIds": [],
@@ -829,23 +1000,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-34:i15:audio",
-          "transcript": "We're afraid."
+          "transcript": "We're terrified."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-34:i15:r1",
-            "targetText": "We're afraid.",
+            "targetText": "We're terrified.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-34:i15:r2",
-            "targetText": "They're afraid.",
+            "targetText": "They're terrified.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-34:i15:r3",
-            "targetText": "We're worried.",
+            "targetText": "We're afraid.",
             "meaningByLocale": null
           }
         ],
@@ -865,8 +1036,8 @@
             "correct": false,
             "testedDimension": "Послухайте коротку фразу й виберіть її",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `afraid`, а в этом варианте — `worried`.",
-              "uk": "У записі останнє слово — `afraid`, а в цьому варіанті — `worried`."
+              "ru": "В записи последнее слово — `terrified`, а в этом варианте — `afraid`.",
+              "uk": "У записі останнє слово — `terrified`, а в цьому варіанті — `afraid`."
             }
           }
         ],
@@ -877,40 +1048,40 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте стани зі значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте стани зі значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-34:i16:p1",
-            "target": "afraid",
+            "target": "terrified",
             "meaningByLocale": {
-              "ru": "испытывает страх",
-              "uk": "відчуває страх"
+              "ru": "в ужасе",
+              "uk": "нажаханий"
             }
           },
           {
             "pairId": "en:lesson-01:session-34:i16:p2",
-            "target": "worried",
+            "target": "creepy",
             "meaningByLocale": {
-              "ru": "испытывает беспокойство",
-              "uk": "відчуває занепокоєння"
+              "ru": "жуткий",
+              "uk": "моторошний"
             }
           },
           {
             "pairId": "en:lesson-01:session-34:i16:p3",
-            "target": "bored",
+            "target": "worried",
             "meaningByLocale": {
-              "ru": "скучает",
-              "uk": "нудьгує"
+              "ru": "беспокоится",
+              "uk": "хвилюється"
             }
           },
           {
@@ -923,15 +1094,15 @@
           }
         ],
         "leftColumn": [
-          "afraid",
+          "terrified",
+          "creepy",
           "worried",
-          "bored",
           "confused"
         ],
         "rightColumn": [
-          "відчуває страх",
-          "відчуває занепокоєння",
-          "нудьгує",
+          "нажаханий",
+          "моторошний",
+          "хвилюється",
           "не розуміє, заплутався"
         ],
         "pairingKey": "pair_id",
@@ -950,7 +1121,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -990,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5a9d4ffcf59e26c9aab67f7644fc4a34ef62be484d71be6537737b08f3578e6c"
+  "learnerFingerprint": "453fcb4080b3b73c6269c68288c99e35fa063886bc75ffec51d2ab4aa2ca24a9"
 }

@@ -1,138 +1,154 @@
 # Английский · Урок 1 · Занятие 36 — Поздняя настольная игра
 
-**Ситуация.** Вы с друзьями засиделись за настольной игрой. Проверяете счёт, обсуждаете последний ход и решаете, пора ли заканчивать.
+**Ситуация.** Вы с друзьями засиделись за настольной игрой до часу ночи. Маша считает каждое очко, Олег почти проиграл и ворчит, а вы решаете, пора ли заканчивать.
 
-**Что вы освоите:** сказать, кому хочется спать, и повторить фразы о правильности, уверенности и серьёзности
-**Новые слова:** sleepy
+**Что вы освоите:** коротко сказать, кто как играет и кто впереди, и повторить фразы о сне и уверенности
+**Новые слова:** competitive, ahead, hopeless, grumpy
+**Возвращаются:** sleepy, correct, certain, serious, awake, asleep
 
 ---
 
 ## Интро 1
 
-### Хочется спать
+### Маша пересчитывает очки
 
-`sleepy` — «сонный», «хочется спать». `I am sleepy` — «Мне хочется спать». Это ещё не `asleep`: вы пока не спите. Можно даже объяснять правила, только всё чаще забывать, чья очередь. Короткий вариант — `I'm sleepy`.
+Маша в третий раз пересчитывает очки и требует переиграть ход, хотя игра «просто для веселья». competitive — «азартный, не любит проигрывать». She is competitive, коротко She's competitive — «Она азартная». С ней даже в «камень, ножницы, бумага» лучше не играть.
 
-**Вы ещё играете, но вам хочется спать. Назовите это состояние.**
+**Олег шёпотом спрашивает, почему Маша так серьёзна в простой игре. Объясните коротко, что она азартная.**
 
-- ✅ **I am sleepy.**
-- ❌ I am asleep. — *`asleep` — уже спите. Пока только хочется спать: `sleepy`.*
-- ❌ I sleepy. — *После `I` нужна форма `am`: `I am sleepy`.*
+- ✅ **She's competitive.**
+- ❌ She's serious. — *serious — «не шутит». Не любит проигрывать — competitive.*
+- ❌ She competitive. — *В короткой форме нужно 's: She's competitive.*
 
 ---
 
 ## Интро 2
 
-### Она тоже сонная
+### Счёт на листке
 
-Про Машу скажем `She is sleepy`, про Олега — `He is sleepy`. Про вас вместе: `We are sleepy`. Число людей меняется, но к `sleepy` не добавляем `s`. В короткой фразе `She's sleepy` смысл тот же.
+Вы смотрите на листок со счётом: у вашей команды 48 очков, у соперников 39. ahead — «впереди по счёту». We are ahead, коротко We're ahead — «Мы впереди». Про соперников, которые ведут, скажем They're ahead.
 
-**Маше хочется спать. Выберите фразу о ней.**
+**Подруга по команде спрашивает, как дела со счётом. Скажите коротко, что ваша команда впереди.**
 
-- ✅ **She is sleepy.**
-- ❌ He is sleepy. — *Это про него. Про Машу нужно `She`.*
-- ❌ She are sleepy. — *После `She` ставим `is`.*
+- ✅ **We're ahead.**
+- ❌ They're ahead. — *They're — про соперников. О своей команде — We're.*
+- ❌ We ahead. — *В короткой форме нужно 're: We're ahead.*
 
 ---
 
 ## Интро 3
 
-### Уверен — ещё не значит прав
+### Одна фишка у Олега
 
-`certain` — «уверен», `correct` — «правильный», `serious` — «серьёзный», «не шутит». `I am certain` сообщает о вашей уверенности. `It is correct` — о правильности, например счёта. Можно быть уверенным и всё же ошибиться, особенно когда хочется спать.
+У Олега на поле осталась одна фишка, у остальных — по десять, и до конца два хода. hopeless — «безнадёжный, шансов нет». It is hopeless, коротко It's hopeless — «Это безнадёжно». Так говорят о положении, а не о человеке.
 
-**Вы пересчитали очки: итог записан правильно. Скажите именно о результате подсчёта.**
+**Олег спрашивает, есть ли у него ещё шанс. Скажите ему коротко, что положение безнадёжное.**
 
-- ✅ **It is correct.**
-- ❌ I am certain. — *Это о вашей уверенности. Здесь нужно сказать о результате: `It is correct`.*
-- ❌ It is sleepy. — *`sleepy` — «сонный». Результат подсчёта не хочет спать: он `correct`.*
+- ✅ **It's hopeless.**
+- ❌ He's hopeless. — *Так вы скажете, что безнадёжен сам Олег. О положении в игре — It's.*
+- ❌ It hopeless. — *В короткой форме нужно 's: It's hopeless.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вам хочется спать. Соберите фразу о себе**
+**1 · Карточка слова — competitive**
+<!-- interaction_id: en:lesson-01:session-36:word:competitive; family: word_card -->
+> **competitive** — азартный, не любит проигрывать. She's competitive — «Она азартная».
+
+**2 · Карточка слова — ahead**
+<!-- interaction_id: en:lesson-01:session-36:word:ahead; family: word_card -->
+> **ahead** — впереди по счёту или по пути. We're ahead — «Мы впереди».
+
+**3 · Карточка слова — hopeless**
+<!-- interaction_id: en:lesson-01:session-36:word:hopeless; family: word_card -->
+> **hopeless** — безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.
+
+**4 · Карточка слова — grumpy**
+<!-- interaction_id: en:lesson-01:session-36:word:grumpy; family: word_card -->
+> **grumpy** — ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.
+
+**5 · Вам хочется спать. Соберите фразу о себе**
 <!-- interaction_id: en:lesson-01:session-36:i01; family: phrase_builder -->
 Плитки: `sleepy` `am` `I` `is` → **I am sleepy.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am sleepy.`)*
 
-**2 · Послушайте и выберите услышанное**
+**6 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-36:i02; family: listen_choose -->
-🔊 *He is sleepy.* → **He is sleepy.** · She is sleepy. · He is serious.
-- She is sleepy. — *В записи первое слово — `He`, а в этом варианте — `She`.*
-- He is serious. — *В записи последнее слово — `sleepy`, а в этом варианте — `serious`.*
+🔊 *He is grumpy.* → **He is grumpy.** · She is grumpy. · He is sleepy.
+- She is grumpy. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is sleepy. — *В записи последнее слово — `grumpy`, а в этом варианте — `sleepy`.*
 
-**3 · Двое друзей хотят спать. Дополните фразу о них**
+**7 · У соперников на десять очков больше. Дополните фразу о них**
 <!-- interaction_id: en:lesson-01:session-36:i03; family: context_gap_grammar -->
-They ___ sleepy. → **are** · am · is
+They ___ ahead. → **are** · am · is
 - am — *После `They` нужно `are`.*
-- is — *Здесь `They are`, потому что речь о них.*
+- is — *Соперников несколько, поэтому `They are`.*
 
-**4 · Соедините слова со значениями**
+**8 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-36:i04; family: speed_match -->
-sleepy — хочется спать · correct — правильный · certain — уверен · serious — серьёзный
+competitive — азартный · ahead — впереди · hopeless — безнадёжный · grumpy — ворчливый
 
-**5 · Послушайте и соберите короткую фразу**
+**9 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-36:i05; family: listen_build_dictation -->
-🔊 *She's sleepy.* Плитки: `sleepy` `She's` `He's` → **She's sleepy.**
-*(плитка `He's` лишняя: здесь нужно `She's` — `She's sleepy.`)*
+🔊 *She's competitive.* Плитки: `competitive` `She's` `He's` → **She's competitive.**
+*(плитка `He's` лишняя: здесь нужно `She's` — `She's competitive.`)*
 
-**6 · Вы и Олег хотите спать. Соберите фразу от вас двоих**
+**10 · Вы и Олег хотите спать. Соберите фразу от вас двоих**
 <!-- interaction_id: en:lesson-01:session-36:i06; family: phrase_builder -->
 Плитки: `sleepy` `are` `We` `They` → **We are sleepy.**
 *(плитка `They` лишняя: здесь нужно `We` — `We are sleepy.`)*
 
-**7 · Скажите коротко, почему вам трудно сосредоточиться на игре: хочется спать**
+**11 · Скажите коротко, почему вам трудно сосредоточиться на игре: хочется спать**
 <!-- interaction_id: en:lesson-01:session-36:i07; family: scripted_repeat_compare -->
 🎙 **I'm sleepy.**
 
-**8 · Вы сверили сумму очков, ошибки нет. Назовите правильность результата**
+**12 · Вы сверили сумму очков, ошибки нет. Назовите правильность результата**
 <!-- interaction_id: en:lesson-01:session-36:i08; family: context_gap_grammar -->
-It is ___ . → **correct** · sleepy · serious
-- sleepy — *Сонным бывает игрок. Результат здесь правильный: `correct`.*
-- serious — *`serious` — «серьёзный». Правильность передаёт `correct`.*
+It is ___ . → **correct** · hopeless · ahead
+- hopeless — *`hopeless` — «безнадёжный». Сумма здесь без ошибки: `correct`.*
+- ahead — *`ahead` — «впереди». Правильность передаёт `correct`.*
 
-**9 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-36:i09; family: listen_choose -->
-🔊 *I am certain.* → **I am certain.** · I am sleepy. · I am serious.
-- I am sleepy. — *В записи последнее слово — `certain`, а в этом варианте — `sleepy`.*
-- I am serious. — *В записи последнее слово — `certain`, а в этом варианте — `serious`.*
+🔊 *It's hopeless.* → **It's hopeless.** · It's correct. · He's hopeless.
+- It's correct. — *В записи последнее слово — `hopeless`, а в этом варианте — `correct`.*
+- He's hopeless. — *В записи первое слово — `It's`, а в этом варианте — `He's`.*
 
-**10 · Соедините знакомые слова со значениями**
+**14 · Соедините знакомые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-36:i10; family: speed_match -->
-sleepy — сонный · asleep — спит · awake — не спит · certain — уверен
+sleepy — хочется спать · asleep — спит · awake — не спит · certain — уверен
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-36:i11; family: listen_build_dictation -->
-🔊 *They are sleepy.* Плитки: `sleepy` `are` `They` `is` → **They are sleepy.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are sleepy.`)*
+🔊 *We are ahead.* Плитки: `ahead` `are` `We` `is` → **We are ahead.**
+*(плитка `is` лишняя: здесь нужно `are` — `We are ahead.`)*
 
-**12 · Олег действительно предлагает закончить игру, он не шутит. Соберите фразу о его серьёзности**
+**16 · Олег действительно предлагает закончить игру, он не шутит. Соберите фразу о его серьёзности**
 <!-- interaction_id: en:lesson-01:session-36:i12; family: phrase_builder -->
 Плитки: `serious` `is` `He` `are` → **He is serious.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is serious.`)*
 
-**13 · Вы точно помните правило, которое только что прочитали. Скажите о своей уверенности**
+**17 · В час ночи Олег бурчит на кубики и на правила. Скажите Маше коротко, что он не в духе**
 <!-- interaction_id: en:lesson-01:session-36:i13; family: scripted_repeat_compare -->
-🎙 **I am certain.**
+🎙 **He's grumpy.**
 
-**14 · Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово**
+**18 · Маша спорит из-за каждого очка. Вы обращаетесь к ней: «Ты азартная». Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-36:i14; family: context_gap_grammar -->
-You ___ sleepy. → **are** · am · is
+You ___ competitive. → **are** · am · is
 - am — *С `You` используем `are`.*
 - is — *Даже к одному человеку обращаемся `You are`.*
 
-**15 · Послушайте короткую фразу**
+**19 · Послушайте короткую фразу**
 <!-- interaction_id: en:lesson-01:session-36:i15; family: listen_choose -->
-🔊 *We're sleepy.* → **We're sleepy.** · They're sleepy. · We're serious.
+🔊 *We're sleepy.* → **We're sleepy.** · They're sleepy. · We're ahead.
 - They're sleepy. — *В записи первое слово — `We're`, а в этом варианте — `They're`.*
-- We're serious. — *В записи последнее слово — `sleepy`, а в этом варианте — `serious`.*
+- We're ahead. — *В записи последнее слово — `sleepy`, а в этом варианте — `ahead`.*
 
-**16 · Соедините слова со значениями в этой ситуации**
+**20 · Соедините слова со значениями в этой ситуации**
 <!-- interaction_id: en:lesson-01:session-36:i16; family: speed_match -->
-serious — не шутит · certain — уверен · correct — без ошибки · sleepy — хочется спать
+grumpy — не в духе · competitive — не любит проигрывать · correct — без ошибки · sleepy — хочется спать
 
-**17 · В поезде брат ещё не спит, но говорит, что его клонит в сон. Расскажите маме о его состоянии**
+**21 · В поезде брат ещё не спит, но говорит, что его клонит в сон. Расскажите маме о его состоянии**
 <!-- interaction_id: en:lesson-01:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **He is sleepy.**
-

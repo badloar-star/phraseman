@@ -182,14 +182,17 @@ describe('Admin D2 bounded and truthful loader contract', () => {
     expect(render).toContain("'—'");
   });
 
-  test('lazy Jarvis and Product Charter flags remain false until their loaders prove complete', () => {
+  // зачем: вкладки «Око Саурона»/«Планы» удалены целиком (владелец 17.10, функции Jarvis сняты с облака) —
+  // тест сторожит их отсутствие; ленивый флаг устава по-прежнему обязан быть честным.
+  test('Jarvis tabs are gone and Product Charter lazy flag remains false until its loader proves complete', () => {
     const switchTab = block('window.switchTab = function(tab, opts)', 'function normalizeAdminTabSearch');
-    const jarvis = block('window.loadJarvisAllDecisions = async function', '// ── Журнал подтверждений');
     const charter = block('window.loadProductCharter = async function', 'window.saveProductCharter');
-    expect(switchTab).not.toContain('window._jarvisLoaded = true');
+    expect(html).not.toContain('tab-jarvis');
+    expect(html).not.toContain("switchTab('jarvis')");
+    expect(html).not.toContain("httpsCallable(functionsUs, 'jarvis");
+    expect(html).not.toContain('loadJarvisAllDecisions');
+    expect(switchTab).not.toContain('_jarvisLoaded');
     expect(switchTab).not.toContain('window._productCharterLoaded = true');
-    expect(jarvis).toContain('window._jarvisLoaded = false');
-    expect(jarvis).toContain('window._jarvisLoaded = true');
     expect(charter).toContain('window._productCharterLoaded = false');
     expect(charter).toContain('window._productCharterLoaded = true');
   });

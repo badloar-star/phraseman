@@ -4816,64 +4816,6 @@ body[data-admin-skin="onboarding"] #uid-lookup {
     #tab-control-panel .cp-status-chip[data-type="warn"]::before { content: "⏱"; }
     #tab-control-panel .cp-status-chip[data-type="warn"]    { color:#fcd34d !important; border-color:rgba(252,211,77,.3);  background:rgba(252,211,77,.08); }
 
-    /* — Око Саурона: лента плашек-этапов (владелец, 2026-08-02) —
-       Каждая плашка появляется только когда для неё реально стартует работа,
-       проходит entering → working → success|error и остаётся открытой для
-       клика. Лента растёт слева направо, история не стирается. */
-    #jarvis-flow {
-      display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap;
-      min-height: 64px; padding: 4px 0;
-    }
-    .jf-tile {
-      position: relative; flex: none; width: 168px;
-      background: rgba(148,163,184,.06); border-radius: 12px; padding: 10px 12px;
-      cursor: pointer; user-select: none;
-      transition: background .3s ease, box-shadow .3s ease, transform .25s ease;
-      transform: scale(.85) translateY(6px); opacity: 0;
-      animation: jfTileEnter .38s cubic-bezier(.2,.9,.3,1.3) forwards;
-    }
-    .jf-tile:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -10px rgba(0,0,0,.6); }
-    .jf-tile-head { display: flex; align-items: center; gap: 7px; }
-    .jf-tile-icon { font-size: 15px; line-height: 1; flex: none; }
-    .jf-tile-title { font-size: 12px; font-weight: 800; color: #e2e8f0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .jf-tile-sub { margin-top: 5px; font-size: 10.5px; color: #6b7280; }
-    .jf-tile-detail {
-      margin-top: 8px; font-size: 11px; line-height: 1.5; color: #cbd5e1;
-      max-height: 0; overflow: hidden; opacity: 0;
-      transition: max-height .3s ease, opacity .25s ease, margin-top .3s ease;
-    }
-    .jf-tile.jf-open .jf-tile-detail { max-height: 220px; opacity: 1; }
-    .jf-tile.jf-open .jf-tile-detail:empty { margin-top: 0; }
-
-    /* Работает: спиннер + мягкая синяя пульсация фона */
-    .jf-tile[data-state="working"] {
-      background: rgba(96,165,250,.08);
-      animation: jfTileEnter .38s cubic-bezier(.2,.9,.3,1.3) forwards, jfWorkingPulse 1.3s ease-in-out infinite .38s;
-    }
-    .jf-tile[data-state="working"] .jf-tile-icon { animation: jfSpin 1s linear infinite; display: inline-block; }
-
-    /* Успех: зелёная вспышка при переходе, затем ровный зелёный тон */
-    .jf-tile[data-state="success"] { background: rgba(34,197,94,.09); animation: jfTileEnter .38s cubic-bezier(.2,.9,.3,1.3) forwards, jfFlashSuccess .5s ease-out .05s; }
-    /* Ошибка: красная вспышка + лёгкая встряска — заметно, но не истерично */
-    .jf-tile[data-state="error"] { background: rgba(248,113,113,.09); animation: jfTileEnter .38s cubic-bezier(.2,.9,.3,1.3) forwards, jfFlashError .5s ease-out .05s, jfShake .4s ease-out .1s; }
-
-    @keyframes jfTileEnter { from { transform: scale(.85) translateY(6px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
-    @keyframes jfWorkingPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(96,165,250,0); } 50% { box-shadow: 0 0 0 4px rgba(96,165,250,.12); } }
-    @keyframes jfSpin { to { transform: rotate(360deg); } }
-    @keyframes jfFlashSuccess { 0% { box-shadow: 0 0 0 0 rgba(74,222,128,.55); } 100% { box-shadow: 0 0 0 10px rgba(74,222,128,0); } }
-    @keyframes jfFlashError   { 0% { box-shadow: 0 0 0 0 rgba(248,113,113,.55); } 100% { box-shadow: 0 0 0 10px rgba(248,113,113,0); } }
-    @keyframes jfShake { 0%, 100% { margin-left: 0; } 25% { margin-left: -3px; } 75% { margin-left: 3px; } }
-
-    /* Стрелка-связка между плашками одной цепочки */
-    .jf-arrow { flex: none; align-self: center; color: #4b5563; font-size: 15px; opacity: 0; animation: jfArrowFade .3s ease forwards .15s; }
-    @keyframes jfArrowFade { to { opacity: 1; } }
-
-    @media (prefers-reduced-motion: reduce) {
-      .jf-tile, .jf-tile[data-state] { animation: none !important; opacity: 1; transform: none; }
-      .jf-tile[data-state="working"] .jf-tile-icon { animation: none; }
-      .jf-arrow { animation: none; opacity: 1; }
-    }
-
     /* — Стадия роста бизнеса: полоска прогресса и графики (2026-08-02) —
        Разделение тоном и фоном, без обводок контейнеров. */
     .bt-stage-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
@@ -6870,29 +6812,6 @@ body.pm-v9-ready .pm-v9-embedded-page.active{display:flex!important;flex-directi
 .pm-v9-embedded-shell{flex:1 1 auto;min-height:0;width:100%;overflow:hidden;border-radius:10px;background:var(--pm9-surface);box-shadow:0 1px 2px rgba(0,0,0,.28),0 8px 24px -16px rgba(0,0,0,.55);}
 .pm-v9-embedded-shell iframe{display:block;width:100%!important;height:100%!important;min-height:0;border:0;background:var(--pm9-bg);}
 
-/* Apple Notes-inspired Jarvis plans: list on the left, full note on the right. */
-body.pm-v9-ready #tab-jarvis-plans>.admin-overview-hero{display:none!important;}
-body.pm-v9-ready #tab-jarvis-plans>.cp-card{height:calc(100% - 54px)!important;min-height:0!important;margin:0!important;padding:8px!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;}
-body.pm-v9-ready #tab-jarvis-plans>.cp-card>.cp-card-title,
-body.pm-v9-ready #tab-jarvis-plans>.cp-card>.cp-card-sub{display:none!important;}
-body.pm-v9-ready #jarvis-plans-list{flex:1 1 auto;min-height:0;margin-top:8px!important;overflow:hidden!important;}
-.pm-v9-notes-workspace{display:grid;grid-template-columns:minmax(260px,32%) minmax(0,1fr);height:100%;min-height:0;border:1px solid var(--pm9-border);border-radius:10px;overflow:hidden;background:var(--pm9-surface);}
-.pm-v9-notes-list-pane{min-width:0;overflow:auto;border-right:1px solid var(--pm9-border);background:var(--pm9-surface-2);}
-.pm-v9-notes-search{position:sticky;top:0;z-index:2;padding:8px;border-bottom:1px solid var(--pm9-border);background:var(--pm9-surface-2);}
-.pm-v9-notes-search input{width:100%!important;}
-.pm-v9-note-row{display:block;width:100%;padding:10px 12px;border:0;border-bottom:1px solid var(--pm9-border);background:transparent;color:var(--pm9-text);text-align:left;cursor:pointer;}
-.pm-v9-note-row:hover,.pm-v9-note-row.is-active{background:rgba(255,255,255,.065)!important;}
-.pm-v9-note-row-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;font-weight:800;}
-.pm-v9-note-row-preview{display:-webkit-box;overflow:hidden;margin-top:4px;color:var(--pm9-muted);font-size:11px;line-height:1.35;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
-.pm-v9-note-row-meta{display:flex;justify-content:space-between;gap:8px;margin-top:6px;color:var(--pm9-faint);font-size:9.5px;}
-.pm-v9-notes-editor{min-width:0;overflow:auto;padding:20px 24px;background:var(--pm9-surface);}
-.pm-v9-note-editor-title{margin:0;color:var(--pm9-text);font-size:22px;font-weight:850;line-height:1.25;}
-.pm-v9-note-editor-meta{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 18px;}
-.pm-v9-note-chip{display:inline-flex;align-items:center;min-height:22px;padding:2px 8px;border:1px solid var(--pm9-border);border-radius:999px;color:var(--pm9-muted);font-size:10px;font-weight:750;}
-.pm-v9-note-block{margin:0 0 16px;}
-.pm-v9-note-block h3{margin:0 0 5px!important;color:var(--pm9-faint)!important;font-size:10px!important;letter-spacing:.07em!important;text-transform:uppercase!important;}
-.pm-v9-note-block p{margin:0;color:var(--pm9-text);font-size:13px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;}
-.pm-v9-note-actions{position:sticky;bottom:-20px;display:flex;gap:6px;flex-wrap:wrap;margin:20px -24px -20px;padding:10px 24px;border-top:1px solid var(--pm9-border);background:color-mix(in srgb,var(--pm9-surface) 94%,transparent);backdrop-filter:blur(10px);}
 
 /* Theme switch. */
 #pm-v9-theme-toggle{width:32px!important;min-width:32px!important;padding:0!important;font-size:14px!important;}
@@ -7009,9 +6928,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page .ref-revoke-btn,
 html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page button[data-action="ban"]{background:#fee2e2!important;border-color:#fca5a5!important;color:#991b1b!important;}
 html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page button[data-action="warn"]{background:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important;}
 html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page button[data-action="unconfirmed"]{background:#eef2f7!important;border-color:#cbd5e1!important;color:#334155!important;}
-html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page .pm-v9-notes-list-pane,
-html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page .pm-v9-notes-search,
-html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page .pm-v9-notes-editor{background:var(--pm9-surface)!important;border-color:var(--pm9-border)!important;color:var(--pm9-text)!important;}
 html[data-pm-theme="light"] body.pm-v9-ready .umodal,
 html[data-pm-theme="light"] body.pm-v9-ready .dp-modal,
 html[data-pm-theme="light"] body.pm-v9-ready .pg-modal,
@@ -7043,13 +6959,8 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   body.pm-v9-ready .osrc-bar-row{grid-template-columns:1fr!important;gap:4px!important;}
   body.pm-v9-ready .osrc-bar-name,body.pm-v9-ready .osrc-bar-nums{text-align:left!important;}
   body.pm-v9-ready .report-card,body.pm-v9-ready .app-msg-card,body.pm-v9-ready .cp-pack-card{grid-template-columns:1fr!important;}
-  .pm-v9-notes-workspace{grid-template-columns:1fr;height:auto;}
-  .pm-v9-notes-list-pane{max-height:42vh;border-right:0;border-bottom:1px solid var(--pm9-border);}
-  .pm-v9-notes-editor{padding:16px;}
-  .pm-v9-note-actions{margin:18px -16px -16px;padding:10px 16px;}
   .pm-v9-embedded-shell{height:calc(100dvh - 150px);min-height:560px;}
 }
-@media(prefers-reduced-motion:reduce){.pm-v9-notes-editor,.pm-v9-note-row{scroll-behavior:auto!important;transition:none!important;}}
 </style>
 
 <style id="pm-ideas-compact-style">
@@ -11578,15 +11489,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="admin-nav-zone-label admin-nav-zone-pinned">⭐ Избранное</div>
   <div class="tab" onclick="switchTab('max-feedback')" title="Оценки, комментарии и распределение звёзд по всем экранам завершения">⭐ Оценки</div>
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
-  <!-- зачем отдельная вкладка, а не карточка внутри «Пульта»: владелец
-       2026-08-03 — Око Саурона теряется среди других переключателей, это
-       центральная система мониторинга и заслуживает своё место в навигации. -->
-  <div class="tab" onclick="switchTab('jarvis')" style="background:rgba(167,139,250,0.14);border:1px solid rgba(167,139,250,0.4);color:#a78bfa;font-weight:700">🧠 Око Саурона</div>
-  <!-- зачем отдельно от вкладки «Око Саурона»: владелец 2026-08-04 — находки
-       видны секунду в Telegram и негде их читать полностью. «Планы» —
-       постоянный архив, живёт своей жизнью независимо от уведомлений. -->
-  <div class="tab" onclick="switchTab('jarvis-plans')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#60a5fa;font-weight:700">📋 Планы</div>
-  <div class="tab" onclick="switchTab('product-charter')" title="Устав Phraseman — описание продукта, на которое опирается Око Саурона и поддержка" style="background:rgba(52,211,153,0.14);border:1px solid rgba(52,211,153,0.4);color:#34d399;font-weight:700">📘 Устав</div>
+  <div class="tab" onclick="switchTab('product-charter')" title="Устав Phraseman — описание продукта, на которое опирается поддержка" style="background:rgba(52,211,153,0.14);border:1px solid rgba(52,211,153,0.4);color:#34d399;font-weight:700">📘 Устав</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="Сводка от прошлого открытия: сравнения, продуктовые выводы, риски и действия" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
   <div class="tab" onclick="switchTab('diagnostics')" title="Пульс кронов, стадии удалений аккаунтов, critical-ошибки клиентов и обезличенная экономика — всё одним вызовом" style="background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.4);color:#5eead4;font-weight:700">🩺 Диагностика</div>
@@ -12171,113 +12074,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Массовая отправка push-уведомлений пользователям.</div>
       <button type="button" class="cp-btn" onclick="switchTab('push-notify')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
-  </div>
-</div>
-
-<!-- JARVIS TAB — зачем отдельная вкладка, а не карточка внутри «Пульта»:
-     владелец 2026-08-03, Око Саурона теряется среди переключателей, это
-     центральная система мониторинга и заслуживает своё место в навигации. -->
-<div id="tab-jarvis" class="reports-tab pm-v4-page" data-pm-v4-section="jarvis">
-  <div class="pm-v4-section-header" data-pm-v4-header="jarvis"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Око Саурона</h2><div class="pm-v4-section-sub">Автопроверка качества, денег, контента и инфраструктуры.</div></div></div>
-
-  <section class="admin-overview-hero" style="margin-bottom:18px">
-    <div>
-      <div class="admin-overview-title">🧠 Око Саурона</div>
-      <div class="admin-overview-sub" style="color:#9ca3af;font-size:13px;margin-top:4px">
-        Проверяет все департаменты приложения за последние сутки разом и присылает находки сюда и в Telegram.
-        Пороги срабатывания подстроены под масштаб приложения — маленькая база не поднимает тревогу на статистическом шуме.
-      </div>
-    </div>
-  </section>
-
-  <!-- 🧠 Око Саурона — все департаменты одной кнопкой, один объединённый свод
-       (владелец 2026-08-02: одна кнопка «Проверить сейчас», не три отдельные,
-       результат в одном окне, а не в тысяче карточек). -->
-  <div class="cp-card">
-    <div class="cp-card-title" style="color:#a78bfa">🧠 Око Саурона</div>
-    <div class="cp-card-sub">
-      Проверяет качество (жалобы/краши), деньги (покупки/возвраты) и рост (новые пользователи) за последние сутки разом.
-      Пороги срабатывания подстроены под масштаб приложения — маленькая база не поднимает тревогу на статистическом шуме.
-    </div>
-    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
-      <span id="jarvis-status" class="cp-status-chip">Загрузка…</span>
-      <span id="jarvis-tier-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
-      <!-- зачем всегда видимый: бриф в12 — kill switch должен быть виден
-           всегда, не спрятан в настройках. Пишите /stop и /start в Telegram
-           боту, режим здесь только отображается, не меняется отсюда. -->
-      <span id="jarvis-mode-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
-    </div>
-
-    <!-- зачем: живая лента плашек-этапов, растущая слева направо. Одна
-         цепочка на прогон, но внутри неё видно, какой источник относится
-         к какому департаменту (иконка+подпись на каждой плашке). -->
-    <div id="jarvis-flow" class="jf-lane" role="log" aria-label="Журнал работы Ока Саурона по всем департаментам"></div>
-
-    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
-      <button type="button" class="cp-btn" onclick="loadJarvisAllDecisions(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Проверить сейчас</button>
-      <!-- зачем отдельная кнопка, не автозагрузка: журнал подтверждений
-           читается редко, показывать его при каждом открытии панели —
-           лишнее чтение, которое почти никогда не нужно. -->
-      <button type="button" class="cp-btn" onclick="loadJarvisApprovalAudit()" style="background:#1f2937;border:1px solid #374151;color:#a1a1aa;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📜 История подтверждений</button>
-    </div>
-
-    <!-- зачем видны всегда, а не только когда решений много: переключение
-         фильтра ничего не стоит (данные уже на экране), а владелец должен
-         увидеть их сразу, не искать глазами среди прочих кнопок. -->
-    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px">
-      <span style="color:#6b7280">Показать:</span>
-      <button type="button" class="jf-severity-filter-btn" data-severity="" onclick="jfRenderFilteredDecisions(null)" style="background:none;border:none;color:#e2e8f0;cursor:pointer;padding:3px 6px">Все</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P0" onclick="jfRenderFilteredDecisions('P0')" style="background:none;border:none;color:#f87171;cursor:pointer;padding:3px 6px">P0</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P1" onclick="jfRenderFilteredDecisions('P1')" style="background:none;border:none;color:#fbbf24;cursor:pointer;padding:3px 6px">P1</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P2" onclick="jfRenderFilteredDecisions('P2')" style="background:none;border:none;color:#60a5fa;cursor:pointer;padding:3px 6px">P2</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P3" onclick="jfRenderFilteredDecisions('P3')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">P3</button>
-    </div>
-
-    <div id="jarvis-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
-    <div id="jarvis-audit-log" style="margin-top:10px;display:none;flex-direction:column;gap:6px"></div>
-  </div>
-</div>
-
-<!-- JARVIS PLANS TAB — постоянный архив находок, независимо от Telegram
-     (владелец 2026-08-04). -->
-<div id="tab-jarvis-plans" class="reports-tab pm-v4-page" data-pm-v4-section="jarvis-plans">
-  <div class="pm-v4-section-header" data-pm-v4-header="jarvis-plans"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Планы Ока Саурона</h2><div class="pm-v4-section-sub">Все находки и планы Ока Саурона в одном журнале.</div></div></div>
-
-  <section class="admin-overview-hero" style="margin-bottom:18px">
-    <div>
-      <div class="admin-overview-title">📋 Планы</div>
-      <div class="admin-overview-sub" style="color:#9ca3af;font-size:13px;margin-top:4px">
-        Все находки Ока Саурона навсегда — читаются здесь полностью, независимо от того, что пришло в Telegram.
-      </div>
-    </div>
-  </section>
-
-  <div class="cp-card">
-    <div class="cp-card-title" style="color:#60a5fa">📋 Планы Ока Саурона</div>
-    <div class="cp-card-sub">
-      Каждая находка сохраняется здесь навсегда. Помечайте решённые, архивируйте неактуальные,
-      копируйте текст одним кликом — для себя или чтобы переслать разработчику.
-    </div>
-    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
-      <span id="jarvis-plans-status" class="cp-status-chip">Загрузка…</span>
-      <button type="button" class="cp-btn" onclick="loadJarvisPlans(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить</button>
-      <!-- зачем «скопировать все» отдельной кнопкой: владелец 2026-08-04 —
-           хочет разом переслать всю сводку разработчику/себе в заметки,
-           не копируя план за планом. -->
-      <button type="button" class="cp-btn" onclick="copyAllJarvisPlans()" style="background:#1f2937;border:1px solid #374151;color:#a1a1aa;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📋 Скопировать все</button>
-    </div>
-
-    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px">
-      <span style="color:#6b7280">Показать:</span>
-      <button type="button" class="jf-plans-filter-btn" data-status="open" onclick="renderFilteredJarvisPlans('open')" style="background:none;border:none;color:#e2e8f0;cursor:pointer;padding:3px 6px">Открытые</button>
-      <button type="button" class="jf-plans-filter-btn" data-status="accepted" onclick="renderFilteredJarvisPlans('accepted')" style="background:none;border:none;color:#fcd34d;cursor:pointer;padding:3px 6px">Принятые</button>
-      <button type="button" class="jf-plans-filter-btn" data-status="resolved" onclick="renderFilteredJarvisPlans('resolved')" style="background:none;border:none;color:#4ade80;cursor:pointer;padding:3px 6px">Сработали</button>
-      <button type="button" class="jf-plans-filter-btn" data-status="vanished" onclick="renderFilteredJarvisPlans('vanished')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">Ушли сами</button>
-      <button type="button" class="jf-plans-filter-btn" data-status="archived" onclick="renderFilteredJarvisPlans('archived')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">Архив</button>
-      <button type="button" class="jf-plans-filter-btn" data-status="" onclick="renderFilteredJarvisPlans(null)" style="background:none;border:none;color:#6b7280;cursor:pointer;padding:3px 6px">Все</button>
-    </div>
-
-    <div id="jarvis-plans-list" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
   </div>
 </div>
 
@@ -17794,49 +17590,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (!_fnAdminMarkSafetyFlagsHandled) _fnAdminMarkSafetyFlagsHandled = httpsCallable(functionsUs, 'adminMarkSafetyFlagsHandled');
     return _fnAdminMarkSafetyFlagsHandled;
   }
-  let _fnJarvisGetAllDecisions = null;
-  function getJarvisGetAllDecisionsCallable() {
-    if (!_fnJarvisGetAllDecisions) {
-      _fnJarvisGetAllDecisions = httpsCallable(functionsUs, 'jarvisGetAllDecisions');
-    }
-    return _fnJarvisGetAllDecisions;
-  }
-  let _fnJarvisGetApprovalAudit = null;
-  function getJarvisGetApprovalAuditCallable() {
-    if (!_fnJarvisGetApprovalAudit) {
-      _fnJarvisGetApprovalAudit = httpsCallable(functionsUs, 'jarvisGetApprovalAudit');
-    }
-    return _fnJarvisGetApprovalAudit;
-  }
-  let _fnJarvisGetBusinessTier = null;
-  function getJarvisGetBusinessTierCallable() {
-    if (!_fnJarvisGetBusinessTier) {
-      _fnJarvisGetBusinessTier = httpsCallable(functionsUs, 'jarvisGetBusinessTier');
-    }
-    return _fnJarvisGetBusinessTier;
-  }
-  let _fnJarvisGetPlans = null;
-  function getJarvisGetPlansCallable() {
-    if (!_fnJarvisGetPlans) _fnJarvisGetPlans = httpsCallable(functionsUs, 'jarvisGetPlans');
-    return _fnJarvisGetPlans;
-  }
-  let _fnJarvisSetPlanStatus = null;
-  function getJarvisSetPlanStatusCallable() {
-    if (!_fnJarvisSetPlanStatus) _fnJarvisSetPlanStatus = httpsCallable(functionsUs, 'jarvisSetPlanStatus');
-    return _fnJarvisSetPlanStatus;
-  }
-  let _fnJarvisDeletePlan = null;
-  function getJarvisDeletePlanCallable() {
-    if (!_fnJarvisDeletePlan) _fnJarvisDeletePlan = httpsCallable(functionsUs, 'jarvisDeletePlan');
-    return _fnJarvisDeletePlan;
-  }
-  let _fnJarvisRunBusinessTierBackfill = null;
-  function getJarvisRunBusinessTierBackfillCallable() {
-    if (!_fnJarvisRunBusinessTierBackfill) {
-      _fnJarvisRunBusinessTierBackfill = httpsCallable(functionsUs, 'jarvisRunBusinessTierBackfill');
-    }
-    return _fnJarvisRunBusinessTierBackfill;
-  }
   let _fnAdminGetRemoteConfigWorkspace = null;
   function getAdminGetRemoteConfigWorkspaceCallable() {
     if (!_fnAdminGetRemoteConfigWorkspace) {
@@ -17974,7 +17727,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
   const ADMIN_REQUIRED_FIRST_TAB = 'max-feedback';
-  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','daily-phrases','daily-polls','arena-content','push-notify','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','paywall-ab','v2-generator','alerts','access-management'];
+  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','daily-phrases','daily-polls','arena-content','push-notify','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','paywall-ab','v2-generator','alerts','access-management'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -22334,12 +22087,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
     if (tab === 'refunds' && !window._refundsLoaded && typeof window.loadRefunds === 'function') {
       void window.loadRefunds(false);
-    }
-    // зачем свой флаг, не через loadControlPanel: Око Саурона теперь отдельная
-    // вкладка (владелец 2026-08-03), грузим её данные только при открытии,
-    // не при каждом визите в «Пульт управления».
-    if (tab === 'jarvis' && !window._jarvisLoaded && typeof window.loadJarvisAllDecisions === 'function') {
-      void window.loadJarvisAllDecisions(false);
     }
     // зачем лениво: устав открывают раз в месяц — тянуть его на каждый
     // вход в админку значит платить за чтения, которые никто не смотрит.
@@ -32904,509 +32651,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
   }
 
-  // ── Око Саурона: департамент «Качество» (первый рубеж, 2026-08-01) ──────────────
-  // зачем: панель — источник по требованию (owner_request), не подменяет
-  // суточный планировщик; каждый вызов честно показывает состояние источников,
-  // отсутствие данных никогда не рисуется как ноль.
-  const JF_EVIDENCE_STATE_LABELS = {
-    ready: 'данные получены', empty: 'пусто (честный ноль)', partial: 'частично',
-    error: 'источник недоступен', stale: 'устарели', truncated: 'обрезано лимитом',
-  };
-
+  // зачем: общий помощник статуса — им пользуется блок «Стадия роста бизнеса».
+  // Остальной код Ока Саурона (Jarvis) удалён вместе с вкладками (владелец 17.10).
   function jfSetStatusChip(elId, type, text) {
     const el = document.getElementById(elId);
     if (!el) return;
     el.textContent = text || '';
     el.setAttribute('data-type', type || '');
   }
-
-  function jfEvidenceLine(evidence) {
-    const label = JF_EVIDENCE_STATE_LABELS[evidence.state] || evidence.state;
-    const count = evidence.count === null ? '—' : String(evidence.count);
-    return evidence.sourceId + ': ' + label + ' (' + count + ')';
-  }
-
-  // ── Око Саурона: лента плашек-этапов ─────────────────────────────────────────────
-  // зачем: владелец 2026-08-02 попросил не статичную схему, а плашки, которые
-  // появляются только когда для них реально стартует работа, каждая проходит
-  // полный цикл (появление → работает → успех/ошибка), остаётся открытой на
-  // ленте и кликабельна — открывает подробности результата. Новый прогон
-  // дописывает новую цепочку правее, история не стирается.
-  const JF_SOURCE_META = {
-    error_reports: { icon: '🐞', title: 'error_reports' },
-    user_reports:  { icon: '💬', title: 'user_reports' },
-    app_errors:    { icon: '⚠️', title: 'app_errors' },
-    revenuecat_premium_events: { icon: '💳', title: 'revenuecat' },
-    paywall_funnel: { icon: '📈', title: 'paywall_funnel' },
-    users: { icon: '🌱', title: 'users' },
-  };
-  const JF_STATE_LABEL = { working: 'работает…', success: 'готово', error: 'ошибка' };
-  let _jfTileSeq = 0;
-  // зачем хранить последний свод отдельно: фильтр по severity перерисовывает
-  // карточки БЕЗ нового запроса к серверу — данные уже есть, дёргать сеть
-  // ради переключения фильтра было бы лишним чтением на каждый клик.
-  let _jfLastDecisions = [];
-  let _jfSeverityFilter = null;
-
-  function jfPrefersReducedMotion() {
-    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
-
-  /** Создаёт одну плашку в состоянии 'working' и сразу добавляет на ленту (с разделительной стрелкой, если это не первая плашка цепочки). */
-  function jfCreateTile(lane, icon, title) {
-    if (lane.children.length > 0) {
-      const arrow = document.createElement('span');
-      arrow.className = 'jf-arrow';
-      arrow.textContent = '→';
-      lane.appendChild(arrow);
-    }
-    const tile = document.createElement('div');
-    tile.className = 'jf-tile';
-    tile.id = 'jf-tile-' + (++_jfTileSeq);
-    tile.setAttribute('data-state', 'working');
-    tile.innerHTML =
-      '<div class="jf-tile-head"><span class="jf-tile-icon">' + icon + '</span><span class="jf-tile-title">' + escapeHtml(title) + '</span></div>' +
-      '<div class="jf-tile-sub">' + JF_STATE_LABEL.working + '</div>' +
-      '<div class="jf-tile-detail"></div>';
-    tile.addEventListener('click', () => tile.classList.toggle('jf-open'));
-    lane.appendChild(tile);
-    return tile;
-  }
-
-  /** Переводит плашку в финальное состояние с деталью, доступной по клику. */
-  function jfFinishTile(tile, state, detailText) {
-    if (!tile) return;
-    tile.setAttribute('data-state', state);
-    const sub = tile.querySelector('.jf-tile-sub');
-    if (sub) sub.textContent = JF_STATE_LABEL[state] || state;
-    const detail = tile.querySelector('.jf-tile-detail');
-    if (detail) detail.textContent = detailText || '';
-  }
-
-  function jfEvidenceDetailText(evidence) {
-    const label = JF_EVIDENCE_STATE_LABELS[evidence.state] || evidence.state;
-    const count = evidence.count === null ? 'неизвестно (источник не даёт права на число)' : String(evidence.count);
-    return 'Состояние: ' + label + '\nЗаписей: ' + count + (evidence.droppedCount ? '\nОтброшено сверх лимита: ' + evidence.droppedCount : '');
-  }
-
-  /** Один полный прогон: плашка на источник (появляется сразу, честный результат приходит вместе с ответом сервера — поэтому все источники и департамент финишируют одновременно, реальных промежуточных таймингов на сервере нет). */
-  function jfRunChain(lane, evidence, departmentOutcome, departmentDetail, decisionOutcome, decisionDetail, departmentTitle) {
-    const sourceTiles = (evidence || []).map((item) => {
-      const meta = JF_SOURCE_META[item.sourceId] || { icon: '📄', title: item.sourceId };
-      return { tile: jfCreateTile(lane, meta.icon, meta.title), evidence: item };
-    });
-    const departmentTile = jfCreateTile(lane, '🧠', departmentTitle || 'Департамент');
-    const decisionTile = jfCreateTile(lane, '📋', 'Решение');
-
-    const settle = () => {
-      sourceTiles.forEach(({ tile, evidence: item }) => {
-        jfFinishTile(tile, item.trustworthy ? 'success' : 'error', jfEvidenceDetailText(item));
-      });
-      jfFinishTile(departmentTile, departmentOutcome, departmentDetail);
-      jfFinishTile(decisionTile, decisionOutcome, decisionDetail);
-    };
-    // зачем: плашка обязана реально побыть в 'working' хотя бы один кадр — иначе
-    // анимация появления и спиннер не успевают отрисоваться до финального цвета.
-    if (jfPrefersReducedMotion()) settle();
-    else setTimeout(settle, 260);
-  }
-
-  /** Общий рендер карточки решения для любого департамента — accentRgb задаёт лёгкий фоновый тон. */
-  // зачем цвет, а не только буква: сводку читают бегло, а на бегу глаз
-  // цепляется за тон раньше, чем за текст. Тон повторяет светофор — от
-  // «человек ждёт прямо сейчас» до «может подождать».
-  const JF_SEVERITY_META = {
-    P0: { label: 'P0 · критично', color: '248,113,113' },
-    P1: { label: 'P1 · важно', color: '251,191,36' },
-    P2: { label: 'P2 · разобрать', color: '96,165,250' },
-    P3: { label: 'P3 · подождёт', color: '148,163,184' },
-  };
-
-  function jfRenderDecisionCard(decision, accentRgb) {
-    const box = document.createElement('div');
-    box.style.cssText = 'background:rgba(' + (accentRgb || '125,211,252') + ',0.06);border-radius:10px;padding:12px 14px;';
-    const confidencePct = Math.round((decision.confidence || 0) * 100);
-    const statusLabel = decision.status === 'insufficient_evidence' ? '⚠ недостаточно доказательств' : '✓ готово к решению';
-    const severityMeta = JF_SEVERITY_META[decision.severity];
-    const severityBadge = severityMeta
-      ? '<span style="background:rgba(' + severityMeta.color + ',0.16);color:rgb(' + severityMeta.color + ');' +
-        'border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em">' +
-        escapeHtml(severityMeta.label) + '</span>'
-      : '';
-    box.innerHTML =
-      '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">' +
-        (severityBadge ? severityBadge : '') +
-        '<div style="font-weight:800;color:#e2e8f0;font-size:13.5px;flex:1;min-width:0">' + escapeHtml(decision.question) + '</div>' +
-      '</div>' +
-      '<div style="margin-top:6px;color:#cbd5e1;font-size:12.5px;line-height:1.5">' + escapeHtml(decision.finding) + '</div>' +
-      (decision.status === 'insufficient_evidence' ? '' :
-        '<div style="margin-top:8px;color:#93c5fd;font-size:12px"><b>Рекомендация:</b> ' + escapeHtml(decision.recommendation) + '</div>') +
-      '<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:#9ca3af">' +
-        decision.evidence.map((e) => '<span class="cp-status-chip" data-type="' + (e.trustworthy ? 'success' : 'error') + '">' + escapeHtml(jfEvidenceLine(e)) + '</span>').join('') +
-      '</div>' +
-      '<div style="margin-top:8px;font-size:11px;color:#6b7280">' + statusLabel + ' · уверенность ' + confidencePct + '%</div>';
-    return box;
-  }
-
-  /**
-   * Фильтр по severity (бриф в176). Перерисовывает уже полученные решения
-   * БЕЗ нового запроса к серверу — переключение фильтра не должно стоить
-   * лишнего чтения Firestore.
-   */
-  window.jfRenderFilteredDecisions = function(nextFilter) {
-    if (nextFilter !== undefined) _jfSeverityFilter = nextFilter;
-    const container = document.getElementById('jarvis-decisions');
-    if (!container) return;
-    container.innerHTML = '';
-    const shown = _jfSeverityFilter
-      ? _jfLastDecisions.filter((d) => d.severity === _jfSeverityFilter)
-      : _jfLastDecisions;
-    shown.forEach((decision) => {
-      const meta = JF_DEPARTMENT_META[decision.department] || { title: decision.department, accentRgb: '148,163,184' };
-      container.appendChild(jfRenderDecisionCard(decision, meta.accentRgb));
-    });
-    if (_jfSeverityFilter && shown.length === 0 && _jfLastDecisions.length > 0) {
-      container.innerHTML = '<div style="color:#6b7280;font-size:12px;padding:6px 2px">Нет находок уровня ' + escapeHtml(_jfSeverityFilter) + ' — остальные скрыты фильтром.</div>';
-    }
-    document.querySelectorAll('.jf-severity-filter-btn').forEach((btn) => {
-      const isActive = (btn.dataset.severity || null) === _jfSeverityFilter;
-      btn.style.opacity = isActive ? '1' : '.55';
-      btn.style.fontWeight = isActive ? '800' : '600';
-    });
-  };
-
-  // ── Раздел «Планы» — постоянный архив находок Ока Саурона (владелец 2026-08-04) ──
-  let _jarvisPlansAll = [];
-  let _jarvisPlansFilter = 'open';
-
-  function jarvisPlanText(plan) {
-    // зачем текстовая версия отдельно от HTML-рендера: копирование должно
-    // давать чистый читаемый текст (для пересылки разработчику/себе в
-    // заметки), а не HTML-разметку карточки.
-    const meta = JF_DEPARTMENT_META[plan.department] || { title: plan.department };
-    const lines = [
-      meta.title + ' — ' + plan.question,
-      '',
-      'Находка: ' + plan.finding,
-      'Гипотеза: ' + plan.hypothesis,
-      'Рекомендация: ' + plan.recommendation,
-      'Риск: ' + plan.risk,
-      'Как проверить успех: ' + plan.successMetric,
-      'Откат: ' + plan.rollback,
-    ];
-    if (plan.narrative) lines.push('', plan.narrative);
-    return lines.join('\n');
-  }
-
-  // зачем новые статусы (владелец 2026-08-15): раньше «принять» оставляло
-  // находку открытой навсегда, а исчезнувшая проблема висела вечно. Теперь у
-  // находки есть конец, и подпись обязана его показывать — иначе accepted и
-  // vanished выглядели бы как «Открыто» и врали владельцу.
-  function jarvisPlanStatusLabel(status) {
-    if (status === 'accepted') return 'Принято, проверяем';
-    if (status === 'resolved') return 'Сработало';
-    if (status === 'vanished') return 'Ушло само';
-    if (status === 'archived') return 'В архиве';
-    return 'Открыто';
-  }
-
-  /**
-   * Строка о судьбе принятого совета.
-   *
-   * зачем молчать, когда судить нечего: строка «результат неизвестен» на
-   * каждой карточке — это шум, из-за которого перестают читать карточки целиком.
-   */
-  function jarvisPlanOutcomeLine(plan) {
-    if (plan.status === 'vanished') {
-      return '<div style="color:#94a3b8;font-size:12.5px;margin-bottom:6px">Проблема перестала наблюдаться — закрыто без вмешательства.</div>';
-    }
-    if (plan.status === 'accepted') {
-      return '<div style="color:#fcd34d;font-size:12.5px;margin-bottom:6px">Принято. Через неделю проверю, ушла ли проблема.</div>';
-    }
-    const verdict = plan.outcome && plan.outcome.verdict;
-    if (verdict === 'worked') {
-      return '<div style="color:#86efac;font-size:12.5px;margin-bottom:6px">Проверено: после согласия проблема ушла.</div>';
-    }
-    if (verdict === 'did_not_work') {
-      return '<div style="color:#fca5a5;font-size:12.5px;margin-bottom:6px">Проверено: проблема осталась — совет не помог.</div>';
-    }
-    return '';
-  }
-
-  function jarvisPlanStatusChipType(status) {
-    if (status === 'resolved') return 'success';
-    if (status === 'accepted') return 'warn';
-    if (status === 'archived' || status === 'vanished') return '';
-    return 'info';
-  }
-
-  function renderJarvisPlanCard(plan) {
-    const meta = JF_DEPARTMENT_META[plan.department] || { title: plan.department, accentRgb: '148,163,184' };
-    const box = document.createElement('div');
-    box.style.cssText = 'padding:12px 14px;border-radius:10px;background:rgba(' + meta.accentRgb + ',0.06);';
-    const detailsId = 'jp-details-' + plan.id;
-    box.innerHTML =
-      '<div style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;cursor:pointer" onclick="toggleJarvisPlanDetails(\'' + plan.id + '\')">' +
-        '<span class="cp-status-chip" data-type="info" style="background:rgba(' + meta.accentRgb + ',0.16);color:rgb(' + meta.accentRgb + ')">' + escapeHtml(meta.title) + '</span>' +
-        '<div style="font-weight:800;color:#e2e8f0;font-size:13.5px;flex:1;min-width:0">' + escapeHtml(plan.question) + '</div>' +
-        '<span class="cp-status-chip" data-type="' + jarvisPlanStatusChipType(plan.status) + '">' + jarvisPlanStatusLabel(plan.status) + '</span>' +
-      '</div>' +
-      '<div style="margin-top:6px;color:#cbd5e1;font-size:12.5px;line-height:1.5">' + escapeHtml(plan.finding) + '</div>' +
-      '<div id="' + detailsId + '" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">' +
-        '<div style="color:#93c5fd;font-size:12.5px;margin-bottom:6px"><b>Гипотеза:</b> ' + escapeHtml(plan.hypothesis) + '</div>' +
-        '<div style="color:#93c5fd;font-size:12.5px;margin-bottom:6px"><b>Рекомендация:</b> ' + escapeHtml(plan.recommendation) + '</div>' +
-        '<div style="color:#fca5a5;font-size:12.5px;margin-bottom:6px"><b>Риск:</b> ' + escapeHtml(plan.risk) + '</div>' +
-        '<div style="color:#a1a1aa;font-size:12.5px;margin-bottom:6px"><b>Как понять, что помогло:</b> ' + escapeHtml(plan.successMetric) + '</div>' +
-        '<div style="color:#a1a1aa;font-size:12.5px;margin-bottom:6px"><b>Откат:</b> ' + escapeHtml(plan.rollback) + '</div>' +
-        // зачем показывать вердикт (владелец 2026-08-15, «не учится»): это
-        // единственный честный факт о пользе Ока Саурона — сработал совет или нет.
-        // Раньше результат не проверялся вовсе, и показывать было нечего.
-        jarvisPlanOutcomeLine(plan) +
-        (plan.narrative ? '<div style="margin-top:8px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.03);color:#e2e8f0;font-size:12.5px;line-height:1.55">' + escapeHtml(plan.narrative) + '</div>' : '') +
-        '<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">' +
-          '<button type="button" class="cp-btn" onclick="copyOneJarvisPlan(\'' + plan.id + '\')" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">📋 Скопировать</button>' +
-          (plan.status !== 'resolved' ? '<button type="button" class="cp-btn" onclick="setJarvisPlanStatus(\'' + plan.id + '\',\'resolved\')" style="background:#1f2937;border:1px solid #374151;color:#4ade80;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">✅ Решено</button>' : '') +
-          (plan.status !== 'archived' ? '<button type="button" class="cp-btn" onclick="setJarvisPlanStatus(\'' + plan.id + '\',\'archived\')" style="background:#1f2937;border:1px solid #374151;color:#94a3b8;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">🗄 Архивировать</button>' : '') +
-          (plan.status !== 'open' ? '<button type="button" class="cp-btn" onclick="setJarvisPlanStatus(\'' + plan.id + '\',\'open\')" style="background:#1f2937;border:1px solid #374151;color:#60a5fa;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">↩ Вернуть в открытые</button>' : '') +
-          '<button type="button" class="cp-btn" onclick="deleteJarvisPlan(\'' + plan.id + '\')" style="background:#1f2937;border:1px solid #374151;color:#f87171;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">🗑 Удалить</button>' +
-        '</div>' +
-      '</div>' +
-      '<div style="margin-top:6px;font-size:11px;color:#6b7280">Нажмите, чтобы развернуть полностью</div>';
-    return box;
-  }
-
-  window.toggleJarvisPlanDetails = function(id) {
-    const el = document.getElementById('jp-details-' + id);
-    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  };
-
-  window.renderFilteredJarvisPlans = function(nextFilter) {
-    _jarvisPlansFilter = nextFilter;
-    const container = document.getElementById('jarvis-plans-list');
-    if (!container) return;
-    container.innerHTML = '';
-    const shown = _jarvisPlansFilter ? _jarvisPlansAll.filter((p) => p.status === _jarvisPlansFilter) : _jarvisPlansAll;
-    if (typeof window.pmV9RenderJarvisPlans === 'function') {
-      window.pmV9RenderJarvisPlans(shown, _jarvisPlansFilter);
-    } else if (!shown.length) {
-      container.innerHTML = '<div style="color:#6b7280;font-size:12px;padding:6px 2px">Ничего нет в этом разделе.</div>';
-    } else {
-      shown.forEach((plan) => container.appendChild(renderJarvisPlanCard(plan)));
-    }
-    document.querySelectorAll('.jf-plans-filter-btn').forEach((btn) => {
-      const isActive = (btn.dataset.status || null) === _jarvisPlansFilter;
-      btn.style.opacity = isActive ? '1' : '.55';
-      btn.style.fontWeight = isActive ? '800' : '600';
-    });
-  };
-
-  window.loadJarvisPlans = async function(manualRefresh) {
-    jfSetStatusChip('jarvis-plans-status', 'loading', manualRefresh ? 'Обновляем…' : 'Загрузка…');
-    try {
-      const result = await getJarvisGetPlansCallable()({});
-      _jarvisPlansAll = (result.data && result.data.plans) || [];
-      // зачем сортировать по updatedAtMs desc: свежие находки должны быть
-      // видны первыми, а не потеряны среди старых решённых записей.
-      _jarvisPlansAll.sort((a, b) => (b.updatedAtMs || 0) - (a.updatedAtMs || 0));
-      window.renderFilteredJarvisPlans(_jarvisPlansFilter);
-      jfSetStatusChip('jarvis-plans-status', 'success', 'Загружено · ' + _jarvisPlansAll.length + ' планов');
-    } catch (e) {
-      jfSetStatusChip('jarvis-plans-status', 'error', window.pmV9FriendlyError ? window.pmV9FriendlyError(e) : 'Сервер временно не ответил.');
-    }
-  };
-
-  window.copyOneJarvisPlan = function(id) {
-    const plan = _jarvisPlansAll.find((p) => p.id === id);
-    if (!plan) return;
-    navigator.clipboard.writeText(jarvisPlanText(plan))
-      .then(() => showToast('Скопировано', 'ok'))
-      .catch(() => showToast('Не удалось скопировать', 'err'));
-  };
-
-  window.copyAllJarvisPlans = function() {
-    const shown = _jarvisPlansFilter ? _jarvisPlansAll.filter((p) => p.status === _jarvisPlansFilter) : _jarvisPlansAll;
-    if (!shown.length) { showToast('Нечего копировать', 'err'); return; }
-    const text = shown.map(jarvisPlanText).join('\n\n───────────────\n\n');
-    navigator.clipboard.writeText(text)
-      .then(() => showToast('Скопировано ' + shown.length + ' планов', 'ok'))
-      .catch(() => showToast('Не удалось скопировать', 'err'));
-  };
-
-  window.setJarvisPlanStatus = async function(id, status) {
-    try {
-      await getJarvisSetPlanStatusCallable()({ id, status });
-      const plan = _jarvisPlansAll.find((p) => p.id === id);
-      if (plan) plan.status = status;
-      window.renderFilteredJarvisPlans(_jarvisPlansFilter);
-      showToast('Готово', 'ok');
-    } catch (e) {
-      showToast('Ошибка: ' + (e && e.message ? e.message : e), 'err');
-    }
-  };
-
-  window.deleteJarvisPlan = async function(id) {
-    if (!window.confirm('Удалить этот план навсегда?')) return;
-    try {
-      await getJarvisDeletePlanCallable()({ id });
-      _jarvisPlansAll = _jarvisPlansAll.filter((p) => p.id !== id);
-      window.renderFilteredJarvisPlans(_jarvisPlansFilter);
-      showToast('Удалено', 'ok');
-    } catch (e) {
-      showToast('Ошибка: ' + (e && e.message ? e.message : e), 'err');
-    }
-  };
-
-  const JF_DEPARTMENT_META = {
-    quality: { title: 'Качество', accentRgb: '125,211,252' },
-    money: { title: 'Деньги', accentRgb: '251,191,36' },
-    growth: { title: 'Рост', accentRgb: '74,222,128' },
-    content: { title: 'Контент', accentRgb: '167,139,250' },
-    // зачем красный: «Платежи» — единственный департамент про потерянные
-    // деньги конкретного человека. Он не должен выглядеть как остальные.
-    payments: { title: 'Платежи', accentRgb: '248,113,113' },
-    // зачем розовый, а не красный: «Безопасность» тоже про людей, а не про
-    // проценты, но красный уже занят потерянными деньгами — два одинаково
-    // тревожных цвета в одной ленте перестают различаться с одного взгляда.
-    safety: { title: 'Безопасность', accentRgb: '236,72,153' },
-    // зачем бирюзовый: «Поддержка» — про ожидание, а не про аварию. Тревожные
-    // цвета уже разобраны платежами и безопасностью.
-    support: { title: 'Поддержка', accentRgb: '45,212,191' },
-    // зачем оранжевый: «Фабрика» — про работу, которую ещё предстоит сделать,
-    // а не про поломку. Отличима от янтарных «Денег» более тёплым тоном.
-    factory: { title: 'Фабрика контента', accentRgb: '251,146,60' },
-    // зачем сине-фиолетовый: «Удержание» — про долгую картину, а не про
-    // срочность. Спокойный тон отличает его от тревожных департаментов.
-    retention: { title: 'Удержание', accentRgb: '129,140,248' },
-    // зачем: команды /stop и /start в журнале записаны как department 'jarvis'
-    // (не относятся ни к одному конкретному отделу) — без этой записи в
-    // журнале они показывались бы с сырым словом "jarvis" вместо заголовка.
-    jarvis: { title: 'Око Саурона', accentRgb: '148,163,184' },
-  };
-  const JF_TIER_LABEL = { seed: 'Seed', growth: 'Growth', scale: 'Scale', mature: 'Mature' };
-
-  /**
-   * Одна кнопка «Проверить сейчас» — владелец 2026-08-02 отверг три отдельные
-   * кнопки/карточки. Один вызов jarvisGetAllDecisions считает тир один раз,
-   * гоняет все три департамента и возвращает решения одним списком; здесь
-   * они раскладываются по департаментам обратно только для подписи плашек.
-   */
-  window.loadJarvisAllDecisions = async function(manualRefresh) {
-    const container = document.getElementById('jarvis-decisions');
-    const lane = document.getElementById('jarvis-flow');
-    const tierChip = document.getElementById('jarvis-tier-chip');
-    const modeChip = document.getElementById('jarvis-mode-chip');
-    if (!container) return;
-    window._jarvisLoaded = false;
-    jfSetStatusChip('jarvis-status', 'loading', manualRefresh ? 'Проверяем сейчас…' : 'Загрузка…');
-    try {
-      const result = await getJarvisGetAllDecisionsCallable()({});
-      const data = result && result.data;
-      if (!data || data.ok !== true || !Array.isArray(data.decisions)) {
-        throw new Error('Сервер вернул некорректный свод Ока Саурона.');
-      }
-      if (tierChip) {
-        tierChip.style.display = '';
-        tierChip.textContent = 'Тир: ' + (JF_TIER_LABEL[data.appTier] || data.appTier);
-      }
-      if (modeChip) {
-        const modeLabel = { observe: '👁 Наблюдаю', quiet: '🔇 Тихо', off: '⏸ Выключен' }[data.mode];
-        modeChip.style.display = '';
-        modeChip.setAttribute('data-type', data.mode === 'off' ? 'error' : data.mode === 'quiet' ? 'info' : 'success');
-        modeChip.textContent = modeLabel || ('Режим: ' + data.mode);
-      }
-      container.innerHTML = '';
-      const hasDepartmentErrors = Array.isArray(data.departmentErrors) && data.departmentErrors.length > 0;
-      if (data.decisions.length === 0) {
-        if (hasDepartmentErrors) window._jarvisLoaded = false;
-        else window._jarvisLoaded = true;
-        jfSetStatusChip('jarvis-status', hasDepartmentErrors ? 'error' : 'success', hasDepartmentErrors
-          ? 'Часть департаментов недоступна: ' + data.departmentErrors.join(', ')
-          : 'Аномалий не найдено ни в одном департаменте.');
-        if (lane) jfRunChain(
-          lane,
-          // зачем полный список: в ленте это «что именно я проверил». Неполный
-          // перечень читается как «остальное не смотрели» — то есть врёт о
-          // покрытии ровно в тот момент, когда сообщает, что всё чисто.
-          ['error_reports', 'user_reports', 'app_errors', 'revenuecat_premium_events', 'paywall_funnel', 'users',
-            'lesson_stats', 'telegram_premium_dead_letter', 'revenuecat_premium_denials', 'safety_flags',
-            'support_inbox']
-            .map((sourceId) => ({ sourceId, state: 'empty', count: 0, droppedCount: 0, trustworthy: true })),
-          'success', 'Скачков не найдено ни в одном департаменте.',
-          'success', 'Решение не требуется — данные в норме.',
-          'Око Саурона',
-        );
-        return;
-      }
-      _jfLastDecisions = data.decisions;
-      jfRenderFilteredDecisions();
-      const hasInsufficient = data.decisions.some((d) => d.status === 'insufficient_evidence');
-      if (hasDepartmentErrors || hasInsufficient) window._jarvisLoaded = false;
-      else window._jarvisLoaded = true;
-      jfSetStatusChip('jarvis-status', hasDepartmentErrors || hasInsufficient ? 'error' : 'info',
-        (hasDepartmentErrors ? 'Часть департаментов недоступна. ' : '') +
-        (data.decisions.length + ' реш.') + ' требует внимания.');
-      data.decisions.forEach((decision) => {
-        const meta = JF_DEPARTMENT_META[decision.department] || { title: decision.department };
-        if (!lane) return;
-        jfRunChain(
-          lane, decision.evidence,
-          decision.status === 'insufficient_evidence' ? 'error' : 'success',
-          decision.status === 'insufficient_evidence' ? 'Недостаточно доверенных источников для вывода.' : decision.finding,
-          decision.status === 'insufficient_evidence' ? 'error' : 'success',
-          decision.status === 'insufficient_evidence' ? 'Решение не построено — не хватает доказательств.' : decision.recommendation,
-          meta.title,
-        );
-      });
-    } catch (e) {
-      window._jarvisLoaded = false;
-      // зачем: сеть/права могли отказать уже после того, как кнопка сказала «проверяем» —
-      // старое содержимое не стирается, чтобы не превратить ошибку в фальшивый пустой экран.
-      const message = e && e.message ? e.message : 'ошибка сети';
-      jfSetStatusChip('jarvis-status', 'error', 'Не удалось загрузить: ' + message);
-      if (lane) {
-        const tile = jfCreateTile(lane, '🔌', 'Запрос к серверу');
-        setTimeout(() => jfFinishTile(tile, 'error', message), jfPrefersReducedMotion() ? 0 : 260);
-      }
-    }
-  };
-
-  // ── Журнал подтверждений (бриф в187: ссылки решения на аудит) ──────────────
-  // зачем читать по кнопке, а не сразу: журнал — справочная информация,
-  // нужная редко. Загружать его при каждом открытии панели значило бы читать
-  // Firestore ради данных, которые почти никогда не смотрят.
-  const JF_OUTCOME_LABEL = {
-    accepted: 'принято', expired: 'истекла', already_used: 'уже использована',
-    unknown_nonce: 'недействительна', wrong_user: 'не тот пользователь',
-    wrong_chat: 'не тот чат', storage_error: 'ошибка сохранения',
-  };
-  window.loadJarvisApprovalAudit = async function() {
-    const box = document.getElementById('jarvis-audit-log');
-    if (!box) return;
-    box.style.display = 'flex';
-    box.innerHTML = '<div style="color:#6b7280;font-size:12px">Загрузка…</div>';
-    try {
-      const result = await getJarvisGetApprovalAuditCallable()({});
-      const data = result && result.data;
-      const entries = (data && Array.isArray(data.entries)) ? data.entries : [];
-      if (entries.length === 0) {
-        box.innerHTML = '<div style="color:#6b7280;font-size:12px">Подтверждений пока не было.</div>';
-        return;
-      }
-      box.innerHTML = entries.map((entry) => {
-        const meta = JF_DEPARTMENT_META[entry.department] || { title: entry.department, accentRgb: '148,163,184' };
-        const when = new Date(entry.atMs).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-        const actionLabel = { approve: '✅ принять', reject: '✕ отклонить', stop: '⏸ /stop', start: '▶️ /start' }[entry.action] || entry.action;
-        const outcomeLabel = JF_OUTCOME_LABEL[entry.outcome] || entry.outcome;
-        return '<div style="background:rgba(' + meta.accentRgb + ',0.06);border-radius:8px;padding:8px 10px;font-size:12px;color:#cbd5e1;display:flex;justify-content:space-between;gap:10px">' +
-          '<span><b>' + escapeHtml(meta.title) + '</b> · ' + actionLabel + ' · ' + escapeHtml(outcomeLabel) + '</span>' +
-          '<span style="color:#6b7280;white-space:nowrap">' + escapeHtml(when) + '</span>' +
-        '</div>';
-      }).join('');
-    } catch (e) {
-      const message = e && e.message ? e.message : 'ошибка сети';
-      box.innerHTML = '<div style="color:#f87171;font-size:12px">Не удалось загрузить: ' + escapeHtml(message) + '</div>';
-    }
-  };
 
   // ── Стадия роста бизнеса (2026-08-02) ───────────────────────────────────────
   // зачем отдельно от Ока Саурона: разные вопросы. Око Саурона — «где сейчас болит»,
@@ -33428,7 +32680,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
 
   const BT_LOCAL_HISTORY_KEY = 'pm_admin_business_tier_history_v1';
-  const BT_CALL_TIMEOUT_MS = 12000;
   const BT_FALLBACK_STAGE_RULES = [
     { tier: 'pre_seed',     totalUsers: 0,       activeUsers: 0,      mrrUsd: 0 },
     { tier: 'seed',         totalUsers: 100,     activeUsers: 25,     mrrUsd: 100 },
@@ -33979,24 +33230,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     jfSetStatusChip('bt-status', 'loading', manualRefresh ? 'Обновляем…' : 'Загрузка…');
     const token = ++_btRequestToken;
     let primaryError = null;
-    try {
-      const result = await btWithTimeout(
-        getJarvisGetBusinessTierCallable()({}),
-        BT_CALL_TIMEOUT_MS,
-        'Стадия роста',
-      );
-      if (token !== _btRequestToken) return;
-      const data = result && result.data;
-      if (!data || data.ok !== true || !data.snapshot) throw new Error('Сервер вернул некорректный ответ.');
-      _btCache = data;
-      btSetFallbackMode(false);
-      btRender(data);
-      return;
-    } catch (error) {
-      if (token !== _btRequestToken) return;
-      primaryError = error;
-      console.warn('jarvisGetBusinessTier unavailable; using read-only fallback', error && (error.code || error.message) ? (error.code || error.message) : error);
-    }
+    // зачем: функции Джарвиса удалены из облака (владелец 17.10) — сразу локальный срез
+    primaryError = new Error('серверный расчёт отключён');
+    console.log('[BUSINESS-TIER] jarvisGetBusinessTier removed from cloud; using local read-only fallback, token=' + token);
 
     try {
       const fallback = await btBuildFallbackBusinessTier(primaryError);
@@ -34049,37 +33285,21 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; btn.style.cursor = 'wait'; }
     jfSetStatusChip('bt-backfill-status', 'loading', 'Считаем историю…');
     try {
-      if (_btFallbackMode) {
+      // зачем: функции Джарвиса удалены из облака (владелец 17.10) — всегда локальный срез
+      console.log('[BUSINESS-TIER] backfill: jarvisRunBusinessTierBackfill removed; saving local fallback snapshot');
+      {
         const fallback = await btBuildFallbackBusinessTier(null);
         if (!fallback || !fallback.snapshot || fallback.snapshot.hasData !== true) throw new Error('Нет доступных данных для резервного среза.');
-        _btCache = fallback;
-        btRender(fallback);
-        jfSetStatusChip('bt-status', 'info', 'Резервный расчёт · Firestore/кэш');
-        jfSetStatusChip('bt-backfill-status', 'success', 'Сегодняшний срез сохранён в этом браузере.');
-        return;
-      }
-      const result = await getJarvisRunBusinessTierBackfillCallable()({});
-      const data = result && result.data;
-      if (!data || data.ok !== true) throw new Error('Сервер не подтвердил пересчёт.');
-      jfSetStatusChip('bt-backfill-status', data.done ? 'success' : 'info', data.done
-        ? 'История собрана полностью (' + btFormatCount(data.cumulativeUsers) + ' польз.)'
-        : 'Обработано ' + btFormatCount(data.usersScanned) + ' польз., нажмите ещё раз для продолжения');
-      _btCache = null; // данные изменились — следующий показ должен быть свежим
-      btSetFallbackMode(false);
-      await window.loadBusinessTier(true);
-    } catch (e) {
-      console.warn('jarvisRunBusinessTierBackfill unavailable; saving fallback snapshot', e && (e.code || e.message) ? (e.code || e.message) : e);
-      try {
-        const fallback = await btBuildFallbackBusinessTier(e);
-        if (!fallback || !fallback.snapshot || fallback.snapshot.hasData !== true) throw e;
         _btCache = fallback;
         btSetFallbackMode(true);
         btRender(fallback);
         jfSetStatusChip('bt-status', 'info', 'Резервный расчёт · Firestore/кэш');
-        jfSetStatusChip('bt-backfill-status', 'info', 'Серверная история недоступна; сегодняшний срез сохранён локально.');
-      } catch (fallbackError) {
-        jfSetStatusChip('bt-backfill-status', 'error', 'Не удалось: ' + btFriendlyError(fallbackError || e));
+        jfSetStatusChip('bt-backfill-status', 'success', 'Сегодняшний срез сохранён в этом браузере.');
+        console.log('[BUSINESS-TIER] backfill: local fallback snapshot saved');
       }
+    } catch (e) {
+      console.warn('[BUSINESS-TIER] backfill: local fallback failed', e && (e.code || e.message) ? (e.code || e.message) : e);
+      jfSetStatusChip('bt-backfill-status', 'error', 'Не удалось: ' + btFriendlyError(e));
     } finally {
       _btBackfillBusy = false;
       if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = 'pointer'; }
@@ -48900,7 +48120,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return item;
   }
   const PM_V5_SECTION_FALLBACK_LABELS = Object.freeze({
-    'control-panel':'Пульт управления','jarvis':'Око Саурона','jarvis-plans':'Планы Ока Саурона',
+    'control-panel':'Пульт управления',
     'product-charter':'Продуктовая хартия','onboarding-screens':'Онбординг',
     'onboarding-sources':'Источники онбординга','safety-flags':'Сигналы безопасности',
     'age-consent':'Возраст и согласие','compliance-radar':'Комплаенс','daily-digest':'Дайджест владельца',
@@ -50020,8 +49240,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     // зачем (2026-08-30): без рефрешера V5-координатор вешал на вкладку
     // «Источник обновления не подключён», хотя данные грузились fallback'ом.
     'diagnostics': () => pmV5SafeCall('loadDiagnosticsOverview', true),
-    'jarvis': () => pmV5SafeCall('loadJarvisAllDecisions', true),
-    'jarvis-plans': () => pmV5SafeCall('loadJarvisPlans', true),
     'product-charter': () => pmV5SafeCall('loadProductCharter', true),
     'onboarding-screens': async () => {
       const rows = [await pmV5SafeCall('loadOnboardingScreens', true)];
@@ -50210,7 +49428,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const PM_V5_REFRESH_FUNCTIONS = new Set([
     'loadPromoCodes','loadControlPanelAi','loadControlPanelAiJobs','loadBusinessTier',
-    'loadJarvisPlans','loadModQueue','loadTelegramPremiumOrders','loadReports','loadGlobalBroadcastStatus',
+    'loadModQueue','loadTelegramPremiumOrders','loadReports','loadGlobalBroadcastStatus',
     'loadRemoteConfig','loadYoutubeChannel','refreshYoutubeCatalog','refreshVideoStudio','loadShardSurveys',
     'v2gPipelineRefresh','v2gRefresh','loadAlertsConfig','loadAppMessages','loadWebsiteInbox','loadAdminEmails',
     'loadUserReports','loadSafetyFlags','loadProductCharter','loadAgeConsent','loadComplianceRadar','loadDailyDigest',
@@ -50707,7 +49925,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   if (window.__pmAllSectionsV4Ready) return;
   window.__pmAllSectionsV4Ready = true;
 
-  const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"jarvis":{"title":"Око Саурона","description":"Автопроверка качества, денег, контента и инфраструктуры."},"jarvis-plans":{"title":"Планы Ока Саурона","description":"Все находки и планы Ока Саурона в одном журнале."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
+  const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
   const UI_TRANSLATIONS = {"Overview":"Обзор","Analytics":"Аналитика","Reports":"Ошибки контента","Support (site)":"Сайт: обращения","User reports":"Жалобы на пользователей","Explain reports":"Жалобы на объяснения","Explain cache":"Кэш объяснений","Ban list":"Бан-лист","Plus Radar":"Диагностика Plus","Cancel surveys":"Причины отмены","UGC purchases":"Покупки UGC","Refunds":"Возвраты","Archive":"Архив","Audit log":"Журнал аудита","Ops log":"Журнал операций","Community":"Сообщество","Card packs":"Наборы карточек","Clubs":"Лиги","Referrals":"Рефералы","App Health":"Состояние приложения","Push notifications":"Push-уведомления","Push":"Push","OpenAI budget":"Бюджет OpenAI","Refresh":"Обновить","Loading...":"Загрузка…","Loading…":"Загрузка…","Waiting for Firestore data...":"Ожидание данных Firestore…","Waiting for Cloud Function data...":"Ожидание серверных данных…","All platforms":"Все платформы","All languages":"Все языки","All plans":"Все тарифы","All themes":"Все темы","All accounts":"Все аккаунты","All versions":"Все версии","All cases":"Все случаи","Critical only":"Только критические","All reasons":"Все причины","All severity":"Все уровни","All statuses":"Все статусы","All features":"Все функции","All users":"Все пользователи","All":"Все","Any":"Любой","Users":"Пользователи","User":"Пользователь","Title":"Заголовок","Text":"Текст","Language":"Язык","Platform":"Платформа","Theme":"Тема","Total":"Всего","Period":"Период","From":"С","To":"По","Previous":"Назад","Next":"Далее","Save":"Сохранить","Send":"Отправить","Schedule":"Расписание","Selected":"Выбрано","Sort by XP":"Сортировать по XP","Sort by name":"Сортировать по имени","Sort by streak":"Сортировать по серии","Sort by lessons":"Сортировать по урокам","Sort by version":"Сортировать по версии","Sort by date":"Сортировать по дате","Russian":"Русский","Ukrainian":"Украинский","Free":"Бесплатные","Registered":"Зарегистрированные","Anonymous":"Анонимные","Hide duplicates":"Скрыть дубли","Duplicates":"Дубли","Email list":"Список email","Grant shards":"Выдать осколки","Grant Plus":"Выдать Plus","Ban users":"Заблокировать","Clear selection":"Снять выделение","Progress Streak Lessons":"Прогресс · серия · уроки","Streak":"Серия","Lessons":"Уроки","Account Shards":"Аккаунт · осколки","Shards":"Осколки","Download CSV":"Скачать CSV","CSV":"CSV","Real Plus + admin Plus":"Real Plus + Admin Plus","Same identity or email":"Совпадает профиль или email","Same name with access":"Совпадает имя и доступ","Stale premium flag":"Устаревший premium-флаг","Manual store fields":"Ручные поля магазина","Inactive admin Plus fields":"Неактивные поля Admin Plus","Too expensive":"Слишком дорого","Not enough content":"Мало контента","Technical issues":"Технические проблемы","Found better app":"Нашёл лучшее приложение","Rarely using":"Редко использует","Other":"Другое","Open tab or press Refresh.":"Откройте раздел или нажмите «Обновить».","Last 1h":"1 час","Last 6h":"6 часов","Last 24h":"24 часа","Last 7d":"7 дней","Open":"Открыто","Reviewed":"Проверено","Fixed":"Исправлено","Known issue":"Известная проблема","Copy AI report":"Копировать отчёт ИИ","Copy raw JSON":"Копировать JSON","Load activity":"Загрузить активность","Activity is lazy-loaded to save Firestore reads.":"Активность загружается только по запросу.","Open App Health to load diagnostics.":"Откройте раздел для загрузки диагностики.","⬇ Load more (older)":"⬇ Загрузить ещё","Published":"Опубликован","Unpublished":"Снят с публикации","Draft":"Черновик","Preview French rows":"Предпросмотр французских строк","Create French draft":"Создать французский черновик","Check French approval":"Проверить французское утверждение","Rollback French draft":"Откатить французский черновик","By UID":"По пользователю","Segment":"Сегмент","Reactivation":"Реактивация","User UID":"Пользователь","Click action (optional)":"Действие по нажатию","Send segment":"Отправить сегменту","Inactive >= days":"Неактивен минимум, дней","Inactive <= days ago":"Неактивен не более, дней","Send reactivation":"Отправить реактивацию","Date and time":"Дата и время","Audience":"Аудитория","Inactive 7+ days":"Неактивные 7+ дней","Статистика загрузится автоматически при открытии раздела.":"Статистика загрузится при открытии раздела.","Source answers":"Ответы об источнике","Unique users":"Уникальные пользователи","Top source":"Главный источник","Sources":"Источники","Paywall analytics":"Аналитика paywall","Custom":"Свой период","Bar width":"Ширина столбцов","Compact":"Компактно","Normal":"Обычно","Wide":"Широко","Analytics opens with a safe dashboard shell first. Live data loads when this tab opens.":"Данные загружаются после открытия раздела.","Paywall views":"Показы paywall","Paywall purchases":"Покупки из paywall","Plus events":"События Plus","Shards purchases":"Покупки осколков","Settings paywall":"Paywall в настройках","Automatic paywall":"Автоматический paywall","Onboarding paywall":"Paywall онбординга","1 day":"1 день","7 days":"7 дней","28 days":"28 дней","30 days":"30 дней","90 days":"90 дней","180 days":"180 дней","Daily":"По дням","Weekly":"По неделям","Reset zoom":"Сбросить масштаб","Save model":"Сохранить модель","Theo model config is loading...":"Настройки модели Theo загружаются…","Free tier replies/day":"Ответов Free в день","Plus tier replies/day":"Ответов Plus в день","Save quota":"Сохранить лимиты","Reload quota":"Перечитать лимиты","Theo quota config is loading...":"Лимиты Theo загружаются…","OpenAI estimated month loads when this tab is active.":"Расчёт загружается при открытии раздела.","OpenAI estimated month":"Оценка OpenAI за месяц","Selected period":"Выбранный период","Paid calls":"Платные вызовы","Tokens":"Токены","Feature costs":"Расходы по функциям","Model costs":"Расходы по моделям","Avg XP":"Средний XP","AVG XP":"Средний XP","Average XP":"Средний XP","Avg streak":"Средняя серия","AVG STREAK":"Средняя серия","Average streak":"Средняя серия","Avg shards":"Средние осколки","AVG SHARDS":"Средние осколки","Average shards":"Средние осколки","days":"дн.","Days":"Дни","Search name or UID":"Поиск по нику или #nameIndex","Search by name or UID":"Поиск по нику или #nameIndex","Search name, email or UID":"Поиск по нику, email или #nameIndex","Search":"Поиск","Status":"Статус","Actions":"Действия","Date":"Дата","Name":"Имя","Email":"Email","Version":"Версия","Country":"Страна","Source":"Источник","Created":"Создано","Updated":"Обновлено","Active":"Активен","Inactive":"Неактивен","Enabled":"Включено","Disabled":"Выключено","Completed":"Завершено","Pending":"Ожидает","Failed":"Ошибка","Success":"Успешно","Error":"Ошибка","Copy":"Копировать","Close":"Закрыть","Cancel":"Отмена","Delete":"Удалить","Edit":"Изменить","Create":"Создать","Publish":"Опубликовать","Unpublish":"Снять с публикации","Details":"Подробнее","More":"Ещё","Settings":"Настройки","Management":"Управление","No data":"Нет данных","No results":"Ничего не найдено","Unknown":"Неизвестно","Никнейм или UID":"Никнейм или #nameIndex","UID или никнейм":"#nameIndex или никнейм","Selected:":"Выбрано:","Progress":"Прогресс","App":"Приложение","Account":"Аккаунт","Find user":"Найти пользователя","Revenue":"Доход","Push composer":"Push-редактор","Loaded user records in this admin session.":"Профили, загруженные в текущей сессии.","Limited":"Ограничено","Paywall and RevenueCat data status.":"Статус paywall и данных RevenueCat.","Moderation":"Модерация","Queues":"Очереди","Reports, user reports, and ban list.":"Ошибки контента, жалобы и блокировки.","Delivery":"Доставка","Ready":"Готово","Push jobs, app messages, and daily content.":"Push-задачи, сообщения и ежедневный контент.","Visits today":"Посещения сегодня","Unique sessions on knowlyapps.com today (UTC).":"Уникальные сессии knowlyapps.com сегодня (UTC).","Total visits":"Посещения за всё время","All-time unique sessions since tracking started.":"Уникальные сессии с начала отслеживания.","iOS store clicks today":"Переходы в App Store сегодня","App Store badge clicks today — clicks, not installs.":"Нажатия на App Store сегодня, не установки.","iOS store clicks total":"Переходы в App Store всего","All-time App Store badge clicks — clicks, not installs.":"Все нажатия на App Store, не установки.","Android store clicks today":"Переходы в Google Play сегодня","Google Play badge clicks today — clicks, not installs.":"Нажатия на Google Play сегодня, не установки.","Android store clicks total":"Переходы в Google Play всего","All-time Google Play badge clicks — clicks, not installs.":"Все нажатия на Google Play, не установки.","Daily trend":"Динамика по дням","Hover a point for the exact day. Scroll to zoom, drag to pan.":"Наведите для точного значения. Колесо — масштаб, перетаскивание — обзор.","Visits":"Посещения","Purchases":"Покупки","Check app health first":"Сначала проверьте состояние приложения","Recent activity, health events, archive, audit, and ops diagnostics.":"Активность, ошибки, архив, аудит и журнал операций.","Review incoming reports":"Разберите новые жалобы","Content reports and user reports are the highest-risk human queue.":"Ошибки контента и жалобы пользователей требуют ручной проверки.","Inspect revenue funnel":"Проверьте воронку дохода","Paywall views, purchases, RevenueCat events, and shards purchases.":"Показы paywall, покупки, RevenueCat и покупки осколков.","Quick admin actions":"Быстрые действия администратора","Admin status summary":"Сводка состояния админки","Site traffic":"Трафик сайта","Granularity":"Детализация","Admin worklist":"Рабочая очередь администратора","Show duplicate names with different UIDs":"Показать одинаковые ники у разных аккаунтов","Copy or download the email list":"Копировать или скачать список email","Select all":"Выбрать всё","Sort by semantic app version":"Сортировать по версии приложения","Source:":"Источник:","Search uid, name, text...":"Поиск по нику, #nameIndex или тексту…","Server-side estimate from billing logs. Cache hits are not billed, so they do not appear here.":"Серверная оценка по журналу биллинга. Попадания в кэш не тарифицируются и не отображаются.","Revenue, conversion, and shard-purchase signals from consented product events and server-owned RevenueCat records.":"Доход, конверсия и покупки осколков по разрешённым продуктовым событиям и серверным данным RevenueCat.","Choose the onboarding source date window":"Выбрать период источников онбординга","Filter onboarding source events by platform":"Фильтровать источники по платформе","Reload onboarding source statistics":"Обновить статистику источников","Reload revenue analytics":"Обновить аналитику дохода","Revenue analytics filters":"Фильтры аналитики дохода","Revenue date window":"Период аналитики дохода","First UTC day":"Первый день UTC","Last UTC day":"Последний день UTC","Revenue platform":"Платформа дохода","App message delivery surface":"Место показа сообщения","Settings message slot":"Позиция сообщения в настройках","Settings message control percent":"Доля показа сообщения","App message format":"Формат сообщения","App message status":"Статус сообщения","App message audience":"Аудитория сообщения","App message priority":"Приоритет сообщения","App message retention days":"Срок хранения сообщения","App message title":"Заголовок сообщения","App message body":"Текст сообщения","App message poll question":"Вопрос опроса","App message poll option count":"Количество вариантов ответа","App health period":"Период состояния приложения","App health severity filter":"Фильтр важности","App health status filter":"Фильтр статуса","App health feature filter":"Фильтр функции","Search app health events":"Поиск событий состояния приложения","Search audit log by UID, email, or details":"Поиск в аудите по #nameIndex, email или деталям","Copy for Claude":"Копировать для Claude","Job history":"История заданий","Enter UID...":"Введите никнейм или #nameIndex…","Push target user UID":"Получатель push","Notification title...":"Заголовок уведомления…","Notification text...":"Текст уведомления…","Push title for UID mode":"Заголовок точечного push","Push message text for UID mode":"Текст точечного push","Push click action for UID mode":"Действие точечного push","Push segment language":"Язык сегмента push","Push segment premium status":"Статус Plus сегмента","Push segment minimum streak":"Минимальная серия сегмента","Push title for segment mode":"Заголовок push для сегмента","Push message text for segment mode":"Текст push для сегмента","Push click action for segment mode":"Действие push для сегмента","Push reactivation minimum inactive days":"Минимум дней неактивности","Push reactivation maximum inactive days":"Максимум дней неактивности","We miss you":"Мы скучаем","Come back and continue your streak.":"Возвращайтесь и продолжайте свою серию.","Push title for reactivation mode":"Заголовок push для реактивации","Push message text for reactivation mode":"Текст push для реактивации","Push click action for reactivation mode":"Действие push для реактивации","Scheduled push date and time":"Дата и время запланированного push","Scheduled push audience":"Аудитория запланированного push","Scheduled push title":"Заголовок запланированного push","Scheduled push message text":"Текст запланированного push","Scheduled push click action":"Действие запланированного push","Theo model":"Модель Theo"};
   SECTION_META['max-feedback'] = { title:'Оценки', description:'Точные оценки, распределение звёзд и комментарии со всех экранов завершения.' };
   const UI_TRANSLATIONS_LOWER = Object.fromEntries(Object.entries(UI_TRANSLATIONS).map(([key, value]) => [key.toLocaleLowerCase('ru-RU'), value]));
@@ -52007,66 +51225,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     });
   }
   window.pmV9LoadEmbeddedSection = loadEmbeddedSection;
-  function planStatusLabel(status){
-    return ({open:'Открыто',accepted:'Принято, проверяем',resolved:'Сработало',vanished:'Ушло само',archived:'Архив'})[status] || status || 'Открыто';
-  }
-  function planDepartment(plan){
-    return ({quality:'Качество',money:'Деньги',growth:'Рост',content:'Контент',payments:'Платежи',safety:'Безопасность',support:'Поддержка',factory:'Фабрика контента',retention:'Удержание',jarvis:'Око Саурона'})[plan?.department] || plan?.department || 'Око Саурона';
-  }
-  function planDate(plan){
-    const ms = Number(plan?.updatedAtMs || plan?.createdAtMs || 0);
-    return ms ? new Date(ms).toLocaleDateString('ru-RU',{day:'2-digit',month:'short',year:'numeric'}) : '';
-  }
-  function esc(value){
-    if (typeof window.escapeHtml === 'function') return window.escapeHtml(String(value ?? ''));
-    return String(value ?? '').replace(/[&<>"']/g,(ch)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  }
-  let selectedPlanId = '';
-  let visiblePlans = [];
-  function renderPlanDetail(plan){
-    const editor = document.getElementById('pm-v9-notes-editor');
-    if (!editor) return;
-    if (!plan){ editor.innerHTML = '<div class="pm-empty-state"><strong>Выберите план</strong><span>Полный текст появится здесь.</span></div>'; return; }
-    const block = (title,value) => value ? `<section class="pm-v9-note-block"><h3>${esc(title)}</h3><p>${esc(value)}</p></section>` : '';
-    editor.innerHTML = `
-      <h2 class="pm-v9-note-editor-title">${esc(plan.question || 'План Ока Саурона')}</h2>
-      <div class="pm-v9-note-editor-meta"><span class="pm-v9-note-chip">${esc(planDepartment(plan))}</span><span class="pm-v9-note-chip">${esc(planStatusLabel(plan.status))}</span>${planDate(plan)?`<span class="pm-v9-note-chip">${esc(planDate(plan))}</span>`:''}</div>
-      ${block('Находка',plan.finding)}${block('Гипотеза',plan.hypothesis)}${block('Рекомендация',plan.recommendation)}${block('Риск',plan.risk)}${block('Как понять, что помогло',plan.successMetric)}${block('Откат',plan.rollback)}${block('Комментарий Ока Саурона',plan.narrative)}
-      <div class="pm-v9-note-actions">
-        <button type="button" onclick="copyOneJarvisPlan('${esc(plan.id)}')">Копировать</button>
-        ${plan.status!=='resolved'?`<button type="button" onclick="setJarvisPlanStatus('${esc(plan.id)}','resolved')">Отметить решённым</button>`:''}
-        ${plan.status!=='archived'?`<button type="button" onclick="setJarvisPlanStatus('${esc(plan.id)}','archived')">В архив</button>`:''}
-        ${plan.status!=='open'?`<button type="button" onclick="setJarvisPlanStatus('${esc(plan.id)}','open')">Вернуть в открытые</button>`:''}
-        <button type="button" class="pm-v4-danger" onclick="deleteJarvisPlan('${esc(plan.id)}')">Удалить</button>
-      </div>`;
-  }
-  function selectPlan(id){
-    selectedPlanId = String(id || '');
-    document.querySelectorAll('.pm-v9-note-row').forEach((row) => row.classList.toggle('is-active', row.dataset.planId === selectedPlanId));
-    renderPlanDetail(visiblePlans.find((plan) => String(plan.id) === selectedPlanId) || visiblePlans[0] || null);
-  }
-  window.pmV9SelectJarvisPlan = selectPlan;
-  function filterPlanList(query){
-    const q = String(query || '').trim().toLowerCase();
-    document.querySelectorAll('.pm-v9-note-row').forEach((row) => {
-      row.hidden = q && !String(row.dataset.search || '').includes(q);
-    });
-  }
-  window.pmV9FilterJarvisPlans = filterPlanList;
-  window.pmV9RenderJarvisPlans = function(plans){
-    visiblePlans = Array.isArray(plans) ? plans.slice() : [];
-    const container = document.getElementById('jarvis-plans-list');
-    if (!container) return;
-    if (!visiblePlans.length){ container.innerHTML = '<div class="pm-empty-state"><strong>В этом разделе пока пусто</strong><span>Выберите другой фильтр.</span></div>'; return; }
-    if (!visiblePlans.some((plan) => String(plan.id) === selectedPlanId)) selectedPlanId = String(visiblePlans[0].id || '');
-    const rows = visiblePlans.map((plan) => {
-      const search = [plan.question,plan.finding,plan.recommendation,planDepartment(plan),planStatusLabel(plan.status)].join(' ').toLowerCase();
-      return `<button type="button" class="pm-v9-note-row${String(plan.id)===selectedPlanId?' is-active':''}" data-plan-id="${esc(plan.id)}" data-search="${esc(search)}" onclick="pmV9SelectJarvisPlan('${esc(plan.id)}')"><div class="pm-v9-note-row-title">${esc(plan.question || 'Без заголовка')}</div><div class="pm-v9-note-row-preview">${esc(plan.finding || plan.recommendation || '')}</div><div class="pm-v9-note-row-meta"><span>${esc(planDepartment(plan))}</span><span>${esc(planDate(plan))}</span></div></button>`;
-    }).join('');
-    container.innerHTML = `<div class="pm-v9-notes-workspace"><aside class="pm-v9-notes-list-pane"><div class="pm-v9-notes-search"><input type="search" placeholder="Поиск по планам" aria-label="Поиск по планам Ока Саурона" oninput="pmV9FilterJarvisPlans(this.value)"></div>${rows}</aside><article id="pm-v9-notes-editor" class="pm-v9-notes-editor"></article></div>`;
-    selectPlan(selectedPlanId);
-  };
-
   function resizeVisibleCharts(){
     document.querySelectorAll('.pm-v4-page.active canvas').forEach((canvas) => {
       try { window.Chart?.getChart?.(canvas)?.resize?.(); } catch (_) {}
@@ -52629,7 +51787,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const list=document.getElementById('pm-phase3-inbox-list');if(!list)return;const q=state.inboxSearch.trim().toLowerCase();const rows=state.inboxItems.filter((row)=>(state.inboxFilter==='all'||row.type===state.inboxFilter)&&(!q||`${row.title} ${row.detail} ${row.provenance}`.toLowerCase().includes(q)));const count=document.getElementById('pm-phase3-inbox-count');if(count)count.textContent=String(rows.length);list.replaceChildren();if(!rows.length){list.append(el('div','pm-phase3-empty','В уже загруженных источниках подходящих элементов нет. Откройте нужный исходный раздел, чтобы загрузить его ограниченную страницу.'));return;}rows.forEach((row)=>{const item=el('article','pm-phase3-inbox-item');item.append(el('span','pm-phase3-inbox-kind',row.icon||'•'));const main=el('div');main.append(el('div','pm-phase3-inbox-title',row.title),el('div','pm-phase3-inbox-meta',`${row.detail}${row.at?` · ${formatTime(row.at)}`:''}`));const prov=el('div','pm-phase3-provenance',row.provenance);prov.dataset.pmPhase3Provenance=row.section;main.append(prov);const open=el('button','', 'Открыть');open.type='button';open.addEventListener('click',()=>{if(typeof row.jump==='function')row.jump();else section(row.section);});item.append(main,open);list.append(item);});
   }
 
-  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','daily-phrases','daily-polls','arena-content','youtube-catalog','v2-generator','review-promo']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
+  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','daily-phrases','daily-polls','arena-content','youtube-catalog','v2-generator','review-promo']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
   function tabKey(node){const oc=node?.getAttribute?.('onclick')||'';const m=oc.match(/switchTab\(['"]([^'"]+)/);if(m)return m[1];if(node?.dataset?.tab)return node.dataset.tab;const id=String(node?.id||'');return id.replace(/^admin-nav-/,'').replace(/^tab-/,'');}
   function applyNavGroup(group){state.navGroup=GROUPS[group]?group:'all';document.querySelectorAll('#pm-phase3-nav-groups button').forEach((btn)=>btn.classList.toggle('is-active',btn.dataset.group===state.navGroup));document.querySelectorAll('.tabs .tab').forEach((node)=>{const key=tabKey(node);const hide=state.navGroup!=='all'&&!GROUPS[state.navGroup]?.has(key);node.dataset.pmPhase3GroupHidden=hide?'true':'false';});}
   function installQuickNavigation(){
@@ -53691,8 +52849,6 @@ html[data-pm-theme="light"] body.pm-phase6-ready :where(.pm-safeops-sub,.pm-phas
   --pm-rb-line-soft:rgba(228,228,231,.18);
   --pm-rb-glow:rgba(125,211,252,.88);
   --pm-rb-glow-2:rgba(167,139,250,.66);
-  --pm-rb-sauron:#ff3b1f;
-  --pm-rb-sauron-hot:#ffb020;
 }
 html[data-pm-theme="light"]{
   --pm-rb-line:#27272a;
@@ -53733,22 +52889,12 @@ body.pm-rb-effects-ready .pm-v5-ripple{display:none!important}
   transform:translateY(-50%) scale(1.08);opacity:1;background:var(--pm-rb-line);
   box-shadow:0 0 0 4px rgba(228,228,231,.09),0 0 15px rgba(228,228,231,.48);
 }
-.tabs.pm-rb-line-sidebar>.tab[data-pm-sauron-nav="true"]::before{
-  background:#ef4423;box-shadow:0 0 0 3px rgba(239,68,35,.10),0 0 14px rgba(239,68,35,.36);
-}
-.tabs.pm-rb-line-sidebar>.tab[data-pm-sauron-nav="true"].active::before{
-  background:#ff6b24;box-shadow:0 0 0 4px rgba(255,82,31,.12),0 0 20px rgba(255,82,31,.68);
-}
 .tabs.pm-rb-line-sidebar>.pm-v5-nav-indicator{
   left:12px!important;width:3px!important;border-radius:999px!important;
   background:linear-gradient(180deg,rgba(255,255,255,.12),var(--pm-rb-line) 28%,var(--pm-rb-line) 72%,rgba(255,255,255,.12))!important;
   box-shadow:0 0 8px rgba(228,228,231,.45),0 0 18px rgba(228,228,231,.18)!important;
   z-index:2!important;
   transition:transform 360ms cubic-bezier(.16,1,.3,1),height 220ms cubic-bezier(.22,1,.36,1),opacity 140ms ease!important;
-}
-.tabs.pm-rb-line-sidebar[data-pm-rb-active="jarvis"]>.pm-v5-nav-indicator{
-  background:linear-gradient(180deg,rgba(255,123,47,.15),#ff3b1f 28%,#ffb020 72%,rgba(255,123,47,.15))!important;
-  box-shadow:0 0 10px rgba(255,59,31,.72),0 0 22px rgba(255,176,32,.32)!important;
 }
 html[data-pm-theme="light"] .tabs.pm-rb-line-sidebar>.tab::before{border-color:rgba(24,24,27,.18)}
 @media(max-width:768px){
@@ -53786,84 +52932,10 @@ body.pm-rb-effects-ready :is(#pm-safeops-center,#pm-phase4-qa-drawer,#pm-phase5-
   --pm-rb-glow-color:rgba(125,211,252,.72);--pm-rb-glow-color-2:rgba(167,139,250,.58)
 }
 
-/* EvilEye / Eye of Sauron full-viewport hero. Existing controls stay below. */
-body.pm-rb-effects-ready #tab-jarvis{
-  --pm-rb-glow-color:rgba(255,80,26,.92);--pm-rb-glow-color-2:rgba(255,176,32,.72);
-  background:linear-gradient(180deg,#030202 0,#080403 56%,#0b0706 100%)!important;color:#f9e9dd!important;
-}
-body.pm-rb-effects-ready #tab-jarvis>.pm-v4-section-header,
-body.pm-rb-effects-ready #tab-jarvis>.admin-overview-hero{display:none!important}
-.pm-sauron-hero{
-  position:relative;display:grid;place-items:center;min-height:calc(100dvh - 58px);
-  width:calc(100% + 36px);margin:-18px -18px 22px;overflow:hidden;isolation:isolate;
-  background:#020202;border-bottom:1px solid rgba(255,93,39,.22);
-  box-shadow:inset 0 -80px 120px rgba(20,4,1,.86);
-}
-.pm-sauron-hero::before{
-  content:"";position:absolute;inset:-20%;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 48%,rgba(255,83,22,.20) 0,rgba(108,16,5,.10) 22%,transparent 50%),
-    conic-gradient(from 220deg at 50% 50%,transparent,rgba(255,61,20,.05),transparent 22%,rgba(255,164,32,.05),transparent 54%);
-  animation:pmSauronAtmosphere 14s ease-in-out infinite alternate;
-}
-.pm-sauron-hero::after{
-  content:"";position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.46;
-  background:linear-gradient(180deg,rgba(0,0,0,.22),transparent 20%,transparent 72%,rgba(0,0,0,.82)),repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);
-  mix-blend-mode:screen;
-}
-@keyframes pmSauronAtmosphere{from{transform:scale(1) rotate(-1deg);opacity:.76}to{transform:scale(1.08) rotate(1.2deg);opacity:1}}
-#pm-sauron-ambient{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
-.pm-sauron-stage{position:relative;z-index:2;width:min(1080px,92%);display:grid;place-items:center;text-align:center;padding:44px 20px 54px}
-.pm-sauron-kicker{font-size:10px;font-weight:900;letter-spacing:.34em;text-transform:uppercase;color:#ff9b63;text-shadow:0 0 16px rgba(255,69,20,.50)}
-.pm-sauron-title{margin:12px 0 6px;font-size:clamp(30px,5vw,72px);font-weight:950;letter-spacing:.06em;line-height:.95;color:#fff4e9;text-shadow:0 0 18px rgba(255,75,24,.45),0 0 54px rgba(126,22,5,.54)}
-.pm-sauron-sub{max-width:760px;margin:0 auto;color:#c7aaa0;font-size:clamp(12px,1.2vw,15px);line-height:1.6}
-.pm-sauron-eye-shell{position:relative;width:min(900px,82vw);aspect-ratio:12/7;margin:18px auto 8px;display:grid;place-items:center;filter:drop-shadow(0 0 22px rgba(255,47,16,.38));transform-origin:center;will-change:transform}
-.pm-sauron-eye-shell::before{content:"";position:absolute;inset:19% 10%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,54,16,.34),rgba(255,54,16,.08) 42%,transparent 70%);filter:blur(28px);animation:pmSauronAura 3.4s ease-in-out infinite alternate}
-.pm-sauron-eye-svg{position:relative;width:100%;height:100%;overflow:visible}
-.pm-sauron-eye-shell.is-awake{animation:pmSauronWake 620ms cubic-bezier(.22,1,.36,1)}
-@keyframes pmSauronAura{from{opacity:.58;transform:scale(.94)}to{opacity:1;transform:scale(1.05)}}
-@keyframes pmSauronWake{0%{transform:scale(1)}38%{transform:scale(1.045)}100%{transform:scale(1)}}
-@keyframes pmSauronBlink{0%,44%,47%,100%{transform:scaleY(1)}45.2%,45.8%{transform:scaleY(.055)}}
-html[data-pm-motion="full"] .pm-sauron-eye-shell{animation:pmSauronBlink 9.6s ease-in-out infinite}
-html[data-pm-motion="full"] .pm-sauron-eye-shell.is-awake{animation:pmSauronWake 620ms cubic-bezier(.22,1,.36,1),pmSauronBlink 9.6s ease-in-out infinite}
-.pm-sauron-actions{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
-.pm-sauron-scroll{
-  min-height:38px!important;padding:8px 14px!important;border:1px solid rgba(255,116,50,.32)!important;border-radius:999px!important;
-  color:#ffe2ce!important;background:rgba(84,17,5,.36)!important;box-shadow:0 0 22px rgba(255,69,19,.12)!important;
-}
-.pm-sauron-scroll:hover{background:rgba(122,27,7,.48)!important;border-color:rgba(255,151,80,.62)!important;transform:translateY(-1px)}
-.pm-sauron-live{display:inline-flex;align-items:center;gap:7px;color:#d0a698;font-size:11px;font-weight:760}
-.pm-sauron-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#ff5b2a;box-shadow:0 0 12px rgba(255,91,42,.92)}
-body.pm-rb-effects-ready #tab-jarvis>#pm-sauron-controls,
-body.pm-rb-effects-ready #tab-jarvis>.cp-card{
-  margin:18px!important;padding:16px!important;border:1px solid rgba(255,112,52,.18)!important;border-radius:12px!important;
-  background:linear-gradient(180deg,rgba(30,10,6,.88),rgba(13,7,6,.94))!important;
-  box-shadow:0 18px 46px rgba(0,0,0,.34)!important;
-}
-body.pm-rb-effects-ready #tab-jarvis :is(.cp-card-title,.pm-v4-section-title){color:#ffe0cc!important;text-shadow:0 0 18px rgba(255,77,26,.22)}
-body.pm-rb-effects-ready #tab-jarvis :is(.cp-card-sub,.pm-v4-section-sub){color:#b99d94!important}
-body.pm-rb-effects-ready #tab-jarvis :is(button,.cp-btn){border-color:rgba(255,117,58,.24)!important;background:rgba(89,21,8,.34)!important;color:#ffddc6!important}
-body.pm-rb-effects-ready #tab-jarvis :is(button,.cp-btn):hover{border-color:rgba(255,151,86,.52)!important;background:rgba(124,31,9,.46)!important}
-body.pm-rb-effects-ready #tab-jarvis :is(.cp-status-chip,.jf-chip,.pill){border-color:rgba(255,118,56,.20)!important;background:rgba(255,90,28,.07)!important;color:#e9b9a1!important}
-body.pm-rb-effects-ready #tab-jarvis :is(.jf-lane,.jf-stage,.jf-card){border-color:rgba(255,111,47,.16)!important;background:rgba(12,7,6,.56)!important}
-body.pm-rb-effects-ready #tab-jarvis-plans :is(.pm-v9-note-row.is-active,.pm-v9-note-chip){border-color:rgba(255,101,43,.28)!important;background:rgba(255,73,20,.08)!important;color:#ffcfb3!important}
-
-@media(max-width:768px){
-  .pm-sauron-hero{width:100%;margin:0 0 18px;min-height:calc(100dvh - 58px);border-radius:0}
-  .pm-sauron-stage{width:100%;padding:34px 12px 42px}
-  .pm-sauron-eye-shell{width:min(96vw,760px);margin:12px auto 4px}
-  body.pm-rb-effects-ready #tab-jarvis>#pm-sauron-controls,
-  body.pm-rb-effects-ready #tab-jarvis>.cp-card{margin:10px!important;padding:13px!important}
-}
-
 html[data-pm-motion="reduced"] .pm-rb-glow-host.pm-rb-glow-static>.pm-rb-border-glow-layer,
 html[data-pm-motion="off"] .pm-rb-glow-host.pm-rb-glow-static>.pm-rb-border-glow-layer{animation:none!important}
-html[data-pm-motion="reduced"] .pm-sauron-hero::before,
-html[data-pm-motion="reduced"] .pm-sauron-eye-shell::before,
-html[data-pm-motion="off"] .pm-sauron-hero::before,
-html[data-pm-motion="off"] .pm-sauron-eye-shell::before{animation:none!important}
 @media(prefers-reduced-motion:reduce){
-  .pm-rb-line-rail,.pm-v5-nav-indicator,.tabs.pm-rb-line-sidebar>.tab::before,.pm-rb-border-glow-layer,.pm-sauron-hero::before,.pm-sauron-eye-shell,.pm-sauron-eye-shell::before{animation:none!important;transition:none!important}
+  .pm-rb-line-rail,.pm-v5-nav-indicator,.tabs.pm-rb-line-sidebar>.tab::before,.pm-rb-border-glow-layer{animation:none!important;transition:none!important}
 }
 </style>
 
@@ -53873,7 +52945,7 @@ html[data-pm-motion="off"] .pm-sauron-eye-shell::before{animation:none!important
   'use strict';
   if(window.PMReactBitsEffects?.version==='react-bits-sauron-v1')return;
   const BUILD='2026-08-18-v9-phase6-react-bits-sauron-effects-final';
-  const state={ready:false,raf:0,sparkRaf:0,eyeRaf:0,lineRaf:0,glowRaf:0,lastPointerSparkAt:0,sparks:[],glowTarget:null,glowPoint:null,eye:{targetX:0,targetY:0,x:0,y:0,lastFrame:0,particles:[],running:false},listeners:[],lineResize:null,lastSection:''};
+  const state={ready:false,raf:0,sparkRaf:0,lineRaf:0,glowRaf:0,lastPointerSparkAt:0,sparks:[],glowTarget:null,glowPoint:null,listeners:[],lineResize:null,lastSection:''};
   const GLOW_SELECTOR=[
     '.stat-card','.chart-card','.admin-overview-card','.admin-state-card','.cp-card','.cp-hub-card',
     '.pm-v4-card','.pm-v4-panel','.pm-v5-access-panel','.app-msg-panel','.app-msg-card',
@@ -53919,8 +52991,6 @@ html[data-pm-motion="off"] .pm-sauron-eye-shell::before{animation:none!important
     const tabs=sidebar();if(!tabs)return null;tabs.classList.add('pm-rb-line-sidebar');
     let rail=tabs.querySelector(':scope > .pm-rb-line-rail');
     if(!rail){rail=document.createElement('div');rail.className='pm-rb-line-rail';rail.setAttribute('aria-hidden','true');tabs.insertBefore(rail,tabs.firstChild);}
-    const jarvis=Array.from(tabs.querySelectorAll(':scope > .tab')).find(tab=>/switchTab\(['"]jarvis['"]\)/.test(tab.getAttribute('onclick')||''));
-    if(jarvis){jarvis.dataset.pmSauronNav='true';const icon=jarvis.querySelector('.admin-tab-icon');if(icon&&icon.dataset.pmSauronIcon!=='true'){icon.dataset.pmSauronIcon='true';icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 12s3.5-6 9.6-6 9.6 6 9.6 6-3.5 6-9.6 6-9.6-6-9.6-6Z"/><circle cx="12" cy="12" r="3.1"/><path d="M12 8.9v6.2"/></svg>';}}
     scheduleLine();return rail;
   }
   function updateLine(){
@@ -53939,7 +53009,6 @@ html[data-pm-motion="off"] .pm-sauron-eye-shell::before{animation:none!important
   }
   function resizeSparkCanvas(){const canvas=document.getElementById('pm-rb-click-spark-canvas');if(!canvas)return;const dpr=Math.min(2,devicePixelRatio||1);canvas.width=Math.max(1,Math.round(innerWidth*dpr));canvas.height=Math.max(1,Math.round(innerHeight*dpr));canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';canvas.dataset.dpr=String(dpr)}
   function sparkColor(target){
-    if(target?.closest?.('#tab-jarvis,[data-pm-sauron-nav="true"]'))return '#ff6a24';
     if(target?.closest?.('.pm-v4-danger,.btn-delete,[data-danger="true"]'))return '#fb7185';
     const color=target instanceof Element?getComputedStyle(target).color:'';return /^rgba?\(/.test(color)&&!/^rgba?\(0, 0, 0/.test(color)?color:(document.documentElement.dataset.pmTheme==='light'?'#27272a':'#f4f4f5');
   }
@@ -53983,87 +53052,23 @@ html[data-pm-motion="off"] .pm-sauron-eye-shell::before{animation:none!important
   }
   function clearPointerGlow(event){const related=event.relatedTarget;if(state.glowTarget&&(!related||!state.glowTarget.contains(related))){state.glowTarget.classList.remove('pm-rb-glow-active');state.glowTarget=null;state.glowPoint=null}}
   function pulseGlow(event){const target=event.target?.closest?.(GLOW_SELECTOR);if(!target)return;ensureGlow(target);setGlowPoint(target,event.clientX,event.clientY);target.classList.add('pm-rb-glow-active');setTimeout(()=>{if(target!==state.glowTarget)target.classList.remove('pm-rb-glow-active')},620)}
-  function sauronControls(){return document.getElementById('pm-sauron-controls')||document.querySelector('#tab-jarvis>[data-pm-sauron-controls="true"]')}
-  function syncPersistentGlows(){document.querySelectorAll(STATIC_GLOW_SELECTOR).forEach(el=>ensureGlow(el,true));const controls=sauronControls();if(controls)ensureGlow(controls,true)}
+  function syncPersistentGlows(){document.querySelectorAll(STATIC_GLOW_SELECTOR).forEach(el=>ensureGlow(el,true))}
 
-  /* EvilEye */
-  function eyeMarkup(){return `
-    <section id="pm-sauron-hero" class="pm-sauron-hero" aria-labelledby="pm-sauron-title">
-      <canvas id="pm-sauron-ambient" aria-hidden="true"></canvas>
-      <div class="pm-sauron-stage">
-        <div class="pm-sauron-kicker">Центральная система наблюдения</div>
-        <h2 id="pm-sauron-title" class="pm-sauron-title">ОКО САУРОНА</h2>
-        <p class="pm-sauron-sub">Наблюдает за качеством, деньгами, контентом и инфраструктурой. Ни одно административное действие не выполняется без существующих проверок и подтверждений.</p>
-        <div id="pm-sauron-eye-shell" class="pm-sauron-eye-shell" role="img" aria-label="Анимированное Око Саурона">
-          <svg class="pm-sauron-eye-svg" viewBox="0 0 1200 700" aria-hidden="true">
-            <defs>
-              <radialGradient id="pm-sauron-iris-gradient" cx="50%" cy="50%" r="55%"><stop offset="0" stop-color="#fff1b7"/><stop offset=".2" stop-color="#ffc12e"/><stop offset=".48" stop-color="#ff531f"/><stop offset=".78" stop-color="#8b1309"/><stop offset="1" stop-color="#270402"/></radialGradient>
-              <radialGradient id="pm-sauron-eye-gradient" cx="50%" cy="50%" r="65%"><stop offset="0" stop-color="#ffd2a0"/><stop offset=".32" stop-color="#ff7a31"/><stop offset=".7" stop-color="#651008"/><stop offset="1" stop-color="#130201"/></radialGradient>
-              <filter id="pm-sauron-glow-filter" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="18" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-              <clipPath id="pm-sauron-eye-clip"><path d="M90 350 Q600 22 1110 350 Q600 678 90 350Z"/></clipPath>
-            </defs>
-            <path d="M70 350 Q600 -8 1130 350 Q600 708 70 350Z" fill="none" stroke="rgba(255,73,22,.18)" stroke-width="30" filter="url(#pm-sauron-glow-filter)"/>
-            <path d="M90 350 Q600 22 1110 350 Q600 678 90 350Z" fill="url(#pm-sauron-eye-gradient)" stroke="#ff6a28" stroke-width="5" filter="url(#pm-sauron-glow-filter)"/>
-            <g clip-path="url(#pm-sauron-eye-clip)">
-              <path d="M80 290 Q600 92 1120 290" fill="none" stroke="rgba(255,235,196,.27)" stroke-width="28"/>
-              <path d="M80 414 Q600 610 1120 414" fill="none" stroke="rgba(82,4,2,.68)" stroke-width="54"/>
-              <g id="pm-sauron-iris">
-                <ellipse cx="600" cy="350" rx="142" ry="235" fill="url(#pm-sauron-iris-gradient)" stroke="#ffbf43" stroke-width="4" filter="url(#pm-sauron-glow-filter)"/>
-                <ellipse cx="600" cy="350" rx="34" ry="208" fill="#050000"/>
-                <ellipse cx="573" cy="278" rx="17" ry="49" fill="rgba(255,255,225,.56)" transform="rotate(10 573 278)"/>
-                <ellipse cx="600" cy="350" rx="94" ry="183" fill="none" stroke="rgba(255,236,165,.20)" stroke-width="8"/>
-              </g>
-            </g>
-            <path d="M88 350 Q600 16 1112 350" fill="none" stroke="#2a0502" stroke-width="38" stroke-linecap="round"/>
-            <path d="M88 350 Q600 684 1112 350" fill="none" stroke="#150201" stroke-width="42" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="pm-sauron-actions"><button type="button" id="pm-sauron-scroll" class="pm-sauron-scroll">К панели управления ↓</button><span class="pm-sauron-live">Наблюдение доступно</span></div>
-      </div>
-    </section>`}
-  function ensureEye(){
-    // зачем: старый SVG-глаз дублировал новый WebGL-глаз (pm-ogl-evil-eye-hero,
-    // pm-remediation-runtime) на одной вкладке — владелец увидел два глаза
-    // подряд на скриншоте и попросил оставить только WebGL-версию.
-    return document.getElementById('pm-sauron-hero');
-  }
-  function seededParticles(){let seed=0x51a7;const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};return Array.from({length:38},()=>({x:rnd(),y:rnd(),r:.5+rnd()*1.7,s:.015+rnd()*.05,d:rnd()*Math.PI*2,a:.18+rnd()*.55}))}
-  function resizeEyeCanvas(){const canvas=document.getElementById('pm-sauron-ambient');if(!canvas)return;const r=canvas.getBoundingClientRect(),dpr=Math.min(1.7,devicePixelRatio||1);canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));canvas.dataset.dpr=String(dpr)}
-  function drawEyeFrame(time,force=false){
-    const hero=document.getElementById('pm-sauron-hero'),canvas=document.getElementById('pm-sauron-ambient'),iris=document.getElementById('pm-sauron-iris');if(!hero||!canvas||!iris)return false;
-    const active=document.getElementById('tab-jarvis')?.classList.contains('active')&&document.visibilityState!=='hidden';if(!active&&!force)return false;
-    const reduced=!fullMotion();if(!force&&reduced)return false;if(!state.eye.particles.length)state.eye.particles=seededParticles();if(!canvas.width)resizeEyeCanvas();
-    const dpr=Number(canvas.dataset.dpr||1),w=canvas.width/dpr,h=canvas.height/dpr,ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
-    const bg=ctx.createRadialGradient(w*.5,h*.48,0,w*.5,h*.48,Math.max(w,h)*.7);bg.addColorStop(0,'rgba(91,13,3,.42)');bg.addColorStop(.28,'rgba(34,5,2,.36)');bg.addColorStop(1,'rgba(0,0,0,.96)');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
-    const t=time*.00018;ctx.lineCap='round';for(let i=0;i<7;i++){const y=h*(.16+i*.115),amp=h*(.018+i*.003);ctx.beginPath();for(let x=-40;x<=w+40;x+=28){const yy=y+Math.sin(x*.008+t*(1+i*.08)+i)*amp+Math.sin(x*.002-t*1.7)*amp*.7;if(x===-40)ctx.moveTo(x,yy);else ctx.lineTo(x,yy)}ctx.strokeStyle=`rgba(255,${35+i*7},${12+i*2},${.018+i*.006})`;ctx.lineWidth=1+i*.28;ctx.stroke()}
-    for(const p of state.eye.particles){p.y-=p.s*.016*(force?0:1);p.x+=Math.sin(t*4+p.d)*.00022;if(p.y<-.02){p.y=1.02;p.x=(p.x*.73+.19)%1}const pulse=.45+.55*Math.sin(t*9+p.d);ctx.globalAlpha=p.a*(.5+pulse*.5);ctx.fillStyle=p.r>1.3?'#ffb04a':'#ff5421';ctx.beginPath();ctx.arc(p.x*w,p.y*h,p.r,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;
-    state.eye.x+=(state.eye.targetX-state.eye.x)*.11;state.eye.y+=(state.eye.targetY-state.eye.y)*.11;iris.setAttribute('transform',`translate(${state.eye.x.toFixed(2)} ${state.eye.y.toFixed(2)})`);return true;
-  }
-  function eyeLoop(time){state.eyeRaf=0;if(!state.eye.running)return;const cap=1000/30;if(time-state.eye.lastFrame>=cap){state.eye.lastFrame=time;if(!drawEyeFrame(time)){state.eye.running=false;return}}state.eyeRaf=requestAnimationFrame(eyeLoop)}
-  function startEye(){ensureEye();resizeEyeCanvas();state.eye.running=true;if(!fullMotion()){drawEyeFrame(performance.now(),true);return}if(!state.eyeRaf)state.eyeRaf=requestAnimationFrame(eyeLoop)}
-  function stopEye(){state.eye.running=false;if(state.eyeRaf){cancelAnimationFrame(state.eyeRaf);state.eyeRaf=0}}
-  function syncEye(){if(activeTabKey()==='jarvis')startEye();else stopEye()}
-  function wireEye(hero){
-    const shell=document.getElementById('pm-sauron-eye-shell');on(hero,'pointermove',event=>{if(!fullMotion())return;const r=hero.getBoundingClientRect(),nx=(event.clientX-(r.left+r.width/2))/(r.width/2),ny=(event.clientY-(r.top+r.height/2))/(r.height/2);state.eye.targetX=Math.max(-46,Math.min(46,nx*46));state.eye.targetY=Math.max(-24,Math.min(24,ny*24));});
-    on(hero,'pointerleave',()=>{state.eye.targetX=0;state.eye.targetY=0});on(shell,'click',()=>{shell.classList.remove('is-awake');void shell.offsetWidth;shell.classList.add('is-awake');setTimeout(()=>shell.classList.remove('is-awake'),720)});
-    on(document.getElementById('pm-sauron-scroll'),'click',()=>sauronControls()?.scrollIntoView({behavior:fullMotion()?'smooth':'auto',block:'start'}));
-  }
-
-  function onSection(event){const tab=event.detail?.tab||activeTabKey();state.lastSection=tab;localizeSauron(document.getElementById('tab-'+tab)||document);ensureLineSidebar();scheduleLine();syncEye();syncPersistentGlows();}
+  function onSection(event){const tab=event.detail?.tab||activeTabKey();state.lastSection=tab;localizeSauron(document.getElementById('tab-'+tab)||document);ensureLineSidebar();scheduleLine();syncPersistentGlows();}
   function audit(){
-    const tabs=visibleSidebarTabs();return {build:BUILD,version:'react-bits-sauron-v1',activeTab:activeTabKey(),lineSidebar:{ready:Boolean(sidebar()?.classList.contains('pm-rb-line-sidebar')),visibleItems:tabs.length,rail:Boolean(sidebar()?.querySelector('.pm-rb-line-rail'))},clickSpark:{canvas:Boolean(document.getElementById('pm-rb-click-spark-canvas')),bursts:state.sparks.length,running:Boolean(state.sparkRaf)},borderGlow:{hosts:document.querySelectorAll('.pm-rb-glow-host').length,staticHosts:document.querySelectorAll('.pm-rb-glow-static').length},evilEye:{hero:Boolean(document.getElementById('pm-sauron-hero')),active:activeTabKey()==='jarvis',running:state.eye.running},motion:motionMode(),remainingCyrillicJarvis:(document.body.innerText.match(/Джарвис/gi)||[]).length};
+    const tabs=visibleSidebarTabs();return {build:BUILD,version:'react-bits-sauron-v1',activeTab:activeTabKey(),lineSidebar:{ready:Boolean(sidebar()?.classList.contains('pm-rb-line-sidebar')),visibleItems:tabs.length,rail:Boolean(sidebar()?.querySelector('.pm-rb-line-rail'))},clickSpark:{canvas:Boolean(document.getElementById('pm-rb-click-spark-canvas')),bursts:state.sparks.length,running:Boolean(state.sparkRaf)},borderGlow:{hosts:document.querySelectorAll('.pm-rb-glow-host').length,staticHosts:document.querySelectorAll('.pm-rb-glow-static').length},motion:motionMode(),remainingCyrillicJarvis:(document.body.innerText.match(/Джарвис/gi)||[]).length};
   }
-  function destroy(){state.listeners.splice(0).forEach(off=>{try{off()}catch(_){}});state.lineResize?.disconnect?.();stopEye();if(state.sparkRaf)cancelAnimationFrame(state.sparkRaf);document.getElementById('pm-rb-click-spark-canvas')?.remove();document.body.classList.remove('pm-rb-effects-ready');state.ready=false;}
+  function destroy(){state.listeners.splice(0).forEach(off=>{try{off()}catch(_){}});state.lineResize?.disconnect?.();if(state.sparkRaf)cancelAnimationFrame(state.sparkRaf);document.getElementById('pm-rb-click-spark-canvas')?.remove();document.body.classList.remove('pm-rb-effects-ready');state.ready=false;}
   function init(){
-    if(state.ready)return;state.ready=true;document.body.classList.add('pm-rb-effects-ready');document.body.dataset.pmReactBitsBuild=BUILD;localizeSauron(document);ensureLineSidebar();ensureSparkCanvas();ensureEye();syncEye();syncPersistentGlows();
+    if(state.ready)return;state.ready=true;document.body.classList.add('pm-rb-effects-ready');document.body.dataset.pmReactBitsBuild=BUILD;localizeSauron(document);ensureLineSidebar();ensureSparkCanvas();syncPersistentGlows();
     on(document,'pointerdown',event=>{spawnSpark(event);pulseGlow(event)},{capture:true,passive:true});on(document,'click',spawnKeyboardSpark,{capture:true,passive:true});on(document,'pointermove',pointerGlow,{passive:true});on(document,'pointerout',clearPointerGlow,{passive:true});
     on(document,'focusin',event=>{const target=event.target?.closest?.(GLOW_SELECTOR);if(target){ensureGlow(target);target.classList.add('pm-rb-glow-active')}});on(document,'focusout',event=>{const target=event.target?.closest?.(GLOW_SELECTOR);if(target&&!target.contains(event.relatedTarget))target.classList.remove('pm-rb-glow-active')});
-    on(document,'pm:section-opened',onSection);on(document,'pm:refresh-end',event=>{localizeSauron(document.getElementById('tab-'+String(event.detail?.tab||''))||document);scheduleLine();syncPersistentGlows()});on(document,'pm:phase6-stable',()=>{ensureLineSidebar();scheduleLine();syncEye();syncPersistentGlows()});
-    on(window,'hashchange',()=>{scheduleLine();syncEye()});on(window,'resize',()=>{resizeSparkCanvas();resizeEyeCanvas();scheduleLine()},{passive:true});on(document,'visibilitychange',syncEye);on(document,'pm:motion-mode-changed',()=>{syncEye();if(!fullMotion()){state.sparks.length=0;const c=document.getElementById('pm-rb-click-spark-canvas');c?.getContext('2d')?.clearRect(0,0,c.width,c.height)}});
+    on(document,'pm:section-opened',onSection);on(document,'pm:refresh-end',event=>{localizeSauron(document.getElementById('tab-'+String(event.detail?.tab||''))||document);scheduleLine();syncPersistentGlows()});on(document,'pm:phase6-stable',()=>{ensureLineSidebar();scheduleLine();syncPersistentGlows()});
+    on(window,'hashchange',()=>{scheduleLine()});on(window,'resize',()=>{resizeSparkCanvas();scheduleLine()},{passive:true});on(document,'pm:motion-mode-changed',()=>{if(!fullMotion()){state.sparks.length=0;const c=document.getElementById('pm-rb-click-spark-canvas');c?.getContext('2d')?.clearRect(0,0,c.width,c.height)}});
     const tabs=sidebar();if(window.ResizeObserver&&tabs){state.lineResize=new ResizeObserver(scheduleLine);state.lineResize.observe(tabs);tabs.querySelectorAll(':scope > .tab').forEach(tab=>state.lineResize.observe(tab));}on(tabs,'scroll',scheduleLine,{passive:true});on(tabs,'input',scheduleLine,{passive:true});on(tabs,'click',()=>setTimeout(scheduleLine,0),{passive:true});
-    requestAnimationFrame(()=>{scheduleLine();localizeSauron(document);syncEye()});
+    requestAnimationFrame(()=>{scheduleLine();localizeSauron(document)});
   }
-  window.PMReactBitsEffects={version:'react-bits-sauron-v1',BUILD,state,init,destroy,audit,ensureLineSidebar,ensureEye,syncEye,spawnSpark,spawnSparkAt,ensureGlow};
+  window.PMReactBitsEffects={version:'react-bits-sauron-v1',BUILD,state,init,destroy,audit,ensureLineSidebar,spawnSpark,spawnSparkAt,ensureGlow};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
@@ -54075,25 +53080,6 @@ html[data-pm-motion="off"] .pm-sauron-eye-shell::before{animation:none!important
   .tabs .tab[onclick*='"access-management"'],
   [data-admin-goto="access-management"] { display:none !important; }
 
-  #pm-ogl-evil-eye-hero{
-    position:relative;width:100%;min-width:0;
-    height:clamp(500px,calc(100dvh - 150px),760px);
-    margin:0 0 16px;overflow:hidden;isolation:isolate;
-    border:1px solid rgba(255,111,55,.22);border-radius:16px;
-    background:#120f17;box-shadow:0 28px 90px rgba(0,0,0,.44),inset 0 0 80px rgba(255,111,55,.025)
-  }
-  #pm-ogl-evil-eye-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;background:#120f17;touch-action:none}
-  #pm-ogl-evil-eye-fallback{position:absolute;inset:0;display:none;place-items:center;color:#ffb08e;font-size:13px;background:radial-gradient(ellipse at center,rgba(255,111,55,.85) 0 4%,rgba(255,111,55,.35) 11%,rgba(18,15,23,0) 48%),#120f17}
-  #pm-ogl-evil-eye-hero[data-webgl="unavailable"] #pm-ogl-evil-eye-fallback{display:grid}
-  #pm-ogl-evil-eye-hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 38%,rgba(18,15,23,.08) 58%,rgba(18,15,23,.68) 100%);mix-blend-mode:multiply}
-  #tab-jarvis.pm-ogl-eye-ready{background:#120f17!important}
-  #tab-jarvis.pm-ogl-eye-ready>:not(#pm-ogl-evil-eye-hero){position:relative;z-index:2}
-  #tab-jarvis.pm-ogl-eye-ready .pm-v4-section-header{margin-bottom:12px}
-  #tab-jarvis.pm-ogl-eye-ready .pm-v4-section-title,#tab-jarvis.pm-ogl-eye-ready h2,#tab-jarvis.pm-ogl-eye-ready h3{color:#fff4eb!important}
-  #tab-jarvis.pm-ogl-eye-ready button:not(.admin-login-google){border-color:rgba(255,111,55,.26)!important}
-  #tab-jarvis.pm-ogl-eye-ready button:not(.admin-login-google):hover{border-color:rgba(255,151,83,.55)!important;background:rgba(255,111,55,.12)!important}
-  @media(max-width:768px){#pm-ogl-evil-eye-hero{height:min(68dvh,560px);min-height:390px;border-radius:12px}}
-  @media(prefers-reduced-motion:reduce){#pm-ogl-evil-eye-hero{box-shadow:none}}
 </style>
 
 <script id="pm-remediation-runtime">
@@ -54124,51 +53110,10 @@ function blockUnsafeReportDelete(event){
 const GIFT_CERTIFICATE_OPERATION_CHECKPOINT_STORAGE_KEY_LITERAL='phraseman_admin_operation_checkpoints_v4:gift-certificates';
 const GIFT_CERTIFICATE_OPERATION_CHECKPOINT_LEGACY_STORAGE_KEY_LITERAL='phraseman_admin_operation_checkpoint_v3:gift-certificates';
 function clearGiftPii(){try{const remove=[];for(let i=0;i<localStorage.length;i++){const key=localStorage.key(i)||'';if(key===GIFT_CERTIFICATE_OPERATION_CHECKPOINT_STORAGE_KEY_LITERAL||key===GIFT_CERTIFICATE_OPERATION_CHECKPOINT_LEGACY_STORAGE_KEY_LITERAL)continue;if(/(gift|certificate|сертифик)/i.test(key)&&/(pending|batch|draft|recipient|получател)/i.test(key))remove.push(key)}remove.forEach(key=>localStorage.removeItem(key))}catch(_){}}
-function removeOldEye(tab){
- [...tab.querySelectorAll('canvas,[id],[class]')].forEach(node=>{
-  if(node.id==='pm-ogl-evil-eye-hero'||node.id==='pm-ogl-evil-eye-canvas'||node.closest?.('#pm-ogl-evil-eye-hero'))return;
-  const key=`${node.id||''} ${typeof node.className==='string'?node.className:''}`;
-  if(/(sauron|evil.?eye)/i.test(key)&&/(hero|scene|eye|canvas|visual|fire)/i.test(key)){node.hidden=true;node.setAttribute?.('aria-hidden','true')}
- })
-}
-function hexToVec3(hex){const h=String(hex||'#000000').replace('#','');return[parseInt(h.slice(0,2),16)/255,parseInt(h.slice(2,4),16)/255,parseInt(h.slice(4,6),16)/255]}
-function generateNoiseTexture(size=256){
- const data=new Uint8Array(size*size*4);
- function hash(x,y,s){let n=x*374761393+y*668265263+s*1274126177;n=Math.imul(n^(n>>>13),1274126177);return((n^(n>>>16))>>>0)/4294967296}
- function noise(px,py,freq,seed){const fx=px/size*freq,fy=py/size*freq,ix=Math.floor(fx),iy=Math.floor(fy),tx=fx-ix,ty=fy-iy,w=freq|0,v00=hash((ix%w+w)%w,(iy%w+w)%w,seed),v10=hash(((ix+1)%w+w)%w,(iy%w+w)%w,seed),v01=hash((ix%w+w)%w,((iy+1)%w+w)%w,seed),v11=hash(((ix+1)%w+w)%w,((iy+1)%w+w)%w,seed);return v00*(1-tx)*(1-ty)+v10*tx*(1-ty)+v01*(1-tx)*ty+v11*tx*ty}
- for(let y=0;y<size;y++)for(let x=0;x<size;x++){let v=0,amp=.4,total=0;for(let o=0;o<8;o++){const f=32*(1<<o);v+=amp*noise(x,y,f,o*31);total+=amp;amp*=.65}v/=total;v=(v-.5)*2.2+.5;v=Math.max(0,Math.min(1,v));const val=Math.round(v*255),i=(y*size+x)*4;data[i]=val;data[i+1]=val;data[i+2]=val;data[i+3]=255}return data
-}
-const VERTEX=`attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
-const FRAGMENT=`precision highp float;
-uniform float uTime;uniform vec3 uResolution;uniform sampler2D uNoiseTexture;uniform float uPupilSize;uniform float uIrisWidth;uniform float uGlowIntensity;uniform float uIntensity;uniform float uScale;uniform float uNoiseScale;uniform vec2 uMouse;uniform float uPupilFollow;uniform float uFlameSpeed;uniform vec3 uEyeColor;uniform vec3 uBgColor;
-void main(){vec2 uv=(gl_FragCoord.xy*2.0-uResolution.xy)/uResolution.y;uv/=uScale;float ft=uTime*uFlameSpeed;float polarRadius=length(uv)*2.0;float polarAngle=(2.0*atan(uv.x,uv.y))/6.28*0.3;vec2 polarUv=vec2(polarRadius,polarAngle);vec4 noiseA=texture2D(uNoiseTexture,polarUv*vec2(0.2,7.0)*uNoiseScale+vec2(-ft*0.1,0.0));vec4 noiseB=texture2D(uNoiseTexture,polarUv*vec2(0.3,4.0)*uNoiseScale+vec2(-ft*0.2,0.0));vec4 noiseC=texture2D(uNoiseTexture,polarUv*vec2(0.1,5.0)*uNoiseScale+vec2(-ft*0.1,0.0));float distanceMask=1.0-length(uv);float innerRing=clamp(-1.0*((distanceMask-0.7)/uIrisWidth),0.0,1.0);innerRing=(innerRing*distanceMask-0.2)/0.28;innerRing+=noiseA.r-0.5;innerRing*=1.3;innerRing=clamp(innerRing,0.0,1.0);float outerRing=clamp(-1.0*((distanceMask-0.5)/0.2),0.0,1.0);outerRing=(outerRing*distanceMask-0.1)/0.38;outerRing+=noiseC.r-0.5;outerRing*=1.3;outerRing=clamp(outerRing,0.0,1.0);innerRing+=outerRing;float innerEye=distanceMask-0.1*2.0;innerEye*=noiseB.r*2.0;vec2 pupilOffset=uMouse*uPupilFollow*0.12;vec2 pupilUv=uv-pupilOffset;float pupil=1.0-length(pupilUv*vec2(9.0,2.3));pupil*=uPupilSize;pupil=clamp(pupil,0.0,1.0);pupil/=0.35;float outerEyeGlow=1.0-length(uv*vec2(0.5,1.5));outerEyeGlow=clamp(outerEyeGlow+0.5,0.0,1.0);outerEyeGlow+=noiseC.r-0.5;float outerBgGlow=outerEyeGlow;outerEyeGlow=pow(outerEyeGlow,2.0);outerEyeGlow+=distanceMask;outerEyeGlow*=uGlowIntensity;outerEyeGlow=clamp(outerEyeGlow,0.0,1.0);outerEyeGlow*=pow(1.0-distanceMask,2.0)*2.5;outerBgGlow+=distanceMask;outerBgGlow=pow(outerBgGlow,0.5);outerBgGlow*=0.15;vec3 color=uEyeColor*uIntensity*clamp(max(innerRing+innerEye,outerEyeGlow+outerBgGlow)-pupil,0.0,3.0);color+=uBgColor;gl_FragColor=vec4(color,1.0);}`;
-function compile(gl,type,source){const shader=gl.createShader(type);gl.shaderSource(shader,source);gl.compileShader(shader);if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS)){const msg=gl.getShaderInfoLog(shader)||'Shader compile failed';gl.deleteShader(shader);throw new Error(msg)}return shader}
-function createEye(tab){
- if(!tab||document.getElementById('pm-ogl-evil-eye-hero'))return window.PMOglEvilEye||null;
- removeOldEye(tab);
- const hero=document.createElement('section');hero.id='pm-ogl-evil-eye-hero';hero.setAttribute('aria-label','Огненное Око Саурона');
- const canvas=document.createElement('canvas');canvas.id='pm-ogl-evil-eye-canvas';canvas.setAttribute('aria-hidden','true');
- const fallback=document.createElement('div');fallback.id='pm-ogl-evil-eye-fallback';fallback.textContent='WebGL недоступен';hero.append(canvas,fallback);
- const header=tab.querySelector('.pm-v4-section-header');if(header?.nextSibling)tab.insertBefore(hero,header.nextSibling);else tab.prepend(hero);tab.classList.add('pm-ogl-eye-ready');
- const gl=canvas.getContext('webgl',{alpha:false,antialias:false,premultipliedAlpha:false,preserveDrawingBuffer:false});if(!gl){hero.dataset.webgl='unavailable';return null}hero.dataset.webgl='ready';gl.clearColor(0,0,0,1);
- const program=gl.createProgram();gl.attachShader(program,compile(gl,gl.VERTEX_SHADER,VERTEX));gl.attachShader(program,compile(gl,gl.FRAGMENT_SHADER,FRAGMENT));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program)||'Program link failed');gl.useProgram(program);
- const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);const position=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(position);gl.vertexAttribPointer(position,2,gl.FLOAT,false,0,0);
- const texture=gl.createTexture();gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.REPEAT);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,256,256,0,gl.RGBA,gl.UNSIGNED_BYTE,generateNoiseTexture(256));
- const uniform=name=>gl.getUniformLocation(program,name),U={time:uniform('uTime'),resolution:uniform('uResolution'),noise:uniform('uNoiseTexture'),pupil:uniform('uPupilSize'),iris:uniform('uIrisWidth'),glow:uniform('uGlowIntensity'),intensity:uniform('uIntensity'),scale:uniform('uScale'),noiseScale:uniform('uNoiseScale'),mouse:uniform('uMouse'),follow:uniform('uPupilFollow'),speed:uniform('uFlameSpeed'),eye:uniform('uEyeColor'),bg:uniform('uBgColor')};
- gl.uniform1i(U.noise,0);gl.uniform1f(U.pupil,.6);gl.uniform1f(U.iris,.25);gl.uniform1f(U.glow,.35);gl.uniform1f(U.intensity,1.5);gl.uniform1f(U.scale,.8);gl.uniform1f(U.noiseScale,1);gl.uniform1f(U.follow,1);gl.uniform1f(U.speed,1);gl.uniform3fv(U.eye,new Float32Array(hexToVec3('#FF6F37')));gl.uniform3fv(U.bg,new Float32Array(hexToVec3('#120F17')));
- const mouse={x:0,y:0,tx:0,ty:0};hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();if(r.width&&r.height){mouse.tx=(e.clientX-r.left)/r.width*2-1;mouse.ty=-((e.clientY-r.top)/r.height*2-1)}},{passive:true});hero.addEventListener('pointerleave',()=>{mouse.tx=0;mouse.ty=0},{passive:true});
- let raf=0,running=false,destroyed=false;const reduced=matchMedia('(prefers-reduced-motion:reduce)');
- function resize(){const r=hero.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,1.75),w=Math.max(1,Math.round(r.width*dpr)),h=Math.max(1,Math.round(r.height*dpr));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h)}gl.uniform3f(U.resolution,w,h,w/h)}
- function visible(){return!destroyed&&!document.hidden&&tab.classList.contains('active')&&hero.isConnected}
- function draw(time){raf=0;if(!visible()){running=false;return}running=true;resize();mouse.x+=(mouse.tx-mouse.x)*.05;mouse.y+=(mouse.ty-mouse.y)*.05;gl.uniform2f(U.mouse,mouse.x,mouse.y);gl.uniform1f(U.time,(time||0)*.001);gl.drawArrays(gl.TRIANGLES,0,3);if(!reduced.matches)raf=requestAnimationFrame(draw);else running=false}
- function start(){if(visible()&&!raf&&!running)raf=requestAnimationFrame(draw)}function stop(){if(raf)cancelAnimationFrame(raf);raf=0;running=false}
- const ro=new ResizeObserver(()=>{resize();if(visible()&&!raf)start()});ro.observe(hero);document.addEventListener('visibilitychange',()=>document.hidden?stop():start());window.addEventListener('hashchange',()=>setTimeout(()=>tab.classList.contains('active')?start():stop(),0),{passive:true});document.addEventListener('pm:section-opened',e=>{if(e.detail?.tab==='jarvis')start();else if(!tab.classList.contains('active'))stop()});reduced.addEventListener?.('change',()=>{stop();start()});resize();start();
- const api={version:'exact-webgl-2026-08-18',hero,canvas,start,stop,resize,destroy(){destroyed=true;stop();ro.disconnect();try{gl.getExtension('WEBGL_lose_context')?.loseContext()}catch(_){}hero.remove()}};window.PMOglEvilEye=api;return api
-}
-function init(){clearGiftPii();hideUnsupported();document.addEventListener('click',blockUnsafeReportDelete,true);const tab=document.getElementById('tab-jarvis');if(tab){try{createEye(tab)}catch(error){console.error('[EvilEye] init failed',error);const hero=document.getElementById('pm-ogl-evil-eye-hero');if(hero)hero.dataset.webgl='unavailable'}}if(location.hash==='#access-management'){try{window.switchTab?.('control-panel')}catch(_){location.hash='#control-panel'}}}
+function init(){clearGiftPii();hideUnsupported();document.addEventListener('click',blockUnsafeReportDelete,true);if(location.hash==='#access-management'){try{window.switchTab?.('control-panel')}catch(_){location.hash='#control-panel'}}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 document.addEventListener('pm:section-opened',hideUnsupported);window.addEventListener('hashchange',hideUnsupported,{passive:true});
-window.PMStrictRemediation=Object.freeze({version:'2026-08-18',exactEye:true,managedRbacUi:false,serverAiUi:false,clearGiftPii,hideUnsupported});
+window.PMStrictRemediation=Object.freeze({version:'2026-08-18',managedRbacUi:false,serverAiUi:false,clearGiftPii,hideUnsupported});
 })();
 </script>
 

@@ -45,7 +45,7 @@ describe('admin V9 runtime safety contract', () => {
 
   it('keeps the unfinished access-management scaffold fail-closed and off the live surface', () => {
     expect(adminHtml).toContain(
-      'window.PMStrictRemediation=Object.freeze({version:\'2026-08-18\',exactEye:true,managedRbacUi:false',
+      'window.PMStrictRemediation=Object.freeze({version:\'2026-08-18\',managedRbacUi:false',
     );
     expect(adminHtml).toMatch(
       /#tab-access-management,[\s\S]*?\[data-admin-goto="access-management"\]\s*\{\s*display:none\s*!important;\s*\}/,

@@ -135,7 +135,7 @@ const home = (code) => {
   const base = ['lessons', 'dialogues', 'cards'].filter((k) => L[k]);
   const fill = ['spire', 'video_packs'].filter((k) => k !== 'spire' || L.spire);
   const tiles = (base.length >= 3 ? base : [...base, ...fill]).slice(0, 3);
-  return phone(`${header(L)}${L.lessons ? cont : ''}<div class="tiles">${tiles.map(tile).join('')}</div>${L.videos ? rail() : ''}${today(L)}${L.phrase ? phraseOf(code) : ''}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(ALL_TABS) });
+  return phone(`${header(L)}${L.lessons ? lastPlace(PLACES.legacy) : ''}<div class="tiles">${tiles.map(tile).join('')}</div>${L.videos ? rail() : ''}${today(L)}${L.phrase ? phraseOf(code) : ''}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(ALL_TABS) });
 };
 
 // ── карточка «последнее место» (719e4c771): варианты по месту, где человек остановился ──

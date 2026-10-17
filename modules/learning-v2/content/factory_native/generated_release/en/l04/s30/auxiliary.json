@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-30:intro1:r2": {
+          "ru": "Это несколько столбов; здесь один: `This is a signpost`.",
+          "uk": "Це кілька стовпів; тут один: `This is a signpost`."
+        },
+        "en:lesson-04:session-30:intro1:r3": {
+          "ru": "Перед одним столбом нужно `a`: `a signpost`.",
+          "uk": "Перед одним стовпом потрібне `a`: `a signpost`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-30:intro2:r2": {
+          "ru": "`under` — под; морковка на поверхности стола: `on`.",
+          "uk": "`under` — під; морквина на поверхні столу: `on`."
+        },
+        "en:lesson-04:session-30:intro2:r3": {
+          "ru": "Одна морковка: `The carrot is`.",
+          "uk": "Одна морквина: `The carrot is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-30:intro3:r2": {
+          "ru": "`here` — здесь; в условии в другом месте: `elsewhere`.",
+          "uk": "`here` — тут; в умові в іншому місці: `elsewhere`."
+        },
+        "en:lesson-04:session-30:intro3:r3": {
+          "ru": "С `It` нужно `is`: `It’s elsewhere`.",
+          "uk": "З `It` потрібне `is`: `It’s elsewhere`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ed97e17af10542ca08fb5eea94768c90f8ff6275b7dcd7750606a8e93f33e967"
+}

@@ -1,0 +1,1011 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Машина в іншому місці. Скажіть про це без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина в іншому місці. Скажіть про це без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is elsewhere.",
+        "localizedMeaning": {
+          "ru": "Машина в другом месте. Скажите об этом без сокращения",
+          "uk": "Машина в іншому місці. Скажіть про це без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "elsewhere"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Машина в іншому місці. Скажіть про це без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is elsewhere.`",
+              "uk": "тут потрібно `is` — `It is elsewhere.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-30:i02:r1",
+          "text": "signpost"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i02:r2",
+          "text": "signposts"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i02:r3",
+          "text": "sink"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i02:audio",
+          "transcript": "signpost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-30:i02:r1",
+            "targetText": "signpost",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i02:r2",
+            "targetText": "signposts",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i02:r3",
+            "targetText": "sink",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `signpost`, а в этом варианте — `signposts`.",
+              "uk": "У записі перше слово — `signpost`, а в цьому варіанті — `signposts`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `signpost`, а в этом варианте — `sink`.",
+              "uk": "У записі перше слово — `signpost`, а в цьому варіанті — `sink`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть стовп із вказівниками одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-30:i03:r1",
+          "text": "signpost"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i03:r2",
+          "text": "window"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i03:r3",
+          "text": "awning"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть стовп із вказівниками одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите столб с указателями одним словом",
+          "uk": "Назвіть стовп із вказівниками одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i03:r1",
+            "text": "signpost"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i03:r2",
+            "text": "window"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i03:r3",
+            "text": "awning"
+          }
+        ],
+        "testedDimension": "Назвіть стовп із вказівниками одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть стовп із вказівниками одним словом",
+            "feedbackByLocale": {
+              "ru": "`window` — окно; столб с указателями — `signpost`.",
+              "uk": "`window` — вікно; стовп із вказівниками — `signpost`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть стовп із вказівниками одним словом",
+            "feedbackByLocale": {
+              "ru": "`awning` — навес; столб с указателями — `signpost`.",
+              "uk": "`awning` — навіс; стовп із вказівниками — `signpost`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-30:i04:p1",
+            "target": "signpost",
+            "meaningByLocale": {
+              "ru": "столб с указателями",
+              "uk": "стовп із вказівниками"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i04:p2",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i04:p3",
+            "target": "windows",
+            "meaningByLocale": {
+              "ru": "окна",
+              "uk": "вікна"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i04:p4",
+            "target": "carrot",
+            "meaningByLocale": {
+              "ru": "морковка",
+              "uk": "морквина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "signpost",
+          "elsewhere",
+          "windows",
+          "carrot"
+        ],
+        "rightColumn": [
+          "стовп із вказівниками",
+          "в іншому місці",
+          "вікна",
+          "морквина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i05:audio",
+          "transcript": "This is a signpost."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a signpost.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "signpost"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a signpost.`",
+              "uk": "тут потрібно `is` — `This is a signpost.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Морквина на столі. Скажіть, де вона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Морквина на столі. Скажіть, де вона",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The carrot is on the table.",
+        "localizedMeaning": {
+          "ru": "Морковка на столе. Скажите, где она",
+          "uk": "Морквина на столі. Скажіть, де вона"
+        },
+        "orderedTokens": [
+          "The",
+          "carrot",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Морквина на столі. Скажіть, де вона",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The carrot is on the table.`",
+              "uk": "тут потрібно `is` — `The carrot is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про машину. Вона в іншому місці. Дайте відповідь зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про машину. Вона в іншому місці. Дайте відповідь зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i07:audio",
+          "transcript": "It's elsewhere."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's elsewhere.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стовп стоїть поруч із магазином, зовні. Виберіть слова",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-30:i08:r1",
+          "text": "next to"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i08:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i08:r3",
+          "text": "on"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стовп стоїть поруч із магазином, зовні. Виберіть слова",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Столб стоит рядом с магазином, снаружи. Выберите слова",
+          "uk": "Стовп стоїть поруч із магазином, зовні. Виберіть слова"
+        },
+        "gappedTargetPhrase": "The signpost is ___ the shop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i08:r1",
+            "text": "next to"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i08:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i08:r3",
+            "text": "on"
+          }
+        ],
+        "testedDimension": "Стовп стоїть поруч із магазином, зовні. Виберіть слова",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Стовп стоїть поруч із магазином, зовні. Виберіть слова",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; здесь рядом: `next to`.",
+              "uk": "`in` — усередині; тут поруч: `next to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Стовп стоїть поруч із магазином, зовні. Виберіть слова",
+            "feedbackByLocale": {
+              "ru": "`on` — на поверхности; рядом с магазином — `next to the shop`.",
+              "uk": "`on` — на поверхні; поруч із магазином — `next to the shop`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте опис вікон",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-30:i09:r1",
+          "text": "The windows are next to the door."
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i09:r2",
+          "text": "The windows are next to the sink."
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i09:r3",
+          "text": "The windows are next to the worktop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте опис вікон",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i09:audio",
+          "transcript": "The windows are next to the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-30:i09:r1",
+            "targetText": "The windows are next to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i09:r2",
+            "targetText": "The windows are next to the sink.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i09:r3",
+            "targetText": "The windows are next to the worktop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте опис вікон",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `sink`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `sink`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте опис вікон",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `worktop`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `worktop`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-30:i10:p1",
+            "target": "signpost",
+            "meaningByLocale": {
+              "ru": "столб с указателями",
+              "uk": "стовп із вказівниками"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i10:p2",
+            "target": "between",
+            "meaningByLocale": {
+              "ru": "между",
+              "uk": "між"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i10:p3",
+            "target": "windows",
+            "meaningByLocale": {
+              "ru": "окна",
+              "uk": "вікна"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i10:p4",
+            "target": "carrot",
+            "meaningByLocale": {
+              "ru": "морковка",
+              "uk": "морквина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "signpost",
+          "between",
+          "windows",
+          "carrot"
+        ],
+        "rightColumn": [
+          "стовп із вказівниками",
+          "між",
+          "вікна",
+          "морквина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть опис",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть опис",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i11:audio",
+          "transcript": "The signpost is between the windows."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The signpost is between the windows.",
+        "orderedTokens": [
+          "The",
+          "signpost",
+          "is",
+          "between",
+          "the",
+          "windows"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть опис",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The signpost is between the windows.`",
+              "uk": "тут потрібно `is` — `The signpost is between the windows.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Морквина закотилася під стіл. Скажіть, де вона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Морквина закотилася під стіл. Скажіть, де вона",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The carrot is under the table.",
+        "localizedMeaning": {
+          "ru": "Морковка укатилась под стол. Скажите, где она",
+          "uk": "Морквина закотилася під стіл. Скажіть, де вона"
+        },
+        "orderedTokens": [
+          "The",
+          "carrot",
+          "is",
+          "under",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Морквина закотилася під стіл. Скажіть, де вона",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The carrot is under the table.`",
+              "uk": "тут потрібно `is` — `The carrot is under the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг шукає стовп із вказівниками. Він поруч із готелем. Скажіть, де він",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Друг шукає стовп із вказівниками. Він поруч із готелем. Скажіть, де він",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i13:audio",
+          "transcript": "The signpost is next to the hotel."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The signpost is next to the hotel.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Морквина лежить між чашками, не всередині й не під ними. Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-30:i14:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Морквина лежить між чашками, не всередині й не під ними. Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Морковка лежит между чашками, не внутри и не под ними. Выберите слово",
+          "uk": "Морквина лежить між чашками, не всередині й не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The carrot is ___ the cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i14:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Морквина лежить між чашками, не всередині й не під ними. Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i14:r2",
+            "correct": false,
+            "testedDimension": "Морквина лежить між чашками, не всередині й не під ними. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; между чашками — `between the cups`.",
+              "uk": "`in` — усередині; між чашками — `between the cups`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i14:r3",
+            "correct": false,
+            "testedDimension": "Морквина лежить між чашками, не всередині й не під ними. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; между — `between`.",
+              "uk": "`under` — під; між — `between`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що показує друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-30:i15:r1",
+          "text": "That is a signpost."
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i15:r2",
+          "text": "This is a signpost."
+        },
+        {
+          "responseId": "en:lesson-04:session-30:i15:r3",
+          "text": "That is a table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що показує друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i15:audio",
+          "transcript": "That is a signpost."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-30:i15:r1",
+            "targetText": "That is a signpost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i15:r2",
+            "targetText": "This is a signpost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i15:r3",
+            "targetText": "That is a table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-30:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `signpost`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `signpost`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-30:i16:p1",
+            "target": "signpost",
+            "meaningByLocale": {
+              "ru": "столб с указателями",
+              "uk": "стовп із вказівниками"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i16:p2",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i16:p3",
+            "target": "windows",
+            "meaningByLocale": {
+              "ru": "окна",
+              "uk": "вікна"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-30:i16:p4",
+            "target": "carrot",
+            "meaningByLocale": {
+              "ru": "морковка",
+              "uk": "морквина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "signpost",
+          "elsewhere",
+          "windows",
+          "carrot"
+        ],
+        "rightColumn": [
+          "стовп із вказівниками",
+          "в іншому місці",
+          "вікна",
+          "морквина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншому місті друг шукає стовп зі стрілками. Він поруч із магазином. Скажіть «Стовп із вказівниками поруч із магазином»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "В іншому місті друг шукає стовп зі стрілками. Він поруч із магазином. Скажіть «Стовп із вказівниками поруч із магазином»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-30:i17:audio",
+          "transcript": "The signpost is next to the shop."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The signpost is next to the shop.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6c82316fcb90596fb279a23f7ff3ea91a6eb174f3624268afc42362e60e5f875"
+}

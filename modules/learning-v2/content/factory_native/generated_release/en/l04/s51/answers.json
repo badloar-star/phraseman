@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-51:i01",
+    "correctText": "It is ineffective.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i02",
+    "correctText": "community centre",
+    "correctResponseId": "en:lesson-04:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i03",
+    "correctText": "community centre",
+    "correctResponseId": "en:lesson-04:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i04",
+    "correctText": "en:lesson-04:session-51:i04:p1=community centre\nen:lesson-04:session-51:i04:p2=ineffective\nen:lesson-04:session-51:i04:p3=libraries\nen:lesson-04:session-51:i04:p4=recycling bin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i05",
+    "correctText": "This is a community centre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i06",
+    "correctText": "The libraries are next to the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i07",
+    "correctText": "It's ineffective.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i09",
+    "correctText": "The recycling bin is next to the door.",
+    "correctResponseId": "en:lesson-04:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i10",
+    "correctText": "en:lesson-04:session-51:i10:p1=community centre\nen:lesson-04:session-51:i10:p2=ineffective\nen:lesson-04:session-51:i10:p3=libraries\nen:lesson-04:session-51:i10:p4=recycling bin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i11",
+    "correctText": "Is there a community centre?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i12",
+    "correctText": "There is a community centre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i13",
+    "correctText": "Is there a recycling bin?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-51:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i15",
+    "correctText": "That is a community centre.",
+    "correctResponseId": "en:lesson-04:session-51:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i16",
+    "correctText": "en:lesson-04:session-51:i16:p1=community centre\nen:lesson-04:session-51:i16:p2=ineffective\nen:lesson-04:session-51:i16:p3=libraries\nen:lesson-04:session-51:i16:p4=recycling bin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i17",
+    "correctText": "The community centre is next to the park.",
+    "correctResponseId": null
+  }
+]

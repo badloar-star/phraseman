@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-01:intro1:r2": {
-          "ru": "В середине пропало `is`: начинаем с `There is` целиком.",
-          "uk": "У середині зникло `is`: починаємо з `There is` повністю."
+          "ru": "Нужно полное начало `There is`.",
+          "uk": "Потрібен повний початок `There is`."
         },
         "en:lesson-04:session-01:intro1:r3": {
-          "ru": "Перед одним новым местом нужен `a`: `a pharmacy`.",
-          "uk": "Перед одним новим місцем потрібне `a`: `a pharmacy`."
+          "ru": "Перед названием одной аптеки нужно `a`.",
+          "uk": "Перед назвою однієї аптеки потрібне `a`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-01:intro2:r2": {
-          "ru": "`Library` начинается со звука /l/, поэтому нужен `a`, не `an`.",
-          "uk": "`Library` починається зі звуку /l/, тому потрібне `a`, а не `an`."
+          "ru": "Одна библиотека: `There is a library`.",
+          "uk": "Одна бібліотека: `There is a library`."
         },
         "en:lesson-04:session-01:intro2:r3": {
-          "ru": "В середине пропало `is`: начинаем с `There is` целиком.",
-          "uk": "Посередині зникло `is`: починаємо з `There is` повністю."
+          "ru": "Перед `library` нужно `a`, поскольку первый звук согласный.",
+          "uk": "Перед `library` потрібне `a`, оскільки перший звук приголосний."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-01:intro3:r2": {
-          "ru": "`A` стоит перед названием места: `a bakery`.",
-          "uk": "`A` стоїть перед назвою місця: `a bakery`."
+          "ru": "Ключей несколько: `There are`.",
+          "uk": "Ключів кілька: `There are`."
         },
         "en:lesson-04:session-01:intro3:r3": {
-          "ru": "`Bakery` начинается со звука /b/, поэтому нужен `a`, не `an`.",
-          "uk": "`Bakery` починається зі звуку /b/, тому потрібне `a`, а не `an`."
+          "ru": "Перед несколькими `keys` артикль `a` не ставим.",
+          "uk": "Перед кількома `keys` артикля `a` не ставимо."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f8eb3e9222ad871ca0923578abb0dd7cb352b3c134e1a9b76d8738715f5b0723"
+  "auxiliaryFingerprint": "d4249d4f5cb0a2d96241def9d0395fa0566bc08ae8ed04bc182deeb813d840d1"
 }

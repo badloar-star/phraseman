@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-45:intro1:r2": {
+          "ru": "Перед одним прибором нужно `a`: `a microwave`.",
+          "uk": "Перед одним приладом потрібне `a`: `a microwave`."
+        },
+        "en:lesson-04:session-45:intro1:r3": {
+          "ru": "Здесь один прибор: `This is a microwave`.",
+          "uk": "Тут один прилад: `This is a microwave`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-45:intro2:r2": {
+          "ru": "Это сообщение о наличии; вопрос начинается с `Is there`.",
+          "uk": "Це повідомлення про наявність; запитання починається з `Is there`."
+        },
+        "en:lesson-04:session-45:intro2:r3": {
+          "ru": "Одна микроволновка: `Is there a microwave?`.",
+          "uk": "Одна мікрохвильовка: `Is there a microwave?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-45:intro3:r2": {
+          "ru": "`legal` — законно; здесь `illegal`.",
+          "uk": "`legal` — законно; тут `illegal`."
+        },
+        "en:lesson-04:session-45:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4816cf181546441de528918a317c9fda3e41e7ec2208541d2c3d82712d31a14d"
+}

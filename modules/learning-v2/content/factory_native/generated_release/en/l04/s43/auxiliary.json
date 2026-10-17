@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-43:intro1:r2": {
+          "ru": "Перед одним контейнером нужно `a`: `a recycling bin`.",
+          "uk": "Перед одним контейнером потрібне `a`: `a recycling bin`."
+        },
+        "en:lesson-04:session-43:intro1:r3": {
+          "ru": "Здесь один контейнер: `This is a recycling bin`.",
+          "uk": "Тут один контейнер: `This is a recycling bin`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-43:intro2:r2": {
+          "ru": "Несколько спален: `The bedrooms are`.",
+          "uk": "Кілька спалень: `The bedrooms are`."
+        },
+        "en:lesson-04:session-43:intro2:r3": {
+          "ru": "`downstairs` — внизу; здесь наверху: `upstairs`.",
+          "uk": "`downstairs` — унизу; тут нагорі: `upstairs`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-43:intro3:r2": {
+          "ru": "`certain` — уверен; здесь `uncertain`.",
+          "uk": "`certain` — впевнений; тут `uncertain`."
+        },
+        "en:lesson-04:session-43:intro3:r3": {
+          "ru": "С `I` нужно `am`, сокращённо `I’m`.",
+          "uk": "З `I` потрібне `am`, скорочено `I’m`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c40468d4ad99fb8d6909960c9dc69aab57f136c10598e6bdd4a52f13b04ef376"
+}

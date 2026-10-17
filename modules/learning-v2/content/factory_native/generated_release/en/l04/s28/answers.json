@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-28:i01",
+    "correctText": "He is flexible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i02",
+    "correctText": "alley",
+    "correctResponseId": "en:lesson-04:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i03",
+    "correctText": "alley",
+    "correctResponseId": "en:lesson-04:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i04",
+    "correctText": "en:lesson-04:session-28:i04:p1=alley\nen:lesson-04:session-28:i04:p2=flexible\nen:lesson-04:session-28:i04:p3=chairs\nen:lesson-04:session-28:i04:p4=mushroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i05",
+    "correctText": "The chairs are in the alley.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i06",
+    "correctText": "The mushroom is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i07",
+    "correctText": "He's flexible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i08",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i09",
+    "correctText": "The chairs are under the awning.",
+    "correctResponseId": "en:lesson-04:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i10",
+    "correctText": "en:lesson-04:session-28:i10:p1=alley\nen:lesson-04:session-28:i10:p2=in\nen:lesson-04:session-28:i10:p3=under\nen:lesson-04:session-28:i10:p4=between",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i11",
+    "correctText": "The mushroom is next to the cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i12",
+    "correctText": "This is an alley.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i13",
+    "correctText": "The chairs are next to the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-28:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i15",
+    "correctText": "That is an alley.",
+    "correctResponseId": "en:lesson-04:session-28:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i16",
+    "correctText": "en:lesson-04:session-28:i16:p1=alley\nen:lesson-04:session-28:i16:p2=flexible\nen:lesson-04:session-28:i16:p3=chairs\nen:lesson-04:session-28:i16:p4=mushroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-28:i17",
+    "correctText": "The chairs are in the alley.",
+    "correctResponseId": null
+  }
+]

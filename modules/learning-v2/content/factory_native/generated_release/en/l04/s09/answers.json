@@ -1,13 +1,13 @@
 [
   {
     "interactionId": "en:lesson-04:session-09:i01",
-    "correctText": "dentist",
-    "correctResponseId": "en:lesson-04:session-09:i01:r1"
+    "correctText": "There is a library.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-09:i02",
     "correctText": "dentist",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-09:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-09:i03",
@@ -16,47 +16,72 @@
   },
   {
     "interactionId": "en:lesson-04:session-09:i04",
-    "correctText": "Is there a library in the building?",
-    "correctResponseId": "en:lesson-04:session-09:i04:r1"
+    "correctText": "en:lesson-04:session-09:i04:p1=dentist\nen:lesson-04:session-09:i04:p2=possible\nen:lesson-04:session-09:i04:p3=door\nen:lesson-04:session-09:i04:p4=pharmacy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-09:i05",
-    "correctText": "Is there a dentist near the library?",
+    "correctText": "Is there a dentist?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-09:i06",
-    "correctText": "a bakery in the neighbourhood",
-    "correctResponseId": "en:lesson-04:session-09:i06:r1"
+    "correctText": "Is there a pharmacy here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-09:i07",
-    "correctText": "Is there a dentist in this building?",
+    "correctText": "It's possible.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-09:i08",
-    "correctText": "Is there a playground?",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-09:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-09:i09",
-    "correctText": "p1=shop\np2=post office\np3=supermarket\np4=playground",
-    "correctResponseId": null
+    "correctText": "Is there a bakery?",
+    "correctResponseId": "en:lesson-04:session-09:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-09:i10",
-    "correctText": "Is there a dentist in the neighbourhood?",
+    "correctText": "en:lesson-04:session-09:i10:p1=possible\nen:lesson-04:session-09:i10:p2=library\nen:lesson-04:session-09:i10:p3=bakery\nen:lesson-04:session-09:i10:p4=door",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-09:i11",
-    "correctText": "Is there a shop in the neighbourhood?",
+    "correctText": "Are there libraries here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-09:i12",
-    "correctText": "Is there a dentist near the pharmacy?",
+    "correctText": "Is there a door here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-09:i13",
+    "correctText": "Is there a bakery here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-09:i14",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-04:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-09:i15",
+    "correctText": "It is possible.",
+    "correctResponseId": "en:lesson-04:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-09:i16",
+    "correctText": "en:lesson-04:session-09:i16:p1=dentist\nen:lesson-04:session-09:i16:p2=pharmacy\nen:lesson-04:session-09:i16:p3=library\nen:lesson-04:session-09:i16:p4=bakery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-09:i17",
+    "correctText": "Is there a dentist here?",
     "correctResponseId": null
   }
 ]

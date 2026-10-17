@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-11:intro1:r2": {
-          "ru": "`A train` — поезд. Здесь описан городской маршрут с остановками: `a tram`.",
-          "uk": "`A train` — поїзд. Тут описано міський маршрут із зупинками: `a tram`."
+          "ru": "Трамваи — несколько: `Are there trams here?`.",
+          "uk": "Трамваїв кілька: `Are there trams here?`."
         },
         "en:lesson-04:session-11:intro1:r3": {
-          "ru": "`A bus` — автобус. На карте отмечен `a tram`.",
-          "uk": "`A bus` — автобус. На карті позначено `a tram`."
+          "ru": "Это сообщение. В вопросе сначала `Are there`.",
+          "uk": "Це повідомлення. У запитанні спочатку `Are there`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-11:intro2:r2": {
-          "ru": "Здесь один трамвай. О нескольких говорим `Are there trams?`.",
-          "uk": "Тут один трамвай. Про кілька кажемо `Are there trams?`."
+          "ru": "Здесь одно здание: `That is a bank`.",
+          "uk": "Тут одна будівля: `That is a bank`."
         },
         "en:lesson-04:session-11:intro2:r3": {
-          "ru": "Это сообщение, а нужен вопрос: `Are there trams?`.",
-          "uk": "Це повідомлення, а потрібне питання: `Are there trams?`."
+          "ru": "С `That` нужно `is`.",
+          "uk": "З `That` потрібне `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-11:intro3:r2": {
-          "ru": "После `Are there` нужно множественное число: `trams`.",
-          "uk": "Після `Are there` потрібна множина: `trams`."
+          "ru": "`comfortable` — удобный; срочный — `urgent`.",
+          "uk": "`comfortable` — зручний; терміновий — `urgent`."
         },
         "en:lesson-04:session-11:intro3:r3": {
-          "ru": "Вопрос начинается с `Are there`: `Are there trams near the hotel?`.",
-          "uk": "Питання починається з `Are there`: `Are there trams near the hotel?`."
+          "ru": "С `It` нужно `is`: `It’s urgent`.",
+          "uk": "З `It` потрібне `is`: `It’s urgent`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8e7ac132bcfaa6382f53ea63e89b2fd3d377fc30d3fc4fb9de4881783edaa3c5"
+  "auxiliaryFingerprint": "7dff6e1c945351435e72276b04bb68cd7b37860dca1230a32a6ec83c0807b5f1"
 }

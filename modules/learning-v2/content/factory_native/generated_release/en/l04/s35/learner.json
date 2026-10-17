@@ -1,0 +1,995 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Встреча проходит в строгом официальном формате. Скажите без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Встреча проходит в строгом официальном формате. Скажите без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is formal.",
+        "localizedMeaning": {
+          "ru": "Встреча проходит в строгом официальном формате. Скажите без сокращения",
+          "uk": "Зустріч проходить у строгому офіційному форматі. Скажіть без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "formal"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Встреча проходит в строгом официальном формате. Скажите без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is formal.`",
+              "uk": "тут потрібно `is` — `It is formal.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-35:i02:r1",
+          "text": "ramp"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i02:r2",
+          "text": "ramps"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i02:r3",
+          "text": "handrail"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i02:audio",
+          "transcript": "ramp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-35:i02:r1",
+            "targetText": "ramp",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i02:r2",
+            "targetText": "ramps",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i02:r3",
+            "targetText": "handrail",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ramp`, а в этом варианте — `ramps`.",
+              "uk": "У записі перше слово — `ramp`, а в цьому варіанті — `ramps`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ramp`, а в этом варианте — `handrail`.",
+              "uk": "У записі перше слово — `ramp`, а в цьому варіанті — `handrail`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите пандус одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-35:i03:r1",
+          "text": "ramp"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i03:r2",
+          "text": "awning"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i03:r3",
+          "text": "doorbell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите пандус одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите пандус одним словом",
+          "uk": "Назвіть пандус одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i03:r1",
+            "text": "ramp"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i03:r2",
+            "text": "awning"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i03:r3",
+            "text": "doorbell"
+          }
+        ],
+        "testedDimension": "Назовите пандус одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите пандус одним словом",
+            "feedbackByLocale": {
+              "ru": "`awning` — навес; пандус — `ramp`.",
+              "uk": "`awning` — навіс; пандус — `ramp`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите пандус одним словом",
+            "feedbackByLocale": {
+              "ru": "`doorbell` — дверной звонок; пандус — `ramp`.",
+              "uk": "`doorbell` — дверний дзвінок; пандус — `ramp`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-35:i04:p1",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i04:p2",
+            "target": "formal",
+            "meaningByLocale": {
+              "ru": "официальный",
+              "uk": "офіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i04:p3",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i04:p4",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ramp",
+          "formal",
+          "photos",
+          "awning"
+        ],
+        "rightColumn": [
+          "пандус",
+          "официальный",
+          "фотографии",
+          "навес"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i05:audio",
+          "transcript": "This is a ramp."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a ramp.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "ramp"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a ramp.`",
+              "uk": "тут потрібно `is` — `This is a ramp.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пандус под навесом. Скажите, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пандус под навесом. Скажите, где он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The ramp is under the awning.",
+        "localizedMeaning": {
+          "ru": "Пандус под навесом. Скажите, где он",
+          "uk": "Пандус під навісом. Скажіть, де він"
+        },
+        "orderedTokens": [
+          "The",
+          "ramp",
+          "is",
+          "under",
+          "the",
+          "awning"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Пандус под навесом. Скажите, где он",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The ramp is under the awning.`",
+              "uk": "тут потрібно `is` — `The ramp is under the awning.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о характере встречи. Она проходит в строгом официальном формате. Ответьте с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i07:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о характере встречи. Она проходит в строгом официальном формате. Ответьте с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i07:audio",
+          "transcript": "It's formal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's formal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пандуса нет. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-35:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пандуса нет. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пандуса нет. Выберите форму",
+          "uk": "Пандуса немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a ramp.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Пандуса нет. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Пандуса нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`is` сообщает, что пандус есть; здесь нет: `isn’t`.",
+              "uk": "`is` повідомляє, що пандус є; тут немає: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Пандуса нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Один пандус: `isn’t a ramp`.",
+              "uk": "Один пандус: `isn’t a ramp`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где фотографии",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-35:i09:r1",
+          "text": "The photos are next to the door."
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i09:r2",
+          "text": "The photos are next to the window."
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i09:r3",
+          "text": "The photos are next to the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где фотографии",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i09:audio",
+          "transcript": "The photos are next to the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-35:i09:r1",
+            "targetText": "The photos are next to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i09:r2",
+            "targetText": "The photos are next to the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i09:r3",
+            "targetText": "The photos are next to the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где фотографии",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где фотографии",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-35:i10:p1",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i10:p2",
+            "target": "formal",
+            "meaningByLocale": {
+              "ru": "официальный",
+              "uk": "офіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i10:p3",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i10:p4",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ramp",
+          "formal",
+          "photos",
+          "awning"
+        ],
+        "rightColumn": [
+          "пандус",
+          "официальный",
+          "фотографии",
+          "навес"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i11:audio",
+          "transcript": "There aren't any ramps."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren't any ramps.",
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "ramps"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Здесь есть пандус. Сообщите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Здесь есть пандус. Сообщите об этом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a ramp.",
+        "localizedMeaning": {
+          "ru": "Здесь есть пандус. Сообщите об этом",
+          "uk": "Тут є пандус. Повідомте про це"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "ramp"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Здесь есть пандус. Сообщите об этом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a ramp.`",
+              "uk": "тут потрібно `is` — `There is a ramp.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё не видели вход. Спросите, есть ли пандус",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Вы ещё не видели вход. Спросите, есть ли пандус",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i13:audio",
+          "transcript": "Is there a ramp?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a ramp?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фотографии лежат на поверхности стола, не внутри и не под ним. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-35:i14:r1",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фотографии лежат на поверхности стола, не внутри и не под ним. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Фотографии лежат на поверхности стола, не внутри и не под ним. Выберите слово",
+          "uk": "Фотографії лежать на поверхні столу, не всередині й не під ним. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The photos are ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-35:i14:r1",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Фотографии лежат на поверхности стола, не внутри и не под ним. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i14:r2",
+            "correct": false,
+            "testedDimension": "Фотографии лежат на поверхности стола, не внутри и не под ним. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; на поверхности — `on`.",
+              "uk": "`in` — усередині; на поверхні — `on`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i14:r3",
+            "correct": false,
+            "testedDimension": "Фотографии лежат на поверхности стола, не внутри и не под ним. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; на поверхности — `on`.",
+              "uk": "`under` — під; на поверхні — `on`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что показывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-35:i15:r1",
+          "text": "That is a ramp."
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i15:r2",
+          "text": "This is a ramp."
+        },
+        {
+          "responseId": "en:lesson-04:session-35:i15:r3",
+          "text": "That is a doorbell."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что показывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i15:audio",
+          "transcript": "That is a ramp."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-35:i15:r1",
+            "targetText": "That is a ramp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i15:r2",
+            "targetText": "This is a ramp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i15:r3",
+            "targetText": "That is a doorbell.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-35:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-35:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ramp`, а в этом варианте — `doorbell`.",
+              "uk": "У записі останнє слово — `ramp`, а в цьому варіанті — `doorbell`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-35:i16:p1",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i16:p2",
+            "target": "formal",
+            "meaningByLocale": {
+              "ru": "официальный",
+              "uk": "офіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i16:p3",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-35:i16:p4",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ramp",
+          "formal",
+          "photos",
+          "awning"
+        ],
+        "rightColumn": [
+          "пандус",
+          "официальный",
+          "фотографии",
+          "навес"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У другого здания друг ищет пандус, но его нет. Скажите «Пандуса нет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "У другого здания друг ищет пандус, но его нет. Скажите «Пандуса нет»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-35:i17:audio",
+          "transcript": "There isn't a ramp."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't a ramp.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1271eda0219ebf57f515320420747d94cd6a3e88082a4e2c5f2f01f4987b5b5f"
+}

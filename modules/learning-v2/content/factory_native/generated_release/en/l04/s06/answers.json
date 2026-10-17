@@ -1,13 +1,13 @@
 [
   {
     "interactionId": "en:lesson-04:session-06:i01",
-    "correctText": "clinic",
-    "correctResponseId": "en:lesson-04:session-06:i01:r1"
+    "correctText": "This is a pen.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i02",
     "correctText": "clinic",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-06:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-06:i03",
@@ -16,47 +16,72 @@
   },
   {
     "interactionId": "en:lesson-04:session-06:i04",
-    "correctText": "There is a clinic inside the building.",
+    "correctText": "en:lesson-04:session-06:i04:p1=clinic\nen:lesson-04:session-06:i04:p2=fake\nen:lesson-04:session-06:i04:p3=pen\nen:lesson-04:session-06:i04:p4=striped",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i05",
-    "correctText": "There is a clinic in the building near the library.",
+    "correctText": "There is a clinic.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i06",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-04:session-06:i06:r1"
+    "correctText": "There is a pen here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i07",
-    "correctText": "There is a clinic in the building near the pharmacy.",
+    "correctText": "It's fake.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i08",
-    "correctText": "p1=clinic\np2=building\np3=library\np4=bakery",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-06:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-06:i09",
-    "correctText": "a",
+    "correctText": "It is striped.",
     "correctResponseId": "en:lesson-04:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-06:i10",
-    "correctText": "There is a clinic in the building near the supermarket.",
+    "correctText": "en:lesson-04:session-06:i10:p1=clinic\nen:lesson-04:session-06:i10:p2=pen\nen:lesson-04:session-06:i10:p3=here\nen:lesson-04:session-06:i10:p4=there",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i11",
-    "correctText": "There is a clinic inside the big building near the supermarket.",
+    "correctText": "That bag is striped.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i12",
-    "correctText": "There is a clinic in this building.",
+    "correctText": "This is a clinic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i13",
+    "correctText": "It's striped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-06:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i15",
+    "correctText": "It is fake.",
+    "correctResponseId": "en:lesson-04:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i16",
+    "correctText": "en:lesson-04:session-06:i16:p1=clinic\nen:lesson-04:session-06:i16:p2=fake\nen:lesson-04:session-06:i16:p3=pen\nen:lesson-04:session-06:i16:p4=striped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i17",
+    "correctText": "There is a clinic here.",
     "correctResponseId": null
   }
 ]

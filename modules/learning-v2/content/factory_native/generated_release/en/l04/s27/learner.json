@@ -1,0 +1,1011 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг охотно делится угощением. Скажите «Он щедрый» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг охотно делится угощением. Скажите «Он щедрый» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is generous.",
+        "localizedMeaning": {
+          "ru": "Друг охотно делится угощением. Скажите «Он щедрый» без сокращения",
+          "uk": "Друг охоче ділиться частуванням. Скажіть «Він щедрий» без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "generous"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг охотно делится угощением. Скажите «Он щедрый» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is generous.`",
+              "uk": "тут потрібно `is` — `He is generous.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i02:r1",
+          "text": "awning"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i02:r2",
+          "text": "window"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i02:r3",
+          "text": "worktop"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i02:audio",
+          "transcript": "awning"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-27:i02:r1",
+            "targetText": "awning",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i02:r2",
+            "targetText": "window",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i02:r3",
+            "targetText": "worktop",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `awning`, а в этом варианте — `window`.",
+              "uk": "У записі перше слово — `awning`, а в цьому варіанті — `window`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `awning`, а в этом варианте — `worktop`.",
+              "uk": "У записі перше слово — `awning`, а в цьому варіанті — `worktop`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите тканевый навес одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i03:r1",
+          "text": "awning"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i03:r2",
+          "text": "table"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i03:r3",
+          "text": "sink"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите тканевый навес одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите тканевый навес одним словом",
+          "uk": "Назвіть тканинний навіс одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-27:i03:r1",
+            "text": "awning"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i03:r2",
+            "text": "table"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i03:r3",
+            "text": "sink"
+          }
+        ],
+        "testedDimension": "Назовите тканевый навес одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите тканевый навес одним словом",
+            "feedbackByLocale": {
+              "ru": "`table` — стол; навес — `awning`.",
+              "uk": "`table` — стіл; навіс — `awning`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите тканевый навес одним словом",
+            "feedbackByLocale": {
+              "ru": "`sink` — раковина; навес — `awning`.",
+              "uk": "`sink` — раковина; навіс — `awning`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-27:i04:p1",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i04:p2",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i04:p3",
+            "target": "cars",
+            "meaningByLocale": {
+              "ru": "машины",
+              "uk": "машини"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i04:p4",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awning",
+          "generous",
+          "cars",
+          "soup"
+        ],
+        "rightColumn": [
+          "навес",
+          "щедрый",
+          "машины",
+          "суп"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i05:audio",
+          "transcript": "The table is under the awning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The table is under the awning.",
+        "orderedTokens": [
+          "The",
+          "table",
+          "is",
+          "under",
+          "the",
+          "awning"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите описание",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The table is under the awning.`",
+              "uk": "тут потрібно `is` — `The table is under the awning.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Суп в посуде стоит на столе. Скажите «Суп на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп в посуде стоит на столе. Скажите «Суп на столе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soup is on the table.",
+        "localizedMeaning": {
+          "ru": "Суп в посуде стоит на столе. Скажите «Суп на столе»",
+          "uk": "Суп у посуді стоїть на столі. Скажіть «Суп на столі»"
+        },
+        "orderedTokens": [
+          "The",
+          "soup",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Суп в посуде стоит на столе. Скажите «Суп на столе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The soup is on the table.`",
+              "uk": "тут потрібно `is` — `The soup is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг приготовил угощение всем и охотно делится. Скажите «Он щедрый» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Друг приготовил угощение всем и охотно делится. Скажите «Он щедрый» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i07:audio",
+          "transcript": "He's generous."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He's generous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Машины стоят рядом с домом, снаружи. Выберите слова",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i08:r1",
+          "text": "next to"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i08:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i08:r3",
+          "text": "on"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машины стоят рядом с домом, снаружи. Выберите слова",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Машины стоят рядом с домом, снаружи. Выберите слова",
+          "uk": "Машини стоять поруч із будинком, зовні. Виберіть слова"
+        },
+        "gappedTargetPhrase": "The cars are ___ the house.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-27:i08:r1",
+            "text": "next to"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i08:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i08:r3",
+            "text": "on"
+          }
+        ],
+        "testedDimension": "Машины стоят рядом с домом, снаружи. Выберите слова",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Машины стоят рядом с домом, снаружи. Выберите слова",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; здесь рядом: `next to`.",
+              "uk": "`in` — усередині; тут поруч: `next to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Машины стоят рядом с домом, снаружи. Выберите слова",
+            "feedbackByLocale": {
+              "ru": "`on` — на поверхности; рядом с домом — `next to the house`.",
+              "uk": "`on` — на поверхні; поруч із будинком — `next to the house`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где суп",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i09:r1",
+          "text": "The soup is under the awning."
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i09:r2",
+          "text": "The soup is under the table."
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i09:r3",
+          "text": "The soup is under the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где суп",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i09:audio",
+          "transcript": "The soup is under the awning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-27:i09:r1",
+            "targetText": "The soup is under the awning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i09:r2",
+            "targetText": "The soup is under the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i09:r3",
+            "targetText": "The soup is under the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где суп",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `awning`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где суп",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `awning`, а в этом варианте — `window`.",
+              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `window`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-27:i10:p1",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i10:p2",
+            "target": "under",
+            "meaningByLocale": {
+              "ru": "под",
+              "uk": "під"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i10:p3",
+            "target": "on",
+            "meaningByLocale": {
+              "ru": "на поверхности",
+              "uk": "на поверхні"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i10:p4",
+            "target": "between",
+            "meaningByLocale": {
+              "ru": "между",
+              "uk": "між"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awning",
+          "under",
+          "on",
+          "between"
+        ],
+        "rightColumn": [
+          "навес",
+          "под",
+          "на поверхности",
+          "между"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i11:audio",
+          "transcript": "The cars are under the awning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cars are under the awning.",
+        "orderedTokens": [
+          "The",
+          "cars",
+          "are",
+          "under",
+          "the",
+          "awning"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите описание",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cars are under the awning.`",
+              "uk": "тут потрібно `are` — `The cars are under the awning.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг показывает на тканевый навес. Назовите его: «Это навес»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг показывает на тканевый навес. Назовите его: «Это навес»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is an awning.",
+        "localizedMeaning": {
+          "ru": "Друг показывает на тканевый навес. Назовите его: «Это навес»",
+          "uk": "Друг показує на тканинний навіс. Назвіть його: «Це навіс»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "an",
+          "awning"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг показывает на тканевый навес. Назовите его: «Это навес»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `an` — `This is an awning.`",
+              "uk": "тут потрібно `an` — `This is an awning.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Стол стоит между двумя припаркованными машинами. Скажите «Стол между машинами»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Стол стоит между двумя припаркованными машинами. Скажите «Стол между машинами»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i13:audio",
+          "transcript": "The table is between the cars."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The table is between the cars.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i14:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i14:r2",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i14:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово",
+          "uk": "Миска із супом стоїть між чашками, не всередині й не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The soup is ___ the cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-27:i14:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i14:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i14:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i14:r2",
+            "correct": false,
+            "testedDimension": "Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; между — `between`.",
+              "uk": "`under` — під; між — `between`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i14:r3",
+            "correct": false,
+            "testedDimension": "Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; между чашками — `between the cups`.",
+              "uk": "`in` — усередині; між чашками — `between the cups`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сообщение о навесе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i15:r1",
+          "text": "That is an awning."
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i15:r2",
+          "text": "This is an awning."
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i15:r3",
+          "text": "That is an apple."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение о навесе",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i15:audio",
+          "transcript": "That is an awning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-27:i15:r1",
+            "targetText": "That is an awning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i15:r2",
+            "targetText": "This is an awning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i15:r3",
+            "targetText": "That is an apple.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о навесе",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о навесе",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `awning`, а в этом варианте — `apple`.",
+              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `apple`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-27:i16:p1",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i16:p2",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i16:p3",
+            "target": "cars",
+            "meaningByLocale": {
+              "ru": "машины",
+              "uk": "машини"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-27:i16:p4",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awning",
+          "generous",
+          "cars",
+          "soup"
+        ],
+        "rightColumn": [
+          "навес",
+          "щедрый",
+          "машины",
+          "суп"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом дворе друг ищет стол для обеда. Стол под тканевым навесом. Скажите «Стол под навесом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "В другом дворе друг ищет стол для обеда. Стол под тканевым навесом. Скажите «Стол под навесом»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i17:audio",
+          "transcript": "The table is under the awning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The table is under the awning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "50baef5fcba96bf3315750ff3f521c364132db31f8166bf6736f1f926531d6ce"
+}

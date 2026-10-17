@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-20:i01",
+    "correctText": "Yes, I am innocent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i02",
+    "correctText": "mushroom",
+    "correctResponseId": "en:lesson-04:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i03",
+    "correctText": "mushroom",
+    "correctResponseId": "en:lesson-04:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i04",
+    "correctText": "en:lesson-04:session-20:i04:p1=mushroom\nen:lesson-04:session-20:i04:p2=innocent\nen:lesson-04:session-20:i04:p3=maps\nen:lesson-04:session-20:i04:p4=platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i05",
+    "correctText": "This is a mushroom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i06",
+    "correctText": "There are some maps here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i07",
+    "correctText": "Yes, I'm innocent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i08",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i09",
+    "correctText": "Are there any maps?",
+    "correctResponseId": "en:lesson-04:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i10",
+    "correctText": "en:lesson-04:session-20:i10:p1=mushroom\nen:lesson-04:session-20:i10:p2=mushrooms\nen:lesson-04:session-20:i10:p3=maps\nen:lesson-04:session-20:i10:p4=platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i11",
+    "correctText": "There are some mushrooms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i12",
+    "correctText": "Are there any mushrooms?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i13",
+    "correctText": "That is a platform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i14",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-04:session-20:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i15",
+    "correctText": "It is a mushroom.",
+    "correctResponseId": "en:lesson-04:session-20:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i16",
+    "correctText": "en:lesson-04:session-20:i16:p1=mushroom\nen:lesson-04:session-20:i16:p2=yes\nen:lesson-04:session-20:i16:p3=innocent\nen:lesson-04:session-20:i16:p4=maps",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i17",
+    "correctText": "Are there any mushrooms here?",
+    "correctResponseId": null
+  }
+]

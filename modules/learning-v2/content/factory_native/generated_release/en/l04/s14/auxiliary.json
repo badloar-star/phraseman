@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-14:intro1:r2": {
-          "ru": "`Laundry` — это стирка или бельё вообще. На карте отмечено конкретное место: `laundrette`.",
-          "uk": "`Laundry` — це прання або білизна загалом. На карті позначено конкретне місце: `laundrette`."
+          "ru": "Одно место: `Is there a laundrette here?`.",
+          "uk": "Одне місце: `Is there a laundrette here?`."
         },
         "en:lesson-04:session-14:intro1:r3": {
-          "ru": "`Landmark` — достопримечательность. Нам нужно место, где стирают одежду: `laundrette`.",
-          "uk": "`Landmark` — пам’ятка. Нам потрібне місце, де перуть одяг: `laundrette`."
+          "ru": "Это сообщение; вопрос начинается с `Is there`.",
+          "uk": "Це повідомлення; запитання починається з `Is there`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-14:intro2:r2": {
-          "ru": "`Laundrettes` — несколько мест. Здесь на карте одна отметка, поэтому нужны `Is` и `a laundrette`.",
-          "uk": "`Laundrettes` — кілька місць. Тут на карті одна позначка, тому потрібні `Is` і `a laundrette`."
+          "ru": "С `That` нужно `is`.",
+          "uk": "З `That` потрібне `is`."
         },
         "en:lesson-04:session-14:intro2:r3": {
-          "ru": "Это сообщение, а не вопрос. Вопрос начинается с `Is`: `Is there a laundrette nearby?`.",
-          "uk": "Це повідомлення, а не питання. Питання починається з `Is`: `Is there a laundrette nearby?`."
+          "ru": "Здесь одно здание: `That is a clinic`.",
+          "uk": "Тут одна будівля: `That is a clinic`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-14:intro3:r2": {
-          "ru": "Это вопрос об одной прачечной. На карте несколько отметок, поэтому нужны `Are` и `laundrettes`.",
-          "uk": "Це питання про одну пральню. На карті кілька позначок, тому потрібні `Are` і `laundrettes`."
+          "ru": "`private` — частный; очевидный — `obvious`.",
+          "uk": "`private` — приватний; очевидний — `obvious`."
         },
         "en:lesson-04:session-14:intro3:r3": {
-          "ru": "Это сообщение. Вопрос начинается с `Are`: `Are there laundrettes nearby?`.",
-          "uk": "Це повідомлення. Питання починається з `Are`: `Are there laundrettes nearby?`."
+          "ru": "С `It` нужно `is`: `It’s obvious`.",
+          "uk": "З `It` потрібне `is`: `It’s obvious`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "118b528c90ebd7e0cc2cc387357968e8f00b1e09992ce29ef2cadcf3f387b5f8"
+  "auxiliaryFingerprint": "8728fa46177b558768fc3904e9ab011839d6834675dd8a696e7bdfd9d225f065"
 }

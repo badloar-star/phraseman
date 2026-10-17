@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-13",
   "learningOutcomeByLocale": {
-    "ru": "отличить вопросительный порядок `Is/Are there…?` от утверждения `There is/are…`.",
-    "uk": "відрізнити порядок питання `Is/Are there…?` від твердження `There is/are…`."
+    "ru": "спросить о такси, назвать супермаркет и окно, объяснить общий доступ",
+    "uk": "запитати про таксі, назвати супермаркет і вікно, пояснити загальний доступ"
   },
   "pages": [
     {
@@ -12,52 +11,52 @@
       "pageId": "en:lesson-04:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`taxi` — такси",
-        "uk": "`taxi` — таксі"
+        "ru": "Одно такси или несколько",
+        "uk": "Одне таксі чи кілька"
       },
       "bodyByLocale": {
-        "ru": "`taxi` — «такси», машина, за поездку в которой платят водителю. Одна машина — `a taxi`, несколько — `taxis`. Буква `s` в конце не украшение: она показывает, что машин больше одной. В вопросе `Are` выходит вперёд, будто первым подаёт сигнал на стоянке.",
-        "uk": "`taxi` — «таксі», машина, за поїздку в якій платять водієві. Одна машина — `a taxi`, кілька — `taxis`. Літера `s` наприкінці не для краси: вона показує, що машин більше однієї. У питанні `Are` виходить уперед, ніби першим подає сигнал на стоянці."
+        "ru": "`taxi` — «такси». Одна машина — `a taxi`, несколько — `taxis`. По-русски слово «такси» не меняется, а по-английски у нескольких машин появляется `s`. `Is there a taxi here?` — «Здесь есть такси?» `Are there taxis here?` — тот же вопрос о нескольких машинах. Даже если вы купили полмагазина, одна большая машина остаётся `a taxi`.",
+        "uk": "`taxi` — «таксі». Одна машина — `a taxi`, кілька — `taxis`. Українською слово «таксі» не змінюється, а англійською в кількох машин з’являється `s`. `Is there a taxi here?` — «Тут є таксі?» `Are there taxis here?` — те саме запитання про кілька машин. Навіть якщо ви купили пів магазину, одна велика машина залишається `a taxi`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-13:intro1:q",
         "promptByLocale": {
-          "ru": "У пустой стоянки видна одна машина. Выберите, что это.",
-          "uk": "На порожній стоянці видно одну машину. Оберіть, що це."
+          "ru": "Спросите, есть ли здесь одна машина такси.",
+          "uk": "Запитайте, чи є тут одна машина таксі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-13:intro1:r1",
-              "text": "a taxi"
+              "text": "Is there a taxi here?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r2",
-              "text": "a tram"
+              "text": "Are there a taxi here?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r3",
-              "text": "a platform"
+              "text": "Is there taxis here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-13:intro1:r1",
-              "text": "a taxi"
+              "text": "Is there a taxi here?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r2",
-              "text": "a tram"
+              "text": "Are there a taxi here?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r3",
-              "text": "a platform"
+              "text": "Is there taxis here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У пустой стоянки видна одна машина. Выберите, что это.",
-          "uk": "На порожній стоянці видно одну машину. Оберіть, що це."
+          "ru": "Спросите, есть ли здесь одна машина такси.",
+          "uk": "Запитайте, чи є тут одна машина таксі."
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вопрос начинается с `Is`",
-        "uk": "Питання починається з `Is`"
+        "ru": "Магазин и окно",
+        "uk": "Магазин і вікно"
       },
       "bodyByLocale": {
-        "ru": "`There is a taxi.` — это сообщение: «Есть одно такси». Когда вы спрашиваете, есть ли оно, `is` переходит вперёд: `Is there a taxi?` Сначала стоит `Is`, затем `there`, потом само место или предмет. Вопросительный знак помогает, но порядок слов делает основную работу.",
-        "uk": "`There is a taxi.` — це повідомлення: «Є одне таксі». Коли ви питаєте, чи воно є, `is` переходить наперед: `Is there a taxi?` Спочатку стоїть `Is`, потім `there`, а далі саме місце або предмет. Знак питання допомагає, але порядок слів робить основну роботу."
+        "ru": "`supermarket` — «супермаркет». `That is a supermarket` — «То здание — супермаркет». `window` — «окно». `There is a window here` — «Здесь есть окно». Когда называем дальнее здание, подходит `That is`; когда сообщаем, что в этом месте есть окно, — `There is`.",
+        "uk": "`supermarket` — «супермаркет». `That is a supermarket` — «Та будівля — супермаркет». `window` — «вікно». `There is a window here` — «Тут є вікно». Коли називаємо далеку будівлю, підходить `That is`; коли повідомляємо, що в цьому місці є вікно, — `There is`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-13:intro2:q",
         "promptByLocale": {
-          "ru": "У пустой стоянки вы не уверены, есть ли одна машина. Задайте вопрос.",
-          "uk": "На порожній стоянці ви не впевнені, чи є одна машина. Поставте питання."
+          "ru": "Вы указываете на дальнее здание. Скажите «То здание — супермаркет».",
+          "uk": "Ви вказуєте на далеку будівлю. Скажіть «Та будівля — супермаркет»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-13:intro2:r1",
-              "text": "Is there a taxi?"
+              "text": "That is a supermarket."
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r2",
-              "text": "There is a taxi?"
+              "text": "That are a supermarket."
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r3",
-              "text": "Is there taxi?"
+              "text": "Those are supermarkets."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-13:intro2:r1",
-              "text": "Is there a taxi?"
+              "text": "That is a supermarket."
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r2",
-              "text": "There is a taxi?"
+              "text": "That are a supermarket."
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r3",
-              "text": "Is there taxi?"
+              "text": "Those are supermarkets."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У пустой стоянки вы не уверены, есть ли одна машина. Задайте вопрос.",
-          "uk": "На порожній стоянці ви не впевнені, чи є одна машина. Поставте питання."
+          "ru": "Вы указываете на дальнее здание. Скажите «То здание — супермаркет».",
+          "uk": "Ви вказуєте на далеку будівлю. Скажіть «Та будівля — супермаркет»."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вопрос о нескольких машинах начинается с `Are`",
-        "uk": "Питання про кілька машин починається з `Are`"
+        "ru": "Можно всем",
+        "uk": "Можна всім"
       },
       "bodyByLocale": {
-        "ru": "`There are taxis.` — сообщение о нескольких машинах. Вопрос строится так: `Are there taxis?` Форма `are` выходит вперёд, а `taxis` остаётся во множественном числе. Не меняйте местами весь ряд: переставляется только начало.",
-        "uk": "`There are taxis.` — повідомлення про кілька машин. Питання будується так: `Are there taxis?` Форма `are` виходить наперед, а `taxis` залишається у множині. Порядок підказує, що саме ви питаєте. Не переставляйте весь ряд: змінюється лише початок."
+        "ru": "`public` — «общественный, открытый для всех». Двор доступен всем посетителям, а не только жильцам или сотрудникам. О нём: `It is public` — «Он открыт для всех». Сокращённо: `It’s public`. Само слово не обещает, что там всё бесплатно: оно говорит об общем доступе.",
+        "uk": "`public` — «громадський, відкритий для всіх». Двір доступний усім відвідувачам, а не лише мешканцям чи працівникам. Про нього: `It is public` — «Він відкритий для всіх». Скорочено: `It’s public`. Саме слово не обіцяє, що там усе безкоштовно: воно говорить про загальний доступ."
       },
       "question": {
         "interactionId": "en:lesson-04:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "На дальней стороне стоянки могут стоять несколько машин. Спросите об этом.",
-          "uk": "На дальньому боці стоянки можуть стояти кілька машин. Запитайте про це."
+          "ru": "Друг думает, что двор только для жильцов. Скажите с сокращением «Он открыт для всех».",
+          "uk": "Друг думає, що двір лише для мешканців. Скажіть зі скороченням «Він відкритий для всіх»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-13:intro3:r1",
-              "text": "Are there taxis?"
+              "text": "It's public."
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r2",
-              "text": "There are taxis?"
+              "text": "It's private."
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r3",
-              "text": "Is there taxis?"
+              "text": "It are public."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-13:intro3:r1",
-              "text": "Are there taxis?"
+              "text": "It's public."
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r2",
-              "text": "There are taxis?"
+              "text": "It's private."
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r3",
-              "text": "Is there taxis?"
+              "text": "It are public."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На дальней стороне стоянки могут стоять несколько машин. Спросите об этом.",
-          "uk": "На дальньому боці стоянки можуть стояти кілька машин. Запитайте про це."
+          "ru": "Друг думает, что двор только для жильцов. Скажите с сокращением «Он открыт для всех».",
+          "uk": "Друг думає, що двір лише для мешканців. Скажіть зі скороченням «Він відкритий для всіх»."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "44dc111cb5475d41d8a649d42380ee8c5a5927577a34e067d45bc807d8f709ce"
+  "introFingerprint": "15b4c7c6d47e95fad9e943aa9b46f4e548b3543164ec55014664a7b55c7c95d2"
 }

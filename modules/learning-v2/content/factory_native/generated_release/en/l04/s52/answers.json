@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-52:i01",
+    "correctText": "It is fair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i02",
+    "correctText": "nursery",
+    "correctResponseId": "en:lesson-04:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i03",
+    "correctText": "nursery",
+    "correctResponseId": "en:lesson-04:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i04",
+    "correctText": "en:lesson-04:session-52:i04:p1=nursery\nen:lesson-04:session-52:i04:p2=fair\nen:lesson-04:session-52:i04:p3=stations\nen:lesson-04:session-52:i04:p4=freezer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i05",
+    "correctText": "This is a nursery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i06",
+    "correctText": "The stations are next to the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i07",
+    "correctText": "It's fair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i09",
+    "correctText": "The freezer is in the kitchen.",
+    "correctResponseId": "en:lesson-04:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i10",
+    "correctText": "en:lesson-04:session-52:i10:p1=nursery\nen:lesson-04:session-52:i10:p2=fair\nen:lesson-04:session-52:i10:p3=stations\nen:lesson-04:session-52:i10:p4=freezer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i11",
+    "correctText": "Is there a nursery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i12",
+    "correctText": "There isn't a nursery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i13",
+    "correctText": "Is there a freezer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-52:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i15",
+    "correctText": "That is a nursery.",
+    "correctResponseId": "en:lesson-04:session-52:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i16",
+    "correctText": "en:lesson-04:session-52:i16:p1=nursery\nen:lesson-04:session-52:i16:p2=fair\nen:lesson-04:session-52:i16:p3=stations\nen:lesson-04:session-52:i16:p4=freezer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i17",
+    "correctText": "The nursery is next to the park.",
+    "correctResponseId": null
+  }
+]

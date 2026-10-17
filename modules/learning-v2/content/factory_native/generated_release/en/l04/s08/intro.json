@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-08",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно выбрать `There is` для одного места и `There are` для нескольких.",
-    "uk": "самостійно обрати `There is` для одного місця й `There are` для кількох."
+    "ru": "описать район и сообщить о наличии знакомых мест",
+    "uk": "описати район і повідомити про наявність знайомих місць"
   },
   "pages": [
     {
@@ -16,48 +15,48 @@
         "uk": "Район навколо дому"
       },
       "bodyByLocale": {
-        "ru": "`neighbourhood` — «район вокруг дома»: ближайшие улицы, дома и места, которыми вы пользуетесь каждый день. Это не весь город. На встрече новосёлов слово помогает говорить именно о местном окружении. До другого конца города знакомиться с соседями не придётся — карта остаётся небольшой.",
-        "uk": "`neighbourhood` — «район навколо дому»: найближчі вулиці, будинки та місця, якими ви користуєтеся щодня. Це не все місто. На зустрічі новоселів слово допомагає говорити саме про місцеве оточення. До іншого кінця міста знайомитися із сусідами не доведеться — карта лишається невеликою."
+        "ru": "`neighbourhood` — «район, ближайшая часть города». Это улицы и места вокруг дома, а не одно здание. `This neighbourhood is quiet` — «Этот район тихий». `This neighbourhood is small` — «Этот район маленький». Даже длинное слово `neighbourhood` может обозначать маленький район. Здесь используем британское написание.",
+        "uk": "`neighbourhood` — «район, найближча частина міста». Це вулиці й місця навколо дому, а не одна будівля. `This neighbourhood is quiet` — «Цей район тихий». `This neighbourhood is small` — «Цей район маленький». Навіть довге слово `neighbourhood` може позначати маленький район. Тут використовуємо британське написання."
       },
       "question": {
         "interactionId": "en:lesson-04:session-08:intro1:q",
         "promptByLocale": {
-          "ru": "На карте отмечен район вокруг нового дома. Выберите слово.",
-          "uk": "На карті позначено район навколо нового дому. Оберіть слово."
+          "ru": "Опишите небольшой район рядом: «Этот район маленький».",
+          "uk": "Опишіть невеликий район поруч: «Цей район маленький»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-08:intro1:r1",
-              "text": "neighbourhood"
+              "text": "This neighbourhood is small."
             },
             {
               "responseId": "en:lesson-04:session-08:intro1:r2",
-              "text": "building"
+              "text": "This neighbourhood are small."
             },
             {
               "responseId": "en:lesson-04:session-08:intro1:r3",
-              "text": "street"
+              "text": "These neighbourhood is small."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-08:intro1:r1",
-              "text": "neighbourhood"
+              "text": "This neighbourhood is small."
             },
             {
               "responseId": "en:lesson-04:session-08:intro1:r2",
-              "text": "building"
+              "text": "This neighbourhood are small."
             },
             {
               "responseId": "en:lesson-04:session-08:intro1:r3",
-              "text": "street"
+              "text": "These neighbourhood is small."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На карте отмечен район вокруг нового дома. Выберите слово.",
-          "uk": "На карті позначено район навколо нового дому. Оберіть слово."
+          "ru": "Опишите небольшой район рядом: «Этот район маленький».",
+          "uk": "Опишіть невеликий район поруч: «Цей район маленький»."
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одна аптека",
-        "uk": "Одна аптека"
+        "ru": "Места для повседневных дел",
+        "uk": "Місця для повсякденних справ"
       },
       "bodyByLocale": {
-        "ru": "`There is a pharmacy in the neighbourhood.` — «В районе есть аптека». Одна аптека — значит `There is`; перед `pharmacy` нужен `a`. Сначала назовите одно место, затем район: `in the neighbourhood` добавляет адрес, но не меняет число.",
-        "uk": "`There is a pharmacy in the neighbourhood.` — «У районі є аптека». Одна аптека — отже `There is`; перед `pharmacy` потрібен `a`. Спершу назвіть одне місце, потім район: `in the neighbourhood` додає адресу, але не змінює число."
+        "ru": "Вспомним `pharmacy` — «аптека», `library` — «библиотека», `bakery` — «пекарня», `garden` — «сад», `bank` — «банк». Сообщаем, что место есть: `There is a pharmacy` — «Есть аптека». Можно добавить `here`: `There is a library here` — «Здесь есть библиотека». Одно место — `is` и `a`.",
+        "uk": "Згадаймо `pharmacy` — «аптека», `library` — «бібліотека», `bakery` — «пекарня», `garden` — «сад», `bank` — «банк». Повідомляємо, що місце є: `There is a pharmacy` — «Є аптека». Можна додати `here`: `There is a library here` — «Тут є бібліотека». Одне місце — `is` і `a`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-08:intro2:q",
         "promptByLocale": {
-          "ru": "В районе есть одна аптека. Выберите сообщение.",
-          "uk": "У районі є одна аптека. Оберіть повідомлення."
+          "ru": "Сообщите, что здесь есть библиотека.",
+          "uk": "Повідомте, що тут є бібліотека."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-08:intro2:r1",
-              "text": "There is a pharmacy in the neighbourhood."
+              "text": "There is a library here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro2:r2",
-              "text": "There are a pharmacy in the neighbourhood."
+              "text": "There are a library here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro2:r3",
-              "text": "There is pharmacy in the neighbourhood."
+              "text": "There is library here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-08:intro2:r1",
-              "text": "There is a pharmacy in the neighbourhood."
+              "text": "There is a library here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro2:r2",
-              "text": "There are a pharmacy in the neighbourhood."
+              "text": "There are a library here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro2:r3",
-              "text": "There is pharmacy in the neighbourhood."
+              "text": "There is library here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В районе есть одна аптека. Выберите сообщение.",
-          "uk": "У районі є одна аптека. Оберіть повідомлення."
+          "ru": "Сообщите, что здесь есть библиотека.",
+          "uk": "Повідомте, що тут є бібліотека."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Несколько магазинов",
-        "uk": "Кілька магазинів"
+        "ru": "Ещё четыре места",
+        "uk": "Ще чотири місця"
       },
       "bodyByLocale": {
-        "ru": "`There are shops in the neighbourhood.` — «В районе есть магазины». Магазинов больше одного, поэтому выбирайте `There are` и форму `shops`. Артикль `a` здесь не нужен: он относится к одному месту. `In the neighbourhood` показывает район и не меняет количество магазинов.",
-        "uk": "`There are shops in the neighbourhood.` — «У районі є магазини». Магазинів більше одного, тому обирайте `There are` і форму `shops`. Артикль `a` тут не потрібен: він стосується одного місця. `In the neighbourhood` показує район і не змінює кількості магазинів."
+        "ru": "`post office` — «почтовое отделение», `supermarket` — «супермаркет», `clinic` — «клиника», `playground` — «детская площадка». В названии `post office` два слова, но место одно: `There is a post office`. Если площадок несколько: `There are playgrounds here` — «Здесь есть детские площадки». Для нескольких нужны `are` и `playgrounds`, без `a`.",
+        "uk": "`post office` — «поштове відділення», `supermarket` — «супермаркет», `clinic` — «клініка», `playground` — «дитячий майданчик». У назві `post office` два слова, але місце одне: `There is a post office`. Якщо майданчиків кілька: `There are playgrounds here` — «Тут є дитячі майданчики». Для кількох потрібні `are` і `playgrounds`, без `a`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-08:intro3:q",
         "promptByLocale": {
-          "ru": "В районе есть несколько магазинов. Выберите сообщение.",
-          "uk": "У районі є кілька магазинів. Оберіть повідомлення."
+          "ru": "Сообщите, что здесь есть несколько детских площадок.",
+          "uk": "Повідомте, що тут є кілька дитячих майданчиків."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-08:intro3:r1",
-              "text": "There are shops in the neighbourhood."
+              "text": "There are playgrounds here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro3:r2",
-              "text": "There is shops in the neighbourhood."
+              "text": "There is playgrounds here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro3:r3",
-              "text": "There are shop in the neighbourhood."
+              "text": "There are a playgrounds here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-08:intro3:r1",
-              "text": "There are shops in the neighbourhood."
+              "text": "There are playgrounds here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro3:r2",
-              "text": "There is shops in the neighbourhood."
+              "text": "There is playgrounds here."
             },
             {
               "responseId": "en:lesson-04:session-08:intro3:r3",
-              "text": "There are shop in the neighbourhood."
+              "text": "There are a playgrounds here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В районе есть несколько магазинов. Выберите сообщение.",
-          "uk": "У районі є кілька магазинів. Оберіть повідомлення."
+          "ru": "Сообщите, что здесь есть несколько детских площадок.",
+          "uk": "Повідомте, що тут є кілька дитячих майданчиків."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "58e7fcc2cad28d52b36309f2ef14fe20d39d20c9616e78c122db625be817e997"
+  "introFingerprint": "11aaecaca40d17b24a39c6d1ad9a1e8fea75e11474676824c4bd9c75390fadc6"
 }

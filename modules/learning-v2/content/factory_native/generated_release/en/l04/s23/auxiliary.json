@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-23:intro1:r2": {
+          "ru": "О сыре как продукте говорим `There is some cheese here`.",
+          "uk": "Про сир як продукт кажемо `There is some cheese here`."
+        },
+        "en:lesson-04:session-23:intro1:r3": {
+          "ru": "Здесь речь о продукте вообще, а не отдельном сорте или головке: `some cheese`.",
+          "uk": "Тут ідеться про продукт загалом, а не окремий сорт чи головку: `some cheese`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-23:intro2:r2": {
+          "ru": "С сыром как продуктом нужно `Is there`.",
+          "uk": "Із сиром як продуктом потрібне `Is there`."
+        },
+        "en:lesson-04:session-23:intro2:r3": {
+          "ru": "В этом вопросе сначала `Is there`: `Is there any cheese here?`.",
+          "uk": "У цьому запитанні спочатку `Is there`: `Is there any cheese here?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-23:intro3:r2": {
+          "ru": "`broken` — сломанный; действительный билет — `valid`.",
+          "uk": "`broken` — зламаний; дійсний квиток — `valid`."
+        },
+        "en:lesson-04:session-23:intro3:r3": {
+          "ru": "С `It` нужно `is`: `It’s valid`.",
+          "uk": "З `It` потрібне `is`: `It’s valid`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7d709b411078d571d3959d26eb619bad9508f35ae1d3666d22ef46eaceb33cc1"
+}

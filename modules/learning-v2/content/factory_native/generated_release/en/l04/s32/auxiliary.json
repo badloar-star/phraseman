@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-32:intro1:r2": {
+          "ru": "Перед одним фонтаном нужно `a`: `a fountain`.",
+          "uk": "Перед одним фонтаном потрібне `a`: `a fountain`."
+        },
+        "en:lesson-04:session-32:intro1:r3": {
+          "ru": "Здесь один фонтан: `This is a fountain`.",
+          "uk": "Тут один фонтан: `This is a fountain`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-32:intro2:r2": {
+          "ru": "`under` — под; на поверхности — `on`.",
+          "uk": "`under` — під; на поверхні — `on`."
+        },
+        "en:lesson-04:session-32:intro2:r3": {
+          "ru": "Здесь йогурт как продукт: `The yoghurt is`.",
+          "uk": "Тут йогурт як продукт: `The yoghurt is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-32:intro3:r2": {
+          "ru": "`in` — внутри; остановка рядом: `next to`.",
+          "uk": "`in` — усередині; зупинка поруч: `next to`."
+        },
+        "en:lesson-04:session-32:intro3:r3": {
+          "ru": "Одна остановка: `The bus stop is`.",
+          "uk": "Одна зупинка: `The bus stop is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2d0ac23b222acdb93f4beaa0e6b972438df77b9b711040c022ad5cf9b31b1ecd"
+}

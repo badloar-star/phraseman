@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "назвать полицейский участок, объяснить дорогу и сказать, что решение несправедливо",
+    "uk": "назвати поліцейський відділок, пояснити дорогу й сказати, що рішення несправедливе"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два слова — одно место",
+        "uk": "Два слова — одне місце"
+      },
+      "bodyByLocale": {
+        "ru": "`police station` — «полицейский участок». Здесь `station` не железнодорожная станция: слово `police` уточняет, что это за место. `This is a police station` — «Это полицейский участок». Билет на поезд здесь покупать не стоит: кассы вы не найдёте. Перед одним участком нужно `a`: `a police station`.",
+        "uk": "`police station` — «поліцейський відділок». Тут `station` не залізнична станція: слово `police` уточнює, що це за місце. `This is a police station` — «Це поліцейський відділок». Квиток на потяг тут купувати не варто: каси ви не знайдете. Перед одним відділком потрібне `a`: `a police station`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один полицейский участок.",
+          "uk": "Назвіть один поліцейський відділок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-53:intro1:r1",
+              "text": "This is a police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro1:r2",
+              "text": "This is police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro1:r3",
+              "text": "These are police stations."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-53:intro1:r1",
+              "text": "This is a police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro1:r2",
+              "text": "This is police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro1:r3",
+              "text": "These are police stations."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один полицейский участок.",
+          "uk": "Назвіть один поліцейський відділок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рядом с музеем",
+        "uk": "Поруч із музеєм"
+      },
+      "bodyByLocale": {
+        "ru": "`museum` — «музей». `The police station is next to the museum` — «Полицейский участок рядом с музеем». Чтобы спросить, есть ли участок: `Is there a police station?` Если его нет: `There isn’t a police station`.",
+        "uk": "`museum` — «музей». `The police station is next to the museum` — «Поліцейський відділок поруч із музеєм». Щоб запитати, чи є відділок: `Is there a police station?` Якщо його немає: `There isn’t a police station`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "В этом районе нет полицейского участка. Сообщите об этом.",
+          "uk": "У цьому районі немає поліцейського відділку. Повідомте про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-53:intro2:r1",
+              "text": "There isn't a police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro2:r2",
+              "text": "There aren't a police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro2:r3",
+              "text": "There is a police station."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-53:intro2:r1",
+              "text": "There isn't a police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro2:r2",
+              "text": "There aren't a police station."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro2:r3",
+              "text": "There is a police station."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В этом районе нет полицейского участка. Сообщите об этом.",
+          "uk": "У цьому районі немає поліцейського відділку. Повідомте про це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одинаковая кухня, разные правила",
+        "uk": "Однакова кухня, різні правила"
+      },
+      "bodyByLocale": {
+        "ru": "`microwave` — «микроволновая печь», в быту «микроволновка». `The microwave is in the kitchen` — «Микроволновка на кухне». Одному сотруднику можно разогреть обед, другому без причины нельзя. Вы считаете это несправедливым: `It is unfair`, короче `It’s unfair`. `unfair` — «несправедливый».",
+        "uk": "`microwave` — «мікрохвильова піч», у побуті «мікрохвильовка». `The microwave is in the kitchen` — «Мікрохвильовка на кухні». Одному працівнику можна розігріти обід, іншому без причини не можна. Ви вважаєте це несправедливим: `It is unfair`, коротше `It’s unfair`. `unfair` — «несправедливий»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Это несправедливо» с сокращением.",
+          "uk": "Скажіть «Це несправедливо» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-53:intro3:r1",
+              "text": "It's unfair."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro3:r2",
+              "text": "It's fair."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro3:r3",
+              "text": "It are unfair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-53:intro3:r1",
+              "text": "It's unfair."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro3:r2",
+              "text": "It's fair."
+            },
+            {
+              "responseId": "en:lesson-04:session-53:intro3:r3",
+              "text": "It are unfair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Это несправедливо» с сокращением.",
+          "uk": "Скажіть «Це несправедливо» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e4524120c03b3b867b57b57ac2d666a09944f87daf7c33f72027647a3ff92f66"
+}

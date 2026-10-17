@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-07:intro1:r2": {
-          "ru": "`Building` — здание. Во дворе показана `playground`.",
-          "uk": "`Building` — будівля. У дворі показано `playground`."
+          "ru": "Площадка одна: `There is a playground here`.",
+          "uk": "Майданчик один: `There is a playground here`."
         },
         "en:lesson-04:session-07:intro1:r3": {
-          "ru": "`Shop` — магазин. Здесь нужна `playground`.",
-          "uk": "`Shop` — магазин. Тут потрібне `playground`."
+          "ru": "Перед одной площадкой нужно `a`: `a playground`.",
+          "uk": "Перед одним майданчиком потрібне `a`: `a playground`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-07:intro2:r2": {
-          "ru": "Площадка одна: нужно `There is a playground`.",
-          "uk": "Майданчик один: потрібне `There is a playground`."
+          "ru": "Кафе несколько: `There are`.",
+          "uk": "Кафе кілька: `There are`."
         },
         "en:lesson-04:session-07:intro2:r3": {
-          "ru": "Перед одним исчисляемым местом нужен `a`: `a playground`.",
-          "uk": "Перед одним злічуваним місцем потрібен `a`: `a playground`."
+          "ru": "Перед несколькими `cafes` не ставим `a`.",
+          "uk": "Перед кількома `cafes` не ставимо `a`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-07:intro3:r2": {
-          "ru": "Зданий несколько, поэтому нужно `There are buildings`.",
-          "uk": "Будинків кілька, тому потрібне `There are buildings`."
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
         },
         "en:lesson-04:session-07:intro3:r3": {
-          "ru": "Одно `a building` не подходит к `There are`; здесь несколько `buildings`.",
-          "uk": "Одне `a building` не підходить до `There are`; тут кілька `buildings`."
+          "ru": "`striped` — полосатая. Здесь говорим о необходимости: `necessary`.",
+          "uk": "`striped` — смугаста. Тут говоримо про необхідність: `necessary`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2621ba1f2074b32ed8181c2c9b54a7a24ff03b83e0c314ffea290fa0fc435009"
+  "auxiliaryFingerprint": "9fe866b89d9e1a84e35b671e59e6a9eccae4f97795513b36a8f615d19aa60b0e"
 }

@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-16",
   "learningOutcomeByLocale": {
-    "ru": "задать вопрос и дать короткий ответ в отдельных ходах.",
-    "uk": "поставити питання й дати коротку відповідь в окремих ходах."
+    "ru": "спросить о бассейне и вспомнить места и транспорт из главы",
+    "uk": "запитати про басейн і пригадати місця та транспорт із глави"
   },
   "pages": [
     {
@@ -12,52 +11,52 @@
       "pageId": "en:lesson-04:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`swimming pool` — бассейн",
-        "uk": "`swimming pool` — басейн"
+        "ru": "Два слова — один бассейн",
+        "uk": "Два слова — один басейн"
       },
       "bodyByLocale": {
-        "ru": "`swimming pool` — «бассейн», место, где плавают. Это два слова, но называют они одно место: `swimming` объясняет действие, а `pool` — сам бассейн. Не сокращайте ответ до одного `pool`, когда выбираете название места.",
-        "uk": "`swimming pool` — «басейн», місце, де плавають. Це два слова, але вони називають одне місце: `swimming` пояснює дію, а `pool` — сам басейн. Не скорочуйте відповідь до одного `pool`, коли обираєте назву місця. У розмові ці слова часто стоять поруч після `a` або `the`, коли називаємо одну конкретну зону."
+        "ru": "`swimming pool` — «бассейн», место для плавания. Одно место — `a swimming pool`, несколько — `swimming pools`: окончание меняется у последнего слова. `Is there a swimming pool here?` — «Здесь есть бассейн?» Два слова не означают два бассейна: второй купальник пока не нужен.",
+        "uk": "`swimming pool` — «басейн», місце для плавання. Одне місце — `a swimming pool`, кілька — `swimming pools`: закінчення змінюється в останньому слові. `Is there a swimming pool here?` — «Тут є басейн?» Два слова не означають два басейни: другий купальник поки не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-04:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "На карте досугового центра отмечено место для плавания. Выберите название.",
-          "uk": "На карті дозвіллєвого центру позначено місце для плавання. Оберіть назву."
+          "ru": "Спросите «Здесь есть бассейн?»",
+          "uk": "Запитайте «Тут є басейн?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-16:intro1:r1",
-              "text": "swimming pool"
+              "text": "Is there a swimming pool here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r2",
-              "text": "swimming"
+              "text": "Are there a swimming pool here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r3",
-              "text": "gym"
+              "text": "Is there swimming pool here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-16:intro1:r1",
-              "text": "swimming pool"
+              "text": "Is there a swimming pool here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r2",
-              "text": "swimming"
+              "text": "Are there a swimming pool here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r3",
-              "text": "gym"
+              "text": "Is there swimming pool here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На карте досугового центра отмечено место для плавания. Выберите название.",
-          "uk": "На карті дозвіллєвого центру позначено місце для плавання. Оберіть назву."
+          "ru": "Спросите «Здесь есть бассейн?»",
+          "uk": "Запитайте «Тут є басейн?»"
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вопрос об одном бассейне начинается с `Is`",
-        "uk": "Питання про один басейн починається з `Is`"
+        "ru": "Что есть в районе",
+        "uk": "Що є в районі"
       },
       "bodyByLocale": {
-        "ru": "`There is a swimming pool here.` — сообщение об одном месте. Если мы спрашиваем о нём, `is` выходит вперёд: `Is there a swimming pool here?` Артикль `a` остаётся перед одним бассейном. Сначала спросите, есть ли место, а ответ пока оставьте открытым.",
-        "uk": "`There is a swimming pool here.` — повідомлення про одне місце. Якщо питаємо про нього, `is` виходить наперед: `Is there a swimming pool here?` Артикль `a` залишається перед одним басейном. Спочатку запитайте, чи є місце, а відповідь поки залиште відкритою."
+        "ru": "`neighbourhood` — «район», `hotel` — «отель», `dentist` — «стоматолог». `This is a neighbourhood` — «Это район». `There is a hotel here` — «Здесь есть отель». `Is there a dentist here?` — «Здесь есть стоматолог?» Ещё два знакомых места: `laundrette` — «прачечная самообслуживания», `gym` — «тренажёрный зал».",
+        "uk": "`neighbourhood` — «район», `hotel` — «готель», `dentist` — «стоматолог». `This is a neighbourhood` — «Це район». `There is a hotel here` — «Тут є готель». `Is there a dentist here?` — «Тут є стоматолог?» Ще два знайомі місця: `laundrette` — «пральня самообслуговування», `gym` — «тренажерна зала»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "Администратор показывает одну зону. Спросите, есть ли здесь бассейн.",
-          "uk": "Адміністратор показує одну зону. Запитайте, чи є тут басейн."
+          "ru": "На схеме района вы нашли отель. Сообщите «Здесь есть отель».",
+          "uk": "На схемі району ви знайшли готель. Повідомте «Тут є готель»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-16:intro2:r1",
-              "text": "Is there a swimming pool here?"
+              "text": "There is a hotel here."
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r2",
-              "text": "Are there swimming pools here?"
+              "text": "There are a hotel here."
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r3",
-              "text": "There is a swimming pool here."
+              "text": "Is there a hotel here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-16:intro2:r1",
-              "text": "Is there a swimming pool here?"
+              "text": "There is a hotel here."
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r2",
-              "text": "Are there swimming pools here?"
+              "text": "There are a hotel here."
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r3",
-              "text": "There is a swimming pool here."
+              "text": "Is there a hotel here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Администратор показывает одну зону. Спросите, есть ли здесь бассейн.",
-          "uk": "Адміністратор показує одну зону. Запитайте, чи є тут басейн."
+          "ru": "На схеме района вы нашли отель. Сообщите «Здесь есть отель».",
+          "uk": "На схемі району ви знайшли готель. Повідомте «Тут є готель»."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Короткий ответ повторяет `is`",
-        "uk": "Коротка відповідь повторює `is`"
+        "ru": "Добраться и потренироваться",
+        "uk": "Дістатися й потренуватися"
       },
       "bodyByLocale": {
-        "ru": "На вопрос `Is there a swimming pool here?` можно ответить `Yes, there is.` — «Да, есть». В коротком ответе `is` не исчезает: он возвращается после `there`. Отрицательный вариант будет отдельным ответом `No, there isn't.`",
-        "uk": "На питання `Is there a swimming pool here?` можна відповісти `Yes, there is.` — «Так, є». У короткій відповіді `is` не зникає: він повертається після `there`. Заперечний варіант буде окремою відповіддю `No, there isn't.`"
+        "ru": "`tram` — «трамвай», `taxi` — «такси», `platform` — «платформа». Друг показывает на трамвай вдали: `That is a tram` — «То — трамвай». Вопрос о зале: `Is there a gym?` — «Есть ли тренажёрный зал?» О нескольких прачечных: `Are there laundrettes here?` — «Здесь есть прачечные самообслуживания?» Перед несколькими местами `a` не ставим.",
+        "uk": "`tram` — «трамвай», `taxi` — «таксі», `platform` — «платформа». Друг показує на трамвай удалині: `That is a tram` — «То — трамвай». Запитання про залу: `Is there a gym?` — «Чи є тренажерна зала?» Про кілька пралень: `Are there laundrettes here?` — «Тут є пральні самообслуговування?» Перед кількома місцями `a` не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-04:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "Администратор подтверждает, что бассейн есть. Выберите короткий ответ.",
-          "uk": "Адміністратор підтверджує, що басейн є. Оберіть коротку відповідь."
+          "ru": "Спросите, есть ли здесь несколько прачечных самообслуживания.",
+          "uk": "Запитайте, чи є тут кілька пралень самообслуговування."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-16:intro3:r1",
-              "text": "Yes, there is."
+              "text": "Are there laundrettes here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r2",
-              "text": "No, there isn't."
+              "text": "Is there laundrettes here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r3",
-              "text": "Yes, there are."
+              "text": "Are there a laundrettes here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-16:intro3:r1",
-              "text": "Yes, there is."
+              "text": "Are there laundrettes here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r2",
-              "text": "No, there isn't."
+              "text": "Is there laundrettes here?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r3",
-              "text": "Yes, there are."
+              "text": "Are there a laundrettes here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Администратор подтверждает, что бассейн есть. Выберите короткий ответ.",
-          "uk": "Адміністратор підтверджує, що басейн є. Оберіть коротку відповідь."
+          "ru": "Спросите, есть ли здесь несколько прачечных самообслуживания.",
+          "uk": "Запитайте, чи є тут кілька пралень самообслуговування."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "387daea31b6526c537eeb9f95a82ebb8e9bc9bc540d270b5f8ab30ac62369799"
+  "introFingerprint": "ee8c20ecfe2393486995dbb97e577dff1c8bac939473ab306b5b4c52736b0d39"
 }

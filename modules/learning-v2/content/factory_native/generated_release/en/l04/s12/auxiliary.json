@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro1:r2": {
-          "ru": "`A train` — поезд. Пассажиры ждут у `a platform`.",
-          "uk": "`A train` — поїзд. Пасажири чекають біля `a platform`."
+          "ru": "Одна платформа: `Is there a platform here?`.",
+          "uk": "Одна платформа: `Is there a platform here?`."
         },
         "en:lesson-04:session-12:intro1:r3": {
-          "ru": "`A tram` — трамвай. На вокзале здесь указана `a platform`.",
-          "uk": "`A tram` — трамвай. На вокзалі тут позначено `a platform`."
+          "ru": "Это сообщение; вопрос начинается с `Is there`.",
+          "uk": "Це повідомлення; запитання починається з `Is there`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro2:r2": {
-          "ru": "После `there are` повторять `there` не нужно: `Yes, there are.`.",
-          "uk": "Після `there are` повторювати `there` не потрібно: `Yes, there are.`."
+          "ru": "Одно почтовое отделение: `There is`.",
+          "uk": "Одне поштове відділення: `There is`."
         },
         "en:lesson-04:session-12:intro2:r3": {
-          "ru": "В ответе сначала говорят `there`, потом `are`: `Yes, there are.`.",
-          "uk": "У відповіді спочатку кажуть `there`, потім `are`: `Yes, there are.`."
+          "ru": "Перед одним отделением нужно `a`: `a post office`.",
+          "uk": "Перед одним відділенням потрібне `a`: `a post office`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro3:r2": {
-          "ru": "После `there aren't` повторять `there` не нужно: `No, there aren't.`.",
-          "uk": "Після `there aren't` повторювати `there` не потрібно: `No, there aren't.`."
+          "ru": "`urgent` — срочный; здесь нужно `private`.",
+          "uk": "`urgent` — терміновий; тут потрібне `private`."
         },
         "en:lesson-04:session-12:intro3:r3": {
-          "ru": "В ответе сначала говорят `there`, потом `aren't`: `No, there aren't.`.",
-          "uk": "У відповіді спочатку кажуть `there`, потім `aren't`: `No, there aren't.`."
+          "ru": "С `It` нужно `is`: `It’s private`.",
+          "uk": "З `It` потрібне `is`: `It’s private`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "be17237ff743c55352175abb39a3ac8f3dc06ec70122cead02d88ee2a0f2f616"
+  "auxiliaryFingerprint": "b3a872c3b1f86e084b7701d21cbad6ab18b3300ee1fa5bdb1187150002896940"
 }

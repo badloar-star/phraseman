@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-44:intro1:r2": {
+          "ru": "Перед одним морозильником нужно `a`: `a freezer`.",
+          "uk": "Перед одним морозильником потрібне `a`: `a freezer`."
+        },
+        "en:lesson-04:session-44:intro1:r3": {
+          "ru": "Здесь один морозильник: `This is a freezer`.",
+          "uk": "Тут один морозильник: `This is a freezer`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-44:intro2:r2": {
+          "ru": "Несколько отелей: `The hotels are`.",
+          "uk": "Кілька готелів: `The hotels are`."
+        },
+        "en:lesson-04:session-44:intro2:r3": {
+          "ru": "`under` — под; здесь рядом: `next to`.",
+          "uk": "`under` — під; тут поруч: `next to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-44:intro3:r2": {
+          "ru": "`illegal` — незаконно; здесь `legal`.",
+          "uk": "`illegal` — незаконно; тут `legal`."
+        },
+        "en:lesson-04:session-44:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e96a6472e9976a8a19a771c837b7ad653174f35133ee5e0430d1afe60130461d"
+}

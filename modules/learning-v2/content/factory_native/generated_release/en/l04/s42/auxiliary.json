@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-42:intro1:r2": {
+          "ru": "Перед одним павильоном нужно `a`: `a bus shelter`.",
+          "uk": "Перед одним павільйоном потрібне `a`: `a bus shelter`."
+        },
+        "en:lesson-04:session-42:intro1:r3": {
+          "ru": "Здесь один павильон: `This is a bus shelter`.",
+          "uk": "Тут один павільйон: `This is a bus shelter`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-42:intro2:r2": {
+          "ru": "Это сообщение о наличии; вопрос начинается с `Is there`.",
+          "uk": "Це повідомлення про наявність; запитання починається з `Is there`."
+        },
+        "en:lesson-04:session-42:intro2:r3": {
+          "ru": "Один поручень: `Is there a handrail?`.",
+          "uk": "Один поручень: `Is there a handrail?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-42:intro3:r2": {
+          "ru": "`accurate` — точно; здесь ошибка: `inaccurate`.",
+          "uk": "`accurate` — точно; тут помилка: `inaccurate`."
+        },
+        "en:lesson-04:session-42:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9690d8d969b8417b931e1280bc7d0385acc961621b1cd759392b802799dd7fd6"
+}

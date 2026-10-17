@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-32:i01",
+    "correctText": "The yoghurt is on the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i02",
+    "correctText": "fountain",
+    "correctResponseId": "en:lesson-04:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i03",
+    "correctText": "fountain",
+    "correctResponseId": "en:lesson-04:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i04",
+    "correctText": "en:lesson-04:session-32:i04:p1=fountain\nen:lesson-04:session-32:i04:p2=yoghurt\nen:lesson-04:session-32:i04:p3=sink\nen:lesson-04:session-32:i04:p4=worktop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i05",
+    "correctText": "This is a fountain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i06",
+    "correctText": "The sink is next to the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i07",
+    "correctText": "The signpost is in the alley.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i08",
+    "correctText": "under",
+    "correctResponseId": "en:lesson-04:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i09",
+    "correctText": "The bus stop is next to the fountain.",
+    "correctResponseId": "en:lesson-04:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i10",
+    "correctText": "en:lesson-04:session-32:i10:p1=awning\nen:lesson-04:session-32:i10:p2=alley\nen:lesson-04:session-32:i10:p3=bus stop\nen:lesson-04:session-32:i10:p4=signpost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i11",
+    "correctText": "The fountain is next to the car park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i12",
+    "correctText": "There is some yoghurt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i13",
+    "correctText": "Is there a fountain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-32:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i15",
+    "correctText": "That is a fountain.",
+    "correctResponseId": "en:lesson-04:session-32:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i16",
+    "correctText": "en:lesson-04:session-32:i16:p1=car park\nen:lesson-04:session-32:i16:p2=awning\nen:lesson-04:session-32:i16:p3=alley\nen:lesson-04:session-32:i16:p4=fountain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-32:i17",
+    "correctText": "The fountain is next to the hotel.",
+    "correctResponseId": null
+  }
+]

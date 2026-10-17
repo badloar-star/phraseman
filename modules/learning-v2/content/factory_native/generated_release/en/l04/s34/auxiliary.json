@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-34:intro1:r2": {
+          "ru": "Перед одним поручнем нужно `a`: `a handrail`.",
+          "uk": "Перед одним поручнем потрібне `a`: `a handrail`."
+        },
+        "en:lesson-04:session-34:intro1:r3": {
+          "ru": "Здесь один поручень: `This is a handrail`.",
+          "uk": "Тут один поручень: `This is a handrail`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-34:intro2:r2": {
+          "ru": "`under` — под; на поверхности — `on`.",
+          "uk": "`under` — під; на поверхні — `on`."
+        },
+        "en:lesson-04:session-34:intro2:r3": {
+          "ru": "Один кошелёк: `The wallet is`.",
+          "uk": "Один гаманець: `The wallet is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-34:intro3:r2": {
+          "ru": "`active` — активная; здесь нужно `inactive`.",
+          "uk": "`active` — активний; тут потрібне `inactive`."
+        },
+        "en:lesson-04:session-34:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6ba48c65b1ff7a4ef1972d5da3f64c01808bee1f2e849359f0dfb28cf52fa76a"
+}

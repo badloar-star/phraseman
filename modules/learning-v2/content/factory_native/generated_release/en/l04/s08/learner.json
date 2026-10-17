@@ -1,6 +1,5 @@
 {
   "schemaVersion": "learning_v2_course_session_learner_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-08",
   "targetLanguage": "en",
   "interactions": [
@@ -8,111 +7,130 @@
       "interactionId": "en:lesson-04:session-08:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-08:i01:r1",
-          "text": "neighbourhood"
-        },
-        {
-          "responseId": "en:lesson-04:session-08:i01:r2",
-          "text": "neighbour"
-        },
-        {
-          "responseId": "en:lesson-04:session-08:i01:r3",
-          "text": "neighbourhoods"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает о местах района. Сообщите «Есть аптека»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-08:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите услышанное слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает о местах района. Сообщите «Есть аптека»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-08:i01:audio",
-          "transcript": "neighbourhood"
+        "family": "phrase_builder",
+        "targetPhrase": "There is a pharmacy.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает о местах района. Сообщите «Есть аптека»",
+          "uk": "Друг запитує про місця району. Повідомте «Є аптека»"
         },
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "pharmacy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-08:i01:r1",
-            "targetText": "neighbourhood",
-            "meaningByLocale": {
-              "ru": "район вокруг дома",
-              "uk": "район навколо дому"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-08:i01:r2",
-            "targetText": "neighbour",
-            "meaningByLocale": {
-              "ru": "сосед",
-              "uk": "сусід"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-08:i01:r3",
-            "targetText": "neighbourhoods",
-            "meaningByLocale": {
-              "ru": "районы вокруг домов",
-              "uk": "райони навколо домів"
+            "responseId": "en:lesson-04:session-08:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг спрашивает о местах района. Сообщите «Есть аптека»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a pharmacy.`",
+              "uk": "тут потрібно `is` — `There is a pharmacy.`"
             }
           }
         ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-08:i01:r2",
-            "correct": false,
-            "testedDimension": "auditory word discrimination",
-            "feedbackByLocale": {
-              "ru": "В записи `neighbourhood`, а не `neighbour`: в конце слышно `-hood`.",
-              "uk": "У записі `neighbourhood` — район, а не `neighbour` — сусід. Наприкінці чути `-hood`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-08:i01:r3",
-            "correct": false,
-            "testedDimension": "auditory word discrimination",
-            "feedbackByLocale": {
-              "ru": "В записи один `neighbourhood`, без окончания `-s`.",
-              "uk": "У записі один `neighbourhood`, без закінчення `-s`."
-            }
-          }
-        ]
-      }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-08:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите новое слово",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-08:i02:r1",
+          "text": "neighbourhood"
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i02:r2",
+          "text": "garden"
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i02:r3",
+          "text": "supermarket"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-08:i02:audio"
       ],
-      "accessibilityLabel": "Произнесите новое слово",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-08:i02:audio",
           "transcript": "neighbourhood"
         },
-        "targetPhrase": "neighbourhood"
-      }
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-08:i02:r1",
+            "targetText": "neighbourhood",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i02:r2",
+            "targetText": "garden",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i02:r3",
+            "targetText": "supermarket",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `neighbourhood`, а в этом варианте — `garden`.",
+              "uk": "У записі перше слово — `neighbourhood`, а в цьому варіанті — `garden`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `neighbourhood`, а в этом варианте — `supermarket`.",
+              "uk": "У записі перше слово — `neighbourhood`, а в цьому варіанті — `supermarket`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-08:i03",
       "ordinal": 6,
-      "purpose": "guided_practice",
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На карте отмечен весь район вокруг дома. Выберите название",
+      "prompt": "Назовите район вокруг дома одним английским словом",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-08:i03:r1",
@@ -120,18 +138,22 @@
         },
         {
           "responseId": "en:lesson-04:session-08:i03:r2",
-          "text": "building"
+          "text": "clinic"
         },
         {
           "responseId": "en:lesson-04:session-08:i03:r3",
-          "text": "street"
+          "text": "bank"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На карте отмечен весь район вокруг дома. Выберите название",
+      "accessibilityLabel": "Назовите район вокруг дома одним английским словом",
       "modePayload": {
         "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите район вокруг дома одним английским словом",
+          "uk": "Назвіть район навколо дому одним англійським словом"
+        },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
@@ -140,170 +162,760 @@
           },
           {
             "responseId": "en:lesson-04:session-08:i03:r2",
-            "text": "building"
+            "text": "clinic"
           },
           {
             "responseId": "en:lesson-04:session-08:i03:r3",
-            "text": "street"
+            "text": "bank"
           }
         ],
+        "testedDimension": "Назовите район вокруг дома одним английским словом",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-04:session-08:i03:r2",
             "correct": false,
-            "testedDimension": "required word choice",
+            "testedDimension": "Назовите район вокруг дома одним английским словом",
             "feedbackByLocale": {
-              "ru": "`Building` — один дом. На карте отмечен район: `neighbourhood`.",
-              "uk": "`Building` — один будинок. На карті позначено район: `neighbourhood`."
+              "ru": "`clinic` — клиника; район — `neighbourhood`.",
+              "uk": "`clinic` — клініка; район — `neighbourhood`."
             }
           },
           {
             "responseId": "en:lesson-04:session-08:i03:r3",
             "correct": false,
-            "testedDimension": "required word choice",
+            "testedDimension": "Назовите район вокруг дома одним английским словом",
             "feedbackByLocale": {
-              "ru": "`Street` — одна улица. Здесь нужен район вокруг дома: `neighbourhood`.",
-              "uk": "`Street` — одна вулиця. Тут потрібен район навколо дому: `neighbourhood`."
+              "ru": "`bank` — банк; район — `neighbourhood`.",
+              "uk": "`bank` — банк; район — `neighbourhood`."
             }
           }
         ]
-      }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-08:i04",
       "ordinal": 7,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите одну фразу о саде в районе",
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-08:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите одну фразу о саде в районе",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-08:i04:audio",
-          "transcript": "There is a garden in the neighbourhood."
-        },
-        "hiddenTargetPhrase": "There is a garden in the neighbourhood.",
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "garden",
-          "in",
-          "the",
-          "neighbourhood"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-08:i04:p1",
+            "target": "neighbourhood",
+            "meaningByLocale": {
+              "ru": "район",
+              "uk": "район"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i04:p2",
+            "target": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i04:p3",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i04:p4",
+            "target": "garden",
+            "meaningByLocale": {
+              "ru": "сад",
+              "uk": "сад"
+            }
+          }
         ],
-        "authoredDistractorTokens": [
-          "are"
+        "leftColumn": [
+          "neighbourhood",
+          "pharmacy",
+          "library",
+          "garden"
+        ],
+        "rightColumn": [
+          "район",
+          "аптека",
+          "библиотека",
+          "сад"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
-      }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-08:i05",
       "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-08:i05:audio",
+          "transcript": "This neighbourhood is quiet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This neighbourhood is quiet.",
+        "orderedTokens": [
+          "This",
+          "neighbourhood",
+          "is",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This neighbourhood is quiet.`",
+              "uk": "тут потрібно `is` — `This neighbourhood is quiet.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите другу «Здесь есть библиотека»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите другу «Здесь есть библиотека»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a library here.",
+        "localizedMeaning": {
+          "ru": "Сообщите другу «Здесь есть библиотека»",
+          "uk": "Повідомте другові «Тут є бібліотека»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "library",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сообщите другу «Здесь есть библиотека»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a library here.`",
+              "uk": "тут потрібно `is` — `There is a library here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг перечисляет места района и пропустил пекарню. Добавьте «Есть пекарня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-08:i07:audio"
+      ],
+      "accessibilityLabel": "Друг перечисляет места района и пропустил пекарню. Добавьте «Есть пекарня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-08:i07:audio",
+          "transcript": "There is a bakery."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a bakery.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i08",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте один ответ для одного банка",
+      "prompt": "Сообщите о наличии одного сада",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-08:i05:r1",
+          "responseId": "en:lesson-04:session-08:i08:r1",
           "text": "is"
         },
         {
-          "responseId": "en:lesson-04:session-08:i05:r2",
+          "responseId": "en:lesson-04:session-08:i08:r2",
           "text": "are"
         },
         {
-          "responseId": "en:lesson-04:session-08:i05:r3",
+          "responseId": "en:lesson-04:session-08:i08:r3",
           "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте один ответ для одного банка",
+      "accessibilityLabel": "Сообщите о наличии одного сада",
       "modePayload": {
         "family": "context_gap_grammar",
-        "gappedTargetPhrase": "There ___ a bank behind the library near the post office.",
+        "localizedScene": {
+          "ru": "Сообщите о наличии одного сада",
+          "uk": "Повідомте про наявність одного саду"
+        },
+        "gappedTargetPhrase": "There ___ a garden here.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-08:i05:r1",
+            "responseId": "en:lesson-04:session-08:i08:r1",
             "text": "is"
           },
           {
-            "responseId": "en:lesson-04:session-08:i05:r2",
+            "responseId": "en:lesson-04:session-08:i08:r2",
             "text": "are"
           },
           {
-            "responseId": "en:lesson-04:session-08:i05:r3",
+            "responseId": "en:lesson-04:session-08:i08:r3",
             "text": "am"
           }
         ],
+        "testedDimension": "Сообщите о наличии одного сада",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-08:i05:r2",
+            "responseId": "en:lesson-04:session-08:i08:r2",
             "correct": false,
-            "testedDimension": "singular there is agreement",
+            "testedDimension": "Сообщите о наличии одного сада",
             "feedbackByLocale": {
-              "ru": "Банк один, поэтому нужна форма `is`.",
-              "uk": "`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину."
+              "ru": "Один сад: `There is a garden here`.",
+              "uk": "Один сад: `There is a garden here`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-08:i05:r3",
+            "responseId": "en:lesson-04:session-08:i08:r3",
             "correct": false,
-            "testedDimension": "singular there is agreement",
+            "testedDimension": "Сообщите о наличии одного сада",
             "feedbackByLocale": {
-              "ru": "`Am` употребляется с `I`; здесь речь о банке.",
-              "uk": "`Am` уживають лише з `I`; тут ідеться про банк."
+              "ru": "Для наличия одного места нужно `There is`.",
+              "uk": "Для наявності одного місця потрібне `There is`."
             }
           }
         ]
-      }
+      },
+      "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-08:i06",
-      "ordinal": 9,
-      "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу о клинике рядом с площадкой",
-      "responseOptions": [],
+      "interactionId": "en:lesson-04:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сообщение о месте в районе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-08:i09:r1",
+          "text": "There is a bank."
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i09:r2",
+          "text": "There is a clinic."
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i09:r3",
+          "text": "There is a garden."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-08:i06:audio"
+        "en:lesson-04:session-08:i09:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу о клинике рядом с площадкой",
+      "accessibilityLabel": "Послушайте сообщение о месте в районе",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-08:i06:audio",
-          "transcript": "There is a clinic near the playground."
+          "audioTargetId": "en:lesson-04:session-08:i09:audio",
+          "transcript": "There is a bank."
         },
-        "targetPhrase": "There is a clinic near the playground."
-      }
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-08:i09:r1",
+            "targetText": "There is a bank.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i09:r2",
+            "targetText": "There is a clinic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i09:r3",
+            "targetText": "There is a garden.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о месте в районе",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bank`, а в этом варианте — `clinic`.",
+              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `clinic`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о месте в районе",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bank`, а в этом варианте — `garden`.",
+              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `garden`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-08:i07",
-      "ordinal": 10,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-04:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова с их значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова с их значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "p1",
+            "pairId": "en:lesson-04:session-08:i10:p1",
+            "target": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i10:p2",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i10:p3",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i10:p4",
+            "target": "garden",
+            "meaningByLocale": {
+              "ru": "сад",
+              "uk": "сад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pharmacy",
+          "library",
+          "bakery",
+          "garden"
+        ],
+        "rightColumn": [
+          "аптека",
+          "библиотека",
+          "пекарня",
+          "сад"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-08:i11:audio",
+          "transcript": "There is a post office."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a post office.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "post",
+          "office"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a post office.`",
+              "uk": "тут потрібно `is` — `There is a post office.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает о покупках. Сообщите «Здесь есть супермаркет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает о покупках. Сообщите «Здесь есть супермаркет»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a supermarket here.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает о покупках. Сообщите «Здесь есть супермаркет»",
+          "uk": "Друг запитує про покупки. Повідомте «Тут є супермаркет»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "supermarket",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг спрашивает о покупках. Сообщите «Здесь есть супермаркет»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a supermarket here.`",
+              "uk": "тут потрібно `is` — `There is a supermarket here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг ещё не заметил клинику. Сообщите «Здесь есть клиника»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-08:i13:audio"
+      ],
+      "accessibilityLabel": "Друг ещё не заметил клинику. Сообщите «Здесь есть клиника»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-08:i13:audio",
+          "transcript": "There is a clinic here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a clinic here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На карте несколько детских площадок. Сообщите, что здесь есть площадки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-08:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На карте несколько детских площадок. Сообщите, что здесь есть площадки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На карте несколько детских площадок. Сообщите, что здесь есть площадки",
+          "uk": "На карті кілька дитячих майданчиків. Повідомте, що тут є майданчики"
+        },
+        "gappedTargetPhrase": "There ___ playgrounds here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "На карте несколько детских площадок. Сообщите, что здесь есть площадки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i14:r2",
+            "correct": false,
+            "testedDimension": "На карте несколько детских площадок. Сообщите, что здесь есть площадки",
+            "feedbackByLocale": {
+              "ru": "Площадок несколько: `There are playgrounds here`.",
+              "uk": "Майданчиків кілька: `There are playgrounds here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i14:r3",
+            "correct": false,
+            "testedDimension": "На карте несколько детских площадок. Сообщите, что здесь есть площадки",
+            "feedbackByLocale": {
+              "ru": "Для нескольких площадок нужно `There are`.",
+              "uk": "Для кількох майданчиків потрібне `There are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите название места",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-08:i15:r1",
+          "text": "post office"
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i15:r2",
+          "text": "bank"
+        },
+        {
+          "responseId": "en:lesson-04:session-08:i15:r3",
+          "text": "library"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите название места",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-08:i15:audio",
+          "transcript": "post office"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-08:i15:r1",
+            "targetText": "post office",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i15:r2",
+            "targetText": "bank",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i15:r3",
+            "targetText": "library",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-08:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите название места",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `post`, а в этом варианте — `bank`.",
+              "uk": "У записі перше слово — `post`, а в цьому варіанті — `bank`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите название места",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `post`, а в этом варианте — `library`.",
+              "uk": "У записі перше слово — `post`, а в цьому варіанті — `library`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-08:i16:p1",
+            "target": "bank",
+            "meaningByLocale": {
+              "ru": "банк",
+              "uk": "банк"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i16:p2",
+            "target": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-08:i16:p3",
             "target": "clinic",
             "meaningByLocale": {
               "ru": "клиника",
@@ -311,212 +923,87 @@
             }
           },
           {
-            "pairId": "p2",
+            "pairId": "en:lesson-04:session-08:i16:p4",
             "target": "playground",
             "meaningByLocale": {
-              "ru": "площадка",
-              "uk": "майданчик"
-            }
-          },
-          {
-            "pairId": "p3",
-            "target": "post office",
-            "meaningByLocale": {
-              "ru": "почта",
-              "uk": "пошта"
-            }
-          },
-          {
-            "pairId": "p4",
-            "target": "supermarket",
-            "meaningByLocale": {
-              "ru": "супермаркет",
-              "uk": "супермаркет"
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
             }
           }
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-08:i08",
-      "ordinal": 11,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу о магазине в районе",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу о магазине в районе",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a shop in the neighbourhood.",
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "shop",
-          "in",
-          "the",
-          "neighbourhood"
         ],
-        "authoredDistractorTokens": [
-          "are"
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-08:i09",
-      "ordinal": 12,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте один ответ для одной пекарни",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-08:i09:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-04:session-08:i09:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-04:session-08:i09:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте один ответ для одной пекарни",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "gappedTargetPhrase": "There ___ a bakery near the garden.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-08:i09:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-04:session-08:i09:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-04:session-08:i09:r3",
-            "text": "am"
-          }
+        "leftColumn": [
+          "bank",
+          "supermarket",
+          "clinic",
+          "playground"
         ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-08:i09:r2",
-            "correct": false,
-            "testedDimension": "singular-form selection",
-            "feedbackByLocale": {
-              "ru": "Пекарня одна, поэтому нужна форма `is`.",
-              "uk": "Пекарня одна, тому потрібна форма `is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-08:i09:r3",
-            "correct": false,
-            "testedDimension": "singular-form selection",
-            "feedbackByLocale": {
-              "ru": "`Am` употребляется с `I`; здесь речь о пекарне.",
-              "uk": "`Am` уживається з `I`; тут ідеться про пекарню."
-            }
-          }
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-08:i10",
-      "ordinal": 13,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите одну фразу о площадках в районе",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-08:i10:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите одну фразу о площадках в районе",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-08:i10:audio",
-          "transcript": "There are playgrounds in the neighbourhood."
-        },
-        "hiddenTargetPhrase": "There are playgrounds in the neighbourhood.",
-        "orderedTokens": [
-          "There",
-          "are",
-          "playgrounds",
-          "in",
-          "the",
-          "neighbourhood"
+        "rightColumn": [
+          "банк",
+          "супермаркет",
+          "клиника",
+          "детская площадка"
         ],
-        "authoredDistractorTokens": [
-          "is"
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
-      }
+      },
+      "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-08:i11",
-      "ordinal": 14,
+      "interactionId": "en:lesson-04:session-08:i17",
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу о супермаркете",
+      "prompt": "В другой поездке вы обошли небольшой район. Друг спрашивает о его размере. Скажите «Этот район маленький»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-08:i11:audio"
+        "en:lesson-04:session-08:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу о супермаркете",
+      "accessibilityLabel": "В другой поездке вы обошли небольшой район. Друг спрашивает о его размере. Скажите «Этот район маленький»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-08:i11:audio",
-          "transcript": "There is a supermarket behind the library."
+          "audioTargetId": "en:lesson-04:session-08:i17:audio",
+          "transcript": "This neighbourhood is small."
         },
-        "targetPhrase": "There is a supermarket behind the library."
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-08:i12",
-      "ordinal": 15,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Финал — соберите сообщение о пекарне в районе",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Финал — соберите сообщение о пекарне в районе",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a bakery in the neighbourhood.",
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "bakery",
-          "in",
-          "the",
-          "neighbourhood"
-        ],
-        "authoredDistractorTokens": [
-          "are"
+        "slowReferenceAudio": null,
+        "targetPhrase": "This neighbourhood is small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
-      }
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 12,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "01b47854dbd75f37f8be33971e401ef98416f65e0bdc830b51bdc19106c16632"
+  "learnerFingerprint": "b082a9d2ffc739f3f77625505cce214412f865bb2055f8a8a475a0ed876188ef"
 }

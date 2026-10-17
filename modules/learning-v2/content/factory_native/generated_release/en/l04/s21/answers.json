@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-21:i01",
+    "correctText": "That is a taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i02",
+    "correctText": "juice",
+    "correctResponseId": "en:lesson-04:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i03",
+    "correctText": "juice",
+    "correctResponseId": "en:lesson-04:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i04",
+    "correctText": "en:lesson-04:session-21:i04:p1=juice\nen:lesson-04:session-21:i04:p2=broken\nen:lesson-04:session-21:i04:p3=pens\nen:lesson-04:session-21:i04:p4=taxi",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i05",
+    "correctText": "There is some juice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i06",
+    "correctText": "There are some pens here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i07",
+    "correctText": "No, it's broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i09",
+    "correctText": "Are there any pens?",
+    "correctResponseId": "en:lesson-04:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i10",
+    "correctText": "en:lesson-04:session-21:i10:p1=juice\nen:lesson-04:session-21:i10:p2=no\nen:lesson-04:session-21:i10:p3=pens\nen:lesson-04:session-21:i10:p4=taxi",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i11",
+    "correctText": "Is there any juice?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i12",
+    "correctText": "Are there any pens here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i13",
+    "correctText": "There is some juice there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-21:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i15",
+    "correctText": "No, it is broken.",
+    "correctResponseId": "en:lesson-04:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i16",
+    "correctText": "en:lesson-04:session-21:i16:p1=juice\nen:lesson-04:session-21:i16:p2=broken\nen:lesson-04:session-21:i16:p3=no\nen:lesson-04:session-21:i16:p4=pens",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-21:i17",
+    "correctText": "Is there any juice here?",
+    "correctResponseId": null
+  }
+]

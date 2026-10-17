@@ -1,0 +1,998 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is effective.",
+        "localizedMeaning": {
+          "ru": "Способ даёт нужный результат. Скажите «Это эффективно» без сокращения",
+          "uk": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "effective"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is effective.`",
+              "uk": "тут потрібно `is` — `It is effective.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i02:r1",
+          "text": "river"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i02:r2",
+          "text": "rivers"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i02:r3",
+          "text": "canal"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i02:audio",
+          "transcript": "river"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-50:i02:r1",
+            "targetText": "river",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i02:r2",
+            "targetText": "rivers",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i02:r3",
+            "targetText": "canal",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `river`, а в этом варианте — `rivers`.",
+              "uk": "У записі перше слово — `river`, а в цьому варіанті — `rivers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `river`, а в этом варианте — `canal`.",
+              "uk": "У записі перше слово — `river`, а в цьому варіанті — `canal`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть річку одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i03:r1",
+          "text": "river"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i03:r2",
+          "text": "canal"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i03:r3",
+          "text": "fountain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть річку одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите реку одним словом",
+          "uk": "Назвіть річку одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-50:i03:r1",
+            "text": "river"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i03:r2",
+            "text": "canal"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i03:r3",
+            "text": "fountain"
+          }
+        ],
+        "testedDimension": "Назвіть річку одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть річку одним словом",
+            "feedbackByLocale": {
+              "ru": "`canal` — искусственный канал; река — `river`.",
+              "uk": "`canal` — штучний канал; річка — `river`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть річку одним словом",
+            "feedbackByLocale": {
+              "ru": "`fountain` — фонтан; река — `river`.",
+              "uk": "`fountain` — фонтан; річка — `river`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-50:i04:p1",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i04:p2",
+            "target": "effective",
+            "meaningByLocale": {
+              "ru": "действенный",
+              "uk": "дієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i04:p3",
+            "target": "cinema",
+            "meaningByLocale": {
+              "ru": "кинотеатр",
+              "uk": "кінотеатр"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i04:p4",
+            "target": "bus shelter",
+            "meaningByLocale": {
+              "ru": "остановочный павильон",
+              "uk": "зупинковий павільйон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "river",
+          "effective",
+          "cinema",
+          "bus shelter"
+        ],
+        "rightColumn": [
+          "річка",
+          "дієвий",
+          "кінотеатр",
+          "зупинковий павільйон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i05:audio",
+          "transcript": "This is a river."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a river.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "river"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a river.`",
+              "uk": "тут потрібно `is` — `This is a river.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кінотеатр поруч із річкою. Скажіть, де він",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кінотеатр поруч із річкою. Скажіть, де він",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cinema is next to the river.",
+        "localizedMeaning": {
+          "ru": "Кинотеатр рядом с рекой. Скажите, где он",
+          "uk": "Кінотеатр поруч із річкою. Скажіть, де він"
+        },
+        "orderedTokens": [
+          "The",
+          "cinema",
+          "is",
+          "next",
+          "to",
+          "the",
+          "river"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Кінотеатр поруч із річкою. Скажіть, де він",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The cinema is next to the river.`",
+              "uk": "тут потрібно `is` — `The cinema is next to the river.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваш спосіб пояснювати дорогу допомагає знаходити місце. Скажіть «Це ефективно» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Ваш спосіб пояснювати дорогу допомагає знаходити місце. Скажіть «Це ефективно» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i07:audio",
+          "transcript": "It's effective."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's effective.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кінотеатру немає. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кінотеатру немає. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кинотеатра нет. Выберите форму",
+          "uk": "Кінотеатру немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a cinema.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-50:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Кінотеатру немає. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Кінотеатру немає. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`is` — есть; здесь нет: `isn’t`.",
+              "uk": "`is` — є; тут немає: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Кінотеатру немає. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один кинотеатр: `isn’t a cinema`.",
+              "uk": "Один кінотеатр: `isn’t a cinema`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де павільйон",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i09:r1",
+          "text": "The bus shelter is next to the cinema."
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i09:r2",
+          "text": "The bus shelter is next to the hospital."
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i09:r3",
+          "text": "The bus shelter is next to the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де павільйон",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i09:audio",
+          "transcript": "The bus shelter is next to the cinema."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-50:i09:r1",
+            "targetText": "The bus shelter is next to the cinema.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i09:r2",
+            "targetText": "The bus shelter is next to the hospital.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i09:r3",
+            "targetText": "The bus shelter is next to the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де павільйон",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cinema`, а в этом варианте — `hospital`.",
+              "uk": "У записі останнє слово — `cinema`, а в цьому варіанті — `hospital`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де павільйон",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cinema`, а в этом варианте — `shop`.",
+              "uk": "У записі останнє слово — `cinema`, а в цьому варіанті — `shop`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-50:i10:p1",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i10:p2",
+            "target": "effective",
+            "meaningByLocale": {
+              "ru": "действенный",
+              "uk": "дієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i10:p3",
+            "target": "cinema",
+            "meaningByLocale": {
+              "ru": "кинотеатр",
+              "uk": "кінотеатр"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i10:p4",
+            "target": "bus shelter",
+            "meaningByLocale": {
+              "ru": "остановочный павильон",
+              "uk": "зупинковий павільйон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "river",
+          "effective",
+          "cinema",
+          "bus shelter"
+        ],
+        "rightColumn": [
+          "річка",
+          "дієвий",
+          "кінотеатр",
+          "зупинковий павільйон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i11:audio",
+          "transcript": "Is there a river?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a river?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "river"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is in the bus shelter.",
+        "localizedMeaning": {
+          "ru": "Друг в остановочном павильоне. Скажите, где он, без сокращения",
+          "uk": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "in",
+          "the",
+          "bus",
+          "shelter"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is in the bus shelter.`",
+              "uk": "тут потрібно `is` — `He is in the bus shelter.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви хочете подивитися фільм. Запитайте, чи є кінотеатр",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Ви хочете подивитися фільм. Запитайте, чи є кінотеатр",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i13:audio",
+          "transcript": "Is there a cinema?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a cinema?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i14:r1",
+          "text": "next to"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Отель рядом с рекой, не в воде и не под рекой. Выберите слова",
+          "uk": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова"
+        },
+        "gappedTargetPhrase": "The hotel is ___ the river.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-50:i14:r1",
+            "text": "next to"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i14:r2",
+            "correct": false,
+            "testedDimension": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; рядом — `next to`.",
+              "uk": "`in` — усередині; поруч — `next to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i14:r3",
+            "correct": false,
+            "testedDimension": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
+            "feedbackByLocale": {
+              "ru": "`under` — под; рядом — `next to`.",
+              "uk": "`under` — під; поруч — `next to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що показує друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i15:r1",
+          "text": "That is a river."
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i15:r2",
+          "text": "This is a river."
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i15:r3",
+          "text": "That is a canal."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що показує друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i15:audio",
+          "transcript": "That is a river."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-50:i15:r1",
+            "targetText": "That is a river.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i15:r2",
+            "targetText": "This is a river.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i15:r3",
+            "targetText": "That is a canal.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `river`, а в этом варианте — `canal`.",
+              "uk": "У записі останнє слово — `river`, а в цьому варіанті — `canal`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-50:i16:p1",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i16:p2",
+            "target": "effective",
+            "meaningByLocale": {
+              "ru": "действенный",
+              "uk": "дієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i16:p3",
+            "target": "cinema",
+            "meaningByLocale": {
+              "ru": "кинотеатр",
+              "uk": "кінотеатр"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-50:i16:p4",
+            "target": "bus shelter",
+            "meaningByLocale": {
+              "ru": "остановочный павильон",
+              "uk": "зупинковий павільйон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "river",
+          "effective",
+          "cinema",
+          "bus shelter"
+        ],
+        "rightColumn": [
+          "річка",
+          "дієвий",
+          "кінотеатр",
+          "зупинковий павільйон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншому місті друг шукає кінотеатр. Він поруч із річкою. Поясніть, де кінотеатр, повною фразою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "В іншому місті друг шукає кінотеатр. Він поруч із річкою. Поясніть, де кінотеатр, повною фразою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i17:audio",
+          "transcript": "The cinema is next to the river."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cinema is next to the river.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fde81b6e9dd363e60b9c2dc7ffc552e2c9a2cfdbedb0048276a419c96e926db5"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-36:intro1:r2": {
+          "ru": "Перед одним прибором нужно `a`: `a smoke alarm`.",
+          "uk": "Перед одним приладом потрібне `a`: `a smoke alarm`."
+        },
+        "en:lesson-04:session-36:intro1:r3": {
+          "ru": "Здесь один прибор: `This is a smoke alarm`.",
+          "uk": "Тут один прилад: `This is a smoke alarm`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-36:intro2:r2": {
+          "ru": "`children` — несколько детей: нужно `are`.",
+          "uk": "`children` — кілька дітей: потрібне `are`."
+        },
+        "en:lesson-04:session-36:intro2:r3": {
+          "ru": "`under` — под; здесь рядом: `next to`.",
+          "uk": "`under` — під; тут поруч: `next to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-36:intro3:r2": {
+          "ru": "`formal` — в строгом официальном формате; здесь `informal`.",
+          "uk": "`formal` — у строгому офіційному форматі; тут `informal`."
+        },
+        "en:lesson-04:session-36:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b8220bf64ec5961f6e7a44e92658a64420045c882e1db6e46b7d5b2e174f8320"
+}

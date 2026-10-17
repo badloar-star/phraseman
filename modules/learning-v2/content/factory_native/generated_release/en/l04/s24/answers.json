@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-24:i01",
+    "correctText": "There is some milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i02",
+    "correctText": "yoghurt",
+    "correctResponseId": "en:lesson-04:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i03",
+    "correctText": "yoghurt",
+    "correctResponseId": "en:lesson-04:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i04",
+    "correctText": "en:lesson-04:session-24:i04:p1=yoghurt\nen:lesson-04:session-24:i04:p2=berry\nen:lesson-04:session-24:i04:p3=milk\nen:lesson-04:session-24:i04:p4=soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i05",
+    "correctText": "Is there any yoghurt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i06",
+    "correctText": "There is some soup here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i07",
+    "correctText": "Is there any juice here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i09",
+    "correctText": "Is there any cheese?",
+    "correctResponseId": "en:lesson-04:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i10",
+    "correctText": "en:lesson-04:session-24:i10:p1=mushroom\nen:lesson-04:session-24:i10:p2=juice\nen:lesson-04:session-24:i10:p3=carrot\nen:lesson-04:session-24:i10:p4=cheese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i11",
+    "correctText": "Is there a swimming pool here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i12",
+    "correctText": "There is some yoghurt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i13",
+    "correctText": "There is some yoghurt there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-24:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i15",
+    "correctText": "This is yoghurt.",
+    "correctResponseId": "en:lesson-04:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i16",
+    "correctText": "en:lesson-04:session-24:i16:p1=swimming pool\nen:lesson-04:session-24:i16:p2=berry\nen:lesson-04:session-24:i16:p3=mushroom\nen:lesson-04:session-24:i16:p4=carrot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-24:i17",
+    "correctText": "Is there any yoghurt here?",
+    "correctResponseId": null
+  }
+]

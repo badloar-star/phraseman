@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-50:i01",
+    "correctText": "It is effective.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i02",
+    "correctText": "river",
+    "correctResponseId": "en:lesson-04:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i03",
+    "correctText": "river",
+    "correctResponseId": "en:lesson-04:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i04",
+    "correctText": "en:lesson-04:session-50:i04:p1=river\nen:lesson-04:session-50:i04:p2=effective\nen:lesson-04:session-50:i04:p3=cinema\nen:lesson-04:session-50:i04:p4=bus shelter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i05",
+    "correctText": "This is a river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i06",
+    "correctText": "The cinema is next to the river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i07",
+    "correctText": "It's effective.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i09",
+    "correctText": "The bus shelter is next to the cinema.",
+    "correctResponseId": "en:lesson-04:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i10",
+    "correctText": "en:lesson-04:session-50:i10:p1=river\nen:lesson-04:session-50:i10:p2=effective\nen:lesson-04:session-50:i10:p3=cinema\nen:lesson-04:session-50:i10:p4=bus shelter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i11",
+    "correctText": "Is there a river?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i12",
+    "correctText": "He is in the bus shelter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i13",
+    "correctText": "Is there a cinema?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i14",
+    "correctText": "next to",
+    "correctResponseId": "en:lesson-04:session-50:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i15",
+    "correctText": "That is a river.",
+    "correctResponseId": "en:lesson-04:session-50:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i16",
+    "correctText": "en:lesson-04:session-50:i16:p1=river\nen:lesson-04:session-50:i16:p2=effective\nen:lesson-04:session-50:i16:p3=cinema\nen:lesson-04:session-50:i16:p4=bus shelter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i17",
+    "correctText": "The cinema is next to the river.",
+    "correctResponseId": null
+  }
+]

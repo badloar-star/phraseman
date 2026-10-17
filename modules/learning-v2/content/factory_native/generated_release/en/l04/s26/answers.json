@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-26:i01",
+    "correctText": "I am careless.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i02",
+    "correctText": "worktop",
+    "correctResponseId": "en:lesson-04:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i03",
+    "correctText": "worktop",
+    "correctResponseId": "en:lesson-04:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i04",
+    "correctText": "en:lesson-04:session-26:i04:p1=worktop\nen:lesson-04:session-26:i04:p2=careless\nen:lesson-04:session-26:i04:p3=cats\nen:lesson-04:session-26:i04:p4=milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i05",
+    "correctText": "The milk is on the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i06",
+    "correctText": "The cats are under the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i07",
+    "correctText": "I'm careless.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i08",
+    "correctText": "next to",
+    "correctResponseId": "en:lesson-04:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i09",
+    "correctText": "The milk is between the cups.",
+    "correctResponseId": "en:lesson-04:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i10",
+    "correctText": "en:lesson-04:session-26:i10:p1=worktop\nen:lesson-04:session-26:i10:p2=on\nen:lesson-04:session-26:i10:p3=under\nen:lesson-04:session-26:i10:p4=between",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i11",
+    "correctText": "The cats are next to the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i12",
+    "correctText": "The milk is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i13",
+    "correctText": "The worktop is next to the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i14",
+    "correctText": "under",
+    "correctResponseId": "en:lesson-04:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i15",
+    "correctText": "The worktop is between the windows.",
+    "correctResponseId": "en:lesson-04:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i16",
+    "correctText": "en:lesson-04:session-26:i16:p1=worktop\nen:lesson-04:session-26:i16:p2=careless\nen:lesson-04:session-26:i16:p3=cats\nen:lesson-04:session-26:i16:p4=milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i17",
+    "correctText": "The milk is on the worktop.",
+    "correctResponseId": null
+  }
+]

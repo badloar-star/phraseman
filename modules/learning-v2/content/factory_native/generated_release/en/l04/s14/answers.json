@@ -1,62 +1,87 @@
 [
   {
     "interactionId": "en:lesson-04:session-14:i01",
-    "correctText": "laundrette",
-    "correctResponseId": "en:lesson-04:session-14:i01:r1"
+    "correctText": "There is a picture.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i02",
     "correctText": "laundrette",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-14:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-14:i03",
-    "correctText": "en:lesson-04:session-14:i03:p1=laundrette\nen:lesson-04:session-14:i03:p2=hotel\nen:lesson-04:session-14:i03:p3=shop\nen:lesson-04:session-14:i03:p4=platform",
-    "correctResponseId": null
+    "correctText": "laundrette",
+    "correctResponseId": "en:lesson-04:session-14:i03:r1"
   },
   {
     "interactionId": "en:lesson-04:session-14:i04",
-    "correctText": "Is there a laundrette near the platform?",
-    "correctResponseId": "en:lesson-04:session-14:i04:r1"
+    "correctText": "en:lesson-04:session-14:i04:p1=laundrette\nen:lesson-04:session-14:i04:p2=obvious\nen:lesson-04:session-14:i04:p3=picture\nen:lesson-04:session-14:i04:p4=clinic",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i05",
-    "correctText": "Is there a laundrette near the hotel?",
+    "correctText": "Is there a laundrette?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i06",
-    "correctText": "Is",
-    "correctResponseId": "en:lesson-04:session-14:i06:r1"
+    "correctText": "That is a clinic.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i07",
-    "correctText": "There is a laundrette near the shop.",
+    "correctText": "It's obvious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i08",
-    "correctText": "There are laundrettes near the hotel.",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-04:session-14:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-14:i09",
-    "correctText": "Are there laundrettes near the building?",
+    "correctText": "Is there a picture?",
     "correctResponseId": "en:lesson-04:session-14:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-14:i10",
-    "correctText": "Are there two laundrettes near the building?",
+    "correctText": "en:lesson-04:session-14:i10:p1=laundrette\nen:lesson-04:session-14:i10:p2=laundrettes\nen:lesson-04:session-14:i10:p3=picture\nen:lesson-04:session-14:i10:p4=obvious",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i11",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-04:session-14:i11:r1"
+    "correctText": "There is a clinic here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i12",
-    "correctText": "Are there laundrettes near the hotel?",
+    "correctText": "There are laundrettes here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:i13",
+    "correctText": "Is there a picture here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:i14",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-14:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:i15",
+    "correctText": "It is obvious.",
+    "correctResponseId": "en:lesson-04:session-14:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:i16",
+    "correctText": "en:lesson-04:session-14:i16:p1=laundrette\nen:lesson-04:session-14:i16:p2=obvious\nen:lesson-04:session-14:i16:p3=picture\nen:lesson-04:session-14:i16:p4=clinic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:i17",
+    "correctText": "Is there a laundrette here?",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-39:i01",
+    "correctText": "It is relevant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i02",
+    "correctText": "boiler",
+    "correctResponseId": "en:lesson-04:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i03",
+    "correctText": "boiler",
+    "correctResponseId": "en:lesson-04:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i04",
+    "correctText": "en:lesson-04:session-39:i04:p1=boiler\nen:lesson-04:session-39:i04:p2=relevant\nen:lesson-04:session-39:i04:p3=bottles\nen:lesson-04:session-39:i04:p4=car park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i05",
+    "correctText": "This is a boiler.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i06",
+    "correctText": "The bottles are on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i07",
+    "correctText": "It's relevant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i09",
+    "correctText": "The car park is next to the house.",
+    "correctResponseId": "en:lesson-04:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i10",
+    "correctText": "en:lesson-04:session-39:i10:p1=boiler\nen:lesson-04:session-39:i10:p2=relevant\nen:lesson-04:session-39:i10:p3=bottles\nen:lesson-04:session-39:i10:p4=car park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i11",
+    "correctText": "There aren't any boilers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i12",
+    "correctText": "There is a boiler.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i13",
+    "correctText": "Is there a boiler?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i14",
+    "correctText": "in",
+    "correctResponseId": "en:lesson-04:session-39:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i15",
+    "correctText": "That is a boiler.",
+    "correctResponseId": "en:lesson-04:session-39:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i16",
+    "correctText": "en:lesson-04:session-39:i16:p1=boiler\nen:lesson-04:session-39:i16:p2=relevant\nen:lesson-04:session-39:i16:p3=bottles\nen:lesson-04:session-39:i16:p4=car park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-39:i17",
+    "correctText": "There isn't a boiler.",
+    "correctResponseId": null
+  }
+]

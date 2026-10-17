@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-46:i01",
+    "correctText": "It is appropriate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i02",
+    "correctText": "pantry",
+    "correctResponseId": "en:lesson-04:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i03",
+    "correctText": "pantry",
+    "correctResponseId": "en:lesson-04:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i04",
+    "correctText": "en:lesson-04:session-46:i04:p1=pantry\nen:lesson-04:session-46:i04:p2=appropriate\nen:lesson-04:session-46:i04:p3=airport\nen:lesson-04:session-46:i04:p4=bike shed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i05",
+    "correctText": "This is a pantry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i06",
+    "correctText": "The hotel is next to the airport.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i07",
+    "correctText": "It's appropriate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i09",
+    "correctText": "The bike shed is next to the house.",
+    "correctResponseId": "en:lesson-04:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i10",
+    "correctText": "en:lesson-04:session-46:i10:p1=pantry\nen:lesson-04:session-46:i10:p2=appropriate\nen:lesson-04:session-46:i10:p3=airport\nen:lesson-04:session-46:i10:p4=bike shed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i11",
+    "correctText": "There aren't any pantries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i12",
+    "correctText": "There is a pantry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i13",
+    "correctText": "Is there a bike shed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i14",
+    "correctText": "in",
+    "correctResponseId": "en:lesson-04:session-46:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i15",
+    "correctText": "That is a pantry.",
+    "correctResponseId": "en:lesson-04:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i16",
+    "correctText": "en:lesson-04:session-46:i16:p1=pantry\nen:lesson-04:session-46:i16:p2=appropriate\nen:lesson-04:session-46:i16:p3=airport\nen:lesson-04:session-46:i16:p4=bike shed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-46:i17",
+    "correctText": "Is there a pantry?",
+    "correctResponseId": null
+  }
+]

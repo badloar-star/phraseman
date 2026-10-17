@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-24:intro1:r2": {
+          "ru": "О йогурте как продукте спрашиваем `Is there`.",
+          "uk": "Про йогурт як продукт запитуємо `Is there`."
+        },
+        "en:lesson-04:session-24:intro1:r3": {
+          "ru": "Здесь не спрашивают об отдельной порции или баночке: нужно `any yoghurt`.",
+          "uk": "Тут не запитують про окрему порцію чи баночку: потрібне `any yoghurt`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-24:intro2:r2": {
+          "ru": "О супе как еде говорим `There is some soup`.",
+          "uk": "Про суп як їжу кажемо `There is some soup`."
+        },
+        "en:lesson-04:session-24:intro2:r3": {
+          "ru": "Здесь речь о продукте вообще: `some soup`.",
+          "uk": "Тут ідеться про продукт загалом: `some soup`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-24:intro3:r2": {
+          "ru": "Один бассейн: `Is there a swimming pool here?`.",
+          "uk": "Один басейн: `Is there a swimming pool here?`."
+        },
+        "en:lesson-04:session-24:intro3:r3": {
+          "ru": "Перед одним бассейном нужно `a`.",
+          "uk": "Перед одним басейном потрібне `a`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5973dbc1d7b1e4527fe079c90997f149d606375e063a31fda5faed1d9c64b4e1"
+}

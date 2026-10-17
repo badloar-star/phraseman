@@ -1,0 +1,996 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте «Это законно» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте «Это законно» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is legal.",
+        "localizedMeaning": {
+          "ru": "Передайте «Это законно» без сокращения",
+          "uk": "Передайте «Це законно» без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "legal"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Передайте «Это законно» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is legal.`",
+              "uk": "тут потрібно `is` — `It is legal.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i02:r1",
+          "text": "freezer"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i02:r2",
+          "text": "freezers"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i02:r3",
+          "text": "boiler"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i02:audio",
+          "transcript": "freezer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-44:i02:r1",
+            "targetText": "freezer",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i02:r2",
+            "targetText": "freezers",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i02:r3",
+            "targetText": "boiler",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `freezer`, а в этом варианте — `freezers`.",
+              "uk": "У записі перше слово — `freezer`, а в цьому варіанті — `freezers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `freezer`, а в этом варианте — `boiler`.",
+              "uk": "У записі перше слово — `freezer`, а в цьому варіанті — `boiler`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите морозильник одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i03:r1",
+          "text": "freezer"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i03:r2",
+          "text": "sink"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i03:r3",
+          "text": "thermostat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите морозильник одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите морозильник одним словом",
+          "uk": "Назвіть морозильник одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-44:i03:r1",
+            "text": "freezer"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i03:r2",
+            "text": "sink"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i03:r3",
+            "text": "thermostat"
+          }
+        ],
+        "testedDimension": "Назовите морозильник одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите морозильник одним словом",
+            "feedbackByLocale": {
+              "ru": "`sink` — раковина; морозильник — `freezer`.",
+              "uk": "`sink` — раковина; морозильник — `freezer`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите морозильник одним словом",
+            "feedbackByLocale": {
+              "ru": "`thermostat` — термостат; морозильник — `freezer`.",
+              "uk": "`thermostat` — термостат; морозильник — `freezer`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-44:i04:p1",
+            "target": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник",
+              "uk": "морозильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i04:p2",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i04:p3",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i04:p4",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "дымовой пожарный извещатель",
+              "uk": "димовий пожежний сповіщувач"
+            }
+          }
+        ],
+        "leftColumn": [
+          "freezer",
+          "legal",
+          "hotels",
+          "smoke alarm"
+        ],
+        "rightColumn": [
+          "морозильник",
+          "законный",
+          "отели",
+          "дымовой пожарный извещатель"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i05:audio",
+          "transcript": "This is a freezer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a freezer.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "freezer"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a freezer.`",
+              "uk": "тут потрібно `is` — `This is a freezer.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Отели рядом с парком. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Отели рядом с парком. Скажите, где они",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The hotels are next to the park.",
+        "localizedMeaning": {
+          "ru": "Отели рядом с парком. Скажите, где они",
+          "uk": "Готелі поруч із парком. Скажіть, де вони"
+        },
+        "orderedTokens": [
+          "The",
+          "hotels",
+          "are",
+          "next",
+          "to",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Отели рядом с парком. Скажите, где они",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The hotels are next to the park.`",
+              "uk": "тут потрібно `are` — `The hotels are next to the park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте фразу «Это законно» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Передайте фразу «Это законно» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i07:audio",
+          "transcript": "It's legal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's legal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Морозильника нет. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Морозильника нет. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Морозильника нет. Выберите форму",
+          "uk": "Морозильника немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a freezer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-44:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Морозильника нет. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Морозильника нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`is` — есть; здесь нет: `isn’t`.",
+              "uk": "`is` — є; тут немає: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Морозильника нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Один морозильник: `isn’t a freezer`.",
+              "uk": "Один морозильник: `isn’t a freezer`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где отели",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i09:r1",
+          "text": "The hotels are next to the shop."
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i09:r2",
+          "text": "The hotels are next to the park."
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i09:r3",
+          "text": "The hotels are next to the gym."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где отели",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i09:audio",
+          "transcript": "The hotels are next to the shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-44:i09:r1",
+            "targetText": "The hotels are next to the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i09:r2",
+            "targetText": "The hotels are next to the park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i09:r3",
+            "targetText": "The hotels are next to the gym.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где отели",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shop`, а в этом варианте — `park`.",
+              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `park`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где отели",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shop`, а в этом варианте — `gym`.",
+              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `gym`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-44:i10:p1",
+            "target": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник",
+              "uk": "морозильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i10:p2",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i10:p3",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i10:p4",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "дымовой пожарный извещатель",
+              "uk": "димовий пожежний сповіщувач"
+            }
+          }
+        ],
+        "leftColumn": [
+          "freezer",
+          "legal",
+          "hotels",
+          "smoke alarm"
+        ],
+        "rightColumn": [
+          "морозильник",
+          "законный",
+          "отели",
+          "дымовой пожарный извещатель"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i11:audio",
+          "transcript": "There aren't any freezers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren't any freezers.",
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "freezers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Здесь есть морозильник. Сообщите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Здесь есть морозильник. Сообщите об этом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a freezer.",
+        "localizedMeaning": {
+          "ru": "Здесь есть морозильник. Сообщите об этом",
+          "uk": "Тут є морозильник. Повідомте про це"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "freezer"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Здесь есть морозильник. Сообщите об этом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a freezer.`",
+              "uk": "тут потрібно `is` — `There is a freezer.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё не осмотрели номер. Спросите, есть ли дымовой пожарный извещатель",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Вы ещё не осмотрели номер. Спросите, есть ли дымовой пожарный извещатель",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i13:audio",
+          "transcript": "Is there a smoke alarm?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a smoke alarm?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i14:r1",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i14:r2",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
+          "uk": "Морозильник усередині кухні, не на її даху й не поверхом нижче під нею. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The freezer is ___ the kitchen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-44:i14:r1",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i14:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i14:r2",
+            "correct": false,
+            "testedDimension": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "Внутри кухни: `in the kitchen`.",
+              "uk": "Усередині кухні: `in the kitchen`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i14:r3",
+            "correct": false,
+            "testedDimension": "Морозильник внутри кухни, не на её крыше и не этажом ниже под ней. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; на кухне — `in the kitchen`.",
+              "uk": "`under` — під; на кухні — `in the kitchen`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что показывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-44:i15:r1",
+          "text": "That is a freezer."
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i15:r2",
+          "text": "This is a freezer."
+        },
+        {
+          "responseId": "en:lesson-04:session-44:i15:r3",
+          "text": "That is a boiler."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что показывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i15:audio",
+          "transcript": "That is a freezer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-44:i15:r1",
+            "targetText": "That is a freezer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i15:r2",
+            "targetText": "This is a freezer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i15:r3",
+            "targetText": "That is a boiler.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-44:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-44:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `freezer`, а в этом варианте — `boiler`.",
+              "uk": "У записі останнє слово — `freezer`, а в цьому варіанті — `boiler`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-44:i16:p1",
+            "target": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник",
+              "uk": "морозильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i16:p2",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i16:p3",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-44:i16:p4",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "дымовой пожарный извещатель",
+              "uk": "димовий пожежний сповіщувач"
+            }
+          }
+        ],
+        "leftColumn": [
+          "freezer",
+          "legal",
+          "hotels",
+          "smoke alarm"
+        ],
+        "rightColumn": [
+          "морозильник",
+          "законный",
+          "отели",
+          "дымовой пожарный извещатель"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-44:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы выбираете другой отель. Спросите, есть ли морозильник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Вы выбираете другой отель. Спросите, есть ли морозильник",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-44:i17:audio",
+          "transcript": "Is there a freezer?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a freezer?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "892a00cd5da0ad1b3acae8a47aec4ea3ee1efade99b851497afd03ec5dd2626f"
+}

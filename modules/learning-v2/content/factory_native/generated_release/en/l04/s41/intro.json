@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "назвать банкомат, спросить о его наличии и подтвердить точность информации",
+    "uk": "назвати банкомат, запитати про його наявність і підтвердити точність інформації"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где снять наличные",
+        "uk": "Де зняти готівку"
+      },
+      "bodyByLocale": {
+        "ru": "`cashpoint` — «банкомат». Один банкомат — `a cashpoint`. `This is a cashpoint` — «Это банкомат». Деньги он выдаёт, но подарком их считать не стоит: это ваши деньги со счёта.",
+        "uk": "`cashpoint` — «банкомат». Один банкомат — `a cashpoint`. `This is a cashpoint` — «Це банкомат». Гроші він видає, але подарунком їх вважати не варто: це ваші гроші з рахунку."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один банкомат рядом.",
+          "uk": "Назвіть один банкомат поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-41:intro1:r1",
+              "text": "This is a cashpoint."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro1:r2",
+              "text": "This is cashpoint."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro1:r3",
+              "text": "These are cashpoints."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-41:intro1:r1",
+              "text": "This is a cashpoint."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro1:r2",
+              "text": "This is cashpoint."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro1:r3",
+              "text": "These are cashpoints."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один банкомат рядом.",
+          "uk": "Назвіть один банкомат поруч."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Перед выходом",
+        "uk": "Перед виходом"
+      },
+      "bodyByLocale": {
+        "ru": "`kitchen` — «кухня», `doorbell` — «дверной звонок». `He is in the kitchen` — «Он на кухне»: по-английски здесь `in`. `There isn’t a doorbell` — «Дверного звонка нет». `Is there a cashpoint?` — «Есть банкомат?» `The cashpoint is next to the shop` — «Банкомат рядом с магазином».",
+        "uk": "`kitchen` — «кухня», `doorbell` — «дверний дзвінок». `He is in the kitchen` — «Він на кухні»: англійською тут `in`. `There isn’t a doorbell` — «Дверного дзвінка немає». `Is there a cashpoint?` — «Є банкомат?» `The cashpoint is next to the shop` — «Банкомат поруч із магазином»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг на кухне. Выберите описание.",
+          "uk": "Друг на кухні. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-41:intro2:r1",
+              "text": "He is in the kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro2:r2",
+              "text": "He is under the kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro2:r3",
+              "text": "He are in the kitchen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-41:intro2:r1",
+              "text": "He is in the kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro2:r2",
+              "text": "He is under the kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro2:r3",
+              "text": "He are in the kitchen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг на кухне. Выберите описание.",
+          "uk": "Друг на кухні. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Точно, без ошибки",
+        "uk": "Точно, без помилки"
+      },
+      "bodyByLocale": {
+        "ru": "`accurate` — «точный, соответствующий действительности». Вы проверили информацию о расположении банкомата: ошибок нет. `It is accurate` — «Это точно», короче `It’s accurate`. Здесь речь о точности сведений, а не об аккуратном почерке или чистоте.",
+        "uk": "`accurate` — «точний, такий, що відповідає дійсності». Ви перевірили інформацію про розташування банкомата: помилок немає. `It is accurate` — «Це точно», коротше `It’s accurate`. Тут ідеться про точність відомостей, а не про охайний почерк чи чистоту."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Информация проверена и соответствует действительности. Скажите о её точности с сокращением.",
+          "uk": "Інформацію перевірено, вона відповідає дійсності. Скажіть про її точність зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-41:intro3:r1",
+              "text": "It's accurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro3:r2",
+              "text": "It's inaccurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro3:r3",
+              "text": "It are accurate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-41:intro3:r1",
+              "text": "It's accurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro3:r2",
+              "text": "It's inaccurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-41:intro3:r3",
+              "text": "It are accurate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Информация проверена и соответствует действительности. Скажите о её точности с сокращением.",
+          "uk": "Інформацію перевірено, вона відповідає дійсності. Скажіть про її точність зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "248e9ddbd4a7911fa2b9ee1e84c342fe63fef511fc018238e39c766aa45ca963"
+}

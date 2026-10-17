@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-06",
   "learningOutcomeByLocale": {
-    "ru": "освоить конструкцию `There is a + singular noun` для одного места внутри здания.",
-    "uk": "опанувати конструкцію `There is a + singular noun` для одного місця всередині будівлі."
+    "ru": "сообщить о наличии клиники и описать знакомые предметы",
+    "uk": "повідомити про наявність клініки й описати знайомі предмети"
   },
   "pages": [
     {
@@ -12,52 +11,52 @@
       "pageId": "en:lesson-04:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Клиника на указателе",
-        "uk": "Клініка на вказівнику"
+        "ru": "Есть клиника",
+        "uk": "Є клініка"
       },
       "bodyByLocale": {
-        "ru": "`clinic` — «клиника»: место, куда приходят к врачу. На указателе это одно место. Запомните слово целиком: `clinic`. Оно отличается по смыслу от `library` — библиотеки и `bakery` — пекарни. Если в списке помещений нужна клиника, ищите именно слово `clinic`.",
-        "uk": "`clinic` — «клініка»: місце, куди приходять до лікаря. На вказівнику це одне місце. Запам’ятайте слово цілком: `clinic`. Воно відрізняється за значенням від `library` — бібліотеки та `bakery` — пекарні. Якщо у списку приміщень потрібна клініка, шукайте саме слово `clinic`."
+        "ru": "`clinic` — «клиника», место, куда приходят на приём к врачу. `There is a clinic` — «Есть клиника». Для одного места нужны `is` и `a`. `There is a clinic here` — «Здесь есть клиника». Одно слово на указателе не расскажет всё о клинике, но поможет её найти.",
+        "uk": "`clinic` — «клініка», місце, куди приходять на прийом до лікаря. `There is a clinic` — «Є клініка». Для одного місця потрібні `is` і `a`. `There is a clinic here` — «Тут є клініка». Одне слово на вказівнику не розповість усе про клініку, але допоможе її знайти."
       },
       "question": {
         "interactionId": "en:lesson-04:session-06:intro1:q",
         "promptByLocale": {
-          "ru": "На указателе отмечена клиника. Выберите слово.",
-          "uk": "На вказівнику позначено клініку. Оберіть слово."
+          "ru": "Сообщите, что здесь есть клиника.",
+          "uk": "Повідомте, що тут є клініка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-06:intro1:r1",
-              "text": "clinic"
+              "text": "There is a clinic here."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r2",
-              "text": "library"
+              "text": "There are a clinic here."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r3",
-              "text": "bakery"
+              "text": "There is clinic here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-06:intro1:r1",
-              "text": "clinic"
+              "text": "There is a clinic here."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r2",
-              "text": "library"
+              "text": "There are a clinic here."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r3",
-              "text": "bakery"
+              "text": "There is clinic here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На указателе отмечена клиника. Выберите слово.",
-          "uk": "На вказівнику позначено клініку. Оберіть слово."
+          "ru": "Сообщите, что здесь есть клиника.",
+          "uk": "Повідомте, що тут є клініка."
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одно место",
-        "uk": "Одне місце"
+        "ru": "Настоящее или искусственное",
+        "uk": "Справжнє чи штучне"
       },
       "bodyByLocale": {
-        "ru": "`There is a clinic.` — «Есть клиника». Для одного места используйте `There is`, а перед `clinic` ставьте `a`. Форма `are` нужна, когда мест несколько. Здесь на указателе одна клиника: он не обещает филиал на каждом этаже, поэтому точная фраза — `There is a clinic.`",
-        "uk": "`There is a clinic.` — «Є клініка». Для одного місця використовуйте `There is`, а перед `clinic` ставте `a`. Форма `are` потрібна, коли місць кілька. Тут на вказівнику одна клініка: він не обіцяє філію на кожному поверсі, тому точна фраза — `There is a clinic.`"
+        "ru": "Вспомним `fake` — «ненастоящий, искусственный». Яблоко на выставке сделано из пластика, хотя выглядит как настоящее. О нём: `It is fake` — «Оно ненастоящее». Сокращённо `It’s fake`. Это описание яблока; слово не означает, что оно спрятано или плохо видно.",
+        "uk": "Згадаймо `fake` — «несправжній, штучний». Яблуко на виставці зроблене з пластику, хоча виглядає як справжнє. Про нього: `It is fake` — «Воно несправжнє». Скорочено `It’s fake`. Це опис яблука; слово не означає, що воно сховане або його погано видно."
       },
       "question": {
         "interactionId": "en:lesson-04:session-06:intro2:q",
         "promptByLocale": {
-          "ru": "На указателе одна клиника. Выберите сообщение.",
-          "uk": "На вказівнику одна клініка. Оберіть повідомлення."
+          "ru": "Яблоко на выставке сделано из пластика. Скажите «Оно ненастоящее».",
+          "uk": "Яблуко на виставці зроблене з пластику. Скажіть «Воно несправжнє»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-06:intro2:r1",
-              "text": "There is a clinic."
+              "text": "It is fake."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r2",
-              "text": "There are a clinic."
+              "text": "It is real."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r3",
-              "text": "There is clinic."
+              "text": "It are fake."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-06:intro2:r1",
-              "text": "There is a clinic."
+              "text": "It is fake."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r2",
-              "text": "There are a clinic."
+              "text": "It is real."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r3",
-              "text": "There is clinic."
+              "text": "It are fake."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На указателе одна клиника. Выберите сообщение.",
-          "uk": "На вказівнику одна клініка. Оберіть повідомлення."
+          "ru": "Яблоко на выставке сделано из пластика. Скажите «Оно ненастоящее».",
+          "uk": "Яблуко на виставці зроблене з пластику. Скажіть «Воно несправжнє»."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Внутри здания",
-        "uk": "Усередині будівлі"
+        "ru": "Ручка и полосы",
+        "uk": "Ручка й смуги"
       },
       "bodyByLocale": {
-        "ru": "`There is a clinic in the building.` — «В здании есть клиника». Здесь `There is a` говорит об одном месте, а `in the building` — где его ищут. Сначала соберите основу `There is a clinic`, затем добавьте место. Порядок помогает: сначала сообщаем, что есть, потом — в каком здании это искать.",
-        "uk": "`There is a clinic in the building.` — «У будівлі є клініка». Тут `There is a` говорить про одне місце, а `in the building` — де його шукати. Спершу складіть основу `There is a clinic`, а потім додайте місце. Порядок допомагає: спершу повідомляємо, що є, а потім — у якій будівлі це шукати."
+        "ru": "`pen` — «ручка»: `This is a pen` — «Это ручка». Сообщить о наличии: `There is a pen here` — «Здесь есть ручка». `striped` — «полосатый»: `That bag is striped` — «Та сумка полосатая», показываем на сумку дальше. Полосатая сумка не превращает ручку внутри в полосатую: описываем именно сумку.",
+        "uk": "`pen` — «ручка»: `This is a pen` — «Це ручка». Повідомити про наявність: `There is a pen here` — «Тут є ручка». `striped` — «смугастий»: `That bag is striped` — «Та сумка смугаста», показуємо на сумку далі. Смугаста сумка не перетворює ручку всередині на смугасту: описуємо саме сумку."
       },
       "question": {
         "interactionId": "en:lesson-04:session-06:intro3:q",
         "promptByLocale": {
-          "ru": "В здании есть одна клиника. Выберите сообщение.",
-          "uk": "У будівлі є одна клініка. Оберіть повідомлення."
+          "ru": "Сумка дальше от вас покрыта полосами. Скажите «Та сумка полосатая».",
+          "uk": "Сумка далі від вас укрита смугами. Скажіть «Та сумка смугаста»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-06:intro3:r1",
-              "text": "There is a clinic in the building."
+              "text": "That bag is striped."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r2",
-              "text": "There are a clinic in the building."
+              "text": "That bag are striped."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r3",
-              "text": "There is clinic in the building."
+              "text": "Those bag is striped."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-06:intro3:r1",
-              "text": "There is a clinic in the building."
+              "text": "That bag is striped."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r2",
-              "text": "There are a clinic in the building."
+              "text": "That bag are striped."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r3",
-              "text": "There is clinic in the building."
+              "text": "Those bag is striped."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В здании есть одна клиника. Выберите сообщение.",
-          "uk": "У будівлі є одна клініка. Оберіть повідомлення."
+          "ru": "Сумка дальше от вас покрыта полосами. Скажите «Та сумка полосатая».",
+          "uk": "Сумка далі від вас укрита смугами. Скажіть «Та сумка смугаста»."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fbf4739b75edf21afbccb3e4f3d152ac912d4a16ad65389508a8896b5c0ee79e"
+  "introFingerprint": "1651e6c0144fa7eb19f1e4d659fdf2dbf670009cbf233d9c492e7c259277ce39"
 }

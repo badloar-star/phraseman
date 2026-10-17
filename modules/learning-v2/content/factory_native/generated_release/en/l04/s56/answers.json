@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-56:i01",
+    "correctText": "There is a community kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i02",
+    "correctText": "corner shop",
+    "correctResponseId": "en:lesson-04:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i03",
+    "correctText": "corner shop",
+    "correctResponseId": "en:lesson-04:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i04",
+    "correctText": "en:lesson-04:session-56:i04:p1=corner shop\nen:lesson-04:session-56:i04:p2=canal\nen:lesson-04:session-56:i04:p3=river\nen:lesson-04:session-56:i04:p4=community centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i05",
+    "correctText": "This is a corner shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i06",
+    "correctText": "The nursery is next to the community centre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i07",
+    "correctText": "Is there a police station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i09",
+    "correctText": "The canal is next to the park.",
+    "correctResponseId": "en:lesson-04:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i10",
+    "correctText": "en:lesson-04:session-56:i10:p1=nursery\nen:lesson-04:session-56:i10:p2=police station\nen:lesson-04:session-56:i10:p3=petrol station\nen:lesson-04:session-56:i10:p4=shortcut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i11",
+    "correctText": "Is there a corner shop?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i12",
+    "correctText": "The river is next to the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i13",
+    "correctText": "Is there a shortcut?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i14",
+    "correctText": "aren't",
+    "correctResponseId": "en:lesson-04:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i15",
+    "correctText": "It's a community kitchen.",
+    "correctResponseId": "en:lesson-04:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i16",
+    "correctText": "en:lesson-04:session-56:i16:p1=corner shop\nen:lesson-04:session-56:i16:p2=community kitchen\nen:lesson-04:session-56:i16:p3=canal\nen:lesson-04:session-56:i16:p4=river",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i17",
+    "correctText": "The corner shop is next to the nursery.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-35:i01",
+    "correctText": "It is formal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i02",
+    "correctText": "ramp",
+    "correctResponseId": "en:lesson-04:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i03",
+    "correctText": "ramp",
+    "correctResponseId": "en:lesson-04:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i04",
+    "correctText": "en:lesson-04:session-35:i04:p1=ramp\nen:lesson-04:session-35:i04:p2=formal\nen:lesson-04:session-35:i04:p3=photos\nen:lesson-04:session-35:i04:p4=awning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i05",
+    "correctText": "This is a ramp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i06",
+    "correctText": "The ramp is under the awning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i07",
+    "correctText": "It's formal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i09",
+    "correctText": "The photos are next to the door.",
+    "correctResponseId": "en:lesson-04:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i10",
+    "correctText": "en:lesson-04:session-35:i10:p1=ramp\nen:lesson-04:session-35:i10:p2=formal\nen:lesson-04:session-35:i10:p3=photos\nen:lesson-04:session-35:i10:p4=awning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i11",
+    "correctText": "There aren't any ramps.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i12",
+    "correctText": "There is a ramp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i13",
+    "correctText": "Is there a ramp?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i14",
+    "correctText": "on",
+    "correctResponseId": "en:lesson-04:session-35:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i15",
+    "correctText": "That is a ramp.",
+    "correctResponseId": "en:lesson-04:session-35:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i16",
+    "correctText": "en:lesson-04:session-35:i16:p1=ramp\nen:lesson-04:session-35:i16:p2=formal\nen:lesson-04:session-35:i16:p3=photos\nen:lesson-04:session-35:i16:p4=awning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-35:i17",
+    "correctText": "There isn't a ramp.",
+    "correctResponseId": null
+  }
+]

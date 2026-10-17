@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-17",
   "learningOutcomeByLocale": {
-    "ru": "сообщить об ограниченном количестве предметов через `There are some + plural noun`.",
-    "uk": "повідомити про обмежену кількість предметів через `There are some + plural noun`."
+    "ru": "сообщить о нескольких предметах с some и спросить об их наличии с any",
+    "uk": "повідомити про кілька предметів із some і запитати про їхню наявність із any"
   },
   "pages": [
     {
@@ -12,52 +11,52 @@
       "pageId": "en:lesson-04:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`container` — контейнер",
-        "uk": "`container` — контейнер"
+        "ru": "Одна ягода",
+        "uk": "Одна ягода"
       },
       "bodyByLocale": {
-        "ru": "`container` — «контейнер», ёмкость для хранения еды или вещей. Когда контейнеров несколько, слово получает окончание `-s`: `containers`.\n\nОбразец на столе один: назовите одну ёмкость, прежде чем говорить о нескольких в следующем шаге.",
-        "uk": "`container` — «контейнер», ємність для зберігання їжі або речей. Коли контейнерів кілька, слово отримує закінчення `-s`: `containers`.\n\nЗразок на столі один: назвіть одну ємність, перш ніж говорити про кілька на наступному кроці."
+        "ru": "`berry` — «ягода». Несколько — `berries`: в конце вместо `y` пишем `ies`. `This is a berry` — «Это ягода». Клубника крупная, но одна клубника всё равно одна ягода. Размер не превращает `berry` в `berries`.",
+        "uk": "`berry` — «ягода». Кілька — `berries`: наприкінці замість `y` пишемо `ies`. `This is a berry` — «Це ягода». Полуниця велика, але одна полуниця все одно одна ягода. Розмір не перетворює `berry` на `berries`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-17:intro1:q",
         "promptByLocale": {
-          "ru": "После рынка на столе стоит одна ёмкость для ягод. Выберите слово.",
-          "uk": "Після ринку на столі стоїть одна ємність для ягід. Оберіть слово."
+          "ru": "Назовите одну ягоду рядом: «Это ягода».",
+          "uk": "Назвіть одну ягоду поруч: «Це ягода»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-17:intro1:r1",
-              "text": "container"
+              "text": "This is a berry."
             },
             {
               "responseId": "en:lesson-04:session-17:intro1:r2",
-              "text": "containers"
+              "text": "These are berries."
             },
             {
               "responseId": "en:lesson-04:session-17:intro1:r3",
-              "text": "berry"
+              "text": "This is a berries."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-17:intro1:r1",
-              "text": "container"
+              "text": "This is a berry."
             },
             {
               "responseId": "en:lesson-04:session-17:intro1:r2",
-              "text": "containers"
+              "text": "These are berries."
             },
             {
               "responseId": "en:lesson-04:session-17:intro1:r3",
-              "text": "berry"
+              "text": "This is a berries."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "После рынка на столе стоит одна ёмкость для ягод. Выберите слово.",
-          "uk": "Після ринку на столі стоїть одна ємність для ягід. Оберіть слово."
+          "ru": "Назовите одну ягоду рядом: «Это ягода».",
+          "uk": "Назвіть одну ягоду поруч: «Це ягода»."
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`some` перед несколькими предметами",
-        "uk": "`some` перед кількома предметами"
+        "ru": "Есть немного",
+        "uk": "Є трохи"
       },
       "bodyByLocale": {
-        "ru": "`There are some containers.` — «Есть несколько контейнеров». `There are` показывает несколько, а `some` — ограниченное количество. Перед одним контейнером говорим `There is a container`. Полная фраза звучит так: `There are some containers.`",
-        "uk": "`There are some containers.` — «Є кілька контейнерів». `There are` показує кілька, а `some` — обмежену кількість. Перед одним контейнером кажемо `There is a container`. Повна фраза звучить так: `There are some containers.`"
+        "ru": "`There are some berries` — «Есть немного ягод». `some` здесь означает некоторое количество; точное число мы не называем. Слова без `some` тоже возможны: `There are berries` — «Есть ягоды». Сегодня потренируем вариант с `some`. Со знакомыми книгами так же: `There are some books` — «Есть несколько книг».",
+        "uk": "`There are some berries` — «Є трохи ягід». `some` тут означає певну кількість; точного числа ми не називаємо. Слова без `some` теж можливі: `There are berries` — «Є ягоди». Сьогодні потренуємо варіант із `some`. Із знайомими книжками так само: `There are some books` — «Є кілька книжок»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-17:intro2:q",
         "promptByLocale": {
-          "ru": "Выберите полное сообщение.",
-          "uk": "Оберіть повне повідомлення."
+          "ru": "Сообщите, что здесь есть немного ягод. Используйте `some`.",
+          "uk": "Повідомте, що тут є трохи ягід. Використайте `some`."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-17:intro2:r1",
-              "text": "There are some containers"
+              "text": "There are some berries here."
             },
             {
               "responseId": "en:lesson-04:session-17:intro2:r2",
-              "text": "There is a container."
+              "text": "There is some berries here."
             },
             {
               "responseId": "en:lesson-04:session-17:intro2:r3",
-              "text": "There are a container."
+              "text": "There are a berries here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-17:intro2:r1",
-              "text": "There are some containers"
+              "text": "There are some berries here."
             },
             {
               "responseId": "en:lesson-04:session-17:intro2:r2",
-              "text": "There is a container."
+              "text": "There is some berries here."
             },
             {
               "responseId": "en:lesson-04:session-17:intro2:r3",
-              "text": "There are a container."
+              "text": "There are a berries here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Выберите полное сообщение.",
-          "uk": "Оберіть повне повідомлення."
+          "ru": "Сообщите, что здесь есть немного ягод. Используйте `some`.",
+          "uk": "Повідомте, що тут є трохи ягід. Використайте `some`."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ягоды возвращаются в новой конструкции",
-        "uk": "Ягоди повертаються в новій конструкції"
+        "ru": "А есть ли вообще?",
+        "uk": "А чи є взагалі?"
       },
       "bodyByLocale": {
-        "ru": "`berry` мы уже встречали. Для ягод на столе есть несколько новых контейнеров: `There are some containers for berries.` Новая цель сессии — поставить `some` перед множественным числом и начать сообщение с `There are`; `berry` здесь остаётся знакомым словом.",
-        "uk": "`berry` ми вже зустрічали. Для ягід на столі є кілька нових контейнерів: `There are some containers for berries.` Нова ціль сесії — поставити `some` перед множиною і почати повідомлення з `There are`; `berry` тут залишається знайомим словом."
+        "ru": "Когда вы ещё не знаете, есть ли ягоды, обычный вопрос: `Are there any berries?` — «Есть ли ягоды?» Здесь `any` помогает спросить, есть ли хоть какие-нибудь. `Are there any books?` — «Есть ли книги?» Это не правило «в вопросах всегда any»: `some` тоже бывает в вопросах, но сейчас мы просто выясняем наличие, не предполагая ответа.",
+        "uk": "Коли ви ще не знаєте, чи є ягоди, звичайне запитання: `Are there any berries?` — «Чи є ягоди?» Тут `any` допомагає запитати, чи є хоч якісь. `Are there any books?` — «Чи є книжки?» Це не правило «у запитаннях завжди any»: `some` теж буває в запитаннях, але зараз ми просто з’ясовуємо наявність, не припускаючи відповіді."
       },
       "question": {
         "interactionId": "en:lesson-04:session-17:intro3:q",
         "promptByLocale": {
-          "ru": "На столе стоит несколько контейнеров для ягод. Выберите сообщение о них.",
-          "uk": "На столі стоїть кілька контейнерів для ягід. Оберіть повідомлення про них."
+          "ru": "Вы не знаете, остались ли ягоды. Спросите с `any`, есть ли они здесь.",
+          "uk": "Ви не знаєте, чи залишилися ягоди. Запитайте з `any`, чи є вони тут."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-17:intro3:r1",
-              "text": "There are some containers for berries."
+              "text": "Are there any berries here?"
             },
             {
               "responseId": "en:lesson-04:session-17:intro3:r2",
-              "text": "There is a container."
+              "text": "Is there any berries here?"
             },
             {
               "responseId": "en:lesson-04:session-17:intro3:r3",
-              "text": "There are containers."
+              "text": "There are any berries here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-17:intro3:r1",
-              "text": "There are some containers for berries."
+              "text": "Are there any berries here?"
             },
             {
               "responseId": "en:lesson-04:session-17:intro3:r2",
-              "text": "There is a container."
+              "text": "Is there any berries here?"
             },
             {
               "responseId": "en:lesson-04:session-17:intro3:r3",
-              "text": "There are containers."
+              "text": "There are any berries here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На столе стоит несколько контейнеров для ягод. Выберите сообщение о них.",
-          "uk": "На столі стоїть кілька контейнерів для ягід. Оберіть повідомлення про них."
+          "ru": "Вы не знаете, остались ли ягоды. Спросите с `any`, есть ли они здесь.",
+          "uk": "Ви не знаєте, чи залишилися ягоди. Запитайте з `any`, чи є вони тут."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b68dc1cbc5bdd1e69f70a85d4e6b95f3a7aaba089a630d60cd51808c95b07964"
+  "introFingerprint": "9a1a64abc44bec47aab3dd71fade440cae0ec0d01c823fec8e689db554df6084"
 }

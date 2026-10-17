@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-25:intro1:r2": {
+          "ru": "`on` — на поверхности; в условии ягода внутри: `in the sink`.",
+          "uk": "`on` — на поверхні; в умові ягода всередині: `in the sink`."
+        },
+        "en:lesson-04:session-25:intro1:r3": {
+          "ru": "Одна ягода: `The berry is`.",
+          "uk": "Одна ягода: `The berry is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-25:intro2:r2": {
+          "ru": "Это «под окном», а в условии рядом: `next to`.",
+          "uk": "Це «під вікном», а в умові поруч: `next to`."
+        },
+        "en:lesson-04:session-25:intro2:r3": {
+          "ru": "Одна раковина: `The sink is`.",
+          "uk": "Одна раковина: `The sink is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-25:intro3:r2": {
+          "ru": "`present` — присутствует; здесь отсутствует: `absent`.",
+          "uk": "`present` — присутній; тут відсутній: `absent`."
+        },
+        "en:lesson-04:session-25:intro3:r3": {
+          "ru": "С `He` нужно `is`: `He’s absent`.",
+          "uk": "З `He` потрібне `is`: `He’s absent`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e68a71f561ab37cea2c5be1ec1805da07190e66b41d3a75be3a6a38cab3d3368"
+}

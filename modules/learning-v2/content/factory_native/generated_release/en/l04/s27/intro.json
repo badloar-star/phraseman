@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "назвать навес и описать расположение вещей с under, on, next to и between",
+    "uk": "назвати навіс і описати розташування речей з under, on, next to та between"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Навес над столом",
+        "uk": "Навіс над столом"
+      },
+      "bodyByLocale": {
+        "ru": "`awning` — «навес», например тканевый навес над входом или столиками. Один — `an awning`: слово начинается с гласного звука. `The table is under the awning` — «Стол под навесом». `under` — под ним, `on` — на нём. Обедать лучше `under the awning`: на самом навесе столу делать нечего.",
+        "uk": "`awning` — «навіс», наприклад тканинний навіс над входом чи столиками. Один — `an awning`: слово починається з голосного звука. `The table is under the awning` — «Стіл під навісом». `under` — під ним, `on` — на ньому. Обідати краще `under the awning`: на самому навісі столу робити нічого."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Стол стоит под навесом. Выберите описание.",
+          "uk": "Стіл стоїть під навісом. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-27:intro1:r1",
+              "text": "The table is under the awning."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro1:r2",
+              "text": "The table is on the awning."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro1:r3",
+              "text": "The table are under the awning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-27:intro1:r1",
+              "text": "The table is under the awning."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro1:r2",
+              "text": "The table is on the awning."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro1:r3",
+              "text": "The table are under the awning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Стол стоит под навесом. Выберите описание.",
+          "uk": "Стіл стоїть під навісом. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Суп и машины",
+        "uk": "Суп і машини"
+      },
+      "bodyByLocale": {
+        "ru": "`soup` — «суп»: `The soup is on the table` — «Суп на столе». Речь о супе в посуде, а не о разлитом супе. `cars` — «машины»: `The cars are next to the house` — «Машины рядом с домом». `between` — «между»: `The table is between the cars` — «Стол между машинами». Для нескольких машин — `are`, для стола и супа — `is`.",
+        "uk": "`soup` — «суп»: `The soup is on the table` — «Суп на столі». Ідеться про суп у посуді, а не про розлитий суп. `cars` — «машини»: `The cars are next to the house` — «Машини поруч із будинком». `between` — «між»: `The table is between the cars` — «Стіл між машинами». Для кількох машин — `are`, для столу й супу — `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Машины припаркованы рядом с домом. Выберите описание.",
+          "uk": "Машини припарковані поруч із будинком. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-27:intro2:r1",
+              "text": "The cars are next to the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro2:r2",
+              "text": "The cars is next to the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro2:r3",
+              "text": "The cars are in the house."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-27:intro2:r1",
+              "text": "The cars are next to the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro2:r2",
+              "text": "The cars is next to the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro2:r3",
+              "text": "The cars are in the house."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Машины припаркованы рядом с домом. Выберите описание.",
+          "uk": "Машини припарковані поруч із будинком. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Щедрый хозяин",
+        "uk": "Щедрий господар"
+      },
+      "bodyByLocale": {
+        "ru": "`generous` — «щедрый». Друг принёс угощение для всех и охотно делится. `He is generous` — «Он щедрый». Сокращённо: `He’s generous`. Это не просто «у него много»: важно, что он готов делиться с другими.",
+        "uk": "`generous` — «щедрий». Друг приніс частування для всіх і охоче ділиться. `He is generous` — «Він щедрий». Скорочено: `He’s generous`. Це не просто «у нього багато»: важливо, що він готовий ділитися з іншими."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг охотно угощает всех. Скажите «Он щедрый» с сокращением.",
+          "uk": "Друг охоче пригощає всіх. Скажіть «Він щедрий» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-27:intro3:r1",
+              "text": "He's generous."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro3:r2",
+              "text": "He's careless."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro3:r3",
+              "text": "He are generous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-27:intro3:r1",
+              "text": "He's generous."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro3:r2",
+              "text": "He's careless."
+            },
+            {
+              "responseId": "en:lesson-04:session-27:intro3:r3",
+              "text": "He are generous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг охотно угощает всех. Скажите «Он щедрый» с сокращением.",
+          "uk": "Друг охоче пригощає всіх. Скажіть «Він щедрий» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f4cd5cfc44c1efdc443f1841629834833f54eb1447501b8d38925fc862c5c54f"
+}

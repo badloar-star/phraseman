@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-25:i01",
+    "correctText": "He is absent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i02",
+    "correctText": "sink",
+    "correctResponseId": "en:lesson-04:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i03",
+    "correctText": "sink",
+    "correctResponseId": "en:lesson-04:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i04",
+    "correctText": "en:lesson-04:session-25:i04:p1=sink\nen:lesson-04:session-25:i04:p2=absent\nen:lesson-04:session-25:i04:p3=dogs\nen:lesson-04:session-25:i04:p4=berry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i05",
+    "correctText": "The berry is in the sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i06",
+    "correctText": "The berry is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i07",
+    "correctText": "The dogs are under the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i08",
+    "correctText": "next to",
+    "correctResponseId": "en:lesson-04:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i09",
+    "correctText": "The sink is between the tables.",
+    "correctResponseId": "en:lesson-04:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i10",
+    "correctText": "en:lesson-04:session-25:i10:p1=sink\nen:lesson-04:session-25:i10:p2=in\nen:lesson-04:session-25:i10:p3=on\nen:lesson-04:session-25:i10:p4=under",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i11",
+    "correctText": "The dogs are next to the sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i12",
+    "correctText": "The berry is under the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i13",
+    "correctText": "He's absent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-25:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i15",
+    "correctText": "The dogs are in the room.",
+    "correctResponseId": "en:lesson-04:session-25:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i16",
+    "correctText": "en:lesson-04:session-25:i16:p1=sink\nen:lesson-04:session-25:i16:p2=absent\nen:lesson-04:session-25:i16:p3=dogs\nen:lesson-04:session-25:i16:p4=berry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i17",
+    "correctText": "The sink is next to the window.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "назвать столб с указателями, описать расположение и сказать «в другом месте»",
+    "uk": "назвати стовп із вказівниками, описати розташування та сказати «в іншому місці»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Куда идти",
+        "uk": "Куди йти"
+      },
+      "bodyByLocale": {
+        "ru": "`signpost` — «столб с указателями», например со стрелками к разным местам. `The signpost is next to the shop` — «Столб с указателями рядом с магазином». Один такой столб — `a signpost`. На нём может быть пять стрелок, но сам столб всё равно один: `signpost`, а не `signposts`.",
+        "uk": "`signpost` — «стовп із вказівниками», наприклад зі стрілками до різних місць. `The signpost is next to the shop` — «Стовп із вказівниками поруч із магазином». Один такий стовп — `a signpost`. На ньому може бути п’ять стрілок, але сам стовп усе одно один: `signpost`, а не `signposts`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один столб с указателями рядом.",
+          "uk": "Назвіть один стовп із вказівниками поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-30:intro1:r1",
+              "text": "This is a signpost."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro1:r2",
+              "text": "These are signposts."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro1:r3",
+              "text": "This is signpost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-30:intro1:r1",
+              "text": "This is a signpost."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro1:r2",
+              "text": "These are signposts."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro1:r3",
+              "text": "This is signpost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один столб с указателями рядом.",
+          "uk": "Назвіть один стовп із вказівниками поруч."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Окна и морковка",
+        "uk": "Вікна й морквина"
+      },
+      "bodyByLocale": {
+        "ru": "`windows` — «окна»: `The signpost is between the windows` — «Столб с указателями между окнами». Представьте его перед стеной в промежутке между двумя окнами. `carrot` — «морковка»: `The carrot is on the table` — «Морковка на столе». `The windows are next to the door` — «Окна рядом с дверью». Несколько окон требуют `are`, один столб или морковка — `is`.",
+        "uk": "`windows` — «вікна»: `The signpost is between the windows` — «Стовп із вказівниками між вікнами». Уявіть його перед стіною в проміжку між двома вікнами. `carrot` — «морквина»: `The carrot is on the table` — «Морквина на столі». `The windows are next to the door` — «Вікна поруч із дверима». Кілька вікон потребують `are`, один стовп чи морквина — `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Морковка лежит на столе. Выберите описание.",
+          "uk": "Морквина лежить на столі. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-30:intro2:r1",
+              "text": "The carrot is on the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro2:r2",
+              "text": "The carrot is under the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro2:r3",
+              "text": "The carrot are on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-30:intro2:r1",
+              "text": "The carrot is on the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro2:r2",
+              "text": "The carrot is under the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro2:r3",
+              "text": "The carrot are on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Морковка лежит на столе. Выберите описание.",
+          "uk": "Морквина лежить на столі. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В другом месте",
+        "uk": "В іншому місці"
+      },
+      "bodyByLocale": {
+        "ru": "`elsewhere` — «в другом месте». Вы ищете машину у магазина, но друг оставил её в другом месте: `It is elsewhere` — «Она в другом месте». Сокращённо: `It’s elsewhere`. После `elsewhere` не нужно добавлять ещё одно слово «место»: оно уже входит в смысл. Точного адреса эта фраза не сообщает.",
+        "uk": "`elsewhere` — «в іншому місці». Ви шукаєте машину біля магазину, але друг залишив її в іншому місці: `It is elsewhere` — «Вона в іншому місці». Скорочено: `It’s elsewhere`. Після `elsewhere` не потрібно додавати ще одне слово «місце»: воно вже входить у значення. Точної адреси ця фраза не повідомляє."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Машину оставили в другом месте. Скажите об этом с сокращением.",
+          "uk": "Машину залишили в іншому місці. Скажіть про це зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-30:intro3:r1",
+              "text": "It's elsewhere."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro3:r2",
+              "text": "It's here."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro3:r3",
+              "text": "It are elsewhere."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-30:intro3:r1",
+              "text": "It's elsewhere."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro3:r2",
+              "text": "It's here."
+            },
+            {
+              "responseId": "en:lesson-04:session-30:intro3:r3",
+              "text": "It are elsewhere."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Машину оставили в другом месте. Скажите об этом с сокращением.",
+          "uk": "Машину залишили в іншому місці. Скажіть про це зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6f2fed1d271b2dd5b8b9ff53f135ef53c40b214b8fb396bbe0eeb5280fa37db9"
+}

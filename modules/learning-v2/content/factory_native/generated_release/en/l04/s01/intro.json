@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-01",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о наличии одного места: `There is a/an + singular count noun`.",
-    "uk": "повідомити про наявність одного місця: `There is a/an + singular count noun`."
+    "ru": "сообщить о наличии одного места с There is и нескольких предметов с There are",
+    "uk": "повідомити про наявність одного місця з There is і кількох предметів з There are"
   },
   "pages": [
     {
@@ -12,18 +11,18 @@
       "pageId": "en:lesson-04:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Аптека на карте",
-        "uk": "Аптека на карті"
+        "ru": "Есть аптека",
+        "uk": "Є аптека"
       },
       "bodyByLocale": {
-        "ru": "`pharmacy` — «аптека», на карте района отмечена одна аптека. По-английски, когда нужно сказать, что одно место есть, начинайте с `There is`. Перед названием одного места ставьте `a`: `There is a pharmacy.` — «Есть аптека». Эта фраза сообщает, что аптека существует.",
-        "uk": "`pharmacy` — «аптека», на карті району позначено одну аптеку. Англійською, коли треба сказати, що одне місце є, починайте з `There is`. Перед назвою одного місця ставте `a`: `There is a pharmacy.` — «Є аптека». Так ви прямо повідомляєте, що в районі є одна аптека."
+        "ru": "`pharmacy` — «аптека». `There is a pharmacy` — «Есть аптека»: сообщаем, что такое место есть. Начало `There is` здесь работает целиком и не значит «там есть»: слово «там» отдельно не требуется. Одно место — `is`, перед названием — `a`. Вспомним `comfortable` — «комфортный, удобный»: в комнате уютно, `It is comfortable` — «В ней комфортно».",
+        "uk": "`pharmacy` — «аптека». `There is a pharmacy` — «Є аптека»: повідомляємо, що таке місце є. Початок `There is` тут працює як одне ціле й не означає «там є»: слово «там» окремо не потрібне. Одне місце — `is`, перед назвою — `a`. Згадаймо `comfortable` — «комфортний, зручний»: у кімнаті затишно, `It is comfortable` — «У ній комфортно»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-01:intro1:q",
         "promptByLocale": {
-          "ru": "У стойки заселения вам показывают аптеку. Выберите точную фразу.",
-          "uk": "Біля стійки реєстрації вам показують аптеку. Виберіть точну фразу."
+          "ru": "Сообщите, что в районе есть аптека.",
+          "uk": "Повідомте, що в районі є аптека."
         },
         "choicesByLocale": {
           "ru": [
@@ -56,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У стойки заселения вам показывают аптеку. Выберите точную фразу.",
-          "uk": "Біля стійки реєстрації вам показують аптеку. Виберіть точну фразу."
+          "ru": "Сообщите, что в районе есть аптека.",
+          "uk": "Повідомте, що в районі є аптека."
         }
       }
     },
@@ -66,18 +65,18 @@
       "pageId": "en:lesson-04:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Библиотека на карте",
-        "uk": "Бібліотека на карті"
+        "ru": "Есть библиотека",
+        "uk": "Є бібліотека"
       },
       "bodyByLocale": {
-        "ru": "`library` — «библиотека». В районе есть одна библиотека. Формула не меняется: `There is a library.` Сначала `There is` — «есть», потом `a`, затем название одного места. На карте одна библиотека, поэтому достаточно одной короткой фразы: `There is a library.`",
-        "uk": "`library` — «бібліотека». У районі є одна бібліотека. Формула не змінюється: `There is a library.` Спочатку `There is` — «є», потім `a`, потім назва одного місця. На карті одна бібліотека, тому достатньо однієї короткої фрази: `There is a library.`"
+        "ru": "`library` — «библиотека». `There is a library` — «Есть библиотека». Название места меняется, начало остаётся. `sure` — «уверенный»: `I am sure` — «Я уверен». `interested` — «заинтересованный»: рассказ о районе увлёк вас, `I am interested` — «Мне интересно». `hospital` — «больница»: `There is a hospital` — «Есть больница».",
+        "uk": "`library` — «бібліотека». `There is a library` — «Є бібліотека». Назва місця змінюється, початок залишається. `sure` — «упевнений»: `I am sure` — «Я впевнений». `interested` — «зацікавлений»: розповідь про район захопила вас, `I am interested` — «Мені цікаво». `hospital` — «лікарня»: `There is a hospital` — «Є лікарня»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-01:intro2:q",
         "promptByLocale": {
-          "ru": "На карте отмечена библиотека. Выберите точную фразу.",
-          "uk": "На карті позначено бібліотеку. Виберіть точну фразу."
+          "ru": "Сообщите, что в районе есть библиотека.",
+          "uk": "Повідомте, що в районі є бібліотека."
         },
         "choicesByLocale": {
           "ru": [
@@ -87,11 +86,11 @@
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r2",
-              "text": "There is an library."
+              "text": "There are a library."
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r3",
-              "text": "There a library."
+              "text": "There is an library."
             }
           ],
           "uk": [
@@ -101,17 +100,17 @@
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r2",
-              "text": "There is an library."
+              "text": "There are a library."
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r3",
-              "text": "There a library."
+              "text": "There is an library."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На карте отмечена библиотека. Выберите точную фразу.",
-          "uk": "На карті позначено бібліотеку. Виберіть точну фразу."
+          "ru": "Сообщите, что в районе есть библиотека.",
+          "uk": "Повідомте, що в районі є бібліотека."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пекарня на карте",
-        "uk": "Пекарня на карті"
+        "ru": "Пекарня и ключи",
+        "uk": "Пекарня й ключі"
       },
       "bodyByLocale": {
-        "ru": "`bakery` — «пекарня». Рядом с новым домом есть одна пекарня. Скажите `There is a bakery.` В этой формуле `a` стоит перед названием одного места; название меняется, а начало остаётся прежним. Фраза особенно полезна, когда коробки уже распакованы, а ужин — ещё нет.",
-        "uk": "`bakery` — «пекарня». Біля нового дому є одна пекарня. Скажіть `There is a bakery.` У цій формулі `a` стоїть перед назвою одного місця; назва змінюється, а початок лишається тим самим. Фраза особливо корисна, коли коробки вже розпаковано, а вечері ще немає."
+        "ru": "`bakery` — «пекарня». `There is a bakery here` — «Здесь есть пекарня». Пекарня на карте хлебом не пахнет, но теперь вы знаете, куда идти. `key` — «ключ», несколько — `keys`. Для нескольких: `There are keys here` — «Здесь есть ключи». С несколькими ключами нужны `are` и `keys`, без `a`.",
+        "uk": "`bakery` — «пекарня». `There is a bakery here` — «Тут є пекарня». Пекарня на карті хлібом не пахне, але тепер ви знаєте, куди йти. `key` — «ключ», кілька — `keys`. Для кількох: `There are keys here` — «Тут є ключі». З кількома ключами потрібні `are` і `keys`, без `a`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-01:intro3:q",
         "promptByLocale": {
-          "ru": "На карте отмечена пекарня. Выберите точную фразу.",
-          "uk": "На карті позначено пекарню. Виберіть точну фразу."
+          "ru": "Сообщите, что здесь есть несколько ключей.",
+          "uk": "Повідомте, що тут є кілька ключів."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-01:intro3:r1",
-              "text": "There is a bakery."
+              "text": "There are keys here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r2",
-              "text": "There is bakery a."
+              "text": "There is keys here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r3",
-              "text": "There is an bakery."
+              "text": "There are a keys here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-01:intro3:r1",
-              "text": "There is a bakery."
+              "text": "There are keys here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r2",
-              "text": "There is bakery a."
+              "text": "There is keys here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r3",
-              "text": "There is an bakery."
+              "text": "There are a keys here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На карте отмечена пекарня. Выберите точную фразу.",
-          "uk": "На карті позначено пекарню. Виберіть точну фразу."
+          "ru": "Сообщите, что здесь есть несколько ключей.",
+          "uk": "Повідомте, що тут є кілька ключів."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a03e39380d97fefda4cc152a0700c98f4fcbd0484dd6dd3d9a703fc388f523fb"
+  "introFingerprint": "cec5547811e429771595f6c594c9be4c72931d44956f01ec6445df24a3509022"
 }

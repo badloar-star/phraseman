@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-21:intro1:r2": {
+          "ru": "О соке как напитке говорим `There is some juice here`.",
+          "uk": "Про сік як напій кажемо `There is some juice here`."
+        },
+        "en:lesson-04:session-21:intro1:r3": {
+          "ru": "Здесь речь о напитке вообще, а не заказанной порции: `some juice`.",
+          "uk": "Тут ідеться про напій загалом, а не замовлену порцію: `some juice`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-21:intro2:r2": {
+          "ru": "С соком как напитком нужно `Is there`.",
+          "uk": "Із соком як напоєм потрібне `Is there`."
+        },
+        "en:lesson-04:session-21:intro2:r3": {
+          "ru": "В этом вопросе сначала `Is there`: `Is there any juice here?`.",
+          "uk": "У цьому запитанні спочатку `Is there`: `Is there any juice here?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-21:intro3:r2": {
+          "ru": "На вопрос, работает ли сломанная ручка, отвечаем «Нет»: `No`.",
+          "uk": "На запитання, чи працює зламана ручка, відповідаємо «Ні»: `No`."
+        },
+        "en:lesson-04:session-21:intro3:r3": {
+          "ru": "С `it` нужно `is`: `it’s broken`.",
+          "uk": "З `it` потрібне `is`: `it’s broken`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "84c565555c2e91a701eb93843ef04a48bba12dad7e664ee056091b3a73f85ae2"
+}

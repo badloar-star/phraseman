@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-27:i01",
+    "correctText": "He is generous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i02",
+    "correctText": "awning",
+    "correctResponseId": "en:lesson-04:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i03",
+    "correctText": "awning",
+    "correctResponseId": "en:lesson-04:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i04",
+    "correctText": "en:lesson-04:session-27:i04:p1=awning\nen:lesson-04:session-27:i04:p2=generous\nen:lesson-04:session-27:i04:p3=cars\nen:lesson-04:session-27:i04:p4=soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i05",
+    "correctText": "The table is under the awning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i06",
+    "correctText": "The soup is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i07",
+    "correctText": "He's generous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i08",
+    "correctText": "next to",
+    "correctResponseId": "en:lesson-04:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i09",
+    "correctText": "The soup is under the awning.",
+    "correctResponseId": "en:lesson-04:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i10",
+    "correctText": "en:lesson-04:session-27:i10:p1=awning\nen:lesson-04:session-27:i10:p2=under\nen:lesson-04:session-27:i10:p3=on\nen:lesson-04:session-27:i10:p4=between",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i11",
+    "correctText": "The cars are under the awning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i12",
+    "correctText": "This is an awning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i13",
+    "correctText": "The table is between the cars.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i15",
+    "correctText": "That is an awning.",
+    "correctResponseId": "en:lesson-04:session-27:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i16",
+    "correctText": "en:lesson-04:session-27:i16:p1=awning\nen:lesson-04:session-27:i16:p2=generous\nen:lesson-04:session-27:i16:p3=cars\nen:lesson-04:session-27:i16:p4=soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-27:i17",
+    "correctText": "The table is under the awning.",
+    "correctResponseId": null
+  }
+]

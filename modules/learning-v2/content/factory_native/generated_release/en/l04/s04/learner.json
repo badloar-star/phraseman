@@ -1,6 +1,5 @@
 {
   "schemaVersion": "learning_v2_course_session_learner_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-04",
   "targetLanguage": "en",
   "interactions": [
@@ -8,79 +7,115 @@
       "interactionId": "en:lesson-04:session-04:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назовите вещь в руках друга: «Это сумка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите вещь в руках друга: «Это сумка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a bag.",
+        "localizedMeaning": {
+          "ru": "Назовите вещь в руках друга: «Это сумка»",
+          "uk": "Назвіть річ у руках друга: «Це сумка»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "bag"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Назовите вещь в руках друга: «Это сумка»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a bag.`",
+              "uk": "тут потрібно `is` — `This is a bag.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите, что прозвучало",
+      "prompt": "Послушайте и выберите название места",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-04:i01:r1",
+          "responseId": "en:lesson-04:session-04:i02:r1",
           "text": "post office"
         },
         {
-          "responseId": "en:lesson-04:session-04:i01:r2",
-          "text": "postal service"
+          "responseId": "en:lesson-04:session-04:i02:r2",
+          "text": "bank"
         },
         {
-          "responseId": "en:lesson-04:session-04:i01:r3",
-          "text": "mailbox"
+          "responseId": "en:lesson-04:session-04:i02:r3",
+          "text": "library"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-04:i01:audio"
+        "en:lesson-04:session-04:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите, что прозвучало",
+      "accessibilityLabel": "Послушайте и выберите название места",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i01:audio",
+          "audioTargetId": "en:lesson-04:session-04:i02:audio",
           "transcript": "post office"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-04:i01:r1",
+            "responseId": "en:lesson-04:session-04:i02:r1",
             "targetText": "post office",
-            "meaningByLocale": {
-              "ru": "почтовое отделение",
-              "uk": "поштове відділення"
-            }
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-04:i01:r2",
-            "targetText": "postal service",
-            "meaningByLocale": {
-              "ru": "почтовая служба",
-              "uk": "поштова служба"
-            }
+            "responseId": "en:lesson-04:session-04:i02:r2",
+            "targetText": "bank",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-04:i01:r3",
-            "targetText": "mailbox",
-            "meaningByLocale": {
-              "ru": "почтовый ящик",
-              "uk": "поштова скринька"
-            }
+            "responseId": "en:lesson-04:session-04:i02:r3",
+            "targetText": "library",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-04:i01:r2",
+            "responseId": "en:lesson-04:session-04:i02:r2",
             "correct": false,
-            "testedDimension": "значение post office",
+            "testedDimension": "Послушайте и выберите название места",
             "feedbackByLocale": {
-              "ru": "В записи звучит название места `post office`, а не службы в целом.",
-              "uk": "У записі звучить назва місця `post office`, а не служби загалом."
+              "ru": "В записи первое слово — `post`, а в этом варианте — `bank`.",
+              "uk": "У записі перше слово — `post`, а в цьому варіанті — `bank`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-04:i01:r3",
+            "responseId": "en:lesson-04:session-04:i02:r3",
             "correct": false,
-            "testedDimension": "значение post office",
+            "testedDimension": "Послушайте и выберите название места",
             "feedbackByLocale": {
-              "ru": "Ящик стоит снаружи, а `post office` — само отделение, куда заходят.",
-              "uk": "Скринька стоїть надворі, а `post office` — саме відділення, куди заходять."
+              "ru": "В записи первое слово — `post`, а в этом варианте — `library`.",
+              "uk": "У записі перше слово — `post`, а в цьому варіанті — `library`."
             }
           }
         ],
@@ -90,102 +125,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-04:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите новое слово «почтовое отделение»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-04:i02:audio"
-      ],
-      "accessibilityLabel": "Произнесите новое слово «почтовое отделение»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i02:audio",
-          "transcript": "post office"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "post office",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-04:session-04:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте второе слово названия места",
+      "prompt": "Назовите почтовое отделение по-английски",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-04:i03:r1",
-          "text": "office"
+          "text": "post office"
         },
         {
           "responseId": "en:lesson-04:session-04:i03:r2",
-          "text": "offer"
+          "text": "bank"
         },
         {
           "responseId": "en:lesson-04:session-04:i03:r3",
-          "text": "often"
+          "text": "library"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте второе слово названия места",
+      "accessibilityLabel": "Назовите почтовое отделение по-английски",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте второе слово названия места",
-          "uk": "Вставте друге слово назви місця"
+          "ru": "Назовите почтовое отделение по-английски",
+          "uk": "Назвіть поштове відділення англійською"
         },
-        "gappedTargetPhrase": "post ___",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-04:session-04:i03:r1",
-            "text": "office"
+            "text": "post office"
           },
           {
             "responseId": "en:lesson-04:session-04:i03:r2",
-            "text": "offer"
+            "text": "bank"
           },
           {
             "responseId": "en:lesson-04:session-04:i03:r3",
-            "text": "often"
+            "text": "library"
           }
         ],
-        "testedDimension": "Вставьте второе слово названия места",
+        "testedDimension": "Назовите почтовое отделение по-английски",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-04:session-04:i03:r2",
-            "feedbackByLocale": {
-              "ru": "`Offer` — «предложение». Название места — `post office`.",
-              "uk": "`Offer` — «пропозиція». Назва місця — `post office`."
-            },
             "correct": false,
-            "testedDimension": "Вставьте второе слово названия места"
+            "testedDimension": "Назовите почтовое отделение по-английски",
+            "feedbackByLocale": {
+              "ru": "`bank` — банк; почтовое отделение — `post office`.",
+              "uk": "`bank` — банк; поштове відділення — `post office`."
+            }
           },
           {
             "responseId": "en:lesson-04:session-04:i03:r3",
-            "feedbackByLocale": {
-              "ru": "`Often` — «часто». В названии почты нужно `office`.",
-              "uk": "`Often` — «часто». У назві пошти потрібне `office`."
-            },
             "correct": false,
-            "testedDimension": "Вставьте второе слово названия места"
+            "testedDimension": "Назовите почтовое отделение по-английски",
+            "feedbackByLocale": {
+              "ru": "`library` — библиотека; почтовое отделение — `post office`.",
+              "uk": "`library` — бібліотека; поштове відділення — `post office`."
+            }
           }
         ]
       },
@@ -195,480 +197,60 @@
       "interactionId": "en:lesson-04:session-04:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите сообщение: здесь есть одна почта",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите сообщение: здесь есть одна почта",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a post office here.",
-        "localizedMeaning": {
-          "ru": "Соберите сообщение: здесь есть одна почта",
-          "uk": "Складіть повідомлення: тут є одна пошта"
-        },
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "post",
-          "office",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точный смысл сообщения",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-04:i05:r1",
-          "text": "There are libraries near the post office."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i05:r2",
-          "text": "There is a library near the post office."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i05:r3",
-          "text": "There are libraries behind the post office."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i05:r4",
-          "text": "There are libraries near the bank."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-04:i05:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите точный смысл сообщения",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i05:audio",
-          "transcript": "There are libraries near the post office."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-04:i05:r1",
-            "targetText": "There are libraries near the post office.",
-            "meaningByLocale": {
-              "ru": "Рядом с почтой есть библиотеки.",
-              "uk": "Біля пошти є бібліотеки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i05:r2",
-            "targetText": "There is a library near the post office.",
-            "meaningByLocale": {
-              "ru": "Рядом с почтой есть библиотека.",
-              "uk": "Біля пошти є бібліотека."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i05:r3",
-            "targetText": "There are libraries behind the post office.",
-            "meaningByLocale": {
-              "ru": "За почтой есть библиотеки.",
-              "uk": "За поштою є бібліотеки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i05:r4",
-            "targetText": "There are libraries near the bank.",
-            "meaningByLocale": {
-              "ru": "Рядом с банком есть библиотеки.",
-              "uk": "Біля банку є бібліотеки."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-04:i05:r2",
-            "feedbackByLocale": {
-              "ru": "В записи `libraries`: библиотек несколько.",
-              "uk": "У записі `libraries`: бібліотек кілька."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i05:r3",
-            "feedbackByLocale": {
-              "ru": "В записи звучит `near`, а не `behind`.",
-              "uk": "У записі звучить `near`, а не `behind`."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i05:r4",
-            "feedbackByLocale": {
-              "ru": "Ориентир в записи — `the post office`, не банк.",
-              "uk": "Орієнтир у записі — `the post office`, не банк."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null,
-        "testedDimension": "точный смысл прослушанного сообщения"
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i06",
-      "ordinal": 9,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите сообщение о маленькой почте",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-04:i06:audio"
-      ],
-      "accessibilityLabel": "Произнесите сообщение о маленькой почте",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i06:audio",
-          "transcript": "There is a small post office."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "There is a small post office.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте форму в сообщение о тихой почте за зданием",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-04:i07:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i07:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i07:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте форму в сообщение о тихой почте за зданием",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте форму в сообщение о тихой почте за зданием",
-          "uk": "Вставте форму в повідомлення про тиху пошту за будівлею"
-        },
-        "gappedTargetPhrase": "There ___ a quiet post office behind the building.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-04:i07:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i07:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i07:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте форму в сообщение о тихой почте за зданием",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-04:i07:r2",
-            "feedbackByLocale": {
-              "ru": "Почта одна, поэтому в этой фразе нужно `There is`.",
-              "uk": "`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину."
-            },
-            "correct": false,
-            "testedDimension": "Вставьте форму в сообщение о тихой почте за зданием"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i07:r3",
-            "feedbackByLocale": {
-              "ru": "`Am` употребляется с `I`. Здесь нужна форма `is`.",
-              "uk": "`Am` уживають лише з `I`; тут потрібне `is` для одного поштового відділення."
-            },
-            "correct": false,
-            "testedDimension": "Вставьте форму в сообщение о тихой почте за зданием"
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение о садах",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-04:i08:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите сообщение о садах",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i08:audio",
-          "transcript": "There are gardens behind the post office."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There are gardens behind the post office.",
-        "orderedTokens": [
-          "There",
-          "are",
-          "gardens",
-          "behind",
-          "the",
-          "post",
-          "office"
-        ],
-        "authoredDistractorTokens": [
-          "is",
-          "a"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите сообщение о тихой почте возле станции",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-04:i09:audio"
-      ],
-      "accessibilityLabel": "Произнесите сообщение о тихой почте возле станции",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i09:audio",
-          "transcript": "There is a quiet post office near the station."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "There is a quiet post office near the station.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точный смысл сообщения",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-04:i10:r1",
-          "text": "There are banks behind the post office."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i10:r2",
-          "text": "There are banks near the post office."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i10:r3",
-          "text": "There is a bank behind the post office."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i10:r4",
-          "text": "There are banks behind the library."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-04:i10:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите точный смысл сообщения",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i10:audio",
-          "transcript": "There are banks behind the post office."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-04:i10:r1",
-            "targetText": "There are banks behind the post office.",
-            "meaningByLocale": {
-              "ru": "За почтой есть банки.",
-              "uk": "За поштою є банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i10:r2",
-            "targetText": "There are banks near the post office.",
-            "meaningByLocale": {
-              "ru": "Рядом с почтой есть банки.",
-              "uk": "Біля пошти є банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i10:r3",
-            "targetText": "There is a bank behind the post office.",
-            "meaningByLocale": {
-              "ru": "За почтой есть банк.",
-              "uk": "За поштою є банк."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i10:r4",
-            "targetText": "There are banks behind the library.",
-            "meaningByLocale": {
-              "ru": "За библиотекой есть банки.",
-              "uk": "За бібліотекою є банки."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-04:i10:r2",
-            "feedbackByLocale": {
-              "ru": "В записи `behind the post office`, а не `near`.",
-              "uk": "У записі `behind the post office`, а не `near`."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i10:r3",
-            "feedbackByLocale": {
-              "ru": "`Banks` означает несколько банков.",
-              "uk": "`Banks` означає кілька банків."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i10:r4",
-            "feedbackByLocale": {
-              "ru": "Ориентир в записи — почта, не библиотека.",
-              "uk": "Орієнтир у записі — пошта, не бібліотека."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null,
-        "testedDimension": "точный смысл прослушанного сообщения"
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i11",
-      "ordinal": 14,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините знакомые слова с их значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините знакомые слова с их значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-04:i11:p1",
-            "target": "banks",
+            "pairId": "en:lesson-04:session-04:i04:p1",
+            "target": "post office",
             "meaningByLocale": {
-              "ru": "банки",
-              "uk": "банки"
+              "ru": "почтовое отделение",
+              "uk": "поштове відділення"
             }
           },
           {
-            "pairId": "en:lesson-04:session-04:i11:p2",
-            "target": "libraries",
+            "pairId": "en:lesson-04:session-04:i04:p2",
+            "target": "visible",
             "meaningByLocale": {
-              "ru": "библиотеки",
-              "uk": "бібліотеки"
+              "ru": "видимый",
+              "uk": "видимий"
             }
           },
           {
-            "pairId": "en:lesson-04:session-04:i11:p3",
-            "target": "gardens",
+            "pairId": "en:lesson-04:session-04:i04:p3",
+            "target": "hidden",
             "meaningByLocale": {
-              "ru": "сады",
-              "uk": "сади"
+              "ru": "скрытый",
+              "uk": "прихований"
             }
           },
           {
-            "pairId": "en:lesson-04:session-04:i11:p4",
-            "target": "behind",
+            "pairId": "en:lesson-04:session-04:i04:p4",
+            "target": "stations",
             "meaningByLocale": {
-              "ru": "за, позади",
-              "uk": "за, позаду"
+              "ru": "станции",
+              "uk": "станції"
             }
           }
         ],
         "leftColumn": [
-          "banks",
-          "libraries",
-          "gardens",
-          "behind"
+          "post office",
+          "visible",
+          "hidden",
+          "stations"
         ],
         "rightColumn": [
-          "банки",
-          "библиотеки",
-          "сады",
-          "за, позади"
+          "почтовое отделение",
+          "видимый",
+          "скрытый",
+          "станции"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -685,168 +267,120 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-04:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-04:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите сообщение о библиотеках за почтой",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите сообщение о библиотеках за почтой",
+      "audioTargetIds": [
+        "en:lesson-04:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There are libraries behind the post office.",
-        "localizedMeaning": {
-          "ru": "Соберите сообщение о библиотеках за почтой",
-          "uk": "Складіть повідомлення про бібліотеки за поштою"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-04:i05:audio",
+          "transcript": "There is a post office."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a post office.",
         "orderedTokens": [
           "There",
-          "are",
-          "libraries",
-          "behind",
-          "the",
+          "is",
+          "a",
           "post",
           "office"
         ],
         "authoredDistractorTokens": [
-          "is",
-          "a"
+          "are"
         ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-04:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точный смысл сообщения",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-04:i13:r1",
-          "text": "There is a small post office near the house."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i13:r2",
-          "text": "There are small post offices near the house."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i13:r3",
-          "text": "There is a small post office behind the house."
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i13:r4",
-          "text": "There is a small post office near the station."
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a post office.`",
+              "uk": "тут потрібно `is` — `There is a post office.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-04:i13:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите точный смысл сообщения",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i13:audio",
-          "transcript": "There is a small post office near the house."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-04:i13:r1",
-            "targetText": "There is a small post office near the house.",
-            "meaningByLocale": {
-              "ru": "Рядом с домом есть небольшое почтовое отделение.",
-              "uk": "Біля будинку є невелике поштове відділення."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i13:r2",
-            "targetText": "There are small post offices near the house.",
-            "meaningByLocale": {
-              "ru": "Рядом с домом есть небольшие почтовые отделения.",
-              "uk": "Біля будинку є невеликі поштові відділення."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i13:r3",
-            "targetText": "There is a small post office behind the house.",
-            "meaningByLocale": {
-              "ru": "За домом есть небольшое почтовое отделение.",
-              "uk": "За будинком є невелике поштове відділення."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i13:r4",
-            "targetText": "There is a small post office near the station.",
-            "meaningByLocale": {
-              "ru": "Рядом со станцией есть небольшое почтовое отделение.",
-              "uk": "Біля станції є невелике поштове відділення."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-04:i13:r2",
-            "feedbackByLocale": {
-              "ru": "В записи одно отделение: `There is a post office`.",
-              "uk": "У записі одне відділення: `There is a post office`."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i13:r3",
-            "feedbackByLocale": {
-              "ru": "В записи `near the house`, а не `behind the house`.",
-              "uk": "У записі `near the house`, а не `behind the house`."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i13:r4",
-            "feedbackByLocale": {
-              "ru": "Ориентир в записи — дом, не станция.",
-              "uk": "Орієнтир у записі — будинок, не станція."
-            },
-            "correct": false,
-            "testedDimension": "точный смысл прослушанного сообщения"
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null,
-        "testedDimension": "точный смысл прослушанного сообщения"
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-04:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-04:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг изучает район. Сообщите «Здесь есть станции»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг изучает район. Сообщите «Здесь есть станции»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are stations here.",
+        "localizedMeaning": {
+          "ru": "Друг изучает район. Сообщите «Здесь есть станции»",
+          "uk": "Друг вивчає район. Повідомте «Тут є станції»"
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "stations",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг изучает район. Сообщите «Здесь есть станции»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `There are stations here.`",
+              "uk": "тут потрібно `are` — `There are stations here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите сообщение о садах возле почты",
+      "prompt": "После разворачивания карты отметку хорошо видно. Скажите «Она видна» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-04:i14:audio"
+        "en:lesson-04:session-04:i07:audio"
       ],
-      "accessibilityLabel": "Произнесите сообщение о садах возле почты",
+      "accessibilityLabel": "После разворачивания карты отметку хорошо видно. Скажите «Она видна» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i14:audio",
-          "transcript": "There are gardens near the post office."
+          "audioTargetId": "en:lesson-04:session-04:i07:audio",
+          "transcript": "It's visible."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are gardens near the post office.",
+        "targetPhrase": "It's visible.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -860,41 +394,491 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-04:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-04:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сообщаете об одном почтовом отделении",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-04:i08:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i08:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сообщаете об одном почтовом отделении",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете об одном почтовом отделении",
+          "uk": "Ви повідомляєте про одне поштове відділення"
+        },
+        "gappedTargetPhrase": "There is ___ post office here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-04:i08:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i08:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вы сообщаете об одном почтовом отделении",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы сообщаете об одном почтовом отделении",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `post` согласный: `a post office`.",
+              "uk": "Перший звук у `post` приголосний: `a post office`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы сообщаете об одном почтовом отделении",
+            "feedbackByLocale": {
+              "ru": "`is` уже есть; перед одним отделением нужно `a`.",
+              "uk": "`is` уже є; перед одним відділенням потрібне `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание отметки на карте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-04:i09:r1",
+          "text": "It is hidden."
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i09:r2",
+          "text": "It is visible."
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i09:r3",
+          "text": "It is clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание отметки на карте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-04:i09:audio",
+          "transcript": "It is hidden."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-04:i09:r1",
+            "targetText": "It is hidden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i09:r2",
+            "targetText": "It is visible.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i09:r3",
+            "targetText": "It is clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание отметки на карте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `hidden`, а в этом варианте — `visible`.",
+              "uk": "У записі останнє слово — `hidden`, а в цьому варіанті — `visible`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание отметки на карте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `hidden`, а в этом варианте — `clear`.",
+              "uk": "У записі останнє слово — `hidden`, а в цьому варіанті — `clear`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-04:i10:p1",
+            "target": "clear",
+            "meaningByLocale": {
+              "ru": "понятный",
+              "uk": "зрозумілий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-04:i10:p2",
+            "target": "bag",
+            "meaningByLocale": {
+              "ru": "сумка",
+              "uk": "сумка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-04:i10:p3",
+            "target": "stations",
+            "meaningByLocale": {
+              "ru": "станции",
+              "uk": "станції"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-04:i10:p4",
+            "target": "visible",
+            "meaningByLocale": {
+              "ru": "видимый",
+              "uk": "видимий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clear",
+          "bag",
+          "stations",
+          "visible"
+        ],
+        "rightColumn": [
+          "понятный",
+          "сумка",
+          "станции",
+          "видимый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение о новой почте",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-04:i15:audio"
+        "en:lesson-04:session-04:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение о новой почте",
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-04:i15:audio",
-          "transcript": "There is a new post office behind the house."
+          "audioTargetId": "en:lesson-04:session-04:i11:audio",
+          "transcript": "This is a post office."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There is a new post office behind the house.",
+        "hiddenTargetPhrase": "This is a post office.",
         "orderedTokens": [
-          "There",
+          "This",
           "is",
           "a",
-          "new",
           "post",
-          "office",
-          "behind",
-          "the",
-          "house"
+          "office"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a post office.`",
+              "uk": "тут потрібно `is` — `This is a post office.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг объяснил схему, и теперь вы её понимаете. Скажите о ней «Она понятна» полной формой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг объяснил схему, и теперь вы её понимаете. Скажите о ней «Она понятна» полной формой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is clear.",
+        "localizedMeaning": {
+          "ru": "Друг объяснил схему, и теперь вы её понимаете. Скажите о ней «Она понятна» полной формой",
+          "uk": "Друг пояснив схему, і тепер ви її розумієте. Скажіть про неї «Вона зрозуміла» повною формою"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "clear"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг объяснил схему, и теперь вы её понимаете. Скажите о ней «Она понятна» полной формой",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is clear.`",
+              "uk": "тут потрібно `is` — `It is clear.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Другую отметку всё ещё закрывает складка. Скажите «Она скрыта» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Другую отметку всё ещё закрывает складка. Скажите «Она скрыта» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-04:i13:audio",
+          "transcript": "It's hidden."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's hidden.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы показываете другой район на карте. Сообщите «Там есть станции»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-04:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете другой район на карте. Сообщите «Там есть станции»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете другой район на карте. Сообщите «Там есть станции»",
+          "uk": "Ви показуєте інший район на карті. Повідомте «Там є станції»"
+        },
+        "gappedTargetPhrase": "There ___ stations there.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-04:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вы показываете другой район на карте. Сообщите «Там есть станции»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы показываете другой район на карте. Сообщите «Там есть станции»",
+            "feedbackByLocale": {
+              "ru": "Станций несколько: `There are stations there`. Последнее `there` — «там».",
+              "uk": "Станцій кілька: `There are stations there`. Останнє `there` — «там»."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы показываете другой район на карте. Сообщите «Там есть станции»",
+            "feedbackByLocale": {
+              "ru": "Для нескольких станций нужно `There are`.",
+              "uk": "Для кількох станцій потрібне `There are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание другой отметки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-04:i15:r1",
+          "text": "It is visible."
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i15:r2",
+          "text": "It is hidden."
+        },
+        {
+          "responseId": "en:lesson-04:session-04:i15:r3",
+          "text": "It is clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание другой отметки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-04:i15:audio",
+          "transcript": "It is visible."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-04:i15:r1",
+            "targetText": "It is visible.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i15:r2",
+            "targetText": "It is hidden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i15:r3",
+            "targetText": "It is clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-04:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание другой отметки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `visible`, а в этом варианте — `hidden`.",
+              "uk": "У записі останнє слово — `visible`, а в цьому варіанті — `hidden`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-04:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание другой отметки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `visible`, а в этом варианте — `clear`.",
+              "uk": "У записі останнє слово — `visible`, а в цьому варіанті — `clear`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -902,84 +886,71 @@
       "interactionId": "en:lesson-04:session-04:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте название мест рядом с почтой",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-04:i16:r1",
-          "text": "banks"
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i16:r2",
-          "text": "bank"
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i16:r3",
-          "text": "a bank"
-        },
-        {
-          "responseId": "en:lesson-04:session-04:i16:r4",
-          "text": "is"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте название мест рядом с почтой",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте название мест рядом с почтой",
-          "uk": "Вставте назву місць біля пошти"
-        },
-        "gappedTargetPhrase": "There are new ___ near the post office.",
-        "gapOptions": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-04:session-04:i16:r1",
-            "text": "banks"
+            "pairId": "en:lesson-04:session-04:i16:p1",
+            "target": "post office",
+            "meaningByLocale": {
+              "ru": "почтовое отделение",
+              "uk": "поштове відділення"
+            }
           },
           {
-            "responseId": "en:lesson-04:session-04:i16:r2",
-            "text": "bank"
+            "pairId": "en:lesson-04:session-04:i16:p2",
+            "target": "hidden",
+            "meaningByLocale": {
+              "ru": "скрытый",
+              "uk": "прихований"
+            }
           },
           {
-            "responseId": "en:lesson-04:session-04:i16:r3",
-            "text": "a bank"
+            "pairId": "en:lesson-04:session-04:i16:p3",
+            "target": "clear",
+            "meaningByLocale": {
+              "ru": "понятный",
+              "uk": "зрозумілий"
+            }
           },
           {
-            "responseId": "en:lesson-04:session-04:i16:r4",
-            "text": "is"
+            "pairId": "en:lesson-04:session-04:i16:p4",
+            "target": "bag",
+            "meaningByLocale": {
+              "ru": "сумка",
+              "uk": "сумка"
+            }
           }
         ],
-        "testedDimension": "Вставьте название мест рядом с почтой",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-04:i16:r2",
-            "feedbackByLocale": {
-              "ru": "После `There are` нужно множественное число: `banks`.",
-              "uk": "Після `There are` потрібна множина: `banks`."
-            },
-            "correct": false,
-            "testedDimension": "Вставьте название мест рядом с почтой"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i16:r3",
-            "feedbackByLocale": {
-              "ru": "`A bank` — один банк; здесь банков несколько.",
-              "uk": "`A bank` — один банк; тут банків кілька."
-            },
-            "correct": false,
-            "testedDimension": "Вставьте название мест рядом с почтой"
-          },
-          {
-            "responseId": "en:lesson-04:session-04:i16:r4",
-            "feedbackByLocale": {
-              "ru": "В пропуске нужно название мест. Форма `are` уже стоит.",
-              "uk": "У пропуску потрібна назва місць. Форма `are` уже стоїть."
-            },
-            "correct": false,
-            "testedDimension": "Вставьте название мест рядом с почтой"
-          }
+        "leftColumn": [
+          "post office",
+          "hidden",
+          "clear",
+          "bag"
+        ],
+        "rightColumn": [
+          "почтовое отделение",
+          "скрытый",
+          "понятный",
+          "сумка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -988,34 +959,40 @@
       "interactionId": "en:lesson-04:session-04:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Финал — составьте сообщение о почте рядом с домом",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы приехали в другой город и увидели почтовое отделение. Друг ещё не знает о нём. Сообщите «Здесь есть почтовое отделение»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Финал — составьте сообщение о почте рядом с домом",
+      "audioTargetIds": [
+        "en:lesson-04:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Вы приехали в другой город и увидели почтовое отделение. Друг ещё не знает о нём. Сообщите «Здесь есть почтовое отделение»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a post office near the house.",
-        "localizedMeaning": {
-          "ru": "Финал — составьте сообщение о почте рядом с домом",
-          "uk": "Фінал — складіть повідомлення про пошту біля будинку"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-04:i17:audio",
+          "transcript": "There is a post office here."
         },
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "post",
-          "office",
-          "near",
-          "the",
-          "house"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a post office here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
@@ -1026,5 +1003,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cd115c834c569bf53db2edc1b35444a2d017c6b2af353e59aeb82a86cfbc824e"
+  "learnerFingerprint": "5682e0059e1779325d6a56e364f6057d1db8c182d1821fd1a9243f4cd306fdca"
 }

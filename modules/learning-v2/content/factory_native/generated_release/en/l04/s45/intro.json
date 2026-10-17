@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "назвать микроволновку, спросить о её наличии и понять слово illegal",
+    "uk": "назвати мікрохвильовку, запитати про її наявність і зрозуміти слово illegal"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разогреть обед",
+        "uk": "Розігріти обід"
+      },
+      "bodyByLocale": {
+        "ru": "`microwave` — «микроволновка». Здесь это название прибора для разогрева еды. Один прибор — `a microwave`. `This is a microwave` — «Это микроволновка». Обед после неё теплее, а рабочий день, увы, не короче.",
+        "uk": "`microwave` — «мікрохвильовка». Тут це назва приладу для розігрівання їжі. Один прилад — `a microwave`. `This is a microwave` — «Це мікрохвильовка». Обід після неї тепліший, а робочий день, на жаль, не коротший."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну микроволновку.",
+          "uk": "Назвіть одну мікрохвильовку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-45:intro1:r1",
+              "text": "This is a microwave."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro1:r2",
+              "text": "This is microwave."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro1:r3",
+              "text": "These are microwaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-45:intro1:r1",
+              "text": "This is a microwave."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro1:r2",
+              "text": "This is microwave."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro1:r3",
+              "text": "These are microwaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну микроволновку.",
+          "uk": "Назвіть одну мікрохвильовку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "В офисе",
+        "uk": "В офісі"
+      },
+      "bodyByLocale": {
+        "ru": "`office` — «офис», `parcel locker` — «постамат». `The microwave is in the office` — «Микроволновка в офисе». `The parcel locker is next to the door` — «Постамат рядом с дверью». `Is there a microwave?` — «Есть микроволновка?» В вопросе `is` идёт перед `there`.",
+        "uk": "`office` — «офіс», `parcel locker` — «поштомат». `The microwave is in the office` — «Мікрохвильовка в офісі». `The parcel locker is next to the door` — «Поштомат поруч із дверима». `Is there a microwave?` — «Є мікрохвильовка?» У запитанні `is` стоїть перед `there`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, есть ли микроволновка.",
+          "uk": "Запитайте, чи є мікрохвильовка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-45:intro2:r1",
+              "text": "Is there a microwave?"
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro2:r2",
+              "text": "There is a microwave."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro2:r3",
+              "text": "Are there a microwave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-45:intro2:r1",
+              "text": "Is there a microwave?"
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro2:r2",
+              "text": "There is a microwave."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro2:r3",
+              "text": "Are there a microwave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, есть ли микроволновка.",
+          "uk": "Запитайте, чи є мікрохвильовка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Против закона",
+        "uk": "Проти закону"
+      },
+      "bodyByLocale": {
+        "ru": "`illegal` — «незаконный, запрещённый законом». `It is illegal` — «Это незаконно», короче `It’s illegal`. Слово относится к закону: оно не означает просто «мне не нравится» или «начальник против». Для законного действия было `legal`; здесь противоположный смысл — `illegal`.",
+        "uk": "`illegal` — «незаконний, заборонений законом». `It is illegal` — «Це незаконно», коротше `It’s illegal`. Слово стосується закону: воно не означає просто «мені не подобається» чи «керівник проти». Для законної дії було `legal`; тут протилежне значення — `illegal`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Переведите «Это незаконно» с сокращением.",
+          "uk": "Перекладіть «Це незаконно» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-45:intro3:r1",
+              "text": "It's illegal."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro3:r2",
+              "text": "It's legal."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro3:r3",
+              "text": "It are illegal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-45:intro3:r1",
+              "text": "It's illegal."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro3:r2",
+              "text": "It's legal."
+            },
+            {
+              "responseId": "en:lesson-04:session-45:intro3:r3",
+              "text": "It are illegal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Переведите «Это незаконно» с сокращением.",
+          "uk": "Перекладіть «Це незаконно» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6f3f91664d181d1485ef0809ec613b3e43c6db799401203e2a7177dc4821f319"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-41:i01",
+    "correctText": "It is accurate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i02",
+    "correctText": "cashpoint",
+    "correctResponseId": "en:lesson-04:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i03",
+    "correctText": "cashpoint",
+    "correctResponseId": "en:lesson-04:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i04",
+    "correctText": "en:lesson-04:session-41:i04:p1=cashpoint\nen:lesson-04:session-41:i04:p2=accurate\nen:lesson-04:session-41:i04:p3=kitchen\nen:lesson-04:session-41:i04:p4=doorbell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i05",
+    "correctText": "This is a cashpoint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i06",
+    "correctText": "He is in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i07",
+    "correctText": "It's accurate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i09",
+    "correctText": "The cashpoint is next to the shop.",
+    "correctResponseId": "en:lesson-04:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i10",
+    "correctText": "en:lesson-04:session-41:i10:p1=cashpoint\nen:lesson-04:session-41:i10:p2=accurate\nen:lesson-04:session-41:i10:p3=kitchen\nen:lesson-04:session-41:i10:p4=doorbell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i11",
+    "correctText": "There aren't any cashpoints.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i12",
+    "correctText": "There is a cashpoint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i13",
+    "correctText": "Is there a cashpoint?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-41:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i15",
+    "correctText": "That is a cashpoint.",
+    "correctResponseId": "en:lesson-04:session-41:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i16",
+    "correctText": "en:lesson-04:session-41:i16:p1=cashpoint\nen:lesson-04:session-41:i16:p2=accurate\nen:lesson-04:session-41:i16:p3=kitchen\nen:lesson-04:session-41:i16:p4=doorbell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-41:i17",
+    "correctText": "There isn't a cashpoint.",
+    "correctResponseId": null
+  }
+]

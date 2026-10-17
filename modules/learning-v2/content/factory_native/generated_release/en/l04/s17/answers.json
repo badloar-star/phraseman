@@ -1,62 +1,87 @@
 [
   {
     "interactionId": "en:lesson-04:session-17:i01",
-    "correctText": "container",
-    "correctResponseId": "en:lesson-04:session-17:i01:r1"
+    "correctText": "He is well.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i02",
-    "correctText": "container",
-    "correctResponseId": null
+    "correctText": "berry",
+    "correctResponseId": "en:lesson-04:session-17:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-17:i03",
-    "correctText": "en:lesson-04:session-17:i03:p1=container\nen:lesson-04:session-17:i03:p2=berry\nen:lesson-04:session-17:i03:p3=basket\nen:lesson-04:session-17:i03:p4=bag",
-    "correctResponseId": null
+    "correctText": "berry",
+    "correctResponseId": "en:lesson-04:session-17:i03:r1"
   },
   {
     "interactionId": "en:lesson-04:session-17:i04",
-    "correctText": "There are some containers here.",
-    "correctResponseId": "en:lesson-04:session-17:i04:r1"
+    "correctText": "en:lesson-04:session-17:i04:p1=berry\nen:lesson-04:session-17:i04:p2=well\nen:lesson-04:session-17:i04:p3=books\nen:lesson-04:session-17:i04:p4=dentist",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i05",
-    "correctText": "There are some containers on the table.",
+    "correctText": "This is a berry.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i06",
-    "correctText": "some",
-    "correctResponseId": "en:lesson-04:session-17:i06:r1"
+    "correctText": "There are some books.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i07",
-    "correctText": "There are some berries in the basket.",
+    "correctText": "Are there any berries?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i08",
-    "correctText": "There are some containers by the market.",
+    "correctText": "some",
     "correctResponseId": "en:lesson-04:session-17:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-17:i09",
-    "correctText": "There are some berries on the table.",
-    "correctResponseId": null
+    "correctText": "Are there any books?",
+    "correctResponseId": "en:lesson-04:session-17:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-17:i10",
-    "correctText": "There are some containers near the basket.",
+    "correctText": "en:lesson-04:session-17:i10:p1=berry\nen:lesson-04:session-17:i10:p2=berries\nen:lesson-04:session-17:i10:p3=books\nen:lesson-04:session-17:i10:p4=dentist",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i11",
-    "correctText": "some",
-    "correctResponseId": "en:lesson-04:session-17:i11:r1"
+    "correctText": "There are some berries.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i12",
-    "correctText": "There are some containers near the table.",
+    "correctText": "Are there any books here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i13",
+    "correctText": "He's well.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i14",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-04:session-17:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i15",
+    "correctText": "He is a dentist.",
+    "correctResponseId": "en:lesson-04:session-17:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i16",
+    "correctText": "en:lesson-04:session-17:i16:p1=berry\nen:lesson-04:session-17:i16:p2=well\nen:lesson-04:session-17:i16:p3=books\nen:lesson-04:session-17:i16:p4=dentist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i17",
+    "correctText": "Are there any berries here?",
     "correctResponseId": null
   }
 ]

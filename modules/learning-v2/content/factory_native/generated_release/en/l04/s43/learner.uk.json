@@ -1,0 +1,996 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви не знаєте напевно. Скажіть «Я не впевнений» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не знаєте напевно. Скажіть «Я не впевнений» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am uncertain.",
+        "localizedMeaning": {
+          "ru": "Вы не знаете наверняка. Скажите «Я не уверен» без сокращения",
+          "uk": "Ви не знаєте напевно. Скажіть «Я не впевнений» без скорочення"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "uncertain"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви не знаєте напевно. Скажіть «Я не впевнений» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am uncertain.`",
+              "uk": "тут потрібно `am` — `I am uncertain.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть назву",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-43:i02:r1",
+          "text": "recycling bin"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i02:r2",
+          "text": "recycling bins"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i02:r3",
+          "text": "ramp"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть назву",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i02:audio",
+          "transcript": "recycling bin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-43:i02:r1",
+            "targetText": "recycling bin",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i02:r2",
+            "targetText": "recycling bins",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i02:r3",
+            "targetText": "ramp",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть назву",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bin`, а в этом варианте — `bins`.",
+              "uk": "У записі останнє слово — `bin`, а в цьому варіанті — `bins`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть назву",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `recycling`, а в этом варианте — `ramp`.",
+              "uk": "У записі перше слово — `recycling`, а в цьому варіанті — `ramp`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть контейнер для вторсировини",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-43:i03:r1",
+          "text": "recycling bin"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i03:r2",
+          "text": "parcel locker"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i03:r3",
+          "text": "bike shed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть контейнер для вторсировини",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите контейнер для вторсырья",
+          "uk": "Назвіть контейнер для вторсировини"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i03:r1",
+            "text": "recycling bin"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i03:r2",
+            "text": "parcel locker"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i03:r3",
+            "text": "bike shed"
+          }
+        ],
+        "testedDimension": "Назвіть контейнер для вторсировини",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть контейнер для вторсировини",
+            "feedbackByLocale": {
+              "ru": "`parcel locker` — постамат; здесь `recycling bin`.",
+              "uk": "`parcel locker` — поштомат; тут `recycling bin`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть контейнер для вторсировини",
+            "feedbackByLocale": {
+              "ru": "`bike shed` — сарай для велосипедов; здесь `recycling bin`.",
+              "uk": "`bike shed` — сарай для велосипедів; тут `recycling bin`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-43:i04:p1",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для вторсырья",
+              "uk": "контейнер для вторсировини"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i04:p2",
+            "target": "uncertain",
+            "meaningByLocale": {
+              "ru": "неуверенный",
+              "uk": "невпевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i04:p3",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i04:p4",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          }
+        ],
+        "leftColumn": [
+          "recycling bin",
+          "uncertain",
+          "bedrooms",
+          "ramp"
+        ],
+        "rightColumn": [
+          "контейнер для вторсировини",
+          "невпевнений",
+          "спальні",
+          "пандус"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i05:audio",
+          "transcript": "This is a recycling bin."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a recycling bin.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "recycling",
+          "bin"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a recycling bin.`",
+              "uk": "тут потрібно `is` — `This is a recycling bin.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спальні нагорі. Скажіть, де вони",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спальні нагорі. Скажіть, де вони",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bedrooms are upstairs.",
+        "localizedMeaning": {
+          "ru": "Спальни наверху. Скажите, где они",
+          "uk": "Спальні нагорі. Скажіть, де вони"
+        },
+        "orderedTokens": [
+          "The",
+          "bedrooms",
+          "are",
+          "upstairs"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Спальні нагорі. Скажіть, де вони",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bedrooms are upstairs.`",
+              "uk": "тут потрібно `are` — `The bedrooms are upstairs.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг чекає відповіді, але ви не знаєте напевно. Скажіть «Я не впевнений» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Друг чекає відповіді, але ви не знаєте напевно. Скажіть «Я не впевнений» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i07:audio",
+          "transcript": "I'm uncertain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm uncertain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви оглянули місце: контейнера для вторсировини немає. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-43:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви оглянули місце: контейнера для вторсировини немає. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы осмотрели место: контейнера для вторсырья нет. Выберите форму",
+          "uk": "Ви оглянули місце: контейнера для вторсировини немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a recycling bin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Ви оглянули місце: контейнера для вторсировини немає. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви оглянули місце: контейнера для вторсировини немає. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`is` — есть; здесь нет: `isn’t`.",
+              "uk": "`is` — є; тут немає: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви оглянули місце: контейнера для вторсировини немає. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один контейнер: `isn’t a recycling bin`.",
+              "uk": "Один контейнер: `isn’t a recycling bin`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де контейнер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-43:i09:r1",
+          "text": "The recycling bin is next to the ramp."
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i09:r2",
+          "text": "The recycling bin is next to the door."
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i09:r3",
+          "text": "The recycling bin is next to the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де контейнер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i09:audio",
+          "transcript": "The recycling bin is next to the ramp."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-43:i09:r1",
+            "targetText": "The recycling bin is next to the ramp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i09:r2",
+            "targetText": "The recycling bin is next to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i09:r3",
+            "targetText": "The recycling bin is next to the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де контейнер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ramp`, а в этом варианте — `door`.",
+              "uk": "У записі останнє слово — `ramp`, а в цьому варіанті — `door`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де контейнер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ramp`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `ramp`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-43:i10:p1",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для вторсырья",
+              "uk": "контейнер для вторсировини"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i10:p2",
+            "target": "uncertain",
+            "meaningByLocale": {
+              "ru": "неуверенный",
+              "uk": "невпевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i10:p3",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i10:p4",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          }
+        ],
+        "leftColumn": [
+          "recycling bin",
+          "uncertain",
+          "bedrooms",
+          "ramp"
+        ],
+        "rightColumn": [
+          "контейнер для вторсировини",
+          "невпевнений",
+          "спальні",
+          "пандус"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i11:audio",
+          "transcript": "There aren't any recycling bins."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren't any recycling bins.",
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "recycling",
+          "bins"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тут є контейнер для вторсировини. Повідомте про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тут є контейнер для вторсировини. Повідомте про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a recycling bin.",
+        "localizedMeaning": {
+          "ru": "Здесь есть контейнер для вторсырья. Сообщите об этом",
+          "uk": "Тут є контейнер для вторсировини. Повідомте про це"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "recycling",
+          "bin"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Тут є контейнер для вторсировини. Повідомте про це",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a recycling bin.`",
+              "uk": "тут потрібно `is` — `There is a recycling bin.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви ще не оглянули подвір’я. Запитайте, чи є контейнер для вторсировини",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Ви ще не оглянули подвір’я. Запитайте, чи є контейнер для вторсировини",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i13:audio",
+          "transcript": "Is there a recycling bin?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a recycling bin?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В іншому будинку спальні внизу. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-43:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В іншому будинку спальні внизу. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В другом доме спальни внизу. Выберите форму",
+          "uk": "В іншому будинку спальні внизу. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The bedrooms ___ downstairs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-43:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "В іншому будинку спальні внизу. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "В іншому будинку спальні внизу. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Несколько спален: `The bedrooms are`.",
+              "uk": "Кілька спалень: `The bedrooms are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "В іншому будинку спальні внизу. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`am` используется с I; со спальнями нужно `are`.",
+              "uk": "`am` використовують з I; зі спальнями потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що показує друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-43:i15:r1",
+          "text": "That is a recycling bin."
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i15:r2",
+          "text": "This is a recycling bin."
+        },
+        {
+          "responseId": "en:lesson-04:session-43:i15:r3",
+          "text": "There is a recycling bin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що показує друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i15:audio",
+          "transcript": "That is a recycling bin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-43:i15:r1",
+            "targetText": "That is a recycling bin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i15:r2",
+            "targetText": "This is a recycling bin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i15:r3",
+            "targetText": "There is a recycling bin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `There`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `There`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-43:i16:p1",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для вторсырья",
+              "uk": "контейнер для вторсировини"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i16:p2",
+            "target": "uncertain",
+            "meaningByLocale": {
+              "ru": "неуверенный",
+              "uk": "невпевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i16:p3",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-43:i16:p4",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          }
+        ],
+        "leftColumn": [
+          "recycling bin",
+          "uncertain",
+          "bedrooms",
+          "ramp"
+        ],
+        "rightColumn": [
+          "контейнер для вторсировини",
+          "невпевнений",
+          "спальні",
+          "пандус"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-43:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншому місті контейнер для вторсировини поруч із магазином. Поясніть другу, де він, повною фразою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "В іншому місті контейнер для вторсировини поруч із магазином. Поясніть другу, де він, повною фразою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-43:i17:audio",
+          "transcript": "The recycling bin is next to the shop."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The recycling bin is next to the shop.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5bbb788bf2f255b1b33df3fe7899a4c02f670ee816132838093ebc6f38b2fbc1"
+}

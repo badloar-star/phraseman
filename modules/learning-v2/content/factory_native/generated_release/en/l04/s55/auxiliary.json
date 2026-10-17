@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-55:intro1:r2": {
+          "ru": "Перед одним путём нужно `a`: `a shortcut`.",
+          "uk": "Перед одним шляхом потрібне `a`: `a shortcut`."
+        },
+        "en:lesson-04:session-55:intro1:r3": {
+          "ru": "Здесь один путь: `This is a shortcut`.",
+          "uk": "Тут один шлях: `This is a shortcut`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-55:intro2:r2": {
+          "ru": "Одна карта: `The map is`.",
+          "uk": "Одна карта: `The map is`."
+        },
+        "en:lesson-04:session-55:intro2:r3": {
+          "ru": "`reliable` — надёжный; здесь `unreliable`.",
+          "uk": "`reliable` — надійний; тут `unreliable`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-55:intro3:r2": {
+          "ru": "С `leftovers` нужно `are`.",
+          "uk": "З `leftovers` потрібне `are`."
+        },
+        "en:lesson-04:session-55:intro3:r3": {
+          "ru": "Здесь внутри: `in`; `under` — под холодильником.",
+          "uk": "Тут усередині: `in`; `under` — під холодильником."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "af367cc4f3846bea87d20ad134f72e4bb4aba5abde1f4831d295ec74a93a82b0"
+}

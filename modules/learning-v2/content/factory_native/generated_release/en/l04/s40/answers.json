@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-40:i01",
+    "correctText": "Is there a boiler?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i02",
+    "correctText": "thermostat",
+    "correctResponseId": "en:lesson-04:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i03",
+    "correctText": "thermostat",
+    "correctResponseId": "en:lesson-04:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i04",
+    "correctText": "en:lesson-04:session-40:i04:p1=thermostat\nen:lesson-04:session-40:i04:p2=boiler\nen:lesson-04:session-40:i04:p3=doorbell\nen:lesson-04:session-40:i04:p4=smoke alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i05",
+    "correctText": "This is a thermostat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i06",
+    "correctText": "The handrail is next to the ramp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i07",
+    "correctText": "There aren't any smoke alarms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i09",
+    "correctText": "The fountain is next to the hotel.",
+    "correctResponseId": "en:lesson-04:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i10",
+    "correctText": "en:lesson-04:session-40:i10:p1=handrail\nen:lesson-04:session-40:i10:p2=ramp\nen:lesson-04:session-40:i10:p3=fountain\nen:lesson-04:session-40:i10:p4=parcel locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i11",
+    "correctText": "The parcel locker is next to the bike shed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i12",
+    "correctText": "There is a thermostat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i13",
+    "correctText": "Is there a thermostat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i15",
+    "correctText": "That is a thermostat.",
+    "correctResponseId": "en:lesson-04:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i16",
+    "correctText": "en:lesson-04:session-40:i16:p1=bike shed\nen:lesson-04:session-40:i16:p2=ramp\nen:lesson-04:session-40:i16:p3=handrail\nen:lesson-04:session-40:i16:p4=thermostat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-40:i17",
+    "correctText": "There isn't a thermostat.",
+    "correctResponseId": null
+  }
+]

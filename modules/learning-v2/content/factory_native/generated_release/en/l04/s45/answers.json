@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-45:i01",
+    "correctText": "It is illegal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i02",
+    "correctText": "microwave",
+    "correctResponseId": "en:lesson-04:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i03",
+    "correctText": "microwave",
+    "correctResponseId": "en:lesson-04:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i04",
+    "correctText": "en:lesson-04:session-45:i04:p1=microwave\nen:lesson-04:session-45:i04:p2=illegal\nen:lesson-04:session-45:i04:p3=office\nen:lesson-04:session-45:i04:p4=parcel locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i05",
+    "correctText": "This is a microwave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i06",
+    "correctText": "The microwave is in the office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i07",
+    "correctText": "It's illegal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i09",
+    "correctText": "The parcel locker is next to the door.",
+    "correctResponseId": "en:lesson-04:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i10",
+    "correctText": "en:lesson-04:session-45:i10:p1=microwave\nen:lesson-04:session-45:i10:p2=illegal\nen:lesson-04:session-45:i10:p3=office\nen:lesson-04:session-45:i10:p4=parcel locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i11",
+    "correctText": "There aren't any microwaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i12",
+    "correctText": "There is a microwave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i13",
+    "correctText": "Is there a parcel locker?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i14",
+    "correctText": "on",
+    "correctResponseId": "en:lesson-04:session-45:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i15",
+    "correctText": "That is a microwave.",
+    "correctResponseId": "en:lesson-04:session-45:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i16",
+    "correctText": "en:lesson-04:session-45:i16:p1=microwave\nen:lesson-04:session-45:i16:p2=illegal\nen:lesson-04:session-45:i16:p3=office\nen:lesson-04:session-45:i16:p4=parcel locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-45:i17",
+    "correctText": "Is there a microwave?",
+    "correctResponseId": null
+  }
+]

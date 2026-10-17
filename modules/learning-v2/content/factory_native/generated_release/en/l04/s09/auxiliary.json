@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro1:r2": {
-          "ru": "`Clinic` — клиника. Здесь нужен врач для зубов: `dentist`.",
-          "uk": "`Clinic` — клініка. Тут потрібен лікар для зубів: `dentist`."
+          "ru": "Это сообщение. Для вопроса начинаем с `Is there`.",
+          "uk": "Це повідомлення. Для запитання починаємо з `Is there`."
         },
         "en:lesson-04:session-09:intro1:r3": {
-          "ru": "`Pharmacy` — аптека. Здесь нужен стоматолог: `dentist`.",
-          "uk": "`Pharmacy` — аптека. Тут потрібен стоматолог: `dentist`."
+          "ru": "Перед одним специалистом нужно `a`: `a dentist`.",
+          "uk": "Перед одним фахівцем потрібне `a`: `a dentist`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro2:r2": {
-          "ru": "В вопросе `is` идёт перед `there`: `Is there a dentist?`.",
-          "uk": "У питанні `is` стоїть перед `there`: `Is there a dentist?`."
+          "ru": "Библиотек несколько: `Are there libraries here?`.",
+          "uk": "Бібліотек кілька: `Are there libraries here?`."
         },
         "en:lesson-04:session-09:intro2:r3": {
-          "ru": "Перед одним стоматологом нужно `a`: `a dentist`.",
-          "uk": "Перед одним стоматологом потрібен `a`: `a dentist`."
+          "ru": "Перед несколькими `libraries` не ставим `a`.",
+          "uk": "Перед кількома `libraries` не ставимо `a`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro3:r2": {
-          "ru": "Это порядок слов сообщения. Вопрос начинается с `Is there`.",
-          "uk": "Це порядок слів повідомлення. Запитання починається з `Is there`."
+          "ru": "`necessary` — необходимо; здесь говорим о возможности: `possible`.",
+          "uk": "`necessary` — необхідно; тут говоримо про можливість: `possible`."
         },
         "en:lesson-04:session-09:intro3:r3": {
-          "ru": "Перед одним стоматологом нужен артикль: `a dentist`.",
-          "uk": "Перед одним стоматологом потрібен артикль: `a dentist`."
+          "ru": "С `It` нужно `is`.",
+          "uk": "З `It` потрібне `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1d2116db2fc817ba3061fab3309cc4f21a5ab4ff9eaa689b0ebe45e478ab6ceb"
+  "auxiliaryFingerprint": "adb3b1591266e9f9847ad034816f2b6bceea463028f01bf21972dc589be59927"
 }

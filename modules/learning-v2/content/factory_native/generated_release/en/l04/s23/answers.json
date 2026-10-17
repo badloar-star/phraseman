@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-23:i01",
+    "correctText": "There are some tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i02",
+    "correctText": "cheese",
+    "correctResponseId": "en:lesson-04:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i03",
+    "correctText": "cheese",
+    "correctResponseId": "en:lesson-04:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i04",
+    "correctText": "en:lesson-04:session-23:i04:p1=cheese\nen:lesson-04:session-23:i04:p2=valid\nen:lesson-04:session-23:i04:p3=tickets\nen:lesson-04:session-23:i04:p4=gym",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i05",
+    "correctText": "There is some cheese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i06",
+    "correctText": "Are there any tickets here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i07",
+    "correctText": "It's valid.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i09",
+    "correctText": "Is there a gym?",
+    "correctResponseId": "en:lesson-04:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i10",
+    "correctText": "en:lesson-04:session-23:i10:p1=cheese\nen:lesson-04:session-23:i10:p2=tickets\nen:lesson-04:session-23:i10:p3=gym\nen:lesson-04:session-23:i10:p4=valid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i11",
+    "correctText": "Is there any cheese?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i12",
+    "correctText": "There are some tickets here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i13",
+    "correctText": "Is there a gym here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i15",
+    "correctText": "It is valid.",
+    "correctResponseId": "en:lesson-04:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i16",
+    "correctText": "en:lesson-04:session-23:i16:p1=cheese\nen:lesson-04:session-23:i16:p2=valid\nen:lesson-04:session-23:i16:p3=tickets\nen:lesson-04:session-23:i16:p4=gym",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i17",
+    "correctText": "Is there any cheese here?",
+    "correctResponseId": null
+  }
+]

@@ -38,6 +38,7 @@ import { useV2Palette } from './useV2Palette';
 import { actionBoxShadow, nestedBoxShadow, useShadowGlass } from './ShadowSurface';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
+import { NavIcon } from './BackGlyph';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -110,7 +111,7 @@ export const V2IconButton = memo(function V2IconButton({ icon, onPress, accessib
       ]}
     >
       {variant === 'glass' ? <V2GlassSheen seed={1} /> : null}
-      <Ionicons name={icon} size={Math.round(size * 0.46)} color={color} style={icon === 'play' ? { marginLeft: 2 } : undefined} />
+      <NavIcon name={icon} size={Math.round(size * 0.46)} color={color} style={icon === 'play' ? { marginLeft: 2 } : undefined} />
     </V2Pressable>
   );
 });

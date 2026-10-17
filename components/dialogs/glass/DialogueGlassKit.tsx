@@ -10,6 +10,7 @@ import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../v2/Shado
 import { ThemeAccentFill } from '../../v2/ThemeAccentFill';
 import SkeletonBlock from '../../SkeletonShimmer';
 import { glassTone } from './glassTone';
+import { NavIcon } from '../../v2/BackGlyph';
 
 // зачем (владелец 2026-09-30): V2-экраны «Диалогов» переносятся «1 в 1» по макету
 // dialogs.html (Liquid Glass). Здесь один раз собраны презентационные части макета из
@@ -63,7 +64,7 @@ export function DialogueGlassBackButton({
       style={styles.hit44}
       contentStyle={[styles.round44, controlFill(glass)]}
     >
-      <Ionicons name={icon} size={20} color={glass.text} />
+      <NavIcon name={icon} size={20} color={glass.text} />
     </PressableHybrid>
   );
 }

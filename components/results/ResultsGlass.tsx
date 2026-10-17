@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
+import { NavIcon } from '../v2/BackGlyph';
 
 // зачем (владелец 2026-09-30): экраны итогов и полка достижений переносятся «1 в 1» по макету
 // results.html (Liquid Glass). Презентационные части собраны один раз из токенов 13 тем:
@@ -49,7 +50,7 @@ export function ResultsGlassBackButton({
         boxShadow: nestedBoxShadow(glass),
       }}
     >
-      <Ionicons name={icon} size={20} color={glass.text} />
+      <NavIcon name={icon} size={20} color={glass.text} />
     </PressableHybrid>
   );
 }

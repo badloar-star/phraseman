@@ -20,6 +20,7 @@ import { mpColors } from './panelPaint';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { shadowSheetPlateTokens } from '../v2/shadow_sheet_paint';
 import { GlassRim } from './GlassRim';
+import BackGlyph from '../v2/BackGlyph';
 
 /** `.ph .rb` (cards-glass.css): фон круглой кнопки — 7 % от цвета текста темы (в светлой теме тоже виден). */
 export function glassButtonFill(g: Lv2Glass): string {
@@ -38,7 +39,7 @@ export const BackButton = memo(function BackButton({ g, onPress, label }: Readon
       onPress={onPress}
       // зачем (Сверка mistakes-panel-007, cards-glass.css .ph .rb): круглая кнопка — стекло 7 % поверх шапки, а не сплошной тёмный круг.
       style={({ pressed }) => [styles.back, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
-      <Ionicons name="chevron-back" size={20} color={g.text} />
+      <BackGlyph size={20} color={g.text} />
       <GlassRim radius={21} />
     </Pressable>
   );

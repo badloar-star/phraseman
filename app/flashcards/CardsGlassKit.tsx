@@ -19,6 +19,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { fcHaptic } from './SoundService';
+import { NavIcon } from '../../components/v2/BackGlyph';
 
 export type CardsGlassTokens = ReturnType<typeof liquidGlassTokens>;
 
@@ -109,7 +110,7 @@ export function CardsGlassRoundButton({
         boxShadow: plateBoxShadow(g),
       }}
     >
-      <Ionicons name={icon} size={iconSize} color={g.text} />
+      <NavIcon name={icon} size={iconSize} color={g.text} />
     </TouchableOpacity>
   );
 }

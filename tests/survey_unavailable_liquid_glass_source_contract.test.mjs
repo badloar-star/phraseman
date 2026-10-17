@@ -160,6 +160,7 @@ function createHarness({ candidate = source, lang = 'ru', themeId = 'graphite', 
     react: { __esModule: true, default: React, ...React },
     'react-native': { ActivityIndicator: 'ActivityIndicator', StyleSheet: { create: value => value }, View: 'View' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
+    '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' },
     'expo-router': { useRouter: () => ({ id: 'router' }), useLocalSearchParams: () => ({ surveyId: 'missing' }) },
     'react-native-safe-area-context': { SafeAreaView: 'SafeAreaView' },
     '../components/BouncyScrollView': { __esModule: true, default: 'BouncyScrollView' },
@@ -263,9 +264,10 @@ test('actual unavailable route renders the approved bounded geometry, stable saf
   // 11.10 (паритет profile.html PRF-13, `.rb.bare`): «назад» — голый шеврон без круга и кромки, область нажатия 48×44.
   assert.deepEqual(flatStyle(close.props.style), { width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 });
   assert.deepEqual(flatStyle(close.props.contentStyle), { width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' });
-  const closeIcon = visit(close).find(node => node.type === 'Ionicons');
+  const closeIcon = visit(close).find(node => node.type === 'BackGlyph');
   // зачем (10.10): паритет с макетом profile.html (abc8be429) — «назад» шевроном вместо крестика.
-  assert.equal(closeIcon.props.name, 'chevron-back');
+  // 17.10 (слово владельца): шеврон — общий значок «назад» BackGlyph (контур макета kit.js), а не системный Ionicons.
+  assert.ok(closeIcon, 'close uses the shared BackGlyph');
   assert.equal(closeIcon.props.size, 21);
 
   const scale = 1.3 / 1.15 * 1.2;

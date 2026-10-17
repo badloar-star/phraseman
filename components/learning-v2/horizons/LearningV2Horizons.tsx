@@ -43,6 +43,7 @@ import {
   horizonRoutePath,
 } from "./model";
 import { horizonsCopy } from "./copy";
+import BackGlyph, { NavIcon } from '../../v2/BackGlyph';
 
 type Props = Readonly<{
   titles: readonly string[];
@@ -250,7 +251,7 @@ export default function LearningV2Horizons(props: Props) {
       onPress={onPress}
       style={styles.utility}
     >
-      <Ionicons name={icon} size={17} color={p.accent} />
+      <NavIcon name={icon} size={17} color={p.accent} />
       <Text style={{ color: p.muted, fontSize: 13 }}>{label}</Text>
     </Pressable>
   );
@@ -495,7 +496,7 @@ export default function LearningV2Horizons(props: Props) {
                   },
                 ]}
               >
-                <Ionicons name="chevron-back" color={p.accent} size={20} />
+                <BackGlyph color={p.accent} size={20} />
               </Pressable>
               <Animated.View style={[styles.portal, carouselStyle]}>
                 <Pressable

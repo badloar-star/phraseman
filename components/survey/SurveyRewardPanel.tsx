@@ -18,6 +18,7 @@ import { useLang } from '../LangContext';
 import PressableHybrid from '../PressableHybrid';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity/FlowText';
+import BackGlyph from '../v2/BackGlyph';
 
 export const SURVEY_PURPLE_TONE = {
   accentDark: '#B98CFF', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
@@ -125,7 +126,7 @@ export default function SurveyRewardPanel({
               </PressableHybrid>
               {!!onBack && (
                 <PressableHybrid testID="survey-back" accessibilityLabel={labels.back} onPress={onBack} withHaptic={false} variant="secondary" style={[styles.action, { backgroundColor: glass.buttonFill }]} contentStyle={styles.actionContent}>
-                  <Ionicons name="arrow-back" size={20} color={glass.text} accessibilityElementsHidden />
+                  <BackGlyph size={20} color={glass.text} />
                   <FlowText testID="survey-back-label" provenance="authored" style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{labels.back}</FlowText>
                 </PressableHybrid>
               )}

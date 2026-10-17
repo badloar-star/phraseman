@@ -14,6 +14,7 @@ import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useLineScale } from '../../hooks/useLineScale';
 import { KitTouchable } from '../KitTouchable';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
+import BackGlyph, { NavIcon } from '../v2/BackGlyph';
 
 type IonName = keyof typeof Ionicons.glyphMap;
 
@@ -21,7 +22,7 @@ type IonName = keyof typeof Ionicons.glyphMap;
 export const PackBackBare = memo(function PackBackBare({ g, onPress, label, testID }: Readonly<{ g: GlassTokens; onPress: () => void; label: string; testID?: string }>) {
   return (
     <KitTouchable testID={testID} accessibilityRole="button" accessibilityLabel={label} hitSlop={12} onPress={onPress} style={styles.bare}>
-      <Ionicons name="chevron-back" size={24} color={g.text} />
+      <BackGlyph size={24} color={g.text} />
     </KitTouchable>
   );
 });
@@ -53,7 +54,7 @@ export const PackRoundButton = memo(function PackRoundButton({ g, icon, onPress,
       style={[styles.round, { width: size, height: size, borderRadius: size / 2, boxShadow: plateBoxShadow(g) }, style]}
     >
       <PlateFill g={g} radius={size / 2} />
-      <Ionicons name={icon} size={iconSize} color={g.text} />
+      <NavIcon name={icon} size={iconSize} color={g.text} />
     </KitTouchable>
   );
 });

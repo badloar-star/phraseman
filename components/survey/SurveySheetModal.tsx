@@ -34,6 +34,7 @@ import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurfac
 import { FlowText } from '../text-integrity/FlowText';
 import SurveyQuestionTransition from './SurveyQuestionTransition';
 import SurveyRewardPanel, { type SurveyRewardPanelPhase } from './SurveyRewardPanel';
+import BackGlyph from '../v2/BackGlyph';
 
 const SURVEY_PROGRESS_GAP_PX = 2;
 
@@ -493,7 +494,7 @@ function SurveySheetContent({
                   style={styles.backButton}
                   contentStyle={styles.backButtonContent}
                 >
-                  <Ionicons name="chevron-back" size={24} color={glass.text} accessibilityElementsHidden />
+                  <BackGlyph size={24} color={glass.text} />
                 </PressableHybrid>
                 <View style={styles.barRight}>
                   {closeButton}

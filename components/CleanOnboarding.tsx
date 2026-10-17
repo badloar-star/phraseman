@@ -139,6 +139,7 @@ import {
 } from './onboarding_auth_leave';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { reportSignInOutcome, reportSignInThrew } from '../app/auth_release_reasons';
+import { NavIcon } from './v2/BackGlyph';
 
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 // Иконка приложения — плитка слева в карточке пуша макета телефона (Bevel, кадры 7/10).
@@ -678,7 +679,7 @@ function ProgressHeader({
         accessibilityRole="button"
         accessibilityLabel={onClose ? (closeLabel ?? copy.close) : backLabel}
       >
-        <Ionicons name={onClose ? 'close' : 'chevron-back'} size={22} color={P.text} />
+        <NavIcon name={onClose ? 'close' : 'chevron-back'} size={22} color={P.text} />
       </Pressable>
       {headerRight ?? <View style={styles.headerRightSpacer} />}
     </View>

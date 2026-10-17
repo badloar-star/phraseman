@@ -32,6 +32,7 @@ import type { SurveyLaunch } from './survey_flow_controller';
 import { getCanonicalUserId } from './user_id_policy';
 import { CLOUD_SYNC_ENABLED } from './config';
 import { peekStableId } from './stable_id';
+import BackGlyph from '../components/v2/BackGlyph';
 
 type ScopeIdentityState =
   | { phase: 'checking'; key: string }
@@ -290,12 +291,9 @@ function UnavailableSurvey({
             style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
             contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
           >
-            <Ionicons
-              name="chevron-back"
+            <BackGlyph
               size={21}
               color={colors.text}
-              accessibilityElementsHidden
-              importantForAccessibility="no-hide-descendants"
             />
           </PressableHybrid>
 

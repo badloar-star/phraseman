@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
+import { NavIcon } from '../v2/BackGlyph';
 
 // зачем (владелец 2026-09-30): тренировки карточек переносятся 1 в 1 по макету practice.html
 // (Liquid Glass). Шапка занятия (круглая «‹» 34 в области нажатия 44, заголовок 20/700,
@@ -49,7 +50,7 @@ export function PracticeBackButton({
       <View style={[styles.round, large ? styles.roundLarge : null, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
         {/* зачем (сверка 04.10; «Тень» 12.10): круг — плашка с градиентом и малой тенью, без кромки. */}
         <KitGlassLayer radius={large ? 24 : PRACTICE_ROUND / 2} />
-        <Ionicons name={icon} size={20} color={color} />
+        <NavIcon name={icon} size={20} color={color} />
       </View>
     </Pressable>
   );
@@ -80,7 +81,7 @@ export function PracticeRoundIconButton({
     >
       <View style={[styles.round, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
         <KitGlassLayer radius={PRACTICE_ROUND / 2} />
-        <Ionicons name={icon} size={18} color={color} />
+        <NavIcon name={icon} size={18} color={color} />
       </View>
     </Pressable>
   );

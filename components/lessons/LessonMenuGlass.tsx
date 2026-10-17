@@ -7,6 +7,7 @@ import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { useLineScale } from '../../hooks/useLineScale';
+import { NavIcon } from '../v2/BackGlyph';
 
 // зачем (владелец 2026-09-29): меню урока переносится «1 в 1» по макету learn.html B1–B5
 // (Liquid Glass). Раньше экран собирался из общего V2Kit с его собственной палитрой, из-за чего
@@ -86,7 +87,7 @@ export function LessonMenuRoundButton({
     >
       {/* зачем (сверка learn-020 п.1–2; «Тень» 12.10): круг — плашка с градиентом и малой тенью, без кромки. */}
       <KitGlassLayer radius={box / 2} />
-      <Ionicons name={icon} size={20} color={glass.text} />
+      <NavIcon name={icon} size={20} color={glass.text} />
     </PressableHybrid>
   );
 }

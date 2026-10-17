@@ -541,6 +541,24 @@ async function loadProfiles(
 const MY_PROFILE_TTL_MS = 10 * 60_000;
 const myProfileCache = new Map<string, { at: number; value: Awaited<ReturnType<typeof fetchMyProfileFromFirestore>> }>();
 
+/** Какое поле своего профиля в кэше разошлось со снимком приложения (null — кэш свежий). */
+function myProfileCacheStaleField(value: NonNullable<Awaited<ReturnType<typeof fetchMyProfileFromFirestore>>>): string | null {
+  const snapshot = getAppSnapshot();
+  const profile = snapshot.profile;
+  if (profile) {
+    const localName = String(profile.name ?? '').trim();
+    if (localName && localName !== value.name) return 'name';
+    const localAvatar = String(profile.avatar ?? '').trim();
+    if (localAvatar && localAvatar !== value.avatar) return 'avatar';
+    if (profile.frame !== undefined && String(profile.frame ?? '').trim() !== String(value.frame ?? '').trim()) return 'frame';
+    if (profile.premiumActive !== value.isPremium) return 'premium';
+    if (profile.vipActive !== value.isVip) return 'vip';
+  }
+  const localStreak = snapshot.progress?.streak;
+  if (typeof localStreak === 'number' && localStreak !== (value.streak ?? 0)) return 'streak';
+  return null;
+}
+
 async function fetchMyProfile() {
   const myUid = await ensureAnonUser().catch((e: unknown) => {
     console.warn('[FRIENDS] my profile: anon user failed', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: причина раннего выхода
@@ -548,13 +566,15 @@ async function fetchMyProfile() {
   });
   if (!myUid) return null;
   const cached = myProfileCache.get(myUid);
-  // Ник сменили на этом телефоне — кэш с прежним именем не показываем.
-  const localName = String(getAppSnapshot().profile?.name ?? '').trim();
-  const nameMatches = !localName || cached?.value?.name === localName;
-  if (cached && nameMatches && Date.now() - cached.at < MY_PROFILE_TTL_MS) {
+  // зачем (Ревизор 3.15, aac7e1014): кэш хранит имя, аватар, рамку, серию, Plus — и должен сбрасываться, как только
+  // свой профиль поменялся на этом телефоне (ник, покупка Plus, смена аватара/рамки, занятие → серия). Один признак
+  // «мой профиль изменился» — расхождение кэша со снимком приложения, который все эти места уже обновляют.
+  const staleField = cached?.value ? myProfileCacheStaleField(cached.value) : null;
+  if (cached && !staleField && Date.now() - cached.at < MY_PROFILE_TTL_MS) {
     console.log('[FRIEND-ADD]', JSON.stringify({ step: 'my_profile', source: 'memory_cache', ageMs: Date.now() - cached.at })); // guard-ok: без имён
     return cached.value;
   }
+  if (staleField) console.log('[FRIEND-ADD]', JSON.stringify({ step: 'my_profile', source: 'cache_stale', field: staleField })); // guard-ok: только имя поля
   const value = await fetchMyProfileFromFirestore(myUid);
   if (value) myProfileCache.set(myUid, { at: Date.now(), value });
   console.log('[FRIEND-ADD]', JSON.stringify({ step: 'my_profile', source: 'server', found: Boolean(value) })); // guard-ok: без имён

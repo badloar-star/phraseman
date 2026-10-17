@@ -2249,8 +2249,9 @@ async function rejectRecoveryProviderMismatch(
     // Calling the public coordinator again would wait behind the transition
     // that is currently awaiting this recovery result (self-deadlock).
     await performCurrentProviderSignOut();
-  } catch {
-    logAuthEvent('auth_recovery_provider_mismatch_signout_failed', { provider, reason });
+  } catch (e) {
+    // зачем (Ревизор 3.15, aac7e1014): событие без причины — добавлен тип ошибки (без uid и e-mail).
+    logAuthEvent('auth_recovery_provider_mismatch_signout_failed', { provider, reason, kind: e instanceof Error ? e.name : typeof e });
     return { result: 'error', error: 'recovery_signout_failed' };
   }
   await ensureAnonUser().catch(swallowAuthAs('[AUTH-SIGNIN]', 'recovery_mismatch_ensure_anon', null));
@@ -2901,7 +2902,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
               await clearProviderCredentialHandoff(providerHandoffMarker);
               providerHandoffMarker = null;
               beginAccountGeneration(preProviderStableId);
-            } catch {
+            } catch (e) {
+              // зачем (Ревизор 3.15, aac7e1014): причина снятия handoff — тип ошибки, без идентификаторов.
+              console.warn('[AUTH] provider handoff clear failed', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
               announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
               return { result: 'error', error: 'provider_handoff_recovery_required' };
             }
@@ -3689,7 +3692,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         await clearProviderCredentialHandoff(providerHandoffMarker);
         providerHandoffMarker = null;
         beginAccountGeneration(localStableId);
-      } catch {
+      } catch (e) {
+        // зачем (Ревизор 3.15, aac7e1014): причина снятия handoff — тип ошибки, без идентификаторов.
+        console.warn('[AUTH] provider handoff clear failed', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
         announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
         return { result: 'error', error: 'provider_handoff_recovery_required' };
       }
@@ -3732,7 +3737,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         await clearProviderCredentialHandoff(providerHandoffMarker);
         providerHandoffMarker = null;
         beginAccountGeneration(localStableId);
-      } catch {
+      } catch (e) {
+        // зачем (Ревизор 3.15, aac7e1014): причина снятия handoff — тип ошибки, без идентификаторов.
+        console.warn('[AUTH] provider handoff clear failed', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
         announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
         return { result: 'error', error: 'provider_handoff_recovery_required' };
       }
@@ -3752,7 +3759,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       await clearProviderCredentialHandoff(providerHandoffMarker);
       providerHandoffMarker = null;
       beginAccountGeneration(localStableId);
-    } catch {
+    } catch (e) {
+      // зачем (Ревизор 3.15, aac7e1014): причина снятия handoff — тип ошибки, без идентификаторов.
+      console.warn('[AUTH] provider handoff clear failed', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
       announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
       return { result: 'error', error: 'provider_handoff_recovery_required' };
     }

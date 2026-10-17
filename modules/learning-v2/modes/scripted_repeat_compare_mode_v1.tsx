@@ -259,7 +259,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
       {answerBearingContentRevealed && explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
       {answerBearingContentRevealed ? (
-        <LearningV2ModeFeedbackLaneV1 feedback={learnerFeedback} interfaceLocale={interfaceLocale} />
+        <LearningV2ModeFeedbackLaneV1 feedback={learnerFeedback} interfaceLocale={interfaceLocale} ink={g.text} />
       ) : null}
       {resolved && (
         // зачем (learning-v2.html, `.verdict.ok`): «Отлично сказано!» — значок-галочка и текст

@@ -56,6 +56,10 @@ function iconLayers(t: Tok): number[][] {
 const faceInkOf = (t: Tok): string => (String(t.isLight) === 'true' ? t.text! : t.mediaInk!);
 const worstOver = (fg: string, layers: number[][]): number => Math.min(...layers.map((l) => ratio(solid(fg), l)));
 
+// ── панель обратной связи режимов Learning V2 (modules/learning-v2/modes/mode_feedback_v1.tsx): тинт 12 % поверх страницы или карточки
+const FB_TINTS = ['rgba(43, 138, 94, 0.12)', 'rgba(190, 118, 28, 0.12)'] as const; // correctTint / wrongTint
+const fbWorst = (fg: string, t: Tok): number => Math.min(...FB_TINTS.flatMap((tint) => [ratio(solid(fg), over(tint, solid(t.bg!))), ratio(solid(fg), over(tint, solid(t.opaqueCard!)))]));
+
 const TONE = 1.5;
 const GRAPHIC = 3;
 const TEXT = 4.5;
@@ -88,6 +92,9 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Поле пар', what: 'подпись на плитке «неверно»', min: TEXT, after: (t) => ratio(solid(t.text!), over('#F05454', solid(t.bg!), 0.12)) },
   { element: 'Поле пар', what: 'подпись на плитке «верно»', min: TEXT, after: (t) => ratio(solid(t.text!), over('#47C870', solid(t.bg!), 0.12)) },
   { element: 'Поле пар', what: 'выбранная к обычной плитке (тон)', min: TONE, before: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.16), solid(t.opaqueCard!)), after: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.32), solid(t.opaqueCard!)) },
+  // ── обратная связь режимов: основной текст (был жёсткий #17332A, стал g.text) и приглушённый (был #355148, стал g.secondary)
+  { element: 'Обратная связь режимов', what: 'основной текст к тинту', min: TEXT, before: (t) => fbWorst('#17332A', t), after: (t) => fbWorst(t.text!, t) },
+  { element: 'Обратная связь режимов', what: 'приглушённый текст к тинту (теперь тоже g.text)', min: TEXT, before: (t) => fbWorst('#355148', t), after: (t) => fbWorst(t.text!, t) },
   // ── хаб Карточек: стопка (слово, транскрипция) и значки плиток — по настоящим слоям stackFill / iconGlass (сверено с CardsHubV2.tsx 18.10)
   { element: 'Хаб Карточек: стопка', what: 'слово (36/700, крупный текст ≥3) к худшему слою stackFill', min: GRAPHIC, after: (t) => worstOver(faceInkOf(t), stackLayers(t)) },
   // транскрипция 16 italic — обычный текст, цель 4,5; фактически 4,10–4,49 в 26 из 230 сочетаний (светлые темы при низком ползунке, graphite|тёмная|0–0,5): слой stackFill светлеет от цвета темы 50 % по макету; пол 4,0, решение — Макеты/координатор (доля 0,5→0,4 или транскрипция крупнее)

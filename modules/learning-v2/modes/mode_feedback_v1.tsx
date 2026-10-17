@@ -132,19 +132,24 @@ export function resolveLearningV2ModeFeedbackV1({
 export function LearningV2TextAnalysisV1({
   analysis,
   interfaceLocale,
+  ink: inkColor,
 }: Readonly<{
   analysis: LearningV2ModeTextAnalysisV1;
   interfaceLocale: LearningV2InterfaceLocale;
+  /** Цвет текста из токена темы (g.text). Без него — прежний тёмный: в тёмных темах он сливается с фоном (1,2:1), поэтому вызывающий обязан передавать токен. */
+  ink?: string;
 }>) {
+  // зачем ([BLEND-AUDIT] 18.10): текст был жёстко тёмным #17332A / #355148 поверх 12 %-тинта — в тёмных темах 1,2:1 (нечитаемо, 115 из 230 сочетаний тема/оформление/ползунок); цвет теперь приходит токеном темы
+  const ink = inkColor ? { color: inkColor } : null;
   return (
     <View testID="learning-v2-text-analysis" style={styles.analysis}>
-      <Text style={styles.analysisPhrase}>{analysis.text}</Text>
-      <Text style={styles.analysisMeaning}>{analysis.meaningByLocale[interfaceLocale]}</Text>
-      <Text style={styles.analysisExplanation}>{analysis.explanationByLocale[interfaceLocale]}</Text>
+      <Text style={[styles.analysisPhrase, ink]}>{analysis.text}</Text>
+      <Text style={[styles.analysisMeaning, ink]}>{analysis.meaningByLocale[interfaceLocale]}</Text>
+      <Text style={[styles.analysisExplanation, ink]}>{analysis.explanationByLocale[interfaceLocale]}</Text>
       {analysis.units.map((unit, index) => (
         <View key={`${unit.start}-${unit.end}-${unit.text}-${index}`} style={styles.unit}>
-          <Text style={styles.unitTitle}>{`${unit.text} · ${unit.partOfSpeechLabelByLocale[interfaceLocale]} · ${unit.meaningByLocale[interfaceLocale]}`}</Text>
-          <Text style={styles.unitFunction}>{unit.functionByLocale[interfaceLocale]}</Text>
+          <Text style={[styles.unitTitle, ink]}>{`${unit.text} · ${unit.partOfSpeechLabelByLocale[interfaceLocale]} · ${unit.meaningByLocale[interfaceLocale]}`}</Text>
+          <Text style={[styles.unitFunction, ink]}>{unit.functionByLocale[interfaceLocale]}</Text>
         </View>
       ))}
     </View>
@@ -154,11 +159,15 @@ export function LearningV2TextAnalysisV1({
 export function LearningV2ModeFeedbackLaneV1({
   feedback,
   interfaceLocale,
+  ink: inkColor,
 }: Readonly<{
   feedback: LearningV2ModeLearnerFeedbackV1 | null;
   interfaceLocale: LearningV2InterfaceLocale;
+  /** Цвет текста панели из токена темы (g.text), см. LearningV2TextAnalysisV1. */
+  ink?: string;
 }>) {
   if (!feedback) return null;
+  const ink = inkColor ? { color: inkColor } : null;
   return (
     <View
       testID="learning-v2-mode-feedback-lane"
@@ -166,12 +175,12 @@ export function LearningV2ModeFeedbackLaneV1({
       accessibilityLiveRegion="polite"
       style={[styles.lane, feedback.tone === "correct" ? styles.correct : styles.wrong]}
     >
-      <Text style={styles.text}>{feedback.text}</Text>
+      <Text style={[styles.text, ink]}>{feedback.text}</Text>
       {feedback.analysis ? (
-        <LearningV2TextAnalysisV1 analysis={feedback.analysis} interfaceLocale={interfaceLocale} />
+        <LearningV2TextAnalysisV1 analysis={feedback.analysis} interfaceLocale={interfaceLocale} ink={inkColor} />
       ) : null}
       {feedback.tone === "wrong" && feedback.diagnostics?.minimalContrastByLocale?.[interfaceLocale] ? (
-        <Text style={styles.contrast}>{feedback.diagnostics.minimalContrastByLocale[interfaceLocale]}</Text>
+        <Text style={[styles.contrast, ink]}>{feedback.diagnostics.minimalContrastByLocale[interfaceLocale]}</Text>
       ) : null}
     </View>
   );

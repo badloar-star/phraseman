@@ -386,6 +386,9 @@ export default function LearningV2SessionIntro({
   const completionsRef = useRef(
     new Map<string, RequiredSessionTaskCompletionInputV3>(),
   );
+  // зачем ([OPTIMISTIC-DESIGN] 17.10): два быстрых тапа по «Дальше» до перерисовки проходили оба — setIndex(+1) дважды пропускал страницу
+  // (с её вопросом — занятие теряло задание), а на последней странице onComplete звался дважды. Замок снимается, когда страница реально сменилась.
+  const advanceLockRef = useRef(false);
   const stableTaskIdsRef = useRef(taskIds);
   const stableTaskIds = stableTaskIdsRef.current;
   const copy = useMemo(() => stringsFor(lang), [lang]);
@@ -453,6 +456,10 @@ export default function LearningV2SessionIntro({
     if (screens.length === 0) onComplete([]);
   }, [onComplete, screens.length]);
 
+  useEffect(() => {
+    advanceLockRef.current = false;
+  }, [safeIndex]);
+
   if (!screen) return null;
 
   const chooseAnswer = (choiceIndex: number) => {
@@ -499,7 +506,14 @@ export default function LearningV2SessionIntro({
 
   const advance = () => {
     if (!question || !answered) return;
+    if (advanceLockRef.current) {
+      console.log('[OPTIMISTIC-DESIGN] intro advance: повторный тап отброшен', JSON.stringify({ page: safeIndex, isLast })); // guard-ok: редкий ранний выход
+      return;
+    }
+    advanceLockRef.current = true;
     if (isLast) {
+      // зачем: если родитель не ушёл с экрана (ошибка запуска практики), кнопка не должна остаться мёртвой навсегда
+      setTimeout(() => { advanceLockRef.current = false; }, 1500);
       onComplete(
         stableTaskIds
           .map((taskId) => completionsRef.current.get(taskId))

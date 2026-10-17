@@ -182,10 +182,12 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
   const [step, setStep] = useState<'ask' | 'thanks'>('ask');
   const [variant, setVariant] = useState<ReviewVariant | null>(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const yesTappedRef = useRef(false);
 
   useEffect(() => {
     if (visible) {
       setStep('ask');
+      yesTappedRef.current = false;
       getReviewVariant(context, lang).then(setVariant);
       // Помечаем показ СРАЗУ при появлении окна — так лимит показов и 30-дневный
       // кулдаун учитываются при любом способе закрытия (кнопка, тап по фону, системно),
@@ -195,11 +197,14 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
     }
   }, [context, fadeAnim, lang, visible]);
 
+  // зачем ([OPTIMISTIC-DESIGN] 17.10): «Да» ждала запись на диск, прежде чем показать «спасибо», и второй быстрый тап открывал страницу стора дважды. Теперь «спасибо» — сразу, замок от повтора.
   const handleYes = async () => {
+    if (yesTappedRef.current) return;
+    yesTappedRef.current = true;
     // Наше окно — это пре-промпт. На "Да" уводим в стор писать отзыв и показываем
     // "спасибо". НЕ вызываем нативный requestReview, иначе два окна оценки наложатся.
-    await markReviewRated();
     setStep('thanks');
+    await markReviewRated().catch(noteSwallowedHandler('lesson_complete:ReviewModal.markReviewRated'));
     await openStoreReviewPage();
     setTimeout(onClose, 1500);
   };

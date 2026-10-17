@@ -1403,43 +1403,21 @@ type LessonsTabProps = {
 const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && (LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS);
 if (LEARNING_V2_HIDDEN) logLearningV2Hidden("lessons_tab_v2_entries", "lessons", "hidden=v2_button,new_lessons_chip,remembered_tab");
 
-// зачем (владелец 13.10, вопрос 18; макет learn.html A7/A8/A10 — вкладки «Уроки | V2»): выбранная вкладка хранится локально и при следующем
-// входе открывается сразу. Память процесса читается синхронно в первом кадре, диск (AsyncStorage) догружается один раз при загрузке модуля
-// и подхватывается тихо, если человек ещё не успел тапнуть. Диалоги не запоминаем: у них свой вход и свой доступ. Логи [LESSONS-TABS].
-const LESSONS_TAB_STORAGE_KEY = "lessons_tab_page_v1";
+// зачем (владелец 17.10: «вкладка Обучения будет открывать конкретно именно новые уроки, а не старые, а старые уроки будут открываться отдельной кнопочкой»;
+// отменяет решения 13.09 «вход открывает старые уроки» и 13.10 «вкладки Уроки | V2 с памятью выбора»): корневая вкладка «Обучение» при каждом входе открывается
+// на карте V2, без запомненного выбора; старый список — по кнопке «Классический курс» на карте. Отдельный маршрут /lessons_list (плитка «Уроки» на Главной,
+// выходы из старых уроков) остаётся на старом списке — туда возвращаются те, кто был в старом уроке. Память выбора вкладки удалена: иначе у людей
+// со старой записью «v2» этот маршрут молча прыгал бы на карту.
 type LessonsTabsPage = "lessons" | "v2";
-let rememberedLessonsPage: LessonsTabsPage | null = null;
-const rememberedLessonsPageLoad: Promise<LessonsTabsPage | null> = AsyncStorage.getItem(LESSONS_TAB_STORAGE_KEY)
-  .then((raw) => {
-    const value: LessonsTabsPage | null = raw === "v2" ? "v2" : raw === "lessons" ? "lessons" : null;
-    if (rememberedLessonsPage === null) rememberedLessonsPage = value;
-    console.log(`[LESSONS-TABS] диск: сохранено=${String(raw)} → память=${String(rememberedLessonsPage)}`); // guard-ok: чтение сохранённой вкладки
-    return rememberedLessonsPage;
-  })
-  .catch((error: unknown) => {
-    console.warn(`[LESSONS-TABS] чтение не удалось, остаёмся на «Уроки»: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина в журнале
-    return null;
-  });
-function rememberLessonsPage(page: "lessons" | "dialogs" | "v2"): void {
-  if (page === "dialogs") {
-    console.log("[LESSONS-TABS] выбраны «Диалоги» — не запоминаем"); // guard-ok: ранний выход
-    return;
-  }
-  rememberedLessonsPage = page;
-  console.log(`[LESSONS-TABS] выбрано=${page} → пишем на диск`); // guard-ok: действие пользователя
-  AsyncStorage.setItem(LESSONS_TAB_STORAGE_KEY, page).catch((error: unknown) => {
-    console.warn(`[LESSONS-TABS] запись не удалась: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина в журнале
-  });
-}
-function startLessonsPage(initial: "lessons" | "v2"): "lessons" | "dialogs" | "v2" {
+function startLessonsPage(initial: LessonsTabsPage, presentation: "tab" | "push"): "lessons" | "dialogs" | "v2" {
   // зачем (координатор 13.10, план Б R1): маршрут learning-v2/course в стор-сборке не вырезан и передаёт initialPage="v2" — без
   // выпущенных занятий (потолок бандла 0) раздел V2 не открывается и по прямой ссылке: человек попадает в список уроков.
   if (initial === "v2" && !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {
     console.warn("[V2-ROUTE] reason=ceiling0 — курс V2 без выпущенных занятий, открываю список уроков"); // guard-ok: ранний выход
     return "lessons";
   }
-  const start = initial === "lessons" && rememberedLessonsPage === "v2" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "v2" : initial;
-  console.log(`[LESSONS-TABS] вход: initialPage=${initial} память=${String(rememberedLessonsPage)} v2Доступен=${String(LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY)} → старт=${start}`); // guard-ok: итог выбора стартовой вкладки
+  const start: LessonsTabsPage = initial === "lessons" && presentation === "tab" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "v2" : initial;
+  console.log(`[LESSONS-TABS] вход: presentation=${presentation} initialPage=${initial} v2Доступен=${String(LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY)} → старт=${start}`); // guard-ok: итог выбора стартовой страницы
   return start;
 }
 
@@ -2627,18 +2605,7 @@ export default function LessonsTab({
   // Learning V2 повторно использует этот же список и тот же LessonCard.
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
-  const [pageRaw, setPageRaw] = useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage));
-  const userPickedTabRef = useRef(false); // зачем: диск догрузился позже первого кадра — не перебивать выбор, уже сделанный тапом
-  useEffect(() => {
-    if (initialPage !== "lessons") return;
-    let cancelled = false;
-    rememberedLessonsPageLoad.then((saved) => {
-      if (cancelled || userPickedTabRef.current || saved !== "v2" || !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) return;
-      console.log("[LESSONS-TABS] тихо открываем сохранённую вкладку V2"); // guard-ok: поздняя подстановка
-      setPageRaw((current) => (current === "lessons" ? "v2" : current));
-    });
-    return () => { cancelled = true; };
-  }, [initialPage]);
+  const [pageRaw, setPageRaw] = useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation));
   // зачем (владелец 22.09, «открываю урок — секунда — назад в раздел уроки»):
   // лог владения экраном лестницы. Карта V2 гаснет и открывается заново через
   // ~3с после открытия сессии (metro-console показал map:unmount сразу после
@@ -4112,10 +4079,22 @@ export default function LessonsTab({
         safeRouterBack(router, HOME_BACK_FALLBACK as any);
         return;
       }
+      // зачем (владелец 17.10): корневая вкладка открывается на карте V2 — «назад» с неё ведёт на Главную, а не в старый список (в него ведёт кнопка «Классический курс»)
+      if (isRetainedTab && page === "v2") {
+        console.log("[LESSONS-TABS] назад с карты V2 → Главная"); // guard-ok: итог нажатия «назад»
+        goHome();
+        return;
+      }
       setPage("lessons");
       return;
     }
     if (isRetainedTab) {
+      // зачем (владелец 17.10): старый список открыт кнопкой с карты — «назад» возвращает на новые уроки; без доступной карты (рубильник/нет занятий) — на Главную, как раньше
+      if (LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {
+        console.log("[LESSONS-TABS] назад из старого списка → карта V2"); // guard-ok: итог нажатия «назад»
+        setPage("v2");
+        return;
+      }
       goHome();
       return;
     }
@@ -4532,8 +4511,23 @@ export default function LessonsTab({
   );
   const requestLegacyLessonsIntro = legacyLessonsIntro.request;
   const requestLegacyLessons = useCallback(() => {
+    hapticTap();
+    console.log("[V2-MAP] classic_course:tap", JSON.stringify({ instanceId: instanceIdRef.current, from: "chapters_map_button" })); // guard-ok: тап «Классический курс»
     void requestLegacyLessonsIntro();
   }, [requestLegacyLessonsIntro]);
+  // зачем (владелец 17.10, название предложил координатор): короткое человеческое имя кнопки, открывающей старый список; слова «старые» нет (владелец 21.09 его отверг).
+  // Заголовок самого списка остаётся «Обучение» (legacyLessonsScreenTitle) — это разные тексты.
+  const classicCourseLabel = triLang(lang, {
+    ru: "Классический курс",
+    en: "Classic course",
+    uk: "Класичний курс",
+    es: "Curso clásico",
+    "pt-BR": "Curso clássico",
+    vi: "Khóa học cổ điển",
+    id: "Kursus klasik",
+    tr: "Klasik kurs",
+    pl: "Kurs klasyczny",
+  });
   // зачем: чип «Новые уроки» остаётся на экране как обещание будущего, но пока
   // курс не дописан он недоступен. Ответ на тап — строка под чипом, мгновенно и
   // локально (никакой сети, никакого модала поверх урока). Мягкий хаптик, чтобы
@@ -5509,8 +5503,6 @@ export default function LessonsTab({
               onPress={() => {
                 if (page !== "lessons") {
                   hapticTap();
-                  userPickedTabRef.current = true;
-                  rememberLessonsPage("lessons");
                   setPage("lessons");
                 }
               }}
@@ -5570,8 +5562,6 @@ export default function LessonsTab({
                       (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
                       console.log("[V2-OPEN] tap", JSON.stringify({ from: "tab_v2" }));
                     }
-                    userPickedTabRef.current = true;
-                    rememberLessonsPage("v2");
                     // R08: та же причина, что у «Новых уроков» — страница меняется на следующем кадре, после отпускания нажатой вкладки
                     requestAnimationFrame(() => setPage("v2"));
                   }
@@ -5640,7 +5630,7 @@ export default function LessonsTab({
               }
               titles={lessons}
               lang={lang}
-              legacyLessonsLabel={legacyLessonsScreenTitle}
+              legacyLessonsLabel={classicCourseLabel}
               onLegacyLessons={requestLegacyLessons}
               preparedProgress={learningV2PreparedProgress}
               currentSessionId={learningV2Progress.currentSessionId}
@@ -5715,7 +5705,8 @@ export default function LessonsTab({
                   rowGap: 8,
                 }}
               >
-                {!isRetainedTab ? (
+                {/* зачем (владелец 17.10): в корневой вкладке старый список открыт кнопкой с карты — стрелка возвращает на новые уроки */}
+                {!isRetainedTab || LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (
                   <PressableHybrid
                     testID="legacy-lessons-back-home"
                     accessibilityLabel={triLang(lang, {
@@ -5901,7 +5892,8 @@ export default function LessonsTab({
                   {/* зачем (learn.html, spec_learn «Удалено в 2.0»): чип «Новые уроки» в шапке
                       списка снят. Пока курс нельзя открыть вручную (релиз), кнопки нет вовсе —
                       раньше она лишь отвечала «курс в разработке». В дев-сборке вход остаётся. */}
-                  {LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (
+                  {/* зачем (владелец 17.10): в корневой вкладке чип «Новые уроки» не нужен — карта открывается сама, возврат на неё — стрелка слева в заголовке; в push-маршруте старого списка он остаётся */}
+                  {!isRetainedTab && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (
                     <PressableHybrid
                       testID="legacy-lessons-open-new-lessons"
                       accessibilityLabel={triLang(lang, {

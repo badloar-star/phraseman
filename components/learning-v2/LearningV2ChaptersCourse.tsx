@@ -276,7 +276,14 @@ export default function LearningV2ChaptersCourse(props: Props) {
       <View ref={headerAccessoryRef} collapsable={false}>{props.headerAccessory}</View>
     </View>
     <View style={styles.lessonTitleBlock} onLayout={logLayout("titleBlock")}>
+      {/* зачем (владелец 17.10: «старые уроки — отдельной кнопочкой»): кнопка «Классический курс» — в строке «Урок N» справа; в шапке с «назад» и HUD (словарь, монеты, энергия) на 360 dp места нет. Заливка тоном, без обводки */}
+      <View style={styles.kickerRow}>
       <Text style={[styles.lessonKicker, { color: g.secondary }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text>
+      <PressableHybrid testID="learning-v2-open-classic-course" variant="chip" accessibilityLabel={props.legacyLessonsLabel} onPress={props.onLegacyLessons} style={[styles.classicChip, { backgroundColor: g.buttonFill }]} contentStyle={styles.classicChipContent}>
+        <Ionicons name="library-outline" size={16} color={g.text} />
+        <Text numberOfLines={1} style={[styles.classicChipText, { color: g.text }]}>{props.legacyLessonsLabel}</Text>
+      </PressableHybrid>
+      </View>
       <Text accessibilityRole="header" style={[styles.lessonTitleWide, { color: g.text }]}>{currentLessonTitle}</Text>
     </View>
     <ScrollView onLayout={logLayout("scroll")} onContentSizeChange={logContentSize} contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
@@ -371,4 +378,8 @@ const styles = StyleSheet.create({
   nodeStars: { position: "absolute", bottom: -10, minHeight: 20, paddingHorizontal: 6, borderRadius: 10, flexDirection: "row", alignItems: "center", gap: 1 },
   sessionLabel: { width: 82, fontSize: 13, lineHeight: 17, textAlign: "center", marginTop: 10 },
   allLessons: { borderRadius: 28, marginTop: 6 }, allLessonsContent: { minHeight: 56, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }, allLessonsText: { fontSize: 16, fontWeight: "700" }, lessonCard: { marginBottom: 2 }, fallbackLesson: { borderRadius: 14 }, fallbackLessonContent: { minHeight: 76, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 12 }, lessonCopy: { flex: 1 }, lessonMeta: { fontSize: 13, fontWeight: "600", marginBottom: 2 }, lessonTitle: { fontSize: 16, fontWeight: "700" }, legacyButton: { borderRadius: 28, marginTop: 6 }, legacyButtonContent: { minHeight: 48, alignItems: "center", justifyContent: "center" },
+  kickerRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10, minHeight: 36 },
+  classicChip: { flexShrink: 1, minWidth: 0, borderRadius: 18, alignSelf: "center" },
+  classicChipContent: { width: "auto", minHeight: 36, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 6 },
+  classicChipText: { flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: "700" },
 });

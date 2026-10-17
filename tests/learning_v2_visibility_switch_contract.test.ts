@@ -47,12 +47,12 @@ describe('рубильник «Learning V2 скрыт»', () => {
   it('вкладка «Обучение»: кнопка V2, чип «Новые уроки», вкладка из памяти и initialPage="v2" — под одной константой с рубильником', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
     expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);$/m);
-    // кнопка «V2» и чип «Новые уроки» рендерятся только под константой
-    expect(lessons.match(/\{LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY \? \(/g)?.length ?? 0).toBeGreaterThanOrEqual(2);
-    // прямой маршрут курса (initialPage="v2") и запомненная вкладка
+    // кнопка «V2» и чип «Новые уроки» рендерятся только под константой (чип — ещё и только в push-маршруте старого списка, владелец 17.10)
+    expect(lessons.match(/\{LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY \? \(/g)?.length ?? 0).toBeGreaterThanOrEqual(1);
+    expect(lessons).toContain('{!isRetainedTab && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (');
+    // прямой маршрут курса (initialPage="v2") и старт вкладки на карте — только при доступном курсе (памяти выбора больше нет)
     expect(lessons).toContain('if (initial === "v2" && !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {');
-    expect(lessons).toContain('rememberedLessonsPage === "v2" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY');
-    expect(lessons).toContain('saved !== "v2" || !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY');
+    expect(lessons).toContain('initial === "lessons" && presentation === "tab" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "v2" : initial');
     // прогрев каталога V2 при скрытом V2 не взводится
     expect(lessons).toContain('if (!LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY || learningV2WarmupArmed || page !== "lessons") return undefined;');
   });

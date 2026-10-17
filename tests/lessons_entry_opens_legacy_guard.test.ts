@@ -5,6 +5,10 @@ const ROOT = process.cwd();
 const read = (...parts: string[]): string => readFileSync(join(ROOT, ...parts), 'utf8');
 
 /**
+ * ОБНОВЛЕНО 2026-10-17 (владелец: «вкладка Обучения будет открывать именно новые уроки, а старые — отдельной кнопочкой»): решение 2026-09-13 ниже
+ * больше НЕ действует для корневой вкладки — она открывается на карте V2 (см. tests/lessons_tabs_memory.test.ts). Сохранено для маршрута /lessons_list
+ * (плитка «Уроки» на Главной, выходы из старых уроков): дефолт пропса initialPage по-прежнему "lessons".
+ *
  * Вход в уроки открывает СТАРЫЕ уроки — решение владельца 2026-09-13.
  *
  * Что было: `initialPage` по умолчанию равнялся "v2", и пропс этот никто не
@@ -68,8 +72,8 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
   test('единственный оставшийся переключатель на V2 закрыт той же константой, что и чип', () => {
     // Следим, чтобы в файле не завёлся ещё один безусловный вход на страницу курса.
     const unconditionalSwitches = lessons.match(/setPage\("v2"\)/g) ?? [];
-    // Ровно два: вкладка «V2» в шапке и ветка внутри openNewLessons.
-    expect(unconditionalSwitches).toHaveLength(2);
+    // Ровно три: вкладка «V2» в шапке, ветка внутри openNewLessons и «назад» из старого списка корневой вкладки на карту (владелец 17.10).
+    expect(unconditionalSwitches).toHaveLength(3);
     // зачем (координатор 23:25, practice-027): прежний сторож только считал вызовы и не заметил, что 1d70c8fc5 снял
     // условие с кнопки «V2» — в стор-сборке она вела в вырезанный маршрут. Теперь проверяем само условие у кнопки.
     expect(lessons).toMatch(/\{LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY \? \(\s*<TabUnderlineButton\s+label="V2"/);

@@ -345,7 +345,7 @@ export default function SpireHomeScreen() {
           logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(h), bottomOffset: roundLayout(dockBottom), pillTop: roundLayout(pillTop) });
         }}
       >
-        <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={[s.scrim, { bottom: -Math.max(40, dockBottom) }]} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
+        <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={[s.scrim, { bottom: -Math.max(40, dockBottom) }]} />{/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
         {game.outcome && !momentOutcome ? (
           <SpireResultPanel
             lang={lang}

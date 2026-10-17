@@ -832,7 +832,7 @@ function AppMessagesInbox({
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
                 style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor }]}
               >
-                <RowDivider edge="bottom" color="rgba(255,255,255,0.09)" /> {/* theme-exempt: светлая линия 0.09 внутри тёмной плашки — постоянная */}
+                <RowDivider edge="bottom" color="rgba(255,255,255,0.09)" />{/* theme-exempt: светлая линия 0.09 внутри тёмной плашки — постоянная */}
                 {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
                 {/* зачем: макет system.html system_17 — сверху строки «Новое»/дата, ниже заголовок и текст */}
                 <View style={styles.messageMetaRow}>

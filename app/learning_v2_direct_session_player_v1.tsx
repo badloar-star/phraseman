@@ -2507,14 +2507,14 @@ export default function LearningV2DirectSessionPlayerV1() {
         style={({ pressed }) => [
           styles.devJumpToVoiceButton,
           {
-            backgroundColor: g.accent,
+            backgroundColor: g.ctaFill,
             boxShadow: actionBoxShadow(g),
             opacity: pressed ? 0.72 : 1,
           },
         ]}
       >
-        <Ionicons name="mic" size={18} color={g.ctaInk} />
-        <Text style={[styles.devJumpToVoiceText, { color: g.accentInk }]}>
+        <Ionicons name="mic" size={18} color={g.ctaFillInk} />
+        <Text style={[styles.devJumpToVoiceText, { color: g.ctaFillInk }]}>
           DEV · К УСТНО
           {/* i18n-ok: dev-кнопка перехода к Устно, только тестовая сессия */}
         </Text>
@@ -3026,7 +3026,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               style={[
                 styles.progressFill,
                 {
-                  backgroundColor: g.accent,
+                  backgroundColor: g.accentGraphic,
                   width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
                 },
               ]}
@@ -3699,8 +3699,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                     </View>
                   </View>
                   {unlockedWords.length > 0 ? (
-                    <View style={[styles.wordPocketBadge, { backgroundColor: g.accent }]}>
-                      <Text style={[styles.wordPocketBadgeText, { color: g.accentInk }]}>
+                    <View style={[styles.wordPocketBadge, { backgroundColor: g.ctaFill }]}>
+                      <Text style={[styles.wordPocketBadgeText, { color: g.ctaFillInk }]}>
                         {unlockedWords.length}
                       </Text>
                     </View>

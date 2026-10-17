@@ -17,7 +17,7 @@ export function useSpireBgBottom(): string {
 }
 
 /** Палитра Пика + безопасный акцентный текст: в тёмном ровно accent темы, в светлом — углублённый; в «Спокойно» — цвет текста. */
-export type SpirePalette = V2Palette & Readonly<{ accentTextSafe: string }>;
+export type SpirePalette = V2Palette & Readonly<{ accentTextSafe: string; accentGraphic: string }>;
 
 export function useSpirePalette(): SpirePalette {
   const { theme, themeMode, liquidGlassThemeId } = useTheme();
@@ -44,6 +44,8 @@ export function useSpirePalette(): SpirePalette {
       accentText: g.level === 'calm' ? g.text : g.accentText,
       // зачем (координатор 15.10, храповик light_accent_graphics_ratchet): подписи-акценты окон моментов берут accentTextSafe — в тёмном ровно accent, в светлом углублённый, без сырого accentText
       accentTextSafe: g.level === 'calm' ? g.text : g.accentTextSafe,
+      // зачем (храповик light_accent_graphics, поле пар 17.10): графика цвета темы (заливки, кольца) — accentGraphic: в тёмном = accent, в светлом виден на фоне
+      accentGraphic: g.accentGraphic,
     };
   }, [theme, themeMode, liquidGlassThemeId]);
 }

@@ -2,6 +2,8 @@
 
 Governance-ID: TG-45ACF304608D
 Governance-ID: TG-1E3FBFEED2A2
+Governance-ID: TG-A223A1DF85D2
+Governance-ID: TG-45F62AB902EF
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: R69 (полотно), Learning V2 вступление

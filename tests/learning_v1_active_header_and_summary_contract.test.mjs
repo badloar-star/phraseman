@@ -81,6 +81,7 @@ test('lesson menu projects the stored score to 0–3 stars and removes decimal a
 test('the Liquid Glass catalogue background is scoped to active Learning V1 only', () => {
   const source = read('app/(tabs)/lessons.tsx');
 
-  assert.match(source, /\{page === "lessons" \? \(\s*<LinearGradient[\s\S]*?colors=\{\[learnGlass\.bgTop, learnGlass\.bg, learnGlass\.bgBottom\]\}/);
+  // зачем (R69, Сверка 15.10): градиент страницы начинается прозрачным слоем (шов под статус-баром), дальше прежняя тройка bgTop → bg → bgBottom, locations [0, 0.1, 0.55, 1]
+  assert.match(source, /\{page === "lessons" \? \(\s*<LinearGradient[\s\S]*?colors=\{\[alphaHex\(learnGlass\.bgTop, 0\), learnGlass\.bgTop, learnGlass\.bg, learnGlass\.bgBottom\]\}\s*locations=\{\[0, 0\.1, 0\.55, 1\]\}/);
   assert.match(source, /backgroundColor:\s*page === "lessons" \|\| page === "dialogs"\s*\? "transparent"\s*:\s*t\.bgPrimary/);
 });

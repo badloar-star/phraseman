@@ -10,7 +10,8 @@ describe('интро занятия: подпись этапа не перено
     // зачем (координатор 17.10, сторож learning_v2_liquid_glass_source_contract): обрезка запрещена — метка не сжимается и не обрезается, место берётся высотой
     expect(src).not.toContain('numberOfLines');
     expect(src).not.toContain('ellipsizeMode');
-    expect(src).toMatch(/<Text style=\{\[sx\.stageLabel,/);
+    // крупный системный шрифт растёт не больше 1,2: запас ширины метки ≈ 119 dp против ≈ 85 dp у «ARMADILHA» (85 × 1,2 ≈ 102) — слово не рвётся посреди
+    expect(src).toMatch(/<Text maxFontSizeMultiplier=\{1\.2\} style=\{\[sx\.stageLabel,/);
     expect(src).toMatch(/stageMeta: \{\n\s+flex: 1,\n\s+minWidth: 0,\n\s+flexDirection: "column",/);
     expect(src).toMatch(/stageLabel: \{\n\s+flexShrink: 0,/);
     expect(src).toContain('pageCounter: { flexShrink: 0,');

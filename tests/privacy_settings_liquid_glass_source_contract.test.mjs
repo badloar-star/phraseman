@@ -123,6 +123,9 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
     'react-native': { Text: 'Text', View: 'View' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
     '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' }, // 17.10: «назад» — общий значок BackGlyph (слово владельца)
+    // 17.10: у строк ИИ-функций в выключенном состоянии арт ai_off вместо глифа (ThemedArt + privacyAiStateArt) — те же заглушки, что у остальных зависимостей экрана
+    '../components/theme/ThemedArt': { ThemedArt: 'ThemedArt' },
+    '../modules/privacy/privacy_ai_art': { privacyAiStateArt: enabled => (enabled ? null : 'ai_off') },
     'expo-router': { useRouter: () => router },
     '../components/BouncyScrollView': { __esModule: true, default: 'BouncyScrollView' },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
@@ -342,7 +345,8 @@ test('every rendered row and local switch has the approved geometry, wrapping, g
     assert.equal(style.gap, 14);
     const descendants = visit(row);
     assert.ok(descendants.some(node => node.type === 'View' && flatStyle(node.props.style).width === 41 && flatStyle(node.props.style).borderRadius === 10), `${id} has 41/10 tile`);
-    assert.ok(descendants.some(node => node.type === 'Ionicons' && node.props.size === 20), `${id} has 20px icon`);
+    // 17.10: выключенная ИИ-функция показывает арт ai_off (ThemedArt 27) вместо глифа 20 — оба вида допустимы, но значок в плитке обязателен
+    assert.ok(descendants.some(node => (node.type === 'Ionicons' && node.props.size === 20) || (node.type === 'ThemedArt' && node.props.size === 27)), `${id} has a 20px icon or the 27px state art`);
     // зачем (стиль «Тень», владелец 12.10): вместо блика-градиента и рамки — заливка плашки и тень, кромок нет.
     assert.equal(descendants.filter(node => node.type === 'PlateFill').length, 1, `${id} has one plate fill`);
     assert.ok(style.boxShadow, `${id} carries the plate shadow`);

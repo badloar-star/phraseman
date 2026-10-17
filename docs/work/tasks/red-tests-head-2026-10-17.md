@@ -1,6 +1,7 @@
 # Task packet: красные node-сторожа на дереве 17.10 (прогон `node --test tests/*.test.mjs tests/*.test.cjs`)
 
 Governance-ID: TG-CE4B226D513A
+Governance-ID: TG-45F62AB902EF
 Status: Planned
 Owner: сессия «2 · ДИЗАЙН» (список), чинят зоны владельцев
 Related epic/enabler: R115

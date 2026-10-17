@@ -7,7 +7,7 @@
 // Первый кадр = итоговая геометрия: кольцо и подпись паузы стоят сразу, задание
 // появляется после списания энергии (D72 — энергия на первом задании).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useRef, type MutableRefObject } from 'react';
+import React, { memo, useMemo, useRef, type MutableRefObject } from 'react';
 import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
@@ -16,6 +16,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import type { SpirePendingStep, SpireStepSession } from '../../app/spire/use_spire_game';
 import { useSpireStepRunner, type SpireClock, type SpireFeedback, type SpireStepFinish } from '../../app/spire/use_spire_step_runner';
 import { SPIRE_STEP_MAX_HEARTS, SPIRE_STEP_TASK_COUNT } from '../../modules/spire/step_machine';
+import { spireRevealItemIndexes } from '../../modules/spire/answer_reveal';
 import SpireTaskReportButton from '../../modules/spire/SpireTaskReportButton';
 import { spireTierName } from '../../modules/spire/tier_names';
 import EnergyBar from '../EnergyBar';
@@ -73,6 +74,8 @@ export type SpireStepLayoutProps = Readonly<{
   onChoice: (index: number) => void;
   onTokens: (tokens: readonly string[]) => void;
   onItems: (selections: readonly number[]) => void;
+  /** «Пары»: верный вариант по каждому пункту — поле пар гасит пару сразу, не дожидаясь раннера. */
+  pairAnswers?: readonly (number | null)[];
   onContinue: () => void;
   /** Кнопка «пожаловаться на задание» (нужны ids раннера) — собирает контейнер; в превью её нет. */
   reportSlot: React.ReactNode;
@@ -122,6 +125,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
             onChoice={props.onChoice}
             onTokens={props.onTokens}
             onItems={props.onItems}
+            pairAnswers={props.pairAnswers}
             studyTarget={studyTarget}
           />
         )}
@@ -165,6 +169,15 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
   exitRef.current = runner.requestExit;
   const { ctx, pick } = session;
   const task = pick.tasks[runner.displayTaskIndex];
+  // зачем (владелец 17.10: «пары все на экране»): верные пары считаем локально по тем же отпечаткам, что и раннер
+  // (spireRevealItemIndexes) — пара гаснет мгновенно, без сети; вердикт по-прежнему выносит раннер в submitItems.
+  const planTask = pick.plan.tasks[runner.displayTaskIndex];
+  const pairAnswers = useMemo(() => {
+    if (!task || task.kind !== 'match' || !planTask) return undefined;
+    const items = Array.isArray(task.payload.items) ? task.payload.items as Record<string, unknown>[] : [];
+    const counts = items.map((it) => (Array.isArray(it.options) ? it.options.length : 0));
+    return spireRevealItemIndexes(pick.plan.saltId, task.taskId, counts, planTask.answerFingerprints);
+  }, [pick.plan.saltId, planTask, task]);
   const paused = runner.state.phase !== 'active' || runner.exitOpen || runner.phase !== 'playing';
   const answering = runner.phase === 'playing' && runner.state.phase === 'active' && runner.feedback === null && !runner.exitOpen;
   const reportableTarget = studyTarget === 'en' || studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de' || studyTarget === 'it'
@@ -214,6 +227,7 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
       onChoice={runner.submitChoice}
       onTokens={runner.submitTokens}
       onItems={runner.submitItems}
+      pairAnswers={pairAnswers}
       onContinue={runner.continueAfterReveal}
       reportSlot={reportSlot}
       exitSlot={<SpireExitSheet lang={lang} visible={runner.exitOpen} floor={ctx.floor} onContinue={runner.cancelExit} onExit={runner.confirmExit} />}

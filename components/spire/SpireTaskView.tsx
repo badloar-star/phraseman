@@ -24,6 +24,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireGameText, type SpireGameStringKey } from './spire_game_strings';
 import { localizeSpireOddityPrompt } from './spire_oddity_prompt';
+import SpirePairsBoard from './SpirePairsBoard';
 
 type Props = Readonly<{
   lang: Lang;
@@ -35,6 +36,8 @@ type Props = Readonly<{
   onItems: (selections: readonly number[]) => void;
   /** Язык обучения: для заданий «на слух» (PM-286) — на каком голосе телефона произнести фразу. */
   studyTarget?: string;
+  /** «Пары»: верный вариант по каждому пункту (раннер по отпечаткам). Есть у всех пунктов — поле пар целиком, иначе прежний список по одному. */
+  pairAnswers?: readonly (number | null)[];
 }>;
 
 const PROMPT_KEY: Record<string, SpireGameStringKey> = {
@@ -168,6 +171,21 @@ function ItemsTask({ task, feedback, disabled, onItems }: Props) {
   );
 }
 
+// зачем (владелец 17.10: «пары все на экране»): поле пар — только когда верный вариант известен у каждого пункта;
+// иначе (нет отпечатка, пустые пункты) — прежний список по одному слову, а не немой экран. Лог причины.
+function MatchTask(props: Props) {
+  const items = useMemo(() => (Array.isArray(props.task.payload.items) ? props.task.payload.items as Record<string, unknown>[] : []), [props.task]);
+  const board = useMemo(() => items.map((it) => ({ prompt: typeof it.prompt === 'string' ? it.prompt : '—', options: strings(it.options) })), [items]);
+  const answers = props.pairAnswers;
+  const ready = items.length > 0 && !!answers && answers.length === items.length
+    && answers.every((a, i) => typeof a === 'number' && a >= 0 && a < board[i].options.length);
+  if (!ready) {
+    console.warn('[SPIRE-PAIRS] fallback: list', JSON.stringify({ taskId: props.task.taskId, items: items.length, answers: answers ? answers.map((a) => (a === null ? 'null' : a)) : 'none' }));
+    return <ItemsTask {...props} />;
+  }
+  return <SpirePairsBoard taskId={props.task.taskId} items={board} answers={answers as readonly number[]} disabled={props.disabled} onItems={props.onItems} />;
+}
+
 function SpireTaskView(props: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const { lang, task } = props;
@@ -178,8 +196,10 @@ function SpireTaskView(props: Props) {
   const phrase = task.mode === 'find_oddity' && rawPhrase ? localizeSpireOddityPrompt(rawPhrase, lang) : rawPhrase;
   const body = task.kind === 'translate' || task.kind === 'dictate'
     ? <BuildTask {...props} />
-    : task.kind === 'match' || task.kind === 'timeattack'
-      ? <ItemsTask {...props} />
+    : task.kind === 'match'
+      ? <MatchTask {...props} />
+      : task.kind === 'timeattack'
+        ? <ItemsTask {...props} />
       : <ChoiceTask {...props} />;
   // зачем (PM-286, Ядро 01.10): у заданий «на слух» своей озвучки нет — фразу произносит голос
   // телефона (device-tts из пакета). Нечитаемый URI — не молчим: лог с причиной.

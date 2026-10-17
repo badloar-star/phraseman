@@ -895,7 +895,7 @@ export const scheduleD1PersonalizedReminder = async (
             es: `Racha de ${streak} ${notifWord('es_day', streak)}. Si hoy sumas ${phrasesLearned} más, no habrá quien te pare.`, en: `Streak: ${streak} ${notifWord('en_day', streak)}. Add ${phrasesLearned} today and there’s no stopping you!`,
             'pt-BR': `Sequência de ${streak} ${notifWord('pt_day', streak)}. Some mais ${phrasesLearned} hoje e você embala de vez!`,
             vi: `Chuỗi ${streak} ngày. Hôm nay thêm ${phrasesLearned} cụm từ nữa là bạn vào nhịp rồi!`,
-            id: `Streak ${streak} hari. Tambah ${phrasesLearned} lagi hari ini, ritmenya makin kuat!`,
+            id: `Rangkaian ${streak} hari. Tambah ${phrasesLearned} lagi hari ini, ritmenya makin kuat!`,
             tr: `${streak} günlük seri. Bugün ${phrasesLearned} ifade daha ekle, ritim otursun!`,
             pl: `Seria ${streak} ${notifWord('pl_day_gen', streak)}. Dodaj dziś ${phrasesLearned} ${notifWord('pl_phrase_acc', phrasesLearned)} i utrzymaj tempo!`,
           }))
@@ -905,7 +905,7 @@ export const scheduleD1PersonalizedReminder = async (
             es: `${phrasesLearned} ${notifWord('es_pt_phrase', phrasesLearned)} más hoy y arrancas una racha nueva. ¡Sigue!`, en: `${phrasesLearned} more today and your streak starts! Keep going.`,
             'pt-BR': `Mais ${phrasesLearned} hoje e a sequência começa. Continue.`,
             vi: `Thêm ${phrasesLearned} cụm từ hôm nay là bạn bắt đầu chuỗi mới. Tiếp tục nhé.`,
-            id: `Tambah ${phrasesLearned} frasa hari ini dan streak baru dimulai. Lanjut.`,
+            id: `Tambah ${phrasesLearned} frasa hari ini dan rangkaian baru dimulai. Lanjut.`,
             tr: `Bugün ${phrasesLearned} ifade daha, yeni seri başlasın. Devam.`,
             pl: `Jeszcze ${phrasesLearned} ${notifWord('pl_phrase_acc', phrasesLearned)} dziś i seria rusza. Nie zatrzymuj się.`,
           }));
@@ -2423,7 +2423,7 @@ const scheduleWeeklyRecapNotificationUnlocked = async (
       es: `Tu racha: ${streak} ${notifWord('es_day', streak)} ¡Sigue aprendiendo a tu ritmo!`, en: `Your streak: ${streak} ${notifWord('en_day', streak)}. Keep learning at your own pace!`,
       'pt-BR': `Sua sequência: ${streak} ${notifWord('pt_day', streak)} Continue aprendendo no seu ritmo!`,
       vi: `Chuỗi của bạn: ${streak} ngày Hãy tiếp tục học theo nhịp của bạn!`,
-      id: `Streak kamu: ${streak} hari Terus belajar dengan ritmemu!`,
+      id: `Rangkaian kamu: ${streak} hari Terus belajar dengan ritmemu!`,
       tr: `Serin: ${streak} gün Kendi ritminde öğrenmeye devam et!`,
       pl: `Twoja seria: ${streak} ${notifWord('pl_day', streak)} Ucz się dalej we własnym rytmie!`,
     }));
@@ -2513,7 +2513,7 @@ export const scheduleMonthlyRecapNotification = async (
       es: `Lecciones: ${lessons} · Racha: ${streak}`, en: `Lessons: ${lessons} · Streak: ${streak}`,
       'pt-BR': `Lições: ${lessons} · Sequência: ${streak}`,
       vi: `Bài học: ${lessons} · Chuỗi: ${streak}`,
-      id: `Pelajaran: ${lessons} · Streak: ${streak}`,
+      id: `Pelajaran: ${lessons} · Rangkaian: ${streak}`,
       tr: `Ders: ${lessons} · Seri: ${streak}`,
       pl: `Lekcje: ${lessons} · Seria: ${streak}`,
     }));

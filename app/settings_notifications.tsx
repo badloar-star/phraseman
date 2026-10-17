@@ -429,7 +429,7 @@ export default function SettingsNotifications() {
   const sectionStudy = L({ ru:'ЗАНЯТИЯ', uk:'ЗАНЯТТЯ', en:'STUDY', es:'ESTUDIO', 'pt-BR':'ESTUDOS', vi:'HỌC TẬP', id:'BELAJAR', tr:'ÇALIŞMA', pl:'NAUKA' });
   const dailyLabel = L({ ru:'Ежедневное напоминание', uk:'Щоденне нагадування', en:'Daily reminder', es:'Recordatorio diario', 'pt-BR':'Lembrete diário', vi:'Nhắc nhở hằng ngày', id:'Pengingat harian', tr:'Günlük hatırlatıcı', pl:'Codzienne przypomnienie' });
   const timeLabel = L({ ru:'Время', uk:'Час', en:'Time', es:'Hora', 'pt-BR':'Horário', vi:'Thời gian', id:'Waktu', tr:'Saat', pl:'Godzina' });
-  const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', en:'Streak at risk', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Streak terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
+  const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', en:'Streak at risk', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Rangkaian terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
   const phraseLabel = L({ ru:'Фраза дня', uk:'Вислів дня', en:'Phrase of the day', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
   const energyLabel = L({ ru:'Энергия восстановилась', uk:'Енергію відновлено', en:'Energy restored', es:'Energía recargada', 'pt-BR':'Energia recarregada', vi:'Năng lượng đã hồi', id:'Energi pulih', tr:'Enerji doldu', pl:'Energia odnowiona' });
   const sectionRecaps = L({ ru:'ИТОГИ', uk:'ПІДСУМКИ', en:'RECAPS', es:'RESÚMENES', 'pt-BR':'RESUMOS', vi:'TỔNG KẾT', id:'RINGKASAN', tr:'ÖZETLER', pl:'PODSUMOWANIA' });

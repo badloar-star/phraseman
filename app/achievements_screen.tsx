@@ -171,7 +171,7 @@ const CAT_ICON_IMAGE: Record<string, any> = {
 const CAT_LABELS: Record<string, Record<Lang, string>> = {
   streak: { ru: 'Цепочка', uk: 'Ланцюжок', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi ngày', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' },
   lessons: { ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' },
-  combo: { ru: 'Серии', uk: 'Серії', en: 'Combos', es: 'Series', 'pt-BR': 'Séries', vi: 'Chuỗi', id: 'Seri', tr: 'Seriler', pl: 'Serie' },
+  combo: { ru: 'Серии', uk: 'Серії', en: 'Combos', es: 'Combos', 'pt-BR': 'Combos', vi: 'Combo', id: 'Kombo', tr: 'Kombolar', pl: 'Kombo' },
   special: { ru: 'Особые', uk: 'Особливі', en: 'Special', es: 'Especiales', 'pt-BR': 'Especiais', vi: 'Đặc biệt', id: 'Spesial', tr: 'Özel', pl: 'Specjalne' },
   medal: { ru: 'Медали', uk: 'Медалі', en: 'Medals', es: 'Medallas', 'pt-BR': 'Medalhas', vi: 'Huy chương', id: 'Medali', tr: 'Madalyalar', pl: 'Medale' },
 };

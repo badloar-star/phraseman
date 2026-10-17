@@ -37,7 +37,7 @@ export const PAYWALL_MAIN_BENEFITS: readonly MainBenefit[] = [
   {
     icon: 'layers-outline',
     title: LP('Карточки без ограничений', 'Картки без обмежень', 'Cards without limits', 'Tarjetas sin límites', 'Cartões sem limites', 'Thẻ không giới hạn', 'Kartu tanpa batas', 'Sınırsız kartlar', 'Karty bez limitów'),
-    detail: LP('Сохраняй, создавай наборы, тренируйся', 'Зберігай, створюй набори, тренуйся', 'Save, build packs, practice', 'Guarda, crea sets y entrena', 'Salve, crie conjuntos e treine', 'Lưu, tạo bộ thẻ và luyện tập', 'Simpan, buat paket, dan berlatih', 'Kaydet, set oluştur, çalış', 'Zapisuj, twórz zestawy, ćwicz'),
+    detail: LP('Сохраняй, создавай наборы, тренируйся', 'Зберігай, створюй набори, тренуйся', 'Save, build packs, practice', 'Guarda, crea sets y entrena', 'Salve, crie conjuntos e treine', 'Lưu, tạo bộ thẻ và luyện tập', 'Simpan, buat paket, dan berlatih', 'Kaydet, paket oluştur, çalış', 'Zapisuj, twórz zestawy, ćwicz'),
   },
   {
     icon: 'school-outline',

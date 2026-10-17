@@ -454,7 +454,7 @@ export default function CommunityPackCreateScreen() {
         const local = localMirror;
         if (cancelled) return;
         if (!local) {
-          setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
+          setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pacote não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
           return;
         }
         setTitle(local.title);
@@ -496,7 +496,7 @@ export default function CommunityPackCreateScreen() {
       const snap = await fetchCommunityPackForAuthorEdit(editPackId, sid, studyTarget);
       if (cancelled) return;
       if (!snap) {
-        setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
+        setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pacote não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
         return;
       }
       setTitle(snap.title);
@@ -1032,7 +1032,7 @@ export default function CommunityPackCreateScreen() {
   const renderHeader = (title: string, right?: React.ReactNode) => (
     <EditorHeader g={kg} title={title} closeLabel={backLabel} onClose={goBack} right={right} />
   );
-  const newPackTitle = L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet');
+  const newPackTitle = L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pacote', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet');
   const glassInput = { color: g.text, fontSize: 16, lineHeight: 22, paddingHorizontal: 0, paddingVertical: 0, marginTop: 6 } as const;
   const fieldLabel = { color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 0.2 };
   const cardsCountText = `${rows.length} ${L('из', 'з', 'of', 'de', 'de', 'trên', 'dari', '/', 'z')} 10–50`;
@@ -1137,7 +1137,7 @@ export default function CommunityPackCreateScreen() {
   const cardsTitle = L('Карточки', 'Картки', 'Cards', 'Tarjetas', 'Cartões', 'Thẻ', 'Kartu', 'Kartlar', 'Karty');
   // зачем (Карточки 2.0 12.10, `ghostadd` «＋ Карточка»): кнопка добавления — под списком, подпись короткая
   const addCardLabel = L('Карточка', 'Картка', 'Card', 'Tarjeta', 'Cartão', 'Thẻ', 'Kartu', 'Kart', 'Karta');
-  const createPackLabel = L('Создать набор', 'Створити набір', 'Create pack', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluştur', 'Utwórz pakiet');
+  const createPackLabel = L('Создать набор', 'Створити набір', 'Create pack', 'Crear pack', 'Criar pacote', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluştur', 'Utwórz pakiet');
   const firstCardLabel = L('Первая карточка', 'Перша картка', 'First card', 'Primera tarjeta', 'Primeiro cartão', 'Thẻ đầu tiên', 'Kartu pertama', 'İlk kart', 'Pierwsza karta');
   const saveLabel = L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz');
   const unlimitedPlusLabel = L('Безлимит с Plus', 'Безліміт з Plus', 'Unlimited with Plus', 'Sin límite con Plus', 'Sem limite com Plus', 'Không giới hạn với Plus', 'Tanpa batas dengan Plus', 'Plus ile sınırsız', 'Bez limitu z Plus');
@@ -1168,7 +1168,7 @@ export default function CommunityPackCreateScreen() {
           <EditorHeader
             g={kg}
             title={isEditMode
-              ? L('Изменить набор', 'Змінити набір', 'Edit pack', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
+              ? L('Изменить набор', 'Змінити набір', 'Edit pack', 'Editar pacote', 'Editar pacote', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
               : newPackTitle}
             closeLabel={backLabel}
             onClose={goBack}
@@ -1214,12 +1214,12 @@ export default function CommunityPackCreateScreen() {
                 <EditorField g={kg} label={L('Название', 'Назва', 'Title', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')}>
                   <TextInput
                     ref={titleInputRef}
-                    accessibilityLabel={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
+                    accessibilityLabel={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pacote', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
                     {...getTextInputSystemEditMenuProps()}
                     value={title}
                     onChangeText={setTitle}
                     onFocus={bindScrollOnFocus(titleInputRef)}
-                    placeholder={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
+                    placeholder={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pacote', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
                     placeholderTextColor={kg.mutedText}
                     style={fieldInput}
                   />
@@ -1246,12 +1246,12 @@ export default function CommunityPackCreateScreen() {
                     <EditorField g={kg} label={L('Описание', 'Опис', 'Description', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} tall>
                       <TextInput
                         ref={descriptionInputRef}
-                        accessibilityLabel={L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
+                        accessibilityLabel={L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pacote', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
                         {...getTextInputSystemEditMenuProps()}
                         value={description}
                         onChangeText={setDescription}
                         onFocus={bindScrollOnFocus(descriptionInputRef)}
-                        placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
+                        placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pacote', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
                         placeholderTextColor={kg.mutedText}
                         multiline
                         style={[fieldInput, { fontSize: 16, lineHeight: 22, minHeight: 60, textAlignVertical: 'top' }]}
@@ -1408,7 +1408,7 @@ export default function CommunityPackCreateScreen() {
             icon="document-text-outline"
             label={descriptionOpen
               ? L('Скрыть описание', 'Сховати опис', 'Hide description', 'Ocultar descripción', 'Ocultar descrição', 'Ẩn mô tả', 'Sembunyikan deskripsi', 'Açıklamayı gizle', 'Ukryj opis')
-              : L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
+              : L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pacote', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
             onPress={() => { setPackMenuOpen(false); setDescriptionOpen((open) => !open); }}
           />
           {/* зачем: язык набора в макете не нарисован, но менять его нужно — он в меню «⋮» */}
@@ -1436,7 +1436,7 @@ export default function CommunityPackCreateScreen() {
             <ReportErrorButton
               screen="community_pack_create"
               dataId="community_pack_editor"
-              dataText={L('Создание набора', 'Створення набору', 'Creating a pack', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluşturma', 'Tworzenie pakietu')}
+              dataText={L('Создание набора', 'Створення набору', 'Creating a pack', 'Crear pack', 'Criar pacote', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluşturma', 'Tworzenie pakietu')}
               textColor={g.text}
               style={{ alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center' }}
             />
@@ -1512,7 +1512,7 @@ export default function CommunityPackCreateScreen() {
             'Локальні дані цього набору буде видалено.',
             'The local data for this pack will be deleted.',
             'Se borrarán los datos locales de este pack.',
-            'Os dados locais deste pack serão apagados.',
+            'Os dados locais deste pacote serão apagados.',
             'Dữ liệu cục bộ của bộ thẻ này sẽ bị xóa.',
             'Data lokal paket ini akan dihapus.',
             'Bu paketin yerel verileri silinecek.',

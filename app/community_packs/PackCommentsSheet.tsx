@@ -976,7 +976,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                 uk: 'Писати можуть ті, хто додав набір собі.',
                 en: 'Only people who added the pack can write.',
                 es: 'Solo pueden escribir quienes añadieron el pack.',
-                'pt-BR': 'Só quem adicionou o pack pode escrever.',
+                'pt-BR': 'Só quem adicionou o pacote pode escrever.',
                 vi: 'Chỉ người đã thêm bộ thẻ mới viết được.',
                 id: 'Hanya yang menambahkan paket ini yang bisa menulis.',
                 tr: 'Yalnızca paketi ekleyenler yazabilir.',

@@ -344,7 +344,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
       es: 'Nuevo bloque en la tarjeta: días en Phraseman y racha récord', en: 'New block on the card: days in Phraseman and best streak',
       'pt-BR': 'Novo bloco no cartão: dias no Phraseman e sequência recorde',
       vi: 'Khối mới trên thẻ: số ngày dùng Phraseman và chuỗi kỷ lục',
-      id: 'Blok baru di kartu: hari di Phraseman dan rentetan rekor',
+      id: 'Blok baru di kartu: hari di Phraseman dan rangkaian rekor',
       tr: 'Kartta yeni blok: Phraseman’de geçen günler ve rekor seri',
       pl: 'Nowy blok na karcie: dni w Phraseman i rekordowa seria',
     } },

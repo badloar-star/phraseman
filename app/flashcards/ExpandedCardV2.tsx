@@ -68,7 +68,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
   'pt-BR': { edit: 'Editar', saved: 'Salvo', save: 'Salvar', del: 'Excluir', speak: 'Ouvir', close: 'Fechar', toPack: 'Para um conjunto', pickPack: 'Para qual conjunto?', noPacks: 'Você ainda não tem conjuntos', createPack: 'Criar um conjunto', flip: 'Virar o cartão' },
   vi: { edit: 'Sửa', saved: 'Đã lưu', save: 'Lưu', del: 'Xóa', speak: 'Nghe', close: 'Đóng', toPack: 'Vào bộ thẻ', pickPack: 'Vào bộ thẻ nào?', noPacks: 'Bạn chưa có bộ thẻ nào', createPack: 'Tạo bộ thẻ', flip: 'Lật thẻ' },
   id: { edit: 'Ubah', saved: 'Tersimpan', save: 'Simpan', del: 'Hapus', speak: 'Dengarkan', close: 'Tutup', toPack: 'Ke set', pickPack: 'Ke set mana?', noPacks: 'Belum ada set', createPack: 'Buat set', flip: 'Balik kartu' },
-  tr: { edit: 'Düzenle', saved: 'Kaydedildi', save: 'Kaydet', del: 'Sil', speak: 'Dinle', close: 'Kapat', toPack: 'Sete ekle', pickPack: 'Hangi sete?', noPacks: 'Henüz setin yok', createPack: 'Set oluştur', flip: 'Kartı çevir' },
+  tr: { edit: 'Düzenle', saved: 'Kaydedildi', save: 'Kaydet', del: 'Sil', speak: 'Dinle', close: 'Kapat', toPack: 'Sete ekle', pickPack: 'Hangi sete?', noPacks: 'Henüz setin yok', createPack: 'Paket oluştur', flip: 'Kartı çevir' },
   pl: { edit: 'Edytuj', saved: 'Zapisano', save: 'Zapisz', del: 'Usuń', speak: 'Posłuchaj', close: 'Zamknij', toPack: 'Do zestawu', pickPack: 'Do którego zestawu?', noPacks: 'Nie masz jeszcze zestawów', createPack: 'Utwórz zestaw', flip: 'Obróć kartę' },
 });
 
@@ -87,7 +87,7 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
   const copy = useMemo(() => copyFor(lang), [lang]);
   const onlyPublishedText = triLang(lang, {
     ru: 'Нет наборов, куда можно добавить', uk: 'Немає наборів, куди можна додати', en: 'No packs to add to', es: 'No hay sets a los que añadir',
-    'pt-BR': 'Não há conjuntos para adicionar', vi: 'Không có bộ thẻ nào để thêm vào', id: 'Tidak ada set untuk ditambah', tr: 'Eklenebilecek set yok', pl: 'Brak zestawów, do których można dodać',
+    'pt-BR': 'Não há conjuntos para adicionar', vi: 'Không có bộ thẻ nào để thêm vào', id: 'Tidak ada set untuk ditambah', tr: 'Eklenebilecek paket yok', pl: 'Brak zestawów, do których można dodać',
   });
   const lh = useLineScale();
   const [flipped, setFlipped] = useState(false);

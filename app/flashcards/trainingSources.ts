@@ -76,7 +76,7 @@ export function cardCountLabel(lang: Lang, count: number): string {
     vi: 'thẻ',
     id: 'kartu',
     tr: 'kart',
-    pl: 'fiszek',
+    pl: 'kart',
   })}`;
 }
 
@@ -200,16 +200,17 @@ export function parseRouteIdList(value: string | string[] | undefined): string[]
 }
 
 export function officialSourceSubtitle(lang: Lang): string {
+  // зачем (переводчик 17.10): подпись была «Official pack» по-английски на всех 9 языках
   return triLang(lang, {
-    ru: 'Official pack',
-    uk: 'Official pack',
+    ru: 'Официальный набор',
+    uk: 'Офіційний набір',
     en: 'Official pack',
-    es: 'Official pack',
-    'pt-BR': 'Official pack',
-    vi: 'Official pack',
-    id: 'Official pack',
-    tr: 'Official pack',
-    pl: 'Official pack',
+    es: 'Pack oficial',
+    'pt-BR': 'Pacote oficial',
+    vi: 'Bộ thẻ chính thức',
+    id: 'Paket resmi',
+    tr: 'Resmî paket',
+    pl: 'Oficjalny zestaw',
   });
 }
 
@@ -223,7 +224,7 @@ export function savedSourceTitle(lang: Lang): string {
     vi: 'Thẻ đã lưu',
     id: 'Kartu tersimpan',
     tr: 'Kaydedilen kartlar',
-    pl: 'Zapisane fiszki',
+    pl: 'Zapisane karty',
   });
 }
 
@@ -237,7 +238,7 @@ export function customSourceTitle(lang: Lang): string {
     vi: 'Thẻ của bạn',
     id: 'Kartu sendiri',
     tr: 'Kendi kartların',
-    pl: 'Własne fiszki',
+    pl: 'Własne karty',
   });
 }
 

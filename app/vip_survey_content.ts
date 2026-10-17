@@ -48,7 +48,7 @@ function loc(t: Loc8): Record<Lang, string> {
 /** Повторяющиеся пункты опроса (Уроки/Карточки и т.п.) — один источник перевода. */
 const COMMON = {
   lessons: loc({ ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', en: 'Lessons', ptBR: 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }),
-  flashcards: loc({ ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', en: 'Cards', ptBR: 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' }),
+  flashcards: loc({ ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', en: 'Cards', ptBR: 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' }),
 };
 
 export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [

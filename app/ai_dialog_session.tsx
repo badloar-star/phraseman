@@ -2350,7 +2350,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 en: 'End dialogue',
                 es: 'Terminar diálogo',
                 'pt-BR': 'Encerrar diálogo',
-                vi: 'Kết thúc cuộc đối thoại',
+                vi: 'Kết thúc cuộc hội thoại',
                 id: 'Akhiri dialog',
                 tr: 'Diyaloğu bitir',
                 pl: 'Zakończ dialog',

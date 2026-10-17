@@ -44,7 +44,7 @@ export function emitPlusFreezeLimitToast(): void {
     es: 'Se acabaron las congelaciones de Plus de este mes: la racha empezó de nuevo',
     'pt-BR': 'As congelações do Plus deste mês acabaram — a sequência recomeçou',
     vi: 'Đã hết lượt đóng băng Plus của tháng này — chuỗi đã bắt đầu lại',
-    id: 'Pembekuan Plus bulan ini sudah habis — streak dimulai dari awal',
+    id: 'Pembekuan Plus bulan ini sudah habis — rangkaian dimulai dari awal',
     tr: 'Bu ayın Plus dondurmaları bitti — seri yeniden başladı',
     pl: 'Zamrożenia Plus na ten miesiąc się skończyły — seria zaczęła się od nowa',
   }));

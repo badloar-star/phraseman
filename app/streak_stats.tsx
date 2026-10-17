@@ -994,7 +994,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
     const lifetimeRows: LifetimeRow[] = [
         { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', en: 'Words learned', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
         { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Висловів вивчено', es: 'Frases aprendidas', en: 'Phrases learned', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
-        { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', en: 'Flashcards saved', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
+        { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', en: 'Flashcards saved', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane karty' }) },
         // зачем (D70/D78, координатор 01.10): «Монет заработано/потрачено» считали ЖЕМЧУГ (shards) —
         // жемчуг удалён владельцем; строки сняты с экрана, данные уберёт ядро вместе с кодом (PM-289).
     ];
@@ -2226,7 +2226,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 ru: 'Не удалось включить заморозку. Попробуй ещё раз.',
                 uk: 'Не вдалося увімкнути заморозку. Спробуй ще раз.',
                 es: 'No se pudo activar la congelación. Inténtalo de nuevo.', en: 'Couldn\'t turn on the freeze. Try again.',
-                'pt-BR': 'Não foi possível ativar o congelamento. Tente de novo.', vi: 'Không bật được đóng băng chuỗi. Hãy thử lại.', id: 'Pembekuan streak tidak bisa diaktifkan. Coba lagi.', tr: 'Seri dondurma açılamadı. Tekrar dene.', pl: 'Nie udało się włączyć zamrożenia serii. Spróbuj ponownie.',
+                'pt-BR': 'Não foi possível ativar o congelamento. Tente de novo.', vi: 'Không bật được đóng băng chuỗi. Hãy thử lại.', id: 'Pembekuan rangkaian tidak bisa diaktifkan. Coba lagi.', tr: 'Seri dondurma açılamadı. Tekrar dene.', pl: 'Nie udało się włączyć zamrożenia serii. Spróbuj ponownie.',
             }));
         } finally {
             freezeInFlightRef.current = false;

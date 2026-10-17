@@ -7,7 +7,7 @@ type Nine = Readonly<{ ru: string; uk: string; en: string; es: string; 'pt-BR': 
 
 const S = {
   inRow: { ru: '{n} подряд', uk: '{n} поспіль', en: '{n} in a row', es: '{n} seguidas', 'pt-BR': '{n} seguidas', vi: '{n} câu liền', id: '{n} beruntun', tr: 'Üst üste {n}', pl: '{n} z rzędu' },
-  broken: { ru: 'серия сброшена', uk: 'серію скинуто', en: 'streak reset', es: 'racha reiniciada', 'pt-BR': 'sequência zerada', vi: 'chuỗi đã mất', id: 'runtunan putus', tr: 'seri sıfırlandı', pl: 'seria przerwana' },
+  broken: { ru: 'серия сброшена', uk: 'серію скинуто', en: 'streak reset', es: 'racha reiniciada', 'pt-BR': 'sequência zerada', vi: 'chuỗi đã mất', id: 'rangkaian putus', tr: 'seri sıfırlandı', pl: 'seria przerwana' },
 } as const satisfies Readonly<Record<string, Nine>>;
 
 export type ComboMomentStringKey = keyof typeof S;

@@ -77,7 +77,7 @@ export function moderationBody(ev: Record<string, unknown>, lang: Lang): string 
       vi: 'Mở Thẻ — bạn sẽ thấy bộ thẻ này trong danh sách bộ thẻ của mình.',
       id: 'Buka Kartu — kamu akan menemukannya di daftar paketmu.',
       tr: 'Kartlar’ı aç — paketini kendi paketlerinin listesinde bulacaksın.',
-      pl: 'Otwórz Fiszki — znajdziesz ten zestaw na liście swoich zestawów.',
+      pl: 'Otwórz Karty — znajdziesz ten zestaw na liście swoich zestawów.',
     }));
   }
   const msg = ev.message != null ? String(ev.message).trim() : '';

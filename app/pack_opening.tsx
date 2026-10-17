@@ -600,7 +600,7 @@ export default function PackOpeningScreen() {
         <View style={styles.fillCenter}>
           <Stack.Screen options={{ headerShown: false }} />
           <Text style={{ color: t.textMuted, fontSize: f.body, marginBottom: 16 }}>
-            {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', en: 'Pack not found', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
+            {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', en: 'Pack not found', es: 'Paquete no encontrado', 'pt-BR': 'Pacote não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
           </Text>
           <Pressable
             onPress={() => safeRouterBack(router, '/flashcards' as any)}

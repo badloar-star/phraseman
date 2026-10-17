@@ -263,17 +263,18 @@ test('shared compact count formatter is pure and preserves all nine locale contr
     vi: ['1 thẻ', '2 thẻ', '5 thẻ'],
     id: ['1 kartu', '2 kartu', '5 kartu'],
     tr: ['1 kart', '2 kart', '5 kart'],
-    pl: ['1 fiszka', '2 fiszki', '5 fiszek'],
+    pl: ['1 karta', '2 karty', '5 kart'],
   };
   for (const lang of LOCALES) {
     assert.deepEqual([1, 2, 5].map(count => compactDeckCountLabel(lang, count)), expected[lang], lang);
   }
   assert.equal(compactDeckCountLabel('en', Number.NaN), '0 cards');
-  assert.equal(compactDeckCountLabel('pl', -4), '0 fiszek');
+  assert.equal(compactDeckCountLabel('pl', -4), '0 kart');
   assert.equal(compactDeckCountLabel('pt-BR', 2.9), '2 cartões');
   const parityCounts = [Number.NaN, Number.POSITIVE_INFINITY, -1, 0, 1, 2, 4, 5, 11, 12, 14, 21, 22, 25, 2.9, 987654321];
   const parityMatrix = LOCALES.flatMap(lang => parityCounts.map((count, index) => [lang, index, compactDeckCountLabel(lang, count)]));
-  assert.equal(sha256(JSON.stringify(parityMatrix)), 'b5b2f62aec32348368e4692db45bfa38491dbc6e28d10b7e019bb0d54f07c910');
+  // зачем (переводчик 17.10, глоссарий: pl «karty» вместо «fiszki»): хэш матрицы обновлён — поменялось только польское слово (karta/karty/kart)
+  assert.equal(sha256(JSON.stringify(parityMatrix)), 'fb916f35d503c6df7622bbb2e7c90a2a4513d2e41e973845d05e645d45dc2189');
   assert.match(pickerSource, /from '\.\.\/\.\.\/lib\/flashcards\/compact_deck_count_label'/);
   assert.doesNotMatch(pickerSource, /function compactCardsCountLabel/);
 });
@@ -475,7 +476,7 @@ test('short screen with extreme native type keeps the whole header scrollable an
 test('actual compact rows ignore stale covers, wrap text, localize counts, and preserve one toggle haptic', () => {
   const singularCount = {
     ru: '1 карточка', uk: '1 картка', en: '1 card', es: '1 tarjeta',
-    'pt-BR': '1 cartão', vi: '1 thẻ', id: '1 kartu', tr: '1 kart', pl: '1 fiszka',
+    'pt-BR': '1 cartão', vi: '1 thẻ', id: '1 kartu', tr: '1 kart', pl: '1 karta',
   };
   for (const lang of LOCALES) {
     const h = loadPicker({ lang });

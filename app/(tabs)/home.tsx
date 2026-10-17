@@ -2346,7 +2346,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 testID: 'home-quick-dialogs',
                 label: triLang(lang, {
                     ru: 'Диалоги', uk: 'Діалоги', en: 'Dialogues', es: 'Diálogos', 'pt-BR': 'Diálogos',
-                    vi: 'Đối thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
+                    vi: 'Hội thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
                 }),
                 onPress: () => {
                     hapticTap();

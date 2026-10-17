@@ -199,7 +199,7 @@ export default function DayRings({ lesson, practice, cards }: DayRingsProps) {
         textColor={t.textSecond}
         caption={triLang(lang, {
           ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões',
-          vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki',
+          vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty',
         })}
       />
     </View>

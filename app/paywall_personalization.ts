@@ -190,7 +190,7 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       es: `Perdiste la racha ${n} ${es_times(n)} — Plus la protege`, en: `Your streak broke ${n} ${n === 1 ? 'time' : 'times'} — Plus protects it`,
       'pt-BR': `Você perdeu a sequência ${n}x — Plus ajuda a protegê-la`,
       vi: `Bạn mất chuỗi ${n} lần — Plus giúp bảo vệ chuỗi`,
-      id: `Streak putus ${n} kali — Plus membantu melindunginya`,
+      id: `Rangkaian putus ${n} kali — Plus membantu melindunginya`,
       tr: `Serin ${n} kez bozuldu — Plus korumaya yardım eder`,
       pl: `Seria przerwała się ${n} razy — Plus pomaga ją chronić`,
       weight,

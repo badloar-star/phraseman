@@ -20,7 +20,7 @@ export const SECTION_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
     'pt-BR': 'Escolha conjuntos prontos ou crie os seus e comece a praticar. Um conjunto é uma coleção de cartões sobre um tema. Colecionar é bom; lembrar sem dicas é melhor ainda.',
     vi: 'Chọn bộ thẻ có sẵn hoặc tự tạo, rồi bắt đầu luyện tập. Mỗi bộ là các thẻ cùng chủ đề. Sưu tầm đã vui, nhớ được mà không cần gợi ý còn vui hơn.',
     id: 'Pilih paket siap pakai atau buat sendiri, lalu mulai latihan. Paket adalah kumpulan kartu bertema. Mengoleksi itu seru; mengingat tanpa petunjuk lebih seru lagi.',
-    tr: 'Hazır setleri seç veya kendi setini oluştur, sonra çalışmaya başla. Set, bir konudaki kartların koleksiyonudur. Biriktirmek güzel; ipucu olmadan hatırlamak daha da güzel.',
+    tr: 'Hazır paketleri seç veya kendi paketini oluştur, sonra çalışmaya başla. Paket, bir konudaki kartların koleksiyonudur. Biriktirmek güzel; ipucu olmadan hatırlamak daha da güzel.',
     pl: 'Wybierz gotowe zestawy lub stwórz własne, a potem ćwicz. Zestaw to kolekcja kart na dany temat. Zbieranie cieszy; pamiętanie bez podpowiedzi jeszcze bardziej.',
   }), ctaLabel: understood,
 }, {

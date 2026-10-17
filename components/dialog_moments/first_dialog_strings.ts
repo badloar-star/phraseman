@@ -12,7 +12,7 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
 
 const S = {
-  overline: ['Первый диалог', 'Перший діалог', 'First dialogue', 'Primer diálogo', 'Primeiro diálogo', 'Cuộc đối thoại đầu tiên', 'Dialog pertama', 'İlk diyalog', 'Pierwszy dialog'],
+  overline: ['Первый диалог', 'Перший діалог', 'First dialogue', 'Primer diálogo', 'Primeiro diálogo', 'Cuộc hội thoại đầu tiên', 'Dialog pertama', 'İlk diyalog', 'Pierwszy dialog'],
   title: ['Первый разговор {adv} — есть!', 'Перша розмова {adv} — є!', 'Your first conversation {adv} — done!', 'Primera conversación {adv}: ¡hecho!', 'Primeira conversa {adv} — concluída!', 'Cuộc trò chuyện đầu tiên {adv} — xong!', 'Percakapan pertama {adv} — selesai!', 'İlk konuşma {adv} — tamam!', 'Pierwsza rozmowa {adv} — zaliczona!'],
   say: ['Получилось!', 'Вийшло!', 'You did it!', '¡Lo lograste!', 'Deu certo!', 'Được rồi!', 'Berhasil!', 'Başardın!', 'Udało się!'],
   next: ['Следующий сценарий', 'Наступний сценарій', 'Next scenario', 'Siguiente escenario', 'Próximo cenário', 'Kịch bản tiếp theo', 'Skenario berikutnya', 'Sonraki senaryo', 'Następny scenariusz'],

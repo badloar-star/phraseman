@@ -82,7 +82,7 @@ function mirrorStats(lang: Lang, mirror: ProgressMirror): { value: number; label
     es: 'días racha',
     'pt-BR': 'dias seguidos',
     vi: 'ngày chuỗi',
-    id: 'hari runtutan',
+    id: 'hari rangkaian',
     tr: 'gün seri',
     pl: 'dni serii',
   }) });
@@ -360,7 +360,7 @@ const VALUE_CARDS: ValueCard[] = [
   {
     icon: 'infinite-outline',
     title: { ru: 'Без дневных стопов', uk: 'Без денних стопів', en: 'No free-tier stops', es: 'Sin frenos gratis', 'pt-BR': 'Sem travas grátis', vi: 'Không bị chặn kiểu miễn phí', id: 'Tanpa rem gratis', tr: 'Free durakları yok', pl: 'Bez blokad free' },
-    desc: { ru: 'Практика, энергия и карточки доступны без бесплатных дневных стопов и порогов.', uk: 'Практика, енергія й картки доступні без безкоштовних денних стопів і порогів.', en: 'Practice, energy, and cards are available with no free-tier daily caps or limits.', es: 'Práctica, energía y tarjetas están disponibles sin los topes diarios del modo gratis.', 'pt-BR': 'Prática, energia e cartões ficam disponíveis sem os bloqueios diários do modo grátis.', vi: 'Luyện tập, năng lượng và thẻ được mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Latihan, energi, dan kartu tersedia tanpa batas harian mode gratis.', tr: 'Pratik, enerji ve kartlar ücretsiz modun günlük durakları olmadan açılır.', pl: 'Praktyka, energia i fiszki są dostępne bez dziennych progów trybu free.' },
+    desc: { ru: 'Практика, энергия и карточки доступны без бесплатных дневных стопов и порогов.', uk: 'Практика, енергія й картки доступні без безкоштовних денних стопів і порогів.', en: 'Practice, energy, and cards are available with no free-tier daily caps or limits.', es: 'Práctica, energía y tarjetas están disponibles sin los topes diarios del modo gratis.', 'pt-BR': 'Prática, energia e cartões ficam disponíveis sem os bloqueios diários do modo grátis.', vi: 'Luyện tập, năng lượng và thẻ được mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Latihan, energi, dan kartu tersedia tanpa batas harian mode gratis.', tr: 'Pratik, enerji ve kartlar ücretsiz modun günlük durakları olmadan açılır.', pl: 'Praktyka, energia i karty są dostępne bez dziennych progów trybu free.' },
   },
 ];
 
@@ -485,7 +485,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         vi: 'Trọn bộ khóa học, luyện nói thành tiếng, hội thoại AI không giới hạn lượt mỗi ngày, luyện thẻ từ, bộ sưu tập cụm từ của riêng bạn, thống kê chi tiết và giao diện ứng dụng. Năng lượng không bị tiêu hao nên bạn học bao nhiêu tùy thích.',
         id: 'Seluruh kursus, latihan berbicara lantang, dialog AI tanpa penghitung harian, latihan kartu, koleksi frasamu sendiri, statistik terperinci, dan tema aplikasi. Energi tidak terpakai, jadi kamu bisa belajar sepuasnya.',
         tr: 'Kursun tamamı, sesli konuşma pratiği, günlük sayaç olmadan yapay zekâ diyalogları, kart antrenmanları, kendi ifade koleksiyonun, ayrıntılı istatistikler ve uygulama temaları. Enerji harcanmaz, yani istediğin kadar çalışabilirsin.',
-        pl: 'Cały kurs, ćwiczenie mówienia na głos, dialogi z AI bez dziennego licznika, treningi fiszek, własna kolekcja zwrotów, szczegółowe statystyki i motywy aplikacji. Energia się nie zużywa, więc możesz uczyć się, ile chcesz.',
+        pl: 'Cały kurs, ćwiczenie mówienia na głos, dialogi z AI bez dziennego licznika, treningi kart, własna kolekcja zwrotów, szczegółowe statystyki i motywy aplikacji. Energia się nie zużywa, więc możesz uczyć się, ile chcesz.',
       }),
     },
   ];

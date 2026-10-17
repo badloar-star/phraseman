@@ -189,7 +189,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
       vi: t('Ôn lỗi không giới hạn', `Miễn phí: ${n('vi', L.mistakes, SESSION_COUNT)} mỗi ngày. Với Plus, ôn bao nhiêu tùy bạn.`, 'Mọi lỗi từ bài học và thẻ ở một nơi'),
       id: t('Kesalahan tanpa batas', `Gratis: ${n('id', L.mistakes, SESSION_COUNT)} sehari. Dengan Plus, ulas sebanyak yang kamu mau.`, 'Semua kesalahan dari pelajaran dan kartu di satu tempat'),
       tr: t('Hatalar sınırsız', `Ücretsiz: günde ${n('tr', L.mistakes, SESSION_COUNT)}. Plus ile istediğin kadar çalış.`, 'Ders ve kart hatalarının hepsi tek yerde'),
-      pl: t('Błędy bez limitu', `Za darmo — ${n('pl', L.mistakes, SESSION_COUNT)} dziennie. Z Plus ćwicz, ile potrzebujesz.`, 'Wszystkie błędy z lekcji i fiszek w jednym miejscu'),
+      pl: t('Błędy bez limitu', `Za darmo — ${n('pl', L.mistakes, SESSION_COUNT)} dziennie. Z Plus ćwicz, ile potrzebujesz.`, 'Wszystkie błędy z lekcji i kart w jednym miejscu'),
     },
     flashcard_limit: {
       ru: t('Место для карточек закончилось', `Бесплатно — ${n('ru', L.cards, PHRASE_COUNT)}. С Plus сохраняй сколько хочешь.`, 'Безлимит на личную базу карточек'),
@@ -200,7 +200,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
       vi: t('Hết chỗ lưu thẻ', `Miễn phí: ${n('vi', L.cards, PHRASE_COUNT)}. Với Plus, lưu bao nhiêu tùy thích.`, 'Kho thẻ cá nhân không giới hạn'),
       id: t('Tempat kartu sudah penuh', `Gratis: ${n('id', L.cards, PHRASE_COUNT)}. Dengan Plus, simpan sebanyak yang kamu mau.`, 'Koleksi kartu pribadi tanpa batas'),
       tr: t('Kart yeri doldu', `Ücretsiz: ${n('tr', L.cards, PHRASE_COUNT)}. Plus ile istediğin kadar kaydet.`, 'Kişisel kart arşivinde sınır yok'),
-      pl: t('Skończyło się miejsce na fiszki', `Za darmo — ${n('pl', L.cards, PHRASE_COUNT)}. Z Plus zapisuj, ile chcesz.`, 'Własna baza fiszek bez limitu'),
+      pl: t('Skończyło się miejsce na karty', `Za darmo — ${n('pl', L.cards, PHRASE_COUNT)}. Z Plus zapisuj, ile chcesz.`, 'Własna baza kart bez limitu'),
     },
     flashcard_training: {
       ru: t('Тренировки на месяц закончились', `Бесплатно — ${n('ru', L.training, TRAINING_COUNT)} в месяц. С Plus счётчика нет.`, 'Игровая тренировка сохранённых фраз'),
@@ -537,8 +537,8 @@ export function paywallContextPill(ctx: PaywallTextContext, lang: PaywallTextLan
       return usedOf(lang, L.training, TRAINING_OF);
     case 'streak':
       return streak
-        ? pick({ ru: `Серия ${n('ru', streak, DAY_COUNT)}`, uk: `Серія ${n('uk', streak, DAY_COUNT)}`, en: `${n('en', streak, DAY_COUNT)} streak`, es: `Racha de ${n('es', streak, DAY_COUNT)}`, 'pt-BR': `Sequência de ${n('pt-BR', streak, DAY_COUNT)}`, vi: `Chuỗi ${n('vi', streak, DAY_COUNT)}`, id: `Streak ${n('id', streak, DAY_COUNT)}`, tr: `${n('tr', streak, DAY_COUNT)} seri`, pl: `Seria ${n('pl', streak, DAY_COUNT)}` })
-        : pick({ ru: 'Серия под угрозой', uk: 'Серія під загрозою', en: 'Streak at risk', es: 'Racha en riesgo', 'pt-BR': 'Sequência em risco', vi: 'Chuỗi đang gặp nguy', id: 'Streak terancam', tr: 'Seri tehlikede', pl: 'Seria zagrożona' });
+        ? pick({ ru: `Серия ${n('ru', streak, DAY_COUNT)}`, uk: `Серія ${n('uk', streak, DAY_COUNT)}`, en: `${n('en', streak, DAY_COUNT)} streak`, es: `Racha de ${n('es', streak, DAY_COUNT)}`, 'pt-BR': `Sequência de ${n('pt-BR', streak, DAY_COUNT)}`, vi: `Chuỗi ${n('vi', streak, DAY_COUNT)}`, id: `Rangkaian ${n('id', streak, DAY_COUNT)}`, tr: `${n('tr', streak, DAY_COUNT)} seri`, pl: `Seria ${n('pl', streak, DAY_COUNT)}` })
+        : pick({ ru: 'Серия под угрозой', uk: 'Серія під загрозою', en: 'Streak at risk', es: 'Racha en riesgo', 'pt-BR': 'Sequência em risco', vi: 'Chuỗi đang gặp nguy', id: 'Rangkaian terancam', tr: 'Seri tehlikede', pl: 'Seria zagrożona' });
     case 'dialog_limit':
       return usedOf(lang, L.dialog, REPLY_OF);
     case 'dialog_locked_level':

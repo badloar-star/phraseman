@@ -474,7 +474,7 @@ function cardCountLabel(lang: Lang, count: number): string {
     vi: "thẻ",
     id: "kartu",
     tr: "kart",
-    pl: "fiszek",
+    pl: "kart",
   })}`;
 }
 
@@ -653,16 +653,17 @@ function parseRouteIdList(value: string | string[] | undefined): string[] {
 }
 
 function officialSourceSubtitle(lang: Lang): string {
+  // зачем (переводчик 17.10): подпись была «Official pack» по-английски на всех 9 языках
   return triLang(lang, {
-    ru: 'Official pack',
+    ru: 'Официальный набор',
     en: 'Official pack',
-    uk: 'Official pack',
-    es: 'Official pack',
-    'pt-BR': 'Official pack',
-    vi: 'Official pack',
-    id: 'Official pack',
-    tr: 'Official pack',
-    pl: 'Official pack',
+    uk: 'Офіційний набір',
+    es: 'Pack oficial',
+    'pt-BR': 'Pacote oficial',
+    vi: 'Bộ thẻ chính thức',
+    id: 'Paket resmi',
+    tr: 'Resmî paket',
+    pl: 'Oficjalny zestaw',
   });
 }
 
@@ -676,7 +677,7 @@ function savedSourceTitle(lang: Lang): string {
     vi: 'Thẻ đã lưu',
     id: 'Kartu tersimpan',
     tr: 'Kaydedilen kartlar',
-    pl: 'Zapisane fiszki',
+    pl: 'Zapisane karty',
   });
 }
 
@@ -690,7 +691,7 @@ function customSourceTitle(lang: Lang): string {
     vi: 'Thẻ của bạn',
     id: 'Kartu sendiri',
     tr: 'Kendi kartların',
-    pl: 'Własne fiszki',
+    pl: 'Własne karty',
   });
 }
 
@@ -1505,7 +1506,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Luyện thẻ",
         id: "Latihan kartu",
         tr: "Kart alıştırması",
-        pl: "Trening fiszek",
+        pl: "Trening kart",
       }),
       settingsTitle: triLang(lang, {
         ru: 'Тренировка карточек',
@@ -1516,7 +1517,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Luyện thẻ",
         id: "Latihan kartu",
         tr: "Kart alıştırması",
-        pl: "Trening fiszek",
+        pl: "Trening kart",
       }),
       settings: triLang(lang, {
         ru: 'Настройки',
@@ -1571,7 +1572,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Thẻ đã lưu",
         id: "Kartu tersimpan",
         tr: "Kaydedilen kartlar",
-        pl: "Zapisane fiszki",
+        pl: "Zapisane karty",
       }),
       custom: triLang(lang, {
         ru: 'Свои карточки',
@@ -1582,7 +1583,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Thẻ của bạn",
         id: "Kartu sendiri",
         tr: "Kendi kartların",
-        pl: "Własne fiszki",
+        pl: "Własne karty",
       }),
       official: triLang(lang, {
         ru: 'Official pack',
@@ -1782,7 +1783,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         'pt-BR': 'Escolha um pacote abaixo',
         vi: 'Chọn bộ thẻ bên dưới',
         id: 'Pilih set di bawah',
-        tr: 'Aşağıdan set seç',
+        tr: 'Aşağıdan paket seç',
         pl: 'Wybierz zestaw poniżej',
       }),
       startStarting: triLang(lang, {
@@ -1841,7 +1842,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Không lỗi, không gợi ý. Các thẻ này sẽ quay lại sau.",
         id: "Tanpa kesalahan atau petunjuk. Kartu ini akan muncul lagi nanti.",
         tr: "Hata ya da ipucu yok. Bu kartlar daha sonra geri gelecek.",
-        pl: "Bez błędów i podpowiedzi. Te fiszki wrócą później.",
+        pl: "Bez błędów i podpowiedzi. Te karty wrócą później.",
       }),
       learnedDoneSub: triLang(lang, {
         ru: 'Слабые карточки останутся ближе в очереди, пока не закрепятся.',
@@ -1852,7 +1853,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Thẻ yếu sẽ tiếp tục xuất hiện gần đây cho đến khi được ghi nhớ.",
         id: "Kartu lemah akan tetap dekat sampai dikuasai.",
         tr: "Zayıf kartlar pekişene kadar yakında kalacak.",
-        pl: "Słabe fiszki pozostaną blisko, aż się utrwalą.",
+        pl: "Słabe karty pozostaną blisko, aż się utrwalą.",
       }),
       nextRound: triLang(lang, {
         ru: 'Ещё раунд',
@@ -1954,7 +1955,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Thẻ trong buổi",
         id: "Kartu dalam sesi",
         tr: "Seanstaki kartlar",
-        pl: "Fiszki w sesji",
+        pl: "Karty w sesji",
       }),
       allCards: triLang(lang, {
         ru: 'Все',
@@ -2053,7 +2054,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Không có thẻ để luyện tập",
         id: "Tidak ada kartu untuk latihan",
         tr: "Alıştırma için kart yok",
-        pl: "Brak fiszek do treningu",
+        pl: "Brak kart do treningu",
       }),
       noCardsSub: triLang(lang, {
         ru: 'Сохрани карточки или добавь набор, и тренировка запустится отсюда в один тап.',
@@ -2064,7 +2065,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Lưu thẻ hoặc thêm một gói, rồi buổi luyện tập sẽ bắt đầu từ đây chỉ với một lần chạm.",
         id: "Simpan kartu atau tambahkan paket, lalu latihan akan mulai dari sini dengan satu ketukan.",
         tr: "Kart kaydet ya da bir paket ekle; alıştırma buradan tek dokunuşla başlar.",
-        pl: "Zapisz fiszki albo dodaj pakiet, a trening ruszy stąd jednym dotknięciem.",
+        pl: "Zapisz karty albo dodaj pakiet, a trening ruszy stąd jednym dotknięciem.",
       }),
       // зачем: текст одноразовой подсказки на экране тренировки — жест/аудио/кнопки в одной строке.
       swipeHint: triLang(lang, {
@@ -2076,7 +2077,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: 'Vuốt thẻ sang phải/trái hoặc dùng các nút. Biểu tượng loa sẽ đọc cụm từ.',
         id: 'Geser kartu ke kanan/kiri atau gunakan tombol. Ikon speaker akan mengucapkan frasa.',
         tr: 'Kartı sağa/sola kaydır ya da düğmeleri kullan. Hoparlör simgesi ifadeyi seslendirir.',
-        pl: 'Przesuń fiszkę w prawo/lewo albo użyj przycisków. Ikona głośnika odczyta zwrot.',
+        pl: 'Przesuń kartę w prawo/lewo albo użyj przycisków. Ikona głośnika odczyta zwrot.',
       }),
       // зачем: accessibilityLabel кнопки закрытия одноразовой подсказки — раньше по
       // ошибке использовался text.reload («Обновить»), что неверно озвучивалось скринридером.
@@ -2467,7 +2468,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             vi: "Các gói đã chọn không có thẻ kèm bản dịch.",
             id: "Paket yang dipilih tidak memiliki kartu dengan terjemahan.",
             tr: "Seçilen paketlerde çevirili kart yok.",
-            pl: "Wybrane pakiety nie mają fiszek z tłumaczeniem.",
+            pl: "Wybrane pakiety nie mają kart z tłumaczeniem.",
           }),
         );
         return;
@@ -3813,7 +3814,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     });
     const subtitle = triLang(lang, {
       ru: 'Набор карточек', en: 'Card deck', uk: 'Набір карток', es: 'Mazo de tarjetas',
-      'pt-BR': 'Baralho de cartões', vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart destesi', pl: 'Zestaw fiszek',
+      'pt-BR': 'Baralho de cartões', vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart destesi', pl: 'Zestaw kart',
     });
     const question = triLang(lang, {
       ru: 'Этот перевод подходит?', en: 'Does this translation match?', uk: 'Цей переклад підходить?', es: '¿Coincide esta traducción?',
@@ -4161,7 +4162,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                   dataId={`flashcard_${currentPrompt.card.id ?? 'unknown'}`}
                   dataText={reportDataText}
                   variant="icon-flag"
-                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', en: 'Report a card error', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', en: 'Report a card error', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w karcie' })}
                   testID="flashcards-swipe-report"
                 />
               </View>
@@ -4181,7 +4182,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                   vi: 'Nghe thẻ',
                   id: 'Dengarkan kartu',
                   tr: 'Kartı dinle',
-                  pl: 'Odsłuchaj fiszkę',
+                  pl: 'Odsłuchaj kartę',
                 })}
               >
                 <View style={[styles.speakButton, isCompactFlashcardsTask && styles.compactSpeakButton, { backgroundColor: t.bgCard }]}>

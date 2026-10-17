@@ -925,7 +925,7 @@
       "question": {
         "ru": "Какие задания любимые?",
         "uk": "Які завдання улюблені?",
-        "en": "Favourite exercise types?",
+        "en": "Favorite exercise types?",
         "es": "¿Tus ejercicios favoritos?",
         "pt-BR": "Exercícios favoritos?",
         "vi": "Dạng bài bạn thích?",
@@ -997,13 +997,13 @@
       "type": "chips",
       "question": {
         "ru": "Сложность Пика?",
-        "uk": "Складність Піку?",
+        "uk": "Складність Піка?",
         "en": "Peak difficulty?",
-        "es": "¿Dificultad de Pico?",
+        "es": "¿Dificultad del Pico?",
         "pt-BR": "Dificuldade do Pico?",
         "vi": "Độ khó của Đỉnh?",
         "id": "Kesulitan Puncak?",
-        "tr": "Zirve’nin zorluğu?",
+        "tr": "Zirve'nin zorluğu?",
         "pl": "Trudność Szczytu?"
       },
       "options": [
@@ -1110,11 +1110,11 @@
         "ru": "Что держит в Пике?",
         "uk": "Що тримає в Піку?",
         "en": "What keeps you in Peak?",
-        "es": "¿Qué te engancha a Pico?",
+        "es": "¿Qué te engancha del Pico?",
         "pt-BR": "O que te prende no Pico?",
         "vi": "Điều gì giữ bạn ở Đỉnh?",
         "id": "Apa yang bikin betah di Puncak?",
-        "tr": "Seni Zirve’de ne tutuyor?",
+        "tr": "Seni Zirve'de ne tutuyor?",
         "pl": "Co trzyma cię w Szczycie?"
       },
       "options": [
@@ -1644,7 +1644,7 @@
         "pt-BR": "Você indicaria o Phraseman?",
         "vi": "Bạn có giới thiệu Phraseman không?",
         "id": "Mau rekomendasikan Phraseman?",
-        "tr": "Phraseman’i önerir misin?",
+        "tr": "Phraseman'i önerir misin?",
         "pl": "Polecisz Phraseman znajomym?"
       },
       "scale": {
@@ -1912,7 +1912,7 @@
           "pt-BR": "Até 2 €",
           "vi": "Dưới 2 €",
           "id": "Di bawah 2 €",
-          "tr": "2 €’ya kadar",
+          "tr": "2 €'ya kadar",
           "pl": "Do 2 €"
         },
         {

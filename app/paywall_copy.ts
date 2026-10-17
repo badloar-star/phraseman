@@ -829,7 +829,7 @@ export function getHeroPlannedCopy(ctx: PremiumContext, savedCards: number): Pre
       vi: `Đã lưu ${savedCards}/50 thẻ`,
       id: `${savedCards}/50 kartu tersimpan`,
       tr: `${savedCards}/50 kart kaydedildi`,
-      pl: `Zapisano ${savedCards}/50 fiszek`,
+      pl: `Zapisano ${savedCards}/50 kart`,
     },
   };
 }
@@ -942,7 +942,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   course_after_lesson3: MAIN_COURSE_PLUS_BENEFITS,
   lesson_b1: MAIN_COURSE_PLUS_BENEFITS,
   flashcard_limit: [
-    { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', en: 'Unlimited personal card collection', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
+    { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', en: 'Unlimited personal card collection', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy kart' },
     { ru: 'Храни все важные фразы', uk: 'Зберігай усі важливі вислови', es: 'Guarda todas tus frases clave', en: 'Keep all your key phrases', 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
     // зачем (владелец, 2026-09-22): «Лучше долгосрочное запоминание» — обрубок
     // фразы, звучит как заметка в блокноте, а не как обещание человеку.
@@ -951,7 +951,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   streak: [
     // зачем (владелец, 2026-09-22): «Серия не ломает твой темп» — фраза наизнанку
     // (ломает темп пропуск, а не серия). Буллеты названы тем, что человек делает.
-    { ru: 'Защита серии даже при пропуске', uk: 'Захист серії навіть при пропуску', es: 'Protege tu racha aunque faltes un día', en: 'Streak protection even if you miss a day', 'pt-BR': 'Proteção de sequência mesmo se faltar um dia', vi: 'Bảo vệ chuỗi kể cả khi bỏ lỡ một ngày', id: 'Perlindungan streak meski terlewat sehari', tr: 'Bir gün kaçsa bile seri koruması', pl: 'Ochrona serii nawet przy pominięciu dnia' },
+    { ru: 'Защита серии даже при пропуске', uk: 'Захист серії навіть при пропуску', es: 'Protege tu racha aunque faltes un día', en: 'Streak protection even if you miss a day', 'pt-BR': 'Proteção de sequência mesmo se faltar um dia', vi: 'Bảo vệ chuỗi kể cả khi bỏ lỡ một ngày', id: 'Perlindungan rangkaian meski terlewat sehari', tr: 'Bir gün kaçsa bile seri koruması', pl: 'Ochrona serii nawet przy pominięciu dnia' },
     { ru: 'Занятия без ожидания энергии', uk: 'Заняття без очікування енергії', es: 'Estudias sin esperar energía', en: 'Study without waiting for energy', 'pt-BR': 'Estuda sem esperar energia', vi: 'Học mà không phải chờ năng lượng', id: 'Belajar tanpa menunggu energi', tr: 'Enerji beklemeden çalışma', pl: 'Nauka bez czekania na energię' },
     { ru: 'Заниматься каждый день проще', uk: 'Займатися щодня простіше', es: 'Es más fácil practicar a diario', en: 'Practicing every day gets easier', 'pt-BR': 'Fica mais fácil estudar todo dia', vi: 'Học mỗi ngày trở nên dễ hơn', id: 'Lebih mudah belajar setiap hari', tr: 'Her gün çalışmak daha kolay', pl: 'Łatwiej uczyć się codziennie' },
   ],
@@ -978,7 +978,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     { ru: 'Всё открыто сразу после оплаты', uk: 'Усе відкрито одразу після оплати', es: 'Todo se abre justo al pagar', en: 'Everything opens right after you pay', 'pt-BR': 'Tudo abre logo após o pagamento', vi: 'Mọi thứ mở ra ngay sau khi thanh toán', id: 'Semua terbuka begitu pembayaran selesai', tr: 'Ödemeden hemen sonra her şey açık', pl: 'Wszystko otwarte zaraz po płatności' },
   ],
   mistake_practice: [
-    { ru: 'Все ошибки из уроков и карточек в одном месте', uk: 'Усі помилки з уроків і карток в одному місці', es: 'Todos tus errores de lecciones y tarjetas en un lugar', en: 'All mistakes from lessons and cards in one place', 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i fiszek w jednym miejscu' },
+    { ru: 'Все ошибки из уроков и карточек в одном месте', uk: 'Усі помилки з уроків і карток в одному місці', es: 'Todos tus errores de lecciones y tarjetas en un lugar', en: 'All mistakes from lessons and cards in one place', 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i kart w jednym miejscu' },
     { ru: 'Слова и фразы смешиваются автоматически', uk: 'Слова й вислови змішуються автоматично', es: 'Palabras y frases se mezclan automáticamente', en: 'Words and phrases are mixed automatically', 'pt-BR': 'Palavras e frases se misturam automaticamente', vi: 'Từ và câu được trộn tự động', id: 'Kata dan frasa dicampur otomatis', tr: 'Kelimeler ve ifadeler otomatik karışır', pl: 'Słowa i frazy mieszają się automatycznie' },
     { ru: 'Режимы меняются по твоему прогрессу', uk: 'Режими змінюються за твоїм прогресом', es: 'Los modos cambian según tu progreso', en: 'Modes adapt to your progress', 'pt-BR': 'Os modos mudam conforme seu progresso', vi: 'Chế độ thay đổi theo tiến độ của bạn', id: 'Mode berubah mengikuti progresmu', tr: 'Modlar ilerlemene göre değişir', pl: 'Tryby zmieniają się wraz z postępem' },
   ],
@@ -1007,7 +1007,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     // зачем (владелец, 2026-09-22): второй буллет был написан ОТ ПЕРВОГО ЛИЦА
     // («Вижу когда я в топе») — единственный такой на весь проект, явный
     // недосмотр. Первый обещал «мотивацию» вместо конкретики.
-    { ru: 'Сравнение по серии, темпу и словарю', uk: 'Порівняння за серією, темпом і словником', es: 'Comparación por racha, ritmo y vocabulario', en: 'Compare by streak, pace and vocabulary', 'pt-BR': 'Comparação por sequência, ritmo e vocabulário', vi: 'So sánh theo chuỗi ngày, tốc độ và vốn từ', id: 'Perbandingan berdasarkan runtutan, tempo, dan kosakata', tr: 'Seri, tempo ve kelime dağarcığına göre karşılaştırma', pl: 'Porównanie według serii, tempa i słownictwa' },
+    { ru: 'Сравнение по серии, темпу и словарю', uk: 'Порівняння за серією, темпом і словником', es: 'Comparación por racha, ritmo y vocabulario', en: 'Compare by streak, pace and vocabulary', 'pt-BR': 'Comparação por sequência, ritmo e vocabulário', vi: 'So sánh theo chuỗi ngày, tốc độ và vốn từ', id: 'Perbandingan berdasarkan rangkaian, tempo, dan kosakata', tr: 'Seri, tempo ve kelime dağarcığına göre karşılaştırma', pl: 'Porównanie według serii, tempa i słownictwa' },
     { ru: 'Видно, где ты впереди и куда расти', uk: 'Видно, де ти попереду й куди рости', es: 'Se ve en qué vas por delante y hacia dónde crecer', en: 'See where you\'re ahead and where to grow', 'pt-BR': 'Dá para ver onde você está à frente e onde crescer', vi: 'Thấy rõ bạn dẫn trước ở đâu và cần tiến tới đâu', id: 'Terlihat di mana kamu unggul dan ke mana berkembang', tr: 'Nerede önde olduğun ve nereye büyüyeceğin görünür', pl: 'Widać, gdzie jesteś z przodu i dokąd rosnąć' },
   ],
 };
@@ -1088,7 +1088,7 @@ CONTEXT_BENEFITS.dialog_locked_level = [
 
 CONTEXT_BENEFITS.flashcard_training = [
   { ru: 'Игровая тренировка сохранённых фраз', uk: 'Ігрове тренування збережених висловів', es: 'Entrenamiento lúdico de frases guardadas', en: 'Game-style training of saved phrases', 'pt-BR': 'Treino em jogo com frases salvas', vi: 'Luyện dạng trò chơi với câu đã lưu', id: 'Latihan gim untuk frasa tersimpan', tr: 'Kayıtlı ifadelerle oyunlu antrenman', pl: 'Trening zapisanych fraz w formie gry' },
-  { ru: 'Слабые карточки вспоминаются активнее', uk: 'Слабкі картки згадуються активніше', es: 'Recuerdas mejor las tarjetas débiles', en: 'Weak cards come back to you more actively', 'pt-BR': 'Cartões fracos são lembrados de forma ativa', vi: 'Thẻ yếu được nhớ chủ động hơn', id: 'Kartu lemah diingat lebih aktif', tr: 'Zayıf kartlar daha aktif hatırlanır', pl: 'Słabe fiszki wracają aktywniej' },
+  { ru: 'Слабые карточки вспоминаются активнее', uk: 'Слабкі картки згадуються активніше', es: 'Recuerdas mejor las tarjetas débiles', en: 'Weak cards come back to you more actively', 'pt-BR': 'Cartões fracos são lembrados de forma ativa', vi: 'Thẻ yếu được nhớ chủ động hơn', id: 'Kartu lemah diingat lebih aktif', tr: 'Zayıf kartlar daha aktif hatırlanır', pl: 'Słabe karty wracają aktywniej' },
   { ru: 'Сохранённое превращается в практику', uk: 'Збережене перетворюється на практику', es: 'Lo guardado se convierte en práctica', en: 'What you save becomes practice', 'pt-BR': 'O que você salvou vira prática', vi: 'Mục đã lưu biến thành luyện tập', id: 'Simpanan berubah jadi latihan', tr: 'Kaydedilenler pratiğe dönüşür', pl: 'Zapisane rzeczy zmieniają się w praktykę' },
 ];
 
@@ -1107,7 +1107,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
   course_after_lesson3: MAIN_COURSE_PLUS_BENEFITS,
   lesson_b1: MAIN_COURSE_PLUS_BENEFITS,
   flashcard_limit: [
-    { 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
+    { 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy kart' },
     { 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
     { 'pt-BR': 'Memória de longo prazo mais sólida', vi: 'Ghi nhớ dài hạn chắc hơn', id: 'Ingatan jangka panjang lebih kuat', tr: 'Daha sağlam uzun vadeli hafıza', pl: 'Lepsze zapamiętywanie długoterminowe' },
   ],
@@ -1132,7 +1132,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Funções Plus logo após ativar', vi: 'Tính năng Plus có ngay sau khi kích hoạt', id: 'Fitur Plus langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Plus özellikler', pl: 'Opcje Plus od razu po aktywacji' },
   ],
   mistake_practice: [
-    { 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i fiszek w jednym miejscu' },
+    { 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i kart w jednym miejscu' },
     { 'pt-BR': 'Palavras e frases se misturam automaticamente', vi: 'Từ và câu được trộn tự động', id: 'Kata dan frasa dicampur otomatis', tr: 'Kelimeler ve ifadeler otomatik karışır', pl: 'Słowa i frazy mieszają się automatycznie' },
     { 'pt-BR': 'Os modos mudam conforme seu progresso', vi: 'Chế độ thay đổi theo tiến độ của bạn', id: 'Mode berubah mengikuti progresmu', tr: 'Modlar ilerlemene göre değişir', pl: 'Tryby zmieniają się wraz z postępem' },
   ],
@@ -1237,7 +1237,7 @@ CONTEXT_BENEFITS_PLANNED.dialog_locked_level = [
 
 CONTEXT_BENEFITS_PLANNED.flashcard_training = [
   { 'pt-BR': 'Treino em jogo com frases salvas', vi: 'Luyện dạng trò chơi với câu đã lưu', id: 'Latihan gim untuk frasa tersimpan', tr: 'Kayıtlı ifadelerle oyunlu antrenman', pl: 'Trening zapisanych fraz w formie gry' },
-  { 'pt-BR': 'Cartões fracos são lembrados de forma ativa', vi: 'Thẻ yếu được nhớ chủ động hơn', id: 'Kartu lemah diingat lebih aktif', tr: 'Zayıf kartlar daha aktif hatırlanır', pl: 'Słabe fiszki wracają aktywniej' },
+  { 'pt-BR': 'Cartões fracos são lembrados de forma ativa', vi: 'Thẻ yếu được nhớ chủ động hơn', id: 'Kartu lemah diingat lebih aktif', tr: 'Zayıf kartlar daha aktif hatırlanır', pl: 'Słabe karty wracają aktywniej' },
   { 'pt-BR': 'O que você salvou vira prática', vi: 'Mục đã lưu biến thành luyện tập', id: 'Simpanan berubah jadi latihan', tr: 'Kaydedilenler pratiğe dönüşür', pl: 'Zapisane rzeczy zmieniają się w praktykę' },
 ];
 
@@ -1308,7 +1308,7 @@ PAYWALL_PLANNED_COPY.referral_ended = {
 };
 CONTEXT_BENEFITS.referral_ended = [
   { ru: 'Всё, чем ты пользовался, снова открыто', uk: 'Усе, чим ти користувався, знову відкрито', es: 'Todo lo que usabas, abierto otra vez', en: 'Everything you used is open again', 'pt-BR': 'Tudo o que você usava, aberto de novo', vi: 'Mọi thứ bạn từng dùng lại mở', id: 'Semua yang kamu pakai terbuka lagi', tr: 'Kullandığın her şey yeniden açık', pl: 'Wszystko, z czego korzystałeś, znów otwarte' },
-  { ru: 'Прогресс и серия продолжаются без пауз', uk: 'Прогрес і серія тривають без пауз', es: 'Tu progreso y racha siguen sin pausas', en: 'Your progress and streak continue without pauses', 'pt-BR': 'Progresso e sequência seguem sem pausas', vi: 'Tiến độ và chuỗi ngày tiếp tục không gián đoạn', id: 'Progres dan runtutan lanjut tanpa jeda', tr: 'İlerleme ve seri arasız devam eder', pl: 'Postęp i seria trwają bez przerw' },
+  { ru: 'Прогресс и серия продолжаются без пауз', uk: 'Прогрес і серія тривають без пауз', es: 'Tu progreso y racha siguen sin pausas', en: 'Your progress and streak continue without pauses', 'pt-BR': 'Progresso e sequência seguem sem pausas', vi: 'Tiến độ và chuỗi ngày tiếp tục không gián đoạn', id: 'Progres dan rangkaian lanjut tanpa jeda', tr: 'İlerleme ve seri arasız devam eder', pl: 'Postęp i seria trwają bez przerw' },
   { ru: 'Диалоги и тренировки — без стопов', uk: 'Діалоги й тренування — без стопів', es: 'Diálogos y entrenamientos sin bloqueos', en: 'Dialogues and training with no stops', 'pt-BR': 'Diálogos e treinos sem travas', vi: 'Hội thoại và luyện tập không bị chặn', id: 'Dialog dan latihan tanpa hambatan', tr: 'Diyaloglar ve antrenmanlar duraksız', pl: 'Dialogi i treningi bez blokad' },
 ];
 CONTEXT_BENEFITS_PLANNED.referral_ended = [

@@ -30,7 +30,7 @@ export function mistakeSourceLabel(lang: Lang, source: MistakeSourceGroup): stri
     case 'lessons':
       return triLang(lang, { ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' });
     case 'cards':
-      return triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' });
+      return triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' });
     case 'exams':
       return triLang(lang, { ru: 'Экзамены', uk: 'Іспити', en: 'Exams', es: 'Exámenes', 'pt-BR': 'Provas', vi: 'Bài thi', id: 'Ujian', tr: 'Sınavlar', pl: 'Egzaminy' });
     case 'other':

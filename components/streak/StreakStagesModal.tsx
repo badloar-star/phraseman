@@ -78,7 +78,7 @@ export default function StreakStagesModal({
     es: 'La llama se llena con cada día de racha: a los 10 días está completa',
     'pt-BR': 'A chama se enche a cada dia da sequência — com 10 dias ela fica completa',
     vi: 'Mỗi ngày trong chuỗi, ngọn lửa đầy thêm — đến ngày thứ 10 là đầy',
-    id: 'Api terisi setiap hari streak — penuh di hari ke-10',
+    id: 'Api terisi setiap hari rangkaian — penuh di hari ke-10',
     tr: 'Serinin her gününde alev dolar — 10. günde tamamen dolu olur',
     pl: 'Z każdym dniem serii płomień się wypełnia — po 10 dniach jest pełny',
   });

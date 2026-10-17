@@ -172,7 +172,8 @@ const getFirestore = () => {
   try {
     // зачем (координатор §67): модульный экземпляр — без «use getApp()» на вызов.
     return rnfbInstance(firestoreModule, 'getFirestore');
-  } catch {
+  } catch (e) {
+    console.warn('[ACTIVITY-FEED] firestore unavailable:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
     return null;
   }
 };
@@ -438,7 +439,8 @@ async function readLastRefreshMs(ownerUid: string): Promise<number> {
     const raw = await AsyncStorage.getItem(ownerStorageKey(LAST_REFRESH_KEY_PREFIX, ownerUid));
     const n = Math.floor(Number(raw || 0));
     return Number.isFinite(n) && n > 0 ? n : 0;
-  } catch {
+  } catch (e) {
+    console.warn('[ACTIVITY-FEED] last refresh read failed — читаем как первый раз:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
     return 0;
   }
 }

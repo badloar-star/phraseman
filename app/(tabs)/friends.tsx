@@ -124,7 +124,7 @@ import {
   markReferralAccessEndedSeen,
   getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
-import { useAppSnapshotSelector } from '../app_snapshot_store';
+import { getAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { captureAccountGeneration } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
@@ -245,7 +245,10 @@ const getDb = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
     return require('@react-native-firebase/firestore').default();
-  } catch { return null; }
+  } catch (e) {
+    console.warn('[FRIENDS] firestore unavailable:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит 17.10)
+    return null;
+  }
 };
 
 // ── Profile fetch ─────────────────────────────────────────────────────────────
@@ -533,11 +536,35 @@ async function loadProfiles(
   return { fresh: result, updatedCache: prunedCache };
 }
 
+// зачем (координатор 17.10, 💸 аудит [AUTH-OPTIMISTIC]): свой профиль читался целиком (users/{me}) на КАЖДОМ фокусе
+// вкладки «Друзья». Кэш в памяти на владельца, 10 мин — тот же владелец не платит за чтение при каждом переключении.
+const MY_PROFILE_TTL_MS = 10 * 60_000;
+const myProfileCache = new Map<string, { at: number; value: Awaited<ReturnType<typeof fetchMyProfileFromFirestore>> }>();
+
 async function fetchMyProfile() {
+  const myUid = await ensureAnonUser().catch((e: unknown) => {
+    console.warn('[FRIENDS] my profile: anon user failed', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: причина раннего выхода
+    return null;
+  });
+  if (!myUid) return null;
+  const cached = myProfileCache.get(myUid);
+  // Ник сменили на этом телефоне — кэш с прежним именем не показываем.
+  const localName = String(getAppSnapshot().profile?.name ?? '').trim();
+  const nameMatches = !localName || cached?.value?.name === localName;
+  if (cached && nameMatches && Date.now() - cached.at < MY_PROFILE_TTL_MS) {
+    console.log('[FRIEND-ADD]', JSON.stringify({ step: 'my_profile', source: 'memory_cache', ageMs: Date.now() - cached.at })); // guard-ok: без имён
+    return cached.value;
+  }
+  const value = await fetchMyProfileFromFirestore(myUid);
+  if (value) myProfileCache.set(myUid, { at: Date.now(), value });
+  console.log('[FRIEND-ADD]', JSON.stringify({ step: 'my_profile', source: 'server', found: Boolean(value) })); // guard-ok: без имён
+  return value;
+}
+
+async function fetchMyProfileFromFirestore(myUid: string) {
   try {
     const db = getDb();
-    const myUid = await ensureAnonUser();
-    if (!db || !myUid) return null;
+    if (!db) return null;
     const snap = await db.collection('users').doc(myUid).get();
     if (!snap.exists) return null;
     const d: Record<string, unknown> = snap.data() ?? {};
@@ -557,7 +584,10 @@ async function fetchMyProfile() {
       isPremium,
       isVip,
     };
-  } catch { return null; }
+  } catch (e) {
+    console.warn('[FRIENDS] my profile read failed:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит 17.10)
+    return null;
+  }
 }
 
 // ── Микроанимации списков (D-редизайн): каскад, пульс, pop ─────────────────────
@@ -1478,7 +1508,10 @@ export default function FriendsTabScreen() {
           }
           setRequests(visible);
         },
-        () => {},
+        (error) => {
+          // Заявки не прочитались — экран держит прежний список (кэш); причину пишем (немой обработчик закрыт, аудит 17.10).
+          console.warn('[FRIENDS] incoming requests read failed', { message: error?.message?.slice(0, 80) });
+        },
       );
     })();
 
@@ -2619,7 +2652,8 @@ export default function FriendsTabScreen() {
                   messagePl: `Znajomy usunięty: ${target.name}`,
                 });
               })
-              .catch(() => {
+              .catch((error: unknown) => {
+                console.warn('[FRIENDS] remove friend failed — откат', error instanceof Error ? error.message.slice(0, 80) : String(error).slice(0, 80)); // guard-ok: причина отката
                 if (previousFriend) {
                   setFriends(prev => prev.some(friend => friend.uid === previousFriend.uid) ? prev : [previousFriend, ...prev]);
                 }

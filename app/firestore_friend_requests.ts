@@ -60,7 +60,8 @@ const getFirestore = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
-  } catch {
+  } catch (e) {
+    console.warn('[FRIENDS] firestore unavailable:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
     return null;
   }
 };
@@ -71,7 +72,8 @@ function getCurrentAuthUidForFriends(): string | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/auth').default().currentUser?.uid ?? null;
-  } catch {
+  } catch (e) {
+    console.warn('[FRIENDS] auth uid unavailable:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
     return null;
   }
 }
@@ -111,7 +113,8 @@ async function readUserDisplayNameFromFirestore(
     return cleanFriendRequestDisplayName(progress.user_name)
       || cleanFriendRequestDisplayName(data.displayName)
       || cleanFriendRequestDisplayName(data.name);
-  } catch {
+  } catch (e) {
+    console.warn('[FRIENDS] display name read failed — заявка уйдёт без имени:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
     return '';
   }
 }
@@ -577,7 +580,8 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
     try {
       const countSnap = await friendsRef.count().get();
       totalFriends = Number(countSnap.data()?.count ?? 0) || 0;
-    } catch {
+    } catch (e) {
+      console.warn('[FRIENDS] friends count() failed — фолбэк на полное чтение:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
       totalFriends = (await friendsRef.get()).size;
     }
     void checkAchievements({ type: 'friend_added', totalFriends });
@@ -705,7 +709,8 @@ export async function ensureFriendRequestViewerAuthLink(stableId?: string): Prom
   if (!myUid) {
     try {
       myUid = String(await ensureAnonUser() ?? '').trim();
-    } catch {
+    } catch (e) {
+      console.warn('[FRIENDS] viewer auth link: anon user failed:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
       return false;
     }
   }

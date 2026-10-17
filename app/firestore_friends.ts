@@ -157,7 +157,8 @@ const getFirestore = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
-  } catch {
+  } catch (e) {
+    console.warn('[FRIENDS] firestore unavailable:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
     return null;
   }
 };
@@ -368,7 +369,9 @@ async function isUidBannedBestEffort(
   try {
     const banSnap = await db.collection('banned_users').doc(uid).get();
     return banSnap.exists;
-  } catch {
+  } catch (e) {
+    // Чтение бана не удалось — поиск не блокируем (как и было), но причину пишем.
+    console.warn('[FRIENDS] ban check read failed — считаем не забаненным:', e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)); // guard-ok: немой catch закрыт (аудит [AUTH-OPTIMISTIC] 17.10)
     return false;
   }
 }

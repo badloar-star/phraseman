@@ -54,8 +54,9 @@ const LEGAL_FILES = [
   // 15.10 (координатор, #52 «ДА»): §9 — проверка подписки RevenueCat при каждом запуске, до онбординга и без покупки; основание — исполнение и законный интерес.
   // 17.10 (координатор, слово владельца): ИИ-разбор ошибок в уроках выключен, кнопка «Объяснить» убрана — из §11 удалён абзац о
   // согласии на «Mistake-explanation features in lessons»; дата «Last updated» → October 17, 2026. Остальной текст байт в байт.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '3db05b2f80c608578085f8f078bc6171a06fb39d9fbdc6b7999007f595f962c9'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '66e28a84345727a6a01f01b5f3a1653d0bc400db2a3048f9394deca58bf31150'],
+  // 17.10 (координатор): из перечня первой фразы §11 убрано «mistake explanations» — функции нет.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '3619f4cb1bb6cc26fc5a6993b8072a987e98fac47889cf4292fbe5df7524f0d9'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '73f908613e0b78fad2fa03102532ccfce0aa449ff317823acb2bea8b32de6e24'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],

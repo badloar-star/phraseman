@@ -7,7 +7,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Animated, { Easing, useAnimatedProps, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
+import Animated, { Easing, useAnimatedProps, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle } from 'react-native-svg';
 import type { Lang } from '../../../constants/i18n';
@@ -24,14 +24,26 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const SIZE = 148;
 const STROKE = 11;
 const GAP = 5;
+/**
+ * Размеры колец. 148 — эталон v3 (dev-превью, Главная до 17.10); 222 — экран «Сегодня» (макет Б docs/design/v2-app/today-rings-screen.html:
+ * «геометрия эталона, масштаб 1,5»: толщина 16, зазор 7, монета 86 — числа макета, не пересчёт, чтобы толщина не стала дробной).
+ */
+export const TODAY_RING_SIZES = Object.freeze({
+  148: Object.freeze({ size: 148, stroke: STROKE, gap: GAP, coin: 58 }),
+  222: Object.freeze({ size: 222, stroke: 16, gap: 7, coin: 86 }),
+});
+export type TodayRingSize = keyof typeof TODAY_RING_SIZES;
+/** Кольца заполняются по очереди (макет Б: transition-delay i × 120 мс) — только при «до → после». */
+const RING_STAGGER_MS = 120;
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const EASE_OVERSHOOT = Easing.bezier(0.23, 1.3, 0.32, 1);
 /** Цели задач «Сегодня» (modules/today-tasks): урок 1, ступени Пика 3, карточки 10. */
 export const TODAY_RING_TARGETS = [1, 3, 10] as const;
 
 /** Радиус и длина окружности кольца i (внешнее — первое). Чистая функция — проверяет сторож. */
-export function todayRingGeometry(i: number): Readonly<{ r: number; len: number }> {
-  const r = SIZE / 2 - STROKE / 2 - i * (STROKE + GAP);
+export function todayRingGeometry(i: number, ringSize: TodayRingSize = 148): Readonly<{ r: number; len: number }> {
+  const g = TODAY_RING_SIZES[ringSize];
+  const r = g.size / 2 - g.stroke / 2 - i * (g.stroke + g.gap);
   return { r, len: 2 * Math.PI * r };
 }
 
@@ -40,21 +52,23 @@ export function todayRingFraction(done: number, target: number): number {
   return target > 0 ? Math.min(1, Math.max(0, done / target)) : 0;
 }
 
-type RingProps = Readonly<{ index: number; value: number; from: number; color: string; instant: boolean }>;
-const Ring = memo(function Ring({ index, value, from, color, instant }: RingProps) {
-  const { r, len } = todayRingGeometry(index);
+type RingProps = Readonly<{ index: number; value: number; from: number; color: string; instant: boolean; ringSize: TodayRingSize; delayMs: number }>;
+const Ring = memo(function Ring({ index, value, from, color, instant, ringSize, delayMs }: RingProps) {
+  const { r, len } = todayRingGeometry(index, ringSize);
+  const { size, stroke } = TODAY_RING_SIZES[ringSize];
   // зачем (экран «Сегодня», координатор 17.10): кольцо стартует с того, что человек видел в прошлый раз, и докручивается до текущего; reduceMotion — сразу финал
   const v = useSharedValue(instant ? value : from);
   useEffect(() => {
     if (instant) { v.value = value; return; }
-    v.value = withTiming(value, { duration: 900, easing: value >= 1 ? EASE_OVERSHOOT : EASE });
-  }, [value, instant, v]);
+    const fill = withTiming(value, { duration: 900, easing: value >= 1 ? EASE_OVERSHOOT : EASE });
+    v.value = delayMs > 0 ? withDelay(delayMs, fill) : fill;
+  }, [value, instant, v, delayMs]);
   const animated = useAnimatedProps(() => ({ strokeDashoffset: len * (1 - Math.min(1, v.value)) }));
-  const c = SIZE / 2;
+  const c = size / 2;
   return (
     <>
-      <Circle cx={c} cy={c} r={r} fill="none" stroke={color} strokeWidth={STROKE} opacity={0.16} />
-      <AnimatedCircle cx={c} cy={c} r={r} fill="none" stroke={color} strokeWidth={STROKE} strokeLinecap="round" strokeDasharray={len} animatedProps={animated} />
+      <Circle cx={c} cy={c} r={r} fill="none" stroke={color} strokeWidth={stroke} opacity={0.16} />
+      <AnimatedCircle cx={c} cy={c} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={len} animatedProps={animated} />
     </>
   );
 });
@@ -71,9 +85,15 @@ export type TodayRingsProps = Readonly<{
   fromProgress?: readonly [number, number, number];
   coinRank: number | null;
   testID?: string;
+  /** 148 — как раньше; 222 — экран «Сегодня» (макет Б). */
+  size?: TodayRingSize;
+  /** Плашка «День выполнен» под кольцами; на экране «Сегодня» её нет (решение координатора 17.10). */
+  showDayDone?: boolean;
 }>;
 
-function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS, coinRank, testID = 'today-rings' }: TodayRingsProps) {
+function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS, coinRank, testID = 'today-rings', size: ringSize = 148, showDayDone = true }: TodayRingsProps) {
+  const geom = TODAY_RING_SIZES[ringSize];
+  const k = geom.size / SIZE;
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
@@ -117,15 +137,15 @@ function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS
   const flashStyle = useAnimatedStyle(() => ({ opacity: flash.value, transform: [{ scale: 0.85 + (1 - flash.value) * 0.27 }] }));
   return (
     <View testID={testID} style={s.wrap} accessible accessibilityLabel={streakMomentText(lang, 'today')}>
-      <View style={s.rw}>
+      <View style={[s.rw, { width: geom.size, height: geom.size }]}>
         <Animated.View pointerEvents="none" style={[s.flash, { backgroundColor: colors[sparkRing] }, flashStyle]} />
-        <Svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} style={s.svg}>
-          {values.map((x, i) => <Ring key={i} /* guard-ok: три кольца фиксированного порядка */ index={i} value={x} from={fromValues[i] ?? x} color={colors[i]} instant={reduceMotion} />)}
+        <Svg width={geom.size} height={geom.size} viewBox={`0 0 ${geom.size} ${geom.size}`} style={s.svg}>
+          {values.map((x, i) => <Ring key={i} /* guard-ok: три кольца фиксированного порядка */ index={i} value={x} from={fromValues[i] ?? x} color={colors[i]} instant={reduceMotion} ringSize={ringSize} delayMs={fromProgress ? i * RING_STAGGER_MS : 0} />)}
         </Svg>
-        <MomentCoin rank={coinRank} size={58} mood={allClosed && !reduceMotion ? 'jump' : 'idle'} shadow={false} />
-        <MomentFirework x={SIZE / 2} y={SIZE / 2} r={68 - sparkRing * 16 + 28} n={10} fire={sparkKey > 0} key={sparkKey} />
+        <MomentCoin rank={coinRank} size={geom.coin} mood={allClosed && !reduceMotion ? 'jump' : 'idle'} shadow={false} />
+        <MomentFirework x={geom.size / 2} y={geom.size / 2} r={(68 - sparkRing * 16 + 28) * k} n={10} fire={sparkKey > 0} key={sparkKey} />
       </View>
-      {allClosed ? (
+      {allClosed && showDayDone ? (
         <Animated.View style={[s.dayOk, { backgroundColor: p.card }, sh.nested]}>
           <Ionicons name="checkmark" size={16} color={streakColors.accentGraphic} />
           <Text style={[s.dayOkText, { color: p.text }]}>{streakMomentText(lang, 'dayDone')}</Text>
@@ -137,7 +157,7 @@ function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS
 
 const s = StyleSheet.create({
   wrap: { alignItems: 'center', gap: 10, paddingTop: 2, paddingBottom: 14 },
-  rw: { width: SIZE, height: SIZE, alignItems: 'center', justifyContent: 'center' },
+  rw: { alignItems: 'center', justifyContent: 'center' },
   svg: { position: 'absolute', left: 0, top: 0, transform: [{ rotate: '-90deg' }], overflow: 'visible' },
   flash: { position: 'absolute', left: -14, right: -14, top: -14, bottom: -14, borderRadius: 999, opacity: 0 },
   dayOk: { height: 32, paddingLeft: 10, paddingRight: 12, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 8 },

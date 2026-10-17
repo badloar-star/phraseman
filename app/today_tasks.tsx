@@ -30,9 +30,11 @@ import { safeRouterBack } from './navigation_back';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
 import { readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
 
-/** Высота блока колец (TodayRings: кольцо 148 + отступы 2/14); плюс плашка «День выполнен» 32 + зазор 10. */
-const RINGS_BLOCK_HEIGHT = 164;
-const DAY_DONE_EXTRA = 42;
+/**
+ * Высота блока колец: кольцо 222 (макет Б) + отступы TodayRings 2/14 + отступы блока 26/12 (в макете 28 сверху / 26 снизу).
+ * В RN minHeight включает padding. Плашки «День выполнен» на экране нет (координатор 17.10) — резерв под неё не нужен.
+ */
+const RINGS_BLOCK_HEIGHT = 222 + 2 + 14 + 26 + 12;
 // зачем (emil-design-eng): блок колец не «выскакивает» после чтения «что уже видели» — мягкое появление 200 мс, место уже зарезервировано
 const RINGS_ENTER = FadeIn.duration(200).easing(Easing.bezier(0.23, 1, 0.32, 1));
 
@@ -94,7 +96,6 @@ export default function TodayTasksScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: запись на смену чисел, сам массив новый на каждый рендер
   }, [ringFrom, seenKey, progressKey]);
 
-  const allClosed = tasks.length >= 3 && tasks.slice(0, 3).every((task) => task.progress >= Math.max(1, task.target));
   const title = triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' });
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   // зачем (скорость холодного старта): кольца, монета и звуки грузятся только на этом экране и только при включённом флаге
@@ -126,10 +127,10 @@ export default function TodayTasksScreen() {
         </View>
         <ScrollView contentContainerStyle={s.content} decelerationRate="fast">
           {TodayRingsSlot ? (
-            <View testID="today-tasks-rings" style={{ minHeight: RINGS_BLOCK_HEIGHT + (allClosed ? DAY_DONE_EXTRA : 0) }}>
+            <View testID="today-tasks-rings" style={s.rings}>
               {ringReady ? (
                 <Animated.View entering={reduceMotion ? undefined : RINGS_ENTER}>
-                  <TodayRingsSlot tasks={tasks} fromProgress={ringFrom.from} />
+                  <TodayRingsSlot tasks={tasks} fromProgress={ringFrom.from} size={222} showDayDone={false} />
                 </Animated.View>
               ) : null}
             </View>
@@ -147,4 +148,5 @@ const s = StyleSheet.create({
   back: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, ...V2_TYPE.title },
   content: { paddingHorizontal: V2.screenPad - 6, paddingTop: 8, paddingBottom: 32, gap: 8 },
+  rings: { minHeight: RINGS_BLOCK_HEIGHT, paddingTop: 26, paddingBottom: 12 },
 });

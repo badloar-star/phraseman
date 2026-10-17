@@ -60,8 +60,10 @@ describe('экран «Сегодня» и Главная — по строка�
   const rings = read('components/streak/moments/TodayRings.tsx');
 
   it('экран: кольцо с «до» из памяти/диска, место под кольцо зарезервировано, те же строки задач, журнал [TODAY-RING]', () => {
-    expect(screen).toContain('<TodayRingsSlot tasks={tasks} fromProgress={ringFrom.from} />');
-    expect(screen).toMatch(/minHeight: RINGS_BLOCK_HEIGHT \+ \(allClosed \? DAY_DONE_EXTRA : 0\)/);
+    // макет Б (Макеты 17.10): кольца 222, монета 86, без плашки «День выполнен»; место под блок — константа без условий
+    expect(screen).toContain('<TodayRingsSlot tasks={tasks} fromProgress={ringFrom.from} size={222} showDayDone={false} />');
+    expect(screen).toContain('rings: { minHeight: RINGS_BLOCK_HEIGHT, paddingTop: 26, paddingBottom: 12 }');
+    expect(screen).not.toMatch(/DAY_DONE_EXTRA/);
     expect(screen).toContain('<HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} />');
     expect(screen).toContain('rememberTodayRingSeen(seenKey, progress);');
     for (const tag of ['screen:open', 'ring:from', 'task:open']) expect(screen).toContain(`[TODAY-RING] ${tag}`);
@@ -80,5 +82,15 @@ describe('экран «Сегодня» и Главная — по строка�
     expect(card).toContain('const seeAllShown = ringsScreenOn ? seeAll : null;');
     expect(home).toMatch(/seeAll=\{\{/);
     expect(home).toContain("go('/today_tasks');");
+  });
+});
+
+describe('кольца 222 (макет Б): толщина 16, зазор 7, монета 86; 148 — как было', () => {
+  const rings = read('components/streak/moments/TodayRings.tsx');
+  it('геометрия и плашка «День выполнен» по пропу', () => {
+    expect(rings).toContain('222: Object.freeze({ size: 222, stroke: 16, gap: 7, coin: 86 })');
+    expect(rings).toContain('148: Object.freeze({ size: 148, stroke: STROKE, gap: GAP, coin: 58 })');
+    expect(rings).toContain('{allClosed && showDayDone ? (');
+    expect(rings).toContain('delayMs={fromProgress ? i * RING_STAGGER_MS : 0}');
   });
 });

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-04:intro1:r2": {
+          "ru": "С `I` нужно `have`.",
+          "uk": "З `I` потрібне `have`."
+        },
+        "en:lesson-05:session-04:intro1:r3": {
+          "ru": "Одна занавеска: `a curtain`.",
+          "uk": "Одна завіска: `a curtain`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-04:intro2:r2": {
+          "ru": "Здесь состояние: `She is thirsty`.",
+          "uk": "Тут стан: `She is thirsty`."
+        },
+        "en:lesson-05:session-04:intro2:r3": {
+          "ru": "С `She` нужно `is`.",
+          "uk": "З `She` потрібне `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-04:intro3:r2": {
+          "ru": "`under` — под; внутри — `in`.",
+          "uk": "`under` — під; усередині — `in`."
+        },
+        "en:lesson-05:session-04:intro3:r3": {
+          "ru": "Одна занавеска: `The curtain is`.",
+          "uk": "Одна завіска: `The curtain is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "859ff2c7a1c93023095d84280e0dc975aba0d506731649f05a337edffab6096d"
+}

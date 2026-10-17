@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-40:i01",
+    "correctText": "Whose watch is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i02",
+    "correctText": "bracelet",
+    "correctResponseId": "en:lesson-05:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i04",
+    "correctText": "en:lesson-05:session-40:i04:p1=watch\nen:lesson-05:session-40:i04:p2=ring\nen:lesson-05:session-40:i04:p3=bracelet\nen:lesson-05:session-40:i04:p4=sunglasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i05",
+    "correctText": "The violin is near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i06",
+    "correctText": "The thermostat is on the wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i07",
+    "correctText": "The bracelet is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i08",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i09",
+    "correctText": "This is Tom's ring.",
+    "correctResponseId": "en:lesson-05:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i10",
+    "correctText": "en:lesson-05:session-40:i10:p1=earrings\nen:lesson-05:session-40:i10:p2=laptop\nen:lesson-05:session-40:i10:p3=violin\nen:lesson-05:session-40:i10:p4=thermostat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i11",
+    "correctText": "Whose laptop is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i12",
+    "correctText": "Whose sunglasses are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i13",
+    "correctText": "I have your laptop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i15",
+    "correctText": "My watch is here.",
+    "correctResponseId": "en:lesson-05:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i16",
+    "correctText": "en:lesson-05:session-40:i16:p1=thermostat\nen:lesson-05:session-40:i16:p2=sunglasses\nen:lesson-05:session-40:i16:p3=earrings\nen:lesson-05:session-40:i16:p4=violin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:i17",
+    "correctText": "Whose violin is this?",
+    "correctResponseId": null
+  }
+]

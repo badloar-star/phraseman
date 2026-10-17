@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-07:intro1:r2": {
+          "ru": "С `I` нужно `have`.",
+          "uk": "З `I` потрібне `have`."
+        },
+        "en:lesson-05:session-07:intro1:r3": {
+          "ru": "Один пульт: `a remote`.",
+          "uk": "Один пульт: `a remote`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-07:intro2:r2": {
+          "ru": "`angry` — злой; здесь страшно: `scared`.",
+          "uk": "`angry` — злий; тут страшно: `scared`."
+        },
+        "en:lesson-05:session-07:intro2:r3": {
+          "ru": "Для этого состояния нужно `I’m scared`.",
+          "uk": "Для цього стану потрібне `I’m scared`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-07:intro3:r2": {
+          "ru": "`in` — внутри; здесь рядом: `next to`.",
+          "uk": "`in` — усередині; тут поруч: `next to`."
+        },
+        "en:lesson-05:session-07:intro3:r3": {
+          "ru": "Один пульт: `The remote is`.",
+          "uk": "Один пульт: `The remote is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c8d63d47adc160490df14ad189adc3b6bea68e022c33b88f325965aca9a99a39"
+}

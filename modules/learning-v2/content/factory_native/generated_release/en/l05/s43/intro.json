@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "вернуть найденную вещь и объяснить, где находятся люди и предметы",
+    "uk": "повернути знайдену річ і пояснити, де перебувають люди та предмети"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нашли браслет",
+        "uk": "Знайшли браслет"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим: `bracelet` — «браслет». `Whose bracelet is this?` — «Чей это браслет?» `This is Anna’s bracelet` — «Это браслет Анны». `The bracelet is hers` — «Браслет её»: после `hers` название вещи уже не нужно.",
+        "uk": "Повторимо: `bracelet` — «браслет». `Whose bracelet is this?` — «Чий це браслет?» `This is Anna’s bracelet` — «Це браслет Анни». `The bracelet is hers` — «Браслет її»: після `hers` назва речі вже не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце браслета.",
+          "uk": "Запитайте про власника браслета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-43:intro1:r1",
+              "text": "Whose bracelet is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro1:r2",
+              "text": "Where is the bracelet?"
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro1:r3",
+              "text": "Whose bracelet are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-43:intro1:r1",
+              "text": "Whose bracelet is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro1:r2",
+              "text": "Where is the bracelet?"
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro1:r3",
+              "text": "Whose bracelet are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце браслета.",
+          "uk": "Запитайте про власника браслета."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ждём без спешки",
+        "uk": "Чекаємо без поспіху"
+      },
+      "bodyByLocale": {
+        "ru": "`patient` здесь — «терпеливый»: `You are patient` — «Ты терпеливый / терпеливая». `tram` — «трамвай». `The tram is here` — «Трамвай здесь». Терпеливый друг умеет ждать, но трамвай такого обещания не давал.",
+        "uk": "`patient` тут — «терплячий»: `You are patient` — «Ти терплячий / терпляча». `tram` — «трамвай». `The tram is here` — «Трамвай тут». Терплячий друг уміє чекати, але трамвай такої обіцянки не давав."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Похвалите терпение друга: «Ты терпеливый», без сокращения.",
+          "uk": "Похваліть терпіння друга: «Ти терплячий», без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-43:intro2:r1",
+              "text": "You are patient."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro2:r2",
+              "text": "You is patient."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro2:r3",
+              "text": "You are polite."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-43:intro2:r1",
+              "text": "You are patient."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro2:r2",
+              "text": "You is patient."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro2:r3",
+              "text": "You are polite."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Похвалите терпение друга: «Ты терпеливый», без сокращения.",
+          "uk": "Похваліть терпіння друга: «Ти терплячий», без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Комнаты и контейнер",
+        "uk": "Кімнати й контейнер"
+      },
+      "bodyByLocale": {
+        "ru": "`bedrooms` — «спальни», `recycling bin` — «контейнер для переработки», куда кладут материалы для последующей переработки. `The bedrooms are small` — «Спальни маленькие». `Tom is next to the recycling bin` — «Том рядом с контейнером для переработки». `I have your bracelet` — «Твой браслет у меня».",
+        "uk": "`bedrooms` — «спальні», `recycling bin` — «контейнер для переробки», куди кладуть матеріали для подальшої переробки. `The bedrooms are small` — «Спальні маленькі». `Tom is next to the recycling bin` — «Том поруч із контейнером для переробки». `I have your bracelet` — «Твій браслет у мене»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Спальни маленькие».",
+          "uk": "Скажіть «Спальні маленькі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-43:intro3:r1",
+              "text": "The bedrooms are small."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro3:r2",
+              "text": "The bedrooms is small."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro3:r3",
+              "text": "The bedroom is small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-43:intro3:r1",
+              "text": "The bedrooms are small."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro3:r2",
+              "text": "The bedrooms is small."
+            },
+            {
+              "responseId": "en:lesson-05:session-43:intro3:r3",
+              "text": "The bedroom is small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Спальни маленькие».",
+          "uk": "Скажіть «Спальні маленькі»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e8d7d70104141c1c72223c808e27200952bbe92bb3325bfa09573b9771b295c0"
+}

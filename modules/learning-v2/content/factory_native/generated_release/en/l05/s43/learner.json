@@ -1,0 +1,984 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите другу «Ты терпеливый» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу «Ты терпеливый» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are patient.",
+        "localizedMeaning": {
+          "ru": "Скажите другу «Ты терпеливый» без сокращения",
+          "uk": "Скажіть другові «Ти терплячий» без скорочення"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "patient"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите другу «Ты терпеливый» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `You are patient.`",
+              "uk": "тут потрібно `are` — `You are patient.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-43:i02:r1",
+          "text": "tram"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i02:r2",
+          "text": "scooter"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i02:r3",
+          "text": "locker"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i02:audio",
+          "transcript": "tram"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-43:i02:r1",
+            "targetText": "tram",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i02:r2",
+            "targetText": "scooter",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i02:r3",
+            "targetText": "locker",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `tram`, а в этом варианте — `scooter`.",
+              "uk": "У записі перше слово — `tram`, а в цьому варіанті — `scooter`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `tram`, а в этом варианте — `locker`.",
+              "uk": "У записі перше слово — `tram`, а в цьому варіанті — `locker`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Спальни маленькие»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-43:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Спальни маленькие»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Спальни маленькие»",
+          "uk": "Скажіть «Спальні маленькі»"
+        },
+        "gappedTargetPhrase": "The bedrooms ___ small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-43:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Спальни маленькие»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Спальни маленькие»",
+            "feedbackByLocale": {
+              "ru": "Несколько спален: `bedrooms are`.",
+              "uk": "Кілька спалень: `bedrooms are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Спальни маленькие»",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `are`.",
+              "uk": "`am` використовується з `I`; тут `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-43:i04:p1",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i04:p2",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i04:p3",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i04:p4",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tram",
+          "bracelet",
+          "bedrooms",
+          "recycling bin"
+        ],
+        "rightColumn": [
+          "трамвай",
+          "браслет",
+          "спальни",
+          "контейнер для переработки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i05:audio",
+          "transcript": "Whose bracelet is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose bracelet is this?",
+        "orderedTokens": [
+          "Whose",
+          "bracelet",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Том рядом с контейнером для переработки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Том рядом с контейнером для переработки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tom is next to the recycling bin.",
+        "localizedMeaning": {
+          "ru": "Скажите «Том рядом с контейнером для переработки»",
+          "uk": "Скажіть «Том поруч із контейнером для переробки»"
+        },
+        "orderedTokens": [
+          "Tom",
+          "is",
+          "next",
+          "to",
+          "the",
+          "recycling",
+          "bin"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Том рядом с контейнером для переработки»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom is next to the recycling bin.`",
+              "uk": "тут потрібно `is` — `Tom is next to the recycling bin.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Браслет принадлежит Анне. Скажите «Браслет её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Браслет принадлежит Анне. Скажите «Браслет её»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i07:audio",
+          "transcript": "The bracelet is hers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bracelet is hers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Браслет принадлежит вам. Скажите «Браслет мой»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-43:i08:r1",
+          "text": "mine"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i08:r2",
+          "text": "my"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i08:r3",
+          "text": "I"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Браслет принадлежит вам. Скажите «Браслет мой»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Браслет принадлежит вам. Скажите «Браслет мой»",
+          "uk": "Браслет належить вам. Скажіть «Браслет мій»"
+        },
+        "gappedTargetPhrase": "The bracelet is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-43:i08:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i08:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i08:r3",
+            "text": "I"
+          }
+        ],
+        "testedDimension": "Браслет принадлежит вам. Скажите «Браслет мой»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Браслет принадлежит вам. Скажите «Браслет мой»",
+            "feedbackByLocale": {
+              "ru": "Перед названием вещи — `my`; здесь самостоятельное `mine`.",
+              "uk": "Перед назвою речі — `my`; тут самостійне `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Браслет принадлежит вам. Скажите «Браслет мой»",
+            "feedbackByLocale": {
+              "ru": "`I` — я; самостоятельное «мой» — `mine`.",
+              "uk": "`I` — я; самостійне «мій» — `mine`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какую вещь называет друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-43:i09:r1",
+          "text": "This is Anna's bracelet."
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i09:r2",
+          "text": "This is Anna's ring."
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i09:r3",
+          "text": "This is Anna's watch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какую вещь называет друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i09:audio",
+          "transcript": "This is Anna's bracelet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-43:i09:r1",
+            "targetText": "This is Anna's bracelet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i09:r2",
+            "targetText": "This is Anna's ring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i09:r3",
+            "targetText": "This is Anna's watch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какую вещь называет друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bracelet`, а в этом варианте — `ring`.",
+              "uk": "У записі останнє слово — `bracelet`, а в цьому варіанті — `ring`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какую вещь называет друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bracelet`, а в этом варианте — `watch`.",
+              "uk": "У записі останнє слово — `bracelet`, а в цьому варіанті — `watch`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-43:i10:p1",
+            "target": "patient",
+            "meaningByLocale": {
+              "ru": "терпеливый",
+              "uk": "терплячий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i10:p2",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i10:p3",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i10:p4",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          }
+        ],
+        "leftColumn": [
+          "patient",
+          "recycling bin",
+          "bracelet",
+          "tram"
+        ],
+        "rightColumn": [
+          "терпеливый",
+          "контейнер для переработки",
+          "браслет",
+          "трамвай"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i11:audio",
+          "transcript": "The tram is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The tram is here.",
+        "orderedTokens": [
+          "The",
+          "tram",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The tram is here.`",
+              "uk": "тут потрібно `is` — `The tram is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В гостевом доме спросите «Где спальни?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В гостевом доме спросите «Где спальни?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the bedrooms?",
+        "localizedMeaning": {
+          "ru": "В гостевом доме спросите «Где спальни?»",
+          "uk": "У гостьовому будинку запитайте «Де спальні?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "bedrooms"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите Анне «Твой браслет у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите Анне «Твой браслет у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i13:audio",
+          "transcript": "I have your bracelet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your bracelet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце браслета",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-43:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i14:r2",
+          "text": "Who"
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i14:r3",
+          "text": "Where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце браслета",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце браслета",
+          "uk": "Запитайте про власника браслета"
+        },
+        "gappedTargetPhrase": "___ bracelet is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-43:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i14:r2",
+            "text": "Who"
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i14:r3",
+            "text": "Where"
+          }
+        ],
+        "testedDimension": "Спросите о владельце браслета",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце браслета",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чий — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце браслета",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чий — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей браслет здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-43:i15:r1",
+          "text": "Your bracelet is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i15:r2",
+          "text": "My bracelet is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-43:i15:r3",
+          "text": "His bracelet is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей браслет здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i15:audio",
+          "transcript": "Your bracelet is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-43:i15:r1",
+            "targetText": "Your bracelet is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i15:r2",
+            "targetText": "My bracelet is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i15:r3",
+            "targetText": "His bracelet is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей браслет здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей браслет здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-43:i16:p1",
+            "target": "patient",
+            "meaningByLocale": {
+              "ru": "терпеливый",
+              "uk": "терплячий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i16:p2",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i16:p3",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-43:i16:p4",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "patient",
+          "bedrooms",
+          "tram",
+          "bracelet"
+        ],
+        "rightColumn": [
+          "терпеливый",
+          "спальни",
+          "трамвай",
+          "браслет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед выходом вы нашли браслет. Спросите друзей «Чей это браслет?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Перед выходом вы нашли браслет. Спросите друзей «Чей это браслет?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:i17:audio",
+          "transcript": "Whose bracelet is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose bracelet is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "773301c206e4ce0cae59a28db81cac71f6ac6de62f989c0c3fc4e442087b7b9a"
+}

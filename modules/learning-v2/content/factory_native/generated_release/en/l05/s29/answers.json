@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-29:i01",
+    "correctText": "Anna is online.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i02",
+    "correctText": "skateboard",
+    "correctResponseId": "en:lesson-05:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i03",
+    "correctText": "skateboard",
+    "correctResponseId": "en:lesson-05:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i04",
+    "correctText": "en:lesson-05:session-29:i04:p1=skateboard\nen:lesson-05:session-29:i04:p2=local\nen:lesson-05:session-29:i04:p3=foreign\nen:lesson-05:session-29:i04:p4=online",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i05",
+    "correctText": "This is Tom's skateboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i06",
+    "correctText": "Anna's necklace is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i07",
+    "correctText": "The shop is local.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i08",
+    "correctText": "Anna's",
+    "correctResponseId": "en:lesson-05:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i09",
+    "correctText": "The car is foreign.",
+    "correctResponseId": "en:lesson-05:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i10",
+    "correctText": "en:lesson-05:session-29:i10:p1=skateboard\nen:lesson-05:session-29:i10:p2=tables\nen:lesson-05:session-29:i10:p3=bus stop\nen:lesson-05:session-29:i10:p4=necklace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i11",
+    "correctText": "Tom is at the bus stop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i12",
+    "correctText": "The tables are outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i13",
+    "correctText": "Where is my skateboard?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i14",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-29:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i15",
+    "correctText": "Your skateboard is here.",
+    "correctResponseId": "en:lesson-05:session-29:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i16",
+    "correctText": "en:lesson-05:session-29:i16:p1=skateboard\nen:lesson-05:session-29:i16:p2=tables\nen:lesson-05:session-29:i16:p3=bus stop\nen:lesson-05:session-29:i16:p4=necklace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:i17",
+    "correctText": "This is Tom's skateboard.",
+    "correctResponseId": null
+  }
+]

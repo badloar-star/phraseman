@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-48:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-48:intro1:r3": {
+          "ru": "Один шкафчик: `is this`.",
+          "uk": "Одна шафка: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-48:intro2:r2": {
+          "ru": "Без следующего названия вещи нужна самостоятельная форма `hers`.",
+          "uk": "Без наступної назви речі потрібна самостійна форма `hers`."
+        },
+        "en:lesson-05:session-48:intro2:r3": {
+          "ru": "Один мотоцикл: `is`.",
+          "uk": "Один мотоцикл: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-48:intro3:r2": {
+          "ru": "Это вопрос о владельце; здесь нужно `Where`.",
+          "uk": "Це запитання про власника; тут потрібне `Where`."
+        },
+        "en:lesson-05:session-48:intro3:r3": {
+          "ru": "Один паром: `is`.",
+          "uk": "Один пором: `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5cecf1d49a8318f11ba870329d7ee89b6d1411406bc516226052b066d8baacd8"
+}

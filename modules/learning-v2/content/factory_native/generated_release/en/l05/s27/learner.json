@@ -1,0 +1,1009 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна уже не спит. Скажите «Анна не спит», используя слово awake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна уже не спит. Скажите «Анна не спит», используя слово awake",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna is awake.",
+        "localizedMeaning": {
+          "ru": "Анна уже не спит. Скажите «Анна не спит», используя слово awake",
+          "uk": "Анна вже не спить. Скажіть «Анна не спить», використовуючи слово awake"
+        },
+        "orderedTokens": [
+          "Anna",
+          "is",
+          "awake"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна уже не спит. Скажите «Анна не спит», используя слово awake",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna is awake.`",
+              "uk": "тут потрібно `is` — `Anna is awake.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-27:i02:r1",
+          "text": "passport"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i02:r2",
+          "text": "tablet"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i02:r3",
+          "text": "badge"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i02:audio",
+          "transcript": "passport"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-27:i02:r1",
+            "targetText": "passport",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i02:r2",
+            "targetText": "tablet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i02:r3",
+            "targetText": "badge",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `passport`, а в этом варианте — `tablet`.",
+              "uk": "У записі перше слово — `passport`, а в цьому варіанті — `tablet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `passport`, а в этом варианте — `badge`.",
+              "uk": "У записі перше слово — `passport`, а в цьому варіанті — `badge`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите паспорт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-27:i03:r1",
+          "text": "passport"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i03:r2",
+          "text": "lunchbox"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i03:r3",
+          "text": "tablet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите паспорт",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите паспорт",
+          "uk": "Назвіть паспорт"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i03:r1",
+            "text": "passport"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i03:r2",
+            "text": "lunchbox"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i03:r3",
+            "text": "tablet"
+          }
+        ],
+        "testedDimension": "Назовите паспорт",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите паспорт",
+            "feedbackByLocale": {
+              "ru": "`lunchbox` — контейнер для обеда; паспорт — `passport`.",
+              "uk": "`lunchbox` — контейнер для обіду; паспорт — `passport`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите паспорт",
+            "feedbackByLocale": {
+              "ru": "`tablet` — планшет; паспорт — `passport`.",
+              "uk": "`tablet` — планшет; паспорт — `passport`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-27:i04:p1",
+            "target": "passport",
+            "meaningByLocale": {
+              "ru": "паспорт",
+              "uk": "паспорт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i04:p2",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i04:p3",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i04:p4",
+            "target": "available",
+            "meaningByLocale": {
+              "ru": "доступен",
+              "uk": "доступний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "passport",
+          "awake",
+          "asleep",
+          "available"
+        ],
+        "rightColumn": [
+          "паспорт",
+          "не спит",
+          "спит",
+          "доступен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i05:audio",
+          "transcript": "This is Anna's passport."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is Anna's passport.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "Anna's",
+          "passport"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is Anna's passport.`",
+              "uk": "тут потрібно `is` — `This is Anna's passport.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Паспорт принадлежит Тому. Скажите «Паспорт Тома здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Паспорт принадлежит Тому. Скажите «Паспорт Тома здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tom's passport is here.",
+        "localizedMeaning": {
+          "ru": "Паспорт принадлежит Тому. Скажите «Паспорт Тома здесь»",
+          "uk": "Паспорт належить Тому. Скажіть «Паспорт Тома тут»"
+        },
+        "orderedTokens": [
+          "Tom's",
+          "passport",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Паспорт принадлежит Тому. Скажите «Паспорт Тома здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom's passport is here.`",
+              "uk": "тут потрібно `is` — `Tom's passport is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Том ещё спит. Скажите «Том спит», используя asleep",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Том ещё спит. Скажите «Том спит», используя asleep",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i07:audio",
+          "transcript": "Tom is asleep."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom is asleep.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Планшет принадлежит Анне. Укажите владельца",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-27:i08:r1",
+          "text": "Anna's"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i08:r2",
+          "text": "Anna"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i08:r3",
+          "text": "Tom's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Планшет принадлежит Анне. Укажите владельца",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Планшет принадлежит Анне. Укажите владельца",
+          "uk": "Планшет належить Анні. Укажіть власницю"
+        },
+        "gappedTargetPhrase": "This is ___ tablet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i08:r1",
+            "text": "Anna's"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i08:r2",
+            "text": "Anna"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i08:r3",
+            "text": "Tom's"
+          }
+        ],
+        "testedDimension": "Планшет принадлежит Анне. Укажите владельца",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Планшет принадлежит Анне. Укажите владельца",
+            "feedbackByLocale": {
+              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
+              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Планшет принадлежит Анне. Укажите владельца",
+            "feedbackByLocale": {
+              "ru": "Это принадлежность Тому; здесь владелица Анна.",
+              "uk": "Це належність Тому; тут власниця Анна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что друг сообщает о машине",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-27:i09:r1",
+          "text": "The car is available."
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i09:r2",
+          "text": "The car is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i09:r3",
+          "text": "The car is yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что друг сообщает о машине",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i09:audio",
+          "transcript": "The car is available."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-27:i09:r1",
+            "targetText": "The car is available.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i09:r2",
+            "targetText": "The car is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i09:r3",
+            "targetText": "The car is yours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг сообщает о машине",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `available`, а в этом варианте — `here`.",
+              "uk": "У записі останнє слово — `available`, а в цьому варіанті — `here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг сообщает о машине",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `available`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `available`, а в цьому варіанті — `yours`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-27:i10:p1",
+            "target": "passport",
+            "meaningByLocale": {
+              "ru": "паспорт",
+              "uk": "паспорт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i10:p2",
+            "target": "cars",
+            "meaningByLocale": {
+              "ru": "машины",
+              "uk": "машини"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i10:p3",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i10:p4",
+            "target": "tablet",
+            "meaningByLocale": {
+              "ru": "планшет",
+              "uk": "планшет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "passport",
+          "cars",
+          "awning",
+          "tablet"
+        ],
+        "rightColumn": [
+          "паспорт",
+          "машины",
+          "навес",
+          "планшет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i11:audio",
+          "transcript": "The cars are under the awning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cars are under the awning.",
+        "orderedTokens": [
+          "The",
+          "cars",
+          "are",
+          "under",
+          "the",
+          "awning"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cars are under the awning.`",
+              "uk": "тут потрібно `are` — `The cars are under the awning.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Планшет Анны на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Планшет Анны на столе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna's tablet is on the table.",
+        "localizedMeaning": {
+          "ru": "Скажите «Планшет Анны на столе»",
+          "uk": "Скажіть «Планшет Анни на столі»"
+        },
+        "orderedTokens": [
+          "Anna's",
+          "tablet",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Планшет Анны на столе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna's tablet is on the table.`",
+              "uk": "тут потрібно `is` — `Anna's tablet is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ищете свой документ. Спросите «Где мой паспорт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Вы ищете свой документ. Спросите «Где мой паспорт?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i13:audio",
+          "transcript": "Where is my passport?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is my passport?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Паспорт принадлежит другу-мужчине. Скажите «Паспорт его»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-27:i14:r1",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i14:r2",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i14:r3",
+          "text": "ours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Паспорт принадлежит другу-мужчине. Скажите «Паспорт его»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Паспорт принадлежит другу-мужчине. Скажите «Паспорт его»",
+          "uk": "Паспорт належить другові-чоловікові. Скажіть «Паспорт його»"
+        },
+        "gappedTargetPhrase": "The passport is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i14:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i14:r2",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i14:r3",
+            "text": "ours"
+          }
+        ],
+        "testedDimension": "Паспорт принадлежит другу-мужчине. Скажите «Паспорт его»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i14:r2",
+            "correct": false,
+            "testedDimension": "Паспорт принадлежит другу-мужчине. Скажите «Паспорт его»",
+            "feedbackByLocale": {
+              "ru": "`hers` — её; его — `his`.",
+              "uk": "`hers` — її; його — `his`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i14:r3",
+            "correct": false,
+            "testedDimension": "Паспорт принадлежит другу-мужчине. Скажите «Паспорт его»",
+            "feedbackByLocale": {
+              "ru": "`ours` — наш; его — `his`.",
+              "uk": "`ours` — наш; його — `his`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где паспорт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-27:i15:r1",
+          "text": "Your passport is in the bag."
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i15:r2",
+          "text": "My passport is in the bag."
+        },
+        {
+          "responseId": "en:lesson-05:session-27:i15:r3",
+          "text": "Your passport is in the backpack."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где паспорт",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i15:audio",
+          "transcript": "Your passport is in the bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-27:i15:r1",
+            "targetText": "Your passport is in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i15:r2",
+            "targetText": "My passport is in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i15:r3",
+            "targetText": "Your passport is in the backpack.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-27:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где паспорт",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где паспорт",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bag`, а в этом варианте — `backpack`.",
+              "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `backpack`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-27:i16:p1",
+            "target": "passport",
+            "meaningByLocale": {
+              "ru": "паспорт",
+              "uk": "паспорт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i16:p2",
+            "target": "cars",
+            "meaningByLocale": {
+              "ru": "машины",
+              "uk": "машини"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i16:p3",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-27:i16:p4",
+            "target": "tablet",
+            "meaningByLocale": {
+              "ru": "планшет",
+              "uk": "планшет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "passport",
+          "cars",
+          "awning",
+          "tablet"
+        ],
+        "rightColumn": [
+          "паспорт",
+          "машины",
+          "навес",
+          "планшет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг нашёл документ Анны. Назовите владельца: «Это паспорт Анны»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Друг нашёл документ Анны. Назовите владельца: «Это паспорт Анны»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-27:i17:audio",
+          "transcript": "This is Anna's passport."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is Anna's passport.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "188e9c5e1ca13afa3c62429aa5c1cde1d9be3ff579828f9de710b87b98e629d9"
+}

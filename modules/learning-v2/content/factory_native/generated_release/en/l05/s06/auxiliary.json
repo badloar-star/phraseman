@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-06:intro1:r2": {
+          "ru": "`curtain` — занавеска; потолок — `ceiling`.",
+          "uk": "`curtain` — завіска; стеля — `ceiling`."
+        },
+        "en:lesson-05:session-06:intro1:r3": {
+          "ru": "`drawer` — выдвижной ящик; потолок — `ceiling`.",
+          "uk": "`drawer` — шухляда; стеля — `ceiling`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-06:intro2:r2": {
+          "ru": "`calm` — спокоен; здесь `nervous`.",
+          "uk": "`calm` — спокійний; тут `nervous`."
+        },
+        "en:lesson-05:session-06:intro2:r3": {
+          "ru": "Для этого состояния нужно `I’m nervous`.",
+          "uk": "Для цього стану потрібне `I’m nervous`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-06:intro3:r2": {
+          "ru": "С `She` нужно `has`.",
+          "uk": "З `She` потрібне `has`."
+        },
+        "en:lesson-05:session-06:intro3:r3": {
+          "ru": "Это «Она ручка»; у неё есть ручка — `She has a pen`.",
+          "uk": "Це «Вона ручка»; у неї є ручка — `She has a pen`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1c71d873b6cc4fd08ee68dbf200d4983b3f435920835a8cfc74b6b172a9f231c"
+}

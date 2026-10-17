@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-46:intro1:r2": {
+          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
+          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+        },
+        "en:lesson-05:session-46:intro1:r3": {
+          "ru": "Один паром: `is`.",
+          "uk": "Один пором: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-46:intro2:r2": {
+          "ru": "Без следующего названия вещи нужна самостоятельная форма `hers`.",
+          "uk": "Без наступної назви речі потрібна самостійна форма `hers`."
+        },
+        "en:lesson-05:session-46:intro2:r3": {
+          "ru": "Один ноутбук: `is`.",
+          "uk": "Один ноутбук: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-46:intro3:r2": {
+          "ru": "Один ноутбук: `is`.",
+          "uk": "Один ноутбук: `is`."
+        },
+        "en:lesson-05:session-46:intro3:r3": {
+          "ru": "`useful` — полезный; бесполезный — `useless`.",
+          "uk": "`useful` — корисний; некорисний — `useless`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7630ba8242ef4f5fbc33369422fc7694e822c43f4c949ce181befe737e59b471"
+}

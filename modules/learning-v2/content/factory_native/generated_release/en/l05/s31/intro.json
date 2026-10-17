@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца вещей и сравнить знакомые предметы",
+    "uk": "назвати власника речей і порівняти знайомі предмети"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Музыка с собой",
+        "uk": "Музика із собою"
+      },
+      "bodyByLocale": {
+        "ru": "`guitar` — «гитара». `This is Tom’s guitar` — «Это гитара Тома». `Anna’s guitar is here` — «Гитара Анны здесь». Имя владельца с `’s` ставим перед вещью. Гитара уже в сумке: пока это самый тихий участник встречи.",
+        "uk": "`guitar` — «гітара». `This is Tom’s guitar` — «Це гітара Тома». `Anna’s guitar is here` — «Гітара Анни тут». Ім’я власника з `’s` ставимо перед річчю. Гітара вже в сумці: поки це найтихіший учасник зустрічі."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Укажите на гитару Тома.",
+          "uk": "Укажіть на гітару Тома."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-31:intro1:r1",
+              "text": "This is Tom's guitar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro1:r2",
+              "text": "This is Tom guitar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro1:r3",
+              "text": "This is Anna's guitar."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-31:intro1:r1",
+              "text": "This is Tom's guitar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro1:r2",
+              "text": "This is Tom guitar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro1:r3",
+              "text": "This is Anna's guitar."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Укажите на гитару Тома.",
+          "uk": "Укажіть на гітару Тома."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Равные, похожие, отдельные",
+        "uk": "Рівні, схожі, окремі"
+      },
+      "bodyByLocale": {
+        "ru": "`equal` — «равные», `similar` — «похожие», `separate` — «отдельные, раздельные». `The numbers are equal` — «Числа равны»: например, пять и пять. `The bags are similar` — «Сумки похожи»: не обязательно одинаковы во всём. `The rooms are separate` — «Комнаты отдельные»: это разные помещения. После множественного числа здесь нужно `are`.",
+        "uk": "`equal` — «рівні», `similar` — «схожі», `separate` — «окремі, роздільні». `The numbers are equal` — «Числа рівні»: наприклад, п’ять і п’ять. `The bags are similar` — «Сумки схожі»: не обов’язково однакові в усьому. `The rooms are separate` — «Кімнати окремі»: це різні приміщення. Після множини тут потрібне `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Сумки похожи друг на друга. Скажите «Сумки похожи».",
+          "uk": "Сумки схожі одна на одну. Скажіть «Сумки схожі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-31:intro2:r1",
+              "text": "The bags are similar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro2:r2",
+              "text": "The bags is similar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro2:r3",
+              "text": "The bags are equal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-31:intro2:r1",
+              "text": "The bags are similar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro2:r2",
+              "text": "The bags is similar."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro2:r3",
+              "text": "The bags are equal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сумки похожи друг на друга. Скажите «Сумки похожи».",
+          "uk": "Сумки схожі одна на одну. Скажіть «Сумки схожі»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Парк и стоянка",
+        "uk": "Парк і стоянка"
+      },
+      "bodyByLocale": {
+        "ru": "`parks` — «парки», `car park` — «автостоянка», `camera` — «камера». `The parks are open` — «Парки открыты». `Tom is in the car park` — «Том на автостоянке». `Anna’s camera is on the table` — «Камера Анны на столе». `Where is my guitar?` — «Где моя гитара?» Не путайте парк для прогулок и `car park` для машин.",
+        "uk": "`parks` — «парки», `car park` — «автостоянка», `camera` — «камера». `The parks are open` — «Парки відкриті». `Tom is in the car park` — «Том на автостоянці». `Anna’s camera is on the table` — «Камера Анни на столі». `Where is my guitar?` — «Де моя гітара?» Не плутайте парк для прогулянок і `car park` для машин."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Том ждёт на автостоянке. Выберите фразу.",
+          "uk": "Том чекає на автостоянці. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-31:intro3:r1",
+              "text": "Tom is in the car park."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro3:r2",
+              "text": "Tom are in the car park."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro3:r3",
+              "text": "Tom is in the park."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-31:intro3:r1",
+              "text": "Tom is in the car park."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro3:r2",
+              "text": "Tom are in the car park."
+            },
+            {
+              "responseId": "en:lesson-05:session-31:intro3:r3",
+              "text": "Tom is in the park."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Том ждёт на автостоянке. Выберите фразу.",
+          "uk": "Том чекає на автостоянці. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "567d212d7c731ee7afe8fb2aab18576395c5caad25defa88d0d21affb4722de5"
+}

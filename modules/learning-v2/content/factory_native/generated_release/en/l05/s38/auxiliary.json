@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-38:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-38:intro1:r3": {
+          "ru": "Один ноутбук: `is this`.",
+          "uk": "Один ноутбук: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-38:intro2:r2": {
+          "ru": "`headphones` — множественное число: `are these`.",
+          "uk": "`headphones` — множина: `are these`."
+        },
+        "en:lesson-05:session-38:intro2:r3": {
+          "ru": "Это «Где наушники?»; о владельце спрашиваем с `Whose`.",
+          "uk": "Це «Де навушники?»; про власника запитуємо з `Whose`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-38:intro3:r2": {
+          "ru": "С `I` нужна форма `am`.",
+          "uk": "З `I` потрібна форма `am`."
+        },
+        "en:lesson-05:session-38:intro3:r3": {
+          "ru": "`sleepy` — сонный; слабый — `weak`.",
+          "uk": "`sleepy` — сонний; слабкий — `weak`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8392486de9daa94232e28ae6aeb7fb4787fa39bce0e1fc0b48a3aeab3e8a5a15"
+}

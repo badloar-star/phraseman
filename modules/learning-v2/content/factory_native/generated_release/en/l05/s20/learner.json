@@ -1,0 +1,993 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are prepared.",
+        "localizedMeaning": {
+          "ru": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
+          "uk": "Карти й усе потрібне у вас із собою. Скажіть «Ми підготовлені» без скорочення"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "prepared"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are prepared.`",
+              "uk": "тут потрібно `are` — `We are prepared.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-20:i02:r1",
+          "text": "scarf"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i02:r2",
+          "text": "coat"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i02:r3",
+          "text": "shirt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i02:audio",
+          "transcript": "scarf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-20:i02:r1",
+            "targetText": "scarf",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i02:r2",
+            "targetText": "coat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i02:r3",
+            "targetText": "shirt",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `scarf`, а в этом варианте — `coat`.",
+              "uk": "У записі перше слово — `scarf`, а в цьому варіанті — `coat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `scarf`, а в этом варианте — `shirt`.",
+              "uk": "У записі перше слово — `scarf`, а в цьому варіанті — `shirt`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите шарф",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-20:i03:r1",
+          "text": "scarf"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i03:r2",
+          "text": "jacket"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i03:r3",
+          "text": "gloves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите шарф",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите шарф",
+          "uk": "Назвіть шарф"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-20:i03:r1",
+            "text": "scarf"
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i03:r2",
+            "text": "jacket"
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i03:r3",
+            "text": "gloves"
+          }
+        ],
+        "testedDimension": "Назовите шарф",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите шарф",
+            "feedbackByLocale": {
+              "ru": "`jacket` — куртка; шарф — `scarf`.",
+              "uk": "`jacket` — куртка; шарф — `scarf`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите шарф",
+            "feedbackByLocale": {
+              "ru": "`gloves` — перчатки; шарф — `scarf`.",
+              "uk": "`gloves` — рукавички; шарф — `scarf`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-20:i04:p1",
+            "target": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф",
+              "uk": "шарф"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i04:p2",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудились",
+              "uk": "заблукали"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i04:p3",
+            "target": "prepared",
+            "meaningByLocale": {
+              "ru": "подготовлены",
+              "uk": "підготовлені"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i04:p4",
+            "target": "careful",
+            "meaningByLocale": {
+              "ru": "осторожны",
+              "uk": "обережні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "scarf",
+          "lost",
+          "prepared",
+          "careful"
+        ],
+        "rightColumn": [
+          "шарф",
+          "заблудились",
+          "подготовлены",
+          "осторожны"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i05:audio",
+          "transcript": "Your scarf is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your scarf is here.",
+        "orderedTokens": [
+          "Your",
+          "scarf",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Your scarf is here.`",
+              "uk": "тут потрібно `is` — `Your scarf is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Карты принадлежат вам и другу. Скажите «Карты наши»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Карты принадлежат вам и другу. Скажите «Карты наши»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The maps are ours.",
+        "localizedMeaning": {
+          "ru": "Карты принадлежат вам и другу. Скажите «Карты наши»",
+          "uk": "Карти належать вам і другові. Скажіть «Карти наші»"
+        },
+        "orderedTokens": [
+          "The",
+          "maps",
+          "are",
+          "ours"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Карты принадлежат вам и другу. Скажите «Карты наши»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The maps are ours.`",
+              "uk": "тут потрібно `are` — `The maps are ours.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с другом не знаете, как вернуться. Скажите «Мы заблудились» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Вы с другом не знаете, как вернуться. Скажите «Мы заблудились» без сокращения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i07:audio",
+          "transcript": "We are lost."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are lost.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Шарф принадлежит подруге. Скажите «Шарф её»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-20:i08:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i08:r3",
+          "text": "ours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шарф принадлежит подруге. Скажите «Шарф её»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Шарф принадлежит подруге. Скажите «Шарф её»",
+          "uk": "Шарф належить подрузі. Скажіть «Шарф її»"
+        },
+        "gappedTargetPhrase": "The scarf is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-20:i08:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i08:r3",
+            "text": "ours"
+          }
+        ],
+        "testedDimension": "Шарф принадлежит подруге. Скажите «Шарф её»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Шарф принадлежит подруге. Скажите «Шарф её»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Шарф принадлежит подруге. Скажите «Шарф её»",
+            "feedbackByLocale": {
+              "ru": "`ours` — наш; её — `hers`.",
+              "uk": "`ours` — наш; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, как друг описывает вашу осторожность",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-20:i09:r1",
+          "text": "We are careful."
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i09:r2",
+          "text": "We are prepared."
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i09:r3",
+          "text": "We are lost."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как друг описывает вашу осторожность",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i09:audio",
+          "transcript": "We are careful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-20:i09:r1",
+            "targetText": "We are careful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i09:r2",
+            "targetText": "We are prepared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i09:r3",
+            "targetText": "We are lost.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, как друг описывает вашу осторожность",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `careful`, а в этом варианте — `prepared`.",
+              "uk": "У записі останнє слово — `careful`, а в цьому варіанті — `prepared`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, как друг описывает вашу осторожность",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `careful`, а в этом варианте — `lost`.",
+              "uk": "У записі останнє слово — `careful`, а в цьому варіанті — `lost`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-20:i10:p1",
+            "target": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф",
+              "uk": "шарф"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i10:p2",
+            "target": "maps",
+            "meaningByLocale": {
+              "ru": "карты",
+              "uk": "карти"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i10:p3",
+            "target": "mushroom",
+            "meaningByLocale": {
+              "ru": "гриб",
+              "uk": "гриб"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i10:p4",
+            "target": "notebook",
+            "meaningByLocale": {
+              "ru": "тетрадь",
+              "uk": "зошит"
+            }
+          }
+        ],
+        "leftColumn": [
+          "scarf",
+          "maps",
+          "mushroom",
+          "notebook"
+        ],
+        "rightColumn": [
+          "шарф",
+          "карты",
+          "гриб",
+          "тетрадь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i11:audio",
+          "transcript": "Where is my scarf?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is my scarf?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "my",
+          "scarf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The notebook is his.",
+        "localizedMeaning": {
+          "ru": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
+          "uk": "Зошит належить другові-чоловікові. Скажіть «Зошит його»"
+        },
+        "orderedTokens": [
+          "The",
+          "notebook",
+          "is",
+          "his"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The notebook is his.`",
+              "uk": "тут потрібно `is` — `The notebook is his.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы заметили один гриб рядом с деревом. Сообщите «Рядом с деревом есть гриб»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Вы заметили один гриб рядом с деревом. Сообщите «Рядом с деревом есть гриб»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i13:audio",
+          "transcript": "There is a mushroom next to the tree."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a mushroom next to the tree.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Нет ни одной карты. Выберите форму для множественного числа",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-20:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нет ни одной карты. Выберите форму для множественного числа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нет ни одной карты. Выберите форму для множественного числа",
+          "uk": "Немає жодної карти. Виберіть форму для множини"
+        },
+        "gappedTargetPhrase": "There ___ no maps.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-20:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Нет ни одной карты. Выберите форму для множественного числа",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i14:r2",
+            "correct": false,
+            "testedDimension": "Нет ни одной карты. Выберите форму для множественного числа",
+            "feedbackByLocale": {
+              "ru": "`maps` — множественное число: `There are`.",
+              "uk": "`maps` — множина: `There are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i14:r3",
+            "correct": false,
+            "testedDimension": "Нет ни одной карты. Выберите форму для множественного числа",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `There are`.",
+              "uk": "`am` використовується з `I`; тут `There are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит шарф",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-20:i15:r1",
+          "text": "The scarf is yours."
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i15:r2",
+          "text": "The scarf is mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-20:i15:r3",
+          "text": "The scarf is theirs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит шарф",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i15:audio",
+          "transcript": "The scarf is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-20:i15:r1",
+            "targetText": "The scarf is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i15:r2",
+            "targetText": "The scarf is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i15:r3",
+            "targetText": "The scarf is theirs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит шарф",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-20:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит шарф",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-20:i16:p1",
+            "target": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф",
+              "uk": "шарф"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i16:p2",
+            "target": "maps",
+            "meaningByLocale": {
+              "ru": "карты",
+              "uk": "карти"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i16:p3",
+            "target": "mushroom",
+            "meaningByLocale": {
+              "ru": "гриб",
+              "uk": "гриб"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-20:i16:p4",
+            "target": "notebook",
+            "meaningByLocale": {
+              "ru": "тетрадь",
+              "uk": "зошит"
+            }
+          }
+        ],
+        "leftColumn": [
+          "scarf",
+          "maps",
+          "mushroom",
+          "notebook"
+        ],
+        "rightColumn": [
+          "шарф",
+          "карты",
+          "гриб",
+          "тетрадь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг нашёл ваш шарф и спрашивает о владельце. Скажите «Шарф мой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Друг нашёл ваш шарф и спрашивает о владельце. Скажите «Шарф мой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:i17:audio",
+          "transcript": "The scarf is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The scarf is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1419b26753833b3dfb0739673631455789547b4926fd9e90365c9557f3d8c46a"
+}

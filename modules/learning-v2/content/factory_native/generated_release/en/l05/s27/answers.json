@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-27:i01",
+    "correctText": "Anna is awake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i02",
+    "correctText": "passport",
+    "correctResponseId": "en:lesson-05:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i03",
+    "correctText": "passport",
+    "correctResponseId": "en:lesson-05:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i04",
+    "correctText": "en:lesson-05:session-27:i04:p1=passport\nen:lesson-05:session-27:i04:p2=awake\nen:lesson-05:session-27:i04:p3=asleep\nen:lesson-05:session-27:i04:p4=available",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i05",
+    "correctText": "This is Anna's passport.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i06",
+    "correctText": "Tom's passport is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i07",
+    "correctText": "Tom is asleep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i08",
+    "correctText": "Anna's",
+    "correctResponseId": "en:lesson-05:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i09",
+    "correctText": "The car is available.",
+    "correctResponseId": "en:lesson-05:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i10",
+    "correctText": "en:lesson-05:session-27:i10:p1=passport\nen:lesson-05:session-27:i10:p2=cars\nen:lesson-05:session-27:i10:p3=awning\nen:lesson-05:session-27:i10:p4=tablet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i11",
+    "correctText": "The cars are under the awning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i12",
+    "correctText": "Anna's tablet is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i13",
+    "correctText": "Where is my passport?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i14",
+    "correctText": "his",
+    "correctResponseId": "en:lesson-05:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i15",
+    "correctText": "Your passport is in the bag.",
+    "correctResponseId": "en:lesson-05:session-27:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i16",
+    "correctText": "en:lesson-05:session-27:i16:p1=passport\nen:lesson-05:session-27:i16:p2=cars\nen:lesson-05:session-27:i16:p3=awning\nen:lesson-05:session-27:i16:p4=tablet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:i17",
+    "correctText": "This is Anna's passport.",
+    "correctResponseId": null
+  }
+]

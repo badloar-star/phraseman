@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-10:intro1:r2": {
+          "ru": "Перед `my pocket` не нужно `a`.",
+          "uk": "Перед `my pocket` не потрібне `a`."
+        },
+        "en:lesson-05:session-10:intro1:r3": {
+          "ru": "`your` — твоём / вашем; о своём кармане здесь `my`.",
+          "uk": "`your` — твоїй / вашій; про свою кишеню тут `my`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-10:intro2:r2": {
+          "ru": "`their` — их; наш — `our`.",
+          "uk": "`their` — їхній; наш — `our`."
+        },
+        "en:lesson-05:session-10:intro2:r3": {
+          "ru": "Один друг: `friend is`.",
+          "uk": "Один друг: `friend is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-10:intro3:r2": {
+          "ru": "`it’s` — `it is`; здесь нужно `its lock`.",
+          "uk": "`it’s` — `it is`; тут потрібне `its lock`."
+        },
+        "en:lesson-05:session-10:intro3:r3": {
+          "ru": "`their` — их; для одной двери, названной `it`, нужно `its`.",
+          "uk": "Для одних дверей, названих англійською `it`, потрібне `its`, а не `their`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8f5be33b64a14d06d582678f3aa13b64baee25d5303aea0b6b13bf6967a3f220"
+}

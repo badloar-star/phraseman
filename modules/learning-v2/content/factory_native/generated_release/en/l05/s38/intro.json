@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о владельце техники и вернуть найденную вещь",
+    "uk": "запитати про власника техніки й повернути знайдену річ"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Компьютер с собой",
+        "uk": "Комп’ютер із собою"
+      },
+      "bodyByLocale": {
+        "ru": "`laptop` — «ноутбук», переносной компьютер с клавиатурой и экраном. `Whose laptop is this?` — «Чей это ноутбук?» `The laptop is mine` — «Ноутбук мой». `This is Anna’s laptop` — «Это ноутбук Анны». Ноутбук уже закрыт и готов отдыхать, а хозяева всё ещё собираются.",
+        "uk": "`laptop` — «ноутбук», переносний комп’ютер із клавіатурою та екраном. `Whose laptop is this?` — «Чий це ноутбук?» `The laptop is mine` — «Ноутбук мій». `This is Anna’s laptop` — «Це ноутбук Анни». Ноутбук уже закритий і готовий відпочивати, а господарі ще збираються."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце ноутбука.",
+          "uk": "Запитайте про власника ноутбука."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-38:intro1:r1",
+              "text": "Whose laptop is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro1:r2",
+              "text": "Where is the laptop?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro1:r3",
+              "text": "Whose laptop are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-38:intro1:r1",
+              "text": "Whose laptop is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro1:r2",
+              "text": "Where is the laptop?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro1:r3",
+              "text": "Whose laptop are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце ноутбука.",
+          "uk": "Запитайте про власника ноутбука."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Билет и наушники",
+        "uk": "Квиток і навушники"
+      },
+      "bodyByLocale": {
+        "ru": "`ticket` — «билет», `headphones` — «наушники». `Whose ticket is this?` — «Чей это билет?» `Whose headphones are these?` — «Чьи это наушники?» Один билет — `is this`, наушники — `are these`. `The headphones are hers` — «Наушники её»: количество вещей определяет форму `are`, даже если владелица одна.",
+        "uk": "`ticket` — «квиток», `headphones` — «навушники». `Whose ticket is this?` — «Чий це квиток?» `Whose headphones are these?` — «Чиї це навушники?» Один квиток — `is this`, навушники — `are these`. `The headphones are hers` — «Навушники її»: кількість речей визначає форму `are`, навіть якщо власниця одна."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце наушников.",
+          "uk": "Запитайте про власника навушників."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-38:intro2:r1",
+              "text": "Whose headphones are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro2:r2",
+              "text": "Whose headphones is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro2:r3",
+              "text": "Where are the headphones?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-38:intro2:r1",
+              "text": "Whose headphones are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro2:r2",
+              "text": "Whose headphones is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro2:r3",
+              "text": "Where are the headphones?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце наушников.",
+          "uk": "Запитайте про власника навушників."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "У места для велосипедов",
+        "uk": "Біля місця для велосипедів"
+      },
+      "bodyByLocale": {
+        "ru": "`weak` — «слабый»: `I am weak` — «Я слаб / слаба», например когда мало физических сил. `bike shed` — «велосипедный сарай», крытое строение для хранения велосипедов. `Tom is next to the bike shed` — «Том рядом с велосипедным сараем». `I have your ticket` — «Твой билет у меня».",
+        "uk": "`weak` — «слабкий»: `I am weak` — «Я слабкий / слабка», наприклад коли мало фізичних сил. `bike shed` — «велосипедний сарай», крита споруда для зберігання велосипедів. `Tom is next to the bike shed` — «Том поруч із велосипедним сараєм». `I have your ticket` — «Твій квиток у мене»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я слаб», описывая недостаток физических сил, без сокращения.",
+          "uk": "Скажіть «Я слабкий», описуючи брак фізичних сил, без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-38:intro3:r1",
+              "text": "I am weak."
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro3:r2",
+              "text": "I is weak."
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro3:r3",
+              "text": "I am sleepy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-38:intro3:r1",
+              "text": "I am weak."
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro3:r2",
+              "text": "I is weak."
+            },
+            {
+              "responseId": "en:lesson-05:session-38:intro3:r3",
+              "text": "I am sleepy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я слаб», описывая недостаток физических сил, без сокращения.",
+          "uk": "Скажіть «Я слабкий», описуючи брак фізичних сил, без скорочення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3d46c8889756a37065ff5d7ecb771caedabaf66b5c4a76bc93fdeb7636f86614"
+}

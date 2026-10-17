@@ -1,0 +1,955 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите друзьям «Я здесь» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите друзьям «Я здесь» с сокращением",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm here.",
+        "localizedMeaning": {
+          "ru": "Сообщите друзьям «Я здесь» с сокращением",
+          "uk": "Повідомте друзям «Я тут» зі скороченням"
+        },
+        "orderedTokens": [
+          "I'm",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-01:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i02:r3",
+          "text": "here"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i02:audio",
+          "transcript": "have"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-01:i02:r1",
+            "targetText": "have",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i02:r2",
+            "targetText": "has",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i02:r3",
+            "targetText": "here",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `have`, а в этом варианте — `has`.",
+              "uk": "У записі перше слово — `have`, а в цьому варіанті — `has`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `have`, а в этом варианте — `here`.",
+              "uk": "У записі перше слово — `have`, а в цьому варіанті — `here`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Какое слово значит «иметь»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-01:i03:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i03:r2",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i03:r3",
+          "text": "happy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Какое слово значит «иметь»?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Какое слово значит «иметь»?",
+          "uk": "Яке слово означає «мати»?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-01:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i03:r2",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i03:r3",
+            "text": "happy"
+          }
+        ],
+        "testedDimension": "Какое слово значит «иметь»?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Какое слово значит «иметь»?",
+            "feedbackByLocale": {
+              "ru": "`here` — здесь; иметь — `have`.",
+              "uk": "`here` — тут; мати — `have`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Какое слово значит «иметь»?",
+            "feedbackByLocale": {
+              "ru": "`happy` — счастливый; иметь — `have`.",
+              "uk": "`happy` — щасливий; мати — `have`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-01:i04:p1",
+            "target": "have",
+            "meaningByLocale": {
+              "ru": "иметь",
+              "uk": "мати"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i04:p2",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i04:p3",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готовый",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i04:p4",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "have",
+          "here",
+          "ready",
+          "key"
+        ],
+        "rightColumn": [
+          "иметь",
+          "здесь",
+          "готовый",
+          "ключ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i05:audio",
+          "transcript": "You have a key."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You have a key.",
+        "orderedTokens": [
+          "You",
+          "have",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ключ в вашем кармане. Скажите «У меня есть ключ»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключ в вашем кармане. Скажите «У меня есть ключ»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have a key.",
+        "localizedMeaning": {
+          "ru": "Ключ в вашем кармане. Скажите «У меня есть ключ»",
+          "uk": "Ключ у вашій кишені. Скажіть «У мене є ключ»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, всё ли с вами хорошо. Скажите «Я в порядке» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, всё ли с вами хорошо. Скажите «Я в порядке» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i07:audio",
+          "transcript": "I'm fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm fine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга рада. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-01:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга рада. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга рада. Выберите форму",
+          "uk": "Подруга рада. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ happy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-01:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Подруга рада. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга рада. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Здесь состояние: `She is happy`, а не вещь у неё.",
+              "uk": "Тут стан: `She is happy`, а не річ у неї."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга рада. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "С `She` нужно `is`.",
+              "uk": "З `She` потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, как дела у друга",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-01:i09:r1",
+          "text": "He's fine."
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i09:r2",
+          "text": "He's happy."
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i09:r3",
+          "text": "She's fine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как дела у друга",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i09:audio",
+          "transcript": "He's fine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-01:i09:r1",
+            "targetText": "He's fine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i09:r2",
+            "targetText": "He's happy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i09:r3",
+            "targetText": "She's fine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, как дела у друга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fine`, а в этом варианте — `happy`.",
+              "uk": "У записі останнє слово — `fine`, а в цьому варіанті — `happy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, как дела у друга",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `He's`, а в этом варианте — `She's`.",
+              "uk": "У записі перше слово — `He's`, а в цьому варіанті — `She's`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините места со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините места со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-01:i10:p1",
+            "target": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i10:p2",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i10:p3",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i10:p4",
+            "target": "canal",
+            "meaningByLocale": {
+              "ru": "канал",
+              "uk": "канал"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pharmacy",
+          "library",
+          "bakery",
+          "canal"
+        ],
+        "rightColumn": [
+          "аптека",
+          "библиотека",
+          "пекарня",
+          "канал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i11:audio",
+          "transcript": "We are ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are ready.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are ready.`",
+              "uk": "тут потрібно `are` — `We are ready.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У соседей есть ключ. Скажите «У них есть ключ»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У соседей есть ключ. Скажите «У них есть ключ»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They have a key.",
+        "localizedMeaning": {
+          "ru": "У соседей есть ключ. Скажите «У них есть ключ»",
+          "uk": "У сусідів є ключ. Скажіть «У них є ключ»"
+        },
+        "orderedTokens": [
+          "They",
+          "have",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с другом рады. Скажите «Мы рады» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Вы с другом рады. Скажите «Мы рады» без сокращения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i13:audio",
+          "transcript": "We are happy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are happy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У друга есть ключ. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-01:i14:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i14:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У друга есть ключ. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У друга есть ключ. Выберите форму",
+          "uk": "У друга є ключ. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a key.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-01:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У друга есть ключ. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i14:r2",
+            "correct": false,
+            "testedDimension": "У друга есть ключ. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "С `He` нужно `has`: `He has a key`.",
+              "uk": "З `He` потрібне `has`: `He has a key`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i14:r3",
+            "correct": false,
+            "testedDimension": "У друга есть ключ. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`He is a key` — он сам ключ. У него есть ключ: `He has a key`.",
+              "uk": "`He is a key` — він сам ключ. У нього є ключ: `He has a key`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, у кого что есть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-01:i15:r1",
+          "text": "She has a key."
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i15:r2",
+          "text": "She has a bag."
+        },
+        {
+          "responseId": "en:lesson-05:session-01:i15:r3",
+          "text": "He has a key."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, у кого что есть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i15:audio",
+          "transcript": "She has a key."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-01:i15:r1",
+            "targetText": "She has a key.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i15:r2",
+            "targetText": "She has a bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i15:r3",
+            "targetText": "He has a key.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-01:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, у кого что есть",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `key`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `key`, а в цьому варіанті — `bag`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-01:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, у кого что есть",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините места со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините места со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-01:i16:p1",
+            "target": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i16:p2",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i16:p3",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-01:i16:p4",
+            "target": "canal",
+            "meaningByLocale": {
+              "ru": "канал",
+              "uk": "канал"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pharmacy",
+          "library",
+          "bakery",
+          "canal"
+        ],
+        "rightColumn": [
+          "аптека",
+          "библиотека",
+          "пекарня",
+          "канал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы уже у двери. Ключ у вашей подруги. Сообщите остальным «У неё есть ключ»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Вы уже у двери. Ключ у вашей подруги. Сообщите остальным «У неё есть ключ»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-01:i17:audio",
+          "transcript": "She has a key."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has a key.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "df050deb28c66ef6d5e7b9b14815836f18427abbffe951243d3d10c8ac7ed96d"
+}

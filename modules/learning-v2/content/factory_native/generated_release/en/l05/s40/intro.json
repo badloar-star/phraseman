@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно спросить о владельце и описать знакомые вещи",
+    "uk": "самостійно запитати про власника й описати знайомі речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна вещь или несколько",
+        "uk": "Одна річ чи кілька"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим: `watch` — «наручные часы», `ring` — «кольцо», `bracelet` — «браслет». `Whose watch is this?` — «Чьи это наручные часы?» В английском одни наручные часы — одна вещь: `is this`. `Whose ring is this?` — «Чьё это кольцо?» `The bracelet is mine` — «Браслет мой».",
+        "uk": "Повторимо: `watch` — «наручний годинник», `ring` — «каблучка», `bracelet` — «браслет». `Whose watch is this?` — «Чий це наручний годинник?» Один годинник — одна річ: `is this`. `Whose ring is this?` — «Чия це каблучка?» `The bracelet is mine` — «Браслет мій»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце одних наручных часов.",
+          "uk": "Запитайте про власника одного наручного годинника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-40:intro1:r1",
+              "text": "Whose watch is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro1:r2",
+              "text": "Whose watch are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro1:r3",
+              "text": "Where is the watch?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-40:intro1:r1",
+              "text": "Whose watch is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro1:r2",
+              "text": "Whose watch are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro1:r3",
+              "text": "Where is the watch?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце одних наручных часов.",
+          "uk": "Запитайте про власника одного наручного годинника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Очки и серьги",
+        "uk": "Окуляри й сережки"
+      },
+      "bodyByLocale": {
+        "ru": "`sunglasses` — «солнцезащитные очки», `earrings` — «серьги». `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» `The earrings are hers` — «Серьги её». Эти слова требуют `are`. `This is Tom’s ring` — «Это кольцо Тома»: имя владельца получает `’s`.",
+        "uk": "`sunglasses` — «сонцезахисні окуляри», `earrings` — «сережки». `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» `The earrings are hers` — «Сережки її». Ці слова потребують `are`. `This is Tom’s ring` — «Це каблучка Тома»: до імені власника додаємо `’s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Серьги её».",
+          "uk": "Скажіть «Сережки її»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-40:intro2:r1",
+              "text": "The earrings are hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro2:r2",
+              "text": "The earrings is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro2:r3",
+              "text": "The earrings are her."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-40:intro2:r1",
+              "text": "The earrings are hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro2:r2",
+              "text": "The earrings is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro2:r3",
+              "text": "The earrings are her."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Серьги её».",
+          "uk": "Скажіть «Сережки її»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вещи остаются на местах",
+        "uk": "Речі залишаються на місцях"
+      },
+      "bodyByLocale": {
+        "ru": "`laptop` — «ноутбук», `violin` — «скрипка», `thermostat` — «термостат». `I have your laptop` — «Твой ноутбук у меня». `The violin is near the door` — «Скрипка возле двери». `The thermostat is on the wall` — «Термостат на стене». Термостат можно не искать среди забытых вещей: он остался на стене.",
+        "uk": "`laptop` — «ноутбук», `violin` — «скрипка», `thermostat` — «термостат». `I have your laptop` — «Твій ноутбук у мене». `The violin is near the door` — «Скрипка біля дверей». `The thermostat is on the wall` — «Термостат на стіні». Термостат можна не шукати серед забутих речей: він залишився на стіні."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Твой ноутбук у меня».",
+          "uk": "Скажіть «Твій ноутбук у мене»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-40:intro3:r1",
+              "text": "I have your laptop."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro3:r2",
+              "text": "I has your laptop."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro3:r3",
+              "text": "I have my laptop."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-40:intro3:r1",
+              "text": "I have your laptop."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro3:r2",
+              "text": "I has your laptop."
+            },
+            {
+              "responseId": "en:lesson-05:session-40:intro3:r3",
+              "text": "I have my laptop."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Твой ноутбук у меня».",
+          "uk": "Скажіть «Твій ноутбук у мене»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3d1a2d2d072474af200310826ac38789a749ea816f85a37c780da531b47e1ffe"
+}

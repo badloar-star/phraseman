@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-30:i01",
+    "correctText": "The tree is alive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i02",
+    "correctText": "headphones",
+    "correctResponseId": "en:lesson-05:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i03",
+    "correctText": "headphones",
+    "correctResponseId": "en:lesson-05:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i04",
+    "correctText": "en:lesson-05:session-30:i04:p1=headphones\nen:lesson-05:session-30:i04:p2=alive\nen:lesson-05:session-30:i04:p3=dead\nen:lesson-05:session-30:i04:p4=missing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i05",
+    "correctText": "These are Anna's headphones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i06",
+    "correctText": "Tom's boots are next to the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i07",
+    "correctText": "My headphones are missing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i08",
+    "correctText": "Tom's",
+    "correctResponseId": "en:lesson-05:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i09",
+    "correctText": "The tree is dead.",
+    "correctResponseId": "en:lesson-05:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i10",
+    "correctText": "en:lesson-05:session-30:i10:p1=headphones\nen:lesson-05:session-30:i10:p2=windows\nen:lesson-05:session-30:i10:p3=signpost\nen:lesson-05:session-30:i10:p4=boots",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i11",
+    "correctText": "Anna is next to the signpost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i12",
+    "correctText": "The windows are open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i13",
+    "correctText": "Where are my headphones?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i14",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i15",
+    "correctText": "Tom's headphones are here.",
+    "correctResponseId": "en:lesson-05:session-30:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i16",
+    "correctText": "en:lesson-05:session-30:i16:p1=headphones\nen:lesson-05:session-30:i16:p2=windows\nen:lesson-05:session-30:i16:p3=signpost\nen:lesson-05:session-30:i16:p4=boots",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:i17",
+    "correctText": "These are Anna's headphones.",
+    "correctResponseId": null
+  }
+]

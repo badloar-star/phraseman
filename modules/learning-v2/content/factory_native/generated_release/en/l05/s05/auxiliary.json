@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-05:intro1:r2": {
+          "ru": "Один стол, как `it`: `has`.",
+          "uk": "Один стіл, як `it`: `has`."
+        },
+        "en:lesson-05:session-05:intro1:r3": {
+          "ru": "Это «Стол — ящик»; у стола есть ящик — `The desk has a drawer`.",
+          "uk": "Це «Стіл — шухляда»; у столу є шухляда — `The desk has a drawer`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-05:intro2:r2": {
+          "ru": "Для ощущения здесь нужно `I’m warm`.",
+          "uk": "Для відчуття тут потрібне `I’m warm`."
+        },
+        "en:lesson-05:session-05:intro2:r3": {
+          "ru": "`cold` — холодно; тепло — `warm`.",
+          "uk": "`cold` — холодно; тепло — `warm`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-05:intro3:r2": {
+          "ru": "`under` — под; здесь внутри: `in`.",
+          "uk": "`under` — під; тут усередині: `in`."
+        },
+        "en:lesson-05:session-05:intro3:r3": {
+          "ru": "Одна карта: `The map is`.",
+          "uk": "Одна карта: `The map is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e747b79054319c7326cb14f1bdbe5caccd352cea5c681e671037bde9716fe65d"
+}

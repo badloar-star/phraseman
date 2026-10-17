@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о месте и владельце велосипеда и описать его вес",
+    "uk": "запитати про місце та власника велосипеда й описати його вагу"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для плавания",
+        "uk": "Місце для плавання"
+      },
+      "bodyByLocale": {
+        "ru": "`pool` здесь — «бассейн» для плавания. `Where is the pool?` — «Где бассейн?» `The pool is near the park` — «Бассейн возле парка». `Anna is at the pool` — «Анна в бассейне», то есть на территории бассейна; фраза не обязательно означает, что она уже в воде.",
+        "uk": "`pool` тут — «басейн» для плавання. `Where is the pool?` — «Де басейн?» `The pool is near the park` — «Басейн біля парку». `Anna is at the pool` — «Анна в басейні», тобто на території басейну; фраза не обов’язково означає, що вона вже у воді."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, где бассейн.",
+          "uk": "Запитайте, де басейн."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-52:intro1:r1",
+              "text": "Where is the pool?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro1:r2",
+              "text": "Whose pool is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro1:r3",
+              "text": "Where are the pool?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-52:intro1:r1",
+              "text": "Where is the pool?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro1:r2",
+              "text": "Whose pool is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro1:r3",
+              "text": "Where are the pool?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где бассейн.",
+          "uk": "Запитайте, де басейн."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Лёгкий велосипед",
+        "uk": "Легкий велосипед"
+      },
+      "bodyByLocale": {
+        "ru": "`bicycle` — «велосипед», `light` здесь — «лёгкий» по весу. `This bicycle is light` — «Этот велосипед лёгкий». `Whose bicycle is this?` — «Чей это велосипед?» `The bicycle is hers` — «Велосипед её». Лёгкий велосипед удобнее нести, но обычно от него ждут другой работы.",
+        "uk": "`bicycle` — «велосипед», `light` тут — «легкий» за вагою. `This bicycle is light` — «Цей велосипед легкий». `Whose bicycle is this?` — «Чий це велосипед?» `The bicycle is hers` — «Велосипед її». Легкий велосипед зручніше нести, але зазвичай від нього чекають іншої роботи."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о весе: «Этот велосипед лёгкий».",
+          "uk": "Скажіть про вагу: «Цей велосипед легкий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-52:intro2:r1",
+              "text": "This bicycle is light."
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro2:r2",
+              "text": "This bicycle are light."
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro2:r3",
+              "text": "This bicycle is heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-52:intro2:r1",
+              "text": "This bicycle is light."
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro2:r2",
+              "text": "This bicycle are light."
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro2:r3",
+              "text": "This bicycle is heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о весе: «Этот велосипед лёгкий».",
+          "uk": "Скажіть про вагу: «Цей велосипед легкий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ориентиры в районе",
+        "uk": "Орієнтири в районі"
+      },
+      "bodyByLocale": {
+        "ru": "`stations` — «станции», `nursery` здесь — «детский сад» для маленьких детей. `Where are the stations?` — «Где станции?» `The nursery is next to the park` — «Детский сад рядом с парком». `This is Tom’s bicycle` — «Это велосипед Тома».",
+        "uk": "`stations` — «станції», `nursery` тут — «дитячий садок» для маленьких дітей. `Where are the stations?` — «Де станції?» `The nursery is next to the park` — «Дитячий садок поруч із парком». `This is Tom’s bicycle` — «Це велосипед Тома»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, где станции.",
+          "uk": "Запитайте, де станції."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-52:intro3:r1",
+              "text": "Where are the stations?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro3:r2",
+              "text": "Where is the stations?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro3:r3",
+              "text": "Whose stations are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-52:intro3:r1",
+              "text": "Where are the stations?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro3:r2",
+              "text": "Where is the stations?"
+            },
+            {
+              "responseId": "en:lesson-05:session-52:intro3:r3",
+              "text": "Whose stations are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где станции.",
+          "uk": "Запитайте, де станції."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cf0eda5916a00c9e5da81c7b44298faeb89c6a1a644fb4422d38443d62c25a8b"
+}

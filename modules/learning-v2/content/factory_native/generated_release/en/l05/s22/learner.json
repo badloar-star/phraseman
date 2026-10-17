@@ -1,0 +1,996 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-22:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are famous.",
+        "localizedMeaning": {
+          "ru": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
+          "uk": "Мандрівників знають багато людей. Скажіть «Вони знамениті» без скорочення"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "famous"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are famous.`",
+              "uk": "тут потрібно `are` — `They are famous.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-22:i02:r1",
+          "text": "boots"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i02:r2",
+          "text": "books"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i02:r3",
+          "text": "gloves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i02:audio",
+          "transcript": "boots"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-22:i02:r1",
+            "targetText": "boots",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i02:r2",
+            "targetText": "books",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i02:r3",
+            "targetText": "gloves",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `boots`, а в этом варианте — `books`.",
+              "uk": "У записі перше слово — `boots`, а в цьому варіанті — `books`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `boots`, а в этом варианте — `gloves`.",
+              "uk": "У записі перше слово — `boots`, а в цьому варіанті — `gloves`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите ботинки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-22:i03:r1",
+          "text": "boots"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i03:r2",
+          "text": "gloves"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i03:r3",
+          "text": "scarf"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите ботинки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите ботинки",
+          "uk": "Назвіть черевики"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-22:i03:r1",
+            "text": "boots"
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i03:r2",
+            "text": "gloves"
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i03:r3",
+            "text": "scarf"
+          }
+        ],
+        "testedDimension": "Назовите ботинки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите ботинки",
+            "feedbackByLocale": {
+              "ru": "`gloves` — перчатки; ботинки — `boots`.",
+              "uk": "`gloves` — рукавички; черевики — `boots`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите ботинки",
+            "feedbackByLocale": {
+              "ru": "`scarf` — шарф; ботинки — `boots`.",
+              "uk": "`scarf` — шарф; черевики — `boots`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-22:i04:p1",
+            "target": "boots",
+            "meaningByLocale": {
+              "ru": "ботинки",
+              "uk": "черевики"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i04:p2",
+            "target": "rich",
+            "meaningByLocale": {
+              "ru": "богатые",
+              "uk": "багаті"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i04:p3",
+            "target": "poor",
+            "meaningByLocale": {
+              "ru": "бедные",
+              "uk": "бідні"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i04:p4",
+            "target": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитые",
+              "uk": "знамениті"
+            }
+          }
+        ],
+        "leftColumn": [
+          "boots",
+          "rich",
+          "poor",
+          "famous"
+        ],
+        "rightColumn": [
+          "ботинки",
+          "богатые",
+          "бедные",
+          "знаменитые"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i05:audio",
+          "transcript": "My boots are next to your suitcase."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My boots are next to your suitcase.",
+        "orderedTokens": [
+          "My",
+          "boots",
+          "are",
+          "next",
+          "to",
+          "your",
+          "suitcase"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `My boots are next to your suitcase.`",
+              "uk": "тут потрібно `are` — `My boots are next to your suitcase.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cups are ours.",
+        "localizedMeaning": {
+          "ru": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
+          "uk": "Чашки належать вам і другові. Скажіть «Чашки наші»"
+        },
+        "orderedTokens": [
+          "The",
+          "cups",
+          "are",
+          "ours"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cups are ours.`",
+              "uk": "тут потрібно `are` — `The cups are ours.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Речь о достатке людей. Скажите «Они богатые» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i07:audio"
+      ],
+      "accessibilityLabel": "Речь о достатке людей. Скажите «Они богатые» без сокращения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i07:audio",
+          "transcript": "They are rich."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are rich.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-22:i08:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i08:r3",
+          "text": "ours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+          "uk": "Валіза належить подрузі. Скажіть «Валіза її»"
+        },
+        "gappedTargetPhrase": "The suitcase is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-22:i08:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i08:r3",
+            "text": "ours"
+          }
+        ],
+        "testedDimension": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+            "feedbackByLocale": {
+              "ru": "`ours` — наш; её — `hers`.",
+              "uk": "`ours` — наша; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, как друг описывает достаток людей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-22:i09:r1",
+          "text": "They are poor."
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i09:r2",
+          "text": "They are rich."
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i09:r3",
+          "text": "They are famous."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как друг описывает достаток людей",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i09:audio",
+          "transcript": "They are poor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-22:i09:r1",
+            "targetText": "They are poor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i09:r2",
+            "targetText": "They are rich.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i09:r3",
+            "targetText": "They are famous.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, как друг описывает достаток людей",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `poor`, а в этом варианте — `rich`.",
+              "uk": "У записі останнє слово — `poor`, а в цьому варіанті — `rich`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, как друг описывает достаток людей",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `poor`, а в этом варианте — `famous`.",
+              "uk": "У записі останнє слово — `poor`, а в цьому варіанті — `famous`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-22:i10:p1",
+            "target": "boots",
+            "meaningByLocale": {
+              "ru": "ботинки",
+              "uk": "черевики"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i10:p2",
+            "target": "cups",
+            "meaningByLocale": {
+              "ru": "чашки",
+              "uk": "чашки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i10:p3",
+            "target": "carrot",
+            "meaningByLocale": {
+              "ru": "морковка",
+              "uk": "морквина"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i10:p4",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          }
+        ],
+        "leftColumn": [
+          "boots",
+          "cups",
+          "carrot",
+          "suitcase"
+        ],
+        "rightColumn": [
+          "ботинки",
+          "чашки",
+          "морковка",
+          "чемодан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i11:audio",
+          "transcript": "Where are my boots?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where are my boots?",
+        "orderedTokens": [
+          "Where",
+          "are",
+          "my",
+          "boots"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The carrot is his.",
+        "localizedMeaning": {
+          "ru": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
+          "uk": "Морквина належить другові-чоловікові. Скажіть «Морквина його»"
+        },
+        "orderedTokens": [
+          "The",
+          "carrot",
+          "is",
+          "his"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The carrot is his.`",
+              "uk": "тут потрібно `is` — `The carrot is his.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ботинки друга у вас. Скажите ему «Твои ботинки у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i13:audio"
+      ],
+      "accessibilityLabel": "Ботинки друга у вас. Скажите ему «Твои ботинки у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i13:audio",
+          "transcript": "I have your boots."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your boots.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Нет ни одной чашки. Выберите форму для множественного числа",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-22:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нет ни одной чашки. Выберите форму для множественного числа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нет ни одной чашки. Выберите форму для множественного числа",
+          "uk": "Немає жодної чашки. Виберіть форму для множини"
+        },
+        "gappedTargetPhrase": "There ___ no cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-22:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Нет ни одной чашки. Выберите форму для множественного числа",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i14:r2",
+            "correct": false,
+            "testedDimension": "Нет ни одной чашки. Выберите форму для множественного числа",
+            "feedbackByLocale": {
+              "ru": "`cups` — множественное число: `There are`.",
+              "uk": "`cups` — множина: `There are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i14:r3",
+            "correct": false,
+            "testedDimension": "Нет ни одной чашки. Выберите форму для множественного числа",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `There are`.",
+              "uk": "`am` використовується з `I`; тут `There are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежат ботинки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-22:i15:r1",
+          "text": "The boots are yours."
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i15:r2",
+          "text": "The boots are mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-22:i15:r3",
+          "text": "The boots are theirs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежат ботинки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i15:audio",
+          "transcript": "The boots are yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-22:i15:r1",
+            "targetText": "The boots are yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i15:r2",
+            "targetText": "The boots are mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i15:r3",
+            "targetText": "The boots are theirs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежат ботинки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-22:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежат ботинки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-22:i16:p1",
+            "target": "boots",
+            "meaningByLocale": {
+              "ru": "ботинки",
+              "uk": "черевики"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i16:p2",
+            "target": "cups",
+            "meaningByLocale": {
+              "ru": "чашки",
+              "uk": "чашки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i16:p3",
+            "target": "carrot",
+            "meaningByLocale": {
+              "ru": "морковка",
+              "uk": "морквина"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-22:i16:p4",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          }
+        ],
+        "leftColumn": [
+          "boots",
+          "cups",
+          "carrot",
+          "suitcase"
+        ],
+        "rightColumn": [
+          "ботинки",
+          "чашки",
+          "морковка",
+          "чемодан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг нашёл ваши ботинки. Уточните «Ботинки мои»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Друг нашёл ваши ботинки. Уточните «Ботинки мои»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:i17:audio",
+          "transcript": "The boots are mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The boots are mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "89ca90b9ea28cb5f0a2da8f522a2e0dbeb795abd488cf8ea0225933f5d005e66"
+}

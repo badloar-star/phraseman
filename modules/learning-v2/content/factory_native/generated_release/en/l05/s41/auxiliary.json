@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-41:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-41:intro1:r3": {
+          "ru": "Один шкафчик: `is this`.",
+          "uk": "Одна шафка: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-41:intro2:r2": {
+          "ru": "С `you` нужна форма `are`.",
+          "uk": "З `you` потрібна форма `are`."
+        },
+        "en:lesson-05:session-41:intro2:r3": {
+          "ru": "`brave` — смелый; честный — `honest`.",
+          "uk": "`brave` — сміливий; чесний — `honest`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-41:intro3:r2": {
+          "ru": "С `I` используется `have`.",
+          "uk": "З `I` використовується `have`."
+        },
+        "en:lesson-05:session-41:intro3:r3": {
+          "ru": "`my` — мои; здесь нужны твои: `your`.",
+          "uk": "`my` — мій; тут потрібне твій: `your`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0cd5077cace835c777b1c43587db86142bda4a58e5a1a4d72014cb0b1af9edd0"
+}

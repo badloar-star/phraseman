@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-50:i01",
+    "correctText": "This scooter is expensive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i02",
+    "correctText": "playground",
+    "correctResponseId": "en:lesson-05:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i03",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i04",
+    "correctText": "en:lesson-05:session-50:i04:p1=playground\nen:lesson-05:session-50:i04:p2=scooter\nen:lesson-05:session-50:i04:p3=cinema\nen:lesson-05:session-50:i04:p4=river",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i05",
+    "correctText": "The playground is near the river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i06",
+    "correctText": "Where is the cinema?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i07",
+    "correctText": "The scooter is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i08",
+    "correctText": "ours",
+    "correctResponseId": "en:lesson-05:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i09",
+    "correctText": "This is Anna's scooter.",
+    "correctResponseId": "en:lesson-05:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i10",
+    "correctText": "en:lesson-05:session-50:i10:p1=playground\nen:lesson-05:session-50:i10:p2=expensive\nen:lesson-05:session-50:i10:p3=river\nen:lesson-05:session-50:i10:p4=scooter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i11",
+    "correctText": "The scooter is next to the playground.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i12",
+    "correctText": "Where is the river?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i13",
+    "correctText": "Your scooter is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i14",
+    "correctText": "Where",
+    "correctResponseId": "en:lesson-05:session-50:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i15",
+    "correctText": "The scooter is mine.",
+    "correctResponseId": "en:lesson-05:session-50:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i16",
+    "correctText": "en:lesson-05:session-50:i16:p1=playground\nen:lesson-05:session-50:i16:p2=expensive\nen:lesson-05:session-50:i16:p3=cinema\nen:lesson-05:session-50:i16:p4=scooter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:i17",
+    "correctText": "Whose scooter is this?",
+    "correctResponseId": null
+  }
+]

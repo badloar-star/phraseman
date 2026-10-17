@@ -1,0 +1,987 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о цене: «Этот самокат дорогой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о цене: «Этот самокат дорогой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This scooter is expensive.",
+        "localizedMeaning": {
+          "ru": "Скажите о цене: «Этот самокат дорогой»",
+          "uk": "Скажіть про ціну: «Цей самокат дорогий»"
+        },
+        "orderedTokens": [
+          "This",
+          "scooter",
+          "is",
+          "expensive"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите о цене: «Этот самокат дорогой»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This scooter is expensive.`",
+              "uk": "тут потрібно `is` — `This scooter is expensive.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-50:i02:r1",
+          "text": "playground"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i02:r2",
+          "text": "cinema"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i02:r3",
+          "text": "river"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i02:audio",
+          "transcript": "playground"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-50:i02:r1",
+            "targetText": "playground",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i02:r2",
+            "targetText": "cinema",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i02:r3",
+            "targetText": "river",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `playground`, а в этом варианте — `cinema`.",
+              "uk": "У записі перше слово — `playground`, а в цьому варіанті — `cinema`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `playground`, а в этом варианте — `river`.",
+              "uk": "У записі перше слово — `playground`, а в цьому варіанті — `river`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце самоката",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-50:i03:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i03:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i03:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце самоката",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце самоката",
+          "uk": "Запитайте про власника самоката"
+        },
+        "gappedTargetPhrase": "___ scooter is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i03:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i03:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i03:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Спросите о владельце самоката",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце самоката",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чий — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце самоката",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чий — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-50:i04:p1",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i04:p2",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i04:p3",
+            "target": "cinema",
+            "meaningByLocale": {
+              "ru": "кинотеатр",
+              "uk": "кінотеатр"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i04:p4",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "playground",
+          "scooter",
+          "cinema",
+          "river"
+        ],
+        "rightColumn": [
+          "детская площадка",
+          "самокат",
+          "кинотеатр",
+          "река"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i05:audio",
+          "transcript": "The playground is near the river."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The playground is near the river.",
+        "orderedTokens": [
+          "The",
+          "playground",
+          "is",
+          "near",
+          "the",
+          "river"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The playground is near the river.`",
+              "uk": "тут потрібно `is` — `The playground is near the river.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Где кинотеатр?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Где кинотеатр?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the cinema?",
+        "localizedMeaning": {
+          "ru": "Спросите «Где кинотеатр?»",
+          "uk": "Запитайте «Де кінотеатр?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "cinema"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Самокат принадлежит Анне. Скажите «Самокат её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Самокат принадлежит Анне. Скажите «Самокат её»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i07:audio",
+          "transcript": "The scooter is hers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The scooter is hers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Самокат принадлежит вашей семье. Скажите «Самокат наш»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-50:i08:r1",
+          "text": "ours"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i08:r2",
+          "text": "our"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i08:r3",
+          "text": "we"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Самокат принадлежит вашей семье. Скажите «Самокат наш»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Самокат принадлежит вашей семье. Скажите «Самокат наш»",
+          "uk": "Самокат належить вашій родині. Скажіть «Самокат наш»"
+        },
+        "gappedTargetPhrase": "The scooter is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i08:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i08:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i08:r3",
+            "text": "we"
+          }
+        ],
+        "testedDimension": "Самокат принадлежит вашей семье. Скажите «Самокат наш»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Самокат принадлежит вашей семье. Скажите «Самокат наш»",
+            "feedbackByLocale": {
+              "ru": "Перед названием вещи — `our`; здесь самостоятельное `ours`.",
+              "uk": "Перед назвою речі — `our`; тут самостійне `ours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Самокат принадлежит вашей семье. Скажите «Самокат наш»",
+            "feedbackByLocale": {
+              "ru": "`we` — мы; самостоятельное «наш» — `ours`.",
+              "uk": "`we` — ми; самостійне «наш» — `ours`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какой транспорт называет Том",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-50:i09:r1",
+          "text": "This is Anna's scooter."
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i09:r2",
+          "text": "This is Anna's bicycle."
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i09:r3",
+          "text": "This is Anna's motorbike."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой транспорт называет Том",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i09:audio",
+          "transcript": "This is Anna's scooter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-50:i09:r1",
+            "targetText": "This is Anna's scooter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i09:r2",
+            "targetText": "This is Anna's bicycle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i09:r3",
+            "targetText": "This is Anna's motorbike.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какой транспорт называет Том",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `bicycle`.",
+              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какой транспорт называет Том",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `motorbike`.",
+              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `motorbike`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-50:i10:p1",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i10:p2",
+            "target": "expensive",
+            "meaningByLocale": {
+              "ru": "дорогой",
+              "uk": "дорогий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i10:p3",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i10:p4",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "playground",
+          "expensive",
+          "river",
+          "scooter"
+        ],
+        "rightColumn": [
+          "детская площадка",
+          "дорогой",
+          "река",
+          "самокат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i11:audio",
+          "transcript": "The scooter is next to the playground."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The scooter is next to the playground.",
+        "orderedTokens": [
+          "The",
+          "scooter",
+          "is",
+          "next",
+          "to",
+          "the",
+          "playground"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The scooter is next to the playground.`",
+              "uk": "тут потрібно `is` — `The scooter is next to the playground.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Где река?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Где река?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the river?",
+        "localizedMeaning": {
+          "ru": "Спросите «Где река?»",
+          "uk": "Запитайте «Де річка?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "river"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите Анне «Твой самокат здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите Анне «Твой самокат здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i13:audio",
+          "transcript": "Your scooter is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Your scooter is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, где кинотеатр",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-50:i14:r1",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i14:r2",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где кинотеатр",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, где кинотеатр",
+          "uk": "Запитайте, де кінотеатр"
+        },
+        "gappedTargetPhrase": "___ is the cinema?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-50:i14:r1",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i14:r2",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Спросите, где кинотеатр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите, где кинотеатр",
+            "feedbackByLocale": {
+              "ru": "`Whose` — чей; где — `Where`.",
+              "uk": "`Whose` — чий; де — `Where`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите, где кинотеатр",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; где — `Where`.",
+              "uk": "`Who` — хто; де — `Where`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит самокат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-50:i15:r1",
+          "text": "The scooter is mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i15:r2",
+          "text": "The scooter is hers."
+        },
+        {
+          "responseId": "en:lesson-05:session-50:i15:r3",
+          "text": "The scooter is ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит самокат",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i15:audio",
+          "transcript": "The scooter is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-50:i15:r1",
+            "targetText": "The scooter is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i15:r2",
+            "targetText": "The scooter is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i15:r3",
+            "targetText": "The scooter is ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-50:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит самокат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-50:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит самокат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `ours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `ours`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-50:i16:p1",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i16:p2",
+            "target": "expensive",
+            "meaningByLocale": {
+              "ru": "дорогой",
+              "uk": "дорогий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i16:p3",
+            "target": "cinema",
+            "meaningByLocale": {
+              "ru": "кинотеатр",
+              "uk": "кінотеатр"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-50:i16:p4",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "playground",
+          "expensive",
+          "cinema",
+          "scooter"
+        ],
+        "rightColumn": [
+          "детская площадка",
+          "дорогой",
+          "кинотеатр",
+          "самокат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы увидели самокат у площадки. Спросите друзей «Чей это самокат?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Вы увидели самокат у площадки. Спросите друзей «Чей это самокат?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-50:i17:audio",
+          "transcript": "Whose scooter is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose scooter is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "106ba68835b539dd5c6320037a814c01fda5b4e95d9a076a978f4a78e6f8e3ab"
+}

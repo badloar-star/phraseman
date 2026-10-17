@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-08:i01",
+    "correctText": "I have a desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i02",
+    "correctText": "The desk has drawers.",
+    "correctResponseId": "en:lesson-05:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i03",
+    "correctText": "aren't",
+    "correctResponseId": "en:lesson-05:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i04",
+    "correctText": "en:lesson-05:session-08:i04:p1=desk\nen:lesson-05:session-08:i04:p2=curtain\nen:lesson-05:session-08:i04:p3=drawer\nen:lesson-05:session-08:i04:p4=ceiling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i05",
+    "correctText": "Where is the remote?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i06",
+    "correctText": "The remote is in the drawer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i07",
+    "correctText": "She has a curtain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i08",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-05:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i09",
+    "correctText": "The corner shop is next to the park.",
+    "correctResponseId": "en:lesson-05:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i10",
+    "correctText": "en:lesson-05:session-08:i10:p1=have\nen:lesson-05:session-08:i10:p2=remote\nen:lesson-05:session-08:i10:p3=neighbourhood\nen:lesson-05:session-08:i10:p4=corner shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i11",
+    "correctText": "There is a corner shop in the neighbourhood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i12",
+    "correctText": "We have curtains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i13",
+    "correctText": "Where is the corner shop?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i14",
+    "correctText": "under",
+    "correctResponseId": "en:lesson-05:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i15",
+    "correctText": "The ceiling is white.",
+    "correctResponseId": "en:lesson-05:session-08:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i16",
+    "correctText": "en:lesson-05:session-08:i16:p1=have\nen:lesson-05:session-08:i16:p2=remote\nen:lesson-05:session-08:i16:p3=neighbourhood\nen:lesson-05:session-08:i16:p4=corner shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-08:i17",
+    "correctText": "The desk has a drawer.",
+    "correctResponseId": null
+  }
+]

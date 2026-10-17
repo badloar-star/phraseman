@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "указать владельца через имя или существительное с апострофом и s",
+    "uk": "вказати власника через ім’я чи іменник з апострофом і s"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обед с собой",
+        "uk": "Обід із собою"
+      },
+      "bodyByLocale": {
+        "ru": "`lunchbox` — «ланчбокс, контейнер для обеда». `Anna’s lunchbox` — «ланчбокс Анны»: сначала владелец, затем `’s`, затем вещь. `This is Anna’s lunchbox` — «Это ланчбокс Анны». Ланчбокс уже у двери: обед готов к прогулке раньше хозяев.",
+        "uk": "`lunchbox` — «ланчбокс, контейнер для обіду». `Anna’s lunchbox` — «ланчбокс Анни»: спочатку власник, потім `’s`, потім річ. `This is Anna’s lunchbox` — «Це ланчбокс Анни». Ланчбокс уже біля дверей: обід готовий до прогулянки раніше за господарів."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите ланчбокс Анны.",
+          "uk": "Назвіть ланчбокс Анни."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-25:intro1:r1",
+              "text": "This is Anna's lunchbox."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro1:r2",
+              "text": "This is Anna lunchbox."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro1:r3",
+              "text": "This is Tom's lunchbox."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-25:intro1:r1",
+              "text": "This is Anna's lunchbox."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro1:r2",
+              "text": "This is Anna lunchbox."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro1:r3",
+              "text": "This is Tom's lunchbox."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите ланчбокс Анны.",
+          "uk": "Назвіть ланчбокс Анни."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Имя или слово-владелец",
+        "uk": "Ім’я чи слово-власник"
+      },
+      "bodyByLocale": {
+        "ru": "`Tom’s jacket` — «куртка Тома». `My friend’s jacket` — «куртка моего друга»: владелец один, `my friend`, к нему добавляем `’s`. `The dog’s bowl` — «миска собаки»: здесь тоже одна собака. В таких сочетаниях `’s` показывает принадлежность, а не сокращает `is`. `dogs` без апострофа — «собаки», несколько животных.",
+        "uk": "`Tom’s jacket` — «куртка Тома». `My friend’s jacket` — «куртка мого друга»: власник один, `my friend`, до нього додаємо `’s`. `The dog’s bowl` — «миска собаки»: тут теж одна собака. У таких сполученнях `’s` показує належність, а не скорочує `is`. `dogs` без апострофа — «собаки», кілька тварин."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Куртка Тома здесь».",
+          "uk": "Скажіть «Куртка Тома тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-25:intro2:r1",
+              "text": "Tom's jacket is here."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro2:r2",
+              "text": "Tom jacket is here."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro2:r3",
+              "text": "Tom's jacket are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-25:intro2:r1",
+              "text": "Tom's jacket is here."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro2:r2",
+              "text": "Tom jacket is here."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro2:r3",
+              "text": "Tom's jacket are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Куртка Тома здесь».",
+          "uk": "Скажіть «Куртка Тома тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реакции на сборы",
+        "uk": "Реакції на збори"
+      },
+      "bodyByLocale": {
+        "ru": "`proud` — «гордый», `ashamed` — «испытывающий стыд», `surprised` — «удивлённый». `I am proud` — «Я горжусь», `I am ashamed` — «Мне стыдно», `I am surprised` — «Я удивлён / удивлена». `sink` — «раковина», `jacket` — «куртка», `dogs` — «собаки». `Anna’s lunchbox is next to the sink` — «Ланчбокс Анны рядом с раковиной».",
+        "uk": "`proud` — «гордий», `ashamed` — «той, кому соромно», `surprised` — «здивований». `I am proud` — «Я пишаюся», `I am ashamed` — «Мені соромно», `I am surprised` — «Я здивований / здивована». `sink` — «раковина», `jacket` — «куртка», `dogs` — «собаки». `Anna’s lunchbox is next to the sink` — «Ланчбокс Анни поруч із раковиною»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Сборы закончились неожиданно быстро. Скажите «Я удивлён» без сокращения.",
+          "uk": "Збори закінчилися несподівано швидко. Скажіть «Я здивований» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-25:intro3:r1",
+              "text": "I am surprised."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro3:r2",
+              "text": "I is surprised."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro3:r3",
+              "text": "I am ashamed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-25:intro3:r1",
+              "text": "I am surprised."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro3:r2",
+              "text": "I is surprised."
+            },
+            {
+              "responseId": "en:lesson-05:session-25:intro3:r3",
+              "text": "I am ashamed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сборы закончились неожиданно быстро. Скажите «Я удивлён» без сокращения.",
+          "uk": "Збори закінчилися несподівано швидко. Скажіть «Я здивований» без скорочення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6c67b391b598a1ff5556caa54341f42c222504692511a05c244f8c5485390f1f"
+}

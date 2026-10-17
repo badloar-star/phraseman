@@ -1,0 +1,974 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зошит друга у вас. Скажіть йому «Твій зошит у мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зошит друга у вас. Скажіть йому «Твій зошит у мене»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have your notebook.",
+        "localizedMeaning": {
+          "ru": "Тетрадь друга у вас. Скажите ему «Твоя тетрадь у меня»",
+          "uk": "Зошит друга у вас. Скажіть йому «Твій зошит у мене»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "your",
+          "notebook"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де зарядка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-16:i02:r1",
+          "text": "My charger is in your backpack."
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i02:r2",
+          "text": "My charger is in your pocket."
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i02:r3",
+          "text": "Her charger is in your backpack."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зарядка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i02:audio",
+          "transcript": "My charger is in your backpack."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-16:i02:r1",
+            "targetText": "My charger is in your backpack.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i02:r2",
+            "targetText": "My charger is in your pocket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i02:r3",
+            "targetText": "Her charger is in your backpack.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де зарядка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `backpack`, а в этом варианте — `pocket`.",
+              "uk": "У записі останнє слово — `backpack`, а в цьому варіанті — `pocket`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де зарядка",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Her`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Her`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У кімнаті немає жодної зарядки. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-16:i03:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i03:r3",
+          "text": "isn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У кімнаті немає жодної зарядки. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В комнате нет ни одной зарядки. Выберите форму",
+          "uk": "У кімнаті немає жодної зарядки. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ any chargers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-16:i03:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i03:r3",
+            "text": "isn't"
+          }
+        ],
+        "testedDimension": "У кімнаті немає жодної зарядки. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "У кімнаті немає жодної зарядки. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Здесь нет: `aren’t any chargers`.",
+              "uk": "Тут немає: `aren’t any chargers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "У кімнаті немає жодної зарядки. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С `chargers` нужно `aren’t`.",
+              "uk": "З `chargers` потрібне `aren’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-16:i04:p1",
+            "target": "charger",
+            "meaningByLocale": {
+              "ru": "зарядка",
+              "uk": "зарядка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i04:p2",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i04:p3",
+            "target": "backpack",
+            "meaningByLocale": {
+              "ru": "рюкзак",
+              "uk": "рюкзак"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i04:p4",
+            "target": "notebook",
+            "meaningByLocale": {
+              "ru": "тетрадь",
+              "uk": "зошит"
+            }
+          }
+        ],
+        "leftColumn": [
+          "charger",
+          "pocket",
+          "backpack",
+          "notebook"
+        ],
+        "rightColumn": [
+          "зарядка",
+          "кишеня",
+          "рюкзак",
+          "зошит"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i05:audio",
+          "transcript": "Where is my helmet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is my helmet?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "my",
+          "helmet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Парасоля подруги у валізі друга. Скажіть «Її парасоля в його валізі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Парасоля подруги у валізі друга. Скажіть «Її парасоля в його валізі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Her umbrella is in his suitcase.",
+        "localizedMeaning": {
+          "ru": "Зонт подруги в чемодане друга. Скажите «Её зонт в его чемодане»",
+          "uk": "Парасоля подруги у валізі друга. Скажіть «Її парасоля в його валізі»"
+        },
+        "orderedTokens": [
+          "Her",
+          "umbrella",
+          "is",
+          "in",
+          "his",
+          "suitcase"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Парасоля подруги у валізі друга. Скажіть «Її парасоля в його валізі»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Her umbrella is in his suitcase.`",
+              "uk": "тут потрібно `is` — `Her umbrella is in his suitcase.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте другу «У нашого готелю є басейн»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Повідомте другу «У нашого готелю є басейн»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i07:audio",
+          "transcript": "Our hotel has a swimming pool."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Our hotel has a swimming pool.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Їхня валіза закрита. Валіза одна. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-16:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i08:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Їхня валіза закрита. Валіза одна. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Их чемодан закрыт. Чемодан один. Выберите форму",
+          "uk": "Їхня валіза закрита. Валіза одна. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Their suitcase ___ closed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-16:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i08:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Їхня валіза закрита. Валіза одна. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Їхня валіза закрита. Валіза одна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один чемодан: `suitcase is`.",
+              "uk": "Одна валіза: `suitcase is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Їхня валіза закрита. Валіза одна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Здесь состояние: `suitcase is closed`.",
+              "uk": "Тут стан: `suitcase is closed`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де ключ",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-16:i09:r1",
+          "text": "The key is in her pocket."
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i09:r2",
+          "text": "The key is in her backpack."
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i09:r3",
+          "text": "The key is in her suitcase."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де ключ",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i09:audio",
+          "transcript": "The key is in her pocket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-16:i09:r1",
+            "targetText": "The key is in her pocket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i09:r2",
+            "targetText": "The key is in her backpack.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i09:r3",
+            "targetText": "The key is in her suitcase.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де ключ",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `pocket`, а в этом варианте — `backpack`.",
+              "uk": "У записі останнє слово — `pocket`, а в цьому варіанті — `backpack`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де ключ",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `pocket`, а в этом варианте — `suitcase`.",
+              "uk": "У записі останнє слово — `pocket`, а в цьому варіанті — `suitcase`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-16:i10:p1",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i10:p2",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i10:p3",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i10:p4",
+            "target": "swimming pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          }
+        ],
+        "leftColumn": [
+          "umbrella",
+          "suitcase",
+          "helmet",
+          "swimming pool"
+        ],
+        "rightColumn": [
+          "парасоля",
+          "валіза",
+          "шолом",
+          "басейн"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i11:audio",
+          "transcript": "They have our notebook."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They have our notebook.",
+        "orderedTokens": [
+          "They",
+          "have",
+          "our",
+          "notebook"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Рюкзак друга під столом. Скажіть йому «Твій рюкзак під столом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рюкзак друга під столом. Скажіть йому «Твій рюкзак під столом»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Your backpack is under the table.",
+        "localizedMeaning": {
+          "ru": "Рюкзак друга под столом. Скажите ему «Твой рюкзак под столом»",
+          "uk": "Рюкзак друга під столом. Скажіть йому «Твій рюкзак під столом»"
+        },
+        "orderedTokens": [
+          "Your",
+          "backpack",
+          "is",
+          "under",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Рюкзак друга під столом. Скажіть йому «Твій рюкзак під столом»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Your backpack is under the table.`",
+              "uk": "тут потрібно `is` — `Your backpack is under the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншому готелі басейну немає. Повідомте «Басейну немає»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "В іншому готелі басейну немає. Повідомте «Басейну немає»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i13:audio",
+          "transcript": "There isn't a swimming pool."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't a swimming pool.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-16:i14:r1",
+          "text": "Its"
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i14:r2",
+          "text": "It's"
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i14:r3",
+          "text": "Their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном отеле, названном it. Его бассейн открыт. Выберите слово",
+          "uk": "Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово"
+        },
+        "gappedTargetPhrase": "___ swimming pool is open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-16:i14:r1",
+            "text": "Its"
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i14:r2",
+            "text": "It's"
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i14:r3",
+            "text": "Their"
+          }
+        ],
+        "testedDimension": "Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`It’s` — `it is`; здесь нужно `Its swimming pool`.",
+              "uk": "`It’s` — `it is`; тут потрібне `Its swimming pool`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про один готель, названий it. Його басейн відкритий. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Для одного отеля, названного `it`, нужно `Its`.",
+              "uk": "Для одного готелю, названого `it`, потрібне `Its`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де шолом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-16:i15:r1",
+          "text": "Your helmet is on the chair."
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i15:r2",
+          "text": "Your helmet is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-16:i15:r3",
+          "text": "My helmet is on the chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де шолом",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i15:audio",
+          "transcript": "Your helmet is on the chair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-16:i15:r1",
+            "targetText": "Your helmet is on the chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i15:r2",
+            "targetText": "Your helmet is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i15:r3",
+            "targetText": "My helmet is on the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де шолом",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `chair`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `chair`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де шолом",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-16:i16:p1",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i16:p2",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i16:p3",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-16:i16:p4",
+            "target": "swimming pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          }
+        ],
+        "leftColumn": [
+          "umbrella",
+          "suitcase",
+          "helmet",
+          "swimming pool"
+        ],
+        "rightColumn": [
+          "парасоля",
+          "валіза",
+          "шолом",
+          "басейн"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знайшли свою зарядку в рюкзаку друга. Повідомте йому «Моя зарядка у твоєму рюкзаку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Ви знайшли свою зарядку в рюкзаку друга. Повідомте йому «Моя зарядка у твоєму рюкзаку»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-16:i17:audio",
+          "transcript": "My charger is in your backpack."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My charger is in your backpack.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "64af2973e8ccbc53b0afc5adbde974ae37cfe6ee6993b0dd26455e7ad88c3da4"
+}

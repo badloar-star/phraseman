@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-15:i01",
+    "correctText": "It is easy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i02",
+    "correctText": "helmet",
+    "correctResponseId": "en:lesson-05:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i03",
+    "correctText": "helmet",
+    "correctResponseId": "en:lesson-05:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i04",
+    "correctText": "en:lesson-05:session-15:i04:p1=helmet\nen:lesson-05:session-15:i04:p2=easy\nen:lesson-05:session-15:i04:p3=difficult\nen:lesson-05:session-15:i04:p4=important",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i05",
+    "correctText": "This is my helmet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i06",
+    "correctText": "Her helmet is next to his coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i07",
+    "correctText": "It's difficult.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i08",
+    "correctText": "important",
+    "correctResponseId": "en:lesson-05:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i09",
+    "correctText": "Their remote is on the table.",
+    "correctResponseId": "en:lesson-05:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i10",
+    "correctText": "en:lesson-05:session-15:i10:p1=helmet\nen:lesson-05:session-15:i10:p2=coat\nen:lesson-05:session-15:i10:p3=gym\nen:lesson-05:session-15:i10:p4=remote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i11",
+    "correctText": "Our gym is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i12",
+    "correctText": "His coat is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i13",
+    "correctText": "I have your helmet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-15:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i15",
+    "correctText": "Your helmet is here.",
+    "correctResponseId": "en:lesson-05:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i16",
+    "correctText": "en:lesson-05:session-15:i16:p1=helmet\nen:lesson-05:session-15:i16:p2=coat\nen:lesson-05:session-15:i16:p3=gym\nen:lesson-05:session-15:i16:p4=remote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:i17",
+    "correctText": "The helmet is next to your coat.",
+    "correctResponseId": null
+  }
+]

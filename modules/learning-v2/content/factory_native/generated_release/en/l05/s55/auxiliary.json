@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-55:intro1:r2": {
+          "ru": "Это вопрос о принадлежности; о месте спрашиваем с `Where`.",
+          "uk": "Це запитання про належність; про місце запитуємо з `Where`."
+        },
+        "en:lesson-05:session-55:intro1:r3": {
+          "ru": "Одна роспись: `is`.",
+          "uk": "Один розпис: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-55:intro2:r2": {
+          "ru": "С одним человеком используется `is`.",
+          "uk": "З однією людиною використовується `is`."
+        },
+        "en:lesson-05:session-55:intro2:r3": {
+          "ru": "`dependent` — зависимая; самостоятельная — `independent`.",
+          "uk": "`dependent` — залежна; самостійна — `independent`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-55:intro3:r2": {
+          "ru": "Несколько кафе: `cafes are`.",
+          "uk": "Кілька кафе: `cafes are`."
+        },
+        "en:lesson-05:session-55:intro3:r3": {
+          "ru": "Здесь одно кафе; нужно несколько: `cafes are`.",
+          "uk": "Тут одне кафе; потрібно кілька: `cafes are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "011a429ae956aacf88ba00b827dddb02e6d4b51ad81c0d21f6193cbaa0128748"
+}

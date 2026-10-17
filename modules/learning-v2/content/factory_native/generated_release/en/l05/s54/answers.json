@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-54:i01",
+    "correctText": "This place is familiar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i02",
+    "correctText": "kiosk",
+    "correctResponseId": "en:lesson-05:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i03",
+    "correctText": "kiosk",
+    "correctResponseId": "en:lesson-05:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i04",
+    "correctText": "en:lesson-05:session-54:i04:p1=kiosk\nen:lesson-05:session-54:i04:p2=familiar\nen:lesson-05:session-54:i04:p3=unfamiliar\nen:lesson-05:session-54:i04:p4=unknown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i05",
+    "correctText": "Where is the kiosk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i06",
+    "correctText": "The bag is striped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i07",
+    "correctText": "This place is unfamiliar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i08",
+    "correctText": "unknown",
+    "correctResponseId": "en:lesson-05:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i09",
+    "correctText": "The ferry is near the kiosk.",
+    "correctResponseId": "en:lesson-05:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i10",
+    "correctText": "en:lesson-05:session-54:i10:p1=kiosk\nen:lesson-05:session-54:i10:p2=striped\nen:lesson-05:session-54:i10:p3=petrol station\nen:lesson-05:session-54:i10:p4=ferry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i11",
+    "correctText": "The kiosk is next to the petrol station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i12",
+    "correctText": "The bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i13",
+    "correctText": "Where is the ferry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-54:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i15",
+    "correctText": "This place is unfamiliar.",
+    "correctResponseId": "en:lesson-05:session-54:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i16",
+    "correctText": "en:lesson-05:session-54:i16:p1=kiosk\nen:lesson-05:session-54:i16:p2=unknown\nen:lesson-05:session-54:i16:p3=petrol station\nen:lesson-05:session-54:i16:p4=striped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:i17",
+    "correctText": "Whose bag is this?",
+    "correctResponseId": null
+  }
+]

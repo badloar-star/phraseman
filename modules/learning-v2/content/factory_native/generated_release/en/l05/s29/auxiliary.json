@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-29:intro1:r2": {
+          "ru": "После имени владельца нужно `’s`: `Tom’s skateboard`.",
+          "uk": "Після імені власника потрібне `’s`: `Tom’s skateboard`."
+        },
+        "en:lesson-05:session-29:intro1:r3": {
+          "ru": "Это скейтборд Анны; здесь владелец Том.",
+          "uk": "Це скейтборд Анни; тут власник Том."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-29:intro2:r2": {
+          "ru": "С одним человеком нужна форма `is`.",
+          "uk": "З однією людиною потрібна форма `is`."
+        },
+        "en:lesson-05:session-29:intro2:r3": {
+          "ru": "`outside` — снаружи; в сети — `online`.",
+          "uk": "`outside` — зовні; у мережі — `online`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-29:intro3:r2": {
+          "ru": "Один Том: `Tom is`.",
+          "uk": "Один Том: `Tom is`."
+        },
+        "en:lesson-05:session-29:intro3:r3": {
+          "ru": "Это об Анне; здесь нужно назвать Тома.",
+          "uk": "Це про Анну; тут потрібно назвати Тома."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bbb88447389247b9a899f69852de61c46b1ac73509cf74d2f193c638ecf28a6c"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "различать место и принадлежность и описывать знакомый район",
+    "uk": "розрізняти місце й належність та описувати знайомий район"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Магазин и гараж",
+        "uk": "Магазин і гараж"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим: `corner shop` — «магазин у дома», небольшой местный магазин; он не обязательно стоит на углу. `garage` — «гараж». `The garage is next to the corner shop` — «Гараж рядом с магазином у дома». `Whose garage is this?` — «Чей это гараж?» `The garage is ours` — «Гараж наш».",
+        "uk": "Повторимо: `corner shop` — «магазин біля дому», невеликий місцевий магазин; він не обов’язково стоїть на розі. `garage` — «гараж». `The garage is next to the corner shop` — «Гараж поруч із магазином біля дому». `Whose garage is this?` — «Чий це гараж?» `The garage is ours` — «Гараж наш»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце гаража.",
+          "uk": "Запитайте про власника гаража."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-56:intro1:r1",
+              "text": "Whose garage is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro1:r2",
+              "text": "Where is the garage?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro1:r3",
+              "text": "Whose garage are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-56:intro1:r1",
+              "text": "Whose garage is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro1:r2",
+              "text": "Where is the garage?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro1:r3",
+              "text": "Whose garage are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце гаража.",
+          "uk": "Запитайте про власника гаража."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Места для спорта",
+        "uk": "Місця для спорту"
+      },
+      "bodyByLocale": {
+        "ru": "`stadium` — «стадион», `pool` — «бассейн» для плавания, `court` — спортивный «корт». `The pool is near the stadium` — «Бассейн возле стадиона». `Where is the court?` — «Где корт?» `Tom is at the pool` — «Том в бассейне» как месте, не обязательно в воде.",
+        "uk": "`stadium` — «стадіон», `pool` — «басейн» для плавання, `court` — спортивний «корт». `The pool is near the stadium` — «Басейн біля стадіону». `Where is the court?` — «Де корт?» `Tom is at the pool` — «Том у басейні» як місці, не обов’язково у воді."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Бассейн возле стадиона».",
+          "uk": "Скажіть «Басейн біля стадіону»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-56:intro2:r1",
+              "text": "The pool is near the stadium."
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro2:r2",
+              "text": "The pool are near the stadium."
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro2:r3",
+              "text": "The pool is in the stadium."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-56:intro2:r1",
+              "text": "The pool is near the stadium."
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro2:r2",
+              "text": "The pool are near the stadium."
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro2:r3",
+              "text": "The pool is in the stadium."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Бассейн возле стадиона».",
+          "uk": "Скажіть «Басейн біля стадіону»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ориентир на стене",
+        "uk": "Орієнтир на стіні"
+      },
+      "bodyByLocale": {
+        "ru": "`kiosk` — «киоск», `mural` — «настенная роспись». `The mural is near the kiosk` — «Настенная роспись возле киоска». `Where is the mural?` — «Где настенная роспись?» Роспись — удобное место встречи: сама она никуда не уйдёт. `This is Anna’s bag` — «Это сумка Анны».",
+        "uk": "`kiosk` — «кіоск», `mural` — «настінний розпис». `The mural is near the kiosk` — «Настінний розпис біля кіоску». `Where is the mural?` — «Де настінний розпис?» Розпис — зручне місце зустрічі: сам він нікуди не піде. `This is Anna’s bag` — «Це сумка Анни»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, где настенная роспись.",
+          "uk": "Запитайте, де настінний розпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-56:intro3:r1",
+              "text": "Where is the mural?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro3:r2",
+              "text": "Whose mural is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro3:r3",
+              "text": "Where are the mural?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-56:intro3:r1",
+              "text": "Where is the mural?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro3:r2",
+              "text": "Whose mural is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-56:intro3:r3",
+              "text": "Where are the mural?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где настенная роспись.",
+          "uk": "Запитайте, де настінний розпис."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "285ea2fdcdae183b2eb7e517502c4a7430c8b3fcea0d45cd5efc0593a5d7df1d"
+}

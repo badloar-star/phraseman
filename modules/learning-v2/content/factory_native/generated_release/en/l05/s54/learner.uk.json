@@ -1,0 +1,998 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви впізнаєте місце. Скажіть «Це місце знайоме»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви впізнаєте місце. Скажіть «Це місце знайоме»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This place is familiar.",
+        "localizedMeaning": {
+          "ru": "Вы узнаёте место. Скажите «Это место знакомое»",
+          "uk": "Ви впізнаєте місце. Скажіть «Це місце знайоме»"
+        },
+        "orderedTokens": [
+          "This",
+          "place",
+          "is",
+          "familiar"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви впізнаєте місце. Скажіть «Це місце знайоме»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This place is familiar.`",
+              "uk": "тут потрібно `is` — `This place is familiar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-54:i02:r1",
+          "text": "kiosk"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i02:r2",
+          "text": "ferry"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i02:r3",
+          "text": "garage"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i02:audio",
+          "transcript": "kiosk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-54:i02:r1",
+            "targetText": "kiosk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i02:r2",
+            "targetText": "ferry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i02:r3",
+            "targetText": "garage",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `kiosk`, а в этом варианте — `ferry`.",
+              "uk": "У записі перше слово — `kiosk`, а в цьому варіанті — `ferry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `kiosk`, а в этом варианте — `garage`.",
+              "uk": "У записі перше слово — `kiosk`, а в цьому варіанті — `garage`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть кіоск",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-54:i03:r1",
+          "text": "kiosk"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i03:r2",
+          "text": "ferry"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i03:r3",
+          "text": "garage"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть кіоск",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите киоск",
+          "uk": "Назвіть кіоск"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-54:i03:r1",
+            "text": "kiosk"
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i03:r2",
+            "text": "ferry"
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i03:r3",
+            "text": "garage"
+          }
+        ],
+        "testedDimension": "Назвіть кіоск",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть кіоск",
+            "feedbackByLocale": {
+              "ru": "`ferry` — паром; киоск — `kiosk`.",
+              "uk": "`ferry` — пором; кіоск — `kiosk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть кіоск",
+            "feedbackByLocale": {
+              "ru": "`garage` — гараж; киоск — `kiosk`.",
+              "uk": "`garage` — гараж; кіоск — `kiosk`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-54:i04:p1",
+            "target": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск",
+              "uk": "кіоск"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i04:p2",
+            "target": "familiar",
+            "meaningByLocale": {
+              "ru": "знакомый",
+              "uk": "знайомий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i04:p3",
+            "target": "unfamiliar",
+            "meaningByLocale": {
+              "ru": "незнакомый",
+              "uk": "незнайомий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i04:p4",
+            "target": "unknown",
+            "meaningByLocale": {
+              "ru": "неизвестный",
+              "uk": "невідомий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "kiosk",
+          "familiar",
+          "unfamiliar",
+          "unknown"
+        ],
+        "rightColumn": [
+          "кіоск",
+          "знайомий",
+          "незнайомий",
+          "невідомий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i05:audio",
+          "transcript": "Where is the kiosk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the kiosk?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "kiosk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Сумка смугаста»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Сумка смугаста»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag is striped.",
+        "localizedMeaning": {
+          "ru": "Скажите «Сумка полосатая»",
+          "uk": "Скажіть «Сумка смугаста»"
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "is",
+          "striped"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть «Сумка смугаста»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bag is striped.`",
+              "uk": "тут потрібно `is` — `The bag is striped.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i07:audio",
+          "transcript": "This place is unfamiliar."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This place is unfamiliar.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-54:i08:r1",
+          "text": "unknown"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i08:r2",
+          "text": "striped"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i08:r3",
+          "text": "full"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сведений об имени нет. Скажите «Его имя неизвестно»",
+          "uk": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»"
+        },
+        "gappedTargetPhrase": "His name is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-54:i08:r1",
+            "text": "unknown"
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i08:r2",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i08:r3",
+            "text": "full"
+          }
+        ],
+        "testedDimension": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+            "feedbackByLocale": {
+              "ru": "`striped` — полосатый; неизвестный — `unknown`.",
+              "uk": "`striped` — смугастий; невідомий — `unknown`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Відомостей про ім’я немає. Скажіть «Його ім’я невідоме»",
+            "feedbackByLocale": {
+              "ru": "`full` — полный; неизвестный — `unknown`.",
+              "uk": "`full` — повний; невідомий — `unknown`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де пором",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-54:i09:r1",
+          "text": "The ferry is near the kiosk."
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i09:r2",
+          "text": "The ferry is near the garage."
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i09:r3",
+          "text": "The ferry is near the stadium."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де пором",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i09:audio",
+          "transcript": "The ferry is near the kiosk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-54:i09:r1",
+            "targetText": "The ferry is near the kiosk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i09:r2",
+            "targetText": "The ferry is near the garage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i09:r3",
+            "targetText": "The ferry is near the stadium.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де пором",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `garage`.",
+              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `garage`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де пором",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `stadium`.",
+              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `stadium`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-54:i10:p1",
+            "target": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск",
+              "uk": "кіоск"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i10:p2",
+            "target": "striped",
+            "meaningByLocale": {
+              "ru": "полосатый",
+              "uk": "смугастий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i10:p3",
+            "target": "petrol station",
+            "meaningByLocale": {
+              "ru": "заправочная станция",
+              "uk": "заправна станція"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i10:p4",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          }
+        ],
+        "leftColumn": [
+          "kiosk",
+          "striped",
+          "petrol station",
+          "ferry"
+        ],
+        "rightColumn": [
+          "кіоск",
+          "смугастий",
+          "заправна станція",
+          "пором"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i11:audio",
+          "transcript": "The kiosk is next to the petrol station."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The kiosk is next to the petrol station.",
+        "orderedTokens": [
+          "The",
+          "kiosk",
+          "is",
+          "next",
+          "to",
+          "the",
+          "petrol",
+          "station"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The kiosk is next to the petrol station.`",
+              "uk": "тут потрібно `is` — `The kiosk is next to the petrol station.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумка належить Анні. Скажіть «Сумка її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка належить Анні. Скажіть «Сумка її»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag is hers.",
+        "localizedMeaning": {
+          "ru": "Сумка принадлежит Анне. Скажите «Сумка её»",
+          "uk": "Сумка належить Анні. Скажіть «Сумка її»"
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сумка належить Анні. Скажіть «Сумка її»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bag is hers.`",
+              "uk": "тут потрібно `is` — `The bag is hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте «Де пором?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Запитайте «Де пором?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i13:audio",
+          "transcript": "Where is the ferry?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the ferry?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника сумки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-54:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i14:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника сумки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце сумки",
+          "uk": "Запитайте про власника сумки"
+        },
+        "gappedTargetPhrase": "___ bag is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-54:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Запитайте про власника сумки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника сумки",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чья — `Whose`.",
+              "uk": "`Where` — де; чия — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника сумки",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чья — `Whose`.",
+              "uk": "`Who` — хто; чия — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, як Анна описує місце",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-54:i15:r1",
+          "text": "This place is unfamiliar."
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i15:r2",
+          "text": "This place is familiar."
+        },
+        {
+          "responseId": "en:lesson-05:session-54:i15:r3",
+          "text": "This place is dangerous."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як Анна описує місце",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i15:audio",
+          "transcript": "This place is unfamiliar."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-54:i15:r1",
+            "targetText": "This place is unfamiliar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i15:r2",
+            "targetText": "This place is familiar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i15:r3",
+            "targetText": "This place is dangerous.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-54:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, як Анна описує місце",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `familiar`.",
+              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-54:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, як Анна описує місце",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `dangerous`.",
+              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `dangerous`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-54:i16:p1",
+            "target": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск",
+              "uk": "кіоск"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i16:p2",
+            "target": "unknown",
+            "meaningByLocale": {
+              "ru": "неизвестный",
+              "uk": "невідомий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i16:p3",
+            "target": "petrol station",
+            "meaningByLocale": {
+              "ru": "заправочная станция",
+              "uk": "заправна станція"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-54:i16:p4",
+            "target": "striped",
+            "meaningByLocale": {
+              "ru": "полосатый",
+              "uk": "смугастий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "kiosk",
+          "unknown",
+          "petrol station",
+          "striped"
+        ],
+        "rightColumn": [
+          "кіоск",
+          "невідомий",
+          "заправна станція",
+          "смугастий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-54:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знайшли смугасту сумку біля кіоску. Запитайте друзів «Чия це сумка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Ви знайшли смугасту сумку біля кіоску. Запитайте друзів «Чия це сумка?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-54:i17:audio",
+          "transcript": "Whose bag is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose bag is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b974bf5efc0c14635a24e26f67fe1be92486ae7d4af1db31f083b4995d3daac3"
+}

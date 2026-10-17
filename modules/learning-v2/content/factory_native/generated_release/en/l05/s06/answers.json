@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-06:i01",
+    "correctText": "He is calm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i02",
+    "correctText": "ceiling",
+    "correctResponseId": "en:lesson-05:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i03",
+    "correctText": "ceiling",
+    "correctResponseId": "en:lesson-05:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i04",
+    "correctText": "en:lesson-05:session-06:i04:p1=ceiling\nen:lesson-05:session-06:i04:p2=calm\nen:lesson-05:session-06:i04:p3=nervous\nen:lesson-05:session-06:i04:p4=excited",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i05",
+    "correctText": "This is a ceiling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i06",
+    "correctText": "She has a pen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i07",
+    "correctText": "I'm nervous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i09",
+    "correctText": "The pen is on the desk.",
+    "correctResponseId": "en:lesson-05:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i10",
+    "correctText": "en:lesson-05:session-06:i10:p1=ceiling\nen:lesson-05:session-06:i10:p2=pen\nen:lesson-05:session-06:i10:p3=clinic\nen:lesson-05:session-06:i10:p4=petrol station",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i11",
+    "correctText": "The room has a ceiling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i12",
+    "correctText": "The clinic is next to the petrol station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i13",
+    "correctText": "I have a pen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i14",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-05:session-06:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i15",
+    "correctText": "She's calm.",
+    "correctResponseId": "en:lesson-05:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i16",
+    "correctText": "en:lesson-05:session-06:i16:p1=ceiling\nen:lesson-05:session-06:i16:p2=pen\nen:lesson-05:session-06:i16:p3=clinic\nen:lesson-05:session-06:i16:p4=petrol station",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:i17",
+    "correctText": "The room has a ceiling.",
+    "correctResponseId": null
+  }
+]

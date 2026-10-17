@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-36:intro1:r2": {
+          "ru": "`sunglasses` — множественное число: `are these`.",
+          "uk": "`sunglasses` — множина: `are these`."
+        },
+        "en:lesson-05:session-36:intro1:r3": {
+          "ru": "Это «Где очки?»; о владельце спрашиваем с `Whose`.",
+          "uk": "Це «Де окуляри?»; про власника запитуємо з `Whose`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-36:intro2:r2": {
+          "ru": "С `I` нужна форма `am`.",
+          "uk": "З `I` потрібна форма `am`."
+        },
+        "en:lesson-05:session-36:intro2:r3": {
+          "ru": "`asleep` — уже сплю; хочется спать — `sleepy`.",
+          "uk": "`asleep` — уже сплю; хочеться спати — `sleepy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-36:intro3:r2": {
+          "ru": "Одна ключ-карта: `is this`.",
+          "uk": "Одна ключ-картка: `is this`."
+        },
+        "en:lesson-05:session-36:intro3:r3": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b7984572e87d5a7900ea106181b84fc6f432697ae258cbe76bac6e6fb718cc46"
+}

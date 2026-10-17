@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о владельце шкафчика и объяснить, где лежит вещь",
+    "uk": "запитати про власника шафки й пояснити, де лежить річ"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для вещей",
+        "uk": "Місце для речей"
+      },
+      "bodyByLocale": {
+        "ru": "`locker` — «шкафчик», отдельное отделение для хранения личных вещей, обычно с замком. `Whose locker is this?` — «Чей это шкафчик?» `This locker is mine` — «Этот шкафчик мой». Шкафчик охраняет вещи молча; ключу лучше не брать выходной.",
+        "uk": "`locker` — «шафка», окреме відділення для зберігання особистих речей, зазвичай із замком. `Whose locker is this?` — «Чия це шафка?» `This locker is mine` — «Ця шафка моя». Шафка охороняє речі мовчки; ключеві краще не брати вихідний."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, кому принадлежит шкафчик.",
+          "uk": "Запитайте, кому належить шафка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-41:intro1:r1",
+              "text": "Whose locker is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro1:r2",
+              "text": "Where is the locker?"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro1:r3",
+              "text": "Whose locker are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-41:intro1:r1",
+              "text": "Whose locker is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro1:r2",
+              "text": "Where is the locker?"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro1:r3",
+              "text": "Whose locker are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, кому принадлежит шкафчик.",
+          "uk": "Запитайте, кому належить шафка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нашлись часы",
+        "uk": "Знайшовся годинник"
+      },
+      "bodyByLocale": {
+        "ru": "`watch` — «наручные часы». Одни наручные часы в английском — единственное число: `The watch is in the locker` — «Наручные часы в шкафчике». `Whose watch is this?` — «Чьи это наручные часы?» `honest` — «честный»: `You are honest` — «Ты честный / честная». Это о человеке, который не обманывает.",
+        "uk": "`watch` — «наручний годинник». Один годинник — однина: `The watch is in the locker` — «Наручний годинник у шафці». `Whose watch is this?` — «Чий це наручний годинник?» `honest` — «чесний»: `You are honest` — «Ти чесний / чесна». Це про людину, яка не обманює."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ты честный» без сокращения.",
+          "uk": "Скажіть «Ти чесний» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-41:intro2:r1",
+              "text": "You are honest."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro2:r2",
+              "text": "You is honest."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro2:r3",
+              "text": "You are brave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-41:intro2:r1",
+              "text": "You are honest."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro2:r2",
+              "text": "You is honest."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro2:r3",
+              "text": "You are brave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ты честный» без сокращения.",
+          "uk": "Скажіть «Ти чесний» без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где искать друзей",
+        "uk": "Де шукати друзів"
+      },
+      "bodyByLocale": {
+        "ru": "`kitchen` — «кухня», `cashpoint` — «банкомат». `Anna is in the kitchen` — «Анна на кухне». `Tom is next to the cashpoint` — «Том рядом с банкоматом». `I have your watch` — «Твои наручные часы у меня». `This is Anna’s locker` — «Это шкафчик Анны».",
+        "uk": "`kitchen` — «кухня», `cashpoint` — «банкомат». `Anna is in the kitchen` — «Анна на кухні». `Tom is next to the cashpoint` — «Том поруч із банкоматом». `I have your watch` — «Твій наручний годинник у мене». `This is Anna’s locker` — «Це шафка Анни»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите Анне «Твои наручные часы у меня».",
+          "uk": "Скажіть Анні «Твій наручний годинник у мене»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-41:intro3:r1",
+              "text": "I have your watch."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro3:r2",
+              "text": "I has your watch."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro3:r3",
+              "text": "I have my watch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-41:intro3:r1",
+              "text": "I have your watch."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro3:r2",
+              "text": "I has your watch."
+            },
+            {
+              "responseId": "en:lesson-05:session-41:intro3:r3",
+              "text": "I have my watch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите Анне «Твои наручные часы у меня».",
+          "uk": "Скажіть Анні «Твій наручний годинник у мене»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3856273e76bb5b4018137cea7be5bdc41c379abaeb6bebe7c22950780bc91123"
+}

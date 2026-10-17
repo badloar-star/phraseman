@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-50:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-50:intro1:r3": {
+          "ru": "Один самокат: `is this`.",
+          "uk": "Один самокат: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-50:intro2:r2": {
+          "ru": "Одна площадка: `is`.",
+          "uk": "Один майданчик: `is`."
+        },
+        "en:lesson-05:session-50:intro2:r3": {
+          "ru": "Возле реки — `near`; `in` означает внутри, в реке.",
+          "uk": "Біля річки — `near`; `in` означає всередині, у річці."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-50:intro3:r2": {
+          "ru": "Без следующего существительного нужна форма `ours`.",
+          "uk": "Без наступного іменника потрібна форма `ours`."
+        },
+        "en:lesson-05:session-50:intro3:r3": {
+          "ru": "Один самокат: `is`.",
+          "uk": "Один самокат: `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8973f6e7f32f81c2b5ae00a85673c61b8b895c9726f07478109ab4dacca35001"
+}

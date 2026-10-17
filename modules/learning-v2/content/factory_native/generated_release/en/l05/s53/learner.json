@@ -1,0 +1,1000 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Эта сумка полная»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Эта сумка полная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This bag is full.",
+        "localizedMeaning": {
+          "ru": "Скажите «Эта сумка полная»",
+          "uk": "Скажіть «Ця сумка повна»"
+        },
+        "orderedTokens": [
+          "This",
+          "bag",
+          "is",
+          "full"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Эта сумка полная»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This bag is full.`",
+              "uk": "тут потрібно `is` — `This bag is full.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-53:i02:r1",
+          "text": "court"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i02:r2",
+          "text": "pool"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i02:r3",
+          "text": "museum"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i02:audio",
+          "transcript": "court"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-53:i02:r1",
+            "targetText": "court",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i02:r2",
+            "targetText": "pool",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i02:r3",
+            "targetText": "museum",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `court`, а в этом варианте — `pool`.",
+              "uk": "У записі перше слово — `court`, а в цьому варіанті — `pool`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `court`, а в этом варианте — `museum`.",
+              "uk": "У записі перше слово — `court`, а в цьому варіанті — `museum`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите корт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-53:i03:r1",
+          "text": "court"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i03:r2",
+          "text": "pool"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i03:r3",
+          "text": "museum"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите корт",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите корт",
+          "uk": "Назвіть корт"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i03:r1",
+            "text": "court"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i03:r2",
+            "text": "pool"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i03:r3",
+            "text": "museum"
+          }
+        ],
+        "testedDimension": "Назовите корт",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите корт",
+            "feedbackByLocale": {
+              "ru": "`pool` — бассейн; корт — `court`.",
+              "uk": "`pool` — басейн; корт — `court`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите корт",
+            "feedbackByLocale": {
+              "ru": "`museum` — музей; корт — `court`.",
+              "uk": "`museum` — музей; корт — `court`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-53:i04:p1",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i04:p2",
+            "target": "motorbike",
+            "meaningByLocale": {
+              "ru": "мотоцикл",
+              "uk": "мотоцикл"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i04:p3",
+            "target": "museum",
+            "meaningByLocale": {
+              "ru": "музей",
+              "uk": "музей"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i04:p4",
+            "target": "police station",
+            "meaningByLocale": {
+              "ru": "полицейский участок",
+              "uk": "поліцейський відділок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "court",
+          "motorbike",
+          "museum",
+          "police station"
+        ],
+        "rightColumn": [
+          "корт",
+          "мотоцикл",
+          "музей",
+          "полицейский участок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i05:audio",
+          "transcript": "Where is the court?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the court?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "court"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Музей рядом с полицейским участком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Музей рядом с полицейским участком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The museum is next to the police station.",
+        "localizedMeaning": {
+          "ru": "Скажите «Музей рядом с полицейским участком»",
+          "uk": "Скажіть «Музей поруч із поліцейським відділком»"
+        },
+        "orderedTokens": [
+          "The",
+          "museum",
+          "is",
+          "next",
+          "to",
+          "the",
+          "police",
+          "station"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Музей рядом с полицейским участком»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The museum is next to the police station.`",
+              "uk": "тут потрібно `is` — `The museum is next to the police station.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Корт возле музея»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Корт возле музея»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i07:audio",
+          "transcript": "The court is near the museum."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The court is near the museum.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце мотоцикла",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-53:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце мотоцикла",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце мотоцикла",
+          "uk": "Запитайте про власника мотоцикла"
+        },
+        "gappedTargetPhrase": "Whose motorbike ___ this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Спросите о владельце мотоцикла",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце мотоцикла",
+            "feedbackByLocale": {
+              "ru": "Один мотоцикл: `is this`.",
+              "uk": "Один мотоцикл: `is this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце мотоцикла",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `is this`.",
+              "uk": "`am` використовується з `I`; тут `is this`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какой транспорт называет Анна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-53:i09:r1",
+          "text": "This is Tom's motorbike."
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i09:r2",
+          "text": "This is Tom's bicycle."
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i09:r3",
+          "text": "This is Tom's scooter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой транспорт называет Анна",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i09:audio",
+          "transcript": "This is Tom's motorbike."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-53:i09:r1",
+            "targetText": "This is Tom's motorbike.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i09:r2",
+            "targetText": "This is Tom's bicycle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i09:r3",
+            "targetText": "This is Tom's scooter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какой транспорт называет Анна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `motorbike`, а в этом варианте — `bicycle`.",
+              "uk": "У записі останнє слово — `motorbike`, а в цьому варіанті — `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какой транспорт называет Анна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `motorbike`, а в этом варианте — `scooter`.",
+              "uk": "У записі останнє слово — `motorbike`, а в цьому варіанті — `scooter`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-53:i10:p1",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i10:p2",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "полный",
+              "uk": "повний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i10:p3",
+            "target": "police station",
+            "meaningByLocale": {
+              "ru": "полицейский участок",
+              "uk": "поліцейський відділок"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i10:p4",
+            "target": "motorbike",
+            "meaningByLocale": {
+              "ru": "мотоцикл",
+              "uk": "мотоцикл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "court",
+          "full",
+          "police station",
+          "motorbike"
+        ],
+        "rightColumn": [
+          "корт",
+          "полный",
+          "полицейский участок",
+          "мотоцикл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i11:audio",
+          "transcript": "The motorbike is near the court."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The motorbike is near the court.",
+        "orderedTokens": [
+          "The",
+          "motorbike",
+          "is",
+          "near",
+          "the",
+          "court"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The motorbike is near the court.`",
+              "uk": "тут потрібно `is` — `The motorbike is near the court.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The motorbike is hers.",
+        "localizedMeaning": {
+          "ru": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+          "uk": "Мотоцикл належить Анні. Скажіть «Мотоцикл її»"
+        },
+        "orderedTokens": [
+          "The",
+          "motorbike",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The motorbike is hers.`",
+              "uk": "тут потрібно `is` — `The motorbike is hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите Анне «Твой мотоцикл здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите Анне «Твой мотоцикл здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i13:audio",
+          "transcript": "Your motorbike is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Your motorbike is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, где корт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-53:i14:r1",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i14:r2",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где корт",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, где корт",
+          "uk": "Запитайте, де корт"
+        },
+        "gappedTargetPhrase": "___ is the court?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-53:i14:r1",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i14:r2",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Спросите, где корт",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите, где корт",
+            "feedbackByLocale": {
+              "ru": "`Whose` — чей; где — `Where`.",
+              "uk": "`Whose` — чий; де — `Where`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите, где корт",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; где — `Where`.",
+              "uk": "`Who` — хто; де — `Where`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит мотоцикл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-53:i15:r1",
+          "text": "The motorbike is mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i15:r2",
+          "text": "The motorbike is hers."
+        },
+        {
+          "responseId": "en:lesson-05:session-53:i15:r3",
+          "text": "The motorbike is ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит мотоцикл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i15:audio",
+          "transcript": "The motorbike is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-53:i15:r1",
+            "targetText": "The motorbike is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i15:r2",
+            "targetText": "The motorbike is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i15:r3",
+            "targetText": "The motorbike is ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-53:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит мотоцикл",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-53:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит мотоцикл",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `ours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `ours`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-53:i16:p1",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i16:p2",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "полный",
+              "uk": "повний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i16:p3",
+            "target": "museum",
+            "meaningByLocale": {
+              "ru": "музей",
+              "uk": "музей"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-53:i16:p4",
+            "target": "motorbike",
+            "meaningByLocale": {
+              "ru": "мотоцикл",
+              "uk": "мотоцикл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "court",
+          "full",
+          "museum",
+          "motorbike"
+        ],
+        "rightColumn": [
+          "корт",
+          "полный",
+          "музей",
+          "мотоцикл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотите узнать владельца мотоцикла у музея. Спросите «Чей это мотоцикл?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Вы хотите узнать владельца мотоцикла у музея. Спросите «Чей это мотоцикл?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-53:i17:audio",
+          "transcript": "Whose motorbike is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose motorbike is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "af78661e0292c71c77171fb453a6cbb52857bd4a25ed0a69fb104e48ec3f821a"
+}

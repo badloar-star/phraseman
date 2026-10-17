@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "назвать пульт и сказать, у кого он есть",
+    "uk": "назвати пульт і сказати, у кого він є"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маленький, но главный",
+        "uk": "Маленький, але головний"
+      },
+      "bodyByLocale": {
+        "ru": "`remote` здесь — «пульт», например от телевизора. `I have a remote` — «У меня есть пульт». Пульт маленький, но без него иногда приходится вставать с дивана — вот и вся домашняя зарядка. Один пульт — `a remote`. Если всем понятно, какой именно пульт вы ищете, говорим `the remote`: `She has the remote` — «Пульт у неё».",
+        "uk": "`remote` тут — «пульт», наприклад від телевізора. `I have a remote` — «У мене є пульт». Пульт маленький, але без нього іноді доводиться вставати з дивана — ось і вся домашня зарядка. Один пульт — `a remote`. Якщо всім зрозуміло, який саме пульт ви шукаєте, кажемо `the remote`: `She has the remote` — «Пульт у неї»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "У вас есть один пульт. Выберите фразу.",
+          "uk": "У вас є один пульт. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-07:intro1:r1",
+              "text": "I have a remote."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro1:r2",
+              "text": "I has a remote."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro1:r3",
+              "text": "I have remote."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-07:intro1:r1",
+              "text": "I have a remote."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro1:r2",
+              "text": "I has a remote."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro1:r3",
+              "text": "I have remote."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У вас есть один пульт. Выберите фразу.",
+          "uk": "У вас є один пульт. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Злится или боится",
+        "uk": "Злиться чи боїться"
+      },
+      "bodyByLocale": {
+        "ru": "`angry` — «злой, сердитый», `scared` — «испуганный». `He is angry` — «Он злится». `I’m scared` — «Мне страшно». Для этих состояний нужны `am`, `is`, `are`. А чтобы сказать, у кого пульт, нужны `have` или `has`: `They have the remote` — «Пульт у них».",
+        "uk": "`angry` — «злий, сердитий», `scared` — «наляканий». `He is angry` — «Він злиться». `I’m scared` — «Мені страшно». Для цих станів потрібні `am`, `is`, `are`. А щоб сказати, у кого пульт, потрібні `have` або `has`: `They have the remote` — «Пульт у них»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам страшно во время фильма. Скажите это с сокращением.",
+          "uk": "Вам страшно під час фільму. Скажіть це зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-07:intro2:r1",
+              "text": "I'm scared."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro2:r2",
+              "text": "I'm angry."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro2:r3",
+              "text": "I have scared."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-07:intro2:r1",
+              "text": "I'm scared."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro2:r2",
+              "text": "I'm angry."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro2:r3",
+              "text": "I have scared."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам страшно во время фильма. Скажите это с сокращением.",
+          "uk": "Вам страшно під час фільму. Скажіть це зі скороченням."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рядом с чашкой",
+        "uk": "Поруч із чашкою"
+      },
+      "bodyByLocale": {
+        "ru": "`cup` — «чашка», `playground` — «детская площадка», `shortcut` — «короткий путь». `The remote is next to the cup` — «Пульт рядом с чашкой». `The playground is next to the park` — «Детская площадка рядом с парком». Спросить о коротком пути: `Is there a shortcut?` — «Есть ли короткий путь?»",
+        "uk": "`cup` — «чашка», `playground` — «дитячий майданчик», `shortcut` — «короткий шлях». `The remote is next to the cup` — «Пульт поруч із чашкою». `The playground is next to the park` — «Дитячий майданчик поруч із парком». Запитати про короткий шлях: `Is there a shortcut?` — «Чи є короткий шлях?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Пульт рядом с чашкой. Выберите описание.",
+          "uk": "Пульт поруч із чашкою. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-07:intro3:r1",
+              "text": "The remote is next to the cup."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro3:r2",
+              "text": "The remote is in the cup."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro3:r3",
+              "text": "The remote are next to the cup."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-07:intro3:r1",
+              "text": "The remote is next to the cup."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro3:r2",
+              "text": "The remote is in the cup."
+            },
+            {
+              "responseId": "en:lesson-05:session-07:intro3:r3",
+              "text": "The remote are next to the cup."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Пульт рядом с чашкой. Выберите описание.",
+          "uk": "Пульт поруч із чашкою. Виберіть опис."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c349139036c4b341a1587166ad812b151fd7b61b42f729e72e34709f6e0fe87d"
+}

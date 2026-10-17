@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-53:intro1:r2": {
+          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
+          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+        },
+        "en:lesson-05:session-53:intro1:r3": {
+          "ru": "Один корт: `is`.",
+          "uk": "Один корт: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-53:intro2:r2": {
+          "ru": "Одна сумка: `is`.",
+          "uk": "Одна сумка: `is`."
+        },
+        "en:lesson-05:session-53:intro2:r3": {
+          "ru": "`heavy` — тяжёлый; полный — `full`. Полнота и вес — разные признаки.",
+          "uk": "`heavy` — важкий; повний — `full`. Наповненість і вага — різні ознаки."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-53:intro3:r2": {
+          "ru": "Один музей: `is`.",
+          "uk": "Один музей: `is`."
+        },
+        "en:lesson-05:session-53:intro3:r3": {
+          "ru": "Рядом — `next to`; `in` означает внутри.",
+          "uk": "Поруч — `next to`; `in` означає всередині."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "117fd670bd2de11c4fa545ea130f268a205609c5c60de3c0c5c90acca15cf4f4"
+}

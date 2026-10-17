@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-24:intro1:r2": {
+          "ru": "`gloves` — множественное число, нужна форма `are`.",
+          "uk": "`gloves` — множина, потрібна форма `are`."
+        },
+        "en:lesson-05:session-24:intro1:r3": {
+          "ru": "Без названия вещи нужна форма `yours`.",
+          "uk": "Без назви речі потрібна форма `yours`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-24:intro2:r2": {
+          "ru": "Без названия вещи нужна форма `ours`.",
+          "uk": "Без назви речі потрібна форма `ours`."
+        },
+        "en:lesson-05:session-24:intro2:r3": {
+          "ru": "Одна камера: `camera is`.",
+          "uk": "Одна камера: `camera is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-24:intro3:r2": {
+          "ru": "С `I` нужно `have`.",
+          "uk": "З `I` потрібне `have`."
+        },
+        "en:lesson-05:session-24:intro3:r3": {
+          "ru": "Другу говорим о его шарфе: `your scarf`, не `my scarf`.",
+          "uk": "Другові говоримо про його шарф: `your scarf`, не `my scarf`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6f55877b5d5ea7ab6fd1a2464e142d96de4cbd67c6720ec4bd5513702df70ac4"
+}

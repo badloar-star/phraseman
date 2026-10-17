@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-31:intro1:r2": {
+          "ru": "К имени владельца добавляем `’s`: `Tom’s guitar`.",
+          "uk": "До імені власника додаємо `’s`: `Tom’s guitar`."
+        },
+        "en:lesson-05:session-31:intro1:r3": {
+          "ru": "Это гитара Анны; здесь владелец Том.",
+          "uk": "Це гітара Анни; тут власник Том."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-31:intro2:r2": {
+          "ru": "Несколько сумок: `bags are`.",
+          "uk": "Кілька сумок: `bags are`."
+        },
+        "en:lesson-05:session-31:intro2:r3": {
+          "ru": "Здесь речь о сходстве, не о равенстве: `similar`.",
+          "uk": "Тут ідеться про схожість, не про рівність: `similar`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-31:intro3:r2": {
+          "ru": "Один Том: `Tom is`.",
+          "uk": "Один Том: `Tom is`."
+        },
+        "en:lesson-05:session-31:intro3:r3": {
+          "ru": "`park` — парк; автостоянка — `car park`.",
+          "uk": "`park` — парк; автостоянка — `car park`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c315fb4c371b853b89b0af756017c5944e757ace304923ec6e689a596ac2d9b7"
+}

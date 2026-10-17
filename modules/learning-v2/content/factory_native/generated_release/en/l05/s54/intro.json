@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "уточнить место встречи и различать знакомое, незнакомое и неизвестное",
+    "uk": "уточнити місце зустрічі й розрізняти знайоме, незнайоме та невідоме"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Небольшая торговая точка",
+        "uk": "Невелика торгова точка"
+      },
+      "bodyByLocale": {
+        "ru": "`kiosk` — «киоск», небольшая торговая точка. `Where is the kiosk?` — «Где киоск?» `petrol station` — «заправочная станция»: `The kiosk is next to the petrol station` — «Киоск рядом с заправочной станцией». `ferry` — «паром»: `The ferry is here` — «Паром здесь».",
+        "uk": "`kiosk` — «кіоск», невелика торгова точка. `Where is the kiosk?` — «Де кіоск?» `petrol station` — «заправна станція»: `The kiosk is next to the petrol station` — «Кіоск поруч із заправною станцією». `ferry` — «пором»: `The ferry is here` — «Пором тут»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, где киоск.",
+          "uk": "Запитайте, де кіоск."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-54:intro1:r1",
+              "text": "Where is the kiosk?"
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro1:r2",
+              "text": "Whose kiosk is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro1:r3",
+              "text": "Where are the kiosk?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-54:intro1:r1",
+              "text": "Where is the kiosk?"
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro1:r2",
+              "text": "Whose kiosk is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro1:r3",
+              "text": "Where are the kiosk?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где киоск.",
+          "uk": "Запитайте, де кіоск."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Знакомо или неизвестно?",
+        "uk": "Знайоме чи невідоме?"
+      },
+      "bodyByLocale": {
+        "ru": "`familiar` — «знакомый», узнаваемый: `This place is familiar` — «Это место знакомое». `unfamiliar` — «незнакомый»: `This place is unfamiliar` — «Это место незнакомое». `unknown` — «неизвестный»: `His name is unknown` — «Его имя неизвестно». Незнакомое вам место может быть хорошо известно другим; `unknown` в примере означает, что сведений об имени нет.",
+        "uk": "`familiar` — «знайомий», упізнаваний: `This place is familiar` — «Це місце знайоме». `unfamiliar` — «незнайомий»: `This place is unfamiliar` — «Це місце незнайоме». `unknown` — «невідомий»: `His name is unknown` — «Його ім’я невідоме». Незнайоме вам місце може бути добре відоме іншим; `unknown` у прикладі означає, що відомостей про ім’я немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Это место незнакомое», используя слово из пары familiar / unfamiliar.",
+          "uk": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-54:intro2:r1",
+              "text": "This place is unfamiliar."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro2:r2",
+              "text": "This place is familiar."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro2:r3",
+              "text": "This place are unfamiliar."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-54:intro2:r1",
+              "text": "This place is unfamiliar."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro2:r2",
+              "text": "This place is familiar."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro2:r3",
+              "text": "This place are unfamiliar."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Это место незнакомое», используя слово из пары familiar / unfamiliar.",
+          "uk": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полосатая находка",
+        "uk": "Смугаста знахідка"
+      },
+      "bodyByLocale": {
+        "ru": "`striped` — «полосатый»: `The bag is striped` — «Сумка полосатая». `Whose bag is this?` — «Чья это сумка?» `The bag is hers` — «Сумка её». Полоски помогут узнать сумку, но фамилию владельца они не сообщают.",
+        "uk": "`striped` — «смугастий»: `The bag is striped` — «Сумка смугаста». `Whose bag is this?` — «Чия це сумка?» `The bag is hers` — «Сумка її». Смужки допоможуть упізнати сумку, але прізвища власника вони не повідомляють."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Сумка полосатая».",
+          "uk": "Скажіть «Сумка смугаста»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-54:intro3:r1",
+              "text": "The bag is striped."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro3:r2",
+              "text": "The bag are striped."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro3:r3",
+              "text": "The bag is full."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-54:intro3:r1",
+              "text": "The bag is striped."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro3:r2",
+              "text": "The bag are striped."
+            },
+            {
+              "responseId": "en:lesson-05:session-54:intro3:r3",
+              "text": "The bag is full."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Сумка полосатая».",
+          "uk": "Скажіть «Сумка смугаста»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2902b683ef0d242e551bb9f278bcb6bcb40d1d445aa01c8a0f69ab7678d08876"
+}

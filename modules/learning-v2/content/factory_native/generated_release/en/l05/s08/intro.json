@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о комнате и районе, спросить, где вещь, и сообщить, чего нет",
+    "uk": "розповісти про кімнату й район, запитати, де річ, і повідомити, чого немає"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что у кого есть",
+        "uk": "Що в кого є"
+      },
+      "bodyByLocale": {
+        "ru": "`have` — «иметь»: `I have a desk` — «У меня есть письменный стол». `desk` — письменный стол, `drawer` — выдвижной ящик. `The desk has a drawer` — «У стола есть ящик». С `I`, `you`, `we`, `they` нужно `have`; с `he`, `she`, `it` и одним столом — `has`. Число ящиков не меняет выбор: `The desk has drawers`.",
+        "uk": "`have` — «мати»: `I have a desk` — «У мене є письмовий стіл». `desk` — письмовий стіл, `drawer` — шухляда. `The desk has a drawer` — «У столу є шухляда». З `I`, `you`, `we`, `they` потрібне `have`; з `he`, `she`, `it` та одним столом — `has`. Кількість шухляд не змінює вибору: `The desk has drawers`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "У стола есть ящики. Выберите форму.",
+          "uk": "У столу є шухляди. Виберіть форму."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-08:intro1:r1",
+              "text": "The desk has drawers."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro1:r2",
+              "text": "The desk have drawers."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro1:r3",
+              "text": "The desk is drawers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-08:intro1:r1",
+              "text": "The desk has drawers."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro1:r2",
+              "text": "The desk have drawers."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro1:r3",
+              "text": "The desk is drawers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У стола есть ящики. Выберите форму.",
+          "uk": "У столу є шухляди. Виберіть форму."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пульт и занавеска",
+        "uk": "Пульт і завіска"
+      },
+      "bodyByLocale": {
+        "ru": "`remote` — «пульт», `curtain` — «занавеска», `ceiling` — «потолок». `Where is the remote?` — «Где пульт?» `The remote is in the drawer` — «Пульт в ящике». Кто-то наконец убрал пульт на место — теперь его никто не может найти. `There isn’t a curtain` — «Занавески нет», во множественном числе: `There aren’t any curtains` — «Нет ни одной занавески».",
+        "uk": "`remote` — «пульт», `curtain` — «завіска», `ceiling` — «стеля». `Where is the remote?` — «Де пульт?» `The remote is in the drawer` — «Пульт у шухляді». Хтось нарешті поклав пульт на місце — тепер його ніхто не може знайти. `There isn’t a curtain` — «Завіски немає», у множині: `There aren’t any curtains` — «Немає жодної завіски»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Занавесок нет. Выберите фразу.",
+          "uk": "Завісок немає. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-08:intro2:r1",
+              "text": "There aren't any curtains."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro2:r2",
+              "text": "There isn't any curtains."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro2:r3",
+              "text": "There are some curtains."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-08:intro2:r1",
+              "text": "There aren't any curtains."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro2:r2",
+              "text": "There isn't any curtains."
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro2:r3",
+              "text": "There are some curtains."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Занавесок нет. Выберите фразу.",
+          "uk": "Завісок немає. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что рядом с домом",
+        "uk": "Що поруч із домом"
+      },
+      "bodyByLocale": {
+        "ru": "`neighbourhood` — «район», `corner shop` — «магазин у дома». `There is a corner shop in the neighbourhood` — «В районе есть магазин у дома». `Where is the corner shop?` — «Где магазин у дома?» Сначала `Where is`, затем название одного места или предмета.",
+        "uk": "`neighbourhood` — «район», `corner shop` — «магазин біля дому». `There is a corner shop in the neighbourhood` — «У районі є магазин біля дому». `Where is the corner shop?` — «Де магазин біля дому?» Спочатку `Where is`, потім назва одного місця або предмета."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, где магазин у дома.",
+          "uk": "Запитайте, де магазин біля дому."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-08:intro3:r1",
+              "text": "Where is the corner shop?"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro3:r2",
+              "text": "Where the corner shop is?"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro3:r3",
+              "text": "Where are the corner shop?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-08:intro3:r1",
+              "text": "Where is the corner shop?"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro3:r2",
+              "text": "Where the corner shop is?"
+            },
+            {
+              "responseId": "en:lesson-05:session-08:intro3:r3",
+              "text": "Where are the corner shop?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где магазин у дома.",
+          "uk": "Запитайте, де магазин біля дому."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5ad531aee64dfa2c194706bdec35e17b9bc53fca7f7f5caa6607bb3fb39acc18"
+}

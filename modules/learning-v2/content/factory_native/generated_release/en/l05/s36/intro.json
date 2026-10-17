@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о владельце предметов во множественном числе",
+    "uk": "запитати про власника предметів у множині"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Очки от солнца",
+        "uk": "Окуляри від сонця"
+      },
+      "bodyByLocale": {
+        "ru": "`sunglasses` — «солнцезащитные очки». В английском это множественное число, даже когда речь об одних очках. `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» `The sunglasses are mine` — «Солнцезащитные очки мои». Очки уже готовы к солнцу, а их владелец — ещё к подушке.",
+        "uk": "`sunglasses` — «сонцезахисні окуляри». В англійській це множина, навіть коли йдеться про одні окуляри. `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» `The sunglasses are mine` — «Сонцезахисні окуляри мої». Окуляри вже готові до сонця, а їхній власник — ще до подушки."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце солнцезащитных очков.",
+          "uk": "Запитайте про власника сонцезахисних окулярів."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-36:intro1:r1",
+              "text": "Whose sunglasses are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro1:r2",
+              "text": "Whose sunglasses is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro1:r3",
+              "text": "Where are the sunglasses?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-36:intro1:r1",
+              "text": "Whose sunglasses are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro1:r2",
+              "text": "Whose sunglasses is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro1:r3",
+              "text": "Where are the sunglasses?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце солнцезащитных очков.",
+          "uk": "Запитайте про власника сонцезахисних окулярів."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сонное утро",
+        "uk": "Сонний ранок"
+      },
+      "bodyByLocale": {
+        "ru": "`sleepy` — «сонный, хочется спать». `I am sleepy` — «Мне хочется спать». `children` — «дети»: это множественное число. `The children are sleepy` — «Дети сонные». Сонный человек ещё может не спать: `sleepy` описывает желание спать, а знакомое `asleep` — уже спит.",
+        "uk": "`sleepy` — «сонний, хочеться спати». `I am sleepy` — «Мені хочеться спати». `children` — «діти»: це множина. `The children are sleepy` — «Діти сонні». Сонна людина ще може не спати: `sleepy` описує бажання спати, а знайоме `asleep` — уже спить."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам хочется спать. Назовите состояние без сокращения.",
+          "uk": "Вам хочеться спати. Назвіть стан без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-36:intro2:r1",
+              "text": "I am sleepy."
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro2:r2",
+              "text": "I is sleepy."
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro2:r3",
+              "text": "I am asleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-36:intro2:r1",
+              "text": "I am sleepy."
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro2:r2",
+              "text": "I is sleepy."
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro2:r3",
+              "text": "I am asleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам хочется спать. Назовите состояние без сокращения.",
+          "uk": "Вам хочеться спати. Назвіть стан без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Карта и датчик",
+        "uk": "Картка й датчик"
+      },
+      "bodyByLocale": {
+        "ru": "`keycard` — «ключ-карта», `smoke alarm` — «датчик дыма». `Whose keycard is this?` — «Чья это ключ-карта?» Одна карта — `is this`, очки — `are these`. `The smoke alarm is on the ceiling` — «Датчик дыма на потолке». `This is Anna’s keycard` — «Это ключ-карта Анны».",
+        "uk": "`keycard` — «ключ-картка», `smoke alarm` — «датчик диму». `Whose keycard is this?` — «Чия це ключ-картка?» Одна картка — `is this`, окуляри — `are these`. `The smoke alarm is on the ceiling` — «Датчик диму на стелі». `This is Anna’s keycard` — «Це ключ-картка Анни»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце ключ-карты.",
+          "uk": "Запитайте про власника ключ-картки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-36:intro3:r1",
+              "text": "Whose keycard is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro3:r2",
+              "text": "Whose keycard are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro3:r3",
+              "text": "Where is the keycard?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-36:intro3:r1",
+              "text": "Whose keycard is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro3:r2",
+              "text": "Whose keycard are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-36:intro3:r3",
+              "text": "Where is the keycard?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце ключ-карты.",
+          "uk": "Запитайте про власника ключ-картки."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1bf48de58f13266d97b36222b9deb37c0e95880807ff9a6389269ab6bc0d1530"
+}

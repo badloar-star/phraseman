@@ -1,0 +1,983 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите другу «Ты любопытный» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу «Ты любопытный» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are curious.",
+        "localizedMeaning": {
+          "ru": "Скажите другу «Ты любопытный» без сокращения",
+          "uk": "Скажіть другові «Ти допитливий» без скорочення"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "curious"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите другу «Ты любопытный» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `You are curious.`",
+              "uk": "тут потрібно `are` — `You are curious.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-44:i02:r1",
+          "text": "bicycle"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i02:r2",
+          "text": "scooter"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i02:r3",
+          "text": "freezer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i02:audio",
+          "transcript": "bicycle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-44:i02:r1",
+            "targetText": "bicycle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i02:r2",
+            "targetText": "scooter",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i02:r3",
+            "targetText": "freezer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bicycle`, а в этом варианте — `scooter`.",
+              "uk": "У записі перше слово — `bicycle`, а в цьому варіанті — `scooter`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bicycle`, а в этом варианте — `freezer`.",
+              "uk": "У записі перше слово — `bicycle`, а в цьому варіанті — `freezer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите велосипед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-44:i03:r1",
+          "text": "bicycle"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i03:r2",
+          "text": "scooter"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i03:r3",
+          "text": "freezer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите велосипед",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите велосипед",
+          "uk": "Назвіть велосипед"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-44:i03:r1",
+            "text": "bicycle"
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i03:r2",
+            "text": "scooter"
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i03:r3",
+            "text": "freezer"
+          }
+        ],
+        "testedDimension": "Назовите велосипед",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите велосипед",
+            "feedbackByLocale": {
+              "ru": "`scooter` здесь — самокат; велосипед — `bicycle`.",
+              "uk": "`scooter` тут — самокат; велосипед — `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите велосипед",
+            "feedbackByLocale": {
+              "ru": "`freezer` — морозильник; велосипед — `bicycle`.",
+              "uk": "`freezer` — морозильник; велосипед — `bicycle`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-44:i04:p1",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i04:p2",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i04:p3",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i04:p4",
+            "target": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник",
+              "uk": "морозильник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bicycle",
+          "sunglasses",
+          "hotels",
+          "freezer"
+        ],
+        "rightColumn": [
+          "велосипед",
+          "солнцезащитные очки",
+          "отели",
+          "морозильник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i05:audio",
+          "transcript": "Whose bicycle is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose bicycle is this?",
+        "orderedTokens": [
+          "Whose",
+          "bicycle",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Где отели?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Где отели?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the hotels?",
+        "localizedMeaning": {
+          "ru": "Спросите «Где отели?»",
+          "uk": "Запитайте «Де готелі?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "hotels"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i07:audio",
+          "transcript": "The bicycle is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bicycle is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце солнцезащитных очков",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-44:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце солнцезащитных очков",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце солнцезащитных очков",
+          "uk": "Запитайте про власника сонцезахисних окулярів"
+        },
+        "gappedTargetPhrase": "Whose sunglasses ___ these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-44:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Спросите о владельце солнцезащитных очков",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце солнцезащитных очков",
+            "feedbackByLocale": {
+              "ru": "`sunglasses` — множественное число: `are these`.",
+              "uk": "`sunglasses` — множина: `are these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце солнцезащитных очков",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `are these`.",
+              "uk": "`am` використовується з `I`; тут `are these`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какую вещь называет друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-44:i09:r1",
+          "text": "This is Anna's bicycle."
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i09:r2",
+          "text": "This is Anna's scooter."
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i09:r3",
+          "text": "This is Anna's laptop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какую вещь называет друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i09:audio",
+          "transcript": "This is Anna's bicycle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-44:i09:r1",
+            "targetText": "This is Anna's bicycle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i09:r2",
+            "targetText": "This is Anna's scooter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i09:r3",
+            "targetText": "This is Anna's laptop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какую вещь называет друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `scooter`.",
+              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `scooter`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какую вещь называет друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `laptop`.",
+              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `laptop`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-44:i10:p1",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i10:p2",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "любопытный",
+              "uk": "допитливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i10:p3",
+            "target": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник",
+              "uk": "морозильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i10:p4",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bicycle",
+          "curious",
+          "freezer",
+          "sunglasses"
+        ],
+        "rightColumn": [
+          "велосипед",
+          "любопытный",
+          "морозильник",
+          "солнцезащитные очки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i11:audio",
+          "transcript": "The freezer is in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The freezer is in the kitchen.",
+        "orderedTokens": [
+          "The",
+          "freezer",
+          "is",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The freezer is in the kitchen.`",
+              "uk": "тут потрібно `is` — `The freezer is in the kitchen.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Очки принадлежат Анне. Скажите «Солнцезащитные очки её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Очки принадлежат Анне. Скажите «Солнцезащитные очки её»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sunglasses are hers.",
+        "localizedMeaning": {
+          "ru": "Очки принадлежат Анне. Скажите «Солнцезащитные очки её»",
+          "uk": "Окуляри належать Анні. Скажіть «Сонцезахисні окуляри її»"
+        },
+        "orderedTokens": [
+          "The",
+          "sunglasses",
+          "are",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Очки принадлежат Анне. Скажите «Солнцезащитные очки её»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The sunglasses are hers.`",
+              "uk": "тут потрібно `are` — `The sunglasses are hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите другу «Твои солнцезащитные очки у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите другу «Твои солнцезащитные очки у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i13:audio",
+          "transcript": "I have your sunglasses."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your sunglasses.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце велосипеда",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-44:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i14:r2",
+          "text": "Who"
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i14:r3",
+          "text": "Where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце велосипеда",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце велосипеда",
+          "uk": "Запитайте про власника велосипеда"
+        },
+        "gappedTargetPhrase": "___ bicycle is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-44:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i14:r2",
+            "text": "Who"
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i14:r3",
+            "text": "Where"
+          }
+        ],
+        "testedDimension": "Спросите о владельце велосипеда",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце велосипеда",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чий — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце велосипеда",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чий — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей велосипед здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-44:i15:r1",
+          "text": "Your bicycle is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i15:r2",
+          "text": "My bicycle is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-44:i15:r3",
+          "text": "His bicycle is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей велосипед здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i15:audio",
+          "transcript": "Your bicycle is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-44:i15:r1",
+            "targetText": "Your bicycle is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i15:r2",
+            "targetText": "My bicycle is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i15:r3",
+            "targetText": "His bicycle is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей велосипед здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-44:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей велосипед здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-44:i16:p1",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i16:p2",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "любопытный",
+              "uk": "допитливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i16:p3",
+            "target": "hotels",
+            "meaningByLocale": {
+              "ru": "отели",
+              "uk": "готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i16:p4",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bicycle",
+          "curious",
+          "hotels",
+          "sunglasses"
+        ],
+        "rightColumn": [
+          "велосипед",
+          "любопытный",
+          "отели",
+          "солнцезащитные очки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы нашли солнцезащитные очки на столе. Спросите «Чьи это солнцезащитные очки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Вы нашли солнцезащитные очки на столе. Спросите «Чьи это солнцезащитные очки?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:i17:audio",
+          "transcript": "Whose sunglasses are these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose sunglasses are these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "34cf4b81f52c72273bf4de10a2ab1ac11bbcebc743ed6252612ebd9eba60c836"
+}

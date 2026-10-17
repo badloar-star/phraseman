@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-09:intro1:r2": {
+          "ru": "Перед `my charger` не нужно `a`.",
+          "uk": "Перед `my charger` не потрібне `a`."
+        },
+        "en:lesson-05:session-09:intro1:r3": {
+          "ru": "`your` — твоя / ваша; моя — `my`.",
+          "uk": "`your` — твоя / ваша; моя — `my`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-09:intro2:r2": {
+          "ru": "`her` — её; владелец мужчина: `his`.",
+          "uk": "`her` — її; власник чоловік: `his`."
+        },
+        "en:lesson-05:session-09:intro2:r3": {
+          "ru": "`their` — их; здесь его: `his`.",
+          "uk": "`their` — їхня; тут його: `his`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-09:intro3:r2": {
+          "ru": "Одна дверь: `door is`, даже если владельцев несколько.",
+          "uk": "Одні двері: `door is`, навіть якщо власників кілька."
+        },
+        "en:lesson-05:session-09:intro3:r3": {
+          "ru": "`our` — наша; здесь их: `their`.",
+          "uk": "`our` — наші; тут їхні: `their`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c26de53e9b08626560723963112441e621ce06f01274a257f69f2594926b50b7"
+}

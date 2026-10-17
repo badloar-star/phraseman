@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-56:i01",
+    "correctText": "The garage is next to the corner shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i02",
+    "correctText": "stadium",
+    "correctResponseId": "en:lesson-05:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i03",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i04",
+    "correctText": "en:lesson-05:session-56:i04:p1=corner shop\nen:lesson-05:session-56:i04:p2=garage\nen:lesson-05:session-56:i04:p3=stadium\nen:lesson-05:session-56:i04:p4=pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i05",
+    "correctText": "Where is the court?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i06",
+    "correctText": "The mural is near the kiosk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i07",
+    "correctText": "The garage is ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i08",
+    "correctText": "Where",
+    "correctResponseId": "en:lesson-05:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i09",
+    "correctText": "This is Anna's bag.",
+    "correctResponseId": "en:lesson-05:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i10",
+    "correctText": "en:lesson-05:session-56:i10:p1=court\nen:lesson-05:session-56:i10:p2=kiosk\nen:lesson-05:session-56:i10:p3=mural\nen:lesson-05:session-56:i10:p4=garage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i11",
+    "correctText": "The pool is near the stadium.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i12",
+    "correctText": "Where is the corner shop?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i13",
+    "correctText": "Tom is at the pool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i14",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i15",
+    "correctText": "The court is near the kiosk.",
+    "correctResponseId": "en:lesson-05:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i16",
+    "correctText": "en:lesson-05:session-56:i16:p1=corner shop\nen:lesson-05:session-56:i16:p2=stadium\nen:lesson-05:session-56:i16:p3=mural\nen:lesson-05:session-56:i16:p4=court",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-56:i17",
+    "correctText": "Whose garage is this?",
+    "correctResponseId": null
+  }
+]

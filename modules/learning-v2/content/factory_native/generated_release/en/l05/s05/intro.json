@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "назвать выдвижной ящик, описать мебель и сказать, где карта",
+    "uk": "назвати шухляду, описати меблі й сказати, де карта"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ящик, который выдвигается",
+        "uk": "Ящик, що висувається"
+      },
+      "bodyByLocale": {
+        "ru": "`drawer` — выдвижной «ящик» в столе, шкафу или другой мебели. Это не отдельная коробка. `The desk has a drawer` — «У письменного стола есть ящик». Ящик выдвигают, а не уносят вместе со столом: спина скажет спасибо. Один ящик — `a drawer`.",
+        "uk": "`drawer` — «шухляда» в столі, шафі чи інших меблях. Це не окрема коробка. `The desk has a drawer` — «У письмового столу є шухляда». Шухляду висувають, а не несуть разом зі столом: спина скаже спасибі. Одна шухляда — `a drawer`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "У письменного стола есть ящик. Выберите фразу.",
+          "uk": "У письмового столу є шухляда. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-05:intro1:r1",
+              "text": "The desk has a drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro1:r2",
+              "text": "The desk have a drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro1:r3",
+              "text": "The desk is a drawer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-05:intro1:r1",
+              "text": "The desk has a drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro1:r2",
+              "text": "The desk have a drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro1:r3",
+              "text": "The desk is a drawer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У письменного стола есть ящик. Выберите фразу.",
+          "uk": "У письмового столу є шухляда. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Холодно или тепло",
+        "uk": "Холодно чи тепло"
+      },
+      "bodyByLocale": {
+        "ru": "`cold` — «холодный», `hot` — «горячий, жаркий», `warm` — «тёплый». О своих ощущениях: `I’m cold` — «Мне холодно», `I’m hot` — «Мне жарко», `I’m warm` — «Мне тепло». Здесь нужны формы `am`, `is`, `are`. А когда говорим, что есть у человека или предмета, используем `have` или `has`.",
+        "uk": "`cold` — «холодний», `hot` — «гарячий, спекотний», `warm` — «теплий». Про свої відчуття: `I’m cold` — «Мені холодно», `I’m hot` — «Мені спекотно», `I’m warm` — «Мені тепло». Тут потрібні форми `am`, `is`, `are`. А коли кажемо, що є в людини чи предмета, використовуємо `have` або `has`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы согрелись: вам тепло. Выберите фразу.",
+          "uk": "Ви зігрілися: вам тепло. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-05:intro2:r1",
+              "text": "I'm warm."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro2:r2",
+              "text": "I have warm."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro2:r3",
+              "text": "I'm cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-05:intro2:r1",
+              "text": "I'm warm."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro2:r2",
+              "text": "I have warm."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro2:r3",
+              "text": "I'm cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы согрелись: вам тепло. Выберите фразу.",
+          "uk": "Ви зігрілися: вам тепло. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где лежит карта",
+        "uk": "Де лежить карта"
+      },
+      "bodyByLocale": {
+        "ru": "`map` — «карта», `supermarket` — «супермаркет», `police station` — «полицейский участок». `The map is in the drawer` — «Карта в ящике». `The supermarket is next to the police station` — «Супермаркет рядом с полицейским участком». `in` — внутри ящика, `under` — под ним.",
+        "uk": "`map` — «карта», `supermarket` — «супермаркет», `police station` — «поліцейський відділок». `The map is in the drawer` — «Карта в шухляді». `The supermarket is next to the police station` — «Супермаркет поруч із поліцейським відділком». `in` — усередині шухляди, `under` — під нею."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Карта внутри ящика. Выберите описание.",
+          "uk": "Карта всередині шухляди. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-05:intro3:r1",
+              "text": "The map is in the drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro3:r2",
+              "text": "The map is under the drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro3:r3",
+              "text": "The map are in the drawer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-05:intro3:r1",
+              "text": "The map is in the drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro3:r2",
+              "text": "The map is under the drawer."
+            },
+            {
+              "responseId": "en:lesson-05:session-05:intro3:r3",
+              "text": "The map are in the drawer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Карта внутри ящика. Выберите описание.",
+          "uk": "Карта всередині шухляди. Виберіть опис."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1842c9d25451bb9ad25a42c2f8a2d1ff3e04dc25079246a6116e77433684d361"
+}

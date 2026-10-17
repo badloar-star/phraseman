@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-07:i01",
+    "correctText": "He is angry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i02",
+    "correctText": "remote",
+    "correctResponseId": "en:lesson-05:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i03",
+    "correctText": "remote",
+    "correctResponseId": "en:lesson-05:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i04",
+    "correctText": "en:lesson-05:session-07:i04:p1=remote\nen:lesson-05:session-07:i04:p2=angry\nen:lesson-05:session-07:i04:p3=scared\nen:lesson-05:session-07:i04:p4=cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i05",
+    "correctText": "I have a remote.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i06",
+    "correctText": "She has the remote.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i07",
+    "correctText": "I'm scared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-05:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i09",
+    "correctText": "The remote is next to the cup.",
+    "correctResponseId": "en:lesson-05:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i10",
+    "correctText": "en:lesson-05:session-07:i10:p1=remote\nen:lesson-05:session-07:i10:p2=cup\nen:lesson-05:session-07:i10:p3=playground\nen:lesson-05:session-07:i10:p4=shortcut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i11",
+    "correctText": "We have cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i12",
+    "correctText": "The playground is next to the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i13",
+    "correctText": "Is there a shortcut?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-07:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i15",
+    "correctText": "He's scared.",
+    "correctResponseId": "en:lesson-05:session-07:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i16",
+    "correctText": "en:lesson-05:session-07:i16:p1=remote\nen:lesson-05:session-07:i16:p2=cup\nen:lesson-05:session-07:i16:p3=playground\nen:lesson-05:session-07:i16:p4=shortcut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-07:i17",
+    "correctText": "I have the remote.",
+    "correctResponseId": null
+  }
+]

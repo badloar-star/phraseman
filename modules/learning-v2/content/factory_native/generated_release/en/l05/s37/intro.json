@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о владельце одной или нескольких вещей",
+    "uk": "запитати про власника однієї чи кількох речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Украшения для ушей",
+        "uk": "Прикраси для вух"
+      },
+      "bodyByLocale": {
+        "ru": "`earrings` — «серьги», множественное число. `Whose earrings are these?` — «Чьи это серьги?» `The earrings are mine` — «Серьги мои». `These are Anna’s earrings` — «Это серьги Анны». Серьги нашли вместе: даже потеряться решили парой.",
+        "uk": "`earrings` — «сережки», множина. `Whose earrings are these?` — «Чиї це сережки?» `The earrings are mine` — «Сережки мої». `These are Anna’s earrings` — «Це сережки Анни». Сережки знайшли разом: навіть загубитися вирішили парою."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце серёг.",
+          "uk": "Запитайте про власника сережок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-37:intro1:r1",
+              "text": "Whose earrings are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro1:r2",
+              "text": "Whose earrings is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro1:r3",
+              "text": "Where are the earrings?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-37:intro1:r1",
+              "text": "Whose earrings are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro1:r2",
+              "text": "Whose earrings is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro1:r3",
+              "text": "Where are the earrings?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце серёг.",
+          "uk": "Запитайте про власника сережок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одиночество и компания",
+        "uk": "Самотність і компанія"
+      },
+      "bodyByLocale": {
+        "ru": "`lonely` — «одинокий, чувствующий одиночество». `I am lonely` — «Мне одиноко». Это чувство: человек может быть среди людей и всё равно чувствовать одиночество. Знакомое `alone` означает «один, без других» и само по себе не говорит о грусти. `car` — «машина»: `Whose car is this?` — «Чья это машина?»",
+        "uk": "`lonely` — «самотній, відчуває самотність». `I am lonely` — «Мені самотньо». Це почуття: людина може бути серед людей і все одно відчувати самотність. Знайоме `alone` означає «сам, без інших» і саме по собі не говорить про сум. `car` — «машина»: `Whose car is this?` — «Чия це машина?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам не хватает компании. Скажите «Мне одиноко» без сокращения.",
+          "uk": "Вам бракує компанії. Скажіть «Мені самотньо» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-37:intro2:r1",
+              "text": "I am lonely."
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro2:r2",
+              "text": "I is lonely."
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro2:r3",
+              "text": "I am alone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-37:intro2:r1",
+              "text": "I am lonely."
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro2:r2",
+              "text": "I is lonely."
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro2:r3",
+              "text": "I am alone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам не хватает компании. Скажите «Мне одиноко» без сокращения.",
+          "uk": "Вам бракує компанії. Скажіть «Мені самотньо» без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Встреча у машины",
+        "uk": "Зустріч біля машини"
+      },
+      "bodyByLocale": {
+        "ru": "`parcel locker` — «шкаф с ячейками для посылок», `skateboard` — «скейтборд». `Tom is next to the parcel locker` — «Том рядом со шкафом для посылок». `Whose skateboard is this?` — «Чей это скейтборд?» `The skateboard is his` — «Скейтборд его». Одна вещь — `is this`, несколько серёг — `are these`.",
+        "uk": "`parcel locker` — «поштомат, шафа з комірками для посилок», `skateboard` — «скейтборд». `Tom is next to the parcel locker` — «Том поруч із поштоматом». `Whose skateboard is this?` — «Чий це скейтборд?» `The skateboard is his` — «Скейтборд його». Одна річ — `is this`, кілька сережок — `are these`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце скейтборда.",
+          "uk": "Запитайте про власника скейтборда."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-37:intro3:r1",
+              "text": "Whose skateboard is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro3:r2",
+              "text": "Whose skateboard are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro3:r3",
+              "text": "Where is the skateboard?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-37:intro3:r1",
+              "text": "Whose skateboard is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro3:r2",
+              "text": "Whose skateboard are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-37:intro3:r3",
+              "text": "Where is the skateboard?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце скейтборда.",
+          "uk": "Запитайте про власника скейтборда."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd6dfd861f65ac74d24f0de8aa27b005bde1eae757fd3ff5ef85240dd4630f2a"
+}

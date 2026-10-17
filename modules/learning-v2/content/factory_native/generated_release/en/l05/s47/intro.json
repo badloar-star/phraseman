@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о транспорте и ресторанах и уточнить владельца вещи",
+    "uk": "запитати про транспорт і ресторани та уточнити власника речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подземный транспорт",
+        "uk": "Підземний транспорт"
+      },
+      "bodyByLocale": {
+        "ru": "`subway` в американском английском — «метро». `Where is the subway?` — «Где метро?» Так можно спросить, где ближайший доступ к метро. `The subway is near the hotel` — «Метро рядом с отелем». В британском английском это слово также может означать подземный пешеходный переход; здесь речь о транспорте.",
+        "uk": "`subway` в американській англійській — «метро». `Where is the subway?` — «Де метро?» Так можна запитати, де найближчий доступ до метро. `The subway is near the hotel` — «Метро поруч із готелем». У британській англійській це слово також може означати підземний пішохідний перехід; тут ідеться про транспорт."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Где метро?»",
+          "uk": "Запитайте «Де метро?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-47:intro1:r1",
+              "text": "Where is the subway?"
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro1:r2",
+              "text": "Whose subway is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro1:r3",
+              "text": "Where are the subway?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-47:intro1:r1",
+              "text": "Where is the subway?"
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro1:r2",
+              "text": "Whose subway is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro1:r3",
+              "text": "Where are the subway?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Где метро?»",
+          "uk": "Запитайте «Де метро?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Скрипка у двери",
+        "uk": "Скрипка біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`violin` — «скрипка». `Whose violin is this?` — «Чья это скрипка?» `This is Anna’s violin` — «Это скрипка Анны». `The violin is hers` — «Скрипка её». `I have your violin` — «Твоя скрипка у меня». Скрипка уже готова к выходу, хотя билет за неё никто не покупал.",
+        "uk": "`violin` — «скрипка». `Whose violin is this?` — «Чия це скрипка?» `This is Anna’s violin` — «Це скрипка Анни». `The violin is hers` — «Скрипка її». `I have your violin` — «Твоя скрипка в мене». Скрипка вже готова до виходу, хоча квитка для неї ніхто не купував."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Скрипка её».",
+          "uk": "Скажіть «Скрипка її»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-47:intro2:r1",
+              "text": "The violin is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro2:r2",
+              "text": "The violin is her."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro2:r3",
+              "text": "The violin are hers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-47:intro2:r1",
+              "text": "The violin is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro2:r2",
+              "text": "The violin is her."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro2:r3",
+              "text": "The violin are hers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Скрипка её».",
+          "uk": "Скажіть «Скрипка її»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обед и опасное место",
+        "uk": "Обід і небезпечне місце"
+      },
+      "bodyByLocale": {
+        "ru": "`restaurants` — «рестораны»: `Where are the restaurants?` — «Где рестораны?» `leftover` — «остаток еды»; о еде после обеда обычно говорят `leftovers`: `The leftovers are in the fridge` — «Остатки еды в холодильнике». `dangerous` — «опасный»: `This place is dangerous` — «Это место опасное».",
+        "uk": "`restaurants` — «ресторани»: `Where are the restaurants?` — «Де ресторани?» `leftover` — «залишок їжі»; про їжу після обіду зазвичай кажуть `leftovers`: `The leftovers are in the fridge` — «Залишки їжі в холодильнику». `dangerous` — «небезпечний»: `This place is dangerous` — «Це місце небезпечне»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Остатки еды в холодильнике».",
+          "uk": "Скажіть «Залишки їжі в холодильнику»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-47:intro3:r1",
+              "text": "The leftovers are in the fridge."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro3:r2",
+              "text": "The leftovers is in the fridge."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro3:r3",
+              "text": "The leftovers are under the fridge."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-47:intro3:r1",
+              "text": "The leftovers are in the fridge."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro3:r2",
+              "text": "The leftovers is in the fridge."
+            },
+            {
+              "responseId": "en:lesson-05:session-47:intro3:r3",
+              "text": "The leftovers are under the fridge."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Остатки еды в холодильнике».",
+          "uk": "Скажіть «Залишки їжі в холодильнику»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1bf92486e6a7008a5d0f9e3408297ad153e6c955dc8347b5bc35c623fa132d67"
+}

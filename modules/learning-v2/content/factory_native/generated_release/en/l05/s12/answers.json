@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-12:i01",
+    "correctText": "Her friend is friendly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i02",
+    "correctText": "notebook",
+    "correctResponseId": "en:lesson-05:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i03",
+    "correctText": "notebook",
+    "correctResponseId": "en:lesson-05:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i04",
+    "correctText": "en:lesson-05:session-12:i04:p1=notebook\nen:lesson-05:session-12:i04:p2=loud\nen:lesson-05:session-12:i04:p3=friendly\nen:lesson-05:session-12:i04:p4=helpful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i05",
+    "correctText": "This is my notebook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i06",
+    "correctText": "His friend is helpful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i07",
+    "correctText": "The music is loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i08",
+    "correctText": "their",
+    "correctResponseId": "en:lesson-05:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i09",
+    "correctText": "The notebook is on your table.",
+    "correctResponseId": "en:lesson-05:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i10",
+    "correctText": "en:lesson-05:session-12:i10:p1=notebook\nen:lesson-05:session-12:i10:p2=table\nen:lesson-05:session-12:i10:p3=platform\nen:lesson-05:session-12:i10:p4=curtain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i11",
+    "correctText": "Our curtain is blue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i12",
+    "correctText": "Our platform is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i13",
+    "correctText": "I have your notebook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-12:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i15",
+    "correctText": "Her notebook is here.",
+    "correctResponseId": "en:lesson-05:session-12:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i16",
+    "correctText": "en:lesson-05:session-12:i16:p1=notebook\nen:lesson-05:session-12:i16:p2=table\nen:lesson-05:session-12:i16:p3=platform\nen:lesson-05:session-12:i16:p4=curtain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-12:i17",
+    "correctText": "The notebook is on your table.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, у кого есть вещь: have и has",
+    "uk": "сказати, у кого є річ: have і has"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ключ есть — можно входить",
+        "uk": "Ключ є — можна заходити"
+      },
+      "bodyByLocale": {
+        "ru": "`have` — «иметь», а по-русски обычно «у меня есть», «у нас есть». `I have a key` — «У меня есть ключ». Это не значит «я ключ»: ключ у вас в кармане, а не вы в замочной скважине. С `I`, `you`, `we`, `they` используйте `have`: `We have a key` — «У нас есть ключ».",
+        "uk": "`have` — «мати», а українською часто «у мене є», «у нас є». `I have a key` — «У мене є ключ». Це не означає «я ключ»: ключ у вас у кишені, а не ви в замковій щілині. З `I`, `you`, `we`, `they` використовуйте `have`: `We have a key` — «У нас є ключ»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что у вас есть ключ.",
+          "uk": "Скажіть, що у вас є ключ."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-01:intro1:r1",
+              "text": "I have a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro1:r2",
+              "text": "I am a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro1:r3",
+              "text": "I has a key."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-01:intro1:r1",
+              "text": "I have a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro1:r2",
+              "text": "I am a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro1:r3",
+              "text": "I has a key."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что у вас есть ключ.",
+          "uk": "Скажіть, що у вас є ключ."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У неё тоже есть ключ",
+        "uk": "У неї теж є ключ"
+      },
+      "bodyByLocale": {
+        "ru": "С `he`, `she`, `it` слово меняется на `has`: `She has a key` — «У неё есть ключ». `have` и `has` здесь сообщают, у кого есть вещь. Добавлять `is` не нужно: `She has`, а не `She is has`. О себе по-прежнему `I have`.",
+        "uk": "З `he`, `she`, `it` слово змінюється на `has`: `She has a key` — «У неї є ключ». `have` і `has` тут повідомляють, у кого є річ. Додавати `is` не потрібно: `She has`, а не `She is has`. Про себе, як і раніше, `I have`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Ключ у вашей подруги. Скажите «У неё есть ключ».",
+          "uk": "Ключ у вашої подруги. Скажіть «У неї є ключ»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-01:intro2:r1",
+              "text": "She has a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro2:r2",
+              "text": "She have a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro2:r3",
+              "text": "She is has a key."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-01:intro2:r1",
+              "text": "She has a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro2:r2",
+              "text": "She have a key."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro2:r3",
+              "text": "She is has a key."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ключ у вашей подруги. Скажите «У неё есть ключ».",
+          "uk": "Ключ у вашої подруги. Скажіть «У неї є ключ»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Все собрались",
+        "uk": "Усі зібралися"
+      },
+      "bodyByLocale": {
+        "ru": "`here` — «здесь», `ready` — «готов», `fine` — «в порядке», `happy` — «счастлив, рад». `I’m here` — «Я здесь», `We are ready` — «Мы готовы». Рядом знакомые места: `pharmacy` — аптека, `library` — библиотека, `bakery` — пекарня, `canal` — канал. Когда говорите, где человек или как он себя чувствует, в этих примерах нужны `am`, `is`, `are`: `She is happy` — «Она рада». А вещь у неё: `She has a key`.",
+        "uk": "`here` — «тут», `ready` — «готовий», `fine` — «у порядку», `happy` — «щасливий, радий». `I’m here` — «Я тут», `We are ready` — «Ми готові». Поруч знайомі місця: `pharmacy` — аптека, `library` — бібліотека, `bakery` — пекарня, `canal` — канал. Коли кажете, де людина або як вона почувається, у цих прикладах потрібні `am`, `is`, `are`: `She is happy` — «Вона рада». А річ у неї: `She has a key`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Она рада. Выберите описание её состояния.",
+          "uk": "Вона рада. Виберіть опис її стану."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-01:intro3:r1",
+              "text": "She is happy."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro3:r2",
+              "text": "She has happy."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro3:r3",
+              "text": "She are happy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-01:intro3:r1",
+              "text": "She is happy."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro3:r2",
+              "text": "She has happy."
+            },
+            {
+              "responseId": "en:lesson-05:session-01:intro3:r3",
+              "text": "She are happy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она рада. Выберите описание её состояния.",
+          "uk": "Вона рада. Виберіть опис її стану."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "61ff4f69b7b5e391131451895914741ffc1d950d28788f9a4ca2e11e4aa3e5d1"
+}

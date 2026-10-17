@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "назвать тетрадь и сказать, кому принадлежит вещь",
+    "uk": "назвати зошит і сказати, кому належить річ"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Для записей",
+        "uk": "Для записів"
+      },
+      "bodyByLocale": {
+        "ru": "`notebook` здесь — «тетрадь»: бумажные страницы для записей, не компьютер. `my notebook` — «моя тетрадь», `your notebook` — «твоя / ваша тетрадь». `This is my notebook` — «Это моя тетрадь». Батарейка такой тетради не нужна; главное, чтобы ручка писала. Перед `my notebook` не ставим `a` или `the`.",
+        "uk": "`notebook` тут — «зошит»: паперові сторінки для записів, не комп’ютер. `my notebook` — «мій зошит», `your notebook` — «твій / ваш зошит». `This is my notebook` — «Це мій зошит». Батарейка такому зошиту не потрібна; головне, щоб ручка писала. Перед `my notebook` не ставимо `a` чи `the`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите свою тетрадь.",
+          "uk": "Покажіть свій зошит."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-12:intro1:r1",
+              "text": "This is my notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro1:r2",
+              "text": "This is a my notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro1:r3",
+              "text": "This is your notebook."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-12:intro1:r1",
+              "text": "This is my notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro1:r2",
+              "text": "This is a my notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro1:r3",
+              "text": "This is your notebook."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите свою тетрадь.",
+          "uk": "Покажіть свій зошит."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Друзья помогают",
+        "uk": "Друзі допомагають"
+      },
+      "bodyByLocale": {
+        "ru": "`friendly` — «дружелюбный»: человек приветлив в общении. `helpful` о человеке — «отзывчивый: охотно помогает другим». `Her friend is friendly` — «Её друг дружелюбный». `His friend is helpful` — «Его друг отзывчивый». Слова `her` и `his` выбираем по тому, чей это друг: её или его.",
+        "uk": "`friendly` — «дружній, привітний»: людина привітна у спілкуванні. `helpful` про людину — «чуйний: охоче допомагає іншим». `Her friend is friendly` — «Її друг привітний». `His friend is helpful` — «Його друг чуйний». Слова `her` і `his` вибираємо за тим, чий це друг: її чи його."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг вашего брата охотно помогает другим. Скажите «Его друг отзывчивый».",
+          "uk": "Друг вашого брата чуйний. Скажіть «Його друг чуйний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-12:intro2:r1",
+              "text": "His friend is helpful."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro2:r2",
+              "text": "Her friend is helpful."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro2:r3",
+              "text": "His friend are helpful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-12:intro2:r1",
+              "text": "His friend is helpful."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro2:r2",
+              "text": "Her friend is helpful."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro2:r3",
+              "text": "His friend are helpful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг вашего брата охотно помогает другим. Скажите «Его друг отзывчивый».",
+          "uk": "Друг вашого брата чуйний. Скажіть «Його друг чуйний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стол, занавеска и платформа",
+        "uk": "Стіл, завіска й платформа"
+      },
+      "bodyByLocale": {
+        "ru": "`table` — «стол», `curtain` — «занавеска», `platform` — «платформа», `loud` — «громкий». `The notebook is on your table` — «Тетрадь на твоём столе». `Our curtain is blue` — «Наша занавеска синяя». `The music is loud` — «Музыка громкая». `Our platform is here` — «Наша платформа здесь»: платформа, с которой мы отправляемся, не обязательно наша собственность.",
+        "uk": "`table` — «стіл», `curtain` — «завіска», `platform` — «платформа», `loud` — «гучний». `The notebook is on your table` — «Зошит на твоєму столі». `Our curtain is blue` — «Наша завіска синя». `The music is loud` — «Музика гучна». `Our platform is here` — «Наша платформа тут»: платформа, з якої ми вирушаємо, не обов’язково наша власність."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Музыка громкая. Выберите фразу.",
+          "uk": "Музика гучна. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-12:intro3:r1",
+              "text": "The music is loud."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro3:r2",
+              "text": "The music are loud."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro3:r3",
+              "text": "The music is quiet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-12:intro3:r1",
+              "text": "The music is loud."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro3:r2",
+              "text": "The music are loud."
+            },
+            {
+              "responseId": "en:lesson-05:session-12:intro3:r3",
+              "text": "The music is quiet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Музыка громкая. Выберите фразу.",
+          "uk": "Музика гучна. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "870c8d6a174bb2b6613d0e595ddf98a1c6096fa235d6517fb0eceae45ac269aa"
+}

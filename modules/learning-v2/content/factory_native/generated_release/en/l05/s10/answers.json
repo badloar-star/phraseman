@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-10:i01",
+    "correctText": "My friend is old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i02",
+    "correctText": "pocket",
+    "correctResponseId": "en:lesson-05:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i03",
+    "correctText": "pocket",
+    "correctResponseId": "en:lesson-05:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i04",
+    "correctText": "en:lesson-05:session-10:i04:p1=pocket\nen:lesson-05:session-10:i04:p2=old\nen:lesson-05:session-10:i04:p3=kind\nen:lesson-05:session-10:i04:p4=funny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i05",
+    "correctText": "The key is in my pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i06",
+    "correctText": "Your friend is kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i07",
+    "correctText": "Our friend is funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i08",
+    "correctText": "his",
+    "correctResponseId": "en:lesson-05:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i09",
+    "correctText": "Their hotel is next to the park.",
+    "correctResponseId": "en:lesson-05:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i10",
+    "correctText": "en:lesson-05:session-10:i10:p1=pocket\nen:lesson-05:session-10:i10:p2=lock\nen:lesson-05:session-10:i10:p3=hotel\nen:lesson-05:session-10:i10:p4=kind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i11",
+    "correctText": "Her key is in his pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i12",
+    "correctText": "Our hotel is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i13",
+    "correctText": "I have your key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i14",
+    "correctText": "Its",
+    "correctResponseId": "en:lesson-05:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i15",
+    "correctText": "Her pocket is empty.",
+    "correctResponseId": "en:lesson-05:session-10:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i16",
+    "correctText": "en:lesson-05:session-10:i16:p1=pocket\nen:lesson-05:session-10:i16:p2=lock\nen:lesson-05:session-10:i16:p3=hotel\nen:lesson-05:session-10:i16:p4=funny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:i17",
+    "correctText": "The key is in your pocket.",
+    "correctResponseId": null
+  }
+]

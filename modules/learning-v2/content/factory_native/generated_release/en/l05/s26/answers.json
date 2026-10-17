@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-26:i01",
+    "correctText": "I am worried.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i02",
+    "correctText": "badge",
+    "correctResponseId": "en:lesson-05:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i03",
+    "correctText": "badge",
+    "correctResponseId": "en:lesson-05:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i04",
+    "correctText": "en:lesson-05:session-26:i04:p1=badge\nen:lesson-05:session-26:i04:p2=bored\nen:lesson-05:session-26:i04:p3=confused\nen:lesson-05:session-26:i04:p4=worried",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i05",
+    "correctText": "This is Anna's badge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i06",
+    "correctText": "Tom's badge is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i07",
+    "correctText": "I am bored.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i08",
+    "correctText": "Anna's",
+    "correctResponseId": "en:lesson-05:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i09",
+    "correctText": "I am confused.",
+    "correctResponseId": "en:lesson-05:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i10",
+    "correctText": "en:lesson-05:session-26:i10:p1=badge\nen:lesson-05:session-26:i10:p2=cats\nen:lesson-05:session-26:i10:p3=worktop\nen:lesson-05:session-26:i10:p4=gloves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i11",
+    "correctText": "Anna's gloves are on the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i12",
+    "correctText": "The cats are under the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i13",
+    "correctText": "Where is my badge?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i14",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i15",
+    "correctText": "Your badge is on the worktop.",
+    "correctResponseId": "en:lesson-05:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i16",
+    "correctText": "en:lesson-05:session-26:i16:p1=badge\nen:lesson-05:session-26:i16:p2=cats\nen:lesson-05:session-26:i16:p3=worktop\nen:lesson-05:session-26:i16:p4=gloves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-26:i17",
+    "correctText": "This is Anna's badge.",
+    "correctResponseId": null
+  }
+]

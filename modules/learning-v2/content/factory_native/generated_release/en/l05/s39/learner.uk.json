@@ -1,0 +1,983 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Підтримайте друга: «Ти сміливий», без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підтримайте друга: «Ти сміливий», без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are brave.",
+        "localizedMeaning": {
+          "ru": "Поддержите друга: «Ты смелый», без сокращения",
+          "uk": "Підтримайте друга: «Ти сміливий», без скорочення"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "brave"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Підтримайте друга: «Ти сміливий», без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `You are brave.`",
+              "uk": "тут потрібно `are` — `You are brave.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-39:i02:r1",
+          "text": "violin"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i02:r2",
+          "text": "guitar"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i02:r3",
+          "text": "camera"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i02:audio",
+          "transcript": "violin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-39:i02:r1",
+            "targetText": "violin",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i02:r2",
+            "targetText": "guitar",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i02:r3",
+            "targetText": "camera",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `violin`, а в этом варианте — `guitar`.",
+              "uk": "У записі перше слово — `violin`, а в цьому варіанті — `guitar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `violin`, а в этом варианте — `camera`.",
+              "uk": "У записі перше слово — `violin`, а в цьому варіанті — `camera`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть скрипку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-39:i03:r1",
+          "text": "violin"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i03:r2",
+          "text": "guitar"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i03:r3",
+          "text": "boiler"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть скрипку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите скрипку",
+          "uk": "Назвіть скрипку"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-39:i03:r1",
+            "text": "violin"
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i03:r2",
+            "text": "guitar"
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i03:r3",
+            "text": "boiler"
+          }
+        ],
+        "testedDimension": "Назвіть скрипку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть скрипку",
+            "feedbackByLocale": {
+              "ru": "`guitar` — гитара; скрипка — `violin`.",
+              "uk": "`guitar` — гітара; скрипка — `violin`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть скрипку",
+            "feedbackByLocale": {
+              "ru": "`boiler` — отопительный котёл; скрипка — `violin`.",
+              "uk": "`boiler` — опалювальний котел; скрипка — `violin`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-39:i04:p1",
+            "target": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка",
+              "uk": "скрипка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i04:p2",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i04:p3",
+            "target": "bottles",
+            "meaningByLocale": {
+              "ru": "бутылки",
+              "uk": "пляшки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i04:p4",
+            "target": "boiler",
+            "meaningByLocale": {
+              "ru": "отопительный котёл",
+              "uk": "опалювальний котел"
+            }
+          }
+        ],
+        "leftColumn": [
+          "violin",
+          "guitar",
+          "bottles",
+          "boiler"
+        ],
+        "rightColumn": [
+          "скрипка",
+          "гітара",
+          "пляшки",
+          "опалювальний котел"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i05:audio",
+          "transcript": "Whose violin is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose violin is this?",
+        "orderedTokens": [
+          "Whose",
+          "violin",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли гітару. Запитайте «Чия це гітара?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли гітару. Запитайте «Чия це гітара?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose guitar is this?",
+        "localizedMeaning": {
+          "ru": "Вы нашли гитару. Спросите «Чья это гитара?»",
+          "uk": "Ви знайшли гітару. Запитайте «Чия це гітара?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "guitar",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скрипка належить подрузі. Скажіть «Скрипка її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Скрипка належить подрузі. Скажіть «Скрипка її»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i07:audio",
+          "transcript": "The violin is hers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The violin is hers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника пляшок. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-39:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника пляшок. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце бутылок. Выберите форму",
+          "uk": "Запитайте про власника пляшок. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Whose bottles ___ these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-39:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Запитайте про власника пляшок. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника пляшок. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Несколько бутылок: `are these`.",
+              "uk": "Кілька пляшок: `are these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника пляшок. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `are these`.",
+              "uk": "`am` використовується з `I`; тут `are these`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, яку річ називає друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-39:i09:r1",
+          "text": "This is Tom's violin."
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i09:r2",
+          "text": "This is Tom's guitar."
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i09:r3",
+          "text": "This is Tom's camera."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, яку річ називає друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i09:audio",
+          "transcript": "This is Tom's violin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-39:i09:r1",
+            "targetText": "This is Tom's violin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i09:r2",
+            "targetText": "This is Tom's guitar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i09:r3",
+            "targetText": "This is Tom's camera.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `violin`, а в этом варианте — `guitar`.",
+              "uk": "У записі останнє слово — `violin`, а в цьому варіанті — `guitar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `violin`, а в этом варианте — `camera`.",
+              "uk": "У записі останнє слово — `violin`, а в цьому варіанті — `camera`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-39:i10:p1",
+            "target": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка",
+              "uk": "скрипка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i10:p2",
+            "target": "brave",
+            "meaningByLocale": {
+              "ru": "смелый",
+              "uk": "сміливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i10:p3",
+            "target": "boiler",
+            "meaningByLocale": {
+              "ru": "отопительный котёл",
+              "uk": "опалювальний котел"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i10:p4",
+            "target": "bottles",
+            "meaningByLocale": {
+              "ru": "бутылки",
+              "uk": "пляшки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "violin",
+          "brave",
+          "boiler",
+          "bottles"
+        ],
+        "rightColumn": [
+          "скрипка",
+          "сміливий",
+          "опалювальний котел",
+          "пляшки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i11:audio",
+          "transcript": "The boiler is in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The boiler is in the kitchen.",
+        "orderedTokens": [
+          "The",
+          "boiler",
+          "is",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The boiler is in the kitchen.`",
+              "uk": "тут потрібно `is` — `The boiler is in the kitchen.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пляшки належать вашій групі. Скажіть «Пляшки наші»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пляшки належать вашій групі. Скажіть «Пляшки наші»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bottles are ours.",
+        "localizedMeaning": {
+          "ru": "Бутылки принадлежат вашей группе. Скажите «Бутылки наши»",
+          "uk": "Пляшки належать вашій групі. Скажіть «Пляшки наші»"
+        },
+        "orderedTokens": [
+          "The",
+          "bottles",
+          "are",
+          "ours"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Пляшки належать вашій групі. Скажіть «Пляшки наші»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bottles are ours.`",
+              "uk": "тут потрібно `are` — `The bottles are ours.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Гітара друга у вас. Скажіть йому «Твоя гітара в мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Гітара друга у вас. Скажіть йому «Твоя гітара в мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i13:audio",
+          "transcript": "I have your guitar."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your guitar.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника скрипки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-39:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i14:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника скрипки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце скрипки",
+          "uk": "Запитайте про власника скрипки"
+        },
+        "gappedTargetPhrase": "___ violin is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-39:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Запитайте про власника скрипки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника скрипки",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чья — `Whose`.",
+              "uk": "`Where` — де; чия — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника скрипки",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чья — `Whose`.",
+              "uk": "`Who` — хто; чия — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чия скрипка тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-39:i15:r1",
+          "text": "My violin is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i15:r2",
+          "text": "Your violin is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-39:i15:r3",
+          "text": "His violin is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чия скрипка тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i15:audio",
+          "transcript": "My violin is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-39:i15:r1",
+            "targetText": "My violin is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i15:r2",
+            "targetText": "Your violin is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i15:r3",
+            "targetText": "His violin is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-39:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чия скрипка тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-39:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чия скрипка тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-39:i16:p1",
+            "target": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка",
+              "uk": "скрипка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i16:p2",
+            "target": "brave",
+            "meaningByLocale": {
+              "ru": "смелый",
+              "uk": "сміливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i16:p3",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-39:i16:p4",
+            "target": "bottles",
+            "meaningByLocale": {
+              "ru": "бутылки",
+              "uk": "пляшки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "violin",
+          "brave",
+          "guitar",
+          "bottles"
+        ],
+        "rightColumn": [
+          "скрипка",
+          "сміливий",
+          "гітара",
+          "пляшки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після концерту залишилися пляшки. Запитайте друзів «Чиї це пляшки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Після концерту залишилися пляшки. Запитайте друзів «Чиї це пляшки?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-39:i17:audio",
+          "transcript": "Whose bottles are these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose bottles are these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b63675925cf613974a0a4599f0c44b9669e111bf9f9e83618312dc6dea158544"
+}

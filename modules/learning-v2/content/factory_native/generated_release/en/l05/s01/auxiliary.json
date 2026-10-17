@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-01:intro1:r2": {
+          "ru": "Это «Я ключ». Чтобы сказать «У меня есть ключ», нужно `I have a key`.",
+          "uk": "Це «Я ключ». Щоб сказати «У мене є ключ», потрібно `I have a key`."
+        },
+        "en:lesson-05:session-01:intro1:r3": {
+          "ru": "С `I` нужно `have`.",
+          "uk": "З `I` потрібне `have`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-01:intro2:r2": {
+          "ru": "С `She` нужно `has`.",
+          "uk": "З `She` потрібне `has`."
+        },
+        "en:lesson-05:session-01:intro2:r3": {
+          "ru": "`has` уже сообщает, что у неё есть ключ; `is` здесь лишнее.",
+          "uk": "`has` уже повідомляє, що в неї є ключ; `is` тут зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-01:intro3:r2": {
+          "ru": "`happy` описывает её состояние: `She is happy`.",
+          "uk": "`happy` описує її стан: `She is happy`."
+        },
+        "en:lesson-05:session-01:intro3:r3": {
+          "ru": "С `She` нужно `is`.",
+          "uk": "З `She` потрібне `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d8d9d468e2e9ccea014d0d0a57fb8d1e32d250a5d7667a53aef4ba18213ff1d2"
+}

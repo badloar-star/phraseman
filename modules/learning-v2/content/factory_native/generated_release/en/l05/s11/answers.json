@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-11:i01",
+    "correctText": "Her friend is smart.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i02",
+    "correctText": "backpack",
+    "correctResponseId": "en:lesson-05:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i03",
+    "correctText": "backpack",
+    "correctResponseId": "en:lesson-05:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i04",
+    "correctText": "en:lesson-05:session-11:i04:p1=backpack\nen:lesson-05:session-11:i04:p2=smart\nen:lesson-05:session-11:i04:p3=strong\nen:lesson-05:session-11:i04:p4=quiet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i05",
+    "correctText": "This is my backpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i06",
+    "correctText": "His friend is strong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i07",
+    "correctText": "Our room is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i08",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-05:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i09",
+    "correctText": "The backpack is under your desk.",
+    "correctResponseId": "en:lesson-05:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i10",
+    "correctText": "en:lesson-05:session-11:i10:p1=backpack\nen:lesson-05:session-11:i10:p2=room\nen:lesson-05:session-11:i10:p3=tram\nen:lesson-05:session-11:i10:p4=desk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i11",
+    "correctText": "Their room is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i12",
+    "correctText": "Our tram is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i13",
+    "correctText": "I have your backpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-11:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i15",
+    "correctText": "His backpack is here.",
+    "correctResponseId": "en:lesson-05:session-11:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i16",
+    "correctText": "en:lesson-05:session-11:i16:p1=backpack\nen:lesson-05:session-11:i16:p2=room\nen:lesson-05:session-11:i16:p3=tram\nen:lesson-05:session-11:i16:p4=desk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-11:i17",
+    "correctText": "The backpack is under your desk.",
+    "correctResponseId": null
+  }
+]

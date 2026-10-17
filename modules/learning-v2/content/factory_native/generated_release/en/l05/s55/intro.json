@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "описать ориентир и повторить слова о самостоятельности и ответственности",
+    "uk": "описати орієнтир і повторити слова про самостійність та відповідальність"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Картина на стене",
+        "uk": "Картина на стіні"
+      },
+      "bodyByLocale": {
+        "ru": "`mural` — «настенная роспись», большая картина, выполненная на стене. `Where is the mural?` — «Где настенная роспись?» `The mural is near the subway` — «Настенная роспись возле метро». `subway` здесь — метро в американском английском. Такую картину трудно забыть дома: пришлось бы взять с собой стену.",
+        "uk": "`mural` — «настінний розпис», велика картина, виконана на стіні. `Where is the mural?` — «Де настінний розпис?» `The mural is near the subway` — «Настінний розпис біля метро». `subway` тут — метро в американській англійській. Таку картину важко забути вдома: довелося б узяти із собою стіну."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, где настенная роспись.",
+          "uk": "Запитайте, де настінний розпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-55:intro1:r1",
+              "text": "Where is the mural?"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro1:r2",
+              "text": "Whose mural is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro1:r3",
+              "text": "Where are the mural?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-55:intro1:r1",
+              "text": "Where is the mural?"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro1:r2",
+              "text": "Whose mural is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro1:r3",
+              "text": "Where are the mural?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где настенная роспись.",
+          "uk": "Запитайте, де настінний розпис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Самостоятельность и ответственность",
+        "uk": "Самостійність і відповідальність"
+      },
+      "bodyByLocale": {
+        "ru": "`responsible` — «ответственный»: `Tom is responsible` — «Том ответственный», на него можно положиться. `independent` — «самостоятельный»: `Anna is independent` — «Анна самостоятельная». `dependent` — «зависимый», нуждающийся в поддержке: `He is dependent on his parents` — «Он зависит от своих родителей». В этой фразе после `dependent` используется `on`. Самостоятельность и ответственность — разные качества.",
+        "uk": "`responsible` — «відповідальний»: `Tom is responsible` — «Том відповідальний», на нього можна покластися. `independent` — «самостійний»: `Anna is independent` — «Анна самостійна». `dependent` — «залежний», той, хто потребує підтримки: `He is dependent on his parents` — «Він залежить від своїх батьків». У цій фразі після `dependent` використовується `on`. Самостійність і відповідальність — різні якості."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Анна самостоятельная».",
+          "uk": "Скажіть «Анна самостійна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-55:intro2:r1",
+              "text": "Anna is independent."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro2:r2",
+              "text": "Anna are independent."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro2:r3",
+              "text": "Anna is dependent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-55:intro2:r1",
+              "text": "Anna is independent."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro2:r2",
+              "text": "Anna are independent."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro2:r3",
+              "text": "Anna is dependent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Анна самостоятельная».",
+          "uk": "Скажіть «Анна самостійна»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кафе и короткий путь",
+        "uk": "Кафе й короткий шлях"
+      },
+      "bodyByLocale": {
+        "ru": "`cafes` — «кафе», несколько заведений; `shortcut` — «короткий путь», маршрут короче обычного. `The cafes are near the mural` — «Кафе возле настенной росписи». `Where is the shortcut?` — «Где короткий путь?» `Your bag is here` — «Твоя сумка здесь».",
+        "uk": "`cafes` — «кафе», кілька закладів; `shortcut` — «короткий шлях», маршрут коротший за звичайний. `The cafes are near the mural` — «Кафе біля настінного розпису». `Where is the shortcut?` — «Де короткий шлях?» `Your bag is here` — «Твоя сумка тут»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Кафе возле настенной росписи», имея в виду несколько кафе.",
+          "uk": "Скажіть «Кафе біля настінного розпису», маючи на увазі кілька кафе."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-55:intro3:r1",
+              "text": "The cafes are near the mural."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro3:r2",
+              "text": "The cafes is near the mural."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro3:r3",
+              "text": "The cafe is near the mural."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-55:intro3:r1",
+              "text": "The cafes are near the mural."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro3:r2",
+              "text": "The cafes is near the mural."
+            },
+            {
+              "responseId": "en:lesson-05:session-55:intro3:r3",
+              "text": "The cafe is near the mural."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Кафе возле настенной росписи», имея в виду несколько кафе.",
+          "uk": "Скажіть «Кафе біля настінного розпису», маючи на увазі кілька кафе."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1745644c829d9dab63d8f9bac4b4b847274e4e1d4e84139b35f47f5b58ca698f"
+}

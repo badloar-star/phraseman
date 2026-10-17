@@ -1,0 +1,1009 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am worried.",
+        "localizedMeaning": {
+          "ru": "Вы переживаете из-за пропавшей вещи. Скажите «Я волнуюсь» без сокращения",
+          "uk": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "worried"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am worried.`",
+              "uk": "тут потрібно `am` — `I am worried.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-26:i02:r1",
+          "text": "badge"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i02:r2",
+          "text": "bag"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i02:r3",
+          "text": "jacket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i02:audio",
+          "transcript": "badge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-26:i02:r1",
+            "targetText": "badge",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i02:r2",
+            "targetText": "bag",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i02:r3",
+            "targetText": "jacket",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `badge`, а в этом варианте — `bag`.",
+              "uk": "У записі перше слово — `badge`, а в цьому варіанті — `bag`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `badge`, а в этом варианте — `jacket`.",
+              "uk": "У записі перше слово — `badge`, а в цьому варіанті — `jacket`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть значок на одязі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-26:i03:r1",
+          "text": "badge"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i03:r2",
+          "text": "gloves"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i03:r3",
+          "text": "lunchbox"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть значок на одязі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите значок на одежде",
+          "uk": "Назвіть значок на одязі"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i03:r1",
+            "text": "badge"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i03:r2",
+            "text": "gloves"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i03:r3",
+            "text": "lunchbox"
+          }
+        ],
+        "testedDimension": "Назвіть значок на одязі",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть значок на одязі",
+            "feedbackByLocale": {
+              "ru": "`gloves` — перчатки; значок — `badge`.",
+              "uk": "`gloves` — рукавички; значок — `badge`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть значок на одязі",
+            "feedbackByLocale": {
+              "ru": "`lunchbox` — контейнер для обеда; значок — `badge`.",
+              "uk": "`lunchbox` — контейнер для обіду; значок — `badge`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-26:i04:p1",
+            "target": "badge",
+            "meaningByLocale": {
+              "ru": "значок",
+              "uk": "значок"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i04:p2",
+            "target": "bored",
+            "meaningByLocale": {
+              "ru": "скучающий",
+              "uk": "той, кому нудно"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i04:p3",
+            "target": "confused",
+            "meaningByLocale": {
+              "ru": "растерянный",
+              "uk": "розгублений"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i04:p4",
+            "target": "worried",
+            "meaningByLocale": {
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
+            }
+          }
+        ],
+        "leftColumn": [
+          "badge",
+          "bored",
+          "confused",
+          "worried"
+        ],
+        "rightColumn": [
+          "значок",
+          "той, кому нудно",
+          "розгублений",
+          "стурбований"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i05:audio",
+          "transcript": "This is Anna's badge."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is Anna's badge.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "Anna's",
+          "badge"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is Anna's badge.`",
+              "uk": "тут потрібно `is` — `This is Anna's badge.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tom's badge is here.",
+        "localizedMeaning": {
+          "ru": "Вы нашли значок Тома. Скажите «Значок Тома здесь»",
+          "uk": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»"
+        },
+        "orderedTokens": [
+          "Tom's",
+          "badge",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom's badge is here.`",
+              "uk": "тут потрібно `is` — `Tom's badge is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви довго чекаєте без діла. Скажіть «Мені нудно» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Ви довго чекаєте без діла. Скажіть «Мені нудно» без скорочення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i07:audio",
+          "transcript": "I am bored."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am bored.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рукавички належать Анні. Укажіть власницю",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-26:i08:r1",
+          "text": "Anna's"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i08:r2",
+          "text": "Anna"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i08:r3",
+          "text": "Tom's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рукавички належать Анні. Укажіть власницю",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перчатки принадлежат Анне. Укажите владельца",
+          "uk": "Рукавички належать Анні. Укажіть власницю"
+        },
+        "gappedTargetPhrase": "These are ___ gloves.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i08:r1",
+            "text": "Anna's"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i08:r2",
+            "text": "Anna"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i08:r3",
+            "text": "Tom's"
+          }
+        ],
+        "testedDimension": "Рукавички належать Анні. Укажіть власницю",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Рукавички належать Анні. Укажіть власницю",
+            "feedbackByLocale": {
+              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
+              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Рукавички належать Анні. Укажіть власницю",
+            "feedbackByLocale": {
+              "ru": "Это принадлежность Тому; здесь владелица Анна.",
+              "uk": "Це належність Тому; тут власниця Анна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, який стан називає друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-26:i09:r1",
+          "text": "I am confused."
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i09:r2",
+          "text": "I am worried."
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i09:r3",
+          "text": "I am bored."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який стан називає друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i09:audio",
+          "transcript": "I am confused."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-26:i09:r1",
+            "targetText": "I am confused.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i09:r2",
+            "targetText": "I am worried.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i09:r3",
+            "targetText": "I am bored.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, який стан називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `confused`, а в этом варианте — `worried`.",
+              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `worried`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, який стан називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `confused`, а в этом варианте — `bored`.",
+              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `bored`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-26:i10:p1",
+            "target": "badge",
+            "meaningByLocale": {
+              "ru": "значок",
+              "uk": "значок"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i10:p2",
+            "target": "cats",
+            "meaningByLocale": {
+              "ru": "кошки",
+              "uk": "коти"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i10:p3",
+            "target": "worktop",
+            "meaningByLocale": {
+              "ru": "кухонная столешница",
+              "uk": "кухонна стільниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i10:p4",
+            "target": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки",
+              "uk": "рукавички"
+            }
+          }
+        ],
+        "leftColumn": [
+          "badge",
+          "cats",
+          "worktop",
+          "gloves"
+        ],
+        "rightColumn": [
+          "значок",
+          "коти",
+          "кухонна стільниця",
+          "рукавички"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i11:audio",
+          "transcript": "Anna's gloves are on the worktop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Anna's gloves are on the worktop.",
+        "orderedTokens": [
+          "Anna's",
+          "gloves",
+          "are",
+          "on",
+          "the",
+          "worktop"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Anna's gloves are on the worktop.`",
+              "uk": "тут потрібно `are` — `Anna's gloves are on the worktop.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коти сховалися під столом. Скажіть «Коти під столом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коти сховалися під столом. Скажіть «Коти під столом»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cats are under the table.",
+        "localizedMeaning": {
+          "ru": "Кошки спрятались под столом. Скажите «Кошки под столом»",
+          "uk": "Коти сховалися під столом. Скажіть «Коти під столом»"
+        },
+        "orderedTokens": [
+          "The",
+          "cats",
+          "are",
+          "under",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Коти сховалися під столом. Скажіть «Коти під столом»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cats are under the table.`",
+              "uk": "тут потрібно `are` — `The cats are under the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви шукаєте свій значок. Запитайте «Де мій значок?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Ви шукаєте свій значок. Запитайте «Де мій значок?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i13:audio",
+          "transcript": "Where is my badge?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is my badge?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Значок належить подрузі. Скажіть «Значок її»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-26:i14:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i14:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i14:r3",
+          "text": "ours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Значок належить подрузі. Скажіть «Значок її»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Значок принадлежит подруге. Скажите «Значок её»",
+          "uk": "Значок належить подрузі. Скажіть «Значок її»"
+        },
+        "gappedTargetPhrase": "The badge is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i14:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i14:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i14:r3",
+            "text": "ours"
+          }
+        ],
+        "testedDimension": "Значок належить подрузі. Скажіть «Значок її»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i14:r2",
+            "correct": false,
+            "testedDimension": "Значок належить подрузі. Скажіть «Значок її»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i14:r3",
+            "correct": false,
+            "testedDimension": "Значок належить подрузі. Скажіть «Значок її»",
+            "feedbackByLocale": {
+              "ru": "`ours` — наш; её — `hers`.",
+              "uk": "`ours` — наш; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де значок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-26:i15:r1",
+          "text": "Your badge is on the worktop."
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i15:r2",
+          "text": "My badge is on the worktop."
+        },
+        {
+          "responseId": "en:lesson-05:session-26:i15:r3",
+          "text": "Your badge is on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де значок",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i15:audio",
+          "transcript": "Your badge is on the worktop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-26:i15:r1",
+            "targetText": "Your badge is on the worktop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i15:r2",
+            "targetText": "My badge is on the worktop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i15:r3",
+            "targetText": "Your badge is on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-26:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де значок",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де значок",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `worktop`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `worktop`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-26:i16:p1",
+            "target": "badge",
+            "meaningByLocale": {
+              "ru": "значок",
+              "uk": "значок"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i16:p2",
+            "target": "cats",
+            "meaningByLocale": {
+              "ru": "кошки",
+              "uk": "коти"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i16:p3",
+            "target": "worktop",
+            "meaningByLocale": {
+              "ru": "кухонная столешница",
+              "uk": "кухонна стільниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-26:i16:p4",
+            "target": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки",
+              "uk": "рукавички"
+            }
+          }
+        ],
+        "leftColumn": [
+          "badge",
+          "cats",
+          "worktop",
+          "gloves"
+        ],
+        "rightColumn": [
+          "значок",
+          "коти",
+          "кухонна стільниця",
+          "рукавички"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, кому належить знайдений значок. Він належить Анні. Скажіть «Це значок Анни»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, кому належить знайдений значок. Він належить Анні. Скажіть «Це значок Анни»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:i17:audio",
+          "transcript": "This is Anna's badge."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is Anna's badge.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5ee9f66a82415e6c5c6fd57d3e8e1d0f49ef2ad8d8170a1c2025c9e6fa7471c3"
+}

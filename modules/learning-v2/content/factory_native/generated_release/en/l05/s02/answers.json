@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-02:i01",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i02",
+    "correctText": "He has an apple.",
+    "correctResponseId": "en:lesson-05:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i04",
+    "correctText": "en:lesson-05:session-02:i04:p1=sad\nen:lesson-05:session-02:i04:p2=tired\nen:lesson-05:session-02:i04:p3=apple\nen:lesson-05:session-02:i04:p4=hotel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i05",
+    "correctText": "I have an apple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i06",
+    "correctText": "The hotel has a garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i07",
+    "correctText": "He's sad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-05:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i09",
+    "correctText": "The hotel is next to the river.",
+    "correctResponseId": "en:lesson-05:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i10",
+    "correctText": "en:lesson-05:session-02:i10:p1=garden\nen:lesson-05:session-02:i10:p2=river\nen:lesson-05:session-02:i10:p3=sad\nen:lesson-05:session-02:i10:p4=tired",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i11",
+    "correctText": "She has an apple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i12",
+    "correctText": "We have apples.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i13",
+    "correctText": "The garden is next to the river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i14",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-05:session-02:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i15",
+    "correctText": "We are tired.",
+    "correctResponseId": "en:lesson-05:session-02:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i16",
+    "correctText": "en:lesson-05:session-02:i16:p1=hotel\nen:lesson-05:session-02:i16:p2=apple\nen:lesson-05:session-02:i16:p3=garden\nen:lesson-05:session-02:i16:p4=river",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-02:i17",
+    "correctText": "The hotel has a garden.",
+    "correctResponseId": null
+  }
+]

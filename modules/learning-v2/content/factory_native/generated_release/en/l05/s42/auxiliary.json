@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-42:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-42:intro1:r3": {
+          "ru": "Один самокат: `is this`.",
+          "uk": "Один самокат: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-42:intro2:r2": {
+          "ru": "Одно кольцо: `is this`.",
+          "uk": "Одна каблучка: `is this`."
+        },
+        "en:lesson-05:session-42:intro2:r3": {
+          "ru": "Это «Где кольцо?», а нужен вопрос о владельце.",
+          "uk": "Це «Де каблучка?», а потрібне запитання про власника."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-42:intro3:r2": {
+          "ru": "С `you` нужна форма `are`.",
+          "uk": "З `you` потрібна форма `are`."
+        },
+        "en:lesson-05:session-42:intro3:r3": {
+          "ru": "`honest` — честный; вежливый — `polite`.",
+          "uk": "`honest` — чесний; ввічливий — `polite`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e69316c6e6eb73c2d3e055aa6c4a95fff8e730faa1498cd0b675bb21c67864c3"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-13:intro1:r2": {
+          "ru": "Перед `umbrella` нужно `an`.",
+          "uk": "Перед `umbrella` потрібне `an`."
+        },
+        "en:lesson-05:session-13:intro1:r3": {
+          "ru": "С `I` нужно `have`.",
+          "uk": "З `I` потрібне `have`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-13:intro2:r2": {
+          "ru": "`his` — его; здесь её: `her`.",
+          "uk": "`his` — його; тут її: `her`."
+        },
+        "en:lesson-05:session-13:intro2:r3": {
+          "ru": "Один зонт: `umbrella is`.",
+          "uk": "Одна парасоля: `umbrella is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-13:intro3:r2": {
+          "ru": "`under` — под; внутри — `in`.",
+          "uk": "`under` — під; усередині — `in`."
+        },
+        "en:lesson-05:session-13:intro3:r3": {
+          "ru": "`your` — твоём / вашем; о своём здесь `my`.",
+          "uk": "`your` — твоїй / вашій; про свою тут `my`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c28fd01789d5a4617eeae94882a28b75d95caa40f02a27efac0a22ba80649be5"
+}

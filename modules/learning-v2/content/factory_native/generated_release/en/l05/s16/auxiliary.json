@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-16:intro1:r2": {
+          "ru": "`my` — моя; тетрадь собеседника: `your`.",
+          "uk": "`my` — мій; зошит співрозмовника: `your`."
+        },
+        "en:lesson-05:session-16:intro1:r3": {
+          "ru": "С `I` нужно `have`.",
+          "uk": "З `I` потрібне `have`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-16:intro2:r2": {
+          "ru": "В прямом вопросе нужен порядок `Where is my helmet?`.",
+          "uk": "У прямому запитанні потрібен порядок `Where is my helmet?`."
+        },
+        "en:lesson-05:session-16:intro2:r3": {
+          "ru": "Один шлем: `Where is`.",
+          "uk": "Один шолом: `Where is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-16:intro3:r2": {
+          "ru": "Один отель: `hotel has`.",
+          "uk": "Один готель: `hotel has`."
+        },
+        "en:lesson-05:session-16:intro3:r3": {
+          "ru": "Отель не бассейн; у него есть бассейн: `has a swimming pool`.",
+          "uk": "Готель не басейн; у нього є басейн: `has a swimming pool`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "387d64f38c1175507faf07fe94a58b2318ee3e414283fb6d91d30ed5eb4ae427"
+}

@@ -1,0 +1,972 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг зайнятий. Скажіть це без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг зайнятий. Скажіть це без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is busy.",
+        "localizedMeaning": {
+          "ru": "Друг занят. Скажите это без сокращения",
+          "uk": "Друг зайнятий. Скажіть це без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "busy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг зайнятий. Скажіть це без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is busy.`",
+              "uk": "тут потрібно `is` — `He is busy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-03:i02:r1",
+          "text": "desk"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i02:r2",
+          "text": "desks"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i02:r3",
+          "text": "door"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i02:audio",
+          "transcript": "desk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-03:i02:r1",
+            "targetText": "desk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i02:r2",
+            "targetText": "desks",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i02:r3",
+            "targetText": "door",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `desk`, а в этом варианте — `desks`.",
+              "uk": "У записі перше слово — `desk`, а в цьому варіанті — `desks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `desk`, а в этом варианте — `door`.",
+              "uk": "У записі перше слово — `desk`, а в цьому варіанті — `door`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть письмовий стіл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-03:i03:r1",
+          "text": "desk"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i03:r2",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i03:r3",
+          "text": "bank"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть письмовий стіл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите письменный стол",
+          "uk": "Назвіть письмовий стіл"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i03:r1",
+            "text": "desk"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i03:r2",
+            "text": "book"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i03:r3",
+            "text": "bank"
+          }
+        ],
+        "testedDimension": "Назвіть письмовий стіл",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть письмовий стіл",
+            "feedbackByLocale": {
+              "ru": "`book` — книга; письменный стол — `desk`.",
+              "uk": "`book` — книжка; письмовий стіл — `desk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть письмовий стіл",
+            "feedbackByLocale": {
+              "ru": "`bank` — банк; письменный стол — `desk`.",
+              "uk": "`bank` — банк; письмовий стіл — `desk`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-03:i04:p1",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i04:p2",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занятый",
+              "uk": "зайнятий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i04:p3",
+            "target": "free",
+            "meaningByLocale": {
+              "ru": "свободный",
+              "uk": "вільний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i04:p4",
+            "target": "late",
+            "meaningByLocale": {
+              "ru": "опоздавший",
+              "uk": "той, хто запізнився"
+            }
+          }
+        ],
+        "leftColumn": [
+          "desk",
+          "busy",
+          "free",
+          "late"
+        ],
+        "rightColumn": [
+          "письмовий стіл",
+          "зайнятий",
+          "вільний",
+          "той, хто запізнився"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i05:audio",
+          "transcript": "I have a desk."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have a desk.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "a",
+          "desk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У подруги є письмовий стіл. Скажіть «У неї є письмовий стіл»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У подруги є письмовий стіл. Скажіть «У неї є письмовий стіл»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has a desk.",
+        "localizedMeaning": {
+          "ru": "У подруги есть письменный стол. Скажите «У неё есть письменный стол»",
+          "uk": "У подруги є письмовий стіл. Скажіть «У неї є письмовий стіл»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "a",
+          "desk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У вас є час допомогти. Скажіть «Я вільний» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "У вас є час допомогти. Скажіть «Я вільний» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i07:audio",
+          "transcript": "I'm free."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm free.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з другом запізнилися. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-03:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i08:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом запізнилися. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом опоздали. Выберите форму",
+          "uk": "Ви з другом запізнилися. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ late.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Ви з другом запізнилися. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви з другом запізнилися. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Здесь состояние: `We are late`.",
+              "uk": "Тут стан: `We are late`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви з другом запізнилися. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С `We` нужно `are`.",
+              "uk": "З `We` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де книжка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-03:i09:r1",
+          "text": "The book is on the desk."
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i09:r2",
+          "text": "The book is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i09:r3",
+          "text": "The book is on the sofa."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де книжка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i09:audio",
+          "transcript": "The book is on the desk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-03:i09:r1",
+            "targetText": "The book is on the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i09:r2",
+            "targetText": "The book is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i09:r3",
+            "targetText": "The book is on the sofa.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де книжка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `desk`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де книжка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `desk`, а в этом варианте — `sofa`.",
+              "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `sofa`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-03:i10:p1",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i10:p2",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i10:p3",
+            "target": "bank",
+            "meaningByLocale": {
+              "ru": "банк",
+              "uk": "банк"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i10:p4",
+            "target": "community centre",
+            "meaningByLocale": {
+              "ru": "общественный центр",
+              "uk": "громадський центр"
+            }
+          }
+        ],
+        "leftColumn": [
+          "desk",
+          "book",
+          "bank",
+          "community centre"
+        ],
+        "rightColumn": [
+          "письмовий стіл",
+          "книжка",
+          "банк",
+          "громадський центр"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i11:audio",
+          "transcript": "They have desks."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They have desks.",
+        "orderedTokens": [
+          "They",
+          "have",
+          "desks"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Громадський центр поруч із банком. Скажіть, де він",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Громадський центр поруч із банком. Скажіть, де він",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The community centre is next to the bank.",
+        "localizedMeaning": {
+          "ru": "Общественный центр рядом с банком. Скажите, где он",
+          "uk": "Громадський центр поруч із банком. Скажіть, де він"
+        },
+        "orderedTokens": [
+          "The",
+          "community",
+          "centre",
+          "is",
+          "next",
+          "to",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Громадський центр поруч із банком. Скажіть, де він",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The community centre is next to the bank.`",
+              "uk": "тут потрібно `is` — `The community centre is next to the bank.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У вас є книжка для роботи. Скажіть «У мене є книжка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i13:audio"
+      ],
+      "accessibilityLabel": "У вас є книжка для роботи. Скажіть «У мене є книжка»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i13:audio",
+          "transcript": "I have a book."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have a book.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У друга є письмовий стіл. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-03:i14:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i14:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У друга є письмовий стіл. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У друга есть письменный стол. Выберите форму",
+          "uk": "У друга є письмовий стіл. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a desk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-03:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У друга є письмовий стіл. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i14:r2",
+            "correct": false,
+            "testedDimension": "У друга є письмовий стіл. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С `He` нужно `has`.",
+              "uk": "З `He` потрібне `has`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i14:r3",
+            "correct": false,
+            "testedDimension": "У друга є письмовий стіл. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`He is a desk` — он сам стол; у него есть стол — `He has a desk`.",
+              "uk": "`He is a desk` — він сам стіл; у нього є стіл — `He has a desk`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, у кого є вільний час",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-03:i15:r1",
+          "text": "She's free."
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i15:r2",
+          "text": "She's busy."
+        },
+        {
+          "responseId": "en:lesson-05:session-03:i15:r3",
+          "text": "He's free."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, у кого є вільний час",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i15:audio",
+          "transcript": "She's free."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-03:i15:r1",
+            "targetText": "She's free.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i15:r2",
+            "targetText": "She's busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i15:r3",
+            "targetText": "He's free.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-03:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, у кого є вільний час",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `free`, а в этом варианте — `busy`.",
+              "uk": "У записі останнє слово — `free`, а в цьому варіанті — `busy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-03:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, у кого є вільний час",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+              "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-03:i16:p1",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i16:p2",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i16:p3",
+            "target": "bank",
+            "meaningByLocale": {
+              "ru": "банк",
+              "uk": "банк"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-03:i16:p4",
+            "target": "community centre",
+            "meaningByLocale": {
+              "ru": "общественный центр",
+              "uk": "громадський центр"
+            }
+          }
+        ],
+        "leftColumn": [
+          "desk",
+          "book",
+          "bank",
+          "community centre"
+        ],
+        "rightColumn": [
+          "письмовий стіл",
+          "книжка",
+          "банк",
+          "громадський центр"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-03:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам із другом виділили один письмовий стіл. Повідомте «У нас є письмовий стіл»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Вам із другом виділили один письмовий стіл. Повідомте «У нас є письмовий стіл»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-03:i17:audio",
+          "transcript": "We have a desk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have a desk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1802dc108ed26f4711df5ad565b79ccd5689c49e95c54f9bc60efb90954ccfde"
+}

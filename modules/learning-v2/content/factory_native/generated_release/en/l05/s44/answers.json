@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-44:i01",
+    "correctText": "You are curious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i02",
+    "correctText": "bicycle",
+    "correctResponseId": "en:lesson-05:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i03",
+    "correctText": "bicycle",
+    "correctResponseId": "en:lesson-05:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i04",
+    "correctText": "en:lesson-05:session-44:i04:p1=bicycle\nen:lesson-05:session-44:i04:p2=sunglasses\nen:lesson-05:session-44:i04:p3=hotels\nen:lesson-05:session-44:i04:p4=freezer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i05",
+    "correctText": "Whose bicycle is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i06",
+    "correctText": "Where are the hotels?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i07",
+    "correctText": "The bicycle is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i09",
+    "correctText": "This is Anna's bicycle.",
+    "correctResponseId": "en:lesson-05:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i10",
+    "correctText": "en:lesson-05:session-44:i10:p1=bicycle\nen:lesson-05:session-44:i10:p2=curious\nen:lesson-05:session-44:i10:p3=freezer\nen:lesson-05:session-44:i10:p4=sunglasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i11",
+    "correctText": "The freezer is in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i12",
+    "correctText": "The sunglasses are hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i13",
+    "correctText": "I have your sunglasses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-44:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i15",
+    "correctText": "Your bicycle is here.",
+    "correctResponseId": "en:lesson-05:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i16",
+    "correctText": "en:lesson-05:session-44:i16:p1=bicycle\nen:lesson-05:session-44:i16:p2=curious\nen:lesson-05:session-44:i16:p3=hotels\nen:lesson-05:session-44:i16:p4=sunglasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:i17",
+    "correctText": "Whose sunglasses are these?",
+    "correctResponseId": null
+  }
+]

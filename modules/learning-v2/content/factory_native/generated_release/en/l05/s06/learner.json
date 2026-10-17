@@ -1,0 +1,986 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега спокоен. Скажите это без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега спокоен. Скажите это без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is calm.",
+        "localizedMeaning": {
+          "ru": "Коллега спокоен. Скажите это без сокращения",
+          "uk": "Колега спокійний. Скажіть це без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "calm"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Коллега спокоен. Скажите это без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is calm.`",
+              "uk": "тут потрібно `is` — `He is calm.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-06:i02:r1",
+          "text": "ceiling"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i02:r2",
+          "text": "ceilings"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i02:r3",
+          "text": "curtain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i02:audio",
+          "transcript": "ceiling"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-06:i02:r1",
+            "targetText": "ceiling",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i02:r2",
+            "targetText": "ceilings",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i02:r3",
+            "targetText": "curtain",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ceiling`, а в этом варианте — `ceilings`.",
+              "uk": "У записі перше слово — `ceiling`, а в цьому варіанті — `ceilings`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ceiling`, а в этом варианте — `curtain`.",
+              "uk": "У записі перше слово — `ceiling`, а в цьому варіанті — `curtain`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите верхнюю поверхность внутри комнаты — потолок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-06:i03:r1",
+          "text": "ceiling"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i03:r2",
+          "text": "drawer"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i03:r3",
+          "text": "desk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите верхнюю поверхность внутри комнаты — потолок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите верхнюю поверхность внутри комнаты — потолок",
+          "uk": "Назвіть верхню поверхню всередині кімнати — стелю"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i03:r1",
+            "text": "ceiling"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i03:r2",
+            "text": "drawer"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i03:r3",
+            "text": "desk"
+          }
+        ],
+        "testedDimension": "Назовите верхнюю поверхность внутри комнаты — потолок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите верхнюю поверхность внутри комнаты — потолок",
+            "feedbackByLocale": {
+              "ru": "`drawer` — выдвижной ящик; потолок — `ceiling`.",
+              "uk": "`drawer` — шухляда; стеля — `ceiling`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите верхнюю поверхность внутри комнаты — потолок",
+            "feedbackByLocale": {
+              "ru": "`desk` — письменный стол; потолок — `ceiling`.",
+              "uk": "`desk` — письмовий стіл; стеля — `ceiling`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-06:i04:p1",
+            "target": "ceiling",
+            "meaningByLocale": {
+              "ru": "потолок",
+              "uk": "стеля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i04:p2",
+            "target": "calm",
+            "meaningByLocale": {
+              "ru": "спокойный",
+              "uk": "спокійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i04:p3",
+            "target": "nervous",
+            "meaningByLocale": {
+              "ru": "нервничающий",
+              "uk": "знервований"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i04:p4",
+            "target": "excited",
+            "meaningByLocale": {
+              "ru": "радостно взволнованный",
+              "uk": "радісно схвильований"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ceiling",
+          "calm",
+          "nervous",
+          "excited"
+        ],
+        "rightColumn": [
+          "потолок",
+          "спокойный",
+          "нервничающий",
+          "радостно взволнованный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i05:audio",
+          "transcript": "This is a ceiling."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a ceiling.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "ceiling"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a ceiling.`",
+              "uk": "тут потрібно `is` — `This is a ceiling.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У подруги есть ручка. Сообщите «У неё есть ручка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У подруги есть ручка. Сообщите «У неё есть ручка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has a pen.",
+        "localizedMeaning": {
+          "ru": "У подруги есть ручка. Сообщите «У неё есть ручка»",
+          "uk": "У подруги є ручка. Повідомте «У неї є ручка»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "a",
+          "pen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы боитесь ошибиться в первый день. Скажите «Я нервничаю» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Вы боитесь ошибиться в первый день. Скажите «Я нервничаю» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i07:audio",
+          "transcript": "I'm nervous."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm nervous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы с другом радостно ждёте начала работы. Скажите, что вы в радостном предвкушении",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-06:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i08:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с другом радостно ждёте начала работы. Скажите, что вы в радостном предвкушении",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом радостно ждёте начала работы. Скажите, что вы в радостном предвкушении",
+          "uk": "Ви з другом радісно чекаєте початку роботи. Скажіть, що ви в радісному очікуванні"
+        },
+        "gappedTargetPhrase": "We ___ excited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вы с другом радостно ждёте начала работы. Скажите, что вы в радостном предвкушении",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы с другом радостно ждёте начала работы. Скажите, что вы в радостном предвкушении",
+            "feedbackByLocale": {
+              "ru": "Для этого состояния нужно `We are excited`.",
+              "uk": "Для цього стану потрібне `We are excited`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы с другом радостно ждёте начала работы. Скажите, что вы в радостном предвкушении",
+            "feedbackByLocale": {
+              "ru": "С `We` нужно `are`.",
+              "uk": "З `We` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где ручка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-06:i09:r1",
+          "text": "The pen is on the desk."
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i09:r2",
+          "text": "The pen is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i09:r3",
+          "text": "The pen is on the chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где ручка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i09:audio",
+          "transcript": "The pen is on the desk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-06:i09:r1",
+            "targetText": "The pen is on the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i09:r2",
+            "targetText": "The pen is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i09:r3",
+            "targetText": "The pen is on the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где ручка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `desk`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где ручка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `desk`, а в этом варианте — `chair`.",
+              "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `chair`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-06:i10:p1",
+            "target": "ceiling",
+            "meaningByLocale": {
+              "ru": "потолок",
+              "uk": "стеля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i10:p2",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i10:p3",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i10:p4",
+            "target": "petrol station",
+            "meaningByLocale": {
+              "ru": "заправка",
+              "uk": "заправка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ceiling",
+          "pen",
+          "clinic",
+          "petrol station"
+        ],
+        "rightColumn": [
+          "потолок",
+          "ручка",
+          "клиника",
+          "заправка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i11:audio",
+          "transcript": "The room has a ceiling."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The room has a ceiling.",
+        "orderedTokens": [
+          "The",
+          "room",
+          "has",
+          "a",
+          "ceiling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Клиника рядом с заправкой. Скажите, где она",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Клиника рядом с заправкой. Скажите, где она",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The clinic is next to the petrol station.",
+        "localizedMeaning": {
+          "ru": "Клиника рядом с заправкой. Скажите, где она",
+          "uk": "Клініка поруч із заправкою. Скажіть, де вона"
+        },
+        "orderedTokens": [
+          "The",
+          "clinic",
+          "is",
+          "next",
+          "to",
+          "the",
+          "petrol",
+          "station"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Клиника рядом с заправкой. Скажите, где она",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The clinic is next to the petrol station.`",
+              "uk": "тут потрібно `is` — `The clinic is next to the petrol station.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите коллеге «У меня есть ручка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Сообщите коллеге «У меня есть ручка»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i13:audio",
+          "transcript": "I have a pen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have a pen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У комнаты потолок. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-06:i14:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i14:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У комнаты потолок. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У комнаты потолок. Выберите форму",
+          "uk": "У кімнати стеля. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The room ___ a ceiling.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-06:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У комнаты потолок. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i14:r2",
+            "correct": false,
+            "testedDimension": "У комнаты потолок. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна комната, как `it`: `has`.",
+              "uk": "Одна кімната, як `it`: `has`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i14:r3",
+            "correct": false,
+            "testedDimension": "У комнаты потолок. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Речь о том, что есть у комнаты: `has a ceiling`.",
+              "uk": "Ідеться про те, що є у кімнати: `has a ceiling`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, как чувствует себя подруга",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-06:i15:r1",
+          "text": "She's calm."
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i15:r2",
+          "text": "She's nervous."
+        },
+        {
+          "responseId": "en:lesson-05:session-06:i15:r3",
+          "text": "He's calm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как чувствует себя подруга",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i15:audio",
+          "transcript": "She's calm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-06:i15:r1",
+            "targetText": "She's calm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i15:r2",
+            "targetText": "She's nervous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i15:r3",
+            "targetText": "He's calm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-06:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, как чувствует себя подруга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `calm`, а в этом варианте — `nervous`.",
+              "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `nervous`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-06:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, как чувствует себя подруга",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+              "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-06:i16:p1",
+            "target": "ceiling",
+            "meaningByLocale": {
+              "ru": "потолок",
+              "uk": "стеля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i16:p2",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i16:p3",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-06:i16:p4",
+            "target": "petrol station",
+            "meaningByLocale": {
+              "ru": "заправка",
+              "uk": "заправка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ceiling",
+          "pen",
+          "clinic",
+          "petrol station"
+        ],
+        "rightColumn": [
+          "потолок",
+          "ручка",
+          "клиника",
+          "заправка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-06:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о новом кабинете. Сообщите «У комнаты потолок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о новом кабинете. Сообщите «У комнаты потолок»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-06:i17:audio",
+          "transcript": "The room has a ceiling."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The room has a ceiling.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "74451bfda1f76b38bf77f773a486d75e0a560267c1dc8c4347ee357b36d696be"
+}

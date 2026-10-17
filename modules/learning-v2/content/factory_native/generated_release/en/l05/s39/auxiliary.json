@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-39:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-39:intro1:r3": {
+          "ru": "Одна скрипка: `is this`.",
+          "uk": "Одна скрипка: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-39:intro2:r2": {
+          "ru": "`bottles` — множественное число: `are these`.",
+          "uk": "`bottles` — множина: `are these`."
+        },
+        "en:lesson-05:session-39:intro2:r3": {
+          "ru": "Это «Где бутылки?», а нужен вопрос о владельце.",
+          "uk": "Це «Де пляшки?», а потрібне запитання про власника."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-39:intro3:r2": {
+          "ru": "С `you` нужна форма `are`.",
+          "uk": "З `you` потрібна форма `are`."
+        },
+        "en:lesson-05:session-39:intro3:r3": {
+          "ru": "`sleepy` — сонный; смелый — `brave`.",
+          "uk": "`sleepy` — сонний; сміливий — `brave`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8a0ba7668e44ae9f542bb6ee18925643897f8d1c641a6697be3c6197a34955e0"
+}

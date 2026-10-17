@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "поставить my, your, his, her, its, our или their перед названием вещи",
+    "uk": "поставити my, your, his, her, its, our або their перед назвою речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Моя или ваша",
+        "uk": "Моя чи ваша"
+      },
+      "bodyByLocale": {
+        "ru": "`charger` — «зарядное устройство», в быту «зарядка». `my charger` — «моя зарядка», `your charger` — «твоя / ваша зарядка». `This is my charger` — «Это моя зарядка». Перед `my` или `your` не добавляйте `a` и `the`. Зарядки одинаковые, но «моя» почему-то всегда та, которая работает. `have` — «иметь»: `I have your charger` — «Ваша зарядка у меня».",
+        "uk": "`charger` — «зарядний пристрій», у побуті «зарядка». `my charger` — «моя зарядка», `your charger` — «твоя / ваша зарядка». `This is my charger` — «Це моя зарядка». Перед `my` чи `your` не додавайте `a` і `the`. Зарядки однакові, але «моя» чомусь завжди та, яка працює. `have` — «мати»: `I have your charger` — «Ваша зарядка в мене»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите свою зарядку.",
+          "uk": "Покажіть свою зарядку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-09:intro1:r1",
+              "text": "This is my charger."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro1:r2",
+              "text": "This is a my charger."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro1:r3",
+              "text": "This is your charger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-09:intro1:r1",
+              "text": "This is my charger."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro1:r2",
+              "text": "This is a my charger."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro1:r3",
+              "text": "This is your charger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите свою зарядку.",
+          "uk": "Покажіть свою зарядку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Его, её, наше и их",
+        "uk": "Його, її, наше та їхнє"
+      },
+      "bodyByLocale": {
+        "ru": "`his charger` — «его зарядка», `her charger` — «её зарядка», `our charger` — «наша зарядка», `their charger` — «их зарядка». Выбираем по владельцу: мужчина — `his`, женщина — `her`; мы — `our`, они — `their`. Род русского слова «зарядка» не делает любую зарядку `her`. `its` — «его / её» для предмета или животного, о котором говорим `it`: `its door` — «его дверь», например дверь шкафа. В `its` здесь нет апострофа.",
+        "uk": "`his charger` — «його зарядка», `her charger` — «її зарядка», `our charger` — «наша зарядка», `their charger` — «їхня зарядка». Вибираємо за власником: чоловік — `his`, жінка — `her`; ми — `our`, вони — `their`. Рід українського слова «зарядка» не робить кожну зарядку `her`. `its` — «його / її» для предмета чи тварини, про яку кажемо `it`: `its door` — «її двері», якщо йдеться про шафу. В `its` тут немає апострофа."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Зарядка принадлежит мужчине. Выберите сочетание.",
+          "uk": "Зарядка належить чоловікові. Виберіть сполучення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-09:intro2:r1",
+              "text": "his charger"
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro2:r2",
+              "text": "her charger"
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro2:r3",
+              "text": "their charger"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-09:intro2:r1",
+              "text": "his charger"
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro2:r2",
+              "text": "her charger"
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro2:r3",
+              "text": "their charger"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Зарядка принадлежит мужчине. Выберите сочетание.",
+          "uk": "Зарядка належить чоловікові. Виберіть сполучення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто стоит у двери",
+        "uk": "Хто стоїть біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`door` — «дверь», `dentist` — «стоматолог». `tall` — «высокий» о человеке, `short` — «невысокий», `young` — «молодой». `Our dentist is young` — «Наш стоматолог молодой». Слово перед названием подходит не только вещам: `our dentist` — наш стоматолог. `Their door is open` — «Их дверь открыта»: владельцев несколько, но дверь одна, поэтому `is`.",
+        "uk": "`door` — «двері», `dentist` — «стоматолог». `tall` — «високий» про людину, `short` — «невисокий», `young` — «молодий». `Our dentist is young` — «Наш стоматолог молодий». Слово перед назвою підходить не лише речам: `our dentist` — наш стоматолог. `Their door is open` — «Їхні двері відчинені»: власників кілька, але англійське `door` означає одні двері, тому `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Их дверь открыта. Выберите фразу.",
+          "uk": "Їхні двері відчинені. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-09:intro3:r1",
+              "text": "Their door is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro3:r2",
+              "text": "Their door are open."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro3:r3",
+              "text": "Our door is open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-09:intro3:r1",
+              "text": "Their door is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro3:r2",
+              "text": "Their door are open."
+            },
+            {
+              "responseId": "en:lesson-05:session-09:intro3:r3",
+              "text": "Our door is open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Их дверь открыта. Выберите фразу.",
+          "uk": "Їхні двері відчинені. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "12c2808a459f2d2e2f69cf2d10889fe9eac9e539f3074db5eb5fb7a031f432db"
+}

@@ -10,7 +10,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
-import { Animated, Easing, Modal, PanResponder, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Modal, PanResponder, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralFormFor, type PluralForms } from '../../constants/plural';
@@ -182,6 +182,16 @@ function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlu
           accessibilityViewIsModal
         >
           <View style={[styles.grabber, { backgroundColor: g.opaqueControl }]} />
+          {/* зачем (сторож reachable_action_buttons, Темы/координатор 17.10): на низком экране или с крупным шрифтом текст шторки
+              может не влезть — он прокручивается, а кнопки ниже всегда на месте и над нижней безопасной зоной. */}
+          <ScrollView
+            style={styles.scroll}
+            contentContainerStyle={styles.scrollContent}
+            bounces={false}
+            alwaysBounceVertical={false}
+            showsVerticalScrollIndicator={false}
+            testID="learning-v2-voice-headsup-scroll"
+          >
           <View style={[styles.mic, { backgroundColor: g.accentSoft }]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
             <Ionicons name="mic-outline" size={30} color={g.accentGraphic} />
             <View style={[styles.badge, { backgroundColor: g.ctaFill, boxShadow: `0 0 0 2.5px ${g.opaqueCard}` }]}>
@@ -200,6 +210,7 @@ function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlu
             ))}
             <Text style={[styles.counterText, { color: g.text }]} maxFontSizeMultiplier={1.3}>{`${copy.today} · ${remaining} ${copy.of} ${limit}`}</Text>
           </View>
+          </ScrollView>
           <Lv2Cta onPress={tryPlus} style={styles.cta} testID="learning-v2-voice-headsup-plus">{copy.plus}</Lv2Cta>
           <Pressable
             onPress={() => { void hapticTap(); startAnyway(); }}
@@ -224,7 +235,10 @@ const styles = StyleSheet.create({
   sheet: {
     borderTopLeftRadius: 30, borderTopRightRadius: 30, paddingTop: 10, paddingHorizontal: 22, alignItems: 'center',
     boxShadow: '0 -18px 40px -18px rgba(0,0,0,0.35)', // theme-exempt: тень шторки — тёмная в любой теме (стиль «Тень»)
+    maxHeight: '92%', // шторка не выше экрана: лишний текст уходит в прокрутку, кнопки остаются видны
   },
+  scroll: { alignSelf: 'stretch', flexGrow: 0, flexShrink: 1 },
+  scrollContent: { alignItems: 'center' },
   grabber: { width: 38, height: 5, borderRadius: 3, marginBottom: 18 },
   mic: { width: 64, height: 64, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   badge: {

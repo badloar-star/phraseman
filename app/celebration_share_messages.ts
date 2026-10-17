@@ -1,5 +1,6 @@
 import type { Lang } from '../constants/i18n';
 import type { MedalTier } from './medal_utils';
+import { celebrationShareForMoreLocales } from './share_messages_more_locales';
 
 export type CelebrationShareKind =
   | 'medal'
@@ -25,6 +26,17 @@ export function buildCelebrationShareBody(
 ): string {
   const emoji =
     opts.medalTier === 'gold' ? '🥇' : opts.medalTier === 'silver' ? '🥈' : '🥉';
+
+  // зачем (17.10, открытие английского): en/pt-BR/vi/id/tr/pl раньше получали русский текст. Медаль без уровня, как и ниже,
+  // уходит в последнюю ветку (экзамен Лингмана).
+  const moreLocaleKind = kind === 'medal' && !opts.medalTier ? 'lingman_exam_unlock' : kind;
+  const moreLocale = celebrationShareForMoreLocales(moreLocaleKind, lang, {
+    lessonId: kind === 'lesson_unlock' ? opts.unlockedLessonId ?? lessonId : lessonId,
+    score: lessonScore,
+    emoji,
+    level: opts.cefrLevel ?? '—',
+  });
+  if (moreLocale) return moreLocale;
 
   if (kind === 'medal' && opts.medalTier) {
     const ru = pick([

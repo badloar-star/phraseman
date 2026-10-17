@@ -1,4 +1,5 @@
 import type { Lang } from '../constants/i18n';
+import { achievementShareForMoreLocales } from './share_messages_more_locales';
 
 function pickRandom<T>(values: T[]): T {
   return values[Math.floor(Math.random() * values.length)]!;
@@ -44,6 +45,9 @@ export function buildAchievementShareMessage(lang: Lang, name: string, storeUrl:
     `+1 a la colección de victorias lingüísticas. 🏅 «${name}» en Phraseman conseguido. ¡Siguiente!`,
     `Mi Phraseman brilla. ✨ Logro «${name}» añadido. Flex rápido de progreso.`,
   ];
+  // зачем (17.10, открытие английского): en/pt-BR/vi/id/tr/pl раньше получали русский текст
+  const moreLocale = achievementShareForMoreLocales(lang, name);
+  if (moreLocale) return `${moreLocale}\n${storeUrl}`;
   const pool = lang === 'uk' ? variantsUk : lang === 'es' ? variantsEs : variantsRu;
   return `${pickRandom(pool)}\n${storeUrl}`;
 }

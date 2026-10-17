@@ -91,6 +91,40 @@ describe('buildCelebrationShareBody', () => {
     });
   }
 
+  // зачем (17.10, открытие английского): en/pt-BR/vi/id/tr/pl получали русский текст «Поделиться» — теперь свои пулы
+  it('en/pt-BR/vi/id/tr/pl share texts have no Cyrillic and keep brand + numbers (all four kinds, every variant)', () => {
+    const langs = ['en', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+    for (const r of [0, 0.34, 0.67, 0.99]) {
+      jest.spyOn(Math, 'random').mockReturnValue(r);
+      for (const lang of langs) {
+        const medal = buildCelebrationShareBody('medal', lang, 11, 95, { medalTier: 'gold' });
+        const unlock = buildCelebrationShareBody('lesson_unlock', lang, 9, 100, { unlockedLessonId: 12 });
+        const level = buildCelebrationShareBody('level_exam_unlock', lang, 9, 100, { cefrLevel: 'B1' });
+        const lingman = buildCelebrationShareBody('lingman_exam_unlock', lang, 9, 100, {});
+        for (const body of [medal, unlock, level, lingman]) {
+          expect(body).toMatch(/Phraseman/u);
+          expect(body).not.toMatch(/[Ѐ-ӿ]/u);
+        }
+        expect(medal).toContain('11');
+        expect(medal).toContain('95');
+        expect(unlock).toContain('12');
+        expect(level).toContain('B1');
+        expect(lingman).toContain('Lingman');
+      }
+      jest.restoreAllMocks();
+    }
+  });
+
+  it('achievement share for en/pt-BR/vi/id/tr/pl: own text with the name, no Cyrillic', () => {
+    const { buildAchievementShareMessage } = require('../app/achievement_share');
+    for (const lang of ['en', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
+      const msg: string = buildAchievementShareMessage(lang, 'Streak 7', STORE);
+      expect(msg).toContain('Streak 7');
+      expect(msg.endsWith('\n' + STORE)).toBe(true);
+      expect(msg).not.toMatch(/[Ѐ-ӿ]/u);
+    }
+  });
+
   it('lesson_unlock inserts lesson id across locales', () => {
     for (let i = 0; i < 30; i++) {
       jest.spyOn(Math, 'random').mockReturnValue(((i + 3) % 11) / 11);

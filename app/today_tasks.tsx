@@ -104,8 +104,9 @@ export default function TodayTasksScreen() {
 
   const openTask = (task: TodayTask) => {
     console.log('[TODAY-RING] task:open', JSON.stringify({ kind: task.kind, route: task.route, progress: task.progress, target: task.target, done: task.done })); // guard-ok: одна строка на тап
-    // зачем: вкладки (Видео, Пик в «Сообществе») — переход на вкладку, остальное — защищённый от двойного тапа push
-    if (task.route.startsWith('/(tabs)')) router.navigate(task.route as never);
+    // зачем: вкладки (Видео, Пик в «Сообществе») — экран «Сегодня» закрывается и открывается вкладка (dismissTo; navigate оставлял экран поверх вкладки —
+    // эмулятор 17.10: Пик грузился ПОД «Сегодня»); остальное — защищённый от двойного тапа push
+    if (task.route.startsWith('/(tabs)')) router.dismissTo(task.route as never);
     else nav.push(task.route as never);
   };
 

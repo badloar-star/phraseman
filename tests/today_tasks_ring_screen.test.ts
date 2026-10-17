@@ -100,3 +100,11 @@ describe('заголовок экрана «Сегодня» 28/34 (макет �
     expect(read('app/today_tasks.tsx')).toContain('title: { flex: 1, ...V2_TYPE.title, fontSize: 28, lineHeight: 34 },');
   });
 });
+
+describe('задача-вкладка с экрана «Сегодня» закрывает экран и открывает вкладку', () => {
+  it('dismissTo для /(tabs)/…, не navigate (эмулятор 17.10: Пик открывался под экраном «Сегодня»)', () => {
+    const screen = read('app/today_tasks.tsx');
+    expect(screen).toContain("if (task.route.startsWith('/(tabs)')) router.dismissTo(task.route as never);");
+    expect(screen).not.toMatch(/router\.navigate\(task\.route/);
+  });
+});

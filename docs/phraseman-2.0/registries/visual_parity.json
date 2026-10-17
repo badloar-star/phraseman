@@ -21507,10 +21507,11 @@
       "id": "system-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/system.html",
-        "phone": 19,
-        "label": "Включить напоминания?",
-        "mapping": "label_remap_2026-10-10"
+        "file": "docs/design/v2-app/notif-nudge.html",
+        "phone": 3,
+        "label": "Запрос · «Сумерки»",
+        "mapping": "pinned",
+        "prev_file": "docs/design/v2-app/system.html"
       },
       "screen": "Просьбы и оплата",
       "state": "Включить напоминания?",
@@ -21530,7 +21531,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Координатор 18.10: эталон переведён на гибридный вид 2.0 (тот же компонент NotificationPermissionModalHybrid, тексты «Включить» / «Не сейчас»); прежний — system.html №19 ({\"file\":\"docs/design/v2-app/system.html\",\"phone\":19,\"label\":\"Включить напоминания?\",\"mapping\":\"label_remap_2026-10-10\"}). УТВЕРДИТЬ ВЛАДЕЛЬЦУ."
     },
     {
       "id": "system-017",
@@ -44795,16 +44797,16 @@
       "anim_notes": [
         "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r6/r6-winback30_b.png",
+      "evidence_at": "2026-10-17T22:29:26.000Z",
+      "evidence_sha256": "d809978cacad79fac136e920a3b18171b5dc5e5945855d43d9e2eb66aa2a2530",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T22:50:47.939Z",
       "blocked_reason": null,
       "release": "r1",
       "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
@@ -44812,7 +44814,9 @@
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=ink&appearance=light&legacybonus=demo&next=/(tabs)/home",
         "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
         "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
-      }
+      },
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "ПЕРЕСНЯТЬ: кадр r6-winback30 («Сумерки») снят посреди анимации пересчёта — монеты летят, итог «0», чип «+810 монет», строка «Жемчуг» без галочки. Нужен кадр через ~3 с после открытия."
     },
     {
       "id": "whats-new-002",
@@ -44836,21 +44840,16 @@
       "anim_notes": [
         "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
       ],
-      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r5/r5-whatsnew-demo_b.png",
-      "evidence_at": "2026-10-17T21:02:30.000Z",
-      "evidence_sha256": "ffd2dc0b683ffbb06bc6cdd1fc417e56bd5e74fc18237abf79a766fcc0fc4779",
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r6/r6-winback8_b.png",
+      "evidence_at": "2026-10-17T22:29:04.000Z",
+      "evidence_sha256": "645394add2056b4005fe7dfa35f5c2206f4df6e0a3dac4f43fef8e477e9e1218",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Заголовок «Встречайте PhraseMan 2.0»: в эталоне одна строка ~18–20, в приложении две строки ~26 (крупнее).",
-        "Строки бонусов: в эталоне внутри одной карточки, слева квадратная отметка-галочка (заливка акцента); в приложении каждая строка на своей плашке, слева контурный значок (искра / круг / мишень).",
-        "Суммы: в эталоне — сколько монет дал бонус («+106 / +860 / +260», цвет акцента); в приложении — исходное количество бонуса белым («8 362 / 120 / 1», «81»).",
-        "Итого: в приложении «0 монет» при показанных бонусах — пересчёт в монеты не выполнен (ср. R103: legacyBonusConvertMine нет в проде); в эталоне итог = сумма строк."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-17T21:09:45.115Z",
+      "reviewed_at": "2026-10-17T22:50:47.939Z",
       "blocked_reason": null,
       "release": "r1",
       "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
@@ -44860,7 +44859,7 @@
         "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
       },
       "verdict_by": "Макеты 18.10",
-      "verdict_note": "Кадр r5 по README Сверки годен только как внешний вид окна (не как проход сценария). Кадр в теме «Аврора», эталон — «Океан»: цвета (заливка шторки, кнопка, монета) не сверялись — переснять в «Океане» и «Сумерках» (whats-new-001…006)."
+      "verdict_note": "РЕШЕНИЕ ВЛАДЕЛЬЦА (координатор 18.10): заголовок «Встречайте PhraseMan 2.0» — эталон на экране рисуется 20/700 в одну строку (правило страницы .lab h1 перебивает .title), исходник макета и код — 28/34·800 в две строки. Выбрать одно; правка в любую сторону ~5 минут. Остальное окно (строки, галочки, суммы, карточка, итог, «Понятно») — как в эталоне; монета итога — ранг профиля (данные). Кадр r6-winback8 23:29."
     },
     {
       "id": "whats-new-003",
@@ -45036,6 +45035,84 @@
       },
       "verdict_by": "Макеты 18.10",
       "verdict_note": "Кадр r5 по README Сверки годен только как внешний вид окна (не как проход сценария). Кадр в теме «Аврора», эталон — «Океан»: цвета (заливка шторки, кнопка, монета) не сверялись — переснять в «Океане» и «Сумерках» (whats-new-001…006)."
+    },
+    {
+      "id": "notif-nudge-001",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "screen": "Главная · подсказка про напоминания после пропущенных дней",
+      "code": [
+        "components/NotificationPermissionModalHybrid.tsx",
+        "app/notif_nudge_copy.ts",
+        "app/_layout.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "каскад появления строк (CascadeItem)"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r7/r7-notifnudge_b.png",
+      "evidence_at": "2026-10-17T22:44:39.000Z",
+      "evidence_sha256": "6a06eec5e82e47c27a4a9bf01d4bb3ed123d097c5f5996e330f66e052431960f",
+      "shot_at": null,
+      "shot_at_source": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T22:53:26.588Z",
+      "blocked_reason": null,
+      "mockup_pinned": "Координатор 18.10 (решение «б»): эталона не было — нарисован по коду NotificationPermissionModalHybrid; УТВЕРДИТЬ ВЛАДЕЛЬЦУ. system-016 эталоном не считается.",
+      "added_reason": "координатор 18.10: подсказка «Без практики» без эталона",
+      "verdict_by": "Макеты 18.10",
+      "mockup": {
+        "file": "docs/design/v2-app/notif-nudge.html",
+        "phone": 1,
+        "label": "Подсказка · «Сумерки»",
+        "mapping": "pinned"
+      },
+      "state": "подсказка «Без практики: 3 дня», тема «Сумерки»",
+      "verdict_note": "Кадр r7 (после перезапуска эмулятора): окно открывается целиком, «Включить напоминания» / «Позже» читаются (Сверка ✅). Эталон нарисован по коду, поэтому раскладка совпадает по построению; цвета кадра — светлая тема с мятной кнопкой, эталон «Сумерки» — тёмная кнопка: проверить тему кадра при пересъёмке. Ждёт утверждения эталона владельцем."
+    },
+    {
+      "id": "notif-nudge-002",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "screen": "Главная · подсказка про напоминания после пропущенных дней",
+      "code": [
+        "components/NotificationPermissionModalHybrid.tsx",
+        "app/notif_nudge_copy.ts",
+        "app/_layout.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "каскад появления строк (CascadeItem)"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "shot_at": null,
+      "shot_at_source": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T22:53:26.588Z",
+      "blocked_reason": null,
+      "mockup_pinned": "Координатор 18.10 (решение «б»): эталона не было — нарисован по коду NotificationPermissionModalHybrid; УТВЕРДИТЬ ВЛАДЕЛЬЦУ. system-016 эталоном не считается.",
+      "added_reason": "координатор 18.10: подсказка «Без практики» без эталона",
+      "verdict_by": "Макеты 18.10",
+      "mockup": {
+        "file": "docs/design/v2-app/notif-nudge.html",
+        "phone": 2,
+        "label": "Подсказка · «Океан»",
+        "mapping": "pinned"
+      },
+      "state": "подсказка «Без практики: 3 дня», тема «Океан»",
+      "verdict_note": "Кадра в «Океане» нет — снять. Ждёт утверждения эталона владельцем."
     },
     {
       "id": "moments-v3-m04-a",

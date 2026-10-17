@@ -8,6 +8,7 @@ jest.mock('../app/config', () => ({
 
 import {
   coerceInterfaceLang,
+  resolveBootstrapLocaleDecision,
   resolveBootstrapLocaleFromDeviceLocale,
 } from '../constants/i18n';
 
@@ -32,11 +33,18 @@ describe('bootstrap locale contract', () => {
   });
 
   it('falls back safely for unknown or malformed device locales', () => {
-    // зачем (владелец 17.10, английский открыт): en-телефон стартует на en; незнакомый язык телефона — запасной ru
+    // зачем (координатор 17.10, английский открыт): незнакомый язык телефона (немецкий, французский…) → en;
+    // русский запасной только для русскоязычных регионов — ru/be/kk/ky
     expect(resolveBootstrapLocaleFromDeviceLocale('en-US')).toBe('en');
-    expect(resolveBootstrapLocaleFromDeviceLocale('de-DE')).toBe('ru');
-    expect(resolveBootstrapLocaleFromDeviceLocale('')).toBe('ru');
-    expect(resolveBootstrapLocaleFromDeviceLocale(null)).toBe('ru');
+    expect(resolveBootstrapLocaleFromDeviceLocale('de-DE')).toBe('en');
+    expect(resolveBootstrapLocaleFromDeviceLocale('fr_FR')).toBe('en');
+    expect(resolveBootstrapLocaleFromDeviceLocale('be-BY')).toBe('ru');
+    expect(resolveBootstrapLocaleFromDeviceLocale('kk-KZ')).toBe('ru');
+    expect(resolveBootstrapLocaleFromDeviceLocale('ky-KG')).toBe('ru');
+    expect(resolveBootstrapLocaleFromDeviceLocale('')).toBe('en');
+    expect(resolveBootstrapLocaleFromDeviceLocale(null)).toBe('en');
+    expect(resolveBootstrapLocaleDecision('de-DE')).toEqual({ lang: 'en', reason: 'unknown_to_en' });
+    expect(resolveBootstrapLocaleDecision('kk-KZ')).toEqual({ lang: 'ru', reason: 'ru_region' });
   });
 
   it('does not add language or pack readiness to the native splash gate', () => {

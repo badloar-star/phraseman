@@ -88,17 +88,41 @@ export function coerceInterfaceLang(value: unknown): Lang | null {
   return normalized && isInterfaceLangEnabled(normalized) ? normalized : null;
 }
 
+// зачем (координатор 17.10, после открытия английского): телефон на языке, которого у нас нет (немецкий, французский…),
+// стартует на английском — человеку из Германии английский понятнее русского. Русский остаётся запасным только для
+// русскоязычных регионов (белорусский, казахский, киргизский интерфейс телефона). Пока английский закрыт — прежний ru.
+const RU_FALLBACK_DEVICE_LANG_BASES: ReadonlySet<string> = new Set(['ru', 'be', 'kk', 'ky']);
+
+export type BootstrapLocaleReason =
+  | 'device_supported'
+  | 'ru_region'
+  | 'unknown_to_en'
+  | 'unknown_to_ru_en_closed'
+  | 'malformed_to_en'
+  | 'malformed_to_ru_en_closed';
+
+/** Язык первого запуска по локали телефона и причина выбора (для журнала [UI-LANG-EN]). */
+export function resolveBootstrapLocaleDecision(deviceLocale: unknown): { lang: Lang; reason: BootstrapLocaleReason } {
+  const raw = typeof deviceLocale === 'string' ? deviceLocale.trim() : '';
+  const normalized = raw ? normalizeInterfaceLangCandidate(raw) : null;
+  if (normalized && isInterfaceLangEnabled(normalized)) return { lang: normalized, reason: 'device_supported' };
+  const enOpen = isInterfaceLangEnabled('en');
+  if (!raw) return enOpen ? { lang: 'en', reason: 'malformed_to_en' } : { lang: 'ru', reason: 'malformed_to_ru_en_closed' };
+  const base = raw.replace(/_/g, '-').toLowerCase().split('-')[0] ?? '';
+  if (RU_FALLBACK_DEVICE_LANG_BASES.has(base)) return { lang: 'ru', reason: 'ru_region' };
+  return enOpen ? { lang: 'en', reason: 'unknown_to_en' } : { lang: 'ru', reason: 'unknown_to_ru_en_closed' };
+}
+
 export function resolveBootstrapLocaleFromDeviceLocale(deviceLocale: unknown): Lang {
-  const normalized = typeof deviceLocale === 'string'
-    ? normalizeInterfaceLangCandidate(deviceLocale)
-    : null;
-  return normalized && isInterfaceLangEnabled(normalized) ? normalized : 'ru';
+  return resolveBootstrapLocaleDecision(deviceLocale).lang;
 }
 
 export function getDeviceBootstrapLocale(): Lang {
   try {
     return resolveBootstrapLocaleFromDeviceLocale(Intl.DateTimeFormat().resolvedOptions().locale);
-  } catch {
+  } catch (error) {
+    // зачем: локаль не прочиталась — запасной ru (основная аудитория); причина в журнале, не немой catch
+    console.warn('[UI-LANG-EN] device_locale_unreadable → ru', error instanceof Error ? error.message : String(error));
     return 'ru';
   }
 }

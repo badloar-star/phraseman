@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback, use
 import { DeviceEventEmitter, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, type Lang } from '../constants/i18n';
+import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, resolveBootstrapLocaleDecision, type Lang } from '../constants/i18n';
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
 import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
 import { publishResolvedUiLang } from '../app/ui_lang_resolved';
@@ -1222,9 +1222,9 @@ function initialLangFromPeekOrDevice(): Lang {
   if (__DEV__) {
     let deviceLocale = 'unknown';
     try { deviceLocale = Intl.DateTimeFormat().resolvedOptions().locale; } catch (e) { deviceLocale = `error:${String(e)}`; }
-    if (initial === 'en' || /^en\b/iu.test(deviceLocale)) {
-      console.log(`[UI-LANG-EN] initial lang=${initial} source=${peeked ? 'peek' : 'device'} device=${deviceLocale} enOpen=${String(isInterfaceLangEnabled('en'))}`);
-    }
+    // причина выбора: device_supported / ru_region (ru,be,kk,ky) / unknown_to_en (язык, которого у нас нет) / malformed_*
+    const reason = peeked ? 'saved_choice' : resolveBootstrapLocaleDecision(deviceLocale).reason;
+    console.log(`[UI-LANG-EN] initial lang=${initial} source=${peeked ? 'peek' : 'device'} reason=${reason} device=${deviceLocale} enOpen=${String(isInterfaceLangEnabled('en'))}`);
   }
   // зачем (координатор 12.10, 🔴 Шпиль): замки вне React (Шпиль) должны знать язык, которым нарисован ПЕРВЫЙ кадр,
   // а не сырое app_lang (у кого язык не выбирался вручную, его нет). Запись идемпотентна — повторный вызов безвреден.

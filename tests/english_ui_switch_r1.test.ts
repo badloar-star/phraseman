@@ -29,12 +29,17 @@ describe('English interface in R1', () => {
     expect(i18n.getVisibleInterfaceLanguageOptions(true).map((o) => o.code)).toContain('en');
     expect(i18n.resolveBootstrapLocaleFromDeviceLocale('en-US')).toBe('en');
     expect(i18n.coerceInterfaceLang('en')).toBe('en');
+    // зачем (координатор 17.10): язык телефона, которого у нас нет, → en; русскоязычный регион → ru
+    expect(i18n.resolveBootstrapLocaleDecision('de-DE')).toEqual({ lang: 'en', reason: 'unknown_to_en' });
+    expect(i18n.resolveBootstrapLocaleDecision('be-BY')).toEqual({ lang: 'ru', reason: 'ru_region' });
   });
 
   it('flag off: English stays hidden in the store and a device in English falls back to Russian', () => {
     const i18n = loadI18n(false);
     expect(i18n.getVisibleInterfaceLanguageOptions(true).map((o) => o.code)).not.toContain('en');
     expect(i18n.resolveBootstrapLocaleFromDeviceLocale('en-US')).toBe('ru');
+    // пока английский закрыт, незнакомый язык телефона — прежний запасной ru
+    expect(i18n.resolveBootstrapLocaleDecision('de-DE')).toEqual({ lang: 'ru', reason: 'unknown_to_ru_en_closed' });
   });
 
   it('a pick in Settings applies at once: state and peek before the disk write, then the change event', () => {

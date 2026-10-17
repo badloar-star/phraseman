@@ -18,6 +18,7 @@ import {
   type LearningV2CourseAccordionRowV1,
   type LearningV2PreparedAccordionProgressV1,
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
+import { noteBackArrived, noteBackDecision, noteBackTap } from "../../app/back_tap_probe";
 import BackGlyph from '../v2/BackGlyph';
 
 interface Props {
@@ -248,10 +249,13 @@ export default function LearningV2ChaptersCourse(props: Props) {
     setAllLessonsOpen(false);
   }, [props]);
 
+  // зачем ([BACK-BTN] 18.10, Сверка: на «Все уроки» метки не было): возврат на карту — тап → решение → кадры → «прибыли»; без тапа ничего не пишет
+  useEffect(() => { if (!allLessonsOpen) noteBackArrived('v2_map', 'all_lessons_closed'); }, [allLessonsOpen]);
+
   if (allLessonsOpen) {
     return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
       <View style={styles.header}>
-        <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => setAllLessonsOpen(false)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}>
+        <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => { noteBackTap('v2_all_lessons', 'header_back_button'); noteBackDecision('all_lessons → map'); setAllLessonsOpen(false); }} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}>
           <BackGlyph size={24} color={g.text} />
         </PressableHybrid>
         <Text style={[styles.headerTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text>

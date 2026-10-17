@@ -39,6 +39,7 @@ import { requestOpenDevHub } from '../dev_hub_bus';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
+import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
 import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
@@ -352,6 +353,7 @@ export default function SettingsMain() {
   const handleSettingsScroll = useCallback((e: any) => {
     topFadeScroll?.onScroll?.(e);
     settingsScrollYRef.current = Math.max(0, e?.nativeEvent?.contentOffset?.y ?? 0);
+    noteScrollOffset('settings', settingsScrollYRef.current); // зачем ([SCROLL-RESTORE] 18.10): рывок положения без пальца вскоре после смены языка или показа вкладки
     onBouncyScroll(e);
   }, [onBouncyScroll, topFadeScroll]);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
@@ -360,11 +362,14 @@ export default function SettingsMain() {
   const settingsTabVisible = runtimeOwnerId === 'settings';
   const settingsRuntimeActive = useRuntimeActive(settingsTabVisible);
 
+  // зачем ([SCROLL-RESTORE] 18.10, находка Сверки: Настройки открываются прокрученными вниз): положение, которое сейчас будет выставлено восстановлением, и размер содержимого — в журнал ДО scrollTo
   useEffect(() => {
     if (settingsTabVisible && scrollRef.current) {
+      noteScrollEvent('settings', 'tab_visible', { setBy: 'restore_scrollTo', savedY: Math.round(settingsScrollYRef.current), focusTick });
       scrollRef.current.scrollTo({ y: settingsScrollYRef.current, animated: false });
     }
   }, [settingsTabVisible]);
+  useEffect(() => { noteScrollEvent('settings', 'lang_change', { lang, savedY: Math.round(settingsScrollYRef.current) }); }, [lang]);
 
   const appSnapshot = useAppSnapshotSelector((snapshot) => ({
     profile: snapshot.profile,
@@ -1049,6 +1054,9 @@ export default function SettingsMain() {
         alwaysBounceVertical
         overScrollMode="always"
         onScroll={handleSettingsScroll}
+        onScrollBeginDrag={() => noteScrollDrag('settings', true)}
+        onScrollEndDrag={() => noteScrollDrag('settings', false)}
+        onContentSizeChange={(_w: number, h: number) => noteScrollContentHeight('settings', h)}
       >
 
         {/* зачем (redesign-round-1 вариант A «Группы одним блоком», владелец 04.10): шапка «Настройки» 40/46

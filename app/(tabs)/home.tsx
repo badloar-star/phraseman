@@ -55,6 +55,8 @@ import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
 import { sameSnapshotSection } from '../home_snapshot_equal';
+import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
+import { useHomeFocusCostBegin, useHomeFocusCostEnd } from '../home_focus_cost_probe';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -531,6 +533,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
   // зачем ((в), пакет 07:26: фиксация +5,6 с → кадр +8,1 с): ПЕРВЫЙ объявленный пассивный эффект Главной. Пассивные
   // эффекты идут по порядку объявления, дочерние — раньше родителя; пара с последним эффектом ниже делит окно.
   useEffect(() => { if (homeFirstPassiveStartedAt === 0) homeFirstPassiveStartedAt = Date.now(); }, []);
+  const homeFocusCost = useHomeFocusCostBegin(); // зачем ([HOME-FOCUS-COST] 18.10, [BACK-BTN] «Сегодня»: JS занят 200–650 мс после возврата): сколько стоит рендер корня с детьми и собственные эффекты корня; dev, в релизе пусто
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
@@ -619,6 +622,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeTabBarLastY = useSharedValue(0);
     const notifyHomeScrollY = useCallback((y: number) => {
         homeScrollYRef.current = y;
+        noteScrollOffset('home', y); // зачем ([SCROLL-RESTORE] 18.10): рывок положения без пальца вскоре после смены языка или фокуса
         topFadeScroll?.reportTabBarOffset?.(y);
         refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility, topFadeScroll]);
@@ -638,10 +642,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [homeTabBarLastY, homeTopFadeShown, notifyHomeScrollY]);
     const handleHomeScrollSettled = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
+        noteScrollDrag('home', false);
+        noteScrollOffset('home', homeScrollYRef.current);
         refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility]);
     const { goToTab, activeIdx, runtimeOwnerId } = useTabNav();
     const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
+    // зачем ([SCROLL-RESTORE] 18.10, находка Сверки: Главная открывается прокрученной вниз): у Главной нет своего scrollTo, поэтому пишем события, после которых положение могло смениться, и размер содержимого
+    useEffect(() => { noteScrollEvent('home', 'lang_change', { lang, y: Math.round(homeScrollYRef.current), setBy: 'none_no_scrollTo_on_home' }); }, [lang]);
+    useEffect(() => { noteScrollEvent('home', 'focus', { focusTick, y: Math.round(homeScrollYRef.current), setBy: 'none_no_scrollTo_on_home' }); }, [focusTick]);
     // зачем (HOME-COLD_cold1: video:start через 5 998 мс, homeOnboardingDone:false): флаг, уже прочитанный корнем,
     // включает homeRuntimeActive на первом кадре; multiGet ниже остаётся источником правды.
     const [homeOnboardingDone, setHomeOnboardingDone] = useState(() => takeOnboardingDonePeek() === true);
@@ -1023,12 +1032,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         void getMistakePracticeHomeCounts(mistakeStudyTarget)
             .then((counts) => {
                 if (cancelled || !isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
-                setMistakeReadySnapshot({
+                // зачем ([HOME-SETSTATE] 18.10, замер home_renders.txt: mistakeReadySnapshot давал рендер на каждом втором возврате): те же числа — прежняя ссылка, Главная не перерисовывается
+                setMistakeReadySnapshot((prev) => (prev && prev.target === String(studyTarget) && prev.ownerKey === requestOwnerKey && prev.count === counts.ready && prev.active === counts.active ? prev : {
                     target: String(studyTarget),
                     ownerKey: requestOwnerKey,
                     count: counts.ready,
                     active: counts.active,
-                });
+                }));
                 // зачем (владелец 2026-09-14): подсказка хаба должна быть готова ДО
                 // открытия раздела - греем раз в сутки фоном, пока человек на Главной.
                 // Греем только у открытого раздела: ниже порога подсказку не увидят.
@@ -1044,12 +1054,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // зачем: раньше catch молчал - счётчик обнулялся без следа.
                 console.warn('[MISTAKES-HUB] home:counts:catch → 0', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен (правило владельца «сперва логи»)
                 if (cancelled || !isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
-                setMistakeReadySnapshot({
+                setMistakeReadySnapshot((prev) => (prev && prev.target === String(studyTarget) && prev.ownerKey === requestOwnerKey && prev.count === 0 && prev.active === 0 ? prev : {
                     target: String(studyTarget),
                     ownerKey: requestOwnerKey,
                     count: 0,
                     active: 0,
-                });
+                }));
             });
         return () => {
             cancelled = true;
@@ -2488,7 +2498,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);
         const renderHomeV2 = () => (
-          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
+          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => noteScrollDrag('home', true)} onContentSizeChange={(_w: number, h: number) => noteScrollContentHeight('home', h)} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
             homeViewportHeightRef.current = event.nativeEvent.layout.height;
             refreshDailyPhraseVisibility();
           }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>
@@ -2714,7 +2724,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
         goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,
+        // зачем ([HOME-SETSTATE] 18.10): значения, которых не было в снимке — «parent_or_unlisted» на возврате (~0,3 с и ~1,2 с) не имел названной причины; onOpenDevHub — признак «перерисовал родитель»
+        continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount, opened, homeMotionReduceMotion, homePriorityCardReduceMotion, homeFeatureTipReduceMotion, onOpenDevHub,
     }), homeRuntimeActive, true);
+    useHomeFocusCostEnd(homeFocusCost, 'home'); // зачем ([HOME-FOCUS-COST]): ПОСЛЕДНИЙ эффект корня — парой к useHomeFocusCostBegin
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>
       <ScreenGradient>
       <View style={{ flex: 1 }}>

@@ -222,3 +222,41 @@ node scripts/shard_surveys_retire_v1.mjs --write --confirm SHARD_SURVEYS_RETIRE_
 Откат заведения: `--restore .codex-tmp/survey-v2-seed/checkpoint-<время>.json --write --confirm SHARD_SURVEYS_V2_SEED`. Новые
 опросы выключаются, ничего не удаляется. Откат старых — по 5.
 Награды за опрос нет (PM-058, выплата 0); поле `rewardShards: 1` нужно только для валидации.
+
+## 6. Репетиция утренней выкладки сайта — 18.10 ~01:30 (Сайт), без выкладки и без входа в прод
+
+Чистая выгрузка HEAD 63cc84ceb (`bash scripts/deploy_from_clean_head.sh --only "hosting:knowlywww"`) — PASS: каркас сайта, страницы
+политики = legal/*.json, `firebase deploy --dry-run`.
+
+| Проверка | Итог |
+|---|---|
+| Текст политики/условий на сайте = `app/legal` (то, что в сборке) | privacy 143/143 строк, privacy-ios 145/145, terms 104/104 — совпадает целиком |
+| Внутренние ссылки (29 страниц, 1084 ссылки, с учётом редиректов firebase.json) | битых 0 (единственная «не страница» — `phraseman://apple-auth`, это переход в приложение, так задумано) |
+| Ссылки из приложения | `knowlyapps.com/legal/privacy/` и `/legal/terms/` — есть; на сайте живы `/legal/privacy/`, `/legal/privacy-ios/`, `/legal/terms/`, `/legal/data-deletion/` |
+| 390 px, горизонтальная прокрутка | нет ни на одной из 11 страниц: `/`, 4 юр-страницы, `/download/`, `/premium/`, `/faq/`, `/contact/`, `/gift/`, `/english-level-test/` (scrollWidth = 390); `/?lang=en` и `/download/?lang=en` — тоже 390 |
+| Языки сайта | у сайта 2 языка интерфейса — ru (24 страницы) и en (3 юр-страницы + переключатель `?lang=en`, `assets/site-i18n.js`: `SUPPORTED = ['en','ru']`); 9 языков у сайта нет |
+
+🟡 Найдено, не блокирует (так же и в проде сейчас): в `?lang=en` на `/download/` кнопка «Начать бесплатно», подзаголовок и подпись под
+QR остаются по-русски, заголовок вкладки тоже русский — неполный перевод en-режима сайта.
+
+**Одна команда утром (из корня репозитория, словом владельца):**
+```bash
+bash scripts/deploy_from_clean_head.sh --only "hosting:knowlywww" --execute
+```
+**Ожидаемый вывод** (хэш — тот, что будет на HEAD утром):
+```
+[DEPLOY-CLEAN] HEAD=<hash> цели=hosting:knowlywww режим=ВЫКЛАДКА папка=/c/Temp/claude/deploy_clean_<hash>
+[DEPLOY-CLEAN] грязных путей в рабочем дереве (в выкладку НЕ попадут): N
+[DEPLOY-CLEAN] выгружено файлов: ~14 900
+[DEPLOY-CLEAN] каркас сайта — OK
+[DEPLOY-CLEAN] страницы политики = legal/*.json — OK (October 17, 2026)
+[DEPLOY-CLEAN] ВЫКЛАДКА из /c/Temp/claude/deploy_clean_<hash>: firebase deploy --only hosting:knowlywww --project phraseman-ea0b3
+=== Deploying to 'phraseman-ea0b3'...
+i  hosting[knowlyapps]: found 185 files in knowly-www
+✔  hosting[knowlyapps]: release complete
+✔  Deploy complete!
+Hosting URL: https://knowlyapps.web.app
+[DEPLOY-CLEAN] firebase deploy exit=0
+```
+Если любая строка до «ВЫКЛАДКА» — FAIL, скрипт останавливается и ничего не выкладывает. После — проверка §2 (privacy:
+«during its limit period (at most one day)» в §4). Откат — Firebase Console → Hosting → knowlyapps → Release history → Rollback.

@@ -140,7 +140,6 @@ import LearningV2SessionOutcomeSheet, {
   LEARNING_V2_SESSION_MODAL_EXIT_MS,
 } from "../../components/LearningV2SessionOutcomeSheet";
 import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
-import LearningV2FounderPassModal from "../../components/learning-v2/LearningV2FounderPassModal";
 import { useHideTabBar } from "../../components/TabBarVisibilityContext";
 import { useLearningV2CourseUnlockedWordsV1 } from "../../hooks/use_learning_v2_course_unlocked_words_v1";
 import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intro";
@@ -193,17 +192,6 @@ import {
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
 import { createLearningV2CourseLocalProgressStoreV1 } from "../../modules/learning-v2/progress/course_local_progress_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../../modules/learning-v2/progress/progress_account_scope";
-import { founderPassNicknameForModal, logFounderNick, logFounderPassNickname, nextFounderNickState, visibleFounderNickname, type FounderNickState } from "../founder_nickname_scope";
-import { onAppEvent } from "../events";
-import { GENERATED_NICKNAME_PENDING_KEY } from "../nickname_guard";
-
-/** Область текущего аккаунта для ника «Пропуска основателя» (null — аккаунт ещё не активен). */
-function currentFounderAccountScope(): string | null {
-  const account = captureAccountGeneration();
-  return account.phase === "active" && account.stableId
-    ? deriveLocalOfflineProgressAccountScopeHash(account.stableId)
-    : null;
-}
 import {
   loadLearningV2ActiveCourseCatalogV1,
   peekLearningV2ActiveCourseCatalogV1,
@@ -268,12 +256,6 @@ import {
 } from "../../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
-import {
-  normalizeLearningV2FounderNicknameV1,
-  readLearningV2FounderPassReceiptV1,
-  resolveLearningV2FounderPassGateV1,
-  writeLearningV2FounderPassReceiptV1,
-} from "../learning_v2_release_intro_receipt_v1";
 
 const EXEMPT_COLOR_1 = '#8FA0FF'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
 const EXEMPT_COLOR_2 = '#B79CFF'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
@@ -2514,10 +2496,6 @@ export default function LessonsTab({
   const screenTitleColor = t.textPrimary;
   perfR1BodyMark('lessons', 'c_lang', perfBodyStart);
   const { lang, s } = useLang();
-  const learningV2SnapshotNickname = useAppSnapshotSelector(
-    (snapshot) => snapshot.profile?.name ?? "",
-    (left, right) => left === right,
-  );
   const { studyTarget, refresh: refreshStudyTarget } = useStudyTarget();
   const lessonCacheTarget = storageStudyTarget(studyTarget);
   const lessonCacheTargetRef = useRef(lessonCacheTarget);
@@ -2669,203 +2647,9 @@ export default function LessonsTab({
   const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)
     ? coinRankRowForDisplay(legacyCoinRank).source
     : null;
-  // зачем (координатор 15.10, изоляция аккаунтов): ник был липким и без владельца — после смены аккаунта новый человек видел
-  // «＠ник» прошлого гостя/аккаунта. Ник хранится с областью аккаунта и показывается только ей (app/founder_nickname_scope.ts).
-  const [learningV2FounderNickState, setLearningV2FounderNickState] =
-    useState<FounderNickState>(() => nextFounderNickState(
-      { scope: null, value: null },
-      currentFounderAccountScope(),
-      normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname),
-    ));
-  const [learningV2FounderAccountScope, setLearningV2FounderAccountScope] =
-    useState<string | null>(() => currentFounderAccountScope());
-  useEffect(() => {
-    const subscription = subscribeAccountGeneration(() => {
-      const scope = currentFounderAccountScope();
-      setLearningV2FounderAccountScope((previous) => (previous === scope ? previous : scope));
-    });
-    return () => subscription.remove();
-  }, []);
-  const learningV2FounderNicknameRaw = visibleFounderNickname(learningV2FounderNickState, learningV2FounderAccountScope);
-  // зачем (координатор 15.10): пока сгенерированный ник не подтверждён сервером, пропуск печатается без имени (временное
-  // «＠Neon 39486» через ~20 с сменялось другим). Флаг перечитываем при подтверждении профиля и при смене аккаунта.
-  const [learningV2FounderNickPending, setLearningV2FounderNickPending] = useState<boolean | null>(null);
-  useEffect(() => {
-    let alive = true;
-    // зачем (Ревизор 2.98): номер чтения — поздний ответ старого чтения (например, до смены аккаунта) не перекрывает свежий
-    let readSeq = 0;
-    const readPending = (reason: string) => {
-      const seq = ++readSeq;
-      void AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY)
-        .then((value) => {
-          if (!alive) return;
-          if (seq !== readSeq) {
-            console.log("[FOUNDER-PASS] pending:read stale — ответ старого чтения отброшен", JSON.stringify({ reason, seq, latest: readSeq })); // guard-ok: ранний выход с причиной
-            return;
-          }
-          setLearningV2FounderNickPending(value !== null);
-          console.log("[FOUNDER-PASS] pending:read", JSON.stringify({ reason, pending: value !== null })); // guard-ok: одна строка на чтение
-        })
-        .catch((error: unknown) => {
-          // не прочитали — ник не печатаем (как «ещё не подтверждён»), окно от этого не зависит
-          console.warn("[FOUNDER-PASS] pending:read failed", reason, error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
-        });
-    };
-    readPending("mount");
-    const hydrated = onAppEvent("cloud_profile_hydrated", () => readPending("cloud_profile_hydrated"));
-    const account = subscribeAccountGeneration(() => { setLearningV2FounderNickPending(null); readPending("account_changed"); });
-    return () => { alive = false; hydrated.remove(); account.remove(); };
-  }, []);
-  const learningV2FounderPassNick = founderPassNicknameForModal(learningV2FounderNicknameRaw, learningV2FounderNickPending);
-  const learningV2FounderNickname = learningV2FounderPassNick.nickname;
-  const [learningV2FounderReceipt, setLearningV2FounderReceipt] = useState<{
-    accountScopeHash: string | null;
-    seen: boolean | null;
-  }>({ accountScopeHash: null, seen: null });
-  const [learningV2FounderDismissedScope, setLearningV2FounderDismissedScope] =
-    useState<string | null>(null);
-
-  useEffect(() => {
-    const nickname = normalizeLearningV2FounderNicknameV1(
-      learningV2SnapshotNickname,
-    );
-    const scope = currentFounderAccountScope();
-    logFounderNick(nickname ? "snapshot" : "none", scope, nickname);
-    setLearningV2FounderNickState((previous) => nextFounderNickState(previous, scope, nickname));
-  }, [learningV2SnapshotNickname]);
-
-  // зачем: здесь жили дев-счётчики входа (devEntryOrdinal /
-  // devDismissedEntryOrdinal). Гейт их уже не читал, но они росли на входе и
-  // давали лишний ре-рендер экрана в момент открытия раздела — ровно там, где
-  // владелец видел моргание. Механизм удалён целиком: и в деве, и в проде
-  // решает один признак — закрывали модал или нет.
-
-  useEffect(() => {
-    if (page !== "v2" || !lessonsRuntimeActive) return;
-    // зачем: здесь стоял безусловный сброс
-    // setLearningV2FounderReceipt({ accountScopeHash: null, seen: null }).
-    // Он выполнялся на КАЖДЫЙ focusTick и обнулял уже решённый гейт — раздел
-    // снова уходил в «не решено» и перерисовывался. Курс больше не прячется
-    // за этим чеком (revealCourse всегда true), поэтому обнулять нечего:
-    // сброс нужен ТОЛЬКО при смене аккаунта, чтобы чужой `seen: true` не
-    // погасил модал новому человеку. Сравниваем по accountScopeHash ниже.
-    let cancelled = false;
-    void (async () => {
-      if (captureAccountGeneration().phase !== "active") await getStableId();
-      const account = captureAccountGeneration();
-      if (account.phase !== "active" || !account.stableId) return;
-      const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(
-        account.stableId,
-      );
-      try {
-        const [seen, storedNickname] = await Promise.all([
-          readLearningV2FounderPassReceiptV1(AsyncStorage, accountScopeHash),
-          AsyncStorage.getItem("user_name"),
-        ]);
-        if (
-          cancelled ||
-          !isCurrentAccountGeneration(account, account.stableId)
-        ) return;
-        // Запасной путь user_name — аккаунтный ключ (SYNC_KEYS, стирается при смене) и читается под проверкой поколения выше.
-        const snapshotNickname = normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname);
-        const storageNickname = normalizeLearningV2FounderNicknameV1(storedNickname);
-        const nickname = snapshotNickname ?? storageNickname;
-        logFounderNick(snapshotNickname ? "snapshot" : storageNickname ? "storage_user_name" : "none", accountScopeHash, nickname);
-        setLearningV2FounderNickState((previous) => nextFounderNickState(previous, accountScopeHash, nickname));
-        // зачем: раньше сюда каждый фокус приходил НОВЫЙ объект с тем же
-        // содержимым — React считал состояние изменённым и перерисовывал весь
-        // экран с картой. Меняем состояние только когда оно реально другое.
-        setLearningV2FounderReceipt((previous) =>
-          previous.accountScopeHash === accountScopeHash &&
-          previous.seen === seen
-            ? previous
-            : { accountScopeHash, seen },
-        );
-        // Смена аккаунта обязана снять локальное «закрыто» предыдущего
-        // человека, иначе новому модал не покажется ни разу.
-        setLearningV2FounderDismissedScope((previous) =>
-          previous === null || previous === accountScopeHash ? previous : null,
-        );
-      } catch (error) {
-        if (
-          cancelled ||
-          !isCurrentAccountGeneration(account, account.stableId)
-        ) return;
-        // Fail closed: storage trouble must not turn a one-time welcome into a
-        // modal that reappears on every focus.
-        setLearningV2FounderReceipt((previous) =>
-          previous.accountScopeHash === accountScopeHash && previous.seen === true
-            ? previous
-            : { accountScopeHash, seen: true },
-        );
-        DebugLogger.error(
-          "learning_v2:founder_pass_read",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [focusTick, learningV2SnapshotNickname, lessonsRuntimeActive, page]);
-
+  // зачем (владелец 17.10: «этот модал удаляй полностью, он не нужен!!!»): окно «Пропуск основателя» удалено целиком —
+  // гейт, квитанция «видел», ник пропуска. Карта и прогрев занятия от него больше не зависят. Ключи квитанции в AsyncStorage не трогаем.
   perfR1BodyMark('lessons', 'i_v2_callbacks', perfBodyStart);
-  const dismissLearningV2FounderPass = useCallback(() => {
-    const accountScopeHash = learningV2FounderReceipt.accountScopeHash;
-    if (!accountScopeHash) {
-      // Ранний выход обязан называть причину (правило «сперва логи»).
-      if (__DEV__) console.log('[FOUNDER] dismiss:skip', JSON.stringify({ reason: 'no_account_scope' }));
-      return;
-    }
-    // зачем: владелец 20.09 — «модал должен и в дев показываться только
-    // единожды». Здесь была дев-ветка: она ставила счётчик закрытия и
-    // ВЫХОДИЛА, не сохранив чек. Поэтому в деве закрытие жило только до
-    // следующего фокуса экрана и модал возвращался. Теперь дев и прод
-    // закрывают модал одинаково — записью чека.
-    setLearningV2FounderDismissedScope(accountScopeHash);
-    // Optimistic UI: гейт закрывает модал сразу по локальному признаку,
-    // запись чека в хранилище догоняет фоном. Иначе модал жил бы до конца
-    // асинхронной записи и мигал.
-    setLearningV2FounderReceipt({ accountScopeHash, seen: true });
-    const account = captureAccountGeneration();
-    if (account.phase !== "active" || !account.stableId) return;
-    if (
-      deriveLocalOfflineProgressAccountScopeHash(account.stableId) !==
-      accountScopeHash
-    ) return;
-    void writeLearningV2FounderPassReceiptV1(
-      AsyncStorage,
-      accountScopeHash,
-    )
-      .then(() => {
-        if (!isCurrentAccountGeneration(account, account.stableId)) return;
-        setLearningV2FounderReceipt({ accountScopeHash, seen: true });
-      })
-      .catch((error) => {
-        DebugLogger.error(
-          "learning_v2:founder_pass_write",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
-      });
-  }, [learningV2FounderReceipt.accountScopeHash]);
-
-  const learningV2FounderPassGate = resolveLearningV2FounderPassGateV1({
-    active: page === "v2" && lessonsRuntimeActive,
-    isDev: __DEV__,
-    accountReady: learningV2FounderReceipt.accountScopeHash !== null,
-    receiptSeen: learningV2FounderReceipt.seen,
-    productionDismissed:
-      learningV2FounderReceipt.accountScopeHash !== null &&
-      learningV2FounderDismissedScope ===
-        learningV2FounderReceipt.accountScopeHash,
-  });
-  const learningV2FounderPassVisible = learningV2FounderPassGate.visible;
-  useEffect(() => {
-    if (!learningV2FounderPassVisible) return;
-    logFounderPassNickname(learningV2FounderPassNick.source, learningV2FounderNickPending);
-  }, [learningV2FounderPassVisible, learningV2FounderPassNick.source, learningV2FounderNickPending]);
   // зачем (аудит 2026-09-21): поиск по урокам открывается ЛУПОЙ в ряду чипов,
   // а не живёт постоянной строкой — владелец: «не фулл строка ввода, а просто
   // кнопочка». Поле раскрывается НАД рядом, поэтому ряд чипов не сдвигается.
@@ -3583,10 +3367,8 @@ export default function LessonsTab({
     // работа на первом кадре, а здесь подготовка остаётся fire-and-forget и
     // ничего не держит. Тап не зависит от неё ни в одной ветке — обработчик
     // ставит состояние модалки синхронно и лишь НАБЛЮДАЕТ промис.
-    if (
-      learningV2FounderPassVisible ||
-      learningV2FounderPassGate.revealCourse
-    ) {
+    // 17.10: здесь стояло «пропуск виден || revealCourse» — revealCourse был ровно «раздел V2 открыт и активен»; пропуск удалён.
+    if (page === "v2" && lessonsRuntimeActive) {
       // зачем (R08 🔴, 15.10): «запускаем сразу» (21.09) клало тяжёлую подготовку на первый кадр карты — JS-поток стоял 6–10 с, карта не
       // появлялась, все касания ждали. Прогрев — после анимаций входа и ещё 600 мс; уход с карты отменяет. Тап по занятию по-прежнему
       // не ждёт прогрев: модалка открывается сразу, подготовка идёт по тапу, если кэша ещё нет.
@@ -3617,8 +3399,6 @@ export default function LessonsTab({
     }
     return undefined;
   }, [
-    learningV2FounderPassGate.revealCourse,
-    learningV2FounderPassVisible,
     learningV2ProgressHydrated,
     lessonsRuntimeActive,
     page,
@@ -5604,7 +5384,7 @@ export default function LessonsTab({
           {page === "v2" ? (
             // зачем: владелец 20.09 — «открываем раздел, запускается анимация
             // которая была прописана при входе, это всё, никаких морганий».
-            // Здесь стояло условие learningV2FounderPassGate.revealCourse, а
+            // Здесь стояло условие revealCourse (гейт «Пропуска основателя», удалён 17.10), а
             // в ветке else — пустая заглушка. Пока чек о показе модала читался
             // с диска, человек видел пустой экран; когда чек приходил, карта
             // монтировалась ЗАНОВО и вступление играло второй раз. Карта
@@ -6307,15 +6087,6 @@ export default function LessonsTab({
         onDone={legacyLessonsIntro.finish}
         onLater={legacyLessonsIntro.cancel}
         testIdPrefix="legacy-lessons-first-visit"
-      />
-      {/* зачем: здесь стояло условие learningV2FounderNickname !== null. У
-          человека без имени в профиле ник никогда не появлялся, и модал не
-          показывался НИ РАЗУ — при требовании владельца «1 раз каждый юзер».
-          Модал рисуется всегда; без имени он просто не печатает строку ника. */}
-      <LearningV2FounderPassModal
-        visible={learningV2FounderPassVisible}
-        nickname={learningV2FounderNickname}
-        onDismiss={dismissLearningV2FounderPass}
       />
       <LearningV2SessionOutcomeSheet
         lessonOrdinal={selectedLearningV2Session?.lessonOrdinal ?? 1}

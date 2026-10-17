@@ -25,7 +25,6 @@ const GLASS_FILES = [
   "components/learning-v2/LearningV2WordPocketOverlayV1.tsx",
   "components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx",
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
-  "components/learning-v2/LearningV2FounderPassModal.tsx",
   "components/learning-v2/LearningV2ChaptersCourse.tsx",
   "components/LearningV2SessionOutcomeSheet.tsx",
   "components/learning-v2/horizons/HorizonSessionResult.tsx",

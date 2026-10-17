@@ -48,8 +48,9 @@ assert.match(
 );
 assert.match(
   lessons,
-  /learningV2FounderPassVisible[\s\S]{0,1800}prewarmCurrentLearningV2SessionOnEntry/,
-  "Founder Pass time must be used to prepare the current session",
+  // 17.10: «Пропуск основателя» удалён — прогрев занятия при входе идёт, когда раздел V2 открыт и активен
+  /if \(page === "v2" && lessonsRuntimeActive\) \{[\s\S]{0,2500}prewarmCurrentLearningV2SessionOnEntry/,
+  "entry prewarm runs while the V2 section is open and active",
 );
 // зачем (координатор §49, 2026-10-02): карта уроков с 30.09 — аккордеон глав
 // LearningV2ChaptersCourse (4fa4ab32b); прокручиваемая карта LearningV2PulseCourse

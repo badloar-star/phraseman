@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 /**
@@ -31,27 +31,6 @@ describe("Learning V2 continuous map performance contract", () => {
     );
     expect(lessons).not.toContain("const learningV2Accordion = useMemo(");
     expect(lessons).not.toContain("learningV2Accordion.rows");
-  });
-
-  test("модал знакомства не возвращается после закрытия", () => {
-    // Владелец 20.09: «нажимаю кнопку на модале, открывается карта, затем
-    // сразу моргает и открывается снова». Дев-гейт требовал СТРОГОГО
-    // равенства счётчиков входа и закрытия, а счётчик входа рос на каждый
-    // фокус экрана — закрытие отменялось задним числом.
-    const gate = readFileSync(
-      join(__dirname, "..", "app", "learning_v2_release_intro_receipt_v1.ts"),
-      "utf8",
-    );
-    // Владелец 20.09: «модал должен и в дев показываться только единожды».
-    // Отдельной дев-ветки со счётчиками в гейте больше нет.
-    expect(gate).not.toContain("if (input.isDev) {");
-    expect(gate).not.toContain("devDismissedEntryOrdinal === input.devEntryOrdinal");
-    // И dismiss больше не выходит в DEV, не сохранив чек, — это и был корень.
-    const lessons = readFileSync(
-      join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
-      "utf8",
-    );
-    expect(lessons).not.toContain("setLearningV2FounderDevDismissedEntryOrdinal(");
   });
 
   test("карта не пересоздаётся: на ней нет key от generation", () => {
@@ -187,21 +166,13 @@ describe("Learning V2 continuous map performance contract", () => {
     }
   });
 
-  test("модал «Начать знакомство» закрывается мгновенно", () => {
-    // Владелец 20.09: «кнопка Начать знакомство блокируется». onDismiss ждал
-    // конца анимации: 180мс тап выглядел мёртвым, а при прерывании анимации
-    // не вызывался вовсе и модал залипал.
-    const modal = readFileSync(
-      join(__dirname, "..", "components", "learning-v2", "LearningV2FounderPassModal.tsx"),
-      "utf8",
-    );
-    expect(modal).not.toContain("if (finished) onDismiss();");
-    // Первое вхождение — ветка reduceMotion, она и так мгновенная.
-    // Проверяем основную: закрытие вызывается ДО анимации, а не в её колбэке.
-    const first = modal.indexOf("onDismiss();");
-    const main = modal.indexOf("onDismiss();", first + 1);
-    expect(main).toBeGreaterThan(-1);
-    expect(modal.slice(main, main + 160)).toContain("Animated.timing");
+  // зачем (владелец 17.10: «этот модал удаляй полностью, он не нужен!!!»): окна «Пропуск основателя / Начать знакомство» нет —
+  // ни компонента, ни гейта, ни квитанции «видел»; карта уроков и прогрев занятия от него не зависят.
+  test("окна «Пропуск основателя» нет: ни компонента, ни гейта в «Уроках»", () => {
+    expect(existsSync(join(__dirname, "..", "components", "learning-v2", "LearningV2FounderPassModal.tsx"))).toBe(false);
+    expect(existsSync(join(__dirname, "..", "app", "learning_v2_release_intro_receipt_v1.ts"))).toBe(false);
+    const lessons = readFileSync(join(__dirname, "..", "app", "(tabs)", "lessons.tsx"), "utf8");
+    expect(lessons).not.toMatch(/LearningV2FounderPassModal|learningV2FounderPass|resolveLearningV2FounderPassGateV1|FounderPassReceipt/);
   });
 
   test("запреты владельца соблюдены в новых элементах", () => {

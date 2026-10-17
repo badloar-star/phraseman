@@ -12772,16 +12772,19 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/design/c2_all_lessons.png",
+      "evidence_at": "2026-10-17T23:33:40.000Z",
+      "evidence_sha256": "944b7a58d5f4a6bd91f67acea2793fd4cb8cb60a96d06e983399ce2c4138b823",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
+        "Чипы уровней A1 / A2 / B1 / B2 и «Обучение» (старые уроки) под заголовком в эталоне есть, в приложении нет.",
+        "Строки уроков: в эталоне нейтральные тёмные карточки «A1 · 01 · Текущий» + название 17/700 + кольцо с числом занятий + «›»; в приложении — старые бирюзовые карточки «УРОК N» с процентом и без «›» (renderLessonCard из app/(tabs)/lessons.tsx).",
+        "Шапка: в эталоне только «назад» и «Все уроки»; в приложении справа ещё замок, книга со счётчиком, монеты и энергия.",
+        "У первой карточки слева бирюзовая полоса во всю высоту — в эталоне её нет."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_release_surface_proof": {
@@ -12793,7 +12796,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "verdict_note": "Замков на строках нет — все занятия открыты (441 из 441), это данные. Кадр Сверки 18.10 00:32 (BACK-BTN), тема по умолчанию эмулятора.",
+      "verdict_by": "Макеты 18.10"
     },
     {
       "id": "learning-v2-008",
@@ -36233,16 +36238,16 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-018.png",
-      "evidence_at": "2026-10-12T02:38:59.883Z",
-      "evidence_sha256": "7fc07fe206b3188390f3dbca32175a42e67b01727c5e712061b58194fbaf4338",
+      "evidence": "docs/phraseman-2.0/evidence/video_pt_1018/s19_from_videos.png",
+      "evidence_at": "2026-10-17T23:17:59.000Z",
+      "evidence_sha256": "094a6cbe10e5ece9d677b594badb3d6c4839d9de1b2d80c34e86871e4bc4e3bc",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[решение координатора 13.10, вариант «а»] сверяем настоящее превью ролика: dev-фикстура показывает превью реальных роликов канала (VideoThumb DEV_DEMO_THUMBS); силуэты образца = место под фото. Кадр 17:58 — превью настоящие ✓, но снят в СВЕТЛОЙ теме (образец тёмный) — переснять в тёмной; счётчик 5 против 12 и отсутствие полосы просмотра — данные (ролик не начат)."
+        "Кнопка «Добавить +»: в эталоне светлая нейтральная пилюля с тёмным текстом; в приложении мятная акцентная."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
       "reviewed_at": "2026-10-13T16:59:36.334Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
@@ -36260,7 +36265,9 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:38, утверждённый cards-v2 №18 «Из видео — все ролики»): раскладка совпала — «‹» и «⋮», заголовок со счётчиком, карточки роликов на всю ширину с длительностью в углу, под ними название, «N фраз» и светлая «Добавить +».",
       "shot_at": "2026-10-12T02:05:18.001Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "Кадр на pt-BR (Сверка 18.10 00:16): раскладка, «⋮», заголовок с числом, обложка с длительностью, название 19/700 и подпись — по эталону; обложки и названия — данные. Заголовок «Dos vídeos» при плитке «De vídeos» — вопрос перевода (Переводчику), не вёрстки.",
+      "verdict_by": "Макеты 18.10"
     },
     {
       "id": "cards-v2-019",
@@ -45347,8 +45354,8 @@
         "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r9/n-m01B_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "a700480d61d057d0f2bc9bd0b5fdf4ca4db834b5a3c1de5e5a38a263814cfffc",
+      "evidence_at": "2026-10-17T22:57:50.000Z",
+      "evidence_sha256": "dacfbc0063877ca368d5f1bd174dac23e8d9ceaf514ff2e1462686923a99d6ac",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -45521,8 +45528,8 @@
         "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r9/n-m05C_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "c952e0c5bfd21fa382e6ce5fe2c9bd0ee7897de61ca83d3113167a1ef84c09e5",
+      "evidence_at": "2026-10-17T22:57:50.000Z",
+      "evidence_sha256": "3d0e69da9be3b6fa04a02aa4456382817cf2ee4807d01c252dffc0c70e4d1982",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -45557,8 +45564,8 @@
         "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r9/n-m06A_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "e4428820a6c3cca7225fddda1d0cee7541ad5272727a83cfc1258580bf67fcaf",
+      "evidence_at": "2026-10-17T22:57:50.000Z",
+      "evidence_sha256": "7d60374d8d78b230d22e7e90309e2319298b9c77073475a388784c8b20b0f603",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -45665,8 +45672,8 @@
         "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r9/n-m07B_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "67c6ccfe766322e77e2a49dac467e4806f79e535cf17898f48aa70812b5b1f4c",
+      "evidence_at": "2026-10-17T22:57:50.000Z",
+      "evidence_sha256": "d04b043cace1e9353179d1c58e245a642b92929ccb7a0020784b0a41c075c3bf",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -45700,8 +45707,8 @@
         "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r9/n-m09_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "b1e77153c4589ac9dbc79b0701c4a3d065f5fbc25f27f2e70f81d3304dbce8b2",
+      "evidence_at": "2026-10-17T22:57:50.000Z",
+      "evidence_sha256": "f43311f4117ff53baa8dd9e804fed9e0b2fa5c2a57c863bcde634cc12c72a8ca",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -45805,8 +45812,8 @@
         "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r9/n-m17_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "06a0b1bdf6d5b0ae96b96d2076e92fc141e579b1025856b7f9728457f94439f0",
+      "evidence_at": "2026-10-17T22:57:50.000Z",
+      "evidence_sha256": "363519cdf64d7ae50c620dae2139a5f78ea84a1f025a7be4dad2cb8dd3e3b4f3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -46492,8 +46499,8 @@
         "рубеж 30 · большой — сцена в Modal, ≈5 с"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r8/s-d30_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "4a5005e56ccd750b0b782a8e9d46437b8b2ba6f66bbb617c401def56aca02805",
+      "evidence_at": "2026-10-17T22:57:32.000Z",
+      "evidence_sha256": "fc100d3f329ce5d6f62df81242ab730be0851a92b85a9067633da0037c2a010e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -46583,8 +46590,8 @@
         "рубеж 100 · большой — сцена в Modal, ≈5 с"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r8/s-d100_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "42cf055eec1f4a6ad983011ead4207404f8dd9751591fcaece5d7d44932b3855",
+      "evidence_at": "2026-10-17T22:57:32.000Z",
+      "evidence_sha256": "932701072cceb2eeafa7e516c0e44b093d753cdd7a67fb44b9fb1a20d972d162",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -46802,8 +46809,8 @@
         "рубеж 365 · огромный · Год — сцена в Modal, ≈8–9 с"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r8/s-d365_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "bf3198334763e728fe583c73f4df5dfeb2b65bf4a2fb3a7390798d7323e18f19",
+      "evidence_at": "2026-10-17T22:57:32.000Z",
+      "evidence_sha256": "e621caad8e99e5201ce88bbb1ea0a72bd443bb9602fc97ec51dc992b8c8ea32f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -47108,8 +47115,8 @@
         "рубеж 1000 · легенда — сцена в Modal, ≈8–9 с"
       ],
       "evidence": "docs/phraseman-2.0/evidence/modals_1018/r8/s-d1000_b.png",
-      "evidence_at": "2026-10-17T19:30:00.000Z",
-      "evidence_sha256": "d9304e84de5abfa204845d6b786d123da2a109fd9af2e562f4b4734fb16e3592",
+      "evidence_at": "2026-10-17T22:57:32.000Z",
+      "evidence_sha256": "136095ec282243baecf07e81561f410cad3cd96c4f2e98c51e6aac03ff9beeb4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

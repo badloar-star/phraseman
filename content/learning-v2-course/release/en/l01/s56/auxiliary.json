@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-56:intro1:r2": {
-          "ru": "Корзина действительно полная, но вопрос о весе: `light`.",
-          "uk": "Кошик справді повний, але запитання про вагу: `light`."
+          "ru": "open — «открыта». Вы закрыли дверь на ключ: locked.",
+          "uk": "open — «відчинені». Ви замкнули двері на ключ: locked."
         },
         "en:lesson-01:session-56:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "They're — про несколько вещей, а дверь одна: It's locked.",
+          "uk": "They're — про кілька речей, а двері тут одні: It's locked."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-56:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-56:intro2:r2": {
-          "ru": "Здесь время не установлено: `unknown`.",
-          "uk": "Тут час не встановлено: `unknown`."
+          "ru": "old — «старый». Старый паспорт ещё может действовать, а у этого срок вышел: expired.",
+          "uk": "old — «старий». Старий паспорт ще може діяти, а в цього термін минув: expired."
         },
         "en:lesson-01:session-56:intro2:r3": {
-          "ru": "Обсуждается одно время отправления: `It is`.",
-          "uk": "Обговорюється один час відправлення: `It is`."
+          "ru": "He's — про мужчину. Про паспорт говорим It's.",
+          "uk": "He's — про чоловіка. Про паспорт кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-56:intro3:r2": {
-          "ru": "Вопрос не о независимости, а об отношении к обязанностям: `responsible`.",
-          "uk": "Запитання не про незалежність, а про ставлення до обов’язків: `responsible`."
+          "ru": "new — «новые». Сестра спрашивает, удобно ли, а ботинки жмут: tight.",
+          "uk": "new — «нові». Сестра питає, чи зручно, а черевики тиснуть: tight."
         },
         "en:lesson-01:session-56:intro3:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "It's — про одну вещь, а ботинок два: They're tight.",
+          "uk": "It's — про одну річ, а черевиків два: They're tight."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6a3c18b1e6988b4ff094aaa9eabb5c99a7f81e16a95ee6b168e040f8e07b2f3e"
+  "auxiliaryFingerprint": "c65b8476d0ad1912b523d763db6e89c398afd5523b72e5c264b6a071a8227cb7"
 }

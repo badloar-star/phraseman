@@ -4,27 +4,199 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-56:i01",
+      "interactionId": "en:lesson-01:session-56:word:locked",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — locked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:word:locked:audio"
+      ],
+      "accessibilityLabel": "Картка слова — locked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:word:locked:audio",
+          "transcript": "locked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-56:word:locked:r1",
+            "targetText": "locked",
+            "meaningByLocale": {
+              "ru": "запертый. It's locked — «Заперто». О двери, калитке, чемодане, которые закрыты на ключ или замок.",
+              "uk": "замкнений. It's locked — «Замкнено». Про двері, хвіртку, валізу, які зачинені на ключ чи замок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "locked",
+          "definitionByLocale": {
+            "ru": "запертый. It's locked — «Заперто». О двери, калитке, чемодане, которые закрыты на ключ или замок.",
+            "uk": "замкнений. It's locked — «Замкнено». Про двері, хвіртку, валізу, які зачинені на ключ чи замок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:word:expired",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — expired",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:word:expired:audio"
+      ],
+      "accessibilityLabel": "Картка слова — expired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:word:expired:audio",
+          "transcript": "expired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-56:word:expired:r1",
+            "targetText": "expired",
+            "meaningByLocale": {
+              "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
+              "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "expired",
+          "definitionByLocale": {
+            "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
+            "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:word:tight",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:word:tight:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:word:tight:audio",
+          "transcript": "tight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-56:word:tight:r1",
+            "targetText": "tight",
+            "meaningByLocale": {
+              "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
+              "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tight",
+          "definitionByLocale": {
+            "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
+            "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:word:cracked",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cracked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:word:cracked:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cracked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:word:cracked:audio",
+          "transcript": "cracked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-56:word:cracked:r1",
+            "targetText": "cracked",
+            "meaningByLocale": {
+              "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
+              "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cracked",
+          "definitionByLocale": {
+            "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
+            "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Куплена листівка коштує недорого. Скажіть про її низьку ціну",
+      "prompt": "Ви смикаєте двері на балкон: вони не відчиняються. Скажіть, що вони замкнені",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Куплена листівка коштує недорого. Скажіть про її низьку ціну",
+      "accessibilityLabel": "Ви смикаєте двері на балкон: вони не відчиняються. Скажіть, що вони замкнені",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is cheap.",
+        "targetPhrase": "It is locked.",
         "localizedMeaning": {
-          "ru": "Купленная открытка стоит недорого. Скажите о её низкой цене",
-          "uk": "Куплена листівка коштує недорого. Скажіть про її низьку ціну"
+          "ru": "Вы дёргаете дверь на балкон: она не открывается. Скажите, что она заперта",
+          "uk": "Ви смикаєте двері на балкон: вони не відчиняються. Скажіть, що вони замкнені"
         },
         "orderedTokens": [
           "It",
           "is",
-          "cheap"
+          "locked"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +205,10 @@
           {
             "responseId": "en:lesson-01:session-56:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Куплена листівка коштує недорого. Скажіть про її низьку ціну",
+            "testedDimension": "Ви смикаєте двері на балкон: вони не відчиняються. Скажіть, що вони замкнені",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is cheap.`",
-              "uk": "тут потрібно `is` — `It is cheap.`"
+              "ru": "здесь нужно `is` — `It is locked.`",
+              "uk": "тут потрібно `is` — `It is locked.`"
             }
           }
         ],
@@ -49,11 +221,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте фразу про квитки на потяг і виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i02:r1",
@@ -72,7 +244,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-56:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте фразу про квитки на потяг і виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +274,7 @@
           {
             "responseId": "en:lesson-01:session-56:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте фразу про квитки на потяг і виберіть почуте",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `expensive`, а в этом варианте — `cheap`.",
               "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`."
@@ -111,7 +283,7 @@
           {
             "responseId": "en:lesson-01:session-56:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте фразу про квитки на потяг і виберіть почуте",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `expensive`, а в этом варианте — `heavy`.",
               "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `heavy`."
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Обидві сумки багато важать. Доповніть оцінку ваги",
+      "prompt": "Обидві валізи зачинені на кодовий замок. Доповніть фразу про них",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Обидві сумки багато важать. Доповніть оцінку ваги",
+      "accessibilityLabel": "Обидві валізи зачинені на кодовий замок. Доповніть фразу про них",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Обе сумки много весят. Дополните оценку веса",
-          "uk": "Обидві сумки багато важать. Доповніть оцінку ваги"
+          "ru": "Оба чемодана закрыты на кодовый замок. Дополните фразу о них",
+          "uk": "Обидві валізи зачинені на кодовий замок. Доповніть фразу про них"
         },
-        "gappedTargetPhrase": "They ___ heavy.",
+        "gappedTargetPhrase": "They ___ locked.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-56:i03:r1",
@@ -168,12 +340,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Обидві сумки багато важать. Доповніть оцінку ваги",
+        "testedDimension": "Обидві валізи зачинені на кодовий замок. Доповніть фразу про них",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-56:i03:r2",
             "correct": false,
-            "testedDimension": "Обидві сумки багато важать. Доповніть оцінку ваги",
+            "testedDimension": "Обидві валізи зачинені на кодовий замок. Доповніть фразу про них",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -182,10 +354,10 @@
           {
             "responseId": "en:lesson-01:session-56:i03:r3",
             "correct": false,
-            "testedDimension": "Обидві сумки багато важать. Доповніть оцінку ваги",
+            "testedDimension": "Обидві валізи зачинені на кодовий замок. Доповніть фразу про них",
             "feedbackByLocale": {
-              "ru": "Про две сумки — `They are`.",
-              "uk": "Про дві сумки — `They are`."
+              "ru": "Чемоданов два, поэтому `They are`.",
+              "uk": "Валіз дві, тому `They are`."
             }
           }
         ]
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте оцінки ціни й ваги зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте оцінки ціни й ваги зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-56:i04:p1",
-            "target": "cheap",
+            "target": "locked",
             "meaningByLocale": {
-              "ru": "недорогой",
-              "uk": "недорогий"
+              "ru": "запертый",
+              "uk": "замкнений"
             }
           },
           {
             "pairId": "en:lesson-01:session-56:i04:p2",
-            "target": "expensive",
+            "target": "expired",
             "meaningByLocale": {
-              "ru": "дорогой по цене",
-              "uk": "дорогий за ціною"
+              "ru": "просроченный",
+              "uk": "прострочений"
             }
           },
           {
             "pairId": "en:lesson-01:session-56:i04:p3",
-            "target": "heavy",
+            "target": "tight",
             "meaningByLocale": {
-              "ru": "тяжёлый по весу",
-              "uk": "важкий за вагою"
+              "ru": "тесный",
+              "uk": "тісний"
             }
           },
           {
             "pairId": "en:lesson-01:session-56:i04:p4",
-            "target": "light",
+            "target": "cracked",
             "meaningByLocale": {
-              "ru": "лёгкий по весу",
-              "uk": "легкий за вагою"
+              "ru": "треснувший",
+              "uk": "тріснутий"
             }
           }
         ],
         "leftColumn": [
-          "cheap",
-          "expensive",
-          "heavy",
-          "light"
+          "locked",
+          "expired",
+          "tight",
+          "cracked"
         ],
         "rightColumn": [
-          "недорогий",
-          "дорогий за ціною",
-          "важкий за вагою",
-          "легкий за вагою"
+          "замкнений",
+          "прострочений",
+          "тісний",
+          "тріснутий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -282,13 +454,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-56:i05:audio",
-          "transcript": "It's full."
+          "transcript": "It's cracked."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's full.",
+        "hiddenTargetPhrase": "It's cracked.",
         "orderedTokens": [
           "It's",
-          "full"
+          "cracked"
         ],
         "authoredDistractorTokens": [
           "He's"
@@ -299,8 +471,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть коротку фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's full.`",
-              "uk": "тут потрібно `It's` — `It's full.`"
+              "ru": "здесь нужно `It's` — `It's cracked.`",
+              "uk": "тут потрібно `It's` — `It's cracked.`"
             }
           }
         ],
@@ -313,38 +485,38 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви впізнаєте вокзал на фото: бували там багато разів. Назвіть його знайомим вам",
+      "prompt": "Сумку зібрано, куртку вдягнено. Таксист питає, чи можна їхати. Скажіть про себе, що ви готові",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви впізнаєте вокзал на фото: бували там багато разів. Назвіть його знайомим вам",
+      "accessibilityLabel": "Сумку зібрано, куртку вдягнено. Таксист питає, чи можна їхати. Скажіть про себе, що ви готові",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is familiar.",
+        "targetPhrase": "I am ready.",
         "localizedMeaning": {
-          "ru": "Вы узнаёте вокзал на фото: бывали там много раз. Назовите его знакомым вам",
-          "uk": "Ви впізнаєте вокзал на фото: бували там багато разів. Назвіть його знайомим вам"
+          "ru": "Сумка собрана, куртка надета. Таксист спрашивает, можно ли ехать. Скажите о себе, что вы готовы",
+          "uk": "Сумку зібрано, куртку вдягнено. Таксист питає, чи можна їхати. Скажіть про себе, що ви готові"
         },
         "orderedTokens": [
-          "It",
-          "is",
-          "familiar"
+          "I",
+          "am",
+          "ready"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-56:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви впізнаєте вокзал на фото: бували там багато разів. Назвіть його знайомим вам",
+            "testedDimension": "Сумку зібрано, куртку вдягнено. Таксист питає, чи можна їхати. Скажіть про себе, що ви готові",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is familiar.`",
-              "uk": "тут потрібно `is` — `It is familiar.`"
+              "ru": "здесь нужно `am` — `I am ready.`",
+              "uk": "тут потрібно `am` — `I am ready.`"
             }
           }
         ],
@@ -357,25 +529,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вулицю на іншому знімку ви бачите вперше. Коротко скажіть, що вона вам незнайома",
+      "prompt": "Костя впустив телефон біля під’їзду, і по екрану пішли тріщини. Скажіть йому коротко, що екран тріснув",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-56:i07:audio"
       ],
-      "accessibilityLabel": "Вулицю на іншому знімку ви бачите вперше. Коротко скажіть, що вона вам незнайома",
+      "accessibilityLabel": "Костя впустив телефон біля під’їзду, і по екрану пішли тріщини. Скажіть йому коротко, що екран тріснув",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-56:i07:audio",
-          "transcript": "It's unfamiliar."
+          "transcript": "It's cracked."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unfamiliar.",
+        "targetPhrase": "It's cracked.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -390,15 +562,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ім’я автора старого знімка встановити не вдалося. Назвіть ім’я невідомим",
+      "prompt": "Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i08:r1",
-          "text": "unknown"
+          "text": "expired"
         },
         {
           "responseId": "en:lesson-01:session-56:i08:r2",
@@ -406,23 +578,23 @@
         },
         {
           "responseId": "en:lesson-01:session-56:i08:r3",
-          "text": "full"
+          "text": "tight"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ім’я автора старого знімка встановити не вдалося. Назвіть ім’я невідомим",
+      "accessibilityLabel": "Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Имя автора старого снимка установить не удалось. Назовите имя неизвестным",
-          "uk": "Ім’я автора старого знімка встановити не вдалося. Назвіть ім’я невідомим"
+          "ru": "Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен",
+          "uk": "Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-56:i08:r1",
-            "text": "unknown"
+            "text": "expired"
           },
           {
             "responseId": "en:lesson-01:session-56:i08:r2",
@@ -430,27 +602,27 @@
           },
           {
             "responseId": "en:lesson-01:session-56:i08:r3",
-            "text": "full"
+            "text": "tight"
           }
         ],
-        "testedDimension": "Ім’я автора старого знімка встановити не вдалося. Назвіть ім’я невідомим",
+        "testedDimension": "Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-56:i08:r2",
             "correct": false,
-            "testedDimension": "Ім’я автора старого знімка встановити не вдалося. Назвіть ім’я невідомим",
+            "testedDimension": "Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений",
             "feedbackByLocale": {
-              "ru": "Имя не установлено: `unknown`.",
-              "uk": "Ім’я не встановлене: `unknown`."
+              "ru": "`familiar` — «знакомый». А у билета вышел срок: `expired`.",
+              "uk": "`familiar` — «знайомий». А в квитка минув термін: `expired`."
             }
           },
           {
             "responseId": "en:lesson-01:session-56:i08:r3",
             "correct": false,
-            "testedDimension": "Ім’я автора старого знімка встановити не вдалося. Назвіть ім’я невідомим",
+            "testedDimension": "Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений",
             "feedbackByLocale": {
-              "ru": "Это о заполненности. Здесь нет сведений об имени: `unknown`.",
-              "uk": "Це про заповненість. Тут немає відомостей про ім’я: `unknown`."
+              "ru": "`tight` — «тесный», это об обуви и одежде. О билете с вышедшим сроком говорит `expired`.",
+              "uk": "`tight` — «тісний», це про взуття й одяг. Про квиток, у якого минув термін, каже `expired`."
             }
           }
         ]
@@ -459,11 +631,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про сестру",
+      "prompt": "Послухайте фразу про тітку Віру",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i09:r1",
@@ -482,7 +654,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-56:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про сестру",
+      "accessibilityLabel": "Послухайте фразу про тітку Віру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -512,7 +684,7 @@
           {
             "responseId": "en:lesson-01:session-56:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про сестру",
+            "testedDimension": "Послухайте фразу про тітку Віру",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `responsible`, а в этом варианте — `independent`.",
               "uk": "У записі останнє слово — `responsible`, а в цьому варіанті — `independent`."
@@ -521,7 +693,7 @@
           {
             "responseId": "en:lesson-01:session-56:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про сестру",
+            "testedDimension": "Послухайте фразу про тітку Віру",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `responsible`, а в этом варианте — `dependent`.",
               "uk": "У записі останнє слово — `responsible`, а в цьому варіанті — `dependent`."
@@ -535,62 +707,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте слова з початку уроку зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте слова з початку уроку зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-56:i10:p1",
-            "target": "familiar",
+            "target": "hungry",
             "meaningByLocale": {
-              "ru": "знакомый",
-              "uk": "знайомий"
+              "ru": "голодный",
+              "uk": "голодний"
             }
           },
           {
             "pairId": "en:lesson-01:session-56:i10:p2",
-            "target": "unfamiliar",
+            "target": "tired",
             "meaningByLocale": {
-              "ru": "незнакомый",
-              "uk": "незнайомий"
+              "ru": "уставший",
+              "uk": "втомлений"
             }
           },
           {
             "pairId": "en:lesson-01:session-56:i10:p3",
-            "target": "unknown",
+            "target": "lost",
             "meaningByLocale": {
-              "ru": "неизвестный",
-              "uk": "невідомий"
+              "ru": "заблудившийся",
+              "uk": "заблукалий"
             }
           },
           {
             "pairId": "en:lesson-01:session-56:i10:p4",
-            "target": "full",
+            "target": "late",
             "meaningByLocale": {
-              "ru": "заполненный",
-              "uk": "заповнений"
+              "ru": "опоздавший",
+              "uk": "запізнілий"
             }
           }
         ],
         "leftColumn": [
-          "familiar",
-          "unfamiliar",
-          "unknown",
-          "full"
+          "hungry",
+          "tired",
+          "lost",
+          "late"
         ],
         "rightColumn": [
-          "знайомий",
-          "незнайомий",
-          "невідомий",
-          "заповнений"
+          "голодний",
+          "втомлений",
+          "заблукалий",
+          "запізнілий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -608,28 +780,28 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу",
+      "prompt": "Таксі стоїть у заторі, а потяг за десять хвилин. Послухайте й складіть фразу про вас із родиною",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-56:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "accessibilityLabel": "Таксі стоїть у заторі, а потяг за десять хвилин. Послухайте й складіть фразу про вас із родиною",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-56:i11:audio",
-          "transcript": "We're independent."
+          "transcript": "We're late."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We're independent.",
+        "hiddenTargetPhrase": "We're late.",
         "orderedTokens": [
           "We're",
-          "independent"
+          "late"
         ],
         "authoredDistractorTokens": [
           "He's"
@@ -638,10 +810,10 @@
           {
             "responseId": "en:lesson-01:session-56:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу",
+            "testedDimension": "Таксі стоїть у заторі, а потяг за десять хвилин. Послухайте й складіть фразу про вас із родиною",
             "feedbackByLocale": {
-              "ru": "здесь нужно `We're` — `We're independent.`",
-              "uk": "тут потрібно `We're` — `We're independent.`"
+              "ru": "здесь нужно `We're` — `We're late.`",
+              "uk": "тут потрібно `We're` — `We're late.`"
             }
           }
         ],
@@ -654,26 +826,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви обговорюєте, чи може малюк обходитися без дорослих. Йому постійно потрібна їхня турбота. Скажіть про його залежність",
+      "prompt": "Тато вже в таксі згадує, що залишив зарядку на кухні. Скажіть, що він забудькуватий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви обговорюєте, чи може малюк обходитися без дорослих. Йому постійно потрібна їхня турбота. Скажіть про його залежність",
+      "accessibilityLabel": "Тато вже в таксі згадує, що залишив зарядку на кухні. Скажіть, що він забудькуватий",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He is dependent.",
+        "targetPhrase": "He is forgetful.",
         "localizedMeaning": {
-          "ru": "Вы обсуждаете, может ли малыш обходиться без взрослых. Ему постоянно нужна их забота. Скажите о его зависимости",
-          "uk": "Ви обговорюєте, чи може малюк обходитися без дорослих. Йому постійно потрібна їхня турбота. Скажіть про його залежність"
+          "ru": "Папа уже в такси вспоминает, что оставил зарядку на кухне. Скажите, что он забывчивый",
+          "uk": "Тато вже в таксі згадує, що залишив зарядку на кухні. Скажіть, що він забудькуватий"
         },
         "orderedTokens": [
           "He",
           "is",
-          "dependent"
+          "forgetful"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -682,10 +854,10 @@
           {
             "responseId": "en:lesson-01:session-56:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви обговорюєте, чи може малюк обходитися без дорослих. Йому постійно потрібна їхня турбота. Скажіть про його залежність",
+            "testedDimension": "Тато вже в таксі згадує, що залишив зарядку на кухні. Скажіть, що він забудькуватий",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is dependent.`",
-              "uk": "тут потрібно `is` — `He is dependent.`"
+              "ru": "здесь нужно `is` — `He is forgetful.`",
+              "uk": "тут потрібно `is` — `He is forgetful.`"
             }
           }
         ],
@@ -698,25 +870,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви уважно виконуєте свої обов’язки. Скажіть про себе: «Я відповідальний»",
+      "prompt": "У потязі тітка Віра пригощає вас пиріжком із вишнею. Похваліть його коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-56:i13:audio"
       ],
-      "accessibilityLabel": "Ви уважно виконуєте свої обов’язки. Скажіть про себе: «Я відповідальний»",
+      "accessibilityLabel": "У потязі тітка Віра пригощає вас пиріжком із вишнею. Похваліть його коротко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-56:i13:audio",
-          "transcript": "I am responsible."
+          "transcript": "It's delicious."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am responsible.",
+        "targetPhrase": "It's delicious.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -731,11 +903,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Один порожній наплічник мало важить. Доповніть фразу про вагу",
+      "prompt": "Куртка, яку син носив минулої зими, тепер ледве застібається. Доповніть фразу про неї",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i14:r1",
@@ -752,14 +924,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Один порожній наплічник мало важить. Доповніть фразу про вагу",
+      "accessibilityLabel": "Куртка, яку син носив минулої зими, тепер ледве застібається. Доповніть фразу про неї",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Один пустой рюкзак мало весит. Дополните фразу о весе",
-          "uk": "Один порожній наплічник мало важить. Доповніть фразу про вагу"
+          "ru": "Куртка, которую сын носил прошлой зимой, теперь еле застёгивается. Дополните фразу о ней",
+          "uk": "Куртка, яку син носив минулої зими, тепер ледве застібається. Доповніть фразу про неї"
         },
-        "gappedTargetPhrase": "It ___ light.",
+        "gappedTargetPhrase": "It ___ tight.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-56:i14:r1",
@@ -774,12 +946,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Один порожній наплічник мало важить. Доповніть фразу про вагу",
+        "testedDimension": "Куртка, яку син носив минулої зими, тепер ледве застібається. Доповніть фразу про неї",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-56:i14:r2",
             "correct": false,
-            "testedDimension": "Один порожній наплічник мало важить. Доповніть фразу про вагу",
+            "testedDimension": "Куртка, яку син носив минулої зими, тепер ледве застібається. Доповніть фразу про неї",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -788,10 +960,10 @@
           {
             "responseId": "en:lesson-01:session-56:i14:r3",
             "correct": false,
-            "testedDimension": "Один порожній наплічник мало важить. Доповніть фразу про вагу",
+            "testedDimension": "Куртка, яку син носив минулої зими, тепер ледве застібається. Доповніть фразу про неї",
             "feedbackByLocale": {
-              "ru": "Про один рюкзак — `It is`.",
-              "uk": "Про один наплічник — `It is`."
+              "ru": "Куртка одна, поэтому `It is`.",
+              "uk": "Куртка одна, тому `It is`."
             }
           }
         ]
@@ -800,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -808,11 +980,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i15:r1",
-          "text": "They're full."
+          "text": "They're tight."
         },
         {
           "responseId": "en:lesson-01:session-56:i15:r2",
-          "text": "They're heavy."
+          "text": "It's tight."
         },
         {
           "responseId": "en:lesson-01:session-56:i15:r3",
@@ -828,18 +1000,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-56:i15:audio",
-          "transcript": "They're full."
+          "transcript": "They're tight."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-56:i15:r1",
-            "targetText": "They're full.",
+            "targetText": "They're tight.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-56:i15:r2",
-            "targetText": "They're heavy.",
+            "targetText": "It's tight.",
             "meaningByLocale": null
           },
           {
@@ -855,8 +1027,8 @@
             "correct": false,
             "testedDimension": "Послухайте коротку фразу й виберіть її",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `full`, а в этом варианте — `heavy`.",
-              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `heavy`."
+              "ru": "В записи первое слово — `They're`, а в этом варианте — `It's`.",
+              "uk": "У записі перше слово — `They're`, а в цьому варіанті — `It's`."
             }
           },
           {
@@ -864,8 +1036,8 @@
             "correct": false,
             "testedDimension": "Послухайте коротку фразу й виберіть її",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `full`, а в этом варианте — `light`.",
-              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `light`."
+              "ru": "В записи последнее слово — `tight`, а в этом варианте — `light`.",
+              "uk": "У записі останнє слово — `tight`, а в цьому варіанті — `light`."
             }
           }
         ],
@@ -876,15 +1048,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте слова сьомого розділу зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте слова сьомого розділу зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -900,16 +1072,16 @@
             "pairId": "en:lesson-01:session-56:i16:p2",
             "target": "independent",
             "meaningByLocale": {
-              "ru": "независимый",
-              "uk": "незалежний"
+              "ru": "самостоятельный",
+              "uk": "самостійний"
             }
           },
           {
             "pairId": "en:lesson-01:session-56:i16:p3",
-            "target": "dependent",
+            "target": "familiar",
             "meaningByLocale": {
-              "ru": "зависимый",
-              "uk": "залежний"
+              "ru": "знакомый",
+              "uk": "знайомий"
             }
           },
           {
@@ -924,13 +1096,13 @@
         "leftColumn": [
           "responsible",
           "independent",
-          "dependent",
+          "familiar",
           "full"
         ],
         "rightColumn": [
           "відповідальний",
-          "незалежний",
-          "залежний",
+          "самостійний",
+          "знайомий",
           "повний"
         ],
         "pairingKey": "pair_id",
@@ -949,25 +1121,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-56:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Після поїздки ви розповідаєте про подругу: вона сама організовує свої повсякденні справи й ухвалює рішення. Назвіть її незалежною",
+      "prompt": "Ви повернулися з поїздки, і сусідка просить перевірити, чи замкнула вона гараж. Ви тягнете ворота, і вони не відчиняються. Скажіть їй, що гараж замкнений",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-56:i17:audio"
       ],
-      "accessibilityLabel": "Після поїздки ви розповідаєте про подругу: вона сама організовує свої повсякденні справи й ухвалює рішення. Назвіть її незалежною",
+      "accessibilityLabel": "Ви повернулися з поїздки, і сусідка просить перевірити, чи замкнула вона гараж. Ви тягнете ворота, і вони не відчиняються. Скажіть їй, що гараж замкнений",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-56:i17:audio",
-          "transcript": "She is independent."
+          "transcript": "It is locked."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is independent.",
+        "targetPhrase": "It is locked.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0eea5143538e95d9f465a68a20e8603117effdbe4f9c236a1e31516bdfb00101"
+  "learnerFingerprint": "60d35017e08b25cd05fb06a0608e2dbb0f5e8c8142bc68342b88d49d04955463"
 }

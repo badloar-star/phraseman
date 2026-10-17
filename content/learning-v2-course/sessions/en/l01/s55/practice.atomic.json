@@ -1,0 +1,2431 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-55:word:responsible",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — responsible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:responsible:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — responsible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:responsible:audio",
+            "transcript": "responsible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:responsible:r1",
+              "targetText": "responsible",
+              "meaningByLocale": {
+                "ru": "ответственный. He's responsible — «Он ответственный». О человеке, который держит слово и делает всё вовремя.",
+                "uk": "відповідальний. He's responsible — «Він відповідальний». Про людину, яка тримає слово й робить усе вчасно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "responsible",
+            "definitionByLocale": {
+              "ru": "ответственный. He's responsible — «Он ответственный». О человеке, который держит слово и делает всё вовремя.",
+              "uk": "відповідальний. He's responsible — «Він відповідальний». Про людину, яка тримає слово й робить усе вчасно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:word:independent",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — independent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:independent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — independent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:independent:audio",
+            "transcript": "independent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:independent:r1",
+              "targetText": "independent",
+              "meaningByLocale": {
+                "ru": "самостоятельный. She's independent — «Она самостоятельная». О человеке, который справляется сам.",
+                "uk": "самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "independent",
+            "definitionByLocale": {
+              "ru": "самостоятельный. She's independent — «Она самостоятельная». О человеке, который справляется сам.",
+              "uk": "самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:word:dependent",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dependent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:dependent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dependent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:dependent:audio",
+            "transcript": "dependent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:dependent:r1",
+              "targetText": "dependent",
+              "meaningByLocale": {
+                "ru": "зависимый. He's dependent — «Он зависит от других». О малыше или больном, которому постоянно нужна помощь.",
+                "uk": "залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dependent",
+            "definitionByLocale": {
+              "ru": "зависимый. He's dependent — «Он зависит от других». О малыше или больном, которому постоянно нужна помощь.",
+              "uk": "залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:word:forgetful",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — forgetful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:forgetful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — forgetful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:forgetful:audio",
+            "transcript": "forgetful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:forgetful:r1",
+              "targetText": "forgetful",
+              "meaningByLocale": {
+                "ru": "забывчивый. He's forgetful — «Он забывчивый». О человеке, который вечно забывает ключи, зонт, зарядку.",
+                "uk": "забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "forgetful",
+            "definitionByLocale": {
+              "ru": "забывчивый. He's forgetful — «Он забывчивый». О человеке, который вечно забывает ключи, зонт, зарядку.",
+              "uk": "забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Костя сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is responsible.",
+          "localizedMeaning": {
+            "ru": "Костя сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
+            "uk": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "responsible"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Костя сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is responsible.`",
+                "uk": "тут потрібно `is` — `He is responsible.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i02:r1",
+            "text": "He is forgetful."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i02:r2",
+            "text": "She is forgetful."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i02:r3",
+            "text": "He is responsible."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i02:audio",
+            "transcript": "He is forgetful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:i02:r1",
+              "targetText": "He is forgetful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i02:r2",
+              "targetText": "She is forgetful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i02:r3",
+              "targetText": "He is responsible.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `forgetful`, а в этом варианте — `responsible`.",
+                "uk": "У записі останнє слово — `forgetful`, а в цьому варіанті — `responsible`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+            "uk": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними"
+          },
+          "gappedTargetPhrase": "They ___ responsible.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-55:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+              "feedbackByLocale": {
+                "ru": "Их двое, поэтому `They are`.",
+                "uk": "Їх двоє, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-55:i04:p1",
+              "target": "responsible",
+              "meaningByLocale": {
+                "ru": "ответственный",
+                "uk": "відповідальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i04:p2",
+              "target": "independent",
+              "meaningByLocale": {
+                "ru": "самостоятельный",
+                "uk": "самостійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i04:p3",
+              "target": "dependent",
+              "meaningByLocale": {
+                "ru": "зависимый",
+                "uk": "залежний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i04:p4",
+              "target": "forgetful",
+              "meaningByLocale": {
+                "ru": "забывчивый",
+                "uk": "забудькуватий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "responsible",
+            "independent",
+            "dependent",
+            "forgetful"
+          ],
+          "rightColumn": [
+            "ответственный",
+            "самостоятельный",
+            "зависимый",
+            "забывчивый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу о Тёме",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу о Тёме",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i05:audio",
+            "transcript": "He's dependent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He's dependent.",
+          "orderedTokens": [
+            "He's",
+            "dependent"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу о Тёме",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `He's` — `He's dependent.`",
+                "uk": "тут потрібно `He's` — `He's dependent.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тётя Вера сама нашла гостиницу и сама доберётся до неё. Скажите Косте, что она справится и без него",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тётя Вера сама нашла гостиницу и сама доберётся до неё. Скажите Косте, что она справится и без него",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is independent.",
+          "localizedMeaning": {
+            "ru": "Тётя Вера сама нашла гостиницу и сама доберётся до неё. Скажите Косте, что она справится и без него",
+            "uk": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "independent"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Тётя Вера сама нашла гостиницу и сама доберётся до неё. Скажите Косте, что она справится и без него",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is independent.`",
+                "uk": "тут потрібно `is` — `She is independent.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Папа в третий раз возвращается домой: сначала за телефоном, потом за очками, теперь за ключами. Скажите маме коротко, что он забывчивый",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Папа в третий раз возвращается домой: сначала за телефоном, потом за очками, теперь за ключами. Скажите маме коротко, что он забывчивый",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i07:audio",
+            "transcript": "He's forgetful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's forgetful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i08:r1",
+            "text": "dependent"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r2",
+            "text": "independent"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r3",
+            "text": "forgetful"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+            "uk": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-55:i08:r1",
+              "text": "dependent"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "text": "independent"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "text": "forgetful"
+            }
+          ],
+          "testedDimension": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+              "feedbackByLocale": {
+                "ru": "`independent` — «самостоятельный». А Тёма без взрослых не справляется: `dependent`.",
+                "uk": "`independent` — «самостійний». А Тимко без дорослих не дає собі ради: `dependent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+              "feedbackByLocale": {
+                "ru": "`forgetful` — «забывчивый». Тёме нужна помощь во всём: `dependent`.",
+                "uk": "`forgetful` — «забудькуватий». Тимкові потрібна допомога в усьому: `dependent`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу о крутой лестнице на перрон",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i09:r1",
+            "text": "It is dangerous."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i09:r2",
+            "text": "It is familiar."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i09:r3",
+            "text": "It is unfamiliar."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу о крутой лестнице на перрон",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i09:audio",
+            "transcript": "It is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:i09:r1",
+              "targetText": "It is dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i09:r2",
+              "targetText": "It is familiar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i09:r3",
+              "targetText": "It is unfamiliar.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о крутой лестнице на перрон",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `familiar`.",
+                "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `familiar`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о крутой лестнице на перрон",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `unfamiliar`.",
+                "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `unfamiliar`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова прошлого занятия со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-55:i10:p1",
+              "target": "familiar",
+              "meaningByLocale": {
+                "ru": "знакомый",
+                "uk": "знайомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i10:p2",
+              "target": "unfamiliar",
+              "meaningByLocale": {
+                "ru": "незнакомый",
+                "uk": "незнайомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i10:p3",
+              "target": "unknown",
+              "meaningByLocale": {
+                "ru": "неизвестный",
+                "uk": "невідомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i10:p4",
+              "target": "faded",
+              "meaningByLocale": {
+                "ru": "выцветший",
+                "uk": "вицвілий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "familiar",
+            "unfamiliar",
+            "unknown",
+            "faded"
+          ],
+          "rightColumn": [
+            "знакомый",
+            "незнакомый",
+            "неизвестный",
+            "выцветший"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу о вас с сестрой: в дорогу вы собираетесь сами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу о вас с сестрой: в дорогу вы собираетесь сами",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i11:audio",
+            "transcript": "We're independent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We're independent.",
+          "orderedTokens": [
+            "We're",
+            "independent"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу о вас с сестрой: в дорогу вы собираетесь сами",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We're` — `We're independent.`",
+                "uk": "тут потрібно `We're` — `We're independent.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is familiar.",
+          "localizedMeaning": {
+            "ru": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
+            "uk": "На фото з поїздки минулого літа ви впізнаєте вокзал. Скажіть, що він вам знайомий"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "familiar"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is familiar.`",
+                "uk": "тут потрібно `is` — `It is familiar.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На табло у вашего поезда пока нет номера пути. Костя спрашивает, с какого пути отправление. Скажите, что путь неизвестен",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "На табло у вашего поезда пока нет номера пути. Костя спрашивает, с какого пути отправление. Скажите, что путь неизвестен",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i13:audio",
+            "transcript": "It is unknown."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is unknown.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+            "uk": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті"
+          },
+          "gappedTargetPhrase": "I ___ forgetful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-55:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `am`.",
+                "uk": "Після `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о себе: `I am`.",
+                "uk": "Ви кажете про себе: `I am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте короткую фразу о тёте Вере и выберите её",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i15:r1",
+            "text": "She's independent."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i15:r2",
+            "text": "She's dependent."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i15:r3",
+            "text": "She's responsible."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте короткую фразу о тёте Вере и выберите её",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i15:audio",
+            "transcript": "She's independent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:i15:r1",
+              "targetText": "She's independent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i15:r2",
+              "targetText": "She's dependent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i15:r3",
+              "targetText": "She's responsible.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте короткую фразу о тёте Вере и выберите её",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `independent`, а в этом варианте — `dependent`.",
+                "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `dependent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте короткую фразу о тёте Вере и выберите её",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `independent`, а в этом варианте — `responsible`.",
+                "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `responsible`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова о характере со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова о характере со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-55:i16:p1",
+              "target": "responsible",
+              "meaningByLocale": {
+                "ru": "ответственный",
+                "uk": "відповідальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i16:p2",
+              "target": "forgetful",
+              "meaningByLocale": {
+                "ru": "забывчивый",
+                "uk": "забудькуватий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i16:p3",
+              "target": "patient",
+              "meaningByLocale": {
+                "ru": "терпеливый",
+                "uk": "терплячий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i16:p4",
+              "target": "honest",
+              "meaningByLocale": {
+                "ru": "честный",
+                "uk": "чесний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "responsible",
+            "forgetful",
+            "patient",
+            "honest"
+          ],
+          "rightColumn": [
+            "ответственный",
+            "забывчивый",
+            "терпеливый",
+            "честный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В клубе новая организаторша всегда делает то, что пообещала, и ни разу не подвела. Назовите её ответственной",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "В клубе новая организаторша всегда делает то, что пообещала, и ни разу не подвела. Назовите её ответственной",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i17:audio",
+            "transcript": "She is responsible."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is responsible.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-55:word:responsible",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — responsible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:responsible:audio"
+        ],
+        "accessibilityLabel": "Картка слова — responsible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:responsible:audio",
+            "transcript": "responsible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:responsible:r1",
+              "targetText": "responsible",
+              "meaningByLocale": {
+                "ru": "ответственный. He's responsible — «Он ответственный». О человеке, который держит слово и делает всё вовремя.",
+                "uk": "відповідальний. He's responsible — «Він відповідальний». Про людину, яка тримає слово й робить усе вчасно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "responsible",
+            "definitionByLocale": {
+              "ru": "ответственный. He's responsible — «Он ответственный». О человеке, который держит слово и делает всё вовремя.",
+              "uk": "відповідальний. He's responsible — «Він відповідальний». Про людину, яка тримає слово й робить усе вчасно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:word:independent",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — independent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:independent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — independent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:independent:audio",
+            "transcript": "independent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:independent:r1",
+              "targetText": "independent",
+              "meaningByLocale": {
+                "ru": "самостоятельный. She's independent — «Она самостоятельная». О человеке, который справляется сам.",
+                "uk": "самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "independent",
+            "definitionByLocale": {
+              "ru": "самостоятельный. She's independent — «Она самостоятельная». О человеке, который справляется сам.",
+              "uk": "самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:word:dependent",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dependent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:dependent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dependent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:dependent:audio",
+            "transcript": "dependent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:dependent:r1",
+              "targetText": "dependent",
+              "meaningByLocale": {
+                "ru": "зависимый. He's dependent — «Он зависит от других». О малыше или больном, которому постоянно нужна помощь.",
+                "uk": "залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dependent",
+            "definitionByLocale": {
+              "ru": "зависимый. He's dependent — «Он зависит от других». О малыше или больном, которому постоянно нужна помощь.",
+              "uk": "залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:word:forgetful",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — forgetful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:word:forgetful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — forgetful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:word:forgetful:audio",
+            "transcript": "forgetful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:word:forgetful:r1",
+              "targetText": "forgetful",
+              "meaningByLocale": {
+                "ru": "забывчивый. He's forgetful — «Он забывчивый». О человеке, который вечно забывает ключи, зонт, зарядку.",
+                "uk": "забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "forgetful",
+            "definitionByLocale": {
+              "ru": "забывчивый. He's forgetful — «Он забывчивый». О человеке, который вечно забывает ключи, зонт, зарядку.",
+              "uk": "забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is responsible.",
+          "localizedMeaning": {
+            "ru": "Костя сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
+            "uk": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "responsible"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is responsible.`",
+                "uk": "тут потрібно `is` — `He is responsible.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i02:r1",
+            "text": "He is forgetful."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i02:r2",
+            "text": "She is forgetful."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i02:r3",
+            "text": "He is responsible."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i02:audio",
+            "transcript": "He is forgetful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:i02:r1",
+              "targetText": "He is forgetful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i02:r2",
+              "targetText": "She is forgetful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i02:r3",
+              "targetText": "He is responsible.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `forgetful`, а в этом варианте — `responsible`.",
+                "uk": "У записі останнє слово — `forgetful`, а в цьому варіанті — `responsible`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+            "uk": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними"
+          },
+          "gappedTargetPhrase": "They ___ responsible.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-55:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+              "feedbackByLocale": {
+                "ru": "Их двое, поэтому `They are`.",
+                "uk": "Їх двоє, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-55:i04:p1",
+              "target": "responsible",
+              "meaningByLocale": {
+                "ru": "ответственный",
+                "uk": "відповідальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i04:p2",
+              "target": "independent",
+              "meaningByLocale": {
+                "ru": "самостоятельный",
+                "uk": "самостійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i04:p3",
+              "target": "dependent",
+              "meaningByLocale": {
+                "ru": "зависимый",
+                "uk": "залежний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i04:p4",
+              "target": "forgetful",
+              "meaningByLocale": {
+                "ru": "забывчивый",
+                "uk": "забудькуватий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "responsible",
+            "independent",
+            "dependent",
+            "forgetful"
+          ],
+          "rightColumn": [
+            "відповідальний",
+            "самостійний",
+            "залежний",
+            "забудькуватий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу про Тимка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу про Тимка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i05:audio",
+            "transcript": "He's dependent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He's dependent.",
+          "orderedTokens": [
+            "He's",
+            "dependent"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу про Тимка",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `He's` — `He's dependent.`",
+                "uk": "тут потрібно `He's` — `He's dependent.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is independent.",
+          "localizedMeaning": {
+            "ru": "Тётя Вера сама нашла гостиницу и сама доберётся до неё. Скажите Косте, что она справится и без него",
+            "uk": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "independent"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is independent.`",
+                "uk": "тут потрібно `is` — `She is independent.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тато втретє повертається додому: спочатку по телефон, потім по окуляри, тепер по ключі. Скажіть мамі коротко, що він забудькуватий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Тато втретє повертається додому: спочатку по телефон, потім по окуляри, тепер по ключі. Скажіть мамі коротко, що він забудькуватий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i07:audio",
+            "transcript": "He's forgetful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's forgetful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i08:r1",
+            "text": "dependent"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r2",
+            "text": "independent"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r3",
+            "text": "forgetful"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+            "uk": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-55:i08:r1",
+              "text": "dependent"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "text": "independent"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "text": "forgetful"
+            }
+          ],
+          "testedDimension": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+              "feedbackByLocale": {
+                "ru": "`independent` — «самостоятельный». А Тёма без взрослых не справляется: `dependent`.",
+                "uk": "`independent` — «самостійний». А Тимко без дорослих не дає собі ради: `dependent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+              "feedbackByLocale": {
+                "ru": "`forgetful` — «забывчивый». Тёме нужна помощь во всём: `dependent`.",
+                "uk": "`forgetful` — «забудькуватий». Тимкові потрібна допомога в усьому: `dependent`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про круті сходи на перон",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i09:r1",
+            "text": "It is dangerous."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i09:r2",
+            "text": "It is familiar."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i09:r3",
+            "text": "It is unfamiliar."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про круті сходи на перон",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i09:audio",
+            "transcript": "It is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:i09:r1",
+              "targetText": "It is dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i09:r2",
+              "targetText": "It is familiar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i09:r3",
+              "targetText": "It is unfamiliar.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про круті сходи на перон",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `familiar`.",
+                "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `familiar`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про круті сходи на перон",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `unfamiliar`.",
+                "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `unfamiliar`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова минулого заняття зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова минулого заняття зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-55:i10:p1",
+              "target": "familiar",
+              "meaningByLocale": {
+                "ru": "знакомый",
+                "uk": "знайомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i10:p2",
+              "target": "unfamiliar",
+              "meaningByLocale": {
+                "ru": "незнакомый",
+                "uk": "незнайомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i10:p3",
+              "target": "unknown",
+              "meaningByLocale": {
+                "ru": "неизвестный",
+                "uk": "невідомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i10:p4",
+              "target": "faded",
+              "meaningByLocale": {
+                "ru": "выцветший",
+                "uk": "вицвілий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "familiar",
+            "unfamiliar",
+            "unknown",
+            "faded"
+          ],
+          "rightColumn": [
+            "знайомий",
+            "незнайомий",
+            "невідомий",
+            "вицвілий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу про вас із сестрою: у дорогу ви збираєтеся самі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу про вас із сестрою: у дорогу ви збираєтеся самі",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i11:audio",
+            "transcript": "We're independent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We're independent.",
+          "orderedTokens": [
+            "We're",
+            "independent"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу про вас із сестрою: у дорогу ви збираєтеся самі",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We're` — `We're independent.`",
+                "uk": "тут потрібно `We're` — `We're independent.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На фото з поїздки минулого літа ви впізнаєте вокзал. Скажіть, що він вам знайомий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На фото з поїздки минулого літа ви впізнаєте вокзал. Скажіть, що він вам знайомий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is familiar.",
+          "localizedMeaning": {
+            "ru": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
+            "uk": "На фото з поїздки минулого літа ви впізнаєте вокзал. Скажіть, що він вам знайомий"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "familiar"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На фото з поїздки минулого літа ви впізнаєте вокзал. Скажіть, що він вам знайомий",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is familiar.`",
+                "uk": "тут потрібно `is` — `It is familiar.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На табло біля вашого потяга поки немає номера колії. Костя питає, з якої колії відправлення. Скажіть, що колія невідома",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "На табло біля вашого потяга поки немає номера колії. Костя питає, з якої колії відправлення. Скажіть, що колія невідома",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i13:audio",
+            "transcript": "It is unknown."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is unknown.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+            "uk": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті"
+          },
+          "gappedTargetPhrase": "I ___ forgetful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-55:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `am`.",
+                "uk": "Після `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о себе: `I am`.",
+                "uk": "Ви кажете про себе: `I am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте коротку фразу про тітку Віру й виберіть її",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-55:i15:r1",
+            "text": "She's independent."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i15:r2",
+            "text": "She's dependent."
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i15:r3",
+            "text": "She's responsible."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте коротку фразу про тітку Віру й виберіть її",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i15:audio",
+            "transcript": "She's independent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-55:i15:r1",
+              "targetText": "She's independent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i15:r2",
+              "targetText": "She's dependent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i15:r3",
+              "targetText": "She's responsible.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте коротку фразу про тітку Віру й виберіть її",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `independent`, а в этом варианте — `dependent`.",
+                "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `dependent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте коротку фразу про тітку Віру й виберіть її",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `independent`, а в этом варианте — `responsible`.",
+                "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `responsible`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова про характер зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова про характер зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-55:i16:p1",
+              "target": "responsible",
+              "meaningByLocale": {
+                "ru": "ответственный",
+                "uk": "відповідальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i16:p2",
+              "target": "forgetful",
+              "meaningByLocale": {
+                "ru": "забывчивый",
+                "uk": "забудькуватий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i16:p3",
+              "target": "patient",
+              "meaningByLocale": {
+                "ru": "терпеливый",
+                "uk": "терплячий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-55:i16:p4",
+              "target": "honest",
+              "meaningByLocale": {
+                "ru": "честный",
+                "uk": "чесний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "responsible",
+            "forgetful",
+            "patient",
+            "honest"
+          ],
+          "rightColumn": [
+            "відповідальний",
+            "забудькуватий",
+            "терплячий",
+            "чесний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У клубі нова організаторка завжди робить те, що пообіцяла, і жодного разу не підвела. Назвіть її відповідальною",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "У клубі нова організаторка завжди робить те, що пообіцяла, і жодного разу не підвела. Назвіть її відповідальною",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-55:i17:audio",
+            "transcript": "She is responsible."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is responsible.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-55:word:responsible",
+      "correctText": "responsible",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:word:independent",
+      "correctText": "independent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:word:dependent",
+      "correctText": "dependent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:word:forgetful",
+      "correctText": "forgetful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i01",
+      "correctText": "He is responsible.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i02",
+      "correctText": "He is forgetful.",
+      "correctResponseId": "en:lesson-01:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i05",
+      "correctText": "He's dependent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i06",
+      "correctText": "She is independent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i07",
+      "correctText": "He's forgetful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i08",
+      "correctText": "dependent",
+      "correctResponseId": "en:lesson-01:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i09",
+      "correctText": "It is dangerous.",
+      "correctResponseId": "en:lesson-01:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i11",
+      "correctText": "We're independent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i12",
+      "correctText": "It is familiar.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i13",
+      "correctText": "It is unknown.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i14",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-01:session-55:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i15",
+      "correctText": "She's independent.",
+      "correctResponseId": "en:lesson-01:session-55:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i17",
+      "correctText": "She is responsible.",
+      "correctResponseId": null
+    }
+  ]
+}

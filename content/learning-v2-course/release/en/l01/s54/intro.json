@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-54",
   "learningOutcomeByLocale": {
-    "ru": "различить узнаваемое, незнакомое и то, о чём сведений пока нет",
-    "uk": "розрізнити впізнаване, незнайоме й те, про що відомостей поки немає"
+    "ru": "коротко сказать о старых снимках: что вам знакомо, что незнакомо, что никому не известно и что выцвело, и повторить слова о пользе и возрасте вещей",
+    "uk": "коротко сказати про старі знімки: що вам знайоме, що незнайоме, що нікому не відоме і що вицвіло, і повторити слова про користь і вік речей"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Узнаю это",
-        "uk": "Упізнаю це"
+        "ru": "Бабушкин двор",
+        "uk": "Бабусин двір"
       },
       "bodyByLocale": {
-        "ru": "`familiar` — «знакомый», «узнаваемый». `It is familiar` — «Это знакомо». Вы видели этот двор раньше и узнаёте его. Кажется, даже скамейка всё ещё стоит там, где вы оставили на ней варежку.",
-        "uk": "`familiar` — «знайомий», «упізнаваний». `It is familiar` — «Це знайоме». Ви бачили цей двір раніше й упізнаєте його. Здається, навіть лавка досі стоїть там, де ви залишили на ній рукавичку."
+        "ru": "Аня достаёт снимок: двор с качелями, скамейка у подъезда, старая липа. Это двор бабушки, где вы каждое лето гоняли мяч до темноты. familiar — «знакомый». It is familiar, коротко It's familiar — «Он мне знаком».",
+        "uk": "Аня дістає знімок: двір із гойдалками, лавка біля під’їзду, стара липа. Це двір бабусі, де ви щоліта ганяли м’яча до темряви. familiar — «знайомий». It is familiar, коротко It's familiar — «Він мені знайомий»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-54:intro1:q",
         "promptByLocale": {
-          "ru": "Вы узнаёте двор на фотографии: бывали там много раз. Скажите, что он вам знаком.",
-          "uk": "Ви впізнаєте двір на фотографії: бували там багато разів. Скажіть, що він вам знайомий."
+          "ru": "Аня спрашивает, узнаёте ли вы этот двор. Ответьте коротко, что он вам знаком.",
+          "uk": "Аня питає, чи впізнаєте ви цей двір. Відповідайте коротко, що він вам знайомий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-54:intro1:r1",
-              "text": "It is familiar."
+              "text": "It's familiar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro1:r2",
-              "text": "It is unfamiliar."
+              "text": "It's new."
             },
             {
               "responseId": "en:lesson-01:session-54:intro1:r3",
-              "text": "It are familiar."
+              "text": "They're familiar."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-54:intro1:r1",
-              "text": "It is familiar."
+              "text": "It's familiar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro1:r2",
-              "text": "It is unfamiliar."
+              "text": "It's new."
             },
             {
               "responseId": "en:lesson-01:session-54:intro1:r3",
-              "text": "It are familiar."
+              "text": "They're familiar."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы узнаёте двор на фотографии: бывали там много раз. Скажите, что он вам знаком.",
-          "uk": "Ви впізнаєте двір на фотографії: бували там багато разів. Скажіть, що він вам знайомий."
+          "ru": "Аня спрашивает, узнаёте ли вы этот двор. Ответьте коротко, что он вам знаком.",
+          "uk": "Аня питає, чи впізнаєте ви цей двір. Відповідайте коротко, що він вам знайомий."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вижу впервые",
-        "uk": "Бачу вперше"
+        "ru": "Улица с синими дверями",
+        "uk": "Вулиця із синіми дверима"
       },
       "bodyByLocale": {
-        "ru": "`unfamiliar` — «незнакомый», «непривычный». `It is unfamiliar` — «Это незнакомо». Улицу на другом снимке вы видите впервые. Другой человек вполне может её узнать: речь о вашем знакомстве с ней.",
-        "uk": "`unfamiliar` — «незнайомий», «незвичний». `It is unfamiliar` — «Це незнайоме». Вулицю на іншому знімку ви бачите вперше. Інша людина цілком може її впізнати: йдеться про ваше знайомство з нею."
+        "ru": "На следующем снимке узкая улица: синие двери, цветы в горшках на ступеньках. Вы там никогда не были и не можете сказать, какой это город. unfamiliar — «незнакомый». It is unfamiliar, коротко It's unfamiliar — «Она мне незнакома».",
+        "uk": "На наступному знімку вузька вулиця: сині двері, квіти в горщиках на сходинках. Ви там ніколи не були й не можете сказати, яке це місто. unfamiliar — «незнайомий». It is unfamiliar, коротко It's unfamiliar — «Вона мені незнайома»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-54:intro2:q",
         "promptByLocale": {
-          "ru": "Эту улицу вы раньше не видели и не узнаёте. Скажите, что она вам незнакома.",
-          "uk": "Цієї вулиці ви раніше не бачили й не впізнаєте. Скажіть, що вона вам незнайома."
+          "ru": "Аня спрашивает, знаете ли вы эту улицу. Ответьте коротко, что она вам незнакома.",
+          "uk": "Аня питає, чи знаєте ви цю вулицю. Відповідайте коротко, що вона вам незнайома."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-54:intro2:r1",
-              "text": "It is unfamiliar."
+              "text": "It's unfamiliar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro2:r2",
-              "text": "It is familiar."
+              "text": "It's familiar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro2:r3",
-              "text": "It are unfamiliar."
+              "text": "She's unfamiliar."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-54:intro2:r1",
-              "text": "It is unfamiliar."
+              "text": "It's unfamiliar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro2:r2",
-              "text": "It is familiar."
+              "text": "It's familiar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro2:r3",
-              "text": "It are unfamiliar."
+              "text": "She's unfamiliar."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Эту улицу вы раньше не видели и не узнаёте. Скажите, что она вам незнакома.",
-          "uk": "Цієї вулиці ви раніше не бачили й не впізнаєте. Скажіть, що вона вам незнайома."
+          "ru": "Аня спрашивает, знаете ли вы эту улицу. Ответьте коротко, что она вам незнакома.",
+          "uk": "Аня питає, чи знаєте ви цю вулицю. Відповідайте коротко, що вона вам незнайома."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сведений нет",
-        "uk": "Відомостей немає"
+        "ru": "Дата на обороте",
+        "uk": "Дата на звороті"
       },
       "bodyByLocale": {
-        "ru": "`unknown` — «неизвестный». `It is unknown` — «Это неизвестно». Про дату без сведений подходит `unknown`; про улицу, которую лично вы не узнаёте, обычно точнее `unfamiliar`. Значения могут пересекаться — выбирайте по ситуации.",
-        "uk": "`unknown` — «невідомий». `It is unknown` — «Це невідомо». Про дату без відомостей підходить `unknown`; про вулицю, яку особисто ви не впізнаєте, зазвичай точніше `unfamiliar`. Значення можуть перетинатися — вибирайте за ситуацією."
+        "ru": "Свадебное фото прадедушки. Аня переворачивает его: на обороте ни слова. Мама не помнит, тётя тоже, спросить больше некого. unknown — «неизвестный». It is unknown, коротко It's unknown — «Она неизвестна».",
+        "uk": "Весільне фото прадідуся. Аня перевертає його: на звороті ані слова. Мама не пам’ятає, тітка теж, спитати більше нікого. unknown — «невідомий». It is unknown, коротко It's unknown — «Вона невідома»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-54:intro3:q",
         "promptByLocale": {
-          "ru": "Ни на снимке, ни в семейных записях нет даты; когда он сделан, выяснить не удалось. Скажите, что дата неизвестна.",
-          "uk": "Ні на знімку, ні в сімейних записах немає дати; коли його зроблено, з’ясувати не вдалося. Скажіть, що дата невідома."
+          "ru": "Аня спрашивает, в каком году сделан снимок. Ответьте коротко, что дата неизвестна.",
+          "uk": "Аня питає, у якому році зроблено знімок. Відповідайте коротко, що дата невідома."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-54:intro3:r1",
-              "text": "It is unknown."
+              "text": "It's unknown."
             },
             {
               "responseId": "en:lesson-01:session-54:intro3:r2",
-              "text": "It is familiar."
+              "text": "It's unfamiliar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro3:r3",
-              "text": "It are unknown."
+              "text": "It's old."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-54:intro3:r1",
-              "text": "It is unknown."
+              "text": "It's unknown."
             },
             {
               "responseId": "en:lesson-01:session-54:intro3:r2",
-              "text": "It is familiar."
+              "text": "It's unfamiliar."
             },
             {
               "responseId": "en:lesson-01:session-54:intro3:r3",
-              "text": "It are unknown."
+              "text": "It's old."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ни на снимке, ни в семейных записях нет даты; когда он сделан, выяснить не удалось. Скажите, что дата неизвестна.",
-          "uk": "Ні на знімку, ні в сімейних записах немає дати; коли його зроблено, з’ясувати не вдалося. Скажіть, що дата невідома."
+          "ru": "Аня спрашивает, в каком году сделан снимок. Ответьте коротко, что дата неизвестна.",
+          "uk": "Аня питає, у якому році зроблено знімок. Відповідайте коротко, що дата невідома."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4a3fa62c2847e09be8abd6c10672a54396a39978cad0e6bcc8b35e0bda59dc95"
+  "introFingerprint": "e2d3ef7da1dff347d1dbca420071cab9a8a033ce6b975d57bcf7d37cb64a9388"
 }

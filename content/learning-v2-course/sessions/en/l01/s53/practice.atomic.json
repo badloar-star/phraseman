@@ -1,0 +1,2431 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-53:word:ripe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ripe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:ripe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ripe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:ripe:audio",
+            "transcript": "ripe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:ripe:r1",
+              "targetText": "ripe",
+              "meaningByLocale": {
+                "ru": "спелый. They're ripe — «Они спелые». О ягодах, яблоках, помидорах, которые уже созрели.",
+                "uk": "стиглий. They're ripe — «Вони стиглі». Про ягоди, яблука, помідори, які вже достигли."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ripe",
+            "definitionByLocale": {
+              "ru": "спелый. They're ripe — «Они спелые». О ягодах, яблоках, помидорах, которые уже созрели.",
+              "uk": "стиглий. They're ripe — «Вони стиглі». Про ягоди, яблука, помідори, які вже достигли."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:word:soggy",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soggy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:soggy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soggy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:soggy:audio",
+            "transcript": "soggy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:soggy:r1",
+              "targetText": "soggy",
+              "meaningByLocale": {
+                "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
+                "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soggy",
+            "definitionByLocale": {
+              "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
+              "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:word:delicious",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — delicious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:delicious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — delicious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:delicious:audio",
+            "transcript": "delicious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:delicious:r1",
+              "targetText": "delicious",
+              "meaningByLocale": {
+                "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
+                "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "delicious",
+            "definitionByLocale": {
+              "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
+              "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:word:juicy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — juicy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:juicy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — juicy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:juicy:audio",
+            "transcript": "juicy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:juicy:r1",
+              "targetText": "juicy",
+              "meaningByLocale": {
+                "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
+                "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "juicy",
+            "definitionByLocale": {
+              "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
+              "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are ripe.",
+          "localizedMeaning": {
+            "ru": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+            "uk": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "ripe"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are ripe.`",
+                "uk": "тут потрібно `are` — `They are ripe.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i02:r1",
+            "text": "It is soggy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r2",
+            "text": "They are soggy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r3",
+            "text": "It is full."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i02:audio",
+            "transcript": "It is soggy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:i02:r1",
+              "targetText": "It is soggy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i02:r2",
+              "targetText": "They are soggy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i02:r3",
+              "targetText": "It is full.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первые слова — `It is`, а в этом варианте — `They are`.",
+                "uk": "У записі перші слова — `It is`, а в цьому варіанті — `They are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soggy`, а в этом варианте — `full`.",
+                "uk": "У записі останнє слово — `soggy`, а в цьому варіанті — `full`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике",
+            "uk": "Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик"
+          },
+          "gappedTargetPhrase": "It ___ juicy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике",
+              "feedbackByLocale": {
+                "ru": "Персик один, поэтому `It is`.",
+                "uk": "Персик один, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-53:i04:p1",
+              "target": "ripe",
+              "meaningByLocale": {
+                "ru": "спелый",
+                "uk": "стиглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i04:p2",
+              "target": "soggy",
+              "meaningByLocale": {
+                "ru": "размокший",
+                "uk": "розмоклий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i04:p3",
+              "target": "delicious",
+              "meaningByLocale": {
+                "ru": "очень вкусный",
+                "uk": "дуже смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i04:p4",
+              "target": "juicy",
+              "meaningByLocale": {
+                "ru": "сочный",
+                "uk": "соковитий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ripe",
+            "soggy",
+            "delicious",
+            "juicy"
+          ],
+          "rightColumn": [
+            "спелый",
+            "размокший",
+            "очень вкусный",
+            "сочный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i05:audio",
+            "transcript": "It's delicious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's delicious.",
+          "orderedTokens": [
+            "It's",
+            "delicious"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's delicious.`",
+                "uk": "тут потрібно `It's` — `It's delicious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are full.",
+          "localizedMeaning": {
+            "ru": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+            "uk": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "full"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are full.`",
+                "uk": "тут потрібно `are` — `They are full.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы разрезали арбуз, и сок течёт по доске. Скажите Диме коротко, что арбуз сочный",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Вы разрезали арбуз, и сок течёт по доске. Скажите Диме коротко, что арбуз сочный",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i07:audio",
+            "transcript": "It's juicy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's juicy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i08:r1",
+            "text": "heavy"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i08:r2",
+            "text": "ripe"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i08:r3",
+            "text": "delicious"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+            "uk": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i08:r1",
+              "text": "heavy"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i08:r2",
+              "text": "ripe"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i08:r3",
+              "text": "delicious"
+            }
+          ],
+          "testedDimension": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+              "feedbackByLocale": {
+                "ru": "`ripe` — «спелая», это о еде. Корзину еле поднять: `heavy`.",
+                "uk": "`ripe` — «стиглий», це про їжу. Кошик ледве підняти: `heavy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+              "feedbackByLocale": {
+                "ru": "`delicious` — «очень вкусная». О весе говорит `heavy`.",
+                "uk": "`delicious` — «дуже смачний». Про вагу каже `heavy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i09:r1",
+            "text": "They are juicy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i09:r2",
+            "text": "We are juicy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i09:r3",
+            "text": "They are ripe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i09:audio",
+            "transcript": "They are juicy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:i09:r1",
+              "targetText": "They are juicy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i09:r2",
+              "targetText": "We are juicy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i09:r3",
+              "targetText": "They are ripe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `juicy`, а в этом варианте — `ripe`.",
+                "uk": "У записі останнє слово — `juicy`, а в цьому варіанті — `ripe`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-53:i10:p1",
+              "target": "full",
+              "meaningByLocale": {
+                "ru": "заполненный",
+                "uk": "заповнений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i10:p2",
+              "target": "useful",
+              "meaningByLocale": {
+                "ru": "полезный",
+                "uk": "корисний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i10:p3",
+              "target": "heavy",
+              "meaningByLocale": {
+                "ru": "тяжёлый",
+                "uk": "важкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i10:p4",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "лёгкий",
+                "uk": "легкий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "full",
+            "useful",
+            "heavy",
+            "light"
+          ],
+          "rightColumn": [
+            "заполненный",
+            "полезный",
+            "тяжёлый",
+            "лёгкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу о помидорах с грядки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу о помидорах с грядки",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i11:audio",
+            "transcript": "They're ripe."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're ripe.",
+          "orderedTokens": [
+            "They're",
+            "ripe"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу о помидорах с грядки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're ripe.`",
+                "uk": "тут потрібно `They're` — `They're ripe.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы съели два куска пирога, а бабушка несёт третий. Скажите о себе, что вы сыты",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы съели два куска пирога, а бабушка несёт третий. Скажите о себе, что вы сыты",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am full.",
+          "localizedMeaning": {
+            "ru": "Вы съели два куска пирога, а бабушка несёт третий. Скажите о себе, что вы сыты",
+            "uk": "Ви з’їли два шматки пирога, а бабуся несе третій. Скажіть про себе, що ви ситі"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "full"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы съели два куска пирога, а бабушка несёт третий. Скажите о себе, что вы сыты",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am full.`",
+                "uk": "тут потрібно `am` — `I am full.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "После пикника корзина пустая, и Дима несёт её одним пальцем. Скажите, что она лёгкая",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "После пикника корзина пустая, и Дима несёт её одним пальцем. Скажите, что она лёгкая",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i13:audio",
+            "transcript": "It is light."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is light.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Два печенья упали в лужицу компота. Дополните фразу о них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Два печенья упали в лужицу компота. Дополните фразу о них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Два печенья упали в лужицу компота. Дополните фразу о них",
+            "uk": "Два печива впали в калюжку компоту. Доповніть фразу про них"
+          },
+          "gappedTargetPhrase": "They ___ soggy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Два печенья упали в лужицу компота. Дополните фразу о них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Два печенья упали в лужицу компота. Дополните фразу о них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Два печенья упали в лужицу компота. Дополните фразу о них",
+              "feedbackByLocale": {
+                "ru": "Печений два, поэтому `They are`.",
+                "uk": "Печив два, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i15:r1",
+            "text": "It's delicious."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i15:r2",
+            "text": "They're delicious."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i15:r3",
+            "text": "It's juicy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i15:audio",
+            "transcript": "It's delicious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:i15:r1",
+              "targetText": "It's delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i15:r2",
+              "targetText": "They're delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i15:r3",
+              "targetText": "It's juicy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `delicious`, а в этом варианте — `juicy`.",
+                "uk": "У записі останнє слово — `delicious`, а в цьому варіанті — `juicy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-53:i16:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i16:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i16:p3",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i16:p4",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "I'm",
+            "We're"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "I am",
+            "We are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вечером мама подаёт вам горячий борщ. Похвалите его: он очень вкусный",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Вечером мама подаёт вам горячий борщ. Похвалите его: он очень вкусный",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i17:audio",
+            "transcript": "It is delicious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is delicious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-53:word:ripe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ripe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:ripe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ripe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:ripe:audio",
+            "transcript": "ripe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:ripe:r1",
+              "targetText": "ripe",
+              "meaningByLocale": {
+                "ru": "спелый. They're ripe — «Они спелые». О ягодах, яблоках, помидорах, которые уже созрели.",
+                "uk": "стиглий. They're ripe — «Вони стиглі». Про ягоди, яблука, помідори, які вже достигли."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ripe",
+            "definitionByLocale": {
+              "ru": "спелый. They're ripe — «Они спелые». О ягодах, яблоках, помидорах, которые уже созрели.",
+              "uk": "стиглий. They're ripe — «Вони стиглі». Про ягоди, яблука, помідори, які вже достигли."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:word:soggy",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soggy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:soggy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soggy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:soggy:audio",
+            "transcript": "soggy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:soggy:r1",
+              "targetText": "soggy",
+              "meaningByLocale": {
+                "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
+                "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soggy",
+            "definitionByLocale": {
+              "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
+              "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:word:delicious",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — delicious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:delicious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — delicious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:delicious:audio",
+            "transcript": "delicious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:delicious:r1",
+              "targetText": "delicious",
+              "meaningByLocale": {
+                "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
+                "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "delicious",
+            "definitionByLocale": {
+              "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
+              "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:word:juicy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — juicy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:word:juicy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — juicy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:word:juicy:audio",
+            "transcript": "juicy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:word:juicy:r1",
+              "targetText": "juicy",
+              "meaningByLocale": {
+                "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
+                "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "juicy",
+            "definitionByLocale": {
+              "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
+              "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are ripe.",
+          "localizedMeaning": {
+            "ru": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+            "uk": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "ripe"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are ripe.`",
+                "uk": "тут потрібно `are` — `They are ripe.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i02:r1",
+            "text": "It is soggy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r2",
+            "text": "They are soggy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r3",
+            "text": "It is full."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i02:audio",
+            "transcript": "It is soggy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:i02:r1",
+              "targetText": "It is soggy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i02:r2",
+              "targetText": "They are soggy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i02:r3",
+              "targetText": "It is full.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первые слова — `It is`, а в этом варианте — `They are`.",
+                "uk": "У записі перші слова — `It is`, а в цьому варіанті — `They are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soggy`, а в этом варианте — `full`.",
+                "uk": "У записі останнє слово — `soggy`, а в цьому варіанті — `full`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике",
+            "uk": "Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик"
+          },
+          "gappedTargetPhrase": "It ___ juicy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик",
+              "feedbackByLocale": {
+                "ru": "Персик один, поэтому `It is`.",
+                "uk": "Персик один, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-53:i04:p1",
+              "target": "ripe",
+              "meaningByLocale": {
+                "ru": "спелый",
+                "uk": "стиглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i04:p2",
+              "target": "soggy",
+              "meaningByLocale": {
+                "ru": "размокший",
+                "uk": "розмоклий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i04:p3",
+              "target": "delicious",
+              "meaningByLocale": {
+                "ru": "очень вкусный",
+                "uk": "дуже смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i04:p4",
+              "target": "juicy",
+              "meaningByLocale": {
+                "ru": "сочный",
+                "uk": "соковитий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ripe",
+            "soggy",
+            "delicious",
+            "juicy"
+          ],
+          "rightColumn": [
+            "стиглий",
+            "розмоклий",
+            "дуже смачний",
+            "соковитий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i05:audio",
+            "transcript": "It's delicious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's delicious.",
+          "orderedTokens": [
+            "It's",
+            "delicious"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's delicious.`",
+                "uk": "тут потрібно `It's` — `It's delicious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are full.",
+          "localizedMeaning": {
+            "ru": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+            "uk": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "full"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are full.`",
+                "uk": "тут потрібно `are` — `They are full.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви розрізали кавун, і сік тече по дошці. Скажіть Дмитрові коротко, що кавун соковитий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Ви розрізали кавун, і сік тече по дошці. Скажіть Дмитрові коротко, що кавун соковитий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i07:audio",
+            "transcript": "It's juicy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's juicy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i08:r1",
+            "text": "heavy"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i08:r2",
+            "text": "ripe"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i08:r3",
+            "text": "delicious"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+            "uk": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i08:r1",
+              "text": "heavy"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i08:r2",
+              "text": "ripe"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i08:r3",
+              "text": "delicious"
+            }
+          ],
+          "testedDimension": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+              "feedbackByLocale": {
+                "ru": "`ripe` — «спелая», это о еде. Корзину еле поднять: `heavy`.",
+                "uk": "`ripe` — «стиглий», це про їжу. Кошик ледве підняти: `heavy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+              "feedbackByLocale": {
+                "ru": "`delicious` — «очень вкусная». О весе говорит `heavy`.",
+                "uk": "`delicious` — «дуже смачний». Про вагу каже `heavy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i09:r1",
+            "text": "They are juicy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i09:r2",
+            "text": "We are juicy."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i09:r3",
+            "text": "They are ripe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i09:audio",
+            "transcript": "They are juicy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:i09:r1",
+              "targetText": "They are juicy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i09:r2",
+              "targetText": "We are juicy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i09:r3",
+              "targetText": "They are ripe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `juicy`, а в этом варианте — `ripe`.",
+                "uk": "У записі останнє слово — `juicy`, а в цьому варіанті — `ripe`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-53:i10:p1",
+              "target": "full",
+              "meaningByLocale": {
+                "ru": "заполненный",
+                "uk": "заповнений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i10:p2",
+              "target": "useful",
+              "meaningByLocale": {
+                "ru": "полезный",
+                "uk": "корисний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i10:p3",
+              "target": "heavy",
+              "meaningByLocale": {
+                "ru": "тяжёлый",
+                "uk": "важкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i10:p4",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "лёгкий",
+                "uk": "легкий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "full",
+            "useful",
+            "heavy",
+            "light"
+          ],
+          "rightColumn": [
+            "заповнений",
+            "корисний",
+            "важкий",
+            "легкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу про помідори з грядки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу про помідори з грядки",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i11:audio",
+            "transcript": "They're ripe."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're ripe.",
+          "orderedTokens": [
+            "They're",
+            "ripe"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу про помідори з грядки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're ripe.`",
+                "uk": "тут потрібно `They're` — `They're ripe.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з’їли два шматки пирога, а бабуся несе третій. Скажіть про себе, що ви ситі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з’їли два шматки пирога, а бабуся несе третій. Скажіть про себе, що ви ситі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am full.",
+          "localizedMeaning": {
+            "ru": "Вы съели два куска пирога, а бабушка несёт третий. Скажите о себе, что вы сыты",
+            "uk": "Ви з’їли два шматки пирога, а бабуся несе третій. Скажіть про себе, що ви ситі"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "full"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з’їли два шматки пирога, а бабуся несе третій. Скажіть про себе, що ви ситі",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am full.`",
+                "uk": "тут потрібно `am` — `I am full.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Після пікніка кошик порожній, і Дмитро несе його одним пальцем. Скажіть, що він легкий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Після пікніка кошик порожній, і Дмитро несе його одним пальцем. Скажіть, що він легкий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i13:audio",
+            "transcript": "It is light."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is light.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Два печива впали в калюжку компоту. Доповніть фразу про них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Два печива впали в калюжку компоту. Доповніть фразу про них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Два печенья упали в лужицу компота. Дополните фразу о них",
+            "uk": "Два печива впали в калюжку компоту. Доповніть фразу про них"
+          },
+          "gappedTargetPhrase": "They ___ soggy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Два печива впали в калюжку компоту. Доповніть фразу про них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Два печива впали в калюжку компоту. Доповніть фразу про них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Два печива впали в калюжку компоту. Доповніть фразу про них",
+              "feedbackByLocale": {
+                "ru": "Печений два, поэтому `They are`.",
+                "uk": "Печив два, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i15:r1",
+            "text": "It's delicious."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i15:r2",
+            "text": "They're delicious."
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i15:r3",
+            "text": "It's juicy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i15:audio",
+            "transcript": "It's delicious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-53:i15:r1",
+              "targetText": "It's delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i15:r2",
+              "targetText": "They're delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i15:r3",
+              "targetText": "It's juicy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `delicious`, а в этом варианте — `juicy`.",
+                "uk": "У записі останнє слово — `delicious`, а в цьому варіанті — `juicy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-53:i16:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i16:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i16:p3",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-53:i16:p4",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "I'm",
+            "We're"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "I am",
+            "We are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Увечері мама подає вам гарячий борщ. Похваліть його: він дуже смачний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Увечері мама подає вам гарячий борщ. Похваліть його: він дуже смачний",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-53:i17:audio",
+            "transcript": "It is delicious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is delicious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-53:word:ripe",
+      "correctText": "ripe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:word:soggy",
+      "correctText": "soggy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:word:delicious",
+      "correctText": "delicious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:word:juicy",
+      "correctText": "juicy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i01",
+      "correctText": "They are ripe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i02",
+      "correctText": "It is soggy.",
+      "correctResponseId": "en:lesson-01:session-53:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-53:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i05",
+      "correctText": "It's delicious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i06",
+      "correctText": "They are full.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i07",
+      "correctText": "It's juicy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i08",
+      "correctText": "heavy",
+      "correctResponseId": "en:lesson-01:session-53:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i09",
+      "correctText": "They are juicy.",
+      "correctResponseId": "en:lesson-01:session-53:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i11",
+      "correctText": "They're ripe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i12",
+      "correctText": "I am full.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i13",
+      "correctText": "It is light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-53:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i15",
+      "correctText": "It's delicious.",
+      "correctResponseId": "en:lesson-01:session-53:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i17",
+      "correctText": "It is delicious.",
+      "correctResponseId": null
+    }
+  ]
+}

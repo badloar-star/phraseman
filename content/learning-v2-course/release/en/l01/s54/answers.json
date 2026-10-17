@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-54:word:familiar",
+    "correctText": "familiar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:word:unfamiliar",
+    "correctText": "unfamiliar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:word:unknown",
+    "correctText": "unknown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:word:faded",
+    "correctText": "faded",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-54:i01",
     "correctText": "It is familiar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-54:i02",
-    "correctText": "It is unfamiliar.",
+    "correctText": "It is faded.",
     "correctResponseId": "en:lesson-01:session-54:i02:r1"
   },
   {
@@ -16,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-54:i04",
-    "correctText": "en:lesson-01:session-54:i04:p1=familiar\nen:lesson-01:session-54:i04:p2=unfamiliar\nen:lesson-01:session-54:i04:p3=unknown\nen:lesson-01:session-54:i04:p4=useless",
+    "correctText": "en:lesson-01:session-54:i04:p1=familiar\nen:lesson-01:session-54:i04:p2=unfamiliar\nen:lesson-01:session-54:i04:p3=unknown\nen:lesson-01:session-54:i04:p4=faded",
     "correctResponseId": null
   },
   {
@@ -31,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-54:i07",
-    "correctText": "It's familiar.",
+    "correctText": "It's faded.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-54:i09",
-    "correctText": "It is familiar.",
+    "correctText": "They are faded.",
     "correctResponseId": "en:lesson-01:session-54:i09:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-54:i16",
-    "correctText": "en:lesson-01:session-54:i16:p1=familiar\nen:lesson-01:session-54:i16:p2=unfamiliar\nen:lesson-01:session-54:i16:p3=unknown\nen:lesson-01:session-54:i16:p4=useless",
+    "correctText": "en:lesson-01:session-54:i16:p1=old\nen:lesson-01:session-54:i16:p2=new\nen:lesson-01:session-54:i16:p3=useful\nen:lesson-01:session-54:i16:p4=useless",
     "correctResponseId": null
   },
   {

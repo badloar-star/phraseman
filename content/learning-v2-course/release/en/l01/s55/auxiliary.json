@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-55:intro1:r2": {
-          "ru": "Это о зависимости. Здесь оцениваем ответственность: `responsible`.",
-          "uk": "Це про залежність. Тут оцінюємо відповідальність: `responsible`."
+          "ru": "patient — «терпеливый». Костя держит слово и всё делает вовремя: responsible.",
+          "uk": "patient — «терплячий». Костя тримає слово й усе робить вчасно: responsible."
         },
         "en:lesson-01:session-55:intro1:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "She's — про женщину. Про Костю говорим He's.",
+          "uk": "She's — про жінку. Про Костю кажемо He's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-55:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-55:intro2:r2": {
-          "ru": "`dependent` означает зависимость, а здесь самостоятельность: `independent`.",
-          "uk": "`dependent` означає залежність, а тут самостійність: `independent`."
+          "ru": "lonely — «одинокая». Тётя Вера просто всё делает сама: independent.",
+          "uk": "lonely — «самотня». Тітка Віра просто все робить сама: independent."
         },
         "en:lesson-01:session-55:intro2:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "He's — про мужчину. Про тётю Веру говорим She's.",
+          "uk": "He's — про чоловіка. Про тітку Віру кажемо She's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-55:intro3:r2": {
-          "ru": "Малыш пока не обходится без заботы взрослых: `dependent`.",
-          "uk": "Малюк поки не обходиться без турботи дорослих: `dependent`."
+          "ru": "independent — «самостоятельный». А Тёма пока сам ничего не может: dependent.",
+          "uk": "independent — «самостійний». А Тимко поки сам нічого не може: dependent."
         },
         "en:lesson-01:session-55:intro3:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "lazy — «ленивый». Тёма не ленится, он просто ещё маленький: dependent.",
+          "uk": "lazy — «лінивий». Тимко не лінується, він просто ще маленький: dependent."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1c77f8522294abf95955197fcc3177d9f3890d7c2ad29326122276896267ba03"
+  "auxiliaryFingerprint": "a00ef43b406ef0bab460d7eed6be647518b6f440a61e1c264abf58d9559693f9"
 }

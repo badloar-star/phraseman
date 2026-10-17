@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-53:intro1:r2": {
-          "ru": "Это о весе. Здесь нужно сказать о заполненности: `full`.",
-          "uk": "Це про вагу. Тут треба сказати про заповненість: `full`."
+          "ru": "small — «маленькие». Дима спрашивает, созрели ли ягоды: ripe.",
+          "uk": "small — «маленькі». Дмитро питає, чи достигли ягоди: ripe."
         },
         "en:lesson-01:session-53:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "It's — про одну вещь, а ягод целая горсть: They're ripe.",
+          "uk": "It's — про одну річ, а ягід ціла жменя: They're ripe."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-53:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "dry — «сухой». А хлеб пропитался соком: soggy.",
+          "uk": "dry — «сухий». А хліб просяк соком: soggy."
         },
         "en:lesson-01:session-53:intro2:r3": {
-          "ru": "Из заполненности нельзя узнать вес. Здесь нужно `full`.",
-          "uk": "Із заповненості не можна дізнатися вагу. Тут потрібно `full`."
+          "ru": "They're — про несколько вещей, а бутерброд один: It's soggy.",
+          "uk": "They're — про кілька речей, а бутерброд один: It's soggy."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-53:intro3:r2": {
-          "ru": "Здесь нужно сказать о пользе списка: `useful`.",
-          "uk": "Тут треба сказати про користь списку: `useful`."
+          "ru": "heavy — «тяжёлый». Бабушка спрашивает про вкус: delicious.",
+          "uk": "heavy — «важкий». Бабуся питає про смак: delicious."
         },
         "en:lesson-01:session-53:intro3:r3": {
-          "ru": "Речь об одном списке: `It is`.",
-          "uk": "Йдеться про один список: `It is`."
+          "ru": "She's — про женщину. Про пирог говорим It's.",
+          "uk": "She's — про жінку. Про пиріг кажемо It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e094d685d3105d761647609210d8801e1c5e31bc2acb94ac987c6a7838dea24b"
+  "auxiliaryFingerprint": "12b3e74be94ae901a9f8b55a96db62688f3eb884427494673078e4a133693d7b"
 }

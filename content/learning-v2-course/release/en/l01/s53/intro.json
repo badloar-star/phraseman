@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-53",
   "learningOutcomeByLocale": {
-    "ru": "сказать, что ёмкость заполнена, и отличить заполненность от веса и пользы",
-    "uk": "сказати, що ємність заповнена, й відрізнити заповненість від ваги та користі"
+    "ru": "коротко сказать о еде на пикнике: что спелое, что размокло, что очень вкусное и что сочное, и повторить слова о весе и заполненности",
+    "uk": "коротко сказати про їжу на пікніку: що стигле, що розмокло, що дуже смачне і що соковите, і повторити слова про вагу й заповненість"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Места больше нет",
-        "uk": "Місця більше немає"
+        "ru": "Клубника с грядки",
+        "uk": "Полуниця з грядки"
       },
       "bodyByLocale": {
-        "ru": "`full` — «полный», «заполненный». `It is full` — «Она полная», если говорим о корзине. Внутри уже нет места для других вещей. Последний бутерброд смотрит на вас: кажется, ему придётся ехать отдельно.",
-        "uk": "`full` — «повний», «заповнений». `It is full` — «Він повний», якщо говоримо про кошик. Усередині вже немає місця для інших речей. Останній бутерброд дивиться на вас: здається, йому доведеться їхати окремо."
+        "ru": "Дима срывает клубнику с грядки и показывает вам горсть: ягоды тёмно-красные, мягкие, пахнут на весь огород. ripe — «спелый». They are ripe, коротко They're ripe — «Они спелые». Ягод много, поэтому They.",
+        "uk": "Дмитро зриває полуницю з грядки й показує вам жменю: ягоди темно-червоні, м’які, пахнуть на весь город. ripe — «стиглий». They are ripe, коротко They're ripe — «Вони стиглі». Ягід багато, тому They."
       },
       "question": {
         "interactionId": "en:lesson-01:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Корзина заполнена, места для бутерброда больше нет. Скажите, что она полная.",
-          "uk": "Кошик заповнений, місця для бутерброда більше немає. Скажіть, що він повний."
+          "ru": "Дима спрашивает, можно ли уже класть эти ягоды в корзину. Ответьте коротко, что они спелые.",
+          "uk": "Дмитро питає, чи можна вже класти ці ягоди в кошик. Відповідайте коротко, що вони стиглі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-53:intro1:r1",
-              "text": "It is full."
+              "text": "They're ripe."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r2",
-              "text": "It is heavy."
+              "text": "They're small."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r3",
-              "text": "It are full."
+              "text": "It's ripe."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-53:intro1:r1",
-              "text": "It is full."
+              "text": "They're ripe."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r2",
-              "text": "It is heavy."
+              "text": "They're small."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r3",
-              "text": "It are full."
+              "text": "It's ripe."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Корзина заполнена, места для бутерброда больше нет. Скажите, что она полная.",
-          "uk": "Кошик заповнений, місця для бутерброда більше немає. Скажіть, що він повний."
+          "ru": "Дима спрашивает, можно ли уже класть эти ягоды в корзину. Ответьте коротко, что они спелые.",
+          "uk": "Дмитро питає, чи можна вже класти ці ягоди в кошик. Відповідайте коротко, що вони стиглі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Полный — не обязательно тяжёлый",
-        "uk": "Повний — не обов’язково важкий"
+        "ru": "Бутерброд под помидором",
+        "uk": "Бутерброд під помідором"
       },
       "bodyByLocale": {
-        "ru": "Коробка может быть полной салфеток и при этом мало весить. `full` говорит о заполненности, `heavy` — о весе. Про две заполненные коробки — `They are full`, коротко `They're full`.",
-        "uk": "Коробка може бути повною серветок і при цьому мало важити. `full` говорить про заповненість, `heavy` — про вагу. Про дві заповнені коробки — `They are full`, коротко `They're full`."
+        "ru": "Бутерброд с помидором два часа пролежал на дне сумки. Хлеб пропитался соком, стал мокрым и мягким и разваливается в руках. soggy — «размокший». It is soggy, коротко It's soggy — «Он размок».",
+        "uk": "Бутерброд із помідором дві години пролежав на дні сумки. Хліб просяк соком, став мокрим і м’яким і розвалюється в руках. soggy — «розмоклий». It is soggy, коротко It's soggy — «Він розмок»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "Обе коробки заполнены до верха. Назовите их полными.",
-          "uk": "Обидві коробки заповнені доверху. Назвіть їх повними."
+          "ru": "Дима протягивает вам именно этот бутерброд. Скажите ему коротко, что он размок.",
+          "uk": "Дмитро простягає вам саме цей бутерброд. Скажіть йому коротко, що він розмок."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-53:intro2:r1",
-              "text": "They are full."
+              "text": "It's soggy."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r2",
-              "text": "They is full."
+              "text": "It's dry."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r3",
-              "text": "They are heavy."
+              "text": "They're soggy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-53:intro2:r1",
-              "text": "They are full."
+              "text": "It's soggy."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r2",
-              "text": "They is full."
+              "text": "It's dry."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r3",
-              "text": "They are heavy."
+              "text": "They're soggy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Обе коробки заполнены до верха. Назовите их полными.",
-          "uk": "Обидві коробки заповнені доверху. Назвіть їх повними."
+          "ru": "Дима протягивает вам именно этот бутерброд. Скажите ему коротко, что он размок.",
+          "uk": "Дмитро простягає вам саме цей бутерброд. Скажіть йому коротко, що він розмок."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что помогает",
-        "uk": "Що допомагає"
+        "ru": "Бабушкин пирог",
+        "uk": "Бабусин пиріг"
       },
       "bodyByLocale": {
-        "ru": "Вспомните `useful` — «полезный». Список помогает ничего не забыть: `It is useful`. Это оценка пользы. `It is full` говорит о заполненности — эти слова отвечают на разные вопросы.",
-        "uk": "Згадайте `useful` — «корисний». Список допомагає нічого не забути: `It is useful`. Це оцінка користі. `It is full` говорить про заповненість — ці слова відповідають на різні запитання."
+        "ru": "Бабушка Димы испекла яблочный пирог и смотрит, как вы откусываете первый кусок. Тесто тает во рту, яблоки с корицей, хочется ещё. delicious — «очень вкусный». It is delicious, коротко It's delicious — «Очень вкусно».",
+        "uk": "Бабуся Дмитра спекла яблучний пиріг і дивиться, як ви відкушуєте перший шматок. Тісто тане в роті, яблука з корицею, хочеться ще. delicious — «дуже смачний». It is delicious, коротко It's delicious — «Дуже смачно»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Список помогает собрать всё нужное для пикника. Назовите его полезным.",
-          "uk": "Список допомагає зібрати все потрібне для пікніка. Назвіть його корисним."
+          "ru": "Бабушка спрашивает, как вам пирог. Похвалите его коротко.",
+          "uk": "Бабуся питає, як вам пиріг. Похваліть його коротко."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-53:intro3:r1",
-              "text": "It is useful."
+              "text": "It's delicious."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r2",
-              "text": "It is full."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r3",
-              "text": "They are useful."
+              "text": "She's delicious."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-53:intro3:r1",
-              "text": "It is useful."
+              "text": "It's delicious."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r2",
-              "text": "It is full."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r3",
-              "text": "They are useful."
+              "text": "She's delicious."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Список помогает собрать всё нужное для пикника. Назовите его полезным.",
-          "uk": "Список допомагає зібрати все потрібне для пікніка. Назвіть його корисним."
+          "ru": "Бабушка спрашивает, как вам пирог. Похвалите его коротко.",
+          "uk": "Бабуся питає, як вам пиріг. Похваліть його коротко."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "17b199ef4afbe7efb0d53af1c661c5f860f997da4c2b66b5a45e47a8a8202c80"
+  "introFingerprint": "92f18770e4f94f6a3ebe49e3af6048e933622b6cd8f07491eb8a02c39546ee21"
 }

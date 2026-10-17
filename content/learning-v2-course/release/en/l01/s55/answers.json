@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-55:word:responsible",
+    "correctText": "responsible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:word:independent",
+    "correctText": "independent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:word:dependent",
+    "correctText": "dependent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:word:forgetful",
+    "correctText": "forgetful",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-55:i01",
     "correctText": "He is responsible.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i02",
-    "correctText": "She is independent.",
+    "correctText": "He is forgetful.",
     "correctResponseId": "en:lesson-01:session-55:i02:r1"
   },
   {
@@ -16,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-55:i04",
-    "correctText": "en:lesson-01:session-55:i04:p1=responsible\nen:lesson-01:session-55:i04:p2=independent\nen:lesson-01:session-55:i04:p3=dependent\nen:lesson-01:session-55:i04:p4=dangerous",
+    "correctText": "en:lesson-01:session-55:i04:p1=responsible\nen:lesson-01:session-55:i04:p2=independent\nen:lesson-01:session-55:i04:p3=dependent\nen:lesson-01:session-55:i04:p4=forgetful",
     "correctResponseId": null
   },
   {
@@ -31,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-55:i07",
-    "correctText": "I'm responsible.",
+    "correctText": "He's forgetful.",
     "correctResponseId": null
   },
   {
@@ -46,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-55:i10",
-    "correctText": "en:lesson-01:session-55:i10:p1=familiar\nen:lesson-01:session-55:i10:p2=unfamiliar\nen:lesson-01:session-55:i10:p3=unknown\nen:lesson-01:session-55:i10:p4=dangerous",
+    "correctText": "en:lesson-01:session-55:i10:p1=familiar\nen:lesson-01:session-55:i10:p2=unfamiliar\nen:lesson-01:session-55:i10:p3=unknown\nen:lesson-01:session-55:i10:p4=faded",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-55:i14",
-    "correctText": "are",
+    "correctText": "am",
     "correctResponseId": "en:lesson-01:session-55:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-55:i16",
-    "correctText": "en:lesson-01:session-55:i16:p1=responsible\nen:lesson-01:session-55:i16:p2=independent\nen:lesson-01:session-55:i16:p3=dependent\nen:lesson-01:session-55:i16:p4=unfamiliar",
+    "correctText": "en:lesson-01:session-55:i16:p1=responsible\nen:lesson-01:session-55:i16:p2=forgetful\nen:lesson-01:session-55:i16:p3=patient\nen:lesson-01:session-55:i16:p4=honest",
     "correctResponseId": null
   },
   {

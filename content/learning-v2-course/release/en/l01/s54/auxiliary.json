@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-54:intro1:r2": {
-          "ru": "`unfamiliar` — незнакомый. Здесь вы узнаёте двор: `familiar`.",
-          "uk": "`unfamiliar` — незнайомий. Тут ви впізнаєте двір: `familiar`."
+          "ru": "new — «новый». Вы видели этот двор много раз: familiar.",
+          "uk": "new — «новий». Ви бачили цей двір багато разів: familiar."
         },
         "en:lesson-01:session-54:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "They're — про несколько вещей, а двор один: It's familiar.",
+          "uk": "They're — про кілька речей, а двір один: It's familiar."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-54:intro2:r2": {
-          "ru": "`familiar` — знакомая. Здесь вы не узнаёте улицу: `unfamiliar`.",
-          "uk": "`familiar` — знайома. Тут ви не впізнаєте вулицю: `unfamiliar`."
+          "ru": "familiar — «знакомая». А улицу вы видите впервые: unfamiliar.",
+          "uk": "familiar — «знайома». А вулицю ви бачите вперше: unfamiliar."
         },
         "en:lesson-01:session-54:intro2:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "She's — про женщину. Про улицу говорим It's.",
+          "uk": "She's — про жінку. Про вулицю кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-54:intro3:r2": {
-          "ru": "Дату не удалось установить. Здесь нужно `unknown`.",
-          "uk": "Дату не вдалося встановити. Тут потрібно `unknown`."
+          "ru": "unfamiliar — «незнакомая вам». А дату не знает никто в семье: unknown.",
+          "uk": "unfamiliar — «незнайома вам». А дату не знає ніхто в родині: unknown."
         },
         "en:lesson-01:session-54:intro3:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "old — «старый». Аня спрашивает про дату, а её никто не знает: unknown.",
+          "uk": "old — «старий». Аня питає про дату, а її ніхто не знає: unknown."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a151a4f6af34f9b84a4509b5193cfa87997443713bc36ad546b621f7803823f4"
+  "auxiliaryFingerprint": "9ced4bdaa9804aa549544d6663d4e30c9304ea2aae9e912472594fac9f9c47d9"
 }

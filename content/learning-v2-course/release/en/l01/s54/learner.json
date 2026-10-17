@@ -4,22 +4,194 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-54:i01",
+      "interactionId": "en:lesson-01:session-54:word:familiar",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — familiar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:word:familiar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — familiar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:word:familiar:audio",
+          "transcript": "familiar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:word:familiar:r1",
+            "targetText": "familiar",
+            "meaningByLocale": {
+              "ru": "знакомый. It's familiar — «Мне это знакомо». О месте, лице, голосе, которые вы узнаёте.",
+              "uk": "знайомий. It's familiar — «Мені це знайоме». Про місце, обличчя, голос, які ви впізнаєте."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "familiar",
+          "definitionByLocale": {
+            "ru": "знакомый. It's familiar — «Мне это знакомо». О месте, лице, голосе, которые вы узнаёте.",
+            "uk": "знайомий. It's familiar — «Мені це знайоме». Про місце, обличчя, голос, які ви впізнаєте."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:word:unfamiliar",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unfamiliar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:word:unfamiliar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unfamiliar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:word:unfamiliar:audio",
+          "transcript": "unfamiliar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:word:unfamiliar:r1",
+            "targetText": "unfamiliar",
+            "meaningByLocale": {
+              "ru": "незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.",
+              "uk": "незнайомий. It's unfamiliar — «Мені це незнайоме». Про місце чи обличчя, які ви бачите вперше."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unfamiliar",
+          "definitionByLocale": {
+            "ru": "незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.",
+            "uk": "незнайомий. It's unfamiliar — «Мені це незнайоме». Про місце чи обличчя, які ви бачите вперше."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:word:unknown",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unknown",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:word:unknown:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unknown",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:word:unknown:audio",
+          "transcript": "unknown"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:word:unknown:r1",
+            "targetText": "unknown",
+            "meaningByLocale": {
+              "ru": "неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.",
+              "uk": "невідомий. It's unknown — «Це невідомо». Про дату, ім’я, причину, яких не знає ніхто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unknown",
+          "definitionByLocale": {
+            "ru": "неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.",
+            "uk": "невідомий. It's unknown — «Це невідомо». Про дату, ім’я, причину, яких не знає ніхто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:word:faded",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — faded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:word:faded:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — faded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:word:faded:audio",
+          "transcript": "faded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:word:faded:r1",
+            "targetText": "faded",
+            "meaningByLocale": {
+              "ru": "выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.",
+              "uk": "вицвілий. It's faded — «Він вицвів». Про фото, футболку, фіранку, які втратили колір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "faded",
+          "definitionByLocale": {
+            "ru": "выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.",
+            "uk": "вицвілий. It's faded — «Він вицвів». Про фото, футболку, фіранку, які втратили колір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы узнаёте дом, где часто бывали. Скажите, что он вам знаком",
+      "prompt": "На снимке дом, где вы часто бывали в детстве. Скажите, что он вам знаком",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы узнаёте дом, где часто бывали. Скажите, что он вам знаком",
+      "accessibilityLabel": "На снимке дом, где вы часто бывали в детстве. Скажите, что он вам знаком",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is familiar.",
         "localizedMeaning": {
-          "ru": "Вы узнаёте дом, где часто бывали. Скажите, что он вам знаком",
-          "uk": "Ви впізнаєте будинок, де часто бували. Скажіть, що він вам знайомий"
+          "ru": "На снимке дом, где вы часто бывали в детстве. Скажите, что он вам знаком",
+          "uk": "На знімку будинок, де ви часто бували в дитинстві. Скажіть, що він вам знайомий"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +205,7 @@
           {
             "responseId": "en:lesson-01:session-54:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы узнаёте дом, где часто бывали. Скажите, что он вам знаком",
+            "testedDimension": "На снимке дом, где вы часто бывали в детстве. Скажите, что он вам знаком",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is familiar.`",
               "uk": "тут потрібно `is` — `It is familiar.`"
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +229,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i02:r1",
-          "text": "It is unfamiliar."
+          "text": "It is faded."
         },
         {
           "responseId": "en:lesson-01:session-54:i02:r2",
-          "text": "It is familiar."
+          "text": "They are faded."
         },
         {
           "responseId": "en:lesson-01:session-54:i02:r3",
-          "text": "It is unknown."
+          "text": "It is familiar."
         }
       ],
       "mediaIds": [],
@@ -77,23 +249,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-54:i02:audio",
-          "transcript": "It is unfamiliar."
+          "transcript": "It is faded."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-54:i02:r1",
-            "targetText": "It is unfamiliar.",
+            "targetText": "It is faded.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-54:i02:r2",
-            "targetText": "It is familiar.",
+            "targetText": "They are faded.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-54:i02:r3",
-            "targetText": "It is unknown.",
+            "targetText": "It is familiar.",
             "meaningByLocale": null
           }
         ],
@@ -104,8 +276,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `familiar`.",
-              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`."
+              "ru": "В записи первые слова — `It is`, а в этом варианте — `They are`.",
+              "uk": "У записі перші слова — `It is`, а в цьому варіанті — `They are`."
             }
           },
           {
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `unknown`.",
-              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `unknown`."
+              "ru": "В записи последнее слово — `faded`, а в этом варианте — `familiar`.",
+              "uk": "У записі останнє слово — `faded`, а в цьому варіанті — `familiar`."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На двух снимках дворы, которые вы узнаёте. Дополните фразу о дворах",
+      "prompt": "На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i03:r1",
@@ -146,12 +318,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На двух снимках дворы, которые вы узнаёте. Дополните фразу о дворах",
+      "accessibilityLabel": "На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "На двух снимках дворы, которые вы узнаёте. Дополните фразу о дворах",
-          "uk": "На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори"
+          "ru": "На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах",
+          "uk": "На двох знімках двори, які ви одразу впізнаєте. Доповніть фразу про двори"
         },
         "gappedTargetPhrase": "They ___ familiar.",
         "gapOptions": [
@@ -168,12 +340,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "На двух снимках дворы, которые вы узнаёте. Дополните фразу о дворах",
+        "testedDimension": "На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-54:i03:r2",
             "correct": false,
-            "testedDimension": "На двух снимках дворы, которые вы узнаёте. Дополните фразу о дворах",
+            "testedDimension": "На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -182,10 +354,10 @@
           {
             "responseId": "en:lesson-01:session-54:i03:r3",
             "correct": false,
-            "testedDimension": "На двух снимках дворы, которые вы узнаёте. Дополните фразу о дворах",
+            "testedDimension": "На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах",
             "feedbackByLocale": {
-              "ru": "Про два двора — `They are`.",
-              "uk": "Про два двори — `They are`."
+              "ru": "Дворов два, поэтому `They are`.",
+              "uk": "Дворів два, тому `They are`."
             }
           }
         ]
@@ -194,15 +366,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова с основными значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова с основными значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -232,10 +404,10 @@
           },
           {
             "pairId": "en:lesson-01:session-54:i04:p4",
-            "target": "useless",
+            "target": "faded",
             "meaningByLocale": {
-              "ru": "бесполезный",
-              "uk": "марний"
+              "ru": "выцветший",
+              "uk": "вицвілий"
             }
           }
         ],
@@ -243,13 +415,13 @@
           "familiar",
           "unfamiliar",
           "unknown",
-          "useless"
+          "faded"
         ],
         "rightColumn": [
           "знакомый",
           "незнакомый",
           "неизвестный",
-          "бесполезный"
+          "выцветший"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -313,21 +485,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы впервые видите этот переулок на фото. Назовите его незнакомым вам",
+      "prompt": "На фото переулок, которого вы никогда не видели. Скажите, что он вам незнаком",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы впервые видите этот переулок на фото. Назовите его незнакомым вам",
+      "accessibilityLabel": "На фото переулок, которого вы никогда не видели. Скажите, что он вам незнаком",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is unfamiliar.",
         "localizedMeaning": {
-          "ru": "Вы впервые видите этот переулок на фото. Назовите его незнакомым вам",
-          "uk": "Ви вперше бачите цей провулок на фото. Назвіть його незнайомим вам"
+          "ru": "На фото переулок, которого вы никогда не видели. Скажите, что он вам незнаком",
+          "uk": "На фото провулок, якого ви ніколи не бачили. Скажіть, що він вам незнайомий"
         },
         "orderedTokens": [
           "It",
@@ -341,7 +513,7 @@
           {
             "responseId": "en:lesson-01:session-54:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы впервые видите этот переулок на фото. Назовите его незнакомым вам",
+            "testedDimension": "На фото переулок, которого вы никогда не видели. Скажите, что он вам незнаком",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is unfamiliar.`",
               "uk": "тут потрібно `is` — `It is unfamiliar.`"
@@ -357,25 +529,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коротко скажите о знакомом вам дворе на снимке",
+      "prompt": "Снимок бабушки в молодости много лет простоял на солнечном окне, лица еле видны. Скажите Ане коротко, что он выцвел",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i07:audio"
       ],
-      "accessibilityLabel": "Коротко скажите о знакомом вам дворе на снимке",
+      "accessibilityLabel": "Снимок бабушки в молодости много лет простоял на солнечном окне, лица еле видны. Скажите Ане коротко, что он выцвел",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-54:i07:audio",
-          "transcript": "It's familiar."
+          "transcript": "It's faded."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's familiar.",
+        "targetPhrase": "It's faded.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -390,11 +562,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Имя автора снимка установить не удалось. Назовите имя неизвестным",
+      "prompt": "Кто снимал свадьбу прадедушки, в семье не знает никто. Назовите имя фотографа неизвестным",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i08:r1",
@@ -406,17 +578,17 @@
         },
         {
           "responseId": "en:lesson-01:session-54:i08:r3",
-          "text": "useless"
+          "text": "faded"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Имя автора снимка установить не удалось. Назовите имя неизвестным",
+      "accessibilityLabel": "Кто снимал свадьбу прадедушки, в семье не знает никто. Назовите имя фотографа неизвестным",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Имя автора снимка установить не удалось. Назовите имя неизвестным",
-          "uk": "Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим"
+          "ru": "Кто снимал свадьбу прадедушки, в семье не знает никто. Назовите имя фотографа неизвестным",
+          "uk": "Хто знімав весілля прадідуся, у родині не знає ніхто. Назвіть ім’я фотографа невідомим"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -430,27 +602,27 @@
           },
           {
             "responseId": "en:lesson-01:session-54:i08:r3",
-            "text": "useless"
+            "text": "faded"
           }
         ],
-        "testedDimension": "Имя автора снимка установить не удалось. Назовите имя неизвестным",
+        "testedDimension": "Кто снимал свадьбу прадедушки, в семье не знает никто. Назовите имя фотографа неизвестным",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-54:i08:r2",
             "correct": false,
-            "testedDimension": "Имя автора снимка установить не удалось. Назовите имя неизвестным",
+            "testedDimension": "Кто снимал свадьбу прадедушки, в семье не знает никто. Назовите имя фотографа неизвестным",
             "feedbackByLocale": {
-              "ru": "Знакомое имя узнают. Здесь имя не установлено: `unknown`.",
-              "uk": "Знайоме ім’я впізнають. Тут ім’я не встановлене: `unknown`."
+              "ru": "`familiar` — «знакомое». А имя не знает никто: `unknown`.",
+              "uk": "`familiar` — «знайоме». А ім’я не знає ніхто: `unknown`."
             }
           },
           {
             "responseId": "en:lesson-01:session-54:i08:r3",
             "correct": false,
-            "testedDimension": "Имя автора снимка установить не удалось. Назовите имя неизвестным",
+            "testedDimension": "Кто снимал свадьбу прадедушки, в семье не знает никто. Назовите имя фотографа неизвестным",
             "feedbackByLocale": {
-              "ru": "Это о бесполезности. Здесь нет сведений об имени: `unknown`.",
-              "uk": "Це про марність. Тут немає відомостей про ім’я: `unknown`."
+              "ru": "`faded` — «выцветшее», это о цвете. Об имени, которого никто не знает, говорит `unknown`.",
+              "uk": "`faded` — «вицвіле», це про колір. Про ім’я, якого ніхто не знає, каже `unknown`."
             }
           }
         ]
@@ -459,51 +631,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о месте",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i09:r1",
-          "text": "It is familiar."
+          "text": "They are faded."
         },
         {
           "responseId": "en:lesson-01:session-54:i09:r2",
-          "text": "It is unfamiliar."
+          "text": "We are faded."
         },
         {
           "responseId": "en:lesson-01:session-54:i09:r3",
-          "text": "It is unknown."
+          "text": "They are familiar."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о месте",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-54:i09:audio",
-          "transcript": "It is familiar."
+          "transcript": "They are faded."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-54:i09:r1",
-            "targetText": "It is familiar.",
+            "targetText": "They are faded.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-54:i09:r2",
-            "targetText": "It is unfamiliar.",
+            "targetText": "We are faded.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-54:i09:r3",
-            "targetText": "It is unknown.",
+            "targetText": "They are familiar.",
             "meaningByLocale": null
           }
         ],
@@ -512,19 +684,19 @@
           {
             "responseId": "en:lesson-01:session-54:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о месте",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `familiar`, а в этом варианте — `unfamiliar`.",
-              "uk": "У записі останнє слово — `familiar`, а в цьому варіанті — `unfamiliar`."
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
             }
           },
           {
             "responseId": "en:lesson-01:session-54:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о месте",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `familiar`, а в этом варианте — `unknown`.",
-              "uk": "У записі останнє слово — `familiar`, а в цьому варіанті — `unknown`."
+              "ru": "В записи последнее слово — `faded`, а в этом варианте — `familiar`.",
+              "uk": "У записі останнє слово — `faded`, а в цьому варіанті — `familiar`."
             }
           }
         ],
@@ -535,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините короткие начала с полными",
@@ -608,17 +780,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу о местах",
+      "prompt": "Послушайте и соберите фразу о двух улицах на снимках",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу о местах",
+      "accessibilityLabel": "Послушайте и соберите фразу о двух улицах на снимках",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -638,7 +810,7 @@
           {
             "responseId": "en:lesson-01:session-54:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу о местах",
+            "testedDimension": "Послушайте и соберите фразу о двух улицах на снимках",
             "feedbackByLocale": {
               "ru": "здесь нужно `They're` — `They're unfamiliar.`",
               "uk": "тут потрібно `They're` — `They're unfamiliar.`"
@@ -654,21 +826,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подпись полностью стёрлась и не помогает узнать дату. Оцените её бесполезность для поиска даты",
+      "prompt": "Подпись на обороте полностью стёрлась, и узнать по ней ничего нельзя. Скажите, что она бесполезна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подпись полностью стёрлась и не помогает узнать дату. Оцените её бесполезность для поиска даты",
+      "accessibilityLabel": "Подпись на обороте полностью стёрлась, и узнать по ней ничего нельзя. Скажите, что она бесполезна",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is useless.",
         "localizedMeaning": {
-          "ru": "Подпись полностью стёрлась и не помогает узнать дату. Оцените её бесполезность для поиска даты",
-          "uk": "Підпис повністю стерся й не допомагає дізнатися дату. Оцініть його марність для пошуку дати"
+          "ru": "Подпись на обороте полностью стёрлась, и узнать по ней ничего нельзя. Скажите, что она бесполезна",
+          "uk": "Підпис на звороті повністю стерся, і дізнатися з нього нічого не можна. Скажіть, що він марний"
         },
         "orderedTokens": [
           "It",
@@ -682,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-54:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Подпись полностью стёрлась и не помогает узнать дату. Оцените её бесполезность для поиска даты",
+            "testedDimension": "Подпись на обороте полностью стёрлась, и узнать по ней ничего нельзя. Скажите, что она бесполезна",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is useless.`",
               "uk": "тут потрібно `is` — `It is useless.`"
@@ -698,17 +870,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На двух фото места, где вы часто гуляли и которые сразу узнаёте. Скажите, что места вам знакомы",
+      "prompt": "На двух фото места, где вы гуляли с бабушкой. Скажите Ане, что они вам знакомы",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i13:audio"
       ],
-      "accessibilityLabel": "На двух фото места, где вы часто гуляли и которые сразу узнаёте. Скажите, что места вам знакомы",
+      "accessibilityLabel": "На двух фото места, где вы гуляли с бабушкой. Скажите Ане, что они вам знакомы",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -731,11 +903,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Одна улица на снимке вам незнакома. Дополните фразу",
+      "prompt": "Старая открытка годами висела на солнце и потеряла цвет. Дополните фразу о ней",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i14:r1",
@@ -752,14 +924,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Одна улица на снимке вам незнакома. Дополните фразу",
+      "accessibilityLabel": "Старая открытка годами висела на солнце и потеряла цвет. Дополните фразу о ней",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Одна улица на снимке вам незнакома. Дополните фразу",
-          "uk": "Одна вулиця на знімку вам незнайома. Доповніть фразу"
+          "ru": "Старая открытка годами висела на солнце и потеряла цвет. Дополните фразу о ней",
+          "uk": "Стара листівка роками висіла на сонці й утратила колір. Доповніть фразу про неї"
         },
-        "gappedTargetPhrase": "It ___ unfamiliar.",
+        "gappedTargetPhrase": "It ___ faded.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-54:i14:r1",
@@ -774,12 +946,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Одна улица на снимке вам незнакома. Дополните фразу",
+        "testedDimension": "Старая открытка годами висела на солнце и потеряла цвет. Дополните фразу о ней",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-54:i14:r2",
             "correct": false,
-            "testedDimension": "Одна улица на снимке вам незнакома. Дополните фразу",
+            "testedDimension": "Старая открытка годами висела на солнце и потеряла цвет. Дополните фразу о ней",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -788,10 +960,10 @@
           {
             "responseId": "en:lesson-01:session-54:i14:r3",
             "correct": false,
-            "testedDimension": "Одна улица на снимке вам незнакома. Дополните фразу",
+            "testedDimension": "Старая открытка годами висела на солнце и потеряла цвет. Дополните фразу о ней",
             "feedbackByLocale": {
-              "ru": "Про одну улицу — `It is`.",
-              "uk": "Про одну вулицю — `It is`."
+              "ru": "Открытка одна, поэтому `It is`.",
+              "uk": "Листівка одна, тому `It is`."
             }
           }
         ]
@@ -800,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -876,62 +1048,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-54:i16:p1",
-            "target": "familiar",
+            "target": "old",
             "meaningByLocale": {
-              "ru": "узнаваемый",
-              "uk": "упізнаваний"
+              "ru": "старый",
+              "uk": "старий"
             }
           },
           {
             "pairId": "en:lesson-01:session-54:i16:p2",
-            "target": "unfamiliar",
+            "target": "new",
             "meaningByLocale": {
-              "ru": "незнакомый",
-              "uk": "незнайомий"
+              "ru": "новый",
+              "uk": "новий"
             }
           },
           {
             "pairId": "en:lesson-01:session-54:i16:p3",
-            "target": "unknown",
+            "target": "useful",
             "meaningByLocale": {
-              "ru": "неизвестный",
-              "uk": "невідомий"
+              "ru": "полезный",
+              "uk": "корисний"
             }
           },
           {
             "pairId": "en:lesson-01:session-54:i16:p4",
             "target": "useless",
             "meaningByLocale": {
-              "ru": "не приносит пользы",
-              "uk": "не приносить користі"
+              "ru": "бесполезный",
+              "uk": "марний"
             }
           }
         ],
         "leftColumn": [
-          "familiar",
-          "unfamiliar",
-          "unknown",
+          "old",
+          "new",
+          "useful",
           "useless"
         ],
         "rightColumn": [
-          "узнаваемый",
-          "незнакомый",
-          "неизвестный",
-          "не приносит пользы"
+          "старый",
+          "новый",
+          "полезный",
+          "бесполезный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,17 +1121,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В музее рядом со старой картиной нет имени художника: сотрудники пока не установили его. Скажите, что имя неизвестно",
+      "prompt": "В музее рядом со старой картиной нет имени художника: его так и не установили. Скажите, что имя неизвестно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i17:audio"
       ],
-      "accessibilityLabel": "В музее рядом со старой картиной нет имени художника: сотрудники пока не установили его. Скажите, что имя неизвестно",
+      "accessibilityLabel": "В музее рядом со старой картиной нет имени художника: его так и не установили. Скажите, что имя неизвестно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "09d4b0e58a95ac0a85458f3a331746c97eb6c542bccd2ee7c217e4f7a7f99255"
+  "learnerFingerprint": "7f569e5aeccbce58464d4eb6c854daf86702f1268b268762583602d79824e737"
 }

@@ -214,7 +214,9 @@ function providerSubjectFromIdToken(idToken: string): string | null {
     const data = JSON.parse(decode(padded)) as { sub?: unknown };
     const subject = typeof data.sub === 'string' ? data.sub.trim() : '';
     return subject && subject.length <= 160 && !subject.includes('/') ? subject : null;
-  } catch {
+  } catch (e) {
+    // зачем (аудит [AUTH-OPTIMISTIC] 17.10): немой catch — причина в журнал, значение прежнее; текст ошибки без данных входа.
+    console.warn('[AUTH] token subject decode failed', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
     return null;
   }
 }
@@ -381,7 +383,9 @@ const getAuth = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/auth').default();
-  } catch {
+  } catch (e) {
+    // зачем (аудит [AUTH-OPTIMISTIC] 17.10): немой catch — причина в журнал, значение прежнее; текст ошибки без данных входа.
+    console.warn('[AUTH] firebase auth module unavailable', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
     return null;
   }
 };
@@ -404,7 +408,9 @@ const getFirestore = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
-  } catch {
+  } catch (e) {
+    // зачем (аудит [AUTH-OPTIMISTIC] 17.10): немой catch — причина в журнал, значение прежнее; текст ошибки без данных входа.
+    console.warn('[AUTH] firestore module unavailable', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
     return null;
   }
 };
@@ -414,7 +420,9 @@ const getGoogleSignin = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-google-signin/google-signin');
-  } catch {
+  } catch (e) {
+    // зачем (аудит [AUTH-OPTIMISTIC] 17.10): немой catch — причина в журнал, значение прежнее; текст ошибки без данных входа.
+    console.warn('[AUTH] google sign-in module unavailable', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
     return null;
   }
 };
@@ -424,7 +432,9 @@ const getAppleAuth = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('expo-apple-authentication');
-  } catch {
+  } catch (e) {
+    // зачем (аудит [AUTH-OPTIMISTIC] 17.10): немой catch — причина в журнал, значение прежнее; текст ошибки без данных входа.
+    console.warn('[AUTH] apple authentication module unavailable', e instanceof Error ? e.name : typeof e); // guard-ok: только тип ошибки
     return null;
   }
 };

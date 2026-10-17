@@ -35,7 +35,8 @@ describe('D66 friends realtime contract', () => {
     const friends = exportedBlock(input, 'subscribeToFriends', '// ── subscribeToIncomingRequests');
     const requests = exportedBlock(input, 'subscribeToIncomingRequests', '// ── cleanupStaleFriendData');
 
-    expect(input).toContain('export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 60_000');
+    // зачем (владелец 17.10 «друзья мгновенно»): фокус вкладки перечитывает, если прошло ≥30 с.
+    expect(input).toContain('export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 30_000');
     expect(input).toContain('friendReadCache');
     expect(friends).toContain('if (cancelled) return;');
     expect(requests).toContain('if (cancelled) return;');

@@ -35,7 +35,8 @@ export interface FriendRequestEntry {
   createdAt: number;
 }
 
-export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 60_000;
+// зачем (владелец 17.10 «друзья мгновенно»): каждый фокус вкладки перечитывает заявки и друзей, если прошло ≥30 с (было 60).
+export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 30_000;
 
 type FriendsReadCache = {
   scopeKey: string;

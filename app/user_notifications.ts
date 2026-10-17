@@ -7,6 +7,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from '../modules/arena/target_registry';
 import type { ReportRewardBundle } from './report_reward_bundle';
+import { logFriendAdd } from './friend_add_trace';
 
 /**
  * Клиентский слой единого центра событий (колокольчик на главной).
@@ -459,6 +460,8 @@ export function countUnreadNotifications(list: UserNotification[]): number {
 export async function refreshUserNotificationsOnce(options: {
   force?: boolean;
   minIntervalMs?: number;
+  /** Проба уже увидела новый документ — читать без порога 30 с (иначе свежая заявка ждала бы ещё минуту). */
+  newerSeen?: boolean;
 } = {}): Promise<UserNotification[]> {
   cleanupUnownedLegacyCache();
   const ownerUid = await getNotificationOwnerUid();
@@ -470,7 +473,9 @@ export async function refreshUserNotificationsOnce(options: {
     const now = Date.now();
     const requestedIntervalMs = Math.max(0, Math.floor(Number(options.minIntervalMs ?? 0)) || 0);
     // зачем (PM-172): force — это «не ждать TTL экрана», но не «читать заново каждый раз».
-    const minIntervalMs = options.force
+    const minIntervalMs = options.newerSeen
+      ? 0
+      : options.force
       ? USER_NOTIFICATIONS_FORCE_FLOOR_MS
       : Math.max(requestedIntervalMs, USER_NOTIFICATIONS_FORCE_FLOOR_MS);
     const lastRefreshMs = await readLastRefreshMs(ownerUid);
@@ -515,6 +520,64 @@ export async function refreshUserNotificationsOnce(options: {
     if (refreshInFlightByOwner.get(ownerUid) === refresh) {
       refreshInFlightByOwner.delete(ownerUid);
     }
+  }
+}
+
+/** Проба «есть ли новое уведомление» не чаще раза в минуту на владельца. */
+export const USER_NOTIFICATIONS_PROBE_MIN_INTERVAL_MS = 60_000;
+const lastProbeAtByOwner = new Map<string, number>();
+
+/**
+ * Дешёвая проверка новых уведомлений: один документ (самый свежий) вместо всего списка.
+ *
+ * зачем (владелец 17.10 «друзья должны находиться мгновенно, а не через полчаса»): колокольчик перечитывал уведомления
+ * не чаще раза в 12 часов, и заявка в друзья, которую сервер уже положил в notifications, не появлялась часами. Проба
+ * стоит 1 чтение и делается не чаще раза в минуту; полный список читается только когда пришло что-то новое.
+ * Возвращает обновлённый список, если было новое, иначе null.
+ */
+export async function probeUserNotificationsHead(reason: string): Promise<UserNotification[] | null> {
+  const ownerUid = await getNotificationOwnerUid();
+  if (!ownerUid) {
+    logFriendAdd('bell_probe', { reason, decision: 'no_owner' });
+    return null;
+  }
+  const now = Date.now();
+  const lastProbeAt = lastProbeAtByOwner.get(ownerUid) ?? 0;
+  if (now - lastProbeAt < USER_NOTIFICATIONS_PROBE_MIN_INTERVAL_MS) {
+    logFriendAdd('bell_probe', { reason, decision: 'ttl_skip', sinceLastMs: now - lastProbeAt });
+    return null;
+  }
+  const db = getFirestore();
+  if (!db) {
+    logFriendAdd('bell_probe', { reason, decision: 'no_firestore' });
+    return null;
+  }
+  lastProbeAtByOwner.set(ownerUid, now);
+  try {
+    const startedAt = Date.now();
+    const snap = await db
+      .collection('users')
+      .doc(ownerUid)
+      .collection('notifications')
+      .orderBy('createdAt', 'desc')
+      .limit(1)
+      .get();
+    if (await getNotificationOwnerUid() !== ownerUid) {
+      logFriendAdd('bell_probe', { reason, decision: 'owner_changed' });
+      return null;
+    }
+    const head = (snap.docs || [])[0];
+    const headCreatedAt = head ? Number(head.data?.()?.createdAt || 0) : 0;
+    const cached = cachedMemoryByOwner.get(ownerUid) ?? await readCachedUserNotifications();
+    const cachedNewest = cached.reduce((max, row) => Math.max(max, Number(row.createdAt) || 0), 0);
+    const cachedHasHead = head ? cached.some((row) => row.id === head.id) : true;
+    const isNewer = Boolean(head) && (headCreatedAt > cachedNewest || !cachedHasHead);
+    logFriendAdd('bell_probe', { reason, decision: isNewer ? 'network_newer' : 'network_same', headType: head ? String(head.data?.()?.type ?? '') : null, ms: Date.now() - startedAt });
+    if (!isNewer) return null;
+    return await refreshUserNotificationsOnce({ force: true, newerSeen: true });
+  } catch (error: unknown) {
+    logFriendAdd('bell_probe', { reason, decision: 'failed', message: error instanceof Error ? error.message.slice(0, 80) : String(error).slice(0, 80) });
+    return null;
   }
 }
 

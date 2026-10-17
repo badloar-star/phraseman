@@ -198,7 +198,7 @@ export function getPremiumDialogErrorMessage(
         return triLang(lang, {
           ru: 'Полный доступ активен, но ещё не везде подхватился. Обнови статус доступа и попробуй ещё раз.',
           uk: 'Повний доступ активний, але ще не всюди підхопився. Онови статус доступу і спробуй ще раз.',
-          en: 'Full access is on but hasn’t synced everywhere yet. Refresh your access status and try again.',
+          en: 'Full access is on but hasn’t kicked in everywhere yet. Refresh your access status and try again.',
           es: 'El acceso completo está activo, pero aún no se aplicó en todas partes. Actualiza el estado del acceso e inténtalo otra vez.',
           'pt-BR': 'O acesso completo está ativo, mas ainda não foi aplicado em todos os lugares. Atualize o status do acesso e tente novamente.',
           vi: 'Quyền truy cập đầy đủ đã bật nhưng chưa áp dụng ở mọi nơi. Hãy làm mới trạng thái truy cập rồi thử lại.',

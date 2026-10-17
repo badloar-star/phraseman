@@ -7,18 +7,21 @@
 <link rel="stylesheet" href="kit.css">
 <style>
 /* ───────── PhraseMan 2.0 · вежливое напоминание о голосовом лимите при старте занятия (D194 / D196) ─────────
-   зачем (владелец 17.10, через координатора): Free — 3 голосовые попытки в день на все микрофоны. Если в занятии N голосовых заданий,
-   а осталось меньше N, при начале занятия мягко предупреждаем: закончить голосом не получится, с Plus лимита нет. Не пугать, не ставить
-   стену: человек может начать всё равно. Два варианта по просьбе владельца — шторка снизу и плашка в окне старта занятия.
-   Окно старта = LearningV2SessionOutcomeSheet (эталон learning-v2.html#modals: «Сессия · Глава», обещание, три факта, «Начать»).
+   зачем (владелец 17.10, через координатора): Free — 3 голосовые попытки в день, ОДИН общий счётчик на все микрофоны приложения (D196).
+   Если в занятии N голосовых заданий, а осталось меньше N, при начале занятия мягко предупреждаем: закончить не получится, с Plus лимита нет.
+   Не пугать и не ставить стену — человек начинает всё равно. Окно стоит поверх вступления занятия, до первого задания (координатор 17.10).
+   Два варианта по просьбе владельца: шторка снизу и плашка на вступлении. Единственный продукт — Plus (Travel нет).
+   Фон — первая страница вступления (эталон learning-v2.html#energy / #intro: ×, стадия, 1/3, жизни, энергия, полоски страниц).
    Темы по умолчанию: «Сумерки» (ink, светлая) и «Океан» (marine, тёмная), цвета — liquidGlassTokens. Стиль «Тень»: без обводок, тон и тень.
    Цифра на значке микрофона — та же, что на кнопках микрофона (D194, learning-v2-voice-limit.html). */
 .ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --raised: #FFFFFF; --ctl: #E4E5F3;
   --cta: #1D1D2F; --cti: #FFFFFF; --acc: #5F5CB1; --acc-soft: rgba(95, 92, 177, .12); --badge: #5F5CB1; --badge-ink: #FFFFFF; --scrim: rgba(23, 24, 30, .38);
-  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sho: 0 -18px 40px -18px rgba(51, 51, 87, .35); --sb: #111; --node: #E2E3F2; }
+  --good: #1E7A46; --bad: #B3261E; --track: #DCDDEE; --dis: #E4E5F3; --dis-ink: #8A8B95;
+  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sho: 0 -18px 40px -18px rgba(51, 51, 87, .35); --sb: #111; }
 .ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --raised: #06303A; --ctl: #123037;
   --cta: #D0EAED; --cti: #010708; --acc: #5CCFEB; --acc-soft: rgba(92, 207, 235, .14); --badge: #5CCFEB; --badge-ink: #00151B; --scrim: rgba(0, 6, 9, .55);
-  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sho: 0 -18px 40px -16px rgba(0, 0, 0, .8); --sb: #fff; --node: #0B3A45; }
+  --good: #6FD08C; --bad: #FF9A90; --track: #0E3B46; --dis: #0D2A31; --dis-ink: #6E8C94;
+  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sho: 0 -18px 40px -16px rgba(0, 0, 0, .8); --sb: #fff; }
 .ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
 .ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); }
 .ph.th-marine .sb svg { filter: none; }
@@ -28,28 +31,29 @@
 .ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
 .ph.th-ink .sb .sys svg { filter: brightness(0); }
 
-/* карта занятий (фон) */
-.mh { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
-.rb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); }
-.lp { margin-top: 14px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px; }
-.lp .k { font-size: 12px; line-height: 16px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); text-transform: uppercase; }
-.lp .t { font-size: 18px; line-height: 23px; font-weight: 700; margin-top: 4px; }
-.lp .s { font-size: 14px; color: var(--sec); margin-top: 2px; }
-.nodes { position: relative; height: 330px; margin-top: 18px; }
-.nd { position: absolute; width: 68px; height: 68px; border-radius: 50%; background: var(--node); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--sec); font-weight: 700; }
-.nd.cur { background: var(--raised); color: var(--tx); }
-
-/* затемнение и окно старта (эталон learning-v2.html#modals, в теме) */
-.scrim { position: absolute; inset: 0; background: var(--scrim); z-index: 40; }
-.om { position: absolute; left: 14px; right: 14px; top: 132px; z-index: 41; border-radius: 26px; background: var(--raised); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .45); padding: 22px 18px 12px; text-align: center; }
-.om .x { position: absolute; right: 12px; top: 12px; width: 32px; height: 32px; border-radius: 16px; background: var(--ctl); display: flex; align-items: center; justify-content: center; color: var(--sec); }
-.om .pb { width: 72px; height: 72px; border-radius: 36px; margin: 2px auto 0; background: var(--cta); color: var(--cti); display: flex; align-items: center; justify-content: center; box-shadow: var(--sh); }
-.om .k { margin-top: 12px; font-size: 12px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); text-transform: uppercase; }
-.om .h { margin-top: 6px; font-size: 24px; line-height: 29px; font-weight: 800; letter-spacing: -.2px; }
-.om .p { margin-top: 6px; font-size: 15px; line-height: 21px; color: var(--sec); }
-.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
-.fact { border-radius: 14px; background: var(--ctl); padding: 10px 4px; font-size: 12px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--tx); }
-.fact svg { width: 16px; height: 16px; color: var(--sec); }
+/* вступление занятия (фон) — эталон learning-v2.html, в теме */
+.ih { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.ih .x { width: 40px; height: 40px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); flex: none; }
+.ih .x svg { width: 18px; height: 18px; }
+.ih .istage { font-size: 13px; letter-spacing: 1.6px; font-weight: 800; flex: 1; }
+.ih .inum { font-size: 13px; font-weight: 700; color: var(--sec); }
+.ipill { height: 32px; padding: 0 10px; border-radius: 16px; background: var(--card); box-shadow: var(--sh); display: inline-flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 800; color: var(--tx); }
+.ipill svg { width: 15px; height: 15px; }
+.bars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.bars i { height: 4px; border-radius: 2px; background: var(--track); }
+.bars i.on { background: var(--tx); }
+.ttl { margin-top: 22px; font-size: 26px; line-height: 31px; font-weight: 800; letter-spacing: -.2px; }
+.sub { margin-top: 6px; font-size: 16px; line-height: 22px; color: var(--sec); }
+.exp { margin-top: 16px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 16px 18px; font-size: 16px; line-height: 23px; }
+.exp .iok, .exp .ino { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-weight: 700; }
+.exp .iok svg { color: var(--good); width: 18px; height: 18px; } .exp .ino svg { color: var(--bad); width: 18px; height: 18px; } .exp .ino s { color: var(--bad); }
+.qk { margin-top: 20px; display: flex; justify-content: space-between; font-size: 12px; letter-spacing: 1.6px; font-weight: 800; color: var(--sec); }
+.qq { margin-top: 6px; font-size: 18px; font-weight: 800; }
+.iopt { margin-top: 10px; height: 56px; border-radius: 16px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; gap: 14px; padding: 0 16px; font-size: 17px; font-weight: 700; }
+.iopt b { font-size: 12px; color: var(--sec); width: 10px; }
+.fx { position: absolute; left: 20px; right: 20px; bottom: 34px; z-index: 5; }
+.next { height: 54px; border-radius: 27px; background: var(--dis); color: var(--dis-ink); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; position: relative; }
+.next svg { width: 20px; height: 20px; position: absolute; right: 20px; }
 
 /* значок микрофона с остатком (как на кнопках микрофона, D194) */
 .mic { position: relative; flex: none; width: 44px; height: 44px; border-radius: 14px; background: var(--acc-soft); color: var(--acc); display: flex; align-items: center; justify-content: center; }
@@ -59,18 +63,12 @@
 .mic.big svg { width: 30px; height: 30px; }
 .mic.big b { min-width: 24px; height: 24px; line-height: 24px; font-size: 13px; border-radius: 12px; }
 
-/* вариант 2: плашка в окне старта — тон, без обводки и без тревожного цвета */
-.vp { margin-top: 14px; border-radius: 18px; background: var(--acc-soft); padding: 12px; display: flex; gap: 12px; text-align: left; }
-.vp .tx { font-size: 14px; line-height: 19px; color: var(--tx); text-wrap: pretty; }
-.vp .tx em { font-style: normal; font-weight: 700; }
-.vp .lk { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; height: 30px; padding: 0 10px 0 12px; border-radius: 15px; background: var(--raised); color: var(--tx); font-size: 13px; font-weight: 700; box-shadow: var(--sh); }
-.vp .lk svg { width: 14px; height: 14px; }
-.om .bcta { margin-top: 14px; }
-.bcta { height: 54px; border-radius: 27px; background: var(--cta); color: var(--cti); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; position: relative; }
-.bcta svg { width: 20px; height: 20px; position: absolute; right: 20px; }
+/* кнопки */
+.bcta { height: 54px; border-radius: 27px; background: var(--cta); color: var(--cti); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; }
 .ghost { height: 44px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: var(--sec); }
 
 /* вариант 1: шторка снизу */
+.scrim { position: absolute; inset: 0; background: var(--scrim); z-index: 40; }
 .sh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 41; border-radius: 30px 30px 0 0; background: var(--raised); box-shadow: var(--sho); padding: 10px 22px 30px; text-align: center; }
 .sh .gr { width: 38px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto 18px; }
 .sh .h { margin-top: 16px; font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.2px; text-wrap: balance; }
@@ -80,59 +78,66 @@
 .sh .cnt i { width: 7px; height: 7px; border-radius: 4px; background: var(--acc); display: inline-block; }
 .sh .cnt i.off { background: var(--sec); opacity: .35; }
 .sh .bcta { margin-top: 20px; }
+
+/* вариант 2: плашка на вступлении — тон акцента, без обводки и без тревожного цвета; встаёт под полоски страниц */
+.vp { margin-top: 16px; border-radius: 20px; background: var(--acc-soft); padding: 14px; display: flex; gap: 12px; }
+.vp .vtx { font-size: 15px; line-height: 21px; color: var(--tx); text-wrap: pretty; }
+.vp .vtx em { font-style: normal; font-weight: 700; }
+.vp .bb { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.vp .vbtn { height: 34px; padding: 0 12px; border-radius: 17px; display: inline-flex; align-items: center; font-size: 13px; white-space: nowrap; font-weight: 700; }
+.vp .vbtn.pri { background: var(--cta); color: var(--cti); }
+.vp .vbtn.vsec { background: var(--raised); color: var(--tx); box-shadow: var(--sh); }
 .ph .t { transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
 .ph .t:active { transform: scale(.97); }
-.tag { display: inline-block; margin-left: 6px; padding: 0 7px; border-radius: 6px; font-size: 12px; font-weight: 700; background: rgba(95, 92, 177, .18); color: #B9B7F0; }
 @media (prefers-reduced-motion: reduce) { .ph .t { transition: none; } }
 </style>
 </head>
 <body>
 <header class="top"><h1>Голос на старте занятия — D194</h1>
-<p>Free: 3 голосовые попытки в день на все микрофоны (D194, D196). Если голосовых заданий в занятии больше, чем осталось попыток, при начале занятия мягко говорим об этом: закончить голосом не получится, с Plus лимита нет. Человек всегда может начать всё равно — это подсказка, а не стена. Plus и случай, когда попыток хватает, — ничего не показываем.</p></header>
+<p>Free: 3 голосовые попытки в день, один общий счётчик на все микрофоны приложения (D194, D196). Если голосовых заданий в занятии больше, чем осталось попыток, при начале занятия — поверх вступления, до первого задания — мягко говорим об этом. Человек всегда может начать всё равно: это подсказка, а не стена. Plus и случай, когда попыток хватает, — ничего не показываем.</p></header>
 <main id="root"></main>
 <script src="kit.js"></script>
 <script>
 const { icon, phone, col, block } = K;
 const N_VOICE = 4, LEFT = 2;
-// значки, которых нет в kit.js: часы и книга (контур 1.8, как остальные)
-const X = { clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>', book: '<path d="M4 5.5c2.6-1 5.2-1 8 .8 2.8-1.8 5.4-1.8 8-.8v13c-2.6-1-5.2-1-8 .8-2.8-1.8-5.4-1.8-8-.8z"/><path d="M12 6.3v13"/>' };
+// значки, которых нет в kit.js (контур 1.8, как остальные)
+const X = { cross: '<path d="M6 12.5l4 4 8-9"/>' };
 const ix = (n) => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${X[n]}</svg>`;
-// зачем: фон — карта занятий урока 1 (как в эталоне learning-v2.html#modals), чтобы было видно, откуда открылось окно
-const mapBg = `<div class="mh"><span class="rb">${icon('back', 's20')}</span><span class="rb">${ix('book')}</span></div>
-  <div class="lp"><div class="k">Урок 1</div><div class="t">Present be: утверждение + not</div><div class="s">Первый день в новом офисе</div></div>
-  <div class="nodes"><span class="nd" style="left:60px;top:6px">${icon('check', 's20')}</span><span class="nd cur" style="left:190px;top:110px">${icon('play', 's20')}</span><span class="nd" style="left:96px;top:226px">8</span></div>`;
+// зачем: фон — первая страница вступления занятия (стадия СМЫСЛ, 1/3), как в эталоне learning-v2.html; энергия уже списана 5 → 4
+const intro = (o = {}) => `<div class="ih"><span class="x">${icon('close')}</span><span class="istage">СМЫСЛ</span><span class="inum">1/3</span>
+    <span class="ipill">${icon('heartF')}${icon('heartF')}${icon('heartF')}</span><span class="ipill">${icon('boltF')}4</span></div>
+  <div class="bars"><i class="on"></i><i></i><i></i></div>
+  ${o.plate || ''}
+  <div class="ttl">am, is, are — это и есть «быть»</div>
+  <div class="sub">Одно короткое слово связывает, кто есть кто.</div>
+  <div class="exp">В русском мы говорим «Я — Анна» и обходимся без глагола. В английском между словами обязательно стоит связка.
+    <div class="iok">${icon('check')}I am Anna.</div><div class="ino">${icon('close')}<s>I Anna.</s></div></div>
+  ${o.plate ? '' : `<div class="qk"><span>ПРОВЕРЬ СЕБЯ</span><span>1 / 3</span></div><div class="qq">Какая фраза собрана правильно?</div>
+  <div class="iopt"><b>A</b>I am here.</div><div class="iopt"><b>B</b>I here.</div>`}`;
+const fixedNext = `<div class="fx"><div class="next">Дальше${icon('arrowR')}</div></div>`;
 const mic = (n, big) => `<span class="mic${big ? ' big' : ''}">${icon('mic')}<b>${n}</b></span>`;
 // текст владельца (17.10) на «ты», как везде в приложении; «2» → «2 попытки», чтобы цифра читалась без контекста
-const msg = (travel) => `В этом занятии есть задания с голосом, а на сегодня у тебя осталось <em>${LEFT} попытки</em> — закончить не получится. ${travel ? 'С Plus или подпиской <em>Travel</em> лимита на голос нет.' : 'С Plus лимита на голос нет.'}`;
+const msg = `В этом занятии есть задания с голосом, а на сегодня у тебя осталось <em>${LEFT} попытки</em> — закончить не получится. С Plus лимита на голос нет.`;
 const theme = (th, html) => html.replace('class="ph"', `class="ph ${th}"`);
 
-// ── вариант 1: шторка снизу после «Начать» в окне старта — до того, как откроется первое задание
-const sheet = (th, o = {}) => theme(th, phone(mapBg, { time: '9:41', overlay: `<div class="scrim"></div>
+// ── вариант 1: шторка снизу поверх вступления, до первого задания
+const sheet = (th) => theme(th, phone(intro(), { time: '9:41', fixed: fixedNext, overlay: `<div class="scrim"></div>
   <div class="sh"><div class="gr"></div>${mic(LEFT, true)}
     <div class="h">Голоса на всё занятие не хватит</div>
-    <div class="p">${msg(o.travel)}</div>
+    <div class="p">${msg}</div>
     <div class="cnt"><i></i><i></i><i class="off"></i>Голос на сегодня · ${LEFT} из 3</div>
     <div class="bcta t">Попробовать Plus</div>
-    ${o.travel ? '<div class="ghost t" style="color:var(--tx)">Подписка Travel</div>' : ''}
     <div class="ghost t">Начать всё равно</div></div>` }));
 
-// ── вариант 2: плашка внутри окна старта занятия, над «Начать»
-const plate = (th, o = {}) => theme(th, phone(mapBg, { time: '9:41', overlay: `<div class="scrim"></div>
-  <div class="om"><span class="x">${icon('close')}</span><span class="pb">${icon('play')}</span>
-    <div class="k">Сессия 7 · Глава 1</div><div class="h">Чему научишься</div>
-    <div class="p">Ты научишься собирать простые фразы с глаголом to be.</div>
-    <div class="facts"><span class="fact">${ix('clock')}≈ 5 минут</span><span class="fact">${ix('book')}4 новых слова</span><span class="fact">${icon('heart')}3 попытки</span></div>
-    <div class="vp">${mic(LEFT)}<div><div class="tx">${msg(o.travel)}</div><span class="lk t">Попробовать Plus ${icon('fwd')}</span></div></div>
-    <div class="bcta t">Начать всё равно${icon('arrowR')}</div>
-    <div class="ghost t">Сразу к практике</div></div>` }));
+// ── вариант 2: плашка на самом вступлении, под полосками страниц; «Начать всё равно» прячет плашку
+const plate = (th) => theme(th, phone(intro({ plate: `<div class="vp">${mic(LEFT)}<div><div class="vtx">${msg}</div>
+    <div class="bb"><span class="vbtn pri t">Попробовать Plus</span><span class="vbtn vsec t">Начать всё равно</span></div></div></div>` }), { time: '9:41', fixed: fixedNext }));
 
 document.getElementById('root').innerHTML =
-  block('sheet', 'Вариант 1 — шторка снизу', `Открывается после «Начать» в окне старта, до первого задания. В занятии ${N_VOICE} задания с голосом, осталось ${LEFT} попытки. Главная кнопка — «Попробовать Plus», рядом тихое «Начать всё равно»: человек не заперт. Свайп вниз = «Начать всё равно». Счётчик «${LEFT} из 3» — тот же, что цифра на микрофонах.`, [
+  block('sheet', 'Вариант 1 — шторка снизу', `Поверх вступления занятия, до первого задания. В занятии ${N_VOICE} задания с голосом, осталось ${LEFT} попытки из общего дневного лимита. Главная кнопка — «Попробовать Plus», под ней тихое «Начать всё равно»: человек не заперт. Свайп вниз = «Начать всё равно». Счётчик «${LEFT} из 3» — тот же, что цифра на всех микрофонах.`, [
     col('Шторка · «Сумерки»', sheet('th-ink')), col('Шторка · «Океан»', sheet('th-marine'))]) +
-  block('plate', 'Вариант 2 — плашка в окне старта занятия', 'Без лишнего окна: та же модалка «Чему научишься», над кнопкой — мягкая плашка тоном акцента (без обводки и без красного). «Попробовать Plus» — маленькая кнопка в плашке, главная кнопка становится «Начать всё равно». «Сразу к практике» остаётся как было.', [
-    col('Плашка · «Сумерки»', plate('th-ink')), col('Плашка · «Океан»', plate('th-marine'))]) +
-  block('travel', 'Если доступна подписка Travel', 'Тот же текст, но называем и её: «С Plus или подпиской Travel лимита на голос нет». В шторке — отдельная тихая кнопка «Подписка Travel». Название и наличие Travel — уточнить у владельца.', [
-    col('Шторка + Travel · «Сумерки»', sheet('th-ink', { travel: true })), col('Плашка + Travel · «Океан»', plate('th-marine', { travel: true }))]);
+  block('plate', 'Вариант 2 — плашка на вступлении', 'Без окна: плашка тоном акцента (без обводки и без красного) встаёт под полоски страниц, вступление читается дальше. «Попробовать Plus» — маленькая тёмная кнопка, «Начать всё равно» — светлая рядом, тап прячет плашку. «Дальше» внизу работает как обычно.', [
+    col('Плашка · «Сумерки»', plate('th-ink')), col('Плашка · «Океан»', plate('th-marine'))]);
 K.init();
 </script>
 </body>

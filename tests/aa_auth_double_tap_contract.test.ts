@@ -90,6 +90,7 @@ jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/cloud_sync', () => ({
   fetchAuthRecoveryHint: jest.fn(async () => null),
   restoreFromCloudDetailed: jest.fn(async () => 'restored'),
+  rememberSwapConfirmedStableAuthLink: jest.fn(async () => true),
   warmAuthSignInCallables: jest.fn(),
   // 12.10: экран аккаунта и смена в онбординге греют модули стирания заранее.
   prewarmAccountWipeModules: jest.fn(),

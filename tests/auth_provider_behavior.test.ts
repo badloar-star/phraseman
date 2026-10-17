@@ -164,6 +164,7 @@ jest.mock('../app/cloud_sync', () => ({
   deleteCloudData: jest.fn(async () => {}),
   resetAnonAuthCacheForSignOut: (...a: unknown[]) => (resetAnonAuthCacheForSignOut as any)(...a),
   ensureStableAuthLinkForStableIdDetailed: (...a: unknown[]) => (ensureStableAuthLinkForStableIdDetailed as any)(...a),
+  rememberSwapConfirmedStableAuthLink: jest.fn(async () => true),
   mergeStableAccountsViaServer: (...a: unknown[]) => (mergeStableAccountsViaServer as any)(...a),
   saveAccountSwitchEmergencyBackup: (...a: unknown[]) => (saveAccountSwitchEmergencyBackup as any)(...a),
   readAccountSwitchEmergencyBackupSummary: () => readAccountSwitchEmergencyBackupSummary(),

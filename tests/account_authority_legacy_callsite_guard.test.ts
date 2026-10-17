@@ -557,7 +557,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // +2 — память подтверждённого ответа ensure_link: поколение при входе и сверка, что оно не сменилось за запрос.
         // R20-хвост 15.10 (eca3aae21): +1 — currentRestoreOwner(): только чтение stableId владельца для дедупа восстановления,
         // чтобы проверка Plus аккаунта B не присоединилась к восстановлению A (ограда владельца, не смена поколения).
-        generationFences: 18,
+        // Вход 17.10 (💸): +1 — rememberSwapConfirmedStableAuthLink сверяет активное поколение перед переносом подтверждения.
+        generationFences: 19,
         transitionLocks: 4,
         anonymousSessionDecisions: 9,
       },
@@ -640,7 +641,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // 20318946f (15.10): +1 — peekStableId владельца в снятии push при смене аккаунта.
         // +1 (Ядро 15.10): stableId для предвыборки метки до окна выбора Google; позднее чтение — сверка.
         // +1 (R15, ревью Opus 15.10): перепроверка чистоты гостя под замком перехода, если первая сказала «чист» (гонка записей).
-        occurrences: 123,
+        // +1 (Вход 17.10, 💸): перенос подтверждения привязки этого входа в новое поколение после свапа (rememberSwapConfirmedStableAuthLink).
+        occurrences: 124,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -667,6 +669,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:quiesceCloudSyncForAccountTransition': 4,
           'call:quiesceSyncBeforeStableIdSwap': 3,
           'call:readExistingStableId': 1,
+          'call:rememberSwapConfirmedStableAuthLink': 1,
           'call:resetAnonAuthCacheForSignOut': 3,
           'call:readAccountSwitchEmergencyBackupSummary': 1,
           'call:restoreFromCloudDetailed': 1,
@@ -693,13 +696,14 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // Пункт (а) 11.10: +1 — forceSyncToCloud перепроверяет поколение после ожидания отложенного восстановления.
         // Ядро 14.10: +1 — поколение в трассировке [AUTH-LOOP] (7f9c95187); +2 — память подтверждённого ответа ensure_link.
         // R20-хвост 15.10 (eca3aae21): +1 — currentRestoreOwner() (владелец дедупа восстановления, только чтение).
-        occurrences: 78,
+        // Вход 17.10 (💸): +1 — поколение при переносе подтверждения привязки после свапа (rememberSwapConfirmedStableAuthLink).
+        occurrences: 79,
         imports: 2,
         census: {
           'call:adoptAuthoritativeStableIdentity': 1,
           'call:beginAccountGeneration': 1,
           'call:beginInitialAccountGeneration': 3,
-          'call:captureAccountGeneration': 9,
+          'call:captureAccountGeneration': 10,
           'call:classifyAnonMergeNonceRejection': 2,
           'call:clearStableId': 2,
           'call:collection': 1,

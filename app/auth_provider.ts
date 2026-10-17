@@ -75,6 +75,7 @@ import {
   readAccountSwitchEmergencyBackupSummary,
   shelveAccountSwitchEmergencyBackupOf,
   pruneShelvedAccountSwitchBackups,
+  rememberSwapConfirmedStableAuthLink,
   type StableAuthLinkMetadata,
   type StableAuthLinkEnsureResult,
   type AccountDeleteEnqueueAck,
@@ -3468,6 +3469,8 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         alreadyMerged: merge?.alreadyMerged === true,
       });
       let canonicalStableId: string;
+      // зачем (координатор 17.10, 💸): подтверждение привязки этим входом — переносим в новое поколение после свапа.
+      let swapConfirmedLink: StableAuthLinkEnsureResult | null = null;
       if (merge?.ok && merge.canonicalStableId) {
         canonicalStableId = merge.canonicalStableId;
       } else {
@@ -3521,6 +3524,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           return { result: 'error', error: 'merge_pending' };
         }
         canonicalStableId = authoritativeAfterMerge.stableUid;
+        swapConfirmedLink = authoritativeAfterMerge;
       }
 
       // Хвост D: погасить фоновый/отложенный sync ДО смены stable_id, иначе debounce-sync
@@ -3546,6 +3550,12 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         }
         beginAccountGeneration(canonicalStableId);
         swapStage('generation_begun');
+        // зачем (координатор 17.10, 💸 + долгий вход): wipe стёр кэш привязки — без переноса swap_restore снова зовёт
+        // authEnsureStableLink (4,3 с, лишний вызов функции). Только ветка без слияния: там подтверждение получено этим входом.
+        if (swapConfirmedLink) {
+          await rememberSwapConfirmedStableAuthLink(swapConfirmedLink, canonicalStableId, 'signin_swap');
+          swapStage('link_confirmation_carried');
+        }
         if (presyncBackupSaved && canonicalStableId !== outcome.mergedFromStableId) {
           await settleGuestBackupAfterSwap(
             outcome.mergedFromStableId,

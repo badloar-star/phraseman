@@ -3,6 +3,7 @@ import {
   __cloudSyncTestHooks,
   ensureStableAuthLinkForStableIdDetailed,
   forgetAuthoritativeStableAuthLinkMemo,
+  rememberSwapConfirmedStableAuthLink,
 } from '../app/cloud_sync';
 import {
   __resetAccountGenerationForTests,
@@ -106,6 +107,30 @@ describe('cloud sync identity anchor', () => {
       source: 'callable',
       failure: 'identity_unavailable',
     });
+  });
+
+  // зачем (координатор 17.10, 💸): свап входа стирает кэш привязки — подтверждение сервера переносится в новое поколение,
+  // и фоновое восстановление не зовёт authEnsureStableLink второй раз.
+  it('carries the sign-in confirmation across the swap: no second callable for the same identity', async () => {
+    beginAccountGeneration('stable-a'); // новое поколение после свапа, кэш на диске стёрт (storage reset в beforeEach)
+    const proof = { ok: true, requestedStableId: 'stable-a', stableUid: 'stable-a', authUid: 'provider-a', source: 'callable' as const };
+    await expect(rememberSwapConfirmedStableAuthLink(proof, 'stable-a', 'test')).resolves.toBe(true);
+    await expect(ensureStableAuthLinkForStableIdDetailed('stable-a')).resolves.toMatchObject({ ok: true });
+    await expect(ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true }))
+      .resolves.toMatchObject({ ok: true, stableUid: 'stable-a' });
+    expect(mockCallable).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['other auth uid', { authUid: 'provider-b' }, 'stable-a'],
+    ['other stable id', { stableUid: 'stable-b' }, 'stable-a'],
+    ['cached, not a server answer', { source: 'cache' as const }, 'stable-a'],
+    ['failed answer', { ok: false }, 'stable-a'],
+  ])('does not carry a confirmation that is not exactly ours: %s', async (_label, patch, canonical) => {
+    const proof = { ok: true, requestedStableId: 'stable-a', stableUid: 'stable-a', authUid: 'provider-a', source: 'callable' as const, ...patch };
+    await expect(rememberSwapConfirmedStableAuthLink(proof, canonical, 'test')).resolves.toBe(false);
+    await ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true });
+    expect(mockCallable).toHaveBeenCalledTimes(1);
   });
 
   it('wipes account-scoped storage before adopting a different server canonical id', async () => {

@@ -2247,6 +2247,50 @@ export function forgetAuthoritativeStableAuthLinkMemo(reason: string): void {
   authoritativeLinkMemo = null;
 }
 
+/**
+ * Перенести подтверждение привязки, которое сервер только что дал входу, в новое поколение после свапа.
+ *
+ * зачем (координатор 17.10, 💸 + долгий вход): свап стирает stable_auth_link_cache_v1 вместе с данными гостя, а память
+ * подтверждения привязана к поколению — фоновое восстановление сразу после входа снова звало authEnsureStableLink
+ * (лог Сверки: stable_link 4,3 с, хотя свап получил ответ сервера за 4 мс до этого). authEnsureStableLink — главная статья
+ * CPU функций. Пишем подтверждение ТОЛЬКО для той же пары stableUid:authUid и того же активного поколения; иначе — промах.
+ */
+export async function rememberSwapConfirmedStableAuthLink(
+  proof: StableAuthLinkEnsureResult | null,
+  canonicalStableId: string,
+  reason: string,
+): Promise<boolean> {
+  const authUid = getAuth()?.currentUser?.uid ?? null;
+  const generation = captureAccountGeneration();
+  const skip = !proof
+    ? 'no_proof'
+    : !proof.ok
+      ? 'not_ok'
+      : proof.source !== 'callable'
+        ? `source_${proof.source}`
+        : proof.stableUid !== canonicalStableId
+          ? 'other_stable_id'
+          : !authUid || proof.authUid !== authUid
+            ? 'other_auth_uid'
+            : generation.phase !== 'active' || generation.stableId !== canonicalStableId
+              ? `generation_${generation.phase}`
+              : null;
+  if (skip || !proof || !authUid) {
+    console.log(`[ENSURE-LINK] swap_seed skipped reason=${skip ?? 'no_auth_uid'} via=${reason}`); // guard-ok: ранний выход с причиной
+    return false;
+  }
+  const key = `${canonicalStableId}:${authUid}`;
+  authoritativeLinkMemo = { key, generation: generation.generation, atMs: Date.now(), result: proof };
+  try {
+    await writeStableAuthLinkCache(key);
+  } catch (error) {
+    // Память поколения уже заполнена; промах кэша на диске стоит лишь одного вызова при следующем запуске.
+    console.warn(`[ENSURE-LINK] swap_seed cache_write_failed kind=${error instanceof Error ? error.name : typeof error}`);
+  }
+  console.log(`[ENSURE-LINK] swap_seed done via=${reason} generation=${generation.generation}`); // guard-ok: без идентификаторов
+  return true;
+}
+
 export async function ensureStableAuthLinkForStableIdDetailed(
   stableIdRaw: string,
   metadata?: StableAuthLinkMetadata,

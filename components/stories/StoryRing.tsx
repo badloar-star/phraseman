@@ -16,8 +16,8 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { STORY_RING_COIN, STORY_RING_SLOT, STORY_RING_STROKE } from './story_ring_constants';
 
 export { STORY_RING_COIN, STORY_RING_SLOT, STORY_RING_STROKE };
-// theme-exempt: красный «сторис»-градиент — фирменный цвет кольца, одинаковый во всех темах (образец .story-ring.has)
-export const STORY_RING_COLORS = ['#FF2D55', '#FF3B30', '#FF6A1A', '#FF9500'] as const;
+// зачем (координатор 17.10): пометка стоит на строке с цветами — храповик theme_hardcoded_colors читает её только на той же строке
+export const STORY_RING_COLORS = ['#FF2D55', '#FF3B30', '#FF6A1A', '#FF9500'] as const; // theme-exempt: красный «сторис»-градиент — фирменный цвет кольца, одинаковый во всех темах (образец .story-ring.has)
 const STOPS = [0, 0.35, 0.7, 1] as const;
 const BREATH_HALF_MS = 900;
 

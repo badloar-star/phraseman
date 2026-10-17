@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { MODE_FEEDBACK_ART } from "../../../constants/learningV2ModeFeedbackPalette";
 import type { LearningV2InterfaceLocale } from "../content/generator_course_contract";
 import type {
   LearningV2LearnerModeChoiceFeedbackV1,
@@ -185,25 +186,25 @@ const styles = {
     paddingVertical: 14,
   },
   correct: {
-    backgroundColor: "rgba(43, 138, 94, 0.12)",
-    borderColor: "rgba(43, 138, 94, 0.32)",
+    backgroundColor: MODE_FEEDBACK_ART.correctTint,
+    borderColor: MODE_FEEDBACK_ART.correctEdge,
   },
   wrong: {
-    backgroundColor: "rgba(190, 118, 28, 0.12)",
-    borderColor: "rgba(190, 118, 28, 0.32)",
+    backgroundColor: MODE_FEEDBACK_ART.wrongTint,
+    borderColor: MODE_FEEDBACK_ART.wrongEdge,
   },
   text: {
-    color: "#17332A",
+    color: MODE_FEEDBACK_ART.ink,
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 23,
   },
   analysis: { marginTop: 12, gap: 6 },
-  analysisPhrase: { color: "#17332A", fontSize: 18, fontWeight: "700" },
-  analysisMeaning: { color: "#17332A", fontSize: 16, fontWeight: "600" },
-  analysisExplanation: { color: "#355148", fontSize: 15, lineHeight: 21 },
+  analysisPhrase: { color: MODE_FEEDBACK_ART.ink, fontSize: 18, fontWeight: "700" },
+  analysisMeaning: { color: MODE_FEEDBACK_ART.ink, fontSize: 16, fontWeight: "600" },
+  analysisExplanation: { color: MODE_FEEDBACK_ART.inkSoft, fontSize: 15, lineHeight: 21 },
   unit: { marginTop: 4 },
-  unitTitle: { color: "#17332A", fontSize: 15, fontWeight: "700" },
-  unitFunction: { color: "#355148", fontSize: 14, lineHeight: 20 },
-  contrast: { color: "#355148", fontSize: 14, lineHeight: 20, marginTop: 10 },
+  unitTitle: { color: MODE_FEEDBACK_ART.ink, fontSize: 15, fontWeight: "700" },
+  unitFunction: { color: MODE_FEEDBACK_ART.inkSoft, fontSize: 14, lineHeight: 20 },
+  contrast: { color: MODE_FEEDBACK_ART.inkSoft, fontSize: 14, lineHeight: 20, marginTop: 10 },
 } as const;

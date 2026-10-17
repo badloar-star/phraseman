@@ -34,10 +34,16 @@ describe('окно башни — по теме, башня — по наряд�
     const svg = read('components/spire/SpireTowerSvg.tsx');
     expect(svg).toContain('{scene ? null : <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />}');
     expect(svg).toContain('scene ? (mine ? scene.numMine : scene.num)');
-    expect(svg).toContain("fill={scene ? scene.num : '#8E8E92'}");
-    expect(svg).toContain("fill={scene ? scene.cloudsLabel : '#5E5E62'}");
+    // зачем (координатор 17.10, храповик theme_hardcoded_colors): цвета арта башни — в constants/spireTowerArtPalette.ts, значения те же
+    expect(svg).toContain('fill={scene ? scene.num : TOWER_ART.c8E8E92}');
+    expect(svg).toContain('fill={scene ? scene.cloudsLabel : TOWER_ART.c5E5E62}');
     expect(svg).toContain("scene ? 'url(#spireGroundTheme)' : 'url(#spireGround)'");
-    expect(svg).toContain("scene ? scene.shadow : 'rgba(0,0,0,.55)'");
+    expect(svg).toContain('scene ? scene.shadow : TOWER_ART.black55');
+    const art = read('constants/spireTowerArtPalette.ts');
+    expect(art).toContain("c8E8E92: '#8E8E92',");
+    expect(art).toContain("c5E5E62: '#5E5E62',");
+    expect(art).toContain("black55: 'rgba(0,0,0,.55)',");
+    expect(art).toContain("white80: 'rgba(255,255,255,.8)',");
     // башня: градиенты камня и окон по-прежнему из наряда
     expect(svg).toContain('skin.cyl[i]');
     expect(svg).toContain('skin.lit');
@@ -50,7 +56,7 @@ describe('окно башни — по теме, башня — по наряд�
   });
 
   it('светлая тема: рамка выбранного этажа и кольцо моей монеты берутся из цвета текста темы, тёмная без изменений', () => {
-    expect(read('components/spire/SpireTowerSvg.tsx')).toContain("stroke={scene && scene.light ? scene.numMine : 'rgba(255,255,255,.8)'}");
+    expect(read('components/spire/SpireTowerSvg.tsx')).toContain('stroke={scene && scene.light ? scene.numMine : TOWER_ART.white80}');
     expect(read('components/spire/SpireTower.tsx')).toContain('scene.light ? { backgroundColor: scene.numMine } : null');
   });
 });

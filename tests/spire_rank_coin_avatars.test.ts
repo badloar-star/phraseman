@@ -92,8 +92,13 @@ describe('Шпиль: монеты рангов вместо букв', () => {
 
   it('номер этажа на башне #8E8E92 (≥ 4,5 на небе всех лиг), у своего этажа белый', () => {
     const svg = read('components/spire/SpireTowerSvg.tsx');
-    expect(svg).toContain("mine ? '#FFFFFF' : '#8E8E92'"); // без сцены (по умолчанию) — #8E8E92; со сценой цвет берётся из токенов темы (Темы, 80b07bdaa)
-    expect(svg).not.toContain('#6E6E72');
+    // зачем (координатор 17.10, храповик theme_hardcoded_colors): цвета арта башни вынесены в constants/spireTowerArtPalette.ts
+    // с ТЕМИ ЖЕ значениями — сторожим и ссылку, и само значение.
+    expect(svg).toContain('mine ? TOWER_ART.white : TOWER_ART.c8E8E92'); // без сцены (по умолчанию) — #8E8E92; со сценой цвет берётся из токенов темы (Темы, 80b07bdaa)
+    const art = read('constants/spireTowerArtPalette.ts');
+    expect(art).toContain("white: '#FFFFFF',");
+    expect(art).toContain("c8E8E92: '#8E8E92',");
+    expect(svg + art).not.toContain('#6E6E72');
   });
 
   it('свой ранг в списках — из useMyCoinRank, а не из комнаты', () => {

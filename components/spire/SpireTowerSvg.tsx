@@ -21,6 +21,7 @@ import SpireTowerFinial, { spireFinialTopY } from './SpireTowerFinial';
 import { spireWeekTopViewBox } from './spire_tower_bounds';
 import type { SpireScene } from './useSpireScene';
 import { SPIRE_TEX_ID, skinTextureDefs } from './SpireTowerTextures';
+import { TOWER_ART } from '../../constants/spireTowerArtPalette';
 import {
   SPIRE_CX, SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireFloorState, spireIsGuard, spireIsSummit,
   type SpireFloorGeom,
@@ -110,12 +111,12 @@ const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSel
       {guard ? null : (
         <>
           <Rect x={x0 - 5} y={y - 3} width={w + 10} height={7} rx={3} fill="url(#spireCylCorn)" />
-          <Rect x={x0 - 5} y={y - 3} width={w + 10} height={1.4} rx={0.7} fill="rgba(255,255,255,.28)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+          <Rect x={x0 - 5} y={y - 3} width={w + 10} height={1.4} rx={0.7} fill={TOWER_ART.white28} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
         </>
       )}
-      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={scene ? (mine ? scene.numMine : scene.num) : mine ? '#FFFFFF' : '#8E8E92'} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      {label && !bare ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill={scene ? scene.num : '#8E8E92'} textAnchor="middle">{label}</SvgText> : null}
-      {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke={scene && scene.light ? scene.numMine : 'rgba(255,255,255,.8)'} strokeOpacity={scene && scene.light ? 0.85 : 1} strokeWidth={1.4} /> : null}{/* theme-exempt: рамка выбранного этажа; зачем (Макеты 13.10, кадры spirecheck-001/002): на светлой плите белая рамка не видна — берём цвет текста темы, как у номеров этажей; в тёмной без изменений */}
+      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={scene ? (mine ? scene.numMine : scene.num) : mine ? TOWER_ART.white : TOWER_ART.c8E8E92} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {label && !bare ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill={scene ? scene.num : TOWER_ART.c8E8E92} textAnchor="middle">{label}</SvgText> : null}
+      {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke={scene && scene.light ? scene.numMine : TOWER_ART.white80} strokeOpacity={scene && scene.light ? 0.85 : 1} strokeWidth={1.4} /> : null}{/* theme-exempt: рамка выбранного этажа; зачем (Макеты 13.10, кадры spirecheck-001/002): на светлой плите белая рамка не видна — берём цвет текста темы, как у номеров этажей; в тёмной без изменений */}
       {bare ? null : <Rect x={0} y={y - 4} width={SPIRE_TW} height={h + 4} fill="transparent" />}
     </G>
   );
@@ -154,7 +155,7 @@ const Parapet = memo(function Parapet({ fl, skin }: { fl: SpireFloorGeom; skin: 
       <Rect x={x0 - 7} y={y - 4} width={w + 14} height={10} rx={2} fill="url(#spireCylCorn)" />
       {merlons}
       {skin.rim === 'full' ? <Path d={caps} fill="url(#spireMetal)" /> : null}
-      <Path d={brackets} fill="rgba(0,0,0,.45)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      <Path d={brackets} fill={TOWER_ART.black45} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
     </G>
   );
 });
@@ -193,7 +194,7 @@ const Crown = memo(function Crown({ skin, summit }: CrownProps) {
       }) : ring}
       <Polygon points={conePts} fill="url(#spireCone)" />
       {premium ? <Polygon points={conePts} fill={`url(#${SPIRE_TEX_ID})`} /> : null}
-      <Path d={shingles} stroke="rgba(0,0,0,.38)" strokeWidth={1.1} fill="none" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      <Path d={shingles} stroke={TOWER_ART.black38} strokeWidth={1.1} fill="none" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       {premium ? <Polygon points={conePts} fill="url(#spireGloss)" /> : null}
       {premium ? ring : null}
       <Circle cx={SPIRE_CX} cy={apex - 14} r={big ? skin.glowR * 2.6 : skin.glowR} fill="url(#spireGlow)" />
@@ -203,15 +204,15 @@ const Crown = memo(function Crown({ skin, summit }: CrownProps) {
           {skin.pennant ? (
             <>
               <Path d={`M${SPIRE_CX + 1} ${poleTop}h18l-5 5.5 5 5.5h-18z`} fill={skin.pennant} />
-              <Path d={`M${SPIRE_CX + 1} ${poleTop}h18l-5 5.5h-13z`} fill="rgba(255,255,255,.2)" />
+              <Path d={`M${SPIRE_CX + 1} ${poleTop}h18l-5 5.5h-13z`} fill={TOWER_ART.white20} />
             </>
           ) : null}
           <SpireTowerFinial skin={skin} cx={SPIRE_CX} cy={apex - 16} big={big} />
         </>
       ) : (
         <>
-          <Rect x={SPIRE_CX - 1} y={apex - 12} width={2} height={16} fill="#D6D6D8" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-          <Circle cx={SPIRE_CX} cy={apex - 16} r={5.5} fill="#FFFFFF" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+          <Rect x={SPIRE_CX - 1} y={apex - 12} width={2} height={16} fill={TOWER_ART.cD6D6D8} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+          <Circle cx={SPIRE_CX} cy={apex - 16} r={5.5} fill={TOWER_ART.white} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
         </>
       )}
     </G>
@@ -231,45 +232,45 @@ function skinDefs(skin: SpireTowerSkin, scene?: SpireScene): React.ReactNode {
       <LinearGradient id="spireCylG" x1="0" x2="1" y1="0" y2="0">{O6.map((o, i) => <Stop key={o} offset={o} stopColor={skin.cylG[i]} />)}</LinearGradient>
       <LinearGradient id="spireCylCorn" x1="0" x2="1" y1="0" y2="0">{O4.map((o, i) => <Stop key={o} offset={o} stopColor={skin.corn[i]} />)}</LinearGradient>
       <LinearGradient id="spireCone" x1="0" x2="1" y1="0" y2="0">{O4.map((o, i) => <Stop key={o} offset={o} stopColor={skin.cone[i]} />)}</LinearGradient>
-      <LinearGradient id="spireUnder" x1="0" x2="0" y1="0" y2="1"><Stop offset="0" stopColor="#000000" stopOpacity={skin.underTop} /><Stop offset="0.3" stopColor="#000000" stopOpacity={0} /><Stop offset="1" stopColor="#000000" stopOpacity={0.12} /></LinearGradient>
+      <LinearGradient id="spireUnder" x1="0" x2="0" y1="0" y2="1"><Stop offset="0" stopColor={TOWER_ART.black} stopOpacity={skin.underTop} /><Stop offset="0.3" stopColor={TOWER_ART.black} stopOpacity={0} /><Stop offset="1" stopColor={TOWER_ART.black} stopOpacity={0.12} /></LinearGradient>
       <RadialGradient id="spireGlow" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor={skin.glow} stopOpacity={0.5} /><Stop offset="0.45" stopColor={skin.glow} stopOpacity={0.1} /><Stop offset="1" stopColor={skin.glow} stopOpacity={0} /></RadialGradient>
       <RadialGradient id="spireLitFloor" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor={skin.glow} stopOpacity={0.16} /><Stop offset="1" stopColor={skin.glow} stopOpacity={0} /></RadialGradient>
       <LinearGradient id="spireSky" x1="0" x2="0" y1="0" y2="1"><Stop offset="0" stopColor={skin.sky[0]} /><Stop offset="0.5" stopColor={skin.sky[1]} /><Stop offset="1" stopColor={skin.sky[2]} /></LinearGradient>
       <RadialGradient id="spireGround" cx="0.5" cy="0.2" rx="0.5" ry="0.5"><Stop offset="0" stopColor={skin.ground[0]} /><Stop offset="1" stopColor={skin.ground[1]} stopOpacity={0} /></RadialGradient>
-      <RadialGradient id="spireCloud" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor={scene ? scene.tone : '#FFFFFF'} stopOpacity={scene ? (scene.light ? 0.07 : 0.09) : 0.09} /><Stop offset="1" stopColor={scene ? scene.tone : '#FFFFFF'} stopOpacity={0} /></RadialGradient>
+      <RadialGradient id="spireCloud" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor={scene ? scene.tone : TOWER_ART.white} stopOpacity={scene ? (scene.light ? 0.07 : 0.09) : 0.09} /><Stop offset="1" stopColor={scene ? scene.tone : TOWER_ART.white} stopOpacity={0} /></RadialGradient>
       {scene ? <RadialGradient id="spireGroundTheme" cx="0.5" cy="0.2" rx="0.5" ry="0.5"><Stop offset="0" stopColor={scene.tone} stopOpacity={scene.light ? 0.1 : 0.14} /><Stop offset="1" stopColor={scene.tone} stopOpacity={0} /></RadialGradient> : null}
       {skin.premium ? (
         <>
           {/* зачем: «премиальный» отлив без фильтров — узкий зеркальный блик (сила spec), мягкая вторая полоса и подсветка края цветом лиги (gloss образца) */}
           <LinearGradient id="spireGloss" x1="0" x2="1" y1="0" y2="0">
-            <Stop offset="0" stopColor="#000000" stopOpacity={0.45} />
-            <Stop offset="0.1" stopColor="#000000" stopOpacity={0.12} />
-            <Stop offset="0.2" stopColor="#FFFFFF" stopOpacity={0} />
-            <Stop offset="0.27" stopColor="#FFFFFF" stopOpacity={Math.round(s * 12) / 100} />
-            <Stop offset="0.31" stopColor="#FFFFFF" stopOpacity={Math.round(s * 48) / 100} />
-            <Stop offset="0.35" stopColor="#FFFFFF" stopOpacity={Math.round(s * 10) / 100} />
-            <Stop offset="0.44" stopColor="#FFFFFF" stopOpacity={0} />
-            <Stop offset="0.62" stopColor="#000000" stopOpacity={0} />
-            <Stop offset="0.84" stopColor="#000000" stopOpacity={0.2} />
+            <Stop offset="0" stopColor={TOWER_ART.black} stopOpacity={0.45} />
+            <Stop offset="0.1" stopColor={TOWER_ART.black} stopOpacity={0.12} />
+            <Stop offset="0.2" stopColor={TOWER_ART.white} stopOpacity={0} />
+            <Stop offset="0.27" stopColor={TOWER_ART.white} stopOpacity={Math.round(s * 12) / 100} />
+            <Stop offset="0.31" stopColor={TOWER_ART.white} stopOpacity={Math.round(s * 48) / 100} />
+            <Stop offset="0.35" stopColor={TOWER_ART.white} stopOpacity={Math.round(s * 10) / 100} />
+            <Stop offset="0.44" stopColor={TOWER_ART.white} stopOpacity={0} />
+            <Stop offset="0.62" stopColor={TOWER_ART.black} stopOpacity={0} />
+            <Stop offset="0.84" stopColor={TOWER_ART.black} stopOpacity={0.2} />
             <Stop offset="0.93" stopColor={skin.edge} stopOpacity={0} />
             <Stop offset="0.955" stopColor={skin.edge} stopOpacity={Math.round((0.12 + s * 0.12) * 100) / 100} />
             <Stop offset="0.975" stopColor={skin.edge} stopOpacity={0} />
-            <Stop offset="1" stopColor="#000000" stopOpacity={0.5} />
+            <Stop offset="1" stopColor={TOWER_ART.black} stopOpacity={0.5} />
           </LinearGradient>
           <LinearGradient id="spireMetal" x1="0" x2="1" y1="0" y2="0">
-            <Stop offset="0" stopColor={mixHex(skin.metal, '#000000', 0.45)} />
-            <Stop offset="0.3" stopColor={mixHex(skin.metal, '#ffffff', 0.45)} />
+            <Stop offset="0" stopColor={mixHex(skin.metal, TOWER_ART.black, 0.45)} />
+            <Stop offset="0.3" stopColor={mixHex(skin.metal, TOWER_ART.whiteLower, 0.45)} />
             <Stop offset="0.55" stopColor={skin.metal} />
-            <Stop offset="1" stopColor={mixHex(skin.metal, '#000000', 0.55)} />
+            <Stop offset="1" stopColor={mixHex(skin.metal, TOWER_ART.black, 0.55)} />
           </LinearGradient>
           {skin.finial === 'orb' ? (
             <RadialGradient id="spireOrb" cx="0.35" cy="0.35" r="0.7">
-              <Stop offset="0" stopColor="#FFFFFF" /><Stop offset="0.35" stopColor="#BFEFE0" /><Stop offset="0.6" stopColor="#F6C8E0" /><Stop offset="0.85" stopColor="#9FC0F2" /><Stop offset="1" stopColor="#7A7090" />
+              <Stop offset="0" stopColor={TOWER_ART.white} /><Stop offset="0.35" stopColor={TOWER_ART.cBFEFE0} /><Stop offset="0.6" stopColor={TOWER_ART.cF6C8E0} /><Stop offset="0.85" stopColor={TOWER_ART.c9FC0F2} /><Stop offset="1" stopColor={TOWER_ART.c7A7090} />
             </RadialGradient>
           ) : null}
           {skin.finial === 'shard' ? (
             <RadialGradient id="spireEmber" cx="0.5" cy="0.5" rx="0.5" ry="0.5">
-              <Stop offset="0" stopColor="#FFB070" stopOpacity={0.8} /><Stop offset="0.4" stopColor="#E0503A" stopOpacity={0.3} /><Stop offset="1" stopColor="#E0503A" stopOpacity={0} />
+              <Stop offset="0" stopColor={TOWER_ART.cFFB070} stopOpacity={0.8} /><Stop offset="0.4" stopColor={TOWER_ART.cE0503A} stopOpacity={0.3} /><Stop offset="1" stopColor={TOWER_ART.cE0503A} stopOpacity={0} />
             </RadialGradient>
           ) : null}
           {skinTextureDefs(skin.tex)}
@@ -324,7 +325,7 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
         <Defs>
           {defs}
           <LinearGradient id="spireWeekFadeG" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#FFFFFF" /><Stop offset="0.8" stopColor="#FFFFFF" /><Stop offset="1" stopColor="#000000" />
+            <Stop offset="0" stopColor={TOWER_ART.white} /><Stop offset="0.8" stopColor={TOWER_ART.white} /><Stop offset="1" stopColor={TOWER_ART.black} />
           </LinearGradient>
           <Mask id="spireWeekFade" x={vb.x} y={vb.y} width={vb.w} height={vb.h} maskUnits="userSpaceOnUse">
             <Rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="url(#spireWeekFadeG)" />
@@ -347,18 +348,18 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
       <Defs>{defs}</Defs>
       {/* зачем (владелец 13.10): со сценой темы небо не рисуем — окно остаётся плитой темы (SpireTower.window), башня стоит на ней */}
       {scene ? null : <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />}
-      {scene ? null : <Ellipse cx={SPIRE_CX} cy={geom.top - 120} rx={200} ry={260} fill="rgba(255,255,255,.03)" />}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {scene ? null : <Ellipse cx={SPIRE_CX} cy={geom.top - 120} rx={200} ry={260} fill={TOWER_ART.white03} />}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       {(scene ? scene.star !== null : true) ? STARS.map(([x, yy], i) => <Circle key={`s${i}`} cx={x} cy={skyY - 40 + yy} r={i % 3 ? 0.8 : 1.2} fill={scene && scene.star ? scene.star : `rgba(255,255,255,${i % 2 ? 0.35 : 0.55})`} opacity={scene ? (i % 2 ? 0.35 : 0.55) : 1} />) : null}{/* theme-exempt: звёзды на ночном небе сцены (spireSky всегда тёмное) */}
       <Ellipse cx={60} cy={geom.top - 150} rx={130} ry={28} fill="url(#spireCloud)" />
       <Ellipse cx={330} cy={geom.top - 170} rx={140} ry={30} fill="url(#spireCloud)" />
       <Ellipse cx={80} cy={geom.top - 96} rx={110} ry={22} fill="url(#spireCloud)" />
       <Ellipse cx={320} cy={geom.top - 90} rx={120} ry={22} fill="url(#spireCloud)" />
-      <SvgText x={SPIRE_CX} y={geom.top - 272} fontSize={11} fontWeight="700" letterSpacing={3} fill={scene ? scene.cloudsLabel : '#5E5E62'} textAnchor="middle">{cloudsLabel}</SvgText>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      <SvgText x={SPIRE_CX} y={geom.top - 272} fontSize={11} fontWeight="700" letterSpacing={3} fill={scene ? scene.cloudsLabel : TOWER_ART.c5E5E62} textAnchor="middle">{cloudsLabel}</SvgText>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       <Ellipse cx={SPIRE_CX} cy={geom.base + 44} rx={210} ry={40} fill={scene ? 'url(#spireGroundTheme)' : 'url(#spireGround)'} />
-      <Ellipse cx={SPIRE_CX} cy={geom.base + 30} rx={b.w / 2 + 64} ry={12} fill={scene ? scene.shadow : 'rgba(0,0,0,.55)'} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      <Ellipse cx={SPIRE_CX} cy={geom.base + 30} rx={b.w / 2 + 64} ry={12} fill={scene ? scene.shadow : TOWER_ART.black55} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       <Rect x={b.x0 - 30} y={geom.base + 16} width={b.w + 60} height={14} rx={3} fill="url(#spireCylCorn)" opacity={0.7} />
       <Rect x={b.x0 - 16} y={geom.base + 2} width={b.w + 32} height={16} rx={3} fill="url(#spireCylCorn)" />
-      {skin.premium ? <Rect x={b.x0 - 16} y={geom.base + 2} width={b.w + 32} height={1.5} fill="rgba(255,255,255,.25)" /> : null}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {skin.premium ? <Rect x={b.x0 - 16} y={geom.base + 2} width={b.w + 32} height={1.5} fill={TOWER_ART.white25} /> : null}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       {skin.rim !== 'none' ? <Rect x={b.x0 - 16} y={geom.base + 15} width={b.w + 32} height={1.6} fill="url(#spireMetal)" /> : null}
       {geom.floors.map((fl) => {
         const state = spireFloorState(fl.f, myFloor);

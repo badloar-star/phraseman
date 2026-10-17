@@ -1,0 +1,2431 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-52:word:light",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:light:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:light:audio",
+            "transcript": "light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:light:r1",
+              "targetText": "light",
+              "meaningByLocale": {
+                "ru": "лёгкий по весу. It's light — «Он лёгкий». Противоположность — heavy.",
+                "uk": "легкий за вагою. It's light — «Він легкий». Протилежність — heavy."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "light",
+            "definitionByLocale": {
+              "ru": "лёгкий по весу. It's light — «Он лёгкий». Противоположность — heavy.",
+              "uk": "легкий за вагою. It's light — «Він легкий». Протилежність — heavy."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:waterproof",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waterproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:waterproof:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waterproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:waterproof:audio",
+            "transcript": "waterproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:waterproof:r1",
+              "targetText": "waterproof",
+              "meaningByLocale": {
+                "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+                "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waterproof",
+            "definitionByLocale": {
+              "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+              "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:adjustable",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — adjustable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:adjustable:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — adjustable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:adjustable:audio",
+            "transcript": "adjustable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:adjustable:r1",
+              "targetText": "adjustable",
+              "meaningByLocale": {
+                "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+                "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adjustable",
+            "definitionByLocale": {
+              "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+              "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:trendy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — trendy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:trendy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — trendy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:trendy:audio",
+            "transcript": "trendy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:trendy:r1",
+              "targetText": "trendy",
+              "meaningByLocale": {
+                "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+                "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trendy",
+            "definitionByLocale": {
+              "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+              "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Рюкзак почти ничего не весит. Соберите фразу о его весе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рюкзак почти ничего не весит. Соберите фразу о его весе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is light.",
+          "localizedMeaning": {
+            "ru": "Рюкзак почти ничего не весит. Соберите фразу о его весе",
+            "uk": "Рюкзак майже нічого не важить. Складіть фразу про його вагу"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Рюкзак почти ничего не весит. Соберите фразу о его весе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is light.`",
+                "uk": "тут потрібно `is` — `It is light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i02:r1",
+            "text": "It is waterproof."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i02:r2",
+            "text": "It is light."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i02:r3",
+            "text": "It is cheap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i02:audio",
+            "transcript": "It is waterproof."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:i02:r1",
+              "targetText": "It is waterproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i02:r2",
+              "targetText": "It is light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i02:r3",
+              "targetText": "It is cheap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `waterproof`, а в этом варианте — `light`.",
+                "uk": "У записі останнє слово — `waterproof`, а в цьому варіанті — `light`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `waterproof`, а в этом варианте — `cheap`.",
+                "uk": "У записі останнє слово — `waterproof`, а в цьому варіанті — `cheap`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Обе лямки рюкзака можно подтянуть под рост. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Обе лямки рюкзака можно подтянуть под рост. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Обе лямки рюкзака можно подтянуть под рост. Дополните фразу",
+            "uk": "Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "They ___ adjustable.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-52:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Обе лямки рюкзака можно подтянуть под рост. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Обе лямки рюкзака можно подтянуть под рост. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Обе лямки рюкзака можно подтянуть под рост. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Лямок две, поэтому `They are`.",
+                "uk": "Лямок дві, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-52:i04:p1",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "лёгкий по весу",
+                "uk": "легкий за вагою"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i04:p2",
+              "target": "waterproof",
+              "meaningByLocale": {
+                "ru": "непромокаемый",
+                "uk": "непромокальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i04:p3",
+              "target": "adjustable",
+              "meaningByLocale": {
+                "ru": "регулируется",
+                "uk": "регулюється"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i04:p4",
+              "target": "trendy",
+              "meaningByLocale": {
+                "ru": "модный",
+                "uk": "модний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "light",
+            "waterproof",
+            "adjustable",
+            "trendy"
+          ],
+          "rightColumn": [
+            "лёгкий по весу",
+            "непромокаемый",
+            "регулируется",
+            "модный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i05:audio",
+            "transcript": "It's light."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's light.",
+          "orderedTokens": [
+            "It's",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's light.`",
+                "uk": "тут потрібно `It's` — `It's light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Обе куртки на соседней вешалке не пропускают дождь. Соберите фразу о них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Обе куртки на соседней вешалке не пропускают дождь. Соберите фразу о них",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are waterproof.",
+          "localizedMeaning": {
+            "ru": "Обе куртки на соседней вешалке не пропускают дождь. Соберите фразу о них",
+            "uk": "Обидві куртки на сусідній вішалці не пропускають дощу. Складіть фразу про них"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "waterproof"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Обе куртки на соседней вешалке не пропускают дождь. Соберите фразу о них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are waterproof.`",
+                "uk": "тут потрібно `are` — `They are waterproof.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга подтянула лямку под свой рост. Скажите ей коротко, что лямка регулируется",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга подтянула лямку под свой рост. Скажите ей коротко, что лямка регулируется",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i07:audio",
+            "transcript": "It's adjustable."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's adjustable.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i08:r1",
+            "text": "curious"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i08:r2",
+            "text": "light"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i08:r3",
+            "text": "trendy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство",
+            "uk": "Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість"
+          },
+          "gappedTargetPhrase": "She is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-52:i08:r1",
+              "text": "curious"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i08:r2",
+              "text": "light"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i08:r3",
+              "text": "trendy"
+            }
+          ],
+          "testedDimension": "Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство",
+              "feedbackByLocale": {
+                "ru": "Здесь не о весе. Любопытство — `curious`.",
+                "uk": "Тут не про вагу. Допитливість — `curious`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство",
+              "feedbackByLocale": {
+                "ru": "`trendy` — «модная». Здесь нужно `curious`.",
+                "uk": "`trendy` — «модна». Тут потрібно `curious`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i09:r1",
+            "text": "It's trendy."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i09:r2",
+            "text": "It's light."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i09:r3",
+            "text": "She's trendy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i09:audio",
+            "transcript": "It's trendy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:i09:r1",
+              "targetText": "It's trendy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i09:r2",
+              "targetText": "It's light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i09:r3",
+              "targetText": "She's trendy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trendy`, а в этом варианте — `light`.",
+                "uk": "У записі останнє слово — `trendy`, а в цьому варіанті — `light`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `She's`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `She's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-52:i10:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i10:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i10:p3",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i10:p4",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "She's",
+            "I'm"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "She is",
+            "I am"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу о сумках",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу о сумках",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i11:audio",
+            "transcript": "They're light."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're light.",
+          "orderedTokens": [
+            "They're",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу о сумках",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're light.`",
+                "uk": "тут потрібно `They're` — `They're light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is heavy.",
+          "localizedMeaning": {
+            "ru": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
+            "uk": "Інший рюкзак наповнений книжками й багато важить. Назвіть його важким"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is heavy.`",
+                "uk": "тут потрібно `is` — `It is heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам тоже хочется узнать, как сделан рюкзак. Скажите о своём любопытстве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Вам тоже хочется узнать, как сделан рюкзак. Скажите о своём любопытстве",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i13:audio",
+            "transcript": "I am curious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am curious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+            "uk": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї"
+          },
+          "gappedTargetPhrase": "It ___ trendy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-52:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i14:r2",
+              "correct": false,
+              "testedDimension": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i14:r3",
+              "correct": false,
+              "testedDimension": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+              "feedbackByLocale": {
+                "ru": "Модель одна — `It is`.",
+                "uk": "Модель одна — `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте короткую оценку и выберите её",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i15:r1",
+            "text": "It's adjustable."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i15:r2",
+            "text": "It's waterproof."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i15:r3",
+            "text": "It's expensive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте короткую оценку и выберите её",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i15:audio",
+            "transcript": "It's adjustable."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:i15:r1",
+              "targetText": "It's adjustable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i15:r2",
+              "targetText": "It's waterproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i15:r3",
+              "targetText": "It's expensive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте короткую оценку и выберите её",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adjustable`, а в этом варианте — `waterproof`.",
+                "uk": "У записі останнє слово — `adjustable`, а в цьому варіанті — `waterproof`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте короткую оценку и выберите её",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adjustable`, а в этом варианте — `expensive`.",
+                "uk": "У записі останнє слово — `adjustable`, а в цьому варіанті — `expensive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-52:i16:p1",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "мало весит",
+                "uk": "мало важить"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i16:p2",
+              "target": "heavy",
+              "meaningByLocale": {
+                "ru": "много весит",
+                "uk": "багато важить"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i16:p3",
+              "target": "curious",
+              "meaningByLocale": {
+                "ru": "хочет узнать",
+                "uk": "хоче дізнатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i16:p4",
+              "target": "waterproof",
+              "meaningByLocale": {
+                "ru": "не пропускает воду",
+                "uk": "не пропускає воду"
+              }
+            }
+          ],
+          "leftColumn": [
+            "light",
+            "heavy",
+            "curious",
+            "waterproof"
+          ],
+          "rightColumn": [
+            "мало весит",
+            "много весит",
+            "хочет узнать",
+            "не пропускает воду"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дома вы поднимаете большую пустую корзину: она мало весит. Скажите другу именно о её небольшом весе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Дома вы поднимаете большую пустую корзину: она мало весит. Скажите другу именно о её небольшом весе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i17:audio",
+            "transcript": "It is light."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is light.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-52:word:light",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:light:audio"
+        ],
+        "accessibilityLabel": "Картка слова — light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:light:audio",
+            "transcript": "light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:light:r1",
+              "targetText": "light",
+              "meaningByLocale": {
+                "ru": "лёгкий по весу. It's light — «Он лёгкий». Противоположность — heavy.",
+                "uk": "легкий за вагою. It's light — «Він легкий». Протилежність — heavy."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "light",
+            "definitionByLocale": {
+              "ru": "лёгкий по весу. It's light — «Он лёгкий». Противоположность — heavy.",
+              "uk": "легкий за вагою. It's light — «Він легкий». Протилежність — heavy."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:waterproof",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waterproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:waterproof:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waterproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:waterproof:audio",
+            "transcript": "waterproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:waterproof:r1",
+              "targetText": "waterproof",
+              "meaningByLocale": {
+                "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+                "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waterproof",
+            "definitionByLocale": {
+              "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+              "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:adjustable",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — adjustable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:adjustable:audio"
+        ],
+        "accessibilityLabel": "Картка слова — adjustable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:adjustable:audio",
+            "transcript": "adjustable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:adjustable:r1",
+              "targetText": "adjustable",
+              "meaningByLocale": {
+                "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+                "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adjustable",
+            "definitionByLocale": {
+              "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+              "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:trendy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — trendy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:trendy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — trendy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:trendy:audio",
+            "transcript": "trendy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:trendy:r1",
+              "targetText": "trendy",
+              "meaningByLocale": {
+                "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+                "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trendy",
+            "definitionByLocale": {
+              "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+              "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Рюкзак майже нічого не важить. Складіть фразу про його вагу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рюкзак майже нічого не важить. Складіть фразу про його вагу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is light.",
+          "localizedMeaning": {
+            "ru": "Рюкзак почти ничего не весит. Соберите фразу о его весе",
+            "uk": "Рюкзак майже нічого не важить. Складіть фразу про його вагу"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Рюкзак майже нічого не важить. Складіть фразу про його вагу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is light.`",
+                "uk": "тут потрібно `is` — `It is light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i02:r1",
+            "text": "It is waterproof."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i02:r2",
+            "text": "It is light."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i02:r3",
+            "text": "It is cheap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i02:audio",
+            "transcript": "It is waterproof."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:i02:r1",
+              "targetText": "It is waterproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i02:r2",
+              "targetText": "It is light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i02:r3",
+              "targetText": "It is cheap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `waterproof`, а в этом варианте — `light`.",
+                "uk": "У записі останнє слово — `waterproof`, а в цьому варіанті — `light`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `waterproof`, а в этом варианте — `cheap`.",
+                "uk": "У записі останнє слово — `waterproof`, а в цьому варіанті — `cheap`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Обе лямки рюкзака можно подтянуть под рост. Дополните фразу",
+            "uk": "Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "They ___ adjustable.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-52:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Лямок две, поэтому `They are`.",
+                "uk": "Лямок дві, тому `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-52:i04:p1",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "лёгкий по весу",
+                "uk": "легкий за вагою"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i04:p2",
+              "target": "waterproof",
+              "meaningByLocale": {
+                "ru": "непромокаемый",
+                "uk": "непромокальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i04:p3",
+              "target": "adjustable",
+              "meaningByLocale": {
+                "ru": "регулируется",
+                "uk": "регулюється"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i04:p4",
+              "target": "trendy",
+              "meaningByLocale": {
+                "ru": "модный",
+                "uk": "модний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "light",
+            "waterproof",
+            "adjustable",
+            "trendy"
+          ],
+          "rightColumn": [
+            "легкий за вагою",
+            "непромокальний",
+            "регулюється",
+            "модний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i05:audio",
+            "transcript": "It's light."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's light.",
+          "orderedTokens": [
+            "It's",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's light.`",
+                "uk": "тут потрібно `It's` — `It's light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Обидві куртки на сусідній вішалці не пропускають дощу. Складіть фразу про них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Обидві куртки на сусідній вішалці не пропускають дощу. Складіть фразу про них",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are waterproof.",
+          "localizedMeaning": {
+            "ru": "Обе куртки на соседней вешалке не пропускают дождь. Соберите фразу о них",
+            "uk": "Обидві куртки на сусідній вішалці не пропускають дощу. Складіть фразу про них"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "waterproof"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Обидві куртки на сусідній вішалці не пропускають дощу. Складіть фразу про них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are waterproof.`",
+                "uk": "тут потрібно `are` — `They are waterproof.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга підтягнула лямку під свій зріст. Скажіть їй коротко, що лямка регулюється",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга підтягнула лямку під свій зріст. Скажіть їй коротко, що лямка регулюється",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i07:audio",
+            "transcript": "It's adjustable."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's adjustable.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i08:r1",
+            "text": "curious"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i08:r2",
+            "text": "light"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i08:r3",
+            "text": "trendy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство",
+            "uk": "Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість"
+          },
+          "gappedTargetPhrase": "She is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-52:i08:r1",
+              "text": "curious"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i08:r2",
+              "text": "light"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i08:r3",
+              "text": "trendy"
+            }
+          ],
+          "testedDimension": "Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість",
+              "feedbackByLocale": {
+                "ru": "Здесь не о весе. Любопытство — `curious`.",
+                "uk": "Тут не про вагу. Допитливість — `curious`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість",
+              "feedbackByLocale": {
+                "ru": "`trendy` — «модная». Здесь нужно `curious`.",
+                "uk": "`trendy` — «модна». Тут потрібно `curious`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i09:r1",
+            "text": "It's trendy."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i09:r2",
+            "text": "It's light."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i09:r3",
+            "text": "She's trendy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i09:audio",
+            "transcript": "It's trendy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:i09:r1",
+              "targetText": "It's trendy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i09:r2",
+              "targetText": "It's light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i09:r3",
+              "targetText": "She's trendy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trendy`, а в этом варианте — `light`.",
+                "uk": "У записі останнє слово — `trendy`, а в цьому варіанті — `light`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `She's`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `She's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-52:i10:p1",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i10:p2",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i10:p3",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i10:p4",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            }
+          ],
+          "leftColumn": [
+            "It's",
+            "They're",
+            "She's",
+            "I'm"
+          ],
+          "rightColumn": [
+            "It is",
+            "They are",
+            "She is",
+            "I am"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу про сумки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу про сумки",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i11:audio",
+            "transcript": "They're light."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're light.",
+          "orderedTokens": [
+            "They're",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу про сумки",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're light.`",
+                "uk": "тут потрібно `They're` — `They're light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Інший рюкзак наповнений книжками й багато важить. Назвіть його важким",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Інший рюкзак наповнений книжками й багато важить. Назвіть його важким",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is heavy.",
+          "localizedMeaning": {
+            "ru": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
+            "uk": "Інший рюкзак наповнений книжками й багато важить. Назвіть його важким"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Інший рюкзак наповнений книжками й багато важить. Назвіть його важким",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is heavy.`",
+                "uk": "тут потрібно `is` — `It is heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам теж хочеться дізнатися, як зроблено рюкзак. Скажіть про свою допитливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Вам теж хочеться дізнатися, як зроблено рюкзак. Скажіть про свою допитливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i13:audio",
+            "transcript": "I am curious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am curious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+            "uk": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї"
+          },
+          "gappedTargetPhrase": "It ___ trendy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-52:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i14:r2",
+              "correct": false,
+              "testedDimension": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i14:r3",
+              "correct": false,
+              "testedDimension": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї",
+              "feedbackByLocale": {
+                "ru": "Модель одна — `It is`.",
+                "uk": "Модель одна — `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте коротку оцінку й виберіть її",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i15:r1",
+            "text": "It's adjustable."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i15:r2",
+            "text": "It's waterproof."
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i15:r3",
+            "text": "It's expensive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте коротку оцінку й виберіть її",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i15:audio",
+            "transcript": "It's adjustable."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:i15:r1",
+              "targetText": "It's adjustable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i15:r2",
+              "targetText": "It's waterproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i15:r3",
+              "targetText": "It's expensive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-52:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте коротку оцінку й виберіть її",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adjustable`, а в этом варианте — `waterproof`.",
+                "uk": "У записі останнє слово — `adjustable`, а в цьому варіанті — `waterproof`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-52:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте коротку оцінку й виберіть її",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adjustable`, а в этом варианте — `expensive`.",
+                "uk": "У записі останнє слово — `adjustable`, а в цьому варіанті — `expensive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-52:i16:p1",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "мало весит",
+                "uk": "мало важить"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i16:p2",
+              "target": "heavy",
+              "meaningByLocale": {
+                "ru": "много весит",
+                "uk": "багато важить"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i16:p3",
+              "target": "curious",
+              "meaningByLocale": {
+                "ru": "хочет узнать",
+                "uk": "хоче дізнатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-52:i16:p4",
+              "target": "waterproof",
+              "meaningByLocale": {
+                "ru": "не пропускает воду",
+                "uk": "не пропускає воду"
+              }
+            }
+          ],
+          "leftColumn": [
+            "light",
+            "heavy",
+            "curious",
+            "waterproof"
+          ],
+          "rightColumn": [
+            "мало важить",
+            "багато важить",
+            "хоче дізнатися",
+            "не пропускає воду"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Удома ви піднімаєте великий порожній кошик: він мало важить. Скажіть другові саме про його невелику вагу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Удома ви піднімаєте великий порожній кошик: він мало важить. Скажіть другові саме про його невелику вагу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:i17:audio",
+            "transcript": "It is light."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is light.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-52:word:light",
+      "correctText": "light",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:word:waterproof",
+      "correctText": "waterproof",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:word:adjustable",
+      "correctText": "adjustable",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:word:trendy",
+      "correctText": "trendy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i01",
+      "correctText": "It is light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i02",
+      "correctText": "It is waterproof.",
+      "correctResponseId": "en:lesson-01:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i05",
+      "correctText": "It's light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i06",
+      "correctText": "They are waterproof.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i07",
+      "correctText": "It's adjustable.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i08",
+      "correctText": "curious",
+      "correctResponseId": "en:lesson-01:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i09",
+      "correctText": "It's trendy.",
+      "correctResponseId": "en:lesson-01:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i11",
+      "correctText": "They're light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i12",
+      "correctText": "It is heavy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i13",
+      "correctText": "I am curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-52:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i15",
+      "correctText": "It's adjustable.",
+      "correctResponseId": "en:lesson-01:session-52:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i17",
+      "correctText": "It is light.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,138 +1,154 @@
 # Англійська · Урок 1 · Заняття 52 — Майже нічого не важить
 
-**Ситуація.** Ви з подругою вибираєте наплічник для прогулянок. Піднімаєте різні моделі, а подруга хоче дізнатися, з чого вони зроблені.
+**Ситуація.** Ви з подругою вибираєте рюкзак для походів у спортивній крамниці. Продавець показує моделі, поливає одну водою з пляшки, а подруга приміряє лямки.
 
-**Що ви опануєте:** назвати річ легкою за вагою й сказати про допитливість людини
-**Нові слова:** light
+**Що ви опануєте:** коротко описати річ під час купівлі: it's, they're, she's, I'm
+**Нові слова:** light, waterproof, adjustable, trendy
+**Повертаються:** heavy, curious, bulky, expensive, cheap, useful
 
 ---
 
 ## Інтро 1
 
-### Легкий за вагою
+### Одним пальцем
 
-`light` — «легкий» за вагою. `It is light` — «Він легкий», якщо йдеться про наплічник. Ви піднімаєте його й на секунду перевіряєте: він точно у вас у руці? У цьому занятті `light` означає малу вагу.
+Подруга знімає з полиці великий синій рюкзак і піднімає його одним пальцем за петлю. light — «легкий за вагою». It is light, коротко It's light — «Він легкий». Протилежність — знайоме heavy.
 
-**Наплічник мало важить. Скажіть саме про його вагу.**
+**Продавець питає, як вам рюкзак на вагу. Скажіть коротко, що він легкий.**
 
-- ✅ **It is light.**
-- ❌ It is heavy. — *`heavy` — важкий. Тут вага невелика: `light`.*
-- ❌ It are light. — *Після `It` потрібно `is`.*
+- ✅ **It's light.**
+- ❌ It's heavy. — *heavy — «важкий». Рюкзак піднімають одним пальцем: light.*
+- ❌ It's bulky. — *bulky — «громіздкий», про розмір. Тут ідеться про вагу: light.*
 
 ---
 
 ## Інтро 2
 
-### Розмір не дорівнює вазі
+### Вода з пляшки
 
-Велика річ може мало важити, маленька — багато. Вибирайте `light` або `heavy` за вагою, а не лише за розміром. Про дві легкі сумки — `They are light`, коротко `They're light`.
+Продавець виливає на рюкзак пів пляшки води, розстібає блискавку й показує: усередині все сухе. waterproof — «непромокальний, не пропускає воду». It is waterproof, коротко It's waterproof — «Він непромокальний». У горах дощ починається без попередження.
 
-**Обидві сумки мало важать. Назвіть їх легкими.**
+**Подруга не бачила, що зробив продавець, і питає, навіщо він поливав рюкзак. Поясніть коротко, що рюкзак непромокальний.**
 
-- ✅ **They are light.**
-- ❌ They is light. — *Після `They` потрібно `are`.*
-- ❌ They are heavy. — *Тут обидві сумки мало важать: `light`.*
+- ✅ **It's waterproof.**
+- ❌ It's useful. — *useful — «корисний», надто загальне слово. Воду не пропускає — waterproof.*
+- ❌ It waterproof. — *У короткій формі потрібно 's: It's waterproof.*
 
 ---
 
 ## Інтро 3
 
-### Хочеться дізнатися
+### Жовті рюкзаки в парку
 
-`curious` — «допитливий», коли людині хочеться щось дізнатися. Подруга розглядає матеріал і запитує, як зроблений наплічник: `She is curious`. Це про її інтерес, а не про вагу наплічника.
+Дорогою до крамниці ви бачили в парку десяток яскраво-жовтих рюкзаків, і на полиці стоїть точнісінько такий самий. trendy — «модний, зараз у моді». It is trendy, коротко It's trendy — «Він модний». За рік, можливо, модним буде зелений.
 
-**Подрузі хочеться дізнатися, як виготовили наплічник. Назвіть її допитливою.**
+**Подруга питає, чому в усіх довкола такі жовті рюкзаки. Скажіть коротко, що цей рюкзак модний.**
 
-- ✅ **She is curious.**
-- ❌ She is light. — *Це не про допитливість. Тут потрібно `curious`.*
-- ❌ She are curious. — *Після `She` потрібно `is`.*
+- ✅ **It's trendy.**
+- ❌ It's cheap. — *cheap — про ціну. Він в усіх, бо в моді: trendy.*
+- ❌ She's trendy. — *She's — про людину. Про рюкзак кажемо It's.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Наплічник мало важить. Складіть фразу про його вагу**
+**1 · Картка слова — light**
+<!-- interaction_id: en:lesson-01:session-52:word:light; family: word_card -->
+> **light** — легкий за вагою. It's light — «Він легкий». Протилежність — heavy.
+
+**2 · Картка слова — waterproof**
+<!-- interaction_id: en:lesson-01:session-52:word:waterproof; family: word_card -->
+> **waterproof** — непромокальний, не пропускає воду. It's waterproof — «Він непромокальний».
+
+**3 · Картка слова — adjustable**
+<!-- interaction_id: en:lesson-01:session-52:word:adjustable; family: word_card -->
+> **adjustable** — регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець.
+
+**4 · Картка слова — trendy**
+<!-- interaction_id: en:lesson-01:session-52:word:trendy; family: word_card -->
+> **trendy** — модний, зараз у моді. It's trendy — «Це модно».
+
+**5 · Рюкзак майже нічого не важить. Складіть фразу про його вагу**
 <!-- interaction_id: en:lesson-01:session-52:i01; family: phrase_builder -->
 Плитки: `light` `is` `It` `are` → **It is light.**
 *(плитка `are` зайва: тут потрібно `is` — `It is light.`)*
 
-**2 · Послухайте й виберіть почуте**
+**6 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-52:i02; family: listen_choose -->
-🔊 *It is light.* → **It is light.** · It is heavy. · It is cheap.
-- It is heavy. — *У записі останнє слово — `light`, а в цьому варіанті — `heavy`.*
-- It is cheap. — *У записі останнє слово — `light`, а в цьому варіанті — `cheap`.*
+🔊 *It is waterproof.* → **It is waterproof.** · It is light. · It is cheap.
+- It is light. — *У записі останнє слово — `waterproof`, а в цьому варіанті — `light`.*
+- It is cheap. — *У записі останнє слово — `waterproof`, а в цьому варіанті — `cheap`.*
 
-**3 · Обидві сумки мало важать. Доповніть фразу**
+**7 · Обидві лямки рюкзака можна підтягнути під зріст. Доповніть фразу**
 <!-- interaction_id: en:lesson-01:session-52:i03; family: context_gap_grammar -->
-They ___ light. → **are** · am · is
+They ___ adjustable. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
-- is — *Про дві сумки — `They are`.*
+- is — *Лямок дві, тому `They are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**8 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-52:i04; family: speed_match -->
-light — легкий за вагою · heavy — важкий за вагою · curious — допитливий · patient — терплячий
+light — легкий за вагою · waterproof — непромокальний · adjustable — регулюється · trendy — модний
 
-**5 · Послухайте й складіть коротку фразу**
+**9 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-52:i05; family: listen_build_dictation -->
 🔊 *It's light.* Плитки: `light` `It's` `He's` → **It's light.**
 *(плитка `He's` зайва: тут потрібно `It's` — `It's light.`)*
 
-**6 · Дві порожні дорожні сумки мало важать. Назвіть їх легкими**
+**10 · Обидві куртки на сусідній вішалці не пропускають дощу. Складіть фразу про них**
 <!-- interaction_id: en:lesson-01:session-52:i06; family: phrase_builder -->
-Плитки: `light` `are` `They` `is` → **They are light.**
-*(плитка `is` зайва: тут потрібно `are` — `They are light.`)*
+Плитки: `waterproof` `are` `They` `is` → **They are waterproof.**
+*(плитка `is` зайва: тут потрібно `are` — `They are waterproof.`)*
 
-**7 · Коротко скажіть, що вибраний наплічник мало важить**
+**11 · Подруга підтягнула лямку під свій зріст. Скажіть їй коротко, що лямка регулюється**
 <!-- interaction_id: en:lesson-01:session-52:i07; family: scripted_repeat_compare -->
-🎙 **It's light.**
+🎙 **It's adjustable.**
 
-**8 · Подруга хоче дізнатися, як зроблений матеріал. Назвіть саме її допитливість**
+**12 · Подруга розпитує продавця, з чого зроблено рюкзак. Назвіть саме її допитливість**
 <!-- interaction_id: en:lesson-01:session-52:i08; family: context_gap_grammar -->
-She is ___ . → **curious** · light · patient
+She is ___ . → **curious** · light · trendy
 - light — *Тут не про вагу. Допитливість — `curious`.*
-- patient — *Це про терплячість. Тут потрібно `curious`.*
+- trendy — *`trendy` — «модна». Тут потрібно `curious`.*
 
-**9 · Послухайте фразу про подругу**
+**13 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-52:i09; family: listen_choose -->
-🔊 *She is curious.* → **She is curious.** · She is patient. · She is polite.
-- She is patient. — *У записі останнє слово — `curious`, а в цьому варіанті — `patient`.*
-- She is polite. — *У записі останнє слово — `curious`, а в цьому варіанті — `polite`.*
+🔊 *It's trendy.* → **It's trendy.** · It's light. · She's trendy.
+- It's light. — *У записі останнє слово — `trendy`, а в цьому варіанті — `light`.*
+- She's trendy. — *У записі перше слово — `It's`, а в цьому варіанті — `She's`.*
 
-**10 · З’єднайте короткі початки з повними**
+**14 · З’єднайте короткі початки з повними**
 <!-- interaction_id: en:lesson-01:session-52:i10; family: speed_match -->
 It's — It is · They're — They are · She's — She is · I'm — I am
 
-**11 · Послухайте й складіть фразу про сумки**
+**15 · Послухайте й складіть фразу про сумки**
 <!-- interaction_id: en:lesson-01:session-52:i11; family: listen_build_dictation -->
 🔊 *They're light.* Плитки: `light` `They're` `We're` → **They're light.**
 *(плитка `We're` зайва: тут потрібно `They're` — `They're light.`)*
 
-**12 · Інший наплічник наповнений книжками й багато важить. Назвіть його важким**
+**16 · Інший рюкзак наповнений книжками й багато важить. Назвіть його важким**
 <!-- interaction_id: en:lesson-01:session-52:i12; family: phrase_builder -->
 Плитки: `heavy` `is` `It` `are` → **It is heavy.**
 *(плитка `are` зайва: тут потрібно `is` — `It is heavy.`)*
 
-**13 · Вам теж хочеться дізнатися, як зроблений наплічник. Скажіть про свою допитливість**
+**17 · Вам теж хочеться дізнатися, як зроблено рюкзак. Скажіть про свою допитливість**
 <!-- interaction_id: en:lesson-01:session-52:i13; family: scripted_repeat_compare -->
 🎙 **I am curious.**
 
-**14 · Одна порожня коробка мало важить. Доповніть оцінку ваги**
+**18 · Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї**
 <!-- interaction_id: en:lesson-01:session-52:i14; family: context_gap_grammar -->
-It ___ light. → **is** · am · are
+It ___ trendy. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
-- are — *Про одну коробку — `It is`.*
+- are — *Модель одна — `It is`.*
 
-**15 · Послухайте коротку оцінку й виберіть її**
+**19 · Послухайте коротку оцінку й виберіть її**
 <!-- interaction_id: en:lesson-01:session-52:i15; family: listen_choose -->
-🔊 *It's light.* → **It's light.** · It's heavy. · It's expensive.
-- It's heavy. — *У записі останнє слово — `light`, а в цьому варіанті — `heavy`.*
-- It's expensive. — *У записі останнє слово — `light`, а в цьому варіанті — `expensive`.*
+🔊 *It's adjustable.* → **It's adjustable.** · It's waterproof. · It's expensive.
+- It's waterproof. — *У записі останнє слово — `adjustable`, а в цьому варіанті — `waterproof`.*
+- It's expensive. — *У записі останнє слово — `adjustable`, а в цьому варіанті — `expensive`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-52:i16; family: speed_match -->
-light — мало важить · heavy — багато важить · curious — хоче дізнатися · useful — корисний
+light — мало важить · heavy — багато важить · curious — хоче дізнатися · waterproof — не пропускає воду
 
-**17 · Удома ви піднімаєте великий порожній кошик: він мало важить. Скажіть другові саме про його невелику вагу**
+**21 · Удома ви піднімаєте великий порожній кошик: він мало важить. Скажіть другові саме про його невелику вагу**
 <!-- interaction_id: en:lesson-01:session-52:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is light.**
-

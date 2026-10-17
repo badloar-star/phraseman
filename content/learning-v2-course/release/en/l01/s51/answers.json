@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-51:word:stuffed",
+    "correctText": "stuffed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:word:overweight",
+    "correctText": "overweight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:word:bulky",
+    "correctText": "bulky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:word:zipped",
+    "correctText": "zipped",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-51:i01",
     "correctText": "It is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i02",
-    "correctText": "It is heavy.",
+    "correctText": "It is overweight.",
     "correctResponseId": "en:lesson-01:session-51:i02:r1"
   },
   {
@@ -16,22 +36,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i04",
-    "correctText": "en:lesson-01:session-51:i04:p1=heavy\nen:lesson-01:session-51:i04:p2=patient\nen:lesson-01:session-51:i04:p3=expensive\nen:lesson-01:session-51:i04:p4=cheap",
+    "correctText": "en:lesson-01:session-51:i04:p1=stuffed\nen:lesson-01:session-51:i04:p2=overweight\nen:lesson-01:session-51:i04:p3=bulky\nen:lesson-01:session-51:i04:p4=zipped",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i05",
-    "correctText": "It's heavy.",
+    "correctText": "It's zipped.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i06",
-    "correctText": "They are heavy.",
+    "correctText": "They are stuffed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i07",
-    "correctText": "It's heavy.",
+    "correctText": "It's zipped.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i09",
-    "correctText": "He is patient.",
+    "correctText": "It's bulky.",
     "correctResponseId": "en:lesson-01:session-51:i09:r1"
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i15",
-    "correctText": "It's heavy.",
+    "correctText": "It's stuffed.",
     "correctResponseId": "en:lesson-01:session-51:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i16",
-    "correctText": "en:lesson-01:session-51:i16:p1=heavy\nen:lesson-01:session-51:i16:p2=patient\nen:lesson-01:session-51:i16:p3=useful\nen:lesson-01:session-51:i16:p4=polite",
+    "correctText": "en:lesson-01:session-51:i16:p1=heavy\nen:lesson-01:session-51:i16:p2=overweight\nen:lesson-01:session-51:i16:p3=bulky\nen:lesson-01:session-51:i16:p4=patient",
     "correctResponseId": null
   },
   {

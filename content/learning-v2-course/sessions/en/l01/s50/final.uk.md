@@ -1,138 +1,154 @@
 # Англійська · Урок 1 · Заняття 50 — Подарунок із цінником
 
-**Ситуація.** Ви з другом вибираєте подарунок. Продавчиня показує кілька речей, а ви обговорюєте ціни та її ввічливість.
+**Ситуація.** Ви з другом вибираєте подарунок на день народження його сестри. Продавчиня показує вази й рамки, а ви сперечаєтеся про ціну й про те, що сестрі сподобається.
 
-**Що ви опануєте:** назвати річ дорогою за ціною й відрізнити цю оцінку від ввічливості людини
-**Нові слова:** expensive
+**Що ви опануєте:** коротко оцінити подарунок і ціну: it's, they're, she's, you're
+**Нові слова:** expensive, perfect, elegant, wrapped
+**Повертаються:** cheap, polite, useful, rare, colorful, lovely
 
 ---
 
 ## Інтро 1
 
-### Дорого коштує
+### Цінник на дні
 
-`expensive` — «дорогий» за ціною. `It is expensive` — «Це дорого» або «Вона дорога», якщо говоримо про річ. Ви дивитеся на маленьку вазу: розмір скромний, ціна — зовсім ні.
+Ви перевертаєте маленьку скляну вазу й бачите цінник: двісті євро. Друг одразу ставить її назад. expensive — «дорогий за ціною». It is expensive, коротко It's expensive — «Вона дорога». Протилежність — знайоме cheap.
 
-**Ваза коштує дорого. Скажіть другові про її високу ціну.**
+**Друг питає, чому ви так швидко поставили вазу на місце. Скажіть коротко, що вона дорога.**
 
-- ✅ **It is expensive.**
-- ❌ It is cheap. — *`cheap` — недорого. Тут ціна висока: `expensive`.*
-- ❌ It are expensive. — *Після `It` потрібно `is`.*
+- ✅ **It's expensive.**
+- ❌ It's cheap. — *cheap — «дешева». Двісті євро — це expensive.*
+- ❌ She's expensive. — *She's — про жінку. Про вазу кажемо It's.*
 
 ---
 
 ## Інтро 2
 
-### Дві речі — та сама оцінка
+### Саме те, чого вона хотіла
 
-Про дві дорогі речі — `They are expensive`. Коротко: `They're expensive`. До слова `expensive` нічого додавати не потрібно. Висока ціна сама по собі не доводить ані користі, ані якості речі.
+Друг знаходить синій шарф саме того кольору, про який сестра говорила цілий місяць. perfect — «ідеальний, кращого не знайти». It is perfect, коротко It's perfect — «Він ідеальний». Більше шукати не треба.
 
-**Дві рамки коштують дорого. Назвіть їхню високу ціну однією фразою.**
+**Продавчиня питає, чи підходить вам цей шарф. Скажіть коротко, що він ідеальний.**
 
-- ✅ **They are expensive.**
-- ❌ They is expensive. — *Після `They` потрібно `are`.*
-- ❌ They are useful. — *Це про користь. Тут треба назвати високу ціну: `expensive`.*
+- ✅ **It's perfect.**
+- ❌ It's rare. — *rare — «рідкісний». Шарф пасує сестрі найкраще: perfect.*
+- ❌ It perfect. — *У короткій формі потрібно 's: It's perfect.*
 
 ---
 
 ## Інтро 3
 
-### Ціна речі й поведінка людини
+### Стрічка й бант
 
-`polite` — «ввічливий». Продавчиня уважно слухає, не перебиває й дякує вам: `She is polite`. Це оцінка її поведінки. Навіть якщо подарунок дорогий, продавчиня може бути ввічливою — одне не скасовує іншого.
+Продавчиня акуратно загортає шарф у папір із бантом і простягає коробку. wrapped — «запакований, загорнутий». It is wrapped, коротко It's wrapped — «Він запакований». Друг полегшено видихає: сам він пакувати подарунки не вміє.
 
-**Продавчиня звертається до вас шанобливо й не перебиває. Назвіть саме її ввічливість.**
+**Друг питає, чи треба ще щось зробити з подарунком. Скажіть коротко, що він уже запакований.**
 
-- ✅ **She is polite.**
-- ❌ She is expensive. — *Це не оцінка ввічливості. Тут потрібно `polite`.*
-- ❌ She are polite. — *Після `She` потрібно `is`.*
+- ✅ **It's wrapped.**
+- ❌ It's elegant. — *elegant — «елегантний». Подарунок загорнутий у папір: wrapped.*
+- ❌ They're wrapped. — *Подарунок один, тому It's.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ваза коштує дорого. Складіть фразу про її високу ціну**
+**1 · Картка слова — expensive**
+<!-- interaction_id: en:lesson-01:session-50:word:expensive; family: word_card -->
+> **expensive** — дорогий за ціною. It's expensive — «Це дорого». Протилежність — cheap.
+
+**2 · Картка слова — perfect**
+<!-- interaction_id: en:lesson-01:session-50:word:perfect; family: word_card -->
+> **perfect** — ідеальний, кращого не знайти. It's perfect — «Ідеально».
+
+**3 · Картка слова — elegant**
+<!-- interaction_id: en:lesson-01:session-50:word:elegant; family: word_card -->
+> **elegant** — елегантний, вишуканий. She's elegant — «Вона елегантна». Про річ: It's elegant.
+
+**4 · Картка слова — wrapped**
+<!-- interaction_id: en:lesson-01:session-50:word:wrapped; family: word_card -->
+> **wrapped** — запакований, загорнутий. It's wrapped — «Подарунок запакований».
+
+**5 · Ваза коштує двісті євро. Складіть фразу про її ціну**
 <!-- interaction_id: en:lesson-01:session-50:i01; family: phrase_builder -->
 Плитки: `expensive` `is` `It` `are` → **It is expensive.**
 *(плитка `are` зайва: тут потрібно `is` — `It is expensive.`)*
 
-**2 · Послухайте й виберіть почуте**
+**6 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-50:i02; family: listen_choose -->
-🔊 *It is expensive.* → **It is expensive.** · It is cheap. · It is useful.
-- It is cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
-- It is useful. — *У записі останнє слово — `expensive`, а в цьому варіанті — `useful`.*
+🔊 *It is perfect.* → **It is perfect.** · It is expensive. · It is useful.
+- It is expensive. — *У записі останнє слово — `perfect`, а в цьому варіанті — `expensive`.*
+- It is useful. — *У записі останнє слово — `perfect`, а в цьому варіанті — `useful`.*
 
-**3 · Дві рамки коштують дорого. Доповніть оцінку їхньої ціни**
+**7 · Дві срібні рамки коштують по сто євро. Доповніть оцінку їхньої ціни**
 <!-- interaction_id: en:lesson-01:session-50:i03; family: context_gap_grammar -->
 They ___ expensive. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Про дві рамки — `They are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**8 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-50:i04; family: speed_match -->
-expensive — дорогий за ціною · cheap — недорогий · polite — ввічливий · honest — чесний
+expensive — дорогий за ціною · perfect — ідеальний · elegant — елегантний · wrapped — запакований
 
-**5 · Послухайте й складіть коротку фразу**
+**9 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-50:i05; family: listen_build_dictation -->
-🔊 *It's expensive.* Плитки: `expensive` `It's` `He's` → **It's expensive.**
-*(плитка `He's` зайва: тут потрібно `It's` — `It's expensive.`)*
+🔊 *It's wrapped.* Плитки: `wrapped` `It's` `He's` → **It's wrapped.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's wrapped.`)*
 
-**6 · Обидві настільні лампи коштують дорого. Скажіть про їхню високу ціну**
+**10 · Продавчиня в темно-синій сукні й з акуратною зачіскою. Друг шепоче про неї. Складіть фразу: «Вона елегантна»**
 <!-- interaction_id: en:lesson-01:session-50:i06; family: phrase_builder -->
-Плитки: `expensive` `are` `They` `is` → **They are expensive.**
-*(плитка `is` зайва: тут потрібно `are` — `They are expensive.`)*
+Плитки: `elegant` `is` `She` `are` → **She is elegant.**
+*(плитка `are` зайва: тут потрібно `is` — `She is elegant.`)*
 
-**7 · Коротко скажіть, що вибрана рамка коштує дорого**
+**11 · Ви бачите тонку чорну вазу без зайвих візерунків. Скажіть другові коротко, що вона елегантна**
 <!-- interaction_id: en:lesson-01:session-50:i07; family: scripted_repeat_compare -->
-🎙 **It's expensive.**
+🎙 **It's elegant.**
 
-**8 · Продавчиня звертається шанобливо й не перебиває. Оцініть саме її ввічливість**
+**12 · Продавчиня звертається до вас шанобливо й не квапить. Оцініть саме її ввічливість**
 <!-- interaction_id: en:lesson-01:session-50:i08; family: context_gap_grammar -->
-She is ___ . → **polite** · expensive · curious
+She is ___ . → **polite** · expensive · perfect
 - expensive — *Це про високу ціну, а потрібна ввічливість: `polite`.*
-- curious — *Це про допитливість. Тут потрібно `polite`.*
+- perfect — *`perfect` — «ідеальна». Тут оцінюємо ввічливість: `polite`.*
 
-**9 · Послухайте фразу про продавчиню**
+**13 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-50:i09; family: listen_choose -->
-🔊 *She is polite.* → **She is polite.** · She is honest. · She is patient.
-- She is honest. — *У записі останнє слово — `polite`, а в цьому варіанті — `honest`.*
-- She is patient. — *У записі останнє слово — `polite`, а в цьому варіанті — `patient`.*
+🔊 *It's elegant.* → **It's elegant.** · It's expensive. · She's elegant.
+- It's expensive. — *У записі останнє слово — `elegant`, а в цьому варіанті — `expensive`.*
+- She's elegant. — *У записі перше слово — `It's`, а в цьому варіанті — `She's`.*
 
-**10 · З’єднайте короткі початки з повними**
+**14 · З’єднайте короткі початки з повними**
 <!-- interaction_id: en:lesson-01:session-50:i10; family: speed_match -->
 It's — It is · They're — They are · She's — She is · You're — You are
 
-**11 · Послухайте й складіть коротку фразу про речі**
+**15 · Послухайте й складіть коротку фразу про речі**
 <!-- interaction_id: en:lesson-01:session-50:i11; family: listen_build_dictation -->
 🔊 *They're expensive.* Плитки: `expensive` `They're` `We're` → **They're expensive.**
 *(плитка `We're` зайва: тут потрібно `They're` — `They're expensive.`)*
 
-**12 · Поруч лежить листівка за низькою ціною. Скажіть, що вона недорога**
+**16 · Поруч лежить листівка за одне євро. Скажіть, що вона недорога**
 <!-- interaction_id: en:lesson-01:session-50:i12; family: phrase_builder -->
 Плитки: `cheap` `is` `It` `are` → **It is cheap.**
 *(плитка `are` зайва: тут потрібно `is` — `It is cheap.`)*
 
-**13 · Друг шанобливо подякував продавчині. Зверніться до нього: «Ти ввічливий»**
+**17 · Друг шанобливо подякував продавчині. Зверніться до нього: «Ти ввічливий»**
 <!-- interaction_id: en:lesson-01:session-50:i13; family: scripted_repeat_compare -->
 🎙 **You are polite.**
 
-**14 · Один свічник коштує дорого. Доповніть фразу про його ціну**
+**18 · Сестра відкрила коробку й приміряла шарф: колір підійшов ідеально. Доповніть фразу про шарф**
 <!-- interaction_id: en:lesson-01:session-50:i14; family: context_gap_grammar -->
-It ___ expensive. → **is** · am · are
+It ___ perfect. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
-- are — *Про один свічник — `It is`.*
+- are — *Шарф один — `It is`.*
 
-**15 · Послухайте коротку оцінку й виберіть її**
+**19 · Послухайте коротку оцінку й виберіть її**
 <!-- interaction_id: en:lesson-01:session-50:i15; family: listen_choose -->
-🔊 *It's expensive.* → **It's expensive.** · It's cheap. · It's useless.
-- It's cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
-- It's useless. — *У записі останнє слово — `expensive`, а в цьому варіанті — `useless`.*
+🔊 *They're wrapped.* → **They're wrapped.** · It's wrapped. · They're perfect.
+- It's wrapped. — *У записі перше слово — `They're`, а в цьому варіанті — `It's`.*
+- They're perfect. — *У записі останнє слово — `wrapped`, а в цьому варіанті — `perfect`.*
 
-**16 · З’єднайте слова з їхніми значеннями тут**
+**20 · З’єднайте слова з їхніми значеннями тут**
 <!-- interaction_id: en:lesson-01:session-50:i16; family: speed_match -->
-expensive — висока ціна · cheap — низька ціна · polite — ввічливий · useful — корисний
+expensive — висока ціна · cheap — низька ціна · perfect — ідеальний · polite — ввічливий
 
-**17 · В іншому магазині наплічник продається за високою ціною. Скажіть супутникові саме про високу ціну наплічника**
+**21 · В іншому магазині рюкзак продається за високою ціною. Скажіть супутникові саме про високу ціну рюкзака**
 <!-- interaction_id: en:lesson-01:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is expensive.**
-

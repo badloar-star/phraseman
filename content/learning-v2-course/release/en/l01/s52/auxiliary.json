@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-52:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-52:intro1:r2": {
-          "ru": "`heavy` — тяжёлый. Здесь вес небольшой: `light`.",
-          "uk": "`heavy` — важкий. Тут вага невелика: `light`."
+          "ru": "heavy — «тяжёлый». Рюкзак поднимают одним пальцем: light.",
+          "uk": "heavy — «важкий». Рюкзак піднімають одним пальцем: light."
         },
         "en:lesson-01:session-52:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "bulky — «громоздкий», о размере. Здесь речь о весе: light.",
+          "uk": "bulky — «громіздкий», про розмір. Тут ідеться про вагу: light."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-52:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-52:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "useful — «полезный», слишком общее слово. Воду не пропускает — waterproof.",
+          "uk": "useful — «корисний», надто загальне слово. Воду не пропускає — waterproof."
         },
         "en:lesson-01:session-52:intro2:r3": {
-          "ru": "Здесь обе сумки мало весят: `light`.",
-          "uk": "Тут обидві сумки мало важать: `light`."
+          "ru": "В короткой форме нужно 's: It's waterproof.",
+          "uk": "У короткій формі потрібно 's: It's waterproof."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-52:intro3:r2": {
-          "ru": "Это не о любопытстве. Здесь нужно `curious`.",
-          "uk": "Це не про допитливість. Тут потрібно `curious`."
+          "ru": "cheap — о цене. Он у всех, потому что в моде: trendy.",
+          "uk": "cheap — про ціну. Він в усіх, бо в моді: trendy."
         },
         "en:lesson-01:session-52:intro3:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "She's — про человека. Про рюкзак говорим It's.",
+          "uk": "She's — про людину. Про рюкзак кажемо It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "252a430ee5d6c8959268a805d5a1f743e1d8b4b6abc2a64b3e1bc7931ee5d7b3"
+  "auxiliaryFingerprint": "1d859c6c27ffd572df993bc5eba9106a8e82d9f998a976e4137d032863d7a301"
 }

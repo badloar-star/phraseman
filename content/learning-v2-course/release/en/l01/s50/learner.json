@@ -4,22 +4,194 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-50:i01",
+      "interactionId": "en:lesson-01:session-50:word:expensive",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — expensive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:word:expensive:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — expensive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:word:expensive:audio",
+          "transcript": "expensive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:word:expensive:r1",
+            "targetText": "expensive",
+            "meaningByLocale": {
+              "ru": "дорогой по цене. It's expensive — «Это дорого». Противоположность — cheap.",
+              "uk": "дорогий за ціною. It's expensive — «Це дорого». Протилежність — cheap."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "expensive",
+          "definitionByLocale": {
+            "ru": "дорогой по цене. It's expensive — «Это дорого». Противоположность — cheap.",
+            "uk": "дорогий за ціною. It's expensive — «Це дорого». Протилежність — cheap."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:word:perfect",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — perfect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:word:perfect:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — perfect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:word:perfect:audio",
+          "transcript": "perfect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:word:perfect:r1",
+            "targetText": "perfect",
+            "meaningByLocale": {
+              "ru": "идеальный, лучше не найти. It's perfect — «Идеально».",
+              "uk": "ідеальний, кращого не знайти. It's perfect — «Ідеально»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perfect",
+          "definitionByLocale": {
+            "ru": "идеальный, лучше не найти. It's perfect — «Идеально».",
+            "uk": "ідеальний, кращого не знайти. It's perfect — «Ідеально»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:word:elegant",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — elegant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:word:elegant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — elegant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:word:elegant:audio",
+          "transcript": "elegant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:word:elegant:r1",
+            "targetText": "elegant",
+            "meaningByLocale": {
+              "ru": "элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.",
+              "uk": "елегантний, вишуканий. She's elegant — «Вона елегантна». Про річ: It's elegant."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "elegant",
+          "definitionByLocale": {
+            "ru": "элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.",
+            "uk": "елегантний, вишуканий. She's elegant — «Вона елегантна». Про річ: It's elegant."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:word:wrapped",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wrapped",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:word:wrapped:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wrapped",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:word:wrapped:audio",
+          "transcript": "wrapped"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:word:wrapped:r1",
+            "targetText": "wrapped",
+            "meaningByLocale": {
+              "ru": "упакован, завёрнут. It's wrapped — «Подарок упакован».",
+              "uk": "запакований, загорнутий. It's wrapped — «Подарунок запакований»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrapped",
+          "definitionByLocale": {
+            "ru": "упакован, завёрнут. It's wrapped — «Подарок упакован».",
+            "uk": "запакований, загорнутий. It's wrapped — «Подарунок запакований»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваза стоит дорого. Соберите фразу о её высокой цене",
+      "prompt": "Ваза стоит двести евро. Соберите фразу о её цене",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваза стоит дорого. Соберите фразу о её высокой цене",
+      "accessibilityLabel": "Ваза стоит двести евро. Соберите фразу о её цене",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is expensive.",
         "localizedMeaning": {
-          "ru": "Ваза стоит дорого. Соберите фразу о её высокой цене",
-          "uk": "Ваза коштує дорого. Складіть фразу про її високу ціну"
+          "ru": "Ваза стоит двести евро. Соберите фразу о её цене",
+          "uk": "Ваза коштує двісті євро. Складіть фразу про її ціну"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +205,7 @@
           {
             "responseId": "en:lesson-01:session-50:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ваза стоит дорого. Соберите фразу о её высокой цене",
+            "testedDimension": "Ваза стоит двести евро. Соберите фразу о её цене",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is expensive.`",
               "uk": "тут потрібно `is` — `It is expensive.`"
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,11 +229,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-50:i02:r1",
-          "text": "It is expensive."
+          "text": "It is perfect."
         },
         {
           "responseId": "en:lesson-01:session-50:i02:r2",
-          "text": "It is cheap."
+          "text": "It is expensive."
         },
         {
           "responseId": "en:lesson-01:session-50:i02:r3",
@@ -77,18 +249,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-50:i02:audio",
-          "transcript": "It is expensive."
+          "transcript": "It is perfect."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-50:i02:r1",
-            "targetText": "It is expensive.",
+            "targetText": "It is perfect.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-50:i02:r2",
-            "targetText": "It is cheap.",
+            "targetText": "It is expensive.",
             "meaningByLocale": null
           },
           {
@@ -104,8 +276,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`."
+              "ru": "В записи последнее слово — `perfect`, а в этом варианте — `expensive`.",
+              "uk": "У записі останнє слово — `perfect`, а в цьому варіанті — `expensive`."
             }
           },
           {
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `useful`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `useful`."
+              "ru": "В записи последнее слово — `perfect`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `perfect`, а в цьому варіанті — `useful`."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Две рамки стоят дорого. Дополните оценку их цены",
+      "prompt": "Две серебряные рамки стоят по сто евро. Дополните оценку их цены",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-50:i03:r1",
@@ -146,12 +318,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Две рамки стоят дорого. Дополните оценку их цены",
+      "accessibilityLabel": "Две серебряные рамки стоят по сто евро. Дополните оценку их цены",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Две рамки стоят дорого. Дополните оценку их цены",
-          "uk": "Дві рамки коштують дорого. Доповніть оцінку їхньої ціни"
+          "ru": "Две серебряные рамки стоят по сто евро. Дополните оценку их цены",
+          "uk": "Дві срібні рамки коштують по сто євро. Доповніть оцінку їхньої ціни"
         },
         "gappedTargetPhrase": "They ___ expensive.",
         "gapOptions": [
@@ -168,12 +340,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Две рамки стоят дорого. Дополните оценку их цены",
+        "testedDimension": "Две серебряные рамки стоят по сто евро. Дополните оценку их цены",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-50:i03:r2",
             "correct": false,
-            "testedDimension": "Две рамки стоят дорого. Дополните оценку их цены",
+            "testedDimension": "Две серебряные рамки стоят по сто евро. Дополните оценку их цены",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -182,7 +354,7 @@
           {
             "responseId": "en:lesson-01:session-50:i03:r3",
             "correct": false,
-            "testedDimension": "Две рамки стоят дорого. Дополните оценку их цены",
+            "testedDimension": "Две серебряные рамки стоят по сто евро. Дополните оценку их цены",
             "feedbackByLocale": {
               "ru": "Про две рамки — `They are`.",
               "uk": "Про дві рамки — `They are`."
@@ -194,15 +366,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -216,40 +388,40 @@
           },
           {
             "pairId": "en:lesson-01:session-50:i04:p2",
-            "target": "cheap",
+            "target": "perfect",
             "meaningByLocale": {
-              "ru": "недорогой",
-              "uk": "недорогий"
+              "ru": "идеальный",
+              "uk": "ідеальний"
             }
           },
           {
             "pairId": "en:lesson-01:session-50:i04:p3",
-            "target": "polite",
+            "target": "elegant",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "элегантный",
+              "uk": "елегантний"
             }
           },
           {
             "pairId": "en:lesson-01:session-50:i04:p4",
-            "target": "honest",
+            "target": "wrapped",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "упакован",
+              "uk": "запакований"
             }
           }
         ],
         "leftColumn": [
           "expensive",
-          "cheap",
-          "polite",
-          "honest"
+          "perfect",
+          "elegant",
+          "wrapped"
         ],
         "rightColumn": [
           "дорогой по цене",
-          "недорогой",
-          "вежливый",
-          "честный"
+          "идеальный",
+          "элегантный",
+          "упакован"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -282,13 +454,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-50:i05:audio",
-          "transcript": "It's expensive."
+          "transcript": "It's wrapped."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's expensive.",
+        "hiddenTargetPhrase": "It's wrapped.",
         "orderedTokens": [
           "It's",
-          "expensive"
+          "wrapped"
         ],
         "authoredDistractorTokens": [
           "He's"
@@ -299,8 +471,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's expensive.`",
-              "uk": "тут потрібно `It's` — `It's expensive.`"
+              "ru": "здесь нужно `It's` — `It's wrapped.`",
+              "uk": "тут потрібно `It's` — `It's wrapped.`"
             }
           }
         ],
@@ -313,38 +485,38 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Обе настольные лампы стоят дорого. Скажите об их высокой цене",
+      "prompt": "Продавщица в тёмно-синем платье и с аккуратной причёской. Друг шепчет о ней. Соберите фразу: «Она элегантная»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Обе настольные лампы стоят дорого. Скажите об их высокой цене",
+      "accessibilityLabel": "Продавщица в тёмно-синем платье и с аккуратной причёской. Друг шепчет о ней. Соберите фразу: «Она элегантная»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are expensive.",
+        "targetPhrase": "She is elegant.",
         "localizedMeaning": {
-          "ru": "Обе настольные лампы стоят дорого. Скажите об их высокой цене",
-          "uk": "Обидві настільні лампи коштують дорого. Скажіть про їхню високу ціну"
+          "ru": "Продавщица в тёмно-синем платье и с аккуратной причёской. Друг шепчет о ней. Соберите фразу: «Она элегантная»",
+          "uk": "Продавчиня в темно-синій сукні й з акуратною зачіскою. Друг шепоче про неї. Складіть фразу: «Вона елегантна»"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "expensive"
+          "She",
+          "is",
+          "elegant"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-50:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Обе настольные лампы стоят дорого. Скажите об их высокой цене",
+            "testedDimension": "Продавщица в тёмно-синем платье и с аккуратной причёской. Друг шепчет о ней. Соберите фразу: «Она элегантная»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are expensive.`",
-              "uk": "тут потрібно `are` — `They are expensive.`"
+              "ru": "здесь нужно `is` — `She is elegant.`",
+              "uk": "тут потрібно `is` — `She is elegant.`"
             }
           }
         ],
@@ -357,25 +529,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коротко скажите, что выбранная рамка стоит дорого",
+      "prompt": "Вы видите тонкую чёрную вазу без лишних узоров. Скажите другу коротко, что она элегантная",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-50:i07:audio"
       ],
-      "accessibilityLabel": "Коротко скажите, что выбранная рамка стоит дорого",
+      "accessibilityLabel": "Вы видите тонкую чёрную вазу без лишних узоров. Скажите другу коротко, что она элегантная",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-50:i07:audio",
-          "transcript": "It's expensive."
+          "transcript": "It's elegant."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's expensive.",
+        "targetPhrase": "It's elegant.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -390,11 +562,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Продавщица обращается уважительно и не перебивает. Оцените именно её вежливость",
+      "prompt": "Продавщица обращается к вам уважительно и не торопит. Оцените именно её вежливость",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-50:i08:r1",
@@ -406,17 +578,17 @@
         },
         {
           "responseId": "en:lesson-01:session-50:i08:r3",
-          "text": "curious"
+          "text": "perfect"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Продавщица обращается уважительно и не перебивает. Оцените именно её вежливость",
+      "accessibilityLabel": "Продавщица обращается к вам уважительно и не торопит. Оцените именно её вежливость",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Продавщица обращается уважительно и не перебивает. Оцените именно её вежливость",
-          "uk": "Продавчиня звертається шанобливо й не перебиває. Оцініть саме її ввічливість"
+          "ru": "Продавщица обращается к вам уважительно и не торопит. Оцените именно её вежливость",
+          "uk": "Продавчиня звертається до вас шанобливо й не квапить. Оцініть саме її ввічливість"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -430,15 +602,15 @@
           },
           {
             "responseId": "en:lesson-01:session-50:i08:r3",
-            "text": "curious"
+            "text": "perfect"
           }
         ],
-        "testedDimension": "Продавщица обращается уважительно и не перебивает. Оцените именно её вежливость",
+        "testedDimension": "Продавщица обращается к вам уважительно и не торопит. Оцените именно её вежливость",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-50:i08:r2",
             "correct": false,
-            "testedDimension": "Продавщица обращается уважительно и не перебивает. Оцените именно её вежливость",
+            "testedDimension": "Продавщица обращается к вам уважительно и не торопит. Оцените именно её вежливость",
             "feedbackByLocale": {
               "ru": "Это о высокой цене, а нужна вежливость: `polite`.",
               "uk": "Це про високу ціну, а потрібна ввічливість: `polite`."
@@ -447,10 +619,10 @@
           {
             "responseId": "en:lesson-01:session-50:i08:r3",
             "correct": false,
-            "testedDimension": "Продавщица обращается уважительно и не перебивает. Оцените именно её вежливость",
+            "testedDimension": "Продавщица обращается к вам уважительно и не торопит. Оцените именно её вежливость",
             "feedbackByLocale": {
-              "ru": "Это о любопытстве. Здесь нужно `polite`.",
-              "uk": "Це про допитливість. Тут потрібно `polite`."
+              "ru": "`perfect` — «идеальная». Здесь оцениваем вежливость: `polite`.",
+              "uk": "`perfect` — «ідеальна». Тут оцінюємо ввічливість: `polite`."
             }
           }
         ]
@@ -459,51 +631,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о продавщице",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-50:i09:r1",
-          "text": "She is polite."
+          "text": "It's elegant."
         },
         {
           "responseId": "en:lesson-01:session-50:i09:r2",
-          "text": "She is honest."
+          "text": "It's expensive."
         },
         {
           "responseId": "en:lesson-01:session-50:i09:r3",
-          "text": "She is patient."
+          "text": "She's elegant."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-50:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о продавщице",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-50:i09:audio",
-          "transcript": "She is polite."
+          "transcript": "It's elegant."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-50:i09:r1",
-            "targetText": "She is polite.",
+            "targetText": "It's elegant.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-50:i09:r2",
-            "targetText": "She is honest.",
+            "targetText": "It's expensive.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-50:i09:r3",
-            "targetText": "She is patient.",
+            "targetText": "She's elegant.",
             "meaningByLocale": null
           }
         ],
@@ -512,19 +684,19 @@
           {
             "responseId": "en:lesson-01:session-50:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о продавщице",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `polite`, а в этом варианте — `honest`.",
-              "uk": "У записі останнє слово — `polite`, а в цьому варіанті — `honest`."
+              "ru": "В записи последнее слово — `elegant`, а в этом варианте — `expensive`.",
+              "uk": "У записі останнє слово — `elegant`, а в цьому варіанті — `expensive`."
             }
           },
           {
             "responseId": "en:lesson-01:session-50:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о продавщице",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `polite`, а в этом варианте — `patient`.",
-              "uk": "У записі останнє слово — `polite`, а в цьому варіанті — `patient`."
+              "ru": "В записи первое слово — `It's`, а в этом варианте — `She's`.",
+              "uk": "У записі перше слово — `It's`, а в цьому варіанті — `She's`."
             }
           }
         ],
@@ -535,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините короткие начала с полными",
@@ -608,8 +780,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу о вещах",
@@ -654,21 +826,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Рядом лежит открытка по низкой цене. Скажите, что она недорогая",
+      "prompt": "Рядом лежит открытка за один евро. Скажите, что она недорогая",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Рядом лежит открытка по низкой цене. Скажите, что она недорогая",
+      "accessibilityLabel": "Рядом лежит открытка за один евро. Скажите, что она недорогая",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is cheap.",
         "localizedMeaning": {
-          "ru": "Рядом лежит открытка по низкой цене. Скажите, что она недорогая",
-          "uk": "Поруч лежить листівка за низькою ціною. Скажіть, що вона недорога"
+          "ru": "Рядом лежит открытка за один евро. Скажите, что она недорогая",
+          "uk": "Поруч лежить листівка за одне євро. Скажіть, що вона недорога"
         },
         "orderedTokens": [
           "It",
@@ -682,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-50:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Рядом лежит открытка по низкой цене. Скажите, что она недорогая",
+            "testedDimension": "Рядом лежит открытка за один евро. Скажите, что она недорогая",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is cheap.`",
               "uk": "тут потрібно `is` — `It is cheap.`"
@@ -698,7 +870,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -731,11 +903,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Один подсвечник стоит дорого. Дополните фразу о его цене",
+      "prompt": "Сестра открыла коробку и примерила шарф: цвет подошёл идеально. Дополните фразу о шарфе",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-50:i14:r1",
@@ -752,14 +924,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Один подсвечник стоит дорого. Дополните фразу о его цене",
+      "accessibilityLabel": "Сестра открыла коробку и примерила шарф: цвет подошёл идеально. Дополните фразу о шарфе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Один подсвечник стоит дорого. Дополните фразу о его цене",
-          "uk": "Один свічник коштує дорого. Доповніть фразу про його ціну"
+          "ru": "Сестра открыла коробку и примерила шарф: цвет подошёл идеально. Дополните фразу о шарфе",
+          "uk": "Сестра відкрила коробку й приміряла шарф: колір підійшов ідеально. Доповніть фразу про шарф"
         },
-        "gappedTargetPhrase": "It ___ expensive.",
+        "gappedTargetPhrase": "It ___ perfect.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-50:i14:r1",
@@ -774,12 +946,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Один подсвечник стоит дорого. Дополните фразу о его цене",
+        "testedDimension": "Сестра открыла коробку и примерила шарф: цвет подошёл идеально. Дополните фразу о шарфе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-50:i14:r2",
             "correct": false,
-            "testedDimension": "Один подсвечник стоит дорого. Дополните фразу о его цене",
+            "testedDimension": "Сестра открыла коробку и примерила шарф: цвет подошёл идеально. Дополните фразу о шарфе",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -788,10 +960,10 @@
           {
             "responseId": "en:lesson-01:session-50:i14:r3",
             "correct": false,
-            "testedDimension": "Один подсвечник стоит дорого. Дополните фразу о его цене",
+            "testedDimension": "Сестра открыла коробку и примерила шарф: цвет подошёл идеально. Дополните фразу о шарфе",
             "feedbackByLocale": {
-              "ru": "Про один подсвечник — `It is`.",
-              "uk": "Про один свічник — `It is`."
+              "ru": "Шарф один — `It is`.",
+              "uk": "Шарф один — `It is`."
             }
           }
         ]
@@ -800,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -808,15 +980,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-50:i15:r1",
-          "text": "It's expensive."
+          "text": "They're wrapped."
         },
         {
           "responseId": "en:lesson-01:session-50:i15:r2",
-          "text": "It's cheap."
+          "text": "It's wrapped."
         },
         {
           "responseId": "en:lesson-01:session-50:i15:r3",
-          "text": "It's useless."
+          "text": "They're perfect."
         }
       ],
       "mediaIds": [],
@@ -828,23 +1000,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-50:i15:audio",
-          "transcript": "It's expensive."
+          "transcript": "They're wrapped."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-50:i15:r1",
-            "targetText": "It's expensive.",
+            "targetText": "They're wrapped.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-50:i15:r2",
-            "targetText": "It's cheap.",
+            "targetText": "It's wrapped.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-50:i15:r3",
-            "targetText": "It's useless.",
+            "targetText": "They're perfect.",
             "meaningByLocale": null
           }
         ],
@@ -855,8 +1027,8 @@
             "correct": false,
             "testedDimension": "Послушайте короткую оценку и выберите её",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`."
+              "ru": "В записи первое слово — `They're`, а в этом варианте — `It's`.",
+              "uk": "У записі перше слово — `They're`, а в цьому варіанті — `It's`."
             }
           },
           {
@@ -864,8 +1036,8 @@
             "correct": false,
             "testedDimension": "Послушайте короткую оценку и выберите её",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `useless`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `useless`."
+              "ru": "В записи последнее слово — `wrapped`, а в этом варианте — `perfect`.",
+              "uk": "У записі останнє слово — `wrapped`, а в цьому варіанті — `perfect`."
             }
           }
         ],
@@ -876,7 +1048,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -906,32 +1078,32 @@
           },
           {
             "pairId": "en:lesson-01:session-50:i16:p3",
-            "target": "polite",
+            "target": "perfect",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "идеальный",
+              "uk": "ідеальний"
             }
           },
           {
             "pairId": "en:lesson-01:session-50:i16:p4",
-            "target": "useful",
+            "target": "polite",
             "meaningByLocale": {
-              "ru": "полезный",
-              "uk": "корисний"
+              "ru": "вежливый",
+              "uk": "ввічливий"
             }
           }
         ],
         "leftColumn": [
           "expensive",
           "cheap",
-          "polite",
-          "useful"
+          "perfect",
+          "polite"
         ],
         "rightColumn": [
           "высокая цена",
           "низкая цена",
-          "вежливый",
-          "полезный"
+          "идеальный",
+          "вежливый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,7 +1121,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "151581fcf07e359220fcf488d58e99ef2c53c8b3d660d344d7c1d23a9dbd4781"
+  "learnerFingerprint": "b3590159bdbbee088358f5d669804837d33b693a53dd44bf3921444cdb63c15b"
 }

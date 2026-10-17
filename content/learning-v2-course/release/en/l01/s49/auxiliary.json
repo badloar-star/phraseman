@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-49:intro1:r2": {
-          "ru": "`useful` — полезная. Низкую цену здесь передаёт `cheap`.",
-          "uk": "`useful` — корисне. Низьку ціну тут передає `cheap`."
+          "ru": "useful — «полезная». Здесь речь о цене: cheap.",
+          "uk": "useful — «корисне». Тут ідеться про ціну: cheap."
         },
         "en:lesson-01:session-49:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "He's — про человека. Про кружку говорим It's.",
+          "uk": "He's — про людину. Про горнятко кажемо It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-49:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "new — «новая». Куртку до вас носили: secondhand.",
+          "uk": "new — «нова». Куртку до вас носили: secondhand."
         },
         "en:lesson-01:session-49:intro2:r3": {
-          "ru": "`useless` — бесполезные. Из низкой цены это не следует: здесь нужно `cheap`.",
-          "uk": "`useless` — марні. З низької ціни це не випливає: тут потрібно `cheap`."
+          "ru": "В короткой форме нужно 's: It's secondhand.",
+          "uk": "У короткій формі потрібно 's: It's secondhand."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-49:intro3:r2": {
-          "ru": "Так не говорят, что у продавца низкие цены. Здесь оцениваем честность: `honest`.",
-          "uk": "Так не кажуть, що в продавця низькі ціни. Тут оцінюємо чесність: `honest`."
+          "ru": "cheap — «дешёвая». Таких пластинок мало: rare.",
+          "uk": "cheap — «дешева». Таких платівок мало: rare."
         },
         "en:lesson-01:session-49:intro3:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "weird — «странная». Здесь важно, что их мало: rare.",
+          "uk": "weird — «дивна». Тут важливо, що їх мало: rare."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "81af2d52171ccca20de9c40da99a94a5a66c579d00f2a05762b5abd0a8d9cdf1"
+  "auxiliaryFingerprint": "548c9aa522b0d9aef942c4361e0a736aab203f6adf94d706d7659602ffa57e58"
 }

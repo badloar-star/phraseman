@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-49:word:cheap",
+    "correctText": "cheap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:word:secondhand",
+    "correctText": "secondhand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:word:colorful",
+    "correctText": "colorful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:word:rare",
+    "correctText": "rare",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-49:i01",
     "correctText": "It is cheap.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i02",
-    "correctText": "It is cheap.",
+    "correctText": "It is rare.",
     "correctResponseId": "en:lesson-01:session-49:i02:r1"
   },
   {
@@ -16,22 +36,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-49:i04",
-    "correctText": "en:lesson-01:session-49:i04:p1=cheap\nen:lesson-01:session-49:i04:p2=honest\nen:lesson-01:session-49:i04:p3=useful\nen:lesson-01:session-49:i04:p4=polite",
+    "correctText": "en:lesson-01:session-49:i04:p1=cheap\nen:lesson-01:session-49:i04:p2=secondhand\nen:lesson-01:session-49:i04:p3=colorful\nen:lesson-01:session-49:i04:p4=rare",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i05",
-    "correctText": "It's cheap.",
+    "correctText": "It's colorful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i06",
-    "correctText": "They are cheap.",
+    "correctText": "They are secondhand.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i07",
-    "correctText": "It's cheap.",
+    "correctText": "It's colorful.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-49:i15",
-    "correctText": "It's cheap.",
+    "correctText": "It's secondhand.",
     "correctResponseId": "en:lesson-01:session-49:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-49:i16",
-    "correctText": "en:lesson-01:session-49:i16:p1=cheap\nen:lesson-01:session-49:i16:p2=honest\nen:lesson-01:session-49:i16:p3=useful\nen:lesson-01:session-49:i16:p4=useless",
+    "correctText": "en:lesson-01:session-49:i16:p1=cheap\nen:lesson-01:session-49:i16:p2=honest\nen:lesson-01:session-49:i16:p3=useful\nen:lesson-01:session-49:i16:p4=rare",
     "correctResponseId": null
   },
   {

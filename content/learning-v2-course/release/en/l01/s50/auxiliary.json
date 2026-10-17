@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-50:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-50:intro1:r2": {
-          "ru": "`cheap` — недорого. Здесь цена высокая: `expensive`.",
-          "uk": "`cheap` — недорого. Тут ціна висока: `expensive`."
+          "ru": "cheap — «дешёвая». Двести евро — это expensive.",
+          "uk": "cheap — «дешева». Двісті євро — це expensive."
         },
         "en:lesson-01:session-50:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "She's — про женщину. Про вазу говорим It's.",
+          "uk": "She's — про жінку. Про вазу кажемо It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-50:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-50:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "rare — «редкий». Шарф подходит сестре лучше всего: perfect.",
+          "uk": "rare — «рідкісний». Шарф пасує сестрі найкраще: perfect."
         },
         "en:lesson-01:session-50:intro2:r3": {
-          "ru": "Это о пользе. Здесь нужно назвать высокую цену: `expensive`.",
-          "uk": "Це про користь. Тут треба назвати високу ціну: `expensive`."
+          "ru": "В короткой форме нужно 's: It's perfect.",
+          "uk": "У короткій формі потрібно 's: It's perfect."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-50:intro3:r2": {
-          "ru": "Это не оценка вежливости. Здесь нужно `polite`.",
-          "uk": "Це не оцінка ввічливості. Тут потрібно `polite`."
+          "ru": "elegant — «элегантный». Подарок завёрнут в бумагу: wrapped.",
+          "uk": "elegant — «елегантний». Подарунок загорнутий у папір: wrapped."
         },
         "en:lesson-01:session-50:intro3:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "Подарок один, поэтому It's.",
+          "uk": "Подарунок один, тому It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0ec5f7079c05907d6e22e15d0a278bfefcbf6a262c97545e85d6f4f4abe9070e"
+  "auxiliaryFingerprint": "ec95456c68ff0feb6650918351bd5418205e419280fa350aa8bdfe00061248d0"
 }

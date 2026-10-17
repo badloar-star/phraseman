@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-51",
   "learningOutcomeByLocale": {
-    "ru": "сказать о большом весе вещи и о терпении человека",
-    "uk": "сказати про велику вагу речі й про терплячість людини"
+    "ru": "коротко рассказать, что не так с багажом: it's, they're, he's, you're",
+    "uk": "коротко розповісти, що не так із багажем: it's, they're, he's, you're"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Тяжёлый по весу",
-        "uk": "Важкий за вагою"
+        "ru": "Не закрывается",
+        "uk": "Не зачиняється"
       },
       "bodyByLocale": {
-        "ru": "`heavy` — «тяжёлый» по весу. `It is heavy` — «Он тяжёлый», если говорим о чемодане. Вы взяли книгу в дорогу. Потом ещё пять — чтобы первой не было скучно. Теперь чемодан трудно поднять.",
-        "uk": "`heavy` — «важкий» за вагою. `It is heavy` — «Вона важка», якщо говоримо про валізу. Ви взяли книжку в дорогу. Потім ще п’ять — щоб першій не було нудно. Тепер валізу важко підняти."
+        "ru": "Вы положили в чемодан двенадцать книг, и теперь крышка не опускается, даже если на неё сесть. stuffed — «набит битком». It is stuffed, коротко It's stuffed — «Он набит битком». Места не осталось ни для одного носка.",
+        "uk": "Ви поклали у валізу дванадцять книжок, і тепер кришка не опускається, навіть якщо на неї сісти. stuffed — «напханий ущерть». It is stuffed, коротко It's stuffed — «Вона напхана вщерть». Місця не лишилося для жодної шкарпетки."
       },
       "question": {
         "interactionId": "en:lesson-01:session-51:intro1:q",
         "promptByLocale": {
-          "ru": "Чемодан много весит. Скажите именно о его весе.",
-          "uk": "Валіза багато важить. Скажіть саме про її вагу."
+          "ru": "Друг спрашивает, почему вы сидите на чемодане. Объясните коротко, что он набит битком.",
+          "uk": "Друг питає, чому ви сидите на валізі. Поясніть коротко, що вона напхана вщерть."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-51:intro1:r1",
-              "text": "It is heavy."
+              "text": "It's stuffed."
             },
             {
               "responseId": "en:lesson-01:session-51:intro1:r2",
-              "text": "It is expensive."
+              "text": "It's packed."
             },
             {
               "responseId": "en:lesson-01:session-51:intro1:r3",
-              "text": "It are heavy."
+              "text": "It stuffed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-51:intro1:r1",
-              "text": "It is heavy."
+              "text": "It's stuffed."
             },
             {
               "responseId": "en:lesson-01:session-51:intro1:r2",
-              "text": "It is expensive."
+              "text": "It's packed."
             },
             {
               "responseId": "en:lesson-01:session-51:intro1:r3",
-              "text": "It are heavy."
+              "text": "It stuffed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Чемодан много весит. Скажите именно о его весе.",
-          "uk": "Валіза багато важить. Скажіть саме про її вагу."
+          "ru": "Друг спрашивает, почему вы сидите на чемодане. Объясните коротко, что он набит битком.",
+          "uk": "Друг питає, чому ви сидите на валізі. Поясніть коротко, що вона напхана вщерть."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Один и несколько",
-        "uk": "Одна й кілька"
+        "ru": "Весы на стойке",
+        "uk": "Ваги на стійці"
       },
       "bodyByLocale": {
-        "ru": "Про один тяжёлый чемодан — `It is heavy`. Про две тяжёлые сумки — `They are heavy`, коротко `They're heavy`. Само слово `heavy` не меняется.",
-        "uk": "Про одну важку валізу — `It is heavy`. Про дві важкі сумки — `They are heavy`, коротко `They're heavy`. Саме слово `heavy` не змінюється."
+        "ru": "В аэропорту вы ставите чемодан на весы: двадцать восемь килограммов, а можно только двадцать три. overweight — «весит больше нормы, перевес». It is overweight, коротко It's overweight — «У него перевес». За это просят доплатить.",
+        "uk": "В аеропорту ви ставите валізу на ваги: двадцять вісім кілограмів, а можна лише двадцять три. overweight — «важить більше за норму, перевага ваги». It is overweight, коротко It's overweight — «У неї перевага ваги». За це просять доплатити."
       },
       "question": {
         "interactionId": "en:lesson-01:session-51:intro2:q",
         "promptByLocale": {
-          "ru": "Обе сумки много весят. Назовите их тяжёлыми.",
-          "uk": "Обидві сумки багато важать. Назвіть їх важкими."
+          "ru": "Сотрудница на стойке показывает на табло. Друг не понимает, в чём дело. Скажите ему коротко, что у чемодана перевес.",
+          "uk": "Працівниця на стійці показує на табло. Друг не розуміє, у чому річ. Скажіть йому коротко, що у валізи перевага ваги."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-51:intro2:r1",
-              "text": "They are heavy."
+              "text": "It's overweight."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r2",
-              "text": "They is heavy."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r3",
-              "text": "They are cheap."
+              "text": "He's overweight."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-51:intro2:r1",
-              "text": "They are heavy."
+              "text": "It's overweight."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r2",
-              "text": "They is heavy."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r3",
-              "text": "They are cheap."
+              "text": "He's overweight."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Обе сумки много весят. Назовите их тяжёлыми.",
-          "uk": "Обидві сумки багато важать. Назвіть їх важкими."
+          "ru": "Сотрудница на стойке показывает на табло. Друг не понимает, в чём дело. Скажите ему коротко, что у чемодана перевес.",
+          "uk": "Працівниця на стійці показує на табло. Друг не розуміє, у чому річ. Скажіть йому коротко, що у валізи перевага ваги."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто спокойно ждёт",
-        "uk": "Хто спокійно чекає"
+        "ru": "Гитара и такси",
+        "uk": "Гітара й таксі"
       },
       "bodyByLocale": {
-        "ru": "Вспомните `patient` — «терпеливый». Друг спокойно ждёт, пока вы переложите книги, и не торопит вас: `He is patient`. Вес чемодана и терпение друга — две разные оценки.",
-        "uk": "Згадайте `patient` — «терплячий». Друг спокійно чекає, поки ви перекладете книжки, й не квапить вас: `He is patient`. Вага валізи й терплячість друга — дві різні оцінки."
+        "ru": "Друг пытается положить вашу гитару в большом чехле в багажник такси, но она не помещается ни прямо, ни наискосок. bulky — «громоздкий, занимает много места». It is bulky, коротко It's bulky — «Она громоздкая». Это о размере, а не о весе: гитара почти ничего не весит.",
+        "uk": "Друг намагається покласти вашу гітару у великому чохлі в багажник таксі, але вона не вміщується ні прямо, ні навскіс. bulky — «громіздкий, займає багато місця». It is bulky, коротко It's bulky — «Вона громіздка». Це про розмір, а не про вагу: гітара майже нічого не важить."
       },
       "question": {
         "interactionId": "en:lesson-01:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Друг спокойно ждёт и не торопит вас. Назовите его терпеливым.",
-          "uk": "Друг спокійно чекає й не квапить вас. Назвіть його терплячим."
+          "ru": "Водитель спрашивает, почему вы так долго возитесь. Скажите ему коротко, что гитара громоздкая.",
+          "uk": "Водій питає, чому ви так довго морочитеся. Скажіть йому коротко, що гітара громіздка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-51:intro3:r1",
-              "text": "He is patient."
+              "text": "It's bulky."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r2",
-              "text": "He is heavy."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r3",
-              "text": "He are patient."
+              "text": "It's expensive."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-51:intro3:r1",
-              "text": "He is patient."
+              "text": "It's bulky."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r2",
-              "text": "He is heavy."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r3",
-              "text": "He are patient."
+              "text": "It's expensive."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг спокойно ждёт и не торопит вас. Назовите его терпеливым.",
-          "uk": "Друг спокійно чекає й не квапить вас. Назвіть його терплячим."
+          "ru": "Водитель спрашивает, почему вы так долго возитесь. Скажите ему коротко, что гитара громоздкая.",
+          "uk": "Водій питає, чому ви так довго морочитеся. Скажіть йому коротко, що гітара громіздка."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e0e5694ca608cbffbdb79f40434291bffd9dce722ad0edfa947eeb39211ebbf6"
+  "introFingerprint": "8a99948044ba8e50b51e953f5cb3a4d04d92c9ca4a7321d25a145b0e4a8b74fa"
 }

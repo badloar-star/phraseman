@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-51:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-51:intro1:r2": {
-          "ru": "Это о высокой цене. Большой вес здесь передаёт `heavy`.",
-          "uk": "Це про високу ціну. Велику вагу тут передає `heavy`."
+          "ru": "packed — «упакован, собран», без намёка, что места нет. Битком — stuffed.",
+          "uk": "packed — «запакована, зібрана», без натяку, що місця немає. Ущерть — stuffed."
         },
         "en:lesson-01:session-51:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "В короткой форме нужно 's: It's stuffed.",
+          "uk": "У короткій формі потрібно 's: It's stuffed."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-51:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-51:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "heavy — просто «тяжёлый». Весит больше разрешённого — overweight.",
+          "uk": "heavy — просто «важка». Важить більше дозволеного — overweight."
         },
         "en:lesson-01:session-51:intro2:r3": {
-          "ru": "`cheap` — недорогие. Здесь речь о весе: `heavy`.",
-          "uk": "`cheap` — недорогі. Тут ідеться про вагу: `heavy`."
+          "ru": "He's — про человека. Про чемодан говорим It's.",
+          "uk": "He's — про людину. Про валізу кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-51:intro3:r2": {
-          "ru": "Это о весе человека. Здесь нужно его терпение: `patient`.",
-          "uk": "Це про вагу людини. Тут потрібна її терплячість: `patient`."
+          "ru": "heavy — о весе. Гитара лёгкая, но занимает много места: bulky.",
+          "uk": "heavy — про вагу. Гітара легка, але займає багато місця: bulky."
         },
         "en:lesson-01:session-51:intro3:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "expensive — «дорогая». Дело не в цене: она не влезает — bulky.",
+          "uk": "expensive — «дорога». Річ не в ціні: вона не вміщується — bulky."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "acf24d54dcc89dee4fdc4434adc322b865e33a61fddfcaec42862362b974aa0b"
+  "auxiliaryFingerprint": "8594abd530b04b125edbf3950d7d797244f1cc04af267c3e9840e74b02735f79"
 }

@@ -1,138 +1,154 @@
 # Английский · Урок 1 · Занятие 51 — Чемодан с книгами
 
-**Ситуация.** Перед поездкой вы собираете вещи. Друг спокойно ждёт у двери, пока вы пытаетесь поднять чемодан с книгами.
+**Ситуация.** Вы летите к бабушке и везёте ей книги. Чемодан не закрывается, в аэропорту его взвешивают, а друг, который вас провожает, тащит вашу гитару.
 
-**Что вы освоите:** сказать о большом весе вещи и о терпении человека
-**Новые слова:** heavy
+**Что вы освоите:** коротко рассказать, что не так с багажом: it's, they're, he's, you're
+**Новые слова:** stuffed, overweight, bulky, zipped
+**Возвращаются:** heavy, patient, packed, expensive, cheap
 
 ---
 
 ## Интро 1
 
-### Тяжёлый по весу
+### Не закрывается
 
-`heavy` — «тяжёлый» по весу. `It is heavy` — «Он тяжёлый», если говорим о чемодане. Вы взяли книгу в дорогу. Потом ещё пять — чтобы первой не было скучно. Теперь чемодан трудно поднять.
+Вы положили в чемодан двенадцать книг, и теперь крышка не опускается, даже если на неё сесть. stuffed — «набит битком». It is stuffed, коротко It's stuffed — «Он набит битком». Места не осталось ни для одного носка.
 
-**Чемодан много весит. Скажите именно о его весе.**
+**Друг спрашивает, почему вы сидите на чемодане. Объясните коротко, что он набит битком.**
 
-- ✅ **It is heavy.**
-- ❌ It is expensive. — *Это о высокой цене. Большой вес здесь передаёт `heavy`.*
-- ❌ It are heavy. — *После `It` нужно `is`.*
+- ✅ **It's stuffed.**
+- ❌ It's packed. — *packed — «упакован, собран», без намёка, что места нет. Битком — stuffed.*
+- ❌ It stuffed. — *В короткой форме нужно 's: It's stuffed.*
 
 ---
 
 ## Интро 2
 
-### Один и несколько
+### Весы на стойке
 
-Про один тяжёлый чемодан — `It is heavy`. Про две тяжёлые сумки — `They are heavy`, коротко `They're heavy`. Само слово `heavy` не меняется.
+В аэропорту вы ставите чемодан на весы: двадцать восемь килограммов, а можно только двадцать три. overweight — «весит больше нормы, перевес». It is overweight, коротко It's overweight — «У него перевес». За это просят доплатить.
 
-**Обе сумки много весят. Назовите их тяжёлыми.**
+**Сотрудница на стойке показывает на табло. Друг не понимает, в чём дело. Скажите ему коротко, что у чемодана перевес.**
 
-- ✅ **They are heavy.**
-- ❌ They is heavy. — *После `They` нужно `are`.*
-- ❌ They are cheap. — *`cheap` — недорогие. Здесь речь о весе: `heavy`.*
+- ✅ **It's overweight.**
+- ❌ It's heavy. — *heavy — просто «тяжёлый». Весит больше разрешённого — overweight.*
+- ❌ He's overweight. — *He's — про человека. Про чемодан говорим It's.*
 
 ---
 
 ## Интро 3
 
-### Кто спокойно ждёт
+### Гитара и такси
 
-Вспомните `patient` — «терпеливый». Друг спокойно ждёт, пока вы переложите книги, и не торопит вас: `He is patient`. Вес чемодана и терпение друга — две разные оценки.
+Друг пытается положить вашу гитару в большом чехле в багажник такси, но она не помещается ни прямо, ни наискосок. bulky — «громоздкий, занимает много места». It is bulky, коротко It's bulky — «Она громоздкая». Это о размере, а не о весе: гитара почти ничего не весит.
 
-**Друг спокойно ждёт и не торопит вас. Назовите его терпеливым.**
+**Водитель спрашивает, почему вы так долго возитесь. Скажите ему коротко, что гитара громоздкая.**
 
-- ✅ **He is patient.**
-- ❌ He is heavy. — *Это о весе человека. Здесь нужно его терпение: `patient`.*
-- ❌ He are patient. — *После `He` нужно `is`.*
+- ✅ **It's bulky.**
+- ❌ It's heavy. — *heavy — о весе. Гитара лёгкая, но занимает много места: bulky.*
+- ❌ It's expensive. — *expensive — «дорогая». Дело не в цене: она не влезает — bulky.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Чемодан много весит. Соберите фразу о его весе**
+**1 · Карточка слова — stuffed**
+<!-- interaction_id: en:lesson-01:session-51:word:stuffed; family: word_card -->
+> **stuffed** — набит битком. It's stuffed — «Он набит битком»: больше ничего не влезет.
+
+**2 · Карточка слова — overweight**
+<!-- interaction_id: en:lesson-01:session-51:word:overweight; family: word_card -->
+> **overweight** — весит больше нормы. It's overweight — «У него перевес»: о багаже в аэропорту.
+
+**3 · Карточка слова — bulky**
+<!-- interaction_id: en:lesson-01:session-51:word:bulky; family: word_card -->
+> **bulky** — громоздкий, занимает много места. It's bulky — «Он громоздкий». Это о размере, а не о весе.
+
+**4 · Карточка слова — zipped**
+<!-- interaction_id: en:lesson-01:session-51:word:zipped; family: word_card -->
+> **zipped** — застёгнут на молнию. It's zipped — «Он застёгнут».
+
+**5 · Чемодан с книгами много весит. Соберите фразу о его весе**
 <!-- interaction_id: en:lesson-01:session-51:i01; family: phrase_builder -->
 Плитки: `heavy` `is` `It` `are` → **It is heavy.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is heavy.`)*
 
-**2 · Послушайте и выберите услышанное**
+**6 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-51:i02; family: listen_choose -->
-🔊 *It is heavy.* → **It is heavy.** · It is expensive. · It is useful.
-- It is expensive. — *В записи последнее слово — `heavy`, а в этом варианте — `expensive`.*
-- It is useful. — *В записи последнее слово — `heavy`, а в этом варианте — `useful`.*
+🔊 *It is overweight.* → **It is overweight.** · It is heavy. · It is bulky.
+- It is heavy. — *В записи последнее слово — `overweight`, а в этом варианте — `heavy`.*
+- It is bulky. — *В записи последнее слово — `overweight`, а в этом варианте — `bulky`.*
 
-**3 · Две сумки много весят. Дополните фразу**
+**7 · Обе ваши сумки весят больше разрешённого. Дополните фразу**
 <!-- interaction_id: en:lesson-01:session-51:i03; family: context_gap_grammar -->
-They ___ heavy. → **are** · am · is
+They ___ overweight. → **are** · am · is
 - am — *После `They` нужно `are`.*
-- is — *Про две сумки — `They are`.*
+- is — *Сумок две, поэтому `They are`.*
 
-**4 · Соедините слова со значениями**
+**8 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-51:i04; family: speed_match -->
-heavy — тяжёлый по весу · patient — терпеливый · expensive — дорогой по цене · cheap — недорогой
+stuffed — набит битком · overweight — весит больше нормы · bulky — громоздкий · zipped — застёгнут
 
-**5 · Послушайте и соберите короткую фразу**
+**9 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-51:i05; family: listen_build_dictation -->
-🔊 *It's heavy.* Плитки: `heavy` `It's` `He's` → **It's heavy.**
-*(плитка `He's` лишняя: здесь нужно `It's` — `It's heavy.`)*
+🔊 *It's zipped.* Плитки: `zipped` `It's` `He's` → **It's zipped.**
+*(плитка `He's` лишняя: здесь нужно `It's` — `It's zipped.`)*
 
-**6 · Две коробки с книгами много весят. Назовите их тяжёлыми**
+**10 · Обе коробки с книгами набиты до самого верха. Соберите фразу о них**
 <!-- interaction_id: en:lesson-01:session-51:i06; family: phrase_builder -->
-Плитки: `heavy` `are` `They` `is` → **They are heavy.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are heavy.`)*
+Плитки: `stuffed` `are` `They` `is` → **They are stuffed.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are stuffed.`)*
 
-**7 · Коротко скажите, что рюкзак тяжёлый по весу**
+**11 · Вы проверили молнию на рюкзаке: всё закрыто. Скажите другу коротко, что он застёгнут**
 <!-- interaction_id: en:lesson-01:session-51:i07; family: scripted_repeat_compare -->
-🎙 **It's heavy.**
+🎙 **It's zipped.**
 
-**8 · Друг спокойно ждёт у двери и не торопит вас. Назовите именно его терпение**
+**12 · Друг спокойно ждёт у стойки и не торопит вас. Назовите именно его терпение**
 <!-- interaction_id: en:lesson-01:session-51:i08; family: context_gap_grammar -->
-He is ___ . → **patient** · heavy · curious
+He is ___ . → **patient** · heavy · bulky
 - heavy — *Это о весе. Здесь нужно терпение: `patient`.*
-- curious — *Это о любопытстве. Здесь нужно `patient`.*
+- bulky — *`bulky` — «громоздкий», о вещах. Здесь нужно `patient`.*
 
-**9 · Послушайте фразу о друге**
+**13 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-51:i09; family: listen_choose -->
-🔊 *He is patient.* → **He is patient.** · He is polite. · He is honest.
-- He is polite. — *В записи последнее слово — `patient`, а в этом варианте — `polite`.*
-- He is honest. — *В записи последнее слово — `patient`, а в этом варианте — `honest`.*
+🔊 *It's bulky.* → **It's bulky.** · It's heavy. · It's stuffed.
+- It's heavy. — *В записи последнее слово — `bulky`, а в этом варианте — `heavy`.*
+- It's stuffed. — *В записи последнее слово — `bulky`, а в этом варианте — `stuffed`.*
 
-**10 · Соедините короткие начала с полными**
+**14 · Соедините короткие начала с полными**
 <!-- interaction_id: en:lesson-01:session-51:i10; family: speed_match -->
 It's — It is · They're — They are · He's — He is · We're — We are
 
-**11 · Послушайте и соберите фразу о сумках**
+**15 · Послушайте и соберите фразу о сумках**
 <!-- interaction_id: en:lesson-01:session-51:i11; family: listen_build_dictation -->
 🔊 *They're heavy.* Плитки: `heavy` `They're` `We're` → **They're heavy.**
 *(плитка `We're` лишняя: здесь нужно `They're` — `They're heavy.`)*
 
-**12 · Сестра спокойно ждёт, пока вы закончите собираться, и не торопит. Назовите её терпеливой**
+**16 · Сестра спокойно ждёт, пока вы закончите собираться, и не торопит. Назовите её терпеливой**
 <!-- interaction_id: en:lesson-01:session-51:i12; family: phrase_builder -->
 Плитки: `patient` `is` `She` `are` → **She is patient.**
 *(плитка `are` лишняя: здесь нужно `is` — `She is patient.`)*
 
-**13 · Обратитесь к другу, который спокойно вас ждал: «Ты терпеливый»**
+**17 · Обратитесь к другу, который час ждал вас у стойки: «Ты терпеливый»**
 <!-- interaction_id: en:lesson-01:session-51:i13; family: scripted_repeat_compare -->
 🎙 **You are patient.**
 
-**14 · Одна коробка с книгами много весит. Дополните оценку веса**
+**18 · Чехол с гитарой не влезает в багажник. Дополните фразу о чехле**
 <!-- interaction_id: en:lesson-01:session-51:i14; family: context_gap_grammar -->
-It ___ heavy. → **is** · am · are
+It ___ bulky. → **is** · am · are
 - am — *После `It` нужно `is`.*
-- are — *Про одну коробку — `It is`.*
+- are — *Чехол один — `It is`.*
 
-**15 · Послушайте короткую оценку и выберите её**
+**19 · Послушайте короткую оценку и выберите её**
 <!-- interaction_id: en:lesson-01:session-51:i15; family: listen_choose -->
-🔊 *It's heavy.* → **It's heavy.** · It's cheap. · It's expensive.
-- It's cheap. — *В записи последнее слово — `heavy`, а в этом варианте — `cheap`.*
-- It's expensive. — *В записи последнее слово — `heavy`, а в этом варианте — `expensive`.*
+🔊 *It's stuffed.* → **It's stuffed.** · It's zipped. · It's expensive.
+- It's zipped. — *В записи последнее слово — `stuffed`, а в этом варианте — `zipped`.*
+- It's expensive. — *В записи последнее слово — `stuffed`, а в этом варианте — `expensive`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-01:session-51:i16; family: speed_match -->
-heavy — много весит · patient — терпеливый · useful — полезный · polite — вежливый
+heavy — много весит · overweight — перевес · bulky — занимает много места · patient — терпеливый
 
-**17 · В гостях вы пробуете поднять большую кастрюлю с водой: она много весит. Скажите хозяину именно о её весе**
+**21 · В гостях вы пробуете поднять большую кастрюлю с водой: она много весит. Скажите хозяину именно о её весе**
 <!-- interaction_id: en:lesson-01:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is heavy.**
-

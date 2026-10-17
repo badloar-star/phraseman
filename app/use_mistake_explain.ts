@@ -38,6 +38,7 @@ import {
   shouldConsumeFreeMistakeExplain,
 } from './mistake_explain_plus_gate';
 import { hapticTap } from '../hooks/use-haptics';
+import { MISTAKE_EXPLAIN_ENABLED } from './mistake_explain_flag';
 import { actionToastTri, emitAppEvent } from './events';
 import { getNetStatus, subscribeNetStatus, type NetStatus } from './net_status';
 import {
@@ -179,7 +180,7 @@ function isSameAccountGeneration(a: AccountGenerationToken, b: AccountGeneration
 
 export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExplainResult {
   const {
-    active,
+    active: activeInput,
     autoStart = false,
     phraseKey,
     lessonId,
@@ -190,6 +191,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     userAnswer,
     targetAnswer,
   } = input;
+  // зачем (владелец 17.10): при выключенном флаге хук инертен — все эффекты, запросы, карточка и шторка согласия завязаны на active.
+  const active = MISTAKE_EXPLAIN_ENABLED && activeInput;
+  useEffect(() => {
+    if (!MISTAKE_EXPLAIN_ENABLED && activeInput) {
+      console.log(`[MISTAKE-EXPLAIN] disabled phraseKey=${phraseKey} flag=${String(MISTAKE_EXPLAIN_ENABLED)} — карточка, согласие и вызов ИИ выключены`); // guard-ok: ИИ-разбор отключён владельцем
+    }
+  }, [activeInput, phraseKey]);
 
   const [aiMistakeState, setAiMistakeState] = useState<AiMistakeCardState>(() =>
     peekAiMistakeLimitNoticeShownToday() ? 'hidden' : 'idle',

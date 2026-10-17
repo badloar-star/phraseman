@@ -76,6 +76,7 @@ import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mis
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
+import { MISTAKE_EXPLAIN_ENABLED } from './mistake_explain_flag';
 import { IS_STORE_RELEASE } from './config';
 import { prewarmMistakeSessionExplanations } from './mistake_explain_prewarm';
 import { commitPreparedMistakePracticeSession, prepareMistakePracticeSession } from './mistake_practice_session_runtime';
@@ -893,6 +894,11 @@ function MistakePracticeSessionScreen() {
   // Прогрев объяснений всей очереди, пока человек отвечает на первое задание.
   useEffect(() => {
     if (!session) return;
+    // зачем (владелец 17.10): ИИ-разбор ошибок выключен — предгенерация текстов для него больше не зовёт облако.
+    if (!MISTAKE_EXPLAIN_ENABLED) {
+      console.log('[MISTAKE-EXPLAIN] disabled prewarm skipped'); // guard-ok: ИИ-разбор отключён владельцем
+      return;
+    }
     void prewarmMistakeSessionExplanations({
       sessionId: session.sessionId,
       queue: session.queue,

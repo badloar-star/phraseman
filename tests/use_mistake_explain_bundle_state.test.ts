@@ -15,6 +15,9 @@ let netStatus: 'online' | 'offline' | 'unknown' = 'online';
 let netSubscriber: ((online: boolean) => void) | null = null;
 const markLimitShown = jest.fn(async () => undefined);
 
+// зачем (владелец 17.10): в бою ИИ-разбор выключен флагом; здесь проверяем механику при включённом флаге, выключенное поведение — tests/mistake_explain_disabled_contract.test.ts
+jest.mock('../app/mistake_explain_flag', () => ({ MISTAKE_EXPLAIN_ENABLED: true }));
+
 jest.mock('../app/ai_mistake_explain_client', () => ({
   callExplainMistake: jest.fn(),
   isMistakeExplainOfflineError: (error: unknown) =>

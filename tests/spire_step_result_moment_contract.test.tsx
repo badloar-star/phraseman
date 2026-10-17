@@ -16,7 +16,7 @@ jest.mock('react-native', () => ({
   Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) },
   NativeModules: {},
 }));
-jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Circle: 'Circle' }));
+jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Circle: 'Circle', Defs: 'Defs', RadialGradient: 'RadialGradient', Stop: 'Stop', Rect: 'Rect' })); // Defs…Rect — свечение .glowspot в MomentFullScreen
 jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: 'Ionicons' }));
 jest.mock('react-native-reanimated', () => {
   const R = jest.requireActual('react');

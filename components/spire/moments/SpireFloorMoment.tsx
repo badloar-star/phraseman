@@ -168,7 +168,7 @@ const noopSelect = (): void => undefined;
 function SpireFloorMoment(props: SpireFloorMomentProps) {
   const testID = props.testID ?? 'floor-moment';
   return (
-    <MomentFullScreen testID={testID}>
+    <MomentFullScreen testID={testID} glowTop={props.outcome.kind === 'summit' ? '30%' : undefined}>
       <View style={s.full}>
         {props.outcome.kind === 'summit' ? <SummitView {...props} testID={testID} /> : <FloorView {...props} testID={testID} />}
       </View>

@@ -171,7 +171,7 @@ function SpireStepResultMoment(props: SpireStepResultMomentProps) {
   const testID = props.testID ?? 'step-moment';
   const passed = props.outcome.kind !== 'failed';
   return (
-    <MomentFullScreen testID={testID}>
+    <MomentFullScreen testID={testID} glowTop={passed ? '38%' : undefined}>
       <View style={s.full}>
         {passed ? <PassView {...props} testID={testID} /> : <FailView {...props} testID={testID} />}
       </View>

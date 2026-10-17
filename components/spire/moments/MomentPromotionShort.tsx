@@ -78,7 +78,7 @@ function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, bo
   const fw = 390 / DESIGN_W;
 
   return (
-    <MomentFullScreen testID={testID}>
+    <MomentFullScreen testID={testID} glowTop="30%">
       <Animated.View style={[s.stage, rumble.style]}>
         <View style={s.center}>
           <MomentCoin rank={myCoinRank} size={120} mood={cheer ? 'cheer' : 'idle'} glints emote={cheer ? 'star' : null} emoteCount={4} testID={`${testID}-coin`} />

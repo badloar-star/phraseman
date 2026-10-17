@@ -62,12 +62,12 @@ function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goal
   const beat = (i: number) => (reduceMotion ? undefined : FadeIn.delay(FIRST_DIALOG_TIMELINE.texts + i * FIRST_DIALOG_TIMELINE.textStep).duration(400));
 
   return (
-    <MomentFullScreen testID={testID}>
+    <MomentFullScreen testID={testID} glowTop="38%">
       <StreakConfetti fire={confetti} n={90} />
       <View style={s.full}>
         <View style={s.body}>
           <MomentCoin rank={coinRank} size={110} mood={cheer ? 'cheer' : 'idle'} say={cheer ? firstDialogText(lang, 'say') : undefined} emote={cheer ? 'heart' : null} emoteCount={4} glints testID={`${testID}-coin`} />
-          <Animated.Text entering={beat(0)} style={[s.ov, { color: p.accentTextSafe }]}>{firstDialogText(lang, 'overline').toUpperCase()}</Animated.Text>
+          <Animated.Text entering={beat(0)} style={[s.ov, { color: p.textSecondary }]}>{firstDialogText(lang, 'overline').toUpperCase()}</Animated.Text>
           <Animated.Text entering={beat(1)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{firstDialogText(lang, 'title', { adv })}</Animated.Text>
           <Animated.Text entering={beat(2)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-stats`}>{firstDialogStats(lang, turns, goalsDone, goalsTotal)}</Animated.Text>
         </View>

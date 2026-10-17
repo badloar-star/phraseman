@@ -76,7 +76,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
   const textIn = (i: number) => (reduceMotion ? undefined : FadeIn.delay(PERFECT_MOMENT_TIMELINE.texts + i * PERFECT_MOMENT_TIMELINE.textStep).duration(400));
 
   return (
-    <MomentFullScreen testID={testID}>
+    <MomentFullScreen testID={testID} glowTop="36%">
       <StreakConfetti fire={confetti} n={80} />
       <Animated.View style={[s.full, rumble.style]}>
         <View style={s.body}>

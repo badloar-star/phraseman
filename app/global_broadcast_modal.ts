@@ -36,6 +36,8 @@ export interface GlobalBroadcastModalPayload {
   titleId: string;
   titleTr: string;
   titlePl: string;
+  /** зачем (17.10, открытие английского): сервер пока пишет 8 языков без en — English видел рассылку по-русски. */
+  titleEn: string;
   messageRu: string;
   messageUk: string;
   messageEs: string;
@@ -44,6 +46,7 @@ export interface GlobalBroadcastModalPayload {
   messageId: string;
   messageTr: string;
   messagePl: string;
+  messageEn: string;
   reviewUrlIos: string;
   reviewUrlAndroid: string;
   reviewCtaRu: string;
@@ -54,6 +57,7 @@ export interface GlobalBroadcastModalPayload {
   reviewCtaId: string;
   reviewCtaTr: string;
   reviewCtaPl: string;
+  reviewCtaEn: string;
   createdAt: string;
 }
 
@@ -108,6 +112,7 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
   const titleId = String(data.titleId ?? '').trim() || 'Pesan dari tim';
   const titleTr = String(data.titleTr ?? '').trim() || 'Ekipten mesaj';
   const titlePl = String(data.titlePl ?? '').trim() || 'Wiadomość od zespołu';
+  const titleEn = String(data.titleEn ?? '').trim() || 'A message from the team';
   const messageRu = String(data.messageRu ?? '').trim() || 'Спасибо, что ты с нами.';
   const messageUk = String(data.messageUk ?? '').trim() || messageRu;
   const messageEs = String(data.messageEs ?? '').trim() || messageRu;
@@ -116,6 +121,7 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
   const messageId = String(data.messageId ?? '').trim() || 'Terima kasih sudah bersama kami.';
   const messageTr = String(data.messageTr ?? '').trim() || 'Bizimle olduğun için teşekkürler.';
   const messagePl = String(data.messagePl ?? '').trim() || 'Dziękujemy, że jesteś z nami.';
+  const messageEn = String(data.messageEn ?? '').trim() || 'Thanks for being with us.';
   // Старый жемчуг ('shards' / поле shards) нормализуется в 'none' — D70.
   const resolvedRewardType = normalizeRewardType(data.rewardType);
   const rewardAmount = resolvedRewardType === 'coins' ? toSafePositiveInt(data.rewardAmount, 0) : 0;
@@ -135,6 +141,7 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
     titleId,
     titleTr,
     titlePl,
+    titleEn,
     messageRu,
     messageUk,
     messageEs,
@@ -143,6 +150,7 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
     messageId,
     messageTr,
     messagePl,
+    messageEn,
     reviewUrlIos: String(data.reviewUrlIos ?? '').trim(),
     reviewUrlAndroid: String(data.reviewUrlAndroid ?? '').trim(),
     reviewCtaRu: String(data.reviewCtaRu ?? '').trim() || 'Оценить приложение',
@@ -153,6 +161,7 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
     reviewCtaId: String(data.reviewCtaId ?? '').trim() || 'Nilai aplikasi',
     reviewCtaTr: String(data.reviewCtaTr ?? '').trim() || 'Uygulamayı değerlendir',
     reviewCtaPl: String(data.reviewCtaPl ?? '').trim() || 'Oceń aplikację',
+    reviewCtaEn: String(data.reviewCtaEn ?? '').trim() || 'Rate the app',
     createdAt: String(data.createdAt ?? ''),
   };
 }

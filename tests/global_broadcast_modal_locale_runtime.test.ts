@@ -42,6 +42,17 @@ describe('GlobalBroadcastModal planned locale runtime copy', () => {
     expect(modalSource).not.toMatch(/\b(lang === 'ru'|lang === 'uk'|lang === 'es'|isUK|isES)\b/u);
   });
 
+  // зачем (17.10, открытие английского): en брал titleRu/messageRu/reviewCtaRu — English видел рассылку по-русски
+  it('English reads its own fields with a neutral English default, never the Russian ones', () => {
+    for (const marker of ['titleEn', 'messageEn', 'reviewCtaEn', 'A message from the team', 'Thanks for being with us.', 'Rate the app']) {
+      expect(modelSource).toContain(marker);
+    }
+    expect(modalSource).toContain('en: payload.titleEn');
+    expect(modalSource).toContain('en: payload.messageEn');
+    expect(modalSource).toContain('en: payload.reviewCtaEn');
+    expect(modalSource).not.toMatch(/en: payload\.\w+Ru\b/u);
+  });
+
   it('does not leave generic runtime fallback markers in the payload model', () => {
     expect(modelSource).not.toContain('fallback');
     expect(modelSource).not.toContain('Fallback');

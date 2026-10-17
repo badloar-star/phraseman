@@ -51,7 +51,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
     return triLang(lang, {
       ru: payload.titleRu,
       uk: payload.titleUk,
-      en: payload.titleRu,
+      en: payload.titleEn,
       es: payload.titleEs,
       'pt-BR': payload.titlePtBr,
       vi: payload.titleVi,
@@ -66,7 +66,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
     return triLang(lang, {
       ru: payload.messageRu,
       uk: payload.messageUk,
-      en: payload.messageRu,
+      en: payload.messageEn,
       es: payload.messageEs,
       'pt-BR': payload.messagePtBr,
       vi: payload.messageVi,
@@ -206,7 +206,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                 ? triLang(lang, {
                   ru: payload.reviewCtaRu,
                   uk: payload.reviewCtaUk,
-                  en: payload.reviewCtaRu,
+                  en: payload.reviewCtaEn,
                   es: payload.reviewCtaEs,
                   'pt-BR': payload.reviewCtaPtBr,
                   vi: payload.reviewCtaVi,

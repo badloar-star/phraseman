@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-42:intro1:r2": {
+          "ru": "`kitchen` — кухня. Ванная комната — `bathroom`.",
+          "uk": "`kitchen` — кухня. Ванна кімната — `bathroom`."
+        },
+        "en:lesson-03:session-42:intro1:r3": {
+          "ru": "`room` — комната вообще. Здесь точнее `bathroom`.",
+          "uk": "`room` — кімната загалом. Тут точніше `bathroom`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-42:intro2:r2": {
+          "ru": "Комната одна: нужно `is`.",
+          "uk": "Кімната одна: потрібне `is`."
+        },
+        "en:lesson-03:session-42:intro2:r3": {
+          "ru": "Так говорят о нескольких ванных комнатах. Здесь одна: `The bathroom is there`.",
+          "uk": "Так говорять про кілька ванних кімнат. Тут одна: `The bathroom is there`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-42:intro3:r2": {
+          "ru": "`accurate` — точная. Здесь есть ошибка: `inaccurate`.",
+          "uk": "`accurate` — точна. Тут є помилка: `inaccurate`."
+        },
+        "en:lesson-03:session-42:intro3:r3": {
+          "ru": "Речь об одной схеме: `It is inaccurate`.",
+          "uk": "Ідеться про одну схему: `It is inaccurate`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9037cba6b1ce27b15e4934712ff5c2cf8044a337b7c4b0d3c1a4b7ca7bfaab4a"
+}

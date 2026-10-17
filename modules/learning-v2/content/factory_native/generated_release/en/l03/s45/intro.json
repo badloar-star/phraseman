@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-45",
   "learningOutcomeByLocale": {
-    "ru": "выбирайте `a`, `an` или `the`: `a/an` при первом упоминании, `the` для уже известной в разговоре характеристики.",
-    "uk": "обирайте `a`, `an` або `the`: `a/an` за першої згадки, `the` для характеристики, уже відомої в розмові."
+    "ru": "назвать офис с an и затем говорить о понятном собеседнику офисе с the",
+    "uk": "назвати офіс з an і потім говорити про зрозумілий співрозмовникові офіс із the"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Размер товара",
-        "uk": "Розмір товару"
+        "ru": "Один офис",
+        "uk": "Один офіс"
       },
       "bodyByLocale": {
-        "ru": "`size` — «размер». У стола вы впервые называете размер товара: `It is a small size.` После этого собеседники знают, о каком размере говорят: `The size is small.` `A` вводит один размер в разговор, а `the` возвращает к этому размеру.",
-        "uk": "`size` — «розмір». Біля столу ви вперше називаєте розмір товару: `It is a small size.` Після цього співрозмовники знають, про який розмір ідеться: `The size is small.` `A` вводить один розмір у розмову, а `the` повертає до цього розміру."
+        "ru": "`office` — «офис»: помещение, где работают. `This is an office` — «Это офис». Перед `office` нужно `an`, потому что слово начинается с гласного звука. Выбираем по звуку, а не по размеру помещения: даже крошечному офису полагается целое `an`.",
+        "uk": "`office` — «офіс»: приміщення, де працюють. `This is an office` — «Це офіс». Перед `office` потрібне `an`, бо слово починається з голосного звука. Вибираємо за звуком, а не за розміром приміщення: навіть крихітному офісу належить ціле `an`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-45:intro1:q",
         "promptByLocale": {
-          "ru": "Вы впервые называете размер на товаре. Выберите фразу.",
-          "uk": "Ви вперше називаєте розмір на товарі. Виберіть фразу."
+          "ru": "Назовите офис одним английским словом.",
+          "uk": "Назвіть офіс одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-45:intro1:r1",
-              "text": "It is a small size."
+              "text": "office"
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r2",
-              "text": "It is the small size."
+              "text": "kitchen"
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r3",
-              "text": "It is an small size."
+              "text": "bathroom"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-45:intro1:r1",
-              "text": "It is a small size."
+              "text": "office"
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r2",
-              "text": "It is the small size."
+              "text": "kitchen"
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r3",
-              "text": "It is an small size."
+              "text": "bathroom"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы впервые называете размер на товаре. Выберите фразу.",
-          "uk": "Ви вперше називаєте розмір на товарі. Виберіть фразу."
+          "ru": "Назовите офис одним английским словом.",
+          "uk": "Назвіть офіс одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Цвет товара",
-        "uk": "Колір товару"
+        "ru": "Тот самый офис",
+        "uk": "Той самий офіс"
       },
       "bodyByLocale": {
-        "ru": "`colour` — «цвет». Теперь вы впервые называете цвет товара: `It is a dark colour.` Если разговор уже идёт об этом цвете, скажите `The colour is dark.` У товара свой цвет; `the` помогает не отправить собеседника искать другой.",
-        "uk": "`colour` — «колір». Тепер ви вперше називаєте колір товару: `It is a dark colour.` Якщо розмова вже про цей колір, скажіть `The colour is dark.` У товару свій колір; `the` допомагає не відправити співрозмовника шукати інший."
+        "ru": "`The office is here` — «Офис здесь». Это конкретный офис, который вы ищете вместе: собеседник понимает, о каком месте речь. `the office` можно сказать и при первом упоминании, если нужный офис ясен из ситуации. Для одного офиса нужно `is`.",
+        "uk": "`The office is here` — «Офіс тут». Це конкретний офіс, який ви шукаєте разом: співрозмовник розуміє, про яке місце йдеться. `the office` можна сказати й за першої згадки, якщо потрібний офіс зрозумілий із ситуації. Для одного офісу потрібне `is`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-45:intro2:q",
         "promptByLocale": {
-          "ru": "Вы впервые называете цвет товара. Выберите фразу.",
-          "uk": "Ви вперше називаєте колір товару. Виберіть фразу."
+          "ru": "Вы уже обсудили нужный офис и теперь нашли его на схеме. Скажите «Офис здесь».",
+          "uk": "Ви вже обговорили потрібний офіс і тепер знайшли його на схемі. Скажіть «Офіс тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-45:intro2:r1",
-              "text": "It is a dark colour."
+              "text": "The office is here."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r2",
-              "text": "It is the dark colour."
+              "text": "The office are here."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r3",
-              "text": "It is an dark colour."
+              "text": "The offices are here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-45:intro2:r1",
-              "text": "It is a dark colour."
+              "text": "The office is here."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r2",
-              "text": "It is the dark colour."
+              "text": "The office are here."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r3",
-              "text": "It is an dark colour."
+              "text": "The offices are here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы впервые называете цвет товара. Выберите фразу.",
-          "uk": "Ви вперше називаєте колір товару. Виберіть фразу."
+          "ru": "Вы уже обсудили нужный офис и теперь нашли его на схеме. Скажите «Офис здесь».",
+          "uk": "Ви вже обговорили потрібний офіс і тепер знайшли його на схемі. Скажіть «Офіс тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Модель товара",
-        "uk": "Модель товару"
+        "ru": "Полезная схема и запрет",
+        "uk": "Корисна схема й заборона"
       },
       "bodyByLocale": {
-        "ru": "`model` — «модель». У стола вы впервые называете модель товара: `It is an old model.` Перед гласным звуком в `old` нужен `an`. Когда эта модель уже названа, говорят `The model is old.` Так вы уточняете именно тот товар, который смотрите.",
-        "uk": "`model` — «модель». Біля столу ви вперше називаєте модель товару: `It is an old model.` Перед голосним звуком в `old` потрібен `an`. Коли цю модель уже назвали, кажуть `The model is old.` Так ви уточнюєте саме той товар, який розглядаєте."
+        "ru": "`useful` — «полезный»: схема помогает найти офис. О ней: `It is useful` — «Она полезная». `illegal` — «незаконный, запрещённый законом». В нашей ситуации Анна прочла правила: парковаться в выбранном месте запрещено законом. Об этом действии: `It is illegal` — «Это незаконно». Говорим о действии, а не о самой машине. Машина по-английски — `car`.",
+        "uk": "`useful` — «корисний»: схема допомагає знайти офіс. Про неї: `It is useful` — «Вона корисна». `illegal` — «незаконний, заборонений законом». У нашій ситуації Анна прочитала правила: паркуватися у вибраному місці заборонено законом. Про цю дію: `It is illegal` — «Це незаконно». Говоримо про дію, а не про саму машину. Машина англійською — `car`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-45:intro3:q",
         "promptByLocale": {
-          "ru": "Старую модель называют впервые. Выберите фразу.",
-          "uk": "Стару модель називають уперше. Виберіть фразу."
+          "ru": "Схема помогает найти нужный офис. Скажите о ней «Она полезная».",
+          "uk": "Схема допомагає знайти потрібний офіс. Скажіть про неї «Вона корисна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-45:intro3:r1",
-              "text": "It is an old model."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r2",
-              "text": "It is a old model."
+              "text": "It is useless."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r3",
-              "text": "It is the old model."
+              "text": "It are useful."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-45:intro3:r1",
-              "text": "It is an old model."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r2",
-              "text": "It is a old model."
+              "text": "It is useless."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r3",
-              "text": "It is the old model."
+              "text": "It are useful."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Старую модель называют впервые. Выберите фразу.",
-          "uk": "Стару модель називають уперше. Виберіть фразу."
+          "ru": "Схема помогает найти нужный офис. Скажите о ней «Она полезная».",
+          "uk": "Схема допомагає знайти потрібний офіс. Скажіть про неї «Вона корисна»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a7ac09265c3aa12cc06a28727cdfc0cf17df78b81eeefd233f05f217b5bbf4a3"
+  "introFingerprint": "b901075d990835d720b3c619ede8ebb908c32959dbb665f6fa7a088ba9fdaf98"
 }

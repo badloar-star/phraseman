@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-49:intro1:r2": {
+          "ru": "`hotel` — отель. Больница — `hospital`.",
+          "uk": "`hotel` — готель. Лікарня — `hospital`."
+        },
+        "en:lesson-03:session-49:intro1:r3": {
+          "ru": "`airport` — аэропорт. Больница — `hospital`.",
+          "uk": "`airport` — аеропорт. Лікарня — `hospital`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-49:intro2:r2": {
+          "ru": "Больница одна: нужно `is`.",
+          "uk": "Лікарня одна: потрібне `is`."
+        },
+        "en:lesson-03:session-49:intro2:r3": {
+          "ru": "Так говорят о нескольких больницах. Здесь одна: `The hospital is here`.",
+          "uk": "Так говорять про кілька лікарень. Тут одна: `The hospital is here`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-49:intro3:r2": {
+          "ru": "`acceptable` — приемлемо. Здесь вариант не подходит: `unacceptable`.",
+          "uk": "`acceptable` — прийнятно. Тут варіант не підходить: `unacceptable`."
+        },
+        "en:lesson-03:session-49:intro3:r3": {
+          "ru": "Речь об одном варианте: `It is unacceptable`.",
+          "uk": "Ідеться про один варіант: `It is unacceptable`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4acbdd675ae0c1aa9e8a3305cfa3743d177f71bce9b860929720e05e64350405"
+}

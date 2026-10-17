@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-41:intro1:r2": {
+          "ru": "`room` — комната вообще. Кухня — `kitchen`.",
+          "uk": "`room` — кімната загалом. Кухня — `kitchen`."
+        },
+        "en:lesson-03:session-41:intro1:r3": {
+          "ru": "`window` — окно. Кухня — `kitchen`.",
+          "uk": "`window` — вікно. Кухня — `kitchen`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-41:intro2:r2": {
+          "ru": "Кухня одна: нужно `is`.",
+          "uk": "Кухня одна: потрібне `is`."
+        },
+        "en:lesson-03:session-41:intro2:r3": {
+          "ru": "Так говорят о нескольких кухнях. Здесь одна: `The kitchen is here`.",
+          "uk": "Так говорять про кілька кухонь. Тут одна: `The kitchen is here`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-41:intro3:r2": {
+          "ru": "`honest` здесь описывает честного человека. О точной схеме — `accurate`.",
+          "uk": "`honest` тут описує чесну людину. Про точну схему — `accurate`."
+        },
+        "en:lesson-03:session-41:intro3:r3": {
+          "ru": "Речь об одной схеме: `It is accurate`.",
+          "uk": "Ідеться про одну схему: `It is accurate`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "61c1d2598747b765b31cf62d265ca44ef793a00476577c9ce2cdbd8589688284"
+}

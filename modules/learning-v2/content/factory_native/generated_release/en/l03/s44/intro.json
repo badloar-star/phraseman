@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-44",
   "learningOutcomeByLocale": {
-    "ru": "`a/an` для нового человека, `the` для уже названного.",
-    "uk": "`a/an` для нової людини, `the` для людини, яку вже назвали."
+    "ru": "назвать несколько отелей и указать место конкретной группы с the и are",
+    "uk": "назвати кілька готелів і вказати місце конкретної групи з the та are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Новый покупатель",
-        "uk": "Новий покупець"
+        "ru": "Несколько отелей",
+        "uk": "Кілька готелів"
       },
       "bodyByLocale": {
-        "ru": "`customer` — «покупатель». У кассы впервые появился человек: `A customer is here.` Сначала кассир просто замечает, что у кассы появился покупатель. После первой фразы все уже знают, о ком идёт речь, поэтому говорят `The customer is here.`",
-        "uk": "`customer` — «покупець». Біля каси вперше з’явилася людина: `A customer is here.` Спочатку касир лише помічає, що покупець підійшов до каси. Після першої фрази всі вже знають, про кого йдеться, тому кажуть `The customer is here.`"
+        "ru": "`hotels` — «отели, гостиницы», один — `hotel`. Для нескольких добавляем `s`: `These are hotels` — «Это отели», показываем на несколько рядом на плане. Один отель может иметь сто комнат, но это всё ещё один `hotel`: считаем отели, а не комнаты.",
+        "uk": "`hotels` — «готелі», один — `hotel`. Для кількох додаємо `s`: `These are hotels` — «Це готелі», показуємо на кілька поруч на плані. Один готель може мати сто кімнат, але це все ще один `hotel`: рахуємо готелі, а не кімнати."
       },
       "question": {
         "interactionId": "en:lesson-03:session-44:intro1:q",
         "promptByLocale": {
-          "ru": "Сотрудник впервые замечает покупателя. Что он скажет?",
-          "uk": "Працівник уперше помічає покупця. Що він скаже?"
+          "ru": "Назовите несколько отелей одним английским словом.",
+          "uk": "Назвіть кілька готелів одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-44:intro1:r1",
-              "text": "A customer is here."
+              "text": "hotels"
             },
             {
               "responseId": "en:lesson-03:session-44:intro1:r2",
-              "text": "The customer is here."
+              "text": "hotel"
             },
             {
               "responseId": "en:lesson-03:session-44:intro1:r3",
-              "text": "An customer is here."
+              "text": "bedrooms"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-44:intro1:r1",
-              "text": "A customer is here."
+              "text": "hotels"
             },
             {
               "responseId": "en:lesson-03:session-44:intro1:r2",
-              "text": "The customer is here."
+              "text": "hotel"
             },
             {
               "responseId": "en:lesson-03:session-44:intro1:r3",
-              "text": "An customer is here."
+              "text": "bedrooms"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сотрудник впервые замечает покупателя. Что он скажет?",
-          "uk": "Працівник уперше помічає покупця. Що він скаже?"
+          "ru": "Назовите несколько отелей одним английским словом.",
+          "uk": "Назвіть кілька готелів одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Новый продавец",
-        "uk": "Новий продавець"
+        "ru": "Какие именно отели",
+        "uk": "Які саме готелі"
       },
       "bodyByLocale": {
-        "ru": "`seller` — «продавец». Впервые: `A seller is here.` Кассир сначала представляет продавца в разговоре. После этого можно вернуться к тому же человеку с `The seller is here.` Очередь движется, а разговор помнит, кого уже представили.",
-        "uk": "`seller` — «продавець». Уперше: `A seller is here.` Касир спочатку вводить продавця в розмову. Після цього можна повернутися до тієї самої людини: `The seller is here.` Черга рухається, а розмова пам’ятає, кого вже представили."
+        "ru": "`The hotels are here` — «Отели здесь»: вы говорите о конкретных отелях, которые уже выбрали для сравнения. `The` подходит и для нескольких, а после `hotels` нужно `are`. Если показываете на другую группу дальше на плане: `Those hotels are there` — «Те отели там».",
+        "uk": "`The hotels are here` — «Готелі тут»: ви говорите про конкретні готелі, які вже вибрали для порівняння. `The` підходить і для кількох, а після `hotels` потрібне `are`. Якщо показуєте на іншу групу далі на плані: `Those hotels are there` — «Ті готелі там»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-44:intro2:q",
         "promptByLocale": {
-          "ru": "Помощник впервые называет продавца. Выберите фразу.",
-          "uk": "Помічник уперше називає продавця. Виберіть фразу."
+          "ru": "Вы уже выбрали несколько отелей для сравнения. Покажите их место на плане: «Отели здесь».",
+          "uk": "Ви вже вибрали кілька готелів для порівняння. Покажіть їхнє місце на плані: «Готелі тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-44:intro2:r1",
-              "text": "A seller is here."
+              "text": "The hotels are here."
             },
             {
               "responseId": "en:lesson-03:session-44:intro2:r2",
-              "text": "The seller is here."
+              "text": "The hotels is here."
             },
             {
               "responseId": "en:lesson-03:session-44:intro2:r3",
-              "text": "An seller is here."
+              "text": "The hotel is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-44:intro2:r1",
-              "text": "A seller is here."
+              "text": "The hotels are here."
             },
             {
               "responseId": "en:lesson-03:session-44:intro2:r2",
-              "text": "The seller is here."
+              "text": "The hotels is here."
             },
             {
               "responseId": "en:lesson-03:session-44:intro2:r3",
-              "text": "An seller is here."
+              "text": "The hotel is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Помощник впервые называет продавца. Выберите фразу.",
-          "uk": "Помічник уперше називає продавця. Виберіть фразу."
+          "ru": "Вы уже выбрали несколько отелей для сравнения. Покажите их место на плане: «Отели здесь».",
+          "uk": "Ви вже вибрали кілька готелів для порівняння. Покажіть їхнє місце на плані: «Готелі тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Новый помощник",
-        "uk": "Новий помічник"
+        "ru": "Любопытство и правила",
+        "uk": "Цікавість і правила"
       },
       "bodyByLocale": {
-        "ru": "`assistant` — «помощник». Кассир ещё не говорил о помощнике, поэтому впервые ставит `an`: `An assistant is here.` Когда помощник уже появился в разговоре, будет `The assistant is here.` Перед гласным звуком в `assistant` нужен `an`.",
-        "uk": "`assistant` — «помічник». Касир ще не говорив про помічника, тому вперше ставить `an`: `An assistant is here.` Коли помічник уже з’явився в розмові, буде `The assistant is here.` Перед голосним звуком в `assistant` потрібен `an`."
+        "ru": "`curious` — «любопытный»: детям хочется узнать больше о поездке. `The children are curious` — «Детям любопытно». `legal` — «законный, разрешённый законом». Анна проверила, можно ли парковаться в выбранном месте. Об этом действии: `It is legal` — «Это законно». Здесь `legal` не означает, что место удобное или бесплатное.",
+        "uk": "`curious` — «допитливий»: діти хочуть дізнатися більше про поїздку. `The children are curious` — «Дітям цікаво». `legal` — «законний, дозволений законом». Анна перевірила, чи можна паркуватися у вибраному місці. Про цю дію: `It is legal` — «Це законно». Тут `legal` не означає, що місце зручне чи безкоштовне."
       },
       "question": {
         "interactionId": "en:lesson-03:session-44:intro3:q",
         "promptByLocale": {
-          "ru": "Сотрудник впервые говорит о помощнике. Что он скажет?",
-          "uk": "Працівник уперше говорить про помічника. Що він скаже?"
+          "ru": "Дети хотят узнать больше о поездке. Скажите «Детям любопытно».",
+          "uk": "Діти хочуть дізнатися більше про поїздку. Скажіть «Дітям цікаво»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-44:intro3:r1",
-              "text": "An assistant is here."
+              "text": "The children are curious."
             },
             {
               "responseId": "en:lesson-03:session-44:intro3:r2",
-              "text": "The assistant is here."
+              "text": "The children is curious."
             },
             {
               "responseId": "en:lesson-03:session-44:intro3:r3",
-              "text": "A assistant is here."
+              "text": "The children are sleepy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-44:intro3:r1",
-              "text": "An assistant is here."
+              "text": "The children are curious."
             },
             {
               "responseId": "en:lesson-03:session-44:intro3:r2",
-              "text": "The assistant is here."
+              "text": "The children is curious."
             },
             {
               "responseId": "en:lesson-03:session-44:intro3:r3",
-              "text": "A assistant is here."
+              "text": "The children are sleepy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сотрудник впервые говорит о помощнике. Что он скажет?",
-          "uk": "Працівник уперше говорить про помічника. Що він скаже?"
+          "ru": "Дети хотят узнать больше о поездке. Скажите «Детям любопытно».",
+          "uk": "Діти хочуть дізнатися більше про поїздку. Скажіть «Дітям цікаво»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1eded7ba265648b18c3a14ea43c6617b5045aa71786387f0ada0b2e802e575e9"
+  "introFingerprint": "706c14786d54d045d301147bf48222592a8021389957696957697ab1d6059f90"
 }

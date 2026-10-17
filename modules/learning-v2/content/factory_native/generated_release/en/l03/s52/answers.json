@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-52:i01",
-    "correctText": "round",
-    "correctResponseId": "en:lesson-03:session-52:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-52:i03",
-    "correctText": "square",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-52:i05",
-    "correctText": "wooden",
+    "correctText": "The hotels are there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i02",
-    "correctText": "round",
-    "correctResponseId": null
+    "correctText": "stations",
+    "correctResponseId": "en:lesson-03:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i03",
+    "correctText": "stations",
+    "correctResponseId": "en:lesson-03:session-52:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-52:i04",
-    "correctText": "square",
-    "correctResponseId": "en:lesson-03:session-52:i04:r1"
+    "correctText": "en:lesson-03:session-52:i04:p1=stations\nen:lesson-03:session-52:i04:p2=light\nen:lesson-03:session-52:i04:p3=fair\nen:lesson-03:session-52:i04:p4=hotels",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i05",
+    "correctText": "These are stations.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i06",
-    "correctText": "wooden",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-52:i08",
-    "correctText": "round",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-52:i09",
-    "correctText": "square",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-52:i10",
-    "correctText": "wooden",
+    "correctText": "The stations are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i07",
-    "correctText": "en:lesson-03:session-52:i07:p1=round\nen:lesson-03:session-52:i07:p2=square\nen:lesson-03:session-52:i07:p3=wooden\nen:lesson-03:session-52:i07:p4=table\nen:lesson-03:session-52:i07:p5=mirror\nen:lesson-03:session-52:i07:p6=chair\nen:lesson-03:session-52:i07:p7=please",
+    "correctText": "It's light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i08",
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i09",
+    "correctText": "It is fair.",
+    "correctResponseId": "en:lesson-03:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i10",
+    "correctText": "en:lesson-03:session-52:i10:p1=stations\nen:lesson-03:session-52:i10:p2=hotels\nen:lesson-03:session-52:i10:p3=here\nen:lesson-03:session-52:i10:p4=there",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i11",
-    "correctText": "This round table, please.",
+    "correctText": "These hotels are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i12",
-    "correctText": "That",
-    "correctResponseId": "en:lesson-03:session-52:i12:r1"
+    "correctText": "Those stations are there.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i13",
-    "correctText": "То квадратное зеркало, пожалуйста.",
-    "correctResponseId": "en:lesson-03:session-52:i13:r1"
+    "correctText": "It's fair.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i14",
-    "correctText": "round",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-52:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-52:i15",
-    "correctText": "This wooden chair, please.",
-    "correctResponseId": null
+    "correctText": "It is light.",
+    "correctResponseId": "en:lesson-03:session-52:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-52:i16",
-    "correctText": "Это деревянное зеркало здесь.",
-    "correctResponseId": "en:lesson-03:session-52:i16:r1"
+    "correctText": "en:lesson-03:session-52:i16:p1=stations\nen:lesson-03:session-52:i16:p2=light\nen:lesson-03:session-52:i16:p3=fair\nen:lesson-03:session-52:i16:p4=hotels",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i17",
-    "correctText": "That wooden table, please.",
+    "correctText": "The stations are there.",
     "correctResponseId": null
   }
 ]

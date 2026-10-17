@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-50:intro1:r2": {
+          "ru": "`hospital` — больница. Кинотеатр — `cinema`.",
+          "uk": "`hospital` — лікарня. Кінотеатр — `cinema`."
+        },
+        "en:lesson-03:session-50:intro1:r3": {
+          "ru": "`office` — офис. Кинотеатр — `cinema`.",
+          "uk": "`office` — офіс. Кінотеатр — `cinema`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-50:intro2:r2": {
+          "ru": "Кинотеатр один: нужно `is`.",
+          "uk": "Кінотеатр один: потрібне `is`."
+        },
+        "en:lesson-03:session-50:intro2:r3": {
+          "ru": "Так говорят о нескольких кинотеатрах. Здесь один: `The cinema is there`.",
+          "uk": "Так говорять про кілька кінотеатрів. Тут один: `The cinema is there`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-50:intro3:r2": {
+          "ru": "`cheap` — недорогой. Здесь цена высокая: `expensive`.",
+          "uk": "`cheap` — недорогий. Тут ціна висока: `expensive`."
+        },
+        "en:lesson-03:session-50:intro3:r3": {
+          "ru": "Речь об одном билете: `It is expensive`.",
+          "uk": "Ідеться про один квиток: `It is expensive`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "76f2593a83c04d45d774b131f78b9d2ed3be6fd2802b3df57594e9da92342aa4"
+}

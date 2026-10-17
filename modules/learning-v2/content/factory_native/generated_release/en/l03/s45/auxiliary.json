@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-45:intro1:r2": {
+          "ru": "`kitchen` — кухня. Офис — `office`.",
+          "uk": "`kitchen` — кухня. Офіс — `office`."
+        },
+        "en:lesson-03:session-45:intro1:r3": {
+          "ru": "`bathroom` — ванная комната. Офис — `office`.",
+          "uk": "`bathroom` — ванна кімната. Офіс — `office`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-45:intro2:r2": {
+          "ru": "Офис один: нужно `is`.",
+          "uk": "Офіс один: потрібне `is`."
+        },
+        "en:lesson-03:session-45:intro2:r3": {
+          "ru": "Так говорят о нескольких офисах. Здесь один: `The office is here`.",
+          "uk": "Так говорять про кілька офісів. Тут один: `The office is here`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-45:intro3:r2": {
+          "ru": "`useless` — бесполезная. Здесь схема помогает: `useful`.",
+          "uk": "`useless` — некорисна. Тут схема допомагає: `useful`."
+        },
+        "en:lesson-03:session-45:intro3:r3": {
+          "ru": "Речь об одной схеме: `It is useful`.",
+          "uk": "Ідеться про одну схему: `It is useful`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "be1877ebd17ed1d3ee3d86652bc001ac492be66905969d85bc7ca28c8a10834a"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-38:intro1:r2": {
+          "ru": "`tickets` — несколько билетов. Один — `ticket`.",
+          "uk": "`tickets` — кілька квитків. Один — `ticket`."
+        },
+        "en:lesson-03:session-38:intro1:r3": {
+          "ru": "`table` — стол. Билет — `ticket`.",
+          "uk": "`table` — стіл. Квиток — `ticket`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-38:intro2:r2": {
+          "ru": "`Those` — несколько, а билет один: `That ticket`.",
+          "uk": "`Those` — кілька, а квиток один: `That ticket`."
+        },
+        "en:lesson-03:session-38:intro2:r3": {
+          "ru": "Один билет требует `is`: `That ticket is there`.",
+          "uk": "Один квиток потребує `is`: `That ticket is there`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-38:intro3:r2": {
+          "ru": "`lonely` — одинокая. Здесь Анне не хватает сил: `weak`.",
+          "uk": "`lonely` — самотня. Тут Анні бракує сил: `weak`."
+        },
+        "en:lesson-03:session-38:intro3:r3": {
+          "ru": "С `She` нужно `is`.",
+          "uk": "З `She` потрібне `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c62363793024d8e38ab38a99f6253b6d3c985af5ee051f955960950575626e24"
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-51",
   "learningOutcomeByLocale": {
-    "ru": "`an` ставят перед словом, которое начинается с гласного звука: `an orange chair`. Перед согласным звуком остаётся `a`: `a yellow chair`.",
-    "uk": "`an` ставлять перед словом, яке починається з голосного звуку: `an orange chair`. Перед приголосним звуком лишається `a`: `a yellow chair`."
+    "ru": "назвать несколько библиотек и согласовать libraries с are",
+    "uk": "назвати кілька бібліотек та узгодити libraries з are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Оранжевый — это цвет",
-        "uk": "Помаранчевий — це колір"
+        "ru": "Не просто добавить s",
+        "uk": "Не просто додати s"
       },
       "bodyByLocale": {
-        "ru": "`orange` бывает фруктом, а на ценнике — «оранжевый». Апельсин в пакет не нужен: кресло всё равно не поместится. `violet` — «фиолетовый». Orange начинается со звука /ɒ/, поэтому: `An orange chair is here.` Violet начинается с /v/: `A violet chair is here.`",
-        "uk": "`orange` буває фруктом, а на ціннику — «помаранчевий». Апельсин у пакет не потрібен: крісло все одно не поміститься. `violet` — «фіолетовий». Orange починається зі звуку /ɒ/, тому: `An orange chair is here.` Violet починається з /v/: `A violet chair is here.`"
+        "ru": "`libraries` — «библиотеки», одна — `library`. В этом слове при переходе к нескольким меняем конечное `y` на `ies`: `library` → `libraries`. `These are libraries` — «Это библиотеки»: показываем на несколько рядом на карте. Тысяча книг в одной библиотеке не делает её тысячей библиотек.",
+        "uk": "`libraries` — «бібліотеки», одна — `library`. У цьому слові під час переходу до кількох змінюємо кінцеве `y` на `ies`: `library` → `libraries`. `These are libraries` — «Це бібліотеки»: показуємо на кілька поруч на карті. Тисяча книжок в одній бібліотеці не робить її тисячею бібліотек."
       },
       "question": {
         "interactionId": "en:lesson-03:session-51:intro1:q",
         "promptByLocale": {
-          "ru": "Рядом с оранжевым стоит фиолетовое кресло. Выберите фразу о фиолетовом.",
-          "uk": "Поруч із помаранчевим стоїть фіолетове крісло. Виберіть фразу про фіолетове."
+          "ru": "Назовите несколько библиотек одним английским словом.",
+          "uk": "Назвіть кілька бібліотек одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-51:intro1:r1",
-              "text": "A violet chair is here."
+              "text": "libraries"
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r2",
-              "text": "An violet chair is here."
+              "text": "library"
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r3",
-              "text": "A chair violet is here."
+              "text": "librarys"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-51:intro1:r1",
-              "text": "A violet chair is here."
+              "text": "libraries"
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r2",
-              "text": "An violet chair is here."
+              "text": "library"
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r3",
-              "text": "A chair violet is here."
+              "text": "librarys"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Рядом с оранжевым стоит фиолетовое кресло. Выберите фразу о фиолетовом.",
-          "uk": "Поруч із помаранчевим стоїть фіолетове крісло. Виберіть фразу про фіолетове."
+          "ru": "Назовите несколько библиотек одним английским словом.",
+          "uk": "Назвіть кілька бібліотек одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тёмно-синее кресло",
-        "uk": "Темно-синє крісло"
+        "ru": "Нужные библиотеки",
+        "uk": "Потрібні бібліотеки"
       },
       "bodyByLocale": {
-        "ru": "`navy` — «тёмно-синий». На следующем ценнике одно тёмно-синее кресло: `A navy chair is here.` Navy начинается со звука /n/. Это согласный звук, поэтому перед navy стоит обычное `a`; в слове не нужно искать гласную букву после n.",
-        "uk": "`navy` — «темно-синій». На наступному ціннику одне темно-синє крісло: `A navy chair is here.` Navy починається зі звуку /n/. Це приголосний звук, тому перед navy стоїть звичайне `a`; після n не треба шукати голосну букву."
+        "ru": "`The libraries are here` — «Библиотеки здесь»: вы говорите о конкретных библиотеках, которые уже выбрали на карте. `The` подходит и для нескольких. После `libraries` нужно `are`. Для группы дальше: `Those libraries are there` — «Те библиотеки там».",
+        "uk": "`The libraries are here` — «Бібліотеки тут»: ви говорите про конкретні бібліотеки, які вже вибрали на карті. `The` підходить і для кількох. Після `libraries` потрібне `are`. Для групи далі: `Those libraries are there` — «Ті бібліотеки там»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-51:intro2:q",
         "promptByLocale": {
-          "ru": "Вы нашли тёмно-синее кресло. Выберите фразу.",
-          "uk": "Ви знайшли темно-синє крісло. Виберіть фразу."
+          "ru": "Вы с Анной уже выбрали библиотеки для посещения. Покажите их на карте: «Библиотеки здесь».",
+          "uk": "Ви з Анною вже вибрали бібліотеки для відвідування. Покажіть їх на карті: «Бібліотеки тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-51:intro2:r1",
-              "text": "A navy chair is here."
+              "text": "The libraries are here."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r2",
-              "text": "An navy chair is here."
+              "text": "The libraries is here."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r3",
-              "text": "A chair navy is here."
+              "text": "The library is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-51:intro2:r1",
-              "text": "A navy chair is here."
+              "text": "The libraries are here."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r2",
-              "text": "An navy chair is here."
+              "text": "The libraries is here."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r3",
-              "text": "A chair navy is here."
+              "text": "The library is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы нашли тёмно-синее кресло. Выберите фразу.",
-          "uk": "Ви знайшли темно-синє крісло. Виберіть фразу."
+          "ru": "Вы с Анной уже выбрали библиотеки для посещения. Покажите их на карте: «Библиотеки здесь».",
+          "uk": "Ви з Анною вже вибрали бібліотеки для відвідування. Покажіть їх на карті: «Бібліотеки тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Розовое кресло",
-        "uk": "Рожеве крісло"
+        "ru": "Тяжёлая коробка и неудачный способ",
+        "uk": "Важка коробка й невдалий спосіб"
       },
       "bodyByLocale": {
-        "ru": "`pink` — «розовый». На следующем ценнике одно розовое кресло: `A pink chair is here.` Pink начинается со звука /p/, поэтому перед ним стоит `a`. Смотрите не на длину слова и не на первую букву артикля, а на первый звук цвета.",
-        "uk": "`pink` — «рожевий». На наступному ціннику одне рожеве крісло: `A pink chair is here.` Pink починається зі звуку /p/, тому перед ним стоїть `a`. Дивіться не на довжину слова й не на букву артикля, а на перший звук кольору."
+        "ru": "`heavy` — «тяжёлый»: коробку с книгами трудно поднять. О ней: `It is heavy` — «Она тяжёлая». `ineffective` — «неэффективный, недейственный»: старый способ подписывать коробки не даёт нужного результата, вещи всё равно трудно найти. О способе: `It is ineffective` — «Он неэффективный». `bedrooms` — спальни; о знакомых комнатах: `The bedrooms are there` — «Спальни там».",
+        "uk": "`heavy` — «важкий»: коробку з книжками важко підняти. Про неї: `It is heavy` — «Вона важка». `ineffective` — «неефективний, недієвий»: старий спосіб підписувати коробки не дає потрібного результату, речі однаково важко знайти. Про спосіб: `It is ineffective` — «Він неефективний». `bedrooms` — спальні; про знайомі кімнати: `The bedrooms are there` — «Спальні там»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Продавец показывает розовое кресло. Выберите фразу.",
-          "uk": "Продавець показує рожеве крісло. Виберіть фразу."
+          "ru": "Коробку с книгами трудно поднять из-за веса. Скажите «Она тяжёлая».",
+          "uk": "Коробку з книжками важко підняти через вагу. Скажіть «Вона важка»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-51:intro3:r1",
-              "text": "A pink chair is here."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r2",
-              "text": "An pink chair is here."
+              "text": "It is cheap."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r3",
-              "text": "A chair pink is here."
+              "text": "It are heavy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-51:intro3:r1",
-              "text": "A pink chair is here."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r2",
-              "text": "An pink chair is here."
+              "text": "It is cheap."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r3",
-              "text": "A chair pink is here."
+              "text": "It are heavy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец показывает розовое кресло. Выберите фразу.",
-          "uk": "Продавець показує рожеве крісло. Виберіть фразу."
+          "ru": "Коробку с книгами трудно поднять из-за веса. Скажите «Она тяжёлая».",
+          "uk": "Коробку з книжками важко підняти через вагу. Скажіть «Вона важка»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cc8497e02e58d1e5be6fbf3734cad109a94e3a95fcc8cb73d257f4f8082bab20"
+  "introFingerprint": "3ba204fa95bad6a006bf7b0657a8868ac820abb494d66c72acf74e624104b4fc"
 }

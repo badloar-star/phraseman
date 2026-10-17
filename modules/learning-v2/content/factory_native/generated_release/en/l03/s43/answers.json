@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-43:i01",
-    "correctText": "book",
-    "correctResponseId": "en:lesson-03:session-43:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i03",
-    "correctText": "magazine",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i05",
-    "correctText": "newspaper",
+    "correctText": "The photos are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i02",
-    "correctText": "book",
-    "correctResponseId": null
+    "correctText": "bedrooms",
+    "correctResponseId": "en:lesson-03:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i03",
+    "correctText": "bedrooms",
+    "correctResponseId": "en:lesson-03:session-43:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i04",
-    "correctText": "magazine",
-    "correctResponseId": "en:lesson-03:session-43:i04:r1"
+    "correctText": "en:lesson-03:session-43:i04:p1=bedrooms\nen:lesson-03:session-43:i04:p2=patient\nen:lesson-03:session-43:i04:p3=uncertain\nen:lesson-03:session-43:i04:p4=photos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i05",
+    "correctText": "These are bedrooms.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i06",
-    "correctText": "newspaper",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i08",
-    "correctText": "book",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i10",
-    "correctText": "magazine",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i11",
-    "correctText": "newspaper",
+    "correctText": "The bedrooms are there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i07",
-    "correctText": "en:lesson-03:session-43:i07:p1=book\nen:lesson-03:session-43:i07:p2=magazine\nen:lesson-03:session-43:i07:p3=newspaper\nen:lesson-03:session-43:i07:p4=receipt",
+    "correctText": "He's patient.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-43:i08",
+    "correctText": "These",
+    "correctResponseId": "en:lesson-03:session-43:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-43:i09",
-    "correctText": "The",
+    "correctText": "I am uncertain.",
     "correctResponseId": "en:lesson-03:session-43:i09:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-43:i10",
+    "correctText": "en:lesson-03:session-43:i10:p1=bedrooms\nen:lesson-03:session-43:i10:p2=photos\nen:lesson-03:session-43:i10:p3=here\nen:lesson-03:session-43:i10:p4=there",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i11",
+    "correctText": "Those photos are there.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-43:i12",
-    "correctText": "Newspapers are fine.",
+    "correctText": "Those bedrooms are there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i13",
-    "correctText": "The newspapers are here.",
+    "correctText": "I'm uncertain.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i14",
-    "correctText": "The magazines are here.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i15",
-    "correctText": "без артикля",
+    "correctText": "He is patient.",
     "correctResponseId": "en:lesson-03:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i16",
-    "correctText": "Книги подойдут",
-    "correctResponseId": "en:lesson-03:session-43:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i17:s01",
-    "correctText": "Books are fine.",
+    "correctText": "en:lesson-03:session-43:i16:p1=bedrooms\nen:lesson-03:session-43:i16:p2=patient\nen:lesson-03:session-43:i16:p3=uncertain\nen:lesson-03:session-43:i16:p4=photos",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-43:i17:s02",
-    "correctText": "The books are here.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i17:s03",
-    "correctText": "Magazines are fine.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i17:s04",
-    "correctText": "The magazines are here.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i17:s05",
-    "correctText": "Newspapers are fine.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-43:i17:s06",
-    "correctText": "The newspapers are here.",
+    "interactionId": "en:lesson-03:session-43:i17",
+    "correctText": "The bedrooms are here.",
     "correctResponseId": null
   }
 ]

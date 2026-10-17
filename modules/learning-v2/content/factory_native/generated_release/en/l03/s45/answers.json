@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-45:i01",
-    "correctText": "size",
-    "correctResponseId": "en:lesson-03:session-45:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-45:i03",
-    "correctText": "colour",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-45:i05",
-    "correctText": "model",
+    "correctText": "The car is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-45:i02",
-    "correctText": "size",
-    "correctResponseId": null
+    "correctText": "office",
+    "correctResponseId": "en:lesson-03:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i03",
+    "correctText": "office",
+    "correctResponseId": "en:lesson-03:session-45:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-45:i04",
-    "correctText": "colour",
-    "correctResponseId": "en:lesson-03:session-45:i04:r1"
+    "correctText": "en:lesson-03:session-45:i04:p1=office\nen:lesson-03:session-45:i04:p2=useful\nen:lesson-03:session-45:i04:p3=illegal\nen:lesson-03:session-45:i04:p4=car",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i05",
+    "correctText": "This is an office.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-45:i06",
-    "correctText": "model",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-45:i08",
-    "correctText": "size",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-45:i10",
-    "correctText": "colour",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-45:i11",
-    "correctText": "model",
+    "correctText": "The office is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-45:i07",
-    "correctText": "en:lesson-03:session-45:i07:p1=size\nen:lesson-03:session-45:i07:p2=colour\nen:lesson-03:session-45:i07:p3=model\nen:lesson-03:session-45:i07:p4=receipt",
+    "correctText": "It's useful.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-45:i08",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-45:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-45:i09",
-    "correctText": "The",
+    "correctText": "It is illegal.",
     "correctResponseId": "en:lesson-03:session-45:i09:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-45:i10",
+    "correctText": "en:lesson-03:session-45:i10:p1=office\nen:lesson-03:session-45:i10:p2=car\nen:lesson-03:session-45:i10:p3=here\nen:lesson-03:session-45:i10:p4=there",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i11",
+    "correctText": "That car is there.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-45:i12",
-    "correctText": "It is a small size.",
+    "correctText": "That is an office.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-45:i13",
-    "correctText": "It is an old model.",
+    "correctText": "It's illegal.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-45:i14",
-    "correctText": "The model is old.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-45:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-45:i15",
-    "correctText": "a",
+    "correctText": "It is useful.",
     "correctResponseId": "en:lesson-03:session-45:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-45:i16",
-    "correctText": "Этот размер маленький",
-    "correctResponseId": "en:lesson-03:session-45:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-45:i17:s01",
-    "correctText": "It is a dark colour.",
+    "correctText": "en:lesson-03:session-45:i16:p1=office\nen:lesson-03:session-45:i16:p2=useful\nen:lesson-03:session-45:i16:p3=illegal\nen:lesson-03:session-45:i16:p4=car",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-45:i17:s02",
-    "correctText": "The size is small.",
+    "interactionId": "en:lesson-03:session-45:i17",
+    "correctText": "The office is there.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-45:i17:s03",
-    "correctText": "an",
-    "correctResponseId": "en:lesson-03:session-45:i17:s03:r1"
   }
 ]

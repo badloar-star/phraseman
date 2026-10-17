@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-35:i01",
-    "correctText": "photo",
-    "correctResponseId": "en:lesson-03:session-35:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i03",
-    "correctText": "album",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i05",
-    "correctText": "frame",
+    "correctText": "He is ill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i02",
-    "correctText": "photo",
-    "correctResponseId": null
+    "correctText": "photos",
+    "correctResponseId": "en:lesson-03:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i03",
+    "correctText": "photos",
+    "correctResponseId": "en:lesson-03:session-35:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-35:i04",
-    "correctText": "album",
-    "correctResponseId": "en:lesson-03:session-35:i04:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i06",
-    "correctText": "frame",
+    "correctText": "en:lesson-03:session-35:i04:p1=photos\nen:lesson-03:session-35:i04:p2=ill\nen:lesson-03:session-35:i04:p3=formal\nen:lesson-03:session-35:i04:p4=cars",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-35:i08",
-    "correctText": "photo",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i09",
-    "correctText": "album",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i10",
-    "correctText": "frame",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i07",
-    "correctText": "en:lesson-03:session-35:i07:p1=photo\nen:lesson-03:session-35:i07:p2=album\nen:lesson-03:session-35:i07:p3=frame\nen:lesson-03:session-35:i07:p4=screen",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i11",
-    "correctText": "This is a photo.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i12",
-    "correctText": "Это фотографии",
-    "correctResponseId": "en:lesson-03:session-35:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i13",
-    "correctText": "These",
-    "correctResponseId": "en:lesson-03:session-35:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i14",
-    "correctText": "These are frames.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i15",
-    "correctText": "This is an album.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i16",
-    "correctText": "These frames, please.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-35:i17:s01",
+    "interactionId": "en:lesson-03:session-35:i05",
     "correctText": "These are photos.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-35:i17:s02",
-    "correctText": "This is an album.",
+    "interactionId": "en:lesson-03:session-35:i06",
+    "correctText": "Those are photos.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-35:i17:s03",
-    "correctText": "These are frames.",
+    "interactionId": "en:lesson-03:session-35:i07",
+    "correctText": "These photos are formal.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-35:i17:s04",
-    "correctText": "This photo, please.",
+    "interactionId": "en:lesson-03:session-35:i08",
+    "correctText": "These",
+    "correctResponseId": "en:lesson-03:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i09",
+    "correctText": "Those cars are outside.",
+    "correctResponseId": "en:lesson-03:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i10",
+    "correctText": "en:lesson-03:session-35:i10:p1=these\nen:lesson-03:session-35:i10:p2=those\nen:lesson-03:session-35:i10:p3=photos\nen:lesson-03:session-35:i10:p4=cars",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-35:i17:s05",
-    "correctText": "This album, please.",
+    "interactionId": "en:lesson-03:session-35:i11",
+    "correctText": "Those photos are formal.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-35:i17:s06",
-    "correctText": "These frames, please.",
+    "interactionId": "en:lesson-03:session-35:i12",
+    "correctText": "These cars are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i13",
+    "correctText": "He's ill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-35:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i15",
+    "correctText": "These photos are formal.",
+    "correctResponseId": "en:lesson-03:session-35:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i16",
+    "correctText": "en:lesson-03:session-35:i16:p1=photos\nen:lesson-03:session-35:i16:p2=ill\nen:lesson-03:session-35:i16:p3=formal\nen:lesson-03:session-35:i16:p4=cars",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17",
+    "correctText": "Those are photos.",
     "correctResponseId": null
   }
 ]

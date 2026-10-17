@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-34:intro1:r2": {
+          "ru": "Здесь выбираем по расстоянию: кошелёк рядом, поэтому `This`.",
+          "uk": "Тут вибираємо за відстанню: гаманець поруч, тому `This`."
+        },
+        "en:lesson-03:session-34:intro1:r3": {
+          "ru": "Называя предмет в этой фразе, говорим `a wallet`.",
+          "uk": "Називаючи предмет у цій фразі, кажемо `a wallet`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-34:intro2:r2": {
+          "ru": "Для предмета дальше в этом упражнении нужно `That`.",
+          "uk": "Для предмета далі в цій вправі потрібне `That`."
+        },
+        "en:lesson-03:session-34:intro2:r3": {
+          "ru": "`Those` — несколько дальше. Кошелёк один: `That is a wallet`.",
+          "uk": "`Those` — кілька далі. Гаманець один: `That is a wallet`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-34:intro3:r2": {
+          "ru": "`This` — один предмет. Для нескольких рядом нужно `These`.",
+          "uk": "`This` — один предмет. Для кількох поруч потрібне `These`."
+        },
+        "en:lesson-03:session-34:intro3:r3": {
+          "ru": "Кошек несколько: нужно `are`.",
+          "uk": "Котів кілька: потрібно `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2b8c375f983b86b544234e1eb51c0c5889c587f12fe5e79ef643ed1aef0c81c5"
+}

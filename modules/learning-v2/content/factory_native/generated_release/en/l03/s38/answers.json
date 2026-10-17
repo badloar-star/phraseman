@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-38:i01",
-    "correctText": "apple",
-    "correctResponseId": "en:lesson-03:session-38:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i03",
-    "correctText": "banana",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i05",
-    "correctText": "orange",
+    "correctText": "These are windows.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i02",
-    "correctText": "apple",
-    "correctResponseId": null
+    "correctText": "ticket",
+    "correctResponseId": "en:lesson-03:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i03",
+    "correctText": "ticket",
+    "correctResponseId": "en:lesson-03:session-38:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i04",
-    "correctText": "banana",
-    "correctResponseId": "en:lesson-03:session-38:i04:r1"
+    "correctText": "en:lesson-03:session-38:i04:p1=ticket\nen:lesson-03:session-38:i04:p2=weak\nen:lesson-03:session-38:i04:p3=unofficial\nen:lesson-03:session-38:i04:p4=windows",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i05",
+    "correctText": "This is a ticket.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i06",
-    "correctText": "orange",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i08",
-    "correctText": "apple",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i10",
-    "correctText": "banana",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i11",
-    "correctText": "orange",
+    "correctText": "That ticket is there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i07",
-    "correctText": "en:lesson-03:session-38:i07:p1=apple\nen:lesson-03:session-38:i07:p2=banana\nen:lesson-03:session-38:i07:p3=orange\nen:lesson-03:session-38:i07:p4=flower",
+    "correctText": "She's weak.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-38:i08",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-38:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-38:i09",
-    "correctText": "Those",
+    "correctText": "It is unofficial.",
     "correctResponseId": "en:lesson-03:session-38:i09:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-38:i10",
+    "correctText": "en:lesson-03:session-38:i10:p1=ticket\nen:lesson-03:session-38:i10:p2=tickets\nen:lesson-03:session-38:i10:p3=this\nen:lesson-03:session-38:i10:p4=those",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i11",
+    "correctText": "Those are tickets.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-38:i12",
-    "correctText": "These are bananas.",
+    "correctText": "This ticket is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i13",
-    "correctText": "Те апельсины, пожалуйста",
-    "correctResponseId": "en:lesson-03:session-38:i13:r1"
+    "correctText": "It's unofficial.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i14",
-    "correctText": "These oranges, please.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i15",
-    "correctText": "Those are oranges.",
+    "correctText": "She is weak.",
+    "correctResponseId": "en:lesson-03:session-38:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i16",
+    "correctText": "en:lesson-03:session-38:i16:p1=ticket\nen:lesson-03:session-38:i16:p2=weak\nen:lesson-03:session-38:i16:p3=unofficial\nen:lesson-03:session-38:i16:p4=windows",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-38:i16:s01",
-    "correctText": "These are apples.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i16:s02",
-    "correctText": "Those are bananas.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i17:s01",
-    "correctText": "Those are apples.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i17:s02",
-    "correctText": "These are bananas.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-38:i17:s03",
-    "correctText": "These oranges, please.",
+    "interactionId": "en:lesson-03:session-38:i17",
+    "correctText": "That is a ticket.",
     "correctResponseId": null
   }
 ]

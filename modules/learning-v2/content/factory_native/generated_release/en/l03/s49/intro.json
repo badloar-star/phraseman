@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-49",
   "learningOutcomeByLocale": {
-    "ru": "`a` + цвет + предмет: `a blue sofa`, `a brown chair`, `a beige table`.",
-    "uk": "`a` + колір + предмет: `a blue sofa`, `a brown chair`, `a beige table`."
+    "ru": "назвать больницу с a и указать место конкретной больницы с the",
+    "uk": "назвати лікарню з a й указати місце конкретної лікарні з the"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Синий диван",
-        "uk": "Синій диван"
+        "ru": "Одна больница",
+        "uk": "Одна лікарня"
       },
       "bodyByLocale": {
-        "ru": "`blue` — «синий». Продавец показывает вам диван впервые: `A blue sofa is here.` Сначала идёт `a`, потом цвет, затем предмет. Так вы сразу говорите, какой диван нашли; иначе продавец может решить, что вам нужен любой диван, а их тут хватает.",
-        "uk": "`blue` — «синій». Продавець уперше показує вам диван: `A blue sofa is here.` Спочатку йде `a`, потім колір, а далі предмет. Так одразу зрозуміло, який диван ви знайшли; інакше продавець може вирішити, що вам підходить будь-який диван, а їх тут чимало."
+        "ru": "`hospital` — «больница». `This is a hospital` — «Это больница»: вы называете место на плане. Перед `hospital` нужно `a`: начальный `h` здесь произносится, слово начинается с согласного звука. Не ориентируйтесь на букву `o` после него. Большая вывеска не меняет артикль: всё равно `a hospital`.",
+        "uk": "`hospital` — «лікарня». `This is a hospital` — «Це лікарня»: ви називаєте місце на плані. Перед `hospital` потрібне `a`: початкове `h` тут вимовляється, слово починається з приголосного звука. Не орієнтуйтеся на літеру `o` після нього. Велика вивіска не змінює артикль: однаково `a hospital`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-49:intro1:q",
         "promptByLocale": {
-          "ru": "Вы впервые заметили синий диван. Выберите фразу.",
-          "uk": "Ви вперше помітили синій диван. Виберіть фразу."
+          "ru": "Назовите больницу одним английским словом.",
+          "uk": "Назвіть лікарню одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-49:intro1:r1",
-              "text": "A blue sofa is here."
+              "text": "hospital"
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r2",
-              "text": "A sofa blue is here."
+              "text": "hotel"
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r3",
-              "text": "The blue sofa is here."
+              "text": "airport"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-49:intro1:r1",
-              "text": "A blue sofa is here."
+              "text": "hospital"
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r2",
-              "text": "A sofa blue is here."
+              "text": "hotel"
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r3",
-              "text": "The blue sofa is here."
+              "text": "airport"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы впервые заметили синий диван. Выберите фразу.",
-          "uk": "Ви вперше помітили синій диван. Виберіть фразу."
+          "ru": "Назовите больницу одним английским словом.",
+          "uk": "Назвіть лікарню одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Коричневый стул",
-        "uk": "Коричневий стілець"
+        "ru": "Больница вашего района",
+        "uk": "Лікарня вашого району"
       },
       "bodyByLocale": {
-        "ru": "`brown` — «коричневый». У окна стоит стул, которого вы ещё не выбирали: `A brown chair is here.` `A` не приклеивается к chair: оно открывает всю группу `a brown chair`. Цвет ставьте перед chair — тогда понятно, что вы нашли именно этот вариант.",
-        "uk": "`brown` — «коричневий». Біля вікна стоїть стілець, якого ви ще не вибирали: `A brown chair is here.` `A` не приклеюється до chair: воно відкриває всю групу `a brown chair`. Колір ставте перед chair — тоді зрозуміло, який саме варіант ви знайшли."
+        "ru": "`The hospital is here` — «Больница здесь». Речь о конкретной больнице, которую вы ищете вместе на плане района. `the hospital` указывает на понятное вам обоим место. Для одного места нужно `is`. Если просто называете объект дальше на плане: `That is a hospital` — «Это больница».",
+        "uk": "`The hospital is here` — «Лікарня тут». Ідеться про конкретну лікарню, яку ви шукаєте разом на плані району. `the hospital` вказує на зрозуміле вам обом місце. Для одного місця потрібне `is`. Якщо просто називаєте об’єкт далі на плані: `That is a hospital` — «Це лікарня»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-49:intro2:q",
         "promptByLocale": {
-          "ru": "Вы впервые нашли коричневый стул. Выберите фразу.",
-          "uk": "Ви вперше знайшли коричневий стілець. Виберіть фразу."
+          "ru": "Вы нашли на плане больницу, которую искали вместе. Скажите «Больница здесь».",
+          "uk": "Ви знайшли на плані лікарню, яку шукали разом. Скажіть «Лікарня тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-49:intro2:r1",
-              "text": "A brown chair is here."
+              "text": "The hospital is here."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r2",
-              "text": "A chair brown is here."
+              "text": "The hospital are here."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r3",
-              "text": "The brown chair is here."
+              "text": "The hospitals are here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-49:intro2:r1",
-              "text": "A brown chair is here."
+              "text": "The hospital is here."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r2",
-              "text": "A chair brown is here."
+              "text": "The hospital are here."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r3",
-              "text": "The brown chair is here."
+              "text": "The hospitals are here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы впервые нашли коричневый стул. Выберите фразу.",
-          "uk": "Ви вперше знайшли коричневий стілець. Виберіть фразу."
+          "ru": "Вы нашли на плане больницу, которую искали вместе. Скажите «Больница здесь».",
+          "uk": "Ви знайшли на плані лікарню, яку шукали разом. Скажіть «Лікарня тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Бежевый стол",
-        "uk": "Бежевий стіл"
+        "ru": "Цена и неподходящий вариант",
+        "uk": "Ціна й невдалий варіант"
       },
       "bodyByLocale": {
-        "ru": "`beige` — «бежевый». В дальнем зале вы видите стол впервые: `A beige table is here.` Если позже вернётесь к нему, скажете `The beige table is here.` Цвет не меняет выбор артикля: новое — `a`, уже выбранное — `the`.",
-        "uk": "`beige` — «бежевий». У дальній залі ви вперше бачите стіл: `A beige table is here.` Якщо повернетеся до нього пізніше, скажете `The beige table is here.` Колір не змінює вибір артикля: нове — `a`, уже вибране — `the`."
+        "ru": "`cheap` — «дешёвый, недорогой». О вещи с низкой ценой: `It is cheap` — «Она недорогая». В этом примере оцениваем цену, а не качество. `unacceptable` — «неприемлемый»: предложенное время доставки совершенно не подходит. О нём: `It is unacceptable` — «Это неприемлемо». Это сильнее, чем просто «неидеально». А гостю можно показать знакомую кухню: `The kitchen is here` — «Кухня здесь».",
+        "uk": "`cheap` — «дешевий, недорогий». Про річ із низькою ціною: `It is cheap` — «Вона недорога». У цьому прикладі оцінюємо ціну, а не якість. `unacceptable` — «неприйнятний»: запропонований час доставки зовсім не підходить. Про нього: `It is unacceptable` — «Це неприйнятно». Це сильніше, ніж просто «неідеально». А гостеві можна показати знайому кухню: `The kitchen is here` — «Кухня тут»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-49:intro3:q",
         "promptByLocale": {
-          "ru": "Вы впервые заметили бежевый стол. Выберите фразу.",
-          "uk": "Ви вперше помітили бежевий стіл. Виберіть фразу."
+          "ru": "Предложенное время доставки совершенно не подходит. Скажите «Это неприемлемо».",
+          "uk": "Запропонований час доставки зовсім не підходить. Скажіть «Це неприйнятно»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-49:intro3:r1",
-              "text": "A beige table is here."
+              "text": "It is unacceptable."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r2",
-              "text": "A table beige is here."
+              "text": "It is acceptable."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r3",
-              "text": "The beige table is here."
+              "text": "It are unacceptable."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-49:intro3:r1",
-              "text": "A beige table is here."
+              "text": "It is unacceptable."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r2",
-              "text": "A table beige is here."
+              "text": "It is acceptable."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r3",
-              "text": "The beige table is here."
+              "text": "It are unacceptable."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы впервые заметили бежевый стол. Выберите фразу.",
-          "uk": "Ви вперше помітили бежевий стіл. Виберіть фразу."
+          "ru": "Предложенное время доставки совершенно не подходит. Скажите «Это неприемлемо».",
+          "uk": "Запропонований час доставки зовсім не підходить. Скажіть «Це неприйнятно»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d700c5432f77aa98df66e4dffd55a858f2d64ec542a8e90257ee2ac298043594"
+  "introFingerprint": "078ca09a16d48de2890b6fb19b51a2af138264f953a65a56ea84a47354eca610"
 }

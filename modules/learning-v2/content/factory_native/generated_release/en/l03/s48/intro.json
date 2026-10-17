@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-48",
   "learningOutcomeByLocale": {
-    "ru": "повторяем `a/an/the` и множественное число: `an` перед гласным звуком, `the` для уже понятного; несколько позиций — `items`.",
-    "uk": "повторюємо `a/an/the` і множину: `an` перед голосним звуком, `the` для вже зрозумілого; кілька позицій — `items`."
+    "ru": "самостоятельно выбирать a/an/the и is/are со словами шестой главы",
+    "uk": "самостійно вибирати a/an/the та is/are зі словами шостої глави"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна позиция в заказе",
-        "uk": "Одна позиція в замовленні"
+        "ru": "Назвать одно место",
+        "uk": "Назвати одне місце"
       },
       "bodyByLocale": {
-        "ru": "`item` — «позиция заказа»: одна вещь в списке. Вы только открыли коробку и заметили незнакомую позицию: `An item is wrong.` Когда вы уже знаете, о какой позиции речь, говорите `The item is wrong.` В заказе может быть несколько позиций — тогда это `items`; у нескольких вещей своя форма.",
-        "uk": "`item` — «позиція замовлення»: одна річ у списку. Ви щойно відкрили коробку й помітили незнайому позицію: `An item is wrong.` Коли ви вже знаєте, про яку позицію йдеться, кажете `The item is wrong.` У замовленні може бути кілька позицій — тоді це `items`; для кількох речей потрібна інша форма."
+        "ru": "Новых слов нет: повторяем `kitchen` — кухня, `bathroom` — ванная комната, `bedrooms` — спальни, `hotels` — отели, `office` — офис, `airport` — аэропорт, `restaurants` — рестораны. Для одного: `a kitchen`, но `an office` и `an airport`. Выбор `a/an` зависит от первого звука следующего слова. Даже огромному аэропорту хватает одного `an`, если аэропорт один.",
+        "uk": "Нових слів немає: повторюємо `kitchen` — кухня, `bathroom` — ванна кімната, `bedrooms` — спальні, `hotels` — готелі, `office` — офіс, `airport` — аеропорт, `restaurants` — ресторани. Для одного: `a kitchen`, але `an office` та `an airport`. Вибір `a/an` залежить від першого звука наступного слова. Навіть величезному аеропорту вистачає одного `an`, якщо аеропорт один."
       },
       "question": {
         "interactionId": "en:lesson-03:session-48:intro1:q",
         "promptByLocale": {
-          "ru": "Вы впервые заметили неверную позицию в коробке. Выберите фразу.",
-          "uk": "Ви вперше помітили неправильну позицію в коробці. Виберіть фразу."
+          "ru": "Вы называете одно помещение: это офис. Выберите фразу.",
+          "uk": "Ви називаєте одне приміщення: це офіс. Виберіть фразу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-48:intro1:r1",
-              "text": "An item is wrong."
+              "text": "This is an office."
             },
             {
               "responseId": "en:lesson-03:session-48:intro1:r2",
-              "text": "The item is wrong."
+              "text": "This is a office."
             },
             {
               "responseId": "en:lesson-03:session-48:intro1:r3",
-              "text": "A item is wrong."
+              "text": "This are an office."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-48:intro1:r1",
-              "text": "An item is wrong."
+              "text": "This is an office."
             },
             {
               "responseId": "en:lesson-03:session-48:intro1:r2",
-              "text": "The item is wrong."
+              "text": "This is a office."
             },
             {
               "responseId": "en:lesson-03:session-48:intro1:r3",
-              "text": "A item is wrong."
+              "text": "This are an office."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы впервые заметили неверную позицию в коробке. Выберите фразу.",
-          "uk": "Ви вперше помітили неправильну позицію в коробці. Виберіть фразу."
+          "ru": "Вы называете одно помещение: это офис. Выберите фразу.",
+          "uk": "Ви називаєте одне приміщення: це офіс. Виберіть фразу."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Заказ уже дома",
-        "uk": "Замовлення вже вдома"
+        "ru": "Понятное место или группа",
+        "uk": "Зрозуміле місце або група"
       },
       "bodyByLocale": {
-        "ru": "`order` — «заказ». Курьер оставил один заказ у двери: `An order is here.` Когда вы принесли его на кухню и говорите о нём, будет `The order is here.` Слово `order` помогает отличить весь заказ от одной позиции внутри него.",
-        "uk": "`order` — «замовлення». Кур’єр залишив одне замовлення біля дверей: `An order is here.` Коли ви принесли його на кухню й говорите про нього, буде `The order is here.` Слово `order` допомагає відрізнити все замовлення від однієї позиції всередині нього."
+        "ru": "`The bathroom is here` — «Ванная комната здесь»: вы оба понимаете, о какой комнате речь. `The bedrooms are there` — «Спальни там»: конкретных спален несколько. `The` не меняется, а `is/are` зависит от числа. Не обязательно сначала называть место с `a`: оно может быть понятно из ситуации.",
+        "uk": "`The bathroom is here` — «Ванна кімната тут»: ви обоє розумієте, про яку кімнату йдеться. `The bedrooms are there` — «Спальні там»: конкретних спалень кілька. `The` не змінюється, а `is/are` залежить від числа. Не обов’язково спочатку називати місце з `a`: воно може бути зрозумілим із ситуації."
       },
       "question": {
         "interactionId": "en:lesson-03:session-48:intro2:q",
         "promptByLocale": {
-          "ru": "Курьер впервые оставил один заказ. Выберите фразу.",
-          "uk": "Кур’єр уперше залишив одне замовлення. Виберіть фразу."
+          "ru": "Вы уже обсудили несколько спален дома. Скажите «Спальни там».",
+          "uk": "Ви вже обговорили кілька спалень будинку. Скажіть «Спальні там»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-48:intro2:r1",
-              "text": "An order is here."
+              "text": "The bedrooms are there."
             },
             {
               "responseId": "en:lesson-03:session-48:intro2:r2",
-              "text": "The order is here."
+              "text": "The bedrooms is there."
             },
             {
               "responseId": "en:lesson-03:session-48:intro2:r3",
-              "text": "A order is here."
+              "text": "The bedroom is there."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-48:intro2:r1",
-              "text": "An order is here."
+              "text": "The bedrooms are there."
             },
             {
               "responseId": "en:lesson-03:session-48:intro2:r2",
-              "text": "The order is here."
+              "text": "The bedrooms is there."
             },
             {
               "responseId": "en:lesson-03:session-48:intro2:r3",
-              "text": "A order is here."
+              "text": "The bedroom is there."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Курьер впервые оставил один заказ. Выберите фразу.",
-          "uk": "Кур’єр уперше залишив одне замовлення. Виберіть фразу."
+          "ru": "Вы уже обсудили несколько спален дома. Скажите «Спальни там».",
+          "uk": "Ви вже обговорили кілька спалень будинку. Скажіть «Спальні там»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сверяем итоговую сумму",
-        "uk": "Звіряємо підсумкову суму"
+        "ru": "Показать на карте",
+        "uk": "Показати на карті"
       },
       "bodyByLocale": {
-        "ru": "`total` — «итоговая сумма». В чеке она уже есть, поэтому говорим `The total is wrong.` Это не отдельная вещь в коробке, а сумма всего заказа. Если цифра не сходится, коробка тут ни при чём: сначала сверяем total.",
-        "uk": "`total` — «підсумкова сума». У чеку вона вже є, тому кажемо `The total is wrong.` Це не окрема річ у коробці, а сума всього замовлення. Якщо цифра не сходиться, коробка тут ні до чого: спочатку звіряємо total."
+        "ru": "`These are hotels` — «Это отели»: несколько рядом на карте. `Those are restaurants` — «Это рестораны»: несколько дальше. Если речь о ресторанах, которые вы уже выбрали, можно сказать `The restaurants are here` — «Рестораны здесь». В каждой фразе понятно, какая группа нужна собеседнику.",
+        "uk": "`These are hotels` — «Це готелі»: кілька поруч на карті. `Those are restaurants` — «Це ресторани»: кілька далі. Якщо йдеться про ресторани, які ви вже вибрали, можна сказати `The restaurants are here` — «Ресторани тут». У кожному реченні зрозуміло, яка група потрібна співрозмовникові."
       },
       "question": {
         "interactionId": "en:lesson-03:session-48:intro3:q",
         "promptByLocale": {
-          "ru": "Вы сверили чек и увидели неверную итоговую сумму. Выберите фразу.",
-          "uk": "Ви звірили чек і побачили неправильну підсумкову суму. Виберіть фразу."
+          "ru": "Вы показываете на несколько отелей прямо перед вами на карте. Назовите их со словом для нескольких рядом.",
+          "uk": "Ви показуєте на кілька готелів просто перед вами на карті. Назвіть їх зі словом для кількох поруч."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-48:intro3:r1",
-              "text": "The total is wrong."
+              "text": "These are hotels."
             },
             {
               "responseId": "en:lesson-03:session-48:intro3:r2",
-              "text": "The item is wrong."
+              "text": "This is a hotel."
             },
             {
               "responseId": "en:lesson-03:session-48:intro3:r3",
-              "text": "The total are wrong."
+              "text": "Those are hotels."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-48:intro3:r1",
-              "text": "The total is wrong."
+              "text": "These are hotels."
             },
             {
               "responseId": "en:lesson-03:session-48:intro3:r2",
-              "text": "The item is wrong."
+              "text": "This is a hotel."
             },
             {
               "responseId": "en:lesson-03:session-48:intro3:r3",
-              "text": "The total are wrong."
+              "text": "Those are hotels."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы сверили чек и увидели неверную итоговую сумму. Выберите фразу.",
-          "uk": "Ви звірили чек і побачили неправильну підсумкову суму. Виберіть фразу."
+          "ru": "Вы показываете на несколько отелей прямо перед вами на карте. Назовите их со словом для нескольких рядом.",
+          "uk": "Ви показуєте на кілька готелів просто перед вами на карті. Назвіть їх зі словом для кількох поруч."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "85dd35bb64dac617b1f58bc33bdc5eb6f6db598a8182359e3bd2af2ae0927f77"
+  "introFingerprint": "0285911248c1bb4624ea063b83796835f92505ff2d6b360025385c9ec2f3ffc8"
 }

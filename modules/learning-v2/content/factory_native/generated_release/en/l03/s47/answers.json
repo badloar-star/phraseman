@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-47:i01",
-    "correctText": "screw",
-    "correctResponseId": "en:lesson-03:session-47:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i03",
-    "correctText": "nail",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i05",
-    "correctText": "hammer",
+    "correctText": "The bottles are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i02",
-    "correctText": "screw",
-    "correctResponseId": null
+    "correctText": "restaurants",
+    "correctResponseId": "en:lesson-03:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i03",
+    "correctText": "restaurants",
+    "correctResponseId": "en:lesson-03:session-47:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i04",
-    "correctText": "nail",
-    "correctResponseId": "en:lesson-03:session-47:i04:r1"
+    "correctText": "en:lesson-03:session-47:i04:p1=restaurants\nen:lesson-03:session-47:i04:p2=dangerous\nen:lesson-03:session-47:i04:p3=acceptable\nen:lesson-03:session-47:i04:p4=bottles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i05",
+    "correctText": "These are restaurants.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i06",
-    "correctText": "hammer",
+    "correctText": "The restaurants are there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i07",
-    "correctText": "screw",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i09",
-    "correctText": "nail",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i10",
-    "correctText": "hammer",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i11",
-    "correctText": "en:lesson-03:session-47:i11:p1=screw\nen:lesson-03:session-47:i11:p2=nail\nen:lesson-03:session-47:i11:p3=hammer\nen:lesson-03:session-47:i11:p4=box",
+    "correctText": "It's dangerous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i08",
-    "correctText": "The",
+    "correctText": "Those",
     "correctResponseId": "en:lesson-03:session-47:i08:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-47:i09",
+    "correctText": "It is acceptable.",
+    "correctResponseId": "en:lesson-03:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i10",
+    "correctText": "en:lesson-03:session-47:i10:p1=restaurants\nen:lesson-03:session-47:i10:p2=bottles\nen:lesson-03:session-47:i10:p3=here\nen:lesson-03:session-47:i10:p4=there",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i11",
+    "correctText": "Those bottles are there.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-47:i12",
-    "correctText": "Here is a hammer.",
+    "correctText": "These restaurants are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i13",
-    "correctText": "Вот винт",
-    "correctResponseId": "en:lesson-03:session-47:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i14",
-    "correctText": "Here is a nail.",
+    "correctText": "It's acceptable.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-47:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-47:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-47:i15",
-    "correctText": "The",
+    "correctText": "It is dangerous.",
     "correctResponseId": "en:lesson-03:session-47:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i16",
-    "correctText": "Этот молоток здесь",
-    "correctResponseId": "en:lesson-03:session-47:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i17:s01",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-03:session-47:i17:s01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-47:i17:s02",
-    "correctText": "Here is a nail.",
+    "correctText": "en:lesson-03:session-47:i16:p1=restaurants\nen:lesson-03:session-47:i16:p2=dangerous\nen:lesson-03:session-47:i16:p3=acceptable\nen:lesson-03:session-47:i16:p4=bottles",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-47:i17:s03",
-    "correctText": "The",
-    "correctResponseId": "en:lesson-03:session-47:i17:s03:r1"
+    "interactionId": "en:lesson-03:session-47:i17",
+    "correctText": "The restaurants are here.",
+    "correctResponseId": null
   }
 ]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-46:intro1:r2": {
+          "ru": "`office` — офис. Аэропорт — `airport`.",
+          "uk": "`office` — офіс. Аеропорт — `airport`."
+        },
+        "en:lesson-03:session-46:intro1:r3": {
+          "ru": "`hotel` — отель. Аэропорт — `airport`.",
+          "uk": "`hotel` — готель. Аеропорт — `airport`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-46:intro2:r2": {
+          "ru": "Аэропорт один: нужно `is`.",
+          "uk": "Аеропорт один: потрібне `is`."
+        },
+        "en:lesson-03:session-46:intro2:r3": {
+          "ru": "Так говорят о нескольких аэропортах. Здесь один: `The airport is there`.",
+          "uk": "Так говорять про кілька аеропортів. Тут один: `The airport is there`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-46:intro3:r2": {
+          "ru": "`useful` — полезная. Эта карта здесь не помогает: `useless`.",
+          "uk": "`useful` — корисна. Ця карта тут не допомагає: `useless`."
+        },
+        "en:lesson-03:session-46:intro3:r3": {
+          "ru": "Речь об одной карте: `It is useless`.",
+          "uk": "Ідеться про одну карту: `It is useless`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c1c758d01c12eb204fa336336cd7f4b16938f6bab1593e5fa23ef49ffc544a56"
+}

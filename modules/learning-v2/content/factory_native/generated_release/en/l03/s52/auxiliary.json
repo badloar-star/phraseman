@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-52:intro1:r2": {
+          "ru": "`station` — одна станция. Несколько — `stations`.",
+          "uk": "`station` — одна станція. Кілька — `stations`."
+        },
+        "en:lesson-03:session-52:intro1:r3": {
+          "ru": "`hotels` — отели. Станции — `stations`.",
+          "uk": "`hotels` — готелі. Станції — `stations`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-52:intro2:r2": {
+          "ru": "Станций несколько: нужно `are`.",
+          "uk": "Станцій кілька: потрібне `are`."
+        },
+        "en:lesson-03:session-52:intro2:r3": {
+          "ru": "Так говорят об одной станции. Здесь несколько: `stations are`.",
+          "uk": "Так говорять про одну станцію. Тут кілька: `stations are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-52:intro3:r2": {
+          "ru": "`light` здесь описывает вес сумки. О справедливом правиле — `fair`.",
+          "uk": "`light` тут описує вагу сумки. Про справедливе правило — `fair`."
+        },
+        "en:lesson-03:session-52:intro3:r3": {
+          "ru": "Речь об одном правиле: `It is fair`.",
+          "uk": "Ідеться про одне правило: `It is fair`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c1bce73274bc7faecc4614cba461f06d9320f939510018b235a4fa8678734ff6"
+}

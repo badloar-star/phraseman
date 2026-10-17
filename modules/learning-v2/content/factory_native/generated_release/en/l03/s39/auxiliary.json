@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-39:intro1:r2": {
+          "ru": "`bottle` — одна бутылка. Несколько — `bottles`.",
+          "uk": "`bottle` — одна пляшка. Кілька — `bottles`."
+        },
+        "en:lesson-03:session-39:intro1:r3": {
+          "ru": "`boxes` — коробки. Бутылки — `bottles`.",
+          "uk": "`boxes` — коробки. Пляшки — `bottles`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-39:intro2:r2": {
+          "ru": "`That` — один предмет. Бутылок несколько и они дальше: `Those`.",
+          "uk": "`That` — один предмет. Пляшок кілька й вони далі: `Those`."
+        },
+        "en:lesson-03:session-39:intro2:r3": {
+          "ru": "Бутылок несколько: нужно `are`.",
+          "uk": "Пляшок кілька: потрібне `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-39:intro3:r2": {
+          "ru": "`weak` — слабая. Здесь описываем смелость: `brave`.",
+          "uk": "`weak` — слабка. Тут описуємо сміливість: `brave`."
+        },
+        "en:lesson-03:session-39:intro3:r3": {
+          "ru": "С `She` нужно `is`.",
+          "uk": "З `She` потрібне `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1a3b8ff3acfdd00caa4c7c974ebe3944f18786b8e0c13bbaa0de65b986d745da"
+}

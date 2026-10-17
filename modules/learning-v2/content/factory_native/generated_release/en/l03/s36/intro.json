@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-36",
   "learningOutcomeByLocale": {
-    "ru": "различать `that is` и `those are`, единственное и множественное число на слух",
-    "uk": "розрізняти `that is` і `those are`, однину та множину на слух"
+    "ru": "назвать детей рядом и дальше, используя форму children, и описать их состояние",
+    "uk": "назвати дітей поруч і далі, використовуючи форму children, та описати їхній стан"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одно дерево за стеклом",
-        "uk": "Одне дерево за склом"
+        "ru": "Дети без лишнего s",
+        "uk": "Діти без зайвого s"
       },
       "bodyByLocale": {
-        "ru": "`tree` — «дерево». В этой витрине стоит одно дерево в горшке: `That is a tree.` — «Это дерево». На слух начало `that is` сразу сообщает, что предмет один; `a tree` это подтверждает. Для нескольких деревьев прозвучало бы `Those are trees.` Сначала ловите начало фразы — оно считает быстрее глаз.",
-        "uk": "`tree` — «дерево». У цій вітрині стоїть одне дерево в горщику: `That is a tree.` — «Це дерево». На слух початок `that is` одразу повідомляє, що предмет один; `a tree` це підтверджує. Для кількох дерев прозвучало б `Those are trees.` Спочатку ловіть початок фрази — він рахує швидше за очі."
+        "ru": "`child` — «ребёнок», `children` — «дети». Здесь для нескольких не добавляем обычное `s`: запоминаем `children`, не `childs` и не `childrens`. `These are children` — «Это дети», показываем на нескольких рядом. `children` уже означает нескольких: дополнительное `s` не приведёт на встречу ещё одного ребёнка.",
+        "uk": "`child` — «дитина», `children` — «діти». Тут для кількох не додаємо звичайне `s`: запам’ятовуємо `children`, не `childs` і не `childrens`. `These are children` — «Це діти», показуємо на кількох поруч. `children` уже означає кількох: додаткове `s` не приведе на зустріч іще одну дитину."
       },
       "question": {
         "interactionId": "en:lesson-03:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "За стеклом стоит одно небольшое дерево. Выберите точное описание.",
-          "uk": "За склом стоїть одне невелике дерево. Виберіть точний опис."
+          "ru": "Перед вами несколько детей. Назовите их одним английским словом.",
+          "uk": "Перед вами кілька дітей. Назвіть їх одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-36:intro1:r1",
-              "text": "That is a tree."
+              "text": "children"
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r2",
-              "text": "Those are trees."
+              "text": "child"
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r3",
-              "text": "That are a tree."
+              "text": "childrens"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-36:intro1:r1",
-              "text": "That is a tree."
+              "text": "children"
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r2",
-              "text": "Those are trees."
+              "text": "child"
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r3",
-              "text": "That are a tree."
+              "text": "childrens"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За стеклом стоит одно небольшое дерево. Выберите точное описание.",
-          "uk": "За склом стоїть одне невелике дерево. Виберіть точний опис."
+          "ru": "Перед вами несколько детей. Назовите их одним английским словом.",
+          "uk": "Перед вами кілька дітей. Назвіть їх одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Несколько цветов требуют другую пару",
-        "uk": "Для кількох квітів — інша пара"
+        "ru": "Те дети ещё сонные",
+        "uk": "Ті діти ще сонні"
       },
       "bodyByLocale": {
-        "ru": "`flower` — «цветок», `flowers` — «цветы». В витрине несколько цветов: `Those are flowers.` — «Это цветы». Начало `those are` говорит о нескольких, форма `flowers` подтверждает число. Для одного цветка прозвучало бы `That is a flower.` Число слышно дважды — полезная страховка для ушей.",
-        "uk": "`flower` — «квітка», `flowers` — «квіти». У вітрині виставлено кілька квітів: `Those are flowers.` — «Це квіти». Початок `those are` повідомляє про кілька предметів, а форма `flowers` підтверджує число. Для однієї квітки прозвучало б `That is a flower.` Число чути двічі: на початку фрази й у формі іменника."
+        "ru": "`sleepy` — «сонный»: хочется спать, но человек не обязательно уже спит. `Those children are sleepy` — «Те дети сонные», говорим о группе дальше от нас. `Those children` — несколько детей дальше, поэтому после них нужно `are`. Для детей рядом меняем `Those` на `These`.",
+        "uk": "`sleepy` — «сонний»: хочеться спати, але людина не обов’язково вже спить. `Those children are sleepy` — «Ті діти сонні», говоримо про групу далі від нас. `Those children` — кілька дітей далі, тому після них потрібно `are`. Для дітей поруч змінюємо `Those` на `These`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-36:intro2:q",
         "promptByLocale": {
-          "ru": "В дальней части витрины стоит несколько цветов. Какую фразу вы услышите?",
-          "uk": "У дальній частині вітрини стоїть кілька квітів. Яку фразу ви почуєте?"
+          "ru": "Дети в дальнем конце комнаты зевают, им хочется спать. Скажите «Те дети сонные».",
+          "uk": "Діти в дальньому кінці кімнати позіхають, їм хочеться спати. Скажіть «Ті діти сонні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-36:intro2:r1",
-              "text": "Those are flowers."
+              "text": "Those children are sleepy."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r2",
-              "text": "That is a flower."
+              "text": "That children are sleepy."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r3",
-              "text": "Those is flowers."
+              "text": "Those children is sleepy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-36:intro2:r1",
-              "text": "Those are flowers."
+              "text": "Those children are sleepy."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r2",
-              "text": "That is a flower."
+              "text": "That children are sleepy."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r3",
-              "text": "Those is flowers."
+              "text": "Those children is sleepy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В дальней части витрины стоит несколько цветов. Какую фразу вы услышите?",
-          "uk": "У дальній частині вітрини стоїть кілька квітів. Яку фразу ви почуєте?"
+          "ru": "Дети в дальнем конце комнаты зевают, им хочется спать. Скажите «Те дети сонные».",
+          "uk": "Діти в дальньому кінці кімнати позіхають, їм хочеться спати. Скажіть «Ті діти сонні»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Три сигнала в одной записи",
-        "uk": "Три сигнали в одному записі"
+        "ru": "Встреча без церемоний",
+        "uk": "Зустріч без церемоній"
       },
       "bodyByLocale": {
-        "ru": "`bicycle` — «велосипед», `bicycles` — «велосипеды». В витрине стоит один велосипед: `That is a bicycle.` — «Это велосипед». Для нескольких прозвучит `Those are bicycles.` Слушайте всю пару `that is` или `those are`, а не охотьтесь только за последним звуком: начало уже выдаёт число.",
-        "uk": "`bicycle` — «велосипед», `bicycles` — «велосипеди». У вітрині стоїть один велосипед: `That is a bicycle.` — «Це велосипед». Для кількох прозвучить `Those are bicycles.` Слухайте всю пару `that is` або `those are`, а не полюйте лише на останній звук: початок уже підказує число."
+        "ru": "`informal` — «неформальный, непринуждённый». О нашей встрече можно сказать `It is informal` — «Она неформальная»: нет строгого порядка выступлений, участники просто общаются. Это не значит, что встреча тайная или запрещённая. Пока все знакомятся, Олег расставляет стулья: `These chairs are here` — «Эти стулья здесь». `these chairs` — несколько стульев рядом.",
+        "uk": "`informal` — «неформальний, невимушений». Про нашу зустріч можна сказати `It is informal` — «Вона неформальна»: немає суворого порядку виступів, учасники просто спілкуються. Це не означає, що зустріч таємна чи заборонена. Поки всі знайомляться, Олег розставляє стільці: `These chairs are here` — «Ці стільці тут». `these chairs` — кілька стільців поруч."
       },
       "question": {
         "interactionId": "en:lesson-03:session-36:intro3:q",
         "promptByLocale": {
-          "ru": "В записи говорят об одном велосипеде за стеклом. Выберите услышанную фразу.",
-          "uk": "У записі говорять про один велосипед за склом. Виберіть почуту фразу."
+          "ru": "Встреча проходит непринуждённо, без официальных выступлений. Скажите о ней «Она неформальная».",
+          "uk": "Зустріч проходить невимушено, без офіційних виступів. Скажіть про неї «Вона неформальна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-36:intro3:r1",
-              "text": "That is a bicycle."
+              "text": "It is informal."
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r2",
-              "text": "Those are bicycles."
+              "text": "It is formal."
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r3",
-              "text": "Those is a bicycle."
+              "text": "It are informal."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-36:intro3:r1",
-              "text": "That is a bicycle."
+              "text": "It is informal."
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r2",
-              "text": "Those are bicycles."
+              "text": "It is formal."
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r3",
-              "text": "Those is a bicycle."
+              "text": "It are informal."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В записи говорят об одном велосипеде за стеклом. Выберите услышанную фразу.",
-          "uk": "У записі говорять про один велосипед за склом. Виберіть почуту фразу."
+          "ru": "Встреча проходит непринуждённо, без официальных выступлений. Скажите о ней «Она неформальная».",
+          "uk": "Зустріч проходить невимушено, без офіційних виступів. Скажіть про неї «Вона неформальна»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6b511b5a319c120cd1cb29a2bb49cbd649b80701e8e692003f8916ae17f6b3d6"
+  "introFingerprint": "f69463cb9631e9ac4d2b5a72c4ae6b9ce128bafd8cf883b355375d4467afa8a8"
 }

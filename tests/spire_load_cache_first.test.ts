@@ -58,3 +58,26 @@ describe('Пик: экран и хук подключены', () => {
     expect(hook).toMatch(/spireLoadMark\('room:sync', \{ status: load\.status/);
   });
 });
+
+describe('Пик: ворота не пересоздаются тем же конфигом', () => {
+  it('зависимость ворот — содержимое конфига, не объект (замер 17.10: тройной room:sync)', () => {
+    expect(read('app/spire/use_spire_game.ts')).toContain('[unlocked, lang, config ? JSON.stringify(config) : null]');
+  });
+});
+
+describe('💸 Пик: без опроса раз в 5 минут, журнал [SPIRE-COST]', () => {
+  it('досылка — вход, фон, закрытие этажа, уход с экрана; таймера нет', () => {
+    const hook = read('app/spire/use_spire_game.ts');
+    expect(hook).not.toMatch(/setInterval\(\(\) => flush\('interval'\)/);
+    expect(hook).toContain("if (kind === 'floor' || kind === 'summit') flush('floor_closed');");
+    expect(hook).toContain("flush('app_background')");
+    expect(hook).toContain("flush('screen_leave')");
+  });
+  it('каждый запрос и пропуск отчётов и комнаты пишет причину', () => {
+    const report = read('app/spire_report_client.ts');
+    const room = read('app/spire/spire_room_client.ts');
+    for (const why of ["why: 'cloud_off'", "why: 'not_current_owner'", "result: out.status === 'skipped' ? 'skip' : out.status"]) expect(report).toContain(why);
+    expect(room).toContain("call: 'room', result: 'skip', why: 'cache_fresh'");
+    expect(room).toContain("call: 'room', result: 'request'");
+  });
+});

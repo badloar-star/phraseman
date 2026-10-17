@@ -183,6 +183,7 @@ async function runSync(gate: SpireLiveGate, input: SpireSyncRoomInput): Promise<
   const age = cached ? nowMs - cached.fetchedAtMs : -1;
   DebugLogger.info(LOG, `room: вход lang=${input.lang} week=${weekId} force=${String(input.force === true)} кэш=${cached ? `есть (возраст ${age}мс)` : cachedAny ? `старой недели ${cachedAny.weekId}` : 'нет'}`);
   if (cached && age < SPIRE_ROOM_REFRESH_MS && !input.force) {
+    console.log('[SPIRE-COST]', JSON.stringify({ call: 'room', result: 'skip', why: 'cache_fresh', ageMs: age, ttlMs: SPIRE_ROOM_REFRESH_MS })); // guard-ok: 💸 пропуск сети с причиной
     return { status: 'cache', room: cached, reason: 'cache_fresh' };
   }
   if (!spireCloudAvailable()) {
@@ -191,6 +192,8 @@ async function runSync(gate: SpireLiveGate, input: SpireSyncRoomInput): Promise<
   }
   let identity: RoomIdentity | null = cached ? { groupId: cached.groupId, tier: cached.tier, cohortDay: cached.cohortDay } : null;
   try {
+    // зачем (💸 аудит 17.10): комната — ОДИН документ на всех (лидерборд агрегатом), чтение раз в SPIRE_ROOM_REFRESH_MS; join — только без копии недели
+    console.log('[SPIRE-COST]', JSON.stringify({ call: 'room', result: 'request', why: cached ? `cache_stale ageMs=${age}` : 'no_cache_this_week', join: identity === null, force: input.force === true })); // guard-ok: 💸 причина запроса
     if (!identity) identity = await joinRoom(gate, { stableId: input.stableId, lang: input.lang, weekId });
     const data = await readRoomDoc(gate, identity.groupId);
     if (!data) {

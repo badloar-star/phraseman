@@ -174,7 +174,10 @@ export function spireReadWeekLocal(uid: string, lang: SpireLang): Promise<SpireW
 export async function spireFlushNow(
   input: Readonly<{ uid: string; stableId: string; lang: SpireLang; trigger: SpireFlushTrigger }>,
 ): Promise<SpireFlushOutcome | null> {
+  // зачем (💸 аудит расходов 17.10 №13, координатор): по строке [SPIRE-COST] на каждый запрос spireReportSteps и каждый пропуск — с причиной
+  const costStartedAt = Date.now();
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    console.log('[SPIRE-COST]', JSON.stringify({ call: 'spireReportSteps', trigger: input.trigger, result: 'skip', why: 'cloud_off' })); // guard-ok: пропуск с причиной
     DebugLogger.info(LOG, `flushNow: облако выключено (expoGo=${IS_EXPO_GO} cloudSync=${CLOUD_SYNC_ENABLED}) — очередь ждёт`);
     return null;
   }
@@ -182,11 +185,12 @@ export async function spireFlushNow(
   // от имени B. Сверяем с текущим владельцем процесса; очередь A остаётся на диске и уйдёт, когда A войдёт снова.
   const owner = peekStableId();
   if (owner !== input.stableId) {
+    console.log('[SPIRE-COST]', JSON.stringify({ call: 'spireReportSteps', trigger: input.trigger, result: 'skip', why: 'not_current_owner' })); // guard-ok: пропуск с причиной
     DebugLogger.warn(LOG, `flushNow: личность не текущего владельца (trigger=${input.trigger}, владелец=${owner ? 'другой' : 'не известен'}) — очередь не отправляем`);
     return null;
   }
   try {
-    return await spireFlushReports(store, {
+    const out = await spireFlushReports(store, {
       uid: input.uid,
       lang: input.lang,
       trigger: input.trigger,
@@ -195,7 +199,10 @@ export async function spireFlushNow(
       send: (payload) => callSpireReportSteps({ ...payload, stableId: input.stableId, coinRank: peekCoinRank(input.stableId) }),
       logger,
     });
+    console.log('[SPIRE-COST]', JSON.stringify({ call: 'spireReportSteps', trigger: input.trigger, result: out.status === 'skipped' ? 'skip' : out.status, why: out.reason ?? null, sent: out.sent, ms: Date.now() - costStartedAt })); // guard-ok: итог: запрос ушёл (sent/failed) или пропуск (skip) и почему
+    return out;
   } catch (error) {
+    console.log('[SPIRE-COST]', JSON.stringify({ call: 'spireReportSteps', trigger: input.trigger, result: 'error', why: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
     // зачем: отправка не должна ронять экран; очередь цела и уйдёт следующим триггером.
     DebugLogger.warn(LOG, `flushNow: неожиданная ошибка trigger=${input.trigger} (${error instanceof Error ? error.message : String(error)})`);
     return null;

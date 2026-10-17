@@ -90,7 +90,7 @@ export type SpireWeekLocal = Readonly<{
   rejectedTotal: number;
 }>;
 
-export type SpireFlushTrigger = 'screen_leave' | 'app_background' | 'interval' | 'app_start' | 'manual';
+export type SpireFlushTrigger = 'screen_leave' | 'app_background' | 'interval' | 'app_start' | 'manual' | 'floor_closed'; // floor_closed — 💸 аудит 17.10: вместо опроса раз в 5 мин
 
 export function spireWeekLocalKey(uid: string, lang: SpireLang): string {
   return `spire_week_v1:${uid}:${lang}`;

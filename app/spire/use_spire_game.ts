@@ -19,7 +19,6 @@ import { AppState, InteractionManager } from 'react-native';
 import { spireStepBudgetMs, type SpireConfigDoc } from '../../modules/spire/config_contract';
 import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_plan';
 import {
-  SPIRE_REPORT_FLUSH_INTERVAL_MS,
   spireApplyStepReport,
   spireCreateWeekLocal,
   type SpireFlushTrigger,
@@ -86,8 +85,8 @@ type Input = Readonly<{
 
 export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const gate: SpireLiveGate | null = useMemo(
-    () => (unlocked && lang ? spireOpenLiveGate(config, 'home') : null),
-    [unlocked, lang, config],
+    () => (unlocked && lang ? spireOpenLiveGate(config, 'home') : null), // зачем (замер 17.10 [SPIRE-LOAD]): тот же конфиг новым объектом (кэш → сеть) пересоздавал ворота — повторные identity и тройной room:sync
+    [unlocked, lang, config ? JSON.stringify(config) : null], // eslint-disable-line react-hooks/exhaustive-deps -- зачем: ворота меняются только при смене содержимого конфига
   );
   const [ids, setIds] = useState<Readonly<{ uid: string; stableId: string }> | null>(null);
   const [roomLoad, setRoomLoad] = useState<SpireRoomLoad | null>(null);
@@ -179,7 +178,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     return () => { alive = false; };
   }, [gate, ids, lang]);
 
-  // ── Досылка очереди: вход, уход в фон, раз в 5 минут на экране, уход с экрана ──
+  // ── Досылка очереди: вход, уход в фон, закрытие этажа, уход с экрана (💸 аудит 17.10 №13: без опроса раз в 5 мин — [SPIRE-COST]) ──
   const flush = useCallback((trigger: SpireFlushTrigger) => {
     if (!gate || !ids || !lang) return;
     void spireFlushNow({ uid: ids.uid, stableId: ids.stableId, lang, trigger }).then((out) => {
@@ -195,10 +194,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   useEffect(() => {
     if (!gate || !ids) return undefined;
     flush('app_start');
-    const id = setInterval(() => flush('interval'), SPIRE_REPORT_FLUSH_INTERVAL_MS);
     const sub = AppState.addEventListener('change', (next) => { if (next !== 'active') flush('app_background'); });
     return () => {
-      clearInterval(id);
       sub.remove();
       flush('screen_leave');
     };
@@ -353,7 +350,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         setOutcome({ ...view, kind: 'save_failed', local: base });
         return;
       }
-      setWeek(res.local);
+      setWeek(res.local); if (kind === 'floor' || kind === 'summit') flush('floor_closed'); // 💸 закрыт этаж — место в комнате меняется, шлём пачку
       // зачем (D49 + PM-280-A2, «Сегодня»): пройденная НОВАЯ ступень, легшая на
       // диск, засчитывает «Пройти N ступеней Шпиля». Провал и повтор того же отчёта
       // не считаются; ключ — reportId (повтор записи не двигает счётчик дважды).
@@ -368,7 +365,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       setWeek(base);
       setOutcome({ ...view, kind: 'save_failed', local: base });
     });
-  }, [session, ids, lang, config, setWeek]);
+  }, [session, ids, lang, config, setWeek, flush]);
 
   const onStepAbort = useCallback((reason: 'no_energy' | 'cancelled') => {
     DebugLogger.info(LOG, `game: ступень не началась (${reason}) — энергия не тронута`);

@@ -1,0 +1,4 @@
+10-18 00:34:23.526 I/ReactNativeJS(24387): [BACK-BTN] tap {"seq":2,"screen":"legacy_lessons","handler":"header_back_button","page":"lessons","isRetainedTab":true,"initialPage":"lessons","canGoBack":true,"v2CanOpen":true}
+10-18 00:34:23.527 I/ReactNativeJS(24387): [BACK-BTN] decision {"seq":2,"screen":"legacy_lessons","decision":"tab_legacy_list → setPage(v2)","ms":1}
+10-18 00:34:23.529 I/ReactNativeJS(24387): [BACK-BTN] interactions-free {"seq":2,"screen":"legacy_lessons","ms":3}
+10-18 00:34:23.914 I/ReactNativeJS(24387): [BACK-BTN] arrived {"seq":2,"tapScreen":"legacy_lessons","handler":"header_back_button","arrivedAt":"lessons_tab","via":"page_lessons→v2","ms":385}

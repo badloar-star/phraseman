@@ -1,0 +1,2369 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-53:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i01:p1",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i01:p2",
+              "target": "leather",
+              "meaningByLocale": {
+                "ru": "кожаный",
+                "uk": "шкіряний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i01:p3",
+              "target": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый",
+                "uk": "гумовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i01:p4",
+              "target": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый",
+                "uk": "бавовняний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "metal",
+            "leather",
+            "rubber",
+            "cotton"
+          ],
+          "rightColumn": [
+            "металлический",
+            "кожаный",
+            "резиновый",
+            "хлопковый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:metal",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — metal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:metal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — metal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:metal:audio",
+            "transcript": "metal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:metal:r1",
+              "targetText": "metal",
+              "meaningByLocale": {
+                "ru": "металлический. These metal boxes are heavy — «Эти металлические коробки тяжёлые». О ключах, ложках, коробках, замках.",
+                "uk": "металевий. These metal boxes are heavy — «Ці металеві коробки важкі». Про ключі, ложки, коробки, замки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "metal",
+            "definitionByLocale": {
+              "ru": "металлический. These metal boxes are heavy — «Эти металлические коробки тяжёлые». О ключах, ложках, коробках, замках.",
+              "uk": "металевий. These metal boxes are heavy — «Ці металеві коробки важкі». Про ключі, ложки, коробки, замки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец стучит ключом по железной коробке и называет материал, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Продавец стучит ключом по железной коробке и называет материал, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i02:audio",
+            "transcript": "metal"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "metal",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коробки стоят рядом с вами. Скажите продавцу полной фразой: эти металлические коробки новые.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коробки стоят рядом с вами. Скажите продавцу полной фразой: эти металлические коробки новые.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These metal boxes are new.",
+          "localizedMeaning": {
+            "ru": "Коробки стоят рядом с вами. Скажите продавцу полной фразой: эти металлические коробки новые.",
+            "uk": "Коробки стоять поруч із вами. Скажіть продавцю повною фразою: ці металеві коробки нові."
+          },
+          "orderedTokens": [
+            "These",
+            "metal",
+            "boxes",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Коробки стоят рядом с вами. Скажите продавцу полной фразой: эти металлические коробки новые.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `These metal boxes are new.`",
+                "uk": "тут потрібно `are` — `These metal boxes are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:leather",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leather",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:leather:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leather",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:leather:audio",
+            "transcript": "leather"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:leather:r1",
+              "targetText": "leather",
+              "meaningByLocale": {
+                "ru": "кожаный. Those leather gloves are new — «Те кожаные перчатки новые». О сумках, ремнях, перчатках, ботинках.",
+                "uk": "шкіряний. Those leather gloves are new — «Ті шкіряні рукавички нові». Про сумки, паски, рукавички, черевики."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leather",
+            "definitionByLocale": {
+              "ru": "кожаный. Those leather gloves are new — «Те кожаные перчатки новые». О сумках, ремнях, перчатках, ботинках.",
+              "uk": "шкіряний. Those leather gloves are new — «Ті шкіряні рукавички нові». Про сумки, паски, рукавички, черевики."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга трогает ремень из гладкой кожи. Как называется этот материал по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i04:r1",
+            "text": "leather"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i04:r2",
+            "text": "metal"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i04:r3",
+            "text": "soft"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга трогает ремень из гладкой кожи. Как называется этот материал по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга трогает ремень из гладкой кожи. Как называется этот материал по-английски?",
+            "uk": "Подруга торкається паска з гладенької шкіри. Як називається цей матеріал англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-53:i04:r1",
+              "text": "leather"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i04:r2",
+              "text": "metal"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i04:r3",
+              "text": "soft"
+            }
+          ],
+          "testedDimension": "Подруга трогает ремень из гладкой кожи. Как называется этот материал по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга трогает ремень из гладкой кожи. Как называется этот материал по-английски?",
+              "feedbackByLocale": {
+                "ru": "metal — это металл, а ремень сделан из кожи: leather.",
+                "uk": "metal — це метал, а пасок зроблений зі шкіри: leather."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга трогает ремень из гладкой кожи. Как называется этот материал по-английски?",
+              "feedbackByLocale": {
+                "ru": "soft — это мягкий, а материал ремня называется leather.",
+                "uk": "soft — це м’який, а матеріал паска називається leather."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о перчатках",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i05:r1",
+            "text": "Those leather gloves are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i05:r2",
+            "text": "These leather gloves are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i05:r3",
+            "text": "Those leather gloves are new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о перчатках",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i05:audio",
+            "transcript": "Those leather gloves are old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r1",
+              "targetText": "Those leather gloves are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "targetText": "These leather gloves are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r3",
+              "targetText": "Those leather gloves are new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о перчатках",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Those` (далеко), а в этом варианте — `These` (рядом).",
+                "uk": "У записі перше слово — `Those` (далеко), а в цьому варіанті — `These` (поруч)."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о перчатках",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:rubber",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rubber",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:rubber:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rubber",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:rubber:audio",
+            "transcript": "rubber"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:rubber:r1",
+              "targetText": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый. These rubber boots are old — «Эти резиновые сапоги старые». О сапогах, мячах, подошвах, перчатках для уборки.",
+                "uk": "гумовий. These rubber boots are old — «Ці гумові чоботи старі». Про чоботи, м’ячі, підошви, рукавички для прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubber",
+            "definitionByLocale": {
+              "ru": "резиновый. These rubber boots are old — «Эти резиновые сапоги старые». О сапогах, мячах, подошвах, перчатках для уборки.",
+              "uk": "гумовий. These rubber boots are old — «Ці гумові чоботи старі». Про чоботи, м’ячі, підошви, рукавички для прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец сгибает подошву сапога и называет материал, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i06:audio"
+        ],
+        "accessibilityLabel": "Продавец сгибает подошву сапога и называет материал, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i06:audio",
+            "transcript": "rubber"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "rubber",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i07:audio",
+            "transcript": "Those rubber boots are heavy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Those rubber boots are heavy.",
+          "orderedTokens": [
+            "Those",
+            "rubber",
+            "boots",
+            "are",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `Those rubber boots are heavy.`",
+                "uk": "тут потрібно `are` — `Those rubber boots are heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:cotton",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cotton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:cotton:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cotton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:cotton:audio",
+            "transcript": "cotton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:cotton:r1",
+              "targetText": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый, из хлопка. These cotton towels are soft — «Эти хлопковые полотенца мягкие». О полотенцах, футболках, простынях.",
+                "uk": "бавовняний, з бавовни. These cotton towels are soft — «Ці бавовняні рушники м’які». Про рушники, футболки, простирадла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cotton",
+            "definitionByLocale": {
+              "ru": "хлопковый, из хлопка. These cotton towels are soft — «Эти хлопковые полотенца мягкие». О полотенцах, футболках, простынях.",
+              "uk": "бавовняний, з бавовни. These cotton towels are soft — «Ці бавовняні рушники м’які». Про рушники, футболки, простирадла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга трогает мягкую летнюю футболку из хлопка. Как называется этот материал по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i08:r1",
+            "text": "cotton"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i08:r2",
+            "text": "rubber"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i08:r3",
+            "text": "leather"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга трогает мягкую летнюю футболку из хлопка. Как называется этот материал по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга трогает мягкую летнюю футболку из хлопка. Как называется этот материал по-английски?",
+            "uk": "Подруга торкається м’якої літньої футболки з бавовни. Як називається цей матеріал англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-53:i08:r1",
+              "text": "cotton"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i08:r2",
+              "text": "rubber"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i08:r3",
+              "text": "leather"
+            }
+          ],
+          "testedDimension": "Подруга трогает мягкую летнюю футболку из хлопка. Как называется этот материал по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга трогает мягкую летнюю футболку из хлопка. Как называется этот материал по-английски?",
+              "feedbackByLocale": {
+                "ru": "rubber — это резина, а футболка сделана из хлопка: cotton.",
+                "uk": "rubber — це гума, а футболка зроблена з бавовни: cotton."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга трогает мягкую летнюю футболку из хлопка. Как называется этот материал по-английски?",
+              "feedbackByLocale": {
+                "ru": "leather — это кожа, а футболка сделана из хлопка: cotton.",
+                "uk": "leather — це шкіра, а футболка зроблена з бавовни: cotton."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полотенца лежат далеко. Скажите продавцу полной фразой: те хлопковые полотенца чистые.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полотенца лежат далеко. Скажите продавцу полной фразой: те хлопковые полотенца чистые.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those cotton towels are clean.",
+          "localizedMeaning": {
+            "ru": "Полотенца лежат далеко. Скажите продавцу полной фразой: те хлопковые полотенца чистые.",
+            "uk": "Рушники лежать далеко. Скажіть продавцю повною фразою: ті бавовняні рушники чисті."
+          },
+          "orderedTokens": [
+            "Those",
+            "cotton",
+            "towels",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Полотенца лежат далеко. Скажите продавцу полной фразой: те хлопковые полотенца чистые.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `Those cotton towels are clean.`",
+                "uk": "тут потрібно `are` — `Those cotton towels are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i10:p1",
+              "target": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый",
+                "uk": "гумовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i10:p2",
+              "target": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый",
+                "uk": "бавовняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i10:p3",
+              "target": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка",
+                "uk": "рукавичка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i10:p4",
+              "target": "boot",
+              "meaningByLocale": {
+                "ru": "ботинок",
+                "uk": "черевик"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rubber",
+            "cotton",
+            "glove",
+            "boot"
+          ],
+          "rightColumn": [
+            "резиновый",
+            "хлопковый",
+            "перчатка",
+            "ботинок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i11:r1",
+            "text": "Are these metal boxes heavy?"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i11:r2",
+            "text": "Is this metal box heavy?"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i11:r3",
+            "text": "Are these metal boxes new?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i11:audio",
+            "transcript": "Are these metal boxes heavy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:i11:r1",
+              "targetText": "Are these metal boxes heavy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i11:r2",
+              "targetText": "Is this metal box heavy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i11:r3",
+              "targetText": "Are these metal boxes new?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи `Are these` и несколько коробок, а в этом варианте `Is this` и одна коробка.",
+                "uk": "У записі `Are these` і кілька коробок, а в цьому варіанті `Is this` і одна коробка."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `heavy`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Полотенец несколько, и они рядом с вами. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i12:r1",
+            "text": "towels"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r2",
+            "text": "towel"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r3",
+            "text": "a towel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полотенец несколько, и они рядом с вами. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Полотенец несколько, и они рядом с вами. Дополните фразу",
+            "uk": "Рушників кілька, і вони поруч із вами. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "These cotton ___ are soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-53:i12:r1",
+              "text": "towels"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i12:r2",
+              "text": "towel"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i12:r3",
+              "text": "a towel"
+            }
+          ],
+          "testedDimension": "Полотенец несколько, и они рядом с вами. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Полотенец несколько, и они рядом с вами. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Полотенец несколько, поэтому нужно towels с s.",
+                "uk": "Рушників кілька, тому потрібно towels з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Полотенец несколько, и они рядом с вами. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "После these слово a не ставим: These cotton towels.",
+                "uk": "Після these слово a не ставимо: These cotton towels."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i13:audio",
+            "transcript": "These cotton towels are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These cotton towels are clean.",
+          "orderedTokens": [
+            "These",
+            "cotton",
+            "towels",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `These cotton towels are clean.`",
+                "uk": "тут потрібно `are` — `These cotton towels are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, какие сапоги вам нужны. Скажите ей, что эти резиновые",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, какие сапоги вам нужны. Скажите ей, что эти резиновые",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i14:audio",
+            "transcript": "these rubber boots"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "these rubber boots",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полотенца лежат далеко. Спросите продавца, новые ли те хлопковые полотенца.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полотенца лежат далеко. Спросите продавца, новые ли те хлопковые полотенца.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are those cotton towels new?",
+          "localizedMeaning": {
+            "ru": "Полотенца лежат далеко. Спросите продавца, новые ли те хлопковые полотенца.",
+            "uk": "Рушники лежать далеко. Запитайте продавця, чи нові ті бавовняні рушники."
+          },
+          "orderedTokens": [
+            "Are",
+            "those",
+            "cotton",
+            "towels",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Полотенца лежат далеко. Спросите продавца, новые ли те хлопковые полотенца.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are those cotton towels new?`",
+                "uk": "тут потрібно `Are` — `Are those cotton towels new?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i16:p1",
+              "target": "leather",
+              "meaningByLocale": {
+                "ru": "кожаный",
+                "uk": "шкіряний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i16:p2",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i16:p3",
+              "target": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый",
+                "uk": "бавовняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i16:p4",
+              "target": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый",
+                "uk": "гумовий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leather",
+            "metal",
+            "cotton",
+            "rubber"
+          ],
+          "rightColumn": [
+            "кожаный",
+            "металлический",
+            "хлопковый",
+            "резиновый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец спрашивает про перчатки на полке. Ответьте ему коротко: те кожаные перчатки дорогие.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Продавец спрашивает про перчатки на полке. Ответьте ему коротко: те кожаные перчатки дорогие.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i17:audio",
+            "transcript": "Those leather gloves are expensive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Those leather gloves are expensive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-53:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i01:p1",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i01:p2",
+              "target": "leather",
+              "meaningByLocale": {
+                "ru": "кожаный",
+                "uk": "шкіряний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i01:p3",
+              "target": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый",
+                "uk": "гумовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i01:p4",
+              "target": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый",
+                "uk": "бавовняний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "metal",
+            "leather",
+            "rubber",
+            "cotton"
+          ],
+          "rightColumn": [
+            "металевий",
+            "шкіряний",
+            "гумовий",
+            "бавовняний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:metal",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — metal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:metal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — metal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:metal:audio",
+            "transcript": "metal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:metal:r1",
+              "targetText": "metal",
+              "meaningByLocale": {
+                "ru": "металлический. These metal boxes are heavy — «Эти металлические коробки тяжёлые». О ключах, ложках, коробках, замках.",
+                "uk": "металевий. These metal boxes are heavy — «Ці металеві коробки важкі». Про ключі, ложки, коробки, замки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "metal",
+            "definitionByLocale": {
+              "ru": "металлический. These metal boxes are heavy — «Эти металлические коробки тяжёлые». О ключах, ложках, коробках, замках.",
+              "uk": "металевий. These metal boxes are heavy — «Ці металеві коробки важкі». Про ключі, ложки, коробки, замки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець стукає ключем по залізній коробці й називає матеріал, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Продавець стукає ключем по залізній коробці й називає матеріал, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i02:audio",
+            "transcript": "metal"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "metal",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коробки стоять поруч із вами. Скажіть продавцю повною фразою: ці металеві коробки нові.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коробки стоять поруч із вами. Скажіть продавцю повною фразою: ці металеві коробки нові.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These metal boxes are new.",
+          "localizedMeaning": {
+            "ru": "Коробки стоят рядом с вами. Скажите продавцу полной фразой: эти металлические коробки новые.",
+            "uk": "Коробки стоять поруч із вами. Скажіть продавцю повною фразою: ці металеві коробки нові."
+          },
+          "orderedTokens": [
+            "These",
+            "metal",
+            "boxes",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Коробки стоять поруч із вами. Скажіть продавцю повною фразою: ці металеві коробки нові.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `These metal boxes are new.`",
+                "uk": "тут потрібно `are` — `These metal boxes are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:leather",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leather",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:leather:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leather",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:leather:audio",
+            "transcript": "leather"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:leather:r1",
+              "targetText": "leather",
+              "meaningByLocale": {
+                "ru": "кожаный. Those leather gloves are new — «Те кожаные перчатки новые». О сумках, ремнях, перчатках, ботинках.",
+                "uk": "шкіряний. Those leather gloves are new — «Ті шкіряні рукавички нові». Про сумки, паски, рукавички, черевики."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leather",
+            "definitionByLocale": {
+              "ru": "кожаный. Those leather gloves are new — «Те кожаные перчатки новые». О сумках, ремнях, перчатках, ботинках.",
+              "uk": "шкіряний. Those leather gloves are new — «Ті шкіряні рукавички нові». Про сумки, паски, рукавички, черевики."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга торкається паска з гладенької шкіри. Як називається цей матеріал англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i04:r1",
+            "text": "leather"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i04:r2",
+            "text": "metal"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i04:r3",
+            "text": "soft"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга торкається паска з гладенької шкіри. Як називається цей матеріал англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга трогает ремень из гладкой кожи. Как называется этот материал по-английски?",
+            "uk": "Подруга торкається паска з гладенької шкіри. Як називається цей матеріал англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-53:i04:r1",
+              "text": "leather"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i04:r2",
+              "text": "metal"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i04:r3",
+              "text": "soft"
+            }
+          ],
+          "testedDimension": "Подруга торкається паска з гладенької шкіри. Як називається цей матеріал англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга торкається паска з гладенької шкіри. Як називається цей матеріал англійською?",
+              "feedbackByLocale": {
+                "ru": "metal — это металл, а ремень сделан из кожи: leather.",
+                "uk": "metal — це метал, а пасок зроблений зі шкіри: leather."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга торкається паска з гладенької шкіри. Як називається цей матеріал англійською?",
+              "feedbackByLocale": {
+                "ru": "soft — это мягкий, а материал ремня называется leather.",
+                "uk": "soft — це м’який, а матеріал паска називається leather."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про рукавички",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i05:r1",
+            "text": "Those leather gloves are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i05:r2",
+            "text": "These leather gloves are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i05:r3",
+            "text": "Those leather gloves are new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про рукавички",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i05:audio",
+            "transcript": "Those leather gloves are old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r1",
+              "targetText": "Those leather gloves are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "targetText": "These leather gloves are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r3",
+              "targetText": "Those leather gloves are new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про рукавички",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Those` (далеко), а в этом варианте — `These` (рядом).",
+                "uk": "У записі перше слово — `Those` (далеко), а в цьому варіанті — `These` (поруч)."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про рукавички",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:rubber",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rubber",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:rubber:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rubber",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:rubber:audio",
+            "transcript": "rubber"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:rubber:r1",
+              "targetText": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый. These rubber boots are old — «Эти резиновые сапоги старые». О сапогах, мячах, подошвах, перчатках для уборки.",
+                "uk": "гумовий. These rubber boots are old — «Ці гумові чоботи старі». Про чоботи, м’ячі, підошви, рукавички для прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubber",
+            "definitionByLocale": {
+              "ru": "резиновый. These rubber boots are old — «Эти резиновые сапоги старые». О сапогах, мячах, подошвах, перчатках для уборки.",
+              "uk": "гумовий. These rubber boots are old — «Ці гумові чоботи старі». Про чоботи, м’ячі, підошви, рукавички для прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець згинає підошву чобота й називає матеріал, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i06:audio"
+        ],
+        "accessibilityLabel": "Продавець згинає підошву чобота й називає матеріал, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i06:audio",
+            "transcript": "rubber"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "rubber",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i07:audio",
+            "transcript": "Those rubber boots are heavy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Those rubber boots are heavy.",
+          "orderedTokens": [
+            "Those",
+            "rubber",
+            "boots",
+            "are",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `Those rubber boots are heavy.`",
+                "uk": "тут потрібно `are` — `Those rubber boots are heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:word:cotton",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cotton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:word:cotton:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cotton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:word:cotton:audio",
+            "transcript": "cotton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:word:cotton:r1",
+              "targetText": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый, из хлопка. These cotton towels are soft — «Эти хлопковые полотенца мягкие». О полотенцах, футболках, простынях.",
+                "uk": "бавовняний, з бавовни. These cotton towels are soft — «Ці бавовняні рушники м’які». Про рушники, футболки, простирадла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cotton",
+            "definitionByLocale": {
+              "ru": "хлопковый, из хлопка. These cotton towels are soft — «Эти хлопковые полотенца мягкие». О полотенцах, футболках, простынях.",
+              "uk": "бавовняний, з бавовни. These cotton towels are soft — «Ці бавовняні рушники м’які». Про рушники, футболки, простирадла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга торкається м’якої літньої футболки з бавовни. Як називається цей матеріал англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i08:r1",
+            "text": "cotton"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i08:r2",
+            "text": "rubber"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i08:r3",
+            "text": "leather"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга торкається м’якої літньої футболки з бавовни. Як називається цей матеріал англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга трогает мягкую летнюю футболку из хлопка. Как называется этот материал по-английски?",
+            "uk": "Подруга торкається м’якої літньої футболки з бавовни. Як називається цей матеріал англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-53:i08:r1",
+              "text": "cotton"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i08:r2",
+              "text": "rubber"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i08:r3",
+              "text": "leather"
+            }
+          ],
+          "testedDimension": "Подруга торкається м’якої літньої футболки з бавовни. Як називається цей матеріал англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга торкається м’якої літньої футболки з бавовни. Як називається цей матеріал англійською?",
+              "feedbackByLocale": {
+                "ru": "rubber — это резина, а футболка сделана из хлопка: cotton.",
+                "uk": "rubber — це гума, а футболка зроблена з бавовни: cotton."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга торкається м’якої літньої футболки з бавовни. Як називається цей матеріал англійською?",
+              "feedbackByLocale": {
+                "ru": "leather — это кожа, а футболка сделана из хлопка: cotton.",
+                "uk": "leather — це шкіра, а футболка зроблена з бавовни: cotton."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Рушники лежать далеко. Скажіть продавцю повною фразою: ті бавовняні рушники чисті.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рушники лежать далеко. Скажіть продавцю повною фразою: ті бавовняні рушники чисті.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those cotton towels are clean.",
+          "localizedMeaning": {
+            "ru": "Полотенца лежат далеко. Скажите продавцу полной фразой: те хлопковые полотенца чистые.",
+            "uk": "Рушники лежать далеко. Скажіть продавцю повною фразою: ті бавовняні рушники чисті."
+          },
+          "orderedTokens": [
+            "Those",
+            "cotton",
+            "towels",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Рушники лежать далеко. Скажіть продавцю повною фразою: ті бавовняні рушники чисті.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `Those cotton towels are clean.`",
+                "uk": "тут потрібно `are` — `Those cotton towels are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i10:p1",
+              "target": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый",
+                "uk": "гумовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i10:p2",
+              "target": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый",
+                "uk": "бавовняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i10:p3",
+              "target": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка",
+                "uk": "рукавичка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i10:p4",
+              "target": "boot",
+              "meaningByLocale": {
+                "ru": "ботинок",
+                "uk": "черевик"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rubber",
+            "cotton",
+            "glove",
+            "boot"
+          ],
+          "rightColumn": [
+            "гумовий",
+            "бавовняний",
+            "рукавичка",
+            "черевик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i11:r1",
+            "text": "Are these metal boxes heavy?"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i11:r2",
+            "text": "Is this metal box heavy?"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i11:r3",
+            "text": "Are these metal boxes new?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i11:audio",
+            "transcript": "Are these metal boxes heavy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:i11:r1",
+              "targetText": "Are these metal boxes heavy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i11:r2",
+              "targetText": "Is this metal box heavy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i11:r3",
+              "targetText": "Are these metal boxes new?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи `Are these` и несколько коробок, а в этом варианте `Is this` и одна коробка.",
+                "uk": "У записі `Are these` і кілька коробок, а в цьому варіанті `Is this` і одна коробка."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `heavy`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Рушників кілька, і вони поруч із вами. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i12:r1",
+            "text": "towels"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r2",
+            "text": "towel"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r3",
+            "text": "a towel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рушників кілька, і вони поруч із вами. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Полотенец несколько, и они рядом с вами. Дополните фразу",
+            "uk": "Рушників кілька, і вони поруч із вами. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "These cotton ___ are soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-53:i12:r1",
+              "text": "towels"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i12:r2",
+              "text": "towel"
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i12:r3",
+              "text": "a towel"
+            }
+          ],
+          "testedDimension": "Рушників кілька, і вони поруч із вами. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Рушників кілька, і вони поруч із вами. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Полотенец несколько, поэтому нужно towels с s.",
+                "uk": "Рушників кілька, тому потрібно towels з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Рушників кілька, і вони поруч із вами. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "После these слово a не ставим: These cotton towels.",
+                "uk": "Після these слово a не ставимо: These cotton towels."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i13:audio",
+            "transcript": "These cotton towels are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These cotton towels are clean.",
+          "orderedTokens": [
+            "These",
+            "cotton",
+            "towels",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `These cotton towels are clean.`",
+                "uk": "тут потрібно `are` — `These cotton towels are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, які чоботи вам потрібні. Скажіть їй, що ці гумові",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, які чоботи вам потрібні. Скажіть їй, що ці гумові",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i14:audio",
+            "transcript": "these rubber boots"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "these rubber boots",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Рушники лежать далеко. Запитайте продавця, чи нові ті бавовняні рушники.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рушники лежать далеко. Запитайте продавця, чи нові ті бавовняні рушники.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are those cotton towels new?",
+          "localizedMeaning": {
+            "ru": "Полотенца лежат далеко. Спросите продавца, новые ли те хлопковые полотенца.",
+            "uk": "Рушники лежать далеко. Запитайте продавця, чи нові ті бавовняні рушники."
+          },
+          "orderedTokens": [
+            "Are",
+            "those",
+            "cotton",
+            "towels",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Рушники лежать далеко. Запитайте продавця, чи нові ті бавовняні рушники.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are those cotton towels new?`",
+                "uk": "тут потрібно `Are` — `Are those cotton towels new?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i16:p1",
+              "target": "leather",
+              "meaningByLocale": {
+                "ru": "кожаный",
+                "uk": "шкіряний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i16:p2",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i16:p3",
+              "target": "cotton",
+              "meaningByLocale": {
+                "ru": "хлопковый",
+                "uk": "бавовняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i16:p4",
+              "target": "rubber",
+              "meaningByLocale": {
+                "ru": "резиновый",
+                "uk": "гумовий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "leather",
+            "metal",
+            "cotton",
+            "rubber"
+          ],
+          "rightColumn": [
+            "шкіряний",
+            "металевий",
+            "бавовняний",
+            "гумовий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець питає про рукавички на полиці. Відповідайте йому коротко: ті шкіряні рукавички дорогі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Продавець питає про рукавички на полиці. Відповідайте йому коротко: ті шкіряні рукавички дорогі.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i17:audio",
+            "transcript": "Those leather gloves are expensive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Those leather gloves are expensive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-53:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:word:metal",
+      "correctText": "metal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i02",
+      "correctText": "metal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i03",
+      "correctText": "These metal boxes are new.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:word:leather",
+      "correctText": "leather",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i04",
+      "correctText": "leather",
+      "correctResponseId": "en:lesson-03:session-53:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i05",
+      "correctText": "Those leather gloves are old.",
+      "correctResponseId": "en:lesson-03:session-53:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:word:rubber",
+      "correctText": "rubber",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i06",
+      "correctText": "rubber",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i07",
+      "correctText": "Those rubber boots are heavy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:word:cotton",
+      "correctText": "cotton",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i08",
+      "correctText": "cotton",
+      "correctResponseId": "en:lesson-03:session-53:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i09",
+      "correctText": "Those cotton towels are clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i11",
+      "correctText": "Are these metal boxes heavy?",
+      "correctResponseId": "en:lesson-03:session-53:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i12",
+      "correctText": "towels",
+      "correctResponseId": "en:lesson-03:session-53:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i13",
+      "correctText": "These cotton towels are clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i14",
+      "correctText": "these rubber boots",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i15",
+      "correctText": "Are those cotton towels new?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i17",
+      "correctText": "Those leather gloves are expensive.",
+      "correctResponseId": null
+    }
+  ]
+}

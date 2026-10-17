@@ -1,138 +1,152 @@
-# Английский · Урок 3 · Занятие 51 — Библиотеки после переезда
+# Английский · Урок 3 · Занятие 51 — Жёлтая ваза и оливковое пальто
 
-**Ситуация.** После переезда вы с Анной разбираете книги и ищете библиотеки района на карте. Коробка с книгами тяжёлая. Старый способ подписывать коробки не помогает понять, где что лежит; вы замечаете это, когда ищете вещи для спален.
+**Ситуация.** Вы с подругой докупаете для квартиры вазы, шарфы и одежду. Теперь выбираете a или an по первому звуку слова-цвета: a yellow vase, но an olive coat. Слово orange вы знаете как «апельсин», здесь оно ещё и цвет.
 
-**Что вы освоите:** назвать несколько библиотек и согласовать libraries с are
-**Новые слова:** libraries
+**Что вы освоите:** выбрать a или an перед цветом: a yellow vase, an olive coat
+**Новые слова:** yellow, purple, navy, olive
+**Возвращаются:** pink, orange, coat, vase, scarf
 
 ---
 
 ## Интро 1
 
-### Не просто добавить s
+### Ваза для подоконника
 
-`libraries` — «библиотеки», одна — `library`. В этом слове при переходе к нескольким меняем конечное `y` на `ies`: `library` → `libraries`. `These are libraries` — «Это библиотеки»: показываем на несколько рядом на карте. Тысяча книг в одной библиотеке не делает её тысячей библиотек.
+Вы с подругой выбираете вазу для подоконника. На рынке продавец держит в руках вазу цвета спелого лимона и спрашивает, какая вам нужна. yellow — «жёлтый». Слово yellow начинается с согласного звука, поэтому a: It is a yellow vase — «Это жёлтая ваза».
 
-**Назовите несколько библиотек одним английским словом.**
+**Продавец держит вазу перед вами. Скажите ему, что это жёлтая ваза.**
 
-- ✅ **libraries**
-- ❌ library — *`library` — одна библиотека. Несколько — `libraries`.*
-- ❌ librarys — *В этом слове нужно заменить `y` на `ies`: `libraries`.*
+- ✅ **It is a yellow vase.**
+- ❌ It is an yellow vase. — *Слово yellow начинается с согласного звука, поэтому a: a yellow vase.*
+- ❌ It is a vase yellow. — *Цвет идёт перед предметом: a yellow vase.*
 
 ---
 
 ## Интро 2
 
-### Нужные библиотеки
+### Пальто для подруги
 
-`The libraries are here` — «Библиотеки здесь»: вы говорите о конкретных библиотеках, которые уже выбрали на карте. `The` подходит и для нескольких. После `libraries` нужно `are`. Для группы дальше: `Those libraries are there` — «Те библиотеки там».
+Подруга примеряет в магазине пальто тёмно-зелёного цвета с серым оттенком, как у оливок. Вы стоите рядом, а продавец спрашивает, что это за пальто. olive — «оливковый». Слово olive начинается с гласного звука, поэтому an: It is an olive coat — «Это оливковое пальто».
 
-**Вы с Анной уже выбрали библиотеки для посещения. Покажите их на карте: «Библиотеки здесь».**
+**Продавец ждёт ответа. Скажите ему, что это оливковое пальто.**
 
-- ✅ **The libraries are here.**
-- ❌ The libraries is here. — *Библиотек несколько: нужно `are`.*
-- ❌ The library is here. — *Так говорят об одной библиотеке. Здесь несколько: `libraries are`.*
+- ✅ **It is an olive coat.**
+- ❌ It is a olive coat. — *Слово olive начинается с гласного звука, поэтому нужно an: an olive coat.*
+- ❌ It is an coat olive. — *Цвет идёт перед предметом: an olive coat.*
 
 ---
 
 ## Интро 3
 
-### Тяжёлая коробка и неудачный способ
+### Шарф на прилавке
 
-`heavy` — «тяжёлый»: коробку с книгами трудно поднять. О ней: `It is heavy` — «Она тяжёлая». `ineffective` — «неэффективный, недейственный»: старый способ подписывать коробки не даёт нужного результата, вещи всё равно трудно найти. О способе: `It is ineffective` — «Он неэффективный». `bedrooms` — спальни; о знакомых комнатах: `The bedrooms are there` — «Спальни там».
+На рынке продавец достаёт из коробки шарф цвета спелой сливы. Он лежит прямо перед вами на прилавке, и подруга просит назвать его. purple — «фиолетовый». Слово purple начинается с согласного звука, поэтому a: This is a purple scarf — «Это фиолетовый шарф».
 
-**Коробку с книгами трудно поднять из-за веса. Скажите «Она тяжёлая».**
+**Шарф лежит рядом с вами. Скажите подруге, что это фиолетовый шарф.**
 
-- ✅ **It is heavy.**
-- ❌ It is cheap. — *`cheap` — недорогая. Здесь описываем вес: `heavy`.*
-- ❌ It are heavy. — *Речь об одной коробке: `It is heavy`.*
+- ✅ **This is a purple scarf.**
+- ❌ This is an purple scarf. — *Слово purple начинается с согласного звука, поэтому a: a purple scarf.*
+- ❌ That is a purple scarf. — *Шарф лежит рядом, а that говорим о далёком: This is a purple scarf.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»**
-<!-- interaction_id: en:lesson-03:session-51:i01; family: phrase_builder -->
-Плитки: `there` `are` `bedrooms` `The` `is` → **The bedrooms are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bedrooms are there.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-51:i01; family: speed_match -->
+yellow — жёлтый · purple — фиолетовый · navy — тёмно-синий · olive — оливковый
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-51:i02; family: listen_choose -->
-🔊 *libraries* → **libraries** · bedrooms · restaurants
-- bedrooms — *В записи первое слово — `libraries`, а в этом варианте — `bedrooms`.*
-- restaurants — *В записи первое слово — `libraries`, а в этом варианте — `restaurants`.*
+**2 · Карточка слова — yellow**
+<!-- interaction_id: en:lesson-03:session-51:word:yellow; family: word_card -->
+> **yellow** — жёлтый. It is a yellow vase — «Это жёлтая ваза». О цвете лимона и солнца.
 
-**3 · Назовите несколько библиотек одним английским словом**
-<!-- interaction_id: en:lesson-03:session-51:i03; family: context_gap_grammar -->
-___ → **libraries** · library · librarys
-- library — *`library` — одна библиотека. Несколько — `libraries`.*
-- librarys — *Заменяем конечное `y` на `ies`: `libraries`.*
+**3 · Подруга показывает на солнце за окном и называет его цвет, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-03:session-51:i02; family: scripted_repeat_compare -->
+🎙 **yellow**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-03:session-51:i04; family: speed_match -->
-libraries — библиотеки · heavy — тяжёлый · ineffective — неэффективный · bedrooms — спальни
+**4 · Ваза стоит рядом с вами. Скажите подруге полной фразой: это жёлтая ваза.**
+<!-- interaction_id: en:lesson-03:session-51:i03; family: phrase_builder -->
+Плитки: `vase` `yellow` `a` `is` `This` `are` → **This is a yellow vase.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a yellow vase.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-51:i05; family: listen_build_dictation -->
-🔊 *These are libraries.* Плитки: `libraries` `are` `These` `is` → **These are libraries.**
-*(плитка `is` лишняя: здесь нужно `are` — `These are libraries.`)*
+**5 · Карточка слова — purple**
+<!-- interaction_id: en:lesson-03:session-51:word:purple; family: word_card -->
+> **purple** — фиолетовый. This is a purple scarf — «Это фиолетовый шарф». О цвете сливы и сирени.
 
-**6 · Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»**
-<!-- interaction_id: en:lesson-03:session-51:i06; family: phrase_builder -->
-Плитки: `here` `are` `libraries` `The` `is` → **The libraries are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The libraries are here.`)*
+**6 · Подруга показывает на спелую сливу в вазе с фруктами. Как называется цвет сливы по-английски?**
+<!-- interaction_id: en:lesson-03:session-51:i04; family: context_gap_grammar -->
+___ → **purple** · yellow · pink
+- yellow — *yellow — это жёлтый, а слива другого цвета: purple.*
+- pink — *pink — это розовый, а слива темнее и глубже: purple.*
 
-**7 · Коробку с книгами трудно поднять. Скажите «Она тяжёлая» с сокращением**
-<!-- interaction_id: en:lesson-03:session-51:i07; family: scripted_repeat_compare -->
-🎙 **It's heavy.**
+**7 · Послушайте, что продавец говорит о шарфе**
+<!-- interaction_id: en:lesson-03:session-51:i05; family: listen_choose -->
+🔊 *It is a yellow scarf.* → **It is a yellow scarf.** · It is a purple scarf. · It is a yellow vase.
+- It is a purple scarf. — *В записи цвет — `yellow`, а в этом варианте — `purple`.*
+- It is a yellow vase. — *В записи последнее слово — `scarf`, а в этом варианте — `vase`.*
 
-**8 · Вы показываете на несколько библиотек в дальней части карты**
+**8 · Карточка слова — olive**
+<!-- interaction_id: en:lesson-03:session-51:word:olive; family: word_card -->
+> **olive** — оливковый. It is an olive coat — «Это оливковое пальто». О тёмно-зелёном цвете с серым оттенком, как у оливок.
+
+**9 · Продавец показывает зелёную оливку в банке и называет её цвет, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-03:session-51:i06; family: scripted_repeat_compare -->
+🎙 **olive**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-51:i07; family: listen_build_dictation -->
+🔊 *It is an olive vase.* Плитки: `vase` `olive` `an` `is` `It` `a` → **It is an olive vase.**
+*(плитка `a` лишняя: здесь нужно `an` — `It is an olive vase.`)*
+
+**11 · Карточка слова — navy**
+<!-- interaction_id: en:lesson-03:session-51:word:navy; family: word_card -->
+> **navy** — тёмно-синий. That is a navy coat — «Это тёмно-синее пальто». О цвете морской формы и глубокой ночи.
+
+**12 · Подруга показывает на форму моряка. Её цвет — тёмно-синий. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-51:i08; family: context_gap_grammar -->
-___ are libraries. → **Those** · That · This
-- That — *`That` — один объект. Здесь несколько дальше: `Those`.*
-- This — *`This` — один рядом. Здесь несколько дальше: `Those`.*
+___ → **navy** · blue · olive
+- blue — *blue — это синий, голубой, а форма моряка тёмно-синяя: navy.*
+- olive — *olive — это оливковый, а форма моряка другого цвета: navy.*
 
-**9 · Послушайте оценку старого способа подписывать коробки**
-<!-- interaction_id: en:lesson-03:session-51:i09; family: listen_choose -->
-🔊 *It is ineffective.* → **It is ineffective.** · It is effective. · It is expensive.
-- It is effective. — *В записи последнее слово — `ineffective`, а в этом варианте — `effective`.*
-- It is expensive. — *В записи последнее слово — `ineffective`, а в этом варианте — `expensive`.*
+**13 · Пальто висит далеко у двери. Скажите продавцу полной фразой: это тёмно-синее пальто.**
+<!-- interaction_id: en:lesson-03:session-51:i09; family: phrase_builder -->
+Плитки: `coat` `navy` `a` `is` `That` `This` → **That is a navy coat.**
+*(плитка `This` лишняя: здесь нужно `That` — `That is a navy coat.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-51:i10; family: speed_match -->
-libraries — библиотеки · bedrooms — спальни · here — здесь · there — там
+navy — тёмно-синий · olive — оливковый · pink — розовый · yellow — жёлтый
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-51:i11; family: listen_build_dictation -->
-🔊 *These bedrooms are here.* Плитки: `here` `are` `bedrooms` `These` `is` → **These bedrooms are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `These bedrooms are here.`)*
+**15 · Послушайте вопрос подруги**
+<!-- interaction_id: en:lesson-03:session-51:i11; family: listen_choose -->
+🔊 *Is it an olive scarf?* → **Is it an olive scarf?** · Is it a navy scarf? · Is it an olive coat?
+- Is it a navy scarf? — *В записи `an olive`, а в этом варианте `a navy`: перед olive нужно an, перед navy — a.*
+- Is it an olive coat? — *В записи последнее слово — `scarf`, а в этом варианте — `coat`.*
 
-**12 · Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»**
-<!-- interaction_id: en:lesson-03:session-51:i12; family: phrase_builder -->
-Плитки: `there` `are` `libraries` `Those` `is` → **Those libraries are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those libraries are there.`)*
+**16 · Подруга показывает вазу цвета апельсина. Этот цвет по-английски тоже orange, как и сам фрукт. Дополните фразу**
+<!-- interaction_id: en:lesson-03:session-51:i12; family: context_gap_grammar -->
+It is ___ orange vase. → **an** · a · are
+- a — *Слово orange начинается с гласного звука, поэтому нужно an, а не a.*
+- are — *Здесь речь об одной вазе: нужно an, а не are.*
 
-**13 · Старый способ подписывать коробки не помогает найти вещи. Скажите о способе «Он неэффективный» с сокращением**
-<!-- interaction_id: en:lesson-03:session-51:i13; family: scripted_repeat_compare -->
-🎙 **It's ineffective.**
+**17 · Послушайте продавца и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-51:i13; family: listen_build_dictation -->
+🔊 *This is a pink vase.* Плитки: `vase` `pink` `a` `is` `This` `an` → **This is a pink vase.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is a pink vase.`)*
 
-**14 · Вы говорите о нескольких выбранных библиотеках**
-<!-- interaction_id: en:lesson-03:session-51:i14; family: context_gap_grammar -->
-The libraries ___ here. → **are** · is · am
-- is — *Библиотек несколько: `The libraries are here`.*
-- am — *С `The libraries` нужно `are`.*
+**18 · Подруга спрашивает, какой шарф вам нужен. Скажите ей, что фиолетовый**
+<!-- interaction_id: en:lesson-03:session-51:i14; family: scripted_repeat_compare -->
+🎙 **a purple scarf**
 
-**15 · Послушайте описание коробки с книгами**
-<!-- interaction_id: en:lesson-03:session-51:i15; family: listen_choose -->
-🔊 *It is heavy.* → **It is heavy.** · It is cheap. · It is useful.
-- It is cheap. — *В записи последнее слово — `heavy`, а в этом варианте — `cheap`.*
-- It is useful. — *В записи последнее слово — `heavy`, а в этом варианте — `useful`.*
+**19 · Пальто висит далеко. Спросите продавца, оливковое ли оно.**
+<!-- interaction_id: en:lesson-03:session-51:i15; family: phrase_builder -->
+Плитки: `coat` `olive` `an` `that` `Is` `Are` → **Is that an olive coat?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is that an olive coat?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-51:i16; family: speed_match -->
-libraries — библиотеки · heavy — тяжёлый · ineffective — неэффективный · bedrooms — спальни
+olive — оливковый · yellow — жёлтый · navy — тёмно-синий · purple — фиолетовый
 
-**17 · В другом районе вы с другом уже выбрали библиотеки. Друг ищет их на карте, а вы нашли их в дальней части. Скажите «Библиотеки там», говоря о выбранной группе**
+**21 · Продавец спрашивает, какой шарф лежит перед вами. Ответьте ему коротко: оливковый.**
 <!-- interaction_id: en:lesson-03:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The libraries are there.**
-
+🎙 **This is an olive scarf.**

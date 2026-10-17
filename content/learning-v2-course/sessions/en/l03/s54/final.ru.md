@@ -1,138 +1,152 @@
-# Английский · Урок 3 · Занятие 54 — Полосатая сумка в аэропорту
+# Английский · Урок 3 · Занятие 54 — Ткани с рисунком
 
-**Ситуация.** Вы с другом собираетесь в поездку. Полосатую сумку легко узнать. Знакомый аэропорт отмечен на карте; другой вы видите впервые. Друг помогает разобраться с незнакомым номером телефона и советует надёжный сервис.
+**Ситуация.** Вы с подругой выбираете шарфы, рубашки и носки с рисунком. Перед рисунком и предметом ставим что-то одно: this или the. Либо This striped scarf, либо The striped scarf, но не оба слова вместе.
 
-**Что вы освоите:** описать полосатую вещь и различить знакомое, незнакомое и неизвестное
-**Новые слова:** striped
+**Что вы освоите:** называть вещь с рисунком и не ставить this/that и the рядом: This striped scarf
+**Новые слова:** striped, checked, spotted, floral
+**Возвращаются:** scarf, shirt, dress, sock, blanket
 
 ---
 
 ## Интро 1
 
-### Узор из полос
+### Шарф в полоску
 
-`striped` — «полосатый». О сумке с полосами: `It is striped` — «Она полосатая». Можно назвать вещь целиком: `This is a striped bag` — «Это полосатая сумка». `a` относится к одной сумке, а `striped` стоит перед `bag`. Полосы не делают сумку быстрее, зато помогают её узнать.
+Подруга примеряет перед зеркалом шарф с полосами: белая, синяя, белая, синяя. Бирка на нём ещё не оторвана, и продавец ждёт вашего слова. striped — «полосатый». This striped scarf is new — «Этот полосатый шарф новый». This и the вместе не ставим.
 
-**Как одним словом описать узор из полос?**
+**Продавец ждёт ответа. Скажите ему, что этот полосатый шарф новый.**
 
-- ✅ **striped**
-- ❌ full — *`full` — полный. Полосатый — `striped`.*
-- ❌ heavy — *`heavy` — тяжёлый. Узор из полос — `striped`.*
+- ✅ **This striped scarf is new.**
+- ❌ The this striped scarf is new. — *The и this вместе не ставим: This striped scarf.*
+- ❌ This scarf striped is new. — *Слово striped ставим перед scarf: This striped scarf.*
 
 ---
 
 ## Интро 2
 
-### Знакомое и незнакомое место
+### Рубашка на дальнем крючке
 
-`airport` — «аэропорт». `familiar` — «знакомый»: вы уже бывали в этом месте и узнаёте его. `This airport is familiar` — «Этот аэропорт знакомый». `unfamiliar` — «незнакомый»: вы видите другой аэропорт впервые. О нём: `It is unfamiliar` — «Он незнакомый».
+В магазине на дальнем крючке висит рубашка в клетку, как скатерть в кафе. Цена у неё очень низкая, и подруга хочет узнать, не старая ли это вещь. checked — «клетчатый». Рубашка далеко, поэтому that: That checked shirt is old — «Та клетчатая рубашка старая».
 
-**Вы уже бывали в этом аэропорту и узнаёте его. Скажите «Этот аэропорт знакомый».**
+**Подруга ждёт ответа. Скажите ей, что та клетчатая рубашка старая.**
 
-- ✅ **This airport is familiar.**
-- ❌ This airport is unfamiliar. — *Вы узнаёте аэропорт, поэтому `familiar`.*
-- ❌ This airport are familiar. — *Один аэропорт: `is`.*
+- ✅ **That checked shirt is old.**
+- ❌ A that checked shirt is old. — *A и that вместе не ставим: That checked shirt.*
+- ❌ That checked shirt are old. — *Рубашка одна, поэтому нужно is: That checked shirt is old.*
 
 ---
 
 ## Интро 3
 
-### Неизвестный и надёжный
+### Носки на дальней полке
 
-`unknown` — «неизвестный»: номер появился на экране, и вы не знаете, чей он. О номере: `It is unknown` — «Он неизвестный». `unfamiliar` означает, что вы с чем-то не знакомы; `unknown` подчёркивает отсутствие сведений. `reliable` — «надёжный»: сервис не раз выполнял обещанное. О нём: `It is reliable` — «Он надёжный».
+На дальней полке магазина лежат носки в горошек: на светлом фоне тёмные круглые пятна. Подруга мёрзнет и спрашивает, тёплые ли они. Носков несколько, и они далеко. spotted — «в горошек». Those spotted socks are warm — «Те носки в горошек тёплые».
 
-**Сервис всегда выполняет обещанное, вы можете на него положиться. Скажите «Он надёжный».**
+**Подруга ждёт ответа. Скажите ей, что те носки в горошек тёплые.**
 
-- ✅ **It is reliable.**
-- ❌ It is unknown. — *Здесь оцениваем надёжность: `reliable`.*
-- ❌ It are reliable. — *Об одном сервисе: `It is reliable`.*
+- ✅ **Those spotted socks are warm.**
+- ❌ The those spotted socks are warm. — *The и those вместе не ставим: Those spotted socks.*
+- ❌ Those spotted sock are warm. — *Носков несколько, поэтому нужно socks с s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы узнаёте аэропорт, в котором уже бывали. Скажите «Этот аэропорт знакомый»**
-<!-- interaction_id: en:lesson-03:session-54:i01; family: phrase_builder -->
-Плитки: `familiar` `is` `airport` `This` `are` → **This airport is familiar.**
-*(плитка `are` лишняя: здесь нужно `is` — `This airport is familiar.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-54:i01; family: speed_match -->
+striped — полосатый · checked — клетчатый · spotted — в горошек, пятнистый · floral — цветочный (с цветами)
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-54:i02; family: listen_choose -->
-🔊 *striped* → **striped** · full · heavy
-- full — *В записи первое слово — `striped`, а в этом варианте — `full`.*
-- heavy — *В записи первое слово — `striped`, а в этом варианте — `heavy`.*
+**2 · Карточка слова — striped**
+<!-- interaction_id: en:lesson-03:session-54:word:striped; family: word_card -->
+> **striped** — полосатый. This striped scarf is new — «Этот полосатый шарф новый». О шарфе, футболке, ткани, обоях.
 
-**3 · Назовите одним словом описание «полосатый»**
-<!-- interaction_id: en:lesson-03:session-54:i03; family: context_gap_grammar -->
-___ → **striped** · full · familiar
-- full — *`full` — полный; полосатый — `striped`.*
-- familiar — *`familiar` — знакомый; полосатый — `striped`.*
+**3 · Подруга показывает на тельняшку моряка и называет рисунок на ней, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-03:session-54:i02; family: scripted_repeat_compare -->
+🎙 **striped**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-03:session-54:i04; family: speed_match -->
-striped — полосатый · familiar — знакомый · unfamiliar — незнакомый · airport — аэропорт
+**4 · Плед лежит рядом с вами. Скажите продавцу полной фразой: этот полосатый плед мягкий.**
+<!-- interaction_id: en:lesson-03:session-54:i03; family: phrase_builder -->
+Плитки: `blanket` `striped` `is` `This` `soft` `are` → **This striped blanket is soft.**
+*(плитка `are` лишняя: здесь нужно `is` — `This striped blanket is soft.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-54:i05; family: listen_build_dictation -->
-🔊 *It is striped.* Плитки: `striped` `is` `It` `are` → **It is striped.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is striped.`)*
+**5 · Карточка слова — checked**
+<!-- interaction_id: en:lesson-03:session-54:word:checked; family: word_card -->
+> **checked** — клетчатый. That checked shirt is old — «Та клетчатая рубашка старая». О рубашке, пледе, скатерти.
 
-**6 · Покажите на сумку рядом: «Это полосатая сумка»**
-<!-- interaction_id: en:lesson-03:session-54:i06; family: phrase_builder -->
-Плитки: `bag` `striped` `a` `is` `This` `are` → **This is a striped bag.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a striped bag.`)*
+**6 · Подруга показывает на ткань из квадратов, как шахматная доска. Как называется такой рисунок по-английски?**
+<!-- interaction_id: en:lesson-03:session-54:i04; family: context_gap_grammar -->
+___ → **checked** · striped · plain
+- striped — *striped — это полосатый, а у шахматной доски квадраты: checked.*
+- plain — *plain — это без рисунка, а здесь квадраты: checked.*
 
-**7 · Друг показывает другой аэропорт, который вы видите впервые. Скажите «Он незнакомый» с сокращением**
-<!-- interaction_id: en:lesson-03:session-54:i07; family: scripted_repeat_compare -->
-🎙 **It's unfamiliar.**
+**7 · Послушайте, что продавец говорит о рубашке**
+<!-- interaction_id: en:lesson-03:session-54:i05; family: listen_choose -->
+🔊 *That striped shirt is new.* → **That striped shirt is new.** · That checked shirt is new. · That striped shirt is old.
+- That checked shirt is new. — *В записи рисунок — `striped`, а в этом варианте — `checked`.*
+- That striped shirt is old. — *В записи последнее слово — `new`, а в этом варианте — `old`.*
 
-**8 · Вы называете одну полосатую сумку**
+**8 · Карточка слова — spotted**
+<!-- interaction_id: en:lesson-03:session-54:word:spotted; family: word_card -->
+> **spotted** — в горошек, пятнистый. Those spotted socks are warm — «Те носки в горошек тёплые». О носках, платье, ткани.
+
+**9 · Подруга показывает на ткань в крупный горошек и называет рисунок, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-03:session-54:i06; family: scripted_repeat_compare -->
+🎙 **spotted**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-54:i07; family: listen_build_dictation -->
+🔊 *Those spotted socks are old.* Плитки: `socks` `spotted` `are` `Those` `old` `is` → **Those spotted socks are old.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those spotted socks are old.`)*
+
+**11 · Карточка слова — floral**
+<!-- interaction_id: en:lesson-03:session-54:word:floral; family: word_card -->
+> **floral** — цветочный, с рисунком из цветов. This floral dress is cheap — «Это цветочное платье недорогое». О платье, ткани, чашке, занавеске.
+
+**12 · Подруга показывает на ткань, на которой нарисованы цветы. Как называется такой рисунок по-английски?**
 <!-- interaction_id: en:lesson-03:session-54:i08; family: context_gap_grammar -->
-This is ___ striped bag. → **a** · an · are
-- an — *После артикля согласный звук: `a striped bag`.*
-- are — *`is` уже есть. Перед описанием одной сумки нужно `a`.*
+___ → **floral** · spotted · plain
+- spotted — *spotted — это в горошек, а на этой ткани цветы: floral.*
+- plain — *plain — это без рисунка, а здесь цветы: floral.*
 
-**9 · Послушайте описание номера, о котором нет сведений**
-<!-- interaction_id: en:lesson-03:session-54:i09; family: listen_choose -->
-🔊 *It is unknown.* → **It is unknown.** · It is reliable. · It is familiar.
-- It is reliable. — *В записи последнее слово — `unknown`, а в этом варианте — `reliable`.*
-- It is familiar. — *В записи последнее слово — `unknown`, а в этом варианте — `familiar`.*
+**13 · Платье лежит рядом с вами. Скажите продавцу полной фразой: это цветочное платье недорогое.**
+<!-- interaction_id: en:lesson-03:session-54:i09; family: phrase_builder -->
+Плитки: `dress` `floral` `is` `This` `cheap` `are` → **This floral dress is cheap.**
+*(плитка `are` лишняя: здесь нужно `is` — `This floral dress is cheap.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-54:i10; family: speed_match -->
-unknown — неизвестный · reliable — надёжный · airport — аэропорт · familiar — знакомый
+spotted — в горошек, пятнистый · floral — цветочный (с цветами) · scarf — шарф · dress — платье
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-54:i11; family: listen_build_dictation -->
-🔊 *That bag is striped.* Плитки: `striped` `is` `bag` `That` `are` → **That bag is striped.**
-*(плитка `are` лишняя: здесь нужно `is` — `That bag is striped.`)*
+**15 · Послушайте вопрос подруги**
+<!-- interaction_id: en:lesson-03:session-54:i11; family: listen_choose -->
+🔊 *Is that striped scarf old?* → **Is that striped scarf old?** · Is that checked scarf old? · Is this striped scarf old?
+- Is that checked scarf old? — *В записи рисунок — `striped`, а в этом варианте — `checked`.*
+- Is this striped scarf old? — *В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).*
 
-**12 · Аэропорт для поездки уже выбран. Спросите «Где аэропорт?»**
-<!-- interaction_id: en:lesson-03:session-54:i12; family: phrase_builder -->
-Плитки: `airport` `the` `is` `Where` `are` → **Where is the airport?**
-*(плитка `are` лишняя: здесь нужно `is` — `Where is the airport?`)*
+**16 · Платье лежит рядом с вами. Дополните фразу, не ставя слова рядом**
+<!-- interaction_id: en:lesson-03:session-54:i12; family: context_gap_grammar -->
+___ spotted dress is new. → **This** · A this · The this
+- A this — *Слова a и this вместе не ставим: This spotted dress.*
+- The this — *Слова the и this вместе не ставим: This spotted dress.*
 
-**13 · Сервис не раз выполнял обещанное. Скажите о нём «Он надёжный» с сокращением**
-<!-- interaction_id: en:lesson-03:session-54:i13; family: scripted_repeat_compare -->
-🎙 **It's reliable.**
+**17 · Послушайте продавца и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-54:i13; family: listen_build_dictation -->
+🔊 *The checked shirt is new.* Плитки: `shirt` `checked` `is` `The` `new` `are` → **The checked shirt is new.**
+*(плитка `are` лишняя: здесь нужно `is` — `The checked shirt is new.`)*
 
-**14 · Вы описываете одну сумку дальше от себя**
-<!-- interaction_id: en:lesson-03:session-54:i14; family: context_gap_grammar -->
-That bag ___ striped. → **is** · are · am
-- are — *Одна сумка: `That bag is striped`.*
-- am — *С `That bag` нужно `is`.*
+**18 · Подруга спрашивает, какой шарф вам нужен. Скажите ей, что тот полосатый**
+<!-- interaction_id: en:lesson-03:session-54:i14; family: scripted_repeat_compare -->
+🎙 **that striped scarf**
 
-**15 · Послушайте описание места, которое человек видит впервые**
-<!-- interaction_id: en:lesson-03:session-54:i15; family: listen_choose -->
-🔊 *It is unfamiliar.* → **It is unfamiliar.** · It is familiar. · It is striped.
-- It is familiar. — *В записи последнее слово — `unfamiliar`, а в этом варианте — `familiar`.*
-- It is striped. — *В записи последнее слово — `unfamiliar`, а в этом варианте — `striped`.*
+**19 · Вы ищете рубашку, о которой уже говорили с продавцом. Спросите его, здесь ли клетчатая рубашка.**
+<!-- interaction_id: en:lesson-03:session-54:i15; family: phrase_builder -->
+Плитки: `shirt` `checked` `the` `here` `Is` `Are` → **Is the checked shirt here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is the checked shirt here?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-54:i16; family: speed_match -->
-striped — полосатый · unfamiliar — незнакомый · unknown — неизвестный · reliable — надёжный
+floral — цветочный (с цветами) · spotted — в горошек, пятнистый · checked — клетчатый · striped — полосатый
 
-**17 · В другой поездке друг ищет сумку с полосами. Вы показываете на сумку рядом с собой. Скажите «Эта сумка полосатая»**
+**21 · Продавец спрашивает про носки на полке. Ответьте ему коротко: эти носки в горошек новые.**
 <!-- interaction_id: en:lesson-03:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This bag is striped.**
-
+🎙 **These spotted socks are new.**

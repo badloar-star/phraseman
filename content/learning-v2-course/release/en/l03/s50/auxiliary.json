@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-50:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-50:intro1:r2": {
-          "ru": "`hospital` — больница. Кинотеатр — `cinema`.",
-          "uk": "`hospital` — лікарня. Кінотеатр — `cinema`."
+          "ru": "Стульев несколько, и a перед ними не ставим: black chairs.",
+          "uk": "Стільців кілька, і a перед ними не ставимо: black chairs."
         },
         "en:lesson-03:session-50:intro1:r3": {
-          "ru": "`office` — офис. Кинотеатр — `cinema`.",
-          "uk": "`office` — офіс. Кінотеатр — `cinema`."
+          "ru": "Стульев несколько, поэтому нужно chairs с s.",
+          "uk": "Стільців кілька, тому потрібно chairs з s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-50:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-50:intro2:r2": {
-          "ru": "Кинотеатр один: нужно `is`.",
-          "uk": "Кінотеатр один: потрібне `is`."
+          "ru": "Полотенец несколько, поэтому не is, а are: Those are white towels.",
+          "uk": "Рушників кілька, тому не is, а are: Those are white towels."
         },
         "en:lesson-03:session-50:intro2:r3": {
-          "ru": "Так говорят о нескольких кинотеатрах. Здесь один: `The cinema is there`.",
-          "uk": "Так говорять про кілька кінотеатрів. Тут один: `The cinema is there`."
+          "ru": "Полотенца лежат далеко, а these говорим о близком: Those are white towels.",
+          "uk": "Рушники лежать далеко, а these кажемо про близьке: Those are white towels."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-50:intro3:r2": {
-          "ru": "`cheap` — недорогой. Здесь цена высокая: `expensive`.",
-          "uk": "`cheap` — недорогий. Тут ціна висока: `expensive`."
+          "ru": "С these нужно Are: Are these grey pillows?",
+          "uk": "З these потрібно Are: Are these grey pillows?"
         },
         "en:lesson-03:session-50:intro3:r3": {
-          "ru": "Речь об одном билете: `It is expensive`.",
-          "uk": "Ідеться про один квиток: `It is expensive`."
+          "ru": "Подушек несколько, поэтому нужно pillows с s.",
+          "uk": "Подушок кілька, тому потрібно pillows з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "76f2593a83c04d45d774b131f78b9d2ed3be6fd2802b3df57594e9da92342aa4"
+  "auxiliaryFingerprint": "404310493581da490eb84a05a83e3a0e37d841f4ea18c2052426ac9999a9b6d9"
 }

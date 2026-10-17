@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-41:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы впервые показываете подруге коробку на полу. Скажите: «Здесь коробка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые показываете подруге коробку на полу. Скажите: «Здесь коробка».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "A box is here.",
+          "localizedMeaning": {
+            "ru": "Вы впервые показываете подруге коробку на полу. Скажите: «Здесь коробка».",
+            "uk": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка»."
+          },
+          "orderedTokens": [
+            "A",
+            "box",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы впервые показываете подруге коробку на полу. Скажите: «Здесь коробка».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `A` — `A box is here.`",
+                "uk": "тут потрібно `A` — `A box is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i02:r1",
+            "text": "A bag is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r2",
+            "text": "The bag is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r3",
+            "text": "A bag is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i02:audio",
+            "transcript": "A bag is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i02:r1",
+              "targetText": "A bag is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i02:r2",
+              "targetText": "The bag is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i02:r3",
+              "targetText": "A bag is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A` (предмет назван впервые), а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A` (предмет названо вперше), а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+                "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+            "uk": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ bag is here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-41:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Сумку вы уже показали, поэтому нужно The, а не A.",
+                "uk": "Сумку ви вже показали, тому потрібно The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Сумку вы уже показали, поэтому нужно The, а перед bag an не бывает.",
+                "uk": "Сумку ви вже показали, тому потрібно The, а перед bag an не буває."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i04:p1",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i04:p2",
+              "target": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир",
+                "uk": "касир"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i04:p3",
+              "target": "mistake",
+              "meaningByLocale": {
+                "ru": "ошибка",
+                "uk": "помилка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i04:p4",
+              "target": "counter",
+              "meaningByLocale": {
+                "ru": "прилавок",
+                "uk": "прилавок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "receipt",
+            "cashier",
+            "mistake",
+            "counter"
+          ],
+          "rightColumn": [
+            "чек",
+            "кассир",
+            "ошибка",
+            "прилавок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i05:audio",
+            "transcript": "The bag is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bag is here.",
+          "orderedTokens": [
+            "The",
+            "bag",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The bag is here.`",
+                "uk": "тут потрібно `The` — `The bag is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы впервые называете лампу. Скажите подруге: «Это лампа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые называете лампу. Скажите подруге: «Это лампа».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a lamp.",
+          "localizedMeaning": {
+            "ru": "Вы впервые называете лампу. Скажите подруге: «Это лампа».",
+            "uk": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [
+            "the"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы впервые называете лампу. Скажите подруге: «Это лампа».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a lamp.`",
+                "uk": "тут потрібно `a` — `This is a lamp.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:receipt",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — receipt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:receipt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — receipt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:receipt:audio",
+            "transcript": "receipt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:receipt:r1",
+              "targetText": "receipt",
+              "meaningByLocale": {
+                "ru": "чек. This is a receipt — «Это чек». О бумажке со списком покупок и суммой, которую выдают после оплаты.",
+                "uk": "чек. This is a receipt — «Це чек». Про папірець зі списком покупок і сумою, який видають після оплати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "receipt",
+            "definitionByLocale": {
+              "ru": "чек. This is a receipt — «Это чек». О бумажке со списком покупок и суммой, которую выдают после оплаты.",
+              "uk": "чек. This is a receipt — «Це чек». Про папірець зі списком покупок і сумою, який видають після оплати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кассир протягивает вам бумажку и называет её, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Кассир протягивает вам бумажку и называет её, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i07:audio",
+            "transcript": "receipt"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "receipt",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:cashier",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cashier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:cashier:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cashier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:cashier:audio",
+            "transcript": "cashier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:cashier:r1",
+              "targetText": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир. A cashier is here — «Здесь кассир». О человеке, который принимает деньги и пробивает товары.",
+                "uk": "касир. A cashier is here — «Тут касир». Про людину, яка приймає гроші й пробиває товари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cashier",
+            "definitionByLocale": {
+              "ru": "кассир. A cashier is here — «Здесь кассир». О человеке, который принимает деньги и пробивает товары.",
+              "uk": "касир. A cashier is here — «Тут касир». Про людину, яка приймає гроші й пробиває товари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i08:r1",
+            "text": "cashier"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i08:r2",
+            "text": "coin"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i08:r3",
+            "text": "ticket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+            "uk": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-41:i08:r1",
+              "text": "cashier"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i08:r2",
+              "text": "coin"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i08:r3",
+              "text": "ticket"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+              "feedbackByLocale": {
+                "ru": "coin — это монета, а человека у кассы зовут cashier.",
+                "uk": "coin — це монета, а людину біля каси звати cashier."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+              "feedbackByLocale": {
+                "ru": "ticket — это билет, а человека у кассы зовут cashier.",
+                "uk": "ticket — це квиток, а людину біля каси звати cashier."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит кассир",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i09:r1",
+            "text": "A receipt is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r2",
+            "text": "The receipt is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r3",
+            "text": "A receipt is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит кассир",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i09:audio",
+            "transcript": "A receipt is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i09:r1",
+              "targetText": "A receipt is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i09:r2",
+              "targetText": "The receipt is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i09:r3",
+              "targetText": "A receipt is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит кассир",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A` (чек назван впервые), а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A` (чек названо вперше), а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит кассир",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+                "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i10:p1",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i10:p2",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i10:p3",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i10:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "receipt",
+            "bag",
+            "box",
+            "lamp"
+          ],
+          "rightColumn": [
+            "чек",
+            "сумка",
+            "коробка",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i11:audio",
+            "transcript": "A cashier is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "A cashier is here.",
+          "orderedTokens": [
+            "A",
+            "cashier",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `A` — `A cashier is here.`",
+                "uk": "тут потрібно `A` — `A cashier is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы уже показали подруге кассира и теперь говорите о нём же. Скажите: «Кассир здесь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уже показали подруге кассира и теперь говорите о нём же. Скажите: «Кассир здесь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cashier is here.",
+          "localizedMeaning": {
+            "ru": "Вы уже показали подруге кассира и теперь говорите о нём же. Скажите: «Кассир здесь».",
+            "uk": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут»."
+          },
+          "orderedTokens": [
+            "The",
+            "cashier",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы уже показали подруге кассира и теперь говорите о нём же. Скажите: «Кассир здесь».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The cashier is here.`",
+                "uk": "тут потрібно `The` — `The cashier is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:mistake",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mistake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:mistake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mistake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:mistake:audio",
+            "transcript": "mistake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:mistake:r1",
+              "targetText": "mistake",
+              "meaningByLocale": {
+                "ru": "ошибка. The mistake is here — «Ошибка здесь». О том, что записано или сделано неверно.",
+                "uk": "помилка. The mistake is here — «Помилка тут». Про те, що записано або зроблено неправильно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mistake",
+            "definitionByLocale": {
+              "ru": "ошибка. The mistake is here — «Ошибка здесь». О том, что записано или сделано неверно.",
+              "uk": "помилка. The mistake is here — «Помилка тут». Про те, що записано або зроблено неправильно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на неверную цену и называет её, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на неверную цену и называет её, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i13:audio",
+            "transcript": "mistake"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "mistake",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:counter",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — counter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:counter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — counter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:counter:audio",
+            "transcript": "counter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:counter:r1",
+              "targetText": "counter",
+              "meaningByLocale": {
+                "ru": "прилавок. A counter is here — «Здесь прилавок». О длинной стойке, на которую кладут покупки.",
+                "uk": "прилавок. A counter is here — «Тут прилавок». Про довгу стійку, на яку кладуть покупки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "counter",
+            "definitionByLocale": {
+              "ru": "прилавок. A counter is here — «Здесь прилавок». О длинной стойке, на которую кладут покупки.",
+              "uk": "прилавок. A counter is here — «Тут прилавок». Про довгу стійку, на яку кладуть покупки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i14:r1",
+            "text": "counter"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:r2",
+            "text": "floor"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:r3",
+            "text": "wall"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+            "uk": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-41:i14:r1",
+              "text": "counter"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i14:r2",
+              "text": "floor"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i14:r3",
+              "text": "wall"
+            }
+          ],
+          "testedDimension": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а стойка для покупок называется counter.",
+                "uk": "floor — це підлога, а стійка для покупок називається counter."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а стойка для покупок называется counter.",
+                "uk": "wall — це стіна, а стійка для покупок називається counter."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит подруга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i15:r1",
+            "text": "The mistake is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r2",
+            "text": "A mistake is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r3",
+            "text": "The mistake is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i15:audio",
+            "transcript": "The mistake is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i15:r1",
+              "targetText": "The mistake is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i15:r2",
+              "targetText": "A mistake is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i15:r3",
+              "targetText": "The mistake is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The` (об ошибке уже шла речь), а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The` (про помилку вже йшлося), а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+                "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i16:p1",
+              "target": "counter",
+              "meaningByLocale": {
+                "ru": "прилавок",
+                "uk": "прилавок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i16:p2",
+              "target": "mistake",
+              "meaningByLocale": {
+                "ru": "ошибка",
+                "uk": "помилка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i16:p3",
+              "target": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир",
+                "uk": "касир"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i16:p4",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            }
+          ],
+          "leftColumn": [
+            "counter",
+            "mistake",
+            "cashier",
+            "receipt"
+          ],
+          "rightColumn": [
+            "прилавок",
+            "ошибка",
+            "кассир",
+            "чек"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы уже показали подруге прилавок и теперь возвращаетесь к нему. Скажите: «Прилавок здесь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Вы уже показали подруге прилавок и теперь возвращаетесь к нему. Скажите: «Прилавок здесь».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i17:audio",
+            "transcript": "The counter is here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The counter is here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-41:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "A box is here.",
+          "localizedMeaning": {
+            "ru": "Вы впервые показываете подруге коробку на полу. Скажите: «Здесь коробка».",
+            "uk": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка»."
+          },
+          "orderedTokens": [
+            "A",
+            "box",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `A` — `A box is here.`",
+                "uk": "тут потрібно `A` — `A box is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i02:r1",
+            "text": "A bag is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r2",
+            "text": "The bag is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r3",
+            "text": "A bag is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i02:audio",
+            "transcript": "A bag is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i02:r1",
+              "targetText": "A bag is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i02:r2",
+              "targetText": "The bag is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i02:r3",
+              "targetText": "A bag is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A` (предмет назван впервые), а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A` (предмет названо вперше), а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+                "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+            "uk": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ bag is here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-41:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Сумку вы уже показали, поэтому нужно The, а не A.",
+                "uk": "Сумку ви вже показали, тому потрібно The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Сумку вы уже показали, поэтому нужно The, а перед bag an не бывает.",
+                "uk": "Сумку ви вже показали, тому потрібно The, а перед bag an не буває."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i04:p1",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i04:p2",
+              "target": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир",
+                "uk": "касир"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i04:p3",
+              "target": "mistake",
+              "meaningByLocale": {
+                "ru": "ошибка",
+                "uk": "помилка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i04:p4",
+              "target": "counter",
+              "meaningByLocale": {
+                "ru": "прилавок",
+                "uk": "прилавок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "receipt",
+            "cashier",
+            "mistake",
+            "counter"
+          ],
+          "rightColumn": [
+            "чек",
+            "касир",
+            "помилка",
+            "прилавок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i05:audio",
+            "transcript": "The bag is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bag is here.",
+          "orderedTokens": [
+            "The",
+            "bag",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The bag is here.`",
+                "uk": "тут потрібно `The` — `The bag is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a lamp.",
+          "localizedMeaning": {
+            "ru": "Вы впервые называете лампу. Скажите подруге: «Это лампа».",
+            "uk": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [
+            "the"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a lamp.`",
+                "uk": "тут потрібно `a` — `This is a lamp.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:receipt",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — receipt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:receipt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — receipt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:receipt:audio",
+            "transcript": "receipt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:receipt:r1",
+              "targetText": "receipt",
+              "meaningByLocale": {
+                "ru": "чек. This is a receipt — «Это чек». О бумажке со списком покупок и суммой, которую выдают после оплаты.",
+                "uk": "чек. This is a receipt — «Це чек». Про папірець зі списком покупок і сумою, який видають після оплати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "receipt",
+            "definitionByLocale": {
+              "ru": "чек. This is a receipt — «Это чек». О бумажке со списком покупок и суммой, которую выдают после оплаты.",
+              "uk": "чек. This is a receipt — «Це чек». Про папірець зі списком покупок і сумою, який видають після оплати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Касир простягає вам папірець і називає його, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Касир простягає вам папірець і називає його, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i07:audio",
+            "transcript": "receipt"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "receipt",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:cashier",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cashier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:cashier:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cashier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:cashier:audio",
+            "transcript": "cashier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:cashier:r1",
+              "targetText": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир. A cashier is here — «Здесь кассир». О человеке, который принимает деньги и пробивает товары.",
+                "uk": "касир. A cashier is here — «Тут касир». Про людину, яка приймає гроші й пробиває товари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cashier",
+            "definitionByLocale": {
+              "ru": "кассир. A cashier is here — «Здесь кассир». О человеке, который принимает деньги и пробивает товары.",
+              "uk": "касир. A cashier is here — «Тут касир». Про людину, яка приймає гроші й пробиває товари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i08:r1",
+            "text": "cashier"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i08:r2",
+            "text": "coin"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i08:r3",
+            "text": "ticket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+            "uk": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-41:i08:r1",
+              "text": "cashier"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i08:r2",
+              "text": "coin"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i08:r3",
+              "text": "ticket"
+            }
+          ],
+          "testedDimension": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
+              "feedbackByLocale": {
+                "ru": "coin — это монета, а человека у кассы зовут cashier.",
+                "uk": "coin — це монета, а людину біля каси звати cashier."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
+              "feedbackByLocale": {
+                "ru": "ticket — это билет, а человека у кассы зовут cashier.",
+                "uk": "ticket — це квиток, а людину біля каси звати cashier."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже касир",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i09:r1",
+            "text": "A receipt is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r2",
+            "text": "The receipt is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r3",
+            "text": "A receipt is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже касир",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i09:audio",
+            "transcript": "A receipt is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i09:r1",
+              "targetText": "A receipt is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i09:r2",
+              "targetText": "The receipt is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i09:r3",
+              "targetText": "A receipt is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже касир",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A` (чек назван впервые), а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A` (чек названо вперше), а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже касир",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+                "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i10:p1",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i10:p2",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i10:p3",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i10:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "receipt",
+            "bag",
+            "box",
+            "lamp"
+          ],
+          "rightColumn": [
+            "чек",
+            "сумка",
+            "коробка",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i11:audio",
+            "transcript": "A cashier is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "A cashier is here.",
+          "orderedTokens": [
+            "A",
+            "cashier",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `A` — `A cashier is here.`",
+                "uk": "тут потрібно `A` — `A cashier is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cashier is here.",
+          "localizedMeaning": {
+            "ru": "Вы уже показали подруге кассира и теперь говорите о нём же. Скажите: «Кассир здесь».",
+            "uk": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут»."
+          },
+          "orderedTokens": [
+            "The",
+            "cashier",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The cashier is here.`",
+                "uk": "тут потрібно `The` — `The cashier is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:mistake",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mistake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:mistake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mistake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:mistake:audio",
+            "transcript": "mistake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:mistake:r1",
+              "targetText": "mistake",
+              "meaningByLocale": {
+                "ru": "ошибка. The mistake is here — «Ошибка здесь». О том, что записано или сделано неверно.",
+                "uk": "помилка. The mistake is here — «Помилка тут». Про те, що записано або зроблено неправильно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mistake",
+            "definitionByLocale": {
+              "ru": "ошибка. The mistake is here — «Ошибка здесь». О том, что записано или сделано неверно.",
+              "uk": "помилка. The mistake is here — «Помилка тут». Про те, що записано або зроблено неправильно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на неправильну ціну й називає її, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на неправильну ціну й називає її, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i13:audio",
+            "transcript": "mistake"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "mistake",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:word:counter",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — counter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:word:counter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — counter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:word:counter:audio",
+            "transcript": "counter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:word:counter:r1",
+              "targetText": "counter",
+              "meaningByLocale": {
+                "ru": "прилавок. A counter is here — «Здесь прилавок». О длинной стойке, на которую кладут покупки.",
+                "uk": "прилавок. A counter is here — «Тут прилавок». Про довгу стійку, на яку кладуть покупки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "counter",
+            "definitionByLocale": {
+              "ru": "прилавок. A counter is here — «Здесь прилавок». О длинной стойке, на которую кладут покупки.",
+              "uk": "прилавок. A counter is here — «Тут прилавок». Про довгу стійку, на яку кладуть покупки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i14:r1",
+            "text": "counter"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:r2",
+            "text": "floor"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:r3",
+            "text": "wall"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+            "uk": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-41:i14:r1",
+              "text": "counter"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i14:r2",
+              "text": "floor"
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i14:r3",
+              "text": "wall"
+            }
+          ],
+          "testedDimension": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а стойка для покупок называется counter.",
+                "uk": "floor — це підлога, а стійка для покупок називається counter."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а стойка для покупок называется counter.",
+                "uk": "wall — це стіна, а стійка для покупок називається counter."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже подруга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i15:r1",
+            "text": "The mistake is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r2",
+            "text": "A mistake is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r3",
+            "text": "The mistake is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i15:audio",
+            "transcript": "The mistake is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i15:r1",
+              "targetText": "The mistake is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i15:r2",
+              "targetText": "A mistake is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i15:r3",
+              "targetText": "The mistake is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The` (об ошибке уже шла речь), а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The` (про помилку вже йшлося), а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+                "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i16:p1",
+              "target": "counter",
+              "meaningByLocale": {
+                "ru": "прилавок",
+                "uk": "прилавок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i16:p2",
+              "target": "mistake",
+              "meaningByLocale": {
+                "ru": "ошибка",
+                "uk": "помилка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i16:p3",
+              "target": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир",
+                "uk": "касир"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i16:p4",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            }
+          ],
+          "leftColumn": [
+            "counter",
+            "mistake",
+            "cashier",
+            "receipt"
+          ],
+          "rightColumn": [
+            "прилавок",
+            "помилка",
+            "касир",
+            "чек"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви вже показали подрузі прилавок і тепер повертаєтеся до нього. Скажіть: «Прилавок тут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Ви вже показали подрузі прилавок і тепер повертаєтеся до нього. Скажіть: «Прилавок тут».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i17:audio",
+            "transcript": "The counter is here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The counter is here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-41:i01",
+      "correctText": "A box is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i02",
+      "correctText": "A bag is here.",
+      "correctResponseId": "en:lesson-03:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i03",
+      "correctText": "The",
+      "correctResponseId": "en:lesson-03:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i05",
+      "correctText": "The bag is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i06",
+      "correctText": "This is a lamp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:word:receipt",
+      "correctText": "receipt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i07",
+      "correctText": "receipt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:word:cashier",
+      "correctText": "cashier",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i08",
+      "correctText": "cashier",
+      "correctResponseId": "en:lesson-03:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i09",
+      "correctText": "A receipt is here.",
+      "correctResponseId": "en:lesson-03:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i11",
+      "correctText": "A cashier is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i12",
+      "correctText": "The cashier is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:word:mistake",
+      "correctText": "mistake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i13",
+      "correctText": "mistake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:word:counter",
+      "correctText": "counter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i14",
+      "correctText": "counter",
+      "correctResponseId": "en:lesson-03:session-41:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i15",
+      "correctText": "The mistake is here.",
+      "correctResponseId": "en:lesson-03:session-41:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17",
+      "correctText": "The counter is here.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,138 +1,152 @@
-# Английский · Урок 3 · Занятие 49 — Больница на плане района
+# Английский · Урок 3 · Занятие 49 — Подбираем вещи по цвету
 
-**Ситуация.** Вы с Анной рассматриваете план района после переезда. Рядом отмечена больница. Дома вы показываете гостю кухню и обсуждаете покупки: одна вещь недорогая, но предложенное время доставки вас не устраивает.
+**Ситуация.** Вы с подругой обставляете новую квартиру и выбираете вещи по цвету. Продавцы показывают товары, а вы называете их: сначала a, потом цвет, потом предмет — a red cup. Остальное вы уже умеете.
 
-**Что вы освоите:** назвать больницу с a и указать место конкретной больницы с the
-**Новые слова:** hospital
+**Что вы освоите:** назвать один предмет с цветом: a red cup, a blue sofa
+**Новые слова:** red, green, blue, brown
+**Возвращаются:** cup, sofa, lamp, rug, bag
 
 ---
 
 ## Интро 1
 
-### Одна больница
+### Подарок брату
 
-`hospital` — «больница». `This is a hospital` — «Это больница»: вы называете место на плане. Перед `hospital` нужно `a`: начальный `h` здесь произносится, слово начинается с согласного звука. Не ориентируйтесь на букву `o` после него. Большая вывеска не меняет артикль: всё равно `a hospital`.
+Вы выбираете подарок брату в магазине посуды. Он любит яркие вещи, и вам понравилась чашка цвета помидора. Продавец спрашивает, какая чашка вам нужна. red — «красный». Цвет ставим после a и перед чашкой: It is a red cup — «Это красная чашка».
 
-**Назовите больницу одним английским словом.**
+**Продавец ждёт ответа. Скажите ему, что это красная чашка.**
 
-- ✅ **hospital**
-- ❌ hotel — *`hotel` — отель. Больница — `hospital`.*
-- ❌ airport — *`airport` — аэропорт. Больница — `hospital`.*
+- ✅ **It is a red cup.**
+- ❌ It is red a cup. — *a стоит перед цветом, а не после него: a red cup.*
+- ❌ It is a cup red. — *Цвет идёт перед предметом: a red cup.*
 
 ---
 
 ## Интро 2
 
-### Больница вашего района
+### Диван в магазине мебели
 
-`The hospital is here` — «Больница здесь». Речь о конкретной больнице, которую вы ищете вместе на плане района. `the hospital` указывает на понятное вам обоим место. Для одного места нужно `is`. Если просто называете объект дальше на плане: `That is a hospital` — «Это больница».
+Вы с подругой зашли в магазин мебели. У стены стоит большой диван цвета неба в ясный день, и подруга просит вас назвать его продавцу. Вы подходите ближе и кладёте на диван руку. blue — «синий, голубой». This is a blue sofa — «Это синий диван».
 
-**Вы нашли на плане больницу, которую искали вместе. Скажите «Больница здесь».**
+**Подруга показывает на диван рядом с вами. Скажите продавцу, что это синий диван.**
 
-- ✅ **The hospital is here.**
-- ❌ The hospital are here. — *Больница одна: нужно `is`.*
-- ❌ The hospitals are here. — *Так говорят о нескольких больницах. Здесь одна: `The hospital is here`.*
+- ✅ **This is a blue sofa.**
+- ❌ This is blue a sofa. — *a стоит перед цветом: a blue sofa.*
+- ❌ This a blue sofa. — *Между This и a нужно is: This is a blue sofa.*
 
 ---
 
 ## Интро 3
 
-### Цена и неподходящий вариант
+### Лампа на рынке
 
-`cheap` — «дешёвый, недорогой». О вещи с низкой ценой: `It is cheap` — «Она недорогая». В этом примере оцениваем цену, а не качество. `unacceptable` — «неприемлемый»: предложенное время доставки совершенно не подходит. О нём: `It is unacceptable` — «Это неприемлемо». Это сильнее, чем просто «неидеально». А гостю можно показать знакомую кухню: `The kitchen is here` — «Кухня здесь».
+На рынке продавец расставил лампы на длинном столе. Одна стоит далеко от вас, у стены, и у неё абажур цвета травы. Вы смотрите на неё через весь ряд. Подруга спрашивает, какую лампу вы заметили. green — «зелёный». That is a green lamp — «Это зелёная лампа».
 
-**Предложенное время доставки совершенно не подходит. Скажите «Это неприемлемо».**
+**Лампа далеко от вас. Скажите подруге, что это зелёная лампа.**
 
-- ✅ **It is unacceptable.**
-- ❌ It is acceptable. — *`acceptable` — приемлемо. Здесь вариант не подходит: `unacceptable`.*
-- ❌ It are unacceptable. — *Речь об одном варианте: `It is unacceptable`.*
+- ✅ **That is a green lamp.**
+- ❌ This is a green lamp. — *Лампа стоит далеко, а this говорим о близком: That is a green lamp.*
+- ❌ That is a lamp green. — *Цвет идёт перед предметом: a green lamp.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Гость ищет кухню, которую вы уже показали. Вы рядом. Скажите «Кухня здесь»**
-<!-- interaction_id: en:lesson-03:session-49:i01; family: phrase_builder -->
-Плитки: `here` `is` `kitchen` `The` `are` → **The kitchen is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The kitchen is here.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-49:i01; family: speed_match -->
+red — красный · green — зелёный · blue — синий, голубой · brown — коричневый
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-49:i02; family: listen_choose -->
-🔊 *hospital* → **hospital** · hotel · airport
-- hotel — *В записи первое слово — `hospital`, а в этом варианте — `hotel`.*
-- airport — *В записи первое слово — `hospital`, а в этом варианте — `airport`.*
+**2 · Карточка слова — red**
+<!-- interaction_id: en:lesson-03:session-49:word:red; family: word_card -->
+> **red** — красный. It is a red cup — «Это красная чашка». О цвете помидора, клубники, пожарной машины.
 
-**3 · Назовите больницу одним английским словом**
-<!-- interaction_id: en:lesson-03:session-49:i03; family: context_gap_grammar -->
-___ → **hospital** · hotel · airport
-- hotel — *`hotel` — отель. Больница — `hospital`.*
-- airport — *`airport` — аэропорт. Больница — `hospital`.*
+**3 · Подруга показывает на пожарную машину за окном и называет её цвет, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-03:session-49:i02; family: scripted_repeat_compare -->
+🎙 **red**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-03:session-49:i04; family: speed_match -->
-hospital — больница · cheap — недорогой · unacceptable — неприемлемый · kitchen — кухня
+**4 · Продавец держит в руке красную сумку. Скажите подруге полной фразой: это красная сумка.**
+<!-- interaction_id: en:lesson-03:session-49:i03; family: phrase_builder -->
+Плитки: `bag` `red` `a` `is` `This` `are` → **This is a red bag.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a red bag.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-49:i05; family: listen_build_dictation -->
-🔊 *This is a hospital.* Плитки: `hospital` `a` `is` `This` `are` → **This is a hospital.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a hospital.`)*
+**5 · Карточка слова — green**
+<!-- interaction_id: en:lesson-03:session-49:word:green; family: word_card -->
+> **green** — зелёный. That is a green lamp — «Это зелёная лампа». О цвете травы и листьев.
 
-**6 · Нужная вам обоим больница найдена на плане. Скажите «Больница здесь»**
-<!-- interaction_id: en:lesson-03:session-49:i06; family: phrase_builder -->
-Плитки: `here` `is` `hospital` `The` `are` → **The hospital is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The hospital is here.`)*
+**6 · Подруга показывает на траву за окном. Как называется её цвет по-английски?**
+<!-- interaction_id: en:lesson-03:session-49:i04; family: context_gap_grammar -->
+___ → **green** · red · dark
+- red — *red — это красный, а трава другого цвета: green.*
+- dark — *dark — это тёмный, а цвет травы называется green.*
 
-**7 · Вещь стоит мало. Скажите о ней «Она недорогая» с сокращением**
-<!-- interaction_id: en:lesson-03:session-49:i07; family: scripted_repeat_compare -->
-🎙 **It's cheap.**
+**7 · Послушайте, что продавец говорит о лампе**
+<!-- interaction_id: en:lesson-03:session-49:i05; family: listen_choose -->
+🔊 *It is a green lamp.* → **It is a green lamp.** · It is a red lamp. · It is a green cup.
+- It is a red lamp. — *В записи цвет — `green`, а в этом варианте — `red`.*
+- It is a green cup. — *В записи последнее слово — `lamp`, а в этом варианте — `cup`.*
 
-**8 · Вы называете место на плане: больница**
+**8 · Карточка слова — blue**
+<!-- interaction_id: en:lesson-03:session-49:word:blue; family: word_card -->
+> **blue** — синий, голубой. This is a blue sofa — «Это синий диван». О цвете неба и моря.
+
+**9 · Подруга показывает на небо в окне и называет его цвет, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-03:session-49:i06; family: scripted_repeat_compare -->
+🎙 **blue**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-49:i07; family: listen_build_dictation -->
+🔊 *This is a blue cup.* Плитки: `cup` `blue` `a` `is` `This` `These` → **This is a blue cup.**
+*(плитка `These` лишняя: здесь нужно `This` — `This is a blue cup.`)*
+
+**11 · Карточка слова — brown**
+<!-- interaction_id: en:lesson-03:session-49:word:brown; family: word_card -->
+> **brown** — коричневый. It is a brown rug — «Это коричневый ковёр». О цвете шоколада и древесной коры.
+
+**12 · Подруга показывает на шоколад на столе. Как называется его цвет по-английски?**
 <!-- interaction_id: en:lesson-03:session-49:i08; family: context_gap_grammar -->
-This is ___ hospital. → **a** · an · are
-- an — *Начальное `h` в `hospital` произносится: нужен `a hospital`.*
-- are — *Перед названием одной больницы здесь нужно `a`.*
+___ → **brown** · blue · green
+- blue — *blue — это синий, а шоколад другого цвета: brown.*
+- green — *green — это зелёный, а шоколад другого цвета: brown.*
 
-**9 · Послушайте оценку предложенного времени доставки**
-<!-- interaction_id: en:lesson-03:session-49:i09; family: listen_choose -->
-🔊 *It is unacceptable.* → **It is unacceptable.** · It is acceptable. · It is appropriate.
-- It is acceptable. — *В записи последнее слово — `unacceptable`, а в этом варианте — `acceptable`.*
-- It is appropriate. — *В записи последнее слово — `unacceptable`, а в этом варианте — `appropriate`.*
+**13 · Ковёр лежит далеко у окна. Скажите продавцу полной фразой: это коричневый ковёр.**
+<!-- interaction_id: en:lesson-03:session-49:i09; family: phrase_builder -->
+Плитки: `rug` `brown` `a` `is` `That` `This` → **That is a brown rug.**
+*(плитка `This` лишняя: здесь нужно `That` — `That is a brown rug.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-49:i10; family: speed_match -->
-hospital — больница · kitchen — кухня · here — здесь · there — там
+blue — синий, голубой · brown — коричневый · sofa — диван · rug — коврик
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-49:i11; family: listen_build_dictation -->
-🔊 *That kitchen is there.* Плитки: `there` `is` `kitchen` `That` `are` → **That kitchen is there.**
-*(плитка `are` лишняя: здесь нужно `is` — `That kitchen is there.`)*
+**15 · Послушайте вопрос подруги**
+<!-- interaction_id: en:lesson-03:session-49:i11; family: listen_choose -->
+🔊 *Is it a brown cup?* → **Is it a brown cup?** · Is it a brown rug? · Is it a green cup?
+- Is it a brown rug? — *В записи последнее слово — `cup`, а в этом варианте — `rug`.*
+- Is it a green cup? — *В записи цвет — `brown`, а в этом варианте — `green`.*
 
-**12 · Вы показываете на один объект дальше на плане. Назовите его: «Это больница», со словом для одного дальше**
-<!-- interaction_id: en:lesson-03:session-49:i12; family: phrase_builder -->
-Плитки: `hospital` `a` `is` `That` `are` → **That is a hospital.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is a hospital.`)*
+**16 · Подруга держит в руке синий ковёр. Дополните вашу фразу**
+<!-- interaction_id: en:lesson-03:session-49:i12; family: context_gap_grammar -->
+It is ___ blue rug. → **a** · an · are
+- an — *an нужен перед гласным звуком, а blue начинается с согласного: a blue rug.*
+- are — *Здесь речь об одном ковре: нужно a, а не are.*
 
-**13 · Время доставки совершенно вас не устраивает. Скажите «Это неприемлемо» с сокращением**
-<!-- interaction_id: en:lesson-03:session-49:i13; family: scripted_repeat_compare -->
-🎙 **It's unacceptable.**
+**17 · Послушайте продавца и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-49:i13; family: listen_build_dictation -->
+🔊 *That is a red sofa.* Плитки: `sofa` `red` `a` `is` `That` `These` → **That is a red sofa.**
+*(плитка `These` лишняя: здесь нужно `That` — `That is a red sofa.`)*
 
-**14 · Вы указываете место одной больницы, понятной собеседнику**
-<!-- interaction_id: en:lesson-03:session-49:i14; family: context_gap_grammar -->
-The hospital ___ here. → **is** · are · am
-- are — *Больница одна: `The hospital is here`.*
-- am — *С `The hospital` нужно `is`.*
+**18 · Подруга спрашивает, какая лампа вам нужна. Скажите ей, что зелёная**
+<!-- interaction_id: en:lesson-03:session-49:i14; family: scripted_repeat_compare -->
+🎙 **a green lamp**
 
-**15 · Послушайте оценку цены вещи**
-<!-- interaction_id: en:lesson-03:session-49:i15; family: listen_choose -->
-🔊 *It is cheap.* → **It is cheap.** · It is useful. · It is acceptable.
-- It is useful. — *В записи последнее слово — `cheap`, а в этом варианте — `useful`.*
-- It is acceptable. — *В записи последнее слово — `cheap`, а в этом варианте — `acceptable`.*
+**19 · Ковёр лежит рядом с вами. Спросите продавца, красный ли он.**
+<!-- interaction_id: en:lesson-03:session-49:i15; family: phrase_builder -->
+Плитки: `rug` `red` `a` `this` `Is` `Are` → **Is this a red rug?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is this a red rug?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-49:i16; family: speed_match -->
-hospital — больница · cheap — недорогой · unacceptable — неприемлемый · kitchen — кухня
+brown — коричневый · green — зелёный · red — красный · blue — синий, голубой
 
-**17 · В другом районе вы с другом ищете на карте заранее выбранную больницу. Вы нашли её в дальней части карты. Скажите «Больница там», говоря о нужном вам обоим месте**
+**21 · Продавец спрашивает, какой ковёр вам нужен. Ответьте ему коротко: коричневый.**
 <!-- interaction_id: en:lesson-03:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The hospital is there.**
-
+🎙 **It is a brown rug.**

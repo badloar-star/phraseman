@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-47:i01",
-    "correctText": "The bottles are here.",
+    "correctText": "This is a hammer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i02",
-    "correctText": "restaurants",
+    "correctText": "A ladder is here.",
     "correctResponseId": "en:lesson-03:session-47:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i03",
-    "correctText": "restaurants",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-47:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i04",
-    "correctText": "en:lesson-03:session-47:i04:p1=restaurants\nen:lesson-03:session-47:i04:p2=dangerous\nen:lesson-03:session-47:i04:p3=acceptable\nen:lesson-03:session-47:i04:p4=bottles",
+    "correctText": "en:lesson-03:session-47:i04:p1=screw\nen:lesson-03:session-47:i04:p2=nail\nen:lesson-03:session-47:i04:p3=wrench\nen:lesson-03:session-47:i04:p4=drill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i05",
-    "correctText": "These are restaurants.",
+    "correctText": "The hammer is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i06",
-    "correctText": "The restaurants are there.",
+    "correctText": "Boxes are heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:word:screw",
+    "correctText": "screw",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i07",
-    "correctText": "It's dangerous.",
+    "correctText": "screw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:word:nail",
+    "correctText": "nail",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i08",
-    "correctText": "Those",
+    "correctText": "nail",
     "correctResponseId": "en:lesson-03:session-47:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i09",
-    "correctText": "It is acceptable.",
+    "correctText": "This is a screw.",
     "correctResponseId": "en:lesson-03:session-47:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i10",
-    "correctText": "en:lesson-03:session-47:i10:p1=restaurants\nen:lesson-03:session-47:i10:p2=bottles\nen:lesson-03:session-47:i10:p3=here\nen:lesson-03:session-47:i10:p4=there",
+    "correctText": "en:lesson-03:session-47:i10:p1=screw\nen:lesson-03:session-47:i10:p2=hammer\nen:lesson-03:session-47:i10:p3=ladder\nen:lesson-03:session-47:i10:p4=bucket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i11",
-    "correctText": "Those bottles are there.",
+    "correctText": "The nails are long.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i12",
-    "correctText": "These restaurants are here.",
+    "correctText": "The nails are short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:word:wrench",
+    "correctText": "wrench",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i13",
-    "correctText": "It's acceptable.",
+    "correctText": "wrench",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:word:drill",
+    "correctText": "drill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i14",
-    "correctText": "are",
+    "correctText": "drill",
     "correctResponseId": "en:lesson-03:session-47:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i15",
-    "correctText": "It is dangerous.",
+    "correctText": "Wrenches are expensive.",
     "correctResponseId": "en:lesson-03:session-47:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-47:i16",
-    "correctText": "en:lesson-03:session-47:i16:p1=restaurants\nen:lesson-03:session-47:i16:p2=dangerous\nen:lesson-03:session-47:i16:p3=acceptable\nen:lesson-03:session-47:i16:p4=bottles",
+    "correctText": "en:lesson-03:session-47:i16:p1=drill\nen:lesson-03:session-47:i16:p2=wrench\nen:lesson-03:session-47:i16:p3=nail\nen:lesson-03:session-47:i16:p4=screw",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-47:i17",
-    "correctText": "The restaurants are here.",
+    "correctText": "The drill is new.",
     "correctResponseId": null
   }
 ]

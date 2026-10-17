@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-51:i01",
-    "correctText": "The bedrooms are there.",
+    "correctText": "en:lesson-03:session-51:i01:p1=yellow\nen:lesson-03:session-51:i01:p2=purple\nen:lesson-03:session-51:i01:p3=navy\nen:lesson-03:session-51:i01:p4=olive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:word:yellow",
+    "correctText": "yellow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i02",
-    "correctText": "libraries",
-    "correctResponseId": "en:lesson-03:session-51:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-51:i03",
-    "correctText": "libraries",
-    "correctResponseId": "en:lesson-03:session-51:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-51:i04",
-    "correctText": "en:lesson-03:session-51:i04:p1=libraries\nen:lesson-03:session-51:i04:p2=heavy\nen:lesson-03:session-51:i04:p3=ineffective\nen:lesson-03:session-51:i04:p4=bedrooms",
+    "correctText": "yellow",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-51:i03",
+    "correctText": "This is a yellow vase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:word:purple",
+    "correctText": "purple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i04",
+    "correctText": "purple",
+    "correctResponseId": "en:lesson-03:session-51:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-51:i05",
-    "correctText": "These are libraries.",
+    "correctText": "It is a yellow scarf.",
+    "correctResponseId": "en:lesson-03:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:word:olive",
+    "correctText": "olive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i06",
-    "correctText": "The libraries are here.",
+    "correctText": "olive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i07",
-    "correctText": "It's heavy.",
+    "correctText": "It is an olive vase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:word:navy",
+    "correctText": "navy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i08",
-    "correctText": "Those",
+    "correctText": "navy",
     "correctResponseId": "en:lesson-03:session-51:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-51:i09",
-    "correctText": "It is ineffective.",
-    "correctResponseId": "en:lesson-03:session-51:i09:r1"
+    "correctText": "That is a navy coat.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i10",
-    "correctText": "en:lesson-03:session-51:i10:p1=libraries\nen:lesson-03:session-51:i10:p2=bedrooms\nen:lesson-03:session-51:i10:p3=here\nen:lesson-03:session-51:i10:p4=there",
+    "correctText": "en:lesson-03:session-51:i10:p1=navy\nen:lesson-03:session-51:i10:p2=olive\nen:lesson-03:session-51:i10:p3=pink\nen:lesson-03:session-51:i10:p4=yellow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i11",
-    "correctText": "These bedrooms are here.",
-    "correctResponseId": null
+    "correctText": "Is it an olive scarf?",
+    "correctResponseId": "en:lesson-03:session-51:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-51:i12",
-    "correctText": "Those libraries are there.",
-    "correctResponseId": null
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-51:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-51:i13",
-    "correctText": "It's ineffective.",
+    "correctText": "This is a pink vase.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-03:session-51:i14:r1"
+    "correctText": "a purple scarf",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i15",
-    "correctText": "It is heavy.",
-    "correctResponseId": "en:lesson-03:session-51:i15:r1"
+    "correctText": "Is that an olive coat?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i16",
-    "correctText": "en:lesson-03:session-51:i16:p1=libraries\nen:lesson-03:session-51:i16:p2=heavy\nen:lesson-03:session-51:i16:p3=ineffective\nen:lesson-03:session-51:i16:p4=bedrooms",
+    "correctText": "en:lesson-03:session-51:i16:p1=olive\nen:lesson-03:session-51:i16:p2=yellow\nen:lesson-03:session-51:i16:p3=navy\nen:lesson-03:session-51:i16:p4=purple",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i17",
-    "correctText": "The libraries are there.",
+    "correctText": "This is an olive scarf.",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-45:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с подругой смотрите на зонт на полке. Скажите: «Зонт мокрый».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с подругой смотрите на зонт на полке. Скажите: «Зонт мокрый».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The umbrella is wet.",
+          "localizedMeaning": {
+            "ru": "Вы с подругой смотрите на зонт на полке. Скажите: «Зонт мокрый».",
+            "uk": "Ви з подругою дивитеся на парасольку на полиці. Скажіть: «Парасолька мокра»."
+          },
+          "orderedTokens": [
+            "The",
+            "umbrella",
+            "is",
+            "wet"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с подругой смотрите на зонт на полке. Скажите: «Зонт мокрый».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The umbrella is wet.`",
+                "uk": "тут потрібно `The` — `The umbrella is wet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте продавца и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i02:r1",
+            "text": "An apple is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i02:r2",
+            "text": "The apple is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i02:r3",
+            "text": "An apple is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i02:audio",
+            "transcript": "An apple is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:i02:r1",
+              "targetText": "An apple is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i02:r2",
+              "targetText": "The apple is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i02:r3",
+              "targetText": "An apple is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `An`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `An`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+                "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы впервые называете яблоко, которое лежит на столе. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i03:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые называете яблоко, которое лежит на столе. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы впервые называете яблоко, которое лежит на столе. Дополните фразу",
+            "uk": "Ви вперше називаєте яблуко, яке лежить на столі. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This is ___ apple.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-45:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i03:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Вы впервые называете яблоко, которое лежит на столе. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы впервые называете яблоко, которое лежит на столе. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово apple начинается с гласного звука, поэтому an, а не a.",
+                "uk": "Слово apple починається з голосного звуку, тому an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы впервые называете яблоко, которое лежит на столе. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Яблоко вы называете впервые, поэтому an, а не the.",
+                "uk": "Яблуко ви називаєте вперше, тому an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-45:i04:p1",
+              "target": "size",
+              "meaningByLocale": {
+                "ru": "размер",
+                "uk": "розмір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i04:p2",
+              "target": "colour",
+              "meaningByLocale": {
+                "ru": "цвет",
+                "uk": "колір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i04:p3",
+              "target": "model",
+              "meaningByLocale": {
+                "ru": "модель",
+                "uk": "модель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i04:p4",
+              "target": "brand",
+              "meaningByLocale": {
+                "ru": "марка, бренд",
+                "uk": "марка, бренд"
+              }
+            }
+          ],
+          "leftColumn": [
+            "size",
+            "colour",
+            "model",
+            "brand"
+          ],
+          "rightColumn": [
+            "размер",
+            "цвет",
+            "модель",
+            "марка, бренд"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i05:audio",
+            "transcript": "The armchair is old."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The armchair is old.",
+          "orderedTokens": [
+            "The",
+            "armchair",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The armchair is old.`",
+                "uk": "тут потрібно `The` — `The armchair is old.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы впервые называете часы на стене. Скажите подруге: «Это часы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые называете часы на стене. Скажите подруге: «Это часы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a clock.",
+          "localizedMeaning": {
+            "ru": "Вы впервые называете часы на стене. Скажите подруге: «Это часы».",
+            "uk": "Ви вперше називаєте годинник на стіні. Скажіть подрузі: «Це годинник»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "clock"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы впервые называете часы на стене. Скажите подруге: «Это часы».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a clock.`",
+                "uk": "тут потрібно `a` — `This is a clock.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:size",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — size",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:size:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — size",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:size:audio",
+            "transcript": "size"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:size:r1",
+              "targetText": "size",
+              "meaningByLocale": {
+                "ru": "размер. The size is small — «Размер маленький». О цифре на ярлыке одежды или обуви.",
+                "uk": "розмір. The size is small — «Розмір малий». Про цифру на ярлику одягу чи взуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "size",
+            "definitionByLocale": {
+              "ru": "размер. The size is small — «Размер маленький». О цифре на ярлыке одежды или обуви.",
+              "uk": "розмір. The size is small — «Розмір малий». Про цифру на ярлику одягу чи взуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на цифру на ярлыке куртки и называет её, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на цифру на ярлыке куртки и называет её, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i07:audio",
+            "transcript": "size"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "size",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:colour",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — colour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:colour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — colour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:colour:audio",
+            "transcript": "colour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:colour:r1",
+              "targetText": "colour",
+              "meaningByLocale": {
+                "ru": "цвет. The colour is wrong — «Цвет не тот». О том, красный предмет, синий или зелёный.",
+                "uk": "колір. The colour is wrong — «Колір не той». Про те, червоний предмет, синій чи зелений."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "colour",
+            "definitionByLocale": {
+              "ru": "цвет. The colour is wrong — «Цвет не тот». О том, красный предмет, синий или зелёный.",
+              "uk": "колір. The colour is wrong — «Колір не той». Про те, червоний предмет, синій чи зелений."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i08:r1",
+            "text": "colour"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i08:r2",
+            "text": "size"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i08:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?",
+            "uk": "Червоний, синій і зелений відрізняються один від одного. Як англійською називається те, чим вони відрізняються?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-45:i08:r1",
+              "text": "colour"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i08:r2",
+              "text": "size"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i08:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?",
+              "feedbackByLocale": {
+                "ru": "size — это размер, а красный и синий отличаются цветом: colour.",
+                "uk": "size — це розмір, а червоний і синій відрізняються кольором: colour."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а красный и синий отличаются цветом: colour.",
+                "uk": "box — це коробка, а червоний і синій відрізняються кольором: colour."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте продавца и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i09:r1",
+            "text": "The size is small."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r2",
+            "text": "A size is small."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r3",
+            "text": "The size is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i09:audio",
+            "transcript": "The size is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:i09:r1",
+              "targetText": "The size is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i09:r2",
+              "targetText": "A size is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i09:r3",
+              "targetText": "The size is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
+                "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-45:i10:p1",
+              "target": "size",
+              "meaningByLocale": {
+                "ru": "размер",
+                "uk": "розмір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i10:p2",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i10:p3",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i10:p4",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "size",
+            "umbrella",
+            "apple",
+            "clock"
+          ],
+          "rightColumn": [
+            "размер",
+            "зонт",
+            "яблоко",
+            "часы (настенные)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i11:audio",
+            "transcript": "The colour is right."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The colour is right.",
+          "orderedTokens": [
+            "The",
+            "colour",
+            "is",
+            "right"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The colour is right.`",
+                "uk": "тут потрібно `The` — `The colour is right.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с подругой смотрите на цвет куртки. Скажите: «Цвет неправильный».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с подругой смотрите на цвет куртки. Скажите: «Цвет неправильный».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The colour is wrong.",
+          "localizedMeaning": {
+            "ru": "Вы с подругой смотрите на цвет куртки. Скажите: «Цвет неправильный».",
+            "uk": "Ви з подругою дивитеся на колір куртки. Скажіть: «Колір неправильний»."
+          },
+          "orderedTokens": [
+            "The",
+            "colour",
+            "is",
+            "wrong"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с подругой смотрите на цвет куртки. Скажите: «Цвет неправильный».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The colour is wrong.`",
+                "uk": "тут потрібно `The` — `The colour is wrong.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:model",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — model",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:model:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — model",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:model:audio",
+            "transcript": "model"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:model:r1",
+              "targetText": "model",
+              "meaningByLocale": {
+                "ru": "модель. This is a model — «Это модель». О виде прибора, который отличается буквами и цифрами на коробке.",
+                "uk": "модель. This is a model — «Це модель». Про вид приладу, який відрізняється літерами й цифрами на коробці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "model",
+            "definitionByLocale": {
+              "ru": "модель. This is a model — «Это модель». О виде прибора, который отличается буквами и цифрами на коробке.",
+              "uk": "модель. This is a model — «Це модель». Про вид приладу, який відрізняється літерами й цифрами на коробці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на буквы и цифры на коробке чайника и называет их, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на буквы и цифры на коробке чайника и называет их, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i13:audio",
+            "transcript": "model"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "model",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:brand",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:brand:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:brand:audio",
+            "transcript": "brand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:brand:r1",
+              "targetText": "brand",
+              "meaningByLocale": {
+                "ru": "марка, бренд. This is a brand — «Это марка». О названии фирмы, которая сделала вещь.",
+                "uk": "марка, бренд. This is a brand — «Це марка». Про назву фірми, яка зробила річ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brand",
+            "definitionByLocale": {
+              "ru": "марка, бренд. This is a brand — «Это марка». О названии фирмы, которая сделала вещь.",
+              "uk": "марка, бренд. This is a brand — «Це марка». Про назву фірми, яка зробила річ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i14:r1",
+            "text": "brand"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i14:r2",
+            "text": "size"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i14:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?",
+            "uk": "Назва на футболці показує, яка фірма зробила річ. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-45:i14:r1",
+              "text": "brand"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i14:r2",
+              "text": "size"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i14:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "size — это размер, а название фирмы называется brand.",
+                "uk": "size — це розмір, а назва фірми називається brand."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а название фирмы называется brand.",
+                "uk": "box — це коробка, а назва фірми називається brand."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте продавца и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i15:r1",
+            "text": "This is a model."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r2",
+            "text": "That is a model."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r3",
+            "text": "This is the model."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i15:audio",
+            "transcript": "This is a model."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:i15:r1",
+              "targetText": "This is a model.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i15:r2",
+              "targetText": "That is a model.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i15:r3",
+              "targetText": "This is the model.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).",
+                "uk": "У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко)."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи перед `model` стоит `a`, а в этом варианте — `the`.",
+                "uk": "У записі перед `model` стоїть `a`, а в цьому варіанті — `the`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-45:i16:p1",
+              "target": "brand",
+              "meaningByLocale": {
+                "ru": "марка, бренд",
+                "uk": "марка, бренд"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i16:p2",
+              "target": "model",
+              "meaningByLocale": {
+                "ru": "модель",
+                "uk": "модель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i16:p3",
+              "target": "colour",
+              "meaningByLocale": {
+                "ru": "цвет",
+                "uk": "колір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i16:p4",
+              "target": "size",
+              "meaningByLocale": {
+                "ru": "размер",
+                "uk": "розмір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brand",
+            "model",
+            "colour",
+            "size"
+          ],
+          "rightColumn": [
+            "марка, бренд",
+            "модель",
+            "цвет",
+            "размер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы показываете подруге на футболке название фирмы, о котором она спрашивает впервые. Скажите: «Это марка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Вы показываете подруге на футболке название фирмы, о котором она спрашивает впервые. Скажите: «Это марка».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i17:audio",
+            "transcript": "This is a brand."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a brand.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-45:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з подругою дивитеся на парасольку на полиці. Скажіть: «Парасолька мокра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з подругою дивитеся на парасольку на полиці. Скажіть: «Парасолька мокра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The umbrella is wet.",
+          "localizedMeaning": {
+            "ru": "Вы с подругой смотрите на зонт на полке. Скажите: «Зонт мокрый».",
+            "uk": "Ви з подругою дивитеся на парасольку на полиці. Скажіть: «Парасолька мокра»."
+          },
+          "orderedTokens": [
+            "The",
+            "umbrella",
+            "is",
+            "wet"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з подругою дивитеся на парасольку на полиці. Скажіть: «Парасолька мокра».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The umbrella is wet.`",
+                "uk": "тут потрібно `The` — `The umbrella is wet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте продавця й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i02:r1",
+            "text": "An apple is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i02:r2",
+            "text": "The apple is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i02:r3",
+            "text": "An apple is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i02:audio",
+            "transcript": "An apple is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:i02:r1",
+              "targetText": "An apple is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i02:r2",
+              "targetText": "The apple is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i02:r3",
+              "targetText": "An apple is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `An`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `An`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+                "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вперше називаєте яблуко, яке лежить на столі. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i03:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше називаєте яблуко, яке лежить на столі. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы впервые называете яблоко, которое лежит на столе. Дополните фразу",
+            "uk": "Ви вперше називаєте яблуко, яке лежить на столі. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This is ___ apple.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-45:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i03:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Ви вперше називаєте яблуко, яке лежить на столі. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вперше називаєте яблуко, яке лежить на столі. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово apple начинается с гласного звука, поэтому an, а не a.",
+                "uk": "Слово apple починається з голосного звуку, тому an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вперше називаєте яблуко, яке лежить на столі. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Яблоко вы называете впервые, поэтому an, а не the.",
+                "uk": "Яблуко ви називаєте вперше, тому an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-45:i04:p1",
+              "target": "size",
+              "meaningByLocale": {
+                "ru": "размер",
+                "uk": "розмір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i04:p2",
+              "target": "colour",
+              "meaningByLocale": {
+                "ru": "цвет",
+                "uk": "колір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i04:p3",
+              "target": "model",
+              "meaningByLocale": {
+                "ru": "модель",
+                "uk": "модель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i04:p4",
+              "target": "brand",
+              "meaningByLocale": {
+                "ru": "марка, бренд",
+                "uk": "марка, бренд"
+              }
+            }
+          ],
+          "leftColumn": [
+            "size",
+            "colour",
+            "model",
+            "brand"
+          ],
+          "rightColumn": [
+            "розмір",
+            "колір",
+            "модель",
+            "марка, бренд"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i05:audio",
+            "transcript": "The armchair is old."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The armchair is old.",
+          "orderedTokens": [
+            "The",
+            "armchair",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The armchair is old.`",
+                "uk": "тут потрібно `The` — `The armchair is old.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вперше називаєте годинник на стіні. Скажіть подрузі: «Це годинник».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше називаєте годинник на стіні. Скажіть подрузі: «Це годинник».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a clock.",
+          "localizedMeaning": {
+            "ru": "Вы впервые называете часы на стене. Скажите подруге: «Это часы».",
+            "uk": "Ви вперше називаєте годинник на стіні. Скажіть подрузі: «Це годинник»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "clock"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вперше називаєте годинник на стіні. Скажіть подрузі: «Це годинник».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a clock.`",
+                "uk": "тут потрібно `a` — `This is a clock.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:size",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — size",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:size:audio"
+        ],
+        "accessibilityLabel": "Картка слова — size",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:size:audio",
+            "transcript": "size"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:size:r1",
+              "targetText": "size",
+              "meaningByLocale": {
+                "ru": "размер. The size is small — «Размер маленький». О цифре на ярлыке одежды или обуви.",
+                "uk": "розмір. The size is small — «Розмір малий». Про цифру на ярлику одягу чи взуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "size",
+            "definitionByLocale": {
+              "ru": "размер. The size is small — «Размер маленький». О цифре на ярлыке одежды или обуви.",
+              "uk": "розмір. The size is small — «Розмір малий». Про цифру на ярлику одягу чи взуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на цифру на ярлику куртки й називає її, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на цифру на ярлику куртки й називає її, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i07:audio",
+            "transcript": "size"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "size",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:colour",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — colour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:colour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — colour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:colour:audio",
+            "transcript": "colour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:colour:r1",
+              "targetText": "colour",
+              "meaningByLocale": {
+                "ru": "цвет. The colour is wrong — «Цвет не тот». О том, красный предмет, синий или зелёный.",
+                "uk": "колір. The colour is wrong — «Колір не той». Про те, червоний предмет, синій чи зелений."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "colour",
+            "definitionByLocale": {
+              "ru": "цвет. The colour is wrong — «Цвет не тот». О том, красный предмет, синий или зелёный.",
+              "uk": "колір. The colour is wrong — «Колір не той». Про те, червоний предмет, синій чи зелений."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Червоний, синій і зелений відрізняються один від одного. Як англійською називається те, чим вони відрізняються?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i08:r1",
+            "text": "colour"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i08:r2",
+            "text": "size"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i08:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Червоний, синій і зелений відрізняються один від одного. Як англійською називається те, чим вони відрізняються?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?",
+            "uk": "Червоний, синій і зелений відрізняються один від одного. Як англійською називається те, чим вони відрізняються?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-45:i08:r1",
+              "text": "colour"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i08:r2",
+              "text": "size"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i08:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "Червоний, синій і зелений відрізняються один від одного. Як англійською називається те, чим вони відрізняються?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Червоний, синій і зелений відрізняються один від одного. Як англійською називається те, чим вони відрізняються?",
+              "feedbackByLocale": {
+                "ru": "size — это размер, а красный и синий отличаются цветом: colour.",
+                "uk": "size — це розмір, а червоний і синій відрізняються кольором: colour."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Червоний, синій і зелений відрізняються один від одного. Як англійською називається те, чим вони відрізняються?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а красный и синий отличаются цветом: colour.",
+                "uk": "box — це коробка, а червоний і синій відрізняються кольором: colour."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте продавця й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i09:r1",
+            "text": "The size is small."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r2",
+            "text": "A size is small."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r3",
+            "text": "The size is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i09:audio",
+            "transcript": "The size is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:i09:r1",
+              "targetText": "The size is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i09:r2",
+              "targetText": "A size is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i09:r3",
+              "targetText": "The size is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
+                "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-45:i10:p1",
+              "target": "size",
+              "meaningByLocale": {
+                "ru": "размер",
+                "uk": "розмір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i10:p2",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i10:p3",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i10:p4",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "size",
+            "umbrella",
+            "apple",
+            "clock"
+          ],
+          "rightColumn": [
+            "розмір",
+            "парасолька",
+            "яблуко",
+            "годинник (настінний)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i11:audio",
+            "transcript": "The colour is right."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The colour is right.",
+          "orderedTokens": [
+            "The",
+            "colour",
+            "is",
+            "right"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The colour is right.`",
+                "uk": "тут потрібно `The` — `The colour is right.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з подругою дивитеся на колір куртки. Скажіть: «Колір неправильний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з подругою дивитеся на колір куртки. Скажіть: «Колір неправильний».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The colour is wrong.",
+          "localizedMeaning": {
+            "ru": "Вы с подругой смотрите на цвет куртки. Скажите: «Цвет неправильный».",
+            "uk": "Ви з подругою дивитеся на колір куртки. Скажіть: «Колір неправильний»."
+          },
+          "orderedTokens": [
+            "The",
+            "colour",
+            "is",
+            "wrong"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з подругою дивитеся на колір куртки. Скажіть: «Колір неправильний».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The colour is wrong.`",
+                "uk": "тут потрібно `The` — `The colour is wrong.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:model",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — model",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:model:audio"
+        ],
+        "accessibilityLabel": "Картка слова — model",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:model:audio",
+            "transcript": "model"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:model:r1",
+              "targetText": "model",
+              "meaningByLocale": {
+                "ru": "модель. This is a model — «Это модель». О виде прибора, который отличается буквами и цифрами на коробке.",
+                "uk": "модель. This is a model — «Це модель». Про вид приладу, який відрізняється літерами й цифрами на коробці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "model",
+            "definitionByLocale": {
+              "ru": "модель. This is a model — «Это модель». О виде прибора, который отличается буквами и цифрами на коробке.",
+              "uk": "модель. This is a model — «Це модель». Про вид приладу, який відрізняється літерами й цифрами на коробці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на літери й цифри на коробці чайника й називає їх, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на літери й цифри на коробці чайника й називає їх, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i13:audio",
+            "transcript": "model"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "model",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:word:brand",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:word:brand:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:word:brand:audio",
+            "transcript": "brand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:word:brand:r1",
+              "targetText": "brand",
+              "meaningByLocale": {
+                "ru": "марка, бренд. This is a brand — «Это марка». О названии фирмы, которая сделала вещь.",
+                "uk": "марка, бренд. This is a brand — «Це марка». Про назву фірми, яка зробила річ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brand",
+            "definitionByLocale": {
+              "ru": "марка, бренд. This is a brand — «Это марка». О названии фирмы, которая сделала вещь.",
+              "uk": "марка, бренд. This is a brand — «Це марка». Про назву фірми, яка зробила річ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Назва на футболці показує, яка фірма зробила річ. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i14:r1",
+            "text": "brand"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i14:r2",
+            "text": "size"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i14:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Назва на футболці показує, яка фірма зробила річ. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?",
+            "uk": "Назва на футболці показує, яка фірма зробила річ. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-45:i14:r1",
+              "text": "brand"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i14:r2",
+              "text": "size"
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i14:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "Назва на футболці показує, яка фірма зробила річ. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Назва на футболці показує, яка фірма зробила річ. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "size — это размер, а название фирмы называется brand.",
+                "uk": "size — це розмір, а назва фірми називається brand."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Назва на футболці показує, яка фірма зробила річ. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а название фирмы называется brand.",
+                "uk": "box — це коробка, а назва фірми називається brand."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте продавця й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i15:r1",
+            "text": "This is a model."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r2",
+            "text": "That is a model."
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r3",
+            "text": "This is the model."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i15:audio",
+            "transcript": "This is a model."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-45:i15:r1",
+              "targetText": "This is a model.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i15:r2",
+              "targetText": "That is a model.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i15:r3",
+              "targetText": "This is the model.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).",
+                "uk": "У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко)."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи перед `model` стоит `a`, а в этом варианте — `the`.",
+                "uk": "У записі перед `model` стоїть `a`, а в цьому варіанті — `the`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-45:i16:p1",
+              "target": "brand",
+              "meaningByLocale": {
+                "ru": "марка, бренд",
+                "uk": "марка, бренд"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i16:p2",
+              "target": "model",
+              "meaningByLocale": {
+                "ru": "модель",
+                "uk": "модель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i16:p3",
+              "target": "colour",
+              "meaningByLocale": {
+                "ru": "цвет",
+                "uk": "колір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-45:i16:p4",
+              "target": "size",
+              "meaningByLocale": {
+                "ru": "размер",
+                "uk": "розмір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brand",
+            "model",
+            "colour",
+            "size"
+          ],
+          "rightColumn": [
+            "марка, бренд",
+            "модель",
+            "колір",
+            "розмір"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви показуєте подрузі на футболці назву фірми, про яку вона питає вперше. Скажіть: «Це марка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Ви показуєте подрузі на футболці назву фірми, про яку вона питає вперше. Скажіть: «Це марка».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-45:i17:audio",
+            "transcript": "This is a brand."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a brand.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-45:i01",
+      "correctText": "The umbrella is wet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i02",
+      "correctText": "An apple is here.",
+      "correctResponseId": "en:lesson-03:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i03",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-03:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i05",
+      "correctText": "The armchair is old.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i06",
+      "correctText": "This is a clock.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:word:size",
+      "correctText": "size",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i07",
+      "correctText": "size",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:word:colour",
+      "correctText": "colour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i08",
+      "correctText": "colour",
+      "correctResponseId": "en:lesson-03:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i09",
+      "correctText": "The size is small.",
+      "correctResponseId": "en:lesson-03:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i11",
+      "correctText": "The colour is right.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i12",
+      "correctText": "The colour is wrong.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:word:model",
+      "correctText": "model",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i13",
+      "correctText": "model",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:word:brand",
+      "correctText": "brand",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i14",
+      "correctText": "brand",
+      "correctResponseId": "en:lesson-03:session-45:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i15",
+      "correctText": "This is a model.",
+      "correctResponseId": "en:lesson-03:session-45:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i17",
+      "correctText": "This is a brand.",
+      "correctResponseId": null
+    }
+  ]
+}

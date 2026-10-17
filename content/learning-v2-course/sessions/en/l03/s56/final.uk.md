@@ -1,138 +1,152 @@
-# Англійська · Урок 3 · Заняття 56 — Місто на одній карті
+# Англійська · Урок 3 · Заняття 56 — Квартира готова до гостей
 
-**Ситуація.** Ви зустрічаєте друга в місті й показуєте місця на карті: лікарню, кінотеатр, бібліотеки, станції, музей і кафе. Смугаста сумка допомагає другові впізнати вас. Ви називаєте місця, запитуєте про вибрані точки й показуєте, де вони.
+**Ситуація.** Квартира майже готова, скоро прийдуть гості. Ви з подругою докуповуєте останні дрібниці. Нової граматики немає: ви самі обираєте a, an чи the, this, that, these або those, is чи are і ставите колір або матеріал перед предметом.
 
-**Що ви опануєте:** поєднати знайомі назви місць з a, the, this, those, is та are
-**Нові слова:** —
+**Що ви опануєте:** самі обирати a, the, this, those, is чи are і ставити колір або матеріал перед предметом
+**Нові слова:** mat, tray, hook, bin
+**Повертаються:** bowl, curtain, towel, olive, beige
 
 ---
 
 ## Інтро 1
 
-### Одне місце
+### Килимок біля дверей
 
-Згадаймо `hospital` — «лікарня», `cinema` — «кінотеатр» і `museum` — «музей». Щоб назвати одне незнайоме місце: `This is a hospital` — «Це лікарня». Щоб запитати про вибраний музей: `Where is the museum?` — «Де музей?» Одне місце — `is`; `a` називає одне з таких місць, `the` вказує на зрозуміле співрозмовникам.
+Квартира майже готова, скоро прийдуть гості. Біля вхідних дверей бракує килимка, щоб витирати ноги. У магазині ви з подругою знайшли сірий, і він лежить поруч із вами. mat — «килимок». Ви показуєте на нього: This is a grey mat — «Це сірий килимок».
 
-**Ви показуєте на незнайому другові будівлю: «Це лікарня».**
+**Подруга питає, що ви знайшли. Скажіть їй, що це сірий килимок.**
 
-- ✅ **This is a hospital.**
-- ❌ This are a hospital. — *Одна лікарня: `This is a hospital`.*
-- ❌ These are a hospital. — *`These are` для кількох; тут одна лікарня.*
+- ✅ **This is a grey mat.**
+- ❌ This are a grey mat. — *Килимок один, тому потрібно is: This is a grey mat.*
+- ❌ This is a mat grey. — *Колір іде перед предметом: a grey mat.*
 
 ---
 
 ## Інтро 2
 
-### Кілька місць
+### Таці для гостей
 
-`libraries` — «бібліотеки», `stations` — «станції», `cafes` — «кафе», коли їх кілька. Для групи потрібне `are`: `The libraries are here` — «Бібліотеки тут». `Those stations are there` — «Ті станції там»: показуємо кілька далі на карті. `Where are the cafes?` — «Де кафе?» — запитуємо про вибрані кафе.
+Чашки гостям зручно подавати на підносі. На дальній полиці кухонного магазину стоять металеві підноси, і вони блищать. Подруга питає, що ви там бачите. tray — «піднос». Підносів кілька, і вони далеко: Those are metal trays — «Це металеві підноси».
 
-**Ви вже обговорили бібліотеки. Покажіть їх: «Бібліотеки тут».**
+**Подруга чекає на відповідь. Скажіть їй, що це металеві підноси.**
 
-- ✅ **The libraries are here.**
-- ❌ The libraries is here. — *Бібліотек кілька: `are`.*
-- ❌ The library is here. — *Так говорять про одну бібліотеку. Тут кілька: `libraries are`.*
+- ✅ **Those are metal trays.**
+- ❌ Those are a metal trays. — *Підносів кілька, і a перед ними не ставимо: metal trays.*
+- ❌ These are metal trays. — *Підноси далеко, а these кажемо про близьке: Those are metal trays.*
 
 ---
 
 ## Інтро 3
 
-### Зустрічаємося з другом
+### Гачок для пальта
 
-`striped` — «смугастий»: `This bag is striped` — «Ця сумка смугаста». Після `This` перед `bag` артикля не додаємо. Смуги допомагають упізнати сумку, але адресу музею на ній не написано. Для адреси знову потрібна карта: `The museum is there` — «Музей там».
+У передпокої бракує місця, де гості повісять пальто. Продавець показує вам гачок на дальній стіні магазину: він металевий, і на ньому стоїть маленька ціна. Подруга питає, чи це дорого. hook — «гачок». That metal hook is cheap — «Той металевий гачок недорогий».
 
-**Покажіть на сумку поруч: «Ця сумка смугаста».**
+**Подруга чекає на відповідь. Скажіть їй, що той металевий гачок недорогий.**
 
-- ✅ **This bag is striped.**
-- ❌ This bag are striped. — *Одна сумка: `is`.*
-- ❌ This a bag is striped. — *Після `This` одразу йде `bag`, без `a`.*
+- ✅ **That metal hook is cheap.**
+- ❌ That metal hook are cheap. — *Гачок один, тому потрібно is: That metal hook is cheap.*
+- ❌ This metal hook is cheap. — *Гачок далеко, а this кажемо про близьке: That metal hook is cheap.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Назвіть незнайому другові будівлю поруч: «Це лікарня»**
-<!-- interaction_id: en:lesson-03:session-56:i01; family: phrase_builder -->
-Плитки: `hospital` `a` `is` `This` `are` → **This is a hospital.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a hospital.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-56:i01; family: speed_match -->
+mat — килимок · tray — піднос · hook — гачок · bin — відро для сміття
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-03:session-56:i02; family: listen_choose -->
-🔊 *cinema* → **cinema** · museum · hospital
-- museum — *У записі перше слово — `cinema`, а в цьому варіанті — `museum`.*
-- hospital — *У записі перше слово — `cinema`, а в цьому варіанті — `hospital`.*
+**2 · Картка слова — mat**
+<!-- interaction_id: en:lesson-03:session-56:word:mat; family: word_card -->
+> **mat** — килимок. This is a grey mat — «Це сірий килимок». Про килимок біля дверей, у ванній, для йоги.
 
-**3 · Ви показуєте кілька бібліотек, які вже обговорили**
-<!-- interaction_id: en:lesson-03:session-56:i03; family: context_gap_grammar -->
-The libraries ___ here. → **are** · is · am
-- is — *Бібліотек кілька: `are`.*
-- am — *З `The libraries` потрібне `are`.*
+**3 · Подруга показує на килимок біля дверей і називає його, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-03:session-56:i02; family: scripted_repeat_compare -->
+🎙 **mat**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-03:session-56:i04; family: speed_match -->
-hospital — лікарня · cinema — кінотеатр · libraries — бібліотеки · stations — станції
+**4 · Килимок лежить поруч із вами. Скажіть продавцю повною фразою: це коричневий килимок.**
+<!-- interaction_id: en:lesson-03:session-56:i03; family: phrase_builder -->
+Плитки: `mat` `brown` `a` `is` `This` `are` → **This is a brown mat.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a brown mat.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-03:session-56:i05; family: listen_build_dictation -->
-🔊 *Those stations are there.* Плитки: `there` `are` `stations` `Those` `is` → **Those stations are there.**
-*(плитка `is` зайва: тут потрібно `are` — `Those stations are there.`)*
+**5 · Картка слова — tray**
+<!-- interaction_id: en:lesson-03:session-56:word:tray; family: word_card -->
+> **tray** — піднос. Those are metal trays — «Це металеві підноси». Про піднос для чашок і тарілок.
 
-**6 · Музей для відвідування вже вибрано. Запитайте «Де музей?»**
-<!-- interaction_id: en:lesson-03:session-56:i06; family: phrase_builder -->
-Плитки: `museum` `the` `is` `Where` `are` → **Where is the museum?**
-*(плитка `are` зайва: тут потрібно `is` — `Where is the museum?`)*
+**6 · Подруга несе чашки на пласкому предметі з ручками. Як він називається англійською?**
+<!-- interaction_id: en:lesson-03:session-56:i04; family: context_gap_grammar -->
+___ → **tray** · mat · bowl
+- mat — *mat — це килимок, а плаский предмет для чашок називається tray.*
+- bowl — *bowl — це миска, а плаский предмет для чашок називається tray.*
 
-**7 · Друг запитує про візерунок вашої сумки. Скажіть «Вона смугаста» зі скороченням**
-<!-- interaction_id: en:lesson-03:session-56:i07; family: scripted_repeat_compare -->
-🎙 **It's striped.**
+**7 · Послухайте, що продавець каже про килимки**
+<!-- interaction_id: en:lesson-03:session-56:i05; family: listen_choose -->
+🔊 *Those are grey mats.* → **Those are grey mats.** · That is a grey mat. · Those are grey trays.
+- That is a grey mat. — *У записі `Those are` і кілька килимків, а в цьому варіанті `That is a` і один килимок.*
+- Those are grey trays. — *У записі останнє слово — `mats`, а в цьому варіанті — `trays`.*
 
-**8 · Ви показуєте на кілька кафе поруч на карті**
+**8 · Картка слова — hook**
+<!-- interaction_id: en:lesson-03:session-56:word:hook; family: word_card -->
+> **hook** — гачок. That metal hook is cheap — «Той металевий гачок недорогий». Про гачок для пальта, рушника, ключів.
+
+**9 · Продавець показує на гачок для пальта й називає його, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-03:session-56:i06; family: scripted_repeat_compare -->
+🎙 **hook**
+
+**10 · Послухайте подругу й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-56:i07; family: listen_build_dictation -->
+🔊 *That round tray is clean.* Плитки: `tray` `round` `is` `That` `clean` `are` → **That round tray is clean.**
+*(плитка `are` зайва: тут потрібно `is` — `That round tray is clean.`)*
+
+**11 · Картка слова — bin**
+<!-- interaction_id: en:lesson-03:session-56:word:bin; family: word_card -->
+> **bin** — відро для сміття. The bin is black — «Відро для сміття чорне». Про сміттєве відро на кухні й у дворі.
+
+**12 · Подруга показує на відро для сміття під раковиною. Як воно називається англійською?**
 <!-- interaction_id: en:lesson-03:session-56:i08; family: context_gap_grammar -->
-___ are cafes. → **These** · This · That
-- This — *Кафе кілька поруч: `These`.*
-- That — *`That` для одного далі. Тут кілька поруч: `These`.*
+___ → **bin** · tray · hook
+- tray — *tray — це піднос, а відро для сміття називається bin.*
+- hook — *hook — це гачок, а відро для сміття називається bin.*
 
-**9 · Послухайте, що друг говорить про вибраний музей**
-<!-- interaction_id: en:lesson-03:session-56:i09; family: listen_choose -->
-🔊 *The museum is there.* → **The museum is there.** · The museum is here. · The museum is full.
-- The museum is here. — *У записі останнє слово — `there`, а в цьому варіанті — `here`.*
-- The museum is full. — *У записі останнє слово — `there`, а в цьому варіанті — `full`.*
+**13 · Гачки висять поруч із вами. Скажіть подрузі повною фразою: ці металеві гачки нові.**
+<!-- interaction_id: en:lesson-03:session-56:i09; family: phrase_builder -->
+Плитки: `hooks` `metal` `are` `These` `new` `is` → **These metal hooks are new.**
+*(плитка `is` зайва: тут потрібно `are` — `These metal hooks are new.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-56:i10; family: speed_match -->
-museum — музей · striped — смугастий · cafes — кафе — кілька · cinema — кінотеатр
+mat — килимок · tray — піднос · curtain — завіса · towel — рушник
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-03:session-56:i11; family: listen_build_dictation -->
-🔊 *The cinema is here.* Плитки: `here` `is` `cinema` `The` `are` → **The cinema is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The cinema is here.`)*
+**15 · Послухайте запитання продавця**
+<!-- interaction_id: en:lesson-03:session-56:i11; family: listen_choose -->
+🔊 *Is that bin black?* → **Is that bin black?** · Is this bin black? · Is that bin white?
+- Is this bin black? — *У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч).*
+- Is that bin white? — *У записі колір — `black`, а в цьому варіанті — `white`.*
 
-**12 · Ви обговорювали кілька кафе для зустрічі. Запитайте «Де кафе?»**
-<!-- interaction_id: en:lesson-03:session-56:i12; family: phrase_builder -->
-Плитки: `cafes` `the` `are` `Where` `is` → **Where are the cafes?**
-*(плитка `is` зайва: тут потрібно `are` — `Where are the cafes?`)*
+**16 · Килимок оливкового кольору лежить поруч із вами. Доповніть фразу**
+<!-- interaction_id: en:lesson-03:session-56:i12; family: context_gap_grammar -->
+It is ___ olive mat. → **an** · a · are
+- a — *Слово olive починається з голосного звуку, тому потрібно an, а не a.*
+- are — *Тут ідеться про один килимок: потрібно an, а не are.*
 
-**13 · Друг шукає лікарню, яку ви вже обговорювали. Покажіть її далі на карті: «Лікарня там»**
-<!-- interaction_id: en:lesson-03:session-56:i13; family: scripted_repeat_compare -->
-🎙 **The hospital is there.**
+**17 · Послухайте продавця й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-56:i13; family: listen_build_dictation -->
+🔊 *These are black bins.* Плитки: `bins` `black` `are` `These` `is` → **These are black bins.**
+*(плитка `is` зайва: тут потрібно `are` — `These are black bins.`)*
 
-**14 · Ви описуєте одну сумку поруч**
-<!-- interaction_id: en:lesson-03:session-56:i14; family: context_gap_grammar -->
-This bag ___ striped. → **is** · are · am
-- are — *Одна сумка: `This bag is striped`.*
-- am — *З `This bag` потрібне `is`.*
+**18 · Подруга питає, який піднос вам потрібен. Скажіть їй, що той овальний**
+<!-- interaction_id: en:lesson-03:session-56:i14; family: scripted_repeat_compare -->
+🎙 **that oval tray**
 
-**15 · Послухайте повідомлення про вибрані бібліотеки**
-<!-- interaction_id: en:lesson-03:session-56:i15; family: listen_choose -->
-🔊 *The libraries are there.* → **The libraries are there.** · The libraries are here. · The libraries are full.
-- The libraries are here. — *У записі останнє слово — `there`, а в цьому варіанті — `here`.*
-- The libraries are full. — *У записі останнє слово — `there`, а в цьому варіанті — `full`.*
+**19 · Ви шукаєте килимок, про який уже говорили з продавцем. Запитайте його, чи тут бежевий килимок.**
+<!-- interaction_id: en:lesson-03:session-56:i15; family: phrase_builder -->
+Плитки: `mat` `beige` `the` `here` `Is` `Are` → **Is the beige mat here?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is the beige mat here?`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-56:i16; family: speed_match -->
-stations — станції · cafes — кафе — кілька · museum — музей · striped — смугастий
+bin — відро для сміття · hook — гачок · tray — піднос · mat — килимок
 
-**17 · В іншому місті ви вже вибрали кілька станцій маршруту. Друг тримає карту. Запитайте «Де станції?», маючи на увазі вибрані станції**
+**21 · Продавець питає про відро біля стіни. Відповідайте йому коротко: те відро біле.**
 <!-- interaction_id: en:lesson-03:session-56:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the stations?**
-
+🎙 **That bin is white.**

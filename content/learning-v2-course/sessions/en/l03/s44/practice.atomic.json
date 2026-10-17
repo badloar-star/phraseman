@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-44",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-44:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы впервые видите корзину у входа. Скажите подруге: «Здесь корзина».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые видите корзину у входа. Скажите подруге: «Здесь корзина».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "A basket is here.",
+          "localizedMeaning": {
+            "ru": "Вы впервые видите корзину у входа. Скажите подруге: «Здесь корзина».",
+            "uk": "Ви вперше бачите кошик біля входу. Скажіть подрузі: «Тут кошик»."
+          },
+          "orderedTokens": [
+            "A",
+            "basket",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы впервые видите корзину у входа. Скажите подруге: «Здесь корзина».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `A` — `A basket is here.`",
+                "uk": "тут потрібно `A` — `A basket is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте продавца и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i02:r1",
+            "text": "A basket is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i02:r2",
+            "text": "The basket is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i02:r3",
+            "text": "A basket is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i02:audio",
+            "transcript": "A basket is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:i02:r1",
+              "targetText": "A basket is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i02:r2",
+              "targetText": "The basket is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i02:r3",
+              "targetText": "A basket is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+                "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец уже говорил о тележке и теперь возвращается к ней. Дополните его фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец уже говорил о тележке и теперь возвращается к ней. Дополните его фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец уже говорил о тележке и теперь возвращается к ней. Дополните его фразу",
+            "uk": "Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "___ trolley is empty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-44:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Продавец уже говорил о тележке и теперь возвращается к ней. Дополните его фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Продавец уже говорил о тележке и теперь возвращается к ней. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "О тележке уже шла речь, поэтому The, а не A.",
+                "uk": "Про візок уже йшлося, тому The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Продавец уже говорил о тележке и теперь возвращается к ней. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "Перед trolley an не ставят, а здесь вообще нужно The: речь об уже знакомой тележке.",
+                "uk": "Перед trolley an не ставлять, а тут взагалі потрібно The: мова про вже знайомий візок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-44:i04:p1",
+              "target": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i04:p2",
+              "target": "seller",
+              "meaningByLocale": {
+                "ru": "продавец",
+                "uk": "продавець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i04:p3",
+              "target": "assistant",
+              "meaningByLocale": {
+                "ru": "помощник, консультант",
+                "uk": "помічник, консультант"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i04:p4",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "очередь",
+                "uk": "черга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "customer",
+            "seller",
+            "assistant",
+            "queue"
+          ],
+          "rightColumn": [
+            "покупатель",
+            "продавец",
+            "помощник, консультант",
+            "очередь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i05:audio",
+            "transcript": "The basket is full."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The basket is full.",
+          "orderedTokens": [
+            "The",
+            "basket",
+            "is",
+            "full"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The basket is full.`",
+                "uk": "тут потрібно `The` — `The basket is full.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы впервые видите зонт у входа. Скажите подруге: «Здесь зонт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые видите зонт у входа. Скажите подруге: «Здесь зонт».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "An umbrella is here.",
+          "localizedMeaning": {
+            "ru": "Вы впервые видите зонт у входа. Скажите подруге: «Здесь зонт».",
+            "uk": "Ви вперше бачите парасольку біля входу. Скажіть подрузі: «Тут парасолька»."
+          },
+          "orderedTokens": [
+            "An",
+            "umbrella",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы впервые видите зонт у входа. Скажите подруге: «Здесь зонт».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `An` — `An umbrella is here.`",
+                "uk": "тут потрібно `An` — `An umbrella is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:customer",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — customer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:customer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — customer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:customer:audio",
+            "transcript": "customer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:customer:r1",
+              "targetText": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель. A customer is happy — «Покупатель доволен». О человеке, который пришёл в магазин что-то купить.",
+                "uk": "покупець. A customer is happy — «Покупець задоволений». Про людину, яка прийшла в магазин щось купити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "customer",
+            "definitionByLocale": {
+              "ru": "покупатель. A customer is happy — «Покупатель доволен». О человеке, который пришёл в магазин что-то купить.",
+              "uk": "покупець. A customer is happy — «Покупець задоволений». Про людину, яка прийшла в магазин щось купити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец называет человека, который подошёл к кассе с покупками, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Продавец называет человека, который подошёл к кассе с покупками, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i07:audio",
+            "transcript": "customer"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "customer",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:seller",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — seller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:seller:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — seller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:seller:audio",
+            "transcript": "seller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:seller:r1",
+              "targetText": "seller",
+              "meaningByLocale": {
+                "ru": "продавец. The seller is busy — «Продавец занят». О человеке, который продаёт товары.",
+                "uk": "продавець. The seller is busy — «Продавець зайнятий». Про людину, яка продає товари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seller",
+            "definitionByLocale": {
+              "ru": "продавец. The seller is busy — «Продавец занят». О человеке, который продаёт товары.",
+              "uk": "продавець. The seller is busy — «Продавець зайнятий». Про людину, яка продає товари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает, как по-английски называется человек, который продаёт товары",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i08:r1",
+            "text": "seller"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i08:r2",
+            "text": "customer"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i08:r3",
+            "text": "coin"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, как по-английски называется человек, который продаёт товары",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, как по-английски называется человек, который продаёт товары",
+            "uk": "Подруга питає, як англійською називається людина, яка продає товари"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-44:i08:r1",
+              "text": "seller"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i08:r2",
+              "text": "customer"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i08:r3",
+              "text": "coin"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает, как по-английски называется человек, который продаёт товары",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, как по-английски называется человек, который продаёт товары",
+              "feedbackByLocale": {
+                "ru": "customer — это покупатель, а тот, кто продаёт товары, называется seller.",
+                "uk": "customer — це покупець, а той, хто продає товари, називається seller."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, как по-английски называется человек, который продаёт товары",
+              "feedbackByLocale": {
+                "ru": "coin — это монета, а тот, кто продаёт товары, называется seller.",
+                "uk": "coin — це монета, а той, хто продає товари, називається seller."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит продавец",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i09:r1",
+            "text": "A customer is happy."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r2",
+            "text": "The customer is happy."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r3",
+            "text": "A customer is angry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит продавец",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i09:audio",
+            "transcript": "A customer is happy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:i09:r1",
+              "targetText": "A customer is happy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i09:r2",
+              "targetText": "The customer is happy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i09:r3",
+              "targetText": "A customer is angry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `happy`, а в этом варианте — `angry`.",
+                "uk": "У записі останнє слово — `happy`, а в цьому варіанті — `angry`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-44:i10:p1",
+              "target": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i10:p2",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i10:p3",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка для покупок",
+                "uk": "візок для покупок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "customer",
+            "basket",
+            "trolley",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "покупатель",
+            "корзина",
+            "тележка для покупок",
+            "зонт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте покупателя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте покупателя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i11:audio",
+            "transcript": "The seller is busy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The seller is busy.",
+          "orderedTokens": [
+            "The",
+            "seller",
+            "is",
+            "busy"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте покупателя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The seller is busy.`",
+                "uk": "тут потрібно `The` — `The seller is busy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "О продавце вы уже говорили покупателю. Теперь скажите ему: «Продавец здесь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "О продавце вы уже говорили покупателю. Теперь скажите ему: «Продавец здесь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The seller is here.",
+          "localizedMeaning": {
+            "ru": "О продавце вы уже говорили покупателю. Теперь скажите ему: «Продавец здесь».",
+            "uk": "Про продавця ви вже говорили покупцеві. Тепер скажіть йому: «Продавець тут»."
+          },
+          "orderedTokens": [
+            "The",
+            "seller",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "О продавце вы уже говорили покупателю. Теперь скажите ему: «Продавец здесь».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The seller is here.`",
+                "uk": "тут потрібно `The` — `The seller is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:assistant",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — assistant",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:assistant:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — assistant",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:assistant:audio",
+            "transcript": "assistant"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:assistant:r1",
+              "targetText": "assistant",
+              "meaningByLocale": {
+                "ru": "помощник, консультант. An assistant is here — «Здесь консультант». О сотруднике, который помогает выбрать товар.",
+                "uk": "помічник, консультант. An assistant is here — «Тут консультант». Про працівника, який допомагає вибрати товар."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "assistant",
+            "definitionByLocale": {
+              "ru": "помощник, консультант. An assistant is here — «Здесь консультант». О сотруднике, который помогает выбрать товар.",
+              "uk": "помічник, консультант. An assistant is here — «Тут консультант». Про працівника, який допомагає вибрати товар."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на сотрудника в зале, который помогает с выбором, и называет его, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на сотрудника в зале, который помогает с выбором, и называет его, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i13:audio",
+            "transcript": "assistant"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "assistant",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:queue",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — queue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:queue:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — queue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:queue:audio",
+            "transcript": "queue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:queue:r1",
+              "targetText": "queue",
+              "meaningByLocale": {
+                "ru": "очередь. The queue is long — «Очередь длинная». О людях, которые стоят друг за другом и ждут.",
+                "uk": "черга. The queue is long — «Черга довга». Про людей, які стоять один за одним і чекають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "queue",
+            "definitionByLocale": {
+              "ru": "очередь. The queue is long — «Очередь длинная». О людях, которые стоят друг за другом и ждут.",
+              "uk": "черга. The queue is long — «Черга довга». Про людей, які стоять один за одним і чекають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Люди стоят друг за другом у кассы и ждут. Как это называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i14:r1",
+            "text": "queue"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i14:r2",
+            "text": "basket"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i14:r3",
+            "text": "trolley"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Люди стоят друг за другом у кассы и ждут. Как это называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Люди стоят друг за другом у кассы и ждут. Как это называется по-английски?",
+            "uk": "Люди стоять один за одним біля каси й чекають. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-44:i14:r1",
+              "text": "queue"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i14:r2",
+              "text": "basket"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i14:r3",
+              "text": "trolley"
+            }
+          ],
+          "testedDimension": "Люди стоят друг за другом у кассы и ждут. Как это называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Люди стоят друг за другом у кассы и ждут. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "basket — это корзина, а люди, которые стоят друг за другом, — это queue.",
+                "uk": "basket — це кошик, а люди, які стоять один за одним, — це queue."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Люди стоят друг за другом у кассы и ждут. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "trolley — это тележка, а люди, которые стоят друг за другом, — это queue.",
+                "uk": "trolley — це візок, а люди, які стоять один за одним, — це queue."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит продавец",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i15:r1",
+            "text": "An assistant is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r2",
+            "text": "The assistant is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r3",
+            "text": "An assistant is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит продавец",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i15:audio",
+            "transcript": "An assistant is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:i15:r1",
+              "targetText": "An assistant is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i15:r2",
+              "targetText": "The assistant is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i15:r3",
+              "targetText": "An assistant is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `An`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `An`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+                "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-44:i16:p1",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "очередь",
+                "uk": "черга"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i16:p2",
+              "target": "assistant",
+              "meaningByLocale": {
+                "ru": "помощник, консультант",
+                "uk": "помічник, консультант"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i16:p3",
+              "target": "seller",
+              "meaningByLocale": {
+                "ru": "продавец",
+                "uk": "продавець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i16:p4",
+              "target": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "queue",
+            "assistant",
+            "seller",
+            "customer"
+          ],
+          "rightColumn": [
+            "очередь",
+            "помощник, консультант",
+            "продавец",
+            "покупатель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с подругой стоите в очереди, о которой только что говорили. Скажите ей: «Очередь длинная».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с подругой стоите в очереди, о которой только что говорили. Скажите ей: «Очередь длинная».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i17:audio",
+            "transcript": "The queue is long."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The queue is long.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-44:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вперше бачите кошик біля входу. Скажіть подрузі: «Тут кошик».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше бачите кошик біля входу. Скажіть подрузі: «Тут кошик».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "A basket is here.",
+          "localizedMeaning": {
+            "ru": "Вы впервые видите корзину у входа. Скажите подруге: «Здесь корзина».",
+            "uk": "Ви вперше бачите кошик біля входу. Скажіть подрузі: «Тут кошик»."
+          },
+          "orderedTokens": [
+            "A",
+            "basket",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вперше бачите кошик біля входу. Скажіть подрузі: «Тут кошик».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `A` — `A basket is here.`",
+                "uk": "тут потрібно `A` — `A basket is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте продавця й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i02:r1",
+            "text": "A basket is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i02:r2",
+            "text": "The basket is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i02:r3",
+            "text": "A basket is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i02:audio",
+            "transcript": "A basket is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:i02:r1",
+              "targetText": "A basket is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i02:r2",
+              "targetText": "The basket is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i02:r3",
+              "targetText": "A basket is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+                "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец уже говорил о тележке и теперь возвращается к ней. Дополните его фразу",
+            "uk": "Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "___ trolley is empty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-44:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "О тележке уже шла речь, поэтому The, а не A.",
+                "uk": "Про візок уже йшлося, тому The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "Перед trolley an не ставят, а здесь вообще нужно The: речь об уже знакомой тележке.",
+                "uk": "Перед trolley an не ставлять, а тут взагалі потрібно The: мова про вже знайомий візок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-44:i04:p1",
+              "target": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i04:p2",
+              "target": "seller",
+              "meaningByLocale": {
+                "ru": "продавец",
+                "uk": "продавець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i04:p3",
+              "target": "assistant",
+              "meaningByLocale": {
+                "ru": "помощник, консультант",
+                "uk": "помічник, консультант"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i04:p4",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "очередь",
+                "uk": "черга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "customer",
+            "seller",
+            "assistant",
+            "queue"
+          ],
+          "rightColumn": [
+            "покупець",
+            "продавець",
+            "помічник, консультант",
+            "черга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i05:audio",
+            "transcript": "The basket is full."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The basket is full.",
+          "orderedTokens": [
+            "The",
+            "basket",
+            "is",
+            "full"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The basket is full.`",
+                "uk": "тут потрібно `The` — `The basket is full.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вперше бачите парасольку біля входу. Скажіть подрузі: «Тут парасолька».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше бачите парасольку біля входу. Скажіть подрузі: «Тут парасолька».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "An umbrella is here.",
+          "localizedMeaning": {
+            "ru": "Вы впервые видите зонт у входа. Скажите подруге: «Здесь зонт».",
+            "uk": "Ви вперше бачите парасольку біля входу. Скажіть подрузі: «Тут парасолька»."
+          },
+          "orderedTokens": [
+            "An",
+            "umbrella",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вперше бачите парасольку біля входу. Скажіть подрузі: «Тут парасолька».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `An` — `An umbrella is here.`",
+                "uk": "тут потрібно `An` — `An umbrella is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:customer",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — customer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:customer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — customer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:customer:audio",
+            "transcript": "customer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:customer:r1",
+              "targetText": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель. A customer is happy — «Покупатель доволен». О человеке, который пришёл в магазин что-то купить.",
+                "uk": "покупець. A customer is happy — «Покупець задоволений». Про людину, яка прийшла в магазин щось купити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "customer",
+            "definitionByLocale": {
+              "ru": "покупатель. A customer is happy — «Покупатель доволен». О человеке, который пришёл в магазин что-то купить.",
+              "uk": "покупець. A customer is happy — «Покупець задоволений». Про людину, яка прийшла в магазин щось купити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець називає людину, яка підійшла до каси з покупками, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Продавець називає людину, яка підійшла до каси з покупками, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i07:audio",
+            "transcript": "customer"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "customer",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:seller",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — seller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:seller:audio"
+        ],
+        "accessibilityLabel": "Картка слова — seller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:seller:audio",
+            "transcript": "seller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:seller:r1",
+              "targetText": "seller",
+              "meaningByLocale": {
+                "ru": "продавец. The seller is busy — «Продавец занят». О человеке, который продаёт товары.",
+                "uk": "продавець. The seller is busy — «Продавець зайнятий». Про людину, яка продає товари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seller",
+            "definitionByLocale": {
+              "ru": "продавец. The seller is busy — «Продавец занят». О человеке, который продаёт товары.",
+              "uk": "продавець. The seller is busy — «Продавець зайнятий». Про людину, яка продає товари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає, як англійською називається людина, яка продає товари",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i08:r1",
+            "text": "seller"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i08:r2",
+            "text": "customer"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i08:r3",
+            "text": "coin"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, як англійською називається людина, яка продає товари",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, как по-английски называется человек, который продаёт товары",
+            "uk": "Подруга питає, як англійською називається людина, яка продає товари"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-44:i08:r1",
+              "text": "seller"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i08:r2",
+              "text": "customer"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i08:r3",
+              "text": "coin"
+            }
+          ],
+          "testedDimension": "Подруга питає, як англійською називається людина, яка продає товари",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає, як англійською називається людина, яка продає товари",
+              "feedbackByLocale": {
+                "ru": "customer — это покупатель, а тот, кто продаёт товары, называется seller.",
+                "uk": "customer — це покупець, а той, хто продає товари, називається seller."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає, як англійською називається людина, яка продає товари",
+              "feedbackByLocale": {
+                "ru": "coin — это монета, а тот, кто продаёт товары, называется seller.",
+                "uk": "coin — це монета, а той, хто продає товари, називається seller."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже продавець",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i09:r1",
+            "text": "A customer is happy."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r2",
+            "text": "The customer is happy."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r3",
+            "text": "A customer is angry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже продавець",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i09:audio",
+            "transcript": "A customer is happy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:i09:r1",
+              "targetText": "A customer is happy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i09:r2",
+              "targetText": "The customer is happy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i09:r3",
+              "targetText": "A customer is angry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `A`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `A`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `happy`, а в этом варианте — `angry`.",
+                "uk": "У записі останнє слово — `happy`, а в цьому варіанті — `angry`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-44:i10:p1",
+              "target": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i10:p2",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i10:p3",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка для покупок",
+                "uk": "візок для покупок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "customer",
+            "basket",
+            "trolley",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "покупець",
+            "кошик",
+            "візок для покупок",
+            "парасолька"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте покупця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте покупця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i11:audio",
+            "transcript": "The seller is busy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The seller is busy.",
+          "orderedTokens": [
+            "The",
+            "seller",
+            "is",
+            "busy"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте покупця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The seller is busy.`",
+                "uk": "тут потрібно `The` — `The seller is busy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Про продавця ви вже говорили покупцеві. Тепер скажіть йому: «Продавець тут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Про продавця ви вже говорили покупцеві. Тепер скажіть йому: «Продавець тут».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The seller is here.",
+          "localizedMeaning": {
+            "ru": "О продавце вы уже говорили покупателю. Теперь скажите ему: «Продавец здесь».",
+            "uk": "Про продавця ви вже говорили покупцеві. Тепер скажіть йому: «Продавець тут»."
+          },
+          "orderedTokens": [
+            "The",
+            "seller",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Про продавця ви вже говорили покупцеві. Тепер скажіть йому: «Продавець тут».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The seller is here.`",
+                "uk": "тут потрібно `The` — `The seller is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:assistant",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — assistant",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:assistant:audio"
+        ],
+        "accessibilityLabel": "Картка слова — assistant",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:assistant:audio",
+            "transcript": "assistant"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:assistant:r1",
+              "targetText": "assistant",
+              "meaningByLocale": {
+                "ru": "помощник, консультант. An assistant is here — «Здесь консультант». О сотруднике, который помогает выбрать товар.",
+                "uk": "помічник, консультант. An assistant is here — «Тут консультант». Про працівника, який допомагає вибрати товар."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "assistant",
+            "definitionByLocale": {
+              "ru": "помощник, консультант. An assistant is here — «Здесь консультант». О сотруднике, который помогает выбрать товар.",
+              "uk": "помічник, консультант. An assistant is here — «Тут консультант». Про працівника, який допомагає вибрати товар."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на працівника в залі, який допомагає з вибором, і називає його, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на працівника в залі, який допомагає з вибором, і називає його, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i13:audio",
+            "transcript": "assistant"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "assistant",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:word:queue",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — queue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:word:queue:audio"
+        ],
+        "accessibilityLabel": "Картка слова — queue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:word:queue:audio",
+            "transcript": "queue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:word:queue:r1",
+              "targetText": "queue",
+              "meaningByLocale": {
+                "ru": "очередь. The queue is long — «Очередь длинная». О людях, которые стоят друг за другом и ждут.",
+                "uk": "черга. The queue is long — «Черга довга». Про людей, які стоять один за одним і чекають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "queue",
+            "definitionByLocale": {
+              "ru": "очередь. The queue is long — «Очередь длинная». О людях, которые стоят друг за другом и ждут.",
+              "uk": "черга. The queue is long — «Черга довга». Про людей, які стоять один за одним і чекають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Люди стоять один за одним біля каси й чекають. Як це називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i14:r1",
+            "text": "queue"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i14:r2",
+            "text": "basket"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i14:r3",
+            "text": "trolley"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Люди стоять один за одним біля каси й чекають. Як це називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Люди стоят друг за другом у кассы и ждут. Как это называется по-английски?",
+            "uk": "Люди стоять один за одним біля каси й чекають. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-44:i14:r1",
+              "text": "queue"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i14:r2",
+              "text": "basket"
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i14:r3",
+              "text": "trolley"
+            }
+          ],
+          "testedDimension": "Люди стоять один за одним біля каси й чекають. Як це називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Люди стоять один за одним біля каси й чекають. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "basket — это корзина, а люди, которые стоят друг за другом, — это queue.",
+                "uk": "basket — це кошик, а люди, які стоять один за одним, — це queue."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Люди стоять один за одним біля каси й чекають. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "trolley — это тележка, а люди, которые стоят друг за другом, — это queue.",
+                "uk": "trolley — це візок, а люди, які стоять один за одним, — це queue."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже продавець",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i15:r1",
+            "text": "An assistant is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r2",
+            "text": "The assistant is here."
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r3",
+            "text": "An assistant is there."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже продавець",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i15:audio",
+            "transcript": "An assistant is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-44:i15:r1",
+              "targetText": "An assistant is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i15:r2",
+              "targetText": "The assistant is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i15:r3",
+              "targetText": "An assistant is there.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `An`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `An`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+                "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-44:i16:p1",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "очередь",
+                "uk": "черга"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i16:p2",
+              "target": "assistant",
+              "meaningByLocale": {
+                "ru": "помощник, консультант",
+                "uk": "помічник, консультант"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i16:p3",
+              "target": "seller",
+              "meaningByLocale": {
+                "ru": "продавец",
+                "uk": "продавець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-44:i16:p4",
+              "target": "customer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "queue",
+            "assistant",
+            "seller",
+            "customer"
+          ],
+          "rightColumn": [
+            "черга",
+            "помічник, консультант",
+            "продавець",
+            "покупець"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з подругою стоїте в черзі, про яку щойно говорили. Скажіть їй: «Черга довга».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з подругою стоїте в черзі, про яку щойно говорили. Скажіть їй: «Черга довга».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-44:i17:audio",
+            "transcript": "The queue is long."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The queue is long.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-44:i01",
+      "correctText": "A basket is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i02",
+      "correctText": "A basket is here.",
+      "correctResponseId": "en:lesson-03:session-44:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i03",
+      "correctText": "The",
+      "correctResponseId": "en:lesson-03:session-44:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i05",
+      "correctText": "The basket is full.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i06",
+      "correctText": "An umbrella is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:customer",
+      "correctText": "customer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i07",
+      "correctText": "customer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:seller",
+      "correctText": "seller",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i08",
+      "correctText": "seller",
+      "correctResponseId": "en:lesson-03:session-44:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i09",
+      "correctText": "A customer is happy.",
+      "correctResponseId": "en:lesson-03:session-44:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i11",
+      "correctText": "The seller is busy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i12",
+      "correctText": "The seller is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:assistant",
+      "correctText": "assistant",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i13",
+      "correctText": "assistant",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:queue",
+      "correctText": "queue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i14",
+      "correctText": "queue",
+      "correctResponseId": "en:lesson-03:session-44:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i15",
+      "correctText": "An assistant is here.",
+      "correctResponseId": "en:lesson-03:session-44:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i17",
+      "correctText": "The queue is long.",
+      "correctResponseId": null
+    }
+  ]
+}

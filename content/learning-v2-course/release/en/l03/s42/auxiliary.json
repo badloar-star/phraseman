@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-42:intro1:r2": {
-          "ru": "`kitchen` — кухня. Ванная комната — `bathroom`.",
-          "uk": "`kitchen` — кухня. Ванна кімната — `bathroom`."
+          "ru": "Вы обе смотрите на одну и ту же ручку, поэтому the: The handle is broken.",
+          "uk": "Ви обидві дивитеся на одну й ту саму ручку, тому the: The handle is broken."
         },
         "en:lesson-03:session-42:intro1:r3": {
-          "ru": "`room` — комната вообще. Здесь точнее `bathroom`.",
-          "uk": "`room` — кімната загалом. Тут точніше `bathroom`."
+          "ru": "Ручка одна, поэтому нужно is: The handle is broken.",
+          "uk": "Ручка одна, тому потрібно is: The handle is broken."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-42:intro2:r2": {
-          "ru": "Комната одна: нужно `is`.",
-          "uk": "Кімната одна: потрібне `is`."
+          "ru": "Звонок один, и вы оба на него смотрите, поэтому the: The bell is old.",
+          "uk": "Дзвінок один, і ви обидва на нього дивитеся, тому the: The bell is old."
         },
         "en:lesson-03:session-42:intro2:r3": {
-          "ru": "Так говорят о нескольких ванных комнатах. Здесь одна: `The bathroom is there`.",
-          "uk": "Так говорять про кілька ванних кімнат. Тут одна: `The bathroom is there`."
+          "ru": "Звонок один, поэтому нужно is: The bell is old.",
+          "uk": "Дзвінок один, тому потрібно is: The bell is old."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-42:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-42:intro3:r2": {
-          "ru": "`accurate` — точная. Здесь есть ошибка: `inaccurate`.",
-          "uk": "`accurate` — точна. Тут є помилка: `inaccurate`."
+          "ru": "Вы оба смотрите на одно и то же колесо, поэтому the: The wheel is loose.",
+          "uk": "Ви обидва дивитеся на те саме колесо, тому the: The wheel is loose."
         },
         "en:lesson-03:session-42:intro3:r3": {
-          "ru": "Речь об одной схеме: `It is inaccurate`.",
-          "uk": "Ідеться про одну схему: `It is inaccurate`."
+          "ru": "Колесо одно, поэтому нужно is: The wheel is loose.",
+          "uk": "Колесо одне, тому потрібно is: The wheel is loose."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9037cba6b1ce27b15e4934712ff5c2cf8044a337b7c4b0d3c1a4b7ca7bfaab4a"
+  "auxiliaryFingerprint": "f0db0b4764b2afa6e6040b7142a51e03ba291f13c387e788d3ec71d062805ef2"
 }

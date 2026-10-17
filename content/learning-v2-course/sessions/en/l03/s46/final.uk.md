@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 46 — Аеропорт на новій карті
+# Англійська · Урок 3 · Заняття 46 — Оглядаємо будинок
 
-**Ситуація.** Ви з Анною готуєтеся до поїздки в аеропорт. Стара карта стосується іншого міста й не допомагає. У вас є квиток. Ви також вибираєте одяг для ділової зустрічі після прильоту: Анна уточнює, чи підходить вибраний варіант.
+**Ситуація.** Ви з братом оглядаєте будинок, який купили. У будинку є речі, які в ньому одні: дах, ліфт, сходи, балкон. Співрозмовник одразу розуміє, про яку з них мова, тому кажемо the.
 
-**Що ви опануєте:** назвати аеропорт з an і вказати місце конкретного аеропорту з the
-**Нові слова:** airport
+**Що ви опануєте:** казати the про те, що в будівлі одне й зрозуміле співрозмовнику
+**Нові слова:** roof, lift, stairs, balcony
+**Повертаються:** door, window, wall, floor, ceiling
 
 ---
 
 ## Інтро 1
 
-### Один аеропорт
+### Верх будинку
 
-`airport` — «аеропорт». `This is an airport` — «Це аеропорт»: ви показуєте місце на карті й називаєте його. Перед `airport` потрібне `an`, бо слово починається з голосного звука. Літаків може бути багато, а аеропорт на карті один: тому `is`.
+Ви з братом стоїте на подвір’ї й оглядаєте щойно куплений будинок. Брат піднімає голову, дивиться на самий верх будинку і питає, що з ним. roof — «дах». У будинку один дах, і він зрозумілий вам обом, тому the: The roof is old — «Дах старий».
 
-**Назвіть аеропорт одним англійським словом.**
+**Брат питає, що з верхом будинку. Скажіть йому: «Дах старий».**
 
-- ✅ **airport**
-- ❌ office — *`office` — офіс. Аеропорт — `airport`.*
-- ❌ hotel — *`hotel` — готель. Аеропорт — `airport`.*
+- ✅ **The roof is old.**
+- ❌ A roof is old. — *У будинку один дах, і він зрозумілий вам обом, тому the: The roof is old.*
+- ❌ The roof are old. — *Дах один, тому потрібно is: The roof is old.*
 
 ---
 
 ## Інтро 2
 
-### Потрібний вам аеропорт
+### Ліфт у під’їзді
 
-`The airport is there` — «Аеропорт там». Ідеться про конкретний аеропорт вашої поїздки, зрозумілий вам обом. Тому `the airport`, навіть якщо ви ще не називали його вголос. На карті можна показати один об’єкт далі: `That is an airport` — «Це аеропорт».
+Ви із сусідкою зайшли в під’їзд нового будинку й хочете піднятися на п’ятий поверх. Кабіна, яка возить людей по поверхах, там одна на весь під’їзд. lift — «ліфт». Ви обидві знаєте, про який ліфт мова, тому the: The lift is slow — «Ліфт повільний».
 
-**Ви з Анною вже знаєте, з якого аеропорту вилітаєте. Укажіть його на дальній частині карти: «Аеропорт там».**
+**Сусідка чекає кабіну поруч із вами. Скажіть їй про ліфт: «Ліфт повільний».**
 
-- ✅ **The airport is there.**
-- ❌ The airport are there. — *Аеропорт один: потрібне `is`.*
-- ❌ The airports are there. — *Так говорять про кілька аеропортів. Тут один: `The airport is there`.*
+- ✅ **The lift is slow.**
+- ❌ A lift is slow. — *Ліфт у під’їзді один, і він зрозумілий вам обом, тому the: The lift is slow.*
+- ❌ The lift are slow. — *Ліфт один, тому потрібно is: The lift is slow.*
 
 ---
 
 ## Інтро 3
 
-### Що допоможе в поїздці
+### Пішки по поверхах
 
-`useless` — «некорисний, марний»: карта іншого міста не допомагає знайти потрібний аеропорт. Про неї: `It is useless` — «Вона некорисна». `appropriate` — «доречний, відповідний»: вибраний одяг підходить для ділової зустрічі. Про вибраний варіант: `It is appropriate` — «Це доречно». `appropriate` оцінює відповідність ситуації, а не законність. `ticket` — квиток; ваш квиток тут: `The ticket is here`.
+Ліфт не працює, і ви йдете нагору із сусідкою по сходинках, тримаючись за поручні. stairs — «сходи»: так називають усі сходинки між поверхами, і слово завжди стоїть у множині. У під’їзді вони одні, тому the: The stairs are narrow — «Сходи вузькі».
 
-**Карта іншого міста не допомагає знайти ваш аеропорт. Скажіть про неї «Вона некорисна».**
+**Ви підіймаєтеся сходами разом із сусідкою. Скажіть їй: «Сходи вузькі».**
 
-- ✅ **It is useless.**
-- ❌ It is useful. — *`useful` — корисна. Ця карта тут не допомагає: `useless`.*
-- ❌ It are useless. — *Ідеться про одну карту: `It is useless`.*
+- ✅ **The stairs are narrow.**
+- ❌ The stairs is narrow. — *Слово stairs стоїть у множині, тому потрібно are: The stairs are narrow.*
+- ❌ A stairs are narrow. — *Сходи в під’їзді одні й зрозумілі вам обом, тому the, а не a: The stairs are narrow.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна шукає квиток для поїздки. Він у вас. Скажіть «Квиток тут»**
+**1 · Ви з братом дивитеся на стелю в кімнаті. Скажіть: «Стеля брудна».**
 <!-- interaction_id: en:lesson-03:session-46:i01; family: phrase_builder -->
-Плитки: `here` `is` `ticket` `The` `are` → **The ticket is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The ticket is here.`)*
+Плитки: `ceiling` `is` `dirty` `The` `A` → **The ceiling is dirty.**
+*(плитка `A` зайва: тут потрібно `The` — `The ceiling is dirty.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте брата й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-46:i02; family: listen_choose -->
-🔊 *airport* → **airport** · office · hotel
-- office — *У записі перше слово — `airport`, а в цьому варіанті — `office`.*
-- hotel — *У записі перше слово — `airport`, а в цьому варіанті — `hotel`.*
+🔊 *The door is open.* → **The door is open.** · A door is open. · The door is closed.
+- A door is open. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
+- The door is closed. — *У записі останнє слово — `open`, а в цьому варіанті — `closed`.*
 
-**3 · Назвіть аеропорт одним англійським словом**
+**3 · Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-46:i03; family: context_gap_grammar -->
-___ → **airport** · office · hotel
-- office — *`office` — офіс. Аеропорт — `airport`.*
-- hotel — *`hotel` — готель. Аеропорт — `airport`.*
+___ floor is wet. → **The** · A · An
+- A — *Ви обоє дивитеся на цю підлогу, і вона зрозуміла вам обом, тому The, а не A.*
+- An — *Перед floor an не ставлять, а тут взагалі потрібно The: підлога зрозуміла вам обом.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-46:i04; family: speed_match -->
-airport — аеропорт · useless — некорисний · appropriate — доречний · ticket — квиток
+roof — дах · lift — ліфт · stairs — сходи · balcony — балкон
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-46:i05; family: listen_build_dictation -->
-🔊 *This is an airport.* Плитки: `airport` `an` `is` `This` `are` → **This is an airport.**
-*(плитка `are` зайва: тут потрібно `is` — `This is an airport.`)*
+🔊 *The wall is dark.* Плитки: `wall` `dark` `is` `The` `A` → **The wall is dark.**
+*(плитка `A` зайва: тут потрібно `The` — `The wall is dark.`)*
 
-**6 · Потрібний вам обом аеропорт позначено далі на карті. Скажіть «Аеропорт там»**
+**6 · Ви вперше називаєте вікно в сусідній кімнаті. Скажіть братові: «Це вікно».**
 <!-- interaction_id: en:lesson-03:session-46:i06; family: phrase_builder -->
-Плитки: `there` `is` `airport` `The` `are` → **The airport is there.**
-*(плитка `are` зайва: тут потрібно `is` — `The airport is there.`)*
+Плитки: `window` `a` `is` `This` `the` → **This is a window.**
+*(плитка `the` зайва: тут потрібно `a` — `This is a window.`)*
 
-**7 · Карта іншого міста не допомагає. Скажіть про неї «Вона некорисна» зі скороченням**
+**7 · Картка слова — roof**
+<!-- interaction_id: en:lesson-03:session-46:word:roof; family: word_card -->
+> **roof** — дах. The roof is old — «Дах старий». Про верхню частину будинку, яка захищає від дощу.
+
+**8 · Брат показує на верх будинку, де лежать листи, що захищають від дощу, і називає його, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-46:i07; family: scripted_repeat_compare -->
-🎙 **It's useless.**
+🎙 **roof**
 
-**8 · Ви називаєте місце на карті: аеропорт**
+**9 · Картка слова — lift**
+<!-- interaction_id: en:lesson-03:session-46:word:lift; family: word_card -->
+> **lift** — ліфт. The lift is slow — «Ліфт повільний». Про кабіну, яка возить людей по поверхах.
+
+**10 · Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-03:session-46:i08; family: context_gap_grammar -->
-This is ___ airport. → **an** · a · are
-- a — *`airport` починається з голосного звука: `an airport`.*
-- are — *Перед назвою одного аеропорту тут потрібне `an`.*
+___ → **lift** · door · window
+- door — *door — це двері, а кабіна, яка возить людей по поверхах, називається lift.*
+- window — *window — це вікно, а кабіна, яка возить людей по поверхах, називається lift.*
 
-**9 · Послухайте оцінку вибраного варіанта одягу**
+**11 · Послухайте, що каже брат**
 <!-- interaction_id: en:lesson-03:session-46:i09; family: listen_choose -->
-🔊 *It is appropriate.* → **It is appropriate.** · It is legal. · It is accurate.
-- It is legal. — *У записі останнє слово — `appropriate`, а в цьому варіанті — `legal`.*
-- It is accurate. — *У записі останнє слово — `appropriate`, а в цьому варіанті — `accurate`.*
+🔊 *The roof is old.* → **The roof is old.** · A roof is old. · The roof is new.
+- A roof is old. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
+- The roof is new. — *У записі останнє слово — `old`, а в цьому варіанті — `new`.*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-46:i10; family: speed_match -->
-airport — аеропорт · ticket — квиток · here — тут · there — там
+roof — дах · door — двері · window — вікно · wall — стіна
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-46:i11; family: listen_build_dictation -->
-🔊 *That ticket is there.* Плитки: `there` `is` `ticket` `That` `are` → **That ticket is there.**
-*(плитка `are` зайва: тут потрібно `is` — `That ticket is there.`)*
+🔊 *The lift is slow.* Плитки: `lift` `slow` `is` `The` `A` → **The lift is slow.**
+*(плитка `A` зайва: тут потрібно `The` — `The lift is slow.`)*
 
-**12 · Ви показуєте на один об’єкт у дальній частині карти. Назвіть його: «Це аеропорт», зі словом для одного далі**
+**14 · Ви із сусідкою чекаєте кабіну в під’їзді. Скажіть їй: «Ліфт тут».**
 <!-- interaction_id: en:lesson-03:session-46:i12; family: phrase_builder -->
-Плитки: `airport` `an` `is` `That` `are` → **That is an airport.**
-*(плитка `are` зайва: тут потрібно `is` — `That is an airport.`)*
+Плитки: `lift` `is` `here` `The` `A` → **The lift is here.**
+*(плитка `A` зайва: тут потрібно `The` — `The lift is here.`)*
 
-**13 · Вибраний варіант одягу підходить для ділової зустрічі. Скажіть «Це доречно» зі скороченням**
+**15 · Картка слова — stairs**
+<!-- interaction_id: en:lesson-03:session-46:word:stairs; family: word_card -->
+> **stairs** — сходи. The stairs are narrow — «Сходи вузькі». Про сходинки між поверхами. Слово завжди в множині.
+
+**16 · Сусідка показує на сходинки між поверхами й називає їх, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-46:i13; family: scripted_repeat_compare -->
-🎙 **It's appropriate.**
+🎙 **stairs**
 
-**14 · Ви вказуєте місце одного аеропорту вашої поїздки**
+**17 · Картка слова — balcony**
+<!-- interaction_id: en:lesson-03:session-46:word:balcony; family: word_card -->
+> **balcony** — балкон. The balcony is open — «Балкон відчинений». Про майданчик із поручнями, на який виходять із кімнати.
+
+**18 · Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?**
 <!-- interaction_id: en:lesson-03:session-46:i14; family: context_gap_grammar -->
-The airport ___ there. → **is** · are · am
-- are — *Аеропорт один: `The airport is there`.*
-- am — *З `The airport` потрібне `is`.*
+___ → **balcony** · wall · ceiling
+- wall — *wall — це стіна, а майданчик із поручнями біля кімнати називається balcony.*
+- ceiling — *ceiling — це стеля, а майданчик із поручнями біля кімнати називається balcony.*
 
-**15 · Послухайте оцінку старої карти**
+**19 · Послухайте, що каже сусідка**
 <!-- interaction_id: en:lesson-03:session-46:i15; family: listen_choose -->
-🔊 *It is useless.* → **It is useless.** · It is useful. · It is inaccurate.
-- It is useful. — *У записі останнє слово — `useless`, а в цьому варіанті — `useful`.*
-- It is inaccurate. — *У записі останнє слово — `useless`, а в цьому варіанті — `inaccurate`.*
+🔊 *The stairs are narrow.* → **The stairs are narrow.** · The stairs are steep. · The stairs are wide.
+- The stairs are steep. — *У записі останнє слово — `narrow`, а в цьому варіанті — `steep`.*
+- The stairs are wide. — *У записі останнє слово — `narrow`, а в цьому варіанті — `wide`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-46:i16; family: speed_match -->
-airport — аеропорт · useless — некорисний · appropriate — доречний · ticket — квиток
+balcony — балкон · stairs — сходи · lift — ліфт · roof — дах
 
-**17 · В іншій поїздці ви з другом шукаєте на карті аеропорт вашого вильоту. Ви знайшли його просто перед собою. Скажіть «Аеропорт тут», говорячи про потрібне вам обом місце**
+**21 · Ви з братом вийшли на майданчик із поручнями, про який уже говорили. Скажіть йому: «Балкон відчинений».**
 <!-- interaction_id: en:lesson-03:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The airport is here.**
-
+🎙 **The balcony is open.**

@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 48 — Від дому до аеропорту
+# Англійська · Урок 3 · Заняття 48 — Звіряємо замовлення вдома
 
-**Ситуація.** Ви допомагаєте гостеві розібратися з планом будинку та картою міста. Спочатку показуєте кімнати, потім позначаєте офіс, аеропорт, готелі й ресторани. Гість має зрозуміти, де одне місце, де кілька та про які саме місця ви говорите.
+**Ситуація.** Ви з подругою вдома розпакували замовлення й звіряєте його зі списком. Потрібно самим вибрати a, an або the і правильно сказати is або are. Нової граматики немає, лише все, що ви вже знаєте про артиклі.
 
-**Що ви опануєте:** самостійно вибирати a/an/the та is/are зі словами шостої глави
-**Нові слова:** —
+**Що ви опануєте:** самі вибирати a, an, the та is або are в одній побутовій сцені
+**Нові слова:** order, item, total, refund
+**Повертаються:** parcel, box, bag, envelope, bottle
 
 ---
 
 ## Інтро 1
 
-### Назвати одне місце
+### Коробка на порозі
 
-Нових слів немає: повторюємо `kitchen` — кухня, `bathroom` — ванна кімната, `bedrooms` — спальні, `hotels` — готелі, `office` — офіс, `airport` — аеропорт, `restaurants` — ресторани. Для одного: `a kitchen`, але `an office` та `an airport`. Вибір `a/an` залежить від першого звука наступного слова. Навіть величезному аеропорту вистачає одного `an`, якщо аеропорт один.
+Кур’єр залишив на порозі коробку, і ви з подругою занесли її до кімнати. Ви відкрили її та звірили все зі списком у телефоні: все на місці. order — «замовлення». Ви обоє знаєте, про яке замовлення мова, тому the: The order is complete — «Замовлення повне».
 
-**Ви називаєте одне приміщення: це офіс. Виберіть фразу.**
+**Подруга питає, чи все на місці. Скажіть їй про замовлення, яке ви обоє бачите: «Замовлення повне».**
 
-- ✅ **This is an office.**
-- ❌ This is a office. — *`office` починається з голосного звука: `an office`.*
-- ❌ This are an office. — *Один об’єкт із `This`: потрібне `is`.*
+- ✅ **The order is complete.**
+- ❌ An order is complete. — *Ви обоє знаєте, про яке замовлення мова, тому the: The order is complete.*
+- ❌ The order are complete. — *Замовлення одне, тому потрібно is: The order is complete.*
 
 ---
 
 ## Інтро 2
 
-### Зрозуміле місце або група
+### Рядок без речі
 
-`The bathroom is here` — «Ванна кімната тут»: ви обоє розумієте, про яку кімнату йдеться. `The bedrooms are there` — «Спальні там»: конкретних спалень кілька. `The` не змінюється, а `is/are` залежить від числа. Не обов’язково спочатку називати місце з `a`: воно може бути зрозумілим із ситуації.
+Ви перевіряєте список рядок за рядком і раптом бачите: однієї речі зі списку в коробці немає. item — «позиція в замовленні, окрема річ». Ви говорите про це подрузі вперше, тому a, а слово починається з голосного звуку, отже an: An item is missing — «Однієї позиції не вистачає».
 
-**Ви вже обговорили кілька спалень будинку. Скажіть «Спальні там».**
+**Ви вперше помітили, що в коробці чогось не вистачає. Скажіть подрузі: «Однієї позиції не вистачає».**
 
-- ✅ **The bedrooms are there.**
-- ❌ The bedrooms is there. — *Спалень кілька: потрібне `are`.*
-- ❌ The bedroom is there. — *Так говорять про одну спальню. Тут кілька: `bedrooms are`.*
+- ✅ **An item is missing.**
+- ❌ A item is missing. — *Слово item починається з голосного звуку, тому an: An item is missing.*
+- ❌ The item is missing. — *Про нестачу ви говорите подрузі вперше, тому an: An item is missing.*
 
 ---
 
 ## Інтро 3
 
-### Показати на карті
+### Сума внизу аркуша
 
-`These are hotels` — «Це готелі»: кілька поруч на карті. `Those are restaurants` — «Це ресторани»: кілька далі. Якщо йдеться про ресторани, які ви вже вибрали, можна сказати `The restaurants are here` — «Ресторани тут». У кожному реченні зрозуміло, яка група потрібна співрозмовникові.
+Внизу надрукованого списку замовлення стоїть одна загальна сума, і ви з подругою перерахували всі ціни на телефоні, щоб перевірити. total — «загальна сума». Ця сума одна й зрозуміла вам обом, тому the: The total is correct — «Загальна сума правильна».
 
-**Ви показуєте на кілька готелів просто перед вами на карті. Назвіть їх зі словом для кількох поруч.**
+**Ви перерахували ціни, і все зійшлося. Скажіть подрузі: «Загальна сума правильна».**
 
-- ✅ **These are hotels.**
-- ❌ This is a hotel. — *Так називають один готель. Тут кілька поруч: `These are hotels`.*
-- ❌ Those are hotels. — *`Those` вказує далі. Тут група поруч: `These`.*
+- ✅ **The total is correct.**
+- ❌ A total is correct. — *Сума внизу списку одна, і ви обидві її бачите, тому the: The total is correct.*
+- ❌ The total are correct. — *Загальна сума одна, тому потрібно is: The total is correct.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви вже показали гостеві кухню. Він шукає її знову, ви біля її дверей. Скажіть «Кухня тут»**
+**1 · Ви вперше називаєте посилку на порозі. Скажіть подрузі: «Це посилка».**
 <!-- interaction_id: en:lesson-03:session-48:i01; family: phrase_builder -->
-Плитки: `here` `is` `kitchen` `The` `are` → **The kitchen is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The kitchen is here.`)*
+Плитки: `parcel` `a` `is` `This` `an` → **This is a parcel.**
+*(плитка `an` зайва: тут потрібно `a` — `This is a parcel.`)*
 
-**2 · Послухайте й виберіть точну фразу**
+**2 · Послухайте подругу й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-48:i02; family: listen_choose -->
-🔊 *The bathroom is there.* → **The bathroom is there.** · The bathroom is here. · This bathroom is there.
-- The bathroom is here. — *У записі останнє слово — `there`, а в цьому варіанті — `here`.*
-- This bathroom is there. — *У записі перше слово — `The`, а в цьому варіанті — `This`.*
+🔊 *The parcel is here.* → **The parcel is here.** · A parcel is here. · The parcel is there.
+- A parcel is here. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
+- The parcel is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
 
-**3 · Ви говорите про кілька спалень, які вже оглянули з гостем**
+**3 · Ви з подругою дивитеся на коробку із замовленням. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-48:i03; family: context_gap_grammar -->
-The bedrooms ___ there. → **are** · is · am
-- is — *Спалень кілька: `The bedrooms are there`.*
-- am — *З `The bedrooms` потрібне `are`.*
+___ box is heavy. → **The** · A · An
+- A — *Ви обидві дивитеся на цю коробку, і вона зрозуміла вам обом, тому The, а не A.*
+- An — *Перед box an не ставлять, а тут взагалі потрібно The: коробка зрозуміла вам обом.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-48:i04; family: speed_match -->
-kitchen — кухня · bathroom — ванна кімната · bedrooms — спальні · hotels — готелі
+item — позиція в замовленні · order — замовлення · total — загальна сума · refund — повернення грошей
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-48:i05; family: listen_build_dictation -->
-🔊 *These are hotels.* Плитки: `hotels` `are` `These` `is` → **These are hotels.**
-*(плитка `is` зайва: тут потрібно `are` — `These are hotels.`)*
+🔊 *An envelope is here.* Плитки: `envelope` `here` `is` `An` `A` → **An envelope is here.**
+*(плитка `A` зайва: тут потрібно `An` — `An envelope is here.`)*
 
-**6 · Гість запитує, що за приміщення просто поруч. Назвіть офіс зі словом для одного поруч**
+**6 · Ви з подругою дивитеся на пляшки із замовлення. Скажіть: «Пляшки повні».**
 <!-- interaction_id: en:lesson-03:session-48:i06; family: phrase_builder -->
-Плитки: `office` `an` `is` `This` `are` → **This is an office.**
-*(плитка `are` зайва: тут потрібно `is` — `This is an office.`)*
+Плитки: `bottles` `are` `full` `The` `Is` → **The bottles are full.**
+*(плитка `Is` зайва: тут потрібно `are` — `The bottles are full.`)*
 
-**7 · Ви з гостем знаєте аеропорт вашого вильоту. Покажіть його далі на карті: «Аеропорт там»**
+**7 · Картка слова — order**
+<!-- interaction_id: en:lesson-03:session-48:word:order; family: word_card -->
+> **order** — позиція в замовленні, окрема річ. An item is missing — «Однієї позиції не вистачає». Про один рядок списку чи одну річ із коробки.
+
+**8 · Подруга дістає список покупок і називає те, що ви отримали, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-48:i07; family: scripted_repeat_compare -->
-🎙 **The airport is there.**
+🎙 **order**
 
-**8 · Ви називаєте приміщення далі від вас: офіс**
+**9 · Картка слова — item**
+<!-- interaction_id: en:lesson-03:session-48:word:item; family: word_card -->
+> **item** — замовлення. The order is complete — «Замовлення повне». Про покупки, які ви замовили й отримали.
+
+**10 · Кожна окрема річ у списку замовлення — це один рядок. Як це називається англійською?**
 <!-- interaction_id: en:lesson-03:session-48:i08; family: context_gap_grammar -->
-That is ___ office. → **an** · a · are
-- a — *`office` починається з голосного звука: `an office`.*
-- are — *Перед назвою одного офісу тут потрібне `an`.*
+___ → **item** · bag · jar
+- bag — *bag — це сумка, а окрема річ у списку замовлення називається item.*
+- jar — *jar — це банка, а окрема річ у списку замовлення називається item.*
 
-**9 · Послухайте й виберіть точну фразу**
+**11 · Послухайте подругу й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-48:i09; family: listen_choose -->
-🔊 *Those are restaurants.* → **Those are restaurants.** · These are restaurants. · Those are hotels.
-- These are restaurants. — *У записі перше слово — `Those`, а в цьому варіанті — `These`.*
-- Those are hotels. — *У записі останнє слово — `restaurants`, а в цьому варіанті — `hotels`.*
+🔊 *The order is complete.* → **The order is complete.** · An order is complete. · The order is late.
+- An order is complete. — *У записі перше слово — `The`, а в цьому варіанті — `An`.*
+- The order is late. — *У записі останнє слово — `complete`, а в цьому варіанті — `late`.*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-48:i10; family: speed_match -->
-office — офіс · airport — аеропорт · restaurants — ресторани · hotels — готелі
+order — замовлення · parcel — посилка · box — коробка · bag — сумка
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-48:i11; family: listen_build_dictation -->
-🔊 *This is a kitchen.* Плитки: `kitchen` `a` `is` `This` `are` → **This is a kitchen.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a kitchen.`)*
+🔊 *An item is missing.* Плитки: `item` `missing` `is` `An` `The` → **An item is missing.**
+*(плитка `The` зайва: тут потрібно `An` — `An item is missing.`)*
 
-**12 · Ви говорите про спальні, які вже оглянули з гостем. Скажіть «Спальні тут»**
+**14 · Ви вже сказали подрузі, що речі не вистачає, і знайшли її в коробці. Скажіть: «Позиція тут».**
 <!-- interaction_id: en:lesson-03:session-48:i12; family: phrase_builder -->
-Плитки: `here` `are` `bedrooms` `The` `is` → **The bedrooms are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The bedrooms are here.`)*
+Плитки: `item` `is` `here` `The` `An` → **The item is here.**
+*(плитка `An` зайва: тут потрібно `The` — `The item is here.`)*
 
-**13 · Гість шукає ванну кімнату, яку ви вже показали. Ви поруч із нею. Скажіть «Ванна кімната тут»**
+**15 · Картка слова — total**
+<!-- interaction_id: en:lesson-03:session-48:word:total; family: word_card -->
+> **total** — загальна сума. The total is correct — «Загальна сума правильна». Про суму всіх цін у кінці списку.
+
+**16 · Подруга показує на суму в кінці списку й називає її, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-48:i13; family: scripted_repeat_compare -->
-🎙 **The bathroom is here.**
+🎙 **total**
 
-**14 · Ви вказуєте на кілька вибраних вами готелів**
+**17 · Картка слова — refund**
+<!-- interaction_id: en:lesson-03:session-48:word:refund; family: word_card -->
+> **refund** — повернення грошей. The refund is late — «Повернення затримується». Про гроші, які магазин повертає за товар.
+
+**18 · Магазин повертає вам гроші за товар, який ви повернули. Як це називається англійською?**
 <!-- interaction_id: en:lesson-03:session-48:i14; family: context_gap_grammar -->
-The hotels ___ there. → **are** · is · am
-- is — *Готелів кілька: `The hotels are there`.*
-- am — *З `The hotels` потрібне `are`.*
+___ → **refund** · coin · ticket
+- coin — *coin — це монета, а гроші, які магазин повертає за товар, називаються refund.*
+- ticket — *ticket — це квиток, а гроші, які магазин повертає за товар, називаються refund.*
 
-**15 · Послухайте й виберіть точну фразу**
+**19 · Послухайте подругу й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-48:i15; family: listen_choose -->
-🔊 *That is an airport.* → **That is an airport.** · This is an airport. · That is an office.
-- This is an airport. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- That is an office. — *У записі останнє слово — `airport`, а в цьому варіанті — `office`.*
+🔊 *The total is correct.* → **The total is correct.** · A total is correct. · The total is wrong.
+- A total is correct. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
+- The total is wrong. — *У записі останнє слово — `correct`, а в цьому варіанті — `wrong`.*
 
-**16 · З’єднайте сполучення зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-48:i16; family: speed_match -->
-a kitchen — одна кухня · an office — один офіс · an airport — один аеропорт · a bathroom — одна ванна кімната
+refund — повернення грошей · total — загальна сума · item — позиція в замовленні · order — замовлення
 
-**17 · У новій поїздці ви з другом уже вибрали ресторани для вечері. Друг шукає їх на карті; ви знайшли їх просто перед собою. Скажіть «Ресторани тут» про ту саму групу**
+**21 · Ви з подругою уже говорили про повернення грошей за товар. Скажіть їй: «Повернення затримується».**
 <!-- interaction_id: en:lesson-03:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The restaurants are here.**
-
+🎙 **The refund is late.**

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-54:intro1:r2": {
-          "ru": "`full` — полный. Полосатый — `striped`.",
-          "uk": "`full` — повний. Смугастий — `striped`."
+          "ru": "The и this вместе не ставим: This striped scarf.",
+          "uk": "The і this разом не ставимо: This striped scarf."
         },
         "en:lesson-03:session-54:intro1:r3": {
-          "ru": "`heavy` — тяжёлый. Узор из полос — `striped`.",
-          "uk": "`heavy` — важкий. Візерунок зі смуг — `striped`."
+          "ru": "Слово striped ставим перед scarf: This striped scarf.",
+          "uk": "Слово striped ставимо перед scarf: This striped scarf."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-54:intro2:r2": {
-          "ru": "Вы узнаёте аэропорт, поэтому `familiar`.",
-          "uk": "Ви впізнаєте аеропорт, тому `familiar`."
+          "ru": "A и that вместе не ставим: That checked shirt.",
+          "uk": "A і that разом не ставимо: That checked shirt."
         },
         "en:lesson-03:session-54:intro2:r3": {
-          "ru": "Один аэропорт: `is`.",
-          "uk": "Один аеропорт: `is`."
+          "ru": "Рубашка одна, поэтому нужно is: That checked shirt is old.",
+          "uk": "Сорочка одна, тому потрібно is: That checked shirt is old."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-54:intro3:r2": {
-          "ru": "Здесь оцениваем надёжность: `reliable`.",
-          "uk": "Тут оцінюємо надійність: `reliable`."
+          "ru": "The и those вместе не ставим: Those spotted socks.",
+          "uk": "The і those разом не ставимо: Those spotted socks."
         },
         "en:lesson-03:session-54:intro3:r3": {
-          "ru": "Об одном сервисе: `It is reliable`.",
-          "uk": "Про один сервіс: `It is reliable`."
+          "ru": "Носков несколько, поэтому нужно socks с s.",
+          "uk": "Шкарпеток кілька, тому потрібно socks з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b494f5c02b7aae4f44114e799d5a77aee5b2d33b34c765e48303b22d4fd7c3f9"
+  "auxiliaryFingerprint": "21154ed846c1083a095a6cad9c739512200f15607f1ad198a5d797ef8b475d64"
 }

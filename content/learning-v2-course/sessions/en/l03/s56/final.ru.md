@@ -1,138 +1,152 @@
-# Английский · Урок 3 · Занятие 56 — Город на одной карте
+# Английский · Урок 3 · Занятие 56 — Квартира готова к гостям
 
-**Ситуация.** Вы встречаете друга в городе и показываете места на карте: больницу, кинотеатр, библиотеки, станции, музей и кафе. Полосатая сумка помогает другу узнать вас. Вы называете места, спрашиваете о выбранных точках и показываете, где они.
+**Ситуация.** Квартира почти готова, скоро придут гости. Вы с подругой докупаете последние мелочи. Новой грамматики нет: вы сами выбираете a, an или the, this, that, these или those, is или are и ставите цвет или материал перед предметом.
 
-**Что вы освоите:** соединить знакомые названия мест с a, the, this, those, is и are
-**Новые слова:** —
+**Что вы освоите:** сами выбирать a, the, this, those, is или are и ставить цвет или материал перед предметом
+**Новые слова:** mat, tray, hook, bin
+**Возвращаются:** bowl, curtain, towel, olive, beige
 
 ---
 
 ## Интро 1
 
-### Одно место
+### Коврик у двери
 
-Вспомним `hospital` — «больница», `cinema` — «кинотеатр» и `museum` — «музей». Чтобы назвать одно незнакомое место: `This is a hospital` — «Это больница». Чтобы спросить о выбранном музее: `Where is the museum?` — «Где музей?» Одно место — `is`; `a` называет одно из таких мест, `the` указывает на понятное собеседникам.
+Квартира почти готова, скоро придут гости. У входной двери не хватает коврика, чтобы вытирать ноги. В магазине вы с подругой нашли серый, и он лежит рядом с вами. mat — «коврик». Вы показываете на него: This is a grey mat — «Это серый коврик».
 
-**Вы показываете на незнакомое другу здание: «Это больница».**
+**Подруга спрашивает, что вы нашли. Скажите ей, что это серый коврик.**
 
-- ✅ **This is a hospital.**
-- ❌ This are a hospital. — *Одна больница: `This is a hospital`.*
-- ❌ These are a hospital. — *`These are` для нескольких; здесь одна больница.*
+- ✅ **This is a grey mat.**
+- ❌ This are a grey mat. — *Коврик один, поэтому нужно is: This is a grey mat.*
+- ❌ This is a mat grey. — *Цвет идёт перед предметом: a grey mat.*
 
 ---
 
 ## Интро 2
 
-### Несколько мест
+### Подносы для гостей
 
-`libraries` — «библиотеки», `stations` — «станции», `cafes` — «кафе», когда их несколько. Для группы нужно `are`: `The libraries are here` — «Библиотеки здесь». `Those stations are there` — «Те станции там»: показываем несколько дальше на карте. `Where are the cafes?` — «Где кафе?» — спрашиваем о выбранных кафе.
+Чашки гостям удобно подавать на подносе. На дальней полке кухонного магазина стоят металлические подносы, и они блестят. Подруга спрашивает, что вы там видите. tray — «поднос». Подносов несколько, и они далеко: Those are metal trays — «Это металлические подносы».
 
-**Вы уже обсудили библиотеки. Покажите их: «Библиотеки здесь».**
+**Подруга ждёт ответа. Скажите ей, что это металлические подносы.**
 
-- ✅ **The libraries are here.**
-- ❌ The libraries is here. — *Библиотек несколько: `are`.*
-- ❌ The library is here. — *Так говорят об одной библиотеке. Здесь несколько: `libraries are`.*
+- ✅ **Those are metal trays.**
+- ❌ Those are a metal trays. — *Подносов несколько, и a перед ними не ставим: metal trays.*
+- ❌ These are metal trays. — *Подносы далеко, а these говорим о близком: Those are metal trays.*
 
 ---
 
 ## Интро 3
 
-### Встречаемся с другом
+### Крючок для пальто
 
-`striped` — «полосатый»: `This bag is striped` — «Эта сумка полосатая». После `This` перед `bag` артикль не добавляем. Полосы помогают узнать сумку, но адрес музея на ней не написан. Для адреса снова нужна карта: `The museum is there` — «Музей там».
+В прихожей не хватает места, где гости повесят пальто. Продавец показывает вам крючок на дальней стене магазина: он металлический, и на нём стоит маленькая цена. Подруга спрашивает, дорого ли это. hook — «крючок». That metal hook is cheap — «Тот металлический крючок недорогой».
 
-**Покажите на сумку рядом: «Эта сумка полосатая».**
+**Подруга ждёт ответа. Скажите ей, что тот металлический крючок недорогой.**
 
-- ✅ **This bag is striped.**
-- ❌ This bag are striped. — *Одна сумка: `is`.*
-- ❌ This a bag is striped. — *После `This` сразу идёт `bag`, без `a`.*
+- ✅ **That metal hook is cheap.**
+- ❌ That metal hook are cheap. — *Крючок один, поэтому нужно is: That metal hook is cheap.*
+- ❌ This metal hook is cheap. — *Крючок далеко, а this говорим о близком: That metal hook is cheap.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Назовите незнакомое другу здание рядом: «Это больница»**
-<!-- interaction_id: en:lesson-03:session-56:i01; family: phrase_builder -->
-Плитки: `hospital` `a` `is` `This` `are` → **This is a hospital.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a hospital.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-56:i01; family: speed_match -->
+mat — коврик · tray — поднос · hook — крючок · bin — ведро для мусора
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-56:i02; family: listen_choose -->
-🔊 *cinema* → **cinema** · museum · hospital
-- museum — *В записи первое слово — `cinema`, а в этом варианте — `museum`.*
-- hospital — *В записи первое слово — `cinema`, а в этом варианте — `hospital`.*
+**2 · Карточка слова — mat**
+<!-- interaction_id: en:lesson-03:session-56:word:mat; family: word_card -->
+> **mat** — коврик. This is a grey mat — «Это серый коврик». О коврике у двери, в ванной, для йоги.
 
-**3 · Вы показываете несколько библиотек, которые уже обсудили**
-<!-- interaction_id: en:lesson-03:session-56:i03; family: context_gap_grammar -->
-The libraries ___ here. → **are** · is · am
-- is — *Библиотек несколько: `are`.*
-- am — *С `The libraries` нужно `are`.*
+**3 · Подруга показывает на коврик у двери и называет его, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-03:session-56:i02; family: scripted_repeat_compare -->
+🎙 **mat**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-03:session-56:i04; family: speed_match -->
-hospital — больница · cinema — кинотеатр · libraries — библиотеки · stations — станции
+**4 · Коврик лежит рядом с вами. Скажите продавцу полной фразой: это коричневый коврик.**
+<!-- interaction_id: en:lesson-03:session-56:i03; family: phrase_builder -->
+Плитки: `mat` `brown` `a` `is` `This` `are` → **This is a brown mat.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a brown mat.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-56:i05; family: listen_build_dictation -->
-🔊 *Those stations are there.* Плитки: `there` `are` `stations` `Those` `is` → **Those stations are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those stations are there.`)*
+**5 · Карточка слова — tray**
+<!-- interaction_id: en:lesson-03:session-56:word:tray; family: word_card -->
+> **tray** — поднос. Those are metal trays — «Это металлические подносы». О подносе для чашек и тарелок.
 
-**6 · Музей для посещения уже выбран. Спросите «Где музей?»**
-<!-- interaction_id: en:lesson-03:session-56:i06; family: phrase_builder -->
-Плитки: `museum` `the` `is` `Where` `are` → **Where is the museum?**
-*(плитка `are` лишняя: здесь нужно `is` — `Where is the museum?`)*
+**6 · Подруга несёт чашки на плоском предмете с ручками. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-03:session-56:i04; family: context_gap_grammar -->
+___ → **tray** · mat · bowl
+- mat — *mat — это коврик, а плоский предмет для чашек называется tray.*
+- bowl — *bowl — это миска, а плоский предмет для чашек называется tray.*
 
-**7 · Друг спрашивает об узоре вашей сумки. Скажите «Она полосатая» с сокращением**
-<!-- interaction_id: en:lesson-03:session-56:i07; family: scripted_repeat_compare -->
-🎙 **It's striped.**
+**7 · Послушайте, что продавец говорит о ковриках**
+<!-- interaction_id: en:lesson-03:session-56:i05; family: listen_choose -->
+🔊 *Those are grey mats.* → **Those are grey mats.** · That is a grey mat. · Those are grey trays.
+- That is a grey mat. — *В записи `Those are` и несколько ковриков, а в этом варианте `That is a` и один коврик.*
+- Those are grey trays. — *В записи последнее слово — `mats`, а в этом варианте — `trays`.*
 
-**8 · Вы показываете на несколько кафе рядом на карте**
+**8 · Карточка слова — hook**
+<!-- interaction_id: en:lesson-03:session-56:word:hook; family: word_card -->
+> **hook** — крючок. That metal hook is cheap — «Тот металлический крючок недорогой». О крючке для пальто, полотенца, ключей.
+
+**9 · Продавец показывает на крючок для пальто и называет его, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-03:session-56:i06; family: scripted_repeat_compare -->
+🎙 **hook**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-56:i07; family: listen_build_dictation -->
+🔊 *That round tray is clean.* Плитки: `tray` `round` `is` `That` `clean` `are` → **That round tray is clean.**
+*(плитка `are` лишняя: здесь нужно `is` — `That round tray is clean.`)*
+
+**11 · Карточка слова — bin**
+<!-- interaction_id: en:lesson-03:session-56:word:bin; family: word_card -->
+> **bin** — ведро для мусора. The bin is black — «Ведро для мусора чёрное». О мусорном ведре на кухне и во дворе.
+
+**12 · Подруга показывает на ведро для мусора под раковиной. Как оно называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-56:i08; family: context_gap_grammar -->
-___ are cafes. → **These** · This · That
-- This — *Кафе несколько рядом: `These`.*
-- That — *`That` для одного дальше. Здесь несколько рядом: `These`.*
+___ → **bin** · tray · hook
+- tray — *tray — это поднос, а ведро для мусора называется bin.*
+- hook — *hook — это крючок, а ведро для мусора называется bin.*
 
-**9 · Послушайте, что друг говорит о выбранном музее**
-<!-- interaction_id: en:lesson-03:session-56:i09; family: listen_choose -->
-🔊 *The museum is there.* → **The museum is there.** · The museum is here. · The museum is full.
-- The museum is here. — *В записи последнее слово — `there`, а в этом варианте — `here`.*
-- The museum is full. — *В записи последнее слово — `there`, а в этом варианте — `full`.*
+**13 · Крючки висят рядом с вами. Скажите подруге полной фразой: эти металлические крючки новые.**
+<!-- interaction_id: en:lesson-03:session-56:i09; family: phrase_builder -->
+Плитки: `hooks` `metal` `are` `These` `new` `is` → **These metal hooks are new.**
+*(плитка `is` лишняя: здесь нужно `are` — `These metal hooks are new.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-56:i10; family: speed_match -->
-museum — музей · striped — полосатый · cafes — кафе — несколько · cinema — кинотеатр
+mat — коврик · tray — поднос · curtain — занавеска · towel — полотенце
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-56:i11; family: listen_build_dictation -->
-🔊 *The cinema is here.* Плитки: `here` `is` `cinema` `The` `are` → **The cinema is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The cinema is here.`)*
+**15 · Послушайте вопрос продавца**
+<!-- interaction_id: en:lesson-03:session-56:i11; family: listen_choose -->
+🔊 *Is that bin black?* → **Is that bin black?** · Is this bin black? · Is that bin white?
+- Is this bin black? — *В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).*
+- Is that bin white? — *В записи цвет — `black`, а в этом варианте — `white`.*
 
-**12 · Вы обсуждали несколько кафе для встречи. Спросите «Где кафе?»**
-<!-- interaction_id: en:lesson-03:session-56:i12; family: phrase_builder -->
-Плитки: `cafes` `the` `are` `Where` `is` → **Where are the cafes?**
-*(плитка `is` лишняя: здесь нужно `are` — `Where are the cafes?`)*
+**16 · Коврик оливкового цвета лежит рядом с вами. Дополните фразу**
+<!-- interaction_id: en:lesson-03:session-56:i12; family: context_gap_grammar -->
+It is ___ olive mat. → **an** · a · are
+- a — *Слово olive начинается с гласного звука, поэтому нужно an, а не a.*
+- are — *Здесь речь об одном коврике: нужно an, а не are.*
 
-**13 · Друг ищет больницу, которую вы уже обсуждали. Покажите её дальше на карте: «Больница там»**
-<!-- interaction_id: en:lesson-03:session-56:i13; family: scripted_repeat_compare -->
-🎙 **The hospital is there.**
+**17 · Послушайте продавца и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-56:i13; family: listen_build_dictation -->
+🔊 *These are black bins.* Плитки: `bins` `black` `are` `These` `is` → **These are black bins.**
+*(плитка `is` лишняя: здесь нужно `are` — `These are black bins.`)*
 
-**14 · Вы описываете одну сумку рядом**
-<!-- interaction_id: en:lesson-03:session-56:i14; family: context_gap_grammar -->
-This bag ___ striped. → **is** · are · am
-- are — *Одна сумка: `This bag is striped`.*
-- am — *С `This bag` нужно `is`.*
+**18 · Подруга спрашивает, какой поднос вам нужен. Скажите ей, что тот овальный**
+<!-- interaction_id: en:lesson-03:session-56:i14; family: scripted_repeat_compare -->
+🎙 **that oval tray**
 
-**15 · Послушайте сообщение о выбранных библиотеках**
-<!-- interaction_id: en:lesson-03:session-56:i15; family: listen_choose -->
-🔊 *The libraries are there.* → **The libraries are there.** · The libraries are here. · The libraries are full.
-- The libraries are here. — *В записи последнее слово — `there`, а в этом варианте — `here`.*
-- The libraries are full. — *В записи последнее слово — `there`, а в этом варианте — `full`.*
+**19 · Вы ищете коврик, о котором уже говорили с продавцом. Спросите его, здесь ли бежевый коврик.**
+<!-- interaction_id: en:lesson-03:session-56:i15; family: phrase_builder -->
+Плитки: `mat` `beige` `the` `here` `Is` `Are` → **Is the beige mat here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is the beige mat here?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-56:i16; family: speed_match -->
-stations — станции · cafes — кафе — несколько · museum — музей · striped — полосатый
+bin — ведро для мусора · hook — крючок · tray — поднос · mat — коврик
 
-**17 · В другом городе вы уже выбрали несколько станций маршрута. Друг держит карту. Спросите «Где станции?», имея в виду выбранные станции**
+**21 · Продавец спрашивает про ведро у стены. Ответьте ему коротко: то ведро белое.**
 <!-- interaction_id: en:lesson-03:session-56:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the stations?**
-
+🎙 **That bin is white.**

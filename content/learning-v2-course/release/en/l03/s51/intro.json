@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-51",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько библиотек и согласовать libraries с are",
-    "uk": "назвати кілька бібліотек та узгодити libraries з are"
+    "ru": "выбрать a или an перед цветом: a yellow vase, an olive coat",
+    "uk": "вибрати a чи an перед кольором: a yellow vase, an olive coat"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Не просто добавить s",
-        "uk": "Не просто додати s"
+        "ru": "Ваза для подоконника",
+        "uk": "Ваза для підвіконня"
       },
       "bodyByLocale": {
-        "ru": "`libraries` — «библиотеки», одна — `library`. В этом слове при переходе к нескольким меняем конечное `y` на `ies`: `library` → `libraries`. `These are libraries` — «Это библиотеки»: показываем на несколько рядом на карте. Тысяча книг в одной библиотеке не делает её тысячей библиотек.",
-        "uk": "`libraries` — «бібліотеки», одна — `library`. У цьому слові під час переходу до кількох змінюємо кінцеве `y` на `ies`: `library` → `libraries`. `These are libraries` — «Це бібліотеки»: показуємо на кілька поруч на карті. Тисяча книжок в одній бібліотеці не робить її тисячею бібліотек."
+        "ru": "Вы с подругой выбираете вазу для подоконника. На рынке продавец держит в руках вазу цвета спелого лимона и спрашивает, какая вам нужна. yellow — «жёлтый». Слово yellow начинается с согласного звука, поэтому a: It is a yellow vase — «Это жёлтая ваза».",
+        "uk": "Ви з подругою вибираєте вазу для підвіконня. На ринку продавець тримає в руках вазу кольору стиглого лимона й питає, яка вам потрібна. yellow — «жовтий». Слово yellow починається з приголосного звуку, тому a: It is a yellow vase — «Це жовта ваза»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-51:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите несколько библиотек одним английским словом.",
-          "uk": "Назвіть кілька бібліотек одним англійським словом."
+          "ru": "Продавец держит вазу перед вами. Скажите ему, что это жёлтая ваза.",
+          "uk": "Продавець тримає вазу перед вами. Скажіть йому, що це жовта ваза."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-51:intro1:r1",
-              "text": "libraries"
+              "text": "It is a yellow vase."
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r2",
-              "text": "library"
+              "text": "It is an yellow vase."
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r3",
-              "text": "librarys"
+              "text": "It is a vase yellow."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-51:intro1:r1",
-              "text": "libraries"
+              "text": "It is a yellow vase."
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r2",
-              "text": "library"
+              "text": "It is an yellow vase."
             },
             {
               "responseId": "en:lesson-03:session-51:intro1:r3",
-              "text": "librarys"
+              "text": "It is a vase yellow."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите несколько библиотек одним английским словом.",
-          "uk": "Назвіть кілька бібліотек одним англійським словом."
+          "ru": "Продавец держит вазу перед вами. Скажите ему, что это жёлтая ваза.",
+          "uk": "Продавець тримає вазу перед вами. Скажіть йому, що це жовта ваза."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нужные библиотеки",
-        "uk": "Потрібні бібліотеки"
+        "ru": "Пальто для подруги",
+        "uk": "Пальто для подруги"
       },
       "bodyByLocale": {
-        "ru": "`The libraries are here` — «Библиотеки здесь»: вы говорите о конкретных библиотеках, которые уже выбрали на карте. `The` подходит и для нескольких. После `libraries` нужно `are`. Для группы дальше: `Those libraries are there` — «Те библиотеки там».",
-        "uk": "`The libraries are here` — «Бібліотеки тут»: ви говорите про конкретні бібліотеки, які вже вибрали на карті. `The` підходить і для кількох. Після `libraries` потрібне `are`. Для групи далі: `Those libraries are there` — «Ті бібліотеки там»."
+        "ru": "Подруга примеряет в магазине пальто тёмно-зелёного цвета с серым оттенком, как у оливок. Вы стоите рядом, а продавец спрашивает, что это за пальто. olive — «оливковый». Слово olive начинается с гласного звука, поэтому an: It is an olive coat — «Это оливковое пальто».",
+        "uk": "Подруга приміряє в магазині пальто темно-зеленого кольору із сірим відтінком, як у оливок. Ви стоїте поруч, а продавець питає, що це за пальто. olive — «оливковий». Слово olive починається з голосного звуку, тому an: It is an olive coat — «Це оливкове пальто»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-51:intro2:q",
         "promptByLocale": {
-          "ru": "Вы с Анной уже выбрали библиотеки для посещения. Покажите их на карте: «Библиотеки здесь».",
-          "uk": "Ви з Анною вже вибрали бібліотеки для відвідування. Покажіть їх на карті: «Бібліотеки тут»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что это оливковое пальто.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що це оливкове пальто."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-51:intro2:r1",
-              "text": "The libraries are here."
+              "text": "It is an olive coat."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r2",
-              "text": "The libraries is here."
+              "text": "It is a olive coat."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r3",
-              "text": "The library is here."
+              "text": "It is an coat olive."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-51:intro2:r1",
-              "text": "The libraries are here."
+              "text": "It is an olive coat."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r2",
-              "text": "The libraries is here."
+              "text": "It is a olive coat."
             },
             {
               "responseId": "en:lesson-03:session-51:intro2:r3",
-              "text": "The library is here."
+              "text": "It is an coat olive."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с Анной уже выбрали библиотеки для посещения. Покажите их на карте: «Библиотеки здесь».",
-          "uk": "Ви з Анною вже вибрали бібліотеки для відвідування. Покажіть їх на карті: «Бібліотеки тут»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что это оливковое пальто.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що це оливкове пальто."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Тяжёлая коробка и неудачный способ",
-        "uk": "Важка коробка й невдалий спосіб"
+        "ru": "Шарф на прилавке",
+        "uk": "Шарф на прилавку"
       },
       "bodyByLocale": {
-        "ru": "`heavy` — «тяжёлый»: коробку с книгами трудно поднять. О ней: `It is heavy` — «Она тяжёлая». `ineffective` — «неэффективный, недейственный»: старый способ подписывать коробки не даёт нужного результата, вещи всё равно трудно найти. О способе: `It is ineffective` — «Он неэффективный». `bedrooms` — спальни; о знакомых комнатах: `The bedrooms are there` — «Спальни там».",
-        "uk": "`heavy` — «важкий»: коробку з книжками важко підняти. Про неї: `It is heavy` — «Вона важка». `ineffective` — «неефективний, недієвий»: старий спосіб підписувати коробки не дає потрібного результату, речі однаково важко знайти. Про спосіб: `It is ineffective` — «Він неефективний». `bedrooms` — спальні; про знайомі кімнати: `The bedrooms are there` — «Спальні там»."
+        "ru": "На рынке продавец достаёт из коробки шарф цвета спелой сливы. Он лежит прямо перед вами на прилавке, и подруга просит назвать его. purple — «фиолетовый». Слово purple начинается с согласного звука, поэтому a: This is a purple scarf — «Это фиолетовый шарф».",
+        "uk": "На ринку продавець дістає з коробки шарф кольору стиглої сливи. Він лежить просто перед вами на прилавку, і подруга просить назвати його. purple — «фіолетовий». Слово purple починається з приголосного звуку, тому a: This is a purple scarf — «Це фіолетовий шарф»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Коробку с книгами трудно поднять из-за веса. Скажите «Она тяжёлая».",
-          "uk": "Коробку з книжками важко підняти через вагу. Скажіть «Вона важка»."
+          "ru": "Шарф лежит рядом с вами. Скажите подруге, что это фиолетовый шарф.",
+          "uk": "Шарф лежить поруч із вами. Скажіть подрузі, що це фіолетовий шарф."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-51:intro3:r1",
-              "text": "It is heavy."
+              "text": "This is a purple scarf."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r2",
-              "text": "It is cheap."
+              "text": "This is an purple scarf."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r3",
-              "text": "It are heavy."
+              "text": "That is a purple scarf."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-51:intro3:r1",
-              "text": "It is heavy."
+              "text": "This is a purple scarf."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r2",
-              "text": "It is cheap."
+              "text": "This is an purple scarf."
             },
             {
               "responseId": "en:lesson-03:session-51:intro3:r3",
-              "text": "It are heavy."
+              "text": "That is a purple scarf."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коробку с книгами трудно поднять из-за веса. Скажите «Она тяжёлая».",
-          "uk": "Коробку з книжками важко підняти через вагу. Скажіть «Вона важка»."
+          "ru": "Шарф лежит рядом с вами. Скажите подруге, что это фиолетовый шарф.",
+          "uk": "Шарф лежить поруч із вами. Скажіть подрузі, що це фіолетовий шарф."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3ba204fa95bad6a006bf7b0657a8868ac820abb494d66c72acf74e624104b4fc"
+  "introFingerprint": "008555425a2411559885e4390de92aa87c96ce24eb922996de813b22b06a6c0f"
 }

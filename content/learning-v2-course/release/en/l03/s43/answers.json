@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-43:i01",
-    "correctText": "The photos are here.",
+    "correctText": "Chairs are heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i02",
-    "correctText": "bedrooms",
+    "correctText": "The bags are new.",
     "correctResponseId": "en:lesson-03:session-43:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i03",
-    "correctText": "bedrooms",
+    "correctText": "Lamps",
     "correctResponseId": "en:lesson-03:session-43:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i04",
-    "correctText": "en:lesson-03:session-43:i04:p1=bedrooms\nen:lesson-03:session-43:i04:p2=patient\nen:lesson-03:session-43:i04:p3=uncertain\nen:lesson-03:session-43:i04:p4=photos",
+    "correctText": "en:lesson-03:session-43:i04:p1=book\nen:lesson-03:session-43:i04:p2=magazine\nen:lesson-03:session-43:i04:p3=newspaper\nen:lesson-03:session-43:i04:p4=dictionary",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i05",
-    "correctText": "These are bedrooms.",
+    "correctText": "The boxes are heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i06",
-    "correctText": "The bedrooms are there.",
+    "correctText": "The chairs are new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:word:book",
+    "correctText": "book",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i07",
-    "correctText": "He's patient.",
+    "correctText": "book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:word:magazine",
+    "correctText": "magazine",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i08",
-    "correctText": "These",
+    "correctText": "magazine",
     "correctResponseId": "en:lesson-03:session-43:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i09",
-    "correctText": "I am uncertain.",
+    "correctText": "Books are heavy.",
     "correctResponseId": "en:lesson-03:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i10",
-    "correctText": "en:lesson-03:session-43:i10:p1=bedrooms\nen:lesson-03:session-43:i10:p2=photos\nen:lesson-03:session-43:i10:p3=here\nen:lesson-03:session-43:i10:p4=there",
+    "correctText": "en:lesson-03:session-43:i10:p1=book\nen:lesson-03:session-43:i10:p2=chair\nen:lesson-03:session-43:i10:p3=table\nen:lesson-03:session-43:i10:p4=lamp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i11",
-    "correctText": "Those photos are there.",
+    "correctText": "The magazines are new.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i12",
-    "correctText": "Those bedrooms are there.",
+    "correctText": "Magazines are light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:word:newspaper",
+    "correctText": "newspaper",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i13",
-    "correctText": "I'm uncertain.",
+    "correctText": "newspaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:word:dictionary",
+    "correctText": "dictionary",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i14",
-    "correctText": "are",
+    "correctText": "dictionary",
     "correctResponseId": "en:lesson-03:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i15",
-    "correctText": "He is patient.",
+    "correctText": "The newspapers are old.",
     "correctResponseId": "en:lesson-03:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-43:i16",
-    "correctText": "en:lesson-03:session-43:i16:p1=bedrooms\nen:lesson-03:session-43:i16:p2=patient\nen:lesson-03:session-43:i16:p3=uncertain\nen:lesson-03:session-43:i16:p4=photos",
+    "correctText": "en:lesson-03:session-43:i16:p1=dictionary\nen:lesson-03:session-43:i16:p2=newspaper\nen:lesson-03:session-43:i16:p3=magazine\nen:lesson-03:session-43:i16:p4=book",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-43:i17",
-    "correctText": "The bedrooms are here.",
+    "correctText": "The dictionaries are old.",
     "correctResponseId": null
   }
 ]

@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-52:i01",
-    "correctText": "The hotels are there.",
+    "correctText": "en:lesson-03:session-52:i01:p1=round\nen:lesson-03:session-52:i01:p2=oval\nen:lesson-03:session-52:i01:p3=low\nen:lesson-03:session-52:i01:p4=high",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:word:round",
+    "correctText": "round",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i02",
-    "correctText": "stations",
-    "correctResponseId": "en:lesson-03:session-52:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-52:i03",
-    "correctText": "stations",
-    "correctResponseId": "en:lesson-03:session-52:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-52:i04",
-    "correctText": "en:lesson-03:session-52:i04:p1=stations\nen:lesson-03:session-52:i04:p2=light\nen:lesson-03:session-52:i04:p3=fair\nen:lesson-03:session-52:i04:p4=hotels",
+    "correctText": "round",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-52:i03",
+    "correctText": "This round table is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:word:oval",
+    "correctText": "oval",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i04",
+    "correctText": "oval",
+    "correctResponseId": "en:lesson-03:session-52:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-52:i05",
-    "correctText": "These are stations.",
+    "correctText": "That round mirror is old.",
+    "correctResponseId": "en:lesson-03:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:word:low",
+    "correctText": "low",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i06",
-    "correctText": "The stations are here.",
+    "correctText": "low",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i07",
-    "correctText": "It's light.",
+    "correctText": "This low stool is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:word:high",
+    "correctText": "high",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i08",
-    "correctText": "Those",
+    "correctText": "high",
     "correctResponseId": "en:lesson-03:session-52:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-52:i09",
-    "correctText": "It is fair.",
-    "correctResponseId": "en:lesson-03:session-52:i09:r1"
+    "correctText": "That high shelf is old.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i10",
-    "correctText": "en:lesson-03:session-52:i10:p1=stations\nen:lesson-03:session-52:i10:p2=hotels\nen:lesson-03:session-52:i10:p3=here\nen:lesson-03:session-52:i10:p4=there",
+    "correctText": "en:lesson-03:session-52:i10:p1=high\nen:lesson-03:session-52:i10:p2=low\nen:lesson-03:session-52:i10:p3=clock\nen:lesson-03:session-52:i10:p4=shelf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i11",
-    "correctText": "These hotels are here.",
-    "correctResponseId": null
+    "correctText": "Is that oval clock new?",
+    "correctResponseId": "en:lesson-03:session-52:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-52:i12",
-    "correctText": "Those stations are there.",
-    "correctResponseId": null
+    "correctText": "mirror",
+    "correctResponseId": "en:lesson-03:session-52:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-52:i13",
-    "correctText": "It's fair.",
+    "correctText": "That low stool is cheap.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-03:session-52:i14:r1"
+    "correctText": "this round table",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i15",
-    "correctText": "It is light.",
-    "correctResponseId": "en:lesson-03:session-52:i15:r1"
+    "correctText": "Is that high shelf new?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i16",
-    "correctText": "en:lesson-03:session-52:i16:p1=stations\nen:lesson-03:session-52:i16:p2=light\nen:lesson-03:session-52:i16:p3=fair\nen:lesson-03:session-52:i16:p4=hotels",
+    "correctText": "en:lesson-03:session-52:i16:p1=round\nen:lesson-03:session-52:i16:p2=oval\nen:lesson-03:session-52:i16:p3=high\nen:lesson-03:session-52:i16:p4=low",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-52:i17",
-    "correctText": "The stations are there.",
+    "correctText": "That oval mirror is heavy.",
     "correctResponseId": null
   }
 ]

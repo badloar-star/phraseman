@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-55:i01",
-    "correctText": "The restaurants are there.",
+    "correctText": "en:lesson-03:session-55:i01:p1=shape\nen:lesson-03:session-55:i01:p2=material\nen:lesson-03:session-55:i01:p3=pattern\nen:lesson-03:session-55:i01:p4=style",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-55:word:shape",
+    "correctText": "shape",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i02",
-    "correctText": "cafes",
-    "correctResponseId": "en:lesson-03:session-55:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-55:i03",
-    "correctText": "cafes",
-    "correctResponseId": "en:lesson-03:session-55:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-55:i04",
-    "correctText": "en:lesson-03:session-55:i04:p1=cafes\nen:lesson-03:session-55:i04:p2=responsible\nen:lesson-03:session-55:i04:p3=independent\nen:lesson-03:session-55:i04:p4=restaurants",
+    "correctText": "shape",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-55:i03",
+    "correctText": "The shape is round.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-55:word:material",
+    "correctText": "material",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-55:i04",
+    "correctText": "material",
+    "correctResponseId": "en:lesson-03:session-55:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-55:i05",
-    "correctText": "These are cafes.",
+    "correctText": "What is the material?",
+    "correctResponseId": "en:lesson-03:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-55:word:pattern",
+    "correctText": "pattern",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i06",
-    "correctText": "Where are the cafes?",
+    "correctText": "pattern",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i07",
-    "correctText": "She's responsible.",
+    "correctText": "The pattern is striped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-55:word:style",
+    "correctText": "style",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i08",
-    "correctText": "Those",
+    "correctText": "style",
     "correctResponseId": "en:lesson-03:session-55:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-55:i09",
-    "correctText": "He is dependent.",
-    "correctResponseId": "en:lesson-03:session-55:i09:r1"
+    "correctText": "The style is plain.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i10",
-    "correctText": "en:lesson-03:session-55:i10:p1=dependent\nen:lesson-03:session-55:i10:p2=unreliable\nen:lesson-03:session-55:i10:p3=restaurants\nen:lesson-03:session-55:i10:p4=responsible",
+    "correctText": "en:lesson-03:session-55:i10:p1=pattern\nen:lesson-03:session-55:i10:p2=style\nen:lesson-03:session-55:i10:p3=leather\nen:lesson-03:session-55:i10:p4=floral",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i11",
-    "correctText": "The cafes are here.",
-    "correctResponseId": null
+    "correctText": "Is the pattern floral?",
+    "correctResponseId": "en:lesson-03:session-55:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-55:i12",
-    "correctText": "She is independent.",
-    "correctResponseId": null
+    "correctText": "material",
+    "correctResponseId": "en:lesson-03:session-55:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-55:i13",
-    "correctText": "It's unreliable.",
+    "correctText": "What is the style?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-03:session-55:i14:r1"
+    "correctText": "It is striped.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i15",
-    "correctText": "She is independent.",
-    "correctResponseId": "en:lesson-03:session-55:i15:r1"
+    "correctText": "Those materials are soft.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i16",
-    "correctText": "en:lesson-03:session-55:i16:p1=cafes\nen:lesson-03:session-55:i16:p2=independent\nen:lesson-03:session-55:i16:p3=dependent\nen:lesson-03:session-55:i16:p4=unreliable",
+    "correctText": "en:lesson-03:session-55:i16:p1=style\nen:lesson-03:session-55:i16:p2=shape\nen:lesson-03:session-55:i16:p3=pattern\nen:lesson-03:session-55:i16:p4=material",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-55:i17",
-    "correctText": "The cafes are there.",
+    "correctText": "The style is simple.",
     "correctResponseId": null
   }
 ]

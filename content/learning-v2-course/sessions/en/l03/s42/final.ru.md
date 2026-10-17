@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 42 — Ванная на схеме дома
+# Английский · Урок 3 · Занятие 42 — Показываем поломку
 
-**Ситуация.** Вы с Анной осматриваете дом. Хозяин вежливо показывает ванную комнату. На старой схеме она отмечена не там, где находится на самом деле. Анна замечает ошибку и заодно находит свой кошелёк.
+**Ситуация.** Вы только что купили вещи для дома и показываете, что в них сломано. Предмет у вас перед глазами, и вы оба знаете, какой именно. В таком случае говорим the, а не a.
 
-**Что вы освоите:** назвать ванную комнату и указать, где находится понятная собеседнику комната
-**Новые слова:** bathroom
+**Что вы освоите:** говорить the о предмете, на который смотрят оба собеседника
+**Новые слова:** handle, bell, wheel, cord
+**Возвращаются:** door, window, mirror, key, lamp, socket
 
 ---
 
 ## Интро 1
 
-### Комната, а не ванна
+### Шкаф с шатающейся ручкой
 
-`bathroom` — «ванная комната». Здесь называем всю комнату, а не саму ванну. `This is a bathroom` — «Это ванная комната»: показываем, что это за помещение. Перед `bathroom` нужно `a`, потому что первый звук согласный. Полотенце на стуле ещё не превращает гостиную в ванную.
+Вы с соседкой стоите у нового шкафа, который вам привезли утром. Ручка на дверце болтается, и вы обе на неё смотрите. handle — «ручка (на двери, на дверце)». Она одна и понятна вам обеим, поэтому the: The handle is broken — «Ручка сломана».
 
-**Назовите ванную комнату одним английским словом.**
+**Соседка смотрит на ту же дверцу. Скажите ей: «Ручка сломана».**
 
-- ✅ **bathroom**
-- ❌ kitchen — *`kitchen` — кухня. Ванная комната — `bathroom`.*
-- ❌ room — *`room` — комната вообще. Здесь точнее `bathroom`.*
+- ✅ **The handle is broken.**
+- ❌ A handle is broken. — *Вы обе смотрите на одну и ту же ручку, поэтому the: The handle is broken.*
+- ❌ The handle are broken. — *Ручка одна, поэтому нужно is: The handle is broken.*
 
 ---
 
 ## Интро 2
 
-### Где та самая ванная
+### Звонок у двери
 
-`The bathroom is there` — «Ванная комната там». Вы оба понимаете, о какой комнате идёт речь: хозяин только что её показал. Поэтому здесь `the bathroom`. Не обязательно сначала произносить `a bathroom`: `the` подходит и тогда, когда нужная комната ясна из ситуации.
+Вы с братом пришли к двери магазина, который закрыт на обед, а вам нужно войти. Сбоку на стене один звонок для вызова продавца, и вы оба хорошо его видите. bell — «звонок». Звонок понятен вам обоим, поэтому the: The bell is old — «Звонок старый».
 
-**Хозяин уже показал ванную комнату в конце коридора. Скажите «Ванная комната там».**
+**Брат спрашивает, что за звонок на стене. Скажите: «Звонок старый».**
 
-- ✅ **The bathroom is there.**
-- ❌ The bathroom are there. — *Комната одна: нужно `is`.*
-- ❌ The bathrooms are there. — *Так говорят о нескольких ванных комнатах. Здесь одна: `The bathroom is there`.*
+- ✅ **The bell is old.**
+- ❌ A bell is old. — *Звонок один, и вы оба на него смотрите, поэтому the: The bell is old.*
+- ❌ The bell are old. — *Звонок один, поэтому нужно is: The bell is old.*
 
 ---
 
 ## Интро 3
 
-### Вежливый хозяин, неточная схема
+### Детский велосипед
 
-`polite` — «вежливый»: хозяин внимательно выслушивает гостей. `He is polite` — «Он вежливый». `inaccurate` — «неточный»: старая схема показывает комнату не на её месте. О схеме: `It is inaccurate` — «Она неточная». Это ошибка в схеме, а не оценка вежливости хозяина. Анна нашла кошелёк: `The wallet is here` — «Кошелёк здесь».
+Вы покупаете детский велосипед для племянницы. Продавец катит его к вам, и вы замечаете, что переднее колесо сильно шатается. wheel — «колесо». Вы оба смотрите именно на него, поэтому the. Если бы речь шла о любом колесе вообще, было бы a wheel.
 
-**На схеме ванная отмечена не там, где она находится. Скажите о схеме «Она неточная».**
+**Продавец ждёт, что вы скажете о колесе, на которое вы оба смотрите. Скажите: «Колесо шатается».**
 
-- ✅ **It is inaccurate.**
-- ❌ It is accurate. — *`accurate` — точная. Здесь есть ошибка: `inaccurate`.*
-- ❌ It are inaccurate. — *Речь об одной схеме: `It is inaccurate`.*
+- ✅ **The wheel is loose.**
+- ❌ A wheel is loose. — *Вы оба смотрите на одно и то же колесо, поэтому the: The wheel is loose.*
+- ❌ The wheel are loose. — *Колесо одно, поэтому нужно is: The wheel is loose.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Анна нашла свой кошелёк рядом. Скажите «Кошелёк здесь»**
+**1 · Вы с братом смотрите на дверь. Скажите ему: «Дверь открыта».**
 <!-- interaction_id: en:lesson-03:session-42:i01; family: phrase_builder -->
-Плитки: `here` `is` `wallet` `The` `are` → **The wallet is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The wallet is here.`)*
+Плитки: `door` `is` `open` `The` `A` → **The door is open.**
+*(плитка `A` лишняя: здесь нужно `The` — `The door is open.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-03:session-42:i02; family: listen_choose -->
-🔊 *bathroom* → **bathroom** · kitchen · window
-- kitchen — *В записи первое слово — `bathroom`, а в этом варианте — `kitchen`.*
-- window — *В записи первое слово — `bathroom`, а в этом варианте — `window`.*
+🔊 *The window is closed.* → **The window is closed.** · A window is closed. · The window is open.
+- A window is closed. — *В записи первое слово — `The`, а в этом варианте — `A`.*
+- The window is open. — *В записи последнее слово — `closed`, а в этом варианте — `open`.*
 
-**3 · Назовите ванную комнату одним английским словом**
+**3 · Вы с подругой смотрите на одну и ту же лампу. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-42:i03; family: context_gap_grammar -->
-___ → **bathroom** · kitchen · room
-- kitchen — *`kitchen` — кухня. Здесь нужна ванная комната: `bathroom`.*
-- room — *`room` — комната вообще. Ванная комната — `bathroom`.*
+___ lamp is old. → **The** · A · An
+- A — *Вы обе смотрите на эту лампу, она понятна вам обеим, поэтому The, а не A.*
+- An — *Перед lamp нужно The, а an ставят только перед гласным звуком.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-42:i04; family: speed_match -->
-bathroom — ванная комната · polite — вежливый · inaccurate — неточный · wallet — кошелёк
+handle — ручка (двери) · bell — звонок · wheel — колесо · cord — шнур
 
-**5 · Послушайте и соберите фразу**
+**5 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-42:i05; family: listen_build_dictation -->
-🔊 *This is a bathroom.* Плитки: `bathroom` `a` `is` `This` `are` → **This is a bathroom.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a bathroom.`)*
+🔊 *The key is here.* Плитки: `key` `here` `is` `The` `A` → **The key is here.**
+*(плитка `A` лишняя: здесь нужно `The` — `The key is here.`)*
 
-**6 · Хозяин уже показал ванную в конце коридора. Скажите «Ванная комната там»**
+**6 · Вы оба смотрите на зеркало в прихожей. Скажите: «Зеркало грязное».**
 <!-- interaction_id: en:lesson-03:session-42:i06; family: phrase_builder -->
-Плитки: `there` `is` `bathroom` `The` `are` → **The bathroom is there.**
-*(плитка `are` лишняя: здесь нужно `is` — `The bathroom is there.`)*
+Плитки: `mirror` `is` `dirty` `The` `An` → **The mirror is dirty.**
+*(плитка `An` лишняя: здесь нужно `The` — `The mirror is dirty.`)*
 
-**7 · Хозяин вежливо общается с гостями. Скажите «Он вежливый» с сокращением**
+**7 · Карточка слова — handle**
+<!-- interaction_id: en:lesson-03:session-42:word:handle; family: word_card -->
+> **handle** — ручка (на двери, на дверце). The handle is broken — «Ручка сломана». О части шкафа или двери, за которую берутся рукой.
+
+**8 · Соседка показывает на дверцу шкафа и называет часть, за которую берутся рукой, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-42:i07; family: scripted_repeat_compare -->
-🎙 **He's polite.**
+🎙 **handle**
 
-**8 · Вы называете, что это за комната: ванная**
+**9 · Карточка слова — bell**
+<!-- interaction_id: en:lesson-03:session-42:word:bell; family: word_card -->
+> **bell** — звонок. The bell is old — «Звонок старый». О кнопке или приборе, которым вызывают человека.
+
+**10 · Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?**
 <!-- interaction_id: en:lesson-03:session-42:i08; family: context_gap_grammar -->
-This is ___ bathroom. → **a** · an · are
-- an — *`bathroom` начинается с согласного звука: `a bathroom`.*
-- are — *Здесь перед названием одной комнаты нужно `a`.*
+___ → **bell** · key · lock
+- key — *key — это ключ, а то, что звенит у двери, называется bell.*
+- lock — *lock — это замок, а то, что звенит у двери, называется bell.*
 
-**9 · Послушайте описание старой схемы**
+**11 · Послушайте, что говорит соседка**
 <!-- interaction_id: en:lesson-03:session-42:i09; family: listen_choose -->
-🔊 *It is inaccurate.* → **It is inaccurate.** · It is accurate. · It is relevant.
-- It is accurate. — *В записи последнее слово — `inaccurate`, а в этом варианте — `accurate`.*
-- It is relevant. — *В записи последнее слово — `inaccurate`, а в этом варианте — `relevant`.*
+🔊 *The handle is broken.* → **The handle is broken.** · A handle is broken. · The handle is loose.
+- A handle is broken. — *В записи первое слово — `The`, а в этом варианте — `A`.*
+- The handle is loose. — *В записи последнее слово — `broken`, а в этом варианте — `loose`.*
 
-**10 · Соедините слова со значениями**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-42:i10; family: speed_match -->
-bathroom — ванная комната · wallet — кошелёк · here — здесь · there — там
+handle — ручка (двери) · door — дверь · window — окно · key — ключ
 
-**11 · Послушайте и соберите фразу**
+**13 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-42:i11; family: listen_build_dictation -->
-🔊 *That wallet is there.* Плитки: `there` `is` `wallet` `That` `are` → **That wallet is there.**
-*(плитка `are` лишняя: здесь нужно `is` — `That wallet is there.`)*
+🔊 *The bell is old.* Плитки: `bell` `old` `is` `The` `A` → **The bell is old.**
+*(плитка `A` лишняя: здесь нужно `The` — `The bell is old.`)*
 
-**12 · Гость спрашивает, что за комната дальше по коридору. Назовите её со словом для одного дальше: «Это ванная комната»**
+**14 · Вы оба слышите звонок у двери. Скажите: «Звонок громкий».**
 <!-- interaction_id: en:lesson-03:session-42:i12; family: phrase_builder -->
-Плитки: `bathroom` `a` `is` `That` `are` → **That is a bathroom.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is a bathroom.`)*
+Плитки: `bell` `is` `loud` `The` `An` → **The bell is loud.**
+*(плитка `An` лишняя: здесь нужно `The` — `The bell is loud.`)*
 
-**13 · Старая схема неверно показывает расположение комнаты. Скажите «Она неточная» с сокращением**
+**15 · Карточка слова — wheel**
+<!-- interaction_id: en:lesson-03:session-42:word:wheel; family: word_card -->
+> **wheel** — колесо. The wheel is loose — «Колесо шатается». О круглой части велосипеда или тележки, которая катится.
+
+**16 · Продавец показывает на переднюю часть велосипеда, которая катится, и называет её, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-42:i13; family: scripted_repeat_compare -->
-🎙 **It's inaccurate.**
+🎙 **wheel**
 
-**14 · Вы говорите об одной понятной вам обоим ванной комнате**
+**17 · Карточка слова — cord**
+<!-- interaction_id: en:lesson-03:session-42:word:cord; family: word_card -->
+> **cord** — шнур. The cord is torn — «Шнур порван». О проводе, который идёт от лампы к розетке.
+
+**18 · Провод идёт от лампы к розетке. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-42:i14; family: context_gap_grammar -->
-The bathroom ___ there. → **is** · are · am
-- are — *Комната одна: `The bathroom is there`.*
-- am — *С `The bathroom` нужно `is`.*
+___ → **cord** · socket · lamp
+- socket — *socket — это розетка, а провод от лампы к розетке называется cord.*
+- lamp — *lamp — это лампа, а провод от неё к розетке называется cord.*
 
-**15 · Послушайте описание хозяина**
+**19 · Послушайте, что говорит продавец**
 <!-- interaction_id: en:lesson-03:session-42:i15; family: listen_choose -->
-🔊 *He is polite.* → **He is polite.** · He is honest. · He is brave.
-- He is honest. — *В записи последнее слово — `polite`, а в этом варианте — `honest`.*
-- He is brave. — *В записи последнее слово — `polite`, а в этом варианте — `brave`.*
+🔊 *The wheel is loose.* → **The wheel is loose.** · A wheel is loose. · The wheel is tight.
+- A wheel is loose. — *В записи первое слово — `The`, а в этом варианте — `A`.*
+- The wheel is tight. — *В записи последнее слово — `loose`, а в этом варианте — `tight`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-42:i16; family: speed_match -->
-bathroom — ванная комната · polite — вежливый · inaccurate — неточный · wallet — кошелёк
+wheel — колесо · cord — шнур · bell — звонок · handle — ручка (двери)
 
-**17 · В гостях вы уже осмотрели ванную вместе с другом. Друг снова ищет её, а вы стоите прямо у её двери. Скажите полной фразой «Ванная комната здесь», говоря о той же комнате**
+**21 · Вы с соседкой смотрите на лампу, у которой шнур порван. Скажите ей: «Шнур порван».**
 <!-- interaction_id: en:lesson-03:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The bathroom is here.**
-
+🎙 **The cord is torn.**

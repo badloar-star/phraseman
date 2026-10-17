@@ -1,0 +1,2369 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-49:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-49:i01:p1",
+              "target": "red",
+              "meaningByLocale": {
+                "ru": "красный",
+                "uk": "червоний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i01:p2",
+              "target": "green",
+              "meaningByLocale": {
+                "ru": "зелёный",
+                "uk": "зелений"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i01:p3",
+              "target": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой",
+                "uk": "синій, блакитний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i01:p4",
+              "target": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый",
+                "uk": "коричневий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "red",
+            "green",
+            "blue",
+            "brown"
+          ],
+          "rightColumn": [
+            "красный",
+            "зелёный",
+            "синий, голубой",
+            "коричневый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:red",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — red",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:red:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — red",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:red:audio",
+            "transcript": "red"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:red:r1",
+              "targetText": "red",
+              "meaningByLocale": {
+                "ru": "красный. It is a red cup — «Это красная чашка». О цвете помидора, клубники, пожарной машины.",
+                "uk": "червоний. It is a red cup — «Це червона чашка». Про колір помідора, полуниці, пожежної машини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "red",
+            "definitionByLocale": {
+              "ru": "красный. It is a red cup — «Это красная чашка». О цвете помидора, клубники, пожарной машины.",
+              "uk": "червоний. It is a red cup — «Це червона чашка». Про колір помідора, полуниці, пожежної машини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на пожарную машину за окном и называет её цвет, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на пожарную машину за окном и называет её цвет, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i02:audio",
+            "transcript": "red"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "red",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец держит в руке красную сумку. Скажите подруге полной фразой: это красная сумка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец держит в руке красную сумку. Скажите подруге полной фразой: это красная сумка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a red bag.",
+          "localizedMeaning": {
+            "ru": "Продавец держит в руке красную сумку. Скажите подруге полной фразой: это красная сумка.",
+            "uk": "Продавець тримає в руці червону сумку. Скажіть подрузі повною фразою: це червона сумка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "red",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец держит в руке красную сумку. Скажите подруге полной фразой: это красная сумка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is a red bag.`",
+                "uk": "тут потрібно `is` — `This is a red bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:green",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — green",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:green:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — green",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:green:audio",
+            "transcript": "green"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:green:r1",
+              "targetText": "green",
+              "meaningByLocale": {
+                "ru": "зелёный. That is a green lamp — «Это зелёная лампа». О цвете травы и листьев.",
+                "uk": "зелений. That is a green lamp — «Це зелена лампа». Про колір трави й листя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "green",
+            "definitionByLocale": {
+              "ru": "зелёный. That is a green lamp — «Это зелёная лампа». О цвете травы и листьев.",
+              "uk": "зелений. That is a green lamp — «Це зелена лампа». Про колір трави й листя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на траву за окном. Как называется её цвет по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i04:r1",
+            "text": "green"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i04:r2",
+            "text": "red"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i04:r3",
+            "text": "dark"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на траву за окном. Как называется её цвет по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на траву за окном. Как называется её цвет по-английски?",
+            "uk": "Подруга показує на траву за вікном. Як називається її колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-49:i04:r1",
+              "text": "green"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i04:r2",
+              "text": "red"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i04:r3",
+              "text": "dark"
+            }
+          ],
+          "testedDimension": "Подруга показывает на траву за окном. Как называется её цвет по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на траву за окном. Как называется её цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "red — это красный, а трава другого цвета: green.",
+                "uk": "red — це червоний, а трава іншого кольору: green."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на траву за окном. Как называется её цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "dark — это тёмный, а цвет травы называется green.",
+                "uk": "dark — це темний, а колір трави називається green."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о лампе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i05:r1",
+            "text": "It is a green lamp."
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i05:r2",
+            "text": "It is a red lamp."
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i05:r3",
+            "text": "It is a green cup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о лампе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i05:audio",
+            "transcript": "It is a green lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:i05:r1",
+              "targetText": "It is a green lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i05:r2",
+              "targetText": "It is a red lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i05:r3",
+              "targetText": "It is a green cup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о лампе",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `green`, а в этом варианте — `red`.",
+                "uk": "У записі колір — `green`, а в цьому варіанті — `red`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о лампе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lamp`, а в этом варианте — `cup`.",
+                "uk": "У записі останнє слово — `lamp`, а в цьому варіанті — `cup`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:blue",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:blue:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:blue:audio",
+            "transcript": "blue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:blue:r1",
+              "targetText": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой. This is a blue sofa — «Это синий диван». О цвете неба и моря.",
+                "uk": "синій, блакитний. This is a blue sofa — «Це синій диван». Про колір неба й моря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blue",
+            "definitionByLocale": {
+              "ru": "синий, голубой. This is a blue sofa — «Это синий диван». О цвете неба и моря.",
+              "uk": "синій, блакитний. This is a blue sofa — «Це синій диван». Про колір неба й моря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на небо в окне и называет его цвет, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на небо в окне и называет его цвет, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i06:audio",
+            "transcript": "blue"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "blue",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i07:audio",
+            "transcript": "This is a blue cup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a blue cup.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "blue",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a blue cup.`",
+                "uk": "тут потрібно `This` — `This is a blue cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:brown",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:brown:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:brown:audio",
+            "transcript": "brown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:brown:r1",
+              "targetText": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый. It is a brown rug — «Это коричневый ковёр». О цвете шоколада и древесной коры.",
+                "uk": "коричневий. It is a brown rug — «Це коричневий килим». Про колір шоколаду й кори дерева."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brown",
+            "definitionByLocale": {
+              "ru": "коричневый. It is a brown rug — «Это коричневый ковёр». О цвете шоколада и древесной коры.",
+              "uk": "коричневий. It is a brown rug — «Це коричневий килим». Про колір шоколаду й кори дерева."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на шоколад на столе. Как называется его цвет по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i08:r1",
+            "text": "brown"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i08:r2",
+            "text": "blue"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i08:r3",
+            "text": "green"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на шоколад на столе. Как называется его цвет по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на шоколад на столе. Как называется его цвет по-английски?",
+            "uk": "Подруга показує на шоколад на столі. Як називається його колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-49:i08:r1",
+              "text": "brown"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i08:r2",
+              "text": "blue"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i08:r3",
+              "text": "green"
+            }
+          ],
+          "testedDimension": "Подруга показывает на шоколад на столе. Как называется его цвет по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на шоколад на столе. Как называется его цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "blue — это синий, а шоколад другого цвета: brown.",
+                "uk": "blue — це синій, а шоколад іншого кольору: brown."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на шоколад на столе. Как называется его цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "green — это зелёный, а шоколад другого цвета: brown.",
+                "uk": "green — це зелений, а шоколад іншого кольору: brown."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ковёр лежит далеко у окна. Скажите продавцу полной фразой: это коричневый ковёр.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ковёр лежит далеко у окна. Скажите продавцу полной фразой: это коричневый ковёр.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a brown rug.",
+          "localizedMeaning": {
+            "ru": "Ковёр лежит далеко у окна. Скажите продавцу полной фразой: это коричневый ковёр.",
+            "uk": "Килим лежить далеко біля вікна. Скажіть продавцю повною фразою: це коричневий килим."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "brown",
+            "rug"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Ковёр лежит далеко у окна. Скажите продавцу полной фразой: это коричневый ковёр.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a brown rug.`",
+                "uk": "тут потрібно `That` — `That is a brown rug.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-49:i10:p1",
+              "target": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой",
+                "uk": "синій, блакитний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i10:p2",
+              "target": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый",
+                "uk": "коричневий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i10:p3",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i10:p4",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blue",
+            "brown",
+            "sofa",
+            "rug"
+          ],
+          "rightColumn": [
+            "синий, голубой",
+            "коричневый",
+            "диван",
+            "коврик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i11:r1",
+            "text": "Is it a brown cup?"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i11:r2",
+            "text": "Is it a brown rug?"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i11:r3",
+            "text": "Is it a green cup?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i11:audio",
+            "transcript": "Is it a brown cup?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:i11:r1",
+              "targetText": "Is it a brown cup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i11:r2",
+              "targetText": "Is it a brown rug?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i11:r3",
+              "targetText": "Is it a green cup?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cup`, а в этом варианте — `rug`.",
+                "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `rug`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `brown`, а в этом варианте — `green`.",
+                "uk": "У записі колір — `brown`, а в цьому варіанті — `green`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга держит в руке синий ковёр. Дополните вашу фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга держит в руке синий ковёр. Дополните вашу фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга держит в руке синий ковёр. Дополните вашу фразу",
+            "uk": "Подруга тримає в руці синій килим. Доповніть вашу фразу"
+          },
+          "gappedTargetPhrase": "It is ___ blue rug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-49:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i12:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга держит в руке синий ковёр. Дополните вашу фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга держит в руке синий ковёр. Дополните вашу фразу",
+              "feedbackByLocale": {
+                "ru": "an нужен перед гласным звуком, а blue начинается с согласного: a blue rug.",
+                "uk": "an потрібен перед голосним звуком, а blue починається з приголосного: a blue rug."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга держит в руке синий ковёр. Дополните вашу фразу",
+              "feedbackByLocale": {
+                "ru": "Здесь речь об одном ковре: нужно a, а не are.",
+                "uk": "Тут ідеться про один килим: потрібно a, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i13:audio",
+            "transcript": "That is a red sofa."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is a red sofa.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "red",
+            "sofa"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a red sofa.`",
+                "uk": "тут потрібно `That` — `That is a red sofa.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, какая лампа вам нужна. Скажите ей, что зелёная",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, какая лампа вам нужна. Скажите ей, что зелёная",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i14:audio",
+            "transcript": "a green lamp"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "a green lamp",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ковёр лежит рядом с вами. Спросите продавца, красный ли он.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ковёр лежит рядом с вами. Спросите продавца, красный ли он.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this a red rug?",
+          "localizedMeaning": {
+            "ru": "Ковёр лежит рядом с вами. Спросите продавца, красный ли он.",
+            "uk": "Килим лежить поруч із вами. Запитайте продавця, чи він червоний."
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "a",
+            "red",
+            "rug"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Ковёр лежит рядом с вами. Спросите продавца, красный ли он.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this a red rug?`",
+                "uk": "тут потрібно `Is` — `Is this a red rug?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-49:i16:p1",
+              "target": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый",
+                "uk": "коричневий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i16:p2",
+              "target": "green",
+              "meaningByLocale": {
+                "ru": "зелёный",
+                "uk": "зелений"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i16:p3",
+              "target": "red",
+              "meaningByLocale": {
+                "ru": "красный",
+                "uk": "червоний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i16:p4",
+              "target": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой",
+                "uk": "синій, блакитний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brown",
+            "green",
+            "red",
+            "blue"
+          ],
+          "rightColumn": [
+            "коричневый",
+            "зелёный",
+            "красный",
+            "синий, голубой"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец спрашивает, какой ковёр вам нужен. Ответьте ему коротко: коричневый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Продавец спрашивает, какой ковёр вам нужен. Ответьте ему коротко: коричневый.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i17:audio",
+            "transcript": "It is a brown rug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is a brown rug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-49:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-49:i01:p1",
+              "target": "red",
+              "meaningByLocale": {
+                "ru": "красный",
+                "uk": "червоний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i01:p2",
+              "target": "green",
+              "meaningByLocale": {
+                "ru": "зелёный",
+                "uk": "зелений"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i01:p3",
+              "target": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой",
+                "uk": "синій, блакитний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i01:p4",
+              "target": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый",
+                "uk": "коричневий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "red",
+            "green",
+            "blue",
+            "brown"
+          ],
+          "rightColumn": [
+            "червоний",
+            "зелений",
+            "синій, блакитний",
+            "коричневий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:red",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — red",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:red:audio"
+        ],
+        "accessibilityLabel": "Картка слова — red",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:red:audio",
+            "transcript": "red"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:red:r1",
+              "targetText": "red",
+              "meaningByLocale": {
+                "ru": "красный. It is a red cup — «Это красная чашка». О цвете помидора, клубники, пожарной машины.",
+                "uk": "червоний. It is a red cup — «Це червона чашка». Про колір помідора, полуниці, пожежної машини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "red",
+            "definitionByLocale": {
+              "ru": "красный. It is a red cup — «Это красная чашка». О цвете помидора, клубники, пожарной машины.",
+              "uk": "червоний. It is a red cup — «Це червона чашка». Про колір помідора, полуниці, пожежної машини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на пожежну машину за вікном і називає її колір, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на пожежну машину за вікном і називає її колір, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i02:audio",
+            "transcript": "red"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "red",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець тримає в руці червону сумку. Скажіть подрузі повною фразою: це червона сумка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець тримає в руці червону сумку. Скажіть подрузі повною фразою: це червона сумка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a red bag.",
+          "localizedMeaning": {
+            "ru": "Продавец держит в руке красную сумку. Скажите подруге полной фразой: это красная сумка.",
+            "uk": "Продавець тримає в руці червону сумку. Скажіть подрузі повною фразою: це червона сумка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "red",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець тримає в руці червону сумку. Скажіть подрузі повною фразою: це червона сумка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is a red bag.`",
+                "uk": "тут потрібно `is` — `This is a red bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:green",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — green",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:green:audio"
+        ],
+        "accessibilityLabel": "Картка слова — green",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:green:audio",
+            "transcript": "green"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:green:r1",
+              "targetText": "green",
+              "meaningByLocale": {
+                "ru": "зелёный. That is a green lamp — «Это зелёная лампа». О цвете травы и листьев.",
+                "uk": "зелений. That is a green lamp — «Це зелена лампа». Про колір трави й листя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "green",
+            "definitionByLocale": {
+              "ru": "зелёный. That is a green lamp — «Это зелёная лампа». О цвете травы и листьев.",
+              "uk": "зелений. That is a green lamp — «Це зелена лампа». Про колір трави й листя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на траву за вікном. Як називається її колір англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i04:r1",
+            "text": "green"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i04:r2",
+            "text": "red"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i04:r3",
+            "text": "dark"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на траву за вікном. Як називається її колір англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на траву за окном. Как называется её цвет по-английски?",
+            "uk": "Подруга показує на траву за вікном. Як називається її колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-49:i04:r1",
+              "text": "green"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i04:r2",
+              "text": "red"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i04:r3",
+              "text": "dark"
+            }
+          ],
+          "testedDimension": "Подруга показує на траву за вікном. Як називається її колір англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на траву за вікном. Як називається її колір англійською?",
+              "feedbackByLocale": {
+                "ru": "red — это красный, а трава другого цвета: green.",
+                "uk": "red — це червоний, а трава іншого кольору: green."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на траву за вікном. Як називається її колір англійською?",
+              "feedbackByLocale": {
+                "ru": "dark — это тёмный, а цвет травы называется green.",
+                "uk": "dark — це темний, а колір трави називається green."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про лампу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i05:r1",
+            "text": "It is a green lamp."
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i05:r2",
+            "text": "It is a red lamp."
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i05:r3",
+            "text": "It is a green cup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про лампу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i05:audio",
+            "transcript": "It is a green lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:i05:r1",
+              "targetText": "It is a green lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i05:r2",
+              "targetText": "It is a red lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i05:r3",
+              "targetText": "It is a green cup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про лампу",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `green`, а в этом варианте — `red`.",
+                "uk": "У записі колір — `green`, а в цьому варіанті — `red`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про лампу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lamp`, а в этом варианте — `cup`.",
+                "uk": "У записі останнє слово — `lamp`, а в цьому варіанті — `cup`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:blue",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:blue:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:blue:audio",
+            "transcript": "blue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:blue:r1",
+              "targetText": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой. This is a blue sofa — «Это синий диван». О цвете неба и моря.",
+                "uk": "синій, блакитний. This is a blue sofa — «Це синій диван». Про колір неба й моря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blue",
+            "definitionByLocale": {
+              "ru": "синий, голубой. This is a blue sofa — «Это синий диван». О цвете неба и моря.",
+              "uk": "синій, блакитний. This is a blue sofa — «Це синій диван». Про колір неба й моря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на небо у вікні й називає його колір, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на небо у вікні й називає його колір, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i06:audio",
+            "transcript": "blue"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "blue",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i07:audio",
+            "transcript": "This is a blue cup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a blue cup.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "blue",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a blue cup.`",
+                "uk": "тут потрібно `This` — `This is a blue cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:word:brown",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:word:brown:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:word:brown:audio",
+            "transcript": "brown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:word:brown:r1",
+              "targetText": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый. It is a brown rug — «Это коричневый ковёр». О цвете шоколада и древесной коры.",
+                "uk": "коричневий. It is a brown rug — «Це коричневий килим». Про колір шоколаду й кори дерева."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brown",
+            "definitionByLocale": {
+              "ru": "коричневый. It is a brown rug — «Это коричневый ковёр». О цвете шоколада и древесной коры.",
+              "uk": "коричневий. It is a brown rug — «Це коричневий килим». Про колір шоколаду й кори дерева."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на шоколад на столі. Як називається його колір англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i08:r1",
+            "text": "brown"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i08:r2",
+            "text": "blue"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i08:r3",
+            "text": "green"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на шоколад на столі. Як називається його колір англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на шоколад на столе. Как называется его цвет по-английски?",
+            "uk": "Подруга показує на шоколад на столі. Як називається його колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-49:i08:r1",
+              "text": "brown"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i08:r2",
+              "text": "blue"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i08:r3",
+              "text": "green"
+            }
+          ],
+          "testedDimension": "Подруга показує на шоколад на столі. Як називається його колір англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на шоколад на столі. Як називається його колір англійською?",
+              "feedbackByLocale": {
+                "ru": "blue — это синий, а шоколад другого цвета: brown.",
+                "uk": "blue — це синій, а шоколад іншого кольору: brown."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на шоколад на столі. Як називається його колір англійською?",
+              "feedbackByLocale": {
+                "ru": "green — это зелёный, а шоколад другого цвета: brown.",
+                "uk": "green — це зелений, а шоколад іншого кольору: brown."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Килим лежить далеко біля вікна. Скажіть продавцю повною фразою: це коричневий килим.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Килим лежить далеко біля вікна. Скажіть продавцю повною фразою: це коричневий килим.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a brown rug.",
+          "localizedMeaning": {
+            "ru": "Ковёр лежит далеко у окна. Скажите продавцу полной фразой: это коричневый ковёр.",
+            "uk": "Килим лежить далеко біля вікна. Скажіть продавцю повною фразою: це коричневий килим."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "brown",
+            "rug"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Килим лежить далеко біля вікна. Скажіть продавцю повною фразою: це коричневий килим.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a brown rug.`",
+                "uk": "тут потрібно `That` — `That is a brown rug.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-49:i10:p1",
+              "target": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой",
+                "uk": "синій, блакитний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i10:p2",
+              "target": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый",
+                "uk": "коричневий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i10:p3",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i10:p4",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blue",
+            "brown",
+            "sofa",
+            "rug"
+          ],
+          "rightColumn": [
+            "синій, блакитний",
+            "коричневий",
+            "диван",
+            "килимок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i11:r1",
+            "text": "Is it a brown cup?"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i11:r2",
+            "text": "Is it a brown rug?"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i11:r3",
+            "text": "Is it a green cup?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i11:audio",
+            "transcript": "Is it a brown cup?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-49:i11:r1",
+              "targetText": "Is it a brown cup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i11:r2",
+              "targetText": "Is it a brown rug?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i11:r3",
+              "targetText": "Is it a green cup?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cup`, а в этом варианте — `rug`.",
+                "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `rug`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `brown`, а в этом варианте — `green`.",
+                "uk": "У записі колір — `brown`, а в цьому варіанті — `green`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга тримає в руці синій килим. Доповніть вашу фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-49:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-49:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга тримає в руці синій килим. Доповніть вашу фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга держит в руке синий ковёр. Дополните вашу фразу",
+            "uk": "Подруга тримає в руці синій килим. Доповніть вашу фразу"
+          },
+          "gappedTargetPhrase": "It is ___ blue rug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-49:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i12:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга тримає в руці синій килим. Доповніть вашу фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга тримає в руці синій килим. Доповніть вашу фразу",
+              "feedbackByLocale": {
+                "ru": "an нужен перед гласным звуком, а blue начинается с согласного: a blue rug.",
+                "uk": "an потрібен перед голосним звуком, а blue починається з приголосного: a blue rug."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга тримає в руці синій килим. Доповніть вашу фразу",
+              "feedbackByLocale": {
+                "ru": "Здесь речь об одном ковре: нужно a, а не are.",
+                "uk": "Тут ідеться про один килим: потрібно a, а не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i13:audio",
+            "transcript": "That is a red sofa."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is a red sofa.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "red",
+            "sofa"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a red sofa.`",
+                "uk": "тут потрібно `That` — `That is a red sofa.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, яка лампа вам потрібна. Скажіть їй, що зелена",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, яка лампа вам потрібна. Скажіть їй, що зелена",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i14:audio",
+            "transcript": "a green lamp"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "a green lamp",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Килим лежить поруч із вами. Запитайте продавця, чи він червоний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Килим лежить поруч із вами. Запитайте продавця, чи він червоний.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this a red rug?",
+          "localizedMeaning": {
+            "ru": "Ковёр лежит рядом с вами. Спросите продавца, красный ли он.",
+            "uk": "Килим лежить поруч із вами. Запитайте продавця, чи він червоний."
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "a",
+            "red",
+            "rug"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-49:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Килим лежить поруч із вами. Запитайте продавця, чи він червоний.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this a red rug?`",
+                "uk": "тут потрібно `Is` — `Is this a red rug?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-49:i16:p1",
+              "target": "brown",
+              "meaningByLocale": {
+                "ru": "коричневый",
+                "uk": "коричневий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i16:p2",
+              "target": "green",
+              "meaningByLocale": {
+                "ru": "зелёный",
+                "uk": "зелений"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i16:p3",
+              "target": "red",
+              "meaningByLocale": {
+                "ru": "красный",
+                "uk": "червоний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-49:i16:p4",
+              "target": "blue",
+              "meaningByLocale": {
+                "ru": "синий, голубой",
+                "uk": "синій, блакитний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brown",
+            "green",
+            "red",
+            "blue"
+          ],
+          "rightColumn": [
+            "коричневий",
+            "зелений",
+            "червоний",
+            "синій, блакитний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець питає, який килим вам потрібен. Відповідайте йому коротко: коричневий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Продавець питає, який килим вам потрібен. Відповідайте йому коротко: коричневий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-49:i17:audio",
+            "transcript": "It is a brown rug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is a brown rug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-49:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:word:red",
+      "correctText": "red",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i02",
+      "correctText": "red",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i03",
+      "correctText": "This is a red bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:word:green",
+      "correctText": "green",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i04",
+      "correctText": "green",
+      "correctResponseId": "en:lesson-03:session-49:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i05",
+      "correctText": "It is a green lamp.",
+      "correctResponseId": "en:lesson-03:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:word:blue",
+      "correctText": "blue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i06",
+      "correctText": "blue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i07",
+      "correctText": "This is a blue cup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:word:brown",
+      "correctText": "brown",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i08",
+      "correctText": "brown",
+      "correctResponseId": "en:lesson-03:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i09",
+      "correctText": "That is a brown rug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i11",
+      "correctText": "Is it a brown cup?",
+      "correctResponseId": "en:lesson-03:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i12",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-49:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i13",
+      "correctText": "That is a red sofa.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i14",
+      "correctText": "a green lamp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i15",
+      "correctText": "Is this a red rug?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i17",
+      "correctText": "It is a brown rug.",
+      "correctResponseId": null
+    }
+  ]
+}

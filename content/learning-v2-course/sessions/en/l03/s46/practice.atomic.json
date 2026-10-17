@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-46:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с братом смотрите на потолок в комнате. Скажите: «Потолок грязный».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с братом смотрите на потолок в комнате. Скажите: «Потолок грязный».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The ceiling is dirty.",
+          "localizedMeaning": {
+            "ru": "Вы с братом смотрите на потолок в комнате. Скажите: «Потолок грязный».",
+            "uk": "Ви з братом дивитеся на стелю в кімнаті. Скажіть: «Стеля брудна»."
+          },
+          "orderedTokens": [
+            "The",
+            "ceiling",
+            "is",
+            "dirty"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с братом смотрите на потолок в комнате. Скажите: «Потолок грязный».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The ceiling is dirty.`",
+                "uk": "тут потрібно `The` — `The ceiling is dirty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i02:r1",
+            "text": "The door is open."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i02:r2",
+            "text": "A door is open."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i02:r3",
+            "text": "The door is closed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i02:audio",
+            "transcript": "The door is open."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:i02:r1",
+              "targetText": "The door is open.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i02:r2",
+              "targetText": "A door is open.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i02:r3",
+              "targetText": "The door is closed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+                "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с братом смотрите на пол в комнате. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с братом смотрите на пол в комнате. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с братом смотрите на пол в комнате. Дополните фразу",
+            "uk": "Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ floor is wet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-46:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Вы с братом смотрите на пол в комнате. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы с братом смотрите на пол в комнате. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Вы оба смотрите на этот пол, и он понятен вам обоим, поэтому The, а не A.",
+                "uk": "Ви обоє дивитеся на цю підлогу, і вона зрозуміла вам обом, тому The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы с братом смотрите на пол в комнате. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Перед floor an не ставят, а здесь вообще нужно The: пол понятен вам обоим.",
+                "uk": "Перед floor an не ставлять, а тут взагалі потрібно The: підлога зрозуміла вам обом."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-46:i04:p1",
+              "target": "roof",
+              "meaningByLocale": {
+                "ru": "крыша",
+                "uk": "дах"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i04:p2",
+              "target": "lift",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i04:p3",
+              "target": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница",
+                "uk": "сходи"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i04:p4",
+              "target": "balcony",
+              "meaningByLocale": {
+                "ru": "балкон",
+                "uk": "балкон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "roof",
+            "lift",
+            "stairs",
+            "balcony"
+          ],
+          "rightColumn": [
+            "крыша",
+            "лифт",
+            "лестница",
+            "балкон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i05:audio",
+            "transcript": "The wall is dark."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The wall is dark.",
+          "orderedTokens": [
+            "The",
+            "wall",
+            "is",
+            "dark"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The wall is dark.`",
+                "uk": "тут потрібно `The` — `The wall is dark.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы впервые называете окно в соседней комнате. Скажите брату: «Это окно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые называете окно в соседней комнате. Скажите брату: «Это окно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a window.",
+          "localizedMeaning": {
+            "ru": "Вы впервые называете окно в соседней комнате. Скажите брату: «Это окно».",
+            "uk": "Ви вперше називаєте вікно в сусідній кімнаті. Скажіть братові: «Це вікно»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "window"
+          ],
+          "authoredDistractorTokens": [
+            "the"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы впервые называете окно в соседней комнате. Скажите брату: «Это окно».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a window.`",
+                "uk": "тут потрібно `a` — `This is a window.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:roof",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — roof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:roof:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — roof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:roof:audio",
+            "transcript": "roof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:roof:r1",
+              "targetText": "roof",
+              "meaningByLocale": {
+                "ru": "крыша. The roof is old — «Крыша старая». О верхней части дома, которая защищает от дождя.",
+                "uk": "дах. The roof is old — «Дах старий». Про верхню частину будинку, яка захищає від дощу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "roof",
+            "definitionByLocale": {
+              "ru": "крыша. The roof is old — «Крыша старая». О верхней части дома, которая защищает от дождя.",
+              "uk": "дах. The roof is old — «Дах старий». Про верхню частину будинку, яка захищає від дощу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показывает на верх дома, где лежат листы, защищающие от дождя, и называет его, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i07:audio"
+        ],
+        "accessibilityLabel": "Брат показывает на верх дома, где лежат листы, защищающие от дождя, и называет его, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i07:audio",
+            "transcript": "roof"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "roof",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:lift",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lift",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:lift:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lift",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:lift:audio",
+            "transcript": "lift"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:lift:r1",
+              "targetText": "lift",
+              "meaningByLocale": {
+                "ru": "лифт. The lift is slow — «Лифт медленный». О кабине, которая возит людей по этажам.",
+                "uk": "ліфт. The lift is slow — «Ліфт повільний». Про кабіну, яка возить людей по поверхах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lift",
+            "definitionByLocale": {
+              "ru": "лифт. The lift is slow — «Лифт медленный». О кабине, которая возит людей по этажам.",
+              "uk": "ліфт. The lift is slow — «Ліфт повільний». Про кабіну, яка возить людей по поверхах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кабина в подъезде возит людей между этажами. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i08:r1",
+            "text": "lift"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i08:r2",
+            "text": "door"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i08:r3",
+            "text": "window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кабина в подъезде возит людей между этажами. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кабина в подъезде возит людей между этажами. Как она называется по-английски?",
+            "uk": "Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-46:i08:r1",
+              "text": "lift"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i08:r2",
+              "text": "door"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i08:r3",
+              "text": "window"
+            }
+          ],
+          "testedDimension": "Кабина в подъезде возит людей между этажами. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Кабина в подъезде возит людей между этажами. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "door — это дверь, а кабина, которая возит людей по этажам, называется lift.",
+                "uk": "door — це двері, а кабіна, яка возить людей по поверхах, називається lift."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Кабина в подъезде возит людей между этажами. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "window — это окно, а кабина, которая возит людей по этажам, называется lift.",
+                "uk": "window — це вікно, а кабіна, яка возить людей по поверхах, називається lift."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит брат",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i09:r1",
+            "text": "The roof is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i09:r2",
+            "text": "A roof is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i09:r3",
+            "text": "The roof is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит брат",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i09:audio",
+            "transcript": "The roof is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:i09:r1",
+              "targetText": "The roof is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i09:r2",
+              "targetText": "A roof is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i09:r3",
+              "targetText": "The roof is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-46:i10:p1",
+              "target": "roof",
+              "meaningByLocale": {
+                "ru": "крыша",
+                "uk": "дах"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "roof",
+            "door",
+            "window",
+            "wall"
+          ],
+          "rightColumn": [
+            "крыша",
+            "дверь",
+            "окно",
+            "стена"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i11:audio",
+            "transcript": "The lift is slow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The lift is slow.",
+          "orderedTokens": [
+            "The",
+            "lift",
+            "is",
+            "slow"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The lift is slow.`",
+                "uk": "тут потрібно `The` — `The lift is slow.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с соседкой ждёте кабину в подъезде. Скажите ей: «Лифт здесь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с соседкой ждёте кабину в подъезде. Скажите ей: «Лифт здесь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The lift is here.",
+          "localizedMeaning": {
+            "ru": "Вы с соседкой ждёте кабину в подъезде. Скажите ей: «Лифт здесь».",
+            "uk": "Ви із сусідкою чекаєте кабіну в під’їзді. Скажіть їй: «Ліфт тут»."
+          },
+          "orderedTokens": [
+            "The",
+            "lift",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с соседкой ждёте кабину в подъезде. Скажите ей: «Лифт здесь».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The lift is here.`",
+                "uk": "тут потрібно `The` — `The lift is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:stairs",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stairs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:stairs:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stairs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:stairs:audio",
+            "transcript": "stairs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:stairs:r1",
+              "targetText": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница. The stairs are narrow — «Лестница узкая». О ступенях между этажами. Слово всегда во множественном числе.",
+                "uk": "сходи. The stairs are narrow — «Сходи вузькі». Про сходинки між поверхами. Слово завжди в множині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stairs",
+            "definitionByLocale": {
+              "ru": "лестница. The stairs are narrow — «Лестница узкая». О ступенях между этажами. Слово всегда во множественном числе.",
+              "uk": "сходи. The stairs are narrow — «Сходи вузькі». Про сходинки між поверхами. Слово завжди в множині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка показывает на ступени между этажами и называет их, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i13:audio"
+        ],
+        "accessibilityLabel": "Соседка показывает на ступени между этажами и называет их, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i13:audio",
+            "transcript": "stairs"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "stairs",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:balcony",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — balcony",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:balcony:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — balcony",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:balcony:audio",
+            "transcript": "balcony"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:balcony:r1",
+              "targetText": "balcony",
+              "meaningByLocale": {
+                "ru": "балкон. The balcony is open — «Балкон открыт». О площадке с перилами, на которую выходят из комнаты.",
+                "uk": "балкон. The balcony is open — «Балкон відчинений». Про майданчик із поручнями, на який виходять із кімнати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "balcony",
+            "definitionByLocale": {
+              "ru": "балкон. The balcony is open — «Балкон открыт». О площадке с перилами, на которую выходят из комнаты.",
+              "uk": "балкон. The balcony is open — «Балкон відчинений». Про майданчик із поручнями, на який виходять із кімнати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Площадка с перилами, на которую выходят из комнаты подышать воздухом. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i14:r1",
+            "text": "balcony"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i14:r2",
+            "text": "wall"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i14:r3",
+            "text": "ceiling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Площадка с перилами, на которую выходят из комнаты подышать воздухом. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Площадка с перилами, на которую выходят из комнаты подышать воздухом. Как она называется по-английски?",
+            "uk": "Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-46:i14:r1",
+              "text": "balcony"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i14:r2",
+              "text": "wall"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i14:r3",
+              "text": "ceiling"
+            }
+          ],
+          "testedDimension": "Площадка с перилами, на которую выходят из комнаты подышать воздухом. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i14:r2",
+              "correct": false,
+              "testedDimension": "Площадка с перилами, на которую выходят из комнаты подышать воздухом. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а площадка с перилами у комнаты называется balcony.",
+                "uk": "wall — це стіна, а майданчик із поручнями біля кімнати називається balcony."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i14:r3",
+              "correct": false,
+              "testedDimension": "Площадка с перилами, на которую выходят из комнаты подышать воздухом. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "ceiling — это потолок, а площадка с перилами у комнаты называется balcony.",
+                "uk": "ceiling — це стеля, а майданчик із поручнями біля кімнати називається balcony."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит соседка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i15:r1",
+            "text": "The stairs are narrow."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r2",
+            "text": "The stairs are steep."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r3",
+            "text": "The stairs are wide."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит соседка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i15:audio",
+            "transcript": "The stairs are narrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:i15:r1",
+              "targetText": "The stairs are narrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i15:r2",
+              "targetText": "The stairs are steep.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i15:r3",
+              "targetText": "The stairs are wide.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит соседка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `narrow`, а в этом варианте — `steep`.",
+                "uk": "У записі останнє слово — `narrow`, а в цьому варіанті — `steep`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит соседка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `narrow`, а в этом варианте — `wide`.",
+                "uk": "У записі останнє слово — `narrow`, а в цьому варіанті — `wide`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-46:i16:p1",
+              "target": "balcony",
+              "meaningByLocale": {
+                "ru": "балкон",
+                "uk": "балкон"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i16:p2",
+              "target": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница",
+                "uk": "сходи"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i16:p3",
+              "target": "lift",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i16:p4",
+              "target": "roof",
+              "meaningByLocale": {
+                "ru": "крыша",
+                "uk": "дах"
+              }
+            }
+          ],
+          "leftColumn": [
+            "balcony",
+            "stairs",
+            "lift",
+            "roof"
+          ],
+          "rightColumn": [
+            "балкон",
+            "лестница",
+            "лифт",
+            "крыша"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с братом вышли на площадку с перилами, о которой уже говорили. Скажите ему: «Балкон открыт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с братом вышли на площадку с перилами, о которой уже говорили. Скажите ему: «Балкон открыт».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i17:audio",
+            "transcript": "The balcony is open."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The balcony is open.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-46:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з братом дивитеся на стелю в кімнаті. Скажіть: «Стеля брудна».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з братом дивитеся на стелю в кімнаті. Скажіть: «Стеля брудна».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The ceiling is dirty.",
+          "localizedMeaning": {
+            "ru": "Вы с братом смотрите на потолок в комнате. Скажите: «Потолок грязный».",
+            "uk": "Ви з братом дивитеся на стелю в кімнаті. Скажіть: «Стеля брудна»."
+          },
+          "orderedTokens": [
+            "The",
+            "ceiling",
+            "is",
+            "dirty"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з братом дивитеся на стелю в кімнаті. Скажіть: «Стеля брудна».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The ceiling is dirty.`",
+                "uk": "тут потрібно `The` — `The ceiling is dirty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i02:r1",
+            "text": "The door is open."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i02:r2",
+            "text": "A door is open."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i02:r3",
+            "text": "The door is closed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i02:audio",
+            "transcript": "The door is open."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:i02:r1",
+              "targetText": "The door is open.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i02:r2",
+              "targetText": "A door is open.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i02:r3",
+              "targetText": "The door is closed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+                "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с братом смотрите на пол в комнате. Дополните фразу",
+            "uk": "Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ floor is wet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-46:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Вы оба смотрите на этот пол, и он понятен вам обоим, поэтому The, а не A.",
+                "uk": "Ви обоє дивитеся на цю підлогу, і вона зрозуміла вам обом, тому The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви з братом дивитеся на підлогу в кімнаті. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Перед floor an не ставят, а здесь вообще нужно The: пол понятен вам обоим.",
+                "uk": "Перед floor an не ставлять, а тут взагалі потрібно The: підлога зрозуміла вам обом."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-46:i04:p1",
+              "target": "roof",
+              "meaningByLocale": {
+                "ru": "крыша",
+                "uk": "дах"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i04:p2",
+              "target": "lift",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i04:p3",
+              "target": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница",
+                "uk": "сходи"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i04:p4",
+              "target": "balcony",
+              "meaningByLocale": {
+                "ru": "балкон",
+                "uk": "балкон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "roof",
+            "lift",
+            "stairs",
+            "balcony"
+          ],
+          "rightColumn": [
+            "дах",
+            "ліфт",
+            "сходи",
+            "балкон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i05:audio",
+            "transcript": "The wall is dark."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The wall is dark.",
+          "orderedTokens": [
+            "The",
+            "wall",
+            "is",
+            "dark"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The wall is dark.`",
+                "uk": "тут потрібно `The` — `The wall is dark.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вперше називаєте вікно в сусідній кімнаті. Скажіть братові: «Це вікно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше називаєте вікно в сусідній кімнаті. Скажіть братові: «Це вікно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a window.",
+          "localizedMeaning": {
+            "ru": "Вы впервые называете окно в соседней комнате. Скажите брату: «Это окно».",
+            "uk": "Ви вперше називаєте вікно в сусідній кімнаті. Скажіть братові: «Це вікно»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "window"
+          ],
+          "authoredDistractorTokens": [
+            "the"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вперше називаєте вікно в сусідній кімнаті. Скажіть братові: «Це вікно».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a window.`",
+                "uk": "тут потрібно `a` — `This is a window.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:roof",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — roof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:roof:audio"
+        ],
+        "accessibilityLabel": "Картка слова — roof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:roof:audio",
+            "transcript": "roof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:roof:r1",
+              "targetText": "roof",
+              "meaningByLocale": {
+                "ru": "крыша. The roof is old — «Крыша старая». О верхней части дома, которая защищает от дождя.",
+                "uk": "дах. The roof is old — «Дах старий». Про верхню частину будинку, яка захищає від дощу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "roof",
+            "definitionByLocale": {
+              "ru": "крыша. The roof is old — «Крыша старая». О верхней части дома, которая защищает от дождя.",
+              "uk": "дах. The roof is old — «Дах старий». Про верхню частину будинку, яка захищає від дощу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показує на верх будинку, де лежать листи, що захищають від дощу, і називає його, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i07:audio"
+        ],
+        "accessibilityLabel": "Брат показує на верх будинку, де лежать листи, що захищають від дощу, і називає його, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i07:audio",
+            "transcript": "roof"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "roof",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:lift",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lift",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:lift:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lift",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:lift:audio",
+            "transcript": "lift"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:lift:r1",
+              "targetText": "lift",
+              "meaningByLocale": {
+                "ru": "лифт. The lift is slow — «Лифт медленный». О кабине, которая возит людей по этажам.",
+                "uk": "ліфт. The lift is slow — «Ліфт повільний». Про кабіну, яка возить людей по поверхах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lift",
+            "definitionByLocale": {
+              "ru": "лифт. The lift is slow — «Лифт медленный». О кабине, которая возит людей по этажам.",
+              "uk": "ліфт. The lift is slow — «Ліфт повільний». Про кабіну, яка возить людей по поверхах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i08:r1",
+            "text": "lift"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i08:r2",
+            "text": "door"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i08:r3",
+            "text": "window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кабина в подъезде возит людей между этажами. Как она называется по-английски?",
+            "uk": "Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-46:i08:r1",
+              "text": "lift"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i08:r2",
+              "text": "door"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i08:r3",
+              "text": "window"
+            }
+          ],
+          "testedDimension": "Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "door — это дверь, а кабина, которая возит людей по этажам, называется lift.",
+                "uk": "door — це двері, а кабіна, яка возить людей по поверхах, називається lift."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Кабіна в під’їзді возить людей між поверхами. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "window — это окно, а кабина, которая возит людей по этажам, называется lift.",
+                "uk": "window — це вікно, а кабіна, яка возить людей по поверхах, називається lift."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже брат",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i09:r1",
+            "text": "The roof is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i09:r2",
+            "text": "A roof is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i09:r3",
+            "text": "The roof is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже брат",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i09:audio",
+            "transcript": "The roof is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:i09:r1",
+              "targetText": "The roof is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i09:r2",
+              "targetText": "A roof is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i09:r3",
+              "targetText": "The roof is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-46:i10:p1",
+              "target": "roof",
+              "meaningByLocale": {
+                "ru": "крыша",
+                "uk": "дах"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "roof",
+            "door",
+            "window",
+            "wall"
+          ],
+          "rightColumn": [
+            "дах",
+            "двері",
+            "вікно",
+            "стіна"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i11:audio",
+            "transcript": "The lift is slow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The lift is slow.",
+          "orderedTokens": [
+            "The",
+            "lift",
+            "is",
+            "slow"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The lift is slow.`",
+                "uk": "тут потрібно `The` — `The lift is slow.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви із сусідкою чекаєте кабіну в під’їзді. Скажіть їй: «Ліфт тут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви із сусідкою чекаєте кабіну в під’їзді. Скажіть їй: «Ліфт тут».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The lift is here.",
+          "localizedMeaning": {
+            "ru": "Вы с соседкой ждёте кабину в подъезде. Скажите ей: «Лифт здесь».",
+            "uk": "Ви із сусідкою чекаєте кабіну в під’їзді. Скажіть їй: «Ліфт тут»."
+          },
+          "orderedTokens": [
+            "The",
+            "lift",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви із сусідкою чекаєте кабіну в під’їзді. Скажіть їй: «Ліфт тут».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The lift is here.`",
+                "uk": "тут потрібно `The` — `The lift is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:stairs",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stairs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:stairs:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stairs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:stairs:audio",
+            "transcript": "stairs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:stairs:r1",
+              "targetText": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница. The stairs are narrow — «Лестница узкая». О ступенях между этажами. Слово всегда во множественном числе.",
+                "uk": "сходи. The stairs are narrow — «Сходи вузькі». Про сходинки між поверхами. Слово завжди в множині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stairs",
+            "definitionByLocale": {
+              "ru": "лестница. The stairs are narrow — «Лестница узкая». О ступенях между этажами. Слово всегда во множественном числе.",
+              "uk": "сходи. The stairs are narrow — «Сходи вузькі». Про сходинки між поверхами. Слово завжди в множині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка показує на сходинки між поверхами й називає їх, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i13:audio"
+        ],
+        "accessibilityLabel": "Сусідка показує на сходинки між поверхами й називає їх, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i13:audio",
+            "transcript": "stairs"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "stairs",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:word:balcony",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — balcony",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:word:balcony:audio"
+        ],
+        "accessibilityLabel": "Картка слова — balcony",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:word:balcony:audio",
+            "transcript": "balcony"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:word:balcony:r1",
+              "targetText": "balcony",
+              "meaningByLocale": {
+                "ru": "балкон. The balcony is open — «Балкон открыт». О площадке с перилами, на которую выходят из комнаты.",
+                "uk": "балкон. The balcony is open — «Балкон відчинений». Про майданчик із поручнями, на який виходять із кімнати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "balcony",
+            "definitionByLocale": {
+              "ru": "балкон. The balcony is open — «Балкон открыт». О площадке с перилами, на которую выходят из комнаты.",
+              "uk": "балкон. The balcony is open — «Балкон відчинений». Про майданчик із поручнями, на який виходять із кімнати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i14:r1",
+            "text": "balcony"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i14:r2",
+            "text": "wall"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i14:r3",
+            "text": "ceiling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Площадка с перилами, на которую выходят из комнаты подышать воздухом. Как она называется по-английски?",
+            "uk": "Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-46:i14:r1",
+              "text": "balcony"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i14:r2",
+              "text": "wall"
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i14:r3",
+              "text": "ceiling"
+            }
+          ],
+          "testedDimension": "Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i14:r2",
+              "correct": false,
+              "testedDimension": "Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а площадка с перилами у комнаты называется balcony.",
+                "uk": "wall — це стіна, а майданчик із поручнями біля кімнати називається balcony."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i14:r3",
+              "correct": false,
+              "testedDimension": "Майданчик із поручнями, на який виходять із кімнати подихати повітрям. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "ceiling — это потолок, а площадка с перилами у комнаты называется balcony.",
+                "uk": "ceiling — це стеля, а майданчик із поручнями біля кімнати називається balcony."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже сусідка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i15:r1",
+            "text": "The stairs are narrow."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r2",
+            "text": "The stairs are steep."
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r3",
+            "text": "The stairs are wide."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже сусідка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i15:audio",
+            "transcript": "The stairs are narrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-46:i15:r1",
+              "targetText": "The stairs are narrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i15:r2",
+              "targetText": "The stairs are steep.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i15:r3",
+              "targetText": "The stairs are wide.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-46:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сусідка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `narrow`, а в этом варианте — `steep`.",
+                "uk": "У записі останнє слово — `narrow`, а в цьому варіанті — `steep`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-46:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сусідка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `narrow`, а в этом варианте — `wide`.",
+                "uk": "У записі останнє слово — `narrow`, а в цьому варіанті — `wide`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-46:i16:p1",
+              "target": "balcony",
+              "meaningByLocale": {
+                "ru": "балкон",
+                "uk": "балкон"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i16:p2",
+              "target": "stairs",
+              "meaningByLocale": {
+                "ru": "лестница",
+                "uk": "сходи"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i16:p3",
+              "target": "lift",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-46:i16:p4",
+              "target": "roof",
+              "meaningByLocale": {
+                "ru": "крыша",
+                "uk": "дах"
+              }
+            }
+          ],
+          "leftColumn": [
+            "balcony",
+            "stairs",
+            "lift",
+            "roof"
+          ],
+          "rightColumn": [
+            "балкон",
+            "сходи",
+            "ліфт",
+            "дах"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з братом вийшли на майданчик із поручнями, про який уже говорили. Скажіть йому: «Балкон відчинений».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з братом вийшли на майданчик із поручнями, про який уже говорили. Скажіть йому: «Балкон відчинений».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-46:i17:audio",
+            "transcript": "The balcony is open."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The balcony is open.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-46:i01",
+      "correctText": "The ceiling is dirty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i02",
+      "correctText": "The door is open.",
+      "correctResponseId": "en:lesson-03:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i03",
+      "correctText": "The",
+      "correctResponseId": "en:lesson-03:session-46:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i05",
+      "correctText": "The wall is dark.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i06",
+      "correctText": "This is a window.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:roof",
+      "correctText": "roof",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i07",
+      "correctText": "roof",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:lift",
+      "correctText": "lift",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i08",
+      "correctText": "lift",
+      "correctResponseId": "en:lesson-03:session-46:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i09",
+      "correctText": "The roof is old.",
+      "correctResponseId": "en:lesson-03:session-46:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i11",
+      "correctText": "The lift is slow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i12",
+      "correctText": "The lift is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:stairs",
+      "correctText": "stairs",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i13",
+      "correctText": "stairs",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:balcony",
+      "correctText": "balcony",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i14",
+      "correctText": "balcony",
+      "correctResponseId": "en:lesson-03:session-46:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i15",
+      "correctText": "The stairs are narrow.",
+      "correctResponseId": "en:lesson-03:session-46:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i17",
+      "correctText": "The balcony is open.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-43:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы говорите о стульях вообще. Скажите подруге: «Стулья тяжёлые».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы говорите о стульях вообще. Скажите подруге: «Стулья тяжёлые».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Chairs are heavy.",
+          "localizedMeaning": {
+            "ru": "Вы говорите о стульях вообще. Скажите подруге: «Стулья тяжёлые».",
+            "uk": "Ви говорите про стільці взагалі. Скажіть подрузі: «Стільці важкі»."
+          },
+          "orderedTokens": [
+            "Chairs",
+            "are",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы говорите о стульях вообще. Скажите подруге: «Стулья тяжёлые».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Chairs` — `Chairs are heavy.`",
+                "uk": "тут потрібно `Chairs` — `Chairs are heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i02:r1",
+            "text": "The bags are new."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r2",
+            "text": "Bags are new."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r3",
+            "text": "The bags are old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i02:audio",
+            "transcript": "The bags are new."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:i02:r1",
+              "targetText": "The bags are new.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i02:r2",
+              "targetText": "Bags are new.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i02:r3",
+              "targetText": "The bags are old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `Bags`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `Bags`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы говорите о лампах вообще, а не о конкретных. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i03:r1",
+            "text": "Lamps"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i03:r2",
+            "text": "The lamps"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i03:r3",
+            "text": "A lamp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы говорите о лампах вообще, а не о конкретных. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите о лампах вообще, а не о конкретных. Дополните фразу",
+            "uk": "Ви говорите про лампи взагалі, а не про конкретні. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ are cheap.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-43:i03:r1",
+              "text": "Lamps"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i03:r2",
+              "text": "The lamps"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i03:r3",
+              "text": "A lamp"
+            }
+          ],
+          "testedDimension": "Вы говорите о лампах вообще, а не о конкретных. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы говорите о лампах вообще, а не о конкретных. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Речь о лампах вообще, а не о конкретных, поэтому без the.",
+                "uk": "Мова про лампи взагалі, а не про конкретні, тому без the."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы говорите о лампах вообще, а не о конкретных. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "A ставим перед одной лампой, а are требует несколько.",
+                "uk": "A ставимо перед однією лампою, а are вимагає кількох."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-43:i04:p1",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i04:p2",
+              "target": "magazine",
+              "meaningByLocale": {
+                "ru": "журнал",
+                "uk": "журнал"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i04:p3",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i04:p4",
+              "target": "dictionary",
+              "meaningByLocale": {
+                "ru": "словарь",
+                "uk": "словник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "book",
+            "magazine",
+            "newspaper",
+            "dictionary"
+          ],
+          "rightColumn": [
+            "книга",
+            "журнал",
+            "газета",
+            "словарь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i05:audio",
+            "transcript": "The boxes are heavy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The boxes are heavy.",
+          "orderedTokens": [
+            "The",
+            "boxes",
+            "are",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The boxes are heavy.`",
+                "uk": "тут потрібно `are` — `The boxes are heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы оба смотрите на стулья в углу. Скажите: «Стулья новые».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы оба смотрите на стулья в углу. Скажите: «Стулья новые».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The chairs are new.",
+          "localizedMeaning": {
+            "ru": "Вы оба смотрите на стулья в углу. Скажите: «Стулья новые».",
+            "uk": "Ви обоє дивитеся на стільці в кутку. Скажіть: «Стільці нові»."
+          },
+          "orderedTokens": [
+            "The",
+            "chairs",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы оба смотрите на стулья в углу. Скажите: «Стулья новые».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The chairs are new.`",
+                "uk": "тут потрібно `The` — `The chairs are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:book",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:book:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:book:audio",
+            "transcript": "book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:book:r1",
+              "targetText": "book",
+              "meaningByLocale": {
+                "ru": "книга. Books are heavy — «Книги тяжёлые». О книгах вообще артикль не нужен.",
+                "uk": "книга. Books are heavy — «Книжки важкі». Про книжки взагалі артикль не потрібен."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "book",
+            "definitionByLocale": {
+              "ru": "книга. Books are heavy — «Книги тяжёлые». О книгах вообще артикль не нужен.",
+              "uk": "книга. Books are heavy — «Книжки важкі». Про книжки взагалі артикль не потрібен."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга поднимает со стола книгу и называет её, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга поднимает со стола книгу и называет её, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i07:audio",
+            "transcript": "book"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "book",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:magazine",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — magazine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:magazine:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — magazine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:magazine:audio",
+            "transcript": "magazine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:magazine:r1",
+              "targetText": "magazine",
+              "meaningByLocale": {
+                "ru": "журнал. The magazines are new — «Журналы новые». О журналах, которые видят оба, говорим the.",
+                "uk": "журнал. The magazines are new — «Журнали нові». Про журнали, які бачать обоє, кажемо the."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "magazine",
+            "definitionByLocale": {
+              "ru": "журнал. The magazines are new — «Журналы новые». О журналах, которые видят оба, говорим the.",
+              "uk": "журнал. The magazines are new — «Журнали нові». Про журнали, які бачать обоє, кажемо the."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i08:r1",
+            "text": "magazine"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i08:r2",
+            "text": "letter"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i08:r3",
+            "text": "postcard"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?",
+            "uk": "Подруга показує яскраве видання з фотографіями й статтями, яке виходить раз на місяць. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-43:i08:r1",
+              "text": "magazine"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i08:r2",
+              "text": "letter"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i08:r3",
+              "text": "postcard"
+            }
+          ],
+          "testedDimension": "Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а яркое издание с фотографиями называется magazine.",
+                "uk": "letter — це лист, а яскраве видання з фотографіями називається magazine."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "postcard — это открытка, а яркое издание с фотографиями называется magazine.",
+                "uk": "postcard — це листівка, а яскраве видання з фотографіями називається magazine."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит подруга о книгах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i09:r1",
+            "text": "Books are heavy."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i09:r2",
+            "text": "The books are heavy."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i09:r3",
+            "text": "Books are light."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга о книгах",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i09:audio",
+            "transcript": "Books are heavy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:i09:r1",
+              "targetText": "Books are heavy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i09:r2",
+              "targetText": "The books are heavy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i09:r3",
+              "targetText": "Books are light.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга о книгах",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Books`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `Books`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга о книгах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `heavy`, а в этом варианте — `light`.",
+                "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `light`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-43:i10:p1",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i10:p2",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "стул",
+                "uk": "стілець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i10:p3",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i10:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "book",
+            "chair",
+            "table",
+            "lamp"
+          ],
+          "rightColumn": [
+            "книга",
+            "стул",
+            "стол",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i11:audio",
+            "transcript": "The magazines are new."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The magazines are new.",
+          "orderedTokens": [
+            "The",
+            "magazines",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The magazines are new.`",
+                "uk": "тут потрібно `are` — `The magazines are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы говорите о журналах вообще. Скажите подруге: «Журналы лёгкие».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы говорите о журналах вообще. Скажите подруге: «Журналы лёгкие».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Magazines are light.",
+          "localizedMeaning": {
+            "ru": "Вы говорите о журналах вообще. Скажите подруге: «Журналы лёгкие».",
+            "uk": "Ви говорите про журнали взагалі. Скажіть подрузі: «Журнали легкі»."
+          },
+          "orderedTokens": [
+            "Magazines",
+            "are",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы говорите о журналах вообще. Скажите подруге: «Журналы лёгкие».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Magazines` — `Magazines are light.`",
+                "uk": "тут потрібно `Magazines` — `Magazines are light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:newspaper",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — newspaper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:newspaper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — newspaper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:newspaper:audio",
+            "transcript": "newspaper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:newspaper:r1",
+              "targetText": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета. Newspapers are cheap — «Газеты дешёвые». О газетах вообще артикль не нужен.",
+                "uk": "газета. Newspapers are cheap — «Газети дешеві». Про газети взагалі артикль не потрібен."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "newspaper",
+            "definitionByLocale": {
+              "ru": "газета. Newspapers are cheap — «Газеты дешёвые». О газетах вообще артикль не нужен.",
+              "uk": "газета. Newspapers are cheap — «Газети дешеві». Про газети взагалі артикль не потрібен."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец поднимает со стойки большой лист с новостями и называет его, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i13:audio"
+        ],
+        "accessibilityLabel": "Продавец поднимает со стойки большой лист с новостями и называет его, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i13:audio",
+            "transcript": "newspaper"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "newspaper",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:dictionary",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dictionary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:dictionary:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dictionary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:dictionary:audio",
+            "transcript": "dictionary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:dictionary:r1",
+              "targetText": "dictionary",
+              "meaningByLocale": {
+                "ru": "словарь. The dictionaries are old — «Словари старые». О словарях, которые видят оба, говорим the.",
+                "uk": "словник. The dictionaries are old — «Словники старі». Про словники, які бачать обоє, кажемо the."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dictionary",
+            "definitionByLocale": {
+              "ru": "словарь. The dictionaries are old — «Словари старые». О словарях, которые видят оба, говорим the.",
+              "uk": "словник. The dictionaries are old — «Словники старі». Про словники, які бачать обоє, кажемо the."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i14:r1",
+            "text": "dictionary"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i14:r2",
+            "text": "map"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i14:r3",
+            "text": "letter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?",
+            "uk": "Подруга показує товсту книжку, де пояснено значення слів. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-43:i14:r1",
+              "text": "dictionary"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i14:r2",
+              "text": "map"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i14:r3",
+              "text": "letter"
+            }
+          ],
+          "testedDimension": "Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "map — это карта, а книга со значениями слов называется dictionary.",
+                "uk": "map — це мапа, а книжка зі значеннями слів називається dictionary."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а книга со значениями слов называется dictionary.",
+                "uk": "letter — це лист, а книжка зі значеннями слів називається dictionary."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит брат о газетах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i15:r1",
+            "text": "The newspapers are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r2",
+            "text": "Newspapers are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r3",
+            "text": "The newspapers are new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит брат о газетах",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i15:audio",
+            "transcript": "The newspapers are old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:i15:r1",
+              "targetText": "The newspapers are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i15:r2",
+              "targetText": "Newspapers are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i15:r3",
+              "targetText": "The newspapers are new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат о газетах",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `Newspapers`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `Newspapers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат о газетах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-43:i16:p1",
+              "target": "dictionary",
+              "meaningByLocale": {
+                "ru": "словарь",
+                "uk": "словник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i16:p2",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i16:p3",
+              "target": "magazine",
+              "meaningByLocale": {
+                "ru": "журнал",
+                "uk": "журнал"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i16:p4",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dictionary",
+            "newspaper",
+            "magazine",
+            "book"
+          ],
+          "rightColumn": [
+            "словарь",
+            "газета",
+            "журнал",
+            "книга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы оба смотрите на словари на нижней полке. Скажите подруге: «Словари старые».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Вы оба смотрите на словари на нижней полке. Скажите подруге: «Словари старые».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i17:audio",
+            "transcript": "The dictionaries are old."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The dictionaries are old.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-43:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви говорите про стільці взагалі. Скажіть подрузі: «Стільці важкі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви говорите про стільці взагалі. Скажіть подрузі: «Стільці важкі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Chairs are heavy.",
+          "localizedMeaning": {
+            "ru": "Вы говорите о стульях вообще. Скажите подруге: «Стулья тяжёлые».",
+            "uk": "Ви говорите про стільці взагалі. Скажіть подрузі: «Стільці важкі»."
+          },
+          "orderedTokens": [
+            "Chairs",
+            "are",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви говорите про стільці взагалі. Скажіть подрузі: «Стільці важкі».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Chairs` — `Chairs are heavy.`",
+                "uk": "тут потрібно `Chairs` — `Chairs are heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i02:r1",
+            "text": "The bags are new."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r2",
+            "text": "Bags are new."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r3",
+            "text": "The bags are old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i02:audio",
+            "transcript": "The bags are new."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:i02:r1",
+              "targetText": "The bags are new.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i02:r2",
+              "targetText": "Bags are new.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i02:r3",
+              "targetText": "The bags are old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `Bags`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `Bags`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви говорите про лампи взагалі, а не про конкретні. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i03:r1",
+            "text": "Lamps"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i03:r2",
+            "text": "The lamps"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i03:r3",
+            "text": "A lamp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви говорите про лампи взагалі, а не про конкретні. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите о лампах вообще, а не о конкретных. Дополните фразу",
+            "uk": "Ви говорите про лампи взагалі, а не про конкретні. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ are cheap.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-43:i03:r1",
+              "text": "Lamps"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i03:r2",
+              "text": "The lamps"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i03:r3",
+              "text": "A lamp"
+            }
+          ],
+          "testedDimension": "Ви говорите про лампи взагалі, а не про конкретні. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви говорите про лампи взагалі, а не про конкретні. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Речь о лампах вообще, а не о конкретных, поэтому без the.",
+                "uk": "Мова про лампи взагалі, а не про конкретні, тому без the."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви говорите про лампи взагалі, а не про конкретні. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "A ставим перед одной лампой, а are требует несколько.",
+                "uk": "A ставимо перед однією лампою, а are вимагає кількох."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-43:i04:p1",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i04:p2",
+              "target": "magazine",
+              "meaningByLocale": {
+                "ru": "журнал",
+                "uk": "журнал"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i04:p3",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i04:p4",
+              "target": "dictionary",
+              "meaningByLocale": {
+                "ru": "словарь",
+                "uk": "словник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "book",
+            "magazine",
+            "newspaper",
+            "dictionary"
+          ],
+          "rightColumn": [
+            "книга",
+            "журнал",
+            "газета",
+            "словник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i05:audio",
+            "transcript": "The boxes are heavy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The boxes are heavy.",
+          "orderedTokens": [
+            "The",
+            "boxes",
+            "are",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The boxes are heavy.`",
+                "uk": "тут потрібно `are` — `The boxes are heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви обоє дивитеся на стільці в кутку. Скажіть: «Стільці нові».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обоє дивитеся на стільці в кутку. Скажіть: «Стільці нові».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The chairs are new.",
+          "localizedMeaning": {
+            "ru": "Вы оба смотрите на стулья в углу. Скажите: «Стулья новые».",
+            "uk": "Ви обоє дивитеся на стільці в кутку. Скажіть: «Стільці нові»."
+          },
+          "orderedTokens": [
+            "The",
+            "chairs",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви обоє дивитеся на стільці в кутку. Скажіть: «Стільці нові».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The chairs are new.`",
+                "uk": "тут потрібно `The` — `The chairs are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:book",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:book:audio"
+        ],
+        "accessibilityLabel": "Картка слова — book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:book:audio",
+            "transcript": "book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:book:r1",
+              "targetText": "book",
+              "meaningByLocale": {
+                "ru": "книга. Books are heavy — «Книги тяжёлые». О книгах вообще артикль не нужен.",
+                "uk": "книга. Books are heavy — «Книжки важкі». Про книжки взагалі артикль не потрібен."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "book",
+            "definitionByLocale": {
+              "ru": "книга. Books are heavy — «Книги тяжёлые». О книгах вообще артикль не нужен.",
+              "uk": "книга. Books are heavy — «Книжки важкі». Про книжки взагалі артикль не потрібен."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга піднімає зі столу книжку й називає її, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга піднімає зі столу книжку й називає її, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i07:audio",
+            "transcript": "book"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "book",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:magazine",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — magazine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:magazine:audio"
+        ],
+        "accessibilityLabel": "Картка слова — magazine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:magazine:audio",
+            "transcript": "magazine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:magazine:r1",
+              "targetText": "magazine",
+              "meaningByLocale": {
+                "ru": "журнал. The magazines are new — «Журналы новые». О журналах, которые видят оба, говорим the.",
+                "uk": "журнал. The magazines are new — «Журнали нові». Про журнали, які бачать обоє, кажемо the."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "magazine",
+            "definitionByLocale": {
+              "ru": "журнал. The magazines are new — «Журналы новые». О журналах, которые видят оба, говорим the.",
+              "uk": "журнал. The magazines are new — «Журнали нові». Про журнали, які бачать обоє, кажемо the."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує яскраве видання з фотографіями й статтями, яке виходить раз на місяць. Як воно називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i08:r1",
+            "text": "magazine"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i08:r2",
+            "text": "letter"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i08:r3",
+            "text": "postcard"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує яскраве видання з фотографіями й статтями, яке виходить раз на місяць. Як воно називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?",
+            "uk": "Подруга показує яскраве видання з фотографіями й статтями, яке виходить раз на місяць. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-43:i08:r1",
+              "text": "magazine"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i08:r2",
+              "text": "letter"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i08:r3",
+              "text": "postcard"
+            }
+          ],
+          "testedDimension": "Подруга показує яскраве видання з фотографіями й статтями, яке виходить раз на місяць. Як воно називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує яскраве видання з фотографіями й статтями, яке виходить раз на місяць. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а яркое издание с фотографиями называется magazine.",
+                "uk": "letter — це лист, а яскраве видання з фотографіями називається magazine."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує яскраве видання з фотографіями й статтями, яке виходить раз на місяць. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "postcard — это открытка, а яркое издание с фотографиями называется magazine.",
+                "uk": "postcard — це листівка, а яскраве видання з фотографіями називається magazine."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже подруга про книжки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i09:r1",
+            "text": "Books are heavy."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i09:r2",
+            "text": "The books are heavy."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i09:r3",
+            "text": "Books are light."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга про книжки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i09:audio",
+            "transcript": "Books are heavy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:i09:r1",
+              "targetText": "Books are heavy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i09:r2",
+              "targetText": "The books are heavy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i09:r3",
+              "targetText": "Books are light.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга про книжки",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Books`, а в этом варианте — `The`.",
+                "uk": "У записі перше слово — `Books`, а в цьому варіанті — `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга про книжки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `heavy`, а в этом варианте — `light`.",
+                "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `light`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-43:i10:p1",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i10:p2",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "стул",
+                "uk": "стілець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i10:p3",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i10:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "book",
+            "chair",
+            "table",
+            "lamp"
+          ],
+          "rightColumn": [
+            "книга",
+            "стілець",
+            "стіл",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i11:audio",
+            "transcript": "The magazines are new."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The magazines are new.",
+          "orderedTokens": [
+            "The",
+            "magazines",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The magazines are new.`",
+                "uk": "тут потрібно `are` — `The magazines are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви говорите про журнали взагалі. Скажіть подрузі: «Журнали легкі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви говорите про журнали взагалі. Скажіть подрузі: «Журнали легкі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Magazines are light.",
+          "localizedMeaning": {
+            "ru": "Вы говорите о журналах вообще. Скажите подруге: «Журналы лёгкие».",
+            "uk": "Ви говорите про журнали взагалі. Скажіть подрузі: «Журнали легкі»."
+          },
+          "orderedTokens": [
+            "Magazines",
+            "are",
+            "light"
+          ],
+          "authoredDistractorTokens": [
+            "The"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви говорите про журнали взагалі. Скажіть подрузі: «Журнали легкі».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Magazines` — `Magazines are light.`",
+                "uk": "тут потрібно `Magazines` — `Magazines are light.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:newspaper",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — newspaper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:newspaper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — newspaper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:newspaper:audio",
+            "transcript": "newspaper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:newspaper:r1",
+              "targetText": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета. Newspapers are cheap — «Газеты дешёвые». О газетах вообще артикль не нужен.",
+                "uk": "газета. Newspapers are cheap — «Газети дешеві». Про газети взагалі артикль не потрібен."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "newspaper",
+            "definitionByLocale": {
+              "ru": "газета. Newspapers are cheap — «Газеты дешёвые». О газетах вообще артикль не нужен.",
+              "uk": "газета. Newspapers are cheap — «Газети дешеві». Про газети взагалі артикль не потрібен."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець піднімає зі стійки великий аркуш із новинами й називає його, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i13:audio"
+        ],
+        "accessibilityLabel": "Продавець піднімає зі стійки великий аркуш із новинами й називає його, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i13:audio",
+            "transcript": "newspaper"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "newspaper",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:word:dictionary",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dictionary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:word:dictionary:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dictionary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:word:dictionary:audio",
+            "transcript": "dictionary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:word:dictionary:r1",
+              "targetText": "dictionary",
+              "meaningByLocale": {
+                "ru": "словарь. The dictionaries are old — «Словари старые». О словарях, которые видят оба, говорим the.",
+                "uk": "словник. The dictionaries are old — «Словники старі». Про словники, які бачать обоє, кажемо the."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dictionary",
+            "definitionByLocale": {
+              "ru": "словарь. The dictionaries are old — «Словари старые». О словарях, которые видят оба, говорим the.",
+              "uk": "словник. The dictionaries are old — «Словники старі». Про словники, які бачать обоє, кажемо the."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує товсту книжку, де пояснено значення слів. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i14:r1",
+            "text": "dictionary"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i14:r2",
+            "text": "map"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i14:r3",
+            "text": "letter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує товсту книжку, де пояснено значення слів. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?",
+            "uk": "Подруга показує товсту книжку, де пояснено значення слів. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-43:i14:r1",
+              "text": "dictionary"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i14:r2",
+              "text": "map"
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i14:r3",
+              "text": "letter"
+            }
+          ],
+          "testedDimension": "Подруга показує товсту книжку, де пояснено значення слів. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує товсту книжку, де пояснено значення слів. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "map — это карта, а книга со значениями слов называется dictionary.",
+                "uk": "map — це мапа, а книжка зі значеннями слів називається dictionary."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує товсту книжку, де пояснено значення слів. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "letter — это письмо, а книга со значениями слов называется dictionary.",
+                "uk": "letter — це лист, а книжка зі значеннями слів називається dictionary."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже брат про газети",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i15:r1",
+            "text": "The newspapers are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r2",
+            "text": "Newspapers are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r3",
+            "text": "The newspapers are new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже брат про газети",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i15:audio",
+            "transcript": "The newspapers are old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-43:i15:r1",
+              "targetText": "The newspapers are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i15:r2",
+              "targetText": "Newspapers are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i15:r3",
+              "targetText": "The newspapers are new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-43:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат про газети",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `Newspapers`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `Newspapers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-43:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат про газети",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-43:i16:p1",
+              "target": "dictionary",
+              "meaningByLocale": {
+                "ru": "словарь",
+                "uk": "словник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i16:p2",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i16:p3",
+              "target": "magazine",
+              "meaningByLocale": {
+                "ru": "журнал",
+                "uk": "журнал"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-43:i16:p4",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dictionary",
+            "newspaper",
+            "magazine",
+            "book"
+          ],
+          "rightColumn": [
+            "словник",
+            "газета",
+            "журнал",
+            "книга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-43:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви обоє дивитеся на словники на нижній полиці. Скажіть подрузі: «Словники старі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Ви обоє дивитеся на словники на нижній полиці. Скажіть подрузі: «Словники старі».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-43:i17:audio",
+            "transcript": "The dictionaries are old."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The dictionaries are old.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-43:i01",
+      "correctText": "Chairs are heavy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i02",
+      "correctText": "The bags are new.",
+      "correctResponseId": "en:lesson-03:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i03",
+      "correctText": "Lamps",
+      "correctResponseId": "en:lesson-03:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i05",
+      "correctText": "The boxes are heavy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i06",
+      "correctText": "The chairs are new.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:word:book",
+      "correctText": "book",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i07",
+      "correctText": "book",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:word:magazine",
+      "correctText": "magazine",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i08",
+      "correctText": "magazine",
+      "correctResponseId": "en:lesson-03:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i09",
+      "correctText": "Books are heavy.",
+      "correctResponseId": "en:lesson-03:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i11",
+      "correctText": "The magazines are new.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i12",
+      "correctText": "Magazines are light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:word:newspaper",
+      "correctText": "newspaper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i13",
+      "correctText": "newspaper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:word:dictionary",
+      "correctText": "dictionary",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i14",
+      "correctText": "dictionary",
+      "correctResponseId": "en:lesson-03:session-43:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i15",
+      "correctText": "The newspapers are old.",
+      "correctResponseId": "en:lesson-03:session-43:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i17",
+      "correctText": "The dictionaries are old.",
+      "correctResponseId": null
+    }
+  ]
+}

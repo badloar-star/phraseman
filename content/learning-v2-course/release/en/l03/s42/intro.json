@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-42",
   "learningOutcomeByLocale": {
-    "ru": "назвать ванную комнату и указать, где находится понятная собеседнику комната",
-    "uk": "назвати ванну кімнату й указати, де розташована зрозуміла співрозмовникові кімната"
+    "ru": "говорить the о предмете, на который смотрят оба собеседника",
+    "uk": "казати the про предмет, на який дивляться обидва співрозмовники"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Комната, а не ванна",
-        "uk": "Кімната, а не ванна"
+        "ru": "Шкаф с шатающейся ручкой",
+        "uk": "Шафа з хиткою ручкою"
       },
       "bodyByLocale": {
-        "ru": "`bathroom` — «ванная комната». Здесь называем всю комнату, а не саму ванну. `This is a bathroom` — «Это ванная комната»: показываем, что это за помещение. Перед `bathroom` нужно `a`, потому что первый звук согласный. Полотенце на стуле ещё не превращает гостиную в ванную.",
-        "uk": "`bathroom` — «ванна кімната». Тут називаємо всю кімнату, а не саму ванну. `This is a bathroom` — «Це ванна кімната»: показуємо, що це за приміщення. Перед `bathroom` потрібне `a`, бо перший звук приголосний. Рушник на стільці ще не перетворює вітальню на ванну кімнату."
+        "ru": "Вы с соседкой стоите у нового шкафа, который вам привезли утром. Ручка на дверце болтается, и вы обе на неё смотрите. handle — «ручка (на двери, на дверце)». Она одна и понятна вам обеим, поэтому the: The handle is broken — «Ручка сломана».",
+        "uk": "Ви із сусідкою стоїте біля нової шафи, яку вам привезли зранку. Ручка на дверцятах хитається, і ви обидві на неї дивитеся. handle — «ручка (на дверях, на дверцятах)». Вона одна й зрозуміла вам обом, тому the: The handle is broken — «Ручка зламана»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-42:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите ванную комнату одним английским словом.",
-          "uk": "Назвіть ванну кімнату одним англійським словом."
+          "ru": "Соседка смотрит на ту же дверцу. Скажите ей: «Ручка сломана».",
+          "uk": "Сусідка дивиться на ті самі дверцята. Скажіть їй: «Ручка зламана»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-42:intro1:r1",
-              "text": "bathroom"
+              "text": "The handle is broken."
             },
             {
               "responseId": "en:lesson-03:session-42:intro1:r2",
-              "text": "kitchen"
+              "text": "A handle is broken."
             },
             {
               "responseId": "en:lesson-03:session-42:intro1:r3",
-              "text": "room"
+              "text": "The handle are broken."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-42:intro1:r1",
-              "text": "bathroom"
+              "text": "The handle is broken."
             },
             {
               "responseId": "en:lesson-03:session-42:intro1:r2",
-              "text": "kitchen"
+              "text": "A handle is broken."
             },
             {
               "responseId": "en:lesson-03:session-42:intro1:r3",
-              "text": "room"
+              "text": "The handle are broken."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите ванную комнату одним английским словом.",
-          "uk": "Назвіть ванну кімнату одним англійським словом."
+          "ru": "Соседка смотрит на ту же дверцу. Скажите ей: «Ручка сломана».",
+          "uk": "Сусідка дивиться на ті самі дверцята. Скажіть їй: «Ручка зламана»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где та самая ванная",
-        "uk": "Де та сама ванна кімната"
+        "ru": "Звонок у двери",
+        "uk": "Дзвінок біля дверей"
       },
       "bodyByLocale": {
-        "ru": "`The bathroom is there` — «Ванная комната там». Вы оба понимаете, о какой комнате идёт речь: хозяин только что её показал. Поэтому здесь `the bathroom`. Не обязательно сначала произносить `a bathroom`: `the` подходит и тогда, когда нужная комната ясна из ситуации.",
-        "uk": "`The bathroom is there` — «Ванна кімната там». Ви обоє розумієте, про яку кімнату йдеться: господар щойно її показав. Тому тут `the bathroom`. Не обов’язково спочатку вимовляти `a bathroom`: `the` підходить і тоді, коли потрібна кімната зрозуміла із ситуації."
+        "ru": "Вы с братом пришли к двери магазина, который закрыт на обед, а вам нужно войти. Сбоку на стене один звонок для вызова продавца, и вы оба хорошо его видите. bell — «звонок». Звонок понятен вам обоим, поэтому the: The bell is old — «Звонок старый».",
+        "uk": "Ви з братом прийшли до дверей магазину, який зачинений на обід, а вам треба увійти. Збоку на стіні один дзвінок для виклику продавця, і ви обидва його бачите. bell — «дзвінок». Дзвінок зрозумілий вам обом, тому the: The bell is old — «Дзвінок старий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-42:intro2:q",
         "promptByLocale": {
-          "ru": "Хозяин уже показал ванную комнату в конце коридора. Скажите «Ванная комната там».",
-          "uk": "Господар уже показав ванну кімнату в кінці коридору. Скажіть «Ванна кімната там»."
+          "ru": "Брат спрашивает, что за звонок на стене. Скажите: «Звонок старый».",
+          "uk": "Брат питає, що за дзвінок на стіні. Скажіть: «Дзвінок старий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-42:intro2:r1",
-              "text": "The bathroom is there."
+              "text": "The bell is old."
             },
             {
               "responseId": "en:lesson-03:session-42:intro2:r2",
-              "text": "The bathroom are there."
+              "text": "A bell is old."
             },
             {
               "responseId": "en:lesson-03:session-42:intro2:r3",
-              "text": "The bathrooms are there."
+              "text": "The bell are old."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-42:intro2:r1",
-              "text": "The bathroom is there."
+              "text": "The bell is old."
             },
             {
               "responseId": "en:lesson-03:session-42:intro2:r2",
-              "text": "The bathroom are there."
+              "text": "A bell is old."
             },
             {
               "responseId": "en:lesson-03:session-42:intro2:r3",
-              "text": "The bathrooms are there."
+              "text": "The bell are old."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Хозяин уже показал ванную комнату в конце коридора. Скажите «Ванная комната там».",
-          "uk": "Господар уже показав ванну кімнату в кінці коридору. Скажіть «Ванна кімната там»."
+          "ru": "Брат спрашивает, что за звонок на стене. Скажите: «Звонок старый».",
+          "uk": "Брат питає, що за дзвінок на стіні. Скажіть: «Дзвінок старий»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вежливый хозяин, неточная схема",
-        "uk": "Ввічливий господар, неточна схема"
+        "ru": "Детский велосипед",
+        "uk": "Дитячий велосипед"
       },
       "bodyByLocale": {
-        "ru": "`polite` — «вежливый»: хозяин внимательно выслушивает гостей. `He is polite` — «Он вежливый». `inaccurate` — «неточный»: старая схема показывает комнату не на её месте. О схеме: `It is inaccurate` — «Она неточная». Это ошибка в схеме, а не оценка вежливости хозяина. Анна нашла кошелёк: `The wallet is here` — «Кошелёк здесь».",
-        "uk": "`polite` — «ввічливий»: господар уважно вислуховує гостей. `He is polite` — «Він ввічливий». `inaccurate` — «неточний»: стара схема показує кімнату не на її місці. Про схему: `It is inaccurate` — «Вона неточна». Це помилка в схемі, а не оцінка ввічливості господаря. Анна знайшла гаманець: `The wallet is here` — «Гаманець тут»."
+        "ru": "Вы покупаете детский велосипед для племянницы. Продавец катит его к вам, и вы замечаете, что переднее колесо сильно шатается. wheel — «колесо». Вы оба смотрите именно на него, поэтому the. Если бы речь шла о любом колесе вообще, было бы a wheel.",
+        "uk": "Ви купуєте дитячий велосипед для племінниці. Продавець котить його до вас, і ви помічаєте, що переднє колесо сильно хитається. wheel — «колесо». Ви обидва дивитеся саме на нього, тому the. Якби мова йшла про будь-яке колесо взагалі, було б a wheel."
       },
       "question": {
         "interactionId": "en:lesson-03:session-42:intro3:q",
         "promptByLocale": {
-          "ru": "На схеме ванная отмечена не там, где она находится. Скажите о схеме «Она неточная».",
-          "uk": "На схемі ванна кімната позначена не там, де вона розташована. Скажіть про схему «Вона неточна»."
+          "ru": "Продавец ждёт, что вы скажете о колесе, на которое вы оба смотрите. Скажите: «Колесо шатается».",
+          "uk": "Продавець чекає, що ви скажете про колесо, на яке ви обидва дивитеся. Скажіть: «Колесо хитається»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-42:intro3:r1",
-              "text": "It is inaccurate."
+              "text": "The wheel is loose."
             },
             {
               "responseId": "en:lesson-03:session-42:intro3:r2",
-              "text": "It is accurate."
+              "text": "A wheel is loose."
             },
             {
               "responseId": "en:lesson-03:session-42:intro3:r3",
-              "text": "It are inaccurate."
+              "text": "The wheel are loose."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-42:intro3:r1",
-              "text": "It is inaccurate."
+              "text": "The wheel is loose."
             },
             {
               "responseId": "en:lesson-03:session-42:intro3:r2",
-              "text": "It is accurate."
+              "text": "A wheel is loose."
             },
             {
               "responseId": "en:lesson-03:session-42:intro3:r3",
-              "text": "It are inaccurate."
+              "text": "The wheel are loose."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На схеме ванная отмечена не там, где она находится. Скажите о схеме «Она неточная».",
-          "uk": "На схемі ванна кімната позначена не там, де вона розташована. Скажіть про схему «Вона неточна»."
+          "ru": "Продавец ждёт, что вы скажете о колесе, на которое вы оба смотрите. Скажите: «Колесо шатается».",
+          "uk": "Продавець чекає, що ви скажете про колесо, на яке ви обидва дивитеся. Скажіть: «Колесо хитається»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bdb684847a6d4fa42fd4610253c866acfa53f7b70d5b6e05566aacf0e8768581"
+  "introFingerprint": "c54309c2af705d478ca1e6d970cfc545846feb511e0dee352caefcb0f8a5f2f3"
 }

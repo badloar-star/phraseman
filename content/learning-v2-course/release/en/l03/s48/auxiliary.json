@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-48:intro1:r2": {
-          "ru": "`office` начинается с гласного звука: `an office`.",
-          "uk": "`office` починається з голосного звука: `an office`."
+          "ru": "Вы оба знаете, о каком заказе речь, поэтому the: The order is complete.",
+          "uk": "Ви обоє знаєте, про яке замовлення мова, тому the: The order is complete."
         },
         "en:lesson-03:session-48:intro1:r3": {
-          "ru": "Один объект с `This`: нужно `is`.",
-          "uk": "Один об’єкт із `This`: потрібне `is`."
+          "ru": "Заказ один, поэтому нужно is: The order is complete.",
+          "uk": "Замовлення одне, тому потрібно is: The order is complete."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-48:intro2:r2": {
-          "ru": "Спален несколько: нужно `are`.",
-          "uk": "Спалень кілька: потрібне `are`."
+          "ru": "Слово item начинается с гласного звука, поэтому an: An item is missing.",
+          "uk": "Слово item починається з голосного звуку, тому an: An item is missing."
         },
         "en:lesson-03:session-48:intro2:r3": {
-          "ru": "Так говорят об одной спальне. Здесь несколько: `bedrooms are`.",
-          "uk": "Так говорять про одну спальню. Тут кілька: `bedrooms are`."
+          "ru": "О нехватке вы говорите подруге впервые, поэтому an: An item is missing.",
+          "uk": "Про нестачу ви говорите подрузі вперше, тому an: An item is missing."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-48:intro3:r2": {
-          "ru": "Так называют один отель. Здесь несколько рядом: `These are hotels`.",
-          "uk": "Так називають один готель. Тут кілька поруч: `These are hotels`."
+          "ru": "Сумма внизу списка одна, и вы обе её видите, поэтому the: The total is correct.",
+          "uk": "Сума внизу списку одна, і ви обидві її бачите, тому the: The total is correct."
         },
         "en:lesson-03:session-48:intro3:r3": {
-          "ru": "`Those` указывает дальше. Здесь группа рядом: `These`.",
-          "uk": "`Those` вказує далі. Тут група поруч: `These`."
+          "ru": "Итоговая сумма одна, поэтому нужно is: The total is correct.",
+          "uk": "Загальна сума одна, тому потрібно is: The total is correct."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ffe4d15b54bf216455e1a437afccb38c7672041570e10ea039be5276304ca9d0"
+  "auxiliaryFingerprint": "e4764abc501c778071948e5d1db4d056e6b1c17f115823ef1a706ad769223cec"
 }

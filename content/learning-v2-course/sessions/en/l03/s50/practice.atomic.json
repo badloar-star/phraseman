@@ -1,0 +1,2363 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-50:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-50:i01:p1",
+              "target": "black",
+              "meaningByLocale": {
+                "ru": "чёрный",
+                "uk": "чорний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i01:p2",
+              "target": "white",
+              "meaningByLocale": {
+                "ru": "белый",
+                "uk": "білий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i01:p3",
+              "target": "grey",
+              "meaningByLocale": {
+                "ru": "серый",
+                "uk": "сірий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i01:p4",
+              "target": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый",
+                "uk": "бежевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "black",
+            "white",
+            "grey",
+            "beige"
+          ],
+          "rightColumn": [
+            "чёрный",
+            "белый",
+            "серый",
+            "бежевый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:black",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — black",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:black:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — black",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:black:audio",
+            "transcript": "black"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:black:r1",
+              "targetText": "black",
+              "meaningByLocale": {
+                "ru": "чёрный. These are black chairs — «Это чёрные стулья». О цвете угля и ночи.",
+                "uk": "чорний. These are black chairs — «Це чорні стільці». Про колір вугілля й ночі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "black",
+            "definitionByLocale": {
+              "ru": "чёрный. These are black chairs — «Это чёрные стулья». О цвете угля и ночи.",
+              "uk": "чорний. These are black chairs — «Це чорні стільці». Про колір вугілля й ночі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на кусок угля и называет его цвет, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на кусок угля и называет его цвет, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i02:audio",
+            "transcript": "black"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "black",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a black chair.",
+          "localizedMeaning": {
+            "ru": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+            "uk": "Один стілець стоїть поруч із вами. Скажіть продавцю повною фразою: це чорний стілець."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "black",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is a black chair.`",
+                "uk": "тут потрібно `is` — `This is a black chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:white",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — white",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:white:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — white",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:white:audio",
+            "transcript": "white"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:white:r1",
+              "targetText": "white",
+              "meaningByLocale": {
+                "ru": "белый. Those are white towels — «Это белые полотенца». О цвете снега и молока.",
+                "uk": "білий. Those are white towels — «Це білі рушники». Про колір снігу й молока."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "white",
+            "definitionByLocale": {
+              "ru": "белый. Those are white towels — «Это белые полотенца». О цвете снега и молока.",
+              "uk": "білий. Those are white towels — «Це білі рушники». Про колір снігу й молока."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i04:r1",
+            "text": "white"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i04:r2",
+            "text": "black"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i04:r3",
+            "text": "dark"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+            "uk": "Подруга показує на молоко в склянці. Як називається його колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-50:i04:r1",
+              "text": "white"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i04:r2",
+              "text": "black"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i04:r3",
+              "text": "dark"
+            }
+          ],
+          "testedDimension": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "black — это чёрный, а молоко другого цвета: white.",
+                "uk": "black — це чорний, а молоко іншого кольору: white."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "dark — это тёмный, а цвет молока называется white.",
+                "uk": "dark — це темний, а колір молока називається white."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о стульях",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i05:r1",
+            "text": "Those are white chairs."
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i05:r2",
+            "text": "That is a white chair."
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i05:r3",
+            "text": "Those are black chairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о стульях",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i05:audio",
+            "transcript": "Those are white chairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:i05:r1",
+              "targetText": "Those are white chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i05:r2",
+              "targetText": "That is a white chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i05:r3",
+              "targetText": "Those are black chairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о стульях",
+              "feedbackByLocale": {
+                "ru": "В записи `Those are` и несколько стульев, а в этом варианте `That is a` и один стул.",
+                "uk": "У записі `Those are` і кілька стільців, а в цьому варіанті `That is a` і один стілець."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о стульях",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `white`, а в этом варианте — `black`.",
+                "uk": "У записі колір — `white`, а в цьому варіанті — `black`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:grey",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — grey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:grey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — grey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:grey:audio",
+            "transcript": "grey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:grey:r1",
+              "targetText": "grey",
+              "meaningByLocale": {
+                "ru": "серый. Are these grey pillows? — «Это серые подушки?» О цвете пасмурного неба и асфальта.",
+                "uk": "сірий. Are these grey pillows? — «Це сірі подушки?» Про колір похмурого неба й асфальту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grey",
+            "definitionByLocale": {
+              "ru": "серый. Are these grey pillows? — «Это серые подушки?» О цвете пасмурного неба и асфальта.",
+              "uk": "сірий. Are these grey pillows? — «Це сірі подушки?» Про колір похмурого неба й асфальту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на пасмурное небо за окном и называет его цвет, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на пасмурное небо за окном и называет его цвет, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i06:audio",
+            "transcript": "grey"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "grey",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i07:audio",
+            "transcript": "These are grey pillows."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These are grey pillows.",
+          "orderedTokens": [
+            "These",
+            "are",
+            "grey",
+            "pillows"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `These are grey pillows.`",
+                "uk": "тут потрібно `are` — `These are grey pillows.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:beige",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beige",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:beige:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beige",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:beige:audio",
+            "transcript": "beige"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:beige:r1",
+              "targetText": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый. It is a beige bowl — «Это бежевая миска». О светлом цвете песка и кофе с молоком.",
+                "uk": "бежевий. It is a beige bowl — «Це бежева миска». Про світлий колір піску й кави з молоком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beige",
+            "definitionByLocale": {
+              "ru": "бежевый. It is a beige bowl — «Это бежевая миска». О светлом цвете песка и кофе с молоком.",
+              "uk": "бежевий. It is a beige bowl — «Це бежева миска». Про світлий колір піску й кави з молоком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i08:r1",
+            "text": "beige"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i08:r2",
+            "text": "grey"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i08:r3",
+            "text": "white"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+            "uk": "Подруга показує на пісок на пляжі. Як називається його колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-50:i08:r1",
+              "text": "beige"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i08:r2",
+              "text": "grey"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i08:r3",
+              "text": "white"
+            }
+          ],
+          "testedDimension": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "grey — это серый, а песок светлее и теплее: beige.",
+                "uk": "grey — це сірий, а пісок світліший і тепліший: beige."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+              "feedbackByLocale": {
+                "ru": "white — это белый, а песок другого цвета: beige.",
+                "uk": "white — це білий, а пісок іншого кольору: beige."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those curtains are beige.",
+          "localizedMeaning": {
+            "ru": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+            "uk": "Штори висять далеко біля вікна. Скажіть продавцю повною фразою: ті штори бежеві."
+          },
+          "orderedTokens": [
+            "Those",
+            "curtains",
+            "are",
+            "beige"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Those` — `Those curtains are beige.`",
+                "uk": "тут потрібно `Those` — `Those curtains are beige.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-50:i10:p1",
+              "target": "white",
+              "meaningByLocale": {
+                "ru": "белый",
+                "uk": "білий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i10:p2",
+              "target": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый",
+                "uk": "бежевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i10:p3",
+              "target": "towel",
+              "meaningByLocale": {
+                "ru": "полотенце",
+                "uk": "рушник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i10:p4",
+              "target": "bowl",
+              "meaningByLocale": {
+                "ru": "миска",
+                "uk": "миска"
+              }
+            }
+          ],
+          "leftColumn": [
+            "white",
+            "beige",
+            "towel",
+            "bowl"
+          ],
+          "rightColumn": [
+            "белый",
+            "бежевый",
+            "полотенце",
+            "миска"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i11:r1",
+            "text": "Is it a grey towel?"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i11:r2",
+            "text": "Are those grey towels?"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i11:r3",
+            "text": "Is it a white towel?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i11:audio",
+            "transcript": "Is it a grey towel?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:i11:r1",
+              "targetText": "Is it a grey towel?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i11:r2",
+              "targetText": "Are those grey towels?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i11:r3",
+              "targetText": "Is it a white towel?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи `Is it a` и один предмет, а в этом варианте `Are those` и несколько.",
+                "uk": "У записі `Is it a` і один предмет, а в цьому варіанті `Are those` і кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `grey`, а в этом варианте — `white`.",
+                "uk": "У записі колір — `grey`, а в цьому варіанті — `white`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i12:r1",
+            "text": "towels"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i12:r2",
+            "text": "towel"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i12:r3",
+            "text": "a towel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+            "uk": "Рушників кілька, і вони далеко від вас. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "Those are white ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-50:i12:r1",
+              "text": "towels"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i12:r2",
+              "text": "towel"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i12:r3",
+              "text": "a towel"
+            }
+          ],
+          "testedDimension": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Полотенец несколько, поэтому нужно towels с s.",
+                "uk": "Рушників кілька, тому потрібно towels з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Полотенец несколько, и a перед ними не ставим.",
+                "uk": "Рушників кілька, і a перед ними не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i13:audio",
+            "transcript": "It is a beige bowl."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a beige bowl.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "beige",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a beige bowl.`",
+                "uk": "тут потрібно `is` — `It is a beige bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, какие подушки вам нужны. Скажите ей, что серые",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, какие подушки вам нужны. Скажите ей, что серые",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i14:audio",
+            "transcript": "grey pillows"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "grey pillows",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are these white bowls?",
+          "localizedMeaning": {
+            "ru": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+            "uk": "Миски стоять поруч із вами. Запитайте продавця, чи вони білі."
+          },
+          "orderedTokens": [
+            "Are",
+            "these",
+            "white",
+            "bowls"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are these white bowls?`",
+                "uk": "тут потрібно `Are` — `Are these white bowls?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-50:i16:p1",
+              "target": "grey",
+              "meaningByLocale": {
+                "ru": "серый",
+                "uk": "сірий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i16:p2",
+              "target": "black",
+              "meaningByLocale": {
+                "ru": "чёрный",
+                "uk": "чорний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i16:p3",
+              "target": "white",
+              "meaningByLocale": {
+                "ru": "белый",
+                "uk": "білий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i16:p4",
+              "target": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый",
+                "uk": "бежевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "grey",
+            "black",
+            "white",
+            "beige"
+          ],
+          "rightColumn": [
+            "серый",
+            "чёрный",
+            "белый",
+            "бежевый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец спрашивает, какие шторы вам нужны. Ответьте ему коротко: бежевые.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Продавец спрашивает, какие шторы вам нужны. Ответьте ему коротко: бежевые.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i17:audio",
+            "transcript": "These are beige curtains."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "These are beige curtains.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-50:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-50:i01:p1",
+              "target": "black",
+              "meaningByLocale": {
+                "ru": "чёрный",
+                "uk": "чорний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i01:p2",
+              "target": "white",
+              "meaningByLocale": {
+                "ru": "белый",
+                "uk": "білий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i01:p3",
+              "target": "grey",
+              "meaningByLocale": {
+                "ru": "серый",
+                "uk": "сірий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i01:p4",
+              "target": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый",
+                "uk": "бежевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "black",
+            "white",
+            "grey",
+            "beige"
+          ],
+          "rightColumn": [
+            "чорний",
+            "білий",
+            "сірий",
+            "бежевий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:black",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — black",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:black:audio"
+        ],
+        "accessibilityLabel": "Картка слова — black",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:black:audio",
+            "transcript": "black"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:black:r1",
+              "targetText": "black",
+              "meaningByLocale": {
+                "ru": "чёрный. These are black chairs — «Это чёрные стулья». О цвете угля и ночи.",
+                "uk": "чорний. These are black chairs — «Це чорні стільці». Про колір вугілля й ночі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "black",
+            "definitionByLocale": {
+              "ru": "чёрный. These are black chairs — «Это чёрные стулья». О цвете угля и ночи.",
+              "uk": "чорний. These are black chairs — «Це чорні стільці». Про колір вугілля й ночі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на шматок вугілля й називає його колір, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на шматок вугілля й називає його колір, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i02:audio",
+            "transcript": "black"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "black",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один стілець стоїть поруч із вами. Скажіть продавцю повною фразою: це чорний стілець.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один стілець стоїть поруч із вами. Скажіть продавцю повною фразою: це чорний стілець.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a black chair.",
+          "localizedMeaning": {
+            "ru": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+            "uk": "Один стілець стоїть поруч із вами. Скажіть продавцю повною фразою: це чорний стілець."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "black",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Один стілець стоїть поруч із вами. Скажіть продавцю повною фразою: це чорний стілець.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is a black chair.`",
+                "uk": "тут потрібно `is` — `This is a black chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:white",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — white",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:white:audio"
+        ],
+        "accessibilityLabel": "Картка слова — white",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:white:audio",
+            "transcript": "white"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:white:r1",
+              "targetText": "white",
+              "meaningByLocale": {
+                "ru": "белый. Those are white towels — «Это белые полотенца». О цвете снега и молока.",
+                "uk": "білий. Those are white towels — «Це білі рушники». Про колір снігу й молока."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "white",
+            "definitionByLocale": {
+              "ru": "белый. Those are white towels — «Это белые полотенца». О цвете снега и молока.",
+              "uk": "білий. Those are white towels — «Це білі рушники». Про колір снігу й молока."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на молоко в склянці. Як називається його колір англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i04:r1",
+            "text": "white"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i04:r2",
+            "text": "black"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i04:r3",
+            "text": "dark"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на молоко в склянці. Як називається його колір англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+            "uk": "Подруга показує на молоко в склянці. Як називається його колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-50:i04:r1",
+              "text": "white"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i04:r2",
+              "text": "black"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i04:r3",
+              "text": "dark"
+            }
+          ],
+          "testedDimension": "Подруга показує на молоко в склянці. Як називається його колір англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на молоко в склянці. Як називається його колір англійською?",
+              "feedbackByLocale": {
+                "ru": "black — это чёрный, а молоко другого цвета: white.",
+                "uk": "black — це чорний, а молоко іншого кольору: white."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на молоко в склянці. Як називається його колір англійською?",
+              "feedbackByLocale": {
+                "ru": "dark — это тёмный, а цвет молока называется white.",
+                "uk": "dark — це темний, а колір молока називається white."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про стільці",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i05:r1",
+            "text": "Those are white chairs."
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i05:r2",
+            "text": "That is a white chair."
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i05:r3",
+            "text": "Those are black chairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про стільці",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i05:audio",
+            "transcript": "Those are white chairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:i05:r1",
+              "targetText": "Those are white chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i05:r2",
+              "targetText": "That is a white chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i05:r3",
+              "targetText": "Those are black chairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про стільці",
+              "feedbackByLocale": {
+                "ru": "В записи `Those are` и несколько стульев, а в этом варианте `That is a` и один стул.",
+                "uk": "У записі `Those are` і кілька стільців, а в цьому варіанті `That is a` і один стілець."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про стільці",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `white`, а в этом варианте — `black`.",
+                "uk": "У записі колір — `white`, а в цьому варіанті — `black`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:grey",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — grey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:grey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — grey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:grey:audio",
+            "transcript": "grey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:grey:r1",
+              "targetText": "grey",
+              "meaningByLocale": {
+                "ru": "серый. Are these grey pillows? — «Это серые подушки?» О цвете пасмурного неба и асфальта.",
+                "uk": "сірий. Are these grey pillows? — «Це сірі подушки?» Про колір похмурого неба й асфальту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grey",
+            "definitionByLocale": {
+              "ru": "серый. Are these grey pillows? — «Это серые подушки?» О цвете пасмурного неба и асфальта.",
+              "uk": "сірий. Are these grey pillows? — «Це сірі подушки?» Про колір похмурого неба й асфальту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на похмуре небо за вікном і називає його колір, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на похмуре небо за вікном і називає його колір, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i06:audio",
+            "transcript": "grey"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "grey",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i07:audio",
+            "transcript": "These are grey pillows."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These are grey pillows.",
+          "orderedTokens": [
+            "These",
+            "are",
+            "grey",
+            "pillows"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `These are grey pillows.`",
+                "uk": "тут потрібно `are` — `These are grey pillows.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:word:beige",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beige",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:word:beige:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beige",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:word:beige:audio",
+            "transcript": "beige"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:word:beige:r1",
+              "targetText": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый. It is a beige bowl — «Это бежевая миска». О светлом цвете песка и кофе с молоком.",
+                "uk": "бежевий. It is a beige bowl — «Це бежева миска». Про світлий колір піску й кави з молоком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beige",
+            "definitionByLocale": {
+              "ru": "бежевый. It is a beige bowl — «Это бежевая миска». О светлом цвете песка и кофе с молоком.",
+              "uk": "бежевий. It is a beige bowl — «Це бежева миска». Про світлий колір піску й кави з молоком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на пісок на пляжі. Як називається його колір англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i08:r1",
+            "text": "beige"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i08:r2",
+            "text": "grey"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i08:r3",
+            "text": "white"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на пісок на пляжі. Як називається його колір англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+            "uk": "Подруга показує на пісок на пляжі. Як називається його колір англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-50:i08:r1",
+              "text": "beige"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i08:r2",
+              "text": "grey"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i08:r3",
+              "text": "white"
+            }
+          ],
+          "testedDimension": "Подруга показує на пісок на пляжі. Як називається його колір англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на пісок на пляжі. Як називається його колір англійською?",
+              "feedbackByLocale": {
+                "ru": "grey — это серый, а песок светлее и теплее: beige.",
+                "uk": "grey — це сірий, а пісок світліший і тепліший: beige."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на пісок на пляжі. Як називається його колір англійською?",
+              "feedbackByLocale": {
+                "ru": "white — это белый, а песок другого цвета: beige.",
+                "uk": "white — це білий, а пісок іншого кольору: beige."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Штори висять далеко біля вікна. Скажіть продавцю повною фразою: ті штори бежеві.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Штори висять далеко біля вікна. Скажіть продавцю повною фразою: ті штори бежеві.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those curtains are beige.",
+          "localizedMeaning": {
+            "ru": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+            "uk": "Штори висять далеко біля вікна. Скажіть продавцю повною фразою: ті штори бежеві."
+          },
+          "orderedTokens": [
+            "Those",
+            "curtains",
+            "are",
+            "beige"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Штори висять далеко біля вікна. Скажіть продавцю повною фразою: ті штори бежеві.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Those` — `Those curtains are beige.`",
+                "uk": "тут потрібно `Those` — `Those curtains are beige.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-50:i10:p1",
+              "target": "white",
+              "meaningByLocale": {
+                "ru": "белый",
+                "uk": "білий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i10:p2",
+              "target": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый",
+                "uk": "бежевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i10:p3",
+              "target": "towel",
+              "meaningByLocale": {
+                "ru": "полотенце",
+                "uk": "рушник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i10:p4",
+              "target": "bowl",
+              "meaningByLocale": {
+                "ru": "миска",
+                "uk": "миска"
+              }
+            }
+          ],
+          "leftColumn": [
+            "white",
+            "beige",
+            "towel",
+            "bowl"
+          ],
+          "rightColumn": [
+            "білий",
+            "бежевий",
+            "рушник",
+            "миска"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i11:r1",
+            "text": "Is it a grey towel?"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i11:r2",
+            "text": "Are those grey towels?"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i11:r3",
+            "text": "Is it a white towel?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i11:audio",
+            "transcript": "Is it a grey towel?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-50:i11:r1",
+              "targetText": "Is it a grey towel?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i11:r2",
+              "targetText": "Are those grey towels?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i11:r3",
+              "targetText": "Is it a white towel?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи `Is it a` и один предмет, а в этом варианте `Are those` и несколько.",
+                "uk": "У записі `Is it a` і один предмет, а в цьому варіанті `Are those` і кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи цвет — `grey`, а в этом варианте — `white`.",
+                "uk": "У записі колір — `grey`, а в цьому варіанті — `white`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Рушників кілька, і вони далеко від вас. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i12:r1",
+            "text": "towels"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i12:r2",
+            "text": "towel"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i12:r3",
+            "text": "a towel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рушників кілька, і вони далеко від вас. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+            "uk": "Рушників кілька, і вони далеко від вас. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "Those are white ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-50:i12:r1",
+              "text": "towels"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i12:r2",
+              "text": "towel"
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i12:r3",
+              "text": "a towel"
+            }
+          ],
+          "testedDimension": "Рушників кілька, і вони далеко від вас. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Рушників кілька, і вони далеко від вас. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Полотенец несколько, поэтому нужно towels с s.",
+                "uk": "Рушників кілька, тому потрібно towels з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Рушників кілька, і вони далеко від вас. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Полотенец несколько, и a перед ними не ставим.",
+                "uk": "Рушників кілька, і a перед ними не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i13:audio",
+            "transcript": "It is a beige bowl."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a beige bowl.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "beige",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a beige bowl.`",
+                "uk": "тут потрібно `is` — `It is a beige bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, які подушки вам потрібні. Скажіть їй, що сірі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, які подушки вам потрібні. Скажіть їй, що сірі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i14:audio",
+            "transcript": "grey pillows"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "grey pillows",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Миски стоять поруч із вами. Запитайте продавця, чи вони білі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Миски стоять поруч із вами. Запитайте продавця, чи вони білі.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are these white bowls?",
+          "localizedMeaning": {
+            "ru": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+            "uk": "Миски стоять поруч із вами. Запитайте продавця, чи вони білі."
+          },
+          "orderedTokens": [
+            "Are",
+            "these",
+            "white",
+            "bowls"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-50:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Миски стоять поруч із вами. Запитайте продавця, чи вони білі.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are these white bowls?`",
+                "uk": "тут потрібно `Are` — `Are these white bowls?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-50:i16:p1",
+              "target": "grey",
+              "meaningByLocale": {
+                "ru": "серый",
+                "uk": "сірий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i16:p2",
+              "target": "black",
+              "meaningByLocale": {
+                "ru": "чёрный",
+                "uk": "чорний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i16:p3",
+              "target": "white",
+              "meaningByLocale": {
+                "ru": "белый",
+                "uk": "білий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-50:i16:p4",
+              "target": "beige",
+              "meaningByLocale": {
+                "ru": "бежевый",
+                "uk": "бежевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "grey",
+            "black",
+            "white",
+            "beige"
+          ],
+          "rightColumn": [
+            "сірий",
+            "чорний",
+            "білий",
+            "бежевий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець питає, які штори вам потрібні. Відповідайте йому коротко: бежеві.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Продавець питає, які штори вам потрібні. Відповідайте йому коротко: бежеві.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-50:i17:audio",
+            "transcript": "These are beige curtains."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "These are beige curtains.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-50:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:black",
+      "correctText": "black",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i02",
+      "correctText": "black",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i03",
+      "correctText": "This is a black chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:white",
+      "correctText": "white",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i04",
+      "correctText": "white",
+      "correctResponseId": "en:lesson-03:session-50:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i05",
+      "correctText": "Those are white chairs.",
+      "correctResponseId": "en:lesson-03:session-50:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:grey",
+      "correctText": "grey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i06",
+      "correctText": "grey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i07",
+      "correctText": "These are grey pillows.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:beige",
+      "correctText": "beige",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i08",
+      "correctText": "beige",
+      "correctResponseId": "en:lesson-03:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i09",
+      "correctText": "Those curtains are beige.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i11",
+      "correctText": "Is it a grey towel?",
+      "correctResponseId": "en:lesson-03:session-50:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i12",
+      "correctText": "towels",
+      "correctResponseId": "en:lesson-03:session-50:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i13",
+      "correctText": "It is a beige bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i14",
+      "correctText": "grey pillows",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i15",
+      "correctText": "Are these white bowls?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i17",
+      "correctText": "These are beige curtains.",
+      "correctResponseId": null
+    }
+  ]
+}

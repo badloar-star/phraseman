@@ -1,138 +1,152 @@
-# Англійська · Урок 3 · Заняття 50 — Кінотеатр для вечірньої зустрічі
+# Англійська · Урок 3 · Заняття 50 — Один предмет і кілька
 
-**Ситуація.** Ви з Анною збираєтеся зустрітися з друзями в кінотеатрі. На карті шукаєте потрібну будівлю й обговорюєте ціну квитка. Щоб ніхто не переплутав місце зустрічі, Анна надсилає всім ту саму карту; цей спосіб допомагає групі зібратися.
+**Ситуація.** Ви з подругою далі обставляєте квартиру, але тепер берете не одну річ, а одразу кілька. Один предмет — a black chair, кілька — black chairs, і a перед ними не потрібно. Усе решта ви вже вмієте.
 
-**Що ви опануєте:** назвати кінотеатр з a й указати місце конкретного кінотеатру з the
-**Нові слова:** cinema
+**Що ви опануєте:** назвати колір одного предмета й кількох: a black chair, black chairs
+**Нові слова:** black, white, grey, beige
+**Повертаються:** chair, curtain, pillow, towel, bowl
 
 ---
 
 ## Інтро 1
 
-### Місце для перегляду фільму
+### Стільці для кухні
 
-`cinema` — «кінотеатр». `This is a cinema` — «Це кінотеатр»: називаємо місце на карті. Перед `cinema` потрібне `a`: слово починається з приголосного звука, хоча перша літера `c` тут звучить інакше, ніж у `car`. Для одного кінотеатру використовуємо `is`. Навіть сто глядачів не перетворюють один кінотеатр на сто кінотеатрів.
+Ви з подругою вибираєте стільці для кухні. У магазині біля столу стоять чотири однакові, вони поруч із вами. black — «чорний». Стільців кілька, тому a не потрібно: These are black chairs — «Це чорні стільці». Продавець стоїть поруч і чекає, що ви скажете.
 
-**Назвіть кінотеатр одним англійським словом.**
+**Продавець чекає на відповідь. Скажіть йому, що це чорні стільці.**
 
-- ✅ **cinema**
-- ❌ hospital — *`hospital` — лікарня. Кінотеатр — `cinema`.*
-- ❌ office — *`office` — офіс. Кінотеатр — `cinema`.*
+- ✅ **These are black chairs.**
+- ❌ These are a black chairs. — *Стільців кілька, і a перед ними не ставимо: black chairs.*
+- ❌ These are black chair. — *Стільців кілька, тому потрібно chairs з s.*
 
 ---
 
 ## Інтро 2
 
-### Потрібний кінотеатр
+### Рушники на дальній полиці
 
-`The cinema is there` — «Кінотеатр там». Ви з Анною вже знаєте, до якого кінотеатру йдете: ідеться про зрозуміле вам обом місце. Тому `the cinema`. Якщо просто називаєте один об’єкт далі на карті: `That is a cinema` — «Це кінотеатр».
+У магазині для ванної кімнати ви помічаєте на дальній полиці стос рушників кольору свіжого снігу, акуратно складених. Подруга хоче знати, що ви там побачили. white — «білий». Рушників кілька, і вони далеко: Those are white towels — «Це білі рушники».
 
-**Ви знайшли в дальній частині карти кінотеатр вашої зустрічі. Скажіть «Кінотеатр там».**
+**Рушники лежать далеко від вас. Скажіть подрузі, що це білі рушники.**
 
-- ✅ **The cinema is there.**
-- ❌ The cinema are there. — *Кінотеатр один: потрібне `is`.*
-- ❌ The cinemas are there. — *Так говорять про кілька кінотеатрів. Тут один: `The cinema is there`.*
+- ✅ **Those are white towels.**
+- ❌ Those is white towels. — *Рушників кілька, тому не is, а are: Those are white towels.*
+- ❌ These are white towels. — *Рушники лежать далеко, а these кажемо про близьке: Those are white towels.*
 
 ---
 
 ## Інтро 3
 
-### Ціна й результат
+### Подушки на ринку
 
-`expensive` — «дорогий», коли ціна висока. Про квиток: `It is expensive` — «Він дорогий». `effective` — «ефективний, дієвий»: спосіб дає потрібний результат. Спільна карта допомогла всім знайти місце зустрічі; про такий спосіб можна сказати `It is effective` — «Він ефективний». Це не оцінка ціни. Перед виходом гість шукає ванну кімнату: `The bathroom is here` — «Ванна кімната тут».
+На ринку продавець розкладає перед вами подушки для дивана. Вони лежать просто на прилавку, кольору мокрого асфальту. Ви хочете перевірити, що це за подушки. grey — «сірий». Подушок кілька й вони поруч: Are these grey pillows? — «Це сірі подушки?»
 
-**Квиток коштує дорого. Скажіть про нього «Він дорогий».**
+**Продавець розклав подушки на прилавку. Запитайте його, чи це сірі подушки.**
 
-- ✅ **It is expensive.**
-- ❌ It is cheap. — *`cheap` — недорогий. Тут ціна висока: `expensive`.*
-- ❌ It are expensive. — *Ідеться про один квиток: `It is expensive`.*
+- ✅ **Are these grey pillows?**
+- ❌ Is these grey pillows? — *З these потрібно Are: Are these grey pillows?*
+- ❌ Are these grey pillow? — *Подушок кілька, тому потрібно pillows з s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Гість шукає ванну кімнату, яку ви вже показали. Ви біля її дверей. Скажіть «Ванна кімната тут»**
-<!-- interaction_id: en:lesson-03:session-50:i01; family: phrase_builder -->
-Плитки: `here` `is` `bathroom` `The` `are` → **The bathroom is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The bathroom is here.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-50:i01; family: speed_match -->
+black — чорний · white — білий · grey — сірий · beige — бежевий
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-03:session-50:i02; family: listen_choose -->
-🔊 *cinema* → **cinema** · hospital · office
-- hospital — *У записі перше слово — `cinema`, а в цьому варіанті — `hospital`.*
-- office — *У записі перше слово — `cinema`, а в цьому варіанті — `office`.*
+**2 · Картка слова — black**
+<!-- interaction_id: en:lesson-03:session-50:word:black; family: word_card -->
+> **black** — чорний. These are black chairs — «Це чорні стільці». Про колір вугілля й ночі.
 
-**3 · Назвіть кінотеатр одним англійським словом**
-<!-- interaction_id: en:lesson-03:session-50:i03; family: context_gap_grammar -->
-___ → **cinema** · hospital · office
-- hospital — *`hospital` — лікарня. Кінотеатр — `cinema`.*
-- office — *`office` — офіс. Кінотеатр — `cinema`.*
+**3 · Продавець показує на шматок вугілля й називає його колір, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-03:session-50:i02; family: scripted_repeat_compare -->
+🎙 **black**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-03:session-50:i04; family: speed_match -->
-cinema — кінотеатр · expensive — дорогий за ціною · effective — ефективний · bathroom — ванна кімната
+**4 · Один стілець стоїть поруч із вами. Скажіть продавцю повною фразою: це чорний стілець.**
+<!-- interaction_id: en:lesson-03:session-50:i03; family: phrase_builder -->
+Плитки: `chair` `black` `a` `is` `This` `are` → **This is a black chair.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a black chair.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-03:session-50:i05; family: listen_build_dictation -->
-🔊 *This is a cinema.* Плитки: `cinema` `a` `is` `This` `are` → **This is a cinema.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a cinema.`)*
+**5 · Картка слова — white**
+<!-- interaction_id: en:lesson-03:session-50:word:white; family: word_card -->
+> **white** — білий. Those are white towels — «Це білі рушники». Про колір снігу й молока.
 
-**6 · Ви знайшли вибраний кінотеатр далі на карті. Скажіть «Кінотеатр там»**
-<!-- interaction_id: en:lesson-03:session-50:i06; family: phrase_builder -->
-Плитки: `there` `is` `cinema` `The` `are` → **The cinema is there.**
-*(плитка `are` зайва: тут потрібно `is` — `The cinema is there.`)*
+**6 · Подруга показує на молоко в склянці. Як називається його колір англійською?**
+<!-- interaction_id: en:lesson-03:session-50:i04; family: context_gap_grammar -->
+___ → **white** · black · dark
+- black — *black — це чорний, а молоко іншого кольору: white.*
+- dark — *dark — це темний, а колір молока називається white.*
 
-**7 · Квиток коштує дорого. Скажіть про нього «Він дорогий» зі скороченням**
-<!-- interaction_id: en:lesson-03:session-50:i07; family: scripted_repeat_compare -->
-🎙 **It's expensive.**
+**7 · Послухайте, що продавець каже про стільці**
+<!-- interaction_id: en:lesson-03:session-50:i05; family: listen_choose -->
+🔊 *Those are white chairs.* → **Those are white chairs.** · That is a white chair. · Those are black chairs.
+- That is a white chair. — *У записі `Those are` і кілька стільців, а в цьому варіанті `That is a` і один стілець.*
+- Those are black chairs. — *У записі колір — `white`, а в цьому варіанті — `black`.*
 
-**8 · Ви називаєте місце на карті: кінотеатр**
+**8 · Картка слова — grey**
+<!-- interaction_id: en:lesson-03:session-50:word:grey; family: word_card -->
+> **grey** — сірий. Are these grey pillows? — «Це сірі подушки?» Про колір похмурого неба й асфальту.
+
+**9 · Подруга показує на похмуре небо за вікном і називає його колір, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-03:session-50:i06; family: scripted_repeat_compare -->
+🎙 **grey**
+
+**10 · Послухайте подругу й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-50:i07; family: listen_build_dictation -->
+🔊 *These are grey pillows.* Плитки: `pillows` `grey` `are` `These` `is` → **These are grey pillows.**
+*(плитка `is` зайва: тут потрібно `are` — `These are grey pillows.`)*
+
+**11 · Картка слова — beige**
+<!-- interaction_id: en:lesson-03:session-50:word:beige; family: word_card -->
+> **beige** — бежевий. It is a beige bowl — «Це бежева миска». Про світлий колір піску й кави з молоком.
+
+**12 · Подруга показує на пісок на пляжі. Як називається його колір англійською?**
 <!-- interaction_id: en:lesson-03:session-50:i08; family: context_gap_grammar -->
-This is ___ cinema. → **a** · an · are
-- an — *`cinema` починається з приголосного звука: `a cinema`.*
-- are — *Перед назвою одного кінотеатру тут потрібне `a`.*
+___ → **beige** · grey · white
+- grey — *grey — це сірий, а пісок світліший і тепліший: beige.*
+- white — *white — це білий, а пісок іншого кольору: beige.*
 
-**9 · Послухайте оцінку способу зібрати друзів в одному місці**
-<!-- interaction_id: en:lesson-03:session-50:i09; family: listen_choose -->
-🔊 *It is effective.* → **It is effective.** · It is expensive. · It is acceptable.
-- It is expensive. — *У записі останнє слово — `effective`, а в цьому варіанті — `expensive`.*
-- It is acceptable. — *У записі останнє слово — `effective`, а в цьому варіанті — `acceptable`.*
+**13 · Штори висять далеко біля вікна. Скажіть продавцю повною фразою: ті штори бежеві.**
+<!-- interaction_id: en:lesson-03:session-50:i09; family: phrase_builder -->
+Плитки: `curtains` `beige` `are` `Those` `These` → **Those curtains are beige.**
+*(плитка `These` зайва: тут потрібно `Those` — `Those curtains are beige.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-50:i10; family: speed_match -->
-cinema — кінотеатр · bathroom — ванна кімната · here — тут · there — там
+white — білий · beige — бежевий · towel — рушник · bowl — миска
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-03:session-50:i11; family: listen_build_dictation -->
-🔊 *That bathroom is there.* Плитки: `there` `is` `bathroom` `That` `are` → **That bathroom is there.**
-*(плитка `are` зайва: тут потрібно `is` — `That bathroom is there.`)*
+**15 · Послухайте запитання подруги**
+<!-- interaction_id: en:lesson-03:session-50:i11; family: listen_choose -->
+🔊 *Is it a grey towel?* → **Is it a grey towel?** · Are those grey towels? · Is it a white towel?
+- Are those grey towels? — *У записі `Is it a` і один предмет, а в цьому варіанті `Are those` і кілька.*
+- Is it a white towel? — *У записі колір — `grey`, а в цьому варіанті — `white`.*
 
-**12 · Ви показуєте на одну будівлю далі на карті. Назвіть її: «Це кінотеатр», зі словом для одного далі**
-<!-- interaction_id: en:lesson-03:session-50:i12; family: phrase_builder -->
-Плитки: `cinema` `a` `is` `That` `are` → **That is a cinema.**
-*(плитка `are` зайва: тут потрібно `is` — `That is a cinema.`)*
+**16 · Рушників кілька, і вони далеко від вас. Доповніть фразу**
+<!-- interaction_id: en:lesson-03:session-50:i12; family: context_gap_grammar -->
+Those are white ___. → **towels** · towel · a towel
+- towel — *Рушників кілька, тому потрібно towels з s.*
+- a towel — *Рушників кілька, і a перед ними не ставимо.*
 
-**13 · Спосіб зі спільною картою допоміг усім знайти місце зустрічі. Скажіть про спосіб «Він ефективний» зі скороченням**
-<!-- interaction_id: en:lesson-03:session-50:i13; family: scripted_repeat_compare -->
-🎙 **It's effective.**
+**17 · Послухайте продавця й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-50:i13; family: listen_build_dictation -->
+🔊 *It is a beige bowl.* Плитки: `bowl` `beige` `a` `is` `It` `are` → **It is a beige bowl.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a beige bowl.`)*
 
-**14 · Ви вказуєте місце одного вже вибраного кінотеатру**
-<!-- interaction_id: en:lesson-03:session-50:i14; family: context_gap_grammar -->
-The cinema ___ there. → **is** · are · am
-- are — *Кінотеатр один: `The cinema is there`.*
-- am — *З `The cinema` потрібне `is`.*
+**18 · Подруга питає, які подушки вам потрібні. Скажіть їй, що сірі**
+<!-- interaction_id: en:lesson-03:session-50:i14; family: scripted_repeat_compare -->
+🎙 **grey pillows**
 
-**15 · Послухайте оцінку ціни квитка**
-<!-- interaction_id: en:lesson-03:session-50:i15; family: listen_choose -->
-🔊 *It is expensive.* → **It is expensive.** · It is cheap. · It is useful.
-- It is cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
-- It is useful. — *У записі останнє слово — `expensive`, а в цьому варіанті — `useful`.*
+**19 · Миски стоять поруч із вами. Запитайте продавця, чи вони білі.**
+<!-- interaction_id: en:lesson-03:session-50:i15; family: phrase_builder -->
+Плитки: `bowls` `white` `these` `Are` `Is` → **Are these white bowls?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are these white bowls?`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-50:i16; family: speed_match -->
-cinema — кінотеатр · expensive — дорогий за ціною · effective — ефективний · bathroom — ванна кімната
+grey — сірий · black — чорний · white — білий · beige — бежевий
 
-**17 · В іншому місті ви з другом уже вибрали кінотеатр. Друг шукає його на карті; ви знайшли його просто перед собою. Скажіть «Кінотеатр тут», говорячи про вибране місце**
+**21 · Продавець питає, які штори вам потрібні. Відповідайте йому коротко: бежеві.**
 <!-- interaction_id: en:lesson-03:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The cinema is here.**
-
+🎙 **These are beige curtains.**

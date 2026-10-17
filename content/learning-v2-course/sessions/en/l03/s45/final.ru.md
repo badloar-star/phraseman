@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 45 — Офис у парковки
+# Английский · Урок 3 · Занятие 45 — Уточняем товар
 
-**Ситуация.** Вы с Анной приехали в офис. У входа есть схема помещений и информация о парковке. Схема помогает найти нужную комнату. Анна читает правила и замечает, что парковаться в одном из выбранных мест запрещено.
+**Ситуация.** Вы с подругой уточняете у продавца, какой именно товар вам нужен. Первый раз называем предмет с a или an: an стоит перед гласным звуком. Когда оба видят предмет перед собой, говорим the.
 
-**Что вы освоите:** назвать офис с an и затем говорить о понятном собеседнику офисе с the
-**Новые слова:** office
+**Что вы освоите:** выбирать между a, an и the по тому, назван ли предмет впервые и понятен ли он обоим
+**Новые слова:** size, colour, model, brand
+**Возвращаются:** umbrella, apple, armchair, clock, box
 
 ---
 
 ## Интро 1
 
-### Один офис
+### Тесная куртка
 
-`office` — «офис»: помещение, где работают. `This is an office` — «Это офис». Перед `office` нужно `an`, потому что слово начинается с гласного звука. Выбираем по звуку, а не по размеру помещения: даже крошечному офису полагается целое `an`.
+Вы примеряете куртку в магазине, и она вам мала. Вы с продавцом смотрите на ярлык с цифрой внутри. size — «размер». Эта цифра понятна вам обоим, поэтому the: The size is small — «Размер маленький». Если речь о любом размере вообще, было бы a size.
 
-**Назовите офис одним английским словом.**
+**Продавец смотрит на ту же куртку. Скажите ему: «Размер маленький».**
 
-- ✅ **office**
-- ❌ kitchen — *`kitchen` — кухня. Офис — `office`.*
-- ❌ bathroom — *`bathroom` — ванная комната. Офис — `office`.*
+- ✅ **The size is small.**
+- ❌ A size is small. — *Вы оба смотрите на одну и ту же цифру на ярлыке, поэтому the: The size is small.*
+- ❌ The size are small. — *Размер один, поэтому нужно is: The size is small.*
 
 ---
 
 ## Интро 2
 
-### Тот самый офис
+### Надпись на коробке
 
-`The office is here` — «Офис здесь». Это конкретный офис, который вы ищете вместе: собеседник понимает, о каком месте речь. `the office` можно сказать и при первом упоминании, если нужный офис ясен из ситуации. Для одного офиса нужно `is`.
+Вы с подругой выбираете электрический чайник на вашу кухню. На коробке напечатаны буквы и цифры, и подруга спрашивает, что это за надпись. model — «модель». Надпись называет вид чайника, и вы называете её впервые, поэтому a: This is a model — «Это модель».
 
-**Вы уже обсудили нужный офис и теперь нашли его на схеме. Скажите «Офис здесь».**
+**Подруга спрашивает про надпись на коробке. Скажите ей: «Это модель».**
 
-- ✅ **The office is here.**
-- ❌ The office are here. — *Офис один: нужно `is`.*
-- ❌ The offices are here. — *Так говорят о нескольких офисах. Здесь один: `The office is here`.*
+- ✅ **This is a model.**
+- ❌ This is the model. — *Надпись вы называете впервые, поэтому a: This is a model.*
+- ❌ This is an model. — *Слово model начинается с согласного звука, поэтому a: This is a model.*
 
 ---
 
 ## Интро 3
 
-### Полезная схема и запрет
+### Шарф другого цвета
 
-`useful` — «полезный»: схема помогает найти офис. О ней: `It is useful` — «Она полезная». `illegal` — «незаконный, запрещённый законом». В нашей ситуации Анна прочла правила: парковаться в выбранном месте запрещено законом. Об этом действии: `It is illegal` — «Это незаконно». Говорим о действии, а не о самой машине. Машина по-английски — `car`.
+Вы забрали заказанный шарф. Продавец говорит, что в списке записан другой цвет. colour — «цвет». Вы оба смотрите на этот шарф, и его цвет понятен вам обоим, поэтому the: The colour is wrong — «Цвет не тот». Слово colour начинается с согласного звука.
 
-**Схема помогает найти нужный офис. Скажите о ней «Она полезная».**
+**Продавец показывает на шарф, который видите вы оба. Скажите ему: «Цвет не тот».**
 
-- ✅ **It is useful.**
-- ❌ It is useless. — *`useless` — бесполезная. Здесь схема помогает: `useful`.*
-- ❌ It are useful. — *Речь об одной схеме: `It is useful`.*
+- ✅ **The colour is wrong.**
+- ❌ A colour is wrong. — *Вы оба смотрите на цвет этого шарфа, поэтому the: The colour is wrong.*
+- ❌ The colour are wrong. — *Цвет один, поэтому нужно is: The colour is wrong.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Анна ищет машину, на которой вы приехали. Она рядом. Скажите «Машина здесь»**
+**1 · Вы с подругой смотрите на зонт на полке. Скажите: «Зонт мокрый».**
 <!-- interaction_id: en:lesson-03:session-45:i01; family: phrase_builder -->
-Плитки: `here` `is` `car` `The` `are` → **The car is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The car is here.`)*
+Плитки: `umbrella` `is` `wet` `The` `An` → **The umbrella is wet.**
+*(плитка `An` лишняя: здесь нужно `The` — `The umbrella is wet.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте продавца и выберите фразу**
 <!-- interaction_id: en:lesson-03:session-45:i02; family: listen_choose -->
-🔊 *office* → **office** · kitchen · bathroom
-- kitchen — *В записи первое слово — `office`, а в этом варианте — `kitchen`.*
-- bathroom — *В записи первое слово — `office`, а в этом варианте — `bathroom`.*
+🔊 *An apple is here.* → **An apple is here.** · The apple is here. · An apple is there.
+- The apple is here. — *В записи первое слово — `An`, а в этом варианте — `The`.*
+- An apple is there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
 
-**3 · Назовите офис одним английским словом**
+**3 · Вы впервые называете яблоко, которое лежит на столе. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-45:i03; family: context_gap_grammar -->
-___ → **office** · kitchen · bathroom
-- kitchen — *`kitchen` — кухня. Офис — `office`.*
-- bathroom — *`bathroom` — ванная комната. Офис — `office`.*
+This is ___ apple. → **an** · a · the
+- a — *Слово apple начинается с гласного звука, поэтому an, а не a.*
+- the — *Яблоко вы называете впервые, поэтому an, а не the.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-45:i04; family: speed_match -->
-office — офис · useful — полезный · illegal — незаконный · car — машина
+size — размер · colour — цвет · model — модель · brand — марка, бренд
 
-**5 · Послушайте и соберите фразу**
+**5 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-45:i05; family: listen_build_dictation -->
-🔊 *This is an office.* Плитки: `office` `an` `is` `This` `are` → **This is an office.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is an office.`)*
+🔊 *The armchair is old.* Плитки: `armchair` `old` `is` `The` `An` → **The armchair is old.**
+*(плитка `An` лишняя: здесь нужно `The` — `The armchair is old.`)*
 
-**6 · Нужный вам обоим офис найден на схеме. Скажите «Офис здесь»**
+**6 · Вы впервые называете часы на стене. Скажите подруге: «Это часы».**
 <!-- interaction_id: en:lesson-03:session-45:i06; family: phrase_builder -->
-Плитки: `here` `is` `office` `The` `are` → **The office is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The office is here.`)*
+Плитки: `clock` `a` `is` `This` `an` → **This is a clock.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is a clock.`)*
 
-**7 · Схема помогает найти комнату. Скажите о ней «Она полезная» с сокращением**
+**7 · Карточка слова — size**
+<!-- interaction_id: en:lesson-03:session-45:word:size; family: word_card -->
+> **size** — размер. The size is small — «Размер маленький». О цифре на ярлыке одежды или обуви.
+
+**8 · Продавец показывает на цифру на ярлыке куртки и называет её, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-45:i07; family: scripted_repeat_compare -->
-🎙 **It's useful.**
+🎙 **size**
 
-**8 · Вы называете, что это за помещение: офис**
+**9 · Карточка слова — colour**
+<!-- interaction_id: en:lesson-03:session-45:word:colour; family: word_card -->
+> **colour** — цвет. The colour is wrong — «Цвет не тот». О том, красный предмет, синий или зелёный.
+
+**10 · Красный, синий и зелёный отличаются друг от друга. Как по-английски называется то, чем они отличаются?**
 <!-- interaction_id: en:lesson-03:session-45:i08; family: context_gap_grammar -->
-This is ___ office. → **an** · a · are
-- a — *`office` начинается с гласного звука: `an office`.*
-- are — *Перед названием одного офиса здесь нужно `an`.*
+___ → **colour** · size · box
+- size — *size — это размер, а красный и синий отличаются цветом: colour.*
+- box — *box — это коробка, а красный и синий отличаются цветом: colour.*
 
-**9 · Послушайте ответ о парковке в выбранном месте**
+**11 · Послушайте продавца и выберите фразу**
 <!-- interaction_id: en:lesson-03:session-45:i09; family: listen_choose -->
-🔊 *It is illegal.* → **It is illegal.** · It is legal. · It is unofficial.
-- It is legal. — *В записи последнее слово — `illegal`, а в этом варианте — `legal`.*
-- It is unofficial. — *В записи последнее слово — `illegal`, а в этом варианте — `unofficial`.*
+🔊 *The size is small.* → **The size is small.** · A size is small. · The size is big.
+- A size is small. — *В записи первое слово — `The`, а в этом варианте — `A`.*
+- The size is big. — *В записи последнее слово — `small`, а в этом варианте — `big`.*
 
-**10 · Соедините слова со значениями**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-45:i10; family: speed_match -->
-office — офис · car — машина · here — здесь · there — там
+size — размер · umbrella — зонт · apple — яблоко · clock — часы (настенные)
 
-**11 · Послушайте и соберите фразу**
+**13 · Послушайте продавца и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-45:i11; family: listen_build_dictation -->
-🔊 *That car is there.* Плитки: `there` `is` `car` `That` `are` → **That car is there.**
-*(плитка `are` лишняя: здесь нужно `is` — `That car is there.`)*
+🔊 *The colour is right.* Плитки: `colour` `right` `is` `The` `A` → **The colour is right.**
+*(плитка `A` лишняя: здесь нужно `The` — `The colour is right.`)*
 
-**12 · Вы показываете на помещение дальше по коридору. Назовите его: «Это офис», со словом для одного дальше**
+**14 · Вы с подругой смотрите на цвет куртки. Скажите: «Цвет неправильный».**
 <!-- interaction_id: en:lesson-03:session-45:i12; family: phrase_builder -->
-Плитки: `office` `an` `is` `That` `are` → **That is an office.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is an office.`)*
+Плитки: `colour` `is` `wrong` `The` `A` → **The colour is wrong.**
+*(плитка `A` лишняя: здесь нужно `The` — `The colour is wrong.`)*
 
-**13 · В этой ситуации Анна проверила правила: парковаться здесь запрещено законом. Скажите об этом действии «Это незаконно» с сокращением**
+**15 · Карточка слова — model**
+<!-- interaction_id: en:lesson-03:session-45:word:model; family: word_card -->
+> **model** — модель. This is a model — «Это модель». О виде прибора, который отличается буквами и цифрами на коробке.
+
+**16 · Продавец показывает на буквы и цифры на коробке чайника и называет их, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-45:i13; family: scripted_repeat_compare -->
-🎙 **It's illegal.**
+🎙 **model**
 
-**14 · Вы указываете место одного уже понятного собеседнику офиса**
+**17 · Карточка слова — brand**
+<!-- interaction_id: en:lesson-03:session-45:word:brand; family: word_card -->
+> **brand** — марка, бренд. This is a brand — «Это марка». О названии фирмы, которая сделала вещь.
+
+**18 · Название на футболке показывает, какая фирма сделала вещь. Как оно называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-45:i14; family: context_gap_grammar -->
-The office ___ here. → **is** · are · am
-- are — *Офис один: `The office is here`.*
-- am — *С `The office` нужно `is`.*
+___ → **brand** · size · box
+- size — *size — это размер, а название фирмы называется brand.*
+- box — *box — это коробка, а название фирмы называется brand.*
 
-**15 · Послушайте оценку схемы**
+**19 · Послушайте продавца и выберите фразу**
 <!-- interaction_id: en:lesson-03:session-45:i15; family: listen_choose -->
-🔊 *It is useful.* → **It is useful.** · It is accurate. · It is relevant.
-- It is accurate. — *В записи последнее слово — `useful`, а в этом варианте — `accurate`.*
-- It is relevant. — *В записи последнее слово — `useful`, а в этом варианте — `relevant`.*
+🔊 *This is a model.* → **This is a model.** · That is a model. · This is the model.
+- That is a model. — *В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).*
+- This is the model. — *В записи перед `model` стоит `a`, а в этом варианте — `the`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-45:i16; family: speed_match -->
-office — офис · useful — полезный · illegal — незаконный · car — машина
+brand — марка, бренд · model — модель · colour — цвет · size — размер
 
-**17 · В другом здании вы с гостем уже обсудили нужный офис. Гость спрашивает, где он. Вы показываете в конец коридора. Скажите «Офис там», говоря о том же месте**
+**21 · Вы показываете подруге на футболке название фирмы, о котором она спрашивает впервые. Скажите: «Это марка».**
 <!-- interaction_id: en:lesson-03:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The office is there.**
-
+🎙 **This is a brand.**

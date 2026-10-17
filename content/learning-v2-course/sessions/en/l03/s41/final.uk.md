@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 41 — Кухня в новому будинку
+# Англійська · Урок 3 · Заняття 41 — Помилка в чеку
 
-**Ситуація.** Ви з Анною оглядаєте будинок. Господар показує кухню й чесно розповідає про стан будинку. На схемі кімнати позначені точно. Телефон Анни лежить поруч, поки ви уточнюєте, де кухня.
+**Ситуація.** Ви з подругою заплатили в магазині. Касир видав чек, і ви помітили в ньому помилку. Предмет, про який говорите вперше, називаємо з a. Коли повернулися до нього ж, кажемо the.
 
-**Що ви опануєте:** назвати кухню й потім повернутися до тієї самої кімнати з the
-**Нові слова:** kitchen
+**Що ви опануєте:** називати предмет уперше з a і повертатися до нього ж із the
+**Нові слова:** receipt, cashier, mistake, counter
+**Повертаються:** bag, box, lamp, coin, ticket, floor
 
 ---
 
 ## Інтро 1
 
-### Назвати кімнату
+### Людина біля виходу
 
-`kitchen` — «кухня», кімната, де готують їжу. `This is a kitchen` — «Це кухня»: ви називаєте, що це за кімната. Перед `kitchen` тут потрібне `a`: перший звук приголосний. Навіть якщо в кухні поки немає їжі, вона однаково `a kitchen`.
+Ви з подругою зайшли до магазину по продукти. Біля виходу сидить людина, яка приймає гроші й пробиває товари. cashier — «касир». Подруга вперше бачить його й питає, хто там. Касира ви називаєте вперше, тому a: A cashier is here — «Тут касир».
 
-**Назвіть кухню одним англійським словом.**
+**Подруга питає, хто сидить біля виходу. Скажіть про касира вперше: «Тут касир».**
 
-- ✅ **kitchen**
-- ❌ room — *`room` — кімната загалом. Кухня — `kitchen`.*
-- ❌ window — *`window` — вікно. Кухня — `kitchen`.*
+- ✅ **A cashier is here.**
+- ❌ The cashier is here. — *Про касира ви говорите вперше, тому a: A cashier is here.*
+- ❌ A cashier are here. — *Касир один, тому потрібно is: A cashier is here.*
 
 ---
 
 ## Інтро 2
 
-### Тепер та сама кухня
+### Папірець у руці
 
-Ви вже показали кухню й сказали `This is a kitchen`. Тепер говорите про неї ж: `The kitchen is here` — «Кухня тут». `the kitchen` означає конкретну кухню: ви обоє розумієте, яку саме. `The` можна використовувати й без попередньої згадки, якщо із ситуації зрозуміло, яка кухня мається на увазі.
+Ви заплатили, і касир віддає вам папірець зі списком покупок і сумою. Подруга не бачила її раніше й питає, що це. receipt — «чек». Папірець ви називаєте вперше, тому a: This is a receipt — «Це чек». Слово починається з приголосного звуку, отже, потрібно a.
 
-**Ви вже показали кухню. Укажіть місце тієї самої кімнати: «Кухня тут».**
+**Подруга питає, що за папірець у вас у руці. Скажіть: «Це чек».**
 
-- ✅ **The kitchen is here.**
-- ❌ The kitchen are here. — *Кухня одна: потрібне `is`.*
-- ❌ The kitchens are here. — *Так говорять про кілька кухонь. Тут одна: `The kitchen is here`.*
+- ✅ **This is a receipt.**
+- ❌ This is an receipt. — *Слово receipt починається з приголосного звуку, тому a: This is a receipt.*
+- ❌ This are a receipt. — *Чек один, тому потрібно is: This is a receipt.*
 
 ---
 
 ## Інтро 3
 
-### Чесний господар і точна схема
+### Неправильна ціна
 
-`honest` — «чесний»: господар не приховує недоліків будинку. `He is honest` — «Він чесний». `accurate` — «точний»: схема правильно показує розташування кімнат. Про неї: `It is accurate` — «Вона точна». Чесність тут стосується людини, точність — схеми. Про телефон Анни: `The phone is here` — «Телефон тут».
+Ви разом із подругою читаєте чек і бачите, що одна ціна записана двічі. mistake — «помилка». Спершу ви сказали подрузі: This is a mistake — «Це помилка». Тепер показуєте на неї пальцем на чеку. Ви обоє знаєте, про яку помилку мова, тому the.
 
-**Схема правильно показує розташування кімнат. Скажіть про неї «Вона точна».**
+**Ви вже назвали помилку подрузі. Тепер покажіть на неї: «Помилка тут».**
 
-- ✅ **It is accurate.**
-- ❌ It is honest. — *`honest` тут описує чесну людину. Про точну схему — `accurate`.*
-- ❌ It are accurate. — *Ідеться про одну схему: `It is accurate`.*
+- ✅ **The mistake is here.**
+- ❌ A mistake is here. — *Помилку ви вже назвали, ви обоє знаєте, про яку мова, тому the: The mistake is here.*
+- ❌ The mistake are here. — *Помилка одна, тому потрібно is: The mistake is here.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна шукає свій телефон. Він лежить поруч. Скажіть «Телефон тут»**
+**1 · Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка».**
 <!-- interaction_id: en:lesson-03:session-41:i01; family: phrase_builder -->
-Плитки: `here` `is` `phone` `The` `are` → **The phone is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The phone is here.`)*
+Плитки: `here` `is` `box` `A` `The` → **A box is here.**
+*(плитка `The` зайва: тут потрібно `A` — `A box is here.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-41:i02; family: listen_choose -->
-🔊 *kitchen* → **kitchen** · children · ticket
-- children — *У записі перше слово — `kitchen`, а в цьому варіанті — `children`.*
-- ticket — *У записі перше слово — `kitchen`, а в цьому варіанті — `ticket`.*
+🔊 *A bag is here.* → **A bag is here.** · The bag is here. · A bag is there.
+- The bag is here. — *У записі перше слово — `A` (предмет названо вперше), а в цьому варіанті — `The`.*
+- A bag is there. — *У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко).*
 
-**3 · Назвіть кімнату для приготування їжі одним англійським словом**
+**3 · Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-41:i03; family: context_gap_grammar -->
-___ → **kitchen** · room · window
-- room — *`room` — кімната загалом. Тут називаємо кухню: `kitchen`.*
-- window — *`window` — вікно. Кухня — `kitchen`.*
+___ bag is here. → **The** · A · An
+- A — *Сумку ви вже показали, тому потрібно The, а не A.*
+- An — *Сумку ви вже показали, тому потрібно The, а перед bag an не буває.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-41:i04; family: speed_match -->
-kitchen — кухня · honest — чесний · accurate — точний · phone — телефон
+receipt — чек · cashier — касир · mistake — помилка · counter — прилавок
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-41:i05; family: listen_build_dictation -->
-🔊 *This is a kitchen.* Плитки: `kitchen` `a` `is` `This` `are` → **This is a kitchen.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a kitchen.`)*
+🔊 *The bag is here.* Плитки: `here` `bag` `is` `The` `A` → **The bag is here.**
+*(плитка `A` зайва: тут потрібно `The` — `The bag is here.`)*
 
-**6 · Ви вже показали кухню й тепер указуєте, де вона. Скажіть «Кухня тут»**
+**6 · Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа».**
 <!-- interaction_id: en:lesson-03:session-41:i06; family: phrase_builder -->
-Плитки: `here` `is` `kitchen` `The` `are` → **The kitchen is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The kitchen is here.`)*
+Плитки: `lamp` `a` `is` `This` `the` → **This is a lamp.**
+*(плитка `the` зайва: тут потрібно `a` — `This is a lamp.`)*
 
-**7 · Господар не приховує недоліків будинку. Скажіть «Він чесний» зі скороченням**
+**7 · Картка слова — receipt**
+<!-- interaction_id: en:lesson-03:session-41:word:receipt; family: word_card -->
+> **receipt** — чек. This is a receipt — «Це чек». Про папірець зі списком покупок і сумою, який видають після оплати.
+
+**8 · Касир простягає вам папірець і називає його, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-41:i07; family: scripted_repeat_compare -->
-🎙 **He's honest.**
+🎙 **receipt**
 
-**8 · Ви називаєте, що це за кімната: кухня**
+**9 · Картка слова — cashier**
+<!-- interaction_id: en:lesson-03:session-41:word:cashier; family: word_card -->
+> **cashier** — касир. A cashier is here — «Тут касир». Про людину, яка приймає гроші й пробиває товари.
+
+**10 · Подруга питає, як англійською називається людина, яка приймає гроші біля каси**
 <!-- interaction_id: en:lesson-03:session-41:i08; family: context_gap_grammar -->
-This is ___ kitchen. → **a** · an · are
-- an — *`kitchen` починається з приголосного звука: `a kitchen`.*
-- are — *Тут перед назвою кімнати потрібне `a`: `a kitchen`.*
+___ → **cashier** · coin · ticket
+- coin — *coin — це монета, а людину біля каси звати cashier.*
+- ticket — *ticket — це квиток, а людину біля каси звати cashier.*
 
-**9 · Послухайте опис схеми**
+**11 · Послухайте, що каже касир**
 <!-- interaction_id: en:lesson-03:session-41:i09; family: listen_choose -->
-🔊 *It is accurate.* → **It is accurate.** · It is relevant. · It is unusual.
-- It is relevant. — *У записі останнє слово — `accurate`, а в цьому варіанті — `relevant`.*
-- It is unusual. — *У записі останнє слово — `accurate`, а в цьому варіанті — `unusual`.*
+🔊 *A receipt is here.* → **A receipt is here.** · The receipt is here. · A receipt is there.
+- The receipt is here. — *У записі перше слово — `A` (чек названо вперше), а в цьому варіанті — `The`.*
+- A receipt is there. — *У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко).*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-41:i10; family: speed_match -->
-kitchen — кухня · phone — телефон · here — тут · there — там
+receipt — чек · bag — сумка · box — коробка · lamp — лампа
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-41:i11; family: listen_build_dictation -->
-🔊 *That phone is there.* Плитки: `there` `is` `phone` `That` `are` → **That phone is there.**
-*(плитка `are` зайва: тут потрібно `is` — `That phone is there.`)*
+🔊 *A cashier is here.* Плитки: `cashier` `here` `is` `A` `The` → **A cashier is here.**
+*(плитка `The` зайва: тут потрібно `A` — `A cashier is here.`)*
 
-**12 · Ви показуєте на кімнату далі коридором. Назвіть її: «Це кухня», зі словом для одного далі**
+**14 · Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут».**
 <!-- interaction_id: en:lesson-03:session-41:i12; family: phrase_builder -->
-Плитки: `kitchen` `a` `is` `That` `are` → **That is a kitchen.**
-*(плитка `are` зайва: тут потрібно `is` — `That is a kitchen.`)*
+Плитки: `cashier` `is` `here` `The` `A` → **The cashier is here.**
+*(плитка `A` зайва: тут потрібно `The` — `The cashier is here.`)*
 
-**13 · Схема відповідає розташуванню кімнат. Скажіть про неї «Вона точна» зі скороченням**
+**15 · Картка слова — mistake**
+<!-- interaction_id: en:lesson-03:session-41:word:mistake; family: word_card -->
+> **mistake** — помилка. The mistake is here — «Помилка тут». Про те, що записано або зроблено неправильно.
+
+**16 · Подруга показує на неправильну ціну й називає її, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-41:i13; family: scripted_repeat_compare -->
-🎙 **It's accurate.**
+🎙 **mistake**
 
-**14 · Ви уточнюєте місце однієї вже знайомої кухні**
+**17 · Картка слова — counter**
+<!-- interaction_id: en:lesson-03:session-41:word:counter; family: word_card -->
+> **counter** — прилавок. A counter is here — «Тут прилавок». Про довгу стійку, на яку кладуть покупки.
+
+**18 · Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?**
 <!-- interaction_id: en:lesson-03:session-41:i14; family: context_gap_grammar -->
-The kitchen ___ here. → **is** · are · am
-- are — *Кухня одна: `The kitchen is here`.*
-- am — *З `The kitchen` потрібне `is`.*
+___ → **counter** · floor · wall
+- floor — *floor — це підлога, а стійка для покупок називається counter.*
+- wall — *wall — це стіна, а стійка для покупок називається counter.*
 
-**15 · Послухайте опис господаря**
+**19 · Послухайте, що каже подруга**
 <!-- interaction_id: en:lesson-03:session-41:i15; family: listen_choose -->
-🔊 *He is honest.* → **He is honest.** · He is brave. · He is weak.
-- He is brave. — *У записі останнє слово — `honest`, а в цьому варіанті — `brave`.*
-- He is weak. — *У записі останнє слово — `honest`, а в цьому варіанті — `weak`.*
+🔊 *The mistake is here.* → **The mistake is here.** · A mistake is here. · The mistake is there.
+- A mistake is here. — *У записі перше слово — `The` (про помилку вже йшлося), а в цьому варіанті — `A`.*
+- The mistake is there. — *У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко).*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-41:i16; family: speed_match -->
-kitchen — кухня · honest — чесний · accurate — точний · phone — телефон
+counter — прилавок · mistake — помилка · cashier — касир · receipt — чек
 
-**17 · В іншому будинку ви вже оглянули кухню разом із гостем. Тепер гість забув, де вона. Ви показуєте вдалину. Скажіть повним реченням «Кухня там», повертаючись до тієї самої кімнати**
+**21 · Ви вже показали подрузі прилавок і тепер повертаєтеся до нього. Скажіть: «Прилавок тут».**
 <!-- interaction_id: en:lesson-03:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The kitchen is there.**
-
+🎙 **The counter is here.**

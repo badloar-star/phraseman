@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-03:session-50:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Гость ищет ванную, которую вы уже показали. Вы у её двери. Скажите «Ванная комната здесь»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Гость ищет ванную, которую вы уже показали. Вы у её двери. Скажите «Ванная комната здесь»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The bathroom is here.",
-        "localizedMeaning": {
-          "ru": "Гость ищет ванную, которую вы уже показали. Вы у её двери. Скажите «Ванная комната здесь»",
-          "uk": "Гість шукає ванну кімнату, яку ви вже показали. Ви біля її дверей. Скажіть «Ванна кімната тут»"
-        },
-        "orderedTokens": [
-          "The",
-          "bathroom",
-          "is",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-50:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Гость ищет ванную, которую вы уже показали. Вы у её двери. Скажите «Ванная комната здесь»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bathroom is here.`",
-              "uk": "тут потрібно `is` — `The bathroom is here.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-50:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-50:i02:r1",
-          "text": "cinema"
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i02:r2",
-          "text": "hospital"
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i02:r3",
-          "text": "office"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-50:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-50:i02:audio",
-          "transcript": "cinema"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-50:i02:r1",
-            "targetText": "cinema",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i02:r2",
-            "targetText": "hospital",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i02:r3",
-            "targetText": "office",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-50:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `cinema`, а в этом варианте — `hospital`.",
-              "uk": "У записі перше слово — `cinema`, а в цьому варіанті — `hospital`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `cinema`, а в этом варианте — `office`.",
-              "uk": "У записі перше слово — `cinema`, а в цьому варіанті — `office`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-50:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите кинотеатр одним английским словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-50:i03:r1",
-          "text": "cinema"
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i03:r2",
-          "text": "hospital"
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i03:r3",
-          "text": "office"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите кинотеатр одним английским словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите кинотеатр одним английским словом",
-          "uk": "Назвіть кінотеатр одним англійським словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-50:i03:r1",
-            "text": "cinema"
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i03:r2",
-            "text": "hospital"
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i03:r3",
-            "text": "office"
-          }
-        ],
-        "testedDimension": "Назовите кинотеатр одним английским словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-50:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите кинотеатр одним английским словом",
-            "feedbackByLocale": {
-              "ru": "`hospital` — больница. Кинотеатр — `cinema`.",
-              "uk": "`hospital` — лікарня. Кінотеатр — `cinema`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите кинотеатр одним английским словом",
-            "feedbackByLocale": {
-              "ru": "`office` — офис. Кинотеатр — `cinema`.",
-              "uk": "`office` — офіс. Кінотеатр — `cinema`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-50:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -208,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-50:i04:p1",
-            "target": "cinema",
+            "pairId": "en:lesson-03:session-50:i01:p1",
+            "target": "black",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "чёрный",
+              "uk": "чорний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-50:i04:p2",
-            "target": "expensive",
+            "pairId": "en:lesson-03:session-50:i01:p2",
+            "target": "white",
             "meaningByLocale": {
-              "ru": "дорогой по цене",
-              "uk": "дорогий за ціною"
+              "ru": "белый",
+              "uk": "білий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-50:i04:p3",
-            "target": "effective",
+            "pairId": "en:lesson-03:session-50:i01:p3",
+            "target": "grey",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "серый",
+              "uk": "сірий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-50:i04:p4",
-            "target": "bathroom",
+            "pairId": "en:lesson-03:session-50:i01:p4",
+            "target": "beige",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "бежевый",
+              "uk": "бежевий"
             }
           }
         ],
         "leftColumn": [
-          "cinema",
-          "expensive",
-          "effective",
-          "bathroom"
+          "black",
+          "white",
+          "grey",
+          "beige"
         ],
         "rightColumn": [
-          "кинотеатр",
-          "дорогой по цене",
-          "эффективный",
-          "ванная комната"
+          "чёрный",
+          "белый",
+          "серый",
+          "бежевый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,119 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-50:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-03:session-50:word:black",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — black",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-50:i05:audio"
+        "en:lesson-03:session-50:word:black:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Карточка слова — black",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-50:i05:audio",
-          "transcript": "This is a cinema."
+          "audioTargetId": "en:lesson-03:session-50:word:black:audio",
+          "transcript": "black"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a cinema.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "cinema"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-50:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a cinema.`",
-              "uk": "тут потрібно `is` — `This is a cinema.`"
+            "responseId": "en:lesson-03:session-50:word:black:r1",
+            "targetText": "black",
+            "meaningByLocale": {
+              "ru": "чёрный. These are black chairs — «Это чёрные стулья». О цвете угля и ночи.",
+              "uk": "чорний. These are black chairs — «Це чорні стільці». Про колір вугілля й ночі."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "black",
+          "definitionByLocale": {
+            "ru": "чёрный. These are black chairs — «Это чёрные стулья». О цвете угля и ночи.",
+            "uk": "чорний. These are black chairs — «Це чорні стільці». Про колір вугілля й ночі."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-50:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы нашли выбранный кинотеатр дальше на карте. Скажите «Кинотеатр там»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вы нашли выбранный кинотеатр дальше на карте. Скажите «Кинотеатр там»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The cinema is there.",
-        "localizedMeaning": {
-          "ru": "Вы нашли выбранный кинотеатр дальше на карте. Скажите «Кинотеатр там»",
-          "uk": "Ви знайшли вибраний кінотеатр далі на карті. Скажіть «Кінотеатр там»"
-        },
-        "orderedTokens": [
-          "The",
-          "cinema",
-          "is",
-          "there"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-50:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Вы нашли выбранный кинотеатр дальше на карте. Скажите «Кинотеатр там»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The cinema is there.`",
-              "uk": "тут потрібно `is` — `The cinema is there.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-50:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-03:session-50:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Билет стоит дорого. Скажите о нём «Он дорогой» с сокращением",
+      "prompt": "Продавец показывает на кусок угля и называет его цвет, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-50:i07:audio"
+        "en:lesson-03:session-50:i02:audio"
       ],
-      "accessibilityLabel": "Билет стоит дорого. Скажите о нём «Он дорогой» с сокращением",
+      "accessibilityLabel": "Продавец показывает на кусок угля и называет его цвет, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-50:i07:audio",
-          "transcript": "It's expensive."
+          "audioTargetId": "en:lesson-03:session-50:i02:audio",
+          "transcript": "black"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's expensive.",
+        "targetPhrase": "black",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,68 +153,157 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-50:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a black chair.",
+        "localizedMeaning": {
+          "ru": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+          "uk": "Один стілець стоїть поруч із вами. Скажіть продавцю повною фразою: це чорний стілець."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "black",
+          "chair"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-50:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Один стул стоит рядом с вами. Скажите продавцу полной фразой: это чёрный стул.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a black chair.`",
+              "uk": "тут потрібно `is` — `This is a black chair.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:white",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — white",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-50:word:white:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — white",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-50:word:white:audio",
+          "transcript": "white"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-50:word:white:r1",
+            "targetText": "white",
+            "meaningByLocale": {
+              "ru": "белый. Those are white towels — «Это белые полотенца». О цвете снега и молока.",
+              "uk": "білий. Those are white towels — «Це білі рушники». Про колір снігу й молока."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "white",
+          "definitionByLocale": {
+            "ru": "белый. Those are white towels — «Это белые полотенца». О цвете снега и молока.",
+            "uk": "білий. Those are white towels — «Це білі рушники». Про колір снігу й молока."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы называете место на карте: кинотеатр",
+      "prompt": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-50:i08:r1",
-          "text": "a"
+          "responseId": "en:lesson-03:session-50:i04:r1",
+          "text": "white"
         },
         {
-          "responseId": "en:lesson-03:session-50:i08:r2",
-          "text": "an"
+          "responseId": "en:lesson-03:session-50:i04:r2",
+          "text": "black"
         },
         {
-          "responseId": "en:lesson-03:session-50:i08:r3",
-          "text": "are"
+          "responseId": "en:lesson-03:session-50:i04:r3",
+          "text": "dark"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы называете место на карте: кинотеатр",
+      "accessibilityLabel": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы называете место на карте: кинотеатр",
-          "uk": "Ви називаєте місце на карті: кінотеатр"
+          "ru": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
+          "uk": "Подруга показує на молоко в склянці. Як називається його колір англійською?"
         },
-        "gappedTargetPhrase": "This is ___ cinema.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-50:i08:r1",
-            "text": "a"
+            "responseId": "en:lesson-03:session-50:i04:r1",
+            "text": "white"
           },
           {
-            "responseId": "en:lesson-03:session-50:i08:r2",
-            "text": "an"
+            "responseId": "en:lesson-03:session-50:i04:r2",
+            "text": "black"
           },
           {
-            "responseId": "en:lesson-03:session-50:i08:r3",
-            "text": "are"
+            "responseId": "en:lesson-03:session-50:i04:r3",
+            "text": "dark"
           }
         ],
-        "testedDimension": "Вы называете место на карте: кинотеатр",
+        "testedDimension": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-50:i08:r2",
+            "responseId": "en:lesson-03:session-50:i04:r2",
             "correct": false,
-            "testedDimension": "Вы называете место на карте: кинотеатр",
+            "testedDimension": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
             "feedbackByLocale": {
-              "ru": "`cinema` начинается с согласного звука: `a cinema`.",
-              "uk": "`cinema` починається з приголосного звука: `a cinema`."
+              "ru": "black — это чёрный, а молоко другого цвета: white.",
+              "uk": "black — це чорний, а молоко іншого кольору: white."
             }
           },
           {
-            "responseId": "en:lesson-03:session-50:i08:r3",
+            "responseId": "en:lesson-03:session-50:i04:r3",
             "correct": false,
-            "testedDimension": "Вы называете место на карте: кинотеатр",
+            "testedDimension": "Подруга показывает на молоко в стакане. Как называется его цвет по-английски?",
             "feedbackByLocale": {
-              "ru": "Перед названием одного кинотеатра здесь нужно `a`.",
-              "uk": "Перед назвою одного кінотеатру тут потрібне `a`."
+              "ru": "dark — это тёмный, а цвет молока называется white.",
+              "uk": "dark — це темний, а колір молока називається white."
             }
           }
         ]
@@ -462,73 +311,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-50:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте оценку способа собрать друзей в одном месте",
+      "prompt": "Послушайте, что продавец говорит о стульях",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-50:i09:r1",
-          "text": "It is effective."
+          "responseId": "en:lesson-03:session-50:i05:r1",
+          "text": "Those are white chairs."
         },
         {
-          "responseId": "en:lesson-03:session-50:i09:r2",
-          "text": "It is expensive."
+          "responseId": "en:lesson-03:session-50:i05:r2",
+          "text": "That is a white chair."
         },
         {
-          "responseId": "en:lesson-03:session-50:i09:r3",
-          "text": "It is acceptable."
+          "responseId": "en:lesson-03:session-50:i05:r3",
+          "text": "Those are black chairs."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-50:i09:audio"
+        "en:lesson-03:session-50:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте оценку способа собрать друзей в одном месте",
+      "accessibilityLabel": "Послушайте, что продавец говорит о стульях",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-50:i09:audio",
-          "transcript": "It is effective."
+          "audioTargetId": "en:lesson-03:session-50:i05:audio",
+          "transcript": "Those are white chairs."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-50:i09:r1",
-            "targetText": "It is effective.",
+            "responseId": "en:lesson-03:session-50:i05:r1",
+            "targetText": "Those are white chairs.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-50:i09:r2",
-            "targetText": "It is expensive.",
+            "responseId": "en:lesson-03:session-50:i05:r2",
+            "targetText": "That is a white chair.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-50:i09:r3",
-            "targetText": "It is acceptable.",
+            "responseId": "en:lesson-03:session-50:i05:r3",
+            "targetText": "Those are black chairs.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-50:i09:r2",
+            "responseId": "en:lesson-03:session-50:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте оценку способа собрать друзей в одном месте",
+            "testedDimension": "Послушайте, что продавец говорит о стульях",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `effective`, а в этом варианте — `expensive`.",
-              "uk": "У записі останнє слово — `effective`, а в цьому варіанті — `expensive`."
+              "ru": "В записи `Those are` и несколько стульев, а в этом варианте `That is a` и один стул.",
+              "uk": "У записі `Those are` і кілька стільців, а в цьому варіанті `That is a` і один стілець."
             }
           },
           {
-            "responseId": "en:lesson-03:session-50:i09:r3",
+            "responseId": "en:lesson-03:session-50:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте оценку способа собрать друзей в одном месте",
+            "testedDimension": "Послушайте, что продавец говорит о стульях",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `effective`, а в этом варианте — `acceptable`.",
-              "uk": "У записі останнє слово — `effective`, а в цьому варіанті — `acceptable`."
+              "ru": "В записи цвет — `white`, а в этом варианте — `black`.",
+              "uk": "У записі колір — `white`, а в цьому варіанті — `black`."
             }
           }
         ],
@@ -538,9 +387,290 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-50:i10",
+      "interactionId": "en:lesson-03:session-50:word:grey",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grey",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-50:word:grey:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grey",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-50:word:grey:audio",
+          "transcript": "grey"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-50:word:grey:r1",
+            "targetText": "grey",
+            "meaningByLocale": {
+              "ru": "серый. Are these grey pillows? — «Это серые подушки?» О цвете пасмурного неба и асфальта.",
+              "uk": "сірий. Are these grey pillows? — «Це сірі подушки?» Про колір похмурого неба й асфальту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grey",
+          "definitionByLocale": {
+            "ru": "серый. Are these grey pillows? — «Это серые подушки?» О цвете пасмурного неба и асфальта.",
+            "uk": "сірий. Are these grey pillows? — «Це сірі подушки?» Про колір похмурого неба й асфальту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга показывает на пасмурное небо за окном и называет его цвет, а вы повторяете за ней слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Подруга показывает на пасмурное небо за окном и называет его цвет, а вы повторяете за ней слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-50:i06:audio",
+          "transcript": "grey"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "grey",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте подругу и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-50:i07:audio",
+          "transcript": "These are grey pillows."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These are grey pillows.",
+        "orderedTokens": [
+          "These",
+          "are",
+          "grey",
+          "pillows"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-50:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These are grey pillows.`",
+              "uk": "тут потрібно `are` — `These are grey pillows.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:beige",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — beige",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-50:word:beige:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — beige",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-50:word:beige:audio",
+          "transcript": "beige"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-50:word:beige:r1",
+            "targetText": "beige",
+            "meaningByLocale": {
+              "ru": "бежевый. It is a beige bowl — «Это бежевая миска». О светлом цвете песка и кофе с молоком.",
+              "uk": "бежевий. It is a beige bowl — «Це бежева миска». Про світлий колір піску й кави з молоком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beige",
+          "definitionByLocale": {
+            "ru": "бежевый. It is a beige bowl — «Это бежевая миска». О светлом цвете песка и кофе с молоком.",
+            "uk": "бежевий. It is a beige bowl — «Це бежева миска». Про світлий колір піску й кави з молоком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-50:i08:r1",
+          "text": "beige"
+        },
+        {
+          "responseId": "en:lesson-03:session-50:i08:r2",
+          "text": "grey"
+        },
+        {
+          "responseId": "en:lesson-03:session-50:i08:r3",
+          "text": "white"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+          "uk": "Подруга показує на пісок на пляжі. Як називається його колір англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i08:r1",
+            "text": "beige"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i08:r2",
+            "text": "grey"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i08:r3",
+            "text": "white"
+          }
+        ],
+        "testedDimension": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+            "feedbackByLocale": {
+              "ru": "grey — это серый, а песок светлее и теплее: beige.",
+              "uk": "grey — це сірий, а пісок світліший і тепліший: beige."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга показывает на песок на пляже. Как называется его цвет по-английски?",
+            "feedbackByLocale": {
+              "ru": "white — это белый, а песок другого цвета: beige.",
+              "uk": "white — це білий, а пісок іншого кольору: beige."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those curtains are beige.",
+        "localizedMeaning": {
+          "ru": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+          "uk": "Штори висять далеко біля вікна. Скажіть продавцю повною фразою: ті штори бежеві."
+        },
+        "orderedTokens": [
+          "Those",
+          "curtains",
+          "are",
+          "beige"
+        ],
+        "authoredDistractorTokens": [
+          "These"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-50:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Шторы висят далеко у окна. Скажите продавцу полной фразой: те шторы бежевые.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Those` — `Those curtains are beige.`",
+              "uk": "тут потрібно `Those` — `Those curtains are beige.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -553,48 +683,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-50:i10:p1",
-            "target": "cinema",
+            "target": "white",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "белый",
+              "uk": "білий"
             }
           },
           {
             "pairId": "en:lesson-03:session-50:i10:p2",
-            "target": "bathroom",
+            "target": "beige",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "бежевый",
+              "uk": "бежевий"
             }
           },
           {
             "pairId": "en:lesson-03:session-50:i10:p3",
-            "target": "here",
+            "target": "towel",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "полотенце",
+              "uk": "рушник"
             }
           },
           {
             "pairId": "en:lesson-03:session-50:i10:p4",
-            "target": "there",
+            "target": "bowl",
             "meaningByLocale": {
-              "ru": "там",
-              "uk": "там"
+              "ru": "миска",
+              "uk": "миска"
             }
           }
         ],
         "leftColumn": [
-          "cinema",
-          "bathroom",
-          "here",
-          "there"
+          "white",
+          "beige",
+          "towel",
+          "bowl"
         ],
         "rightColumn": [
-          "кинотеатр",
-          "ванная комната",
-          "здесь",
-          "там"
+          "белый",
+          "бежевый",
+          "полотенце",
+          "миска"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,87 +742,188 @@
     },
     {
       "interactionId": "en:lesson-03:session-50:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос подруги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-50:i11:r1",
+          "text": "Is it a grey towel?"
+        },
+        {
+          "responseId": "en:lesson-03:session-50:i11:r2",
+          "text": "Are those grey towels?"
+        },
+        {
+          "responseId": "en:lesson-03:session-50:i11:r3",
+          "text": "Is it a white towel?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-50:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-50:i11:audio",
-          "transcript": "That bathroom is there."
+          "transcript": "Is it a grey towel?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That bathroom is there.",
-        "orderedTokens": [
-          "That",
-          "bathroom",
-          "is",
-          "there"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-50:i11:tile:d1",
+            "responseId": "en:lesson-03:session-50:i11:r1",
+            "targetText": "Is it a grey towel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i11:r2",
+            "targetText": "Are those grey towels?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i11:r3",
+            "targetText": "Is it a white towel?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-50:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That bathroom is there.`",
-              "uk": "тут потрібно `is` — `That bathroom is there.`"
+              "ru": "В записи `Is it a` и один предмет, а в этом варианте `Are those` и несколько.",
+              "uk": "У записі `Is it a` і один предмет, а в цьому варіанті `Are those` і кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос подруги",
+            "feedbackByLocale": {
+              "ru": "В записи цвет — `grey`, а в этом варианте — `white`.",
+              "uk": "У записі колір — `grey`, а в цьому варіанті — `white`."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-50:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы показываете на одно здание дальше на карте. Назовите его: «Это кинотеатр», со словом для одного дальше",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-50:i12:r1",
+          "text": "towels"
+        },
+        {
+          "responseId": "en:lesson-03:session-50:i12:r2",
+          "text": "towel"
+        },
+        {
+          "responseId": "en:lesson-03:session-50:i12:r3",
+          "text": "a towel"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете на одно здание дальше на карте. Назовите его: «Это кинотеатр», со словом для одного дальше",
+      "accessibilityLabel": "Полотенец несколько, и они далеко от вас. Дополните фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "That is a cinema.",
-        "localizedMeaning": {
-          "ru": "Вы показываете на одно здание дальше на карте. Назовите его: «Это кинотеатр», со словом для одного дальше",
-          "uk": "Ви показуєте на одну будівлю далі на карті. Назвіть її: «Це кінотеатр», зі словом для одного далі"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+          "uk": "Рушників кілька, і вони далеко від вас. Доповніть фразу"
         },
+        "gappedTargetPhrase": "Those are white ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-50:i12:r1",
+            "text": "towels"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i12:r2",
+            "text": "towel"
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i12:r3",
+            "text": "a towel"
+          }
+        ],
+        "testedDimension": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+            "feedbackByLocale": {
+              "ru": "Полотенец несколько, поэтому нужно towels с s.",
+              "uk": "Рушників кілька, тому потрібно towels з s."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Полотенец несколько, и они далеко от вас. Дополните фразу",
+            "feedbackByLocale": {
+              "ru": "Полотенец несколько, и a перед ними не ставим.",
+              "uk": "Рушників кілька, і a перед ними не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте продавца и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте продавца и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-50:i13:audio",
+          "transcript": "It is a beige bowl."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is a beige bowl.",
         "orderedTokens": [
-          "That",
+          "It",
           "is",
           "a",
-          "cinema"
+          "beige",
+          "bowl"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-50:i12:tile:d1",
+            "responseId": "en:lesson-03:session-50:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Вы показываете на одно здание дальше на карте. Назовите его: «Это кинотеатр», со словом для одного дальше",
+            "testedDimension": "Послушайте продавца и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That is a cinema.`",
-              "uk": "тут потрібно `is` — `That is a cinema.`"
+              "ru": "здесь нужно `is` — `It is a beige bowl.`",
+              "uk": "тут потрібно `is` — `It is a beige bowl.`"
             }
           }
         ],
@@ -704,26 +935,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-50:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-03:session-50:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Способ с общей картой помог всем найти место встречи. Скажите о способе «Он эффективный» с сокращением",
+      "prompt": "Подруга спрашивает, какие подушки вам нужны. Скажите ей, что серые",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-50:i13:audio"
+        "en:lesson-03:session-50:i14:audio"
       ],
-      "accessibilityLabel": "Способ с общей картой помог всем найти место встречи. Скажите о способе «Он эффективный» с сокращением",
+      "accessibilityLabel": "Подруга спрашивает, какие подушки вам нужны. Скажите ей, что серые",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-50:i13:audio",
-          "transcript": "It's effective."
+          "audioTargetId": "en:lesson-03:session-50:i14:audio",
+          "transcript": "grey pillows"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's effective.",
+        "targetPhrase": "grey pillows",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -737,153 +968,53 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-50:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вы указываете место одного уже выбранного кинотеатра",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-50:i14:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i14:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i14:r3",
-          "text": "am"
-        }
-      ],
+      "interactionId": "en:lesson-03:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы указываете место одного уже выбранного кинотеатра",
+      "accessibilityLabel": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы указываете место одного уже выбранного кинотеатра",
-          "uk": "Ви вказуєте місце одного вже вибраного кінотеатру"
+        "family": "phrase_builder",
+        "targetPhrase": "Are these white bowls?",
+        "localizedMeaning": {
+          "ru": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+          "uk": "Миски стоять поруч із вами. Запитайте продавця, чи вони білі."
         },
-        "gappedTargetPhrase": "The cinema ___ there.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Are",
+          "these",
+          "white",
+          "bowls"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-50:i14:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i14:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i14:r3",
-            "text": "am"
+            "responseId": "en:lesson-03:session-50:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Миски стоят рядом с вами. Спросите продавца, белые ли они.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are these white bowls?`",
+              "uk": "тут потрібно `Are` — `Are these white bowls?`"
+            }
           }
         ],
-        "testedDimension": "Вы указываете место одного уже выбранного кинотеатра",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-50:i14:r2",
-            "correct": false,
-            "testedDimension": "Вы указываете место одного уже выбранного кинотеатра",
-            "feedbackByLocale": {
-              "ru": "Кинотеатр один: `The cinema is there`.",
-              "uk": "Кінотеатр один: `The cinema is there`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i14:r3",
-            "correct": false,
-            "testedDimension": "Вы указываете место одного уже выбранного кинотеатра",
-            "feedbackByLocale": {
-              "ru": "С `The cinema` нужно `is`.",
-              "uk": "З `The cinema` потрібне `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-50:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте оценку цены билета",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-50:i15:r1",
-          "text": "It is expensive."
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i15:r2",
-          "text": "It is cheap."
-        },
-        {
-          "responseId": "en:lesson-03:session-50:i15:r3",
-          "text": "It is useful."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-50:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте оценку цены билета",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-50:i15:audio",
-          "transcript": "It is expensive."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-50:i15:r1",
-            "targetText": "It is expensive.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i15:r2",
-            "targetText": "It is cheap.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i15:r3",
-            "targetText": "It is useful.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-50:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте оценку цены билета",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-50:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте оценку цены билета",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `useful`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `useful`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-50:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,48 +1028,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-50:i16:p1",
-            "target": "cinema",
+            "target": "grey",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "серый",
+              "uk": "сірий"
             }
           },
           {
             "pairId": "en:lesson-03:session-50:i16:p2",
-            "target": "expensive",
+            "target": "black",
             "meaningByLocale": {
-              "ru": "дорогой по цене",
-              "uk": "дорогий за ціною"
+              "ru": "чёрный",
+              "uk": "чорний"
             }
           },
           {
             "pairId": "en:lesson-03:session-50:i16:p3",
-            "target": "effective",
+            "target": "white",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "белый",
+              "uk": "білий"
             }
           },
           {
             "pairId": "en:lesson-03:session-50:i16:p4",
-            "target": "bathroom",
+            "target": "beige",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "бежевый",
+              "uk": "бежевий"
             }
           }
         ],
         "leftColumn": [
-          "cinema",
-          "expensive",
-          "effective",
-          "bathroom"
+          "grey",
+          "black",
+          "white",
+          "beige"
         ],
         "rightColumn": [
-          "кинотеатр",
-          "дорогой по цене",
-          "эффективный",
-          "ванная комната"
+          "серый",
+          "чёрный",
+          "белый",
+          "бежевый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1087,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-50:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В другом городе вы с другом уже выбрали кинотеатр. Друг ищет его на карте; вы нашли его прямо перед собой. Скажите «Кинотеатр здесь», говоря о выбранном месте",
+      "prompt": "Продавец спрашивает, какие шторы вам нужны. Ответьте ему коротко: бежевые.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-50:i17:audio"
       ],
-      "accessibilityLabel": "В другом городе вы с другом уже выбрали кинотеатр. Друг ищет его на карте; вы нашли его прямо перед собой. Скажите «Кинотеатр здесь», говоря о выбранном месте",
+      "accessibilityLabel": "Продавец спрашивает, какие шторы вам нужны. Ответьте ему коротко: бежевые.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-50:i17:audio",
-          "transcript": "The cinema is here."
+          "transcript": "These are beige curtains."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The cinema is here.",
+        "targetPhrase": "These are beige curtains.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1127,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f1bacf6879f5a257e90abf44e22348b284a4da24815ad89f125ae71b307cdde6"
+  "learnerFingerprint": "e1e150de8bacf5056ec185fc40a7812d982504d894b5d87c8f8f0cb470809e4e"
 }

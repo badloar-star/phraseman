@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-44:intro1:r2": {
-          "ru": "`hotel` — один отель. Несколько — `hotels`.",
-          "uk": "`hotel` — один готель. Кілька — `hotels`."
+          "ru": "Про этого человека продавец говорит впервые, поэтому a: A customer is happy.",
+          "uk": "Про цього чоловіка продавець говорить уперше, тому a: A customer is happy."
         },
         "en:lesson-03:session-44:intro1:r3": {
-          "ru": "`bedrooms` — спальни. Отели — `hotels`.",
-          "uk": "`bedrooms` — спальні. Готелі — `hotels`."
+          "ru": "Покупатель один, поэтому нужно is: A customer is happy.",
+          "uk": "Покупець один, тому потрібно is: A customer is happy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-44:intro2:r2": {
-          "ru": "Отелей несколько: нужно `are`.",
-          "uk": "Готелів кілька: потрібне `are`."
+          "ru": "О продавце вы уже говорили, вы оба знаете, о ком речь, поэтому the: The seller is busy.",
+          "uk": "Про продавця ви вже говорили, ви обоє знаєте, про кого мова, тому the: The seller is busy."
         },
         "en:lesson-03:session-44:intro2:r3": {
-          "ru": "Так говорят об одном отеле. Здесь несколько: `The hotels are here`.",
-          "uk": "Так говорять про один готель. Тут кілька: `The hotels are here`."
+          "ru": "Продавец один, поэтому нужно is: The seller is busy.",
+          "uk": "Продавець один, тому потрібно is: The seller is busy."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-44:intro3:r2": {
-          "ru": "Детей несколько: нужно `are`.",
-          "uk": "Дітей кілька: потрібне `are`."
+          "ru": "Слово assistant начинается с гласного звука, поэтому an: An assistant is here.",
+          "uk": "Слово assistant починається з голосного звуку, тому an: An assistant is here."
         },
         "en:lesson-03:session-44:intro3:r3": {
-          "ru": "`sleepy` — сонные. Здесь детям интересно: `curious`.",
-          "uk": "`sleepy` — сонні. Тут дітям цікаво: `curious`."
+          "ru": "О консультанте вы говорите впервые, поэтому an: An assistant is here.",
+          "uk": "Про консультанта ви говорите вперше, тому an: An assistant is here."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b7ba7f59ea0d14bfebe204324b9483c45b67d18681419ee564c03ebc0b4b638e"
+  "auxiliaryFingerprint": "c0ff7e16c41143dc90884be05a6dc02ce66d50831c29830b90dc20e312175a1e"
 }

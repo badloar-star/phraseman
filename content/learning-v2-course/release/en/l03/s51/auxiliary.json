@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-51:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-51:intro1:r2": {
-          "ru": "`library` — одна библиотека. Несколько — `libraries`.",
-          "uk": "`library` — одна бібліотека. Кілька — `libraries`."
+          "ru": "Слово yellow начинается с согласного звука, поэтому a: a yellow vase.",
+          "uk": "Слово yellow починається з приголосного звуку, тому a: a yellow vase."
         },
         "en:lesson-03:session-51:intro1:r3": {
-          "ru": "В этом слове нужно заменить `y` на `ies`: `libraries`.",
-          "uk": "У цьому слові потрібно замінити `y` на `ies`: `libraries`."
+          "ru": "Цвет идёт перед предметом: a yellow vase.",
+          "uk": "Колір іде перед предметом: a yellow vase."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-51:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-51:intro2:r2": {
-          "ru": "Библиотек несколько: нужно `are`.",
-          "uk": "Бібліотек кілька: потрібне `are`."
+          "ru": "Слово olive начинается с гласного звука, поэтому нужно an: an olive coat.",
+          "uk": "Слово olive починається з голосного звуку, тому потрібно an: an olive coat."
         },
         "en:lesson-03:session-51:intro2:r3": {
-          "ru": "Так говорят об одной библиотеке. Здесь несколько: `libraries are`.",
-          "uk": "Так говорять про одну бібліотеку. Тут кілька: `libraries are`."
+          "ru": "Цвет идёт перед предметом: an olive coat.",
+          "uk": "Колір іде перед предметом: an olive coat."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-51:intro3:r2": {
-          "ru": "`cheap` — недорогая. Здесь описываем вес: `heavy`.",
-          "uk": "`cheap` — недорога. Тут описуємо вагу: `heavy`."
+          "ru": "Слово purple начинается с согласного звука, поэтому a: a purple scarf.",
+          "uk": "Слово purple починається з приголосного звуку, тому a: a purple scarf."
         },
         "en:lesson-03:session-51:intro3:r3": {
-          "ru": "Речь об одной коробке: `It is heavy`.",
-          "uk": "Ідеться про одну коробку: `It is heavy`."
+          "ru": "Шарф лежит рядом, а that говорим о далёком: This is a purple scarf.",
+          "uk": "Шарф лежить поруч, а that кажемо про далеке: This is a purple scarf."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a73d792ec27aa1c8baa8a0b7d2b42c76b48648f9c5ac7138c9299843bbc6e48b"
+  "auxiliaryFingerprint": "86b45a8c6972c80cd5c23c8437b6c2af20350863781f79f858305e1cc084f2b3"
 }

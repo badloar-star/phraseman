@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-53",
   "learningOutcomeByLocale": {
-    "ru": "назвать музей с a и спросить о конкретном музее с the",
-    "uk": "назвати музей з a та запитати про конкретний музей з the"
+    "ru": "показать на несколько предметов и назвать материал: These metal boxes, Those leather gloves",
+    "uk": "показати на кілька предметів і назвати матеріал: These metal boxes, Those leather gloves"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что это за место",
-        "uk": "Що це за місце"
+        "ru": "Коробки для инструментов",
+        "uk": "Коробки для інструментів"
       },
       "bodyByLocale": {
-        "ru": "`museum` — «музей». `This is a museum` — «Это музей»: называем одно место, перед `museum` ставим `a`. Музей начинается с согласного звука, поэтому здесь не `an`. Коллекция старых кружек на вашем столе ещё не делает офис музеем.",
-        "uk": "`museum` — «музей». `This is a museum` — «Це музей»: називаємо одне місце, перед `museum` ставимо `a`. Музей починається з приголосного звука, тому тут не `an`. Колекція старих горняток на вашому столі ще не робить офіс музеєм."
+        "ru": "Вы с подругой зашли в магазин для дома за коробками для инструментов. Продавец ставит рядом с вами несколько одинаковых коробок. Вы стучите по ним: звук звонкий, они из железа. metal — «металлический». These metal boxes are heavy — «Эти металлические коробки тяжёлые».",
+        "uk": "Ви з подругою зайшли до магазину для дому по коробки для інструментів. Продавець ставить поруч із вами кілька однакових коробок. Ви стукаєте по них: звук дзвінкий, вони із заліза. metal — «металевий». These metal boxes are heavy — «Ці металеві коробки важкі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Вы показываете на незнакомое здание: «Это музей».",
-          "uk": "Ви показуєте на незнайому будівлю: «Це музей»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что эти металлические коробки тяжёлые.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що ці металеві коробки важкі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-53:intro1:r1",
-              "text": "This is a museum."
+              "text": "These metal boxes are heavy."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r2",
-              "text": "This is an museum."
+              "text": "These metal box are heavy."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r3",
-              "text": "This are a museum."
+              "text": "This metal boxes are heavy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-53:intro1:r1",
-              "text": "This is a museum."
+              "text": "These metal boxes are heavy."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r2",
-              "text": "This is an museum."
+              "text": "These metal box are heavy."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r3",
-              "text": "This are a museum."
+              "text": "This metal boxes are heavy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы показываете на незнакомое здание: «Это музей».",
-          "uk": "Ви показуєте на незнайому будівлю: «Це музей»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что эти металлические коробки тяжёлые.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що ці металеві коробки важкі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Теперь ищем именно его",
-        "uk": "Тепер шукаємо саме його"
+        "ru": "Перчатки на дальней полке",
+        "uk": "Рукавички на дальній полиці"
       },
       "bodyByLocale": {
-        "ru": "Вы уже выбрали музей. `Where is the museum?` — «Где музей?» С `the` спрашиваем о том самом музее. Ответ на карте: `The museum is here` — «Музей здесь». `office` — «офис»; о знакомом офисе: `The office is there` — «Офис там».",
-        "uk": "Ви вже вибрали музей. `Where is the museum?` — «Де музей?» З `the` запитуємо про той самий музей. Відповідь на карті: `The museum is here` — «Музей тут». `office` — «офіс»; про знайомий офіс: `The office is there` — «Офіс там»."
+        "ru": "На дальней полке магазина лежат перчатки. Они из гладкой блестящей кожи, на них ещё висит бирка. Подруга хочет узнать, новые ли они. Перчаток несколько, и они далеко. leather — «кожаный». Those leather gloves are new — «Те кожаные перчатки новые».",
+        "uk": "На дальній полиці магазину лежать рукавички. Вони з гладенької блискучої шкіри, на них ще висить бирка. Подруга хоче дізнатися, чи вони нові. Рукавичок кілька, і вони далеко. leather — «шкіряний». Those leather gloves are new — «Ті шкіряні рукавички нові»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже договорились, в какой музей пойдёте. Спросите, где он.",
-          "uk": "Ви вже домовилися, до якого музею підете. Запитайте, де він."
+          "ru": "Подруга ждёт ответа. Скажите ей, что те кожаные перчатки новые.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що ті шкіряні рукавички нові."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-53:intro2:r1",
-              "text": "Where is the museum?"
+              "text": "Those leather gloves are new."
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r2",
-              "text": "Where are the museum?"
+              "text": "Those leather gloves is new."
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r3",
-              "text": "What is the museum?"
+              "text": "These leather gloves are new."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-53:intro2:r1",
-              "text": "Where is the museum?"
+              "text": "Those leather gloves are new."
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r2",
-              "text": "Where are the museum?"
+              "text": "Those leather gloves is new."
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r3",
-              "text": "What is the museum?"
+              "text": "These leather gloves are new."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже договорились, в какой музей пойдёте. Спросите, где он.",
-          "uk": "Ви вже домовилися, до якого музею підете. Запитайте, де він."
+          "ru": "Подруга ждёт ответа. Скажите ей, что те кожаные перчатки новые.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що ті шкіряні рукавички нові."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вода и выбор маршрута",
-        "uk": "Вода й вибір маршруту"
+        "ru": "Сапоги у двери",
+        "uk": "Чоботи біля дверей"
       },
       "bodyByLocale": {
-        "ru": "`full` — «полный»: бутылка наполнена водой. О ней: `It is full` — «Она полная». `unfair` — «несправедливый»: один человек всегда выбирает маршрут и не даёт остальным выбирать. Об этом порядке: `It is unfair` — «Это несправедливо».",
-        "uk": "`full` — «повний»: пляшка наповнена водою. Про неї: `It is full` — «Вона повна». `unfair` — «несправедливий»: одна людина завжди вибирає маршрут і не дає решті вибирати. Про такий порядок: `It is unfair` — «Це несправедливо»."
+        "ru": "У двери магазина ровным рядом стоят сапоги для дождя. Вы сгибаете один: он легко гнётся и пахнет резиной. Сапоги рядом с вами, и подруга спрашивает, не старые ли они на вид. rubber — «резиновый». These rubber boots are old — «Эти резиновые сапоги старые».",
+        "uk": "Біля дверей магазину рівним рядом стоять чоботи для дощу. Ви згинаєте один: він легко гнеться й пахне гумою. Чоботи поруч із вами, і подруга питає, чи не старі вони на вигляд. rubber — «гумовий». These rubber boots are old — «Ці гумові чоботи старі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Бутылка наполнена водой. Скажите о ней «Она полная».",
-          "uk": "Пляшка наповнена водою. Скажіть про неї «Вона повна»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что эти резиновые сапоги старые.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що ці гумові чоботи старі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-53:intro3:r1",
-              "text": "It is full."
+              "text": "These rubber boots are old."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r2",
-              "text": "It is unfair."
+              "text": "These boots rubber are old."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r3",
-              "text": "It are full."
+              "text": "These rubber boots is old."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-53:intro3:r1",
-              "text": "It is full."
+              "text": "These rubber boots are old."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r2",
-              "text": "It is unfair."
+              "text": "These boots rubber are old."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r3",
-              "text": "It are full."
+              "text": "These rubber boots is old."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Бутылка наполнена водой. Скажите о ней «Она полная».",
-          "uk": "Пляшка наповнена водою. Скажіть про неї «Вона повна»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что эти резиновые сапоги старые.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що ці гумові чоботи старі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "42bbbc3303f94f77d2f6e2f1f11737ecd665be9b202af8316d049713591377d6"
+  "introFingerprint": "7ee385278c16e8fad643f08e11f48247a888ca6b9a2d0c6db4da9291991e651b"
 }

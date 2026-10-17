@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-56",
   "learningOutcomeByLocale": {
-    "ru": "соединить знакомые названия мест с a, the, this, those, is и are",
-    "uk": "поєднати знайомі назви місць з a, the, this, those, is та are"
+    "ru": "сами выбирать a, the, this, those, is или are и ставить цвет или материал перед предметом",
+    "uk": "самі обирати a, the, this, those, is чи are і ставити колір або матеріал перед предметом"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одно место",
-        "uk": "Одне місце"
+        "ru": "Коврик у двери",
+        "uk": "Килимок біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Вспомним `hospital` — «больница», `cinema` — «кинотеатр» и `museum` — «музей». Чтобы назвать одно незнакомое место: `This is a hospital` — «Это больница». Чтобы спросить о выбранном музее: `Where is the museum?` — «Где музей?» Одно место — `is`; `a` называет одно из таких мест, `the` указывает на понятное собеседникам.",
-        "uk": "Згадаймо `hospital` — «лікарня», `cinema` — «кінотеатр» і `museum` — «музей». Щоб назвати одне незнайоме місце: `This is a hospital` — «Це лікарня». Щоб запитати про вибраний музей: `Where is the museum?` — «Де музей?» Одне місце — `is`; `a` називає одне з таких місць, `the` вказує на зрозуміле співрозмовникам."
+        "ru": "Квартира почти готова, скоро придут гости. У входной двери не хватает коврика, чтобы вытирать ноги. В магазине вы с подругой нашли серый, и он лежит рядом с вами. mat — «коврик». Вы показываете на него: This is a grey mat — «Это серый коврик».",
+        "uk": "Квартира майже готова, скоро прийдуть гості. Біля вхідних дверей бракує килимка, щоб витирати ноги. У магазині ви з подругою знайшли сірий, і він лежить поруч із вами. mat — «килимок». Ви показуєте на нього: This is a grey mat — «Це сірий килимок»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-56:intro1:q",
         "promptByLocale": {
-          "ru": "Вы показываете на незнакомое другу здание: «Это больница».",
-          "uk": "Ви показуєте на незнайому другові будівлю: «Це лікарня»."
+          "ru": "Подруга спрашивает, что вы нашли. Скажите ей, что это серый коврик.",
+          "uk": "Подруга питає, що ви знайшли. Скажіть їй, що це сірий килимок."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-56:intro1:r1",
-              "text": "This is a hospital."
+              "text": "This is a grey mat."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r2",
-              "text": "This are a hospital."
+              "text": "This are a grey mat."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r3",
-              "text": "These are a hospital."
+              "text": "This is a mat grey."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-56:intro1:r1",
-              "text": "This is a hospital."
+              "text": "This is a grey mat."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r2",
-              "text": "This are a hospital."
+              "text": "This are a grey mat."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r3",
-              "text": "These are a hospital."
+              "text": "This is a mat grey."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы показываете на незнакомое другу здание: «Это больница».",
-          "uk": "Ви показуєте на незнайому другові будівлю: «Це лікарня»."
+          "ru": "Подруга спрашивает, что вы нашли. Скажите ей, что это серый коврик.",
+          "uk": "Подруга питає, що ви знайшли. Скажіть їй, що це сірий килимок."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Несколько мест",
-        "uk": "Кілька місць"
+        "ru": "Подносы для гостей",
+        "uk": "Таці для гостей"
       },
       "bodyByLocale": {
-        "ru": "`libraries` — «библиотеки», `stations` — «станции», `cafes` — «кафе», когда их несколько. Для группы нужно `are`: `The libraries are here` — «Библиотеки здесь». `Those stations are there` — «Те станции там»: показываем несколько дальше на карте. `Where are the cafes?` — «Где кафе?» — спрашиваем о выбранных кафе.",
-        "uk": "`libraries` — «бібліотеки», `stations` — «станції», `cafes` — «кафе», коли їх кілька. Для групи потрібне `are`: `The libraries are here` — «Бібліотеки тут». `Those stations are there` — «Ті станції там»: показуємо кілька далі на карті. `Where are the cafes?` — «Де кафе?» — запитуємо про вибрані кафе."
+        "ru": "Чашки гостям удобно подавать на подносе. На дальней полке кухонного магазина стоят металлические подносы, и они блестят. Подруга спрашивает, что вы там видите. tray — «поднос». Подносов несколько, и они далеко: Those are metal trays — «Это металлические подносы».",
+        "uk": "Чашки гостям зручно подавати на підносі. На дальній полиці кухонного магазину стоять металеві підноси, і вони блищать. Подруга питає, що ви там бачите. tray — «піднос». Підносів кілька, і вони далеко: Those are metal trays — «Це металеві підноси»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-56:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже обсудили библиотеки. Покажите их: «Библиотеки здесь».",
-          "uk": "Ви вже обговорили бібліотеки. Покажіть їх: «Бібліотеки тут»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что это металлические подносы.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що це металеві підноси."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-56:intro2:r1",
-              "text": "The libraries are here."
+              "text": "Those are metal trays."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r2",
-              "text": "The libraries is here."
+              "text": "Those are a metal trays."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r3",
-              "text": "The library is here."
+              "text": "These are metal trays."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-56:intro2:r1",
-              "text": "The libraries are here."
+              "text": "Those are metal trays."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r2",
-              "text": "The libraries is here."
+              "text": "Those are a metal trays."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r3",
-              "text": "The library is here."
+              "text": "These are metal trays."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже обсудили библиотеки. Покажите их: «Библиотеки здесь».",
-          "uk": "Ви вже обговорили бібліотеки. Покажіть їх: «Бібліотеки тут»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что это металлические подносы.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що це металеві підноси."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Встречаемся с другом",
-        "uk": "Зустрічаємося з другом"
+        "ru": "Крючок для пальто",
+        "uk": "Гачок для пальта"
       },
       "bodyByLocale": {
-        "ru": "`striped` — «полосатый»: `This bag is striped` — «Эта сумка полосатая». После `This` перед `bag` артикль не добавляем. Полосы помогают узнать сумку, но адрес музея на ней не написан. Для адреса снова нужна карта: `The museum is there` — «Музей там».",
-        "uk": "`striped` — «смугастий»: `This bag is striped` — «Ця сумка смугаста». Після `This` перед `bag` артикля не додаємо. Смуги допомагають упізнати сумку, але адресу музею на ній не написано. Для адреси знову потрібна карта: `The museum is there` — «Музей там»."
+        "ru": "В прихожей не хватает места, где гости повесят пальто. Продавец показывает вам крючок на дальней стене магазина: он металлический, и на нём стоит маленькая цена. Подруга спрашивает, дорого ли это. hook — «крючок». That metal hook is cheap — «Тот металлический крючок недорогой».",
+        "uk": "У передпокої бракує місця, де гості повісять пальто. Продавець показує вам гачок на дальній стіні магазину: він металевий, і на ньому стоїть маленька ціна. Подруга питає, чи це дорого. hook — «гачок». That metal hook is cheap — «Той металевий гачок недорогий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-56:intro3:q",
         "promptByLocale": {
-          "ru": "Покажите на сумку рядом: «Эта сумка полосатая».",
-          "uk": "Покажіть на сумку поруч: «Ця сумка смугаста»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что тот металлический крючок недорогой.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що той металевий гачок недорогий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-56:intro3:r1",
-              "text": "This bag is striped."
+              "text": "That metal hook is cheap."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r2",
-              "text": "This bag are striped."
+              "text": "That metal hook are cheap."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r3",
-              "text": "This a bag is striped."
+              "text": "This metal hook is cheap."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-56:intro3:r1",
-              "text": "This bag is striped."
+              "text": "That metal hook is cheap."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r2",
-              "text": "This bag are striped."
+              "text": "That metal hook are cheap."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r3",
-              "text": "This a bag is striped."
+              "text": "This metal hook is cheap."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите на сумку рядом: «Эта сумка полосатая».",
-          "uk": "Покажіть на сумку поруч: «Ця сумка смугаста»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что тот металлический крючок недорогой.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що той металевий гачок недорогий."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "efc4e3a76dddcb09b878891a9c856b40299eed45f21392d0394a48b3985bfcf3"
+  "introFingerprint": "91bf16ce855c6342fdc6cbf99f843b5be81f9a9d73e5d117709f1a6134f8ed1f"
 }

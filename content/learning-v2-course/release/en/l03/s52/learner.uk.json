@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-03:session-52:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте на карті вже вибрані готелі. Скажіть «Готелі там»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на карті вже вибрані готелі. Скажіть «Готелі там»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The hotels are there.",
-        "localizedMeaning": {
-          "ru": "Вы показываете на карте уже выбранные отели. Скажите «Отели там»",
-          "uk": "Ви показуєте на карті вже вибрані готелі. Скажіть «Готелі там»"
-        },
-        "orderedTokens": [
-          "The",
-          "hotels",
-          "are",
-          "there"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-52:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Ви показуєте на карті вже вибрані готелі. Скажіть «Готелі там»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The hotels are there.`",
-              "uk": "тут потрібно `are` — `The hotels are there.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-52:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-52:i02:r1",
-          "text": "stations"
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i02:r2",
-          "text": "hotels"
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i02:r3",
-          "text": "libraries"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-52:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-52:i02:audio",
-          "transcript": "stations"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-52:i02:r1",
-            "targetText": "stations",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i02:r2",
-            "targetText": "hotels",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i02:r3",
-            "targetText": "libraries",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-52:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `stations`, а в этом варианте — `hotels`.",
-              "uk": "У записі перше слово — `stations`, а в цьому варіанті — `hotels`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `stations`, а в этом варианте — `libraries`.",
-              "uk": "У записі перше слово — `stations`, а в цьому варіанті — `libraries`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-52:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть кілька станцій одним англійським словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-52:i03:r1",
-          "text": "stations"
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i03:r2",
-          "text": "station"
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i03:r3",
-          "text": "hotels"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть кілька станцій одним англійським словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите несколько станций одним английским словом",
-          "uk": "Назвіть кілька станцій одним англійським словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-52:i03:r1",
-            "text": "stations"
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i03:r2",
-            "text": "station"
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i03:r3",
-            "text": "hotels"
-          }
-        ],
-        "testedDimension": "Назвіть кілька станцій одним англійським словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-52:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть кілька станцій одним англійським словом",
-            "feedbackByLocale": {
-              "ru": "`station` — одна станция. Несколько — `stations`.",
-              "uk": "`station` — одна станція. Кілька — `stations`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть кілька станцій одним англійським словом",
-            "feedbackByLocale": {
-              "ru": "`hotels` — отели. Станции — `stations`.",
-              "uk": "`hotels` — готелі. Станції — `stations`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-52:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -208,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-52:i04:p1",
-            "target": "stations",
+            "pairId": "en:lesson-03:session-52:i01:p1",
+            "target": "round",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "круглый",
+              "uk": "круглий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-52:i04:p2",
-            "target": "light",
+            "pairId": "en:lesson-03:session-52:i01:p2",
+            "target": "oval",
             "meaningByLocale": {
-              "ru": "лёгкий по весу",
-              "uk": "легкий за вагою"
+              "ru": "овальный",
+              "uk": "овальний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-52:i04:p3",
-            "target": "fair",
+            "pairId": "en:lesson-03:session-52:i01:p3",
+            "target": "low",
             "meaningByLocale": {
-              "ru": "справедливый",
-              "uk": "справедливий"
+              "ru": "низкий",
+              "uk": "низький"
             }
           },
           {
-            "pairId": "en:lesson-03:session-52:i04:p4",
-            "target": "hotels",
+            "pairId": "en:lesson-03:session-52:i01:p4",
+            "target": "high",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "высокий (о полке, потолке)",
+              "uk": "високий (про полицю, стелю)"
             }
           }
         ],
         "leftColumn": [
-          "stations",
-          "light",
-          "fair",
-          "hotels"
+          "round",
+          "oval",
+          "low",
+          "high"
         ],
         "rightColumn": [
-          "станції",
-          "легкий за вагою",
-          "справедливий",
-          "готелі"
+          "круглий",
+          "овальний",
+          "низький",
+          "високий (про полицю, стелю)"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,118 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-52:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-03:session-52:word:round",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — round",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-52:i05:audio"
+        "en:lesson-03:session-52:word:round:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — round",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-52:i05:audio",
-          "transcript": "These are stations."
+          "audioTargetId": "en:lesson-03:session-52:word:round:audio",
+          "transcript": "round"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These are stations.",
-        "orderedTokens": [
-          "These",
-          "are",
-          "stations"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-52:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These are stations.`",
-              "uk": "тут потрібно `are` — `These are stations.`"
+            "responseId": "en:lesson-03:session-52:word:round:r1",
+            "targetText": "round",
+            "meaningByLocale": {
+              "ru": "круглый. This round table is heavy — «Этот круглый стол тяжёлый». О столе, зеркале, часах, коврике.",
+              "uk": "круглий. This round table is heavy — «Цей круглий стіл важкий». Про стіл, дзеркало, годинник, килимок."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "round",
+          "definitionByLocale": {
+            "ru": "круглый. This round table is heavy — «Этот круглый стол тяжёлый». О столе, зеркале, часах, коврике.",
+            "uk": "круглий. This round table is heavy — «Цей круглий стіл важкий». Про стіл, дзеркало, годинник, килимок."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-52:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли на карті станції, які вже обговорили з Анною. Скажіть «Станції тут»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли на карті станції, які вже обговорили з Анною. Скажіть «Станції тут»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The stations are here.",
-        "localizedMeaning": {
-          "ru": "Вы нашли на карте станции, которые уже обсудили с Анной. Скажите «Станции здесь»",
-          "uk": "Ви знайшли на карті станції, які вже обговорили з Анною. Скажіть «Станції тут»"
-        },
-        "orderedTokens": [
-          "The",
-          "stations",
-          "are",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-52:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Ви знайшли на карті станції, які вже обговорили з Анною. Скажіть «Станції тут»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The stations are here.`",
-              "uk": "тут потрібно `are` — `The stations are here.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-52:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-03:session-52:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сумка важить мало. Скажіть про неї «Вона легка» зі скороченням",
+      "prompt": "Продавець показує на м’яч і називає його форму, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-52:i07:audio"
+        "en:lesson-03:session-52:i02:audio"
       ],
-      "accessibilityLabel": "Сумка важить мало. Скажіть про неї «Вона легка» зі скороченням",
+      "accessibilityLabel": "Продавець показує на м’яч і називає його форму, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-52:i07:audio",
-          "transcript": "It's light."
+          "audioTargetId": "en:lesson-03:session-52:i02:audio",
+          "transcript": "round"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's light.",
+        "targetPhrase": "round",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,68 +153,157 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-52:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This round table is new.",
+        "localizedMeaning": {
+          "ru": "Стол стоит рядом с вами. Скажите продавцу полной фразой: этот круглый стол новый.",
+          "uk": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий."
+        },
+        "orderedTokens": [
+          "This",
+          "round",
+          "table",
+          "is",
+          "new"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This round table is new.`",
+              "uk": "тут потрібно `is` — `This round table is new.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:oval",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — oval",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:word:oval:audio"
+      ],
+      "accessibilityLabel": "Картка слова — oval",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:word:oval:audio",
+          "transcript": "oval"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-52:word:oval:r1",
+            "targetText": "oval",
+            "meaningByLocale": {
+              "ru": "овальный. That oval mirror is new — «То овальное зеркало новое». О форме яйца, вытянутой по кругу.",
+              "uk": "овальний. That oval mirror is new — «Те овальне дзеркало нове». Про форму яйця, витягнуту по колу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oval",
+          "definitionByLocale": {
+            "ru": "овальный. That oval mirror is new — «То овальное зеркало новое». О форме яйца, вытянутой по кругу.",
+            "uk": "овальний. That oval mirror is new — «Те овальне дзеркало нове». Про форму яйця, витягнуту по колу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви показуєте на кілька станцій у дальній частині карти",
+      "prompt": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-52:i08:r1",
-          "text": "Those"
+          "responseId": "en:lesson-03:session-52:i04:r1",
+          "text": "oval"
         },
         {
-          "responseId": "en:lesson-03:session-52:i08:r2",
-          "text": "That"
+          "responseId": "en:lesson-03:session-52:i04:r2",
+          "text": "round"
         },
         {
-          "responseId": "en:lesson-03:session-52:i08:r3",
-          "text": "This"
+          "responseId": "en:lesson-03:session-52:i04:r3",
+          "text": "low"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на кілька станцій у дальній частині карти",
+      "accessibilityLabel": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы показываете на несколько станций в дальней части карты",
-          "uk": "Ви показуєте на кілька станцій у дальній частині карти"
+          "ru": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+          "uk": "Подруга показує на яйце в мисці. Як називається його форма англійською?"
         },
-        "gappedTargetPhrase": "___ are stations.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-52:i08:r1",
-            "text": "Those"
+            "responseId": "en:lesson-03:session-52:i04:r1",
+            "text": "oval"
           },
           {
-            "responseId": "en:lesson-03:session-52:i08:r2",
-            "text": "That"
+            "responseId": "en:lesson-03:session-52:i04:r2",
+            "text": "round"
           },
           {
-            "responseId": "en:lesson-03:session-52:i08:r3",
-            "text": "This"
+            "responseId": "en:lesson-03:session-52:i04:r3",
+            "text": "low"
           }
         ],
-        "testedDimension": "Ви показуєте на кілька станцій у дальній частині карти",
+        "testedDimension": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-52:i08:r2",
+            "responseId": "en:lesson-03:session-52:i04:r2",
             "correct": false,
-            "testedDimension": "Ви показуєте на кілька станцій у дальній частині карти",
+            "testedDimension": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
             "feedbackByLocale": {
-              "ru": "`That` — один объект. Здесь несколько дальше: `Those`.",
-              "uk": "`That` — один об’єкт. Тут кілька далі: `Those`."
+              "ru": "round — это круглый, а у яйца вытянутая форма: oval.",
+              "uk": "round — це круглий, а в яйця витягнута форма: oval."
             }
           },
           {
-            "responseId": "en:lesson-03:session-52:i08:r3",
+            "responseId": "en:lesson-03:session-52:i04:r3",
             "correct": false,
-            "testedDimension": "Ви показуєте на кілька станцій у дальній частині карти",
+            "testedDimension": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
             "feedbackByLocale": {
-              "ru": "`This` — один рядом. Здесь несколько дальше: `Those`.",
-              "uk": "`This` — один поруч. Тут кілька далі: `Those`."
+              "ru": "low — это низкий, а форма яйца называется oval.",
+              "uk": "low — це низький, а форма яйця називається oval."
             }
           }
         ]
@@ -461,73 +311,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-52:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте оцінку правила вибирати по черзі",
+      "prompt": "Послухайте, що продавець каже про дзеркало",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-52:i09:r1",
-          "text": "It is fair."
+          "responseId": "en:lesson-03:session-52:i05:r1",
+          "text": "That round mirror is old."
         },
         {
-          "responseId": "en:lesson-03:session-52:i09:r2",
-          "text": "It is light."
+          "responseId": "en:lesson-03:session-52:i05:r2",
+          "text": "That oval mirror is old."
         },
         {
-          "responseId": "en:lesson-03:session-52:i09:r3",
-          "text": "It is effective."
+          "responseId": "en:lesson-03:session-52:i05:r3",
+          "text": "That round mirror is new."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-52:i09:audio"
+        "en:lesson-03:session-52:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте оцінку правила вибирати по черзі",
+      "accessibilityLabel": "Послухайте, що продавець каже про дзеркало",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-52:i09:audio",
-          "transcript": "It is fair."
+          "audioTargetId": "en:lesson-03:session-52:i05:audio",
+          "transcript": "That round mirror is old."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-52:i09:r1",
-            "targetText": "It is fair.",
+            "responseId": "en:lesson-03:session-52:i05:r1",
+            "targetText": "That round mirror is old.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-52:i09:r2",
-            "targetText": "It is light.",
+            "responseId": "en:lesson-03:session-52:i05:r2",
+            "targetText": "That oval mirror is old.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-52:i09:r3",
-            "targetText": "It is effective.",
+            "responseId": "en:lesson-03:session-52:i05:r3",
+            "targetText": "That round mirror is new.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-52:i09:r2",
+            "responseId": "en:lesson-03:session-52:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте оцінку правила вибирати по черзі",
+            "testedDimension": "Послухайте, що продавець каже про дзеркало",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `fair`, а в этом варианте — `light`.",
-              "uk": "У записі останнє слово — `fair`, а в цьому варіанті — `light`."
+              "ru": "В записи форма — `round`, а в этом варианте — `oval`.",
+              "uk": "У записі форма — `round`, а в цьому варіанті — `oval`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-52:i09:r3",
+            "responseId": "en:lesson-03:session-52:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте оцінку правила вибирати по черзі",
+            "testedDimension": "Послухайте, що продавець каже про дзеркало",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `fair`, а в этом варианте — `effective`.",
-              "uk": "У записі останнє слово — `fair`, а в цьому варіанті — `effective`."
+              "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+              "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
             }
           }
         ],
@@ -537,9 +387,292 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-52:i10",
+      "interactionId": "en:lesson-03:session-52:word:low",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — low",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:word:low:audio"
+      ],
+      "accessibilityLabel": "Картка слова — low",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:word:low:audio",
+          "transcript": "low"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-52:word:low:r1",
+            "targetText": "low",
+            "meaningByLocale": {
+              "ru": "низкий. This low stool is cheap — «Этот низкий табурет недорогой». О табурете, столике, полке, потолке.",
+              "uk": "низький. This low stool is cheap — «Цей низький табурет недорогий». Про табурет, столик, полицю, стелю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "low",
+          "definitionByLocale": {
+            "ru": "низкий. This low stool is cheap — «Этот низкий табурет недорогой». О табурете, столике, полке, потолке.",
+            "uk": "низький. This low stool is cheap — «Цей низький табурет недорогий». Про табурет, столик, полицю, стелю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Продавець показує на столик нижче коліна й називає його висоту, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Продавець показує на столик нижче коліна й називає його висоту, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i06:audio",
+          "transcript": "low"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "low",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте подругу й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i07:audio",
+          "transcript": "This low stool is heavy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This low stool is heavy.",
+        "orderedTokens": [
+          "This",
+          "low",
+          "stool",
+          "is",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This low stool is heavy.`",
+              "uk": "тут потрібно `is` — `This low stool is heavy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:high",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — high",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:word:high:audio"
+      ],
+      "accessibilityLabel": "Картка слова — high",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:word:high:audio",
+          "transcript": "high"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-52:word:high:r1",
+            "targetText": "high",
+            "meaningByLocale": {
+              "ru": "высокий (о предмете, полке, потолке). That high shelf is old — «Та высокая полка старая». О полке, потолке, окне.",
+              "uk": "високий (про предмет, полицю, стелю). That high shelf is old — «Та висока полиця стара». Про полицю, стелю, вікно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "high",
+          "definitionByLocale": {
+            "ru": "высокий (о предмете, полке, потолке). That high shelf is old — «Та высокая полка старая». О полке, потолке, окне.",
+            "uk": "високий (про предмет, полицю, стелю). That high shelf is old — «Та висока полиця стара». Про полицю, стелю, вікно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i08:r1",
+          "text": "high"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i08:r2",
+          "text": "low"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i08:r3",
+          "text": "round"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+          "uk": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i08:r1",
+            "text": "high"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i08:r2",
+            "text": "low"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i08:r3",
+            "text": "round"
+          }
+        ],
+        "testedDimension": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+            "feedbackByLocale": {
+              "ru": "low — это низкий, а полка под потолком высокая: high.",
+              "uk": "low — це низький, а полиця під стелею висока: high."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+            "feedbackByLocale": {
+              "ru": "round — это круглый, а слово о высоте полки: high.",
+              "uk": "round — це круглий, а слово про висоту полиці: high."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That high shelf is old.",
+        "localizedMeaning": {
+          "ru": "Полка висит далеко. Скажите продавцу полной фразой: та высокая полка старая.",
+          "uk": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара."
+        },
+        "orderedTokens": [
+          "That",
+          "high",
+          "shelf",
+          "is",
+          "old"
+        ],
+        "authoredDistractorTokens": [
+          "This"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `That` — `That high shelf is old.`",
+              "uk": "тут потрібно `That` — `That high shelf is old.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -552,48 +685,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-52:i10:p1",
-            "target": "stations",
+            "target": "high",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "высокий (о полке, потолке)",
+              "uk": "високий (про полицю, стелю)"
             }
           },
           {
             "pairId": "en:lesson-03:session-52:i10:p2",
-            "target": "hotels",
+            "target": "low",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "низкий",
+              "uk": "низький"
             }
           },
           {
             "pairId": "en:lesson-03:session-52:i10:p3",
-            "target": "here",
+            "target": "clock",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "часы (настенные)",
+              "uk": "годинник (настінний)"
             }
           },
           {
             "pairId": "en:lesson-03:session-52:i10:p4",
-            "target": "there",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "там",
-              "uk": "там"
+              "ru": "полка",
+              "uk": "полиця"
             }
           }
         ],
         "leftColumn": [
-          "stations",
-          "hotels",
-          "here",
-          "there"
+          "high",
+          "low",
+          "clock",
+          "shelf"
         ],
         "rightColumn": [
-          "станції",
-          "готелі",
-          "тут",
-          "там"
+          "високий (про полицю, стелю)",
+          "низький",
+          "годинник (настінний)",
+          "полиця"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,87 +744,188 @@
     },
     {
       "interactionId": "en:lesson-03:session-52:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання подруги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i11:r1",
+          "text": "Is that oval clock new?"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i11:r2",
+          "text": "Is this oval clock new?"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i11:r3",
+          "text": "Is that round clock new?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-52:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте запитання подруги",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-52:i11:audio",
-          "transcript": "These hotels are here."
+          "transcript": "Is that oval clock new?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These hotels are here.",
-        "orderedTokens": [
-          "These",
-          "hotels",
-          "are",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-52:i11:tile:d1",
+            "responseId": "en:lesson-03:session-52:i11:r1",
+            "targetText": "Is that oval clock new?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i11:r2",
+            "targetText": "Is this oval clock new?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i11:r3",
+            "targetText": "Is that round clock new?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте запитання подруги",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These hotels are here.`",
-              "uk": "тут потрібно `are` — `These hotels are here.`"
+              "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
+              "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання подруги",
+            "feedbackByLocale": {
+              "ru": "В записи форма — `oval`, а в этом варианте — `round`.",
+              "uk": "У записі форма — `oval`, а в цьому варіанті — `round`."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-52:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте на станції далі на карті. Скажіть «Ті станції там»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i12:r1",
+          "text": "mirror"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i12:r2",
+          "text": "mirrors"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i12:r3",
+          "text": "a mirror"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на станції далі на карті. Скажіть «Ті станції там»",
+      "accessibilityLabel": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Those stations are there.",
-        "localizedMeaning": {
-          "ru": "Вы показываете на станции дальше на карте. Скажите «Те станции там»",
-          "uk": "Ви показуєте на станції далі на карті. Скажіть «Ті станції там»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+          "uk": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу"
         },
+        "gappedTargetPhrase": "This oval ___ is new.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i12:r1",
+            "text": "mirror"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r2",
+            "text": "mirrors"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r3",
+            "text": "a mirror"
+          }
+        ],
+        "testedDimension": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Зеркало одно, поэтому mirror без s.",
+              "uk": "Дзеркало одне, тому mirror без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Между oval и mirror слово a не ставим: This oval mirror.",
+              "uk": "Між oval і mirror слово a не ставимо: This oval mirror."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте продавця й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте продавця й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i13:audio",
+          "transcript": "That low stool is cheap."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That low stool is cheap.",
         "orderedTokens": [
-          "Those",
-          "stations",
-          "are",
-          "there"
+          "That",
+          "low",
+          "stool",
+          "is",
+          "cheap"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-52:i12:tile:d1",
+            "responseId": "en:lesson-03:session-52:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Ви показуєте на станції далі на карті. Скажіть «Ті станції там»",
+            "testedDimension": "Послухайте продавця й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Those stations are there.`",
-              "uk": "тут потрібно `are` — `Those stations are there.`"
+              "ru": "здесь нужно `is` — `That low stool is cheap.`",
+              "uk": "тут потрібно `is` — `That low stool is cheap.`"
             }
           }
         ],
@@ -703,26 +937,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-52:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-03:session-52:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Кожен друг має свою чергу вибрати місце прогулянки. Ви вважаєте це справедливим. Скажіть «Це справедливо» зі скороченням",
+      "prompt": "Подруга питає, який стіл вам потрібен. Скажіть їй, що цей круглий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-52:i13:audio"
+        "en:lesson-03:session-52:i14:audio"
       ],
-      "accessibilityLabel": "Кожен друг має свою чергу вибрати місце прогулянки. Ви вважаєте це справедливим. Скажіть «Це справедливо» зі скороченням",
+      "accessibilityLabel": "Подруга питає, який стіл вам потрібен. Скажіть їй, що цей круглий",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-52:i13:audio",
-          "transcript": "It's fair."
+          "audioTargetId": "en:lesson-03:session-52:i14:audio",
+          "transcript": "this round table"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's fair.",
+        "targetPhrase": "this round table",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,153 +970,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-52:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Ви говорите про кілька станцій вашого маршруту",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-52:i14:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i14:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i14:r3",
-          "text": "am"
-        }
-      ],
+      "interactionId": "en:lesson-03:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви говорите про кілька станцій вашого маршруту",
+      "accessibilityLabel": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця.",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы говорите о нескольких станциях вашего маршрута",
-          "uk": "Ви говорите про кілька станцій вашого маршруту"
+        "family": "phrase_builder",
+        "targetPhrase": "Is that high shelf new?",
+        "localizedMeaning": {
+          "ru": "Полка висит далеко. Спросите продавца, новая ли та высокая полка.",
+          "uk": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця."
         },
-        "gappedTargetPhrase": "The stations ___ here.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Is",
+          "that",
+          "high",
+          "shelf",
+          "new"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-52:i14:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i14:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i14:r3",
-            "text": "am"
+            "responseId": "en:lesson-03:session-52:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is that high shelf new?`",
+              "uk": "тут потрібно `Is` — `Is that high shelf new?`"
+            }
           }
         ],
-        "testedDimension": "Ви говорите про кілька станцій вашого маршруту",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-52:i14:r2",
-            "correct": false,
-            "testedDimension": "Ви говорите про кілька станцій вашого маршруту",
-            "feedbackByLocale": {
-              "ru": "Станций несколько: `The stations are here`.",
-              "uk": "Станцій кілька: `The stations are here`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i14:r3",
-            "correct": false,
-            "testedDimension": "Ви говорите про кілька станцій вашого маршруту",
-            "feedbackByLocale": {
-              "ru": "С `The stations` нужно `are`.",
-              "uk": "З `The stations` потрібне `are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-52:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте опис ваги сумки",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-52:i15:r1",
-          "text": "It is light."
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i15:r2",
-          "text": "It is heavy."
-        },
-        {
-          "responseId": "en:lesson-03:session-52:i15:r3",
-          "text": "It is cheap."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-52:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте опис ваги сумки",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-52:i15:audio",
-          "transcript": "It is light."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-52:i15:r1",
-            "targetText": "It is light.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i15:r2",
-            "targetText": "It is heavy.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i15:r3",
-            "targetText": "It is cheap.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-52:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте опис ваги сумки",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `light`, а в этом варианте — `heavy`.",
-              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `heavy`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-52:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте опис ваги сумки",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `light`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `cheap`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-52:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -896,48 +1031,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-52:i16:p1",
-            "target": "stations",
+            "target": "round",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "круглый",
+              "uk": "круглий"
             }
           },
           {
             "pairId": "en:lesson-03:session-52:i16:p2",
-            "target": "light",
+            "target": "oval",
             "meaningByLocale": {
-              "ru": "лёгкий по весу",
-              "uk": "легкий за вагою"
+              "ru": "овальный",
+              "uk": "овальний"
             }
           },
           {
             "pairId": "en:lesson-03:session-52:i16:p3",
-            "target": "fair",
+            "target": "high",
             "meaningByLocale": {
-              "ru": "справедливый",
-              "uk": "справедливий"
+              "ru": "высокий (о полке, потолке)",
+              "uk": "високий (про полицю, стелю)"
             }
           },
           {
             "pairId": "en:lesson-03:session-52:i16:p4",
-            "target": "hotels",
+            "target": "low",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "низкий",
+              "uk": "низький"
             }
           }
         ],
         "leftColumn": [
-          "stations",
-          "light",
-          "fair",
-          "hotels"
+          "round",
+          "oval",
+          "high",
+          "low"
         ],
         "rightColumn": [
-          "станції",
-          "легкий за вагою",
-          "справедливий",
-          "готелі"
+          "круглий",
+          "овальний",
+          "високий (про полицю, стелю)",
+          "низький"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -955,25 +1090,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-52:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Для іншої поїздки ви з другом уже вибрали станції маршруту. Друг шукає їх на карті; ви знайшли їх далі від себе. Скажіть «Станції там», говорячи про ту саму групу",
+      "prompt": "Продавець питає про дзеркало біля стіни. Відповідайте йому коротко: те овальне дзеркало важке.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-52:i17:audio"
       ],
-      "accessibilityLabel": "Для іншої поїздки ви з другом уже вибрали станції маршруту. Друг шукає їх на карті; ви знайшли їх далі від себе. Скажіть «Станції там», говорячи про ту саму групу",
+      "accessibilityLabel": "Продавець питає про дзеркало біля стіни. Відповідайте йому коротко: те овальне дзеркало важке.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-52:i17:audio",
-          "transcript": "The stations are there."
+          "transcript": "That oval mirror is heavy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The stations are there.",
+        "targetPhrase": "That oval mirror is heavy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -995,11 +1130,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fe07cdbe4927278c8697003db2e094f5154bc686a1686c5659ab02a641b7bca3"
+  "learnerFingerprint": "c9827a2cd7288752f080600de5a8213bd9b0fc6cce4816661eb0154659753f1d"
 }

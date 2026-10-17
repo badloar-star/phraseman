@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-50:i01",
-    "correctText": "The bathroom is here.",
+    "correctText": "en:lesson-03:session-50:i01:p1=black\nen:lesson-03:session-50:i01:p2=white\nen:lesson-03:session-50:i01:p3=grey\nen:lesson-03:session-50:i01:p4=beige",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:word:black",
+    "correctText": "black",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i02",
-    "correctText": "cinema",
-    "correctResponseId": "en:lesson-03:session-50:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-50:i03",
-    "correctText": "cinema",
-    "correctResponseId": "en:lesson-03:session-50:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-50:i04",
-    "correctText": "en:lesson-03:session-50:i04:p1=cinema\nen:lesson-03:session-50:i04:p2=expensive\nen:lesson-03:session-50:i04:p3=effective\nen:lesson-03:session-50:i04:p4=bathroom",
+    "correctText": "black",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-50:i03",
+    "correctText": "This is a black chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:word:white",
+    "correctText": "white",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i04",
+    "correctText": "white",
+    "correctResponseId": "en:lesson-03:session-50:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-50:i05",
-    "correctText": "This is a cinema.",
+    "correctText": "Those are white chairs.",
+    "correctResponseId": "en:lesson-03:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:word:grey",
+    "correctText": "grey",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i06",
-    "correctText": "The cinema is there.",
+    "correctText": "grey",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i07",
-    "correctText": "It's expensive.",
+    "correctText": "These are grey pillows.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:word:beige",
+    "correctText": "beige",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i08",
-    "correctText": "a",
+    "correctText": "beige",
     "correctResponseId": "en:lesson-03:session-50:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-50:i09",
-    "correctText": "It is effective.",
-    "correctResponseId": "en:lesson-03:session-50:i09:r1"
+    "correctText": "Those curtains are beige.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i10",
-    "correctText": "en:lesson-03:session-50:i10:p1=cinema\nen:lesson-03:session-50:i10:p2=bathroom\nen:lesson-03:session-50:i10:p3=here\nen:lesson-03:session-50:i10:p4=there",
+    "correctText": "en:lesson-03:session-50:i10:p1=white\nen:lesson-03:session-50:i10:p2=beige\nen:lesson-03:session-50:i10:p3=towel\nen:lesson-03:session-50:i10:p4=bowl",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i11",
-    "correctText": "That bathroom is there.",
-    "correctResponseId": null
+    "correctText": "Is it a grey towel?",
+    "correctResponseId": "en:lesson-03:session-50:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-50:i12",
-    "correctText": "That is a cinema.",
-    "correctResponseId": null
+    "correctText": "towels",
+    "correctResponseId": "en:lesson-03:session-50:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-50:i13",
-    "correctText": "It's effective.",
+    "correctText": "It is a beige bowl.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i14",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-50:i14:r1"
+    "correctText": "grey pillows",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i15",
-    "correctText": "It is expensive.",
-    "correctResponseId": "en:lesson-03:session-50:i15:r1"
+    "correctText": "Are these white bowls?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i16",
-    "correctText": "en:lesson-03:session-50:i16:p1=cinema\nen:lesson-03:session-50:i16:p2=expensive\nen:lesson-03:session-50:i16:p3=effective\nen:lesson-03:session-50:i16:p4=bathroom",
+    "correctText": "en:lesson-03:session-50:i16:p1=grey\nen:lesson-03:session-50:i16:p2=black\nen:lesson-03:session-50:i16:p3=white\nen:lesson-03:session-50:i16:p4=beige",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-50:i17",
-    "correctText": "The cinema is here.",
+    "correctText": "These are beige curtains.",
     "correctResponseId": null
   }
 ]

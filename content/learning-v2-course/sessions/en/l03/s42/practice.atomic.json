@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-42:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с братом смотрите на дверь. Скажите ему: «Дверь открыта».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с братом смотрите на дверь. Скажите ему: «Дверь открыта».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The door is open.",
+          "localizedMeaning": {
+            "ru": "Вы с братом смотрите на дверь. Скажите ему: «Дверь открыта».",
+            "uk": "Ви з братом дивитеся на двері. Скажіть йому: «Двері відчинені»."
+          },
+          "orderedTokens": [
+            "The",
+            "door",
+            "is",
+            "open"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с братом смотрите на дверь. Скажите ему: «Дверь открыта».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The door is open.`",
+                "uk": "тут потрібно `The` — `The door is open.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i02:r1",
+            "text": "The window is closed."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r2",
+            "text": "A window is closed."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r3",
+            "text": "The window is open."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i02:audio",
+            "transcript": "The window is closed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:i02:r1",
+              "targetText": "The window is closed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i02:r2",
+              "targetText": "A window is closed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i02:r3",
+              "targetText": "The window is open.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `closed`, а в этом варианте — `open`.",
+                "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `open`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с подругой смотрите на одну и ту же лампу. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с подругой смотрите на одну и ту же лампу. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с подругой смотрите на одну и ту же лампу. Дополните фразу",
+            "uk": "Ви з подругою дивитеся на одну й ту саму лампу. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ lamp is old.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-42:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Вы с подругой смотрите на одну и ту же лампу. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы с подругой смотрите на одну и ту же лампу. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Вы обе смотрите на эту лампу, она понятна вам обеим, поэтому The, а не A.",
+                "uk": "Ви обидві дивитеся на цю лампу, вона зрозуміла вам обом, тому The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы с подругой смотрите на одну и ту же лампу. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Перед lamp нужно The, а an ставят только перед гласным звуком.",
+                "uk": "Перед lamp потрібно The, а an ставлять лише перед голосним звуком."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-42:i04:p1",
+              "target": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (двери)",
+                "uk": "ручка (дверей)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i04:p2",
+              "target": "bell",
+              "meaningByLocale": {
+                "ru": "звонок",
+                "uk": "дзвінок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i04:p3",
+              "target": "wheel",
+              "meaningByLocale": {
+                "ru": "колесо",
+                "uk": "колесо"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i04:p4",
+              "target": "cord",
+              "meaningByLocale": {
+                "ru": "шнур",
+                "uk": "шнур"
+              }
+            }
+          ],
+          "leftColumn": [
+            "handle",
+            "bell",
+            "wheel",
+            "cord"
+          ],
+          "rightColumn": [
+            "ручка (двери)",
+            "звонок",
+            "колесо",
+            "шнур"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i05:audio",
+            "transcript": "The key is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The key is here.",
+          "orderedTokens": [
+            "The",
+            "key",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The key is here.`",
+                "uk": "тут потрібно `The` — `The key is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы оба смотрите на зеркало в прихожей. Скажите: «Зеркало грязное».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы оба смотрите на зеркало в прихожей. Скажите: «Зеркало грязное».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The mirror is dirty.",
+          "localizedMeaning": {
+            "ru": "Вы оба смотрите на зеркало в прихожей. Скажите: «Зеркало грязное».",
+            "uk": "Ви обоє дивитеся на дзеркало в передпокої. Скажіть: «Дзеркало брудне»."
+          },
+          "orderedTokens": [
+            "The",
+            "mirror",
+            "is",
+            "dirty"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы оба смотрите на зеркало в прихожей. Скажите: «Зеркало грязное».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The mirror is dirty.`",
+                "uk": "тут потрібно `The` — `The mirror is dirty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:handle",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — handle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:handle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — handle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:handle:audio",
+            "transcript": "handle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:handle:r1",
+              "targetText": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (на двери, на дверце). The handle is broken — «Ручка сломана». О части шкафа или двери, за которую берутся рукой.",
+                "uk": "ручка (на дверях, на дверцятах). The handle is broken — «Ручка зламана». Про частину шафи чи дверей, за яку беруться рукою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handle",
+            "definitionByLocale": {
+              "ru": "ручка (на двери, на дверце). The handle is broken — «Ручка сломана». О части шкафа или двери, за которую берутся рукой.",
+              "uk": "ручка (на дверях, на дверцятах). The handle is broken — «Ручка зламана». Про частину шафи чи дверей, за яку беруться рукою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка показывает на дверцу шкафа и называет часть, за которую берутся рукой, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Соседка показывает на дверцу шкафа и называет часть, за которую берутся рукой, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i07:audio",
+            "transcript": "handle"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "handle",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:bell",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:bell:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:bell:audio",
+            "transcript": "bell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:bell:r1",
+              "targetText": "bell",
+              "meaningByLocale": {
+                "ru": "звонок. The bell is old — «Звонок старый». О кнопке или приборе, которым вызывают человека.",
+                "uk": "дзвінок. The bell is old — «Дзвінок старий». Про кнопку чи прилад, яким викликають людину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bell",
+            "definitionByLocale": {
+              "ru": "звонок. The bell is old — «Звонок старый». О кнопке или приборе, которым вызывают человека.",
+              "uk": "дзвінок. The bell is old — «Дзвінок старий». Про кнопку чи прилад, яким викликають людину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i08:r1",
+            "text": "bell"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i08:r2",
+            "text": "key"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i08:r3",
+            "text": "lock"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?",
+            "uk": "Гість натискає кнопку біля дверей, і в домі лунає сигнал. Як називається англійською те, що дзвенить?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-42:i08:r1",
+              "text": "bell"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i08:r2",
+              "text": "key"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i08:r3",
+              "text": "lock"
+            }
+          ],
+          "testedDimension": "Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?",
+              "feedbackByLocale": {
+                "ru": "key — это ключ, а то, что звенит у двери, называется bell.",
+                "uk": "key — це ключ, а те, що дзвенить біля дверей, називається bell."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?",
+              "feedbackByLocale": {
+                "ru": "lock — это замок, а то, что звенит у двери, называется bell.",
+                "uk": "lock — це замок, а те, що дзвенить біля дверей, називається bell."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит соседка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i09:r1",
+            "text": "The handle is broken."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r2",
+            "text": "A handle is broken."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r3",
+            "text": "The handle is loose."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит соседка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i09:audio",
+            "transcript": "The handle is broken."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:i09:r1",
+              "targetText": "The handle is broken.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "targetText": "A handle is broken.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "targetText": "The handle is loose.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит соседка",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит соседка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `broken`, а в этом варианте — `loose`.",
+                "uk": "У записі останнє слово — `broken`, а в цьому варіанті — `loose`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-42:i10:p1",
+              "target": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (двери)",
+                "uk": "ручка (дверей)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i10:p4",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "handle",
+            "door",
+            "window",
+            "key"
+          ],
+          "rightColumn": [
+            "ручка (двери)",
+            "дверь",
+            "окно",
+            "ключ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i11:audio",
+            "transcript": "The bell is old."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bell is old.",
+          "orderedTokens": [
+            "The",
+            "bell",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The bell is old.`",
+                "uk": "тут потрібно `The` — `The bell is old.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы оба слышите звонок у двери. Скажите: «Звонок громкий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы оба слышите звонок у двери. Скажите: «Звонок громкий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bell is loud.",
+          "localizedMeaning": {
+            "ru": "Вы оба слышите звонок у двери. Скажите: «Звонок громкий».",
+            "uk": "Ви обоє чуєте дзвінок біля дверей. Скажіть: «Дзвінок гучний»."
+          },
+          "orderedTokens": [
+            "The",
+            "bell",
+            "is",
+            "loud"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы оба слышите звонок у двери. Скажите: «Звонок громкий».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The bell is loud.`",
+                "uk": "тут потрібно `The` — `The bell is loud.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:wheel",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wheel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:wheel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wheel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:wheel:audio",
+            "transcript": "wheel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:wheel:r1",
+              "targetText": "wheel",
+              "meaningByLocale": {
+                "ru": "колесо. The wheel is loose — «Колесо шатается». О круглой части велосипеда или тележки, которая катится.",
+                "uk": "колесо. The wheel is loose — «Колесо хитається». Про круглу частину велосипеда чи візка, яка котиться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wheel",
+            "definitionByLocale": {
+              "ru": "колесо. The wheel is loose — «Колесо шатается». О круглой части велосипеда или тележки, которая катится.",
+              "uk": "колесо. The wheel is loose — «Колесо хитається». Про круглу частину велосипеда чи візка, яка котиться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на переднюю часть велосипеда, которая катится, и называет её, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на переднюю часть велосипеда, которая катится, и называет её, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i13:audio",
+            "transcript": "wheel"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "wheel",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:cord",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cord",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:cord:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cord",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:cord:audio",
+            "transcript": "cord"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:cord:r1",
+              "targetText": "cord",
+              "meaningByLocale": {
+                "ru": "шнур. The cord is torn — «Шнур порван». О проводе, который идёт от лампы к розетке.",
+                "uk": "шнур. The cord is torn — «Шнур порваний». Про дріт, який іде від лампи до розетки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cord",
+            "definitionByLocale": {
+              "ru": "шнур. The cord is torn — «Шнур порван». О проводе, который идёт от лампы к розетке.",
+              "uk": "шнур. The cord is torn — «Шнур порваний». Про дріт, який іде від лампи до розетки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Провод идёт от лампы к розетке. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i14:r1",
+            "text": "cord"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i14:r2",
+            "text": "socket"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i14:r3",
+            "text": "lamp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Провод идёт от лампы к розетке. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Провод идёт от лампы к розетке. Как он называется по-английски?",
+            "uk": "Дріт іде від лампи до розетки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-42:i14:r1",
+              "text": "cord"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i14:r2",
+              "text": "socket"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i14:r3",
+              "text": "lamp"
+            }
+          ],
+          "testedDimension": "Провод идёт от лампы к розетке. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Провод идёт от лампы к розетке. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "socket — это розетка, а провод от лампы к розетке называется cord.",
+                "uk": "socket — це розетка, а дріт від лампи до розетки називається cord."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Провод идёт от лампы к розетке. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "lamp — это лампа, а провод от неё к розетке называется cord.",
+                "uk": "lamp — це лампа, а дріт від неї до розетки називається cord."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит продавец",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i15:r1",
+            "text": "The wheel is loose."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r2",
+            "text": "A wheel is loose."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r3",
+            "text": "The wheel is tight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит продавец",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i15:audio",
+            "transcript": "The wheel is loose."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:i15:r1",
+              "targetText": "The wheel is loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i15:r2",
+              "targetText": "A wheel is loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i15:r3",
+              "targetText": "The wheel is tight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `loose`, а в этом варианте — `tight`.",
+                "uk": "У записі останнє слово — `loose`, а в цьому варіанті — `tight`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-42:i16:p1",
+              "target": "wheel",
+              "meaningByLocale": {
+                "ru": "колесо",
+                "uk": "колесо"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i16:p2",
+              "target": "cord",
+              "meaningByLocale": {
+                "ru": "шнур",
+                "uk": "шнур"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i16:p3",
+              "target": "bell",
+              "meaningByLocale": {
+                "ru": "звонок",
+                "uk": "дзвінок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i16:p4",
+              "target": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (двери)",
+                "uk": "ручка (дверей)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wheel",
+            "cord",
+            "bell",
+            "handle"
+          ],
+          "rightColumn": [
+            "колесо",
+            "шнур",
+            "звонок",
+            "ручка (двери)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с соседкой смотрите на лампу, у которой шнур порван. Скажите ей: «Шнур порван».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с соседкой смотрите на лампу, у которой шнур порван. Скажите ей: «Шнур порван».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i17:audio",
+            "transcript": "The cord is torn."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cord is torn.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-42:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з братом дивитеся на двері. Скажіть йому: «Двері відчинені».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з братом дивитеся на двері. Скажіть йому: «Двері відчинені».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The door is open.",
+          "localizedMeaning": {
+            "ru": "Вы с братом смотрите на дверь. Скажите ему: «Дверь открыта».",
+            "uk": "Ви з братом дивитеся на двері. Скажіть йому: «Двері відчинені»."
+          },
+          "orderedTokens": [
+            "The",
+            "door",
+            "is",
+            "open"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з братом дивитеся на двері. Скажіть йому: «Двері відчинені».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The door is open.`",
+                "uk": "тут потрібно `The` — `The door is open.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i02:r1",
+            "text": "The window is closed."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r2",
+            "text": "A window is closed."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r3",
+            "text": "The window is open."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i02:audio",
+            "transcript": "The window is closed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:i02:r1",
+              "targetText": "The window is closed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i02:r2",
+              "targetText": "A window is closed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i02:r3",
+              "targetText": "The window is open.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `closed`, а в этом варианте — `open`.",
+                "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `open`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з подругою дивитеся на одну й ту саму лампу. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i03:r3",
+            "text": "An"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з подругою дивитеся на одну й ту саму лампу. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с подругой смотрите на одну и ту же лампу. Дополните фразу",
+            "uk": "Ви з подругою дивитеся на одну й ту саму лампу. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "___ lamp is old.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-42:i03:r1",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i03:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i03:r3",
+              "text": "An"
+            }
+          ],
+          "testedDimension": "Ви з подругою дивитеся на одну й ту саму лампу. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви з подругою дивитеся на одну й ту саму лампу. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Вы обе смотрите на эту лампу, она понятна вам обеим, поэтому The, а не A.",
+                "uk": "Ви обидві дивитеся на цю лампу, вона зрозуміла вам обом, тому The, а не A."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви з подругою дивитеся на одну й ту саму лампу. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Перед lamp нужно The, а an ставят только перед гласным звуком.",
+                "uk": "Перед lamp потрібно The, а an ставлять лише перед голосним звуком."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-42:i04:p1",
+              "target": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (двери)",
+                "uk": "ручка (дверей)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i04:p2",
+              "target": "bell",
+              "meaningByLocale": {
+                "ru": "звонок",
+                "uk": "дзвінок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i04:p3",
+              "target": "wheel",
+              "meaningByLocale": {
+                "ru": "колесо",
+                "uk": "колесо"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i04:p4",
+              "target": "cord",
+              "meaningByLocale": {
+                "ru": "шнур",
+                "uk": "шнур"
+              }
+            }
+          ],
+          "leftColumn": [
+            "handle",
+            "bell",
+            "wheel",
+            "cord"
+          ],
+          "rightColumn": [
+            "ручка (дверей)",
+            "дзвінок",
+            "колесо",
+            "шнур"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i05:audio",
+            "transcript": "The key is here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The key is here.",
+          "orderedTokens": [
+            "The",
+            "key",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The key is here.`",
+                "uk": "тут потрібно `The` — `The key is here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви обоє дивитеся на дзеркало в передпокої. Скажіть: «Дзеркало брудне».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обоє дивитеся на дзеркало в передпокої. Скажіть: «Дзеркало брудне».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The mirror is dirty.",
+          "localizedMeaning": {
+            "ru": "Вы оба смотрите на зеркало в прихожей. Скажите: «Зеркало грязное».",
+            "uk": "Ви обоє дивитеся на дзеркало в передпокої. Скажіть: «Дзеркало брудне»."
+          },
+          "orderedTokens": [
+            "The",
+            "mirror",
+            "is",
+            "dirty"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви обоє дивитеся на дзеркало в передпокої. Скажіть: «Дзеркало брудне».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The mirror is dirty.`",
+                "uk": "тут потрібно `The` — `The mirror is dirty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:handle",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — handle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:handle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — handle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:handle:audio",
+            "transcript": "handle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:handle:r1",
+              "targetText": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (на двери, на дверце). The handle is broken — «Ручка сломана». О части шкафа или двери, за которую берутся рукой.",
+                "uk": "ручка (на дверях, на дверцятах). The handle is broken — «Ручка зламана». Про частину шафи чи дверей, за яку беруться рукою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handle",
+            "definitionByLocale": {
+              "ru": "ручка (на двери, на дверце). The handle is broken — «Ручка сломана». О части шкафа или двери, за которую берутся рукой.",
+              "uk": "ручка (на дверях, на дверцятах). The handle is broken — «Ручка зламана». Про частину шафи чи дверей, за яку беруться рукою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка показує на дверцята шафи й називає частину, за яку беруться рукою, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Сусідка показує на дверцята шафи й називає частину, за яку беруться рукою, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i07:audio",
+            "transcript": "handle"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "handle",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:bell",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:bell:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:bell:audio",
+            "transcript": "bell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:bell:r1",
+              "targetText": "bell",
+              "meaningByLocale": {
+                "ru": "звонок. The bell is old — «Звонок старый». О кнопке или приборе, которым вызывают человека.",
+                "uk": "дзвінок. The bell is old — «Дзвінок старий». Про кнопку чи прилад, яким викликають людину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bell",
+            "definitionByLocale": {
+              "ru": "звонок. The bell is old — «Звонок старый». О кнопке или приборе, которым вызывают человека.",
+              "uk": "дзвінок. The bell is old — «Дзвінок старий». Про кнопку чи прилад, яким викликають людину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гість натискає кнопку біля дверей, і в домі лунає сигнал. Як називається англійською те, що дзвенить?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i08:r1",
+            "text": "bell"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i08:r2",
+            "text": "key"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i08:r3",
+            "text": "lock"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість натискає кнопку біля дверей, і в домі лунає сигнал. Як називається англійською те, що дзвенить?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гость нажимает кнопку у двери, и в доме раздаётся сигнал. Как называется по-английски то, что звенит?",
+            "uk": "Гість натискає кнопку біля дверей, і в домі лунає сигнал. Як називається англійською те, що дзвенить?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-42:i08:r1",
+              "text": "bell"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i08:r2",
+              "text": "key"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i08:r3",
+              "text": "lock"
+            }
+          ],
+          "testedDimension": "Гість натискає кнопку біля дверей, і в домі лунає сигнал. Як називається англійською те, що дзвенить?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Гість натискає кнопку біля дверей, і в домі лунає сигнал. Як називається англійською те, що дзвенить?",
+              "feedbackByLocale": {
+                "ru": "key — это ключ, а то, что звенит у двери, называется bell.",
+                "uk": "key — це ключ, а те, що дзвенить біля дверей, називається bell."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Гість натискає кнопку біля дверей, і в домі лунає сигнал. Як називається англійською те, що дзвенить?",
+              "feedbackByLocale": {
+                "ru": "lock — это замок, а то, что звенит у двери, называется bell.",
+                "uk": "lock — це замок, а те, що дзвенить біля дверей, називається bell."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже сусідка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i09:r1",
+            "text": "The handle is broken."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r2",
+            "text": "A handle is broken."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r3",
+            "text": "The handle is loose."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже сусідка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i09:audio",
+            "transcript": "The handle is broken."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:i09:r1",
+              "targetText": "The handle is broken.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "targetText": "A handle is broken.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "targetText": "The handle is loose.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сусідка",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сусідка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `broken`, а в этом варианте — `loose`.",
+                "uk": "У записі останнє слово — `broken`, а в цьому варіанті — `loose`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-42:i10:p1",
+              "target": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (двери)",
+                "uk": "ручка (дверей)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i10:p4",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "handle",
+            "door",
+            "window",
+            "key"
+          ],
+          "rightColumn": [
+            "ручка (дверей)",
+            "двері",
+            "вікно",
+            "ключ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i11:audio",
+            "transcript": "The bell is old."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bell is old.",
+          "orderedTokens": [
+            "The",
+            "bell",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "A"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The bell is old.`",
+                "uk": "тут потрібно `The` — `The bell is old.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви обоє чуєте дзвінок біля дверей. Скажіть: «Дзвінок гучний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обоє чуєте дзвінок біля дверей. Скажіть: «Дзвінок гучний».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bell is loud.",
+          "localizedMeaning": {
+            "ru": "Вы оба слышите звонок у двери. Скажите: «Звонок громкий».",
+            "uk": "Ви обоє чуєте дзвінок біля дверей. Скажіть: «Дзвінок гучний»."
+          },
+          "orderedTokens": [
+            "The",
+            "bell",
+            "is",
+            "loud"
+          ],
+          "authoredDistractorTokens": [
+            "An"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви обоє чуєте дзвінок біля дверей. Скажіть: «Дзвінок гучний».",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `The` — `The bell is loud.`",
+                "uk": "тут потрібно `The` — `The bell is loud.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:wheel",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wheel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:wheel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wheel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:wheel:audio",
+            "transcript": "wheel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:wheel:r1",
+              "targetText": "wheel",
+              "meaningByLocale": {
+                "ru": "колесо. The wheel is loose — «Колесо шатается». О круглой части велосипеда или тележки, которая катится.",
+                "uk": "колесо. The wheel is loose — «Колесо хитається». Про круглу частину велосипеда чи візка, яка котиться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wheel",
+            "definitionByLocale": {
+              "ru": "колесо. The wheel is loose — «Колесо шатается». О круглой части велосипеда или тележки, которая катится.",
+              "uk": "колесо. The wheel is loose — «Колесо хитається». Про круглу частину велосипеда чи візка, яка котиться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на передню частину велосипеда, яка котиться, і називає її, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на передню частину велосипеда, яка котиться, і називає її, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i13:audio",
+            "transcript": "wheel"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "wheel",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:word:cord",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cord",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:word:cord:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cord",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:word:cord:audio",
+            "transcript": "cord"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:word:cord:r1",
+              "targetText": "cord",
+              "meaningByLocale": {
+                "ru": "шнур. The cord is torn — «Шнур порван». О проводе, который идёт от лампы к розетке.",
+                "uk": "шнур. The cord is torn — «Шнур порваний». Про дріт, який іде від лампи до розетки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cord",
+            "definitionByLocale": {
+              "ru": "шнур. The cord is torn — «Шнур порван». О проводе, который идёт от лампы к розетке.",
+              "uk": "шнур. The cord is torn — «Шнур порваний». Про дріт, який іде від лампи до розетки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дріт іде від лампи до розетки. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i14:r1",
+            "text": "cord"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i14:r2",
+            "text": "socket"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i14:r3",
+            "text": "lamp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дріт іде від лампи до розетки. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Провод идёт от лампы к розетке. Как он называется по-английски?",
+            "uk": "Дріт іде від лампи до розетки. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-42:i14:r1",
+              "text": "cord"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i14:r2",
+              "text": "socket"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i14:r3",
+              "text": "lamp"
+            }
+          ],
+          "testedDimension": "Дріт іде від лампи до розетки. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Дріт іде від лампи до розетки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "socket — это розетка, а провод от лампы к розетке называется cord.",
+                "uk": "socket — це розетка, а дріт від лампи до розетки називається cord."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Дріт іде від лампи до розетки. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "lamp — это лампа, а провод от неё к розетке называется cord.",
+                "uk": "lamp — це лампа, а дріт від неї до розетки називається cord."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже продавець",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i15:r1",
+            "text": "The wheel is loose."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r2",
+            "text": "A wheel is loose."
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r3",
+            "text": "The wheel is tight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже продавець",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i15:audio",
+            "transcript": "The wheel is loose."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-42:i15:r1",
+              "targetText": "The wheel is loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i15:r2",
+              "targetText": "A wheel is loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i15:r3",
+              "targetText": "The wheel is tight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
+                "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `loose`, а в этом варианте — `tight`.",
+                "uk": "У записі останнє слово — `loose`, а в цьому варіанті — `tight`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-42:i16:p1",
+              "target": "wheel",
+              "meaningByLocale": {
+                "ru": "колесо",
+                "uk": "колесо"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i16:p2",
+              "target": "cord",
+              "meaningByLocale": {
+                "ru": "шнур",
+                "uk": "шнур"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i16:p3",
+              "target": "bell",
+              "meaningByLocale": {
+                "ru": "звонок",
+                "uk": "дзвінок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-42:i16:p4",
+              "target": "handle",
+              "meaningByLocale": {
+                "ru": "ручка (двери)",
+                "uk": "ручка (дверей)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wheel",
+            "cord",
+            "bell",
+            "handle"
+          ],
+          "rightColumn": [
+            "колесо",
+            "шнур",
+            "дзвінок",
+            "ручка (дверей)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви із сусідкою дивитеся на лампу, в якої шнур порваний. Скажіть їй: «Шнур порваний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Ви із сусідкою дивитеся на лампу, в якої шнур порваний. Скажіть їй: «Шнур порваний».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i17:audio",
+            "transcript": "The cord is torn."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cord is torn.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-42:i01",
+      "correctText": "The door is open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i02",
+      "correctText": "The window is closed.",
+      "correctResponseId": "en:lesson-03:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i03",
+      "correctText": "The",
+      "correctResponseId": "en:lesson-03:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i05",
+      "correctText": "The key is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i06",
+      "correctText": "The mirror is dirty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:handle",
+      "correctText": "handle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i07",
+      "correctText": "handle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:bell",
+      "correctText": "bell",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i08",
+      "correctText": "bell",
+      "correctResponseId": "en:lesson-03:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i09",
+      "correctText": "The handle is broken.",
+      "correctResponseId": "en:lesson-03:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i11",
+      "correctText": "The bell is old.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i12",
+      "correctText": "The bell is loud.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:wheel",
+      "correctText": "wheel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i13",
+      "correctText": "wheel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:cord",
+      "correctText": "cord",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i14",
+      "correctText": "cord",
+      "correctResponseId": "en:lesson-03:session-42:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i15",
+      "correctText": "The wheel is loose.",
+      "correctResponseId": "en:lesson-03:session-42:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i17",
+      "correctText": "The cord is torn.",
+      "correctResponseId": null
+    }
+  ]
+}

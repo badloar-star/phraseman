@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-45:intro1:r2": {
-          "ru": "`kitchen` — кухня. Офис — `office`.",
-          "uk": "`kitchen` — кухня. Офіс — `office`."
+          "ru": "Вы оба смотрите на одну и ту же цифру на ярлыке, поэтому the: The size is small.",
+          "uk": "Ви обоє дивитеся на одну й ту саму цифру на ярлику, тому the: The size is small."
         },
         "en:lesson-03:session-45:intro1:r3": {
-          "ru": "`bathroom` — ванная комната. Офис — `office`.",
-          "uk": "`bathroom` — ванна кімната. Офіс — `office`."
+          "ru": "Размер один, поэтому нужно is: The size is small.",
+          "uk": "Розмір один, тому потрібно is: The size is small."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-45:intro2:r2": {
-          "ru": "Офис один: нужно `is`.",
-          "uk": "Офіс один: потрібне `is`."
+          "ru": "Надпись вы называете впервые, поэтому a: This is a model.",
+          "uk": "Напис ви називаєте вперше, тому a: This is a model."
         },
         "en:lesson-03:session-45:intro2:r3": {
-          "ru": "Так говорят о нескольких офисах. Здесь один: `The office is here`.",
-          "uk": "Так говорять про кілька офісів. Тут один: `The office is here`."
+          "ru": "Слово model начинается с согласного звука, поэтому a: This is a model.",
+          "uk": "Слово model починається з приголосного звуку, тому a: This is a model."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-45:intro3:r2": {
-          "ru": "`useless` — бесполезная. Здесь схема помогает: `useful`.",
-          "uk": "`useless` — некорисна. Тут схема допомагає: `useful`."
+          "ru": "Вы оба смотрите на цвет этого шарфа, поэтому the: The colour is wrong.",
+          "uk": "Ви обоє дивитеся на колір цього шарфа, тому the: The colour is wrong."
         },
         "en:lesson-03:session-45:intro3:r3": {
-          "ru": "Речь об одной схеме: `It is useful`.",
-          "uk": "Ідеться про одну схему: `It is useful`."
+          "ru": "Цвет один, поэтому нужно is: The colour is wrong.",
+          "uk": "Колір один, тому потрібно is: The colour is wrong."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "be1877ebd17ed1d3ee3d86652bc001ac492be66905969d85bc7ca28c8a10834a"
+  "auxiliaryFingerprint": "8fb992fc932cc4629cf78500688006c2e69a06b7f636623dc608f4931a5f6b0d"
 }

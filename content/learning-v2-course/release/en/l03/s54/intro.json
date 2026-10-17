@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-54",
   "learningOutcomeByLocale": {
-    "ru": "описать полосатую вещь и различить знакомое, незнакомое и неизвестное",
-    "uk": "описати смугасту річ і розрізнити знайоме, незнайоме та невідоме"
+    "ru": "называть вещь с рисунком и не ставить this/that и the рядом: This striped scarf",
+    "uk": "називати річ із малюнком і не ставити this/that та the поруч: This striped scarf"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Узор из полос",
-        "uk": "Візерунок зі смуг"
+        "ru": "Шарф в полоску",
+        "uk": "Шарф у смужку"
       },
       "bodyByLocale": {
-        "ru": "`striped` — «полосатый». О сумке с полосами: `It is striped` — «Она полосатая». Можно назвать вещь целиком: `This is a striped bag` — «Это полосатая сумка». `a` относится к одной сумке, а `striped` стоит перед `bag`. Полосы не делают сумку быстрее, зато помогают её узнать.",
-        "uk": "`striped` — «смугастий». Про сумку зі смугами: `It is striped` — «Вона смугаста». Можна назвати річ цілком: `This is a striped bag` — «Це смугаста сумка». `a` стосується однієї сумки, а `striped` стоїть перед `bag`. Смуги не роблять сумку швидшою, зате допомагають її впізнати."
+        "ru": "Подруга примеряет перед зеркалом шарф с полосами: белая, синяя, белая, синяя. Бирка на нём ещё не оторвана, и продавец ждёт вашего слова. striped — «полосатый». This striped scarf is new — «Этот полосатый шарф новый». This и the вместе не ставим.",
+        "uk": "Подруга приміряє перед дзеркалом шарф зі смугами: біла, синя, біла, синя. Бирка на ньому ще не відірвана, і продавець чекає на ваше слово. striped — «смугастий». This striped scarf is new — «Цей смугастий шарф новий». This і the разом не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-03:session-54:intro1:q",
         "promptByLocale": {
-          "ru": "Как одним словом описать узор из полос?",
-          "uk": "Як одним словом описати візерунок зі смуг?"
+          "ru": "Продавец ждёт ответа. Скажите ему, что этот полосатый шарф новый.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що цей смугастий шарф новий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-54:intro1:r1",
-              "text": "striped"
+              "text": "This striped scarf is new."
             },
             {
               "responseId": "en:lesson-03:session-54:intro1:r2",
-              "text": "full"
+              "text": "The this striped scarf is new."
             },
             {
               "responseId": "en:lesson-03:session-54:intro1:r3",
-              "text": "heavy"
+              "text": "This scarf striped is new."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-54:intro1:r1",
-              "text": "striped"
+              "text": "This striped scarf is new."
             },
             {
               "responseId": "en:lesson-03:session-54:intro1:r2",
-              "text": "full"
+              "text": "The this striped scarf is new."
             },
             {
               "responseId": "en:lesson-03:session-54:intro1:r3",
-              "text": "heavy"
+              "text": "This scarf striped is new."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Как одним словом описать узор из полос?",
-          "uk": "Як одним словом описати візерунок зі смуг?"
+          "ru": "Продавец ждёт ответа. Скажите ему, что этот полосатый шарф новый.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що цей смугастий шарф новий."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Знакомое и незнакомое место",
-        "uk": "Знайоме й незнайоме місце"
+        "ru": "Рубашка на дальнем крючке",
+        "uk": "Сорочка на дальньому гачку"
       },
       "bodyByLocale": {
-        "ru": "`airport` — «аэропорт». `familiar` — «знакомый»: вы уже бывали в этом месте и узнаёте его. `This airport is familiar` — «Этот аэропорт знакомый». `unfamiliar` — «незнакомый»: вы видите другой аэропорт впервые. О нём: `It is unfamiliar` — «Он незнакомый».",
-        "uk": "`airport` — «аеропорт». `familiar` — «знайомий»: ви вже бували в цьому місці й упізнаєте його. `This airport is familiar` — «Цей аеропорт знайомий». `unfamiliar` — «незнайомий»: ви бачите інший аеропорт уперше. Про нього: `It is unfamiliar` — «Він незнайомий»."
+        "ru": "В магазине на дальнем крючке висит рубашка в клетку, как скатерть в кафе. Цена у неё очень низкая, и подруга хочет узнать, не старая ли это вещь. checked — «клетчатый». Рубашка далеко, поэтому that: That checked shirt is old — «Та клетчатая рубашка старая».",
+        "uk": "У магазині на дальньому гачку висить сорочка в клітинку, як скатертина в кафе. Ціна в неї дуже низька, і подруга хоче дізнатися, чи не стара це річ. checked — «картатий». Сорочка далеко, тому that: That checked shirt is old — «Та картата сорочка стара»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-54:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже бывали в этом аэропорту и узнаёте его. Скажите «Этот аэропорт знакомый».",
-          "uk": "Ви вже бували в цьому аеропорту й упізнаєте його. Скажіть «Цей аеропорт знайомий»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что та клетчатая рубашка старая.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що та картата сорочка стара."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-54:intro2:r1",
-              "text": "This airport is familiar."
+              "text": "That checked shirt is old."
             },
             {
               "responseId": "en:lesson-03:session-54:intro2:r2",
-              "text": "This airport is unfamiliar."
+              "text": "A that checked shirt is old."
             },
             {
               "responseId": "en:lesson-03:session-54:intro2:r3",
-              "text": "This airport are familiar."
+              "text": "That checked shirt are old."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-54:intro2:r1",
-              "text": "This airport is familiar."
+              "text": "That checked shirt is old."
             },
             {
               "responseId": "en:lesson-03:session-54:intro2:r2",
-              "text": "This airport is unfamiliar."
+              "text": "A that checked shirt is old."
             },
             {
               "responseId": "en:lesson-03:session-54:intro2:r3",
-              "text": "This airport are familiar."
+              "text": "That checked shirt are old."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже бывали в этом аэропорту и узнаёте его. Скажите «Этот аэропорт знакомый».",
-          "uk": "Ви вже бували в цьому аеропорту й упізнаєте його. Скажіть «Цей аеропорт знайомий»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что та клетчатая рубашка старая.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що та картата сорочка стара."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Неизвестный и надёжный",
-        "uk": "Невідомий і надійний"
+        "ru": "Носки на дальней полке",
+        "uk": "Шкарпетки на дальній полиці"
       },
       "bodyByLocale": {
-        "ru": "`unknown` — «неизвестный»: номер появился на экране, и вы не знаете, чей он. О номере: `It is unknown` — «Он неизвестный». `unfamiliar` означает, что вы с чем-то не знакомы; `unknown` подчёркивает отсутствие сведений. `reliable` — «надёжный»: сервис не раз выполнял обещанное. О нём: `It is reliable` — «Он надёжный».",
-        "uk": "`unknown` — «невідомий»: номер з’явився на екрані, і ви не знаєте, чий він. Про номер: `It is unknown` — «Він невідомий». `unfamiliar` означає, що ви з чимось не знайомі; `unknown` підкреслює брак відомостей. `reliable` — «надійний»: сервіс не раз виконував обіцяне. Про нього: `It is reliable` — «Він надійний»."
+        "ru": "На дальней полке магазина лежат носки в горошек: на светлом фоне тёмные круглые пятна. Подруга мёрзнет и спрашивает, тёплые ли они. Носков несколько, и они далеко. spotted — «в горошек». Those spotted socks are warm — «Те носки в горошек тёплые».",
+        "uk": "На дальній полиці магазину лежать шкарпетки в горошок: на світлому тлі темні круглі плями. Подруга мерзне й питає, чи вони теплі. Шкарпеток кілька, і вони далеко. spotted — «у горошок». Those spotted socks are warm — «Ті шкарпетки в горошок теплі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-54:intro3:q",
         "promptByLocale": {
-          "ru": "Сервис всегда выполняет обещанное, вы можете на него положиться. Скажите «Он надёжный».",
-          "uk": "Сервіс завжди виконує обіцяне, ви можете на нього покластися. Скажіть «Він надійний»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что те носки в горошек тёплые.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що ті шкарпетки в горошок теплі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-54:intro3:r1",
-              "text": "It is reliable."
+              "text": "Those spotted socks are warm."
             },
             {
               "responseId": "en:lesson-03:session-54:intro3:r2",
-              "text": "It is unknown."
+              "text": "The those spotted socks are warm."
             },
             {
               "responseId": "en:lesson-03:session-54:intro3:r3",
-              "text": "It are reliable."
+              "text": "Those spotted sock are warm."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-54:intro3:r1",
-              "text": "It is reliable."
+              "text": "Those spotted socks are warm."
             },
             {
               "responseId": "en:lesson-03:session-54:intro3:r2",
-              "text": "It is unknown."
+              "text": "The those spotted socks are warm."
             },
             {
               "responseId": "en:lesson-03:session-54:intro3:r3",
-              "text": "It are reliable."
+              "text": "Those spotted sock are warm."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сервис всегда выполняет обещанное, вы можете на него положиться. Скажите «Он надёжный».",
-          "uk": "Сервіс завжди виконує обіцяне, ви можете на нього покластися. Скажіть «Він надійний»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что те носки в горошек тёплые.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що ті шкарпетки в горошок теплі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "47c3745f612f2567e537a56e0ed74b26d7ca051a1b026083b1bd3a8e31a439ac"
+  "introFingerprint": "90aa55ec5696207723ae265488b4971f800e0d42ac6ee1b06f661177df4bd95a"
 }

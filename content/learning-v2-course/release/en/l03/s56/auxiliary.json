@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-56:intro1:r2": {
-          "ru": "Одна больница: `This is a hospital`.",
-          "uk": "Одна лікарня: `This is a hospital`."
+          "ru": "Коврик один, поэтому нужно is: This is a grey mat.",
+          "uk": "Килимок один, тому потрібно is: This is a grey mat."
         },
         "en:lesson-03:session-56:intro1:r3": {
-          "ru": "`These are` для нескольких; здесь одна больница.",
-          "uk": "`These are` для кількох; тут одна лікарня."
+          "ru": "Цвет идёт перед предметом: a grey mat.",
+          "uk": "Колір іде перед предметом: a grey mat."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-56:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-56:intro2:r2": {
-          "ru": "Библиотек несколько: `are`.",
-          "uk": "Бібліотек кілька: `are`."
+          "ru": "Подносов несколько, и a перед ними не ставим: metal trays.",
+          "uk": "Підносів кілька, і a перед ними не ставимо: metal trays."
         },
         "en:lesson-03:session-56:intro2:r3": {
-          "ru": "Так говорят об одной библиотеке. Здесь несколько: `libraries are`.",
-          "uk": "Так говорять про одну бібліотеку. Тут кілька: `libraries are`."
+          "ru": "Подносы далеко, а these говорим о близком: Those are metal trays.",
+          "uk": "Підноси далеко, а these кажемо про близьке: Those are metal trays."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-56:intro3:r2": {
-          "ru": "Одна сумка: `is`.",
-          "uk": "Одна сумка: `is`."
+          "ru": "Крючок один, поэтому нужно is: That metal hook is cheap.",
+          "uk": "Гачок один, тому потрібно is: That metal hook is cheap."
         },
         "en:lesson-03:session-56:intro3:r3": {
-          "ru": "После `This` сразу идёт `bag`, без `a`.",
-          "uk": "Після `This` одразу йде `bag`, без `a`."
+          "ru": "Крючок далеко, а this говорим о близком: That metal hook is cheap.",
+          "uk": "Гачок далеко, а this кажемо про близьке: That metal hook is cheap."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7ff52428af205290f3e2bd197598c020a168aec8f70192c833884cf9cd08715d"
+  "auxiliaryFingerprint": "eaa81edcad6e8c638d5e59d841bb2f4586922dd176f40881ed58197a151ed36f"
 }

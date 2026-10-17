@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-55",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько кафе и спросить, где находятся уже выбранные места",
-    "uk": "назвати кілька кафе та запитати, де розташовані вже вибрані місця"
+    "ru": "назвать признак вещи и спросить о нём: The shape is oval, What is the material?",
+    "uk": "назвати ознаку речі й запитати про неї: The shape is oval, What is the material?"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Несколько кафе",
-        "uk": "Кілька кафе"
+        "ru": "Зеркало для прихожей",
+        "uk": "Дзеркало для передпокою"
       },
       "bodyByLocale": {
-        "ru": "`cafes` — «кафе», когда их несколько. Одно — `cafe`, несколько — `cafes`: в английском добавляется `s`, хотя русское слово не меняется. `These are cafes` — «Это кафе», показываем несколько рядом на карте. Три столика в одном кафе ещё не превращают его в три кафе.",
-        "uk": "`cafes` — «кафе», коли їх кілька. Одне — `cafe`, кілька — `cafes`: в англійській додається `s`, хоча українське слово не змінюється. `These are cafes` — «Це кафе», показуємо кілька поруч на карті. Три столики в одному кафе ще не перетворюють його на три кафе."
+        "ru": "Вы с подругой выбираете зеркало для прихожей. Продавец спрашивает, какое вам нужно: круглое, вытянутое? Вы смотрите на очертания рамы и водите по ней пальцем. shape — «форма». Про зеркало, которое вы нашли, можно сказать: The shape is oval — «Форма овальная».",
+        "uk": "Ви з подругою вибираєте дзеркало для передпокою. Продавець питає, яке вам потрібне: кругле, витягнуте? Ви дивитеся на обриси рами й водите по ній пальцем. shape — «форма». Про дзеркало, яке ви знайшли, можна сказати: The shape is oval — «Форма овальна»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-55:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите несколько кафе одним английским словом.",
-          "uk": "Назвіть кілька кафе одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что форма овальная.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що форма овальна."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-55:intro1:r1",
-              "text": "cafes"
+              "text": "The shape is oval."
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r2",
-              "text": "cafe"
+              "text": "The shape are oval."
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r3",
-              "text": "restaurants"
+              "text": "The oval is shape."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-55:intro1:r1",
-              "text": "cafes"
+              "text": "The shape is oval."
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r2",
-              "text": "cafe"
+              "text": "The shape are oval."
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r3",
-              "text": "restaurants"
+              "text": "The oval is shape."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите несколько кафе одним английским словом.",
-          "uk": "Назвіть кілька кафе одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что форма овальная.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що форма овальна."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ищем выбранные места",
-        "uk": "Шукаємо вибрані місця"
+        "ru": "Сумка на рынке",
+        "uk": "Сумка на ринку"
       },
       "bodyByLocale": {
-        "ru": "`Where are the cafes?` — «Где кафе?» Здесь речь о нескольких кафе, которые вы уже обсудили: нужны `are` и `the`. `The cafes are here` — «Кафе здесь». `restaurants` — «рестораны»: `The restaurants are there` — «Рестораны там».",
-        "uk": "`Where are the cafes?` — «Де кафе?» Тут ідеться про кілька кафе, які ви вже обговорили: потрібні `are` і `the`. `The cafes are here` — «Кафе тут». `restaurants` — «ресторани»: `The restaurants are there` — «Ресторани там»."
+        "ru": "На рынке подруга берёт в руки сумку и гладит её по краю. Продавец спрашивает, что вас интересует. Вам хочется узнать, из чего сумка сделана: ткань это или что-то прочнее. material — «материал». Вы объясняете: The material is leather — «Материал — кожа».",
+        "uk": "На ринку подруга бере до рук сумку й гладить її по краю. Продавець питає, що вас цікавить. Вам хочеться дізнатися, з чого сумка зроблена: тканина це чи щось міцніше. material — «матеріал». Ви пояснюєте: The material is leather — «Матеріал — шкіра»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-55:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже обсудили несколько кафе. Спросите, где они.",
-          "uk": "Ви вже обговорили кілька кафе. Запитайте, де вони."
+          "ru": "Продавец ждёт ответа. Скажите ему, что материал — кожа.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що матеріал — шкіра."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-55:intro2:r1",
-              "text": "Where are the cafes?"
+              "text": "The material is leather."
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r2",
-              "text": "Where is the cafes?"
+              "text": "The material are leather."
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r3",
-              "text": "What are the cafes?"
+              "text": "The leather is material."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-55:intro2:r1",
-              "text": "Where are the cafes?"
+              "text": "The material is leather."
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r2",
-              "text": "Where is the cafes?"
+              "text": "The material are leather."
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r3",
-              "text": "What are the cafes?"
+              "text": "The leather is material."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже обсудили несколько кафе. Спросите, где они.",
-          "uk": "Ви вже обговорили кілька кафе. Запитайте, де вони."
+          "ru": "Продавец ждёт ответа. Скажите ему, что материал — кожа.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що матеріал — шкіра."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "На кого можно положиться",
-        "uk": "На кого можна покластися"
+        "ru": "Ткань для занавески",
+        "uk": "Тканина для завіси"
       },
       "bodyByLocale": {
-        "ru": "`responsible` — «ответственный»: Анна выполняет обещанное. `She is responsible` — «Она ответственная». `independent` — «самостоятельный, независимый»: Анна сама организует встречи. `She is independent` — «Она самостоятельная». `dependent` — «зависимый»: другой участник пока нуждается в чужой помощи. О нём: `He is dependent` — «Он зависим». `unreliable` — «ненадёжный»: сервис часто нарушает обещания. `It is unreliable` — «Он ненадёжный».",
-        "uk": "`responsible` — «відповідальний»: Анна виконує обіцяне. `She is responsible` — «Вона відповідальна». `independent` — «самостійний, незалежний»: Анна сама організовує зустрічі. `She is independent` — «Вона самостійна». `dependent` — «залежний»: інший учасник поки потребує чужої допомоги. Про нього: `He is dependent` — «Він залежний». `unreliable` — «ненадійний»: сервіс часто порушує обіцянки. `It is unreliable` — «Він ненадійний»."
+        "ru": "В магазине тканей подруга выбирает материю для занавески. По всему полотну разбросаны мелкие цветы, один рядом с другим. Продавец записывает заказ и просит назвать рисунок на ткани. pattern — «узор, рисунок на ткани». The pattern is floral — «Узор цветочный».",
+        "uk": "У магазині тканин подруга вибирає матерію для завіси. По всьому полотну розкидані дрібні квіти, один біля одного. Продавець записує замовлення й просить назвати малюнок на тканині. pattern — «візерунок, малюнок на тканині». The pattern is floral — «Візерунок квітковий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-55:intro3:q",
         "promptByLocale": {
-          "ru": "Анна выполняет обещанное. Скажите «Она ответственная».",
-          "uk": "Анна виконує обіцяне. Скажіть «Вона відповідальна»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что узор цветочный.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що візерунок квітковий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-55:intro3:r1",
-              "text": "She is responsible."
+              "text": "The pattern is floral."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r2",
-              "text": "She is unreliable."
+              "text": "The pattern are floral."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r3",
-              "text": "She are responsible."
+              "text": "The floral is pattern."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-55:intro3:r1",
-              "text": "She is responsible."
+              "text": "The pattern is floral."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r2",
-              "text": "She is unreliable."
+              "text": "The pattern are floral."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r3",
-              "text": "She are responsible."
+              "text": "The floral is pattern."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна выполняет обещанное. Скажите «Она ответственная».",
-          "uk": "Анна виконує обіцяне. Скажіть «Вона відповідальна»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что узор цветочный.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що візерунок квітковий."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b4ec5ca6a72dc22661da688b6db8a9ebe6cca014fa9d9b5d8bc612f9cd825164"
+  "introFingerprint": "16b52116da5907909002d5febe7b00f8e8ed2d75ebecbd61d2fed407fb211013"
 }

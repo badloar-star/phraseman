@@ -1,0 +1,2369 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-52:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-52:i01:p1",
+              "target": "round",
+              "meaningByLocale": {
+                "ru": "круглый",
+                "uk": "круглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i01:p2",
+              "target": "oval",
+              "meaningByLocale": {
+                "ru": "овальный",
+                "uk": "овальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i01:p3",
+              "target": "low",
+              "meaningByLocale": {
+                "ru": "низкий",
+                "uk": "низький"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i01:p4",
+              "target": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о полке, потолке)",
+                "uk": "високий (про полицю, стелю)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "round",
+            "oval",
+            "low",
+            "high"
+          ],
+          "rightColumn": [
+            "круглый",
+            "овальный",
+            "низкий",
+            "высокий (о полке, потолке)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:round",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — round",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:round:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — round",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:round:audio",
+            "transcript": "round"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:round:r1",
+              "targetText": "round",
+              "meaningByLocale": {
+                "ru": "круглый. This round table is heavy — «Этот круглый стол тяжёлый». О столе, зеркале, часах, коврике.",
+                "uk": "круглий. This round table is heavy — «Цей круглий стіл важкий». Про стіл, дзеркало, годинник, килимок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "round",
+            "definitionByLocale": {
+              "ru": "круглый. This round table is heavy — «Этот круглый стол тяжёлый». О столе, зеркале, часах, коврике.",
+              "uk": "круглий. This round table is heavy — «Цей круглий стіл важкий». Про стіл, дзеркало, годинник, килимок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на мяч и называет его форму, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на мяч и называет его форму, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i02:audio",
+            "transcript": "round"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "round",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Стол стоит рядом с вами. Скажите продавцу полной фразой: этот круглый стол новый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стол стоит рядом с вами. Скажите продавцу полной фразой: этот круглый стол новый.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This round table is new.",
+          "localizedMeaning": {
+            "ru": "Стол стоит рядом с вами. Скажите продавцу полной фразой: этот круглый стол новый.",
+            "uk": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий."
+          },
+          "orderedTokens": [
+            "This",
+            "round",
+            "table",
+            "is",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Стол стоит рядом с вами. Скажите продавцу полной фразой: этот круглый стол новый.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This round table is new.`",
+                "uk": "тут потрібно `is` — `This round table is new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:oval",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — oval",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:oval:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — oval",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:oval:audio",
+            "transcript": "oval"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:oval:r1",
+              "targetText": "oval",
+              "meaningByLocale": {
+                "ru": "овальный. That oval mirror is new — «То овальное зеркало новое». О форме яйца, вытянутой по кругу.",
+                "uk": "овальний. That oval mirror is new — «Те овальне дзеркало нове». Про форму яйця, витягнуту по колу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oval",
+            "definitionByLocale": {
+              "ru": "овальный. That oval mirror is new — «То овальное зеркало новое». О форме яйца, вытянутой по кругу.",
+              "uk": "овальний. That oval mirror is new — «Те овальне дзеркало нове». Про форму яйця, витягнуту по колу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i04:r1",
+            "text": "oval"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i04:r2",
+            "text": "round"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i04:r3",
+            "text": "low"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+            "uk": "Подруга показує на яйце в мисці. Як називається його форма англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-52:i04:r1",
+              "text": "oval"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i04:r2",
+              "text": "round"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i04:r3",
+              "text": "low"
+            }
+          ],
+          "testedDimension": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+              "feedbackByLocale": {
+                "ru": "round — это круглый, а у яйца вытянутая форма: oval.",
+                "uk": "round — це круглий, а в яйця витягнута форма: oval."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+              "feedbackByLocale": {
+                "ru": "low — это низкий, а форма яйца называется oval.",
+                "uk": "low — це низький, а форма яйця називається oval."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о зеркале",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i05:r1",
+            "text": "That round mirror is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i05:r2",
+            "text": "That oval mirror is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i05:r3",
+            "text": "That round mirror is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о зеркале",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i05:audio",
+            "transcript": "That round mirror is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:i05:r1",
+              "targetText": "That round mirror is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i05:r2",
+              "targetText": "That oval mirror is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i05:r3",
+              "targetText": "That round mirror is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о зеркале",
+              "feedbackByLocale": {
+                "ru": "В записи форма — `round`, а в этом варианте — `oval`.",
+                "uk": "У записі форма — `round`, а в цьому варіанті — `oval`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о зеркале",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:low",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — low",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:low:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — low",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:low:audio",
+            "transcript": "low"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:low:r1",
+              "targetText": "low",
+              "meaningByLocale": {
+                "ru": "низкий. This low stool is cheap — «Этот низкий табурет недорогой». О табурете, столике, полке, потолке.",
+                "uk": "низький. This low stool is cheap — «Цей низький табурет недорогий». Про табурет, столик, полицю, стелю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "low",
+            "definitionByLocale": {
+              "ru": "низкий. This low stool is cheap — «Этот низкий табурет недорогой». О табурете, столике, полке, потолке.",
+              "uk": "низький. This low stool is cheap — «Цей низький табурет недорогий». Про табурет, столик, полицю, стелю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на столик ниже колена и называет его высоту, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на столик ниже колена и называет его высоту, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i06:audio",
+            "transcript": "low"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "low",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i07:audio",
+            "transcript": "This low stool is heavy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This low stool is heavy.",
+          "orderedTokens": [
+            "This",
+            "low",
+            "stool",
+            "is",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This low stool is heavy.`",
+                "uk": "тут потрібно `is` — `This low stool is heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:high",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — high",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:high:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — high",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:high:audio",
+            "transcript": "high"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:high:r1",
+              "targetText": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о предмете, полке, потолке). That high shelf is old — «Та высокая полка старая». О полке, потолке, окне.",
+                "uk": "високий (про предмет, полицю, стелю). That high shelf is old — «Та висока полиця стара». Про полицю, стелю, вікно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "high",
+            "definitionByLocale": {
+              "ru": "высокий (о предмете, полке, потолке). That high shelf is old — «Та высокая полка старая». О полке, потолке, окне.",
+              "uk": "високий (про предмет, полицю, стелю). That high shelf is old — «Та висока полиця стара». Про полицю, стелю, вікно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i08:r1",
+            "text": "high"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i08:r2",
+            "text": "low"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i08:r3",
+            "text": "round"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+            "uk": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-52:i08:r1",
+              "text": "high"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i08:r2",
+              "text": "low"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i08:r3",
+              "text": "round"
+            }
+          ],
+          "testedDimension": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+              "feedbackByLocale": {
+                "ru": "low — это низкий, а полка под потолком высокая: high.",
+                "uk": "low — це низький, а полиця під стелею висока: high."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+              "feedbackByLocale": {
+                "ru": "round — это круглый, а слово о высоте полки: high.",
+                "uk": "round — це круглий, а слово про висоту полиці: high."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полка висит далеко. Скажите продавцу полной фразой: та высокая полка старая.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полка висит далеко. Скажите продавцу полной фразой: та высокая полка старая.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That high shelf is old.",
+          "localizedMeaning": {
+            "ru": "Полка висит далеко. Скажите продавцу полной фразой: та высокая полка старая.",
+            "uk": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара."
+          },
+          "orderedTokens": [
+            "That",
+            "high",
+            "shelf",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Полка висит далеко. Скажите продавцу полной фразой: та высокая полка старая.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That high shelf is old.`",
+                "uk": "тут потрібно `That` — `That high shelf is old.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-52:i10:p1",
+              "target": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о полке, потолке)",
+                "uk": "високий (про полицю, стелю)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i10:p2",
+              "target": "low",
+              "meaningByLocale": {
+                "ru": "низкий",
+                "uk": "низький"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i10:p3",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "high",
+            "low",
+            "clock",
+            "shelf"
+          ],
+          "rightColumn": [
+            "высокий (о полке, потолке)",
+            "низкий",
+            "часы (настенные)",
+            "полка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i11:r1",
+            "text": "Is that oval clock new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i11:r2",
+            "text": "Is this oval clock new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i11:r3",
+            "text": "Is that round clock new?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i11:audio",
+            "transcript": "Is that oval clock new?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:i11:r1",
+              "targetText": "Is that oval clock new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i11:r2",
+              "targetText": "Is this oval clock new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i11:r3",
+              "targetText": "Is that round clock new?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
+                "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи форма — `oval`, а в этом варианте — `round`.",
+                "uk": "У записі форма — `oval`, а в цьому варіанті — `round`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i12:r1",
+            "text": "mirror"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r2",
+            "text": "mirrors"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r3",
+            "text": "a mirror"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+            "uk": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This oval ___ is new.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-52:i12:r1",
+              "text": "mirror"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i12:r2",
+              "text": "mirrors"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i12:r3",
+              "text": "a mirror"
+            }
+          ],
+          "testedDimension": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Зеркало одно, поэтому mirror без s.",
+                "uk": "Дзеркало одне, тому mirror без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Между oval и mirror слово a не ставим: This oval mirror.",
+                "uk": "Між oval і mirror слово a не ставимо: This oval mirror."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i13:audio",
+            "transcript": "That low stool is cheap."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That low stool is cheap.",
+          "orderedTokens": [
+            "That",
+            "low",
+            "stool",
+            "is",
+            "cheap"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `That low stool is cheap.`",
+                "uk": "тут потрібно `is` — `That low stool is cheap.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, какой стол вам нужен. Скажите ей, что этот круглый",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, какой стол вам нужен. Скажите ей, что этот круглый",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i14:audio",
+            "transcript": "this round table"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "this round table",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полка висит далеко. Спросите продавца, новая ли та высокая полка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полка висит далеко. Спросите продавца, новая ли та высокая полка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is that high shelf new?",
+          "localizedMeaning": {
+            "ru": "Полка висит далеко. Спросите продавца, новая ли та высокая полка.",
+            "uk": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця."
+          },
+          "orderedTokens": [
+            "Is",
+            "that",
+            "high",
+            "shelf",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Полка висит далеко. Спросите продавца, новая ли та высокая полка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is that high shelf new?`",
+                "uk": "тут потрібно `Is` — `Is that high shelf new?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-52:i16:p1",
+              "target": "round",
+              "meaningByLocale": {
+                "ru": "круглый",
+                "uk": "круглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i16:p2",
+              "target": "oval",
+              "meaningByLocale": {
+                "ru": "овальный",
+                "uk": "овальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i16:p3",
+              "target": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о полке, потолке)",
+                "uk": "високий (про полицю, стелю)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i16:p4",
+              "target": "low",
+              "meaningByLocale": {
+                "ru": "низкий",
+                "uk": "низький"
+              }
+            }
+          ],
+          "leftColumn": [
+            "round",
+            "oval",
+            "high",
+            "low"
+          ],
+          "rightColumn": [
+            "круглый",
+            "овальный",
+            "высокий (о полке, потолке)",
+            "низкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец спрашивает про зеркало у стены. Ответьте ему коротко: то овальное зеркало тяжёлое.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Продавец спрашивает про зеркало у стены. Ответьте ему коротко: то овальное зеркало тяжёлое.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i17:audio",
+            "transcript": "That oval mirror is heavy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That oval mirror is heavy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-52:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-52:i01:p1",
+              "target": "round",
+              "meaningByLocale": {
+                "ru": "круглый",
+                "uk": "круглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i01:p2",
+              "target": "oval",
+              "meaningByLocale": {
+                "ru": "овальный",
+                "uk": "овальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i01:p3",
+              "target": "low",
+              "meaningByLocale": {
+                "ru": "низкий",
+                "uk": "низький"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i01:p4",
+              "target": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о полке, потолке)",
+                "uk": "високий (про полицю, стелю)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "round",
+            "oval",
+            "low",
+            "high"
+          ],
+          "rightColumn": [
+            "круглий",
+            "овальний",
+            "низький",
+            "високий (про полицю, стелю)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:round",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — round",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:round:audio"
+        ],
+        "accessibilityLabel": "Картка слова — round",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:round:audio",
+            "transcript": "round"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:round:r1",
+              "targetText": "round",
+              "meaningByLocale": {
+                "ru": "круглый. This round table is heavy — «Этот круглый стол тяжёлый». О столе, зеркале, часах, коврике.",
+                "uk": "круглий. This round table is heavy — «Цей круглий стіл важкий». Про стіл, дзеркало, годинник, килимок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "round",
+            "definitionByLocale": {
+              "ru": "круглый. This round table is heavy — «Этот круглый стол тяжёлый». О столе, зеркале, часах, коврике.",
+              "uk": "круглий. This round table is heavy — «Цей круглий стіл важкий». Про стіл, дзеркало, годинник, килимок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на м’яч і називає його форму, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на м’яч і називає його форму, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i02:audio",
+            "transcript": "round"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "round",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This round table is new.",
+          "localizedMeaning": {
+            "ru": "Стол стоит рядом с вами. Скажите продавцу полной фразой: этот круглый стол новый.",
+            "uk": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий."
+          },
+          "orderedTokens": [
+            "This",
+            "round",
+            "table",
+            "is",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Стіл стоїть поруч із вами. Скажіть продавцю повною фразою: цей круглий стіл новий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This round table is new.`",
+                "uk": "тут потрібно `is` — `This round table is new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:oval",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — oval",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:oval:audio"
+        ],
+        "accessibilityLabel": "Картка слова — oval",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:oval:audio",
+            "transcript": "oval"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:oval:r1",
+              "targetText": "oval",
+              "meaningByLocale": {
+                "ru": "овальный. That oval mirror is new — «То овальное зеркало новое». О форме яйца, вытянутой по кругу.",
+                "uk": "овальний. That oval mirror is new — «Те овальне дзеркало нове». Про форму яйця, витягнуту по колу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oval",
+            "definitionByLocale": {
+              "ru": "овальный. That oval mirror is new — «То овальное зеркало новое». О форме яйца, вытянутой по кругу.",
+              "uk": "овальний. That oval mirror is new — «Те овальне дзеркало нове». Про форму яйця, витягнуту по колу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i04:r1",
+            "text": "oval"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i04:r2",
+            "text": "round"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i04:r3",
+            "text": "low"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на яйцо в миске. Как называется его форма по-английски?",
+            "uk": "Подруга показує на яйце в мисці. Як називається його форма англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-52:i04:r1",
+              "text": "oval"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i04:r2",
+              "text": "round"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i04:r3",
+              "text": "low"
+            }
+          ],
+          "testedDimension": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i04:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
+              "feedbackByLocale": {
+                "ru": "round — это круглый, а у яйца вытянутая форма: oval.",
+                "uk": "round — це круглий, а в яйця витягнута форма: oval."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i04:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на яйце в мисці. Як називається його форма англійською?",
+              "feedbackByLocale": {
+                "ru": "low — это низкий, а форма яйца называется oval.",
+                "uk": "low — це низький, а форма яйця називається oval."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про дзеркало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i05:r1",
+            "text": "That round mirror is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i05:r2",
+            "text": "That oval mirror is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i05:r3",
+            "text": "That round mirror is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про дзеркало",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i05:audio",
+            "transcript": "That round mirror is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:i05:r1",
+              "targetText": "That round mirror is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i05:r2",
+              "targetText": "That oval mirror is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i05:r3",
+              "targetText": "That round mirror is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про дзеркало",
+              "feedbackByLocale": {
+                "ru": "В записи форма — `round`, а в этом варианте — `oval`.",
+                "uk": "У записі форма — `round`, а в цьому варіанті — `oval`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про дзеркало",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:low",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — low",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:low:audio"
+        ],
+        "accessibilityLabel": "Картка слова — low",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:low:audio",
+            "transcript": "low"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:low:r1",
+              "targetText": "low",
+              "meaningByLocale": {
+                "ru": "низкий. This low stool is cheap — «Этот низкий табурет недорогой». О табурете, столике, полке, потолке.",
+                "uk": "низький. This low stool is cheap — «Цей низький табурет недорогий». Про табурет, столик, полицю, стелю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "low",
+            "definitionByLocale": {
+              "ru": "низкий. This low stool is cheap — «Этот низкий табурет недорогой». О табурете, столике, полке, потолке.",
+              "uk": "низький. This low stool is cheap — «Цей низький табурет недорогий». Про табурет, столик, полицю, стелю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на столик нижче коліна й називає його висоту, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на столик нижче коліна й називає його висоту, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i06:audio",
+            "transcript": "low"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "low",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i07:audio",
+            "transcript": "This low stool is heavy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This low stool is heavy.",
+          "orderedTokens": [
+            "This",
+            "low",
+            "stool",
+            "is",
+            "heavy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This low stool is heavy.`",
+                "uk": "тут потрібно `is` — `This low stool is heavy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:word:high",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — high",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:word:high:audio"
+        ],
+        "accessibilityLabel": "Картка слова — high",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:word:high:audio",
+            "transcript": "high"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:word:high:r1",
+              "targetText": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о предмете, полке, потолке). That high shelf is old — «Та высокая полка старая». О полке, потолке, окне.",
+                "uk": "високий (про предмет, полицю, стелю). That high shelf is old — «Та висока полиця стара». Про полицю, стелю, вікно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "high",
+            "definitionByLocale": {
+              "ru": "высокий (о предмете, полке, потолке). That high shelf is old — «Та высокая полка старая». О полке, потолке, окне.",
+              "uk": "високий (про предмет, полицю, стелю). That high shelf is old — «Та висока полиця стара». Про полицю, стелю, вікно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i08:r1",
+            "text": "high"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i08:r2",
+            "text": "low"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i08:r3",
+            "text": "round"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на полку под самым потолком. Как называется её высота по-английски?",
+            "uk": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-52:i08:r1",
+              "text": "high"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i08:r2",
+              "text": "low"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i08:r3",
+              "text": "round"
+            }
+          ],
+          "testedDimension": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+              "feedbackByLocale": {
+                "ru": "low — это низкий, а полка под потолком высокая: high.",
+                "uk": "low — це низький, а полиця під стелею висока: high."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на полицю під самою стелею. Як називається її висота англійською?",
+              "feedbackByLocale": {
+                "ru": "round — это круглый, а слово о высоте полки: high.",
+                "uk": "round — це круглий, а слово про висоту полиці: high."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That high shelf is old.",
+          "localizedMeaning": {
+            "ru": "Полка висит далеко. Скажите продавцу полной фразой: та высокая полка старая.",
+            "uk": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара."
+          },
+          "orderedTokens": [
+            "That",
+            "high",
+            "shelf",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Полиця висить далеко. Скажіть продавцю повною фразою: та висока полиця стара.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That high shelf is old.`",
+                "uk": "тут потрібно `That` — `That high shelf is old.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-52:i10:p1",
+              "target": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о полке, потолке)",
+                "uk": "високий (про полицю, стелю)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i10:p2",
+              "target": "low",
+              "meaningByLocale": {
+                "ru": "низкий",
+                "uk": "низький"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i10:p3",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "high",
+            "low",
+            "clock",
+            "shelf"
+          ],
+          "rightColumn": [
+            "високий (про полицю, стелю)",
+            "низький",
+            "годинник (настінний)",
+            "полиця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i11:r1",
+            "text": "Is that oval clock new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i11:r2",
+            "text": "Is this oval clock new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i11:r3",
+            "text": "Is that round clock new?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i11:audio",
+            "transcript": "Is that oval clock new?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-52:i11:r1",
+              "targetText": "Is that oval clock new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i11:r2",
+              "targetText": "Is this oval clock new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i11:r3",
+              "targetText": "Is that round clock new?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
+                "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи форма — `oval`, а в этом варианте — `round`.",
+                "uk": "У записі форма — `oval`, а в цьому варіанті — `round`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i12:r1",
+            "text": "mirror"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r2",
+            "text": "mirrors"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r3",
+            "text": "a mirror"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Зеркало одно и стоит рядом с вами. Дополните фразу",
+            "uk": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This oval ___ is new.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-52:i12:r1",
+              "text": "mirror"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i12:r2",
+              "text": "mirrors"
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i12:r3",
+              "text": "a mirror"
+            }
+          ],
+          "testedDimension": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Зеркало одно, поэтому mirror без s.",
+                "uk": "Дзеркало одне, тому mirror без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Дзеркало одне й стоїть поруч із вами. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Между oval и mirror слово a не ставим: This oval mirror.",
+                "uk": "Між oval і mirror слово a не ставимо: This oval mirror."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i13:audio",
+            "transcript": "That low stool is cheap."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That low stool is cheap.",
+          "orderedTokens": [
+            "That",
+            "low",
+            "stool",
+            "is",
+            "cheap"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `That low stool is cheap.`",
+                "uk": "тут потрібно `is` — `That low stool is cheap.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, який стіл вам потрібен. Скажіть їй, що цей круглий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, який стіл вам потрібен. Скажіть їй, що цей круглий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i14:audio",
+            "transcript": "this round table"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "this round table",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is that high shelf new?",
+          "localizedMeaning": {
+            "ru": "Полка висит далеко. Спросите продавца, новая ли та высокая полка.",
+            "uk": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця."
+          },
+          "orderedTokens": [
+            "Is",
+            "that",
+            "high",
+            "shelf",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-52:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Полиця висить далеко. Запитайте продавця, чи нова та висока полиця.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is that high shelf new?`",
+                "uk": "тут потрібно `Is` — `Is that high shelf new?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-52:i16:p1",
+              "target": "round",
+              "meaningByLocale": {
+                "ru": "круглый",
+                "uk": "круглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i16:p2",
+              "target": "oval",
+              "meaningByLocale": {
+                "ru": "овальный",
+                "uk": "овальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i16:p3",
+              "target": "high",
+              "meaningByLocale": {
+                "ru": "высокий (о полке, потолке)",
+                "uk": "високий (про полицю, стелю)"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i16:p4",
+              "target": "low",
+              "meaningByLocale": {
+                "ru": "низкий",
+                "uk": "низький"
+              }
+            }
+          ],
+          "leftColumn": [
+            "round",
+            "oval",
+            "high",
+            "low"
+          ],
+          "rightColumn": [
+            "круглий",
+            "овальний",
+            "високий (про полицю, стелю)",
+            "низький"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець питає про дзеркало біля стіни. Відповідайте йому коротко: те овальне дзеркало важке.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Продавець питає про дзеркало біля стіни. Відповідайте йому коротко: те овальне дзеркало важке.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i17:audio",
+            "transcript": "That oval mirror is heavy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That oval mirror is heavy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-52:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:round",
+      "correctText": "round",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i02",
+      "correctText": "round",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i03",
+      "correctText": "This round table is new.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:oval",
+      "correctText": "oval",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i04",
+      "correctText": "oval",
+      "correctResponseId": "en:lesson-03:session-52:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i05",
+      "correctText": "That round mirror is old.",
+      "correctResponseId": "en:lesson-03:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:low",
+      "correctText": "low",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i06",
+      "correctText": "low",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i07",
+      "correctText": "This low stool is heavy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:high",
+      "correctText": "high",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i08",
+      "correctText": "high",
+      "correctResponseId": "en:lesson-03:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i09",
+      "correctText": "That high shelf is old.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i11",
+      "correctText": "Is that oval clock new?",
+      "correctResponseId": "en:lesson-03:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i12",
+      "correctText": "mirror",
+      "correctResponseId": "en:lesson-03:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i13",
+      "correctText": "That low stool is cheap.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i14",
+      "correctText": "this round table",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i15",
+      "correctText": "Is that high shelf new?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i17",
+      "correctText": "That oval mirror is heavy.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-53:i01",
-    "correctText": "The office is there.",
+    "correctText": "en:lesson-03:session-53:i01:p1=metal\nen:lesson-03:session-53:i01:p2=leather\nen:lesson-03:session-53:i01:p3=rubber\nen:lesson-03:session-53:i01:p4=cotton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:word:metal",
+    "correctText": "metal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i02",
-    "correctText": "museum",
-    "correctResponseId": "en:lesson-03:session-53:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-53:i03",
-    "correctText": "museum",
-    "correctResponseId": "en:lesson-03:session-53:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-53:i04",
-    "correctText": "en:lesson-03:session-53:i04:p1=museum\nen:lesson-03:session-53:i04:p2=full\nen:lesson-03:session-53:i04:p3=unfair\nen:lesson-03:session-53:i04:p4=office",
+    "correctText": "metal",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-53:i03",
+    "correctText": "These metal boxes are new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:word:leather",
+    "correctText": "leather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:i04",
+    "correctText": "leather",
+    "correctResponseId": "en:lesson-03:session-53:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-53:i05",
-    "correctText": "This is a museum.",
+    "correctText": "Those leather gloves are old.",
+    "correctResponseId": "en:lesson-03:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:word:rubber",
+    "correctText": "rubber",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i06",
-    "correctText": "Where is the museum?",
+    "correctText": "rubber",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i07",
-    "correctText": "It's full.",
+    "correctText": "Those rubber boots are heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:word:cotton",
+    "correctText": "cotton",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i08",
-    "correctText": "a",
+    "correctText": "cotton",
     "correctResponseId": "en:lesson-03:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-53:i09",
-    "correctText": "It is unfair.",
-    "correctResponseId": "en:lesson-03:session-53:i09:r1"
+    "correctText": "Those cotton towels are clean.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i10",
-    "correctText": "en:lesson-03:session-53:i10:p1=museum\nen:lesson-03:session-53:i10:p2=office\nen:lesson-03:session-53:i10:p3=here\nen:lesson-03:session-53:i10:p4=there",
+    "correctText": "en:lesson-03:session-53:i10:p1=rubber\nen:lesson-03:session-53:i10:p2=cotton\nen:lesson-03:session-53:i10:p3=glove\nen:lesson-03:session-53:i10:p4=boot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i11",
-    "correctText": "The museum is here.",
-    "correctResponseId": null
+    "correctText": "Are these metal boxes heavy?",
+    "correctResponseId": "en:lesson-03:session-53:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-53:i12",
-    "correctText": "Where is the office?",
-    "correctResponseId": null
+    "correctText": "towels",
+    "correctResponseId": "en:lesson-03:session-53:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-53:i13",
-    "correctText": "It's unfair.",
+    "correctText": "These cotton towels are clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i14",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-53:i14:r1"
+    "correctText": "these rubber boots",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i15",
-    "correctText": "It is full.",
-    "correctResponseId": "en:lesson-03:session-53:i15:r1"
+    "correctText": "Are those cotton towels new?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i16",
-    "correctText": "en:lesson-03:session-53:i16:p1=museum\nen:lesson-03:session-53:i16:p2=full\nen:lesson-03:session-53:i16:p3=unfair\nen:lesson-03:session-53:i16:p4=office",
+    "correctText": "en:lesson-03:session-53:i16:p1=leather\nen:lesson-03:session-53:i16:p2=metal\nen:lesson-03:session-53:i16:p3=cotton\nen:lesson-03:session-53:i16:p4=rubber",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i17",
-    "correctText": "The museum is there.",
+    "correctText": "Those leather gloves are expensive.",
     "correctResponseId": null
   }
 ]

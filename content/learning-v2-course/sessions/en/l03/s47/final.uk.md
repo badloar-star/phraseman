@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 47 — Ресторани для зустрічі
+# Англійська · Урок 3 · Заняття 47 — Купуємо деталі для ремонту
 
-**Ситуація.** Ви з Анною вибираєте ресторан для зустрічі друзів. На карті позначено кілька варіантів. Анна пропонує час зустрічі, який усіх влаштовує. На столі стоять пляшки; одна тріснула, і ви попереджаєте про небезпеку.
+**Ситуація.** Ви з братом купуєте в магазині інструментів усе для ремонту полиці. Один предмет, названий уперше, бере a або an. Конкретні, на які обоє дивитеся, — the. Про кілька взагалі говоримо без артикля.
 
-**Що ви опануєте:** назвати кілька ресторанів і вказати місце вибраної групи з the та are
-**Нові слова:** restaurants
+**Що ви опануєте:** вибирати a/an, the або відсутність артикля в новій побутовій сцені
+**Нові слова:** screw, nail, wrench, drill
+**Повертаються:** hammer, ladder, bucket, box, key, lock
 
 ---
 
 ## Інтро 1
 
-### Куди підемо разом
+### Що у вас у руці
 
-`restaurants` — «ресторани», один — `restaurant`. `These are restaurants` — «Це ресторани»: показуємо на кілька поруч на карті. Для кількох додаємо `s` і використовуємо `are`. Десять столиків в одному ресторані — усе ще один ресторан: рахуємо заклади, а не столики.
+Ви з братом обираєте в магазині дрібні деталі для ремонту старої полиці. Ви взяли з прилавка одну металеву деталь із різьбою. Продавець за прилавком питає, що це. screw — «шуруп». Ви називаєте його вперше, тому a: This is a screw — «Це шуруп».
 
-**Назвіть кілька ресторанів одним англійським словом.**
+**Продавець питає, що ви тримаєте в руці. Скажіть: «Це шуруп».**
 
-- ✅ **restaurants**
-- ❌ restaurant — *`restaurant` — один ресторан. Кілька — `restaurants`.*
-- ❌ hotels — *`hotels` — готелі. Ресторани — `restaurants`.*
+- ✅ **This is a screw.**
+- ❌ This is the screw. — *Шуруп ви називаєте вперше, тому a: This is a screw.*
+- ❌ This is an screw. — *Слово screw починається з приголосного звуку, тому a: This is a screw.*
 
 ---
 
 ## Інтро 2
 
-### Вибрані ресторани
+### Коробка з цвяхами
 
-`The restaurants are there` — «Ресторани там»: ви говорите про конкретні ресторани, які вже вибрали для порівняння. `The` підходить для зрозумілої співрозмовникові групи. Якщо прямо показуєте на кілька поруч: `These restaurants are here` — «Ці ресторани тут».
+Брат знайшов на нижній полиці відкриту коробку, в якій лежать цвяхи. Ви обоє дивитеся на ці цвяхи й вирішуєте, чи підійдуть вони для вашої полиці. nail — «цвях». Вони зрозумілі вам обом, тому the: The nails are long — «Цвяхи довгі». Один цвях — a nail.
 
-**Ви з Анною вже вибрали кілька ресторанів. Покажіть їх у дальній частині карти: «Ресторани там».**
+**Брат тримає ту саму коробку. Скажіть йому: «Цвяхи довгі».**
 
-- ✅ **The restaurants are there.**
-- ❌ The restaurants is there. — *Ресторанів кілька: потрібне `are`.*
-- ❌ The restaurant is there. — *Так говорять про один ресторан. Тут кілька: `The restaurants are there`.*
+- ✅ **The nails are long.**
+- ❌ Nails are long. — *Ви обоє дивитеся на цвяхи з цієї коробки, тому the: The nails are long.*
+- ❌ The nails is long. — *Цвяхів кілька, тому потрібно are: The nails are long.*
 
 ---
 
 ## Інтро 3
 
-### Підходить, але не обов’язково ідеально
+### Брати чи позичити
 
-`acceptable` — «прийнятний»: запропонований час зустрічі всіх влаштовує, навіть якщо це не ідеальний варіант. Про нього: `It is acceptable` — «Це прийнятно». `dangerous` — «небезпечний»: тріснутою пляшкою можна порізатися. Про неї: `It is dangerous` — «Вона небезпечна». `bottles` — «пляшки»; про кілька на столі: `The bottles are here` — «Пляшки тут».
+Брат пропонує купити одразу кілька гайкових ключів, а ви вже уважно рахуєте гроші. wrench — «гайковий ключ». Ви пояснюєте йому не про якісь певні ключі, а про гайкові ключі взагалі, тому без the: Wrenches are expensive — «Гайкові ключі дорогі».
 
-**Запропонований час не ідеальний, але всіх влаштовує. Скажіть «Це прийнятно».**
+**Брат пропонує купити кілька гайкових ключів. Скажіть про них узагалі: «Гайкові ключі дорогі».**
 
-- ✅ **It is acceptable.**
-- ❌ It is dangerous. — *`dangerous` — небезпечно. Тут варіант влаштовує: `acceptable`.*
-- ❌ It are acceptable. — *Ідеться про один варіант: `It is acceptable`.*
+- ✅ **Wrenches are expensive.**
+- ❌ The wrenches are expensive. — *Ви говорите про гайкові ключі взагалі, а не про конкретні, тому без the: Wrenches are expensive.*
+- ❌ Wrench are expensive. — *Ключів кілька, тому потрібно wrenches: Wrenches are expensive.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна шукає пляшки. Вони на столі поруч. Скажіть «Пляшки тут»**
+**1 · Ви вперше називаєте молоток, який лежить на столі. Скажіть братові: «Це молоток».**
 <!-- interaction_id: en:lesson-03:session-47:i01; family: phrase_builder -->
-Плитки: `here` `are` `bottles` `The` `is` → **The bottles are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The bottles are here.`)*
+Плитки: `hammer` `a` `is` `This` `an` → **This is a hammer.**
+*(плитка `an` зайва: тут потрібно `a` — `This is a hammer.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте брата й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-47:i02; family: listen_choose -->
-🔊 *restaurants* → **restaurants** · hotels · bedrooms
-- hotels — *У записі перше слово — `restaurants`, а в цьому варіанті — `hotels`.*
-- bedrooms — *У записі перше слово — `restaurants`, а в цьому варіанті — `bedrooms`.*
+🔊 *A ladder is here.* → **A ladder is here.** · The ladder is here. · A ladder is there.
+- The ladder is here. — *У записі перше слово — `A`, а в цьому варіанті — `The`.*
+- A ladder is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
 
-**3 · Назвіть кілька ресторанів одним англійським словом**
+**3 · Ви з братом дивитеся на відро в кутку. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-47:i03; family: context_gap_grammar -->
-___ → **restaurants** · restaurant · hotels
-- restaurant — *`restaurant` — один ресторан. Кілька — `restaurants`.*
-- hotels — *`hotels` — готелі. Ресторани — `restaurants`.*
+___ bucket is empty. → **The** · A · An
+- A — *Ви обоє дивитеся на це відро, і воно зрозуміле вам обом, тому The, а не A.*
+- An — *Перед bucket an не ставлять, а тут взагалі потрібно The: відро зрозуміле вам обом.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-47:i04; family: speed_match -->
-restaurants — ресторани · dangerous — небезпечний · acceptable — прийнятний · bottles — пляшки
+screw — шуруп · nail — цвях · wrench — гайковий ключ · drill — дриль
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-47:i05; family: listen_build_dictation -->
-🔊 *These are restaurants.* Плитки: `restaurants` `are` `These` `is` → **These are restaurants.**
-*(плитка `is` зайва: тут потрібно `are` — `These are restaurants.`)*
+🔊 *The hammer is heavy.* Плитки: `hammer` `heavy` `is` `The` `A` → **The hammer is heavy.**
+*(плитка `A` зайва: тут потрібно `The` — `The hammer is heavy.`)*
 
-**6 · Потрібні вам обом ресторани позначено далі на карті. Скажіть «Ресторани там»**
+**6 · Ви говорите про коробки взагалі. Скажіть братові: «Коробки важкі».**
 <!-- interaction_id: en:lesson-03:session-47:i06; family: phrase_builder -->
-Плитки: `there` `are` `restaurants` `The` `is` → **The restaurants are there.**
-*(плитка `is` зайва: тут потрібно `are` — `The restaurants are there.`)*
+Плитки: `heavy` `are` `Boxes` `The` → **Boxes are heavy.**
+*(плитка `The` зайва: тут потрібно `Boxes` — `Boxes are heavy.`)*
 
-**7 · Одна пляшка тріснула, нею можна порізатися. Скажіть про неї «Вона небезпечна» зі скороченням**
+**7 · Картка слова — screw**
+<!-- interaction_id: en:lesson-03:session-47:word:screw; family: word_card -->
+> **screw** — шуруп. This is a screw — «Це шуруп». Про металеву деталь із різьбою, яку вкручують у дерево.
+
+**8 · Продавець показує вам дрібну металеву деталь із різьбою й називає її, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-47:i07; family: scripted_repeat_compare -->
-🎙 **It's dangerous.**
+🎙 **screw**
 
-**8 · Ви показуєте на кілька ресторанів у дальній частині карти**
+**9 · Картка слова — nail**
+<!-- interaction_id: en:lesson-03:session-47:word:nail; family: word_card -->
+> **nail** — цвях. The nails are long — «Цвяхи довгі». Про тонкий металевий стрижень, який забивають молотком.
+
+**10 · Брат показує тонкий металевий стрижень із гострим кінцем, який забивають молотком. Як він називається англійською?**
 <!-- interaction_id: en:lesson-03:session-47:i08; family: context_gap_grammar -->
-___ are restaurants. → **Those** · That · This
-- That — *`That` — один. Для кількох далі потрібне `Those`.*
-- This — *`This` — один поруч. Тут кілька далі: `Those`.*
+___ → **nail** · key · lock
+- key — *key — це ключ, а стрижень, який забивають молотком, називається nail.*
+- lock — *lock — це замок, а стрижень, який забивають молотком, називається nail.*
 
-**9 · Послухайте оцінку запропонованого часу зустрічі**
+**11 · Послухайте продавця й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-47:i09; family: listen_choose -->
-🔊 *It is acceptable.* → **It is acceptable.** · It is appropriate. · It is useful.
-- It is appropriate. — *У записі останнє слово — `acceptable`, а в цьому варіанті — `appropriate`.*
-- It is useful. — *У записі останнє слово — `acceptable`, а в цьому варіанті — `useful`.*
+🔊 *This is a screw.* → **This is a screw.** · That is a screw. · This is the screw.
+- That is a screw. — *У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко).*
+- This is the screw. — *У записі перед `screw` стоїть `a`, а в цьому варіанті — `the`.*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-47:i10; family: speed_match -->
-restaurants — ресторани · bottles — пляшки · here — тут · there — там
+screw — шуруп · hammer — молоток · ladder — драбина · bucket — відро
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-47:i11; family: listen_build_dictation -->
-🔊 *Those bottles are there.* Плитки: `there` `are` `bottles` `Those` `is` → **Those bottles are there.**
-*(плитка `is` зайва: тут потрібно `are` — `Those bottles are there.`)*
+🔊 *The nails are long.* Плитки: `nails` `long` `are` `The` `Is` → **The nails are long.**
+*(плитка `Is` зайва: тут потрібно `are` — `The nails are long.`)*
 
-**12 · Ви показуєте на ресторани в ближній частині карти. Скажіть «Ці ресторани тут»**
+**14 · Ви з братом дивитеся на цвяхи в коробці. Скажіть: «Цвяхи короткі».**
 <!-- interaction_id: en:lesson-03:session-47:i12; family: phrase_builder -->
-Плитки: `here` `are` `restaurants` `These` `is` → **These restaurants are here.**
-*(плитка `is` зайва: тут потрібно `are` — `These restaurants are here.`)*
+Плитки: `nails` `are` `short` `The` `A` → **The nails are short.**
+*(плитка `A` зайва: тут потрібно `The` — `The nails are short.`)*
 
-**13 · Запропонований час зустрічі всіх влаштовує. Скажіть «Це прийнятно» зі скороченням**
+**15 · Картка слова — wrench**
+<!-- interaction_id: en:lesson-03:session-47:word:wrench; family: word_card -->
+> **wrench** — гайковий ключ. Wrenches are expensive — «Гайкові ключі дорогі». Про інструмент, яким закручують гайки.
+
+**16 · Продавець дістає інструмент, яким закручують гайки, і називає його, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-47:i13; family: scripted_repeat_compare -->
-🎙 **It's acceptable.**
+🎙 **wrench**
 
-**14 · Ви вказуєте місце кількох уже вибраних ресторанів**
+**17 · Картка слова — drill**
+<!-- interaction_id: en:lesson-03:session-47:word:drill; family: word_card -->
+> **drill** — дриль. The drill is new — «Дриль новий». Про прилад, яким роблять отвори в стіні.
+
+**18 · Прилад із гострим наконечником, що обертається, яким роблять отвори в стіні. Як він називається англійською?**
 <!-- interaction_id: en:lesson-03:session-47:i14; family: context_gap_grammar -->
-The restaurants ___ there. → **are** · is · am
-- is — *Ресторанів кілька: `The restaurants are there`.*
-- am — *З `The restaurants` потрібне `are`.*
+___ → **drill** · hammer · ladder
+- hammer — *hammer — це молоток, а прилад, який робить отвори в стіні, називається drill.*
+- ladder — *ladder — це драбина, а прилад, який робить отвори в стіні, називається drill.*
 
-**15 · Послухайте попередження про тріснуту пляшку**
+**19 · Послухайте, що каже брат**
 <!-- interaction_id: en:lesson-03:session-47:i15; family: listen_choose -->
-🔊 *It is dangerous.* → **It is dangerous.** · It is useful. · It is acceptable.
-- It is useful. — *У записі останнє слово — `dangerous`, а в цьому варіанті — `useful`.*
-- It is acceptable. — *У записі останнє слово — `dangerous`, а в цьому варіанті — `acceptable`.*
+🔊 *Wrenches are expensive.* → **Wrenches are expensive.** · The wrenches are expensive. · Wrenches are cheap.
+- The wrenches are expensive. — *У записі перше слово — `Wrenches`, а в цьому варіанті — `The`.*
+- Wrenches are cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-47:i16; family: speed_match -->
-restaurants — ресторани · dangerous — небезпечний · acceptable — прийнятний · bottles — пляшки
+drill — дриль · wrench — гайковий ключ · nail — цвях · screw — шуруп
 
-**17 · В іншій поїздці ви з другом вибрали кілька ресторанів. Друг шукає їх на карті, а ви знайшли їх просто перед собою. Скажіть «Ресторани тут», говорячи про ту саму групу**
+**21 · Ви з братом дивитеся на дриль, про який щойно говорили. Скажіть йому: «Дриль новий».**
 <!-- interaction_id: en:lesson-03:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The restaurants are here.**
-
+🎙 **The drill is new.**

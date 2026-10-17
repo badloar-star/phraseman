@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 44 — Готелі на плані міста
+# Англійська · Урок 3 · Заняття 44 — Слухаємо розмову біля каси
 
-**Ситуація.** Ви з Анною вибираєте готель для поїздки з дітьми. На плані міста позначено кілька готелів. Дітям цікаво, де вони житимуть. Анна уточнила правила паркування: залишати машину у вибраному місці дозволено.
+**Ситуація.** Ви стоїте біля каси й слухаєте розмову продавців. Якщо вони називають когось чи щось уперше, чути a або an. Якщо вже говорили про це, чути the. За першим словом можна зрозуміти, нове це чи вже знайоме.
 
-**Що ви опануєте:** назвати кілька готелів і вказати місце конкретної групи з the та are
-**Нові слова:** hotels
+**Що ви опануєте:** на слух відрізняти новий предмет (a/an) від уже знайомого (the)
+**Нові слова:** customer, seller, assistant, queue
+**Повертаються:** basket, trolley, umbrella, coin, cashier
 
 ---
 
 ## Інтро 1
 
-### Кілька готелів
+### Людина біля каси
 
-`hotels` — «готелі», один — `hotel`. Для кількох додаємо `s`: `These are hotels` — «Це готелі», показуємо на кілька поруч на плані. Один готель може мати сто кімнат, але це все ще один `hotel`: рахуємо готелі, а не кімнати.
+Ви стоїте в довгій черзі й добре чуєте розмову попереду. До каси підійшов новий чоловік, і продавець уперше говорить про нього колезі. customer — «покупець». Він говорить про нього вперше, тому a: A customer is happy — «Покупець задоволений».
 
-**Назвіть кілька готелів одним англійським словом.**
+**Продавець уперше говорить колезі про чоловіка, який підійшов до каси. Що він скаже?**
 
-- ✅ **hotels**
-- ❌ hotel — *`hotel` — один готель. Кілька — `hotels`.*
-- ❌ bedrooms — *`bedrooms` — спальні. Готелі — `hotels`.*
+- ✅ **A customer is happy.**
+- ❌ The customer is happy. — *Про цього чоловіка продавець говорить уперше, тому a: A customer is happy.*
+- ❌ A customer are happy. — *Покупець один, тому потрібно is: A customer is happy.*
 
 ---
 
 ## Інтро 2
 
-### Які саме готелі
+### Де продавець
 
-`The hotels are here` — «Готелі тут»: ви говорите про конкретні готелі, які вже вибрали для порівняння. `The` підходить і для кількох, а після `hotels` потрібне `are`. Якщо показуєте на іншу групу далі на плані: `Those hotels are there` — «Ті готелі там».
+Ви вже сказали покупцеві, що в залі сьогодні працює один продавець. Тепер він знову питає про нього: де той? seller — «продавець». Ви обоє знаєте, про кого мова, тому the: The seller is busy — «Продавець зайнятий». Слово the чути на початку фрази.
 
-**Ви вже вибрали кілька готелів для порівняння. Покажіть їхнє місце на плані: «Готелі тут».**
+**Ви вже говорили покупцеві про продавця, і він знову питає, де той. Скажіть: «Продавець зайнятий».**
 
-- ✅ **The hotels are here.**
-- ❌ The hotels is here. — *Готелів кілька: потрібне `are`.*
-- ❌ The hotel is here. — *Так говорять про один готель. Тут кілька: `The hotels are here`.*
+- ✅ **The seller is busy.**
+- ❌ A seller is busy. — *Про продавця ви вже говорили, ви обоє знаєте, про кого мова, тому the: The seller is busy.*
+- ❌ The seller are busy. — *Продавець один, тому потрібно is: The seller is busy.*
 
 ---
 
 ## Інтро 3
 
-### Цікавість і правила
+### Консультант у залі
 
-`curious` — «допитливий»: діти хочуть дізнатися більше про поїздку. `The children are curious` — «Дітям цікаво». `legal` — «законний, дозволений законом». Анна перевірила, чи можна паркуватися у вибраному місці. Про цю дію: `It is legal` — «Це законно». Тут `legal` не означає, що місце зручне чи безкоштовне.
+У залі вперше з’явився працівник, який допомагає з вибором. Ви тихо говорите про це подрузі, щоб не заважати. assistant — «помічник, консультант». Слово починається з голосного звуку, тому перед ним an, а не a: An assistant is here — «Тут консультант».
 
-**Діти хочуть дізнатися більше про поїздку. Скажіть «Дітям цікаво».**
+**Ви вперше помітили в залі працівника й говорите про це подрузі. Скажіть: «Тут консультант».**
 
-- ✅ **The children are curious.**
-- ❌ The children is curious. — *Дітей кілька: потрібне `are`.*
-- ❌ The children are sleepy. — *`sleepy` — сонні. Тут дітям цікаво: `curious`.*
+- ✅ **An assistant is here.**
+- ❌ A assistant is here. — *Слово assistant починається з голосного звуку, тому an: An assistant is here.*
+- ❌ The assistant is here. — *Про консультанта ви говорите вперше, тому an: An assistant is here.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна шукає дітей. Вони поруч із вами. Скажіть «Діти тут»**
+**1 · Ви вперше бачите кошик біля входу. Скажіть подрузі: «Тут кошик».**
 <!-- interaction_id: en:lesson-03:session-44:i01; family: phrase_builder -->
-Плитки: `here` `are` `children` `The` `is` → **The children are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The children are here.`)*
+Плитки: `basket` `here` `is` `A` `The` → **A basket is here.**
+*(плитка `The` зайва: тут потрібно `A` — `A basket is here.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте продавця й виберіть фразу**
 <!-- interaction_id: en:lesson-03:session-44:i02; family: listen_choose -->
-🔊 *hotels* → **hotels** · bedrooms · bottles
-- bedrooms — *У записі перше слово — `hotels`, а в цьому варіанті — `bedrooms`.*
-- bottles — *У записі перше слово — `hotels`, а в цьому варіанті — `bottles`.*
+🔊 *A basket is here.* → **A basket is here.** · The basket is here. · A basket is there.
+- The basket is here. — *У записі перше слово — `A`, а в цьому варіанті — `The`.*
+- A basket is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
 
-**3 · Назвіть кілька готелів одним англійським словом**
+**3 · Продавець уже говорив про візок і тепер повертається до нього. Доповніть його фразу**
 <!-- interaction_id: en:lesson-03:session-44:i03; family: context_gap_grammar -->
-___ → **hotels** · hotel · bedrooms
-- hotel — *`hotel` — один готель. Кілька — `hotels`.*
-- bedrooms — *`bedrooms` — спальні. Готелі — `hotels`.*
+___ trolley is empty. → **The** · A · An
+- A — *Про візок уже йшлося, тому The, а не A.*
+- An — *Перед trolley an не ставлять, а тут взагалі потрібно The: мова про вже знайомий візок.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-44:i04; family: speed_match -->
-hotels — готелі · curious — допитливий · legal — законний · children — діти
+customer — покупець · seller — продавець · assistant — помічник, консультант · queue — черга
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-44:i05; family: listen_build_dictation -->
-🔊 *These are hotels.* Плитки: `hotels` `are` `These` `is` → **These are hotels.**
-*(плитка `is` зайва: тут потрібно `are` — `These are hotels.`)*
+🔊 *The basket is full.* Плитки: `basket` `full` `is` `The` `A` → **The basket is full.**
+*(плитка `A` зайва: тут потрібно `The` — `The basket is full.`)*
 
-**6 · Ви вже вибрали готелі для порівняння. Укажіть їх на плані: «Готелі тут»**
+**6 · Ви вперше бачите парасольку біля входу. Скажіть подрузі: «Тут парасолька».**
 <!-- interaction_id: en:lesson-03:session-44:i06; family: phrase_builder -->
-Плитки: `here` `are` `hotels` `The` `is` → **The hotels are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The hotels are here.`)*
+Плитки: `umbrella` `here` `is` `An` `A` → **An umbrella is here.**
+*(плитка `A` зайва: тут потрібно `An` — `An umbrella is here.`)*
 
-**7 · Діти хочуть дізнатися більше про поїздку. Скажіть про них «Їм цікаво» зі скороченням**
+**7 · Картка слова — customer**
+<!-- interaction_id: en:lesson-03:session-44:word:customer; family: word_card -->
+> **customer** — покупець. A customer is happy — «Покупець задоволений». Про людину, яка прийшла в магазин щось купити.
+
+**8 · Продавець називає людину, яка підійшла до каси з покупками, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-44:i07; family: scripted_repeat_compare -->
-🎙 **They're curious.**
+🎙 **customer**
 
-**8 · Ви показуєте на кілька готелів у дальній частині плану міста**
+**9 · Картка слова — seller**
+<!-- interaction_id: en:lesson-03:session-44:word:seller; family: word_card -->
+> **seller** — продавець. The seller is busy — «Продавець зайнятий». Про людину, яка продає товари.
+
+**10 · Подруга питає, як англійською називається людина, яка продає товари**
 <!-- interaction_id: en:lesson-03:session-44:i08; family: context_gap_grammar -->
-___ are hotels. → **Those** · That · This
-- That — *`That` — один. Для кількох далі потрібне `Those`.*
-- This — *`This` — один поруч. Тут кілька далі: `Those`.*
+___ → **seller** · customer · coin
+- customer — *customer — це покупець, а той, хто продає товари, називається seller.*
+- coin — *coin — це монета, а той, хто продає товари, називається seller.*
 
-**9 · Послухайте відповідь про дотримання правил паркування**
+**11 · Послухайте, що каже продавець**
 <!-- interaction_id: en:lesson-03:session-44:i09; family: listen_choose -->
-🔊 *It is legal.* → **It is legal.** · It is official. · It is accurate.
-- It is official. — *У записі останнє слово — `legal`, а в цьому варіанті — `official`.*
-- It is accurate. — *У записі останнє слово — `legal`, а в цьому варіанті — `accurate`.*
+🔊 *A customer is happy.* → **A customer is happy.** · The customer is happy. · A customer is angry.
+- The customer is happy. — *У записі перше слово — `A`, а в цьому варіанті — `The`.*
+- A customer is angry. — *У записі останнє слово — `happy`, а в цьому варіанті — `angry`.*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-44:i10; family: speed_match -->
-hotels — готелі · children — діти · here — тут · there — там
+customer — покупець · basket — кошик · trolley — візок для покупок · umbrella — парасолька
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте покупця й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-44:i11; family: listen_build_dictation -->
-🔊 *The children are curious.* Плитки: `curious` `are` `children` `The` `is` → **The children are curious.**
-*(плитка `is` зайва: тут потрібно `are` — `The children are curious.`)*
+🔊 *The seller is busy.* Плитки: `seller` `busy` `is` `The` `A` → **The seller is busy.**
+*(плитка `A` зайва: тут потрібно `The` — `The seller is busy.`)*
 
-**12 · Ви показуєте на готелі в дальній частині плану. Скажіть «Ті готелі там»**
+**14 · Про продавця ви вже говорили покупцеві. Тепер скажіть йому: «Продавець тут».**
 <!-- interaction_id: en:lesson-03:session-44:i12; family: phrase_builder -->
-Плитки: `there` `are` `hotels` `Those` `is` → **Those hotels are there.**
-*(плитка `is` зайва: тут потрібно `are` — `Those hotels are there.`)*
+Плитки: `seller` `is` `here` `The` `A` → **The seller is here.**
+*(плитка `A` зайва: тут потрібно `The` — `The seller is here.`)*
 
-**13 · Анна перевірила правила: паркуватися у вибраному місці дозволено законом. Скажіть про цю дію «Це законно» зі скороченням**
+**15 · Картка слова — assistant**
+<!-- interaction_id: en:lesson-03:session-44:word:assistant; family: word_card -->
+> **assistant** — помічник, консультант. An assistant is here — «Тут консультант». Про працівника, який допомагає вибрати товар.
+
+**16 · Подруга показує на працівника в залі, який допомагає з вибором, і називає його, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-44:i13; family: scripted_repeat_compare -->
-🎙 **It's legal.**
+🎙 **assistant**
 
-**14 · Ви говорите про кілька вже вибраних готелів**
+**17 · Картка слова — queue**
+<!-- interaction_id: en:lesson-03:session-44:word:queue; family: word_card -->
+> **queue** — черга. The queue is long — «Черга довга». Про людей, які стоять один за одним і чекають.
+
+**18 · Люди стоять один за одним біля каси й чекають. Як це називається англійською?**
 <!-- interaction_id: en:lesson-03:session-44:i14; family: context_gap_grammar -->
-The hotels ___ here. → **are** · is · am
-- is — *Готелів кілька: `The hotels are here`.*
-- am — *З `The hotels` потрібне `are`.*
+___ → **queue** · basket · trolley
+- basket — *basket — це кошик, а люди, які стоять один за одним, — це queue.*
+- trolley — *trolley — це візок, а люди, які стоять один за одним, — це queue.*
 
-**15 · Послухайте опис дітей**
+**19 · Послухайте, що каже продавець**
 <!-- interaction_id: en:lesson-03:session-44:i15; family: listen_choose -->
-🔊 *They are curious.* → **They are curious.** · They are sleepy. · They are patient.
-- They are sleepy. — *У записі останнє слово — `curious`, а в цьому варіанті — `sleepy`.*
-- They are patient. — *У записі останнє слово — `curious`, а в цьому варіанті — `patient`.*
+🔊 *An assistant is here.* → **An assistant is here.** · The assistant is here. · An assistant is there.
+- The assistant is here. — *У записі перше слово — `An`, а в цьому варіанті — `The`.*
+- An assistant is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-44:i16; family: speed_match -->
-hotels — готелі · curious — допитливий · legal — законний · children — діти
+queue — черга · assistant — помічник, консультант · seller — продавець · customer — покупець
 
-**17 · В іншому місті ви з другом уже вибрали кілька готелів. Друг запитує, де вони на карті. Ви показуєте на дальню частину карти. Скажіть «Готелі там», говорячи про ту саму групу**
+**21 · Ви з подругою стоїте в черзі, про яку щойно говорили. Скажіть їй: «Черга довга».**
 <!-- interaction_id: en:lesson-03:session-44:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The hotels are there.**
-
+🎙 **The queue is long.**

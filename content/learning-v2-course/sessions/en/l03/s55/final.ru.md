@@ -1,138 +1,152 @@
-# Английский · Урок 3 · Занятие 55 — Кафе для встречи
+# Английский · Урок 3 · Занятие 55 — Форма, материал и узор
 
-**Ситуация.** Вы с Анной выбираете место для встречи. На карте отмечены кафе и рестораны. Анна сама организует встречи и выполняет обещанное. Вы обсуждаете, кто справляется самостоятельно, кому нужна помощь и на какой сервис нельзя положиться.
+**Ситуация.** Вы с подругой делаете последний осмотр покупок и называете, какие они: форма, материал, узор, стиль. Эти слова стоят после the: The shape is oval. Один предмет — is, несколько — are.
 
-**Что вы освоите:** назвать несколько кафе и спросить, где находятся уже выбранные места
-**Новые слова:** cafes
+**Что вы освоите:** назвать признак вещи и спросить о нём: The shape is oval, What is the material?
+**Новые слова:** shape, material, pattern, style
+**Возвращаются:** oval, cotton, leather, floral, striped
 
 ---
 
 ## Интро 1
 
-### Несколько кафе
+### Зеркало для прихожей
 
-`cafes` — «кафе», когда их несколько. Одно — `cafe`, несколько — `cafes`: в английском добавляется `s`, хотя русское слово не меняется. `These are cafes` — «Это кафе», показываем несколько рядом на карте. Три столика в одном кафе ещё не превращают его в три кафе.
+Вы с подругой выбираете зеркало для прихожей. Продавец спрашивает, какое вам нужно: круглое, вытянутое? Вы смотрите на очертания рамы и водите по ней пальцем. shape — «форма». Про зеркало, которое вы нашли, можно сказать: The shape is oval — «Форма овальная».
 
-**Назовите несколько кафе одним английским словом.**
+**Продавец ждёт ответа. Скажите ему, что форма овальная.**
 
-- ✅ **cafes**
-- ❌ cafe — *`cafe` — одно кафе. Несколько — `cafes`.*
-- ❌ restaurants — *`restaurants` — рестораны. Кафе — `cafes`.*
+- ✅ **The shape is oval.**
+- ❌ The shape are oval. — *Форма одна, поэтому нужно is: The shape is oval.*
+- ❌ The oval is shape. — *Сначала называем признак: The shape, потом какая она: is oval.*
 
 ---
 
 ## Интро 2
 
-### Ищем выбранные места
+### Сумка на рынке
 
-`Where are the cafes?` — «Где кафе?» Здесь речь о нескольких кафе, которые вы уже обсудили: нужны `are` и `the`. `The cafes are here` — «Кафе здесь». `restaurants` — «рестораны»: `The restaurants are there` — «Рестораны там».
+На рынке подруга берёт в руки сумку и гладит её по краю. Продавец спрашивает, что вас интересует. Вам хочется узнать, из чего сумка сделана: ткань это или что-то прочнее. material — «материал». Вы объясняете: The material is leather — «Материал — кожа».
 
-**Вы уже обсудили несколько кафе. Спросите, где они.**
+**Продавец ждёт ответа. Скажите ему, что материал — кожа.**
 
-- ✅ **Where are the cafes?**
-- ❌ Where is the cafes? — *Кафе несколько: `Where are the cafes?`.*
-- ❌ What are the cafes? — *Место спрашиваем с `Where`, а не `What`.*
+- ✅ **The material is leather.**
+- ❌ The material are leather. — *Материал один, поэтому нужно is: The material is leather.*
+- ❌ The leather is material. — *Сначала называем признак: The material, потом что это: is leather.*
 
 ---
 
 ## Интро 3
 
-### На кого можно положиться
+### Ткань для занавески
 
-`responsible` — «ответственный»: Анна выполняет обещанное. `She is responsible` — «Она ответственная». `independent` — «самостоятельный, независимый»: Анна сама организует встречи. `She is independent` — «Она самостоятельная». `dependent` — «зависимый»: другой участник пока нуждается в чужой помощи. О нём: `He is dependent` — «Он зависим». `unreliable` — «ненадёжный»: сервис часто нарушает обещания. `It is unreliable` — «Он ненадёжный».
+В магазине тканей подруга выбирает материю для занавески. По всему полотну разбросаны мелкие цветы, один рядом с другим. Продавец записывает заказ и просит назвать рисунок на ткани. pattern — «узор, рисунок на ткани». The pattern is floral — «Узор цветочный».
 
-**Анна выполняет обещанное. Скажите «Она ответственная».**
+**Продавец ждёт ответа. Скажите ему, что узор цветочный.**
 
-- ✅ **She is responsible.**
-- ❌ She is unreliable. — *Здесь Анна выполняет обещанное: `responsible`.*
-- ❌ She are responsible. — *После `She` нужно `is`.*
+- ✅ **The pattern is floral.**
+- ❌ The pattern are floral. — *Узор один, поэтому нужно is: The pattern is floral.*
+- ❌ The floral is pattern. — *Сначала называем признак: The pattern, потом какой он: is floral.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Покажите рестораны, которые вы уже обсудили: «Рестораны там»**
-<!-- interaction_id: en:lesson-03:session-55:i01; family: phrase_builder -->
-Плитки: `there` `are` `restaurants` `The` `is` → **The restaurants are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `The restaurants are there.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-55:i01; family: speed_match -->
+shape — форма (вид) · material — материал · pattern — узор · style — стиль
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-55:i02; family: listen_choose -->
-🔊 *cafes* → **cafes** · restaurants · hotels
-- restaurants — *В записи первое слово — `cafes`, а в этом варианте — `restaurants`.*
-- hotels — *В записи первое слово — `cafes`, а в этом варианте — `hotels`.*
+**2 · Карточка слова — shape**
+<!-- interaction_id: en:lesson-03:session-55:word:shape; family: word_card -->
+> **shape** — форма, вид предмета. The shape is oval — «Форма овальная». О мебели, зеркале, подносе.
 
-**3 · Назовите несколько кафе одним английским словом**
-<!-- interaction_id: en:lesson-03:session-55:i03; family: context_gap_grammar -->
-___ → **cafes** · cafe · restaurants
-- cafe — *Это одно кафе. Несколько — `cafes`.*
-- restaurants — *Это рестораны. Кафе — `cafes`.*
+**3 · Продавец обводит рукой очертания зеркала и говорит слово «форма» по-английски, а вы повторяете за ним**
+<!-- interaction_id: en:lesson-03:session-55:i02; family: scripted_repeat_compare -->
+🎙 **shape**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-03:session-55:i04; family: speed_match -->
-cafes — кафе — несколько · responsible — ответственный · independent — самостоятельный · restaurants — рестораны
+**4 · Подруга спрашивает, какая форма у подноса. Скажите ей полной фразой: форма круглая.**
+<!-- interaction_id: en:lesson-03:session-55:i03; family: phrase_builder -->
+Плитки: `round` `shape` `is` `The` `are` → **The shape is round.**
+*(плитка `are` лишняя: здесь нужно `is` — `The shape is round.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-55:i05; family: listen_build_dictation -->
-🔊 *These are cafes.* Плитки: `cafes` `are` `These` `is` → **These are cafes.**
-*(плитка `is` лишняя: здесь нужно `are` — `These are cafes.`)*
+**5 · Карточка слова — material**
+<!-- interaction_id: en:lesson-03:session-55:word:material; family: word_card -->
+> **material** — материал, из чего сделана вещь. The material is leather — «Материал — кожа». О сумке, перчатках, столе.
 
-**6 · Вы уже обсудили несколько кафе. Спросите «Где кафе?»**
-<!-- interaction_id: en:lesson-03:session-55:i06; family: phrase_builder -->
-Плитки: `cafes` `the` `are` `Where` `is` → **Where are the cafes?**
-*(плитка `is` лишняя: здесь нужно `are` — `Where are the cafes?`)*
+**6 · Подруга трогает сумку и спрашивает, из чего она сделана. Как по-английски называется то, из чего сделана вещь?**
+<!-- interaction_id: en:lesson-03:session-55:i04; family: context_gap_grammar -->
+___ → **material** · shape · round
+- shape — *shape — это форма, а то, из чего вещь сделана, называется material.*
+- round — *round — это круглый, а то, из чего вещь сделана, называется material.*
 
-**7 · Анна выполняет обещанное. Скажите «Она ответственная» с сокращением**
-<!-- interaction_id: en:lesson-03:session-55:i07; family: scripted_repeat_compare -->
-🎙 **She's responsible.**
+**7 · Послушайте вопрос продавца**
+<!-- interaction_id: en:lesson-03:session-55:i05; family: listen_choose -->
+🔊 *What is the material?* → **What is the material?** · What is the shape? · Where is the material?
+- What is the shape? — *В записи последнее слово — `material`, а в этом варианте — `shape`.*
+- Where is the material? — *В записи первое слово — `What` (что), а в этом варианте — `Where` (где).*
 
-**8 · Вы показываете несколько кафе дальше на карте**
+**8 · Карточка слова — pattern**
+<!-- interaction_id: en:lesson-03:session-55:word:pattern; family: word_card -->
+> **pattern** — узор, рисунок на ткани. The pattern is floral — «Узор цветочный». О ткани, чашке, обоях.
+
+**9 · Подруга показывает на рисунок из цветов на ткани и говорит слово «узор» по-английски, а вы повторяете за ней**
+<!-- interaction_id: en:lesson-03:session-55:i06; family: scripted_repeat_compare -->
+🎙 **pattern**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-55:i07; family: listen_build_dictation -->
+🔊 *The pattern is striped.* Плитки: `striped` `pattern` `is` `The` `are` → **The pattern is striped.**
+*(плитка `are` лишняя: здесь нужно `is` — `The pattern is striped.`)*
+
+**11 · Карточка слова — style**
+<!-- interaction_id: en:lesson-03:session-55:word:style; family: word_card -->
+> **style** — стиль, общий вид вещи. The style is simple — «Стиль простой». О платье, мебели, комнате.
+
+**12 · Подруга говорит о том, как выглядит платье в целом: строгое оно или спортивное. Как по-английски называется такой общий вид?**
 <!-- interaction_id: en:lesson-03:session-55:i08; family: context_gap_grammar -->
-___ are cafes. → **Those** · That · This
-- That — *Несколько дальше — `Those`, а `That` для одного.*
-- This — *`This` для одного рядом. Здесь несколько дальше: `Those`.*
+___ → **style** · pattern · material
+- pattern — *pattern — это узор на ткани, а общий вид платья называется style.*
+- material — *material — это то, из чего платье сделано, а общий вид называется style.*
 
-**9 · Послушайте описание участника, который зависит от чужой помощи**
-<!-- interaction_id: en:lesson-03:session-55:i09; family: listen_choose -->
-🔊 *He is dependent.* → **He is dependent.** · He is independent. · He is responsible.
-- He is independent. — *В записи последнее слово — `dependent`, а в этом варианте — `independent`.*
-- He is responsible. — *В записи последнее слово — `dependent`, а в этом варианте — `responsible`.*
+**13 · Подруга спрашивает о стиле платья. Скажите ей полной фразой: стиль простой.**
+<!-- interaction_id: en:lesson-03:session-55:i09; family: phrase_builder -->
+Плитки: `plain` `style` `is` `The` `are` → **The style is plain.**
+*(плитка `are` лишняя: здесь нужно `is` — `The style is plain.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-55:i10; family: speed_match -->
-dependent — зависимый · unreliable — ненадёжный · restaurants — рестораны · responsible — ответственный
+pattern — узор · style — стиль · leather — кожаный · floral — цветочный (с цветами)
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-55:i11; family: listen_build_dictation -->
-🔊 *The cafes are here.* Плитки: `here` `are` `cafes` `The` `is` → **The cafes are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The cafes are here.`)*
+**15 · Послушайте вопрос подруги**
+<!-- interaction_id: en:lesson-03:session-55:i11; family: listen_choose -->
+🔊 *Is the pattern floral?* → **Is the pattern floral?** · Is the pattern striped? · Is the style floral?
+- Is the pattern striped? — *В записи рисунок — `floral`, а в этом варианте — `striped`.*
+- Is the style floral? — *В записи после the слово — `pattern`, а в этом варианте — `style`.*
 
-**12 · Анна сама решает, где и когда проводить встречи. Скажите «Она независима»**
-<!-- interaction_id: en:lesson-03:session-55:i12; family: phrase_builder -->
-Плитки: `independent` `is` `She` `are` → **She is independent.**
-*(плитка `are` лишняя: здесь нужно `is` — `She is independent.`)*
+**16 · Подруга говорит, что ткань сделана из хлопка. Дополните вашу фразу**
+<!-- interaction_id: en:lesson-03:session-55:i12; family: context_gap_grammar -->
+The ___ is cotton. → **material** · shape · pattern
+- shape — *shape — это форма, а cotton называет материал.*
+- pattern — *pattern — это узор, а cotton называет материал.*
 
-**13 · Сервис часто нарушает обещания. Скажите «Он ненадёжный» с сокращением**
-<!-- interaction_id: en:lesson-03:session-55:i13; family: scripted_repeat_compare -->
-🎙 **It's unreliable.**
+**17 · Послушайте продавца и соберите вопрос**
+<!-- interaction_id: en:lesson-03:session-55:i13; family: listen_build_dictation -->
+🔊 *What is the style?* Плитки: `style` `What` `the` `is` `Where` → **What is the style?**
+*(плитка `Where` лишняя: здесь нужно `What` — `What is the style?`)*
 
-**14 · Вы нашли на карте несколько уже выбранных кафе**
-<!-- interaction_id: en:lesson-03:session-55:i14; family: context_gap_grammar -->
-The cafes ___ here. → **are** · is · am
-- is — *Кафе несколько: `The cafes are here`.*
-- am — *С `The cafes` нужно `are`.*
+**18 · Подруга спрашивает, какой узор на шарфе. Скажите ей коротко: полосатый**
+<!-- interaction_id: en:lesson-03:session-55:i14; family: scripted_repeat_compare -->
+🎙 **It is striped.**
 
-**15 · Послушайте описание Анны, которая сама организует встречи**
-<!-- interaction_id: en:lesson-03:session-55:i15; family: listen_choose -->
-🔊 *She is independent.* → **She is independent.** · She is dependent. · She is unreliable.
-- She is dependent. — *В записи последнее слово — `independent`, а в этом варианте — `dependent`.*
-- She is unreliable. — *В записи последнее слово — `independent`, а в этом варианте — `unreliable`.*
+**19 · Образцы ткани лежат далеко на столе. Скажите продавцу полной фразой: те материалы мягкие.**
+<!-- interaction_id: en:lesson-03:session-55:i15; family: phrase_builder -->
+Плитки: `materials` `soft` `are` `Those` `is` → **Those materials are soft.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those materials are soft.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-55:i16; family: speed_match -->
-cafes — кафе — несколько · independent — самостоятельный · dependent — зависимый · unreliable — ненадёжный
+style — стиль · shape — форма (вид) · pattern — узор · material — материал
 
-**17 · В другом городе вы с другом уже выбрали несколько кафе. Друг ищет их на карте. Вы показываете на них дальше от себя. Скажите «Кафе там», говоря о выбранных местах**
+**21 · Продавец спрашивает о платье. Ответьте ему коротко: стиль простой.**
 <!-- interaction_id: en:lesson-03:session-55:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The cafes are there.**
-
+🎙 **The style is simple.**

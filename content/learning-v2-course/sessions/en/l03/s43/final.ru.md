@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 43 — Спальни на фотографиях
+# Английский · Урок 3 · Занятие 43 — Выбираем вещи из общей стопки
 
-**Ситуация.** Вы с Анной осматриваете дом и сравниваете комнаты с фотографиями. Хозяин терпеливо ждёт, пока вы разберётесь. Анна пока не уверена, какие фотографии показывают спальни; вы помогаете ей назвать комнаты и указать, где они.
+**Ситуация.** Вы с подругой разбираете общую стопку вещей на ярмарке. Когда говорите о нескольких предметах вообще, артикль не нужен. Когда имеете в виду конкретные, которые видите оба, говорим the.
 
-**Что вы освоите:** назвать несколько спален и говорить о конкретных комнатах с the и are
-**Новые слова:** bedrooms
+**Что вы освоите:** говорить о нескольких предметах вообще без артикля, а о конкретных — с the
+**Новые слова:** book, magazine, newspaper, dictionary
+**Возвращаются:** chair, bag, box, lamp, map, letter
 
 ---
 
 ## Интро 1
 
-### Одна спальня, несколько спален
+### Подарки из общей стопки
 
-`bedrooms` — «спальни», одна — `bedroom`. Спальня — комната для сна. Для нескольких добавляем `s`: `These are bedrooms` — «Это спальни», показываем на комнаты рядом. Несколько подушек не делают из одной спальни несколько: считаем комнаты.
+Вы с подругой выбираете подарки из общей стопки на ярмарке. Подруга предлагает взять побольше книг, а вы уже несёте тяжёлую сумку и отвечаете. book — «книга». Вы говорите о книгах вообще, не о конкретных, поэтому без the: Books are heavy — «Книги тяжёлые».
 
-**Назовите несколько спален одним английским словом.**
+**Подруга предлагает взять побольше книг. Скажите о книгах вообще: «Книги тяжёлые».**
 
-- ✅ **bedrooms**
-- ❌ bedroom — *`bedroom` — одна спальня. Несколько — `bedrooms`.*
-- ❌ bottles — *`bottles` — бутылки. Спальни — `bedrooms`.*
+- ✅ **Books are heavy.**
+- ❌ The books are heavy. — *Вы говорите о книгах вообще, а не о каких-то определённых, поэтому без the: Books are heavy.*
+- ❌ Books is heavy. — *Книг много, поэтому нужно are: Books are heavy.*
 
 ---
 
 ## Интро 2
 
-### Те самые комнаты
+### Журналы на верхней полке
 
-`The bedrooms are there` — «Спальни там»: вы говорите о конкретных спальнях этого дома, понятных вам обоим. `The` подходит и для нескольких. Число показывает `bedrooms`, поэтому нужно `are`. `Those bedrooms are there` — «Те спальни там»: `those` прямо указывает на несколько комнат дальше.
+Продавец на воскресной ярмарке показывает вам на три журнала на верхней полке. Вы оба их видите и обсуждаете, брать ли их все. magazine — «журнал». Журналов несколько, и они понятны вам обоим, поэтому the: The magazines are new — «Журналы новые».
 
-**Вы уже обсудили спальни дома. Скажите о тех же комнатах «Спальни там».**
+**Продавец показывает на журналы, которые видите вы оба. Скажите: «Журналы новые».**
 
-- ✅ **The bedrooms are there.**
-- ❌ The bedrooms is there. — *Спален несколько: нужно `are`.*
-- ❌ The bedroom is there. — *Так говорят об одной спальне. Здесь несколько: `The bedrooms are there`.*
+- ✅ **The magazines are new.**
+- ❌ Magazines are new. — *Вы оба смотрите на конкретные журналы, поэтому the: The magazines are new.*
+- ❌ The magazines is new. — *Журналов несколько, поэтому нужно are: The magazines are new.*
 
 ---
 
 ## Интро 3
 
-### Не торопимся с ответом
+### Газеты у киоска
 
-`patient` — «терпеливый». Хозяин спокойно ждёт, пока вы рассмотрите фотографии: `He is patient` — «Он терпеливый». `uncertain` — «неуверенный», когда нет уверенности в ответе. Анна может сказать `I am uncertain` — «Я не уверена». Фотографии рядом: `The photos are here` — «Фотографии здесь».
+Брат ждёт вас у киоска на углу и с интересом спрашивает, почему вы взяли газету, а не журнал. newspaper — «газета». Вы коротко объясняете ему не про какие-то определённые газеты, а про газеты вообще, поэтому без the: Newspapers are cheap — «Газеты дешёвые».
 
-**Хозяин спокойно ждёт и не торопит вас. Скажите «Он терпеливый».**
+**Брат спрашивает, почему вы взяли газету. Скажите о газетах вообще: «Газеты дешёвые».**
 
-- ✅ **He is patient.**
-- ❌ He is uncertain. — *`uncertain` — неуверенный. Здесь описываем терпение: `patient`.*
-- ❌ He are patient. — *С `He` нужно `is`.*
+- ✅ **Newspapers are cheap.**
+- ❌ The newspapers are cheap. — *Вы говорите о газетах вообще, а не о конкретных, поэтому без the: Newspapers are cheap.*
+- ❌ Newspaper are cheap. — *Газет много, поэтому нужно newspapers с s: Newspapers are cheap.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Анна ищет фотографии дома. Они лежат рядом. Скажите «Фотографии здесь»**
+**1 · Вы говорите о стульях вообще. Скажите подруге: «Стулья тяжёлые».**
 <!-- interaction_id: en:lesson-03:session-43:i01; family: phrase_builder -->
-Плитки: `here` `are` `photos` `The` `is` → **The photos are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The photos are here.`)*
+Плитки: `heavy` `are` `Chairs` `The` → **Chairs are heavy.**
+*(плитка `The` лишняя: здесь нужно `Chairs` — `Chairs are heavy.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-03:session-43:i02; family: listen_choose -->
-🔊 *bedrooms* → **bedrooms** · bottles · children
-- bottles — *В записи первое слово — `bedrooms`, а в этом варианте — `bottles`.*
-- children — *В записи первое слово — `bedrooms`, а в этом варианте — `children`.*
+🔊 *The bags are new.* → **The bags are new.** · Bags are new. · The bags are old.
+- Bags are new. — *В записи первое слово — `The`, а в этом варианте — `Bags`.*
+- The bags are old. — *В записи последнее слово — `new`, а в этом варианте — `old`.*
 
-**3 · Назовите несколько спален одним английским словом**
+**3 · Вы говорите о лампах вообще, а не о конкретных. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-43:i03; family: context_gap_grammar -->
-___ → **bedrooms** · bedroom · bottles
-- bedroom — *`bedroom` — одна спальня. Несколько — `bedrooms`.*
-- bottles — *`bottles` — бутылки. Спальни — `bedrooms`.*
+___ are cheap. → **Lamps** · The lamps · A lamp
+- The lamps — *Речь о лампах вообще, а не о конкретных, поэтому без the.*
+- A lamp — *A ставим перед одной лампой, а are требует несколько.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-43:i04; family: speed_match -->
-bedrooms — спальни · patient — терпеливый · uncertain — неуверенный · photos — фотографии
+book — книга · magazine — журнал · newspaper — газета · dictionary — словарь
 
-**5 · Послушайте и соберите фразу**
+**5 · Послушайте продавца и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-43:i05; family: listen_build_dictation -->
-🔊 *These are bedrooms.* Плитки: `bedrooms` `are` `These` `is` → **These are bedrooms.**
-*(плитка `is` лишняя: здесь нужно `are` — `These are bedrooms.`)*
+🔊 *The boxes are heavy.* Плитки: `boxes` `heavy` `are` `The` `Is` → **The boxes are heavy.**
+*(плитка `Is` лишняя: здесь нужно `are` — `The boxes are heavy.`)*
 
-**6 · Вы уже обсудили спальни дома. Скажите, где эти комнаты: «Спальни там»**
+**6 · Вы оба смотрите на стулья в углу. Скажите: «Стулья новые».**
 <!-- interaction_id: en:lesson-03:session-43:i06; family: phrase_builder -->
-Плитки: `there` `are` `bedrooms` `The` `is` → **The bedrooms are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bedrooms are there.`)*
+Плитки: `chairs` `are` `new` `The` `A` → **The chairs are new.**
+*(плитка `A` лишняя: здесь нужно `The` — `The chairs are new.`)*
 
-**7 · Хозяин спокойно ждёт вашего решения. Скажите «Он терпеливый» с сокращением**
+**7 · Карточка слова — book**
+<!-- interaction_id: en:lesson-03:session-43:word:book; family: word_card -->
+> **book** — книга. Books are heavy — «Книги тяжёлые». О книгах вообще артикль не нужен.
+
+**8 · Подруга поднимает со стола книгу и называет её, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-43:i07; family: scripted_repeat_compare -->
-🎙 **He's patient.**
+🎙 **book**
 
-**8 · Вы показываете на несколько комнат рядом и называете их спальнями**
+**9 · Карточка слова — magazine**
+<!-- interaction_id: en:lesson-03:session-43:word:magazine; family: word_card -->
+> **magazine** — журнал. The magazines are new — «Журналы новые». О журналах, которые видят оба, говорим the.
+
+**10 · Подруга показывает яркое издание с фотографиями и статьями, которое выходит раз в месяц. Как оно называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-43:i08; family: context_gap_grammar -->
-___ are bedrooms. → **These** · This · That
-- This — *`This` — один предмет. Для нескольких рядом нужно `These`.*
-- That — *`That` — один дальше. Здесь несколько рядом: `These`.*
+___ → **magazine** · letter · postcard
+- letter — *letter — это письмо, а яркое издание с фотографиями называется magazine.*
+- postcard — *postcard — это открытка, а яркое издание с фотографиями называется magazine.*
 
-**9 · Послушайте ответ Анны**
+**11 · Послушайте, что говорит подруга о книгах**
 <!-- interaction_id: en:lesson-03:session-43:i09; family: listen_choose -->
-🔊 *I am uncertain.* → **I am uncertain.** · I am certain. · I am patient.
-- I am certain. — *В записи последнее слово — `uncertain`, а в этом варианте — `certain`.*
-- I am patient. — *В записи последнее слово — `uncertain`, а в этом варианте — `patient`.*
+🔊 *Books are heavy.* → **Books are heavy.** · The books are heavy. · Books are light.
+- The books are heavy. — *В записи первое слово — `Books`, а в этом варианте — `The`.*
+- Books are light. — *В записи последнее слово — `heavy`, а в этом варианте — `light`.*
 
-**10 · Соедините слова со значениями**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-43:i10; family: speed_match -->
-bedrooms — спальни · photos — фотографии · here — здесь · there — там
+book — книга · chair — стул · table — стол · lamp — лампа
 
-**11 · Послушайте и соберите фразу**
+**13 · Послушайте продавца и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-43:i11; family: listen_build_dictation -->
-🔊 *Those photos are there.* Плитки: `there` `are` `photos` `Those` `is` → **Those photos are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those photos are there.`)*
+🔊 *The magazines are new.* Плитки: `magazines` `new` `are` `The` `Is` → **The magazines are new.**
+*(плитка `Is` лишняя: здесь нужно `are` — `The magazines are new.`)*
 
-**12 · Вы показываете на несколько спален дальше по коридору. Скажите «Те спальни там»**
+**14 · Вы говорите о журналах вообще. Скажите подруге: «Журналы лёгкие».**
 <!-- interaction_id: en:lesson-03:session-43:i12; family: phrase_builder -->
-Плитки: `there` `are` `bedrooms` `Those` `is` → **Those bedrooms are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those bedrooms are there.`)*
+Плитки: `light` `are` `Magazines` `The` → **Magazines are light.**
+*(плитка `The` лишняя: здесь нужно `Magazines` — `Magazines are light.`)*
 
-**13 · Вы ещё не уверены в своём ответе. Скажите «Я не уверен» с сокращением**
+**15 · Карточка слова — newspaper**
+<!-- interaction_id: en:lesson-03:session-43:word:newspaper; family: word_card -->
+> **newspaper** — газета. Newspapers are cheap — «Газеты дешёвые». О газетах вообще артикль не нужен.
+
+**16 · Продавец поднимает со стойки большой лист с новостями и называет его, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-43:i13; family: scripted_repeat_compare -->
-🎙 **I'm uncertain.**
+🎙 **newspaper**
 
-**14 · Вы говорите о нескольких понятных собеседнику спальнях**
+**17 · Карточка слова — dictionary**
+<!-- interaction_id: en:lesson-03:session-43:word:dictionary; family: word_card -->
+> **dictionary** — словарь. The dictionaries are old — «Словари старые». О словарях, которые видят оба, говорим the.
+
+**18 · Подруга показывает толстую книгу, где объяснены значения слов. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-43:i14; family: context_gap_grammar -->
-The bedrooms ___ there. → **are** · is · am
-- is — *Спален несколько: `The bedrooms are there`.*
-- am — *С `The bedrooms` нужно `are`.*
+___ → **dictionary** · map · letter
+- map — *map — это карта, а книга со значениями слов называется dictionary.*
+- letter — *letter — это письмо, а книга со значениями слов называется dictionary.*
 
-**15 · Послушайте описание хозяина**
+**19 · Послушайте, что говорит брат о газетах**
 <!-- interaction_id: en:lesson-03:session-43:i15; family: listen_choose -->
-🔊 *He is patient.* → **He is patient.** · He is polite. · He is honest.
-- He is polite. — *В записи последнее слово — `patient`, а в этом варианте — `polite`.*
-- He is honest. — *В записи последнее слово — `patient`, а в этом варианте — `honest`.*
+🔊 *The newspapers are old.* → **The newspapers are old.** · Newspapers are old. · The newspapers are new.
+- Newspapers are old. — *В записи первое слово — `The`, а в этом варианте — `Newspapers`.*
+- The newspapers are new. — *В записи последнее слово — `old`, а в этом варианте — `new`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-43:i16; family: speed_match -->
-bedrooms — спальни · patient — терпеливый · uncertain — неуверенный · photos — фотографии
+dictionary — словарь · newspaper — газета · magazine — журнал · book — книга
 
-**17 · В другом доме вы уже показали гостю спальни. Он ищет их снова, а вы стоите рядом с ними. Скажите полной фразой «Спальни здесь», говоря о тех же комнатах**
+**21 · Вы оба смотрите на словари на нижней полке. Скажите подруге: «Словари старые».**
 <!-- interaction_id: en:lesson-03:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The bedrooms are here.**
-
+🎙 **The dictionaries are old.**

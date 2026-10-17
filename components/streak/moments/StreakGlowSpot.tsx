@@ -4,15 +4,16 @@ import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
-export type StreakGlowSpotProps = Readonly<{ color: string; size?: number; top?: number }>;
+/** strength — непрозрачность центра поверх альфы самого цвета; мягкий акцент темы (accentSoft) уже несёт свою альфу, как --acc-soft эталона → 1. */
+export type StreakGlowSpotProps = Readonly<{ color: string; size?: number; top?: number; strength?: number }>;
 
-function StreakGlowSpot({ color, size = 460, top = 60 }: StreakGlowSpotProps) {
+function StreakGlowSpot({ color, size = 460, top = 60, strength = 0.55 }: StreakGlowSpotProps) {
   return (
     <View pointerEvents="none" accessible={false} style={[s.wrap, { top, width: size, height: size, marginLeft: -size / 2 }]}>
       <Svg width={size} height={size} viewBox="0 0 100 100">
         <Defs>
           <RadialGradient id="streakGlow" cx="50" cy="50" r="50" gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor={color} stopOpacity={0.55} />
+            <Stop offset="0" stopColor={color} stopOpacity={strength} />
             <Stop offset="1" stopColor={color} stopOpacity={0} />
           </RadialGradient>
         </Defs>

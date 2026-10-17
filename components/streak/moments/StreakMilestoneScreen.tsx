@@ -37,8 +37,6 @@ import {
 } from './streak_milestones';
 import { playStreakLegendSecondSound, playStreakSceneSound, playStreakTapSound } from './streak_moments_sound';
 import { streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from './streak_moments_strings';
-import { streakStageColors } from './streak_stage_colors';
-import { useStreakColors } from './use_streak_colors';
 
 export type StreakMilestoneScreenProps = Readonly<{
   lang: Lang;
@@ -61,7 +59,6 @@ function Beat({ i, children }: Readonly<{ i: number; children: ReactNode }>) {
 
 function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, testID = 'streak-milestone-screen' }: StreakMilestoneScreenProps) {
   const p = useSpirePalette();
-  const colors = useStreakColors();
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
@@ -121,8 +118,10 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const morphed = has('morph');
   const before = milestone - 1; // guard-ok: цифра огня ДО морфа (n−1, как в образце), вид — не баланс
   const prevStage = Math.max(0, baseStage - 1) as StreakFlameStage; // guard-ok: стадия огня ДО морфа (вид), не баланс
-  const stageTokens = { themeId: liquidGlassThemeId, accentGraphic: colors.accentGraphic, text: p.text, bg: p.bg, gold: p.gold };
-  const glowColor = (st: StreakFlameStage): string => streakStageColors(st, stageTokens)?.outer ?? colors.accentGraphic;
+  // зачем (Сверка Макетов r1, G1′, координатор 17.10): эталон 2.0 (engagement-moments-app.css:114–115) рисует ореол мягким акцентом темы
+  // (--acc-soft; .violet/.red переопределены тем же) — НЕ цветом стадии огня: фиолетовый/белый/лавандовый на весь экран у d30/d100/d365/d1000 — расхождение.
+  // Стадия огня по-прежнему красит сам огонь; аргумент оставлен ради тех же точек вызова.
+  const glowColor = (_st: StreakFlameStage): string => glass.accentSoft;
   const flameA11y = streakMomentText(lang, 'flameA11y', { n: milestone });
 
   const T = (text: string, style: 'ov' | 'ovMuted' | 'xl' | 'md' | 'p') => (
@@ -239,7 +238,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   return (
     <MomentFullScreen testID={testID}>
       <Animated.View style={[s.fill, { paddingTop: insets.top + 52, paddingBottom: insets.bottom + 24 }, rumble.style]}>
-        {glow ? <StreakGlowSpot color={glow} top={insets.top + 80} /> : null}
+        {glow ? <StreakGlowSpot color={glow} strength={1} top={insets.top + 80} /> : null}
         {confetti ? <StreakConfetti fire /> : null}
         {/* зачем (контракт «до кнопки можно добраться»): на низком экране сцена прокручивается, а «Дальше» остаётся внизу */}
         <ScrollView key={bodyKey} decelerationRate="fast" style={s.fillBody} contentContainerStyle={s.body} showsVerticalScrollIndicator={false} bounces={false}>{body}</ScrollView>

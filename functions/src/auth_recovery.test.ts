@@ -338,10 +338,14 @@ const FAILED_RECOVERY_CODE_KEYS = [
 ] as const;
 const RECOVERY_RATE_LIMIT_KEYS = [
   'count',
-  'stableId',
+  'expireAt',
   'updatedAtMs',
   'windowStartMs',
 ] as const;
+// R111 п.3 (Ревизор f23e972a6): лимит писем — по HMAC-ключу цели, не по голому stableId.
+function sendRateDoc(): string {
+  return `auth_recovery_rate_limits/send_target_${require('./auth_recovery').recoveryRateKey('send_target', STABLE)}`;
+}
 const RECOVERY_EVENT_KEYS = [
   'at',
   'handoffEligibleUntil',
@@ -709,7 +713,7 @@ describe('authRequestRecoveryCode', () => {
     seedLinkedUser();
     let injected = false;
     transactionReadHook = (readPath) => {
-      if (!injected && readPath === `auth_recovery_rate_limits/${STABLE}`) {
+      if (!injected && readPath === sendRateDoc()) {
         injected = true;
         mutateExternally(path, { status: 'pending', at: NOW });
       }
@@ -720,7 +724,7 @@ describe('authRequestRecoveryCode', () => {
     const { sendTransactionalEmail } = require('./admin_email');
     expect(sendTransactionalEmail).not.toHaveBeenCalled();
     expect(docs.get(`auth_recovery_codes/${STABLE}`)).toBeUndefined();
-    expect(docs.get(`auth_recovery_rate_limits/${STABLE}`)).toBeUndefined();
+    expect(docs.get(sendRateDoc())).toBeUndefined();
     expect(writeLog).toEqual([]);
   });
 
@@ -761,7 +765,7 @@ describe('authRequestRecoveryCode', () => {
     expect(codeDoc?.code).toBeUndefined();
     expect(codeDoc?.codeHash).toBe(hashRecoveryCode(String(codeDoc?.salt), emailedCode()));
 
-    const rateLimitDoc = docs.get(`auth_recovery_rate_limits/${STABLE}`);
+    const rateLimitDoc = docs.get(sendRateDoc());
     expectExactKeys(rateLimitDoc, RECOVERY_RATE_LIMIT_KEYS);
     expectNoSensitiveValues(rateLimitDoc);
     expect(rateLimitDoc).toMatchObject({
@@ -817,12 +821,12 @@ describe('authRequestRecoveryCode', () => {
     await callRequest({ stableId: STABLE });
     await expect(callRequest({ stableId: STABLE }))
       .rejects.toMatchObject({ code: 'resource-exhausted', message: 'recovery_rate_limited' });
-    expect(docs.get(`auth_recovery_rate_limits/${STABLE}`)).toMatchObject({ count: 3 });
+    expect(docs.get(sendRateDoc())).toMatchObject({ count: 3 });
 
     // Через час окно сбрасывается — отправка снова возможна.
     jest.setSystemTime(NOW + 61 * 60 * 1000);
     await callRequest({ stableId: STABLE });
-    expect(docs.get(`auth_recovery_rate_limits/${STABLE}`)).toMatchObject({ count: 1 });
+    expect(docs.get(sendRateDoc())).toMatchObject({ count: 1 });
   });
 
   it('resend_key_missing / сбой отправки: код гасится, ошибка наружу', async () => {
@@ -837,7 +841,7 @@ describe('authRequestRecoveryCode', () => {
     expect(missingKeyCodeDoc).toMatchObject({ status: 'send_failed' });
 
     docs.delete(`auth_recovery_codes/${STABLE}`);
-    docs.delete(`auth_recovery_rate_limits/${STABLE}`);
+    docs.delete(sendRateDoc());
     sendTransactionalEmail.mockResolvedValueOnce({
       ok: false,
       error: `resend 500 for ${RECOVERY_EMAIL} ${RECOVERY_DISPLAY_NAME}`,
@@ -883,7 +887,7 @@ describe('authRequestRecoveryCode', () => {
     });
 
     expect(docs.get(`auth_recovery_codes/${STABLE}`)).toEqual(afterRequestB);
-    expect(docs.get(`auth_recovery_rate_limits/${STABLE}`)).toMatchObject({ count: 2 });
+    expect(docs.get(sendRateDoc())).toMatchObject({ count: 2 });
   });
 });
 
@@ -1202,7 +1206,7 @@ describe('authConfirmRecoveryCode', () => {
       .rejects.toMatchObject({ code: 'permission-denied', message: 'recovery_requester_mismatch' });
     // [RECOVERY-LIMIT] (Ревизор 454976a16): неверный код пишет только дневные счётчики цели и вызывающего.
     expect(writeLog.filter(({ path }) => !path.startsWith('auth_recovery_rate_limits/wrong_'))).toEqual([]);
-    expect(writeLog.filter(({ path }) => path.startsWith('auth_recovery_rate_limits/wrong_'))).toHaveLength(2);
+    expect(writeLog.filter(({ path }) => path.startsWith('auth_recovery_rate_limits/wrong_'))).toHaveLength(3);
   });
 
   it('rejects a different requester before hash attempts and without writes', async () => {
@@ -2606,96 +2610,98 @@ describe('recovery caller rate limit (замена App Check)', () => {
   });
 });
 
-// зачем (security-review Ревизора 454976a16, пакет R111): подбор 6-значного кода упирается в дневной потолок неверных
-// кодов — на цель и на вызывающего; честный ввод проходит.
-describe('[RECOVERY-LIMIT] дневные потолки неверных кодов', () => {
-  it('10 неверных кодов по одной цели за сутки — дальше цель закрыта, даже для другого вызывающего', async () => {
+// зачем (Ревизор 454976a16 + f23e972a6, пакет R111): потолки неверных кодов — пара «цель+вызывающий» 5, цель 20,
+// вызывающий 10 за сутки; проверка и +1 атомарно в одной транзакции; ключи — HMAC; документы с expireAt.
+describe('[RECOVERY-LIMIT] потолки неверных кодов', () => {
+  it('пара «цель+вызывающий»: 5 неверных — дальше этот вызывающий по этой цели закрыт, другой вызывающий — нет', async () => {
     const recovery = require('./auth_recovery');
     const db = require('firebase-admin').firestore();
     const now = 5_000_000_000;
-    for (let i = 0; i < recovery.RECOVERY_WRONG_CODE_MAX_PER_TARGET; i += 1) {
-      const budget = await recovery.assertWrongCodeBudget(db, 'stable:victim', `caller-${i}`, 'test', now + i);
-      await recovery.recordWrongCode(budget);
+    for (let i = 0; i < recovery.RECOVERY_WRONG_CODE_MAX_PER_PAIR; i += 1) {
+      await expect(recovery.recordWrongCodeAttempt(db, 'stable:victim', 'attacker', now + i)).resolves.toBe('recorded');
     }
-    await expect(recovery.assertWrongCodeBudget(db, 'stable:victim', 'caller-fresh', 'test', now + 100)).rejects.toMatchObject({
-      code: 'resource-exhausted', message: 'recovery_daily_attempts_limited',
-    });
-    // через сутки окно сбрасывается
-    await expect(recovery.assertWrongCodeBudget(db, 'stable:victim', 'caller-fresh', 'test', now + recovery.RECOVERY_WRONG_CODE_WINDOW_MS + 1))
-      .resolves.toBeTruthy();
+    await expect(recovery.recordWrongCodeAttempt(db, 'stable:victim', 'attacker', now + 10)).resolves.toBe('blocked');
+    // п.2: жертва (другой вызывающий) не заперта одним чужим аккаунтом
+    await expect(recovery.isWrongCodeBudgetOpen(db, 'stable:victim', 'victim-own-account', now + 11)).resolves.toBe(true);
   });
 
-  it('10 неверных кодов одного вызывающего по разным целям — дальше вызывающий закрыт', async () => {
+  it('цель целиком: 20 неверных от разных аккаунтов — цель закрыта и для нового вызывающего; через сутки снова открыта', async () => {
     const recovery = require('./auth_recovery');
     const db = require('firebase-admin').firestore();
-    const now = 6_000_000_000;
-    for (let i = 0; i < recovery.RECOVERY_WRONG_CODE_MAX_PER_CALLER; i += 1) {
-      const budget = await recovery.assertWrongCodeBudget(db, `stable:target-${i}`, 'attacker', 'test', now + i);
-      await recovery.recordWrongCode(budget);
+    const now = 5_100_000_000;
+    const callers = recovery.RECOVERY_WRONG_CODE_MAX_PER_TARGET / recovery.RECOVERY_WRONG_CODE_MAX_PER_PAIR;
+    for (let c = 0; c < callers; c += 1) {
+      for (let i = 0; i < recovery.RECOVERY_WRONG_CODE_MAX_PER_PAIR; i += 1) {
+        await expect(recovery.recordWrongCodeAttempt(db, 'stable:mass-target', `mass-${c}`, now + c * 10 + i)).resolves.toBe('recorded');
+      }
     }
-    await expect(recovery.assertWrongCodeBudget(db, 'stable:new-target', 'attacker', 'test', now + 100)).rejects.toMatchObject({
-      code: 'resource-exhausted', message: 'recovery_daily_attempts_limited',
-    });
+    await expect(recovery.isWrongCodeBudgetOpen(db, 'stable:mass-target', 'fresh-caller', now + 100)).resolves.toBe(false);
+    await expect(recovery.isWrongCodeBudgetOpen(db, 'stable:mass-target', 'fresh-caller', now + recovery.RECOVERY_WRONG_CODE_WINDOW_MS + 1))
+      .resolves.toBe(true);
   });
 
-  it('честный ввод: проверка без неверных кодов проходит и ничего не записывает', async () => {
+  it('вызывающий: 10 неверных по разным целям — дальше закрыт по любой цели', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 5_200_000_000;
+    for (let i = 0; i < recovery.RECOVERY_WRONG_CODE_MAX_PER_CALLER; i += 1) {
+      await expect(recovery.recordWrongCodeAttempt(db, `stable:t-${i}`, 'spray', now + i)).resolves.toBe('recorded');
+    }
+    await expect(recovery.isWrongCodeBudgetOpen(db, 'stable:t-new', 'spray', now + 50)).resolves.toBe(false);
+  });
+
+  it('п.1: параллельные неверные попытки одной пары не проходят выше потолка (проверка и +1 в одной транзакции)', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 5_300_000_000;
+    const results = await Promise.all(Array.from({ length: 20 }, (_, i) =>
+      recovery.recordWrongCodeAttempt(db, 'stable:race-target', 'race-caller', now + i)));
+    expect(results.filter((r: string) => r === 'recorded')).toHaveLength(recovery.RECOVERY_WRONG_CODE_MAX_PER_PAIR);
+    const pairKey = `auth_recovery_rate_limits/wrong_pair_${recovery.recoveryRateKey('wrong_pair', 'stable:race-target|race-caller')}`;
+    expect(docs.get(pairKey)).toMatchObject({ count: recovery.RECOVERY_WRONG_CODE_MAX_PER_PAIR });
+  });
+
+  it('честный ввод: проверка без неверных кодов открыта и ничего не записывает', async () => {
     const recovery = require('./auth_recovery');
     const db = require('firebase-admin').firestore();
     const before = [...docs.keys()].filter((key) => key.includes('/wrong_')).length;
-    await expect(recovery.assertWrongCodeBudget(db, 'stable:honest', 'honest-caller', 'test', 7_000_000_000)).resolves.toBeTruthy();
+    await expect(recovery.isWrongCodeBudgetOpen(db, 'stable:honest', 'honest-caller', 7_000_000_000)).resolves.toBe(true);
     expect([...docs.keys()].filter((key) => key.includes('/wrong_')).length).toBe(before);
   });
 
-  it('документы потолков — по хэшу, без stableId и uid в открытом виде', async () => {
-    const recovery = require('./auth_recovery');
-    const db = require('firebase-admin').firestore();
-    const budget = await recovery.assertWrongCodeBudget(db, 'stable:plain-target', 'plain-caller', 'test', 8_000_000_000);
-    await recovery.recordWrongCode(budget);
-    const keys = [...docs.keys()].filter((key) => key.startsWith('auth_recovery_rate_limits/wrong_')).join(' ');
-    expect(keys).not.toContain('plain-target');
-    expect(keys).not.toContain('plain-caller');
-  });
-
-  it('обычное подтверждение: неверный код увеличивает счётчик цели, исчерпанный потолок отказывает до проверки кода', () => {
-    const src = require('node:fs').readFileSync(require('node:path').join(__dirname, 'auth_recovery.ts'), 'utf8');
-    expect(src).toContain("const wrongCodeBudget = await assertWrongCodeBudget(db, `stable:${stableId}`, newUid, 'confirm'");
-    expect(src).toContain("await assertWrongCodeBudget(db, cleanTargetKey, newUid, 'clean_confirm'");
-    expect((src.match(/await recordWrongCode\(wrongCodeBudget\);/g) ?? []).length).toBe(2);
-  });
-});
-
-// зачем (координатор/Сайт 17.10, политика приватности): ключи лимитов — HMAC с существующим секретом, не голый sha256;
-// документы несут expireAt, просроченный счётчик не блокирует (без зависимости от TTL-политики).
-describe('[RECOVERY-LIMIT] ключи HMAC и expireAt', () => {
-  it('ключ IP — не сам IP и не голый sha256 от него', async () => {
+  it('ключи — HMAC: ни stableId, ни uid, ни голый sha256 в id документов', async () => {
     const recovery = require('./auth_recovery');
     const crypto = require('crypto');
     const db = require('firebase-admin').firestore();
-    await recovery.consumeRecoveryCallerRate(db, 'hmac-caller', '192.0.2.44', 'test', 9_000_000_000);
-    const ipKeys = [...docs.keys()].filter((key) => key.startsWith('auth_recovery_rate_limits/caller_ip_'));
-    const plainSha = crypto.createHash('sha256').update('192.0.2.44').digest('hex').slice(0, 32);
-    expect(ipKeys.some((key) => key.includes(recovery.recoveryRateKey('caller_ip', '192.0.2.44')))).toBe(true);
-    expect(ipKeys.join(' ')).not.toContain(plainSha);
-    expect(ipKeys.join(' ')).not.toContain('192.0.2.44');
+    await recovery.recordWrongCodeAttempt(db, 'stable:plain-target', 'plain-caller', 8_000_000_000);
+    await recovery.consumeRecoveryCallerRate(db, 'hmac-caller', '192.0.2.44', 'test', 8_000_000_001);
+    const keys = [...docs.keys()].filter((key) => key.startsWith('auth_recovery_rate_limits/')).join(' ');
+    expect(keys).not.toContain('plain-target');
+    expect(keys).not.toContain('plain-caller');
+    expect(keys).not.toContain('192.0.2.44');
+    expect(keys).not.toContain(crypto.createHash('sha256').update('192.0.2.44').digest('hex').slice(0, 32));
+    expect(keys).toContain(recovery.recoveryRateKey('caller_ip', '192.0.2.44'));
   });
 
-  it('документ несёт expireAt = конец окна', async () => {
+  it('документ несёт expireAt = конец окна; просроченный по expireAt счётчик не блокирует', async () => {
     const recovery = require('./auth_recovery');
     const db = require('firebase-admin').firestore();
     const now = 9_100_000_000;
-    const budget = await recovery.assertWrongCodeBudget(db, 'stable:expire-target', 'expire-caller', 'test', now);
-    await recovery.recordWrongCode(budget);
-    const key = `auth_recovery_rate_limits/wrong_target_${recovery.recoveryRateKey('wrong_target', 'stable:expire-target')}`;
-    const expireAt = docs.get(key)?.expireAt as Date;
-    expect(expireAt instanceof Date ? expireAt.getTime() : Number.NaN).toBe(now + recovery.RECOVERY_WRONG_CODE_WINDOW_MS);
+    await recovery.recordWrongCodeAttempt(db, 'stable:expire-target', 'expire-caller', now);
+    const targetKey = `auth_recovery_rate_limits/wrong_target_${recovery.recoveryRateKey('wrong_target', 'stable:expire-target')}`;
+    const expireAt = docs.get(targetKey)?.expireAt;
+    expect(new Date(expireAt as string | Date).getTime()).toBe(now + recovery.RECOVERY_WRONG_CODE_WINDOW_MS);
+
+    const staleKey = `auth_recovery_rate_limits/wrong_target_${recovery.recoveryRateKey('wrong_target', 'stable:stale-target')}`;
+    docs.set(staleKey, { count: 99, windowStartMs: now - 1000, updatedAtMs: now - 1000, expireAt: new Date(now - 1) });
+    await expect(recovery.isWrongCodeBudgetOpen(db, 'stable:stale-target', 'stale-caller', now)).resolves.toBe(true);
   });
 
-  it('просроченный по expireAt счётчик не блокирует, даже если окно по windowStartMs ещё идёт', async () => {
-    const recovery = require('./auth_recovery');
-    const db = require('firebase-admin').firestore();
-    const now = 9_200_000_000;
-    const key = `auth_recovery_rate_limits/wrong_target_${recovery.recoveryRateKey('wrong_target', 'stable:stale-target')}`;
-    docs.set(key, { count: 99, windowStartMs: now - 1000, updatedAtMs: now - 1000, expireAt: new Date(now - 1) });
-    await expect(recovery.assertWrongCodeBudget(db, 'stable:stale-target', 'stale-caller', 'test', now)).resolves.toBeTruthy();
+  it('оба подтверждения считают потолки внутри своей транзакции, без отдельного чтения до неё', () => {
+    const src = require('node:fs').readFileSync(require('node:path').join(__dirname, 'auth_recovery.ts'), 'utf8');
+    expect(src).toContain("const wrongCodeBudget = await readWrongCodeBudgetTx(tx, wrongCodeRefs, now, 'confirm', confirmRawRequest);");
+    expect(src).toContain("const wrongCodeBudget = await readWrongCodeBudgetTx(tx, wrongCodeRefs, now, 'clean_confirm', cleanRawRequest);");
+    expect((src.match(/writeWrongCodeTx\(tx, wrongCodeRefs, wrongCodeBudget, now, '(clean_)?confirm'\);/g) ?? []).length).toBe(4);
+    expect(src).not.toContain('preflightChallenge');
   });
 });

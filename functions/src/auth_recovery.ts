@@ -216,21 +216,25 @@ export async function consumeRecoveryCallerRate(
   recoveryLog('caller_rate_ok', { scope, hasIp: Boolean(ip) });
 }
 
-// ── [RECOVERY-LIMIT] дневные потолки неверных кодов (security-review Ревизора 454976a16, пакет R111) ──────────────────
+// ── [RECOVERY-LIMIT] дневные потолки неверных кодов (Ревизор 454976a16 + f23e972a6, пакет R111) ──────────────────────
 // зачем: новый код обнулял попытки (3 письма/ч × 5 = 15 угадываний в час на цель), а лимит вызывающего ограничивал
-// письма, но не неверные коды (N Google-аккаунтов → ≈50·N угадываний в час по разным людям). Потолок 10 неверных за
-// 24 ч — и на цель, и на uid вызывающего (общий для обычного и «чистого» пути). Проверка ДО проверки кода: исчерпал —
-// дальше не проверяем вовсе. Счётчики вне основной транзакции (её фазы не сдвигаются), документы по хэшу.
+// письма, но не неверные коды. Три счётчика за 24 ч, проверка и увеличение — ВНУТРИ транзакции подтверждения (п.1:
+// параллельные вызовы не обходят потолок, лишней транзакции нет):
+// - пара «цель + вызывающий» ≤ 5 — обычный потолок подбора одним аккаунтом;
+// - цель целиком ≤ 20 — общий потолок против подбора многими аккаунтами (≈20/сутки ≈ 0,73 %/год на один код из 10⁶);
+// - вызывающий ≤ 10 — против подбора по многим целям одним аккаунтом.
+// п.2 (блокировка чужого восстановления): раньше 10 неверных от ЛЮБОГО закрывали цель на сутки — один чужой аккаунт мог
+// запереть жертву. Теперь, чтобы закрыть цель, нужно ≥ 4 разных Google-аккаунтов (по 5 на пару), каждый тратит свой
+// дневной потолок вызывающего; сама жертва не тратит счётчики чужих пар.
 export const RECOVERY_WRONG_CODE_WINDOW_MS = 24 * 60 * 60 * 1000;
-export const RECOVERY_WRONG_CODE_MAX_PER_TARGET = 10;
+export const RECOVERY_WRONG_CODE_MAX_PER_PAIR = 5;
+export const RECOVERY_WRONG_CODE_MAX_PER_TARGET = 20;
 export const RECOVERY_WRONG_CODE_MAX_PER_CALLER = 10;
 
-type WrongCodeBudget = Readonly<{
-  refs: ReadonlyArray<{ kind: 'target' | 'caller'; ref: FirebaseFirestore.DocumentReference }>;
-  states: ReadonlyArray<{ count: number; windowStartMs: number; sameWindow: boolean }>;
-  nowMs: number;
-  scope: string;
-}>;
+type WrongCodeLimitKind = 'pair' | 'target' | 'caller';
+export type WrongCodeLimitRefs = ReadonlyArray<{ kind: WrongCodeLimitKind; max: number; ref: FirebaseFirestore.DocumentReference }>;
+type WrongCodeState = Readonly<{ count: number; windowStartMs: number; sameWindow: boolean }>;
+export type WrongCodeBudget = Readonly<{ blockedBy: WrongCodeLimitKind | null; states: ReadonlyArray<WrongCodeState> }>;
 
 function recoveryLimitLog(payload: Record<string, unknown>): void {
   console.log(JSON.stringify({ event: 'recovery_limit', tag: '[RECOVERY-LIMIT]', ...payload }));
@@ -243,64 +247,104 @@ function forwardedChainLength(rawRequest: unknown): number {
   return value.split(',').map((part) => part.trim()).filter(Boolean).length;
 }
 
-export async function assertWrongCodeBudget(
+export function wrongCodeLimitRefs(
   db: FirebaseFirestore.Firestore,
   targetKey: string,
   callerUid: string,
+): WrongCodeLimitRefs {
+  const col = db.collection(RECOVERY_RATE_LIMITS);
+  return [
+    { kind: 'pair', max: RECOVERY_WRONG_CODE_MAX_PER_PAIR, ref: col.doc(`wrong_pair_${recoveryRateKey('wrong_pair', `${targetKey}|${callerUid}`)}`) },
+    { kind: 'target', max: RECOVERY_WRONG_CODE_MAX_PER_TARGET, ref: col.doc(`wrong_target_${recoveryRateKey('wrong_target', targetKey)}`) },
+    { kind: 'caller', max: RECOVERY_WRONG_CODE_MAX_PER_CALLER, ref: col.doc(`wrong_caller_${recoveryRateKey('wrong_caller', callerUid)}`) },
+  ];
+}
+
+/** Читает три счётчика в транзакции (до любых её записей) и решает, можно ли проверять код. */
+export async function readWrongCodeBudgetTx(
+  tx: FirebaseFirestore.Transaction,
+  refs: WrongCodeLimitRefs,
+  nowMs: number,
   scope: string,
-  nowMs = Date.now(),
   rawRequest?: unknown,
 ): Promise<WrongCodeBudget> {
-  const refs = [
-    { kind: 'target' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_target_${recoveryRateKey('wrong_target', targetKey)}`) },
-    { kind: 'caller' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_caller_${recoveryRateKey('wrong_caller', callerUid)}`) },
-  ];
-  const snaps = await Promise.all(refs.map(({ ref }) => ref.get()));
-  const states = snaps.map((snap) => {
+  const snaps = await Promise.all(refs.map(({ ref }) => tx.get(ref)));
+  const states = snaps.map((snap): WrongCodeState => {
     const data = snap.exists ? snap.data() ?? {} : {};
     const windowStartMs = Number(data.windowStartMs ?? 0);
     const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_WRONG_CODE_WINDOW_MS
       && !rateDocExpired(data, nowMs);
     return { sameWindow, windowStartMs, count: sameWindow ? Number(data.count ?? 0) || 0 : 0 };
   });
-  const targetCount = states[0].count;
-  const callerCount = states[1].count;
-  const blockedBy = targetCount >= RECOVERY_WRONG_CODE_MAX_PER_TARGET
-    ? 'target'
-    : callerCount >= RECOVERY_WRONG_CODE_MAX_PER_CALLER ? 'caller' : null;
+  const blockedAt = states.findIndex((state, i) => state.count >= refs[i].max);
+  const blockedBy = blockedAt >= 0 ? refs[blockedAt].kind : null;
   recoveryLimitLog({
     scope,
     step: 'check',
-    targetCount,
-    callerCount,
+    pairCount: states[0].count,
+    targetCount: states[1].count,
+    callerCount: states[2].count,
     decision: blockedBy ? `blocked_${blockedBy}` : 'allowed',
     forwardedChain: forwardedChainLength(rawRequest),
   });
-  if (blockedBy) throw new HttpsError('resource-exhausted', 'recovery_daily_attempts_limited');
-  return { refs, states, nowMs, scope };
+  return { blockedBy, states };
 }
 
-export async function recordWrongCode(budget: WrongCodeBudget): Promise<void> {
-  try {
-    await Promise.all(budget.refs.map(({ ref }, i) => {
-      const windowStartMs = budget.states[i].sameWindow ? budget.states[i].windowStartMs : budget.nowMs;
-      return ref.set({
-        count: budget.states[i].count + 1,
-        windowStartMs,
-        updatedAtMs: budget.nowMs,
-        expireAt: new Date(windowStartMs + RECOVERY_WRONG_CODE_WINDOW_MS),
-      }, { merge: true });
-    }));
-    recoveryLimitLog({
-      scope: budget.scope,
-      step: 'wrong_code_recorded',
-      targetCount: budget.states[0].count + 1,
-      callerCount: budget.states[1].count + 1,
-    });
-  } catch (error) {
-    // Счётчик не записался — ответ «код не подошёл» всё равно уходит; причину пишем (без идентификаторов).
-    recoveryLimitLog({ scope: budget.scope, step: 'record_failed', kind: error instanceof Error ? error.name : typeof error });
-  }
+/** Неверный код: +1 ко всем трём счётчикам в той же транзакции (атомарно с проверкой). */
+export function writeWrongCodeTx(
+  tx: FirebaseFirestore.Transaction,
+  refs: WrongCodeLimitRefs,
+  budget: WrongCodeBudget,
+  nowMs: number,
+  scope: string,
+): void {
+  refs.forEach(({ ref }, i) => {
+    const state = budget.states[i];
+    const windowStartMs = state.sameWindow ? state.windowStartMs : nowMs;
+    tx.set(ref, {
+      count: state.count + 1,
+      windowStartMs,
+      updatedAtMs: nowMs,
+      expireAt: new Date(windowStartMs + RECOVERY_WRONG_CODE_WINDOW_MS),
+    }, { merge: true });
+  });
+  recoveryLimitLog({
+    scope,
+    step: 'wrong_code_recorded',
+    pairCount: budget.states[0].count + 1,
+    targetCount: budget.states[1].count + 1,
+    callerCount: budget.states[2].count + 1,
+  });
+}
+
+/**
+ * Одна неверная попытка одной транзакцией: проверить потолки и, если можно, записать +1. Для тестов и для мест вне
+ * транзакции подтверждения. 'blocked' — потолок уже исчерпан, запись не делалась.
+ */
+export async function recordWrongCodeAttempt(
+  db: FirebaseFirestore.Firestore,
+  targetKey: string,
+  callerUid: string,
+  nowMs = Date.now(),
+): Promise<'recorded' | 'blocked'> {
+  const refs = wrongCodeLimitRefs(db, targetKey, callerUid);
+  return db.runTransaction(async (tx) => {
+    const budget = await readWrongCodeBudgetTx(tx, refs, nowMs, 'attempt');
+    if (budget.blockedBy) return 'blocked' as const;
+    writeWrongCodeTx(tx, refs, budget, nowMs, 'attempt');
+    return 'recorded' as const;
+  });
+}
+
+/** Только проверка (без записи): можно ли этому вызывающему сейчас вводить код для цели. */
+export async function isWrongCodeBudgetOpen(
+  db: FirebaseFirestore.Firestore,
+  targetKey: string,
+  callerUid: string,
+  nowMs = Date.now(),
+): Promise<boolean> {
+  const refs = wrongCodeLimitRefs(db, targetKey, callerUid);
+  return db.runTransaction(async (tx) => (await readWrongCodeBudgetTx(tx, refs, nowMs, 'check_only')).blockedBy === null);
 }
 
 function requireRecoverySession(request: {
@@ -661,7 +705,8 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
   const targetTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
   const currentDenialRef = accountDeleteDenialRef(db, authUid);
   const targetStableDenialRef = accountDeleteDenialRef(db, stableId);
-  const rateRef = db.collection(RECOVERY_RATE_LIMITS).doc(stableId);
+  // R111 п.3 (Ревизор f23e972a6): документ лимита писем был по ГОЛОМУ stableId — теперь HMAC-ключ цели.
+  const rateRef = db.collection(RECOVERY_RATE_LIMITS).doc(`send_target_${recoveryRateKey('send_target', stableId)}`);
   const codeRef = db.collection(RECOVERY_CODES).doc(stableId);
 
   let delivery: { email: string; maskedEmail: string; provider: RecoveryProvider };
@@ -756,10 +801,10 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
         throw new HttpsError('resource-exhausted', 'recovery_rate_limited');
       }
       tx.set(rateRef, {
-        stableId,
         windowStartMs: sameWindow ? windowStartMs : now,
         count: count + 1,
         updatedAtMs: now,
+        expireAt: new Date((sameWindow ? windowStartMs : now) + RATE_WINDOW_MS),
       }, { merge: true });
       tx.set(codeRef, {
         salt,
@@ -1023,6 +1068,7 @@ async function performAtomicRecoveryRelink(params: {
 type ConfirmTransactionOutcome =
   | { kind: 'invalid' }
   | { kind: 'locked' }
+  | { kind: 'daily_limited' }
   | {
     kind: 'replay';
     recoveryEventId: string;
@@ -1066,11 +1112,14 @@ export const authConfirmRecoveryCode = onCall(CONFIRM_RECOVERY_CALLABLE_OPTIONS,
     throwRecoveryUnavailable();
   }
 
-  const wrongCodeBudget = await assertWrongCodeBudget(db, `stable:${stableId}`, newUid, 'confirm', now, (request as { rawRequest?: unknown }).rawRequest);
+  const wrongCodeRefs = wrongCodeLimitRefs(db, `stable:${stableId}`, newUid);
+  const confirmRawRequest = (request as { rawRequest?: unknown }).rawRequest;
 
   let outcome: ConfirmTransactionOutcome;
   try {
     outcome = await db.runTransaction(async (tx): Promise<ConfirmTransactionOutcome> => {
+      // R111 п.1: потолки читаются и увеличиваются в ЭТОЙ транзакции — параллельные вызовы их не обойдут.
+      const wrongCodeBudget = await readWrongCodeBudgetTx(tx, wrongCodeRefs, now, 'confirm', confirmRawRequest);
       const codeSnap = await tx.get(codeRef);
       const codeData = codeSnap.data();
       if (!codeSnap.exists || !codeData) {
@@ -1083,7 +1132,11 @@ export const authConfirmRecoveryCode = onCall(CONFIRM_RECOVERY_CALLABLE_OPTIONS,
       const expectedHash = String(codeData.codeHash ?? '');
       const actualHash = hashRecoveryCode(String(codeData.salt ?? ''), code);
       if (codeData.status === 'consumed') {
-        if (!hashesEqual(actualHash, expectedHash)) return { kind: 'invalid' };
+        if (!hashesEqual(actualHash, expectedHash)) {
+          if (wrongCodeBudget.blockedBy) return { kind: 'daily_limited' };
+          writeWrongCodeTx(tx, wrongCodeRefs, wrongCodeBudget, now, 'confirm');
+          return { kind: 'invalid' };
+        }
         const recoveryEventId = String(codeData.recoveryEventId ?? '').trim();
         const handoffEligibleUntil = numeric(codeData.handoffEligibleUntil);
         if (
@@ -1104,8 +1157,11 @@ export const authConfirmRecoveryCode = onCall(CONFIRM_RECOVERY_CALLABLE_OPTIONS,
 
       const attempts = numeric(codeData.attempts);
       if (attempts >= CODE_MAX_ATTEMPTS) return { kind: 'locked' };
+      // Сначала блокировка самого кода (её сообщение прежнее), затем дневной потолок: исчерпан — код не сверяем вовсе.
+      if (wrongCodeBudget.blockedBy) return { kind: 'daily_limited' };
       if (!hashesEqual(actualHash, expectedHash)) {
         tx.set(codeRef, { attempts: attempts + 1, updatedAt: now }, { merge: true });
+        writeWrongCodeTx(tx, wrongCodeRefs, wrongCodeBudget, now, 'confirm');
         return { kind: 'invalid' };
       }
 
@@ -1142,8 +1198,10 @@ export const authConfirmRecoveryCode = onCall(CONFIRM_RECOVERY_CALLABLE_OPTIONS,
     throwRecoveryUnavailable();
   }
 
+  if (outcome.kind === 'daily_limited') {
+    throw new HttpsError('resource-exhausted', 'recovery_daily_attempts_limited');
+  }
   if (outcome.kind === 'invalid') {
-    await recordWrongCode(wrongCodeBudget);
     throw new HttpsError('permission-denied', 'recovery_code_invalid');
   }
   if (outcome.kind === 'locked') {
@@ -1262,6 +1320,8 @@ function cleanRecoveryRateWrite(
     count: count + 1,
     windowStartMs: sameWindow ? windowStartMs : now,
     updatedAtMs: now,
+    // Ревизор f23e972a6: корзинам чистой установки тоже нужен срок (TTL-политика — R103, владелец).
+    expireAt: new Date((sameWindow ? windowStartMs : now) + CLEAN_RECOVERY_RATE_WINDOW_MS),
   }, { merge: true });
 }
 
@@ -1641,6 +1701,7 @@ export const authCleanInstallRecoveryDeliveryWorker = onDocumentCreated(
 type CleanConfirmOutcome =
   | { kind: 'invalid' }
   | { kind: 'locked' }
+  | { kind: 'daily_limited' }
   | { kind: 'success' | 'replay'; stableId: string; recoveryEventId: string; handoffEligibleUntil: number };
 
 export const authConfirmCleanInstallRecoveryCode = onCall(
@@ -1676,16 +1737,7 @@ export const authConfirmCleanInstallRecoveryCode = onCall(
     }
 
     const now = Date.now();
-    // Цель — тот, кого восстанавливают (targetStableId вызова); вызова нет — ключ самого вызова. 1 предварительное чтение.
-    let cleanTargetKey = `challenge:${challengeId}`;
-    try {
-      const preflightChallenge = await challengeRef.get();
-      const targetStableId = String(preflightChallenge.data()?.targetStableId ?? '').trim();
-      if (targetStableId) cleanTargetKey = `stable:${targetStableId}`;
-    } catch (error) {
-      recoveryLimitLog({ scope: 'clean_confirm', step: 'challenge_preflight_failed', kind: error instanceof Error ? error.name : typeof error });
-    }
-    const wrongCodeBudget = await assertWrongCodeBudget(db, cleanTargetKey, newUid, 'clean_confirm', now, (request as { rawRequest?: unknown }).rawRequest);
+    const cleanRawRequest = (request as { rawRequest?: unknown }).rawRequest;
     let outcome: CleanConfirmOutcome;
     try {
       outcome = await db.runTransaction(async (tx): Promise<CleanConfirmOutcome> => {
@@ -1693,6 +1745,15 @@ export const authConfirmCleanInstallRecoveryCode = onCall(
           tx.get(challengeRef), tx.get(idempotencyRef),
         ]);
         const challenge = challengeSnap.data() ?? {};
+        // R111 п.1–2: цель — тот, кого восстанавливают (targetStableId вызова); вызова нет — ключ самого вызова.
+        // Потолки читаются в этой же транзакции до любых записей.
+        const cleanTargetStableId = String(challenge.targetStableId ?? '').trim();
+        const wrongCodeRefs = wrongCodeLimitRefs(
+          db,
+          cleanTargetStableId ? `stable:${cleanTargetStableId}` : `challenge:${challengeId}`,
+          newUid,
+        );
+        const wrongCodeBudget = await readWrongCodeBudgetTx(tx, wrongCodeRefs, now, 'clean_confirm', cleanRawRequest);
         if (!challengeSnap.exists) {
           hmacCleanRecoveryValue(
             keyring.currentSecret,
@@ -1734,7 +1795,11 @@ export const authConfirmCleanInstallRecoveryCode = onCall(
           return { kind: 'replay', stableId, recoveryEventId, handoffEligibleUntil };
         }
         if (String(challenge.status ?? '') === 'consumed') {
-          if (!proofValid) return { kind: 'invalid' };
+          if (!proofValid) {
+            if (wrongCodeBudget.blockedBy) return { kind: 'daily_limited' };
+            writeWrongCodeTx(tx, wrongCodeRefs, wrongCodeBudget, now, 'clean_confirm');
+            return { kind: 'invalid' };
+          }
           const stableId = String(challenge.targetStableId ?? '').trim();
           const recoveryEventId = String(challenge.recoveryEventId ?? '').trim();
           const handoffEligibleUntil = numeric(challenge.handoffEligibleUntil);
@@ -1761,8 +1826,10 @@ export const authConfirmCleanInstallRecoveryCode = onCall(
         ) return { kind: 'invalid' };
         const attempts = numeric(challenge.attempts);
         if (attempts >= CODE_MAX_ATTEMPTS) return { kind: 'locked' };
+        if (wrongCodeBudget.blockedBy) return { kind: 'daily_limited' };
         if (!proofValid) {
           tx.set(challengeRef, { attempts: attempts + 1, updatedAtMs: now }, { merge: true });
+          writeWrongCodeTx(tx, wrongCodeRefs, wrongCodeBudget, now, 'clean_confirm');
           return { kind: 'invalid' };
         }
 
@@ -1824,8 +1891,10 @@ export const authConfirmCleanInstallRecoveryCode = onCall(
       throw new HttpsError('permission-denied', 'clean_recovery_unavailable');
     }
 
+    if (outcome.kind === 'daily_limited') {
+      throw new HttpsError('resource-exhausted', 'recovery_daily_attempts_limited');
+    }
     if (outcome.kind === 'invalid') {
-      await recordWrongCode(wrongCodeBudget);
       throw new HttpsError('permission-denied', 'clean_recovery_code_invalid');
     }
     if (outcome.kind === 'locked') {

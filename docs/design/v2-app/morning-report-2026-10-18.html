@@ -58,6 +58,10 @@ tr.total td { font-weight: 700; border-bottom: none; }
 .thumbs figcaption { font-size: 13px; color: var(--sec); padding: 6px 8px; }
 .wait { border-radius: 20px; padding: 28px 20px; text-align: center; color: var(--sec); background: var(--plate); box-shadow: var(--sh); }
 ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk li b { color: var(--tx); }
+.fnl { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.fnl > div { background: var(--raised); border-radius: 12px; padding: 10px 12px; font-size: 15px; color: var(--sec); }
+.fnl > div b { color: var(--tx); }
+.fnl code { display: block; margin-top: 4px; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--mu); overflow-wrap: anywhere; }
 .foot { margin-top: 48px; color: var(--mu); font-size: 13px; }
 @media (max-width: 560px) { .it { grid-template-columns: 44px 1fr; } .it .st { grid-column: 2; justify-self: start; margin-top: 6px; } h1 { font-size: 28px; line-height: 34px; } .thumbs { grid-template-columns: 1fr; } }
 </style>
@@ -68,11 +72,12 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <p class="lead">Всё, что сделано за 17.10, что ещё в работе, сколько стоит сервер и какие решения нужны от вас сегодня. Статусы: <span class="st ok">готово</span> <span class="st wip">в работе</span> <span class="st red">мешает сборке</span> <span class="st own">ждёт вашего решения</span></p>
 
   <div class="kpis">
-    <div class="kpi"><b>17 из 32</b><span>задач дня готово</span></div>
-    <div class="kpi"><b>205</b><span>занятий нового курса открыто</span></div>
-    <div class="kpi"><b>84 из 441</b><span>занятий переписано</span></div>
+    <div class="kpi"><b id="k-done">17 из 38</b><span>задач дня готово</span></div>
+    <div class="kpi"><b id="k-open">205</b><span>занятий нового курса открыто</span></div>
+    <div class="kpi"><b id="k-rew">84 из 441</b><span>занятий переписано</span></div>
+    <div class="kpi"><b id="k-voice">444 → 0</b><span>голосов с расхождением текста, цель к 07:45</span></div>
     <div class="kpi"><b>≈&nbsp;62&nbsp;€ → ≈&nbsp;50&nbsp;€</b><span>сервер в месяц, дальше цель ≈ 6–9 €</span></div>
-    <div class="kpi"><b>6</b><span>решений ждут вас</span></div>
+    <div class="kpi"><b>9</b><span>решений ждут вас</span></div>
   </div>
 
   <nav aria-label="Разделы">
@@ -82,7 +87,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <!-- ─────────────────────────── 1 ─────────────────────────── -->
   <section id="done">
     <h2><span class="n">1</span>Что сделано за 17.10</h2>
-    <p class="sub">Задачи R79–R110 из журнала выпуска. Хеш — номер изменения в коде, по нему всё находится.</p>
+    <p class="sub">Задачи R79–R116 из журнала выпуска. Хеш — номер изменения в коде, по нему всё находится.</p>
     <div class="list">
       <div class="it"><span class="id">R79</span><div><div class="t">Новый курс открыт целиком</div><div class="d">Все 8 уроков в каталоге (441 занятие), человеку доступно 205; звук для них есть и проверен. <code>9543b98c2</code> <code>2d7da68ad</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R80</span><div><div class="t">Вкладка «Обучение» открывает новые уроки</div><div class="d">Старые уроки — отдельной кнопкой на месте «Новые уроки». Кадры Сверки — в работе. <code>98f738846</code> <code>c92f7585d</code></div></div><span class="st ok">готово</span></div>
@@ -116,6 +121,12 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="it"><span class="id">R108</span><div><div class="t">Главная: 4 плитки — Уроки, Диалоги, Карточки, Пик</div><div class="d">Три варианта на выбор; пока вы не выбрали, в коде делается вариант (в). <code>d5913e0f5</code></div></div><span class="st own">ваше решение</span></div>
       <div class="it"><span class="id">R109</span><div><div class="t">Карточки: число справа от иконки</div><div class="d">Эталон готов, «6 наборов» → «6»; в коде — в работе. <code>2ad48d298</code></div></div><span class="st wip">в работе</span></div>
       <div class="it"><span class="id">R110</span><div><div class="t">Админка: автоназвание набора из видео</div><div class="d">После опросов; серверная часть — только с вашего «да».</div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R111</span><div><div class="t">Восстановление аккаунта по коду не работает</div><div class="d">Сервер требует проверку подлинности приложения, которой у приложения нет с 01.10 — и в рабочей версии, и в новой. Нужна правка кода с проверкой безопасности и выкладка. Решение — раздел 5.</div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R112</span><div><div class="t">Пик: неделя 43 с 19.10 (рейтинг по монетам)</div><div class="d">Старое расписание на сервере не пишет новую таблицу — выложить его или вернуть прежние правила до 19.10. Решение — раздел 5.</div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R113</span><div><div class="t">ИИ-диалоги: «компаньон» падает, «Как сказать…» не работает, es/de отвечают по-английски</div><div class="d">Сервер старее приложения. Решение — раздел 5.</div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R114</span><div><div class="t">Голоса нового курса: 444 записи не совпадают с текстом</div><div class="d">Урок 1 (s02–s56) и урок 2 (s01–s12); цель — 0 к 07:45.</div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R115</span><div><div class="t">69 красных проверок кода</div><div class="d">Список собран, чинят владельцы участков (макеты и паритет — «Макеты»).</div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R116</span><div><div class="t">Опросы 2.0: макет и 36 вопросов готовы</div><div class="d">Ждут четырёх ваших решений — раздел 5. <code>1b3e47a38</code></div></div><span class="st own">ваше решение</span></div>
     </div>
   </section>
 
@@ -192,11 +203,21 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <!-- ─────────────────────────── 5 ─────────────────────────── -->
   <section id="decide">
     <h2><span class="n">5</span>Решения на утро</h2>
-    <p class="sub">Шесть вопросов. По каждому есть рекомендация, она отмечена цветом.</p>
+    <p class="sub">Девять вопросов. По каждому есть рекомендация, она отмечена цветом.</p>
     <div class="dec">
-      <div class="card"><h3>1. Четыре функции на сервер до релиза (R103)</h3>
-        <p>Сборка 18.10 зовёт три функции, которых на сервере нет: обмен старых бонусов в монеты, счётчик уровня при знакомстве, удаление своей карточки из набора сообщества. Четвёртая — напоминание «вернись»: на сервере старая версия, людям в Америке оно не уходит. Выкладываются только эти четыре, остальное не трогается. Без них приложение не ломается, но эти четыре вещи не работают.</p>
-        <div class="opts"><span class="rec">Выложить 4 функции до релиза</span><span>Отложить до полного перевыклада</span></div></div>
+      <div class="card"><h3>1. Семь функций на сервер до релиза (R103)</h3>
+        <p>Новая версия приложения зовёт функции, которых на сервере нет или которые там старее. Выкладываются только эти семь, по одной, с проверкой журнала после каждой; остальное не трогается.</p>
+        <div class="fnl"><div><div><b>Монеты за репорты и «Дневной путь» не зачисляются</b> — сервер отвергает запрос новой версии.</div><code>levelSpinStarGrant</code></div><div><div><b>Итог занятия нового курса отвергается</b>, если в нём больше 22 заданий (23 занятия урока 1) — очередь отчётов встаёт и дальше не уходит.</div><code>submitLearningV2CourseSessionCompletedV1</code></div><div><div><b>Отзыв с итога занятия нового курса не отправляется.</b></div><code>submitFeedbackEntry</code></div><div><div>Напоминание «вернись / серия ждёт» не уходит людям в Америке и в поясах UTC+12 — на сервере старая версия с одним запуском в 10:00 UTC.</div><code>reEngagePushCron</code></div><div><div>Старые бонусы не обмениваются на монеты; окно «Встречайте 2.0» просто не появляется.</div><code>legacyBonusConvertMine</code></div><div><div>Не пишется статистика уровня при знакомстве (раз на человека); человек ничего не замечает.</div><code>onboardingLevelRecord</code></div><div><div>Автор удаляет карточку из своего набора — она скрывается, но после 6 неудачных попыток возвращается.</div><code>communityAuthorRemoveCard</code></div></div>
+        <div class="opts"><span class="rec">Выложить все 7 до релиза</span><span>Только первые три</span><span>Отложить до полного перевыклада</span></div></div>
+      <div class="card"><h3>1а. Восстановление аккаунта по коду (R111)</h3>
+        <p>Не работает ни на сервере, ни в новой версии: сервер требует проверку подлинности приложения, которой у приложения нет с 01.10. Нужна правка кода с проверкой безопасности и выкладка шести функций восстановления.</p>
+        <div class="opts"><span class="rec">Править и выложить утром</span><span>Оставить как есть до следующей версии</span></div></div>
+      <div class="card"><h3>1б. Пик: неделя 43 с 19.10 (R112)</h3>
+        <p>С 19.10 рейтинг Пика по монетам, а старое расписание на сервере не пишет новую таблицу — рейтинг будет пустым.</p>
+        <div class="opts"><span class="rec">Выложить новое расписание до 19.10</span><span>Вернуть прежние правила недели</span></div></div>
+      <div class="card"><h3>1в. ИИ-диалоги (R113)</h3>
+        <p>Сервер старее приложения: режим «компаньон» падает всегда, «Как сказать…» не работает, на испанском и немецком ИИ отвечает по-английски. Лечится выкладкой трёх функций диалогов — сначала проверить, что старые версии приложения это переживут.</p>
+        <div class="opts"><span class="rec">Проверить и выложить</span><span>Отложить</span></div></div>
       <div class="card"><h3>2. Выкладка сайта и политики (R105)</h3>
         <p>Собрано из чистой копии, политика — из тех же текстов, что в приложении; пробный прогон прошёл.</p>
         <div class="opts"><span class="rec">Выкладывать</span><span>Сначала показать сайт</span></div></div>
@@ -225,6 +246,9 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
     <h2><span class="n">6</span>Что осталось и риски</h2>
     <div class="grid2">
       <div class="card"><div style="font-weight:700;color:var(--red)">Мешает сборке</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
+        <li><b>Восстановление по коду (R111)</b> — не работает, нужна правка и выкладка.</li>
+        <li><b>Голоса нового курса (R114)</b> — 444 расхождения текста, цель 0 к 07:45.</li>
+        <li><b>69 красных проверок кода (R115)</b> — чинят по участкам.</li>
         <li><b>Размытый текст во вступлении занятия (R91)</b> — журналы стоят, причина ищется.</li>
         <li><b>Английский интерфейс (R95)</b> — строки почти готовы, в список языков ещё не открыт.</li>
         <li><b>Кнопка «назад» (R94)</b> — код готов, ждёт проверки на всех экранах.</li>
@@ -232,7 +256,8 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       </ul></div>
       <div class="card"><div style="font-weight:700;color:var(--wip)">Риски</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
         <li><b>Новый курс</b>: к заморозке 08:00 переписано 84 из 441 — остальные уходят в прежнем виде.</li>
-        <li><b>Без R103</b> обмен старых бонусов, счётчик знакомства и удаление своей карточки молча не работают.</li>
+        <li><b>Без R103</b> монеты за репорты и «Дневной путь» не зачисляются, итоги длинных занятий и отзывы нового курса не уходят.</li>
+        <li><b>Пик с 19.10 (R112)</b> — без решения рейтинг недели будет пустым.</li>
         <li><b>Кадры Сверки</b> по R80, R89, R94, R100, R102, R104 ещё не сняты — без них «готово» только по коду.</li>
         <li><b>Расходы</b>: главная экономия (функции в Европу) возможна только после выхода версии.</li>
       </ul></div>

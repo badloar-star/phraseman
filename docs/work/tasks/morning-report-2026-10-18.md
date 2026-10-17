@@ -15,3 +15,7 @@ Governance-ID: TG-1997DE7FDBE0
 Снимок страницы playwright, ширина 390 и 1280.
 ## Rollback
 git revert.
+
+## Доработка 17.10 вечер
+Governance-ID: TG-09B9DDD3D4AC
+Outcome: R111–R116 в разделе 1; R103 = 7 функций с «что сломано у людей без неё» (§10 firebase-cost-cut, Ревизор ec28dd324); отдельные решения R111/R112/R113; цифра голосов 444 → 0 вверху; красные тесты макетов/паритета из red-tests-head-2026-10-17.md. Scope: страница отчёта + тесты паритета/макетов. Architecture: без изменений. Security and privacy: нет данных. Technical debt: нет. Verification: снимок 390 px, тесты. Rollback: git revert.

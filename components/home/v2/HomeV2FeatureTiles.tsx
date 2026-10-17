@@ -9,7 +9,8 @@ import type { HomeFeatureTile } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import { useSpireHomePlace } from '../../../app/spire/spire_home_place';
-import { momentText } from '../../spire/moments/moments_strings';
+// зачем (координатор 18.10): подпись бейджа — из лёгкого модуля, а не из components/spire/moments (сторож запрещает; модуль моментов не нужен в холодном старте Главной)
+import { spirePlaceBadgeText } from './home_spire_place_badge';
 import type { Lang } from '../../../constants/i18n';
 
 /**
@@ -95,7 +96,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
               {/* зачем (координатор 17.10, вариант (в); владелец: «цифры справа от иконки, а не внизу»): место в лиге — бейдж в правом верхнем углу, как у иконки приложения */}
               {tile.key === 'spire' && spirePlace !== null ? (
                 <View testID="home-quick-tile-spire-place" style={[s.badge, { backgroundColor: g.ctaFill }]}>
-                  <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{momentText(uiLang, 'placeBadge', { n: spirePlace })}</Text>
+                  <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{spirePlaceBadgeText(uiLang, spirePlace)}</Text>
                 </View>
               ) : null}
             </View>

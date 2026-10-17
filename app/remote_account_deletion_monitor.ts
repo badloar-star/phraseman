@@ -7,6 +7,12 @@ type AuthUserLike = {
 
 type Unsubscribe = () => void;
 
+// зачем (координатор 17.10, «Аккаунт удалён на другом устройстве»): каждая ветка монитора пишет причину — раньше
+// загрузчики, ошибка слушателя и сбои повтора глохли молча. Без uid целиком: 8 знаков.
+function logAccountGone(step: string, payload: Record<string, unknown> = {}): void {
+  console.log('[ACCOUNT-GONE]', JSON.stringify({ step, ...payload })); // guard-ok: без идентификаторов
+}
+
 function authModuleFactory(): (() => any) | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -14,7 +20,8 @@ function authModuleFactory(): (() => any) | null {
     // зачем (координатор §67): модульный getAuth() — без «use getApp()» на вызов.
     const factory = mod?.default ?? mod;
     return typeof mod?.getAuth === 'function' || typeof factory === 'function' ? () => rnfbInstance(mod, 'getAuth') : null;
-  } catch {
+  } catch (e) {
+    logAccountGone('auth_module_unavailable', { kind: e instanceof Error ? e.name : typeof e });
     return null;
   }
 }
@@ -25,7 +32,8 @@ function firestoreModuleFactory(): (() => any) | null {
     const mod = require('@react-native-firebase/firestore');
     const factory = mod?.default ?? mod;
     return typeof mod?.getFirestore === 'function' || typeof factory === 'function' ? () => rnfbInstance(mod, 'getFirestore') : null;
-  } catch {
+  } catch (e) {
+    logAccountGone('firestore_module_unavailable', { kind: e instanceof Error ? e.name : typeof e });
     return null;
   }
 }
@@ -44,7 +52,10 @@ export function startRemoteAccountDeletionMonitor(
 ): Unsubscribe {
   const authFactory = authModuleFactory();
   const firestoreFactory = firestoreModuleFactory();
-  if (!authFactory || !firestoreFactory) return () => {};
+  if (!authFactory || !firestoreFactory) {
+    logAccountGone('monitor_off', { auth: Boolean(authFactory), firestore: Boolean(firestoreFactory) });
+    return () => {};
+  }
 
   const auth = authFactory();
   const db = firestoreFactory();
@@ -68,17 +79,23 @@ export function startRemoteAccountDeletionMonitor(
       || activeUid !== uid
       || reportedUids.has(uid)
       || inFlightUids.has(uid)
-    ) return;
+    ) {
+      logAccountGone('report_skipped', { uid: uid.slice(0, 8), stopped, ownerChanged: activeUid !== uid, alreadyReported: reportedUids.has(uid), inFlight: inFlightUids.has(uid) });
+      return;
+    }
     inFlightUids.add(uid);
+    logAccountGone('handle_start', { uid: uid.slice(0, 8), attempt: (retryAttempts.get(uid) ?? 0) + 1 });
     void onDeleted()
       .then((handled) => {
         if (handled && !stopped && activeUid === uid) {
+          logAccountGone('handled', { uid: uid.slice(0, 8), result: 'wiped_to_onboarding' });
           reportedUids.add(uid);
           retryAttempts.delete(uid);
           return;
         }
         const attempts = (retryAttempts.get(uid) ?? 0) + 1;
         retryAttempts.set(uid, attempts);
+        logAccountGone('handle_not_done', { uid: uid.slice(0, 8), handled, stopped, ownerChanged: activeUid !== uid, attempts, willRetry: !(attempts > 5 || stopped || activeUid !== uid) });
         if (attempts > 5 || stopped || activeUid !== uid) return;
         const timer = setTimeout(() => {
           retryTimers.delete(timer);
@@ -86,9 +103,10 @@ export function startRemoteAccountDeletionMonitor(
         }, Math.min(5_000, 500 * attempts));
         retryTimers.add(timer);
       })
-      .catch(() => {
+      .catch((e: unknown) => {
         const attempts = (retryAttempts.get(uid) ?? 0) + 1;
         retryAttempts.set(uid, attempts);
+        logAccountGone('handle_failed', { uid: uid.slice(0, 8), attempts, kind: e instanceof Error ? e.name : typeof e });
         if (attempts > 5 || stopped || activeUid !== uid) return;
         const timer = setTimeout(() => {
           retryTimers.delete(timer);
@@ -110,24 +128,31 @@ export function startRemoteAccountDeletionMonitor(
 
     detachMarker();
     activeUid = uid;
+    logAccountGone('marker_attach', { uid: uid.slice(0, 8) });
     markerUnsubscribe = db
       .collection('account_deletion_auth_markers')
       .doc(uid)
       .onSnapshot(
         (snapshot: { exists: boolean }) => {
+          logAccountGone('marker_snapshot', { uid: uid.slice(0, 8), exists: snapshot.exists });
           if (snapshot.exists) reportDeleted(uid);
         },
         (error: unknown) => {
+          logAccountGone('marker_error', { uid: uid.slice(0, 8), code: errorCode(error) || 'unknown' });
           if (!errorCode(error).includes('permission-denied')) return;
           // зачем: user-not-found = Firebase больше не знает этот аккаунт — это
           // единственная надёжная улика удаления. user-disabled раньше тоже
           // триггерил полный локальный wipe + смена identity, но disabled это
           // бан/модерация, а не удаление — банили живого платящего юзера и его
           // же за это стирали. Убрано по итогам аудита 2026-08-28.
-          void user!.reload().catch((reloadError: unknown) => {
-            const code = errorCode(reloadError);
-            if (code.includes('user-not-found')) reportDeleted(uid);
-          });
+          void user!.reload().then(
+            () => logAccountGone('reload_ok_not_deleted', { uid: uid.slice(0, 8) }),
+            (reloadError: unknown) => {
+              const code = errorCode(reloadError);
+              logAccountGone('reload_failed', { uid: uid.slice(0, 8), code: code || 'unknown', deleted: code.includes('user-not-found') });
+              if (code.includes('user-not-found')) reportDeleted(uid);
+            },
+          );
         },
       );
   };

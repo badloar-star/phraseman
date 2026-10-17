@@ -23,6 +23,7 @@ import {
 } from '../modules/today-tasks/today_tasks_store';
 import { todayTaskKindForPracticeActivity } from '../modules/today-tasks/today_tasks_practice_map';
 import { __resetTodayVideoTicks } from '../modules/today-tasks/today_tasks_video_ticks';
+import { todayTaskViewCounter } from '../modules/today-tasks/today_tasks_view';
 import { rememberDialogueV2SessionOutcome } from '../app/dialogue_v2_session_outcome_store';
 import { publishYoutubePosition } from '../app/youtube_player_seek_bus';
 import {
@@ -204,6 +205,27 @@ describe('засчитывание по типам', () => {
     publishYoutubePosition('vid1', 599);
     await flush();
     expect(task('video')).toMatchObject({ done: true, rewardCoins: 50 });
+    expect(grants.filter((g) => g.kind === 'video')).toHaveLength(1);
+  });
+
+  // зачем (координатор 17.10): 7 минут и перезапуск не должны обнулять счёт — отметка в store раз в 60 с.
+  it('видео: отметка каждую минуту, после перезапуска минуты продолжаются, показ — минуты из 10', async () => {
+    await startDayWith(['video', 'dialog', 'cards']);
+    const watch = async (fromSec: number, count: number) => {
+      for (let s = fromSec; s < fromSec + count; s += 1) {
+        nowMs = DAY1_NOON + s * 1000;
+        jest.spyOn(Date, 'now').mockReturnValue(nowMs);
+        publishYoutubePosition('vid1', s);
+      }
+      await flush();
+    };
+    await watch(0, 7 * 60 + 30);
+    expect(task('video')).toMatchObject({ done: false, units: 420 });
+    expect(todayTaskViewCounter(task('video'))).toEqual({ progress: 7, target: 10 });
+    __resetTodayVideoTicks('run2'); // перезапуск: память процесса пуста, 30 с неотмеченного хвоста теряются
+    await watch(1000, 3 * 60);
+    expect(task('video')).toMatchObject({ done: true, rewardCoins: 50 });
+    expect(todayTaskViewCounter(task('video'))).toEqual({ progress: 10, target: 10 });
     expect(grants.filter((g) => g.kind === 'video')).toHaveLength(1);
   });
 

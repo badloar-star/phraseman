@@ -13,6 +13,7 @@ import {
   todayTaskProgress,
   type TodayTaskKindCore,
   type TodayTasksDayState,
+  type TodayTaskState,
 } from './today_tasks_core';
 
 /** Куда ведёт тап по задаче. Источник правды для «Дизайна» (см. evidence-таблицу). */
@@ -53,6 +54,20 @@ function copyFor(kind: TodayTaskKindCore, lang: Lang): { title: string; subtitle
   }
 }
 
+/** Минут в задании «Посмотреть видео» (600 с / 60). */
+const VIDEO_VIEW_MINUTES = (TODAY_TASK_RULES.video.unitsPerStep * TODAY_TASK_RULES.video.target) / 60;
+
+/**
+ * Счётчик для показа. Видео: минуты из 10, а не «0/1» —
+ * зачем (координатор 17.10, слово владельца «не менее 10 минут»): кольцо и счётчик растут по минуте, отметки store раз в 60 с.
+ */
+export function todayTaskViewCounter(task: TodayTaskState): Readonly<{ progress: number; target: number }> {
+  if (task.kind === 'video') {
+    return { progress: task.done ? VIDEO_VIEW_MINUTES : Math.min(VIDEO_VIEW_MINUTES, Math.floor(task.units / 60)), target: VIDEO_VIEW_MINUTES };
+  }
+  return { progress: todayTaskProgress(task), target: TODAY_TASK_RULES[task.kind].target };
+}
+
 export function todayTasksToView(state: TodayTasksDayState, lang: Lang): TodayTask[] {
   return state.tasks.map((task) => {
     const copy = copyFor(task.kind, lang);
@@ -61,8 +76,7 @@ export function todayTasksToView(state: TodayTasksDayState, lang: Lang): TodayTa
       kind: task.kind,
       title: copy.title,
       ...(copy.subtitle ? { subtitle: copy.subtitle } : {}),
-      progress: todayTaskProgress(task),
-      target: TODAY_TASK_RULES[task.kind].target,
+      ...todayTaskViewCounter(task),
       done: task.done,
       rewardCoins: task.rewardCoins,
       route: TODAY_TASK_ROUTES[task.kind],

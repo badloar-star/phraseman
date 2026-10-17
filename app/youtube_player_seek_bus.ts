@@ -127,9 +127,9 @@ export function publishYoutubePosition(videoId: string, positionSec: number): vo
   positionListeners.get(videoId)?.forEach((listener) => listener(positionSec));
   // зачем (D49, «Сегодня»): плеер шлёт позицию раз в секунду только во время
   // воспроизведения — это и есть честная секунда просмотра для «Посмотреть видео».
-  // Счёт в памяти; store зовётся один раз в день, на 60-й секунде (Q9: без монет).
-  noteTodayVideoPlaybackTick(videoId, Date.now(), (watchedSec, id, dayKey) => {
-    void recordTodayTaskActivity({ kind: 'video', units: watchedSec, unitKey: `video:${dayKey}`, source: `youtube:${id}` });
+  // Отметка в store раз в минуту просмотра (переживает перезапуск); задание закрывается на 600 с (Q9: без монет).
+  noteTodayVideoPlaybackTick(videoId, Date.now(), (units, id, _dayKey, unitKey) => {
+    void recordTodayTaskActivity({ kind: 'video', units, unitKey, source: `youtube:${id}` });
   });
 }
 

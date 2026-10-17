@@ -518,7 +518,9 @@ function LessonMenu() {
     }
     lessonLockBounceAt.set(lessonId, nowMs);
     // зачем (Ревизор 3bed5434c 🟡 (2)): текст тоста — по причине замка (прогресс / уровень / порог оценки / Plus)
-    const toastKind: 'premium' | 'level' | 'threshold' | 'progress' = lockReason === 'premium' ? 'premium' : lockReason === 'level' ? 'level' : lockInfo?.requiredScore ? 'threshold' : 'progress';
+    // зачем (typecheck 0 к сборке 18.10, TS2367): замок 'premium' сюда не доходит — его увёл в пейвол ранний выход выше
+    // (`if (lockReason === 'premium') return;`), поэтому ветка 'premium' была мёртвой; поведение тоста прежнее.
+    const toastKind: 'level' | 'threshold' | 'progress' = lockReason === 'level' ? 'level' : lockInfo?.requiredScore ? 'threshold' : 'progress';
     emitAppEvent('action_toast', actionToastTri('info', LESSON_LOCK_TOAST[toastKind]));
     console.log('[LESSON-LOCK] menu:bounce_replace', JSON.stringify({ lessonId, toastKind, to: '/(tabs)/lessons', canGoBack: router.canGoBack() })); // guard-ok: один replace на список
     router.replace('/(tabs)/lessons' as never);

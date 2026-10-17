@@ -183,6 +183,9 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     // зачем (PM-214, 13.10): первый кадр «Подписки» без ?plan= берёт план из памяти процесса — в харнессе памяти нет (скелет, как раньше)
     './premium_plan_peek': { peekPremiumPlan: () => null, rememberPremiumPlan: () => undefined },
     './dev_save_offer_progress': { getDevSaveOfferProgress: () => null }, // зачем: dev-подмена прогресса оффера удержания — в харнессе выключена, как в проде
+    // зачем (17.10, 84be74d0f): экран спрашивает доступ до отрисовки; харнесс — Plus с выясненным доступом, как и раньше (исходы доступа — tests/manage_subscription_access.test.ts)
+    './manage_subscription_access': { decideManageAccess: () => ({ decision: 'show', reason: 'access_resolved_plus' }), MANAGE_NO_ACCESS_PAYWALL: { pathname: '/premium_modal', params: { context: 'premium_expired', source: 'notification_premium_expiry' } } },
+    '../components/PremiumContext': { usePremium: () => ({ hasPremiumAccess: true, accessResolved: true }) },
     './purchase_flow_activity': { withPurchaseFlow: (_source, operation) => operation() },
     './account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: () => true, subscribeAccountGeneration: () => ({ remove() {} }) },
     './manage_subscription_purchase': { changeManageSubscriptionPlanForGeneration: async () => ({ status: 'stale' }), isManageSubscriptionOperationCurrent: () => true },

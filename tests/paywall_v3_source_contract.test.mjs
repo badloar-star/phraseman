@@ -55,7 +55,10 @@ test('the Plus paywall is the only one: A–G screens, variant picker and A/B sh
 
   const dispatcher = read('app/premium_modal.tsx');
   assert.match(dispatcher, /import PaywallPlusScreen from '\.\.\/components\/paywall\/PaywallPlusScreen';/);
-  assert.match(dispatcher, /return <PaywallPlusScreen entry=\{entryResolution\.entry\} \/>;/);
+  // 5400d7316 ([PAYWALL-CLOSE-JS] Profiler) и удержание кадра на время самозакрытия: экран — тот же PaywallPlusScreen, вход —
+  // entryResolution.entry при решении show (иначе — уже показанный кадр до закрытия, без нового входа)
+  assert.match(dispatcher, /const entryToShow = entryResolution\?\.decision === 'show'\s*\?\s*entryResolution\.entry\s*:\s*\(keepShownForSelfClose \? shownEntryRef\.current : null\);/);
+  assert.match(dispatcher, /const screen = <PaywallPlusScreen entry=\{entryToShow\} \/>;/);
   const nav = read('app/paywall_navigation.ts');
   assert.match(nav, /pathname: '\/premium_modal'/);
   assert.doesNotMatch(nav, /paywall_[a-g]|resolvePaywallAbVariant/);
@@ -112,8 +115,10 @@ test('«All N features» expands in place — no modal, no sheet', () => {
   for (const path of PAYWALL_FILES) {
     assert.doesNotMatch(code(path), /<Modal\b|ThemedConfirmModal|BottomSheet|router\.push/, `${path}: no window inside the window`);
   }
-  // Exit-оффер-окно поверх пейвола выключено для пейвола Plus.
-  assert.match(read(SCREEN), /disableExitOffer: true/);
+  // Exit-оффер-окна поверх пейвола нет. D187 (df0c03d50, владелец 14.10 «Удалить код»): не выключено флагом, а удалено целиком —
+  // ни флага, ни состояния, ни ключа «уже видели» ни в экране, ни в хуке покупки.
+  assert.doesNotMatch(read(SCREEN), /disableExitOffer|exitOffer|ExitTrialOffer/);
+  assert.doesNotMatch(read('app/paywall_purchase.ts'), /disableExitOffer|ExitTrialOfferState|setExitOffer|EXIT_TRIAL_OFFER_SEEN_KEY/);
 });
 
 test('after purchase without notification permission the reminder prompt is shown', () => {

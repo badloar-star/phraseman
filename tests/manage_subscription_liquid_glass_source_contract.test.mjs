@@ -45,7 +45,10 @@ const PROTECTED = {
     handleChangePlan: 'edcaed7e3f6dc294a9030a9ae3802d8b1abd25231fb7f328fd257c3e6462892a',
     // хэш обновлён 10.10: в handleRestore добавлен синхронный замок restoringRef от двойного тапа (деньги/активация не менялись).
     // хэш обновлён 13.10 (Авторизация, profile-024/paywalls-022): dev-ветка restorepurchase=empty ДО вызова магазина (в сторе геттер выключен); деньги/активация не менялись.
-    handleRestore: '2f879b25a72de5380be37eefbfad7ad57df78b29b68ed71f2ecf650e87688853',
+    // перепин 17.10 (сверено по diff abd036def и 9ddb73f87): «Восстановить» без связи с магазином — тост storeUnreachableToast вместо тишины;
+    // потолок 8 с снимает крутилку и замок (номер запуска restoreRunRef — поздний finally не снимает чужой замок), сам запрос НЕ отменяется —
+    // если магазин ответит позже, Plus применится как обычно. Вызов восстановления, активация и деньги не менялись.
+    handleRestore: '366ec9ec060968586e365693c4145d52bf6099a3d746cb10930803c4df3cf933',
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
     closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
     openStoreCancel: 'bc53a7375ec8a9bab103ec11d2302ff01c79fa2995cc4424cd17aaf5ccee8892',
@@ -53,7 +56,7 @@ const PROTECTED = {
     acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
     declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',
   },
-  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', 'b3091d0891fbae592d026f4372f11bca860a56a4dced41029055f47e9ccbb43c' /* перепин 13.10 (PM-214): +1 строка rememberPremiumPlan(storedPlan, …, 'manage_local') после локального чтения — память плана для первого кадра, покупка/RevenueCat не тронуты; ранее перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */, '9950d2159f189eec89435a23188a6249c8a3fc94cc3c8ae512e608579cf9c931' /* перепин 13.10 (92c6d2206): dev-эффект saveOffer=progress|support открывает шаг удержания без тапов; в сторе takeDevSaveOfferOpen() = null — эффект пустой */],
+  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', 'b3091d0891fbae592d026f4372f11bca860a56a4dced41029055f47e9ccbb43c' /* перепин 13.10 (PM-214): +1 строка rememberPremiumPlan(storedPlan, …, 'manage_local') после локального чтения — память плана для первого кадра, покупка/RevenueCat не тронуты; ранее перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */, '9950d2159f189eec89435a23188a6249c8a3fc94cc3c8ae512e608579cf9c931' /* перепин 13.10 (92c6d2206): dev-эффект saveOffer=progress|support открывает шаг удержания без тапов; в сторе takeDevSaveOfferOpen() = null — эффект пустой */, 'ccc451df72434a214e694912b540933642d696ea03a25d3897f45c762df945ce' /* добавлен 17.10 (84be74d0f): журнал [PLUS-MANAGE] и один router.replace на пейвол premium_expired, когда доступ выяснен и Plus нет — экран «Plus активирован» не рисуется без доступа; покупка/отмена/восстановление не тронуты */],
 };
 
 function protectedSnapshot(candidate) {
@@ -231,10 +234,14 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     // зачем (PM-214, 13.10): первый кадр «Подписки» без ?plan= берёт план из памяти процесса — в харнессе памяти нет (скелет, как раньше)
     './premium_plan_peek': { peekPremiumPlan: () => null, rememberPremiumPlan: () => undefined },
     './dev_save_offer_progress': { getDevSaveOfferProgress: () => null, takeDevSaveOfferOpen: () => null, DEV_SAVE_OFFER_PROGRESS: { streak: 12, lessonsCompleted: 38 } }, // зачем (13.10, 92c6d2206): dev-эффект saveOffer — в харнессе выключен, как в сторе
+    // зачем (17.10, 84be74d0f): экран спрашивает доступ до отрисовки (show / wait / paywall). Харнесс проверяет деньги на экране
+    // Plus с выясненным доступом — то же состояние, что и раньше; сами исходы доступа держит tests/manage_subscription_access.test.ts.
+    './manage_subscription_access': { decideManageAccess: () => ({ decision: 'show', reason: 'access_resolved_plus' }), MANAGE_NO_ACCESS_PAYWALL: { pathname: '/premium_modal', params: { context: 'premium_expired', source: 'notification_premium_expiry' } } },
+    '../components/PremiumContext': { usePremium: () => ({ hasPremiumAccess: true, accessResolved: true }) },
   };
   const output = ts.transpileModule(source, { fileName: SOURCE_PATH, compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
   const mod = { exports: {} };
-  vm.runInNewContext(output, { module: mod, exports: mod.exports, require: name => { assert.ok(name in modules, `stub exists for ${name}`); return modules[name]; }, console: { log() {}, warn() {}, error() {} }, Date, Intl, Number, String, Promise, setImmediate }, { filename: SOURCE_PATH });
+  vm.runInNewContext(output, { module: mod, exports: mod.exports, require: name => { assert.ok(name in modules, `stub exists for ${name}`); return modules[name]; }, console: { log() {}, warn() {}, error() {} }, Date, Intl, Number, String, Promise, setImmediate, setTimeout, clearTimeout /* 9ddb73f87: потолок «Восстановить» 8 с */ }, { filename: SOURCE_PATH });
   const render = () => { stateCursor = 0; refCursor = 0; effectCursor = 0; return mod.exports.default(); };
   const runEffects = () => { for (const slot of effects) if (slot && !slot.ran) { slot.ran = true; slot.cleanup = slot.effect(); } };
   return { calls, glass, render, runEffects, releaseRestore };

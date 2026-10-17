@@ -243,6 +243,32 @@ describe('засчитывание по типам', () => {
   });
 
   // зачем (аудит Optimistic UI 17.10, п.2): сбой выдачи монет повторяется сам через 30 с, а не только при следующем событии
+  // зачем (Ревизор 3.11, 🔴): выдача монет ждёт сеть; событие, пришедшее за это время, не должно затираться отметкой «выдано» со старого снимка
+  it('гонка: выплата ждёт сеть → пришло событие → событие не потеряно, выплата одна', async () => {
+    await startDayWith(['lesson', 'cards', 'dialog']);
+    let release: () => void = () => undefined;
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    hooks.setDeps({
+      now: () => nowMs,
+      ownerStableId: async () => OWNER,
+      grant: async (request) => { await gate; grants.push(request); },
+      sha256Hex: async (input) => {
+        const { createHash } = await import('node:crypto');
+        return createHash('sha256').update(input, 'utf8').digest('hex');
+      },
+    });
+    const lessonDone = recordTodayTaskActivity({ kind: 'lesson', unitKey: 'lesson:1', source: 'test' });
+    await new Promise((resolve) => setTimeout(resolve, 30)); // очередь дошла до выдачи и ждёт сеть
+    void recordTodayTaskActivity({ kind: 'cards', unitKey: 'card:x', source: 'test' });
+    expect(task('cards').units).toBe(1);
+    release();
+    await lessonDone;
+    await flush();
+    expect(task('cards').units).toBe(1);
+    expect(task('lesson')).toMatchObject({ done: true, rewardStatus: 'granted' });
+    expect(grants.filter((g) => g.kind === 'lesson')).toHaveLength(1);
+  });
+
   it('сбой выдачи монет — один отложенный повтор, выплата одна', async () => {
     jest.useFakeTimers({ doNotFake: ['nextTick', 'setImmediate', 'queueMicrotask'] });
     try {

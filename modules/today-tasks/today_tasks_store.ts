@@ -272,7 +272,12 @@ async function rewardRequests(state: TodayTasksDayState, kind: TodayTaskKindCore
 
 /** Провести все pending-выплаты. Вызывать только внутри serialized. */
 async function settlePendingRewards(state: TodayTasksDayState): Promise<TodayTasksDayState> {
-  let next = state;
+  // зачем (Ревизор 3.11, 🔴 по f1b855998; координатор 17.10): выдача ждёт сеть, а события теперь применяются к `current` сразу, мимо очереди.
+  // Раньше отметку «выдано» ставили на снимке ДО ожидания и публиковали его — событие, пришедшее за время выдачи, затиралось.
+  // Теперь копим выданные типы и ставим отметку на СВЕЖЕМ current того же владельца и дня.
+  const pendingKinds = state.tasks.filter((task) => task.rewardStatus === 'pending').map((task) => task.kind);
+  settleLog('enter', { dayKey: state.dayKey, owner: state.ownerKey === ANON_OWNER ? 'anon' : 'account', pending: pendingKinds });
+  const grantedKinds: TodayTaskKindCore[] = [];
   for (const task of state.tasks) {
     if (task.rewardStatus !== 'pending') continue;
     if (state.ownerKey === ANON_OWNER) {
@@ -288,7 +293,7 @@ async function settlePendingRewards(state: TodayTasksDayState): Promise<TodayTas
       for (const request of requests) {
         await deps.grant(request);
       }
-      next = markTodayTaskRewardGranted(next, task.kind);
+      grantedKinds.push(task.kind);
       log('reward:queued', {
         kind: task.kind,
         dayKey: state.dayKey,
@@ -301,11 +306,33 @@ async function settlePendingRewards(state: TodayTasksDayState): Promise<TodayTas
       scheduleRewardRetry();
     }
   }
-  if (next !== state) {
+  if (grantedKinds.length === 0) {
+    settleLog('done', { dayKey: state.dayKey, granted: [], winner: 'none', reason: pendingKinds.length === 0 ? 'nothing_pending' : 'all_skipped_or_failed' });
+    return current ?? state;
+  }
+  const fresh = current;
+  if (!fresh || fresh.ownerKey !== state.ownerKey || fresh.dayKey !== state.dayKey) {
+    // Выдача прошла (ключ идемпотентен), но день/владелец сменились — отметку не переносим на чужой день; следующий вызов повторит тем же ключом без двойной выплаты.
+    settleLog('skip_mark', { dayKey: state.dayKey, granted: grantedKinds, reason: fresh ? 'owner_or_day_changed' : 'state_reset', freshDay: fresh?.dayKey ?? null });
+    return fresh ?? state;
+  }
+  let next = fresh;
+  for (const kind of grantedKinds) next = markTodayTaskRewardGranted(next, kind);
+  settleLog('done', {
+    dayKey: state.dayKey,
+    granted: grantedKinds,
+    winner: fresh === state ? 'current_unchanged' : 'current_newer_than_snapshot',
+    kinds: next.tasks.map((t) => `${t.kind}:${t.units}${t.done ? '✓' : ''}:${t.rewardStatus}`),
+  });
+  if (next !== fresh) {
     publish(next);
     await persistOrMarkUnsaved(next, 'reward_granted');
   }
   return next;
+}
+
+function settleLog(step: string, fields: Record<string, unknown>): void {
+  console.log(`[TODAY-SETTLE] ${step} ${JSON.stringify(fields)}`);
 }
 
 /**
@@ -392,16 +419,15 @@ export function recordTodayTaskActivity(event: TodayTaskEvent): Promise<void> {
         return;
       }
       log(result.outcome === 'completed' ? 'event:completed' : 'event:counted', fields);
-      if (!(await persist(result.state))) {
-        // Показываем сразу (Optimistic UI) и держим в памяти; запись повторится — см. retryUnsaved. Монеты — только после записи.
-        if (unsavedSince === null) unsavedSince = deps.now();
-        publish(result.state);
-        hookBackgroundRetry();
+      // зачем (Ревизор 3.11, та же гонка): показываем ДО записи — событие, пришедшее за время записи, ложится поверх и не затирается;
+      // на диск пишем самый свежий current. Монеты — только после успешной записи.
+      publish(result.state);
+      const latest = current ?? result.state;
+      if (!(await persistOrMarkUnsaved(latest, `event:${event.kind}`))) {
         warn('event:kept_unsaved', { ...fields, reason: 'persist_failed', retry: 'next_event|home_open|app_background' });
         return;
       }
-      publish(result.state);
-      if (result.outcome === 'completed') await settlePendingRewards(result.state);
+      if (result.outcome === 'completed') await settlePendingRewards(current ?? latest);
     } catch (error) {
       warn('event:failed', { kind: event.kind, source: event.source, error: errText(error) });
     }

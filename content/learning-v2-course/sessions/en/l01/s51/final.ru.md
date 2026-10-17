@@ -52,56 +52,56 @@
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — stuffed**
-<!-- interaction_id: en:lesson-01:session-51:word:stuffed; family: word_card -->
-> **stuffed** — набит битком. It's stuffed — «Он набит битком»: больше ничего не влезет.
+**1 · Чемодан с книгами много весит. Соберите фразу о его весе**
+<!-- interaction_id: en:lesson-01:session-51:i01; family: phrase_builder -->
+Плитки: `heavy` `is` `It` `are` → **It is heavy.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is heavy.`)*
 
 **2 · Карточка слова — overweight**
 <!-- interaction_id: en:lesson-01:session-51:word:overweight; family: word_card -->
 > **overweight** — весит больше нормы. It's overweight — «У него перевес»: о багаже в аэропорту.
 
-**3 · Карточка слова — bulky**
-<!-- interaction_id: en:lesson-01:session-51:word:bulky; family: word_card -->
-> **bulky** — громоздкий, занимает много места. It's bulky — «Он громоздкий». Это о размере, а не о весе.
-
-**4 · Карточка слова — zipped**
-<!-- interaction_id: en:lesson-01:session-51:word:zipped; family: word_card -->
-> **zipped** — застёгнут на молнию. It's zipped — «Он застёгнут».
-
-**5 · Чемодан с книгами много весит. Соберите фразу о его весе**
-<!-- interaction_id: en:lesson-01:session-51:i01; family: phrase_builder -->
-Плитки: `heavy` `is` `It` `are` → **It is heavy.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is heavy.`)*
-
-**6 · Послушайте и выберите услышанное**
+**3 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-51:i02; family: listen_choose -->
 🔊 *It is overweight.* → **It is overweight.** · It is heavy. · It is bulky.
 - It is heavy. — *В записи последнее слово — `overweight`, а в этом варианте — `heavy`.*
 - It is bulky. — *В записи последнее слово — `overweight`, а в этом варианте — `bulky`.*
 
-**7 · Обе ваши сумки весят больше разрешённого. Дополните фразу**
+**4 · Обе ваши сумки весят больше разрешённого. Дополните фразу**
 <!-- interaction_id: en:lesson-01:session-51:i03; family: context_gap_grammar -->
 They ___ overweight. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Сумок две, поэтому `They are`.*
 
-**8 · Соедините новые слова со значениями**
+**5 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-51:i04; family: speed_match -->
 stuffed — набит битком · overweight — весит больше нормы · bulky — громоздкий · zipped — застёгнут
 
-**9 · Послушайте и соберите короткую фразу**
+**6 · Карточка слова — zipped**
+<!-- interaction_id: en:lesson-01:session-51:word:zipped; family: word_card -->
+> **zipped** — застёгнут на молнию. It's zipped — «Он застёгнут».
+
+**7 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-51:i05; family: listen_build_dictation -->
 🔊 *It's zipped.* Плитки: `zipped` `It's` `He's` → **It's zipped.**
 *(плитка `He's` лишняя: здесь нужно `It's` — `It's zipped.`)*
 
-**10 · Обе коробки с книгами набиты до самого верха. Соберите фразу о них**
+**8 · Карточка слова — stuffed**
+<!-- interaction_id: en:lesson-01:session-51:word:stuffed; family: word_card -->
+> **stuffed** — набит битком. It's stuffed — «Он набит битком»: больше ничего не влезет.
+
+**9 · Обе коробки с книгами набиты до самого верха. Соберите фразу о них**
 <!-- interaction_id: en:lesson-01:session-51:i06; family: phrase_builder -->
 Плитки: `stuffed` `are` `They` `is` → **They are stuffed.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are stuffed.`)*
 
-**11 · Вы проверили молнию на рюкзаке: всё закрыто. Скажите другу коротко, что он застёгнут**
+**10 · Вы проверили молнию на рюкзаке: всё закрыто. Скажите другу коротко, что он застёгнут**
 <!-- interaction_id: en:lesson-01:session-51:i07; family: scripted_repeat_compare -->
 🎙 **It's zipped.**
+
+**11 · Карточка слова — bulky**
+<!-- interaction_id: en:lesson-01:session-51:word:bulky; family: word_card -->
+> **bulky** — громоздкий, занимает много места. It's bulky — «Он громоздкий». Это о размере, а не о весе.
 
 **12 · Друг спокойно ждёт у стойки и не торопит вас. Назовите именно его терпение**
 <!-- interaction_id: en:lesson-01:session-51:i08; family: context_gap_grammar -->

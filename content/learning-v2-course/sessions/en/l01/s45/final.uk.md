@@ -56,38 +56,38 @@
 <!-- interaction_id: en:lesson-01:session-45:word:useful; family: word_card -->
 > **useful** — корисний, знадобився. It's useful — «Він знадобився». Так кажуть про річ або пораду, яка допомогла.
 
-**2 · Картка слова — packed**
-<!-- interaction_id: en:lesson-01:session-45:word:packed; family: word_card -->
-> **packed** — спакований, складений у коробки. They're packed — «Вони спаковані». Про себе: I'm packed — «Я зібрався».
-
-**3 · Картка слова — spacious**
-<!-- interaction_id: en:lesson-01:session-45:word:spacious; family: word_card -->
-> **spacious** — просторий. It's spacious — «Тут просторо». Про кімнату, квартиру чи машину, де багато місця.
-
-**4 · Картка слова — sturdy**
-<!-- interaction_id: en:lesson-01:session-45:word:sturdy; family: word_card -->
-> **sturdy** — міцний, надійний. It's sturdy — «Вона міцна». Про коробку, стіл чи стілець, які витримають вагу.
-
-**5 · Маркер допоміг підписати всі коробки. Складіть фразу про його користь**
+**2 · Маркер допоміг підписати всі коробки. Складіть фразу про його користь**
 <!-- interaction_id: en:lesson-01:session-45:i01; family: phrase_builder -->
 Плитки: `useful` `is` `It` `He` → **It is useful.**
 *(плитка `He` зайва: тут потрібно `It` — `It is useful.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — packed**
+<!-- interaction_id: en:lesson-01:session-45:word:packed; family: word_card -->
+> **packed** — спакований, складений у коробки. They're packed — «Вони спаковані». Про себе: I'm packed — «Я зібрався».
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-45:i02; family: listen_choose -->
 🔊 *They are packed.* → **They are packed.** · We are packed. · They are empty.
 - We are packed. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
 - They are empty. — *У записі останнє слово — `packed`, а в цьому варіанті — `empty`.*
 
-**7 · Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку**
+**5 · Картка слова — sturdy**
+<!-- interaction_id: en:lesson-01:session-45:word:sturdy; family: word_card -->
+> **sturdy** — міцний, надійний. It's sturdy — «Вона міцна». Про коробку, стіл чи стілець, які витримають вагу.
+
+**6 · Діма поставив на коробку стос книжок, і вона навіть не прогнулася. Доповніть фразу про коробку**
 <!-- interaction_id: en:lesson-01:session-45:i03; family: context_gap_grammar -->
 It ___ sturdy. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Коробка одна, тому `It is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-45:i04; family: speed_match -->
 useful — корисний · packed — спакований · spacious — просторий · sturdy — міцний
+
+**8 · Картка слова — spacious**
+<!-- interaction_id: en:lesson-01:session-45:word:spacious; family: word_card -->
+> **spacious** — просторий. It's spacious — «Тут просторо». Про кімнату, квартиру чи машину, де багато місця.
 
 **9 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-45:i05; family: listen_build_dictation -->

@@ -4,180 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-32:word:crooked",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — crooked",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-32:word:crooked:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — crooked",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-32:word:crooked:audio",
-          "transcript": "crooked"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-32:word:crooked:r1",
-            "targetText": "crooked",
-            "meaningByLocale": {
-              "ru": "кривой, висит или стоит неровно. It is crooked — «Она висит криво»: например, рамка на стене.",
-              "uk": "кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "crooked",
-          "definitionByLocale": {
-            "ru": "кривой, висит или стоит неровно. It is crooked — «Она висит криво»: например, рамка на стене.",
-            "uk": "кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-32:word:blurry",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — blurry",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-32:word:blurry:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — blurry",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-32:word:blurry:audio",
-          "transcript": "blurry"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-32:word:blurry:r1",
-            "targetText": "blurry",
-            "meaningByLocale": {
-              "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
-              "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "blurry",
-          "definitionByLocale": {
-            "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
-            "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-32:word:huge",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — huge",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-32:word:huge:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — huge",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-32:word:huge:audio",
-          "transcript": "huge"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-32:word:huge:r1",
-            "targetText": "huge",
-            "meaningByLocale": {
-              "ru": "огромный, гораздо больше обычного. It is huge — «Он огромный».",
-              "uk": "величезний, набагато більший за звичайний. It is huge — «Він величезний»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "huge",
-          "definitionByLocale": {
-            "ru": "огромный, гораздо больше обычного. It is huge — «Он огромный».",
-            "uk": "величезний, набагато більший за звичайний. It is huge — «Він величезний»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-32:word:tiny",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — tiny",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-32:word:tiny:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — tiny",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-32:word:tiny:audio",
-          "transcript": "tiny"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-32:word:tiny:r1",
-            "targetText": "tiny",
-            "meaningByLocale": {
-              "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
-              "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "tiny",
-          "definitionByLocale": {
-            "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
-            "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-32:i01",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -221,7 +49,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i02",
-      "ordinal": 9,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +125,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i03",
-      "ordinal": 10,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -365,9 +193,95 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-32:word:crooked",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crooked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-32:word:crooked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crooked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-32:word:crooked:audio",
+          "transcript": "crooked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-32:word:crooked:r1",
+            "targetText": "crooked",
+            "meaningByLocale": {
+              "ru": "кривой, висит или стоит неровно. It is crooked — «Она висит криво»: например, рамка на стене.",
+              "uk": "кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crooked",
+          "definitionByLocale": {
+            "ru": "кривой, висит или стоит неровно. It is crooked — «Она висит криво»: например, рамка на стене.",
+            "uk": "кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-32:word:huge",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — huge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-32:word:huge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — huge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-32:word:huge:audio",
+          "transcript": "huge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-32:word:huge:r1",
+            "targetText": "huge",
+            "meaningByLocale": {
+              "ru": "огромный, гораздо больше обычного. It is huge — «Он огромный».",
+              "uk": "величезний, набагато більший за звичайний. It is huge — «Він величезний»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "huge",
+          "definitionByLocale": {
+            "ru": "огромный, гораздо больше обычного. It is huge — «Он огромный».",
+            "uk": "величезний, набагато більший за звичайний. It is huge — «Він величезний»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-32:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -439,8 +353,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -486,7 +400,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i06",
-      "ordinal": 13,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +444,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i07",
-      "ordinal": 14,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +477,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i08",
-      "ordinal": 15,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -631,8 +545,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-32:word:blurry",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blurry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-32:word:blurry:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blurry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-32:word:blurry:audio",
+          "transcript": "blurry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-32:word:blurry:r1",
+            "targetText": "blurry",
+            "meaningByLocale": {
+              "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
+              "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blurry",
+          "definitionByLocale": {
+            "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
+            "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-32:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,8 +665,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова и значения",
@@ -781,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -828,7 +785,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i12",
-      "ordinal": 19,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -872,7 +829,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i13",
-      "ordinal": 20,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -905,8 +862,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Сестра боится, что гости не успеют приехать. Назовите её тревогу",
@@ -974,7 +931,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-32:i15",
-      "ordinal": 22,
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -1045,6 +1002,49 @@
         ],
         "isWordCard": false,
         "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-32:word:tiny",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tiny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-32:word:tiny:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tiny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-32:word:tiny:audio",
+          "transcript": "tiny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-32:word:tiny:r1",
+            "targetText": "tiny",
+            "meaningByLocale": {
+              "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
+              "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tiny",
+          "definitionByLocale": {
+            "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
+            "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b7a92ca39dc0fb82783cccb0ff255def6a135d5304b226b4a402a7622eadcd62"
+  "learnerFingerprint": "1fcc525fae21f6333f0c3a8add133366ef2bf22c7b6980064b32dfbdeeef393f"
 }

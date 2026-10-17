@@ -56,38 +56,38 @@
 <!-- interaction_id: en:lesson-01:session-37:word:lonely; family: word_card -->
 > **lonely** — одиноко, не хватает людей рядом. I'm lonely — «Мне одиноко». Людей вокруг может быть много, а близких нет.
 
-**2 · Карточка слова — homesick**
-<!-- interaction_id: en:lesson-01:session-37:word:homesick; family: word_card -->
-> **homesick** — скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.
-
-**3 · Карточка слова — messy**
-<!-- interaction_id: en:lesson-01:session-37:word:messy; family: word_card -->
-> **messy** — в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.
-
-**4 · Карточка слова — cozy**
-<!-- interaction_id: en:lesson-01:session-37:word:cozy; family: word_card -->
-> **cozy** — уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.
-
-**5 · В новом городе вам не хватает людей рядом. Соберите фразу о своём чувстве**
+**2 · В новом городе вам не хватает людей рядом. Соберите фразу о своём чувстве**
 <!-- interaction_id: en:lesson-01:session-37:i01; family: phrase_builder -->
 Плитки: `lonely` `am` `I` `is` → **I am lonely.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am lonely.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — homesick**
+<!-- interaction_id: en:lesson-01:session-37:word:homesick; family: word_card -->
+> **homesick** — скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-37:i02; family: listen_choose -->
 🔊 *She is homesick.* → **She is homesick.** · He is homesick. · She is lonely.
 - He is homesick. — *В записи первое слово — `She`, а в этом варианте — `He`.*
 - She is lonely. — *В записи последнее слово — `homesick`, а в этом варианте — `lonely`.*
 
-**7 · В комнате открытые коробки и вещи на полу. Вставьте слово**
+**5 · Карточка слова — messy**
+<!-- interaction_id: en:lesson-01:session-37:word:messy; family: word_card -->
+> **messy** — в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.
+
+**6 · В комнате открытые коробки и вещи на полу. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-37:i03; family: context_gap_grammar -->
 It ___ messy. → **is** · am · are
 - am — *`am` ставим после `I`. Здесь `It is`.*
 - are — *После `It` нужно `is`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-37:i04; family: speed_match -->
 lonely — одиноко · homesick — скучает по дому · messy — неубрано · cozy — уютно
+
+**8 · Карточка слова — cozy**
+<!-- interaction_id: en:lesson-01:session-37:word:cozy; family: word_card -->
+> **cozy** — уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.
 
 **9 · Вы постелили плед и включили лампу. Послушайте и соберите фразу о комнате**
 <!-- interaction_id: en:lesson-01:session-37:i05; family: listen_build_dictation -->

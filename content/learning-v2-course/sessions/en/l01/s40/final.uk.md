@@ -52,92 +52,92 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — muted**
-<!-- interaction_id: en:lesson-01:session-40:word:muted; family: word_card -->
-> **muted** — мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку.
+**1 · У вас усе нормально. Складіть коротку фразу про себе**
+<!-- interaction_id: en:lesson-01:session-40:i01; family: phrase_builder -->
+Плитки: `okay` `I'm` `He's` → **I'm okay.**
+*(плитка `He's` зайва: тут потрібно `I'm` — `I'm okay.`)*
 
 **2 · Картка слова — frozen**
 <!-- interaction_id: en:lesson-01:session-40:word:frozen; family: word_card -->
 > **frozen** — завмер, завис. She's frozen — «У неї зависла картинка». Ще так кажуть про лід і замерзлу воду.
 
-**3 · Картка слова — sunny**
-<!-- interaction_id: en:lesson-01:session-40:word:sunny; family: word_card -->
-> **sunny** — сонячний. It's sunny — «Сонячно». Про погоду кажемо It.
-
-**4 · Картка слова — freezing**
-<!-- interaction_id: en:lesson-01:session-40:word:freezing; family: word_card -->
-> **freezing** — дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold.
-
-**5 · У вас усе нормально. Складіть коротку фразу про себе**
-<!-- interaction_id: en:lesson-01:session-40:i01; family: phrase_builder -->
-Плитки: `okay` `I'm` `He's` → **I'm okay.**
-*(плитка `He's` зайва: тут потрібно `I'm` — `I'm okay.`)*
-
-**6 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-40:i02; family: listen_choose -->
 🔊 *She's frozen.* → **She's frozen.** · He's frozen. · She's ill.
 - He's frozen. — *У записі перше слово — `She's`, а в цьому варіанті — `He's`.*
 - She's ill. — *У записі останнє слово — `frozen`, а в цьому варіанті — `ill`.*
 
-**7 · Олегові хочеться спати. Доповніть фразу про нього**
+**4 · Олегові хочеться спати. Доповніть фразу про нього**
 <!-- interaction_id: en:lesson-01:session-40:i03; family: context_gap_grammar -->
 He ___ sleepy. → **is** · am · are
 - am — *Після `He` потрібно `is`.*
 - are — *Тут `He is sleepy`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**5 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-40:i04; family: speed_match -->
 muted — звуку немає · frozen — завис · sunny — сонячно · freezing — дуже холодно
 
-**9 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-40:i05; family: listen_build_dictation -->
 🔊 *They are lonely.* Плитки: `lonely` `are` `They` `is` → **They are lonely.**
 *(плитка `is` зайва: тут потрібно `are` — `They are lonely.`)*
 
-**10 · Сигнал зв’язку слабкий. Складіть фразу саме про сигнал**
+**7 · Сигнал зв’язку слабкий. Складіть фразу саме про сигнал**
 <!-- interaction_id: en:lesson-01:session-40:i06; family: phrase_builder -->
 Плитки: `weak` `is` `It` `He` → **It is weak.**
 *(плитка `He` зайва: тут потрібно `It` — `It is weak.`)*
 
-**11 · Друг наважився на виступ попри страх. Коротко похваліть його за сміливість, звертаючись до нього**
+**8 · Друг наважився на виступ попри страх. Коротко похваліть його за сміливість, звертаючись до нього**
 <!-- interaction_id: en:lesson-01:session-40:i07; family: scripted_repeat_compare -->
 🎙 **You're brave.**
 
-**12 · Вам бракує близького спілкування. Назвіть відчуття самотності**
+**9 · Вам бракує близького спілкування. Назвіть відчуття самотності**
 <!-- interaction_id: en:lesson-01:session-40:i08; family: context_gap_grammar -->
 I am ___ . → **lonely** · sleepy · ill
 - sleepy — *`sleepy` — «хочеться спати». Самотність — `lonely`.*
 - ill — *`ill` — «хворію». Тут потрібно назвати самотність: `lonely`.*
 
-**13 · Послухайте й виберіть почуте**
+**10 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-40:i09; family: listen_choose -->
 🔊 *We are afraid.* → **We are afraid.** · They are afraid. · We are brave.
 - They are afraid. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
 - We are brave. — *У записі останнє слово — `afraid`, а в цьому варіанті — `brave`.*
 
-**14 · З’єднайте короткі початки з повними**
+**11 · З’єднайте короткі початки з повними**
 <!-- interaction_id: en:lesson-01:session-40:i10; family: speed_match -->
 I'm — I am · You're — You are · It's — It is · They're — They are
 
-**15 · Подруга говорить, але ви її не чуєте. Послухайте й складіть коротку фразу для неї**
+**12 · Картка слова — muted**
+<!-- interaction_id: en:lesson-01:session-40:word:muted; family: word_card -->
+> **muted** — мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку.
+
+**13 · Подруга говорить, але ви її не чуєте. Послухайте й складіть коротку фразу для неї**
 <!-- interaction_id: en:lesson-01:session-40:i11; family: listen_build_dictation -->
 🔊 *You're muted.* Плитки: `muted` `You're` `I'm` → **You're muted.**
 *(плитка `I'm` зайва: тут потрібно `You're` — `You're muted.`)*
 
-**16 · Сестра зізналася, що боїться майбутнього виступу. Складіть фразу саме про її страх**
+**14 · Сестра зізналася, що боїться майбутнього виступу. Складіть фразу саме про її страх**
 <!-- interaction_id: en:lesson-01:session-40:i12; family: phrase_builder -->
 Плитки: `afraid` `is` `She` `are` → **She is afraid.**
 *(плитка `are` зайва: тут потрібно `is` — `She is afraid.`)*
 
-**17 · Ви й брат хворієте й тому залишилися вдома. Поясніть друзям вашу спільну причину скасування зустрічі**
+**15 · Ви й брат хворієте й тому залишилися вдома. Поясніть друзям вашу спільну причину скасування зустрічі**
 <!-- interaction_id: en:lesson-01:session-40:i13; family: scripted_repeat_compare -->
 🎙 **We are ill.**
 
-**18 · У друга на півночі за вікном мінус тридцять. Доповніть фразу про погоду в нього**
+**16 · Картка слова — freezing**
+<!-- interaction_id: en:lesson-01:session-40:word:freezing; family: word_card -->
+> **freezing** — дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold.
+
+**17 · У друга на півночі за вікном мінус тридцять. Доповніть фразу про погоду в нього**
 <!-- interaction_id: en:lesson-01:session-40:i14; family: context_gap_grammar -->
 It ___ freezing. → **is** · am · are
 - am — *`am` ставимо після `I`. Тут `It is`.*
 - are — *Після `It` потрібно `is`.*
+
+**18 · Картка слова — sunny**
+<!-- interaction_id: en:lesson-01:session-40:word:sunny; family: word_card -->
+> **sunny** — сонячний. It's sunny — «Сонячно». Про погоду кажемо It.
 
 **19 · Послухайте й виберіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-40:i15; family: listen_choose -->

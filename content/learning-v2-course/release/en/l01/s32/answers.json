@@ -1,25 +1,5 @@
 [
   {
-    "interactionId": "en:lesson-01:session-32:word:crooked",
-    "correctText": "crooked",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:word:blurry",
-    "correctText": "blurry",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:word:huge",
-    "correctText": "huge",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:word:tiny",
-    "correctText": "tiny",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-32:i01",
     "correctText": "We are proud.",
     "correctResponseId": null
@@ -33,6 +13,16 @@
     "interactionId": "en:lesson-01:session-32:i03",
     "correctText": "is",
     "correctResponseId": "en:lesson-01:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:word:crooked",
+    "correctText": "crooked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:word:huge",
+    "correctText": "huge",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i04",
@@ -58,6 +48,11 @@
     "interactionId": "en:lesson-01:session-32:i08",
     "correctText": "are",
     "correctResponseId": "en:lesson-01:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:word:blurry",
+    "correctText": "blurry",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i09",
@@ -93,6 +88,11 @@
     "interactionId": "en:lesson-01:session-32:i15",
     "correctText": "They are similar.",
     "correctResponseId": "en:lesson-01:session-32:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:word:tiny",
+    "correctText": "tiny",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i16",

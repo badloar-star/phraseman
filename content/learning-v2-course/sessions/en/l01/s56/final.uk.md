@@ -56,82 +56,82 @@
 <!-- interaction_id: en:lesson-01:session-56:word:locked; family: word_card -->
 > **locked** — замкнений. It's locked — «Замкнено». Про двері, хвіртку, валізу, які зачинені на ключ чи замок.
 
-**2 · Картка слова — expired**
-<!-- interaction_id: en:lesson-01:session-56:word:expired; family: word_card -->
-> **expired** — прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін.
-
-**3 · Картка слова — tight**
-<!-- interaction_id: en:lesson-01:session-56:word:tight; family: word_card -->
-> **tight** — тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі.
-
-**4 · Картка слова — cracked**
-<!-- interaction_id: en:lesson-01:session-56:word:cracked; family: word_card -->
-> **cracked** — тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина.
-
-**5 · Ви смикаєте двері на балкон: вони не відчиняються. Скажіть, що вони замкнені**
+**2 · Ви смикаєте двері на балкон: вони не відчиняються. Скажіть, що вони замкнені**
 <!-- interaction_id: en:lesson-01:session-56:i01; family: phrase_builder -->
 Плитки: `locked` `is` `It` `are` → **It is locked.**
 *(плитка `are` зайва: тут потрібно `is` — `It is locked.`)*
 
-**6 · Послухайте фразу про квитки на потяг і виберіть почуте**
+**3 · Послухайте фразу про квитки на потяг і виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-56:i02; family: listen_choose -->
 🔊 *They are expensive.* → **They are expensive.** · They are cheap. · They are heavy.
 - They are cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
 - They are heavy. — *У записі останнє слово — `expensive`, а в цьому варіанті — `heavy`.*
 
-**7 · Обидві валізи зачинені на кодовий замок. Доповніть фразу про них**
+**4 · Обидві валізи зачинені на кодовий замок. Доповніть фразу про них**
 <!-- interaction_id: en:lesson-01:session-56:i03; family: context_gap_grammar -->
 They ___ locked. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Валіз дві, тому `They are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**5 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-56:i04; family: speed_match -->
 locked — замкнений · expired — прострочений · tight — тісний · cracked — тріснутий
 
-**9 · Послухайте й складіть коротку фразу**
+**6 · Картка слова — cracked**
+<!-- interaction_id: en:lesson-01:session-56:word:cracked; family: word_card -->
+> **cracked** — тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина.
+
+**7 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-56:i05; family: listen_build_dictation -->
 🔊 *It's cracked.* Плитки: `cracked` `It's` `He's` → **It's cracked.**
 *(плитка `He's` зайва: тут потрібно `It's` — `It's cracked.`)*
 
-**10 · Сумку зібрано, куртку вдягнено. Таксист питає, чи можна їхати. Скажіть про себе, що ви готові**
+**8 · Сумку зібрано, куртку вдягнено. Таксист питає, чи можна їхати. Скажіть про себе, що ви готові**
 <!-- interaction_id: en:lesson-01:session-56:i06; family: phrase_builder -->
 Плитки: `ready` `am` `I` `is` → **I am ready.**
 *(плитка `is` зайва: тут потрібно `am` — `I am ready.`)*
 
-**11 · Костя впустив телефон біля під’їзду, і по екрану пішли тріщини. Скажіть йому коротко, що екран тріснув**
+**9 · Костя впустив телефон біля під’їзду, і по екрану пішли тріщини. Скажіть йому коротко, що екран тріснув**
 <!-- interaction_id: en:lesson-01:session-56:i07; family: scripted_repeat_compare -->
 🎙 **It's cracked.**
 
-**12 · Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений**
+**10 · Картка слова — expired**
+<!-- interaction_id: en:lesson-01:session-56:word:expired; family: word_card -->
+> **expired** — прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін.
+
+**11 · Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений**
 <!-- interaction_id: en:lesson-01:session-56:i08; family: context_gap_grammar -->
 It is ___ . → **expired** · familiar · tight
 - familiar — *`familiar` — «знайомий». А в квитка минув термін: `expired`.*
 - tight — *`tight` — «тісний», це про взуття й одяг. Про квиток, у якого минув термін, каже `expired`.*
 
-**13 · Послухайте фразу про тітку Віру**
+**12 · Послухайте фразу про тітку Віру**
 <!-- interaction_id: en:lesson-01:session-56:i09; family: listen_choose -->
 🔊 *She is responsible.* → **She is responsible.** · She is independent. · She is dependent.
 - She is independent. — *У записі останнє слово — `responsible`, а в цьому варіанті — `independent`.*
 - She is dependent. — *У записі останнє слово — `responsible`, а в цьому варіанті — `dependent`.*
 
-**14 · З’єднайте слова з початку уроку зі значеннями**
+**13 · З’єднайте слова з початку уроку зі значеннями**
 <!-- interaction_id: en:lesson-01:session-56:i10; family: speed_match -->
 hungry — голодний · tired — втомлений · lost — заблукалий · late — запізнілий
 
-**15 · Таксі стоїть у заторі, а потяг за десять хвилин. Послухайте й складіть фразу про вас із родиною**
+**14 · Таксі стоїть у заторі, а потяг за десять хвилин. Послухайте й складіть фразу про вас із родиною**
 <!-- interaction_id: en:lesson-01:session-56:i11; family: listen_build_dictation -->
 🔊 *We're late.* Плитки: `late` `We're` `He's` → **We're late.**
 *(плитка `He's` зайва: тут потрібно `We're` — `We're late.`)*
 
-**16 · Тато вже в таксі згадує, що залишив зарядку на кухні. Скажіть, що він забудькуватий**
+**15 · Тато вже в таксі згадує, що залишив зарядку на кухні. Скажіть, що він забудькуватий**
 <!-- interaction_id: en:lesson-01:session-56:i12; family: phrase_builder -->
 Плитки: `forgetful` `is` `He` `are` → **He is forgetful.**
 *(плитка `are` зайва: тут потрібно `is` — `He is forgetful.`)*
 
-**17 · У потязі тітка Віра пригощає вас пиріжком із вишнею. Похваліть його коротко**
+**16 · У потязі тітка Віра пригощає вас пиріжком із вишнею. Похваліть його коротко**
 <!-- interaction_id: en:lesson-01:session-56:i13; family: scripted_repeat_compare -->
 🎙 **It's delicious.**
+
+**17 · Картка слова — tight**
+<!-- interaction_id: en:lesson-01:session-56:word:tight; family: word_card -->
+> **tight** — тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі.
 
 **18 · Куртка, яку син носив минулої зими, тепер ледве застібається. Доповніть фразу про неї**
 <!-- interaction_id: en:lesson-01:session-56:i14; family: context_gap_grammar -->

@@ -52,56 +52,56 @@
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — competitive**
-<!-- interaction_id: en:lesson-01:session-36:word:competitive; family: word_card -->
-> **competitive** — азартный, не любит проигрывать. She's competitive — «Она азартная».
-
-**2 · Карточка слова — ahead**
-<!-- interaction_id: en:lesson-01:session-36:word:ahead; family: word_card -->
-> **ahead** — впереди по счёту или по пути. We're ahead — «Мы впереди».
-
-**3 · Карточка слова — hopeless**
-<!-- interaction_id: en:lesson-01:session-36:word:hopeless; family: word_card -->
-> **hopeless** — безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.
-
-**4 · Карточка слова — grumpy**
-<!-- interaction_id: en:lesson-01:session-36:word:grumpy; family: word_card -->
-> **grumpy** — ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.
-
-**5 · Вам хочется спать. Соберите фразу о себе**
+**1 · Вам хочется спать. Соберите фразу о себе**
 <!-- interaction_id: en:lesson-01:session-36:i01; family: phrase_builder -->
 Плитки: `sleepy` `am` `I` `is` → **I am sleepy.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am sleepy.`)*
 
-**6 · Послушайте и выберите услышанное**
+**2 · Карточка слова — grumpy**
+<!-- interaction_id: en:lesson-01:session-36:word:grumpy; family: word_card -->
+> **grumpy** — ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.
+
+**3 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-36:i02; family: listen_choose -->
 🔊 *He is grumpy.* → **He is grumpy.** · She is grumpy. · He is sleepy.
 - She is grumpy. — *В записи первое слово — `He`, а в этом варианте — `She`.*
 - He is sleepy. — *В записи последнее слово — `grumpy`, а в этом варианте — `sleepy`.*
 
-**7 · У соперников на десять очков больше. Дополните фразу о них**
+**4 · Карточка слова — ahead**
+<!-- interaction_id: en:lesson-01:session-36:word:ahead; family: word_card -->
+> **ahead** — впереди по счёту или по пути. We're ahead — «Мы впереди».
+
+**5 · У соперников на десять очков больше. Дополните фразу о них**
 <!-- interaction_id: en:lesson-01:session-36:i03; family: context_gap_grammar -->
 They ___ ahead. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Соперников несколько, поэтому `They are`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-36:i04; family: speed_match -->
 competitive — азартный · ahead — впереди · hopeless — безнадёжный · grumpy — ворчливый
 
-**9 · Послушайте и соберите короткую фразу**
+**7 · Карточка слова — competitive**
+<!-- interaction_id: en:lesson-01:session-36:word:competitive; family: word_card -->
+> **competitive** — азартный, не любит проигрывать. She's competitive — «Она азартная».
+
+**8 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-36:i05; family: listen_build_dictation -->
 🔊 *She's competitive.* Плитки: `competitive` `She's` `He's` → **She's competitive.**
 *(плитка `He's` лишняя: здесь нужно `She's` — `She's competitive.`)*
 
-**10 · Вы и Олег хотите спать. Соберите фразу от вас двоих**
+**9 · Вы и Олег хотите спать. Соберите фразу от вас двоих**
 <!-- interaction_id: en:lesson-01:session-36:i06; family: phrase_builder -->
 Плитки: `sleepy` `are` `We` `They` → **We are sleepy.**
 *(плитка `They` лишняя: здесь нужно `We` — `We are sleepy.`)*
 
-**11 · Скажите коротко, почему вам трудно сосредоточиться на игре: хочется спать**
+**10 · Скажите коротко, почему вам трудно сосредоточиться на игре: хочется спать**
 <!-- interaction_id: en:lesson-01:session-36:i07; family: scripted_repeat_compare -->
 🎙 **I'm sleepy.**
+
+**11 · Карточка слова — hopeless**
+<!-- interaction_id: en:lesson-01:session-36:word:hopeless; family: word_card -->
+> **hopeless** — безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.
 
 **12 · Вы сверили сумму очков, ошибки нет. Назовите правильность результата**
 <!-- interaction_id: en:lesson-01:session-36:i08; family: context_gap_grammar -->

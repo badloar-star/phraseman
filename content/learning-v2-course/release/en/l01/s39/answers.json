@@ -1,27 +1,12 @@
 [
   {
-    "interactionId": "en:lesson-01:session-39:word:hilarious",
-    "correctText": "hilarious",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-39:word:embarrassed",
-    "correctText": "embarrassed",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-39:word:speechless",
-    "correctText": "speechless",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-39:word:thrilled",
-    "correctText": "thrilled",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-39:i01",
     "correctText": "You are brave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:word:hilarious",
+    "correctText": "hilarious",
     "correctResponseId": null
   },
   {
@@ -30,13 +15,28 @@
     "correctResponseId": "en:lesson-01:session-39:i02:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-39:word:embarrassed",
+    "correctText": "embarrassed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-39:i03",
     "correctText": "is",
     "correctResponseId": "en:lesson-01:session-39:i03:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-39:word:speechless",
+    "correctText": "speechless",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-39:i04",
     "correctText": "en:lesson-01:session-39:i04:p1=hilarious\nen:lesson-01:session-39:i04:p2=embarrassed\nen:lesson-01:session-39:i04:p3=speechless\nen:lesson-01:session-39:i04:p4=thrilled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:word:thrilled",
+    "correctText": "thrilled",
     "correctResponseId": null
   },
   {

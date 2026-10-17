@@ -5,21 +5,6 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-56:word:expired",
-    "correctText": "expired",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-56:word:tight",
-    "correctText": "tight",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-56:word:cracked",
-    "correctText": "cracked",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-56:i01",
     "correctText": "It is locked.",
     "correctResponseId": null
@@ -40,6 +25,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-56:word:cracked",
+    "correctText": "cracked",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-56:i05",
     "correctText": "It's cracked.",
     "correctResponseId": null
@@ -52,6 +42,11 @@
   {
     "interactionId": "en:lesson-01:session-56:i07",
     "correctText": "It's cracked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:word:expired",
+    "correctText": "expired",
     "correctResponseId": null
   },
   {
@@ -82,6 +77,11 @@
   {
     "interactionId": "en:lesson-01:session-56:i13",
     "correctText": "It's delicious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:word:tight",
+    "correctText": "tight",
     "correctResponseId": null
   },
   {

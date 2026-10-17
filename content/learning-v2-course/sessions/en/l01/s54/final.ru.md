@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-54:word:familiar; family: word_card -->
 > **familiar** — знакомый. It's familiar — «Мне это знакомо». О месте, лице, голосе, которые вы узнаёте.
 
-**2 · Карточка слова — unfamiliar**
-<!-- interaction_id: en:lesson-01:session-54:word:unfamiliar; family: word_card -->
-> **unfamiliar** — незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.
-
-**3 · Карточка слова — unknown**
-<!-- interaction_id: en:lesson-01:session-54:word:unknown; family: word_card -->
-> **unknown** — неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.
-
-**4 · Карточка слова — faded**
-<!-- interaction_id: en:lesson-01:session-54:word:faded; family: word_card -->
-> **faded** — выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.
-
-**5 · На снимке дом, где вы часто бывали в детстве. Скажите, что он вам знаком**
+**2 · На снимке дом, где вы часто бывали в детстве. Скажите, что он вам знаком**
 <!-- interaction_id: en:lesson-01:session-54:i01; family: phrase_builder -->
 Плитки: `familiar` `is` `It` `are` → **It is familiar.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is familiar.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — faded**
+<!-- interaction_id: en:lesson-01:session-54:word:faded; family: word_card -->
+> **faded** — выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-54:i02; family: listen_choose -->
 🔊 *It is faded.* → **It is faded.** · They are faded. · It is familiar.
 - They are faded. — *В записи первые слова — `It is`, а в этом варианте — `They are`.*
 - It is familiar. — *В записи последнее слово — `faded`, а в этом варианте — `familiar`.*
 
-**7 · На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах**
+**5 · На двух снимках дворы, которые вы сразу узнаёте. Дополните фразу о дворах**
 <!-- interaction_id: en:lesson-01:session-54:i03; family: context_gap_grammar -->
 They ___ familiar. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Дворов два, поэтому `They are`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-54:i04; family: speed_match -->
 familiar — знакомый · unfamiliar — незнакомый · unknown — неизвестный · faded — выцветший
 
-**9 · Послушайте и соберите короткую фразу**
+**7 · Карточка слова — unknown**
+<!-- interaction_id: en:lesson-01:session-54:word:unknown; family: word_card -->
+> **unknown** — неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.
+
+**8 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-54:i05; family: listen_build_dictation -->
 🔊 *It's unknown.* Плитки: `unknown` `It's` `He's` → **It's unknown.**
 *(плитка `He's` лишняя: здесь нужно `It's` — `It's unknown.`)*
+
+**9 · Карточка слова — unfamiliar**
+<!-- interaction_id: en:lesson-01:session-54:word:unfamiliar; family: word_card -->
+> **unfamiliar** — незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.
 
 **10 · На фото переулок, которого вы никогда не видели. Скажите, что он вам незнаком**
 <!-- interaction_id: en:lesson-01:session-54:i06; family: phrase_builder -->

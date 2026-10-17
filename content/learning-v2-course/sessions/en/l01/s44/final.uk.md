@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-44:word:curious; family: word_card -->
 > **curious** — допитливий, хочеться дізнатися. I'm curious — «Мені цікаво».
 
-**2 · Картка слова — weird**
-<!-- interaction_id: en:lesson-01:session-44:word:weird; family: word_card -->
-> **weird** — дивний, незвичний. It's weird — «Це дивно».
-
-**3 · Картка слова — ancient**
-<!-- interaction_id: en:lesson-01:session-44:word:ancient; family: word_card -->
-> **ancient** — давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old.
-
-**4 · Картка слова — complicated**
-<!-- interaction_id: en:lesson-01:session-44:word:complicated; family: word_card -->
-> **complicated** — складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти.
-
-**5 · Вам цікаво розібратися в будові машини. Складіть фразу про себе**
+**2 · Вам цікаво розібратися в будові машини. Складіть фразу про себе**
 <!-- interaction_id: en:lesson-01:session-44:i01; family: phrase_builder -->
 Плитки: `curious` `am` `I` `is` → **I am curious.**
 *(плитка `is` зайва: тут потрібно `am` — `I am curious.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — weird**
+<!-- interaction_id: en:lesson-01:session-44:word:weird; family: word_card -->
+> **weird** — дивний, незвичний. It's weird — «Це дивно».
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-44:i02; family: listen_choose -->
 🔊 *It is ancient.* → **It is ancient.** · It is weird. · He is ancient.
 - It is weird. — *У записі останнє слово — `ancient`, а в цьому варіанті — `weird`.*
 - He is ancient. — *У записі перше слово — `It`, а в цьому варіанті — `He`.*
 
-**7 · Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему**
+**5 · Картка слова — complicated**
+<!-- interaction_id: en:lesson-01:session-44:word:complicated; family: word_card -->
+> **complicated** — складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти.
+
+**6 · Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему**
 <!-- interaction_id: en:lesson-01:session-44:i03; family: context_gap_grammar -->
 It ___ complicated. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Схема одна, тому `It is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-44:i04; family: speed_match -->
 curious — допитливий · weird — дивний · ancient — давній · complicated — складний
 
-**9 · Послухайте й складіть коротку фразу**
+**8 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-44:i05; family: listen_build_dictation -->
 🔊 *We're curious.* Плитки: `curious` `We're` `They're` → **We're curious.**
 *(плитка `They're` зайва: тут потрібно `We're` — `We're curious.`)*
+
+**9 · Картка слова — ancient**
+<!-- interaction_id: en:lesson-01:session-44:word:ancient; family: word_card -->
+> **ancient** — давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old.
 
 **10 · У сусідній вітрині два глеки, яким дві тисячі років. Складіть фразу про них: «Вони давні»**
 <!-- interaction_id: en:lesson-01:session-44:i06; family: phrase_builder -->

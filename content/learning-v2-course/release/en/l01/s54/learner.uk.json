@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-54:word:unfamiliar",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — unfamiliar",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:word:unfamiliar:audio"
-      ],
-      "accessibilityLabel": "Картка слова — unfamiliar",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:word:unfamiliar:audio",
-          "transcript": "unfamiliar"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-54:word:unfamiliar:r1",
-            "targetText": "unfamiliar",
-            "meaningByLocale": {
-              "ru": "незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.",
-              "uk": "незнайомий. It's unfamiliar — «Мені це незнайоме». Про місце чи обличчя, які ви бачите вперше."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "unfamiliar",
-          "definitionByLocale": {
-            "ru": "незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.",
-            "uk": "незнайомий. It's unfamiliar — «Мені це незнайоме». Про місце чи обличчя, які ви бачите вперше."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:word:unknown",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — unknown",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:word:unknown:audio"
-      ],
-      "accessibilityLabel": "Картка слова — unknown",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:word:unknown:audio",
-          "transcript": "unknown"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-54:word:unknown:r1",
-            "targetText": "unknown",
-            "meaningByLocale": {
-              "ru": "неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.",
-              "uk": "невідомий. It's unknown — «Це невідомо». Про дату, ім’я, причину, яких не знає ніхто."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "unknown",
-          "definitionByLocale": {
-            "ru": "неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.",
-            "uk": "невідомий. It's unknown — «Це невідомо». Про дату, ім’я, причину, яких не знає ніхто."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:word:faded",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — faded",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:word:faded:audio"
-      ],
-      "accessibilityLabel": "Картка слова — faded",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:word:faded:audio",
-          "transcript": "faded"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-54:word:faded:r1",
-            "targetText": "faded",
-            "meaningByLocale": {
-              "ru": "выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.",
-              "uk": "вицвілий. It's faded — «Він вицвів». Про фото, футболку, фіранку, які втратили колір."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "faded",
-          "definitionByLocale": {
-            "ru": "выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.",
-            "uk": "вицвілий. It's faded — «Він вицвів». Про фото, футболку, фіранку, які втратили колір."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-54:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-54:word:faded",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — faded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:word:faded:audio"
+      ],
+      "accessibilityLabel": "Картка слова — faded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:word:faded:audio",
+          "transcript": "faded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:word:faded:r1",
+            "targetText": "faded",
+            "meaningByLocale": {
+              "ru": "выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.",
+              "uk": "вицвілий. It's faded — «Він вицвів». Про фото, футболку, фіранку, які втратили колір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "faded",
+          "definitionByLocale": {
+            "ru": "выцветший. It's faded — «Он выцвел». О фото, футболке, занавеске, которые потеряли цвет.",
+            "uk": "вицвілий. It's faded — «Він вицвів». Про фото, футболку, фіранку, які втратили колір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-54:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +211,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i03",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +280,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -438,8 +352,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-54:word:unknown",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unknown",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:word:unknown:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unknown",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:word:unknown:audio",
+          "transcript": "unknown"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:word:unknown:r1",
+            "targetText": "unknown",
+            "meaningByLocale": {
+              "ru": "неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.",
+              "uk": "невідомий. It's unknown — «Це невідомо». Про дату, ім’я, причину, яких не знає ніхто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unknown",
+          "definitionByLocale": {
+            "ru": "неизвестный. It's unknown — «Это неизвестно». О дате, имени, причине, которых не знает никто.",
+            "uk": "невідомий. It's unknown — «Це невідомо». Про дату, ім’я, причину, яких не знає ніхто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-54:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -479,6 +436,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:word:unfamiliar",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unfamiliar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:word:unfamiliar:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unfamiliar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:word:unfamiliar:audio",
+          "transcript": "unfamiliar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:word:unfamiliar:r1",
+            "targetText": "unfamiliar",
+            "meaningByLocale": {
+              "ru": "незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.",
+              "uk": "незнайомий. It's unfamiliar — «Мені це незнайоме». Про місце чи обличчя, які ви бачите вперше."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unfamiliar",
+          "definitionByLocale": {
+            "ru": "незнакомый. It's unfamiliar — «Мне это незнакомо». О месте или лице, которые вы видите впервые.",
+            "uk": "незнайомий. It's unfamiliar — «Мені це незнайоме». Про місце чи обличчя, які ви бачите вперше."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7b1c231706932811844c87659194bacf71191345123c72ec96472914ca43ef8e"
+  "learnerFingerprint": "424afd2129b5cdcd4bdf505775b11ba46b0343df9d209b02be394217cf9e6a85"
 }

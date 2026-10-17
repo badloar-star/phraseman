@@ -56,78 +56,78 @@
 <!-- interaction_id: en:lesson-01:session-35:word:ill; family: word_card -->
 > **ill** — болеет, болен. I'm ill — «Я болею». Это общее слово, без названия болезни.
 
-**2 · Карточка слова — contagious**
-<!-- interaction_id: en:lesson-01:session-35:word:contagious; family: word_card -->
-> **contagious** — заразный, болезнь может передаться другим. He's contagious — «Он заразный».
-
-**3 · Карточка слова — hoarse**
-<!-- interaction_id: en:lesson-01:session-35:word:hoarse; family: word_card -->
-> **hoarse** — охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.
-
-**4 · Карточка слова — dizzy**
-<!-- interaction_id: en:lesson-01:session-35:word:dizzy; family: word_card -->
-> **dizzy** — голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.
-
-**5 · Вы болеете и отменяете встречу. Соберите фразу о себе**
+**2 · Вы болеете и отменяете встречу. Соберите фразу о себе**
 <!-- interaction_id: en:lesson-01:session-35:i01; family: phrase_builder -->
 Плитки: `ill` `am` `I` `is` → **I am ill.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am ill.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — contagious**
+<!-- interaction_id: en:lesson-01:session-35:word:contagious; family: word_card -->
+> **contagious** — заразный, болезнь может передаться другим. He's contagious — «Он заразный».
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-35:i02; family: listen_choose -->
 🔊 *He is contagious.* → **He is contagious.** · She is contagious. · He is ill.
 - She is contagious. — *В записи первое слово — `He`, а в этом варианте — `She`.*
 - He is ill. — *В записи последнее слово — `contagious`, а в этом варианте — `ill`.*
 
-**7 · Сестра заболела. Дополните фразу о ней**
+**5 · Сестра заболела. Дополните фразу о ней**
 <!-- interaction_id: en:lesson-01:session-35:i03; family: context_gap_grammar -->
 She ___ ill. → **is** · am · are
 - am — *После `She` нужно `is`.*
 - are — *Про сестру здесь `She is`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-35:i04; family: speed_match -->
 ill — болеет · contagious — заразный · hoarse — охрип · dizzy — кружится голова
 
-**9 · Послушайте и соберите фразу**
+**7 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-35:i05; family: listen_build_dictation -->
 🔊 *We are ill.* Плитки: `ill` `are` `We` `is` → **We are ill.**
 *(плитка `is` лишняя: здесь нужно `are` — `We are ill.`)*
 
-**10 · Оба ваших друга болеют. Вы здоровы и рассказываете о них. Соберите фразу**
+**8 · Оба ваших друга болеют. Вы здоровы и рассказываете о них. Соберите фразу**
 <!-- interaction_id: en:lesson-01:session-35:i06; family: phrase_builder -->
 Плитки: `ill` `are` `They` `We` → **They are ill.**
 *(плитка `We` лишняя: здесь нужно `They` — `They are ill.`)*
 
-**11 · Назовите причину отмены своей встречи короткой фразой: вы болеете**
+**9 · Назовите причину отмены своей встречи короткой фразой: вы болеете**
 <!-- interaction_id: en:lesson-01:session-35:i07; family: scripted_repeat_compare -->
 🎙 **I'm ill.**
 
-**12 · Брат уснул, и вы не хотите его будить ради звонка. Скажите, что он спит**
+**10 · Брат уснул, и вы не хотите его будить ради звонка. Скажите, что он спит**
 <!-- interaction_id: en:lesson-01:session-35:i08; family: context_gap_grammar -->
 He is ___ . → **asleep** · awake · available
 - awake — *`awake` — «не спит». Брат спит: `asleep`.*
 - available — *`available` говорит о доступности. Здесь надо назвать сон: `asleep`.*
 
-**13 · Послушайте и выберите услышанное**
+**11 · Карточка слова — hoarse**
+<!-- interaction_id: en:lesson-01:session-35:word:hoarse; family: word_card -->
+> **hoarse** — охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.
+
+**12 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-35:i09; family: listen_choose -->
 🔊 *She's hoarse.* → **She's hoarse.** · He's hoarse. · She's ill.
 - He's hoarse. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
 - She's ill. — *В записи последнее слово — `hoarse`, а в этом варианте — `ill`.*
 
-**14 · Соедините короткие начала с полными**
+**13 · Соедините короткие начала с полными**
 <!-- interaction_id: en:lesson-01:session-35:i10; family: speed_match -->
 I'm — I am · He's — He is · We're — We are · They're — They are
 
-**15 · Послушайте и соберите короткую фразу**
+**14 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-35:i11; family: listen_build_dictation -->
 🔊 *She's ill.* Плитки: `ill` `She's` `He's` → **She's ill.**
 *(плитка `He's` лишняя: здесь нужно `She's` — `She's ill.`)*
 
-**16 · После отдыха вы можете поговорить. Соберите фразу о своей доступности для звонка**
+**15 · После отдыха вы можете поговорить. Соберите фразу о своей доступности для звонка**
 <!-- interaction_id: en:lesson-01:session-35:i12; family: phrase_builder -->
 Плитки: `available` `am` `I` `are` → **I am available.**
 *(плитка `are` лишняя: здесь нужно `am` — `I am available.`)*
+
+**16 · Карточка слова — dizzy**
+<!-- interaction_id: en:lesson-01:session-35:word:dizzy; family: word_card -->
+> **dizzy** — голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.
 
 **17 · Вы встали с кровати, и комната поплыла перед глазами. Скажите брату коротко, что у вас кружится голова**
 <!-- interaction_id: en:lesson-01:session-35:i13; family: scripted_repeat_compare -->
@@ -152,4 +152,3 @@ dizzy — кружится голова · contagious — заразный · av
 **21 · Ваша сестра пропускает занятие, потому что болеет. Объясните преподавателю причину её отсутствия**
 <!-- interaction_id: en:lesson-01:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **She is ill.**
-

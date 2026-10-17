@@ -4,44 +4,44 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-40:word:muted",
+      "interactionId": "en:lesson-01:session-40:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — muted",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вас усе нормально. Складіть коротку фразу про себе",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-40:word:muted:audio"
-      ],
-      "accessibilityLabel": "Картка слова — muted",
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас усе нормально. Складіть коротку фразу про себе",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-40:word:muted:audio",
-          "transcript": "muted"
+        "family": "phrase_builder",
+        "targetPhrase": "I'm okay.",
+        "localizedMeaning": {
+          "ru": "У вас всё нормально. Соберите короткую фразу о себе",
+          "uk": "У вас усе нормально. Складіть коротку фразу про себе"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "I'm",
+          "okay"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-40:word:muted:r1",
-            "targetText": "muted",
-            "meaningByLocale": {
-              "ru": "микрофон выключен, звука нет. You're muted — «У тебя выключен звук». Так говорят на видеозвонке.",
-              "uk": "мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку."
+            "responseId": "en:lesson-01:session-40:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "У вас усе нормально. Складіть коротку фразу про себе",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `I'm` — `I'm okay.`",
+              "uk": "тут потрібно `I'm` — `I'm okay.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "muted",
-          "definitionByLocale": {
-            "ru": "микрофон выключен, звука нет. You're muted — «У тебя выключен звук». Так говорят на видеозвонке.",
-            "uk": "мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -90,137 +90,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-40:word:sunny",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sunny",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-40:word:sunny:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sunny",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-40:word:sunny:audio",
-          "transcript": "sunny"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-40:word:sunny:r1",
-            "targetText": "sunny",
-            "meaningByLocale": {
-              "ru": "солнечный. It's sunny — «Солнечно». Про погоду говорим It.",
-              "uk": "сонячний. It's sunny — «Сонячно». Про погоду кажемо It."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sunny",
-          "definitionByLocale": {
-            "ru": "солнечный. It's sunny — «Солнечно». Про погоду говорим It.",
-            "uk": "сонячний. It's sunny — «Сонячно». Про погоду кажемо It."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-40:word:freezing",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — freezing",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-40:word:freezing:audio"
-      ],
-      "accessibilityLabel": "Картка слова — freezing",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-40:word:freezing:audio",
-          "transcript": "freezing"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-40:word:freezing:r1",
-            "targetText": "freezing",
-            "meaningByLocale": {
-              "ru": "очень холодно, мороз. It's freezing — «Ужасно холодно». Сильнее, чем cold.",
-              "uk": "дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "freezing",
-          "definitionByLocale": {
-            "ru": "очень холодно, мороз. It's freezing — «Ужасно холодно». Сильнее, чем cold.",
-            "uk": "дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-40:i01",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "У вас усе нормально. Складіть коротку фразу про себе",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "У вас усе нормально. Складіть коротку фразу про себе",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I'm okay.",
-        "localizedMeaning": {
-          "ru": "У вас всё нормально. Соберите короткую фразу о себе",
-          "uk": "У вас усе нормально. Складіть коротку фразу про себе"
-        },
-        "orderedTokens": [
-          "I'm",
-          "okay"
-        ],
-        "authoredDistractorTokens": [
-          "He's"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-40:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "У вас усе нормально. Складіть коротку фразу про себе",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `I'm` — `I'm okay.`",
-              "uk": "тут потрібно `I'm` — `I'm okay.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-40:i02",
-      "ordinal": 9,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,7 +167,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i03",
-      "ordinal": 10,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -365,8 +236,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -438,8 +309,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -485,8 +356,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i06",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Сигнал зв’язку слабкий. Складіть фразу саме про сигнал",
@@ -529,7 +400,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i07",
-      "ordinal": 14,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -562,7 +433,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i08",
-      "ordinal": 15,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -631,7 +502,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i09",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -707,8 +578,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте короткі початки з повними",
@@ -779,9 +650,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-40:word:muted",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — muted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:word:muted:audio"
+      ],
+      "accessibilityLabel": "Картка слова — muted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:word:muted:audio",
+          "transcript": "muted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:word:muted:r1",
+            "targetText": "muted",
+            "meaningByLocale": {
+              "ru": "микрофон выключен, звука нет. You're muted — «У тебя выключен звук». Так говорят на видеозвонке.",
+              "uk": "мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muted",
+          "definitionByLocale": {
+            "ru": "микрофон выключен, звука нет. You're muted — «У тебя выключен звук». Так говорят на видеозвонке.",
+            "uk": "мікрофон вимкнений, звуку немає. You're muted — «У тебе вимкнений звук». Так кажуть на відеодзвінку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-40:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Подруга говорить, але ви її не чуєте. Послухайте й складіть коротку фразу для неї",
@@ -826,7 +740,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i12",
-      "ordinal": 19,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -870,7 +784,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-40:i13",
-      "ordinal": 20,
+      "ordinal": 18,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -902,9 +816,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-40:word:freezing",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — freezing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:word:freezing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — freezing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:word:freezing:audio",
+          "transcript": "freezing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:word:freezing:r1",
+            "targetText": "freezing",
+            "meaningByLocale": {
+              "ru": "очень холодно, мороз. It's freezing — «Ужасно холодно». Сильнее, чем cold.",
+              "uk": "дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freezing",
+          "definitionByLocale": {
+            "ru": "очень холодно, мороз. It's freezing — «Ужасно холодно». Сильнее, чем cold.",
+            "uk": "дуже холодно, мороз. It's freezing — «Страшенно холодно». Сильніше, ніж cold."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-40:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "У друга на півночі за вікном мінус тридцять. Доповніть фразу про погоду в нього",
@@ -967,6 +924,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:word:sunny",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sunny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:word:sunny:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sunny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:word:sunny:audio",
+          "transcript": "sunny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:word:sunny:r1",
+            "targetText": "sunny",
+            "meaningByLocale": {
+              "ru": "солнечный. It's sunny — «Солнечно». Про погоду говорим It.",
+              "uk": "сонячний. It's sunny — «Сонячно». Про погоду кажемо It."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunny",
+          "definitionByLocale": {
+            "ru": "солнечный. It's sunny — «Солнечно». Про погоду говорим It.",
+            "uk": "сонячний. It's sunny — «Сонячно». Про погоду кажемо It."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d375de72c1666564140cd7c9dfc7ae2adca0a0893fada7b581c54543d34c2b53"
+  "learnerFingerprint": "0bafbc231244973fb13cff212339ec05aa09ef467f689d577e12e7f5f03e7490"
 }

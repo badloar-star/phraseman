@@ -47,137 +47,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-44:word:weird",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — weird",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-44:word:weird:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — weird",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-44:word:weird:audio",
-            "transcript": "weird"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-44:word:weird:r1",
-              "targetText": "weird",
-              "meaningByLocale": {
-                "ru": "странный, необычный. It's weird — «Это странно».",
-                "uk": "дивний, незвичний. It's weird — «Це дивно»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "weird",
-            "definitionByLocale": {
-              "ru": "странный, необычный. It's weird — «Это странно».",
-              "uk": "дивний, незвичний. It's weird — «Це дивно»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-44:word:ancient",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — ancient",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-44:word:ancient:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — ancient",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-44:word:ancient:audio",
-            "transcript": "ancient"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-44:word:ancient:r1",
-              "targetText": "ancient",
-              "meaningByLocale": {
-                "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
-                "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "ancient",
-            "definitionByLocale": {
-              "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
-              "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-44:word:complicated",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — complicated",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-44:word:complicated:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — complicated",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-44:word:complicated:audio",
-            "transcript": "complicated"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-44:word:complicated:r1",
-              "targetText": "complicated",
-              "meaningByLocale": {
-                "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
-                "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "complicated",
-            "definitionByLocale": {
-              "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
-              "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-44:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-44:word:weird",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — weird",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:weird:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — weird",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:weird:audio",
+            "transcript": "weird"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:weird:r1",
+              "targetText": "weird",
+              "meaningByLocale": {
+                "ru": "странный, необычный. It's weird — «Это странно».",
+                "uk": "дивний, незвичний. It's weird — «Це дивно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weird",
+            "definitionByLocale": {
+              "ru": "странный, необычный. It's weird — «Это странно».",
+              "uk": "дивний, незвичний. It's weird — «Це дивно»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-44:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +210,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-44:word:complicated",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — complicated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:complicated:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — complicated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:complicated:audio",
+            "transcript": "complicated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:complicated:r1",
+              "targetText": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+                "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "complicated",
+            "definitionByLocale": {
+              "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+              "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-44:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +323,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-44:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-44:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -479,6 +436,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:ancient",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ancient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:ancient:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ancient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:ancient:audio",
+            "transcript": "ancient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:ancient:r1",
+              "targetText": "ancient",
+              "meaningByLocale": {
+                "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+                "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ancient",
+            "definitionByLocale": {
+              "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+              "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+            }
           }
         },
         "scriptedAlternate": null
@@ -1206,137 +1206,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-44:word:weird",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — weird",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-44:word:weird:audio"
-        ],
-        "accessibilityLabel": "Картка слова — weird",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-44:word:weird:audio",
-            "transcript": "weird"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-44:word:weird:r1",
-              "targetText": "weird",
-              "meaningByLocale": {
-                "ru": "странный, необычный. It's weird — «Это странно».",
-                "uk": "дивний, незвичний. It's weird — «Це дивно»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "weird",
-            "definitionByLocale": {
-              "ru": "странный, необычный. It's weird — «Это странно».",
-              "uk": "дивний, незвичний. It's weird — «Це дивно»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-44:word:ancient",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — ancient",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-44:word:ancient:audio"
-        ],
-        "accessibilityLabel": "Картка слова — ancient",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-44:word:ancient:audio",
-            "transcript": "ancient"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-44:word:ancient:r1",
-              "targetText": "ancient",
-              "meaningByLocale": {
-                "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
-                "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "ancient",
-            "definitionByLocale": {
-              "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
-              "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-44:word:complicated",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — complicated",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-44:word:complicated:audio"
-        ],
-        "accessibilityLabel": "Картка слова — complicated",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-44:word:complicated:audio",
-            "transcript": "complicated"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-44:word:complicated:r1",
-              "targetText": "complicated",
-              "meaningByLocale": {
-                "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
-                "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "complicated",
-            "definitionByLocale": {
-              "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
-              "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-44:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1379,8 +1250,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-44:word:weird",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — weird",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:weird:audio"
+        ],
+        "accessibilityLabel": "Картка слова — weird",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:weird:audio",
+            "transcript": "weird"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:weird:r1",
+              "targetText": "weird",
+              "meaningByLocale": {
+                "ru": "странный, необычный. It's weird — «Это странно».",
+                "uk": "дивний, незвичний. It's weird — «Це дивно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weird",
+            "definitionByLocale": {
+              "ru": "странный, необычный. It's weird — «Это странно».",
+              "uk": "дивний, незвичний. It's weird — «Це дивно»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-44:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1455,8 +1369,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-44:word:complicated",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — complicated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:complicated:audio"
+        ],
+        "accessibilityLabel": "Картка слова — complicated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:complicated:audio",
+            "transcript": "complicated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:complicated:r1",
+              "targetText": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+                "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "complicated",
+            "definitionByLocale": {
+              "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+              "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-44:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1525,8 +1482,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-44:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1598,7 +1555,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-44:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1638,6 +1595,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:ancient",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ancient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:ancient:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ancient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:ancient:audio",
+            "transcript": "ancient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:ancient:r1",
+              "targetText": "ancient",
+              "meaningByLocale": {
+                "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+                "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ancient",
+            "definitionByLocale": {
+              "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+              "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+            }
           }
         },
         "scriptedAlternate": null
@@ -2328,29 +2328,24 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-44:word:weird",
-      "correctText": "weird",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:word:ancient",
-      "correctText": "ancient",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:word:complicated",
-      "correctText": "complicated",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-44:i01",
       "correctText": "I am curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:word:weird",
+      "correctText": "weird",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-44:i02",
       "correctText": "It is ancient.",
       "correctResponseId": "en:lesson-01:session-44:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:word:complicated",
+      "correctText": "complicated",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-44:i03",
@@ -2365,6 +2360,11 @@
     {
       "interactionId": "en:lesson-01:session-44:i05",
       "correctText": "We're curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:word:ancient",
+      "correctText": "ancient",
       "correctResponseId": null
     },
     {

@@ -52,56 +52,56 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — stuffed**
-<!-- interaction_id: en:lesson-01:session-51:word:stuffed; family: word_card -->
-> **stuffed** — напханий ущерть. It's stuffed — «Вона напхана вщерть»: більше нічого не влізе.
+**1 · Валіза з книжками багато важить. Складіть фразу про її вагу**
+<!-- interaction_id: en:lesson-01:session-51:i01; family: phrase_builder -->
+Плитки: `heavy` `is` `It` `are` → **It is heavy.**
+*(плитка `are` зайва: тут потрібно `is` — `It is heavy.`)*
 
 **2 · Картка слова — overweight**
 <!-- interaction_id: en:lesson-01:session-51:word:overweight; family: word_card -->
 > **overweight** — важить більше за норму. It's overweight — «У неї перевага ваги»: про багаж в аеропорту.
 
-**3 · Картка слова — bulky**
-<!-- interaction_id: en:lesson-01:session-51:word:bulky; family: word_card -->
-> **bulky** — громіздкий, займає багато місця. It's bulky — «Він громіздкий». Це про розмір, а не про вагу.
-
-**4 · Картка слова — zipped**
-<!-- interaction_id: en:lesson-01:session-51:word:zipped; family: word_card -->
-> **zipped** — застебнутий на блискавку. It's zipped — «Він застебнутий».
-
-**5 · Валіза з книжками багато важить. Складіть фразу про її вагу**
-<!-- interaction_id: en:lesson-01:session-51:i01; family: phrase_builder -->
-Плитки: `heavy` `is` `It` `are` → **It is heavy.**
-*(плитка `are` зайва: тут потрібно `is` — `It is heavy.`)*
-
-**6 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-51:i02; family: listen_choose -->
 🔊 *It is overweight.* → **It is overweight.** · It is heavy. · It is bulky.
 - It is heavy. — *У записі останнє слово — `overweight`, а в цьому варіанті — `heavy`.*
 - It is bulky. — *У записі останнє слово — `overweight`, а в цьому варіанті — `bulky`.*
 
-**7 · Обидві ваші сумки важать більше дозволеного. Доповніть фразу**
+**4 · Обидві ваші сумки важать більше дозволеного. Доповніть фразу**
 <!-- interaction_id: en:lesson-01:session-51:i03; family: context_gap_grammar -->
 They ___ overweight. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Сумок дві, тому `They are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**5 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-51:i04; family: speed_match -->
 stuffed — напханий ущерть · overweight — важить більше за норму · bulky — громіздкий · zipped — застебнутий
 
-**9 · Послухайте й складіть коротку фразу**
+**6 · Картка слова — zipped**
+<!-- interaction_id: en:lesson-01:session-51:word:zipped; family: word_card -->
+> **zipped** — застебнутий на блискавку. It's zipped — «Він застебнутий».
+
+**7 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-51:i05; family: listen_build_dictation -->
 🔊 *It's zipped.* Плитки: `zipped` `It's` `He's` → **It's zipped.**
 *(плитка `He's` зайва: тут потрібно `It's` — `It's zipped.`)*
 
-**10 · Обидві коробки з книжками напхані до самого верху. Складіть фразу про них**
+**8 · Картка слова — stuffed**
+<!-- interaction_id: en:lesson-01:session-51:word:stuffed; family: word_card -->
+> **stuffed** — напханий ущерть. It's stuffed — «Вона напхана вщерть»: більше нічого не влізе.
+
+**9 · Обидві коробки з книжками напхані до самого верху. Складіть фразу про них**
 <!-- interaction_id: en:lesson-01:session-51:i06; family: phrase_builder -->
 Плитки: `stuffed` `are` `They` `is` → **They are stuffed.**
 *(плитка `is` зайва: тут потрібно `are` — `They are stuffed.`)*
 
-**11 · Ви перевірили блискавку на рюкзаку: усе закрито. Скажіть другові коротко, що він застебнутий**
+**10 · Ви перевірили блискавку на рюкзаку: усе закрито. Скажіть другові коротко, що він застебнутий**
 <!-- interaction_id: en:lesson-01:session-51:i07; family: scripted_repeat_compare -->
 🎙 **It's zipped.**
+
+**11 · Картка слова — bulky**
+<!-- interaction_id: en:lesson-01:session-51:word:bulky; family: word_card -->
+> **bulky** — громіздкий, займає багато місця. It's bulky — «Він громіздкий». Це про розмір, а не про вагу.
 
 **12 · Друг спокійно чекає біля стійки й не квапить вас. Назвіть саме його терпіння**
 <!-- interaction_id: en:lesson-01:session-51:i08; family: context_gap_grammar -->

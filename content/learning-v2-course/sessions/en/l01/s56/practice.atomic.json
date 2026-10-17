@@ -47,137 +47,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-56:word:expired",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — expired",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-56:word:expired:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — expired",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-56:word:expired:audio",
-            "transcript": "expired"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-56:word:expired:r1",
-              "targetText": "expired",
-              "meaningByLocale": {
-                "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
-                "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "expired",
-            "definitionByLocale": {
-              "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
-              "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-56:word:tight",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — tight",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-56:word:tight:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — tight",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-56:word:tight:audio",
-            "transcript": "tight"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-56:word:tight:r1",
-              "targetText": "tight",
-              "meaningByLocale": {
-                "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
-                "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "tight",
-            "definitionByLocale": {
-              "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
-              "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-56:word:cracked",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — cracked",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-56:word:cracked:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — cracked",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-56:word:cracked:audio",
-            "transcript": "cracked"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-56:word:cracked:r1",
-              "targetText": "cracked",
-              "meaningByLocale": {
-                "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
-                "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "cracked",
-            "definitionByLocale": {
-              "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
-              "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-56:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -221,7 +92,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -297,7 +168,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i03",
-        "ordinal": 10,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +237,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -438,9 +309,52 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-56:word:cracked",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cracked",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-56:word:cracked:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cracked",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-56:word:cracked:audio",
+            "transcript": "cracked"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-56:word:cracked:r1",
+              "targetText": "cracked",
+              "meaningByLocale": {
+                "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
+                "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cracked",
+            "definitionByLocale": {
+              "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
+              "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-56:i05",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послушайте и соберите короткую фразу",
@@ -485,7 +399,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i06",
-        "ordinal": 13,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -529,7 +443,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i07",
-        "ordinal": 14,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -561,8 +475,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-56:word:expired",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — expired",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-56:word:expired:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — expired",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-56:word:expired:audio",
+            "transcript": "expired"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-56:word:expired:r1",
+              "targetText": "expired",
+              "meaningByLocale": {
+                "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
+                "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expired",
+            "definitionByLocale": {
+              "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
+              "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-56:i08",
-        "ordinal": 15,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -631,7 +588,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i09",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -707,8 +664,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините слова из начала урока со значениями",
@@ -780,7 +737,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -826,7 +783,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i12",
-        "ordinal": 19,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -870,7 +827,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i13",
-        "ordinal": 20,
+        "ordinal": 19,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -898,6 +855,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-56:word:tight",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-56:word:tight:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-56:word:tight:audio",
+            "transcript": "tight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-56:word:tight:r1",
+              "targetText": "tight",
+              "meaningByLocale": {
+                "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
+                "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tight",
+            "definitionByLocale": {
+              "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
+              "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1206,137 +1206,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-56:word:expired",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — expired",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-56:word:expired:audio"
-        ],
-        "accessibilityLabel": "Картка слова — expired",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-56:word:expired:audio",
-            "transcript": "expired"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-56:word:expired:r1",
-              "targetText": "expired",
-              "meaningByLocale": {
-                "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
-                "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "expired",
-            "definitionByLocale": {
-              "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
-              "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-56:word:tight",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — tight",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-56:word:tight:audio"
-        ],
-        "accessibilityLabel": "Картка слова — tight",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-56:word:tight:audio",
-            "transcript": "tight"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-56:word:tight:r1",
-              "targetText": "tight",
-              "meaningByLocale": {
-                "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
-                "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "tight",
-            "definitionByLocale": {
-              "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
-              "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-56:word:cracked",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — cracked",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-56:word:cracked:audio"
-        ],
-        "accessibilityLabel": "Картка слова — cracked",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-56:word:cracked:audio",
-            "transcript": "cracked"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-56:word:cracked:r1",
-              "targetText": "cracked",
-              "meaningByLocale": {
-                "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
-                "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "cracked",
-            "definitionByLocale": {
-              "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
-              "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-56:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1380,7 +1251,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1456,7 +1327,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i03",
-        "ordinal": 10,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1525,8 +1396,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1597,9 +1468,52 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-56:word:cracked",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cracked",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-56:word:cracked:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cracked",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-56:word:cracked:audio",
+            "transcript": "cracked"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-56:word:cracked:r1",
+              "targetText": "cracked",
+              "meaningByLocale": {
+                "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
+                "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cracked",
+            "definitionByLocale": {
+              "ru": "треснувший. It's cracked — «Он треснул». Об экране, чашке, стекле, по которым пошла трещина.",
+              "uk": "тріснутий. It's cracked — «Він тріснув». Про екран, чашку, скло, по яких пішла тріщина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-56:i05",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послухайте й складіть коротку фразу",
@@ -1644,7 +1558,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i06",
-        "ordinal": 13,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1688,7 +1602,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i07",
-        "ordinal": 14,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1720,8 +1634,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-56:word:expired",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — expired",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-56:word:expired:audio"
+        ],
+        "accessibilityLabel": "Картка слова — expired",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-56:word:expired:audio",
+            "transcript": "expired"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-56:word:expired:r1",
+              "targetText": "expired",
+              "meaningByLocale": {
+                "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
+                "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expired",
+            "definitionByLocale": {
+              "ru": "просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.",
+              "uk": "прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-56:i08",
-        "ordinal": 15,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1790,7 +1747,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i09",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1866,8 +1823,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте слова з початку уроку зі значеннями",
@@ -1939,7 +1896,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1985,7 +1942,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i12",
-        "ordinal": 19,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -2029,7 +1986,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-56:i13",
-        "ordinal": 20,
+        "ordinal": 19,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -2057,6 +2014,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-56:word:tight",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-56:word:tight:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-56:word:tight:audio",
+            "transcript": "tight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-56:word:tight:r1",
+              "targetText": "tight",
+              "meaningByLocale": {
+                "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
+                "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tight",
+            "definitionByLocale": {
+              "ru": "тесный. They're tight — «Они жмут». Об обуви, джинсах, кольце, которые малы.",
+              "uk": "тісний. They're tight — «Вони тиснуть». Про взуття, джинси, каблучку, які замалі."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2328,21 +2328,6 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-56:word:expired",
-      "correctText": "expired",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-56:word:tight",
-      "correctText": "tight",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-56:word:cracked",
-      "correctText": "cracked",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-56:i01",
       "correctText": "It is locked.",
       "correctResponseId": null
@@ -2363,6 +2348,11 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-01:session-56:word:cracked",
+      "correctText": "cracked",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-56:i05",
       "correctText": "It's cracked.",
       "correctResponseId": null
@@ -2375,6 +2365,11 @@
     {
       "interactionId": "en:lesson-01:session-56:i07",
       "correctText": "It's cracked.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:word:expired",
+      "correctText": "expired",
       "correctResponseId": null
     },
     {
@@ -2405,6 +2400,11 @@
     {
       "interactionId": "en:lesson-01:session-56:i13",
       "correctText": "It's delicious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:word:tight",
+      "correctText": "tight",
       "correctResponseId": null
     },
     {

@@ -56,48 +56,48 @@
 <!-- interaction_id: en:lesson-01:session-47:word:dangerous; family: word_card -->
 > **dangerous** — опасный. It's dangerous — «Это опасно». О месте, вещи или поступке, который грозит бедой.
 
-**2 · Карточка слова — slippery**
-<!-- interaction_id: en:lesson-01:session-47:word:slippery; family: word_card -->
-> **slippery** — скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.
-
-**3 · Карточка слова — deep**
-<!-- interaction_id: en:lesson-01:session-47:word:deep; family: word_card -->
-> **deep** — глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.
-
-**4 · Карточка слова — rusty**
-<!-- interaction_id: en:lesson-01:session-47:word:rusty; family: word_card -->
-> **rusty** — ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.
-
-**5 · На пирсе провалились доски. Соберите предупреждение для Тёмы**
+**2 · На пирсе провалились доски. Соберите предупреждение для Тёмы**
 <!-- interaction_id: en:lesson-01:session-47:i01; family: phrase_builder -->
 Плитки: `dangerous` `is` `It` `are` → **It is dangerous.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is dangerous.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — slippery**
+<!-- interaction_id: en:lesson-01:session-47:word:slippery; family: word_card -->
+> **slippery** — скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-47:i02; family: listen_choose -->
 🔊 *They are slippery.* → **They are slippery.** · We are slippery. · They are rusty.
 - We are slippery. — *В записи первое слово — `They`, а в этом варианте — `We`.*
 - They are rusty. — *В записи последнее слово — `slippery`, а в этом варианте — `rusty`.*
 
-**7 · На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде**
+**5 · Карточка слова — deep**
+<!-- interaction_id: en:lesson-01:session-47:word:deep; family: word_card -->
+> **deep** — глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.
+
+**6 · На табличке у пирса написано, что под ним три метра воды. Дополните фразу о воде**
 <!-- interaction_id: en:lesson-01:session-47:i03; family: context_gap_grammar -->
 It ___ deep. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Вода — это `It`, поэтому `It is`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-47:i04; family: speed_match -->
 dangerous — опасный · slippery — скользкий · deep — глубокий · rusty — ржавый
 
-**9 · Послушайте и соберите короткое предупреждение**
+**8 · Послушайте и соберите короткое предупреждение**
 <!-- interaction_id: en:lesson-01:session-47:i05; family: listen_build_dictation -->
 🔊 *It's dangerous.* Плитки: `dangerous` `It's` `He's` → **It's dangerous.**
 *(плитка `He's` лишняя: здесь нужно `It's` — `It's dangerous.`)*
 
-**10 · Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны**
+**9 · Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны**
 <!-- interaction_id: en:lesson-01:session-47:i06; family: phrase_builder -->
 Плитки: `dangerous` `are` `They` `is` → **They are dangerous.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are dangerous.`)*
+
+**10 · Карточка слова — rusty**
+<!-- interaction_id: en:lesson-01:session-47:word:rusty; family: word_card -->
+> **rusty** — ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.
 
 **11 · Аня хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый**
 <!-- interaction_id: en:lesson-01:session-47:i07; family: scripted_repeat_compare -->

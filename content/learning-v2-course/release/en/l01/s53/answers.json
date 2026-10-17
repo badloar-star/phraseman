@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-53:word:soggy",
-    "correctText": "soggy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:word:delicious",
-    "correctText": "delicious",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:word:juicy",
-    "correctText": "juicy",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-53:i01",
     "correctText": "They are ripe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:word:soggy",
+    "correctText": "soggy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i02",
     "correctText": "It is soggy.",
     "correctResponseId": "en:lesson-01:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:word:juicy",
+    "correctText": "juicy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i03",
@@ -37,6 +32,11 @@
   {
     "interactionId": "en:lesson-01:session-53:i04",
     "correctText": "en:lesson-01:session-53:i04:p1=ripe\nen:lesson-01:session-53:i04:p2=soggy\nen:lesson-01:session-53:i04:p3=delicious\nen:lesson-01:session-53:i04:p4=juicy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:word:delicious",
+    "correctText": "delicious",
     "correctResponseId": null
   },
   {

@@ -47,137 +47,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-46:word:tangled",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — tangled",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-46:word:tangled:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — tangled",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-46:word:tangled:audio",
-            "transcript": "tangled"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-46:word:tangled:r1",
-              "targetText": "tangled",
-              "meaningByLocale": {
-                "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
-                "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "tangled",
-            "definitionByLocale": {
-              "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
-              "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-46:word:charged",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — charged",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-46:word:charged:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — charged",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-46:word:charged:audio",
-            "transcript": "charged"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-46:word:charged:r1",
-              "targetText": "charged",
-              "meaningByLocale": {
-                "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
-                "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "charged",
-            "definitionByLocale": {
-              "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
-              "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-46:word:loose",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — loose",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-46:word:loose:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — loose",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-46:word:loose:audio",
-            "transcript": "loose"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-46:word:loose:r1",
-              "targetText": "loose",
-              "meaningByLocale": {
-                "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
-                "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "loose",
-            "definitionByLocale": {
-              "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
-              "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-46:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-46:word:tangled",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tangled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-46:word:tangled:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tangled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-46:word:tangled:audio",
+            "transcript": "tangled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-46:word:tangled:r1",
+              "targetText": "tangled",
+              "meaningByLocale": {
+                "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
+                "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tangled",
+            "definitionByLocale": {
+              "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
+              "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-46:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +210,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-46:word:charged",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — charged",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-46:word:charged:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — charged",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-46:word:charged:audio",
+            "transcript": "charged"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-46:word:charged:r1",
+              "targetText": "charged",
+              "meaningByLocale": {
+                "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
+                "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charged",
+            "definitionByLocale": {
+              "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
+              "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-46:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +323,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-46:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-46:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -485,7 +442,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-46:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -523,6 +480,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-46:word:loose",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — loose",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-46:word:loose:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — loose",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-46:word:loose:audio",
+            "transcript": "loose"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-46:word:loose:r1",
+              "targetText": "loose",
+              "meaningByLocale": {
+                "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
+                "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "loose",
+            "definitionByLocale": {
+              "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
+              "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
+            }
           }
         },
         "scriptedAlternate": null
@@ -1206,137 +1206,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-46:word:tangled",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — tangled",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-46:word:tangled:audio"
-        ],
-        "accessibilityLabel": "Картка слова — tangled",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-46:word:tangled:audio",
-            "transcript": "tangled"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-46:word:tangled:r1",
-              "targetText": "tangled",
-              "meaningByLocale": {
-                "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
-                "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "tangled",
-            "definitionByLocale": {
-              "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
-              "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-46:word:charged",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — charged",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-46:word:charged:audio"
-        ],
-        "accessibilityLabel": "Картка слова — charged",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-46:word:charged:audio",
-            "transcript": "charged"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-46:word:charged:r1",
-              "targetText": "charged",
-              "meaningByLocale": {
-                "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
-                "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "charged",
-            "definitionByLocale": {
-              "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
-              "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-46:word:loose",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — loose",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-46:word:loose:audio"
-        ],
-        "accessibilityLabel": "Картка слова — loose",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-46:word:loose:audio",
-            "transcript": "loose"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-46:word:loose:r1",
-              "targetText": "loose",
-              "meaningByLocale": {
-                "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
-                "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "loose",
-            "definitionByLocale": {
-              "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
-              "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-46:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1379,8 +1250,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-46:word:tangled",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tangled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-46:word:tangled:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tangled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-46:word:tangled:audio",
+            "transcript": "tangled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-46:word:tangled:r1",
+              "targetText": "tangled",
+              "meaningByLocale": {
+                "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
+                "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tangled",
+            "definitionByLocale": {
+              "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
+              "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-46:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1455,8 +1369,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-46:word:charged",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — charged",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-46:word:charged:audio"
+        ],
+        "accessibilityLabel": "Картка слова — charged",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-46:word:charged:audio",
+            "transcript": "charged"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-46:word:charged:r1",
+              "targetText": "charged",
+              "meaningByLocale": {
+                "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
+                "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charged",
+            "definitionByLocale": {
+              "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
+              "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-46:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1525,8 +1482,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-46:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1598,7 +1555,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-46:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1644,7 +1601,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-46:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1682,6 +1639,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-46:word:loose",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — loose",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-46:word:loose:audio"
+        ],
+        "accessibilityLabel": "Картка слова — loose",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-46:word:loose:audio",
+            "transcript": "loose"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-46:word:loose:r1",
+              "targetText": "loose",
+              "meaningByLocale": {
+                "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
+                "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "loose",
+            "definitionByLocale": {
+              "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
+              "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
+            }
           }
         },
         "scriptedAlternate": null
@@ -2328,29 +2328,24 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-46:word:tangled",
-      "correctText": "tangled",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-46:word:charged",
-      "correctText": "charged",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-46:word:loose",
-      "correctText": "loose",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-46:i01",
       "correctText": "It is useless.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:word:tangled",
+      "correctText": "tangled",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-46:i02",
       "correctText": "They are tangled.",
       "correctResponseId": "en:lesson-01:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:word:charged",
+      "correctText": "charged",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-46:i03",
@@ -2370,6 +2365,11 @@
     {
       "interactionId": "en:lesson-01:session-46:i06",
       "correctText": "They are useless.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:word:loose",
+      "correctText": "loose",
       "correctResponseId": null
     },
     {

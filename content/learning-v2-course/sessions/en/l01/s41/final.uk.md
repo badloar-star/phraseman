@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-41:word:clumsy; family: word_card -->
 > **clumsy** — незграбний. I'm clumsy — «Я такий незграбний»: часто щось упускаю чи зачіпаю.
 
-**2 · Картка слова — precious**
-<!-- interaction_id: en:lesson-01:session-41:word:precious; family: word_card -->
-> **precious** — дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну.
+**2 · Ви зачепили горнятко ліктем. Складіть фразу про себе: «Я незграбний»**
+<!-- interaction_id: en:lesson-01:session-41:i01; family: phrase_builder -->
+Плитки: `clumsy` `am` `I` `is` → **I am clumsy.**
+*(плитка `is` зайва: тут потрібно `am` — `I am clumsy.`)*
 
 **3 · Картка слова — upset**
 <!-- interaction_id: en:lesson-01:session-41:word:upset; family: word_card -->
 > **upset** — засмучений. She's upset — «Вона засмучена».
 
-**4 · Картка слова — furious**
-<!-- interaction_id: en:lesson-01:session-41:word:furious; family: word_card -->
-> **furious** — у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry.
-
-**5 · Ви зачепили горнятко ліктем. Складіть фразу про себе: «Я незграбний»**
-<!-- interaction_id: en:lesson-01:session-41:i01; family: phrase_builder -->
-Плитки: `clumsy` `am` `I` `is` → **I am clumsy.**
-*(плитка `is` зайва: тут потрібно `am` — `I am clumsy.`)*
-
-**6 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-41:i02; family: listen_choose -->
 🔊 *She is upset.* → **She is upset.** · He is upset. · She is okay.
 - He is upset. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 - She is okay. — *У записі останнє слово — `upset`, а в цьому варіанті — `okay`.*
 
-**7 · Катин брат кричить і стукає кулаком по столу: він дізнався, що кіт розбив друге горнятко. Доповніть фразу про нього**
+**5 · Картка слова — furious**
+<!-- interaction_id: en:lesson-01:session-41:word:furious; family: word_card -->
+> **furious** — у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry.
+
+**6 · Катин брат кричить і стукає кулаком по столу: він дізнався, що кіт розбив друге горнятко. Доповніть фразу про нього**
 <!-- interaction_id: en:lesson-01:session-41:i03; family: context_gap_grammar -->
 He ___ furious. → **is** · am · are
 - am — *Після `He` потрібно `is`.*
 - are — *Про брата тут `He is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-41:i04; family: speed_match -->
 clumsy — незграбний · precious — дуже дорогий для людини · upset — засмучений · furious — у люті
 
-**9 · Послухайте й складіть коротку фразу**
+**8 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-41:i05; family: listen_build_dictation -->
 🔊 *You're honest.* Плитки: `honest` `You're` `We're` → **You're honest.**
 *(плитка `We're` зайва: тут потрібно `You're` — `You're honest.`)*
+
+**9 · Картка слова — precious**
+<!-- interaction_id: en:lesson-01:session-41:word:precious; family: word_card -->
+> **precious** — дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну.
 
 **10 · Катя показує старий фотоальбом, де це горнятко стоїть на бабусиному столі. Складіть фразу про альбом: «Він дуже дорогий їй»**
 <!-- interaction_id: en:lesson-01:session-41:i06; family: phrase_builder -->

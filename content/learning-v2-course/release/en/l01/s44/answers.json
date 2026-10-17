@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-44:word:weird",
-    "correctText": "weird",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-44:word:ancient",
-    "correctText": "ancient",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-44:word:complicated",
-    "correctText": "complicated",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-44:i01",
     "correctText": "I am curious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-44:word:weird",
+    "correctText": "weird",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i02",
     "correctText": "It is ancient.",
     "correctResponseId": "en:lesson-01:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-44:word:complicated",
+    "correctText": "complicated",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i03",
@@ -42,6 +37,11 @@
   {
     "interactionId": "en:lesson-01:session-44:i05",
     "correctText": "We're curious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-44:word:ancient",
+    "correctText": "ancient",
     "correctResponseId": null
   },
   {

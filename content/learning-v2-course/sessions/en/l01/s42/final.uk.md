@@ -56,52 +56,52 @@
 <!-- interaction_id: en:lesson-01:session-42:word:welcoming; family: word_card -->
 > **welcoming** — привітний, гостинний. She's welcoming — «Вона привітна»: тепло зустрічає гостей.
 
-**2 · Картка слова — chatty**
-<!-- interaction_id: en:lesson-01:session-42:word:chatty; family: word_card -->
-> **chatty** — балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості.
-
-**3 · Картка слова — nosy**
-<!-- interaction_id: en:lesson-01:session-42:word:nosy; family: word_card -->
-> **nosy** — пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення.
-
-**4 · Картка слова — elderly**
-<!-- interaction_id: en:lesson-01:session-42:word:elderly; family: word_card -->
-> **elderly** — літній. He's elderly — «Він літній». Звучить увічливіше, ніж old.
-
-**5 · Господиня тепло зустрічає кожного гостя. Складіть фразу про неї**
+**2 · Господиня тепло зустрічає кожного гостя. Складіть фразу про неї**
 <!-- interaction_id: en:lesson-01:session-42:i01; family: phrase_builder -->
 Плитки: `welcoming` `is` `She` `are` → **She is welcoming.**
 *(плитка `are` зайва: тут потрібно `is` — `She is welcoming.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — chatty**
+<!-- interaction_id: en:lesson-01:session-42:word:chatty; family: word_card -->
+> **chatty** — балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
 🔊 *He is chatty.* → **He is chatty.** · She is chatty. · He is polite.
 - She is chatty. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is polite. — *У записі останнє слово — `chatty`, а в цьому варіанті — `polite`.*
 
-**7 · Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово**
+**5 · Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово**
 <!-- interaction_id: en:lesson-01:session-42:i03; family: context_gap_grammar -->
 You ___ polite. → **are** · am · is
 - am — *Після `You` потрібно `are`.*
 - is — *До одного співрозмовника теж звертаємося `You are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-42:i04; family: speed_match -->
 welcoming — привітний · chatty — балакучий · nosy — пхає носа в чужі справи · elderly — літній
 
-**9 · Послухайте й складіть коротку фразу**
+**7 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-42:i05; family: listen_build_dictation -->
 🔊 *They're welcoming.* Плитки: `welcoming` `They're` `We're` → **They're welcoming.**
 *(плитка `We're` зайва: тут потрібно `They're` — `They're welcoming.`)*
 
-**10 · Сусідові з першого поверху вісімдесят років, він ходить із палицею. Брат питає про нього. Складіть фразу: «Він літній»**
+**8 · Картка слова — elderly**
+<!-- interaction_id: en:lesson-01:session-42:word:elderly; family: word_card -->
+> **elderly** — літній. He's elderly — «Він літній». Звучить увічливіше, ніж old.
+
+**9 · Сусідові з першого поверху вісімдесят років, він ходить із палицею. Брат питає про нього. Складіть фразу: «Він літній»**
 <!-- interaction_id: en:lesson-01:session-42:i06; family: phrase_builder -->
 Плитки: `elderly` `is` `He` `are` → **He is elderly.**
 *(плитка `are` зайва: тут потрібно `is` — `He is elderly.`)*
 
-**11 · Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна**
+**10 · Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна**
 <!-- interaction_id: en:lesson-01:session-42:i07; family: scripted_repeat_compare -->
 🎙 **You're welcoming.**
+
+**11 · Картка слова — nosy**
+<!-- interaction_id: en:lesson-01:session-42:word:nosy; family: word_card -->
+> **nosy** — пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення.
 
 **12 · Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість**
 <!-- interaction_id: en:lesson-01:session-42:i08; family: context_gap_grammar -->

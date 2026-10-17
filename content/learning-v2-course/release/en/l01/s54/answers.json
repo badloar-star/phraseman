@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-54:word:unfamiliar",
-    "correctText": "unfamiliar",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-54:word:unknown",
-    "correctText": "unknown",
+    "interactionId": "en:lesson-01:session-54:i01",
+    "correctText": "It is familiar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-54:word:faded",
     "correctText": "faded",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-54:i01",
-    "correctText": "It is familiar.",
     "correctResponseId": null
   },
   {
@@ -40,8 +30,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-54:word:unknown",
+    "correctText": "unknown",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-54:i05",
     "correctText": "It's unknown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:word:unfamiliar",
+    "correctText": "unfamiliar",
     "correctResponseId": null
   },
   {

@@ -47,137 +47,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-35:word:contagious",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — contagious",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-35:word:contagious:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — contagious",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-35:word:contagious:audio",
-            "transcript": "contagious"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-35:word:contagious:r1",
-              "targetText": "contagious",
-              "meaningByLocale": {
-                "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
-                "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "contagious",
-            "definitionByLocale": {
-              "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
-              "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-35:word:hoarse",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — hoarse",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-35:word:hoarse:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — hoarse",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-35:word:hoarse:audio",
-            "transcript": "hoarse"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-35:word:hoarse:r1",
-              "targetText": "hoarse",
-              "meaningByLocale": {
-                "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
-                "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "hoarse",
-            "definitionByLocale": {
-              "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
-              "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-35:word:dizzy",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — dizzy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-35:word:dizzy:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — dizzy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-35:word:dizzy:audio",
-            "transcript": "dizzy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-35:word:dizzy:r1",
-              "targetText": "dizzy",
-              "meaningByLocale": {
-                "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
-                "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "dizzy",
-            "definitionByLocale": {
-              "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
-              "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-35:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-35:word:contagious",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — contagious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-35:word:contagious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — contagious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-35:word:contagious:audio",
+            "transcript": "contagious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-35:word:contagious:r1",
+              "targetText": "contagious",
+              "meaningByLocale": {
+                "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
+                "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "contagious",
+            "definitionByLocale": {
+              "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
+              "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-35:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -297,7 +211,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +280,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -439,8 +353,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i05",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послушайте и соберите фразу",
@@ -486,7 +400,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i06",
-        "ordinal": 13,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -530,7 +444,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i07",
-        "ordinal": 14,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -563,7 +477,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i08",
-        "ordinal": 15,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -631,8 +545,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-35:word:hoarse",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hoarse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-35:word:hoarse:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hoarse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-35:word:hoarse:audio",
+            "transcript": "hoarse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-35:word:hoarse:r1",
+              "targetText": "hoarse",
+              "meaningByLocale": {
+                "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
+                "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hoarse",
+            "definitionByLocale": {
+              "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
+              "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-35:i09",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -708,8 +665,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините короткие начала с полными",
@@ -781,7 +738,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -827,7 +784,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i12",
-        "ordinal": 19,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -865,6 +822,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-35:word:dizzy",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dizzy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-35:word:dizzy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dizzy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-35:word:dizzy:audio",
+            "transcript": "dizzy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-35:word:dizzy:r1",
+              "targetText": "dizzy",
+              "meaningByLocale": {
+                "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
+                "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dizzy",
+            "definitionByLocale": {
+              "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
+              "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
+            }
           }
         },
         "scriptedAlternate": null
@@ -1207,137 +1207,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-35:word:contagious",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — contagious",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-35:word:contagious:audio"
-        ],
-        "accessibilityLabel": "Картка слова — contagious",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-35:word:contagious:audio",
-            "transcript": "contagious"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-35:word:contagious:r1",
-              "targetText": "contagious",
-              "meaningByLocale": {
-                "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
-                "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "contagious",
-            "definitionByLocale": {
-              "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
-              "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-35:word:hoarse",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — hoarse",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-35:word:hoarse:audio"
-        ],
-        "accessibilityLabel": "Картка слова — hoarse",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-35:word:hoarse:audio",
-            "transcript": "hoarse"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-35:word:hoarse:r1",
-              "targetText": "hoarse",
-              "meaningByLocale": {
-                "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
-                "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "hoarse",
-            "definitionByLocale": {
-              "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
-              "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-35:word:dizzy",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — dizzy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-35:word:dizzy:audio"
-        ],
-        "accessibilityLabel": "Картка слова — dizzy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-35:word:dizzy:audio",
-            "transcript": "dizzy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-35:word:dizzy:r1",
-              "targetText": "dizzy",
-              "meaningByLocale": {
-                "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
-                "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "dizzy",
-            "definitionByLocale": {
-              "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
-              "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-35:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1380,8 +1251,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-35:word:contagious",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — contagious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-35:word:contagious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — contagious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-35:word:contagious:audio",
+            "transcript": "contagious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-35:word:contagious:r1",
+              "targetText": "contagious",
+              "meaningByLocale": {
+                "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
+                "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "contagious",
+            "definitionByLocale": {
+              "ru": "заразный, болезнь может передаться другим. He's contagious — «Он заразный».",
+              "uk": "заразний, хвороба може передатися іншим. He's contagious — «Він заразний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-35:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1457,7 +1371,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1526,8 +1440,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1599,8 +1513,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i05",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послухайте й складіть фразу",
@@ -1646,7 +1560,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i06",
-        "ordinal": 13,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1690,7 +1604,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i07",
-        "ordinal": 14,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1723,7 +1637,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i08",
-        "ordinal": 15,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1791,8 +1705,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-35:word:hoarse",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hoarse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-35:word:hoarse:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hoarse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-35:word:hoarse:audio",
+            "transcript": "hoarse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-35:word:hoarse:r1",
+              "targetText": "hoarse",
+              "meaningByLocale": {
+                "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
+                "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hoarse",
+            "definitionByLocale": {
+              "ru": "охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.",
+              "uk": "захриплий, голос сів. She's hoarse — «Вона захрипла»: говорить ледь чутно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-35:i09",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1868,8 +1825,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте короткі початки з повними",
@@ -1941,7 +1898,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1987,7 +1944,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-35:i12",
-        "ordinal": 19,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -2025,6 +1982,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-35:word:dizzy",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dizzy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-35:word:dizzy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dizzy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-35:word:dizzy:audio",
+            "transcript": "dizzy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-35:word:dizzy:r1",
+              "targetText": "dizzy",
+              "meaningByLocale": {
+                "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
+                "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dizzy",
+            "definitionByLocale": {
+              "ru": "голова кружится. I'm dizzy — «У меня кружится голова». По-русски «у меня», а по-английски I'm.",
+              "uk": "паморочиться в голові. I'm dizzy — «У мене паморочиться в голові». Українською «у мене», а англійською I'm."
+            }
           }
         },
         "scriptedAlternate": null
@@ -2330,23 +2330,13 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-35:word:contagious",
-      "correctText": "contagious",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-35:word:hoarse",
-      "correctText": "hoarse",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-35:word:dizzy",
-      "correctText": "dizzy",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-35:i01",
       "correctText": "I am ill.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:word:contagious",
+      "correctText": "contagious",
       "correctResponseId": null
     },
     {
@@ -2385,6 +2375,11 @@
       "correctResponseId": "en:lesson-01:session-35:i08:r1"
     },
     {
+      "interactionId": "en:lesson-01:session-35:word:hoarse",
+      "correctText": "hoarse",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-35:i09",
       "correctText": "She's hoarse.",
       "correctResponseId": "en:lesson-01:session-35:i09:r1"
@@ -2402,6 +2397,11 @@
     {
       "interactionId": "en:lesson-01:session-35:i12",
       "correctText": "I am available.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:word:dizzy",
+      "correctText": "dizzy",
       "correctResponseId": null
     },
     {

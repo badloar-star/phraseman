@@ -1,33 +1,23 @@
 [
   {
-    "interactionId": "en:lesson-01:session-43:word:stuck",
-    "correctText": "stuck",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-43:word:annoyed",
-    "correctText": "annoyed",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-43:word:soaked",
-    "correctText": "soaked",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-43:word:chilly",
-    "correctText": "chilly",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-43:i01",
     "correctText": "She is patient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:word:stuck",
+    "correctText": "stuck",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i02",
     "correctText": "He is stuck.",
     "correctResponseId": "en:lesson-01:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:word:annoyed",
+    "correctText": "annoyed",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i03",
@@ -40,6 +30,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-43:word:soaked",
+    "correctText": "soaked",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-43:i05",
     "correctText": "We're soaked.",
     "correctResponseId": null
@@ -47,6 +42,11 @@
   {
     "interactionId": "en:lesson-01:session-43:i06",
     "correctText": "He is stuck.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:word:chilly",
+    "correctText": "chilly",
     "correctResponseId": null
   },
   {

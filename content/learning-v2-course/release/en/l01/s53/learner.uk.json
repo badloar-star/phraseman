@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-53:word:soggy",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — soggy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-53:word:soggy:audio"
-      ],
-      "accessibilityLabel": "Картка слова — soggy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-53:word:soggy:audio",
-          "transcript": "soggy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-53:word:soggy:r1",
-            "targetText": "soggy",
-            "meaningByLocale": {
-              "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
-              "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "soggy",
-          "definitionByLocale": {
-            "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
-            "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-53:word:delicious",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — delicious",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-53:word:delicious:audio"
-      ],
-      "accessibilityLabel": "Картка слова — delicious",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-53:word:delicious:audio",
-          "transcript": "delicious"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-53:word:delicious:r1",
-            "targetText": "delicious",
-            "meaningByLocale": {
-              "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
-              "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "delicious",
-          "definitionByLocale": {
-            "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
-            "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-53:word:juicy",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — juicy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-53:word:juicy:audio"
-      ],
-      "accessibilityLabel": "Картка слова — juicy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-53:word:juicy:audio",
-          "transcript": "juicy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-53:word:juicy:r1",
-            "targetText": "juicy",
-            "meaningByLocale": {
-              "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
-              "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "juicy",
-          "definitionByLocale": {
-            "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
-            "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-53:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-53:word:soggy",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soggy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:word:soggy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soggy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:word:soggy:audio",
+          "transcript": "soggy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-53:word:soggy:r1",
+            "targetText": "soggy",
+            "meaningByLocale": {
+              "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
+              "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soggy",
+          "definitionByLocale": {
+            "ru": "размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.",
+            "uk": "розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-53:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-53:word:juicy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — juicy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:word:juicy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — juicy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:word:juicy:audio",
+          "transcript": "juicy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-53:word:juicy:r1",
+            "targetText": "juicy",
+            "meaningByLocale": {
+              "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
+              "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "juicy",
+          "definitionByLocale": {
+            "ru": "сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.",
+            "uk": "соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-53:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-53:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -434,6 +391,49 @@
           "accuracy",
           "personal_best"
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:word:delicious",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — delicious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:word:delicious:audio"
+      ],
+      "accessibilityLabel": "Картка слова — delicious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:word:delicious:audio",
+          "transcript": "delicious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-53:word:delicious:r1",
+            "targetText": "delicious",
+            "meaningByLocale": {
+              "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
+              "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delicious",
+          "definitionByLocale": {
+            "ru": "очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.",
+            "uk": "дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9a1c7b96c4578155e339175229670613f2aa733702844d54c45e43e3a4552660"
+  "learnerFingerprint": "085883b93e91597628931bf9e0be6f666c0ad22a6529498bcc5300d64b8c9dc6"
 }

@@ -4,180 +4,8 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-01:session-43:word:stuck",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — stuck",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:stuck:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — stuck",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:stuck:audio",
-            "transcript": "stuck"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:stuck:r1",
-              "targetText": "stuck",
-              "meaningByLocale": {
-                "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
-                "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "stuck",
-            "definitionByLocale": {
-              "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
-              "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-43:word:annoyed",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — annoyed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:annoyed:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — annoyed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:annoyed:audio",
-            "transcript": "annoyed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:annoyed:r1",
-              "targetText": "annoyed",
-              "meaningByLocale": {
-                "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
-                "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "annoyed",
-            "definitionByLocale": {
-              "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
-              "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-43:word:soaked",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — soaked",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:soaked:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — soaked",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:soaked:audio",
-            "transcript": "soaked"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:soaked:r1",
-              "targetText": "soaked",
-              "meaningByLocale": {
-                "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
-                "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "soaked",
-            "definitionByLocale": {
-              "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
-              "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-43:word:chilly",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — chilly",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:chilly:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — chilly",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:chilly:audio",
-            "transcript": "chilly"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:chilly:r1",
-              "targetText": "chilly",
-              "meaningByLocale": {
-                "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
-                "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "chilly",
-            "definitionByLocale": {
-              "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
-              "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-43:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +48,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-43:word:stuck",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stuck",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:stuck:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stuck",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:stuck:audio",
+            "transcript": "stuck"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:stuck:r1",
+              "targetText": "stuck",
+              "meaningByLocale": {
+                "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
+                "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stuck",
+            "definitionByLocale": {
+              "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
+              "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-43:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +167,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-43:word:annoyed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — annoyed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:annoyed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — annoyed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:annoyed:audio",
+            "transcript": "annoyed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:annoyed:r1",
+              "targetText": "annoyed",
+              "meaningByLocale": {
+                "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
+                "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "annoyed",
+            "definitionByLocale": {
+              "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
+              "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-43:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +280,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-43:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -438,8 +352,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-43:word:soaked",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soaked",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:soaked:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soaked",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:soaked:audio",
+            "transcript": "soaked"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:soaked:r1",
+              "targetText": "soaked",
+              "meaningByLocale": {
+                "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
+                "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soaked",
+            "definitionByLocale": {
+              "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
+              "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-43:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -485,7 +442,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-43:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -523,6 +480,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-43:word:chilly",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chilly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:chilly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chilly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:chilly:audio",
+            "transcript": "chilly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:chilly:r1",
+              "targetText": "chilly",
+              "meaningByLocale": {
+                "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
+                "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chilly",
+            "definitionByLocale": {
+              "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
+              "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
+            }
           }
         },
         "scriptedAlternate": null
@@ -1163,180 +1163,8 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-01:session-43:word:stuck",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — stuck",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:stuck:audio"
-        ],
-        "accessibilityLabel": "Картка слова — stuck",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:stuck:audio",
-            "transcript": "stuck"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:stuck:r1",
-              "targetText": "stuck",
-              "meaningByLocale": {
-                "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
-                "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "stuck",
-            "definitionByLocale": {
-              "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
-              "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-43:word:annoyed",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — annoyed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:annoyed:audio"
-        ],
-        "accessibilityLabel": "Картка слова — annoyed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:annoyed:audio",
-            "transcript": "annoyed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:annoyed:r1",
-              "targetText": "annoyed",
-              "meaningByLocale": {
-                "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
-                "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "annoyed",
-            "definitionByLocale": {
-              "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
-              "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-43:word:soaked",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — soaked",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:soaked:audio"
-        ],
-        "accessibilityLabel": "Картка слова — soaked",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:soaked:audio",
-            "transcript": "soaked"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:soaked:r1",
-              "targetText": "soaked",
-              "meaningByLocale": {
-                "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
-                "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "soaked",
-            "definitionByLocale": {
-              "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
-              "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-43:word:chilly",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — chilly",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-43:word:chilly:audio"
-        ],
-        "accessibilityLabel": "Картка слова — chilly",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-43:word:chilly:audio",
-            "transcript": "chilly"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-43:word:chilly:r1",
-              "targetText": "chilly",
-              "meaningByLocale": {
-                "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
-                "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "chilly",
-            "definitionByLocale": {
-              "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
-              "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-43:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1379,8 +1207,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-43:word:stuck",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stuck",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:stuck:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stuck",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:stuck:audio",
+            "transcript": "stuck"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:stuck:r1",
+              "targetText": "stuck",
+              "meaningByLocale": {
+                "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
+                "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stuck",
+            "definitionByLocale": {
+              "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
+              "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-43:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1455,8 +1326,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-43:word:annoyed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — annoyed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:annoyed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — annoyed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:annoyed:audio",
+            "transcript": "annoyed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:annoyed:r1",
+              "targetText": "annoyed",
+              "meaningByLocale": {
+                "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
+                "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "annoyed",
+            "definitionByLocale": {
+              "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
+              "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-43:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1525,8 +1439,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-43:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1597,8 +1511,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-43:word:soaked",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soaked",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:soaked:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soaked",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:soaked:audio",
+            "transcript": "soaked"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:soaked:r1",
+              "targetText": "soaked",
+              "meaningByLocale": {
+                "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
+                "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soaked",
+            "definitionByLocale": {
+              "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
+              "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-43:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1644,7 +1601,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-43:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1682,6 +1639,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-43:word:chilly",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chilly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-43:word:chilly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chilly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-43:word:chilly:audio",
+            "transcript": "chilly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-43:word:chilly:r1",
+              "targetText": "chilly",
+              "meaningByLocale": {
+                "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
+                "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chilly",
+            "definitionByLocale": {
+              "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
+              "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
+            }
           }
         },
         "scriptedAlternate": null
@@ -2323,34 +2323,24 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-01:session-43:word:stuck",
-      "correctText": "stuck",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-43:word:annoyed",
-      "correctText": "annoyed",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-43:word:soaked",
-      "correctText": "soaked",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-43:word:chilly",
-      "correctText": "chilly",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-43:i01",
       "correctText": "She is patient.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:word:stuck",
+      "correctText": "stuck",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-43:i02",
       "correctText": "He is stuck.",
       "correctResponseId": "en:lesson-01:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:word:annoyed",
+      "correctText": "annoyed",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-43:i03",
@@ -2363,6 +2353,11 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-01:session-43:word:soaked",
+      "correctText": "soaked",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-43:i05",
       "correctText": "We're soaked.",
       "correctResponseId": null
@@ -2370,6 +2365,11 @@
     {
       "interactionId": "en:lesson-01:session-43:i06",
       "correctText": "He is stuck.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:word:chilly",
+      "correctText": "chilly",
       "correctResponseId": null
     },
     {

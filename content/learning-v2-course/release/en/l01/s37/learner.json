@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-37:word:homesick",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — homesick",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:word:homesick:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — homesick",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:word:homesick:audio",
-          "transcript": "homesick"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-37:word:homesick:r1",
-            "targetText": "homesick",
-            "meaningByLocale": {
-              "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
-              "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "homesick",
-          "definitionByLocale": {
-            "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
-            "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:word:messy",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — messy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:word:messy:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — messy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:word:messy:audio",
-          "transcript": "messy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-37:word:messy:r1",
-            "targetText": "messy",
-            "meaningByLocale": {
-              "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
-              "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "messy",
-          "definitionByLocale": {
-            "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
-            "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:word:cozy",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — cozy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:word:cozy:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — cozy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:word:cozy:audio",
-          "transcript": "cozy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-37:word:cozy:r1",
-            "targetText": "cozy",
-            "meaningByLocale": {
-              "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
-              "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "cozy",
-          "definitionByLocale": {
-            "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
-            "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-37:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-37:word:homesick",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — homesick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:word:homesick:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — homesick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:word:homesick:audio",
+          "transcript": "homesick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-37:word:homesick:r1",
+            "targetText": "homesick",
+            "meaningByLocale": {
+              "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
+              "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "homesick",
+          "definitionByLocale": {
+            "ru": "скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.",
+            "uk": "сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-37:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-37:word:messy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — messy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:word:messy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — messy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:word:messy:audio",
+          "transcript": "messy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-37:word:messy:r1",
+            "targetText": "messy",
+            "meaningByLocale": {
+              "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
+              "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "messy",
+          "definitionByLocale": {
+            "ru": "в беспорядке, неубрано. It's messy — «Тут беспорядок». Так говорят про комнату, стол, сумку.",
+            "uk": "безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-37:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-37:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -434,6 +391,49 @@
           "accuracy",
           "personal_best"
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:word:cozy",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cozy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:word:cozy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cozy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:word:cozy:audio",
+          "transcript": "cozy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-37:word:cozy:r1",
+            "targetText": "cozy",
+            "meaningByLocale": {
+              "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
+              "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cozy",
+          "definitionByLocale": {
+            "ru": "уютный. It's cozy — «Тут уютно». Так говорят, когда тепло, мягко и хочется остаться.",
+            "uk": "затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1168,5 +1168,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "324ded23605c0ec2da1b0f1f679d5b951e01b725dfb61bf1f0bfb6ffbf193ff9"
+  "learnerFingerprint": "c81b3d4edcd32134eafa27e5084cd8634a12ab59f8c502ad3ed12c4165dc0f8d"
 }

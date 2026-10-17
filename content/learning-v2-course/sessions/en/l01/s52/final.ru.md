@@ -56,52 +56,52 @@
 <!-- interaction_id: en:lesson-01:session-52:word:light; family: word_card -->
 > **light** — лёгкий по весу. It's light — «Он лёгкий». Противоположность — heavy.
 
-**2 · Карточка слова — waterproof**
-<!-- interaction_id: en:lesson-01:session-52:word:waterproof; family: word_card -->
-> **waterproof** — непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».
-
-**3 · Карточка слова — adjustable**
-<!-- interaction_id: en:lesson-01:session-52:word:adjustable; family: word_card -->
-> **adjustable** — регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.
-
-**4 · Карточка слова — trendy**
-<!-- interaction_id: en:lesson-01:session-52:word:trendy; family: word_card -->
-> **trendy** — модный, сейчас в моде. It's trendy — «Это модно».
-
-**5 · Рюкзак почти ничего не весит. Соберите фразу о его весе**
+**2 · Рюкзак почти ничего не весит. Соберите фразу о его весе**
 <!-- interaction_id: en:lesson-01:session-52:i01; family: phrase_builder -->
 Плитки: `light` `is` `It` `are` → **It is light.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is light.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — waterproof**
+<!-- interaction_id: en:lesson-01:session-52:word:waterproof; family: word_card -->
+> **waterproof** — непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-52:i02; family: listen_choose -->
 🔊 *It is waterproof.* → **It is waterproof.** · It is light. · It is cheap.
 - It is light. — *В записи последнее слово — `waterproof`, а в этом варианте — `light`.*
 - It is cheap. — *В записи последнее слово — `waterproof`, а в этом варианте — `cheap`.*
 
-**7 · Обе лямки рюкзака можно подтянуть под рост. Дополните фразу**
+**5 · Карточка слова — adjustable**
+<!-- interaction_id: en:lesson-01:session-52:word:adjustable; family: word_card -->
+> **adjustable** — регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.
+
+**6 · Обе лямки рюкзака можно подтянуть под рост. Дополните фразу**
 <!-- interaction_id: en:lesson-01:session-52:i03; family: context_gap_grammar -->
 They ___ adjustable. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Лямок две, поэтому `They are`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-52:i04; family: speed_match -->
 light — лёгкий по весу · waterproof — непромокаемый · adjustable — регулируется · trendy — модный
 
-**9 · Послушайте и соберите короткую фразу**
+**8 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-52:i05; family: listen_build_dictation -->
 🔊 *It's light.* Плитки: `light` `It's` `He's` → **It's light.**
 *(плитка `He's` лишняя: здесь нужно `It's` — `It's light.`)*
 
-**10 · Обе куртки на соседней вешалке не пропускают дождь. Соберите фразу о них**
+**9 · Обе куртки на соседней вешалке не пропускают дождь. Соберите фразу о них**
 <!-- interaction_id: en:lesson-01:session-52:i06; family: phrase_builder -->
 Плитки: `waterproof` `are` `They` `is` → **They are waterproof.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are waterproof.`)*
 
-**11 · Подруга подтянула лямку под свой рост. Скажите ей коротко, что лямка регулируется**
+**10 · Подруга подтянула лямку под свой рост. Скажите ей коротко, что лямка регулируется**
 <!-- interaction_id: en:lesson-01:session-52:i07; family: scripted_repeat_compare -->
 🎙 **It's adjustable.**
+
+**11 · Карточка слова — trendy**
+<!-- interaction_id: en:lesson-01:session-52:word:trendy; family: word_card -->
+> **trendy** — модный, сейчас в моде. It's trendy — «Это модно».
 
 **12 · Подруга расспрашивает продавца, из чего сделан рюкзак. Назовите именно её любопытство**
 <!-- interaction_id: en:lesson-01:session-52:i08; family: context_gap_grammar -->

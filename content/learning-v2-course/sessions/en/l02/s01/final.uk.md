@@ -1,138 +1,154 @@
 # Англійська · Урок 2 · Заняття 1 — Можна відмовитися
 
-**Ситуація.** Друзі пропонують вечірню екскурсію. Ви обговорюєте, чи впевнені у виборі, чи цікава пропозиція й чи зручно вам сидіти в автобусі.
+**Ситуація.** Друзі кличуть вас на вечірню екскурсію містом. Ви читаєте програму, уточнюєте, що входить у ціну, і вирішуєте, чи варто їхати.
 
 **Що ви опануєте:** додати not після am, is або are, щоб сказати «не»
-**Нові слова:** sure, interested, comfortable
+**Нові слова:** interested, included, far, keen
+**Повертаються:** sure, comfortable, ready, happy, cheap, here
 
 ---
 
 ## Інтро 1
 
-### Я не впевнений
+### Музей уночі
 
-`sure` — «впевнений», коли ви не сумніваєтеся у відповіді або виборі. `I am sure` — «Я впевнений». Для заперечення поставте `not` після `am`: `I am not sure` — «Я не впевнений». Не потрібно вдавати впевненість, якщо ви ще навіть не подивилися маршрут.
+Подруга читає вголос: «Нічна екскурсія музеєм годинників, три години». Годинники вам ніколи не подобалися. interested — «зацікавлений, цікаво». I am interested — «Мені цікаво». Щоб сказати «не», ставимо not після am: I am not interested — «Мені нецікаво».
 
-**Ви сумніваєтеся, чи підходить вам екскурсія. Скажіть: «Я не впевнений».**
+**Подруга питає, чи підете ви з нею до музею годинників. Скажіть, що вам нецікаво.**
 
-- ✅ **I am not sure.**
-- ❌ I am sure. — *Тут немає заперечення. Для «не впевнений» потрібно `not` після `am`.*
-- ❌ I not sure. — *`not` не замінює `am`: потрібно `I am not sure`.*
+- ✅ **I am not interested.**
+- ❌ I am interested. — *Тут немає not. Для «нецікаво» потрібно I am not.*
+- ❌ I not interested. — *not не замінює am: I am not interested.*
 
 ---
 
 ## Інтро 2
 
-### Їй нецікаво
+### Вечеря за окрему плату
 
-`interested` — «зацікавлений». `She is interested` — «Їй цікаво». Якщо пропозиція сестру не приваблює: `She is not interested` — «Їй нецікаво». `is` залишається, а `not` стає відразу після нього.
+У програмі написано: «Екскурсія — 20 євро. Вечеря в ресторані — оплачується окремо». included — «входить у ціну, включено». It is included — «Це входить у ціну». Тут навпаки: It is not included — «Це не входить у ціну». Після is ставимо not.
 
-**Сестрі запропонована екскурсія нецікава. Розкажіть про це другові.**
+**Друг думає, що вечеря входить у 20 євро. Скажіть йому, що вечеря не входить у ціну.**
 
-- ✅ **She is not interested.**
-- ❌ She is interested. — *Це «Їй цікаво». Для заперечення додайте `not` після `is`.*
-- ❌ She not interested. — *Після `She` зберігаємо `is`: `She is not interested`.*
+- ✅ **It is not included.**
+- ❌ It is included. — *Це означає «входить у ціну». Потрібне заперечення: is not.*
+- ❌ It not included. — *Після It зберігаємо is: It is not included.*
 
 ---
 
 ## Інтро 3
 
-### Нам незручно
+### П’ять хвилин пішки
 
-`comfortable` — «той, хто почувається зручно», а про крісло — «зручний». `We are comfortable` — «Нам зручно». Якщо вам із другом тісно на сидінні: `We are not comfortable` — «Нам незручно». Після `are` теж ставимо `not`.
+Автобус екскурсії вирушає з площі. За картою в телефоні до неї п’ять хвилин пішки. far — «далеко». It is far — «Це далеко». It is not far — «Це недалеко».
 
-**Вам із другом незручно сидіти. Скажіть про це за вас обох.**
+**Сестра боїться, що доведеться довго йти до автобуса. Заспокойте її: це недалеко.**
 
-- ✅ **We are not comfortable.**
-- ❌ We are comfortable. — *Це «Нам зручно». Тут потрібне заперечення: `are not`.*
-- ❌ We not comfortable. — *`are` не зникає: `We are not comfortable`.*
+- ✅ **It is not far.**
+- ❌ It is far. — *Це «далеко». П’ять хвилин пішки — not far.*
+- ❌ It are not far. — *Після It потрібно is: It is not far.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
 **1 · Ви сумніваєтеся у виборі екскурсії. Складіть «Я не впевнений»**
 <!-- interaction_id: en:lesson-02:session-01:i01; family: phrase_builder -->
 Плитки: `sure` `not` `am` `I` `is` → **I am not sure.**
 *(плитка `is` зайва: тут потрібно `am` — `I am not sure.`)*
 
-**2 · Послухайте фразу про сестру**
+**2 · Картка слова — interested**
+<!-- interaction_id: en:lesson-02:session-01:word:interested; family: word_card -->
+> **interested** — зацікавлений, цікаво. I am interested — «Мені цікаво». I am not interested — «Мені нецікаво».
+
+**3 · Послухайте фразу про сестру**
 <!-- interaction_id: en:lesson-02:session-01:i02; family: listen_choose -->
 🔊 *She is not interested.* → **She is not interested.** · She is not ready. · She is not sure.
 - She is not ready. — *У записі останнє слово — `interested`, а в цьому варіанті — `ready`.*
 - She is not sure. — *У записі останнє слово — `interested`, а в цьому варіанті — `sure`.*
 
-**3 · Вам обом незручно сидіти. Доповніть фразу**
+**4 · Вам обом незручно сидіти в тісному автобусі. Доповніть фразу**
 <!-- interaction_id: en:lesson-02:session-01:i03; family: context_gap_grammar -->
 We ___ not comfortable. → **are** · am · is
 - am — *Після `We` потрібно `are`, потім `not`.*
 - is — *Про нас — `We are not`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-01:i04; family: speed_match -->
-sure — впевнений · interested — зацікавлений · comfortable — почувається зручно · ready — готовий
+interested — зацікавлений · included — входить у ціну · far — далеко · keen — палко бажає
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — far**
+<!-- interaction_id: en:lesson-02:session-01:word:far; family: word_card -->
+> **far** — далеко. It is not far — «Це недалеко».
+
+**7 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-02:session-01:i05; family: listen_build_dictation -->
-🔊 *I am not sure.* Плитки: `sure` `not` `am` `I` `are` → **I am not sure.**
-*(плитка `are` зайва: тут потрібно `am` — `I am not sure.`)*
+🔊 *It is not far.* Плитки: `far` `not` `is` `It` `are` → **It is not far.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not far.`)*
 
-**6 · Сестру пропозиція не приваблює. Скажіть, що їй нецікаво**
+**8 · Картка слова — keen**
+<!-- interaction_id: en:lesson-02:session-01:word:keen; family: word_card -->
+> **keen** — палко бажає, дуже хоче. He is keen — «Йому дуже хочеться». He is not keen — «Йому не дуже хочеться».
+
+**9 · Брат позіхає, коли чує про музей. Скажіть, що йому не дуже хочеться**
 <!-- interaction_id: en:lesson-02:session-01:i06; family: phrase_builder -->
-Плитки: `interested` `not` `is` `She` `are` → **She is not interested.**
-*(плитка `are` зайва: тут потрібно `is` — `She is not interested.`)*
+Плитки: `keen` `not` `is` `He` `are` → **He is not keen.**
+*(плитка `are` зайва: тут потрібно `is` — `He is not keen.`)*
 
-**7 · Ви з другом сидите тісно й незручно. Скажіть: «Нам незручно»**
+**10 · Ви з другом сидите тісно й незручно. Скажіть: «Нам незручно»**
 <!-- interaction_id: en:lesson-02:session-01:i07; family: scripted_repeat_compare -->
 🎙 **We are not comfortable.**
 
-**8 · Ви ще не готові виходити. Доповніть заперечення про себе**
+**11 · Ви ще не готові виходити. Доповніть заперечення про себе**
 <!-- interaction_id: en:lesson-02:session-01:i08; family: context_gap_grammar -->
 I ___ not ready. → **am** · is · are
 - is — *Про себе — `I am not`.*
 - are — *Після `I` потрібно `am`, потім `not`.*
 
-**9 · Послухайте фразу про друга**
+**12 · Картка слова — included**
+<!-- interaction_id: en:lesson-02:session-01:word:included; family: word_card -->
+> **included** — входить у ціну, включено. It is included — «Це входить у ціну». It is not included — «Не входить».
+
+**13 · Послухайте фразу про квитки до музею**
 <!-- interaction_id: en:lesson-02:session-01:i09; family: listen_choose -->
-🔊 *He is not here.* → **He is not here.** · He is not ready. · He is not happy.
-- He is not ready. — *У записі останнє слово — `here`, а в цьому варіанті — `ready`.*
-- He is not happy. — *У записі останнє слово — `here`, а в цьому варіанті — `happy`.*
+🔊 *It is not included.* → **It is not included.** · It is not far. · It is included.
+- It is not far. — *У записі останнє слово — `included`, а в цьому варіанті — `far`.*
+- It is included. — *У записі є `not`, а в цьому варіанті його немає.*
 
-**10 · З’єднайте знайомі слова зі значеннями**
+**14 · З’єднайте знайомі слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-01:i10; family: speed_match -->
-responsible — відповідальний · independent — незалежний · dependent — залежний · cheap — недорогий
+sure — упевнений · comfortable — зручно · ready — готовий · happy — радий
 
-**11 · Послухайте й складіть оцінку ціни**
+**15 · Послухайте й складіть оцінку ціни**
 <!-- interaction_id: en:lesson-02:session-01:i11; family: listen_build_dictation -->
 🔊 *It is not cheap.* Плитки: `cheap` `not` `is` `It` `are` → **It is not cheap.**
 *(плитка `are` зайва: тут потрібно `is` — `It is not cheap.`)*
 
-**12 · Анна й Олег незадоволені зміненим маршрутом. Скажіть: «Вони не раді»**
+**16 · Анна й Олег незадоволені зміненим маршрутом. Скажіть: «Вони не раді»**
 <!-- interaction_id: en:lesson-02:session-01:i12; family: phrase_builder -->
 Плитки: `happy` `not` `are` `They` `is` → **They are not happy.**
 *(плитка `is` зайва: тут потрібно `are` — `They are not happy.`)*
 
-**13 · Вас просять підтвердити час зустрічі, але ви сумніваєтеся. Скажіть, що не впевнені**
+**17 · Гід просить вас підтвердити час збору, але ви сумніваєтеся. Скажіть, що не впевнені**
 <!-- interaction_id: en:lesson-02:session-01:i13; family: scripted_repeat_compare -->
 🎙 **I am not sure.**
 
-**14 · Сестрі нецікава запропонована екскурсія. Доповніть фразу**
+**18 · Сестрі запропонована екскурсія нецікава. Доповніть фразу**
 <!-- interaction_id: en:lesson-02:session-01:i14; family: context_gap_grammar -->
 She ___ not interested. → **is** · am · are
 - am — *Після `She` потрібно `is`, потім `not`.*
 - are — *Про сестру — `She is not`.*
 
-**15 · Послухайте й виберіть почуте**
+**19 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-02:session-01:i15; family: listen_choose -->
-🔊 *We are not comfortable.* → **We are not comfortable.** · We are not ready. · We are not sure.
+🔊 *We are not comfortable.* → **We are not comfortable.** · We are not ready. · We are not keen.
 - We are not ready. — *У записі останнє слово — `comfortable`, а в цьому варіанті — `ready`.*
-- We are not sure. — *У записі останнє слово — `comfortable`, а в цьому варіанті — `sure`.*
+- We are not keen. — *У записі останнє слово — `comfortable`, а в цьому варіанті — `keen`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-01:i16; family: speed_match -->
-sure — впевнений · interested — зацікавлений · comfortable — почувається зручно · fine — у порядку
+included — входить у ціну · far — далеко · interested — зацікавлений · sure — упевнений
 
-**17 · У кафе друг запитує, чи пам’ятаєте ви, який столик заброньовано. Ви сумніваєтеся. Скажіть, що не впевнені**
+**21 · У кафе друг запитує, чи пам’ятаєте ви, який столик заброньовано. Ви сумніваєтеся. Скажіть, що не впевнені**
 <!-- interaction_id: en:lesson-02:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I am not sure.**
-

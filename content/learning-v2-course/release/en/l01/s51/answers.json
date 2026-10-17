@@ -1,27 +1,12 @@
 [
   {
-    "interactionId": "en:lesson-01:session-51:word:stuffed",
-    "correctText": "stuffed",
+    "interactionId": "en:lesson-01:session-51:i01",
+    "correctText": "It is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:word:overweight",
     "correctText": "overweight",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-51:word:bulky",
-    "correctText": "bulky",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-51:word:zipped",
-    "correctText": "zipped",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-51:i01",
-    "correctText": "It is heavy.",
     "correctResponseId": null
   },
   {
@@ -40,8 +25,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-51:word:zipped",
+    "correctText": "zipped",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-51:i05",
     "correctText": "It's zipped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:word:stuffed",
+    "correctText": "stuffed",
     "correctResponseId": null
   },
   {
@@ -52,6 +47,11 @@
   {
     "interactionId": "en:lesson-01:session-51:i07",
     "correctText": "It's zipped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:word:bulky",
+    "correctText": "bulky",
     "correctResponseId": null
   },
   {

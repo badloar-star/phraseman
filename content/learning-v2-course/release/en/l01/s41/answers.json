@@ -5,8 +5,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-41:word:precious",
-    "correctText": "precious",
+    "interactionId": "en:lesson-01:session-41:i01",
+    "correctText": "I am clumsy.",
     "correctResponseId": null
   },
   {
@@ -15,19 +15,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-41:word:furious",
-    "correctText": "furious",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-41:i01",
-    "correctText": "I am clumsy.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-41:i02",
     "correctText": "She is upset.",
     "correctResponseId": "en:lesson-01:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-41:word:furious",
+    "correctText": "furious",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-41:i03",
@@ -42,6 +37,11 @@
   {
     "interactionId": "en:lesson-01:session-41:i05",
     "correctText": "You're honest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-41:word:precious",
+    "correctText": "precious",
     "correctResponseId": null
   },
   {

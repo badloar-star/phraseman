@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-55:word:independent",
-    "correctText": "independent",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:word:dependent",
-    "correctText": "dependent",
+    "interactionId": "en:lesson-01:session-55:i01",
+    "correctText": "He is responsible.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:word:forgetful",
     "correctText": "forgetful",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:i01",
-    "correctText": "He is responsible.",
     "correctResponseId": null
   },
   {
@@ -40,8 +30,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-55:word:dependent",
+    "correctText": "dependent",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-55:i05",
     "correctText": "He's dependent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:word:independent",
+    "correctText": "independent",
     "correctResponseId": null
   },
   {

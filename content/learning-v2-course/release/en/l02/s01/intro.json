@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Я не уверен",
-        "uk": "Я не впевнений"
+        "ru": "Музей ночью",
+        "uk": "Музей уночі"
       },
       "bodyByLocale": {
-        "ru": "`sure` — «уверенный», когда вы не сомневаетесь в ответе или выборе. `I am sure` — «Я уверен». Для отрицания поставьте `not` после `am`: `I am not sure` — «Я не уверен». Не нужно изображать уверенность, если вы ещё даже не посмотрели маршрут.",
-        "uk": "`sure` — «впевнений», коли ви не сумніваєтеся у відповіді або виборі. `I am sure` — «Я впевнений». Для заперечення поставте `not` після `am`: `I am not sure` — «Я не впевнений». Не потрібно вдавати впевненість, якщо ви ще навіть не подивилися маршрут."
+        "ru": "Подруга читает вслух: «Ночная экскурсия по музею часов, три часа». Часы вам никогда не нравились. interested — «заинтересован, интересно». I am interested — «Мне интересно». Чтобы сказать «не», ставим not после am: I am not interested — «Мне неинтересно».",
+        "uk": "Подруга читає вголос: «Нічна екскурсія музеєм годинників, три години». Годинники вам ніколи не подобалися. interested — «зацікавлений, цікаво». I am interested — «Мені цікаво». Щоб сказати «не», ставимо not після am: I am not interested — «Мені нецікаво»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-01:intro1:q",
         "promptByLocale": {
-          "ru": "Вы сомневаетесь, подходит ли вам экскурсия. Скажите: «Я не уверен».",
-          "uk": "Ви сумніваєтеся, чи підходить вам екскурсія. Скажіть: «Я не впевнений»."
+          "ru": "Подруга спрашивает, пойдёте ли вы с ней в музей часов. Скажите, что вам неинтересно.",
+          "uk": "Подруга питає, чи підете ви з нею до музею годинників. Скажіть, що вам нецікаво."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-01:intro1:r1",
-              "text": "I am not sure."
+              "text": "I am not interested."
             },
             {
               "responseId": "en:lesson-02:session-01:intro1:r2",
-              "text": "I am sure."
+              "text": "I am interested."
             },
             {
               "responseId": "en:lesson-02:session-01:intro1:r3",
-              "text": "I not sure."
+              "text": "I not interested."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-01:intro1:r1",
-              "text": "I am not sure."
+              "text": "I am not interested."
             },
             {
               "responseId": "en:lesson-02:session-01:intro1:r2",
-              "text": "I am sure."
+              "text": "I am interested."
             },
             {
               "responseId": "en:lesson-02:session-01:intro1:r3",
-              "text": "I not sure."
+              "text": "I not interested."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы сомневаетесь, подходит ли вам экскурсия. Скажите: «Я не уверен».",
-          "uk": "Ви сумніваєтеся, чи підходить вам екскурсія. Скажіть: «Я не впевнений»."
+          "ru": "Подруга спрашивает, пойдёте ли вы с ней в музей часов. Скажите, что вам неинтересно.",
+          "uk": "Подруга питає, чи підете ви з нею до музею годинників. Скажіть, що вам нецікаво."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ей неинтересно",
-        "uk": "Їй нецікаво"
+        "ru": "Ужин за отдельную плату",
+        "uk": "Вечеря за окрему плату"
       },
       "bodyByLocale": {
-        "ru": "`interested` — «заинтересованный». `She is interested` — «Ей интересно». Если предложение сестру не привлекает: `She is not interested` — «Ей неинтересно». `is` остаётся, а `not` встаёт сразу после него.",
-        "uk": "`interested` — «зацікавлений». `She is interested` — «Їй цікаво». Якщо пропозиція сестру не приваблює: `She is not interested` — «Їй нецікаво». `is` залишається, а `not` стає відразу після нього."
+        "ru": "В программе написано: «Экскурсия — 20 евро. Ужин в ресторане — оплачивается отдельно». included — «входит в цену, включено». It is included — «Это входит в цену». Здесь наоборот: It is not included — «Это не входит в цену». После is ставим not.",
+        "uk": "У програмі написано: «Екскурсія — 20 євро. Вечеря в ресторані — оплачується окремо». included — «входить у ціну, включено». It is included — «Це входить у ціну». Тут навпаки: It is not included — «Це не входить у ціну». Після is ставимо not."
       },
       "question": {
         "interactionId": "en:lesson-02:session-01:intro2:q",
         "promptByLocale": {
-          "ru": "Сестре предложенная экскурсия неинтересна. Расскажите об этом другу.",
-          "uk": "Сестрі запропонована екскурсія нецікава. Розкажіть про це другові."
+          "ru": "Друг думает, что ужин входит в 20 евро. Скажите ему, что ужин не входит в цену.",
+          "uk": "Друг думає, що вечеря входить у 20 євро. Скажіть йому, що вечеря не входить у ціну."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-01:intro2:r1",
-              "text": "She is not interested."
+              "text": "It is not included."
             },
             {
               "responseId": "en:lesson-02:session-01:intro2:r2",
-              "text": "She is interested."
+              "text": "It is included."
             },
             {
               "responseId": "en:lesson-02:session-01:intro2:r3",
-              "text": "She not interested."
+              "text": "It not included."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-01:intro2:r1",
-              "text": "She is not interested."
+              "text": "It is not included."
             },
             {
               "responseId": "en:lesson-02:session-01:intro2:r2",
-              "text": "She is interested."
+              "text": "It is included."
             },
             {
               "responseId": "en:lesson-02:session-01:intro2:r3",
-              "text": "She not interested."
+              "text": "It not included."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сестре предложенная экскурсия неинтересна. Расскажите об этом другу.",
-          "uk": "Сестрі запропонована екскурсія нецікава. Розкажіть про це другові."
+          "ru": "Друг думает, что ужин входит в 20 евро. Скажите ему, что ужин не входит в цену.",
+          "uk": "Друг думає, що вечеря входить у 20 євро. Скажіть йому, що вечеря не входить у ціну."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Нам неудобно",
-        "uk": "Нам незручно"
+        "ru": "Пять минут пешком",
+        "uk": "П’ять хвилин пішки"
       },
       "bodyByLocale": {
-        "ru": "`comfortable` — «чувствующий себя удобно», а о кресле — «удобный». `We are comfortable` — «Нам удобно». Если вам с другом тесно на сиденье: `We are not comfortable` — «Нам неудобно». После `are` тоже ставим `not`.",
-        "uk": "`comfortable` — «той, хто почувається зручно», а про крісло — «зручний». `We are comfortable` — «Нам зручно». Якщо вам із другом тісно на сидінні: `We are not comfortable` — «Нам незручно». Після `are` теж ставимо `not`."
+        "ru": "Автобус экскурсии отправляется от площади. По карте в телефоне до неё пять минут пешком. far — «далеко». It is far — «Это далеко». It is not far — «Это недалеко».",
+        "uk": "Автобус екскурсії вирушає з площі. За картою в телефоні до неї п’ять хвилин пішки. far — «далеко». It is far — «Це далеко». It is not far — «Це недалеко»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-01:intro3:q",
         "promptByLocale": {
-          "ru": "Вам с другом неудобно сидеть. Скажите об этом за вас обоих.",
-          "uk": "Вам із другом незручно сидіти. Скажіть про це за вас обох."
+          "ru": "Сестра боится, что придётся долго идти до автобуса. Успокойте её: это недалеко.",
+          "uk": "Сестра боїться, що доведеться довго йти до автобуса. Заспокойте її: це недалеко."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-01:intro3:r1",
-              "text": "We are not comfortable."
+              "text": "It is not far."
             },
             {
               "responseId": "en:lesson-02:session-01:intro3:r2",
-              "text": "We are comfortable."
+              "text": "It is far."
             },
             {
               "responseId": "en:lesson-02:session-01:intro3:r3",
-              "text": "We not comfortable."
+              "text": "It are not far."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-01:intro3:r1",
-              "text": "We are not comfortable."
+              "text": "It is not far."
             },
             {
               "responseId": "en:lesson-02:session-01:intro3:r2",
-              "text": "We are comfortable."
+              "text": "It is far."
             },
             {
               "responseId": "en:lesson-02:session-01:intro3:r3",
-              "text": "We not comfortable."
+              "text": "It are not far."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам с другом неудобно сидеть. Скажите об этом за вас обоих.",
-          "uk": "Вам із другом незручно сидіти. Скажіть про це за вас обох."
+          "ru": "Сестра боится, что придётся долго идти до автобуса. Успокойте её: это недалеко.",
+          "uk": "Сестра боїться, що доведеться довго йти до автобуса. Заспокойте її: це недалеко."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "91a343951d66fa29875421d2633d535e0201bfb9b99e752f6b755057953b4880"
+  "introFingerprint": "981ec537796d8fc0c41ac5c97f377c40566a07a65d949ba9e7c44b8237b6b751"
 }

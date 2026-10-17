@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-50:word:expensive; family: word_card -->
 > **expensive** — дорогой по цене. It's expensive — «Это дорого». Противоположность — cheap.
 
-**2 · Карточка слова — perfect**
-<!-- interaction_id: en:lesson-01:session-50:word:perfect; family: word_card -->
-> **perfect** — идеальный, лучше не найти. It's perfect — «Идеально».
-
-**3 · Карточка слова — elegant**
-<!-- interaction_id: en:lesson-01:session-50:word:elegant; family: word_card -->
-> **elegant** — элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.
-
-**4 · Карточка слова — wrapped**
-<!-- interaction_id: en:lesson-01:session-50:word:wrapped; family: word_card -->
-> **wrapped** — упакован, завёрнут. It's wrapped — «Подарок упакован».
-
-**5 · Ваза стоит двести евро. Соберите фразу о её цене**
+**2 · Ваза стоит двести евро. Соберите фразу о её цене**
 <!-- interaction_id: en:lesson-01:session-50:i01; family: phrase_builder -->
 Плитки: `expensive` `is` `It` `are` → **It is expensive.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is expensive.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — perfect**
+<!-- interaction_id: en:lesson-01:session-50:word:perfect; family: word_card -->
+> **perfect** — идеальный, лучше не найти. It's perfect — «Идеально».
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-50:i02; family: listen_choose -->
 🔊 *It is perfect.* → **It is perfect.** · It is expensive. · It is useful.
 - It is expensive. — *В записи последнее слово — `perfect`, а в этом варианте — `expensive`.*
 - It is useful. — *В записи последнее слово — `perfect`, а в этом варианте — `useful`.*
 
-**7 · Две серебряные рамки стоят по сто евро. Дополните оценку их цены**
+**5 · Две серебряные рамки стоят по сто евро. Дополните оценку их цены**
 <!-- interaction_id: en:lesson-01:session-50:i03; family: context_gap_grammar -->
 They ___ expensive. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Про две рамки — `They are`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-50:i04; family: speed_match -->
 expensive — дорогой по цене · perfect — идеальный · elegant — элегантный · wrapped — упакован
 
-**9 · Послушайте и соберите короткую фразу**
+**7 · Карточка слова — wrapped**
+<!-- interaction_id: en:lesson-01:session-50:word:wrapped; family: word_card -->
+> **wrapped** — упакован, завёрнут. It's wrapped — «Подарок упакован».
+
+**8 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-50:i05; family: listen_build_dictation -->
 🔊 *It's wrapped.* Плитки: `wrapped` `It's` `He's` → **It's wrapped.**
 *(плитка `He's` лишняя: здесь нужно `It's` — `It's wrapped.`)*
+
+**9 · Карточка слова — elegant**
+<!-- interaction_id: en:lesson-01:session-50:word:elegant; family: word_card -->
+> **elegant** — элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.
 
 **10 · Продавщица в тёмно-синем платье и с аккуратной причёской. Друг шепчет о ней. Соберите фразу: «Она элегантная»**
 <!-- interaction_id: en:lesson-01:session-50:i06; family: phrase_builder -->

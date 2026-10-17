@@ -52,52 +52,52 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — stuck**
-<!-- interaction_id: en:lesson-01:session-43:word:stuck; family: word_card -->
-> **stuck** — застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях.
-
-**2 · Картка слова — annoyed**
-<!-- interaction_id: en:lesson-01:session-43:word:annoyed; family: word_card -->
-> **annoyed** — роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry.
-
-**3 · Картка слова — soaked**
-<!-- interaction_id: en:lesson-01:session-43:word:soaked; family: word_card -->
-> **soaked** — промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet.
-
-**4 · Картка слова — chilly**
-<!-- interaction_id: en:lesson-01:session-43:word:chilly; family: word_card -->
-> **chilly** — прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold.
-
-**5 · Маша спокійно чекає на друга й не квапить його. Назвіть її терплячою**
+**1 · Маша спокійно чекає на друга й не квапить його. Назвіть її терплячою**
 <!-- interaction_id: en:lesson-01:session-43:i01; family: phrase_builder -->
 Плитки: `patient` `is` `She` `are` → **She is patient.**
 *(плитка `are` зайва: тут потрібно `is` — `She is patient.`)*
 
-**6 · Послухайте й виберіть почуте**
+**2 · Картка слова — stuck**
+<!-- interaction_id: en:lesson-01:session-43:word:stuck; family: word_card -->
+> **stuck** — застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях.
+
+**3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-43:i02; family: listen_choose -->
 🔊 *He is stuck.* → **He is stuck.** · She is stuck. · He is late.
 - She is stuck. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is late. — *У записі останнє слово — `stuck`, а в цьому варіанті — `late`.*
 
-**7 · Ви вже починаєте дратуватися через чекання. Скажіть про себе**
+**4 · Картка слова — annoyed**
+<!-- interaction_id: en:lesson-01:session-43:word:annoyed; family: word_card -->
+> **annoyed** — роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry.
+
+**5 · Ви вже починаєте дратуватися через чекання. Скажіть про себе**
 <!-- interaction_id: en:lesson-01:session-43:i03; family: context_gap_grammar -->
 I ___ annoyed. → **am** · is · are
 - is — *Після `I` потрібно `am`.*
 - are — *Тут `I am annoyed`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-43:i04; family: speed_match -->
 stuck — застряг · annoyed — роздратований · soaked — промок наскрізь · chilly — прохолодно
 
-**9 · Послухайте й складіть коротку фразу**
+**7 · Картка слова — soaked**
+<!-- interaction_id: en:lesson-01:session-43:word:soaked; family: word_card -->
+> **soaked** — промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet.
+
+**8 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-43:i05; family: listen_build_dictation -->
 🔊 *We're soaked.* Плитки: `soaked` `We're` `They're` → **We're soaked.**
 *(плитка `They're` зайва: тут потрібно `We're` — `We're soaked.`)*
 
-**10 · Олег пише, що ліфт у торговому центрі зупинився між поверхами. Ви розповідаєте про це Маші. Складіть фразу: «Він застряг»**
+**9 · Олег пише, що ліфт у торговому центрі зупинився між поверхами. Ви розповідаєте про це Маші. Складіть фразу: «Він застряг»**
 <!-- interaction_id: en:lesson-01:session-43:i06; family: phrase_builder -->
 Плитки: `stuck` `is` `He` `are` → **He is stuck.**
 *(плитка `are` зайва: тут потрібно `is` — `He is stuck.`)*
+
+**10 · Картка слова — chilly**
+<!-- interaction_id: en:lesson-01:session-43:word:chilly; family: word_card -->
+> **chilly** — прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold.
 
 **11 · Подув вітер, і вам зимно в легкій куртці. Скажіть Маші коротко, що прохолодно**
 <!-- interaction_id: en:lesson-01:session-43:i07; family: scripted_repeat_compare -->

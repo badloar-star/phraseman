@@ -5,8 +5,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-34:word:creepy",
-    "correctText": "creepy",
+    "interactionId": "en:lesson-01:session-34:i01",
+    "correctText": "I am afraid.",
     "correctResponseId": null
   },
   {
@@ -15,19 +15,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-34:word:terrified",
-    "correctText": "terrified",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-34:i01",
-    "correctText": "I am afraid.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-34:i02",
     "correctText": "She is pale.",
     "correctResponseId": "en:lesson-01:session-34:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-34:word:creepy",
+    "correctText": "creepy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-34:i03",
@@ -42,6 +37,11 @@
   {
     "interactionId": "en:lesson-01:session-34:i05",
     "correctText": "They are afraid.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-34:word:terrified",
+    "correctText": "terrified",
     "correctResponseId": null
   },
   {

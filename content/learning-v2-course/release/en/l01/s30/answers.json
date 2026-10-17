@@ -5,8 +5,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-30:word:dead",
-    "correctText": "dead",
+    "interactionId": "en:lesson-01:session-30:i01",
+    "correctText": "He is alive.",
     "correctResponseId": null
   },
   {
@@ -15,19 +15,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-30:word:injured",
-    "correctText": "injured",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-30:i01",
-    "correctText": "He is alive.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-30:i02",
     "correctText": "She is missing.",
     "correctResponseId": "en:lesson-01:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:word:dead",
+    "correctText": "dead",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i03",
@@ -77,6 +72,11 @@
   {
     "interactionId": "en:lesson-01:session-30:i12",
     "correctText": "They are missing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:word:injured",
+    "correctText": "injured",
     "correctResponseId": null
   },
   {

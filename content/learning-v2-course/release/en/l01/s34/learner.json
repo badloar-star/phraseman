@@ -47,44 +47,45 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-34:word:creepy",
+      "interactionId": "en:lesson-01:session-34:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — creepy",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У входа в комнату вам страшно. Соберите фразу о себе",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-34:word:creepy:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — creepy",
+      "audioTargetIds": [],
+      "accessibilityLabel": "У входа в комнату вам страшно. Соберите фразу о себе",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-34:word:creepy:audio",
-          "transcript": "creepy"
+        "family": "phrase_builder",
+        "targetPhrase": "I am afraid.",
+        "localizedMeaning": {
+          "ru": "У входа в комнату вам страшно. Соберите фразу о себе",
+          "uk": "Біля входу до кімнати вам страшно. Складіть фразу про себе"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "I",
+          "am",
+          "afraid"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:word:creepy:r1",
-            "targetText": "creepy",
-            "meaningByLocale": {
-              "ru": "жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.",
-              "uk": "моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ."
+            "responseId": "en:lesson-01:session-34:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "У входа в комнату вам страшно. Соберите фразу о себе",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am afraid.`",
+              "uk": "тут потрібно `am` — `I am afraid.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "creepy",
-          "definitionByLocale": {
-            "ru": "жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.",
-            "uk": "моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -133,95 +134,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-34:word:terrified",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — terrified",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-34:word:terrified:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — terrified",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-34:word:terrified:audio",
-          "transcript": "terrified"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-34:word:terrified:r1",
-            "targetText": "terrified",
-            "meaningByLocale": {
-              "ru": "в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.",
-              "uk": "нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "terrified",
-          "definitionByLocale": {
-            "ru": "в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.",
-            "uk": "нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-34:i01",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "У входа в комнату вам страшно. Соберите фразу о себе",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "У входа в комнату вам страшно. Соберите фразу о себе",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am afraid.",
-        "localizedMeaning": {
-          "ru": "У входа в комнату вам страшно. Соберите фразу о себе",
-          "uk": "Біля входу до кімнати вам страшно. Складіть фразу про себе"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "afraid"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-34:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "У входа в комнату вам страшно. Соберите фразу о себе",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am afraid.`",
-              "uk": "тут потрібно `am` — `I am afraid.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-34:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-34:word:creepy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — creepy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-34:word:creepy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — creepy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-34:word:creepy:audio",
+          "transcript": "creepy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-34:word:creepy:r1",
+            "targetText": "creepy",
+            "meaningByLocale": {
+              "ru": "жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.",
+              "uk": "моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "creepy",
+          "definitionByLocale": {
+            "ru": "жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.",
+            "uk": "моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-34:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-34:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -480,6 +437,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-34:word:terrified",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — terrified",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-34:word:terrified:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — terrified",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-34:word:terrified:audio",
+          "transcript": "terrified"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-34:word:terrified:r1",
+            "targetText": "terrified",
+            "meaningByLocale": {
+              "ru": "в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.",
+              "uk": "нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "terrified",
+          "definitionByLocale": {
+            "ru": "в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.",
+            "uk": "нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9960e2b6a113bdeda6051a6f3f32774c7f7373498ab6ca26584a7f97ac9d5e4c"
+  "learnerFingerprint": "1bc62fafe2f96845106ba324b3fe6a368539d776950aca925d396ea9b8b20865"
 }

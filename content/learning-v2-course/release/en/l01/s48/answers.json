@@ -1,27 +1,12 @@
 [
   {
-    "interactionId": "en:lesson-01:session-48:word:sharp",
-    "correctText": "sharp",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-48:word:sticky",
-    "correctText": "sticky",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-48:word:handmade",
-    "correctText": "handmade",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-48:word:lovely",
-    "correctText": "lovely",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-48:i01",
     "correctText": "He is honest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:word:sharp",
+    "correctText": "sharp",
     "correctResponseId": null
   },
   {
@@ -40,6 +25,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-48:word:handmade",
+    "correctText": "handmade",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-48:i05",
     "correctText": "It's handmade.",
     "correctResponseId": null
@@ -47,6 +37,11 @@
   {
     "interactionId": "en:lesson-01:session-48:i06",
     "correctText": "They are useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:word:lovely",
+    "correctText": "lovely",
     "correctResponseId": null
   },
   {
@@ -58,6 +53,11 @@
     "interactionId": "en:lesson-01:session-48:i08",
     "correctText": "dangerous",
     "correctResponseId": "en:lesson-01:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:word:sticky",
+    "correctText": "sticky",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i09",

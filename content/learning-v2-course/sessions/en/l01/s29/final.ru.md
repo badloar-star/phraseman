@@ -56,52 +56,52 @@
 <!-- interaction_id: en:lesson-01:session-29:word:local; family: word_card -->
 > **local** — местный, живёт здесь или находится здесь. I am local — «Я местный / местная». Про местных зрителей: They are local.
 
-**2 · Карточка слова — foreign**
-<!-- interaction_id: en:lesson-01:session-29:word:foreign; family: word_card -->
-> **foreign** — иностранный, из другой страны. It is foreign — «Он иностранный». Слово говорит о происхождении, а не о качестве.
-
-**3 · Карточка слова — online**
-<!-- interaction_id: en:lesson-01:session-29:word:online; family: word_card -->
-> **online** — в интернете, онлайн. It is online — «Это в интернете». Про людей: We are online — «Мы в сети».
-
-**4 · Карточка слова — popular**
-<!-- interaction_id: en:lesson-01:session-29:word:popular; family: word_card -->
-> **popular** — популярный, его многие любят или выбирают. It is popular — «Он популярный». Про человека: She is popular.
-
-**5 · Вы живёте в городе фестиваля. Соберите исправленный ответ «I local»**
+**2 · Вы живёте в городе фестиваля. Соберите исправленный ответ «I local»**
 <!-- interaction_id: en:lesson-01:session-29:i01; family: phrase_builder -->
 Плитки: `local` `am` `I` `is` → **I am local.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am local.`)*
 
-**6 · Послушайте и выберите описание фильма**
+**3 · Карточка слова — foreign**
+<!-- interaction_id: en:lesson-01:session-29:word:foreign; family: word_card -->
+> **foreign** — иностранный, из другой страны. It is foreign — «Он иностранный». Слово говорит о происхождении, а не о качестве.
+
+**4 · Послушайте и выберите описание фильма**
 <!-- interaction_id: en:lesson-01:session-29:i02; family: listen_choose -->
 🔊 *It is foreign.* → **It is foreign.** · It is local. · It is popular.
 - It is local. — *В записи последнее слово — `foreign`, а в этом варианте — `local`.*
 - It is popular. — *В записи последнее слово — `foreign`, а в этом варианте — `popular`.*
 
-**7 · Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово**
+**5 · Карточка слова — online**
+<!-- interaction_id: en:lesson-01:session-29:word:online; family: word_card -->
+> **online** — в интернете, онлайн. It is online — «Это в интернете». Про людей: We are online — «Мы в сети».
+
+**6 · Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово**
 <!-- interaction_id: en:lesson-01:session-29:i03; family: context_gap_grammar -->
 We ___ online. → **are** · is · am
 - is — *После `We` нужна форма `are`.*
 - am — *С `We` нужно `are`, а `am` — с `I`.*
 
-**8 · Соедините новые слова и значения**
+**7 · Соедините новые слова и значения**
 <!-- interaction_id: en:lesson-01:session-29:i04; family: speed_match -->
 local — местный · foreign — иностранный · online — в интернете · popular — популярный
 
-**9 · Послушайте и соберите фразу о зрителях**
+**8 · Послушайте и соберите фразу о зрителях**
 <!-- interaction_id: en:lesson-01:session-29:i05; family: listen_build_dictation -->
 🔊 *They are local.* Плитки: `local` `are` `They` `We` → **They are local.**
 *(плитка `We` лишняя: здесь нужно `They` — `They are local.`)*
 
-**10 · Один показ будет в интернете. Исправьте подпись «It online», собрав полную фразу**
+**9 · Один показ будет в интернете. Исправьте подпись «It online», собрав полную фразу**
 <!-- interaction_id: en:lesson-01:session-29:i06; family: phrase_builder -->
 Плитки: `online` `is` `It` `are` → **It is online.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is online.`)*
 
-**11 · Подруга живёт в городе фестиваля. Скажите о ней: «Она местная»**
+**10 · Подруга живёт в городе фестиваля. Скажите о ней: «Она местная»**
 <!-- interaction_id: en:lesson-01:session-29:i07; family: scripted_repeat_compare -->
 🎙 **She is local.**
+
+**11 · Карточка слова — popular**
+<!-- interaction_id: en:lesson-01:session-29:word:popular; family: word_card -->
+> **popular** — популярный, его многие любят или выбирают. It is popular — «Он популярный». Про человека: She is popular.
 
 **12 · На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов**
 <!-- interaction_id: en:lesson-01:session-29:i08; family: context_gap_grammar -->

@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-49:word:secondhand",
-    "correctText": "secondhand",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-49:word:colorful",
-    "correctText": "colorful",
+    "interactionId": "en:lesson-01:session-49:i01",
+    "correctText": "It is cheap.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:word:rare",
     "correctText": "rare",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-49:i01",
-    "correctText": "It is cheap.",
     "correctResponseId": null
   },
   {
@@ -40,8 +30,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-49:word:colorful",
+    "correctText": "colorful",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-49:i05",
     "correctText": "It's colorful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:word:secondhand",
+    "correctText": "secondhand",
     "correctResponseId": null
   },
   {

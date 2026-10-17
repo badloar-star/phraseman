@@ -47,137 +47,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-52:word:waterproof",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — waterproof",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-52:word:waterproof:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — waterproof",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-52:word:waterproof:audio",
-            "transcript": "waterproof"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-52:word:waterproof:r1",
-              "targetText": "waterproof",
-              "meaningByLocale": {
-                "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
-                "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "waterproof",
-            "definitionByLocale": {
-              "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
-              "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-52:word:adjustable",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — adjustable",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-52:word:adjustable:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — adjustable",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-52:word:adjustable:audio",
-            "transcript": "adjustable"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-52:word:adjustable:r1",
-              "targetText": "adjustable",
-              "meaningByLocale": {
-                "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
-                "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "adjustable",
-            "definitionByLocale": {
-              "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
-              "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-52:word:trendy",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — trendy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-52:word:trendy:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — trendy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-52:word:trendy:audio",
-            "transcript": "trendy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-52:word:trendy:r1",
-              "targetText": "trendy",
-              "meaningByLocale": {
-                "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
-                "uk": "модний, зараз у моді. It's trendy — «Це модно»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "trendy",
-            "definitionByLocale": {
-              "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
-              "uk": "модний, зараз у моді. It's trendy — «Це модно»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-52:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-52:word:waterproof",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waterproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:waterproof:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waterproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:waterproof:audio",
+            "transcript": "waterproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:waterproof:r1",
+              "targetText": "waterproof",
+              "meaningByLocale": {
+                "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+                "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waterproof",
+            "definitionByLocale": {
+              "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+              "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-52:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +210,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-52:word:adjustable",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — adjustable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:adjustable:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — adjustable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:adjustable:audio",
+            "transcript": "adjustable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:adjustable:r1",
+              "targetText": "adjustable",
+              "meaningByLocale": {
+                "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+                "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adjustable",
+            "definitionByLocale": {
+              "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+              "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-52:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +323,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -485,7 +442,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -529,7 +486,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -557,6 +514,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:trendy",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — trendy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:trendy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — trendy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:trendy:audio",
+            "transcript": "trendy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:trendy:r1",
+              "targetText": "trendy",
+              "meaningByLocale": {
+                "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+                "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trendy",
+            "definitionByLocale": {
+              "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+              "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1206,137 +1206,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-52:word:waterproof",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — waterproof",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-52:word:waterproof:audio"
-        ],
-        "accessibilityLabel": "Картка слова — waterproof",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-52:word:waterproof:audio",
-            "transcript": "waterproof"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-52:word:waterproof:r1",
-              "targetText": "waterproof",
-              "meaningByLocale": {
-                "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
-                "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "waterproof",
-            "definitionByLocale": {
-              "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
-              "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-52:word:adjustable",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — adjustable",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-52:word:adjustable:audio"
-        ],
-        "accessibilityLabel": "Картка слова — adjustable",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-52:word:adjustable:audio",
-            "transcript": "adjustable"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-52:word:adjustable:r1",
-              "targetText": "adjustable",
-              "meaningByLocale": {
-                "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
-                "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "adjustable",
-            "definitionByLocale": {
-              "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
-              "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-52:word:trendy",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — trendy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-52:word:trendy:audio"
-        ],
-        "accessibilityLabel": "Картка слова — trendy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-52:word:trendy:audio",
-            "transcript": "trendy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-52:word:trendy:r1",
-              "targetText": "trendy",
-              "meaningByLocale": {
-                "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
-                "uk": "модний, зараз у моді. It's trendy — «Це модно»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "trendy",
-            "definitionByLocale": {
-              "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
-              "uk": "модний, зараз у моді. It's trendy — «Це модно»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-52:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1379,8 +1250,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-52:word:waterproof",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waterproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:waterproof:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waterproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:waterproof:audio",
+            "transcript": "waterproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:waterproof:r1",
+              "targetText": "waterproof",
+              "meaningByLocale": {
+                "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+                "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waterproof",
+            "definitionByLocale": {
+              "ru": "непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».",
+              "uk": "непромокальний, не пропускає воду. It's waterproof — «Він непромокальний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-52:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1455,8 +1369,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-52:word:adjustable",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — adjustable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:adjustable:audio"
+        ],
+        "accessibilityLabel": "Картка слова — adjustable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:adjustable:audio",
+            "transcript": "adjustable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:adjustable:r1",
+              "targetText": "adjustable",
+              "meaningByLocale": {
+                "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+                "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adjustable",
+            "definitionByLocale": {
+              "ru": "регулируется, можно подогнать. It's adjustable — «Он регулируется»: например, лямка или стул.",
+              "uk": "регулюється, можна припасувати. It's adjustable — «Він регулюється»: наприклад, лямка чи стілець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-52:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1525,8 +1482,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1598,7 +1555,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1644,7 +1601,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1688,7 +1645,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-52:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1716,6 +1673,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-52:word:trendy",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — trendy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-52:word:trendy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — trendy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-52:word:trendy:audio",
+            "transcript": "trendy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-52:word:trendy:r1",
+              "targetText": "trendy",
+              "meaningByLocale": {
+                "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+                "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trendy",
+            "definitionByLocale": {
+              "ru": "модный, сейчас в моде. It's trendy — «Это модно».",
+              "uk": "модний, зараз у моді. It's trendy — «Це модно»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2328,29 +2328,24 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-52:word:waterproof",
-      "correctText": "waterproof",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-52:word:adjustable",
-      "correctText": "adjustable",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-52:word:trendy",
-      "correctText": "trendy",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-52:i01",
       "correctText": "It is light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:word:waterproof",
+      "correctText": "waterproof",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-52:i02",
       "correctText": "It is waterproof.",
       "correctResponseId": "en:lesson-01:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:word:adjustable",
+      "correctText": "adjustable",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-52:i03",
@@ -2375,6 +2370,11 @@
     {
       "interactionId": "en:lesson-01:session-52:i07",
       "correctText": "It's adjustable.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:word:trendy",
+      "correctText": "trendy",
       "correctResponseId": null
     },
     {

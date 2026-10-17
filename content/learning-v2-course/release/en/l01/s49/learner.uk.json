@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-49:word:secondhand",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — secondhand",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:word:secondhand:audio"
-      ],
-      "accessibilityLabel": "Картка слова — secondhand",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:word:secondhand:audio",
-          "transcript": "secondhand"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-49:word:secondhand:r1",
-            "targetText": "secondhand",
-            "meaningByLocale": {
-              "ru": "подержанный, бывший в употреблении. It's secondhand — «Это б/у».",
-              "uk": "уживаний, не новий. It's secondhand — «Це вживане»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "secondhand",
-          "definitionByLocale": {
-            "ru": "подержанный, бывший в употреблении. It's secondhand — «Это б/у».",
-            "uk": "уживаний, не новий. It's secondhand — «Це вживане»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:word:colorful",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — colorful",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:word:colorful:audio"
-      ],
-      "accessibilityLabel": "Картка слова — colorful",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:word:colorful:audio",
-          "transcript": "colorful"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-49:word:colorful:r1",
-            "targetText": "colorful",
-            "meaningByLocale": {
-              "ru": "яркий, разноцветный. It's colorful — «Он яркий, разноцветный».",
-              "uk": "яскравий, різнокольоровий. It's colorful — «Він яскравий, різнокольоровий»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "colorful",
-          "definitionByLocale": {
-            "ru": "яркий, разноцветный. It's colorful — «Он яркий, разноцветный».",
-            "uk": "яскравий, різнокольоровий. It's colorful — «Він яскравий, різнокольоровий»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:word:rare",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — rare",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:word:rare:audio"
-      ],
-      "accessibilityLabel": "Картка слова — rare",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:word:rare:audio",
-          "transcript": "rare"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-49:word:rare:r1",
-            "targetText": "rare",
-            "meaningByLocale": {
-              "ru": "редкий, таких мало. It's rare — «Это редкость».",
-              "uk": "рідкісний, таких мало. It's rare — «Це рідкість»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "rare",
-          "definitionByLocale": {
-            "ru": "редкий, таких мало. It's rare — «Это редкость».",
-            "uk": "рідкісний, таких мало. It's rare — «Це рідкість»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-49:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-49:word:rare",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rare",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:word:rare:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rare",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:word:rare:audio",
+          "transcript": "rare"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:word:rare:r1",
+            "targetText": "rare",
+            "meaningByLocale": {
+              "ru": "редкий, таких мало. It's rare — «Это редкость».",
+              "uk": "рідкісний, таких мало. It's rare — «Це рідкість»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rare",
+          "definitionByLocale": {
+            "ru": "редкий, таких мало. It's rare — «Это редкость».",
+            "uk": "рідкісний, таких мало. It's rare — «Це рідкість»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-49:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +211,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-49:i03",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +280,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-49:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -438,8 +352,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-49:word:colorful",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — colorful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:word:colorful:audio"
+      ],
+      "accessibilityLabel": "Картка слова — colorful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:word:colorful:audio",
+          "transcript": "colorful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:word:colorful:r1",
+            "targetText": "colorful",
+            "meaningByLocale": {
+              "ru": "яркий, разноцветный. It's colorful — «Он яркий, разноцветный».",
+              "uk": "яскравий, різнокольоровий. It's colorful — «Він яскравий, різнокольоровий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "colorful",
+          "definitionByLocale": {
+            "ru": "яркий, разноцветный. It's colorful — «Он яркий, разноцветный».",
+            "uk": "яскравий, різнокольоровий. It's colorful — «Він яскравий, різнокольоровий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-49:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -479,6 +436,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:word:secondhand",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — secondhand",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:word:secondhand:audio"
+      ],
+      "accessibilityLabel": "Картка слова — secondhand",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:word:secondhand:audio",
+          "transcript": "secondhand"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:word:secondhand:r1",
+            "targetText": "secondhand",
+            "meaningByLocale": {
+              "ru": "подержанный, бывший в употреблении. It's secondhand — «Это б/у».",
+              "uk": "уживаний, не новий. It's secondhand — «Це вживане»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "secondhand",
+          "definitionByLocale": {
+            "ru": "подержанный, бывший в употреблении. It's secondhand — «Это б/у».",
+            "uk": "уживаний, не новий. It's secondhand — «Це вживане»."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f0d1c3358ec31b0c931f163d634e3ae522ccc432daf0839acc07181ce33c49a7"
+  "learnerFingerprint": "a942fa9e39be630eea5087ae6e387711f57b23b32d733826a6d74b6836f6d7ec"
 }

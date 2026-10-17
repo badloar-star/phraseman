@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-49:word:cheap; family: word_card -->
 > **cheap** — дешевий, недорогий. It's cheap — «Це дешево». Говорить про ціну, а не про якість.
 
-**2 · Картка слова — secondhand**
-<!-- interaction_id: en:lesson-01:session-49:word:secondhand; family: word_card -->
-> **secondhand** — уживаний, не новий. It's secondhand — «Це вживане».
-
-**3 · Картка слова — colorful**
-<!-- interaction_id: en:lesson-01:session-49:word:colorful; family: word_card -->
-> **colorful** — яскравий, різнокольоровий. It's colorful — «Він яскравий, різнокольоровий».
-
-**4 · Картка слова — rare**
-<!-- interaction_id: en:lesson-01:session-49:word:rare; family: word_card -->
-> **rare** — рідкісний, таких мало. It's rare — «Це рідкість».
-
-**5 · Горнятко коштує одне євро. Складіть фразу про його ціну**
+**2 · Горнятко коштує одне євро. Складіть фразу про його ціну**
 <!-- interaction_id: en:lesson-01:session-49:i01; family: phrase_builder -->
 Плитки: `cheap` `is` `It` `are` → **It is cheap.**
 *(плитка `are` зайва: тут потрібно `is` — `It is cheap.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — rare**
+<!-- interaction_id: en:lesson-01:session-49:word:rare; family: word_card -->
+> **rare** — рідкісний, таких мало. It's rare — «Це рідкість».
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-49:i02; family: listen_choose -->
 🔊 *It is rare.* → **It is rare.** · It is cheap. · It is useful.
 - It is cheap. — *У записі останнє слово — `rare`, а в цьому варіанті — `cheap`.*
 - It is useful. — *У записі останнє слово — `rare`, а в цьому варіанті — `useful`.*
 
-**7 · Дві листівки коштують по п’ятдесят центів. Доповніть оцінку їхньої ціни**
+**5 · Дві листівки коштують по п’ятдесят центів. Доповніть оцінку їхньої ціни**
 <!-- interaction_id: en:lesson-01:session-49:i03; family: context_gap_grammar -->
 They ___ cheap. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Про дві листівки — `They are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-49:i04; family: speed_match -->
 cheap — дешевий · secondhand — уживаний · colorful — яскравий, різнокольоровий · rare — рідкісний
 
-**9 · Послухайте й складіть коротку фразу**
+**7 · Картка слова — colorful**
+<!-- interaction_id: en:lesson-01:session-49:word:colorful; family: word_card -->
+> **colorful** — яскравий, різнокольоровий. It's colorful — «Він яскравий, різнокольоровий».
+
+**8 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-49:i05; family: listen_build_dictation -->
 🔊 *It's colorful.* Плитки: `colorful` `It's` `He's` → **It's colorful.**
 *(плитка `He's` зайва: тут потрібно `It's` — `It's colorful.`)*
+
+**9 · Картка слова — secondhand**
+<!-- interaction_id: en:lesson-01:session-49:word:secondhand; family: word_card -->
+> **secondhand** — уживаний, не новий. It's secondhand — «Це вживане».
 
 **10 · Продавець каже другові, що обидві книжки на столі вже читали до вас. Скажіть другові, що вони вживані**
 <!-- interaction_id: en:lesson-01:session-49:i06; family: phrase_builder -->

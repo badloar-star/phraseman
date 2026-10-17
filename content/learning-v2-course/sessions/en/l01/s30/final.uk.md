@@ -56,78 +56,78 @@ dead — «мертвий». He is dead — «Він мертвий», тобт�
 <!-- interaction_id: en:lesson-01:session-30:word:alive; family: word_card -->
 > **alive** — живий, живий-здоровий. She is alive — «Вона жива». Протилежність — dead.
 
-**2 · Картка слова — dead**
-<!-- interaction_id: en:lesson-01:session-30:word:dead; family: word_card -->
-> **dead** — мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома.
+**2 · Героя знайшли живим. Складіть повідомлення про це**
+<!-- interaction_id: en:lesson-01:session-30:i01; family: phrase_builder -->
+Плитки: `alive` `is` `He` `are` → **He is alive.**
+*(плитка `are` зайва: тут потрібно `is` — `He is alive.`)*
 
 **3 · Картка слова — missing**
 <!-- interaction_id: en:lesson-01:session-30:word:missing; family: word_card -->
 > **missing** — зник, немає там, де має бути. She is missing — «Вона зникла». Про річ: It is missing.
 
-**4 · Картка слова — injured**
-<!-- interaction_id: en:lesson-01:session-30:word:injured; family: word_card -->
-> **injured** — поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead.
-
-**5 · Героя знайшли живим. Складіть повідомлення про це**
-<!-- interaction_id: en:lesson-01:session-30:i01; family: phrase_builder -->
-Плитки: `alive` `is` `He` `are` → **He is alive.**
-*(плитка `are` зайва: тут потрібно `is` — `He is alive.`)*
-
-**6 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-30:i02; family: listen_choose -->
 🔊 *She is missing.* → **She is missing.** · He is missing. · She is alive.
 - He is missing. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 - She is alive. — *У записі останнє слово — `missing`, а в цьому варіанті — `alive`.*
 
-**7 · За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них**
+**5 · Картка слова — dead**
+<!-- interaction_id: en:lesson-01:session-30:word:dead; family: word_card -->
+> **dead** — мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома.
+
+**6 · За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них**
 <!-- interaction_id: en:lesson-01:session-30:i03; family: context_gap_grammar -->
 They ___ dead. → **are** · is · am
 - is — *Після `They` потрібно `are`.*
 - am — *`am` поєднується з `I`. Про них кажемо `They are`.*
 
-**8 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-30:i04; family: speed_match -->
 alive — живий · dead — мертвий · missing — зниклий · injured — поранений
 
-**9 · Послухайте й складіть фразу**
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-30:i05; family: listen_build_dictation -->
 🔊 *They are alive.* Плитки: `alive` `are` `They` `We` → **They are alive.**
 *(плитка `We` зайва: тут потрібно `They` — `They are alive.`)*
 
-**10 · Ключа немає на місці, герой його шукає. Складіть фразу про ключ: «Він зник»**
+**9 · Ключа немає на місці, герой його шукає. Складіть фразу про ключ: «Він зник»**
 <!-- interaction_id: en:lesson-01:session-30:i06; family: phrase_builder -->
 Плитки: `missing` `is` `It` `He` → **It is missing.**
 *(плитка `He` зайва: тут потрібно `It` — `It is missing.`)*
 
-**11 · Лікар у фільмі підтвердив, що героїня померла. Скажіть про неї однією фразою**
+**10 · Лікар у фільмі підтвердив, що героїня померла. Скажіть про неї однією фразою**
 <!-- interaction_id: en:lesson-01:session-30:i07; family: scripted_repeat_compare -->
 🎙 **She is dead.**
 
-**12 · Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку**
+**11 · Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку**
 <!-- interaction_id: en:lesson-01:session-30:i08; family: context_gap_grammar -->
 I ___ alive. → **am** · is · are
 - is — *Про себе герой каже `I am`.*
 - are — *Після `I` потрібна форма `am`.*
 
-**13 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-01:session-30:i09; family: listen_choose -->
 🔊 *He is dead.* → **He is dead.** · She is dead. · He is missing.
 - She is dead. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is missing. — *У записі останнє слово — `dead`, а в цьому варіанті — `missing`.*
 
-**14 · З’єднайте знайомі слова та значення**
+**13 · З’єднайте знайомі слова та значення**
 <!-- interaction_id: en:lesson-01:session-30:i10; family: speed_match -->
 local — місцевий · foreign — іноземний · online — в інтернеті · rich — багатий
 
-**15 · Послухайте репліку врятованих героїв і складіть її**
+**14 · Послухайте репліку врятованих героїв і складіть її**
 <!-- interaction_id: en:lesson-01:session-30:i11; family: listen_build_dictation -->
 🔊 *We are alive.* Плитки: `alive` `are` `We` `They` → **We are alive.**
 *(плитка `They` зайва: тут потрібно `We` — `We are alive.`)*
 
-**16 · Двох героїв шукають; де вони, невідомо. Складіть фразу про них**
+**15 · Двох героїв шукають; де вони, невідомо. Складіть фразу про них**
 <!-- interaction_id: en:lesson-01:session-30:i12; family: phrase_builder -->
 Плитки: `missing` `are` `They` `is` → **They are missing.**
 *(плитка `is` зайва: тут потрібно `are` — `They are missing.`)*
+
+**16 · Картка слова — injured**
+<!-- interaction_id: en:lesson-01:session-30:word:injured; family: word_card -->
+> **injured** — поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead.
 
 **17 · Героя поранили в перестрілці, але він живий. Скажіть про нього однією фразою**
 <!-- interaction_id: en:lesson-01:session-30:i13; family: scripted_repeat_compare -->
@@ -152,4 +152,3 @@ injured — поранений · alive — живий · dead — мертви�
 **21 · Після відпустки ви оглянули рослину: вона жива, на ній нове листя. Скажіть сусідові про рослину однією фразою**
 <!-- interaction_id: en:lesson-01:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is alive.**
-

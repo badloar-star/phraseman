@@ -4,180 +4,8 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-01:session-39:word:hilarious",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — hilarious",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:hilarious:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — hilarious",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:hilarious:audio",
-            "transcript": "hilarious"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:hilarious:r1",
-              "targetText": "hilarious",
-              "meaningByLocale": {
-                "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
-                "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "hilarious",
-            "definitionByLocale": {
-              "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
-              "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-39:word:embarrassed",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — embarrassed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:embarrassed:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — embarrassed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:embarrassed:audio",
-            "transcript": "embarrassed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:embarrassed:r1",
-              "targetText": "embarrassed",
-              "meaningByLocale": {
-                "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
-                "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "embarrassed",
-            "definitionByLocale": {
-              "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
-              "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-39:word:speechless",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — speechless",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:speechless:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — speechless",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:speechless:audio",
-            "transcript": "speechless"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:speechless:r1",
-              "targetText": "speechless",
-              "meaningByLocale": {
-                "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
-                "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "speechless",
-            "definitionByLocale": {
-              "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
-              "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-39:word:thrilled",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — thrilled",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:thrilled:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — thrilled",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:thrilled:audio",
-            "transcript": "thrilled"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:thrilled:r1",
-              "targetText": "thrilled",
-              "meaningByLocale": {
-                "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
-                "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "thrilled",
-            "definitionByLocale": {
-              "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
-              "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-39:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +48,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-39:word:hilarious",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hilarious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:hilarious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hilarious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:hilarious:audio",
+            "transcript": "hilarious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:hilarious:r1",
+              "targetText": "hilarious",
+              "meaningByLocale": {
+                "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+                "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hilarious",
+            "definitionByLocale": {
+              "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+              "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-39:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +167,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-39:word:embarrassed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — embarrassed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:embarrassed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — embarrassed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:embarrassed:audio",
+            "transcript": "embarrassed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:embarrassed:r1",
+              "targetText": "embarrassed",
+              "meaningByLocale": {
+                "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+                "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "embarrassed",
+            "definitionByLocale": {
+              "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+              "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-39:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -365,9 +279,52 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-39:word:speechless",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — speechless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:speechless:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — speechless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:speechless:audio",
+            "transcript": "speechless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:speechless:r1",
+              "targetText": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+                "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speechless",
+            "definitionByLocale": {
+              "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+              "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-39:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -434,6 +391,49 @@
             "accuracy",
             "personal_best"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:thrilled",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thrilled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:thrilled:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thrilled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:thrilled:audio",
+            "transcript": "thrilled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:thrilled:r1",
+              "targetText": "thrilled",
+              "meaningByLocale": {
+                "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+                "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thrilled",
+            "definitionByLocale": {
+              "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+              "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1164,180 +1164,8 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-01:session-39:word:hilarious",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — hilarious",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:hilarious:audio"
-        ],
-        "accessibilityLabel": "Картка слова — hilarious",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:hilarious:audio",
-            "transcript": "hilarious"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:hilarious:r1",
-              "targetText": "hilarious",
-              "meaningByLocale": {
-                "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
-                "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "hilarious",
-            "definitionByLocale": {
-              "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
-              "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-39:word:embarrassed",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — embarrassed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:embarrassed:audio"
-        ],
-        "accessibilityLabel": "Картка слова — embarrassed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:embarrassed:audio",
-            "transcript": "embarrassed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:embarrassed:r1",
-              "targetText": "embarrassed",
-              "meaningByLocale": {
-                "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
-                "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "embarrassed",
-            "definitionByLocale": {
-              "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
-              "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-39:word:speechless",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — speechless",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:speechless:audio"
-        ],
-        "accessibilityLabel": "Картка слова — speechless",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:speechless:audio",
-            "transcript": "speechless"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:speechless:r1",
-              "targetText": "speechless",
-              "meaningByLocale": {
-                "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
-                "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "speechless",
-            "definitionByLocale": {
-              "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
-              "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-39:word:thrilled",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — thrilled",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-39:word:thrilled:audio"
-        ],
-        "accessibilityLabel": "Картка слова — thrilled",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-39:word:thrilled:audio",
-            "transcript": "thrilled"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-39:word:thrilled:r1",
-              "targetText": "thrilled",
-              "meaningByLocale": {
-                "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
-                "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "thrilled",
-            "definitionByLocale": {
-              "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
-              "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-39:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1380,8 +1208,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-39:word:hilarious",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hilarious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:hilarious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hilarious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:hilarious:audio",
+            "transcript": "hilarious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:hilarious:r1",
+              "targetText": "hilarious",
+              "meaningByLocale": {
+                "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+                "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hilarious",
+            "definitionByLocale": {
+              "ru": "очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.",
+              "uk": "дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-39:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1456,8 +1327,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-39:word:embarrassed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — embarrassed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:embarrassed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — embarrassed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:embarrassed:audio",
+            "transcript": "embarrassed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:embarrassed:r1",
+              "targetText": "embarrassed",
+              "meaningByLocale": {
+                "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+                "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "embarrassed",
+            "definitionByLocale": {
+              "ru": "смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.",
+              "uk": "зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-39:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1525,9 +1439,52 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-39:word:speechless",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — speechless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:speechless:audio"
+        ],
+        "accessibilityLabel": "Картка слова — speechless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:speechless:audio",
+            "transcript": "speechless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:speechless:r1",
+              "targetText": "speechless",
+              "meaningByLocale": {
+                "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+                "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speechless",
+            "definitionByLocale": {
+              "ru": "нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.",
+              "uk": "немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-39:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1594,6 +1551,49 @@
             "accuracy",
             "personal_best"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-39:word:thrilled",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thrilled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-39:word:thrilled:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thrilled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-39:word:thrilled:audio",
+            "transcript": "thrilled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-39:word:thrilled:r1",
+              "targetText": "thrilled",
+              "meaningByLocale": {
+                "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+                "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thrilled",
+            "definitionByLocale": {
+              "ru": "в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.",
+              "uk": "у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2325,28 +2325,13 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-01:session-39:word:hilarious",
-      "correctText": "hilarious",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:word:embarrassed",
-      "correctText": "embarrassed",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:word:speechless",
-      "correctText": "speechless",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:word:thrilled",
-      "correctText": "thrilled",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-39:i01",
       "correctText": "You are brave.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:word:hilarious",
+      "correctText": "hilarious",
       "correctResponseId": null
     },
     {
@@ -2355,13 +2340,28 @@
       "correctResponseId": "en:lesson-01:session-39:i02:r1"
     },
     {
+      "interactionId": "en:lesson-01:session-39:word:embarrassed",
+      "correctText": "embarrassed",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-39:i03",
       "correctText": "is",
       "correctResponseId": "en:lesson-01:session-39:i03:r1"
     },
     {
+      "interactionId": "en:lesson-01:session-39:word:speechless",
+      "correctText": "speechless",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-39:i04",
       "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:word:thrilled",
+      "correctText": "thrilled",
       "correctResponseId": null
     },
     {

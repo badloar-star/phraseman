@@ -5,6 +5,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-01:word:interested",
+    "correctText": "interested",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-01:i02",
     "correctText": "She is not interested.",
     "correctResponseId": "en:lesson-02:session-01:i02:r1"
@@ -16,17 +21,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-01:i04",
-    "correctText": "en:lesson-02:session-01:i04:p1=sure\nen:lesson-02:session-01:i04:p2=interested\nen:lesson-02:session-01:i04:p3=comfortable\nen:lesson-02:session-01:i04:p4=ready",
+    "correctText": "en:lesson-02:session-01:i04:p1=interested\nen:lesson-02:session-01:i04:p2=included\nen:lesson-02:session-01:i04:p3=far\nen:lesson-02:session-01:i04:p4=keen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-01:word:far",
+    "correctText": "far",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-01:i05",
-    "correctText": "I am not sure.",
+    "correctText": "It is not far.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-01:word:keen",
+    "correctText": "keen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-01:i06",
-    "correctText": "She is not interested.",
+    "correctText": "He is not keen.",
     "correctResponseId": null
   },
   {
@@ -40,13 +55,18 @@
     "correctResponseId": "en:lesson-02:session-01:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-01:word:included",
+    "correctText": "included",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-01:i09",
-    "correctText": "He is not here.",
+    "correctText": "It is not included.",
     "correctResponseId": "en:lesson-02:session-01:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-01:i10",
-    "correctText": "en:lesson-02:session-01:i10:p1=responsible\nen:lesson-02:session-01:i10:p2=independent\nen:lesson-02:session-01:i10:p3=dependent\nen:lesson-02:session-01:i10:p4=cheap",
+    "correctText": "en:lesson-02:session-01:i10:p1=sure\nen:lesson-02:session-01:i10:p2=comfortable\nen:lesson-02:session-01:i10:p3=ready\nen:lesson-02:session-01:i10:p4=happy",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-01:i16",
-    "correctText": "en:lesson-02:session-01:i16:p1=sure\nen:lesson-02:session-01:i16:p2=interested\nen:lesson-02:session-01:i16:p3=comfortable\nen:lesson-02:session-01:i16:p4=fine",
+    "correctText": "en:lesson-02:session-01:i16:p1=included\nen:lesson-02:session-01:i16:p2=far\nen:lesson-02:session-01:i16:p3=interested\nen:lesson-02:session-01:i16:p4=sure",
     "correctResponseId": null
   },
   {

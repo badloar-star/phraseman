@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-41:word:clumsy; family: word_card -->
 > **clumsy** — неуклюжий, неловкий. I'm clumsy — «Я такой неуклюжий»: часто что-то роняю или задеваю.
 
-**2 · Карточка слова — precious**
-<!-- interaction_id: en:lesson-01:session-41:word:precious; family: word_card -->
-> **precious** — очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.
+**2 · Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»**
+<!-- interaction_id: en:lesson-01:session-41:i01; family: phrase_builder -->
+Плитки: `clumsy` `am` `I` `is` → **I am clumsy.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am clumsy.`)*
 
 **3 · Карточка слова — upset**
 <!-- interaction_id: en:lesson-01:session-41:word:upset; family: word_card -->
 > **upset** — расстроен, огорчён. She's upset — «Она расстроена».
 
-**4 · Карточка слова — furious**
-<!-- interaction_id: en:lesson-01:session-41:word:furious; family: word_card -->
-> **furious** — в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.
-
-**5 · Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»**
-<!-- interaction_id: en:lesson-01:session-41:i01; family: phrase_builder -->
-Плитки: `clumsy` `am` `I` `is` → **I am clumsy.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am clumsy.`)*
-
-**6 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-41:i02; family: listen_choose -->
 🔊 *She is upset.* → **She is upset.** · He is upset. · She is okay.
 - He is upset. — *В записи первое слово — `She`, а в этом варианте — `He`.*
 - She is okay. — *В записи последнее слово — `upset`, а в этом варианте — `okay`.*
 
-**7 · Катин брат кричит и стучит кулаком по столу: он узнал, что кот разбил вторую кружку. Дополните фразу о нём**
+**5 · Карточка слова — furious**
+<!-- interaction_id: en:lesson-01:session-41:word:furious; family: word_card -->
+> **furious** — в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.
+
+**6 · Катин брат кричит и стучит кулаком по столу: он узнал, что кот разбил вторую кружку. Дополните фразу о нём**
 <!-- interaction_id: en:lesson-01:session-41:i03; family: context_gap_grammar -->
 He ___ furious. → **is** · am · are
 - am — *После `He` нужно `is`.*
 - are — *Про брата здесь `He is`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-41:i04; family: speed_match -->
 clumsy — неуклюжий · precious — очень дорогой для человека · upset — расстроен · furious — в ярости
 
-**9 · Послушайте и соберите короткую фразу**
+**8 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-41:i05; family: listen_build_dictation -->
 🔊 *You're honest.* Плитки: `honest` `You're` `We're` → **You're honest.**
 *(плитка `We're` лишняя: здесь нужно `You're` — `You're honest.`)*
+
+**9 · Карточка слова — precious**
+<!-- interaction_id: en:lesson-01:session-41:word:precious; family: word_card -->
+> **precious** — очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.
 
 **10 · Катя показывает старый фотоальбом, где эта кружка стоит на бабушкином столе. Соберите фразу об альбоме: «Он очень дорог ей»**
 <!-- interaction_id: en:lesson-01:session-41:i06; family: phrase_builder -->

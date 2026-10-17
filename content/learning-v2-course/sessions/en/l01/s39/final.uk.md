@@ -52,42 +52,42 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — hilarious**
-<!-- interaction_id: en:lesson-01:session-39:word:hilarious; family: word_card -->
-> **hilarious** — дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny.
-
-**2 · Картка слова — embarrassed**
-<!-- interaction_id: en:lesson-01:session-39:word:embarrassed; family: word_card -->
-> **embarrassed** — зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила.
-
-**3 · Картка слова — speechless**
-<!-- interaction_id: en:lesson-01:session-39:word:speechless; family: word_card -->
-> **speechless** — немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату.
-
-**4 · Картка слова — thrilled**
-<!-- interaction_id: en:lesson-01:session-39:word:thrilled; family: word_card -->
-> **thrilled** — у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy.
-
-**5 · Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою**
+**1 · Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою**
 <!-- interaction_id: en:lesson-01:session-39:i01; family: phrase_builder -->
 Плитки: `brave` `are` `You` `is` → **You are brave.**
 *(плитка `is` зайва: тут потрібно `are` — `You are brave.`)*
 
-**6 · Послухайте й виберіть почуте**
+**2 · Картка слова — hilarious**
+<!-- interaction_id: en:lesson-01:session-39:word:hilarious; family: word_card -->
+> **hilarious** — дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny.
+
+**3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-39:i02; family: listen_choose -->
 🔊 *He is hilarious.* → **He is hilarious.** · She is hilarious. · He is brave.
 - She is hilarious. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is brave. — *У записі останнє слово — `hilarious`, а в цьому варіанті — `brave`.*
 
-**7 · Маша впустила аркуш із текстом, і зала засміялася. Вставте слово**
+**4 · Картка слова — embarrassed**
+<!-- interaction_id: en:lesson-01:session-39:word:embarrassed; family: word_card -->
+> **embarrassed** — зніяковілий, ніяково. She's embarrassed — «Їй ніяково». Людина потрапила в незручну ситуацію, хоча нічого поганого не зробила.
+
+**5 · Маша впустила аркуш із текстом, і зала засміялася. Вставте слово**
 <!-- interaction_id: en:lesson-01:session-39:i03; family: context_gap_grammar -->
 She ___ embarrassed. → **is** · am · are
 - am — *Після `She` потрібно `is`.*
 - are — *Тут `She is embarrassed`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**6 · Картка слова — speechless**
+<!-- interaction_id: en:lesson-01:session-39:word:speechless; family: word_card -->
+> **speechless** — немає слів від сильних почуттів. I'm speechless — «У мене немає слів». Від радості, подиву або захвату.
+
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-39:i04; family: speed_match -->
 hilarious — дуже смішний · embarrassed — ніяково · speechless — немає слів · thrilled — у захваті
+
+**8 · Картка слова — thrilled**
+<!-- interaction_id: en:lesson-01:session-39:word:thrilled; family: word_card -->
+> **thrilled** — у захваті, дуже радий. I'm thrilled — «Я в захваті». Сильніше, ніж happy.
 
 **9 · Вас запросили виступити ще раз наступної суботи. Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-39:i05; family: listen_build_dictation -->

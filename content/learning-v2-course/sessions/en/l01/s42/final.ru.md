@@ -56,52 +56,52 @@
 <!-- interaction_id: en:lesson-01:session-42:word:welcoming; family: word_card -->
 > **welcoming** — радушный, гостеприимный. She's welcoming — «Она радушная»: тепло встречает гостей.
 
-**2 · Карточка слова — chatty**
-<!-- interaction_id: en:lesson-01:session-42:word:chatty; family: word_card -->
-> **chatty** — болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.
-
-**3 · Карточка слова — nosy**
-<!-- interaction_id: en:lesson-01:session-42:word:nosy; family: word_card -->
-> **nosy** — любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.
-
-**4 · Карточка слова — elderly**
-<!-- interaction_id: en:lesson-01:session-42:word:elderly; family: word_card -->
-> **elderly** — пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.
-
-**5 · Хозяйка тепло встречает каждого гостя. Соберите фразу о ней**
+**2 · Хозяйка тепло встречает каждого гостя. Соберите фразу о ней**
 <!-- interaction_id: en:lesson-01:session-42:i01; family: phrase_builder -->
 Плитки: `welcoming` `is` `She` `are` → **She is welcoming.**
 *(плитка `are` лишняя: здесь нужно `is` — `She is welcoming.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — chatty**
+<!-- interaction_id: en:lesson-01:session-42:word:chatty; family: word_card -->
+> **chatty** — болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
 🔊 *He is chatty.* → **He is chatty.** · She is chatty. · He is polite.
 - She is chatty. — *В записи первое слово — `He`, а в этом варианте — `She`.*
 - He is polite. — *В записи последнее слово — `chatty`, а в этом варианте — `polite`.*
 
-**7 · Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово**
+**5 · Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-42:i03; family: context_gap_grammar -->
 You ___ polite. → **are** · am · is
 - am — *После `You` нужно `are`.*
 - is — *К одному собеседнику тоже обращаемся `You are`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-42:i04; family: speed_match -->
 welcoming — радушный · chatty — болтливый · nosy — лезет в чужие дела · elderly — пожилой
 
-**9 · Послушайте и соберите короткую фразу**
+**7 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-42:i05; family: listen_build_dictation -->
 🔊 *They're welcoming.* Плитки: `welcoming` `They're` `We're` → **They're welcoming.**
 *(плитка `We're` лишняя: здесь нужно `They're` — `They're welcoming.`)*
 
-**10 · Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»**
+**8 · Карточка слова — elderly**
+<!-- interaction_id: en:lesson-01:session-42:word:elderly; family: word_card -->
+> **elderly** — пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.
+
+**9 · Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»**
 <!-- interaction_id: en:lesson-01:session-42:i06; family: phrase_builder -->
 Плитки: `elderly` `is` `He` `are` → **He is elderly.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is elderly.`)*
 
-**11 · Ольга угощает вас пирогом. Коротко скажите ей, что она очень радушная**
+**10 · Ольга угощает вас пирогом. Коротко скажите ей, что она очень радушная**
 <!-- interaction_id: en:lesson-01:session-42:i07; family: scripted_repeat_compare -->
 🎙 **You're welcoming.**
+
+**11 · Карточка слова — nosy**
+<!-- interaction_id: en:lesson-01:session-42:word:nosy; family: word_card -->
+> **nosy** — любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.
 
 **12 · Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность**
 <!-- interaction_id: en:lesson-01:session-42:i08; family: context_gap_grammar -->

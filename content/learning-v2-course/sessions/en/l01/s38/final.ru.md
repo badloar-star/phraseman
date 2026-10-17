@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-38:word:starving; family: word_card -->
 > **starving** — очень голодный, «умираю с голоду». I'm starving — «Я ужасно хочу есть». Сильнее, чем hungry.
 
-**2 · Карточка слова — dusty**
-<!-- interaction_id: en:lesson-01:session-38:word:dusty; family: word_card -->
-> **dusty** — пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.
+**2 · С утра вы съели только яблоко. Соберите фразу о своём сильном голоде**
+<!-- interaction_id: en:lesson-01:session-38:i01; family: phrase_builder -->
+Плитки: `starving` `am` `I` `is` → **I am starving.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am starving.`)*
 
 **3 · Карточка слова — sunburned**
 <!-- interaction_id: en:lesson-01:session-38:word:sunburned; family: word_card -->
 > **sunburned** — обгорел на солнце. He's sunburned — «Он обгорел». Кожа красная и болит.
 
-**4 · Карточка слова — sore**
-<!-- interaction_id: en:lesson-01:session-38:word:sore; family: word_card -->
-> **sore** — ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.
-
-**5 · С утра вы съели только яблоко. Соберите фразу о своём сильном голоде**
-<!-- interaction_id: en:lesson-01:session-38:i01; family: phrase_builder -->
-Плитки: `starving` `am` `I` `is` → **I am starving.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am starving.`)*
-
-**6 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-38:i02; family: listen_choose -->
 🔊 *He is sunburned.* → **He is sunburned.** · She is sunburned. · He is weak.
 - She is sunburned. — *В записи первое слово — `He`, а в этом варианте — `She`.*
 - He is weak. — *В записи последнее слово — `sunburned`, а в этом варианте — `weak`.*
 
-**7 · Сестра говорит, что чувствует слабость. Дополните фразу о ней**
+**5 · Сестра говорит, что чувствует слабость. Дополните фразу о ней**
 <!-- interaction_id: en:lesson-01:session-38:i03; family: context_gap_grammar -->
 She ___ weak. → **is** · am · are
 - am — *После `She` нужно `is`.*
 - are — *Про сестру здесь `She is`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-38:i04; family: speed_match -->
 starving — очень голодный · dusty — пыльный · sunburned — обгорел на солнце · sore — ноет, болит
 
-**9 · На подоконнике серый налёт. Послушайте и соберите фразу о нём**
+**7 · Карточка слова — dusty**
+<!-- interaction_id: en:lesson-01:session-38:word:dusty; family: word_card -->
+> **dusty** — пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.
+
+**8 · На подоконнике серый налёт. Послушайте и соберите фразу о нём**
 <!-- interaction_id: en:lesson-01:session-38:i05; family: listen_build_dictation -->
 🔊 *It is dusty.* Плитки: `dusty` `is` `It` `are` → **It is dusty.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is dusty.`)*
+
+**9 · Карточка слова — sore**
+<!-- interaction_id: en:lesson-01:session-38:word:sore; family: word_card -->
+> **sore** — ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.
 
 **10 · Вы с братом весь день таскали чемоданы, и у обоих ноют плечи. Соберите фразу от вас двоих**
 <!-- interaction_id: en:lesson-01:session-38:i06; family: phrase_builder -->

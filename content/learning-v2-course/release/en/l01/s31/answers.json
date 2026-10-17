@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-31:word:similar",
-    "correctText": "similar",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-31:word:separate",
-    "correctText": "separate",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-31:word:shared",
-    "correctText": "shared",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-31:i01",
     "correctText": "They are equal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:word:similar",
+    "correctText": "similar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i02",
     "correctText": "They are similar.",
     "correctResponseId": "en:lesson-01:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:word:separate",
+    "correctText": "separate",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i03",
@@ -58,6 +53,11 @@
     "interactionId": "en:lesson-01:session-31:i08",
     "correctText": "separate",
     "correctResponseId": "en:lesson-01:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:word:shared",
+    "correctText": "shared",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i09",

@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-49:word:cheap; family: word_card -->
 > **cheap** — дешёвый, недорогой. It's cheap — «Это дёшево». Говорит о цене, а не о качестве.
 
-**2 · Карточка слова — secondhand**
-<!-- interaction_id: en:lesson-01:session-49:word:secondhand; family: word_card -->
-> **secondhand** — подержанный, бывший в употреблении. It's secondhand — «Это б/у».
-
-**3 · Карточка слова — colorful**
-<!-- interaction_id: en:lesson-01:session-49:word:colorful; family: word_card -->
-> **colorful** — яркий, разноцветный. It's colorful — «Он яркий, разноцветный».
-
-**4 · Карточка слова — rare**
-<!-- interaction_id: en:lesson-01:session-49:word:rare; family: word_card -->
-> **rare** — редкий, таких мало. It's rare — «Это редкость».
-
-**5 · Кружка стоит один евро. Соберите фразу о её цене**
+**2 · Кружка стоит один евро. Соберите фразу о её цене**
 <!-- interaction_id: en:lesson-01:session-49:i01; family: phrase_builder -->
 Плитки: `cheap` `is` `It` `are` → **It is cheap.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is cheap.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — rare**
+<!-- interaction_id: en:lesson-01:session-49:word:rare; family: word_card -->
+> **rare** — редкий, таких мало. It's rare — «Это редкость».
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-49:i02; family: listen_choose -->
 🔊 *It is rare.* → **It is rare.** · It is cheap. · It is useful.
 - It is cheap. — *В записи последнее слово — `rare`, а в этом варианте — `cheap`.*
 - It is useful. — *В записи последнее слово — `rare`, а в этом варианте — `useful`.*
 
-**7 · Две открытки стоят по пятьдесят центов. Дополните оценку их цены**
+**5 · Две открытки стоят по пятьдесят центов. Дополните оценку их цены**
 <!-- interaction_id: en:lesson-01:session-49:i03; family: context_gap_grammar -->
 They ___ cheap. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Про две открытки — `They are`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-49:i04; family: speed_match -->
 cheap — дешёвый · secondhand — подержанный · colorful — яркий, разноцветный · rare — редкий
 
-**9 · Послушайте и соберите короткую фразу**
+**7 · Карточка слова — colorful**
+<!-- interaction_id: en:lesson-01:session-49:word:colorful; family: word_card -->
+> **colorful** — яркий, разноцветный. It's colorful — «Он яркий, разноцветный».
+
+**8 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-49:i05; family: listen_build_dictation -->
 🔊 *It's colorful.* Плитки: `colorful` `It's` `He's` → **It's colorful.**
 *(плитка `He's` лишняя: здесь нужно `It's` — `It's colorful.`)*
+
+**9 · Карточка слова — secondhand**
+<!-- interaction_id: en:lesson-01:session-49:word:secondhand; family: word_card -->
+> **secondhand** — подержанный, бывший в употреблении. It's secondhand — «Это б/у».
 
 **10 · Продавец говорит другу, что обе книги на столе уже читали до вас. Скажите другу, что они подержанные**
 <!-- interaction_id: en:lesson-01:session-49:i06; family: phrase_builder -->

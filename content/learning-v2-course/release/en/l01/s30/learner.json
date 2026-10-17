@@ -47,44 +47,45 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-30:word:dead",
+      "interactionId": "en:lesson-01:session-30:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — dead",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Героя нашли живым. Соберите сообщение об этом",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-30:word:dead:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — dead",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Героя нашли живым. Соберите сообщение об этом",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-30:word:dead:audio",
-          "transcript": "dead"
+        "family": "phrase_builder",
+        "targetPhrase": "He is alive.",
+        "localizedMeaning": {
+          "ru": "Героя нашли живым. Соберите сообщение об этом",
+          "uk": "Героя знайшли живим. Складіть повідомлення про це"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "He",
+          "is",
+          "alive"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-30:word:dead:r1",
-            "targetText": "dead",
-            "meaningByLocale": {
-              "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
-              "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+            "responseId": "en:lesson-01:session-30:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Героя нашли живым. Соберите сообщение об этом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is alive.`",
+              "uk": "тут потрібно `is` — `He is alive.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "dead",
-          "definitionByLocale": {
-            "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
-            "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -133,95 +134,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-30:word:injured",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — injured",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-30:word:injured:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — injured",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-30:word:injured:audio",
-          "transcript": "injured"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-30:word:injured:r1",
-            "targetText": "injured",
-            "meaningByLocale": {
-              "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
-              "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "injured",
-          "definitionByLocale": {
-            "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
-            "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-30:i01",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Героя нашли живым. Соберите сообщение об этом",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Героя нашли живым. Соберите сообщение об этом",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is alive.",
-        "localizedMeaning": {
-          "ru": "Героя нашли живым. Соберите сообщение об этом",
-          "uk": "Героя знайшли живим. Складіть повідомлення про це"
-        },
-        "orderedTokens": [
-          "He",
-          "is",
-          "alive"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-30:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Героя нашли живым. Соберите сообщение об этом",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is alive.`",
-              "uk": "тут потрібно `is` — `He is alive.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-30:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-30:word:dead",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:word:dead:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:word:dead:audio",
+          "transcript": "dead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:word:dead:r1",
+            "targetText": "dead",
+            "meaningByLocale": {
+              "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+              "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dead",
+          "definitionByLocale": {
+            "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+            "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-30:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -632,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,8 +665,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова и значения",
@@ -781,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -828,7 +785,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i12",
-      "ordinal": 19,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -866,6 +823,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:word:injured",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — injured",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:word:injured:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — injured",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:word:injured:audio",
+          "transcript": "injured"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:word:injured:r1",
+            "targetText": "injured",
+            "meaningByLocale": {
+              "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+              "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "injured",
+          "definitionByLocale": {
+            "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+            "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cf10defa914396102a64068760f9fa2881a53d32a505375cd7290156f5d58161"
+  "learnerFingerprint": "74c563c22f1ad1c5489c18a936afb8eff91910c7dd8764453eb01f6b70b3cf3e"
 }

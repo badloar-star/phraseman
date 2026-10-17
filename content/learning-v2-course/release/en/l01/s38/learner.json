@@ -47,44 +47,45 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-38:word:dusty",
+      "interactionId": "en:lesson-01:session-38:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — dusty",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:word:dusty:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — dusty",
+      "audioTargetIds": [],
+      "accessibilityLabel": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:word:dusty:audio",
-          "transcript": "dusty"
+        "family": "phrase_builder",
+        "targetPhrase": "I am starving.",
+        "localizedMeaning": {
+          "ru": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
+          "uk": "Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "I",
+          "am",
+          "starving"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-38:word:dusty:r1",
-            "targetText": "dusty",
-            "meaningByLocale": {
-              "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
-              "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
+            "responseId": "en:lesson-01:session-38:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am starving.`",
+              "uk": "тут потрібно `am` — `I am starving.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "dusty",
-          "definitionByLocale": {
-            "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
-            "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -133,95 +134,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-38:word:sore",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — sore",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:word:sore:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — sore",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:word:sore:audio",
-          "transcript": "sore"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-38:word:sore:r1",
-            "targetText": "sore",
-            "meaningByLocale": {
-              "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
-              "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sore",
-          "definitionByLocale": {
-            "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
-            "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i01",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am starving.",
-        "localizedMeaning": {
-          "ru": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
-          "uk": "Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "starving"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-38:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "С утра вы съели только яблоко. Соберите фразу о своём сильном голоде",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am starving.`",
-              "uk": "тут потрібно `am` — `I am starving.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-38:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +211,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-38:i03",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +280,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-38:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -438,8 +352,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-38:word:dusty",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dusty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:word:dusty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dusty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:word:dusty:audio",
+          "transcript": "dusty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:word:dusty:r1",
+            "targetText": "dusty",
+            "meaningByLocale": {
+              "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
+              "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dusty",
+          "definitionByLocale": {
+            "ru": "пыльный. It's dusty — «Тут пыльно». Так говорят про полку, стол, старую книгу.",
+            "uk": "запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-38:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -480,6 +437,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:word:sore",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sore",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:word:sore:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sore",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:word:sore:audio",
+          "transcript": "sore"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:word:sore:r1",
+            "targetText": "sore",
+            "meaningByLocale": {
+              "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
+              "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sore",
+          "definitionByLocale": {
+            "ru": "ноет, болит после нагрузки. I'm sore — «У меня всё ноет». Так говорят после долгой ходьбы или тяжёлых сумок.",
+            "uk": "ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1168,5 +1168,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ac069e43f3a2b5b1683c073077ceee2fc07f7e5db3ae49c2c9b82a3976af9a1d"
+  "learnerFingerprint": "8abc001d09638826ad881dac6810f5ab48a4699f67f32b78eba2638aa85dcb37"
 }

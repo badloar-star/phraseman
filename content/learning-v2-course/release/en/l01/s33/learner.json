@@ -4,180 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-33:word:shy",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — shy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-33:word:shy:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — shy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-33:word:shy:audio",
-          "transcript": "shy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-33:word:shy:r1",
-            "targetText": "shy",
-            "meaningByLocale": {
-              "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
-              "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "shy",
-          "definitionByLocale": {
-            "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
-            "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-33:word:awful",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — awful",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-33:word:awful:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — awful",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-33:word:awful:audio",
-          "transcript": "awful"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-33:word:awful:r1",
-            "targetText": "awful",
-            "meaningByLocale": {
-              "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
-              "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "awful",
-          "definitionByLocale": {
-            "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
-            "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-33:word:great",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — great",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-33:word:great:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — great",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-33:word:great:audio",
-          "transcript": "great"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-33:word:great:r1",
-            "targetText": "great",
-            "meaningByLocale": {
-              "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
-              "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "great",
-          "definitionByLocale": {
-            "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
-            "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-33:word:amazing",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — amazing",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-33:word:amazing:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — amazing",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-33:word:amazing:audio",
-          "transcript": "amazing"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-33:word:amazing:r1",
-            "targetText": "amazing",
-            "meaningByLocale": {
-              "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
-              "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "amazing",
-          "definitionByLocale": {
-            "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
-            "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-33:i01",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,7 +48,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i02",
-      "ordinal": 9,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,7 +124,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i03",
-      "ordinal": 10,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -365,8 +193,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините короткие начала с полными",
@@ -438,8 +266,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -484,8 +312,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i06",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Двое друзей гордятся своими выступлениями. Вы рассказываете о них. Соберите короткую фразу",
@@ -527,7 +355,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i07",
-      "ordinal": 14,
+      "ordinal": 10,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -559,8 +387,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-33:word:awful",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — awful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-33:word:awful:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — awful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-33:word:awful:audio",
+          "transcript": "awful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-33:word:awful:r1",
+            "targetText": "awful",
+            "meaningByLocale": {
+              "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
+              "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awful",
+          "definitionByLocale": {
+            "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
+            "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-33:i08",
-      "ordinal": 15,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -629,7 +500,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i09",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -705,8 +576,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Найдите полную форму каждого короткого начала",
@@ -778,8 +649,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -824,8 +695,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Вы перебили партнёра и теперь испытываете стыд. Соберите короткую фразу о себе",
@@ -867,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i13",
-      "ordinal": 20,
+      "ordinal": 17,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -900,8 +771,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
@@ -968,9 +839,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-33:word:amazing",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — amazing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-33:word:amazing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — amazing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-33:word:amazing:audio",
+          "transcript": "amazing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-33:word:amazing:r1",
+            "targetText": "amazing",
+            "meaningByLocale": {
+              "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
+              "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "amazing",
+          "definitionByLocale": {
+            "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
+            "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-33:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Зал аплодирует стоя. Послушайте, что говорит Маша, и выберите услышанное",
@@ -1040,6 +954,92 @@
         ],
         "isWordCard": false,
         "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:word:shy",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-33:word:shy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-33:word:shy:audio",
+          "transcript": "shy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-33:word:shy:r1",
+            "targetText": "shy",
+            "meaningByLocale": {
+              "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+              "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shy",
+          "definitionByLocale": {
+            "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+            "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:word:great",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — great",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-33:word:great:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — great",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-33:word:great:audio",
+          "transcript": "great"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-33:word:great:r1",
+            "targetText": "great",
+            "meaningByLocale": {
+              "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
+              "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "great",
+          "definitionByLocale": {
+            "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
+            "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1164,5 +1164,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "893b02109483543babef5693e98c55bcb30bb7940dbaee3c2ab8dcc862135864"
+  "learnerFingerprint": "777183b958d344fce4b2eb43ab9cc10ecbdf602d13781f664100abf08359252c"
 }

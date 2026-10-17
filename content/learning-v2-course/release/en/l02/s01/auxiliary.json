@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-01:intro1:r2": {
-          "ru": "Здесь нет отрицания. Для «не уверен» нужно `not` после `am`.",
-          "uk": "Тут немає заперечення. Для «не впевнений» потрібно `not` після `am`."
+          "ru": "Здесь нет not. Для «неинтересно» нужно I am not.",
+          "uk": "Тут немає not. Для «нецікаво» потрібно I am not."
         },
         "en:lesson-02:session-01:intro1:r3": {
-          "ru": "`not` не заменяет `am`: нужно `I am not sure`.",
-          "uk": "`not` не замінює `am`: потрібно `I am not sure`."
+          "ru": "not не заменяет am: I am not interested.",
+          "uk": "not не замінює am: I am not interested."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-01:intro2:r2": {
-          "ru": "Это «Ей интересно». Для отрицания добавьте `not` после `is`.",
-          "uk": "Це «Їй цікаво». Для заперечення додайте `not` після `is`."
+          "ru": "Это значит «входит в цену». Нужно отрицание: is not.",
+          "uk": "Це означає «входить у ціну». Потрібне заперечення: is not."
         },
         "en:lesson-02:session-01:intro2:r3": {
-          "ru": "После `She` сохраняем `is`: `She is not interested`.",
-          "uk": "Після `She` зберігаємо `is`: `She is not interested`."
+          "ru": "После It сохраняем is: It is not included.",
+          "uk": "Після It зберігаємо is: It is not included."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-01:intro3:r2": {
-          "ru": "Это «Нам удобно». Здесь нужно отрицание: `are not`.",
-          "uk": "Це «Нам зручно». Тут потрібне заперечення: `are not`."
+          "ru": "Это «далеко». Пять минут пешком — not far.",
+          "uk": "Це «далеко». П’ять хвилин пішки — not far."
         },
         "en:lesson-02:session-01:intro3:r3": {
-          "ru": "`are` не исчезает: `We are not comfortable`.",
-          "uk": "`are` не зникає: `We are not comfortable`."
+          "ru": "После It нужно is: It is not far.",
+          "uk": "Після It потрібно is: It is not far."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "94b71698b29387d61dd94126f80c26e8a994a40bc2ea8b4273882744c34cca52"
+  "auxiliaryFingerprint": "3de75d65dc82471075b362c2487ccdfc9f614147d90accd5e8d1b1f9f280f704"
 }

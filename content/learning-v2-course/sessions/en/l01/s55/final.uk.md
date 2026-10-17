@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-55:word:responsible; family: word_card -->
 > **responsible** — відповідальний. He's responsible — «Він відповідальний». Про людину, яка тримає слово й робить усе вчасно.
 
-**2 · Картка слова — independent**
-<!-- interaction_id: en:lesson-01:session-55:word:independent; family: word_card -->
-> **independent** — самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама.
-
-**3 · Картка слова — dependent**
-<!-- interaction_id: en:lesson-01:session-55:word:dependent; family: word_card -->
-> **dependent** — залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога.
-
-**4 · Картка слова — forgetful**
-<!-- interaction_id: en:lesson-01:session-55:word:forgetful; family: word_card -->
-> **forgetful** — забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку.
-
-**5 · Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний**
+**2 · Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний**
 <!-- interaction_id: en:lesson-01:session-55:i01; family: phrase_builder -->
 Плитки: `responsible` `is` `He` `are` → **He is responsible.**
 *(плитка `are` зайва: тут потрібно `is` — `He is responsible.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — forgetful**
+<!-- interaction_id: en:lesson-01:session-55:word:forgetful; family: word_card -->
+> **forgetful** — забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-55:i02; family: listen_choose -->
 🔊 *He is forgetful.* → **He is forgetful.** · She is forgetful. · He is responsible.
 - She is forgetful. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is responsible. — *У записі останнє слово — `forgetful`, а в цьому варіанті — `responsible`.*
 
-**7 · Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними**
+**5 · Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними**
 <!-- interaction_id: en:lesson-01:session-55:i03; family: context_gap_grammar -->
 They ___ responsible. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Їх двоє, тому `They are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-55:i04; family: speed_match -->
 responsible — відповідальний · independent — самостійний · dependent — залежний · forgetful — забудькуватий
 
-**9 · Послухайте й складіть коротку фразу про Тимка**
+**7 · Картка слова — dependent**
+<!-- interaction_id: en:lesson-01:session-55:word:dependent; family: word_card -->
+> **dependent** — залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога.
+
+**8 · Послухайте й складіть коротку фразу про Тимка**
 <!-- interaction_id: en:lesson-01:session-55:i05; family: listen_build_dictation -->
 🔊 *He's dependent.* Плитки: `dependent` `He's` `They're` → **He's dependent.**
 *(плитка `They're` зайва: тут потрібно `He's` — `He's dependent.`)*
+
+**9 · Картка слова — independent**
+<!-- interaction_id: en:lesson-01:session-55:word:independent; family: word_card -->
+> **independent** — самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама.
 
 **10 · Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього**
 <!-- interaction_id: en:lesson-01:session-55:i06; family: phrase_builder -->

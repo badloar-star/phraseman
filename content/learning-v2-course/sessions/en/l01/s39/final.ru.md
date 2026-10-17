@@ -52,42 +52,42 @@
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — hilarious**
-<!-- interaction_id: en:lesson-01:session-39:word:hilarious; family: word_card -->
-> **hilarious** — очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.
-
-**2 · Карточка слова — embarrassed**
-<!-- interaction_id: en:lesson-01:session-39:word:embarrassed; family: word_card -->
-> **embarrassed** — смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.
-
-**3 · Карточка слова — speechless**
-<!-- interaction_id: en:lesson-01:session-39:word:speechless; family: word_card -->
-> **speechless** — нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.
-
-**4 · Карточка слова — thrilled**
-<!-- interaction_id: en:lesson-01:session-39:word:thrilled; family: word_card -->
-> **thrilled** — в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.
-
-**5 · Подруга решилась выступить. Обратитесь к ней и назовите её смелой**
+**1 · Подруга решилась выступить. Обратитесь к ней и назовите её смелой**
 <!-- interaction_id: en:lesson-01:session-39:i01; family: phrase_builder -->
 Плитки: `brave` `are` `You` `is` → **You are brave.**
 *(плитка `is` лишняя: здесь нужно `are` — `You are brave.`)*
 
-**6 · Послушайте и выберите услышанное**
+**2 · Карточка слова — hilarious**
+<!-- interaction_id: en:lesson-01:session-39:word:hilarious; family: word_card -->
+> **hilarious** — очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.
+
+**3 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-39:i02; family: listen_choose -->
 🔊 *He is hilarious.* → **He is hilarious.** · She is hilarious. · He is brave.
 - She is hilarious. — *В записи первое слово — `He`, а в этом варианте — `She`.*
 - He is brave. — *В записи последнее слово — `hilarious`, а в этом варианте — `brave`.*
 
-**7 · Маша уронила листок с текстом, и зал засмеялся. Вставьте слово**
+**4 · Карточка слова — embarrassed**
+<!-- interaction_id: en:lesson-01:session-39:word:embarrassed; family: word_card -->
+> **embarrassed** — смущён, неловко. She's embarrassed — «Ей неловко». Человек попал в неловкую ситуацию, хотя ничего плохого не сделал.
+
+**5 · Маша уронила листок с текстом, и зал засмеялся. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-39:i03; family: context_gap_grammar -->
 She ___ embarrassed. → **is** · am · are
 - am — *После `She` нужно `is`.*
 - are — *Здесь `She is embarrassed`.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Карточка слова — speechless**
+<!-- interaction_id: en:lesson-01:session-39:word:speechless; family: word_card -->
+> **speechless** — нет слов от сильных чувств. I'm speechless — «У меня нет слов». От радости, удивления или восторга.
+
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-39:i04; family: speed_match -->
 hilarious — уморительный · embarrassed — неловко · speechless — нет слов · thrilled — в восторге
+
+**8 · Карточка слова — thrilled**
+<!-- interaction_id: en:lesson-01:session-39:word:thrilled; family: word_card -->
+> **thrilled** — в восторге, очень рад. I'm thrilled — «Я в восторге». Сильнее, чем happy.
 
 **9 · Вас позвали выступить ещё раз в следующую субботу. Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-39:i05; family: listen_build_dictation -->

@@ -56,38 +56,38 @@
 <!-- interaction_id: en:lesson-01:session-53:word:ripe; family: word_card -->
 > **ripe** — стиглий. They're ripe — «Вони стиглі». Про ягоди, яблука, помідори, які вже достигли.
 
-**2 · Картка слова — soggy**
-<!-- interaction_id: en:lesson-01:session-53:word:soggy; family: word_card -->
-> **soggy** — розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи.
-
-**3 · Картка слова — delicious**
-<!-- interaction_id: en:lesson-01:session-53:word:delicious; family: word_card -->
-> **delicious** — дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував.
-
-**4 · Картка слова — juicy**
-<!-- interaction_id: en:lesson-01:session-53:word:juicy; family: word_card -->
-> **juicy** — соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках.
-
-**5 · Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі**
+**2 · Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі**
 <!-- interaction_id: en:lesson-01:session-53:i01; family: phrase_builder -->
 Плитки: `ripe` `are` `They` `is` → **They are ripe.**
 *(плитка `is` зайва: тут потрібно `are` — `They are ripe.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — soggy**
+<!-- interaction_id: en:lesson-01:session-53:word:soggy; family: word_card -->
+> **soggy** — розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-53:i02; family: listen_choose -->
 🔊 *It is soggy.* → **It is soggy.** · They are soggy. · It is full.
 - They are soggy. — *У записі перші слова — `It is`, а в цьому варіанті — `They are`.*
 - It is full. — *У записі останнє слово — `soggy`, а в цьому варіанті — `full`.*
 
-**7 · Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик**
+**5 · Картка слова — juicy**
+<!-- interaction_id: en:lesson-01:session-53:word:juicy; family: word_card -->
+> **juicy** — соковитий. It's juicy — «Він соковитий». Про персик, кавун, грушу, коли сік тече по руках.
+
+**6 · Ви відкусили персик, і сік потік по підборідді. Доповніть фразу про персик**
 <!-- interaction_id: en:lesson-01:session-53:i03; family: context_gap_grammar -->
 It ___ juicy. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Персик один, тому `It is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-53:i04; family: speed_match -->
 ripe — стиглий · soggy — розмоклий · delicious — дуже смачний · juicy — соковитий
+
+**8 · Картка слова — delicious**
+<!-- interaction_id: en:lesson-01:session-53:word:delicious; family: word_card -->
+> **delicious** — дуже смачний. It's delicious — «Дуже смачно». Так хвалять їжу й того, хто її приготував.
 
 **9 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-53:i05; family: listen_build_dictation -->

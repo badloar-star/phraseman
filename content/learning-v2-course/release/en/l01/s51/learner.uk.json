@@ -4,44 +4,45 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-51:word:stuffed",
+      "interactionId": "en:lesson-01:session-51:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — stuffed",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Валіза з книжками багато важить. Складіть фразу про її вагу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-51:word:stuffed:audio"
-      ],
-      "accessibilityLabel": "Картка слова — stuffed",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Валіза з книжками багато важить. Складіть фразу про її вагу",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-51:word:stuffed:audio",
-          "transcript": "stuffed"
+        "family": "phrase_builder",
+        "targetPhrase": "It is heavy.",
+        "localizedMeaning": {
+          "ru": "Чемодан с книгами много весит. Соберите фразу о его весе",
+          "uk": "Валіза з книжками багато важить. Складіть фразу про її вагу"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-51:word:stuffed:r1",
-            "targetText": "stuffed",
-            "meaningByLocale": {
-              "ru": "набит битком. It's stuffed — «Он набит битком»: больше ничего не влезет.",
-              "uk": "напханий ущерть. It's stuffed — «Вона напхана вщерть»: більше нічого не влізе."
+            "responseId": "en:lesson-01:session-51:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Валіза з книжками багато важить. Складіть фразу про її вагу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is heavy.`",
+              "uk": "тут потрібно `is` — `It is heavy.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "stuffed",
-          "definitionByLocale": {
-            "ru": "набит битком. It's stuffed — «Он набит битком»: больше ничего не влезет.",
-            "uk": "напханий ущерть. It's stuffed — «Вона напхана вщерть»: більше нічого не влізе."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -90,138 +91,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-51:word:bulky",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — bulky",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-51:word:bulky:audio"
-      ],
-      "accessibilityLabel": "Картка слова — bulky",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-51:word:bulky:audio",
-          "transcript": "bulky"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-51:word:bulky:r1",
-            "targetText": "bulky",
-            "meaningByLocale": {
-              "ru": "громоздкий, занимает много места. It's bulky — «Он громоздкий». Это о размере, а не о весе.",
-              "uk": "громіздкий, займає багато місця. It's bulky — «Він громіздкий». Це про розмір, а не про вагу."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "bulky",
-          "definitionByLocale": {
-            "ru": "громоздкий, занимает много места. It's bulky — «Он громоздкий». Это о размере, а не о весе.",
-            "uk": "громіздкий, займає багато місця. It's bulky — «Він громіздкий». Це про розмір, а не про вагу."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-51:word:zipped",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — zipped",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-51:word:zipped:audio"
-      ],
-      "accessibilityLabel": "Картка слова — zipped",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-51:word:zipped:audio",
-          "transcript": "zipped"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-51:word:zipped:r1",
-            "targetText": "zipped",
-            "meaningByLocale": {
-              "ru": "застёгнут на молнию. It's zipped — «Он застёгнут».",
-              "uk": "застебнутий на блискавку. It's zipped — «Він застебнутий»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "zipped",
-          "definitionByLocale": {
-            "ru": "застёгнут на молнию. It's zipped — «Он застёгнут».",
-            "uk": "застебнутий на блискавку. It's zipped — «Він застебнутий»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-51:i01",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Валіза з книжками багато важить. Складіть фразу про її вагу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Валіза з книжками багато важить. Складіть фразу про її вагу",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is heavy.",
-        "localizedMeaning": {
-          "ru": "Чемодан с книгами много весит. Соберите фразу о его весе",
-          "uk": "Валіза з книжками багато важить. Складіть фразу про її вагу"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "heavy"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-51:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Валіза з книжками багато важить. Складіть фразу про її вагу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is heavy.`",
-              "uk": "тут потрібно `is` — `It is heavy.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-51:i02",
-      "ordinal": 9,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +168,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-51:i03",
-      "ordinal": 10,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +237,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-51:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -438,9 +309,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-51:word:zipped",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — zipped",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:word:zipped:audio"
+      ],
+      "accessibilityLabel": "Картка слова — zipped",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:word:zipped:audio",
+          "transcript": "zipped"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:word:zipped:r1",
+            "targetText": "zipped",
+            "meaningByLocale": {
+              "ru": "застёгнут на молнию. It's zipped — «Он застёгнут».",
+              "uk": "застебнутий на блискавку. It's zipped — «Він застебнутий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "zipped",
+          "definitionByLocale": {
+            "ru": "застёгнут на молнию. It's zipped — «Он застёгнут».",
+            "uk": "застебнутий на блискавку. It's zipped — «Він застебнутий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-51:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -484,8 +398,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-51:word:stuffed",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stuffed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:word:stuffed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stuffed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:word:stuffed:audio",
+          "transcript": "stuffed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:word:stuffed:r1",
+            "targetText": "stuffed",
+            "meaningByLocale": {
+              "ru": "набит битком. It's stuffed — «Он набит битком»: больше ничего не влезет.",
+              "uk": "напханий ущерть. It's stuffed — «Вона напхана вщерть»: більше нічого не влізе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stuffed",
+          "definitionByLocale": {
+            "ru": "набит битком. It's stuffed — «Он набит битком»: больше ничего не влезет.",
+            "uk": "напханий ущерть. It's stuffed — «Вона напхана вщерть»: більше нічого не влізе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-51:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -529,7 +486,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-51:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -557,6 +514,49 @@
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:word:bulky",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bulky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:word:bulky:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bulky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:word:bulky:audio",
+          "transcript": "bulky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:word:bulky:r1",
+            "targetText": "bulky",
+            "meaningByLocale": {
+              "ru": "громоздкий, занимает много места. It's bulky — «Он громоздкий». Это о размере, а не о весе.",
+              "uk": "громіздкий, займає багато місця. It's bulky — «Він громіздкий». Це про розмір, а не про вагу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bulky",
+          "definitionByLocale": {
+            "ru": "громоздкий, занимает много места. It's bulky — «Он громоздкий». Это о размере, а не о весе.",
+            "uk": "громіздкий, займає багато місця. It's bulky — «Він громіздкий». Це про розмір, а не про вагу."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d191c379d9cceb77e4e8a3054259a9598ce3c22d1f90054164823ddb04a4860e"
+  "learnerFingerprint": "b875299e1fcb214a64dcf77a24a1d9fb6b900b4a41f19557481b624c70f9f777"
 }

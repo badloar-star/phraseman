@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-47:word:slippery",
-    "correctText": "slippery",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-47:word:deep",
-    "correctText": "deep",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-47:word:rusty",
-    "correctText": "rusty",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-47:i01",
     "correctText": "It is dangerous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:word:slippery",
+    "correctText": "slippery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i02",
     "correctText": "They are slippery.",
     "correctResponseId": "en:lesson-01:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:word:deep",
+    "correctText": "deep",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i03",
@@ -47,6 +42,11 @@
   {
     "interactionId": "en:lesson-01:session-47:i06",
     "correctText": "They are dangerous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:word:rusty",
+    "correctText": "rusty",
     "correctResponseId": null
   },
   {

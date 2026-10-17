@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-35:word:contagious",
-    "correctText": "contagious",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-35:word:hoarse",
-    "correctText": "hoarse",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-35:word:dizzy",
-    "correctText": "dizzy",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-35:i01",
     "correctText": "I am ill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-35:word:contagious",
+    "correctText": "contagious",
     "correctResponseId": null
   },
   {
@@ -60,6 +50,11 @@
     "correctResponseId": "en:lesson-01:session-35:i08:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-35:word:hoarse",
+    "correctText": "hoarse",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-35:i09",
     "correctText": "She's hoarse.",
     "correctResponseId": "en:lesson-01:session-35:i09:r1"
@@ -77,6 +72,11 @@
   {
     "interactionId": "en:lesson-01:session-35:i12",
     "correctText": "I am available.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-35:word:dizzy",
+    "correctText": "dizzy",
     "correctResponseId": null
   },
   {

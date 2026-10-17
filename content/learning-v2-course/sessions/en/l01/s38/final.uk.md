@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-38:word:starving; family: word_card -->
 > **starving** — дуже голодний, «помираю з голоду». I'm starving — «Я страшенно хочу їсти». Сильніше, ніж hungry.
 
-**2 · Картка слова — dusty**
-<!-- interaction_id: en:lesson-01:session-38:word:dusty; family: word_card -->
-> **dusty** — запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку.
+**2 · Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод**
+<!-- interaction_id: en:lesson-01:session-38:i01; family: phrase_builder -->
+Плитки: `starving` `am` `I` `is` → **I am starving.**
+*(плитка `is` зайва: тут потрібно `am` — `I am starving.`)*
 
 **3 · Картка слова — sunburned**
 <!-- interaction_id: en:lesson-01:session-38:word:sunburned; family: word_card -->
 > **sunburned** — обгорів на сонці. He's sunburned — «Він обгорів». Шкіра червона й болить.
 
-**4 · Картка слова — sore**
-<!-- interaction_id: en:lesson-01:session-38:word:sore; family: word_card -->
-> **sore** — ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок.
-
-**5 · Зранку ви з’їли тільки яблуко. Складіть фразу про свій сильний голод**
-<!-- interaction_id: en:lesson-01:session-38:i01; family: phrase_builder -->
-Плитки: `starving` `am` `I` `is` → **I am starving.**
-*(плитка `is` зайва: тут потрібно `am` — `I am starving.`)*
-
-**6 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-38:i02; family: listen_choose -->
 🔊 *He is sunburned.* → **He is sunburned.** · She is sunburned. · He is weak.
 - She is sunburned. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is weak. — *У записі останнє слово — `sunburned`, а в цьому варіанті — `weak`.*
 
-**7 · Сестра каже, що відчуває слабкість. Доповніть фразу про неї**
+**5 · Сестра каже, що відчуває слабкість. Доповніть фразу про неї**
 <!-- interaction_id: en:lesson-01:session-38:i03; family: context_gap_grammar -->
 She ___ weak. → **is** · am · are
 - am — *Після `She` потрібно `is`.*
 - are — *Про сестру тут `She is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-38:i04; family: speed_match -->
 starving — дуже голодний · dusty — запилений · sunburned — обгорів на сонці · sore — ниє, болить
 
-**9 · На підвіконні сірий наліт. Послухайте й складіть фразу про нього**
+**7 · Картка слова — dusty**
+<!-- interaction_id: en:lesson-01:session-38:word:dusty; family: word_card -->
+> **dusty** — запилений. It's dusty — «Тут запилено». Так кажуть про полицю, стіл, стару книжку.
+
+**8 · На підвіконні сірий наліт. Послухайте й складіть фразу про нього**
 <!-- interaction_id: en:lesson-01:session-38:i05; family: listen_build_dictation -->
 🔊 *It is dusty.* Плитки: `dusty` `is` `It` `are` → **It is dusty.**
 *(плитка `are` зайва: тут потрібно `is` — `It is dusty.`)*
+
+**9 · Картка слова — sore**
+<!-- interaction_id: en:lesson-01:session-38:word:sore; family: word_card -->
+> **sore** — ниє, болить після навантаження. I'm sore — «У мене все ниє». Так кажуть після довгої ходьби або важких сумок.
 
 **10 · Ви з братом цілий день тягали валізи, і в обох ниють плечі. Складіть фразу від вас двох**
 <!-- interaction_id: en:lesson-01:session-38:i06; family: phrase_builder -->

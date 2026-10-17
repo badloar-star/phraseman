@@ -56,48 +56,48 @@
 <!-- interaction_id: en:lesson-01:session-46:word:useless; family: word_card -->
 > **useless** — марний, користі нуль. It's useless — «З нього ніякої користі». Протилежність useful.
 
-**2 · Картка слова — tangled**
-<!-- interaction_id: en:lesson-01:session-46:word:tangled; family: word_card -->
-> **tangled** — заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся.
-
-**3 · Картка слова — charged**
-<!-- interaction_id: en:lesson-01:session-46:word:charged; family: word_card -->
-> **charged** — заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк.
-
-**4 · Картка слова — loose**
-<!-- interaction_id: en:lesson-01:session-46:word:loose; family: word_card -->
-> **loose** — хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик.
-
-**5 · Кабель Кості не підходить до вашого телефона. Складіть фразу про нього**
+**2 · Кабель Кості не підходить до вашого телефона. Складіть фразу про нього**
 <!-- interaction_id: en:lesson-01:session-46:i01; family: phrase_builder -->
 Плитки: `useless` `is` `It` `He` → **It is useless.**
 *(плитка `He` зайва: тут потрібно `It` — `It is useless.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — tangled**
+<!-- interaction_id: en:lesson-01:session-46:word:tangled; family: word_card -->
+> **tangled** — заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-46:i02; family: listen_choose -->
 🔊 *They are tangled.* → **They are tangled.** · We are tangled. · They are useless.
 - We are tangled. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
 - They are useless. — *У записі останнє слово — `tangled`, а в цьому варіанті — `useless`.*
 
-**7 · Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього**
+**5 · Картка слова — charged**
+<!-- interaction_id: en:lesson-01:session-46:word:charged; family: word_card -->
+> **charged** — заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк.
+
+**6 · Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього**
 <!-- interaction_id: en:lesson-01:session-46:i03; family: context_gap_grammar -->
 It ___ charged. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Павербанк один, тому `It is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-46:i04; family: speed_match -->
 useless — марний · tangled — заплутаний · charged — заряджений · loose — хитається
 
-**9 · Послухайте й складіть коротку фразу**
+**8 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-46:i05; family: listen_build_dictation -->
 🔊 *It's useless.* Плитки: `useless` `It's` `He's` → **It's useless.**
 *(плитка `He's` зайва: тут потрібно `It's` — `It's useless.`)*
 
-**10 · Два старі кабелі з шухляди не підходять до жодного вашого пристрою. Скажіть Кості, що вони марні**
+**9 · Два старі кабелі з шухляди не підходять до жодного вашого пристрою. Скажіть Кості, що вони марні**
 <!-- interaction_id: en:lesson-01:session-46:i06; family: phrase_builder -->
 Плитки: `useless` `are` `They` `is` → **They are useless.**
 *(плитка `is` зайва: тут потрібно `are` — `They are useless.`)*
+
+**10 · Картка слова — loose**
+<!-- interaction_id: en:lesson-01:session-46:word:loose; family: word_card -->
+> **loose** — хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик.
 
 **11 · Штекер зарядки хитається в телефоні, і зарядка то йде, то зникає. Скажіть Кості коротко, що штекер хитається**
 <!-- interaction_id: en:lesson-01:session-46:i07; family: scripted_repeat_compare -->

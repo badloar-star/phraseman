@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-31:word:similar",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — similar",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-31:word:similar:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — similar",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-31:word:similar:audio",
-          "transcript": "similar"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-31:word:similar:r1",
-            "targetText": "similar",
-            "meaningByLocale": {
-              "ru": "похожий, но не во всём одинаковый. They are similar — «Они похожи».",
-              "uk": "схожий, але не в усьому однаковий. They are similar — «Вони схожі»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "similar",
-          "definitionByLocale": {
-            "ru": "похожий, но не во всём одинаковый. They are similar — «Они похожи».",
-            "uk": "схожий, але не в усьому однаковий. They are similar — «Вони схожі»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-31:word:separate",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — separate",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-31:word:separate:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — separate",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-31:word:separate:audio",
-          "transcript": "separate"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-31:word:separate:r1",
-            "targetText": "separate",
-            "meaningByLocale": {
-              "ru": "отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.",
-              "uk": "окремий, не об’єднаний з іншим. They are separate — «Вони окремі»: два рахунки, а не один."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "separate",
-          "definitionByLocale": {
-            "ru": "отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.",
-            "uk": "окремий, не об’єднаний з іншим. They are separate — «Вони окремі»: два рахунки, а не один."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-31:word:shared",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — shared",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-31:word:shared:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — shared",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-31:word:shared:audio",
-          "transcript": "shared"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-31:word:shared:r1",
-            "targetText": "shared",
-            "meaningByLocale": {
-              "ru": "общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.",
-              "uk": "спільний, на всіх. It is shared — «Це спільне»: одна страва, яку їдять усі за столом."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "shared",
-          "definitionByLocale": {
-            "ru": "общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.",
-            "uk": "спільний, на всіх. It is shared — «Це спільне»: одна страва, яку їдять усі за столом."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-31:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-31:word:similar",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — similar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:word:similar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — similar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:word:similar:audio",
+          "transcript": "similar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:word:similar:r1",
+            "targetText": "similar",
+            "meaningByLocale": {
+              "ru": "похожий, но не во всём одинаковый. They are similar — «Они похожи».",
+              "uk": "схожий, але не в усьому однаковий. They are similar — «Вони схожі»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "similar",
+          "definitionByLocale": {
+            "ru": "похожий, но не во всём одинаковый. They are similar — «Они похожи».",
+            "uk": "схожий, але не в усьому однаковий. They are similar — «Вони схожі»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-31:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-31:word:separate",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — separate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:word:separate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — separate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:word:separate:audio",
+          "transcript": "separate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:word:separate:r1",
+            "targetText": "separate",
+            "meaningByLocale": {
+              "ru": "отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.",
+              "uk": "окремий, не об’єднаний з іншим. They are separate — «Вони окремі»: два рахунки, а не один."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "separate",
+          "definitionByLocale": {
+            "ru": "отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.",
+            "uk": "окремий, не об’єднаний з іншим. They are separate — «Вони окремі»: два рахунки, а не один."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-31:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -627,6 +584,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:word:shared",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shared",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:word:shared:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:word:shared:audio",
+          "transcript": "shared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:word:shared:r1",
+            "targetText": "shared",
+            "meaningByLocale": {
+              "ru": "общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.",
+              "uk": "спільний, на всіх. It is shared — «Це спільне»: одна страва, яку їдять усі за столом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shared",
+          "definitionByLocale": {
+            "ru": "общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.",
+            "uk": "спільний, на всіх. It is shared — «Це спільне»: одна страва, яку їдять усі за столом."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5fa82df069362eb1c0e18651487c6f095abc7c6d9446c3b1020b5569e87f4256"
+  "learnerFingerprint": "d790fdf48264815056a81502422a69eb07d0413117a98f3a12d0d2a6b5f2e917"
 }

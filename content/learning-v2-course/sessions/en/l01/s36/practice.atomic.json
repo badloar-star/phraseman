@@ -4,180 +4,8 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-01:session-36:word:competitive",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — competitive",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:competitive:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — competitive",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:competitive:audio",
-            "transcript": "competitive"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:competitive:r1",
-              "targetText": "competitive",
-              "meaningByLocale": {
-                "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
-                "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "competitive",
-            "definitionByLocale": {
-              "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
-              "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-36:word:ahead",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — ahead",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:ahead:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — ahead",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:ahead:audio",
-            "transcript": "ahead"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:ahead:r1",
-              "targetText": "ahead",
-              "meaningByLocale": {
-                "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
-                "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "ahead",
-            "definitionByLocale": {
-              "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
-              "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-36:word:hopeless",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — hopeless",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:hopeless:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — hopeless",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:hopeless:audio",
-            "transcript": "hopeless"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:hopeless:r1",
-              "targetText": "hopeless",
-              "meaningByLocale": {
-                "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
-                "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "hopeless",
-            "definitionByLocale": {
-              "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
-              "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-36:word:grumpy",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — grumpy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:grumpy:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — grumpy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:grumpy:audio",
-            "transcript": "grumpy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:grumpy:r1",
-              "targetText": "grumpy",
-              "meaningByLocale": {
-                "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
-                "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "grumpy",
-            "definitionByLocale": {
-              "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
-              "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-36:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +48,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-36:word:grumpy",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — grumpy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:grumpy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — grumpy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:grumpy:audio",
+            "transcript": "grumpy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:grumpy:r1",
+              "targetText": "grumpy",
+              "meaningByLocale": {
+                "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
+                "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grumpy",
+            "definitionByLocale": {
+              "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
+              "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-36:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +167,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-36:word:ahead",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ahead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:ahead:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ahead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:ahead:audio",
+            "transcript": "ahead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:ahead:r1",
+              "targetText": "ahead",
+              "meaningByLocale": {
+                "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
+                "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ahead",
+            "definitionByLocale": {
+              "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
+              "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-36:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +280,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-36:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -438,8 +352,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-36:word:competitive",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — competitive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:competitive:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — competitive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:competitive:audio",
+            "transcript": "competitive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:competitive:r1",
+              "targetText": "competitive",
+              "meaningByLocale": {
+                "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
+                "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "competitive",
+            "definitionByLocale": {
+              "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
+              "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-36:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -485,7 +442,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-36:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -529,7 +486,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-36:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -557,6 +514,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-36:word:hopeless",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hopeless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:hopeless:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hopeless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:hopeless:audio",
+            "transcript": "hopeless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:hopeless:r1",
+              "targetText": "hopeless",
+              "meaningByLocale": {
+                "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
+                "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hopeless",
+            "definitionByLocale": {
+              "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
+              "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1164,180 +1164,8 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-01:session-36:word:competitive",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — competitive",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:competitive:audio"
-        ],
-        "accessibilityLabel": "Картка слова — competitive",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:competitive:audio",
-            "transcript": "competitive"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:competitive:r1",
-              "targetText": "competitive",
-              "meaningByLocale": {
-                "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
-                "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "competitive",
-            "definitionByLocale": {
-              "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
-              "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-36:word:ahead",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — ahead",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:ahead:audio"
-        ],
-        "accessibilityLabel": "Картка слова — ahead",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:ahead:audio",
-            "transcript": "ahead"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:ahead:r1",
-              "targetText": "ahead",
-              "meaningByLocale": {
-                "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
-                "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "ahead",
-            "definitionByLocale": {
-              "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
-              "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-36:word:hopeless",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — hopeless",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:hopeless:audio"
-        ],
-        "accessibilityLabel": "Картка слова — hopeless",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:hopeless:audio",
-            "transcript": "hopeless"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:hopeless:r1",
-              "targetText": "hopeless",
-              "meaningByLocale": {
-                "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
-                "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "hopeless",
-            "definitionByLocale": {
-              "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
-              "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-36:word:grumpy",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — grumpy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-36:word:grumpy:audio"
-        ],
-        "accessibilityLabel": "Картка слова — grumpy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-36:word:grumpy:audio",
-            "transcript": "grumpy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-36:word:grumpy:r1",
-              "targetText": "grumpy",
-              "meaningByLocale": {
-                "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
-                "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "grumpy",
-            "definitionByLocale": {
-              "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
-              "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-36:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1380,8 +1208,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-36:word:grumpy",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — grumpy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:grumpy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — grumpy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:grumpy:audio",
+            "transcript": "grumpy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:grumpy:r1",
+              "targetText": "grumpy",
+              "meaningByLocale": {
+                "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
+                "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grumpy",
+            "definitionByLocale": {
+              "ru": "ворчливый, не в духе. He's grumpy — «Он ворчит, он не в духе». Часто так бывает от усталости.",
+              "uk": "буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-36:i02",
-        "ordinal": 9,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1456,8 +1327,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-36:word:ahead",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ahead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:ahead:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ahead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:ahead:audio",
+            "transcript": "ahead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:ahead:r1",
+              "targetText": "ahead",
+              "meaningByLocale": {
+                "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
+                "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ahead",
+            "definitionByLocale": {
+              "ru": "впереди по счёту или по пути. We're ahead — «Мы впереди».",
+              "uk": "попереду за рахунком або на шляху. We're ahead — «Ми попереду»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-36:i03",
-        "ordinal": 10,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1526,8 +1440,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-36:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1598,8 +1512,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-36:word:competitive",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — competitive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:competitive:audio"
+        ],
+        "accessibilityLabel": "Картка слова — competitive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:competitive:audio",
+            "transcript": "competitive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:competitive:r1",
+              "targetText": "competitive",
+              "meaningByLocale": {
+                "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
+                "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "competitive",
+            "definitionByLocale": {
+              "ru": "азартный, не любит проигрывать. She's competitive — «Она азартная».",
+              "uk": "азартний, не любить програвати. She's competitive — «Вона азартна»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-36:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1645,7 +1602,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-36:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1689,7 +1646,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-36:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1717,6 +1674,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-36:word:hopeless",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hopeless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-36:word:hopeless:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hopeless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-36:word:hopeless:audio",
+            "transcript": "hopeless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-36:word:hopeless:r1",
+              "targetText": "hopeless",
+              "meaningByLocale": {
+                "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
+                "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hopeless",
+            "definitionByLocale": {
+              "ru": "безнадёжный, шансов нет. It's hopeless — «Это безнадёжно». Обычно о положении дел.",
+              "uk": "безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2325,18 +2325,8 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-01:session-36:word:competitive",
-      "correctText": "competitive",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:word:ahead",
-      "correctText": "ahead",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:word:hopeless",
-      "correctText": "hopeless",
+      "interactionId": "en:lesson-01:session-36:i01",
+      "correctText": "I am sleepy.",
       "correctResponseId": null
     },
     {
@@ -2345,14 +2335,14 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-36:i01",
-      "correctText": "I am sleepy.",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-36:i02",
       "correctText": "He is grumpy.",
       "correctResponseId": "en:lesson-01:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:word:ahead",
+      "correctText": "ahead",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-36:i03",
@@ -2362,6 +2352,11 @@
     {
       "interactionId": "en:lesson-01:session-36:i04",
       "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:word:competitive",
+      "correctText": "competitive",
       "correctResponseId": null
     },
     {
@@ -2377,6 +2372,11 @@
     {
       "interactionId": "en:lesson-01:session-36:i07",
       "correctText": "I'm sleepy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:word:hopeless",
+      "correctText": "hopeless",
       "correctResponseId": null
     },
     {

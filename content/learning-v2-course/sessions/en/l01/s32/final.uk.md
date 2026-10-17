@@ -52,98 +52,98 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — crooked**
-<!-- interaction_id: en:lesson-01:session-32:word:crooked; family: word_card -->
-> **crooked** — кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні.
-
-**2 · Картка слова — blurry**
-<!-- interaction_id: en:lesson-01:session-32:word:blurry; family: word_card -->
-> **blurry** — розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі.
-
-**3 · Картка слова — huge**
-<!-- interaction_id: en:lesson-01:session-32:word:huge; family: word_card -->
-> **huge** — величезний, набагато більший за звичайний. It is huge — «Він величезний».
-
-**4 · Картка слова — tiny**
-<!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
-> **tiny** — крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small.
-
-**5 · Уся ваша команда пишається готовою виставкою. Складіть фразу за вас усіх**
+**1 · Уся ваша команда пишається готовою виставкою. Складіть фразу за вас усіх**
 <!-- interaction_id: en:lesson-01:session-32:i01; family: phrase_builder -->
 Плитки: `proud` `are` `We` `is` → **We are proud.**
 *(плитка `is` зайва: тут потрібно `are` — `We are proud.`)*
 
-**6 · Послухайте й виберіть почуте**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-32:i02; family: listen_choose -->
 🔊 *He is worried.* → **He is worried.** · She is worried. · He is surprised.
 - She is worried. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is surprised. — *У записі останнє слово — `worried`, а в цьому варіанті — `surprised`.*
 
-**7 · Ви звірили час відкриття в запрошенні: він правильний. Вставте слово**
+**3 · Ви звірили час відкриття в запрошенні: він правильний. Вставте слово**
 <!-- interaction_id: en:lesson-01:session-32:i03; family: context_gap_grammar -->
 It ___ correct. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Із `It` тут ставимо `is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**4 · Картка слова — crooked**
+<!-- interaction_id: en:lesson-01:session-32:word:crooked; family: word_card -->
+> **crooked** — кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні.
+
+**5 · Картка слова — huge**
+<!-- interaction_id: en:lesson-01:session-32:word:huge; family: word_card -->
+> **huge** — величезний, набагато більший за звичайний. It is huge — «Він величезний».
+
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-32:i04; family: speed_match -->
 crooked — висить криво · blurry — розмитий · huge — величезний · tiny — крихітний
 
-**9 · Послухайте й складіть фразу**
+**7 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-32:i05; family: listen_build_dictation -->
 🔊 *They are available.* Плитки: `available` `are` `They` `We` → **They are available.**
 *(плитка `We` зайва: тут потрібно `They` — `They are available.`)*
 
-**10 · Замовлення двох фотографів оформлено окремо. Складіть фразу про окремі замовлення**
+**8 · Замовлення двох фотографів оформлено окремо. Складіть фразу про окремі замовлення**
 <!-- interaction_id: en:lesson-01:session-32:i06; family: phrase_builder -->
 Плитки: `separate` `are` `They` `is` → **They are separate.**
 *(плитка `is` зайва: тут потрібно `are` — `They are separate.`)*
 
-**11 · Ви особисто перевірили дату виставки й не сумніваєтеся в ній. Скажіть про свою впевненість**
+**9 · Ви особисто перевірили дату виставки й не сумніваєтеся в ній. Скажіть про свою впевненість**
 <!-- interaction_id: en:lesson-01:session-32:i07; family: scripted_repeat_compare -->
 🎙 **I am certain.**
 
-**12 · Двоє фотографів внесли однакові суми за оренду. Доповніть фразу про рівність сум**
+**10 · Двоє фотографів внесли однакові суми за оренду. Доповніть фразу про рівність сум**
 <!-- interaction_id: en:lesson-01:session-32:i08; family: context_gap_grammar -->
 They ___ equal. → **are** · am · is
 - am — *Після `They` потрібна форма `are`.*
 - is — *Про дві суми кажемо `They are`.*
 
-**13 · Підпис під знімком надруковано таким дрібним шрифтом, що його майже не видно. Послухайте й виберіть почуте**
+**11 · Картка слова — blurry**
+<!-- interaction_id: en:lesson-01:session-32:word:blurry; family: word_card -->
+> **blurry** — розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі.
+
+**12 · Підпис під знімком надруковано таким дрібним шрифтом, що його майже не видно. Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-32:i09; family: listen_choose -->
 🔊 *It is tiny.* → **It is tiny.** · It is huge. · It is blurry.
 - It is huge. — *У записі останнє слово — `tiny`, а в цьому варіанті — `huge`.*
 - It is blurry. — *У записі останнє слово — `tiny`, а в цьому варіанті — `blurry`.*
 
-**14 · З’єднайте знайомі слова та значення**
+**13 · З’єднайте знайомі слова та значення**
 <!-- interaction_id: en:lesson-01:session-32:i10; family: speed_match -->
 awake — не спить · asleep — спить · local — місцевий · foreign — іноземний
 
-**15 · Послухайте й складіть фразу про зниклий знімок**
+**14 · Послухайте й складіть фразу про зниклий знімок**
 <!-- interaction_id: en:lesson-01:session-32:i11; family: listen_build_dictation -->
 🔊 *It is missing.* Плитки: `missing` `is` `It` `He` → **It is missing.**
 *(плитка `He` зайва: тут потрібно `It` — `It is missing.`)*
 
-**16 · Зустріч із фотографом відбудеться в інтернеті. Складіть повідомлення про формат зустрічі**
+**15 · Зустріч із фотографом відбудеться в інтернеті. Складіть повідомлення про формат зустрічі**
 <!-- interaction_id: en:lesson-01:session-32:i12; family: phrase_builder -->
 Плитки: `online` `is` `It` `are` → **It is online.**
 *(плитка `are` зайва: тут потрібно `is` — `It is online.`)*
 
-**17 · Друг підтвердив, що не жартує про участь у наступній виставці. Скажіть йому: «Ти серйозно»**
+**16 · Друг підтвердив, що не жартує про участь у наступній виставці. Скажіть йому: «Ти серйозно»**
 <!-- interaction_id: en:lesson-01:session-32:i13; family: scripted_repeat_compare -->
 🎙 **You are serious.**
 
-**18 · Сестра боїться, що гості не встигнуть приїхати. Назвіть її тривогу**
+**17 · Сестра боїться, що гості не встигнуть приїхати. Назвіть її тривогу**
 <!-- interaction_id: en:lesson-01:session-32:i14; family: context_gap_grammar -->
 She is ___ . → **worried** · bored · proud
 - bored — *`bored` — «нудьгує». Тут вона тривожиться: `worried`.*
 - proud — *`proud` — «пишається». Тут треба назвати тривогу: `worried`.*
 
-**19 · Послухайте й виберіть фразу про фотографії**
+**18 · Послухайте й виберіть фразу про фотографії**
 <!-- interaction_id: en:lesson-01:session-32:i15; family: listen_choose -->
 🔊 *They are similar.* → **They are similar.** · They are equal. · They are separate.
 - They are equal. — *У записі останнє слово — `similar`, а в цьому варіанті — `equal`.*
 - They are separate. — *У записі останнє слово — `similar`, а в цьому варіанті — `separate`.*
+
+**19 · Картка слова — tiny**
+<!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
+> **tiny** — крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small.
 
 **20 · З’єднайте слова та значення**
 <!-- interaction_id: en:lesson-01:session-32:i16; family: speed_match -->
@@ -152,4 +152,3 @@ tiny — крихітний · crooked — висить криво · blurry —
 **21 · Ви складаєте шафу вдома. Дві сторінки інструкції суперечать одна одній, і ви не розумієте, що робити. Назвіть своє нерозуміння однією фразою**
 <!-- interaction_id: en:lesson-01:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I am confused.**
-

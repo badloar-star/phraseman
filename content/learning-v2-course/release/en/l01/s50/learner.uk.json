@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-50:word:perfect",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — perfect",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-50:word:perfect:audio"
-      ],
-      "accessibilityLabel": "Картка слова — perfect",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-50:word:perfect:audio",
-          "transcript": "perfect"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-50:word:perfect:r1",
-            "targetText": "perfect",
-            "meaningByLocale": {
-              "ru": "идеальный, лучше не найти. It's perfect — «Идеально».",
-              "uk": "ідеальний, кращого не знайти. It's perfect — «Ідеально»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "perfect",
-          "definitionByLocale": {
-            "ru": "идеальный, лучше не найти. It's perfect — «Идеально».",
-            "uk": "ідеальний, кращого не знайти. It's perfect — «Ідеально»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-50:word:elegant",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — elegant",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-50:word:elegant:audio"
-      ],
-      "accessibilityLabel": "Картка слова — elegant",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-50:word:elegant:audio",
-          "transcript": "elegant"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-50:word:elegant:r1",
-            "targetText": "elegant",
-            "meaningByLocale": {
-              "ru": "элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.",
-              "uk": "елегантний, вишуканий. She's elegant — «Вона елегантна». Про річ: It's elegant."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "elegant",
-          "definitionByLocale": {
-            "ru": "элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.",
-            "uk": "елегантний, вишуканий. She's elegant — «Вона елегантна». Про річ: It's elegant."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-50:word:wrapped",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — wrapped",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-50:word:wrapped:audio"
-      ],
-      "accessibilityLabel": "Картка слова — wrapped",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-50:word:wrapped:audio",
-          "transcript": "wrapped"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-50:word:wrapped:r1",
-            "targetText": "wrapped",
-            "meaningByLocale": {
-              "ru": "упакован, завёрнут. It's wrapped — «Подарок упакован».",
-              "uk": "запакований, загорнутий. It's wrapped — «Подарунок запакований»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "wrapped",
-          "definitionByLocale": {
-            "ru": "упакован, завёрнут. It's wrapped — «Подарок упакован».",
-            "uk": "запакований, загорнутий. It's wrapped — «Подарунок запакований»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-50:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-50:word:perfect",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — perfect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:word:perfect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — perfect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:word:perfect:audio",
+          "transcript": "perfect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:word:perfect:r1",
+            "targetText": "perfect",
+            "meaningByLocale": {
+              "ru": "идеальный, лучше не найти. It's perfect — «Идеально».",
+              "uk": "ідеальний, кращого не знайти. It's perfect — «Ідеально»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perfect",
+          "definitionByLocale": {
+            "ru": "идеальный, лучше не найти. It's perfect — «Идеально».",
+            "uk": "ідеальний, кращого не знайти. It's perfect — «Ідеально»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-50:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +211,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i03",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +280,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-50:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -438,8 +352,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-50:word:wrapped",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wrapped",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:word:wrapped:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wrapped",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:word:wrapped:audio",
+          "transcript": "wrapped"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:word:wrapped:r1",
+            "targetText": "wrapped",
+            "meaningByLocale": {
+              "ru": "упакован, завёрнут. It's wrapped — «Подарок упакован».",
+              "uk": "запакований, загорнутий. It's wrapped — «Подарунок запакований»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrapped",
+          "definitionByLocale": {
+            "ru": "упакован, завёрнут. It's wrapped — «Подарок упакован».",
+            "uk": "запакований, загорнутий. It's wrapped — «Подарунок запакований»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-50:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -479,6 +436,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:word:elegant",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — elegant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:word:elegant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — elegant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:word:elegant:audio",
+          "transcript": "elegant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:word:elegant:r1",
+            "targetText": "elegant",
+            "meaningByLocale": {
+              "ru": "элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.",
+              "uk": "елегантний, вишуканий. She's elegant — «Вона елегантна». Про річ: It's elegant."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "elegant",
+          "definitionByLocale": {
+            "ru": "элегантный, изящный. She's elegant — «Она элегантная». Про вещь: It's elegant.",
+            "uk": "елегантний, вишуканий. She's elegant — «Вона елегантна». Про річ: It's elegant."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "761116822b796cf4aa8bc5d0b472f3f652b309ff9abdafcc8a207a6d76538f5e"
+  "learnerFingerprint": "94f5d90afb45e3820acfde6a1394acd27bf87d72e6d5f5c06e094d09482cfbc6"
 }

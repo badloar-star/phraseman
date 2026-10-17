@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-42:word:chatty",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — chatty",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-42:word:chatty:audio"
-      ],
-      "accessibilityLabel": "Картка слова — chatty",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-42:word:chatty:audio",
-          "transcript": "chatty"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-42:word:chatty:r1",
-            "targetText": "chatty",
-            "meaningByLocale": {
-              "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
-              "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "chatty",
-          "definitionByLocale": {
-            "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
-            "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-42:word:nosy",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — nosy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-42:word:nosy:audio"
-      ],
-      "accessibilityLabel": "Картка слова — nosy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-42:word:nosy:audio",
-          "transcript": "nosy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-42:word:nosy:r1",
-            "targetText": "nosy",
-            "meaningByLocale": {
-              "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
-              "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "nosy",
-          "definitionByLocale": {
-            "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
-            "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-42:word:elderly",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — elderly",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-42:word:elderly:audio"
-      ],
-      "accessibilityLabel": "Картка слова — elderly",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-42:word:elderly:audio",
-          "transcript": "elderly"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-42:word:elderly:r1",
-            "targetText": "elderly",
-            "meaningByLocale": {
-              "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
-              "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "elderly",
-          "definitionByLocale": {
-            "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
-            "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-42:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-42:word:chatty",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chatty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:word:chatty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chatty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:word:chatty:audio",
+          "transcript": "chatty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:word:chatty:r1",
+            "targetText": "chatty",
+            "meaningByLocale": {
+              "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
+              "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chatty",
+          "definitionByLocale": {
+            "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
+            "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-42:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +211,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-42:i03",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +280,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-42:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -439,8 +353,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-42:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -484,8 +398,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-42:word:elderly",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — elderly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:word:elderly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — elderly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:word:elderly:audio",
+          "transcript": "elderly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:word:elderly:r1",
+            "targetText": "elderly",
+            "meaningByLocale": {
+              "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
+              "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "elderly",
+          "definitionByLocale": {
+            "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
+            "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-42:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -529,7 +486,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-42:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -557,6 +514,49 @@
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:word:nosy",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nosy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:word:nosy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nosy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:word:nosy:audio",
+          "transcript": "nosy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:word:nosy:r1",
+            "targetText": "nosy",
+            "meaningByLocale": {
+              "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
+              "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nosy",
+          "definitionByLocale": {
+            "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
+            "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e40880637adfa4d882d2e62b182b3f9a21b83f1b3491c9b365b8aa197e6bd6d1"
+  "learnerFingerprint": "88c904c97fa36085e84f3ff5037bfce1490853bf1d872dc75ac66b1644429d54"
 }

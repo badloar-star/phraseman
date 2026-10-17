@@ -4,180 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-48:word:sharp",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — sharp",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-48:word:sharp:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — sharp",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-48:word:sharp:audio",
-          "transcript": "sharp"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-48:word:sharp:r1",
-            "targetText": "sharp",
-            "meaningByLocale": {
-              "ru": "острый. It's sharp — «Он острый». О ноже, ножницах, краях стекла.",
-              "uk": "гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sharp",
-          "definitionByLocale": {
-            "ru": "острый. It's sharp — «Он острый». О ноже, ножницах, краях стекла.",
-            "uk": "гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-48:word:sticky",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — sticky",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-48:word:sticky:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — sticky",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-48:word:sticky:audio",
-          "transcript": "sticky"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-48:word:sticky:r1",
-            "targetText": "sticky",
-            "meaningByLocale": {
-              "ru": "липкий. They're sticky — «Они липкие». О свежем лаке, клее, руках после варенья.",
-              "uk": "липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sticky",
-          "definitionByLocale": {
-            "ru": "липкий. They're sticky — «Они липкие». О свежем лаке, клее, руках после варенья.",
-            "uk": "липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-48:word:handmade",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — handmade",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-48:word:handmade:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — handmade",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-48:word:handmade:audio",
-          "transcript": "handmade"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-48:word:handmade:r1",
-            "targetText": "handmade",
-            "meaningByLocale": {
-              "ru": "сделан вручную. It's handmade — «Это ручная работа». О чашке, свитере, открытке, которые сделал человек, а не фабрика.",
-              "uk": "зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "handmade",
-          "definitionByLocale": {
-            "ru": "сделан вручную. It's handmade — «Это ручная работа». О чашке, свитере, открытке, которые сделал человек, а не фабрика.",
-            "uk": "зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-48:word:lovely",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — lovely",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-48:word:lovely:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — lovely",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-48:word:lovely:audio",
-          "transcript": "lovely"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-48:word:lovely:r1",
-            "targetText": "lovely",
-            "meaningByLocale": {
-              "ru": "чудесный, очень милый. It's lovely — «Чудесно». Так хвалят вещь, место или человека.",
-              "uk": "чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "lovely",
-          "definitionByLocale": {
-            "ru": "чудесный, очень милый. It's lovely — «Чудесно». Так хвалят вещь, место или человека.",
-            "uk": "чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-48:i01",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +48,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-48:word:sharp",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sharp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:sharp:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sharp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:sharp:audio",
+          "transcript": "sharp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:sharp:r1",
+            "targetText": "sharp",
+            "meaningByLocale": {
+              "ru": "острый. It's sharp — «Он острый». О ноже, ножницах, краях стекла.",
+              "uk": "гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sharp",
+          "definitionByLocale": {
+            "ru": "острый. It's sharp — «Он острый». О ноже, ножницах, краях стекла.",
+            "uk": "гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-48:i02",
-      "ordinal": 9,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +168,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i03",
-      "ordinal": 10,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +237,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -438,9 +309,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-48:word:handmade",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — handmade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:handmade:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — handmade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:handmade:audio",
+          "transcript": "handmade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:handmade:r1",
+            "targetText": "handmade",
+            "meaningByLocale": {
+              "ru": "сделан вручную. It's handmade — «Это ручная работа». О чашке, свитере, открытке, которые сделал человек, а не фабрика.",
+              "uk": "зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handmade",
+          "definitionByLocale": {
+            "ru": "сделан вручную. It's handmade — «Это ручная работа». О чашке, свитере, открытке, которые сделал человек, а не фабрика.",
+            "uk": "зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-48:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -485,7 +399,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i06",
-      "ordinal": 13,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -528,8 +442,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-48:word:lovely",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lovely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:lovely:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lovely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:lovely:audio",
+          "transcript": "lovely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:lovely:r1",
+            "targetText": "lovely",
+            "meaningByLocale": {
+              "ru": "чудесный, очень милый. It's lovely — «Чудесно». Так хвалят вещь, место или человека.",
+              "uk": "чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lovely",
+          "definitionByLocale": {
+            "ru": "чудесный, очень милый. It's lovely — «Чудесно». Так хвалят вещь, место или человека.",
+            "uk": "чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-48:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -562,7 +519,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -626,6 +583,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-48:word:sticky",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sticky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:sticky:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sticky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:sticky:audio",
+          "transcript": "sticky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:sticky:r1",
+            "targetText": "sticky",
+            "meaningByLocale": {
+              "ru": "липкий. They're sticky — «Они липкие». О свежем лаке, клее, руках после варенья.",
+              "uk": "липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sticky",
+          "definitionByLocale": {
+            "ru": "липкий. They're sticky — «Они липкие». О свежем лаке, клее, руках после варенья.",
+            "uk": "липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9aa6b698781a287102475173b05c9c8bced8802041460b35445df8e173893f75"
+  "learnerFingerprint": "5cc1d7a57a90cc2d3b848715796a29d32e7d265c1948e50707b6fa6737acf3aa"
 }

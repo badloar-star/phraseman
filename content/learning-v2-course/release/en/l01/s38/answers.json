@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-38:word:dusty",
-    "correctText": "dusty",
+    "interactionId": "en:lesson-01:session-38:i01",
+    "correctText": "I am starving.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:word:sunburned",
     "correctText": "sunburned",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-38:word:sore",
-    "correctText": "sore",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-38:i01",
-    "correctText": "I am starving.",
     "correctResponseId": null
   },
   {
@@ -40,8 +30,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-38:word:dusty",
+    "correctText": "dusty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-38:i05",
     "correctText": "It is dusty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:word:sore",
+    "correctText": "sore",
     "correctResponseId": null
   },
   {

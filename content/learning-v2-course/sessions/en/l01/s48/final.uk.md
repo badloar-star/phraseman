@@ -52,62 +52,62 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — sharp**
-<!-- interaction_id: en:lesson-01:session-48:word:sharp; family: word_card -->
-> **sharp** — гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла.
-
-**2 · Картка слова — sticky**
-<!-- interaction_id: en:lesson-01:session-48:word:sticky; family: word_card -->
-> **sticky** — липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення.
-
-**3 · Картка слова — handmade**
-<!-- interaction_id: en:lesson-01:session-48:word:handmade; family: word_card -->
-> **handmade** — зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика.
-
-**4 · Картка слова — lovely**
-<!-- interaction_id: en:lesson-01:session-48:word:lovely; family: word_card -->
-> **lovely** — чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину.
-
-**5 · Друг зізнався, що випадково подряпав вашу рамку. Назвіть його чесним**
+**1 · Друг зізнався, що випадково подряпав вашу рамку. Назвіть його чесним**
 <!-- interaction_id: en:lesson-01:session-48:i01; family: phrase_builder -->
 Плитки: `honest` `is` `He` `are` → **He is honest.**
 *(плитка `are` зайва: тут потрібно `is` — `He is honest.`)*
 
-**6 · Послухайте й виберіть почуте**
+**2 · Картка слова — sharp**
+<!-- interaction_id: en:lesson-01:session-48:word:sharp; family: word_card -->
+> **sharp** — гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла.
+
+**3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-48:i02; family: listen_choose -->
 🔊 *They are sticky.* → **They are sticky.** · We are sticky. · They are sharp.
 - We are sticky. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
 - They are sharp. — *У записі останнє слово — `sticky`, а в цьому варіанті — `sharp`.*
 
-**7 · Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї**
+**4 · Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї**
 <!-- interaction_id: en:lesson-01:session-48:i03; family: context_gap_grammar -->
 It ___ sharp. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Стамеска одна, тому `It is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**5 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-48:i04; family: speed_match -->
 sharp — гострий · sticky — липкий · handmade — зроблений вручну · lovely — чудовий
 
-**9 · Послухайте й складіть коротку фразу**
+**6 · Картка слова — handmade**
+<!-- interaction_id: en:lesson-01:session-48:word:handmade; family: word_card -->
+> **handmade** — зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика.
+
+**7 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-48:i05; family: listen_build_dictation -->
 🔊 *It's handmade.* Плитки: `handmade` `It's` `He's` → **It's handmade.**
 *(плитка `He's` зайва: тут потрібно `It's` — `It's handmade.`)*
 
-**10 · Дві таблички під роботами підказують гостям, хто автор. Назвіть таблички корисними**
+**8 · Дві таблички під роботами підказують гостям, хто автор. Назвіть таблички корисними**
 <!-- interaction_id: en:lesson-01:session-48:i06; family: phrase_builder -->
 Плитки: `useful` `are` `They` `is` → **They are useful.**
 *(плитка `is` зайва: тут потрібно `are` — `They are useful.`)*
 
-**11 · Відвідувачка довго роздивляється скатертину, яку вишила Лена, і всміхається. Скажіть Лені коротко, що скатертина чудова**
+**9 · Картка слова — lovely**
+<!-- interaction_id: en:lesson-01:session-48:word:lovely; family: word_card -->
+> **lovely** — чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину.
+
+**10 · Відвідувачка довго роздивляється скатертину, яку вишила Лена, і всміхається. Скажіть Лені коротко, що скатертина чудова**
 <!-- interaction_id: en:lesson-01:session-48:i07; family: scripted_repeat_compare -->
 🎙 **It's lovely.**
 
-**12 · Стара драбина в кутку майстерні хитається під ногою. Назвіть саме небезпеку**
+**11 · Стара драбина в кутку майстерні хитається під ногою. Назвіть саме небезпеку**
 <!-- interaction_id: en:lesson-01:session-48:i08; family: context_gap_grammar -->
 It is ___ . → **dangerous** · lovely · handmade
 - lovely — *`lovely` — «чудова», це похвала. Тут потрібно попередити: `dangerous`.*
 - handmade — *`handmade` — «зроблена вручну». Про небезпеку каже `dangerous`.*
+
+**12 · Картка слова — sticky**
+<!-- interaction_id: en:lesson-01:session-48:word:sticky; family: word_card -->
+> **sticky** — липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення.
 
 **13 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-48:i09; family: listen_choose -->

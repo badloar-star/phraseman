@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-34:word:afraid; family: word_card -->
 > **afraid** — боїться, йому страшно. I'm afraid — «Мені страшно». Це відчуття людини, а не опис місця.
 
-**2 · Картка слова — creepy**
-<!-- interaction_id: en:lesson-01:session-34:word:creepy; family: word_card -->
-> **creepy** — моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ.
+**2 · Біля входу до кімнати вам страшно. Складіть фразу про себе**
+<!-- interaction_id: en:lesson-01:session-34:i01; family: phrase_builder -->
+Плитки: `afraid` `am` `I` `is` → **I am afraid.**
+*(плитка `is` зайва: тут потрібно `am` — `I am afraid.`)*
 
 **3 · Картка слова — pale**
 <!-- interaction_id: en:lesson-01:session-34:word:pale; family: word_card -->
 > **pale** — блідий. She's pale — «Вона бліда»: обличчя побіліло від страху, утоми чи хвороби.
 
-**4 · Картка слова — terrified**
-<!-- interaction_id: en:lesson-01:session-34:word:terrified; family: word_card -->
-> **terrified** — нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid.
-
-**5 · Біля входу до кімнати вам страшно. Складіть фразу про себе**
-<!-- interaction_id: en:lesson-01:session-34:i01; family: phrase_builder -->
-Плитки: `afraid` `am` `I` `is` → **I am afraid.**
-*(плитка `is` зайва: тут потрібно `am` — `I am afraid.`)*
-
-**6 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-34:i02; family: listen_choose -->
 🔊 *She is pale.* → **She is pale.** · He is pale. · She is afraid.
 - He is pale. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 - She is afraid. — *У записі останнє слово — `pale`, а в цьому варіанті — `afraid`.*
 
-**7 · З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук**
+**5 · Картка слова — creepy**
+<!-- interaction_id: en:lesson-01:session-34:word:creepy; family: word_card -->
+> **creepy** — моторошний, від нього мурашки. It's creepy — «Тут моторошно». Так кажуть про місце, звук або річ.
+
+**6 · З кімнати чути скрип дверей, яких ніхто не торкається. Доповніть фразу про звук**
 <!-- interaction_id: en:lesson-01:session-34:i03; family: context_gap_grammar -->
 It ___ creepy. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Звук один, тому `It is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-34:i04; family: speed_match -->
 afraid — боїться · creepy — моторошний · pale — блідий · terrified — нажаханий
 
-**9 · Послухайте й складіть фразу**
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-34:i05; family: listen_build_dictation -->
 🔊 *They are afraid.* Плитки: `afraid` `are` `They` `is` → **They are afraid.**
 *(плитка `is` зайва: тут потрібно `are` — `They are afraid.`)*
+
+**9 · Картка слова — terrified**
+<!-- interaction_id: en:lesson-01:session-34:word:terrified; family: word_card -->
+> **terrified** — нажаханий, дуже сильно боїться. He's terrified — «Він нажаханий». Сильніше, ніж afraid.
 
 **10 · Олег затулив очі руками й не рухається з місця. Ви розповідаєте про нього Маші. Складіть коротку фразу: «Він нажаханий»**
 <!-- interaction_id: en:lesson-01:session-34:i06; family: phrase_builder -->

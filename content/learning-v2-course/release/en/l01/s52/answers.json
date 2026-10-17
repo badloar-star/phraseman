@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-52:word:waterproof",
-    "correctText": "waterproof",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:word:adjustable",
-    "correctText": "adjustable",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:word:trendy",
-    "correctText": "trendy",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-52:i01",
     "correctText": "It is light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:word:waterproof",
+    "correctText": "waterproof",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i02",
     "correctText": "It is waterproof.",
     "correctResponseId": "en:lesson-01:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:word:adjustable",
+    "correctText": "adjustable",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i03",
@@ -52,6 +47,11 @@
   {
     "interactionId": "en:lesson-01:session-52:i07",
     "correctText": "It's adjustable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:word:trendy",
+    "correctText": "trendy",
     "correctResponseId": null
   },
   {

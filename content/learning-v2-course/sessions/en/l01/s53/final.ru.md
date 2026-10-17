@@ -56,38 +56,38 @@
 <!-- interaction_id: en:lesson-01:session-53:word:ripe; family: word_card -->
 > **ripe** — спелый. They're ripe — «Они спелые». О ягодах, яблоках, помидорах, которые уже созрели.
 
-**2 · Карточка слова — soggy**
-<!-- interaction_id: en:lesson-01:session-53:word:soggy; family: word_card -->
-> **soggy** — размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.
-
-**3 · Карточка слова — delicious**
-<!-- interaction_id: en:lesson-01:session-53:word:delicious; family: word_card -->
-> **delicious** — очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.
-
-**4 · Карточка слова — juicy**
-<!-- interaction_id: en:lesson-01:session-53:word:juicy; family: word_card -->
-> **juicy** — сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.
-
-**5 · Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые**
+**2 · Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые**
 <!-- interaction_id: en:lesson-01:session-53:i01; family: phrase_builder -->
 Плитки: `ripe` `are` `They` `is` → **They are ripe.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are ripe.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — soggy**
+<!-- interaction_id: en:lesson-01:session-53:word:soggy; family: word_card -->
+> **soggy** — размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-53:i02; family: listen_choose -->
 🔊 *It is soggy.* → **It is soggy.** · They are soggy. · It is full.
 - They are soggy. — *В записи первые слова — `It is`, а в этом варианте — `They are`.*
 - It is full. — *В записи последнее слово — `soggy`, а в этом варианте — `full`.*
 
-**7 · Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике**
+**5 · Карточка слова — juicy**
+<!-- interaction_id: en:lesson-01:session-53:word:juicy; family: word_card -->
+> **juicy** — сочный. It's juicy — «Он сочный». О персике, арбузе, груше, когда сок течёт по рукам.
+
+**6 · Вы откусили персик, и сок потёк по подбородку. Дополните фразу о персике**
 <!-- interaction_id: en:lesson-01:session-53:i03; family: context_gap_grammar -->
 It ___ juicy. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Персик один, поэтому `It is`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-53:i04; family: speed_match -->
 ripe — спелый · soggy — размокший · delicious — очень вкусный · juicy — сочный
+
+**8 · Карточка слова — delicious**
+<!-- interaction_id: en:lesson-01:session-53:word:delicious; family: word_card -->
+> **delicious** — очень вкусный. It's delicious — «Очень вкусно». Так хвалят еду и того, кто её приготовил.
 
 **9 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-53:i05; family: listen_build_dictation -->

@@ -56,48 +56,48 @@
 <!-- interaction_id: en:lesson-01:session-47:word:dangerous; family: word_card -->
 > **dangerous** — небезпечний. It's dangerous — «Це небезпечно». Про місце, річ або вчинок, що загрожує бідою.
 
-**2 · Картка слова — slippery**
-<!-- interaction_id: en:lesson-01:session-47:word:slippery; family: word_card -->
-> **slippery** — слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку.
-
-**3 · Картка слова — deep**
-<!-- interaction_id: en:lesson-01:session-47:word:deep; family: word_card -->
-> **deep** — глибокий. It's deep — «Тут глибоко». Про воду, яму, річку.
-
-**4 · Картка слова — rusty**
-<!-- interaction_id: en:lesson-01:session-47:word:rusty; family: word_card -->
-> **rusty** — іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед.
-
-**5 · На пірсі провалилися дошки. Складіть попередження для Тьоми**
+**2 · На пірсі провалилися дошки. Складіть попередження для Тьоми**
 <!-- interaction_id: en:lesson-01:session-47:i01; family: phrase_builder -->
 Плитки: `dangerous` `is` `It` `are` → **It is dangerous.**
 *(плитка `are` зайва: тут потрібно `is` — `It is dangerous.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — slippery**
+<!-- interaction_id: en:lesson-01:session-47:word:slippery; family: word_card -->
+> **slippery** — слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-47:i02; family: listen_choose -->
 🔊 *They are slippery.* → **They are slippery.** · We are slippery. · They are rusty.
 - We are slippery. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
 - They are rusty. — *У записі останнє слово — `slippery`, а в цьому варіанті — `rusty`.*
 
-**7 · На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду**
+**5 · Картка слова — deep**
+<!-- interaction_id: en:lesson-01:session-47:word:deep; family: word_card -->
+> **deep** — глибокий. It's deep — «Тут глибоко». Про воду, яму, річку.
+
+**6 · На табличці біля пірса написано, що під ним три метри води. Доповніть фразу про воду**
 <!-- interaction_id: en:lesson-01:session-47:i03; family: context_gap_grammar -->
 It ___ deep. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Вода — це `It`, тому `It is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-47:i04; family: speed_match -->
 dangerous — небезпечний · slippery — слизький · deep — глибокий · rusty — іржавий
 
-**9 · Послухайте й складіть коротке попередження**
+**8 · Послухайте й складіть коротке попередження**
 <!-- interaction_id: en:lesson-01:session-47:i05; family: listen_build_dictation -->
 🔊 *It's dangerous.* Плитки: `dangerous` `It's` `He's` → **It's dangerous.**
 *(плитка `He's` зайва: тут потрібно `It's` — `It's dangerous.`)*
 
-**10 · Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні**
+**9 · Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні**
 <!-- interaction_id: en:lesson-01:session-47:i06; family: phrase_builder -->
 Плитки: `dangerous` `are` `They` `is` → **They are dangerous.**
 *(плитка `is` зайва: тут потрібно `are` — `They are dangerous.`)*
+
+**10 · Картка слова — rusty**
+<!-- interaction_id: en:lesson-01:session-47:word:rusty; family: word_card -->
+> **rusty** — іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед.
 
 **11 · Аня хоче спертися на залізний стовп біля пірса, а він увесь рудий. Скажіть їй коротко, що стовп іржавий**
 <!-- interaction_id: en:lesson-01:session-47:i07; family: scripted_repeat_compare -->

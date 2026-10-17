@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-42:word:chatty",
-    "correctText": "chatty",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-42:word:nosy",
-    "correctText": "nosy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-42:word:elderly",
-    "correctText": "elderly",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-42:i01",
     "correctText": "She is welcoming.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:word:chatty",
+    "correctText": "chatty",
     "correctResponseId": null
   },
   {
@@ -45,6 +35,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-42:word:elderly",
+    "correctText": "elderly",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-42:i06",
     "correctText": "He is elderly.",
     "correctResponseId": null
@@ -52,6 +47,11 @@
   {
     "interactionId": "en:lesson-01:session-42:i07",
     "correctText": "You're welcoming.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:word:nosy",
+    "correctText": "nosy",
     "correctResponseId": null
   },
   {

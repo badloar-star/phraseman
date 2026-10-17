@@ -56,43 +56,43 @@
 <!-- interaction_id: en:lesson-01:session-34:word:afraid; family: word_card -->
 > **afraid** — боится, ему страшно. I'm afraid — «Мне страшно». Это чувство человека, а не описание места.
 
-**2 · Карточка слова — creepy**
-<!-- interaction_id: en:lesson-01:session-34:word:creepy; family: word_card -->
-> **creepy** — жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.
+**2 · У входа в комнату вам страшно. Соберите фразу о себе**
+<!-- interaction_id: en:lesson-01:session-34:i01; family: phrase_builder -->
+Плитки: `afraid` `am` `I` `is` → **I am afraid.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am afraid.`)*
 
 **3 · Карточка слова — pale**
 <!-- interaction_id: en:lesson-01:session-34:word:pale; family: word_card -->
 > **pale** — бледный. She's pale — «Она бледная»: лицо побелело от страха, усталости или болезни.
 
-**4 · Карточка слова — terrified**
-<!-- interaction_id: en:lesson-01:session-34:word:terrified; family: word_card -->
-> **terrified** — в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.
-
-**5 · У входа в комнату вам страшно. Соберите фразу о себе**
-<!-- interaction_id: en:lesson-01:session-34:i01; family: phrase_builder -->
-Плитки: `afraid` `am` `I` `is` → **I am afraid.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am afraid.`)*
-
-**6 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-34:i02; family: listen_choose -->
 🔊 *She is pale.* → **She is pale.** · He is pale. · She is afraid.
 - He is pale. — *В записи первое слово — `She`, а в этом варианте — `He`.*
 - She is afraid. — *В записи последнее слово — `pale`, а в этом варианте — `afraid`.*
 
-**7 · Из комнаты доносится скрип двери, которую никто не трогает. Дополните фразу о звуке**
+**5 · Карточка слова — creepy**
+<!-- interaction_id: en:lesson-01:session-34:word:creepy; family: word_card -->
+> **creepy** — жуткий, от него мурашки. It's creepy — «Здесь жутко». Так говорят о месте, звуке или вещи.
+
+**6 · Из комнаты доносится скрип двери, которую никто не трогает. Дополните фразу о звуке**
 <!-- interaction_id: en:lesson-01:session-34:i03; family: context_gap_grammar -->
 It ___ creepy. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Звук один, поэтому `It is`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-34:i04; family: speed_match -->
 afraid — боится · creepy — жуткий · pale — бледный · terrified — в ужасе
 
-**9 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-34:i05; family: listen_build_dictation -->
 🔊 *They are afraid.* Плитки: `afraid` `are` `They` `is` → **They are afraid.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are afraid.`)*
+
+**9 · Карточка слова — terrified**
+<!-- interaction_id: en:lesson-01:session-34:word:terrified; family: word_card -->
+> **terrified** — в ужасе, очень сильно боится. He's terrified — «Он в ужасе». Сильнее, чем afraid.
 
 **10 · Олег закрыл глаза руками и не двигается с места. Вы рассказываете о нём Маше. Соберите короткую фразу: «Он в ужасе»**
 <!-- interaction_id: en:lesson-01:session-34:i06; family: phrase_builder -->

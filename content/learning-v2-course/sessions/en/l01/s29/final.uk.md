@@ -56,52 +56,52 @@
 <!-- interaction_id: en:lesson-01:session-29:word:local; family: word_card -->
 > **local** — місцевий, живе тут або розташований тут. I am local — «Я місцевий / місцева». Про місцевих глядачів: They are local.
 
-**2 · Картка слова — foreign**
-<!-- interaction_id: en:lesson-01:session-29:word:foreign; family: word_card -->
-> **foreign** — іноземний, з іншої країни. It is foreign — «Він іноземний». Слово говорить про походження, а не про якість.
-
-**3 · Картка слова — online**
-<!-- interaction_id: en:lesson-01:session-29:word:online; family: word_card -->
-> **online** — в інтернеті, онлайн. It is online — «Це в інтернеті». Про людей: We are online — «Ми в мережі».
-
-**4 · Картка слова — popular**
-<!-- interaction_id: en:lesson-01:session-29:word:popular; family: word_card -->
-> **popular** — популярний, його багато хто любить або вибирає. It is popular — «Він популярний». Про людину: She is popular.
-
-**5 · Ви живете в місті фестивалю. Складіть виправлену відповідь «I local»**
+**2 · Ви живете в місті фестивалю. Складіть виправлену відповідь «I local»**
 <!-- interaction_id: en:lesson-01:session-29:i01; family: phrase_builder -->
 Плитки: `local` `am` `I` `is` → **I am local.**
 *(плитка `is` зайва: тут потрібно `am` — `I am local.`)*
 
-**6 · Послухайте й виберіть опис фільму**
+**3 · Картка слова — foreign**
+<!-- interaction_id: en:lesson-01:session-29:word:foreign; family: word_card -->
+> **foreign** — іноземний, з іншої країни. It is foreign — «Він іноземний». Слово говорить про походження, а не про якість.
+
+**4 · Послухайте й виберіть опис фільму**
 <!-- interaction_id: en:lesson-01:session-29:i02; family: listen_choose -->
 🔊 *It is foreign.* → **It is foreign.** · It is local. · It is popular.
 - It is local. — *У записі останнє слово — `foreign`, а в цьому варіанті — `local`.*
 - It is popular. — *У записі останнє слово — `foreign`, а в цьому варіанті — `popular`.*
 
-**7 · Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово**
+**5 · Картка слова — online**
+<!-- interaction_id: en:lesson-01:session-29:word:online; family: word_card -->
+> **online** — в інтернеті, онлайн. It is online — «Це в інтернеті». Про людей: We are online — «Ми в мережі».
+
+**6 · Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово**
 <!-- interaction_id: en:lesson-01:session-29:i03; family: context_gap_grammar -->
 We ___ online. → **are** · is · am
 - is — *Після `We` потрібна форма `are`.*
 - am — *З `We` потрібно `are`, а `am` — з `I`.*
 
-**8 · З’єднайте нові слова та значення**
+**7 · З’єднайте нові слова та значення**
 <!-- interaction_id: en:lesson-01:session-29:i04; family: speed_match -->
 local — місцевий · foreign — іноземний · online — в інтернеті · popular — популярний
 
-**9 · Послухайте й складіть фразу про глядачів**
+**8 · Послухайте й складіть фразу про глядачів**
 <!-- interaction_id: en:lesson-01:session-29:i05; family: listen_build_dictation -->
 🔊 *They are local.* Плитки: `local` `are` `They` `We` → **They are local.**
 *(плитка `We` зайва: тут потрібно `They` — `They are local.`)*
 
-**10 · Один показ буде в інтернеті. Виправте підпис «It online», склавши повну фразу**
+**9 · Один показ буде в інтернеті. Виправте підпис «It online», склавши повну фразу**
 <!-- interaction_id: en:lesson-01:session-29:i06; family: phrase_builder -->
 Плитки: `online` `is` `It` `are` → **It is online.**
 *(плитка `are` зайва: тут потрібно `is` — `It is online.`)*
 
-**11 · Подруга живе в місті фестивалю. Скажіть про неї: «Вона місцева»**
+**10 · Подруга живе в місті фестивалю. Скажіть про неї: «Вона місцева»**
 <!-- interaction_id: en:lesson-01:session-29:i07; family: scripted_repeat_compare -->
 🎙 **She is local.**
+
+**11 · Картка слова — popular**
+<!-- interaction_id: en:lesson-01:session-29:word:popular; family: word_card -->
+> **popular** — популярний, його багато хто любить або вибирає. It is popular — «Він популярний». Про людину: She is popular.
 
 **12 · На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів**
 <!-- interaction_id: en:lesson-01:session-29:i08; family: context_gap_grammar -->

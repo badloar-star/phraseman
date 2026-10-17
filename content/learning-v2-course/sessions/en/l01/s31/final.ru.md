@@ -56,58 +56,58 @@ separate — «отдельный». У вас два отдельных счё�
 <!-- interaction_id: en:lesson-01:session-31:word:equal; family: word_card -->
 > **equal** — равный, одинаковый по величине. They are equal — «Они равны»: например, две одинаковые суммы.
 
-**2 · Карточка слова — similar**
-<!-- interaction_id: en:lesson-01:session-31:word:similar; family: word_card -->
-> **similar** — похожий, но не во всём одинаковый. They are similar — «Они похожи».
-
-**3 · Карточка слова — separate**
-<!-- interaction_id: en:lesson-01:session-31:word:separate; family: word_card -->
-> **separate** — отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.
-
-**4 · Карточка слова — shared**
-<!-- interaction_id: en:lesson-01:session-31:word:shared; family: word_card -->
-> **shared** — общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.
-
-**5 · В двух счетах одинаковые суммы. Соберите фразу об их равенстве**
+**2 · В двух счетах одинаковые суммы. Соберите фразу об их равенстве**
 <!-- interaction_id: en:lesson-01:session-31:i01; family: phrase_builder -->
 Плитки: `equal` `are` `They` `is` → **They are equal.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are equal.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — similar**
+<!-- interaction_id: en:lesson-01:session-31:word:similar; family: word_card -->
+> **similar** — похожий, но не во всём одинаковый. They are similar — «Они похожи».
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-31:i02; family: listen_choose -->
 🔊 *They are similar.* → **They are similar.** · They are separate. · They are equal.
 - They are separate. — *В записи последнее слово — `similar`, а в этом варианте — `separate`.*
 - They are equal. — *В записи последнее слово — `similar`, а в этом варианте — `equal`.*
 
-**7 · Заказ десерта оформлен отдельно от обеда. Дополните фразу об этом заказе**
+**5 · Карточка слова — separate**
+<!-- interaction_id: en:lesson-01:session-31:word:separate; family: word_card -->
+> **separate** — отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.
+
+**6 · Заказ десерта оформлен отдельно от обеда. Дополните фразу об этом заказе**
 <!-- interaction_id: en:lesson-01:session-31:i03; family: context_gap_grammar -->
 It ___ separate. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Один заказ — `It is`.*
 
-**8 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-01:session-31:i04; family: speed_match -->
 equal — равный · similar — похожий · separate — отдельный · shared — общий
 
-**9 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-31:i05; family: listen_build_dictation -->
 🔊 *They are separate.* Плитки: `separate` `are` `They` `is` → **They are separate.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are separate.`)*
 
-**10 · Две тарелки похожи по рисунку. Соберите фразу об их сходстве**
+**9 · Две тарелки похожи по рисунку. Соберите фразу об их сходстве**
 <!-- interaction_id: en:lesson-01:session-31:i06; family: phrase_builder -->
 Плитки: `similar` `are` `They` `am` → **They are similar.**
 *(плитка `am` лишняя: здесь нужно `are` — `They are similar.`)*
 
-**11 · Вы разделили платёж на две одинаковые суммы. Скажите о суммах вслух**
+**10 · Вы разделили платёж на две одинаковые суммы. Скажите о суммах вслух**
 <!-- interaction_id: en:lesson-01:session-31:i07; family: scripted_repeat_compare -->
 🎙 **They are equal.**
 
-**12 · Заказы двух компаний оформлены по отдельности. Нужно сказать именно об этом. Вставьте слово**
+**11 · Заказы двух компаний оформлены по отдельности. Нужно сказать именно об этом. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-31:i08; family: context_gap_grammar -->
 They are ___ . → **separate** · equal · similar
 - equal — *`equal` — «равные». Здесь важно, что заказы отдельные: `separate`.*
 - similar — *`similar` — «похожие». Здесь речь об отдельных заказах: `separate`.*
+
+**12 · Карточка слова — shared**
+<!-- interaction_id: en:lesson-01:session-31:word:shared; family: word_card -->
+> **shared** — общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.
 
 **13 · Друг спрашивает, чья пицца в центре стола. Послушайте ответ и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-31:i09; family: listen_choose -->
@@ -152,4 +152,3 @@ shared — общий · equal — равный · similar — похожий ·
 **21 · В магазине вы сравниваете две куртки: они похожи по фасону, хотя детали отличаются. Скажите продавцу об их сходстве**
 <!-- interaction_id: en:lesson-01:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **They are similar.**
-

@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-46:word:tangled",
-    "correctText": "tangled",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-46:word:charged",
-    "correctText": "charged",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-46:word:loose",
-    "correctText": "loose",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-46:i01",
     "correctText": "It is useless.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:word:tangled",
+    "correctText": "tangled",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i02",
     "correctText": "They are tangled.",
     "correctResponseId": "en:lesson-01:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:word:charged",
+    "correctText": "charged",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i03",
@@ -47,6 +42,11 @@
   {
     "interactionId": "en:lesson-01:session-46:i06",
     "correctText": "They are useless.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:word:loose",
+    "correctText": "loose",
     "correctResponseId": null
   },
   {

@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-47:word:slippery",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — slippery",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:word:slippery:audio"
-      ],
-      "accessibilityLabel": "Картка слова — slippery",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:word:slippery:audio",
-          "transcript": "slippery"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-47:word:slippery:r1",
-            "targetText": "slippery",
-            "meaningByLocale": {
-              "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
-              "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "slippery",
-          "definitionByLocale": {
-            "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
-            "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:word:deep",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — deep",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:word:deep:audio"
-      ],
-      "accessibilityLabel": "Картка слова — deep",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:word:deep:audio",
-          "transcript": "deep"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-47:word:deep:r1",
-            "targetText": "deep",
-            "meaningByLocale": {
-              "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
-              "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "deep",
-          "definitionByLocale": {
-            "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
-            "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:word:rusty",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — rusty",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:word:rusty:audio"
-      ],
-      "accessibilityLabel": "Картка слова — rusty",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:word:rusty:audio",
-          "transcript": "rusty"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-47:word:rusty:r1",
-            "targetText": "rusty",
-            "meaningByLocale": {
-              "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
-              "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "rusty",
-          "definitionByLocale": {
-            "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
-            "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-47:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-47:word:slippery",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slippery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:word:slippery:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slippery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:word:slippery:audio",
+          "transcript": "slippery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:word:slippery:r1",
+            "targetText": "slippery",
+            "meaningByLocale": {
+              "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
+              "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slippery",
+          "definitionByLocale": {
+            "ru": "скользкий. They're slippery — «Они скользкие». О ступенях, льде, мокрой плитке.",
+            "uk": "слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-47:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-47:word:deep",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — deep",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:word:deep:audio"
+      ],
+      "accessibilityLabel": "Картка слова — deep",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:word:deep:audio",
+          "transcript": "deep"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:word:deep:r1",
+            "targetText": "deep",
+            "meaningByLocale": {
+              "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
+              "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deep",
+          "definitionByLocale": {
+            "ru": "глубокий. It's deep — «Здесь глубоко». О воде, яме, реке.",
+            "uk": "глибокий. It's deep — «Тут глибоко». Про воду, яму, річку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-47:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-47:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-47:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -485,7 +442,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-47:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -523,6 +480,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:word:rusty",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rusty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:word:rusty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rusty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:word:rusty:audio",
+          "transcript": "rusty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:word:rusty:r1",
+            "targetText": "rusty",
+            "meaningByLocale": {
+              "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
+              "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rusty",
+          "definitionByLocale": {
+            "ru": "ржавый. It's rusty — «Он ржавый». О железном столбе, гвозде, старом велосипеде.",
+            "uk": "іржавий. It's rusty — «Він іржавий». Про залізний стовп, цвях, старий велосипед."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "03f9e48d7cfcbf7470e05d0e64246b3e66c7c07e845f5ff0ede882a096af98ce"
+  "learnerFingerprint": "06a4dfcc7c5812aef92744f60851a9163126702860139739354179e6e082c1af"
 }

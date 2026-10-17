@@ -1,25 +1,5 @@
 [
   {
-    "interactionId": "en:lesson-01:session-33:word:shy",
-    "correctText": "shy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-33:word:awful",
-    "correctText": "awful",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-33:word:great",
-    "correctText": "great",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-33:word:amazing",
-    "correctText": "amazing",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-33:i01",
     "correctText": "I'm okay.",
     "correctResponseId": null
@@ -52,6 +32,11 @@
   {
     "interactionId": "en:lesson-01:session-33:i07",
     "correctText": "You're okay.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:word:awful",
+    "correctText": "awful",
     "correctResponseId": null
   },
   {
@@ -90,9 +75,24 @@
     "correctResponseId": "en:lesson-01:session-33:i14:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-33:word:amazing",
+    "correctText": "amazing",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-33:i15",
     "correctText": "It's amazing.",
     "correctResponseId": "en:lesson-01:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:word:shy",
+    "correctText": "shy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:word:great",
+    "correctText": "great",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-33:i16",

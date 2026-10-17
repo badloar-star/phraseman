@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-50:word:perfect",
-    "correctText": "perfect",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:word:elegant",
-    "correctText": "elegant",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:word:wrapped",
-    "correctText": "wrapped",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-50:i01",
     "correctText": "It is expensive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:word:perfect",
+    "correctText": "perfect",
     "correctResponseId": null
   },
   {
@@ -40,8 +30,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-50:word:wrapped",
+    "correctText": "wrapped",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-50:i05",
     "correctText": "It's wrapped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:word:elegant",
+    "correctText": "elegant",
     "correctResponseId": null
   },
   {

@@ -47,44 +47,45 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-41:word:precious",
+      "interactionId": "en:lesson-01:session-41:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — precious",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-41:word:precious:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — precious",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-41:word:precious:audio",
-          "transcript": "precious"
+        "family": "phrase_builder",
+        "targetPhrase": "I am clumsy.",
+        "localizedMeaning": {
+          "ru": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
+          "uk": "Ви зачепили горнятко ліктем. Складіть фразу про себе: «Я незграбний»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "I",
+          "am",
+          "clumsy"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:word:precious:r1",
-            "targetText": "precious",
-            "meaningByLocale": {
-              "ru": "очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.",
-              "uk": "дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну."
+            "responseId": "en:lesson-01:session-41:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am clumsy.`",
+              "uk": "тут потрібно `am` — `I am clumsy.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "precious",
-          "definitionByLocale": {
-            "ru": "очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.",
-            "uk": "дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -133,95 +134,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-41:word:furious",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — furious",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-41:word:furious:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — furious",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-41:word:furious:audio",
-          "transcript": "furious"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-41:word:furious:r1",
-            "targetText": "furious",
-            "meaningByLocale": {
-              "ru": "в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.",
-              "uk": "у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "furious",
-          "definitionByLocale": {
-            "ru": "в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.",
-            "uk": "у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-41:i01",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am clumsy.",
-        "localizedMeaning": {
-          "ru": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
-          "uk": "Ви зачепили горнятко ліктем. Складіть фразу про себе: «Я незграбний»"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "clumsy"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-41:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am clumsy.`",
-              "uk": "тут потрібно `am` — `I am clumsy.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-41:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-41:word:furious",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — furious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:word:furious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — furious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:word:furious:audio",
+          "transcript": "furious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:word:furious:r1",
+            "targetText": "furious",
+            "meaningByLocale": {
+              "ru": "в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.",
+              "uk": "у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "furious",
+          "definitionByLocale": {
+            "ru": "в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.",
+            "uk": "у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-41:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -479,6 +436,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:word:precious",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — precious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:word:precious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — precious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:word:precious:audio",
+          "transcript": "precious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:word:precious:r1",
+            "targetText": "precious",
+            "meaningByLocale": {
+              "ru": "очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.",
+              "uk": "дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "precious",
+          "definitionByLocale": {
+            "ru": "очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.",
+            "uk": "дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b24a67f24062715060500e03a3bded8ea415beb56aa26024eecb0f0ea8d97f9e"
+  "learnerFingerprint": "5137250d2f08606cea7c3f5d63cd3b6d0aaf9be0f463cfd00df3c87943670573"
 }

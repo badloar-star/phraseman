@@ -52,56 +52,56 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — competitive**
-<!-- interaction_id: en:lesson-01:session-36:word:competitive; family: word_card -->
-> **competitive** — азартний, не любить програвати. She's competitive — «Вона азартна».
-
-**2 · Картка слова — ahead**
-<!-- interaction_id: en:lesson-01:session-36:word:ahead; family: word_card -->
-> **ahead** — попереду за рахунком або на шляху. We're ahead — «Ми попереду».
-
-**3 · Картка слова — hopeless**
-<!-- interaction_id: en:lesson-01:session-36:word:hopeless; family: word_card -->
-> **hopeless** — безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ.
-
-**4 · Картка слова — grumpy**
-<!-- interaction_id: en:lesson-01:session-36:word:grumpy; family: word_card -->
-> **grumpy** — буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми.
-
-**5 · Вам хочеться спати. Складіть фразу про себе**
+**1 · Вам хочеться спати. Складіть фразу про себе**
 <!-- interaction_id: en:lesson-01:session-36:i01; family: phrase_builder -->
 Плитки: `sleepy` `am` `I` `is` → **I am sleepy.**
 *(плитка `is` зайва: тут потрібно `am` — `I am sleepy.`)*
 
-**6 · Послухайте й виберіть почуте**
+**2 · Картка слова — grumpy**
+<!-- interaction_id: en:lesson-01:session-36:word:grumpy; family: word_card -->
+> **grumpy** — буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми.
+
+**3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-36:i02; family: listen_choose -->
 🔊 *He is grumpy.* → **He is grumpy.** · She is grumpy. · He is sleepy.
 - She is grumpy. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is sleepy. — *У записі останнє слово — `grumpy`, а в цьому варіанті — `sleepy`.*
 
-**7 · У суперників на десять очок більше. Доповніть фразу про них**
+**4 · Картка слова — ahead**
+<!-- interaction_id: en:lesson-01:session-36:word:ahead; family: word_card -->
+> **ahead** — попереду за рахунком або на шляху. We're ahead — «Ми попереду».
+
+**5 · У суперників на десять очок більше. Доповніть фразу про них**
 <!-- interaction_id: en:lesson-01:session-36:i03; family: context_gap_grammar -->
 They ___ ahead. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Суперників кілька, тому `They are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-36:i04; family: speed_match -->
 competitive — азартний · ahead — попереду · hopeless — безнадійний · grumpy — буркотливий
 
-**9 · Послухайте й складіть коротку фразу**
+**7 · Картка слова — competitive**
+<!-- interaction_id: en:lesson-01:session-36:word:competitive; family: word_card -->
+> **competitive** — азартний, не любить програвати. She's competitive — «Вона азартна».
+
+**8 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-36:i05; family: listen_build_dictation -->
 🔊 *She's competitive.* Плитки: `competitive` `She's` `He's` → **She's competitive.**
 *(плитка `He's` зайва: тут потрібно `She's` — `She's competitive.`)*
 
-**10 · Ви та Олег хочете спати. Складіть фразу від вас обох**
+**9 · Ви та Олег хочете спати. Складіть фразу від вас обох**
 <!-- interaction_id: en:lesson-01:session-36:i06; family: phrase_builder -->
 Плитки: `sleepy` `are` `We` `They` → **We are sleepy.**
 *(плитка `They` зайва: тут потрібно `We` — `We are sleepy.`)*
 
-**11 · Скажіть коротко, чому вам важко зосередитися на грі: хочеться спати**
+**10 · Скажіть коротко, чому вам важко зосередитися на грі: хочеться спати**
 <!-- interaction_id: en:lesson-01:session-36:i07; family: scripted_repeat_compare -->
 🎙 **I'm sleepy.**
+
+**11 · Картка слова — hopeless**
+<!-- interaction_id: en:lesson-01:session-36:word:hopeless; family: word_card -->
+> **hopeless** — безнадійний, шансів немає. It's hopeless — «Це безнадійно». Зазвичай про становище справ.
 
 **12 · Ви звірили суму очок, помилки немає. Назвіть правильність результату**
 <!-- interaction_id: en:lesson-01:session-36:i08; family: context_gap_grammar -->

@@ -56,38 +56,38 @@
 <!-- interaction_id: en:lesson-01:session-37:word:lonely; family: word_card -->
 > **lonely** — самотньо, бракує людей поруч. I'm lonely — «Мені самотньо». Людей навколо може бути багато, а близьких немає.
 
-**2 · Картка слова — homesick**
-<!-- interaction_id: en:lesson-01:session-37:word:homesick; family: word_card -->
-> **homesick** — сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми.
-
-**3 · Картка слова — messy**
-<!-- interaction_id: en:lesson-01:session-37:word:messy; family: word_card -->
-> **messy** — безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку.
-
-**4 · Картка слова — cozy**
-<!-- interaction_id: en:lesson-01:session-37:word:cozy; family: word_card -->
-> **cozy** — затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися.
-
-**5 · У новому місті вам бракує людей поруч. Складіть фразу про своє почуття**
+**2 · У новому місті вам бракує людей поруч. Складіть фразу про своє почуття**
 <!-- interaction_id: en:lesson-01:session-37:i01; family: phrase_builder -->
 Плитки: `lonely` `am` `I` `is` → **I am lonely.**
 *(плитка `is` зайва: тут потрібно `am` — `I am lonely.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — homesick**
+<!-- interaction_id: en:lesson-01:session-37:word:homesick; family: word_card -->
+> **homesick** — сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-37:i02; family: listen_choose -->
 🔊 *She is homesick.* → **She is homesick.** · He is homesick. · She is lonely.
 - He is homesick. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 - She is lonely. — *У записі останнє слово — `homesick`, а в цьому варіанті — `lonely`.*
 
-**7 · У кімнаті відкриті коробки й речі на підлозі. Вставте слово**
+**5 · Картка слова — messy**
+<!-- interaction_id: en:lesson-01:session-37:word:messy; family: word_card -->
+> **messy** — безлад, неприбрано. It's messy — «Тут безлад». Так кажуть про кімнату, стіл, сумку.
+
+**6 · У кімнаті відкриті коробки й речі на підлозі. Вставте слово**
 <!-- interaction_id: en:lesson-01:session-37:i03; family: context_gap_grammar -->
 It ___ messy. → **is** · am · are
 - am — *`am` ставимо після `I`. Тут `It is`.*
 - are — *Після `It` потрібно `is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-37:i04; family: speed_match -->
 lonely — самотньо · homesick — сумує за домом · messy — неприбрано · cozy — затишно
+
+**8 · Картка слова — cozy**
+<!-- interaction_id: en:lesson-01:session-37:word:cozy; family: word_card -->
+> **cozy** — затишний. It's cozy — «Тут затишно». Так кажуть, коли тепло, м’яко й хочеться залишитися.
 
 **9 · Ви постелили плед і ввімкнули лампу. Послухайте й складіть фразу про кімнату**
 <!-- interaction_id: en:lesson-01:session-37:i05; family: listen_build_dictation -->

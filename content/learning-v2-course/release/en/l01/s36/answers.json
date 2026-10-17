@@ -1,17 +1,7 @@
 [
   {
-    "interactionId": "en:lesson-01:session-36:word:competitive",
-    "correctText": "competitive",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-36:word:ahead",
-    "correctText": "ahead",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-36:word:hopeless",
-    "correctText": "hopeless",
+    "interactionId": "en:lesson-01:session-36:i01",
+    "correctText": "I am sleepy.",
     "correctResponseId": null
   },
   {
@@ -20,14 +10,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-36:i01",
-    "correctText": "I am sleepy.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-36:i02",
     "correctText": "He is grumpy.",
     "correctResponseId": "en:lesson-01:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:word:ahead",
+    "correctText": "ahead",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-36:i03",
@@ -37,6 +27,11 @@
   {
     "interactionId": "en:lesson-01:session-36:i04",
     "correctText": "en:lesson-01:session-36:i04:p1=competitive\nen:lesson-01:session-36:i04:p2=ahead\nen:lesson-01:session-36:i04:p3=hopeless\nen:lesson-01:session-36:i04:p4=grumpy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:word:competitive",
+    "correctText": "competitive",
     "correctResponseId": null
   },
   {
@@ -52,6 +47,11 @@
   {
     "interactionId": "en:lesson-01:session-36:i07",
     "correctText": "I'm sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:word:hopeless",
+    "correctText": "hopeless",
     "correctResponseId": null
   },
   {

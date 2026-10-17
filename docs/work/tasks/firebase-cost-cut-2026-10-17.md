@@ -318,6 +318,16 @@
 
 Не в этом списке (отдельно, не ночью): восстановление аккаунта по коду (п. 2 таблицы выше — сначала правка кода Входа и security-review Ревизора); ИИ-диалоги — ниже.
 
+### R103-TTL — выкладка `firestore:indexes` (проверено 18.10 Ревизором, прод только на чтение)
+
+- `firebase firestore:indexes` (прод) против `firestore.indexes.json` @ 63cc84ceb:
+  - составные индексы совпадают 77 = 77;
+  - у 80 общих fieldOverrides расхождений 0;
+  - в файле лишние только 2 новые TTL `auth_recovery_rate_limits.expireAt` и `auth_recovery_clean_rate_limits.expireAt`.
+- ⚠ **В проде есть 6 TTL-политик, которых нет в файле:** `english_test_attempts`, `english_test_clients`, `english_test_completion_rate_limits`, `english_test_daily`, `english_test_rate_limits`, `english_test_report_rate_limits` (поле `expiresAt`, ttl:true). Выкладка `--only firestore:indexes` спросит, удалить ли их. Ответ «Y» выключит TTL у данных теста английского.
+- Безопасный путь до релиза: две новые TTL включить в Console (Firestore → TTL) и индексы не выкладывать.
+- Перед любой выкладкой индексов: дописать эти 6 переопределений в файл, скопировав из прода (`firebase firestore:indexes` → `fieldOverrides`), чтобы файл совпадал с продом и вопроса не было.
+
 ### R103-Пик — неделя W43 с 19.10 (проверено 17.10, только чтение)
 - `config/spire_v1` в проде: поля `rankBy` нет (ключи: coins, enabled, integrity, residents, schemaVersion, timer, updatedAtMs, updatedByUid; обновлён 11.10). Правило `spireEffectiveRankBy` (functions/src/spire_config_contract.ts:174-175, клиент modules/spire/config_contract.ts) даёт «монеты» только при `rankBy==='coins'` и неделе ≥ W43. Значит и клиент 2.0, и прод-крон считают **по ступеням** — расхождения нет.
 - **Решение: ничего не делать — ни деплоя, ни отката.** Откатывать нечего. Главное — НЕ ставить `rankBy='coins'`, пока не выложены из HEAD `spireFinalizeCron`, `spireJoinRoom`, `spireReportSteps`, `adminSpireConfigSet` (прод от 11.10, кода `rankBy` в нём нет). Иначе игрок увидит места по монетам, а итог и награды (300/200/150 монет за места, 100 за повышение) посчитаются по ступеням.

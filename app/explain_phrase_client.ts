@@ -11,6 +11,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
+import { MISTAKE_EXPLAIN_ENABLED } from './mistake_explain_flag';
 import { warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
 import { EXPLAIN_CALLABLE_TIMEOUT_MS } from './explain_callable_timeout';
 
@@ -72,6 +73,11 @@ export interface CallExplainPhraseOptions {
  * Никогда не бросает — вызывать через `void`.
  */
 export function warmExplainPhrase(): void {
+  // зачем (владелец 17.10, «Объяснить» не должно быть нигде): клиент не будит облачную функцию explainPhrase
+  if (!MISTAKE_EXPLAIN_ENABLED) {
+    console.log('[MISTAKE-EXPLAIN] disabled warmExplainPhrase skipped'); // guard-ok: ИИ-объяснения отключены владельцем
+    return;
+  }
   void warmAiFunction('explainPhrase', async () => {
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'explainPhrase');
     return fn({ warmupPing: true });
@@ -97,6 +103,11 @@ export async function callExplainPhrase(
   req: ExplainPhraseRequest,
   options?: CallExplainPhraseOptions,
 ): Promise<ExplainPhraseResponse> {
+  // зачем (владелец 17.10): вызовов explainPhrase с клиента быть не должно ни из кэша, ни из сети — вызывающий видит тихий офлайн-отказ
+  if (!MISTAKE_EXPLAIN_ENABLED) {
+    console.log('[MISTAKE-EXPLAIN] disabled callExplainPhrase blocked'); // guard-ok: ИИ-объяснения отключены владельцем
+    throw new AiOfflineError();
+  }
   const key = explainPhraseRequestKey(req);
   const localCached = await readExplainLocalCache({ kind: 'phrase', key });
   if (localCached?.status === 'ok') {

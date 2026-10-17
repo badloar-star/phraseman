@@ -87,6 +87,13 @@ describe('ИИ-разбор ошибок выключен (владелец 17.1
     expect(advice.indexOf('if (!MISTAKE_EXPLAIN_ENABLED)')).toBeLessThan(advice.indexOf('const pending = refreshInFlight.get(key)'));
   });
 
+  it('клиент explainPhrase заблокирован на входе: вызов и прогрев не уходят в облако', () => {
+    const src = fs.readFileSync(path.join(process.cwd(), 'app/explain_phrase_client.ts'), 'utf8');
+    expect(src).toContain('[MISTAKE-EXPLAIN] disabled callExplainPhrase blocked');
+    expect(src).toContain('[MISTAKE-EXPLAIN] disabled warmExplainPhrase skipped');
+    expect(src.indexOf('disabled callExplainPhrase blocked')).toBeLessThan(src.indexOf("readExplainLocalCache({ kind: 'phrase', key })"));
+  });
+
   it('предгенерация текстов для разбора на экране ошибок выключена тем же флагом', () => {
     const src = fs.readFileSync(path.join(process.cwd(), 'app/mistake_practice_session.tsx'), 'utf8');
     expect(src).toContain('if (!MISTAKE_EXPLAIN_ENABLED)');

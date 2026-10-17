@@ -35,17 +35,17 @@ import { pluralWord, type PluralForms } from '../constants/plural';
 // было с зашитым словом. Форма — по общему правилу constants/plural.ts; падеж задаёт ключ: _gen — после «из/з/seria» («серия из 21 дня»,
 // «serię 1 dnia»), _acc — после «выучил/додай» («выучил 1 фразу», «dodaj 1 zwrot»).
 const NOTIF_WORDS: Readonly<Record<string, readonly [Lang, PluralForms]>> = {
-  ru_day: ['ru', { one: 'день', few: 'дня', many: 'дней' }],
-  ru_day_gen: ['ru', { one: 'дня', few: 'дней', many: 'дней' }],
-  uk_day: ['uk', { one: 'день', few: 'дні', many: 'днів' }],
-  uk_day_gen: ['uk', { one: 'дня', few: 'днів', many: 'днів' }],
+  ru_day: ['ru', { one: 'день', few: 'дня', many: 'дней' }], // guard-ok: формы слова для склонения (переводы), не литерал интерфейса
+  ru_day_gen: ['ru', { one: 'дня', few: 'дней', many: 'дней' }], // guard-ok: формы слова для склонения (переводы), не литерал интерфейса
+  uk_day: ['uk', { one: 'день', few: 'дні', many: 'днів' }], // guard-ok: формы слова для склонения (переводы), не литерал интерфейса
+  uk_day_gen: ['uk', { one: 'дня', few: 'днів', many: 'днів' }], // guard-ok: формы слова для склонения (переводы), не литерал интерфейса
   en_day: ['en', { one: 'day', few: 'days', many: 'days' }],
   es_day: ['es', { one: 'día', few: 'días', many: 'días' }],
   pt_day: ['pt-BR', { one: 'dia', few: 'dias', many: 'dias' }],
   pl_day: ['pl', { one: 'dzień', few: 'dni', many: 'dni' }],
   pl_day_gen: ['pl', { one: 'dnia', few: 'dni', many: 'dni' }],
-  ru_phrase_acc: ['ru', { one: 'фразу', few: 'фразы', many: 'фраз' }],
-  uk_phrase_acc: ['uk', { one: 'вислів', few: 'вислови', many: 'висловів' }],
+  ru_phrase_acc: ['ru', { one: 'фразу', few: 'фразы', many: 'фраз' }], // guard-ok: формы слова для склонения (переводы), не литерал интерфейса
+  uk_phrase_acc: ['uk', { one: 'вислів', few: 'вислови', many: 'висловів' }], // guard-ok: формы слова для склонения (переводы), не литерал интерфейса
   es_phrase_new: ['es', { one: 'frase nueva', few: 'frases nuevas', many: 'frases nuevas' }],
   es_pt_phrase: ['es', { one: 'frase', few: 'frases', many: 'frases' }],
   pl_phrase_acc: ['pl', { one: 'zwrot', few: 'zwroty', many: 'zwrotów' }],

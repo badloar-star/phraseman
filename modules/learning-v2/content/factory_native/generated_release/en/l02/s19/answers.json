@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-19:word:guilty",
+    "correctText": "guilty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-19:i01",
     "correctText": "I am guilty.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-19:i04",
-    "correctText": "en:lesson-02:session-19:i04:p1=guilty\nen:lesson-02:session-19:i04:p2=together\nen:lesson-02:session-19:i04:p3=alone\nen:lesson-02:session-19:i04:p4=nearby",
+    "correctText": "en:lesson-02:session-19:i04:p1=guilty\nen:lesson-02:session-19:i04:p2=gone\nen:lesson-02:session-19:i04:p3=greedy\nen:lesson-02:session-19:i04:p4=sneaky",
     "correctResponseId": null
   },
   {
@@ -35,6 +40,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-19:word:greedy",
+    "correctText": "greedy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-19:i08",
     "correctText": "Is",
     "correctResponseId": "en:lesson-02:session-19:i08:r1"
@@ -46,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-19:i10",
-    "correctText": "en:lesson-02:session-19:i10:p1=urgent\nen:lesson-02:session-19:i10:p2=guilty\nen:lesson-02:session-19:i10:p3=nearby\nen:lesson-02:session-19:i10:p4=alone",
+    "correctText": "en:lesson-02:session-19:i10:p1=together\nen:lesson-02:session-19:i10:p2=alone\nen:lesson-02:session-19:i10:p3=nearby\nen:lesson-02:session-19:i10:p4=hungry",
     "correctResponseId": null
   },
   {
@@ -60,8 +70,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-19:word:sneaky",
+    "correctText": "sneaky",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-19:i13",
-    "correctText": "They're nearby.",
+    "correctText": "He's sneaky.",
     "correctResponseId": null
   },
   {
@@ -70,13 +85,18 @@
     "correctResponseId": "en:lesson-02:session-19:i14:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-19:word:gone",
+    "correctText": "gone",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-19:i15",
-    "correctText": "It is not urgent.",
+    "correctText": "They are gone.",
     "correctResponseId": "en:lesson-02:session-19:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-19:i16",
-    "correctText": "en:lesson-02:session-19:i16:p1=together\nen:lesson-02:session-19:i16:p2=alone\nen:lesson-02:session-19:i16:p3=nearby\nen:lesson-02:session-19:i16:p4=urgent",
+    "correctText": "en:lesson-02:session-19:i16:p1=unwell\nen:lesson-02:session-19:i16:p2=allergic\nen:lesson-02:session-19:i16:p3=feverish\nen:lesson-02:session-19:i16:p4=stuffy",
     "correctResponseId": null
   },
   {

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-28:intro1:r2": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібно is."
         },
         "en:lesson-01:session-28:intro1:r3": {
-          "ru": "Между `It` и `correct` нужно `is`.",
-          "uk": "Між `It` і `correct` потрібно `is`."
+          "ru": "He — о человеке. Про время в билете говорим It.",
+          "uk": "He — про людину. Про час у квитку кажемо It."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-28:intro2:r2": {
-          "ru": "После `I` нужно `am`.",
-          "uk": "Після `I` потрібно `am`."
+          "ru": "После I нужно am.",
+          "uk": "Після I потрібно am."
         },
         "en:lesson-01:session-28:intro2:r3": {
-          "ru": "Это о нём. О своей уверенности говорим `I am certain`.",
-          "uk": "Це про нього. Про свою впевненість кажемо `I am certain`."
+          "ru": "correct говорит о верном ответе. О своей уверенности — certain.",
+          "uk": "correct говорить про правильну відповідь. Про свою впевненість — certain."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-28:intro3:r2": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "serious — «говорит всерьёз, не шутит». Не делать исключений из правил — strict.",
+          "uk": "serious — «говорить усерйоз, не жартує». Не робити винятків із правил — strict."
         },
         "en:lesson-01:session-28:intro3:r3": {
-          "ru": "Это «Она уверена». Здесь нужно сказать, что она не шутит: `serious`.",
-          "uk": "Це «Вона впевнена». Тут треба сказати, що вона не жартує: `serious`."
+          "ru": "После He нужно is.",
+          "uk": "Після He потрібно is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2e26b8ab5f43053eb4615b107e8753a4a14f3a8d752db977b85b9c8db87cfb04"
+  "auxiliaryFingerprint": "f9afbe64ae3a9e12cb1b296829b60ce3fb70618664e981918dc8fd78e3707fc1"
 }

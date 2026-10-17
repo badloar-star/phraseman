@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-43",
   "learningOutcomeByLocale": {
-    "ru": "назвать терпение человека знакомой фразой и отличить это описание от сообщения о болезни",
-    "uk": "назвати терплячість людини знайомою фразою й відрізнити цей опис від повідомлення про хворобу"
+    "ru": "коротко рассказать, что происходит, пока вы ждёте: he's, she's, we're, it's",
+    "uk": "коротко розповісти, що відбувається, поки ви чекаєте: he's, she's, we're, it's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Терпеливый",
-        "uk": "Терплячий"
+        "ru": "Друг в автобусе",
+        "uk": "Друг в автобусі"
       },
       "bodyByLocale": {
-        "ru": "`patient` — «терпеливый»: умеет спокойно ждать или объяснять без раздражения. `She is patient` — «Она терпеливая». Маша спокойно ждёт Олега. Вы пока только учитесь: часы за последнюю минуту проверены уже три раза.",
-        "uk": "`patient` — «терплячий»: уміє спокійно чекати або пояснювати без роздратування. `She is patient` — «Вона терпляча». Маша спокійно чекає на Олега. Ви поки лише вчитеся: на годинник за останню хвилину подивилися вже тричі."
+        "ru": "Друг присылает фото: его автобус стоит в длинной пробке и не двигается уже двадцать минут. stuck — «застрял, не может двигаться дальше». He is stuck, коротко He's stuck — «Он застрял». Опоздание тут не его вина.",
+        "uk": "Друг надсилає фото: його автобус стоїть у довгому заторі й не рухається вже двадцять хвилин. stuck — «застряг, не може рухатися далі». He is stuck, коротко He's stuck — «Він застряг». Запізнення тут не його провина."
       },
       "question": {
         "interactionId": "en:lesson-01:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Маша спокойно ждёт друга и не раздражается. Назовите её терпеливой.",
-          "uk": "Маша спокійно чекає на друга й не дратується. Назвіть її терплячою."
+          "ru": "Подруга спрашивает, где друг. Скажите коротко, что он застрял.",
+          "uk": "Подруга питає, де друг. Скажіть коротко, що він застряг."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-43:intro1:r1",
-              "text": "She is patient."
+              "text": "He's stuck."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r2",
-              "text": "She are patient."
+              "text": "He's late."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r3",
-              "text": "She is ill."
+              "text": "She's stuck."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-43:intro1:r1",
-              "text": "She is patient."
+              "text": "He's stuck."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r2",
-              "text": "She are patient."
+              "text": "He's late."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r3",
-              "text": "She is ill."
+              "text": "She's stuck."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Маша спокойно ждёт друга и не раздражается. Назовите её терпеливой.",
-          "uk": "Маша спокійно чекає на друга й не дратується. Назвіть її терплячою."
+          "ru": "Подруга спрашивает, где друг. Скажите коротко, что он застрял.",
+          "uk": "Подруга питає, де друг. Скажіть коротко, що він застряг."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Про себя и про нас",
-        "uk": "Про себе й про нас"
+        "ru": "Подруга смотрит на часы",
+        "uk": "Подруга дивиться на годинник"
       },
       "bodyByLocale": {
-        "ru": "`I am patient` — «Я терпеливый». `We are patient` — «Мы терпеливые». Слово `patient` не меняется. Коротко: `I'm patient` и `We're patient`. Терпение — не только про ожидание: можно спокойно объяснить правило человеку, который пока не понял.",
-        "uk": "`I am patient` — «Я терплячий». `We are patient` — «Ми терплячі». Слово `patient` не змінюється. Коротко: `I'm patient` і `We're patient`. Терплячість — не лише про очікування: можна спокійно пояснити правило людині, яка поки не зрозуміла."
+        "ru": "Подруга в пятый раз смотрит на часы, вздыхает и стучит ногой. Она не злится всерьёз, но ей неприятно ждать. annoyed — «раздражён, недоволен». She is annoyed, коротко She's annoyed — «Она раздражена». Это слабее, чем angry.",
+        "uk": "Подруга вп’яте дивиться на годинник, зітхає й стукає ногою. Вона не злиться всерйоз, але їй неприємно чекати. annoyed — «роздратований, невдоволений». She is annoyed, коротко She's annoyed — «Вона роздратована». Це слабше, ніж angry."
       },
       "question": {
         "interactionId": "en:lesson-01:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "Вы и Маша спокойно ждёте, не сердитесь на Олега. Назовите вас обоих терпеливыми.",
-          "uk": "Ви та Маша спокійно чекаєте, не сердитеся на Олега. Назвіть вас обох терплячими."
+          "ru": "Друг пишет вам и спрашивает, как там подруга. Ответьте коротко, что она раздражена.",
+          "uk": "Друг пише вам і питає, як там подруга. Відповідайте коротко, що вона роздратована."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-43:intro2:r1",
-              "text": "We are patient."
+              "text": "She's annoyed."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r2",
-              "text": "They are patient."
+              "text": "She's patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r3",
-              "text": "We am patient."
+              "text": "She annoyed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-43:intro2:r1",
-              "text": "We are patient."
+              "text": "She's annoyed."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r2",
-              "text": "They are patient."
+              "text": "She's patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r3",
-              "text": "We am patient."
+              "text": "She annoyed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы и Маша спокойно ждёте, не сердитесь на Олега. Назовите вас обоих терпеливыми.",
-          "uk": "Ви та Маша спокійно чекаєте, не сердитеся на Олега. Назвіть вас обох терплячими."
+          "ru": "Друг пишет вам и спрашивает, как там подруга. Ответьте коротко, что она раздражена.",
+          "uk": "Друг пише вам і питає, як там подруга. Відповідайте коротко, що вона роздратована."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Терпение и болезнь",
-        "uk": "Терплячість і хвороба"
+        "ru": "Без зонта",
+        "uk": "Без парасольки"
       },
       "bodyByLocale": {
-        "ru": "В нашей фразе `He is patient` слово `patient` означает «терпеливый». Это не сообщение, что человек болен. Для болезни у нас уже есть `ill`: `He is ill`. Человек может и болеть, и быть терпеливым — отвечаем именно о том, о чём спрашивают.",
-        "uk": "У нашій фразі `He is patient` слово `patient` означає «терплячий». Це не повідомлення, що людина хвора. Для хвороби в нас уже є `ill`: `He is ill`. Людина може і хворіти, і бути терплячою — відповідаємо саме про те, про що запитують."
+        "ru": "Дождь усилился, а зонтов у вас нет. Через пять минут куртки и волосы мокрые насквозь. soaked — «промок насквозь». We are soaked, коротко We're soaked — «Мы промокли насквозь». Это сильнее, чем просто wet.",
+        "uk": "Дощ посилився, а парасольок у вас немає. За п’ять хвилин куртки й волосся мокрі наскрізь. soaked — «промок наскрізь». We are soaked, коротко We're soaked — «Ми промокли наскрізь». Це сильніше, ніж просто wet."
       },
       "question": {
         "interactionId": "en:lesson-01:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Подруга заболела и поэтому не придёт в кино. Сообщите именно о её болезни.",
-          "uk": "Подруга захворіла й тому не прийде в кіно. Повідомте саме про її хворобу."
+          "ru": "Друг наконец пишет, что подходит, и спрашивает, как вы там. Ответьте коротко за себя и подругу, что вы промокли насквозь.",
+          "uk": "Друг нарешті пише, що підходить, і питає, як ви там. Відповідайте коротко за себе й подругу, що ви промокли наскрізь."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-43:intro3:r1",
-              "text": "She is ill."
+              "text": "We're soaked."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r2",
-              "text": "She is patient."
+              "text": "We're wet."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r3",
-              "text": "He is ill."
+              "text": "They're soaked."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-43:intro3:r1",
-              "text": "She is ill."
+              "text": "We're soaked."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r2",
-              "text": "She is patient."
+              "text": "We're wet."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r3",
-              "text": "He is ill."
+              "text": "They're soaked."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга заболела и поэтому не придёт в кино. Сообщите именно о её болезни.",
-          "uk": "Подруга захворіла й тому не прийде в кіно. Повідомте саме про її хворобу."
+          "ru": "Друг наконец пишет, что подходит, и спрашивает, как вы там. Ответьте коротко за себя и подругу, что вы промокли насквозь.",
+          "uk": "Друг нарешті пише, що підходить, і питає, як ви там. Відповідайте коротко за себе й подругу, що ви промокли наскрізь."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "07e7dd133ce8f0b271ed8709fa262ad89d2b072ab4f68404c74298fc47b926e7"
+  "introFingerprint": "58ef655491509243587e94dd1c05d8314a801c5678782bca80a8c05dca6d2ba8"
 }

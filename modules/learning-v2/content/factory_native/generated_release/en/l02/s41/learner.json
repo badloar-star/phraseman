@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-41:i01",
+      "interactionId": "en:lesson-02:session-41:word:stubborn",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stubborn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-41:word:stubborn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stubborn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-41:word:stubborn:audio",
+          "transcript": "stubborn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-41:word:stubborn:r1",
+            "targetText": "stubborn",
+            "meaningByLocale": {
+              "ru": "упрямый, не уступающий, даже если просят. He is stubborn — «Он упрямый». О ребёнке, осле, характере, споре.",
+              "uk": "впертий, який не поступається, навіть якщо просять. He is stubborn — «Він впертий». Про дитину, віслюка, характер, суперечку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stubborn",
+          "definitionByLocale": {
+            "ru": "упрямый, не уступающий, даже если просят. He is stubborn — «Он упрямый». О ребёнке, осле, характере, споре.",
+            "uk": "впертий, який не поступається, навіть якщо просять. He is stubborn — «Він впертий». Про дитину, віслюка, характер, суперечку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-41:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Проверенная карта верно показывает улицы и расстояния. Скажите полной фразой, что она точная",
+      "prompt": "Мама мальчика спрашивает по телефону, почему он не выходит. Скажите ей полной фразой, что он упрямый.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Проверенная карта верно показывает улицы и расстояния. Скажите полной фразой, что она точная",
+      "accessibilityLabel": "Мама мальчика спрашивает по телефону, почему он не выходит. Скажите ей полной фразой, что он упрямый.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is accurate.",
+        "targetPhrase": "He is stubborn.",
         "localizedMeaning": {
-          "ru": "Проверенная карта верно показывает улицы и расстояния. Скажите полной фразой, что она точная",
-          "uk": "Перевірена карта правильно показує вулиці й відстані. Скажіть повною фразою, що вона точна"
+          "ru": "Мама мальчика спрашивает по телефону, почему он не выходит. Скажите ей полной фразой, что он упрямый.",
+          "uk": "Мама хлопчика питає по телефону, чому він не виходить. Скажіть їй повною фразою, що він впертий."
         },
         "orderedTokens": [
-          "It",
+          "He",
           "is",
-          "accurate"
+          "stubborn"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-41:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Проверенная карта верно показывает улицы и расстояния. Скажите полной фразой, что она точная",
+            "testedDimension": "Мама мальчика спрашивает по телефону, почему он не выходит. Скажите ей полной фразой, что он упрямый.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is accurate.`",
-              "uk": "тут потрібно `is` — `It is accurate.`"
+              "ru": "здесь нужно `is` — `He is stubborn.`",
+              "uk": "тут потрібно `is` — `He is stubborn.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Послушайте, что мама говорит о детях",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i02:r1",
-          "text": "He is honest."
+          "text": "They are tired."
         },
         {
           "responseId": "en:lesson-02:session-41:i02:r2",
-          "text": "He is active."
+          "text": "They are hungry."
         },
         {
           "responseId": "en:lesson-02:session-41:i02:r3",
-          "text": "He is brave."
+          "text": "They are sleepy."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Послушайте, что мама говорит о детях",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i02:audio",
-          "transcript": "He is honest."
+          "transcript": "They are tired."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-41:i02:r1",
-            "targetText": "He is honest.",
+            "targetText": "They are tired.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-41:i02:r2",
-            "targetText": "He is active.",
+            "targetText": "They are hungry.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-41:i02:r3",
-            "targetText": "He is brave.",
+            "targetText": "They are sleepy.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-41:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что мама говорит о детях",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `active`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `active`."
+              "ru": "В записи последнее слово — `tired`, а в этом варианте — `hungry`.",
+              "uk": "У записі останнє слово — `tired`, а в цьому варіанті — `hungry`."
             }
           },
           {
             "responseId": "en:lesson-02:session-41:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что мама говорит о детях",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `brave`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `brave`."
+              "ru": "В записи последнее слово — `tired`, а в этом варианте — `sleepy`.",
+              "uk": "У записі останнє слово — `tired`, а в цьому варіанті — `sleepy`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-41:word:selfish",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — selfish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-41:word:selfish:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — selfish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-41:word:selfish:audio",
+          "transcript": "selfish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-41:word:selfish:r1",
+            "targetText": "selfish",
+            "meaningByLocale": {
+              "ru": "эгоистичный, думающий только о себе. They're not selfish — «Они не эгоисты». О человеке, поступке, ребёнке.",
+              "uk": "егоїстичний, який думає тільки про себе. They're not selfish — «Вони не егоїсти». Про людину, вчинок, дитину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "selfish",
+          "definitionByLocale": {
+            "ru": "эгоистичный, думающий только о себе. They're not selfish — «Они не эгоисты». О человеке, поступке, ребёнке.",
+            "uk": "егоїстичний, який думає тільки про себе. They're not selfish — «Вони не егоїсти». Про людину, вчинок, дитину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-41:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните, точные ли эти сведения о расстояниях",
+      "prompt": "Мама двух девочек рассказывает, что они поссорились из-за конфеты. Спросите её, эгоистичны ли они",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните, точные ли эти сведения о расстояниях",
+      "accessibilityLabel": "Мама двух девочек рассказывает, что они поссорились из-за конфеты. Спросите её, эгоистичны ли они",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, точные ли эти сведения о расстояниях",
-          "uk": "Уточніть, чи точні ці відомості про відстані"
+          "ru": "Мама двух девочек рассказывает, что они поссорились из-за конфеты. Спросите её, эгоистичны ли они",
+          "uk": "Мама двох дівчаток розповідає, що вони посварилися через цукерку. Запитайте її, чи вони егоїстичні"
         },
-        "gappedTargetPhrase": "___ they accurate?",
+        "gappedTargetPhrase": "___ they selfish?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-41:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Уточните, точные ли эти сведения о расстояниях",
+        "testedDimension": "Мама двух девочек рассказывает, что они поссорились из-за конфеты. Спросите её, эгоистичны ли они",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-41:i03:r2",
             "correct": false,
-            "testedDimension": "Уточните, точные ли эти сведения о расстояниях",
+            "testedDimension": "Мама двух девочек рассказывает, что они поссорились из-за конфеты. Спросите её, эгоистичны ли они",
             "feedbackByLocale": {
               "ru": "С `they` нужно `Are`.",
               "uk": "З `they` потрібно `Are`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-41:i03:r3",
             "correct": false,
-            "testedDimension": "Уточните, точные ли эти сведения о расстояниях",
+            "testedDimension": "Мама двух девочек рассказывает, что они поссорились из-за конфеты. Спросите её, эгоистичны ли они",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Are they accurate?`.",
-              "uk": "Запитання — `Are they accurate?`."
+              "ru": "Вопрос — `Are they selfish?`.",
+              "uk": "Питання — `Are they selfish?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-41:i04:p1",
-            "target": "accurate",
+            "target": "stubborn",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "упрямый",
+              "uk": "впертий"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i04:p2",
-            "target": "honest",
+            "target": "gentle",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "ласковый",
+              "uk": "лагідний"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i04:p3",
-            "target": "active",
+            "target": "selfish",
             "meaningByLocale": {
-              "ru": "действующий",
-              "uk": "діючий"
+              "ru": "эгоистичный",
+              "uk": "егоїстичний"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i04:p4",
-            "target": "relevant",
+            "target": "kind",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "такий, що стосується теми"
+              "ru": "добрый",
+              "uk": "добрий"
             }
           }
         ],
         "leftColumn": [
-          "accurate",
-          "honest",
-          "active",
-          "relevant"
+          "stubborn",
+          "gentle",
+          "selfish",
+          "kind"
         ],
         "rightColumn": [
-          "точный",
-          "честный",
-          "действующий",
-          "относящийся к теме"
+          "упрямый",
+          "ласковый",
+          "эгоистичный",
+          "добрый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,85 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-41:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-41:word:gentle",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gentle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-41:word:gentle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gentle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-41:word:gentle:audio",
+          "transcript": "gentle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-41:word:gentle:r1",
+            "targetText": "gentle",
+            "meaningByLocale": {
+              "ru": "ласковый, мягкий в обращении. Is he gentle? — «Он ласковый?» О собаке, враче, голосе, прикосновении.",
+              "uk": "лагідний, м’який у поводженні. Is he gentle? — «Він лагідний?» Про собаку, лікаря, голос, дотик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gentle",
+          "definitionByLocale": {
+            "ru": "ласковый, мягкий в обращении. Is he gentle? — «Он ласковый?» О собаке, враче, голосе, прикосновении.",
+            "uk": "лагідний, м’який у поводженні. Is he gentle? — «Він лагідний?» Про собаку, лікаря, голос, дотик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-41:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Послушайте вопрос подруги о собаке и соберите его",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Послушайте вопрос подруги о собаке и соберите его",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i05:audio",
-          "transcript": "Yes, they are."
+          "transcript": "Is he gentle?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, they are.",
+        "hiddenTargetPhrase": "Is he gentle?",
         "orderedTokens": [
-          "Yes,",
-          "they",
-          "are"
+          "Is",
+          "he",
+          "gentle"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-41:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Послушайте вопрос подруги о собаке и соберите его",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, they are.`",
-              "uk": "тут потрібно `Yes,` — `Yes, they are.`"
+              "ru": "здесь нужно `Is` — `Is he gentle?`",
+              "uk": "тут потрібно `Is` — `Is he gentle?`"
             }
           }
         ],
@@ -314,38 +443,38 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "В двух описаниях маршрута разные расстояния. Спросите Анну, что является точным",
+      "prompt": "Вы слышали, что соседский мальчик не делится игрушками. Спросите его маму, эгоистичный ли он.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В двух описаниях маршрута разные расстояния. Спросите Анну, что является точным",
+      "accessibilityLabel": "Вы слышали, что соседский мальчик не делится игрушками. Спросите его маму, эгоистичный ли он.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is accurate?",
+        "targetPhrase": "Is he selfish?",
         "localizedMeaning": {
-          "ru": "В двух описаниях маршрута разные расстояния. Спросите Анну, что является точным",
-          "uk": "У двох описах маршруту різні відстані. Запитайте Анну, що є точним"
+          "ru": "Вы слышали, что соседский мальчик не делится игрушками. Спросите его маму, эгоистичный ли он.",
+          "uk": "Ви чули, що сусідський хлопчик не ділиться іграшками. Запитайте його маму, чи він егоїстичний."
         },
         "orderedTokens": [
-          "What",
-          "is",
-          "accurate"
+          "Is",
+          "he",
+          "selfish"
         ],
         "authoredDistractorTokens": [
-          "Where"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-41:i06:tile:d1",
             "correct": false,
-            "testedDimension": "В двух описаниях маршрута разные расстояния. Спросите Анну, что является точным",
+            "testedDimension": "Вы слышали, что соседский мальчик не делится игрушками. Спросите его маму, эгоистичный ли он.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is accurate?`",
-              "uk": "тут потрібно `What` — `What is accurate?`"
+              "ru": "здесь нужно `Is` — `Is he selfish?`",
+              "uk": "тут потрібно `Is` — `Is he selfish?`"
             }
           }
         ],
@@ -358,25 +487,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна сверила схему с реальными улицами: всё указано верно. Коротко сообщите, что схема точная",
+      "prompt": "Девочки поделились конфетой и с вами. Скажите коротко, что они не эгоистки.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i07:audio"
       ],
-      "accessibilityLabel": "Анна сверила схему с реальными улицами: всё указано верно. Коротко сообщите, что схема точная",
+      "accessibilityLabel": "Девочки поделились конфетой и с вами. Скажите коротко, что они не эгоистки.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i07:audio",
-          "transcript": "It's accurate."
+          "transcript": "They're not selfish."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's accurate.",
+        "targetPhrase": "They're not selfish.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,11 +520,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Клуб продолжает устраивать прогулки. На «Is it active?» дополните короткое «да»",
+      "prompt": "Мама спросила: «Is he stubborn?» Мальчик снова стоит у двери и не идёт. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i08:r1",
@@ -412,14 +541,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Клуб продолжает устраивать прогулки. На «Is it active?» дополните короткое «да»",
+      "accessibilityLabel": "Мама спросила: «Is he stubborn?» Мальчик снова стоит у двери и не идёт. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Клуб продолжает устраивать прогулки. На «Is it active?» дополните короткое «да»",
-          "uk": "Клуб продовжує влаштовувати прогулянки. На «Is it active?» доповніть коротку відповідь «так»"
+          "ru": "Мама спросила: «Is he stubborn?» Мальчик снова стоит у двери и не идёт. Дополните короткое «да»",
+          "uk": "Мама спитала: «Is he stubborn?» Хлопчик знову стоїть біля дверей і не йде. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "Yes, it ___.",
+        "gappedTargetPhrase": "Yes, he ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-41:i08:r1",
@@ -434,24 +563,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Клуб продолжает устраивать прогулки. На «Is it active?» дополните короткое «да»",
+        "testedDimension": "Мама спросила: «Is he stubborn?» Мальчик снова стоит у двери и не идёт. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-41:i08:r2",
             "correct": false,
-            "testedDimension": "Клуб продолжает устраивать прогулки. На «Is it active?» дополните короткое «да»",
+            "testedDimension": "Мама спросила: «Is he stubborn?» Мальчик снова стоит у двери и не идёт. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `it` нужно `is`.",
-              "uk": "З `it` потрібно `is`."
+              "ru": "С `he` нужно `is`.",
+              "uk": "З `he` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-41:i08:r3",
             "correct": false,
-            "testedDimension": "Клуб продолжает устраивать прогулки. На «Is it active?» дополните короткое «да»",
+            "testedDimension": "Мама спросила: «Is he stubborn?» Мальчик снова стоит у двери и не идёт. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Ответ — `Yes, it is`.",
-              "uk": "Відповідь — `Yes, it is`."
+              "ru": "Ответ — `Yes, he is`.",
+              "uk": "Відповідь — `Yes, he is`."
             }
           }
         ]
@@ -459,52 +588,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-41:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-41:word:naughty",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о клубе",
+      "prompt": "Карточка слова — naughty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-41:word:naughty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — naughty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-41:word:naughty:audio",
+          "transcript": "naughty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-41:word:naughty:r1",
+            "targetText": "naughty",
+            "meaningByLocale": {
+              "ru": "непослушный, озорной, о ребёнке или щенке. He is naughty — «Он шалит». О мальчике, щенке, котёнке.",
+              "uk": "неслухняний, пустотливий, про дитину чи щеня. He is naughty — «Він пустує». Про хлопчика, щеня, кошеня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "naughty",
+          "definitionByLocale": {
+            "ru": "непослушный, озорной, о ребёнке или щенке. He is naughty — «Он шалит». О мальчике, щенке, котёнке.",
+            "uk": "неслухняний, пустотливий, про дитину чи щеня. He is naughty — «Він пустує». Про хлопчика, щеня, кошеня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-41:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что мама говорит о собаке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i09:r1",
-          "text": "It is active."
+          "text": "He is naughty."
         },
         {
           "responseId": "en:lesson-02:session-41:i09:r2",
-          "text": "It is accurate."
+          "text": "He is gentle."
         },
         {
           "responseId": "en:lesson-02:session-41:i09:r3",
-          "text": "It is relevant."
+          "text": "He is stubborn."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о клубе",
+      "accessibilityLabel": "Послушайте, что мама говорит о собаке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i09:audio",
-          "transcript": "It is active."
+          "transcript": "He is naughty."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-41:i09:r1",
-            "targetText": "It is active.",
+            "targetText": "He is naughty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-41:i09:r2",
-            "targetText": "It is accurate.",
+            "targetText": "He is gentle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-41:i09:r3",
-            "targetText": "It is relevant.",
+            "targetText": "He is stubborn.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +685,19 @@
           {
             "responseId": "en:lesson-02:session-41:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о клубе",
+            "testedDimension": "Послушайте, что мама говорит о собаке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `active`, а в этом варианте — `accurate`.",
-              "uk": "У записі останнє слово — `active`, а в цьому варіанті — `accurate`."
+              "ru": "В записи последнее слово — `naughty`, а в этом варианте — `gentle`.",
+              "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `gentle`."
             }
           },
           {
             "responseId": "en:lesson-02:session-41:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о клубе",
+            "testedDimension": "Послушайте, что мама говорит о собаке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `active`, а в этом варианте — `relevant`.",
-              "uk": "У записі останнє слово — `active`, а в цьому варіанті — `relevant`."
+              "ru": "В записи последнее слово — `naughty`, а в этом варианте — `stubborn`.",
+              "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `stubborn`."
             }
           }
         ],
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -550,48 +722,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-41:i10:p1",
-            "target": "honest",
+            "target": "naughty",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "непослушный",
+              "uk": "неслухняний"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i10:p2",
-            "target": "relevant",
+            "target": "selfish",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "такий, що стосується теми"
+              "ru": "эгоистичный",
+              "uk": "егоїстичний"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i10:p3",
-            "target": "accurate",
+            "target": "gentle",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "ласковый",
+              "uk": "лагідний"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i10:p4",
-            "target": "active",
+            "target": "polite",
             "meaningByLocale": {
-              "ru": "действующий",
-              "uk": "діючий"
+              "ru": "вежливый",
+              "uk": "ввічливий"
             }
           }
         ],
         "leftColumn": [
-          "honest",
-          "relevant",
-          "accurate",
-          "active"
+          "naughty",
+          "selfish",
+          "gentle",
+          "polite"
         ],
         "rightColumn": [
-          "честный",
-          "относящийся к теме",
-          "точный",
-          "действующий"
+          "непослушный",
+          "эгоистичный",
+          "ласковый",
+          "вежливый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,30 +781,30 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу о сведениях",
+      "prompt": "Послушайте, что мама говорит о близнецах, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу о сведениях",
+      "accessibilityLabel": "Послушайте, что мама говорит о близнецах, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i11:audio",
-          "transcript": "They are not accurate."
+          "transcript": "They are not stubborn."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not accurate.",
+        "hiddenTargetPhrase": "They are not stubborn.",
         "orderedTokens": [
           "They",
           "are",
           "not",
-          "accurate"
+          "stubborn"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -641,10 +813,10 @@
           {
             "responseId": "en:lesson-02:session-41:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу о сведениях",
+            "testedDimension": "Послушайте, что мама говорит о близнецах, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not accurate.`",
-              "uk": "тут потрібно `are` — `They are not accurate.`"
+              "ru": "здесь нужно `are` — `They are not stubborn.`",
+              "uk": "тут потрібно `are` — `They are not stubborn.`"
             }
           }
         ],
@@ -657,38 +829,38 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы ещё не знакомы с Олегом. Спросите Анну, честный ли он",
+      "prompt": "Мама говорит, что в доме сегодня натворили дел: подушка порвана, а шторы стянуты. Спросите её, кто непослушный.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы ещё не знакомы с Олегом. Спросите Анну, честный ли он",
+      "accessibilityLabel": "Мама говорит, что в доме сегодня натворили дел: подушка порвана, а шторы стянуты. Спросите её, кто непослушный.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is he honest?",
+        "targetPhrase": "Who is naughty?",
         "localizedMeaning": {
-          "ru": "Вы ещё не знакомы с Олегом. Спросите Анну, честный ли он",
-          "uk": "Ви ще не знайомі з Олегом. Запитайте Анну, чи він чесний"
+          "ru": "Мама говорит, что в доме сегодня натворили дел: подушка порвана, а шторы стянуты. Спросите её, кто непослушный.",
+          "uk": "Мама каже, що в домі сьогодні накоїли лиха: подушка порвана, а штори стягнуті. Запитайте її, хто неслухняний."
         },
         "orderedTokens": [
-          "Is",
-          "he",
-          "honest"
+          "Who",
+          "is",
+          "naughty"
         ],
         "authoredDistractorTokens": [
-          "Are"
+          "Where"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-41:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы ещё не знакомы с Олегом. Спросите Анну, честный ли он",
+            "testedDimension": "Мама говорит, что в доме сегодня натворили дел: подушка порвана, а шторы стянуты. Спросите её, кто непослушный.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is he honest?`",
-              "uk": "тут потрібно `Is` — `Is he honest?`"
+              "ru": "здесь нужно `Who` — `Who is naughty?`",
+              "uk": "тут потрібно `Who` — `Who is naughty?`"
             }
           }
         ],
@@ -701,25 +873,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Клуб регулярно собирается на прогулки. Коротко сообщите, что он действует",
+      "prompt": "Щенок схватил вашу перчатку и убежал. Скажите коротко, что он непослушный.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i13:audio"
       ],
-      "accessibilityLabel": "Клуб регулярно собирается на прогулки. Коротко сообщите, что он действует",
+      "accessibilityLabel": "Щенок схватил вашу перчатку и убежал. Скажите коротко, что он непослушный.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i13:audio",
-          "transcript": "It's active."
+          "transcript": "He's naughty."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's active.",
+        "targetPhrase": "He's naughty.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +906,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На старой карте расстояние до парка указано неверно. Скажите, что карта неточная",
+      "prompt": "Мама спрашивает про старшего мальчика. Он отдал вам свой стул. Скажите, что он не эгоист",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i14:r1",
@@ -755,14 +927,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На старой карте расстояние до парка указано неверно. Скажите, что карта неточная",
+      "accessibilityLabel": "Мама спрашивает про старшего мальчика. Он отдал вам свой стул. Скажите, что он не эгоист",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "На старой карте расстояние до парка указано неверно. Скажите, что карта неточная",
-          "uk": "На старій карті відстань до парку вказано неправильно. Скажіть, що карта неточна"
+          "ru": "Мама спрашивает про старшего мальчика. Он отдал вам свой стул. Скажите, что он не эгоист",
+          "uk": "Мама питає про старшого хлопчика. Він віддав вам свій стілець. Скажіть, що він не егоїст"
         },
-        "gappedTargetPhrase": "It ___ not accurate.",
+        "gappedTargetPhrase": "He ___ not selfish.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-41:i14:r1",
@@ -777,24 +949,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "На старой карте расстояние до парка указано неверно. Скажите, что карта неточная",
+        "testedDimension": "Мама спрашивает про старшего мальчика. Он отдал вам свой стул. Скажите, что он не эгоист",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-41:i14:r2",
             "correct": false,
-            "testedDimension": "На старой карте расстояние до парка указано неверно. Скажите, что карта неточная",
+            "testedDimension": "Мама спрашивает про старшего мальчика. Он отдал вам свой стул. Скажите, что он не эгоист",
             "feedbackByLocale": {
-              "ru": "С `It` нужно `is`.",
-              "uk": "З `It` потрібно `is`."
+              "ru": "С `He` нужно `is`.",
+              "uk": "З `He` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-41:i14:r3",
             "correct": false,
-            "testedDimension": "На старой карте расстояние до парка указано неверно. Скажите, что карта неточная",
+            "testedDimension": "Мама спрашивает про старшего мальчика. Он отдал вам свой стул. Скажите, что он не эгоист",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not accurate`.",
-              "uk": "Фраза — `It is not accurate`."
+              "ru": "Фраза — `He is not selfish`.",
+              "uk": "Фраза — `He is not selfish`."
             }
           }
         ]
@@ -803,51 +975,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос мамы",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-41:i15:r1",
-          "text": "Are they accurate?"
+          "text": "Are they naughty?"
         },
         {
           "responseId": "en:lesson-02:session-41:i15:r2",
-          "text": "Are they relevant?"
+          "text": "Are they gentle?"
         },
         {
           "responseId": "en:lesson-02:session-41:i15:r3",
-          "text": "Are they official?"
+          "text": "Are they selfish?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос мамы",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i15:audio",
-          "transcript": "Are they accurate?"
+          "transcript": "Are they naughty?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-41:i15:r1",
-            "targetText": "Are they accurate?",
+            "targetText": "Are they naughty?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-41:i15:r2",
-            "targetText": "Are they relevant?",
+            "targetText": "Are they gentle?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-41:i15:r3",
-            "targetText": "Are they official?",
+            "targetText": "Are they selfish?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1028,19 @@
           {
             "responseId": "en:lesson-02:session-41:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос мамы",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `relevant`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `relevant`."
+              "ru": "В записи последнее слово — `naughty`, а в этом варианте — `gentle`.",
+              "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `gentle`."
             }
           },
           {
             "responseId": "en:lesson-02:session-41:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос мамы",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `naughty`, а в этом варианте — `selfish`.",
+              "uk": "У записі останнє слово — `naughty`, а в цьому варіанті — `selfish`."
             }
           }
         ],
@@ -879,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1065,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-41:i16:p1",
-            "target": "active",
+            "target": "stubborn",
             "meaningByLocale": {
-              "ru": "действующий",
-              "uk": "діючий"
+              "ru": "упрямый",
+              "uk": "впертий"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i16:p2",
-            "target": "accurate",
+            "target": "naughty",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "непослушный",
+              "uk": "неслухняний"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i16:p3",
-            "target": "relevant",
+            "target": "selfish",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "такий, що стосується теми"
+              "ru": "эгоистичный",
+              "uk": "егоїстичний"
             }
           },
           {
             "pairId": "en:lesson-02:session-41:i16:p4",
-            "target": "honest",
+            "target": "polite",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "вежливый",
+              "uk": "ввічливий"
             }
           }
         ],
         "leftColumn": [
-          "active",
-          "accurate",
-          "relevant",
-          "honest"
+          "stubborn",
+          "naughty",
+          "selfish",
+          "polite"
         ],
         "rightColumn": [
-          "действующий",
-          "точный",
-          "относящийся к теме",
-          "честный"
+          "упрямый",
+          "непослушный",
+          "эгоистичный",
+          "вежливый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1124,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-41:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег прислал новую карту маршрута. Спросите, точная ли она",
+      "prompt": "Вы встретили хозяина собаки на лестнице. Спросите его, ласковый ли пёс.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i17:audio"
       ],
-      "accessibilityLabel": "Олег прислал новую карту маршрута. Спросите, точная ли она",
+      "accessibilityLabel": "Вы встретили хозяина собаки на лестнице. Спросите его, ласковый ли пёс.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-41:i17:audio",
-          "transcript": "Is it accurate?"
+          "transcript": "Is he gentle?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it accurate?",
+        "targetPhrase": "Is he gentle?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cd4484e123825b64d2286232597f1740f8f8df5205f77b66ea9d0df536b12872"
+  "learnerFingerprint": "9ce61253833a15ef72f210eb950146df66ab532cc22c6dd838cb3ff2a39a807f"
 }

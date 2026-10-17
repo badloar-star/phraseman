@@ -5,9 +5,19 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-36:word:grumpy",
+    "correctText": "grumpy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-36:i02",
-    "correctText": "He is sleepy.",
+    "correctText": "He is grumpy.",
     "correctResponseId": "en:lesson-01:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:word:ahead",
+    "correctText": "ahead",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-36:i03",
@@ -16,12 +26,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i04",
-    "correctText": "en:lesson-01:session-36:i04:p1=sleepy\nen:lesson-01:session-36:i04:p2=correct\nen:lesson-01:session-36:i04:p3=certain\nen:lesson-01:session-36:i04:p4=serious",
+    "correctText": "en:lesson-01:session-36:i04:p1=competitive\nen:lesson-01:session-36:i04:p2=ahead\nen:lesson-01:session-36:i04:p3=hopeless\nen:lesson-01:session-36:i04:p4=grumpy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:word:competitive",
+    "correctText": "competitive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-36:i05",
-    "correctText": "She's sleepy.",
+    "correctText": "She's competitive.",
     "correctResponseId": null
   },
   {
@@ -35,13 +50,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-36:word:hopeless",
+    "correctText": "hopeless",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-36:i08",
     "correctText": "correct",
     "correctResponseId": "en:lesson-01:session-36:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-36:i09",
-    "correctText": "I am certain.",
+    "correctText": "It's hopeless.",
     "correctResponseId": "en:lesson-01:session-36:i09:r1"
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i11",
-    "correctText": "They are sleepy.",
+    "correctText": "We are ahead.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i13",
-    "correctText": "I am certain.",
+    "correctText": "He's grumpy.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i16",
-    "correctText": "en:lesson-01:session-36:i16:p1=serious\nen:lesson-01:session-36:i16:p2=certain\nen:lesson-01:session-36:i16:p3=correct\nen:lesson-01:session-36:i16:p4=sleepy",
+    "correctText": "en:lesson-01:session-36:i16:p1=grumpy\nen:lesson-01:session-36:i16:p2=competitive\nen:lesson-01:session-36:i16:p3=correct\nen:lesson-01:session-36:i16:p4=sleepy",
     "correctResponseId": null
   },
   {

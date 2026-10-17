@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-14:intro1:r2": {
-          "ru": "Это «Неочевидно». Здесь всё легко понять.",
-          "uk": "Це «Неочевидно». Тут усе легко зрозуміти."
+          "ru": "Это «Неочевидно». А пластик виден сразу: It's obvious.",
+          "uk": "Це «Неочевидно». А пластик видно одразу: It's obvious."
         },
         "en:lesson-02:session-14:intro1:r3": {
-          "ru": "Речь об одном обстоятельстве — лимон искусственный: `It's obvious`.",
-          "uk": "Йдеться про одну обставину — лимон штучний: `It's obvious`."
+          "ru": "Речь об одном лимоне, поэтому It's.",
+          "uk": "Ідеться про один лимон, тому It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-14:intro2:r2": {
-          "ru": "С `it` нужно `is`: `Is it obvious?`.",
-          "uk": "З `it` потрібно `is`: `Is it obvious?`."
+          "ru": "Это утверждение «Оно грязное». Чтобы спросить, ставим Is вперёд: Is it dirty?",
+          "uk": "Це твердження «Воно брудне». Щоб запитати, ставимо Is наперед: Is it dirty?"
         },
         "en:lesson-02:session-14:intro2:r3": {
-          "ru": "После `Is` идёт `it`, затем `obvious`.",
-          "uk": "Після `Is` йде `it`, потім `obvious`."
+          "ru": "Со словом it нужно is: Is it dirty?",
+          "uk": "Зі словом it потрібно is: Is it dirty?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-14:intro3:r2": {
-          "ru": "Это «Очевидно». Здесь посетителям непонятно, нужен `not`.",
-          "uk": "Це «Очевидно». Тут відвідувачам незрозуміло, потрібно `not`."
+          "ru": "Ручек две, поэтому They are.",
+          "uk": "Ручок дві, тому They are."
         },
         "en:lesson-02:session-14:intro3:r3": {
-          "ru": "После `It` нужно `is`: `It is not obvious`.",
-          "uk": "Після `It` потрібно `is`: `It is not obvious`."
+          "ru": "Нужно are: They are shiny.",
+          "uk": "Потрібно are: They are shiny."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d827e8a102f6d2d1ec7074453f4a8efe9180a01ff2fecec2e841d0b44fa61515"
+  "auxiliaryFingerprint": "4fdbdcd84866a8cb9fbb5adf261d137fcff9a254dea6dea102b48930c2562b26"
 }

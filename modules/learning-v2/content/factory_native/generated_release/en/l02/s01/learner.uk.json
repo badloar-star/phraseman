@@ -49,8 +49,51 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-01:i02",
+      "interactionId": "en:lesson-02:session-01:word:interested",
       "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — interested",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:word:interested:audio"
+      ],
+      "accessibilityLabel": "Картка слова — interested",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:word:interested:audio",
+          "transcript": "interested"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:word:interested:r1",
+            "targetText": "interested",
+            "meaningByLocale": {
+              "ru": "заинтересован, интересно. I am interested — «Мне интересно». I am not interested — «Мне неинтересно».",
+              "uk": "зацікавлений, цікаво. I am interested — «Мені цікаво». I am not interested — «Мені нецікаво»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interested",
+          "definitionByLocale": {
+            "ru": "заинтересован, интересно. I am interested — «Мне интересно». I am not interested — «Мне неинтересно».",
+            "uk": "зацікавлений, цікаво. I am interested — «Мені цікаво». I am not interested — «Мені нецікаво»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i02",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -126,11 +169,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вам обом незручно сидіти. Доповніть фразу",
+      "prompt": "Вам обом незручно сидіти в тісному автобусі. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-01:i03:r1",
@@ -147,12 +190,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вам обом незручно сидіти. Доповніть фразу",
+      "accessibilityLabel": "Вам обом незручно сидіти в тісному автобусі. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вам обоим неудобно сидеть. Дополните фразу",
-          "uk": "Вам обом незручно сидіти. Доповніть фразу"
+          "ru": "Вам обоим неудобно сидеть в тесном автобусе. Дополните фразу",
+          "uk": "Вам обом незручно сидіти в тісному автобусі. Доповніть фразу"
         },
         "gappedTargetPhrase": "We ___ not comfortable.",
         "gapOptions": [
@@ -169,12 +212,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вам обом незручно сидіти. Доповніть фразу",
+        "testedDimension": "Вам обом незручно сидіти в тісному автобусі. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-01:i03:r2",
             "correct": false,
-            "testedDimension": "Вам обом незручно сидіти. Доповніть фразу",
+            "testedDimension": "Вам обом незручно сидіти в тісному автобусі. Доповніть фразу",
             "feedbackByLocale": {
               "ru": "После `We` нужно `are`, затем `not`.",
               "uk": "Після `We` потрібно `are`, потім `not`."
@@ -183,7 +226,7 @@
           {
             "responseId": "en:lesson-02:session-01:i03:r3",
             "correct": false,
-            "testedDimension": "Вам обом незручно сидіти. Доповніть фразу",
+            "testedDimension": "Вам обом незручно сидіти в тісному автобусі. Доповніть фразу",
             "feedbackByLocale": {
               "ru": "Про нас — `We are not`.",
               "uk": "Про нас — `We are not`."
@@ -195,62 +238,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-01:i04:p1",
-            "target": "sure",
-            "meaningByLocale": {
-              "ru": "уверенный",
-              "uk": "впевнений"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-01:i04:p2",
             "target": "interested",
             "meaningByLocale": {
-              "ru": "заинтересованный",
+              "ru": "заинтересован",
               "uk": "зацікавлений"
             }
           },
           {
-            "pairId": "en:lesson-02:session-01:i04:p3",
-            "target": "comfortable",
+            "pairId": "en:lesson-02:session-01:i04:p2",
+            "target": "included",
             "meaningByLocale": {
-              "ru": "чувствует себя удобно",
-              "uk": "почувається зручно"
+              "ru": "входит в цену",
+              "uk": "входить у ціну"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-01:i04:p3",
+            "target": "far",
+            "meaningByLocale": {
+              "ru": "далеко",
+              "uk": "далеко"
             }
           },
           {
             "pairId": "en:lesson-02:session-01:i04:p4",
-            "target": "ready",
+            "target": "keen",
             "meaningByLocale": {
-              "ru": "готовый",
-              "uk": "готовий"
+              "ru": "горит желанием",
+              "uk": "палко бажає"
             }
           }
         ],
         "leftColumn": [
-          "sure",
           "interested",
-          "comfortable",
-          "ready"
+          "included",
+          "far",
+          "keen"
         ],
         "rightColumn": [
-          "впевнений",
           "зацікавлений",
-          "почувається зручно",
-          "готовий"
+          "входить у ціну",
+          "далеко",
+          "палко бажає"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +310,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-01:word:far",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — far",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:word:far:audio"
+      ],
+      "accessibilityLabel": "Картка слова — far",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:word:far:audio",
+          "transcript": "far"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:word:far:r1",
+            "targetText": "far",
+            "meaningByLocale": {
+              "ru": "далеко. It is not far — «Это недалеко».",
+              "uk": "далеко. It is not far — «Це недалеко»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "far",
+          "definitionByLocale": {
+            "ru": "далеко. It is not far — «Это недалеко».",
+            "uk": "далеко. It is not far — «Це недалеко»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-01:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -283,15 +369,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-01:i05:audio",
-          "transcript": "I am not sure."
+          "transcript": "It is not far."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I am not sure.",
+        "hiddenTargetPhrase": "It is not far.",
         "orderedTokens": [
-          "I",
-          "am",
+          "It",
+          "is",
           "not",
-          "sure"
+          "far"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -302,8 +388,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am not sure.`",
-              "uk": "тут потрібно `am` — `I am not sure.`"
+              "ru": "здесь нужно `is` — `It is not far.`",
+              "uk": "тут потрібно `is` — `It is not far.`"
             }
           }
         ],
@@ -315,28 +401,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-01:word:keen",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:word:keen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:word:keen:audio",
+          "transcript": "keen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:word:keen:r1",
+            "targetText": "keen",
+            "meaningByLocale": {
+              "ru": "горит желанием, очень хочет. He is keen — «Ему очень хочется». He is not keen — «Ему не очень хочется».",
+              "uk": "палко бажає, дуже хоче. He is keen — «Йому дуже хочеться». He is not keen — «Йому не дуже хочеться»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keen",
+          "definitionByLocale": {
+            "ru": "горит желанием, очень хочет. He is keen — «Ему очень хочется». He is not keen — «Ему не очень хочется».",
+            "uk": "палко бажає, дуже хоче. He is keen — «Йому дуже хочеться». He is not keen — «Йому не дуже хочеться»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-01:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сестру пропозиція не приваблює. Скажіть, що їй нецікаво",
+      "prompt": "Брат позіхає, коли чує про музей. Скажіть, що йому не дуже хочеться",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сестру пропозиція не приваблює. Скажіть, що їй нецікаво",
+      "accessibilityLabel": "Брат позіхає, коли чує про музей. Скажіть, що йому не дуже хочеться",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is not interested.",
+        "targetPhrase": "He is not keen.",
         "localizedMeaning": {
-          "ru": "Сестру предложение не привлекает. Скажите, что ей неинтересно",
-          "uk": "Сестру пропозиція не приваблює. Скажіть, що їй нецікаво"
+          "ru": "Брат зевает, когда слышит про музей. Скажите, что ему не очень хочется",
+          "uk": "Брат позіхає, коли чує про музей. Скажіть, що йому не дуже хочеться"
         },
         "orderedTokens": [
-          "She",
+          "He",
           "is",
           "not",
-          "interested"
+          "keen"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -345,10 +474,10 @@
           {
             "responseId": "en:lesson-02:session-01:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Сестру пропозиція не приваблює. Скажіть, що їй нецікаво",
+            "testedDimension": "Брат позіхає, коли чує про музей. Скажіть, що йому не дуже хочеться",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is not interested.`",
-              "uk": "тут потрібно `is` — `She is not interested.`"
+              "ru": "здесь нужно `is` — `He is not keen.`",
+              "uk": "тут потрібно `is` — `He is not keen.`"
             }
           }
         ],
@@ -361,7 +490,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -394,7 +523,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -462,52 +591,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-01:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-01:word:included",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про друга",
+      "prompt": "Картка слова — included",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:word:included:audio"
+      ],
+      "accessibilityLabel": "Картка слова — included",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:word:included:audio",
+          "transcript": "included"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:word:included:r1",
+            "targetText": "included",
+            "meaningByLocale": {
+              "ru": "входит в цену, включено. It is included — «Это входит в цену». It is not included — «Не входит».",
+              "uk": "входить у ціну, включено. It is included — «Це входить у ціну». It is not included — «Не входить»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "included",
+          "definitionByLocale": {
+            "ru": "входит в цену, включено. It is included — «Это входит в цену». It is not included — «Не входит».",
+            "uk": "входить у ціну, включено. It is included — «Це входить у ціну». It is not included — «Не входить»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про квитки до музею",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-01:i09:r1",
-          "text": "He is not here."
+          "text": "It is not included."
         },
         {
           "responseId": "en:lesson-02:session-01:i09:r2",
-          "text": "He is not ready."
+          "text": "It is not far."
         },
         {
           "responseId": "en:lesson-02:session-01:i09:r3",
-          "text": "He is not happy."
+          "text": "It is included."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-01:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про друга",
+      "accessibilityLabel": "Послухайте фразу про квитки до музею",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-01:i09:audio",
-          "transcript": "He is not here."
+          "transcript": "It is not included."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-01:i09:r1",
-            "targetText": "He is not here.",
+            "targetText": "It is not included.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-01:i09:r2",
-            "targetText": "He is not ready.",
+            "targetText": "It is not far.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-01:i09:r3",
-            "targetText": "He is not happy.",
+            "targetText": "It is included.",
             "meaningByLocale": null
           }
         ],
@@ -516,19 +688,19 @@
           {
             "responseId": "en:lesson-02:session-01:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про друга",
+            "testedDimension": "Послухайте фразу про квитки до музею",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `ready`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `ready`."
+              "ru": "В записи последнее слово — `included`, а в этом варианте — `far`.",
+              "uk": "У записі останнє слово — `included`, а в цьому варіанті — `far`."
             }
           },
           {
             "responseId": "en:lesson-02:session-01:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про друга",
+            "testedDimension": "Послухайте фразу про квитки до музею",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `happy`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `happy`."
+              "ru": "В записи есть `not`, а в этом варианте его нет.",
+              "uk": "У записі є `not`, а в цьому варіанті його немає."
             }
           }
         ],
@@ -539,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -553,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-01:i10:p1",
-            "target": "responsible",
+            "target": "sure",
             "meaningByLocale": {
-              "ru": "ответственный",
-              "uk": "відповідальний"
+              "ru": "уверенный",
+              "uk": "упевнений"
             }
           },
           {
             "pairId": "en:lesson-02:session-01:i10:p2",
-            "target": "independent",
+            "target": "comfortable",
             "meaningByLocale": {
-              "ru": "независимый",
-              "uk": "незалежний"
+              "ru": "удобно",
+              "uk": "зручно"
             }
           },
           {
             "pairId": "en:lesson-02:session-01:i10:p3",
-            "target": "dependent",
+            "target": "ready",
             "meaningByLocale": {
-              "ru": "зависимый",
-              "uk": "залежний"
+              "ru": "готов",
+              "uk": "готовий"
             }
           },
           {
             "pairId": "en:lesson-02:session-01:i10:p4",
-            "target": "cheap",
+            "target": "happy",
             "meaningByLocale": {
-              "ru": "недорогой",
-              "uk": "недорогий"
+              "ru": "рад",
+              "uk": "радий"
             }
           }
         ],
         "leftColumn": [
-          "responsible",
-          "independent",
-          "dependent",
-          "cheap"
+          "sure",
+          "comfortable",
+          "ready",
+          "happy"
         ],
         "rightColumn": [
-          "відповідальний",
-          "незалежний",
-          "залежний",
-          "недорогий"
+          "упевнений",
+          "зручно",
+          "готовий",
+          "радий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,8 +784,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть оцінку ціни",
@@ -660,7 +832,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -705,17 +877,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вас просять підтвердити час зустрічі, але ви сумніваєтеся. Скажіть, що не впевнені",
+      "prompt": "Гід просить вас підтвердити час збору, але ви сумніваєтеся. Скажіть, що не впевнені",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-01:i13:audio"
       ],
-      "accessibilityLabel": "Вас просять підтвердити час зустрічі, але ви сумніваєтеся. Скажіть, що не впевнені",
+      "accessibilityLabel": "Гід просить вас підтвердити час збору, але ви сумніваєтеся. Скажіть, що не впевнені",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -738,11 +910,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сестрі нецікава запропонована екскурсія. Доповніть фразу",
+      "prompt": "Сестрі запропонована екскурсія нецікава. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-01:i14:r1",
@@ -759,12 +931,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сестрі нецікава запропонована екскурсія. Доповніть фразу",
+      "accessibilityLabel": "Сестрі запропонована екскурсія нецікава. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сестре неинтересна предложенная экскурсия. Дополните фразу",
-          "uk": "Сестрі нецікава запропонована екскурсія. Доповніть фразу"
+          "ru": "Сестре предложенная экскурсия неинтересна. Дополните фразу",
+          "uk": "Сестрі запропонована екскурсія нецікава. Доповніть фразу"
         },
         "gappedTargetPhrase": "She ___ not interested.",
         "gapOptions": [
@@ -781,12 +953,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Сестрі нецікава запропонована екскурсія. Доповніть фразу",
+        "testedDimension": "Сестрі запропонована екскурсія нецікава. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-01:i14:r2",
             "correct": false,
-            "testedDimension": "Сестрі нецікава запропонована екскурсія. Доповніть фразу",
+            "testedDimension": "Сестрі запропонована екскурсія нецікава. Доповніть фразу",
             "feedbackByLocale": {
               "ru": "После `She` нужно `is`, затем `not`.",
               "uk": "Після `She` потрібно `is`, потім `not`."
@@ -795,7 +967,7 @@
           {
             "responseId": "en:lesson-02:session-01:i14:r3",
             "correct": false,
-            "testedDimension": "Сестрі нецікава запропонована екскурсія. Доповніть фразу",
+            "testedDimension": "Сестрі запропонована екскурсія нецікава. Доповніть фразу",
             "feedbackByLocale": {
               "ru": "Про сестру — `She is not`.",
               "uk": "Про сестру — `She is not`."
@@ -807,7 +979,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -823,7 +995,7 @@
         },
         {
           "responseId": "en:lesson-02:session-01:i15:r3",
-          "text": "We are not sure."
+          "text": "We are not keen."
         }
       ],
       "mediaIds": [],
@@ -851,7 +1023,7 @@
           },
           {
             "responseId": "en:lesson-02:session-01:i15:r3",
-            "targetText": "We are not sure.",
+            "targetText": "We are not keen.",
             "meaningByLocale": null
           }
         ],
@@ -871,8 +1043,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `comfortable`, а в этом варианте — `sure`.",
-              "uk": "У записі останнє слово — `comfortable`, а в цьому варіанті — `sure`."
+              "ru": "В записи последнее слово — `comfortable`, а в этом варианте — `keen`.",
+              "uk": "У записі останнє слово — `comfortable`, а в цьому варіанті — `keen`."
             }
           }
         ],
@@ -883,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-01:i16:p1",
-            "target": "sure",
+            "target": "included",
             "meaningByLocale": {
-              "ru": "уверенный",
-              "uk": "впевнений"
+              "ru": "входит в цену",
+              "uk": "входить у ціну"
             }
           },
           {
             "pairId": "en:lesson-02:session-01:i16:p2",
-            "target": "interested",
+            "target": "far",
             "meaningByLocale": {
-              "ru": "заинтересованный",
-              "uk": "зацікавлений"
+              "ru": "далеко",
+              "uk": "далеко"
             }
           },
           {
             "pairId": "en:lesson-02:session-01:i16:p3",
-            "target": "comfortable",
+            "target": "interested",
             "meaningByLocale": {
-              "ru": "чувствует себя удобно",
-              "uk": "почувається зручно"
+              "ru": "заинтересован",
+              "uk": "зацікавлений"
             }
           },
           {
             "pairId": "en:lesson-02:session-01:i16:p4",
-            "target": "fine",
+            "target": "sure",
             "meaningByLocale": {
-              "ru": "в порядке",
-              "uk": "у порядку"
+              "ru": "уверенный",
+              "uk": "упевнений"
             }
           }
         ],
         "leftColumn": [
-          "sure",
+          "included",
+          "far",
           "interested",
-          "comfortable",
-          "fine"
+          "sure"
         ],
         "rightColumn": [
-          "впевнений",
+          "входить у ціну",
+          "далеко",
           "зацікавлений",
-          "почувається зручно",
-          "у порядку"
+          "упевнений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,7 +1128,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-01:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -996,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "de1dc406b8c1a69d0835b17da574632bd2740da46c6e124f8647e44fa7c0f299"
+  "learnerFingerprint": "8a7b4a756e4cd5151f7c324e13bb30ada4101a221cb3ec9e315abbcbe11fab3f"
 }

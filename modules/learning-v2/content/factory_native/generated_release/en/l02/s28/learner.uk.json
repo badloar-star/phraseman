@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-28:i01",
+      "interactionId": "en:lesson-02:session-28:word:flexible",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flexible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-28:word:flexible:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flexible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-28:word:flexible:audio",
+          "transcript": "flexible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-28:word:flexible:r1",
+            "targetText": "flexible",
+            "meaningByLocale": {
+              "ru": "гибкий, о человеке, который легко меняет планы. I am flexible — «Мне подходит любой вариант». О времени встречи, графике, планах.",
+              "uk": "гнучкий, про людину, яка легко змінює плани. I am flexible — «Мені підходить будь-який варіант». Про час зустрічі, графік, плани."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flexible",
+          "definitionByLocale": {
+            "ru": "гибкий, о человеке, который легко меняет планы. I am flexible — «Мне подходит любой вариант». О времени встречи, графике, планах.",
+            "uk": "гнучкий, про людину, яка легко змінює плани. I am flexible — «Мені підходить будь-який варіант». Про час зустрічі, графік, плани."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +92,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
+      "prompt": "Друг пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-28:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
+      "accessibilityLabel": "Друг пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег предлагает встретиться в шесть утра. Спросите его, серьёзно ли он это",
-          "uk": "Олег пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно"
+          "ru": "Друг предлагает встретиться в шесть утра. Спросите его, серьёзно ли он это",
+          "uk": "Друг пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно"
         },
         "gappedTargetPhrase": "___ you serious?",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Олег пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
+        "testedDimension": "Друг пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-28:i03:r2",
             "correct": false,
-            "testedDimension": "Олег пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
+            "testedDimension": "Друг пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
             "feedbackByLocale": {
               "ru": "С `you` нужно `Are`.",
               "uk": "З `you` потрібно `Are`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-28:i03:r3",
             "correct": false,
-            "testedDimension": "Олег пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
+            "testedDimension": "Друг пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно",
             "feedbackByLocale": {
               "ru": "Вопрос — `Are you serious?`.",
               "uk": "Запитання — `Are you serious?`."
@@ -194,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -216,40 +259,40 @@
           },
           {
             "pairId": "en:lesson-02:session-28:i04:p2",
-            "target": "correct",
+            "target": "thick",
             "meaningByLocale": {
-              "ru": "правильный",
-              "uk": "правильний"
+              "ru": "толстый",
+              "uk": "товстий"
             }
           },
           {
             "pairId": "en:lesson-02:session-28:i04:p3",
-            "target": "certain",
+            "target": "overdue",
             "meaningByLocale": {
-              "ru": "уверенный",
-              "uk": "упевнений"
+              "ru": "просроченный",
+              "uk": "прострочений"
             }
           },
           {
             "pairId": "en:lesson-02:session-28:i04:p4",
-            "target": "serious",
+            "target": "confusing",
             "meaningByLocale": {
-              "ru": "серьёзный",
-              "uk": "серйозний"
+              "ru": "запутанный",
+              "uk": "заплутаний"
             }
           }
         ],
         "leftColumn": [
           "flexible",
-          "correct",
-          "certain",
-          "serious"
+          "thick",
+          "overdue",
+          "confusing"
         ],
         "rightColumn": [
           "гнучкий",
-          "правильний",
-          "упевнений",
-          "серйозний"
+          "товстий",
+          "прострочений",
+          "заплутаний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,7 +310,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -315,7 +358,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -358,26 +401,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-28:word:confusing",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — confusing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-28:word:confusing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — confusing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-28:word:confusing:audio",
+          "transcript": "confusing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-28:word:confusing:r1",
+            "targetText": "confusing",
+            "meaningByLocale": {
+              "ru": "запутанный, непонятный. It's confusing — «Она запутанная». О книге, инструкции, карте, правилах.",
+              "uk": "заплутаний, незрозумілий. It's confusing — «Вона заплутана». Про книжку, інструкцію, мапу, правила."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "confusing",
+          "definitionByLocale": {
+            "ru": "запутанный, непонятный. It's confusing — «Она запутанная». О книге, инструкции, карте, правилах.",
+            "uk": "заплутаний, незрозумілий. It's confusing — «Вона заплутана». Про книжку, інструкцію, мапу, правила."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-28:i07",
-      "ordinal": 10,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви точно пам’ятаєте домовленість. Коротко скажіть, що ви впевнені",
+      "prompt": "Ви прочитали перший розділ роману й заплуталися: героїв багато, імена схожі. Скажіть коротко, що він заплутаний",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-28:i07:audio"
       ],
-      "accessibilityLabel": "Ви точно пам’ятаєте домовленість. Коротко скажіть, що ви впевнені",
+      "accessibilityLabel": "Ви прочитали перший розділ роману й заплуталися: героїв багато, імена схожі. Скажіть коротко, що він заплутаний",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-28:i07:audio",
-          "transcript": "I'm certain."
+          "transcript": "It's confusing."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm certain.",
+        "targetPhrase": "It's confusing.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +478,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви справді хочете зустрітися рано. На «Are you serious?» доповніть коротку відповідь «так»",
+      "prompt": "Ви пропонуєте зустрітися о сьомій ранку, друг здивований. Він питає: «Are you serious?» Доповніть коротку відповідь «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-28:i08:r1",
@@ -413,12 +499,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви справді хочете зустрітися рано. На «Are you serious?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Ви пропонуєте зустрітися о сьомій ранку, друг здивований. Він питає: «Are you serious?» Доповніть коротку відповідь «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы действительно хотите встретиться рано. На «Are you serious?» дополните короткое «да»",
-          "uk": "Ви справді хочете зустрітися рано. На «Are you serious?» доповніть коротку відповідь «так»"
+          "ru": "Вы предлагаете встретиться в семь утра, друг удивлён. Он спрашивает: «Are you serious?» Дополните короткое «да»",
+          "uk": "Ви пропонуєте зустрітися о сьомій ранку, друг здивований. Він питає: «Are you serious?» Доповніть коротку відповідь «так»"
         },
         "gappedTargetPhrase": "Yes, I ___.",
         "gapOptions": [
@@ -435,12 +521,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Ви справді хочете зустрітися рано. На «Are you serious?» доповніть коротку відповідь «так»",
+        "testedDimension": "Ви пропонуєте зустрітися о сьомій ранку, друг здивований. Він питає: «Are you serious?» Доповніть коротку відповідь «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-28:i08:r2",
             "correct": false,
-            "testedDimension": "Ви справді хочете зустрітися рано. На «Are you serious?» доповніть коротку відповідь «так»",
+            "testedDimension": "Ви пропонуєте зустрітися о сьомій ранку, друг здивований. Він питає: «Are you serious?» Доповніть коротку відповідь «так»",
             "feedbackByLocale": {
               "ru": "Отвечаете о себе: `I am`.",
               "uk": "Відповідаєте про себе: `I am`."
@@ -449,7 +535,7 @@
           {
             "responseId": "en:lesson-02:session-28:i08:r3",
             "correct": false,
-            "testedDimension": "Ви справді хочете зустрітися рано. На «Are you serious?» доповніть коротку відповідь «так»",
+            "testedDimension": "Ви пропонуєте зустрітися о сьомій ранку, друг здивований. Він питає: «Are you serious?» Доповніть коротку відповідь «так»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, I am`.",
               "uk": "Відповідь — `Yes, I am`."
@@ -460,52 +546,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-28:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-28:word:thick",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Анну",
+      "prompt": "Картка слова — thick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-28:word:thick:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-28:word:thick:audio",
+          "transcript": "thick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-28:word:thick:r1",
+            "targetText": "thick",
+            "meaningByLocale": {
+              "ru": "толстый. Is it thick? — «Она толстая?» О книге, стене, свитере, одеяле.",
+              "uk": "товстий. Is it thick? — «Вона товста?» Про книжку, стіну, светр, ковдру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thick",
+          "definitionByLocale": {
+            "ru": "толстый. Is it thick? — «Она толстая?» О книге, стене, свитере, одеяле.",
+            "uk": "товстий. Is it thick? — «Вона товста?» Про книжку, стіну, светр, ковдру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що подруга каже про новий роман",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-28:i09:r1",
-          "text": "She is innocent."
+          "text": "It is thick."
         },
         {
           "responseId": "en:lesson-02:session-28:i09:r2",
-          "text": "She is certain."
+          "text": "It is correct."
         },
         {
           "responseId": "en:lesson-02:session-28:i09:r3",
-          "text": "She is flexible."
+          "text": "It is serious."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-28:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Анну",
+      "accessibilityLabel": "Послухайте, що подруга каже про новий роман",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-28:i09:audio",
-          "transcript": "She is innocent."
+          "transcript": "It is thick."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-28:i09:r1",
-            "targetText": "She is innocent.",
+            "targetText": "It is thick.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-28:i09:r2",
-            "targetText": "She is certain.",
+            "targetText": "It is correct.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-28:i09:r3",
-            "targetText": "She is flexible.",
+            "targetText": "It is serious.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +643,19 @@
           {
             "responseId": "en:lesson-02:session-28:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну",
+            "testedDimension": "Послухайте, що подруга каже про новий роман",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `innocent`, а в этом варианте — `certain`.",
-              "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `certain`."
+              "ru": "В записи последнее слово — `thick`, а в этом варианте — `correct`.",
+              "uk": "У записі останнє слово — `thick`, а в цьому варіанті — `correct`."
             }
           },
           {
             "responseId": "en:lesson-02:session-28:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну",
+            "testedDimension": "Послухайте, що подруга каже про новий роман",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `innocent`, а в этом варианте — `flexible`.",
-              "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `flexible`."
+              "ru": "В записи последнее слово — `thick`, а в этом варианте — `serious`.",
+              "uk": "У записі останнє слово — `thick`, а в цьому варіанті — `serious`."
             }
           }
         ],
@@ -537,7 +666,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -610,8 +739,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть запитання",
@@ -656,39 +785,82 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-28:word:overdue",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overdue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-28:word:overdue:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overdue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-28:word:overdue:audio",
+          "transcript": "overdue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-28:word:overdue:r1",
+            "targetText": "overdue",
+            "meaningByLocale": {
+              "ru": "просроченный. It's overdue — «Она просрочена». О книге из библиотеки, счёте, платеже.",
+              "uk": "прострочений. It's overdue — «Вона прострочена». Про книжку з бібліотеки, рахунок, платіж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overdue",
+          "definitionByLocale": {
+            "ru": "просроченный. It's overdue — «Она просрочена». О книге из библиотеки, счёте, платеже.",
+            "uk": "прострочений. It's overdue — «Вона прострочена». Про книжку з бібліотеки, рахунок, платіж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-28:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Неправильну дату написав Олег, Анна її не змінювала. Скажіть повною фразою, що вона невинна",
+      "prompt": "Подруга теж узяла в бібліотеці дві книжки, і термін минув учора. Скажіть повною фразою, що вони прострочені",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Неправильну дату написав Олег, Анна її не змінювала. Скажіть повною фразою, що вона невинна",
+      "accessibilityLabel": "Подруга теж узяла в бібліотеці дві книжки, і термін минув учора. Скажіть повною фразою, що вони прострочені",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is innocent.",
+        "targetPhrase": "They are overdue.",
         "localizedMeaning": {
-          "ru": "Неверную дату написал Олег, Анна её не меняла. Скажите полной фразой, что она невиновна",
-          "uk": "Неправильну дату написав Олег, Анна її не змінювала. Скажіть повною фразою, що вона невинна"
+          "ru": "Подруга тоже взяла в библиотеке две книги, и срок вышел вчера. Скажите полной фразой, что они просрочены",
+          "uk": "Подруга теж узяла в бібліотеці дві книжки, і термін минув учора. Скажіть повною фразою, що вони прострочені"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "innocent"
+          "They",
+          "are",
+          "overdue"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-28:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Неправильну дату написав Олег, Анна її не змінювала. Скажіть повною фразою, що вона невинна",
+            "testedDimension": "Подруга теж узяла в бібліотеці дві книжки, і термін минув учора. Скажіть повною фразою, що вони прострочені",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is innocent.`",
-              "uk": "тут потрібно `is` — `She is innocent.`"
+              "ru": "здесь нужно `are` — `They are overdue.`",
+              "uk": "тут потрібно `are` — `They are overdue.`"
             }
           }
         ],
@@ -701,17 +873,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви з Анною можете обрати будь-який із двох днів. Коротко скажіть за двох, що ви гнучко ставитеся до планів",
+      "prompt": "Ви ходите до клубу разом із сестрою, і вам обом підходить будь-який день. Коротко скажіть за двох, що ви гнучко ставитеся до планів",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-28:i13:audio"
       ],
-      "accessibilityLabel": "Ви з Анною можете обрати будь-який із двох днів. Коротко скажіть за двох, що ви гнучко ставитеся до планів",
+      "accessibilityLabel": "Ви ходите до клубу разом із сестрою, і вам обом підходить будь-який день. Коротко скажіть за двох, що ви гнучко ставитеся до планів",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -734,8 +906,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "У повідомленні помилково стоїть інша дата. Доповніть фразу про те, що це неправильно",
@@ -803,7 +975,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -879,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-28:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви хочете перенести зустріч і звертаєтеся до Олега. Запитайте, чи готовий він гнучко поставитися до планів",
+      "prompt": "Ви хочете перенести зустріч і звертаєтеся до друга. Запитайте, чи готовий він гнучко поставитися до планів",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-28:i17:audio"
       ],
-      "accessibilityLabel": "Ви хочете перенести зустріч і звертаєтеся до Олега. Запитайте, чи готовий він гнучко поставитися до планів",
+      "accessibilityLabel": "Ви хочете перенести зустріч і звертаєтеся до друга. Запитайте, чи готовий він гнучко поставитися до планів",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "79151dab5b1a520db7a783a98925c22964cb6ae07eb25b6785b55748c07755f2"
+  "learnerFingerprint": "e5f41e75f512541c1600f2b702c581ebac8bd95ff7d1447e36a0011f9ca7a440"
 }

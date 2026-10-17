@@ -4,94 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-02:word:sad",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Новое слово",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-02:word:sad:audio"
-      ],
-      "accessibilityLabel": "Новое слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-02:word:sad:audio",
-          "transcript": "sad"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-02:word:sad:r1",
-            "targetText": "sad",
-            "meaningByLocale": {
-              "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
-              "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sad",
-          "definitionByLocale": {
-            "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
-            "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-02:word:tired",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Новое слово",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-02:word:tired:audio"
-      ],
-      "accessibilityLabel": "Новое слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-02:word:tired:audio",
-          "transcript": "tired"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-02:word:tired:r1",
-            "targetText": "tired",
-            "meaningByLocale": {
-              "ru": "«уставший»: после нагрузки вам нужен отдых.",
-              "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "tired",
-          "definitionByLocale": {
-            "ru": "«уставший»: после нагрузки вам нужен отдых.",
-            "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-02:word:busy",
-      "ordinal": 6,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -133,65 +47,22 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-02:word:late",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Новое слово",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-02:word:late:audio"
-      ],
-      "accessibilityLabel": "Новое слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-02:word:late:audio",
-          "transcript": "late"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-02:word:late:r1",
-            "targetText": "late",
-            "meaningByLocale": {
-              "ru": "«опоздавший»: вы пришли позже назначенного времени.",
-              "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "late",
-          "definitionByLocale": {
-            "ru": "«опоздавший»: вы пришли позже назначенного времени.",
-            "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-02:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Лена зовёт играть, но Том сейчас расставляет стулья и не может присоединиться",
+      "prompt": "Соберите фразу — сестра зовёт играть, но брат сейчас расставляет стулья и не может присоединиться",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Лена зовёт играть, но Том сейчас расставляет стулья и не может присоединиться",
+      "accessibilityLabel": "Соберите фразу — сестра зовёт играть, но брат сейчас расставляет стулья и не может присоединиться",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am busy.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Лена зовёт играть, но Том сейчас расставляет стулья и не может присоединиться",
-          "uk": "Складіть фразу — Лена кличе грати, але Том зараз розставляє стільці й не може приєднатися"
+          "ru": "Соберите фразу — сестра зовёт играть, но брат сейчас расставляет стулья и не может присоединиться",
+          "uk": "Складіть фразу — сестра кличе грати, але брат зараз розставляє стільці й не може приєднатися"
         },
         "orderedTokens": [
           "I",
@@ -205,10 +76,10 @@
           {
             "responseId": "en:lesson-01:session-02:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Лена зовёт играть, но Том сейчас расставляет стулья и не может присоединиться",
+            "testedDimension": "Соберите фразу — сестра зовёт играть, но брат сейчас расставляет стулья и не может присоединиться",
             "feedbackByLocale": {
-              "ru": "Том сообщает, что занят, а не что рад.",
-              "uk": "Том повідомляє, що зайнятий, а не що радий."
+              "ru": "брат сообщает, что занят, а не что рад.",
+              "uk": "брат повідомляє, що зайнятий, а не що радий."
             }
           }
         ],
@@ -220,12 +91,55 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-02:i02",
-      "ordinal": 9,
+      "interactionId": "en:lesson-01:session-02:word:sad",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте запись Тома и выберите услышанную фразу",
+      "prompt": "Новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-02:word:sad:audio"
+      ],
+      "accessibilityLabel": "Новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-02:word:sad:audio",
+          "transcript": "sad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-02:word:sad:r1",
+            "targetText": "sad",
+            "meaningByLocale": {
+              "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
+              "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sad",
+          "definitionByLocale": {
+            "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
+            "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте запись брата и выберите услышанную фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i02:r1",
@@ -244,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-02:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте запись Тома и выберите услышанную фразу",
+      "accessibilityLabel": "Послушайте запись брата и выберите услышанную фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -274,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-02:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте запись Тома и выберите услышанную фразу",
+            "testedDimension": "Послушайте запись брата и выберите услышанную фразу",
             "feedbackByLocale": {
               "ru": "В записи говорится о грусти, а не об усталости.",
               "uk": "У записі йдеться про сум, а не про втому."
@@ -283,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-02:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте запись Тома и выберите услышанную фразу",
+            "testedDimension": "Послушайте запись брата и выберите услышанную фразу",
             "feedbackByLocale": {
               "ru": "В записи говорится о грусти, а не о радости.",
               "uk": "У записі йдеться про сум, а не про радість."
@@ -296,12 +210,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-02:word:tired",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-02:word:tired:audio"
+      ],
+      "accessibilityLabel": "Новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-02:word:tired:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-02:word:tired:r1",
+            "targetText": "tired",
+            "meaningByLocale": {
+              "ru": "«уставший»: после нагрузки вам нужен отдых.",
+              "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tired",
+          "definitionByLocale": {
+            "ru": "«уставший»: после нагрузки вам нужен отдых.",
+            "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-02:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — Том закончил расставлять стулья и хочет сказать, что ему нужен отдых",
+      "prompt": "Вставьте слово — брат закончил расставлять стулья и хочет сказать, что ему нужен отдых",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i03:r1",
@@ -318,12 +275,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — Том закончил расставлять стулья и хочет сказать, что ему нужен отдых",
+      "accessibilityLabel": "Вставьте слово — брат закончил расставлять стулья и хочет сказать, что ему нужен отдых",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Том расставил стулья; теперь ему нужен отдых.",
-          "uk": "Том розставив стільці; тепер йому потрібен відпочинок."
+          "ru": "брат расставил стулья; теперь ему нужен отдых.",
+          "uk": "брат розставив стільці; тепер йому потрібен відпочинок."
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -340,24 +297,24 @@
             "text": "happy"
           }
         ],
-        "testedDimension": "Вставьте слово — Том закончил расставлять стулья и хочет сказать, что ему нужен отдых",
+        "testedDimension": "Вставьте слово — брат закончил расставлять стулья и хочет сказать, что ему нужен отдых",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-02:i03:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — Том закончил расставлять стулья и хочет сказать, что ему нужен отдых",
+            "testedDimension": "Вставьте слово — брат закончил расставлять стулья и хочет сказать, что ему нужен отдых",
             "feedbackByLocale": {
-              "ru": "Sad значит «грустный»; Том устал после работы.",
-              "uk": "Sad означає «сумний»; Том стомився після роботи."
+              "ru": "Sad значит «грустный»; брат устал после работы.",
+              "uk": "Sad означає «сумний»; брат стомився після роботи."
             }
           },
           {
             "responseId": "en:lesson-01:session-02:i03:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — Том закончил расставлять стулья и хочет сказать, что ему нужен отдых",
+            "testedDimension": "Вставьте слово — брат закончил расставлять стулья и хочет сказать, что ему нужен отдых",
             "feedbackByLocale": {
-              "ru": "Happy значит «рад»; здесь Том сообщает, что ему нужен отдых.",
-              "uk": "Happy означає «радий»; тут Том повідомляє, що йому потрібен відпочинок."
+              "ru": "Happy значит «рад»; здесь брат сообщает, что ему нужен отдых.",
+              "uk": "Happy означає «радий»; тут брат повідомляє, що йому потрібен відпочинок."
             }
           }
         ]
@@ -366,7 +323,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i04",
-      "ordinal": 11,
+      "ordinal": 10,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -439,17 +396,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте запись Лены и соберите фразу в том же порядке",
+      "prompt": "Послушайте запись сестры и соберите фразу в том же порядке",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-02:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте запись Лены и соберите фразу в том же порядке",
+      "accessibilityLabel": "Послушайте запись сестры и соберите фразу в том же порядке",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -470,7 +427,7 @@
           {
             "responseId": "en:lesson-01:session-02:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте запись Лены и соберите фразу в том же порядке",
+            "testedDimension": "Послушайте запись сестры и соберите фразу в том же порядке",
             "feedbackByLocale": {
               "ru": "В записи звучит happy, а не sad.",
               "uk": "У записі звучить happy, а не sad."
@@ -486,21 +443,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Лена спрашивает Тома о его чувствах после отмены вечера",
+      "prompt": "Соберите фразу — сестра спрашивает брата о его чувствах после отмены вечера",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Лена спрашивает Тома о его чувствах после отмены вечера",
+      "accessibilityLabel": "Соберите фразу — сестра спрашивает брата о его чувствах после отмены вечера",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am sad.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Лена спрашивает Тома о его чувствах после отмены вечера",
-          "uk": "Складіть фразу — Лена запитує Тома про його почуття після скасування вечора"
+          "ru": "Соберите фразу — сестра спрашивает брата о его чувствах после отмены вечера",
+          "uk": "Складіть фразу — сестра запитує брата про його почуття після скасування вечора"
         },
         "orderedTokens": [
           "I",
@@ -514,10 +471,10 @@
           {
             "responseId": "en:lesson-01:session-02:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Лена спрашивает Тома о его чувствах после отмены вечера",
+            "testedDimension": "Соберите фразу — сестра спрашивает брата о его чувствах после отмены вечера",
             "feedbackByLocale": {
-              "ru": "Tired значит «уставший»; Том расстроен из-за отмены вечера.",
-              "uk": "Tired означає «стомлений»; Том засмучений через скасування вечора."
+              "ru": "Tired значит «уставший»; брат расстроен из-за отмены вечера.",
+              "uk": "Tired означає «стомлений»; брат засмучений через скасування вечора."
             }
           }
         ],
@@ -530,17 +487,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Повторите за Томом фразу после подготовки зала",
+      "prompt": "Повторите за братом фразу после подготовки зала",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-02:i07:audio"
       ],
-      "accessibilityLabel": "Повторите за Томом фразу после подготовки зала",
+      "accessibilityLabel": "Повторите за братом фразу после подготовки зала",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -563,11 +520,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — Лена зовёт Тома по имени, и он подтверждает, что находится в зале",
+      "prompt": "Вставьте слово — сестра проверяет, кто пришёл, и брат подтверждает, что находится в зале",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i08:r1",
@@ -584,12 +541,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — Лена зовёт Тома по имени, и он подтверждает, что находится в зале",
+      "accessibilityLabel": "Вставьте слово — сестра проверяет, кто пришёл, и брат подтверждает, что находится в зале",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Лена перекличкой проверяет, кто уже в зале; Том отвечает, что он здесь.",
-          "uk": "Лена перекличкою перевіряє, хто вже в залі; Том відповідає, що він тут."
+          "ru": "сестра проверяет, кто уже в зале; брат отвечает, что он здесь.",
+          "uk": "сестра перевіряє, хто вже в залі; брат відповідає, що він тут."
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -606,24 +563,24 @@
             "text": "happy"
           }
         ],
-        "testedDimension": "Вставьте слово — Лена зовёт Тома по имени, и он подтверждает, что находится в зале",
+        "testedDimension": "Вставьте слово — сестра проверяет, кто пришёл, и брат подтверждает, что находится в зале",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-02:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — Лена зовёт Тома по имени, и он подтверждает, что находится в зале",
+            "testedDimension": "Вставьте слово — сестра проверяет, кто пришёл, и брат подтверждает, что находится в зале",
             "feedbackByLocale": {
-              "ru": "Ready значит «готов»; Том подтверждает, что он здесь.",
-              "uk": "Ready означає «готовий»; Том підтверджує, що він тут."
+              "ru": "Ready значит «готов»; брат подтверждает, что он здесь.",
+              "uk": "Ready означає «готовий»; брат підтверджує, що він тут."
             }
           },
           {
             "responseId": "en:lesson-01:session-02:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — Лена зовёт Тома по имени, и он подтверждает, что находится в зале",
+            "testedDimension": "Вставьте слово — сестра проверяет, кто пришёл, и брат подтверждает, что находится в зале",
             "feedbackByLocale": {
-              "ru": "Happy значит «рад»; перекличка спрашивает, кто здесь.",
-              "uk": "Happy означає «радий»; перекличка запитує, хто тут."
+              "ru": "Happy значит «рад»; сестра спрашивает, кто здесь.",
+              "uk": "Happy означає «радий»; сестра запитує, хто тут."
             }
           }
         ]
@@ -632,11 +589,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте следующую запись Тома и выберите произнесённую фразу",
+      "prompt": "Послушайте следующую запись брата и выберите произнесённую фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i09:r1",
@@ -655,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-02:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте следующую запись Тома и выберите произнесённую фразу",
+      "accessibilityLabel": "Послушайте следующую запись брата и выберите произнесённую фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +642,7 @@
           {
             "responseId": "en:lesson-01:session-02:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте следующую запись Тома и выберите произнесённую фразу",
+            "testedDimension": "Послушайте следующую запись брата и выберите произнесённую фразу",
             "feedbackByLocale": {
               "ru": "В записи говорится о радости, а не о грусти.",
               "uk": "У записі йдеться про радість, а не про сум."
@@ -694,7 +651,7 @@
           {
             "responseId": "en:lesson-01:session-02:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте следующую запись Тома и выберите произнесённую фразу",
+            "testedDimension": "Послушайте следующую запись брата и выберите произнесённую фразу",
             "feedbackByLocale": {
               "ru": "В записи говорится о радости, а не об усталости.",
               "uk": "У записі йдеться про радість, а не про втому."
@@ -708,7 +665,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i10",
-      "ordinal": 17,
+      "ordinal": 16,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -781,17 +738,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Прослушайте Тома и соберите его фразу",
+      "prompt": "Прослушайте брата и соберите его фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-02:i11:audio"
       ],
-      "accessibilityLabel": "Прослушайте Тома и соберите его фразу",
+      "accessibilityLabel": "Прослушайте брата и соберите его фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -812,7 +769,7 @@
           {
             "responseId": "en:lesson-01:session-02:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Прослушайте Тома и соберите его фразу",
+            "testedDimension": "Прослушайте брата и соберите его фразу",
             "feedbackByLocale": {
               "ru": "В записи звучит tired, а не sad.",
               "uk": "У записі звучить tired, а не sad."
@@ -828,21 +785,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i12",
-      "ordinal": 19,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Лена проверяет, пришёл ли Том; он отвечает, что он здесь",
+      "prompt": "Соберите фразу — сестра проверяет, пришёл ли брат; он отвечает, что он здесь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Лена проверяет, пришёл ли Том; он отвечает, что он здесь",
+      "accessibilityLabel": "Соберите фразу — сестра проверяет, пришёл ли брат; он отвечает, что он здесь",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am here.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Лена проверяет, пришёл ли Том; он отвечает, что он здесь",
-          "uk": "Складіть фразу — Лена перевіряє, чи прийшов Том; він відповідає, що він тут"
+          "ru": "Соберите фразу — сестра проверяет, пришёл ли брат; он отвечает, что он здесь",
+          "uk": "Складіть фразу — сестра перевіряє, чи прийшов брат; він відповідає, що він тут"
         },
         "orderedTokens": [
           "I",
@@ -856,10 +813,10 @@
           {
             "responseId": "en:lesson-01:session-02:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Лена проверяет, пришёл ли Том; он отвечает, что он здесь",
+            "testedDimension": "Соберите фразу — сестра проверяет, пришёл ли брат; он отвечает, что он здесь",
             "feedbackByLocale": {
-              "ru": "Ready значит «готов»; Том отвечает, что находится здесь.",
-              "uk": "Ready означає «готовий»; Том відповідає, що перебуває тут."
+              "ru": "Ready значит «готов»; брат отвечает, что находится здесь.",
+              "uk": "Ready означає «готовий»; брат відповідає, що перебуває тут."
             }
           }
         ],
@@ -872,17 +829,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i13",
-      "ordinal": 20,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Повторите за Томом фразу для ответа Лене",
+      "prompt": "Повторите за братом фразу для ответа сестре",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-02:i13:audio"
       ],
-      "accessibilityLabel": "Повторите за Томом фразу для ответа Лене",
+      "accessibilityLabel": "Повторите за братом фразу для ответа сестре",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -905,11 +862,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i14",
-      "ordinal": 21,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — Лена сообщает Тому, что встречу отменили, и он расстроен",
+      "prompt": "Вставьте слово — сестра сообщает брату, что встречу отменили, и он расстроен",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i14:r1",
@@ -926,12 +883,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — Лена сообщает Тому, что встречу отменили, и он расстроен",
+      "accessibilityLabel": "Вставьте слово — сестра сообщает брату, что встречу отменили, и он расстроен",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Лена говорит, что встречу отменили; Тому жаль, что он не увидит друзей.",
-          "uk": "Лена каже, що зустріч скасували; Томові шкода, що він не побачить друзів."
+          "ru": "сестра говорит, что встречу отменили; брату жаль, что он не увидит друзей.",
+          "uk": "сестра каже, що зустріч скасували; братові шкода, що він не побачить друзів."
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -948,24 +905,24 @@
             "text": "fine"
           }
         ],
-        "testedDimension": "Вставьте слово — Лена сообщает Тому, что встречу отменили, и он расстроен",
+        "testedDimension": "Вставьте слово — сестра сообщает брату, что встречу отменили, и он расстроен",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-02:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — Лена сообщает Тому, что встречу отменили, и он расстроен",
+            "testedDimension": "Вставьте слово — сестра сообщает брату, что встречу отменили, и он расстроен",
             "feedbackByLocale": {
-              "ru": "Tired значит «уставший»; Том расстроен из-за отмены встречи.",
-              "uk": "Tired означає «стомлений»; Том засмучений через скасування зустрічі."
+              "ru": "Tired значит «уставший»; брат расстроен из-за отмены встречи.",
+              "uk": "Tired означає «стомлений»; брат засмучений через скасування зустрічі."
             }
           },
           {
             "responseId": "en:lesson-01:session-02:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — Лена сообщает Тому, что встречу отменили, и он расстроен",
+            "testedDimension": "Вставьте слово — сестра сообщает брату, что встречу отменили, и он расстроен",
             "feedbackByLocale": {
-              "ru": "Fine значит «всё хорошо»; Том расстроен из-за отмены встречи.",
-              "uk": "Fine означає «усе добре»; Том засмучений через скасування зустрічі."
+              "ru": "Fine значит «всё хорошо»; брат расстроен из-за отмены встречи.",
+              "uk": "Fine означає «усе добре»; брат засмучений через скасування зустрічі."
             }
           }
         ]
@@ -974,11 +931,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i15",
-      "ordinal": 22,
+      "ordinal": 21,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "В новой записи Тома выберите ровно ту фразу, которую он произносит",
+      "prompt": "В новой записи брата выберите ровно ту фразу, которую он произносит",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i15:r1",
@@ -997,7 +954,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-02:i15:audio"
       ],
-      "accessibilityLabel": "В новой записи Тома выберите ровно ту фразу, которую он произносит",
+      "accessibilityLabel": "В новой записи брата выберите ровно ту фразу, которую он произносит",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +984,7 @@
           {
             "responseId": "en:lesson-01:session-02:i15:r2",
             "correct": false,
-            "testedDimension": "В новой записи Тома выберите ровно ту фразу, которую он произносит",
+            "testedDimension": "В новой записи брата выберите ровно ту фразу, которую он произносит",
             "feedbackByLocale": {
               "ru": "В записи говорится об усталости, а не о хорошем самочувствии.",
               "uk": "У записі йдеться про втому, а не про добре самопочуття."
@@ -1036,7 +993,7 @@
           {
             "responseId": "en:lesson-01:session-02:i15:r3",
             "correct": false,
-            "testedDimension": "В новой записи Тома выберите ровно ту фразу, которую он произносит",
+            "testedDimension": "В новой записи брата выберите ровно ту фразу, которую он произносит",
             "feedbackByLocale": {
               "ru": "В записи говорится об усталости, а не о грусти.",
               "uk": "У записі йдеться про втому, а не про сум."
@@ -1050,15 +1007,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i16",
-      "ordinal": 23,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Рина и Том сверяют карточки языкового клуба. Соедините фразы с подходящими смыслами",
+      "prompt": "Сестра и брат сверяют карточки языкового клуба. Соедините фразы с подходящими смыслами",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Рина и Том сверяют карточки языкового клуба. Соедините фразы с подходящими смыслами",
+      "accessibilityLabel": "Сестра и брат сверяют карточки языкового клуба. Соедините фразы с подходящими смыслами",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1122,6 +1079,49 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-02:word:late",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-02:word:late:audio"
+      ],
+      "accessibilityLabel": "Новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-02:word:late:audio",
+          "transcript": "late"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-02:word:late:r1",
+            "targetText": "late",
+            "meaningByLocale": {
+              "ru": "«опоздавший»: вы пришли позже назначенного времени.",
+              "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "late",
+          "definitionByLocale": {
+            "ru": "«опоздавший»: вы пришли позже назначенного времени.",
+            "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-02:i17",
       "ordinal": 24,
       "purpose": "independent_check",
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ca9e1d5a178c62b80999582ee64fa7a3e23f425391500f660117173d4eddc73a"
+  "learnerFingerprint": "ac42a55238ad8e8070b0c895fc03e9ffb8a282a4339d81fa2f930a8ea31deae4"
 }

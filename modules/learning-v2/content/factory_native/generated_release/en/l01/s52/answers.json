@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-01:session-52:word:light",
+    "correctText": "light",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-52:i01",
     "correctText": "It is light.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-52:word:waterproof",
+    "correctText": "waterproof",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-52:i02",
-    "correctText": "It is light.",
+    "correctText": "It is waterproof.",
     "correctResponseId": "en:lesson-01:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:word:adjustable",
+    "correctText": "adjustable",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i03",
@@ -16,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i04",
-    "correctText": "en:lesson-01:session-52:i04:p1=light\nen:lesson-01:session-52:i04:p2=heavy\nen:lesson-01:session-52:i04:p3=curious\nen:lesson-01:session-52:i04:p4=patient",
+    "correctText": "en:lesson-01:session-52:i04:p1=light\nen:lesson-01:session-52:i04:p2=waterproof\nen:lesson-01:session-52:i04:p3=adjustable\nen:lesson-01:session-52:i04:p4=trendy",
     "correctResponseId": null
   },
   {
@@ -26,12 +41,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i06",
-    "correctText": "They are light.",
+    "correctText": "They are waterproof.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i07",
-    "correctText": "It's light.",
+    "correctText": "It's adjustable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:word:trendy",
+    "correctText": "trendy",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i09",
-    "correctText": "She is curious.",
+    "correctText": "It's trendy.",
     "correctResponseId": "en:lesson-01:session-52:i09:r1"
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i15",
-    "correctText": "It's light.",
+    "correctText": "It's adjustable.",
     "correctResponseId": "en:lesson-01:session-52:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-52:i16",
-    "correctText": "en:lesson-01:session-52:i16:p1=light\nen:lesson-01:session-52:i16:p2=heavy\nen:lesson-01:session-52:i16:p3=curious\nen:lesson-01:session-52:i16:p4=useful",
+    "correctText": "en:lesson-01:session-52:i16:p1=light\nen:lesson-01:session-52:i16:p2=heavy\nen:lesson-01:session-52:i16:p3=curious\nen:lesson-01:session-52:i16:p4=waterproof",
     "correctResponseId": null
   },
   {

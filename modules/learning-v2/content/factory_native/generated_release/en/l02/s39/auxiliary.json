@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-39:intro1:r2": {
-          "ru": "Между `It` и `relevant` нужно `is`.",
-          "uk": "Між `It` і `relevant` потрібно `is`."
+          "ru": "С not выходит «Он невкусный». А тарелка пустая: It is tasty.",
+          "uk": "З not виходить «Він несмачний». А тарілка порожня: It is tasty."
         },
         "en:lesson-02:session-39:intro1:r3": {
-          "ru": "Это отрицает связь с темой, а фото показывает историю площади.",
-          "uk": "Це заперечує зв’язок із темою, а фото показує історію площі."
+          "ru": "Между It и tasty нужно is: It is tasty.",
+          "uk": "Між It і tasty потрібно is: It is tasty."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-39:intro2:r2": {
-          "ru": "Это вопрос о необычности. Вам нужна связь с темой.",
-          "uk": "Це запитання про незвичайність. Вам потрібен зв’язок із темою."
+          "ru": "С not выходит «Они не жирные». А салфетка вся в масле: They're greasy.",
+          "uk": "З not виходить «Вони не жирні». А серветка вся в олії: They're greasy."
         },
         "en:lesson-02:session-39:intro2:r3": {
-          "ru": "Это утверждение. Вы пока уточняете.",
-          "uk": "Це твердження. Ви поки уточнюєте."
+          "ru": "Картошки несколько ломтиков, нужно They're: They're greasy.",
+          "uk": "Картоплі кілька скибочок, потрібно They're: They're greasy."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-39:intro3:r2": {
-          "ru": "Вы говорите об Олеге: `He's`.",
-          "uk": "Ви говорите про Олега: `He's`."
+          "ru": "Так звучит утверждение «Оно комковатое». Чтобы спросить, ставим Is вперёд: Is it lumpy?",
+          "uk": "Так звучить твердження «Воно грудкувате». Щоб запитати, ставимо Is наперед: Is it lumpy?"
         },
         "en:lesson-02:session-39:intro3:r3": {
-          "ru": "Это «Он слабый». Здесь вы отмечаете его смелость.",
-          "uk": "Це «Він слабкий». Тут ви відзначаєте його сміливість."
+          "ru": "С it нужно is: Is it lumpy?",
+          "uk": "З it потрібно is: Is it lumpy?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "535ae1b24f6068a1828a1ced5d0800c8e3054fc6799471bbeae4601bad241323"
+  "auxiliaryFingerprint": "28c08f782a9e7dbd61107a2c6306c8d1ef68b2e3ab8d24c7d868aafa47a80e51"
 }

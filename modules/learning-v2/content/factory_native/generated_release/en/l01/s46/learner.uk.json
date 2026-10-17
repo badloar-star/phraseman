@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-46:i01",
+      "interactionId": "en:lesson-01:session-46:word:useless",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — useless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:word:useless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — useless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:word:useless:audio",
+          "transcript": "useless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-46:word:useless:r1",
+            "targetText": "useless",
+            "meaningByLocale": {
+              "ru": "бесполезный, толку нет. It's useless — «От него никакого толку». Противоположность useful.",
+              "uk": "марний, користі нуль. It's useless — «З нього ніякої користі». Протилежність useful."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "useless",
+          "definitionByLocale": {
+            "ru": "бесполезный, толку нет. It's useless — «От него никакого толку». Противоположность useful.",
+            "uk": "марний, користі нуль. It's useless — «З нього ніякої користі». Протилежність useful."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту",
+      "prompt": "Кабель друга не підходить до вашого телефона. Складіть фразу про нього",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту",
+      "accessibilityLabel": "Кабель друга не підходить до вашого телефона. Складіть фразу про нього",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is useless.",
         "localizedMeaning": {
-          "ru": "Карта другого города не помогает найти ваш отель. Соберите фразу о карте",
-          "uk": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту"
+          "ru": "Кабель друга не подходит к вашему телефону. Соберите фразу о нём",
+          "uk": "Кабель друга не підходить до вашого телефона. Складіть фразу про нього"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-46:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту",
+            "testedDimension": "Кабель друга не підходить до вашого телефона. Складіть фразу про нього",
             "feedbackByLocale": {
               "ru": "здесь нужно `It` — `It is useless.`",
               "uk": "тут потрібно `It` — `It is useless.`"
@@ -48,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-46:word:tangled",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tangled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:word:tangled:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tangled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:word:tangled:audio",
+          "transcript": "tangled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-46:word:tangled:r1",
+            "targetText": "tangled",
+            "meaningByLocale": {
+              "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
+              "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tangled",
+          "definitionByLocale": {
+            "ru": "запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.",
+            "uk": "заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-46:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +143,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-46:i02:r1",
-          "text": "It is useless."
+          "text": "They are tangled."
         },
         {
           "responseId": "en:lesson-01:session-46:i02:r2",
-          "text": "It is useful."
+          "text": "We are tangled."
         },
         {
           "responseId": "en:lesson-01:session-46:i02:r3",
-          "text": "It is weak."
+          "text": "They are useless."
         }
       ],
       "mediaIds": [],
@@ -77,23 +163,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-46:i02:audio",
-          "transcript": "It is useless."
+          "transcript": "They are tangled."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-46:i02:r1",
-            "targetText": "It is useless.",
+            "targetText": "They are tangled.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-46:i02:r2",
-            "targetText": "It is useful.",
+            "targetText": "We are tangled.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-46:i02:r3",
-            "targetText": "It is weak.",
+            "targetText": "They are useless.",
             "meaningByLocale": null
           }
         ],
@@ -104,8 +190,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useless`, а в этом варианте — `useful`.",
-              "uk": "У записі останнє слово — `useless`, а в цьому варіанті — `useful`."
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
             }
           },
           {
@@ -113,8 +199,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useless`, а в этом варианте — `weak`.",
-              "uk": "У записі останнє слово — `useless`, а в цьому варіанті — `weak`."
+              "ru": "В записи последнее слово — `tangled`, а в этом варианте — `useless`.",
+              "uk": "У записі останнє слово — `tangled`, а в цьому варіанті — `useless`."
             }
           }
         ],
@@ -124,16 +210,59 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-46:word:charged",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — charged",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:word:charged:audio"
+      ],
+      "accessibilityLabel": "Картка слова — charged",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:word:charged:audio",
+          "transcript": "charged"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-46:word:charged:r1",
+            "targetText": "charged",
+            "meaningByLocale": {
+              "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
+              "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "charged",
+          "definitionByLocale": {
+            "ru": "заряжен. It's charged — «Он заряжен». О телефоне, батарее, пауэрбанке.",
+            "uk": "заряджений. It's charged — «Він заряджений». Про телефон, батарею, павербанк."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-46:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+      "prompt": "Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-46:i03:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-01:session-46:i03:r2",
@@ -141,23 +270,23 @@
         },
         {
           "responseId": "en:lesson-01:session-46:i03:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+      "accessibilityLabel": "Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Два кабеля не подходят к вашему телефону. Дополните оценку их пользы для зарядки",
-          "uk": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання"
+          "ru": "Пауэрбанк всю ночь стоял на зарядке. Дополните фразу о нём",
+          "uk": "Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього"
         },
-        "gappedTargetPhrase": "They ___ useless.",
+        "gappedTargetPhrase": "It ___ charged.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-46:i03:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-01:session-46:i03:r2",
@@ -165,27 +294,27 @@
           },
           {
             "responseId": "en:lesson-01:session-46:i03:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+        "testedDimension": "Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+            "testedDimension": "Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього",
             "feedbackByLocale": {
-              "ru": "После `They` нужно `are`.",
-              "uk": "Після `They` потрібно `are`."
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-01:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+            "testedDimension": "Павербанк усю ніч стояв на зарядці. Доповніть фразу про нього",
             "feedbackByLocale": {
-              "ru": "Про два кабеля — `They are`.",
-              "uk": "Про два кабелі — `They are`."
+              "ru": "Пауэрбанк один, поэтому `It is`.",
+              "uk": "Павербанк один, тому `It is`."
             }
           }
         ]
@@ -194,15 +323,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -216,40 +345,40 @@
           },
           {
             "pairId": "en:lesson-01:session-46:i04:p2",
-            "target": "useful",
+            "target": "tangled",
             "meaningByLocale": {
-              "ru": "полезный",
-              "uk": "корисний"
+              "ru": "запутанный",
+              "uk": "заплутаний"
             }
           },
           {
             "pairId": "en:lesson-01:session-46:i04:p3",
-            "target": "weak",
+            "target": "charged",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "заряженный",
+              "uk": "заряджений"
             }
           },
           {
             "pairId": "en:lesson-01:session-46:i04:p4",
-            "target": "missing",
+            "target": "loose",
             "meaningByLocale": {
-              "ru": "пропавший",
-              "uk": "зниклий"
+              "ru": "болтается",
+              "uk": "хитається"
             }
           }
         ],
         "leftColumn": [
           "useless",
-          "useful",
-          "weak",
-          "missing"
+          "tangled",
+          "charged",
+          "loose"
         ],
         "rightColumn": [
           "марний",
-          "корисний",
-          "слабкий",
-          "зниклий"
+          "заплутаний",
+          "заряджений",
+          "хитається"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +396,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -313,21 +442,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні",
+      "prompt": "Два старі кабелі з шухляди не підходять до жодного вашого пристрою. Скажіть другові, що вони марні",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні",
+      "accessibilityLabel": "Два старі кабелі з шухляди не підходять до жодного вашого пристрою. Скажіть другові, що вони марні",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are useless.",
         "localizedMeaning": {
-          "ru": "Два старых расписания не содержат ни одного нынешнего рейса. Скажите, что для выбора рейса они бесполезны",
-          "uk": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні"
+          "ru": "Два старых кабеля из ящика не подходят ни к одному вашему устройству. Скажите другу, что они бесполезны",
+          "uk": "Два старі кабелі з шухляди не підходять до жодного вашого пристрою. Скажіть другові, що вони марні"
         },
         "orderedTokens": [
           "They",
@@ -341,7 +470,7 @@
           {
             "responseId": "en:lesson-01:session-46:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні",
+            "testedDimension": "Два старі кабелі з шухляди не підходять до жодного вашого пристрою. Скажіть другові, що вони марні",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `They are useless.`",
               "uk": "тут потрібно `are` — `They are useless.`"
@@ -356,26 +485,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-46:word:loose",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:word:loose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:word:loose:audio",
+          "transcript": "loose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-46:word:loose:r1",
+            "targetText": "loose",
+            "meaningByLocale": {
+              "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
+              "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loose",
+          "definitionByLocale": {
+            "ru": "болтается, плохо держится. It's loose — «Он болтается». О разъёме, винте, пуговице.",
+            "uk": "хитається, погано тримається. It's loose — «Він хитається». Про роз’єм, гвинт, ґудзик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-46:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коротко оцініть кабель, який не підходить для заряджання вашого телефона",
+      "prompt": "Штекер зарядки хитається в телефоні, і зарядка то йде, то зникає. Скажіть другові коротко, що штекер хитається",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-46:i07:audio"
       ],
-      "accessibilityLabel": "Коротко оцініть кабель, який не підходить для заряджання вашого телефона",
+      "accessibilityLabel": "Штекер зарядки хитається в телефоні, і зарядка то йде, то зникає. Скажіть другові коротко, що штекер хитається",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-46:i07:audio",
-          "transcript": "It's useless."
+          "transcript": "It's loose."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's useless.",
+        "targetPhrase": "It's loose.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -390,11 +562,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+      "prompt": "У потязі сигнал слабкий, але повідомлення мамі все-таки пішло. Назвіть саме слабкість сигналу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-46:i08:r1",
@@ -406,17 +578,17 @@
         },
         {
           "responseId": "en:lesson-01:session-46:i08:r3",
-          "text": "missing"
+          "text": "charged"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+      "accessibilityLabel": "У потязі сигнал слабкий, але повідомлення мамі все-таки пішло. Назвіть саме слабкість сигналу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сигнал слабый, но позволяет отправлять сообщения. Назовите именно слабость",
-          "uk": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість"
+          "ru": "В поезде сигнал слабый, но сообщение маме всё-таки ушло. Назовите именно слабость сигнала",
+          "uk": "У потязі сигнал слабкий, але повідомлення мамі все-таки пішло. Назвіть саме слабкість сигналу"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -430,27 +602,27 @@
           },
           {
             "responseId": "en:lesson-01:session-46:i08:r3",
-            "text": "missing"
+            "text": "charged"
           }
         ],
-        "testedDimension": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+        "testedDimension": "У потязі сигнал слабкий, але повідомлення мамі все-таки пішло. Назвіть саме слабкість сигналу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+            "testedDimension": "У потязі сигнал слабкий, але повідомлення мамі все-таки пішло. Назвіть саме слабкість сигналу",
             "feedbackByLocale": {
-              "ru": "Для сообщений сигнал помогает. Здесь нужно «слабый»: `weak`.",
-              "uk": "Для повідомлень сигнал допомагає. Тут потрібно «слабкий»: `weak`."
+              "ru": "Сообщение ушло, значит, сигнал помог. Здесь нужна слабость: `weak`.",
+              "uk": "Повідомлення пішло, отже, сигнал допоміг. Тут потрібна слабкість: `weak`."
             }
           },
           {
             "responseId": "en:lesson-01:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+            "testedDimension": "У потязі сигнал слабкий, але повідомлення мамі все-таки пішло. Назвіть саме слабкість сигналу",
             "feedbackByLocale": {
-              "ru": "Сигнал есть. Он слабый: `weak`.",
-              "uk": "Сигнал є. Він слабкий: `weak`."
+              "ru": "`charged` — «заряжен», это про батарею. Слабый сигнал — `weak`.",
+              "uk": "`charged` — «заряджений», це про батарею. Слабкий сигнал — `weak`."
             }
           }
         ]
@@ -459,51 +631,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про сигнал",
+      "prompt": "Послухайте й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-46:i09:r1",
-          "text": "It is weak."
+          "text": "It is charged."
         },
         {
           "responseId": "en:lesson-01:session-46:i09:r2",
-          "text": "It is useless."
+          "text": "He is charged."
         },
         {
           "responseId": "en:lesson-01:session-46:i09:r3",
-          "text": "It is useful."
+          "text": "It is loose."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-46:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про сигнал",
+      "accessibilityLabel": "Послухайте й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-46:i09:audio",
-          "transcript": "It is weak."
+          "transcript": "It is charged."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-46:i09:r1",
-            "targetText": "It is weak.",
+            "targetText": "It is charged.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-46:i09:r2",
-            "targetText": "It is useless.",
+            "targetText": "He is charged.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-46:i09:r3",
-            "targetText": "It is useful.",
+            "targetText": "It is loose.",
             "meaningByLocale": null
           }
         ],
@@ -512,19 +684,19 @@
           {
             "responseId": "en:lesson-01:session-46:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про сигнал",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `weak`, а в этом варианте — `useless`.",
-              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `useless`."
+              "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
             }
           },
           {
             "responseId": "en:lesson-01:session-46:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про сигнал",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `weak`, а в этом варианте — `useful`.",
-              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `useful`."
+              "ru": "В записи последнее слово — `charged`, а в этом варианте — `loose`.",
+              "uk": "У записі останнє слово — `charged`, а в цьому варіанті — `loose`."
             }
           }
         ],
@@ -535,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте короткі початки з повними",
@@ -608,28 +780,28 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу про речі",
+      "prompt": "Послухайте й складіть коротку фразу про дроти",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-46:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу про речі",
+      "accessibilityLabel": "Послухайте й складіть коротку фразу про дроти",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-46:i11:audio",
-          "transcript": "They're useless."
+          "transcript": "They're tangled."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They're useless.",
+        "hiddenTargetPhrase": "They're tangled.",
         "orderedTokens": [
           "They're",
-          "useless"
+          "tangled"
         ],
         "authoredDistractorTokens": [
           "We're"
@@ -638,10 +810,10 @@
           {
             "responseId": "en:lesson-01:session-46:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу про речі",
+            "testedDimension": "Послухайте й складіть коротку фразу про дроти",
             "feedbackByLocale": {
-              "ru": "здесь нужно `They're` — `They're useless.`",
-              "uk": "тут потрібно `They're` — `They're useless.`"
+              "ru": "здесь нужно `They're` — `They're tangled.`",
+              "uk": "тут потрібно `They're` — `They're tangled.`"
             }
           }
         ],
@@ -654,21 +826,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь",
+      "prompt": "Новий кабель із крамниці на вокзалі підійшов, і телефон заряджається. Скажіть другові, що кабель корисний",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь",
+      "accessibilityLabel": "Новий кабель із крамниці на вокзалі підійшов, і телефон заряджається. Скажіть другові, що кабель корисний",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is useful.",
         "localizedMeaning": {
-          "ru": "Новая карта показывает нужные улицы и помогает найти отель. Скажите о её пользе",
-          "uk": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь"
+          "ru": "Новый кабель из магазина на вокзале подошёл, и телефон заряжается. Скажите другу, что кабель полезный",
+          "uk": "Новий кабель із крамниці на вокзалі підійшов, і телефон заряджається. Скажіть другові, що кабель корисний"
         },
         "orderedTokens": [
           "It",
@@ -682,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-46:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь",
+            "testedDimension": "Новий кабель із крамниці на вокзалі підійшов, і телефон заряджається. Скажіть другові, що кабель корисний",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is useful.`",
               "uk": "тут потрібно `is` — `It is useful.`"
@@ -698,25 +870,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Після хвороби брат каже, що в нього мало сил. Розкажіть другові про його слабкість",
+      "prompt": "Зранку обидва ваші телефони показують сто відсотків. Скажіть другові, що вони заряджені",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-46:i13:audio"
       ],
-      "accessibilityLabel": "Після хвороби брат каже, що в нього мало сил. Розкажіть другові про його слабкість",
+      "accessibilityLabel": "Зранку обидва ваші телефони показують сто відсотків. Скажіть другові, що вони заряджені",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-46:i13:audio",
-          "transcript": "He is weak."
+          "transcript": "They are charged."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is weak.",
+        "targetPhrase": "They are charged.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -731,11 +903,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+      "prompt": "Ніжка підставки для телефона хитається, і він хилиться набік. Скажіть другові про ніжку",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-46:i14:r1",
@@ -752,14 +924,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+      "accessibilityLabel": "Ніжка підставки для телефона хитається, і він хилиться набік. Скажіть другові про ніжку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Инструкция относится к другому устройству и совсем не помогает настроить ваше. Назовите её бесполезной для этой задачи",
-          "uk": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання"
+          "ru": "Ножка у подставки для телефона болтается, и он клонится набок. Скажите другу о ножке",
+          "uk": "Ніжка підставки для телефона хитається, і він хилиться набік. Скажіть другові про ніжку"
         },
-        "gappedTargetPhrase": "It ___ useless.",
+        "gappedTargetPhrase": "It ___ loose.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-46:i14:r1",
@@ -774,12 +946,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+        "testedDimension": "Ніжка підставки для телефона хитається, і він хилиться набік. Скажіть другові про ніжку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-46:i14:r2",
             "correct": false,
-            "testedDimension": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+            "testedDimension": "Ніжка підставки для телефона хитається, і він хилиться набік. Скажіть другові про ніжку",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -788,10 +960,10 @@
           {
             "responseId": "en:lesson-01:session-46:i14:r3",
             "correct": false,
-            "testedDimension": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+            "testedDimension": "Ніжка підставки для телефона хитається, і він хилиться набік. Скажіть другові про ніжку",
             "feedbackByLocale": {
-              "ru": "Про одну инструкцию — `It is`.",
-              "uk": "Про одну інструкцію — `It is`."
+              "ru": "Ножка одна, поэтому `It is`.",
+              "uk": "Ніжка одна, тому `It is`."
             }
           }
         ]
@@ -800,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -808,15 +980,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-46:i15:r1",
-          "text": "It's useful."
-        },
-        {
-          "responseId": "en:lesson-01:session-46:i15:r2",
           "text": "It's useless."
         },
         {
+          "responseId": "en:lesson-01:session-46:i15:r2",
+          "text": "They're useless."
+        },
+        {
           "responseId": "en:lesson-01:session-46:i15:r3",
-          "text": "It's weak."
+          "text": "It's useful."
         }
       ],
       "mediaIds": [],
@@ -828,23 +1000,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-46:i15:audio",
-          "transcript": "It's useful."
+          "transcript": "It's useless."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-46:i15:r1",
-            "targetText": "It's useful.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-46:i15:r2",
             "targetText": "It's useless.",
             "meaningByLocale": null
           },
           {
+            "responseId": "en:lesson-01:session-46:i15:r2",
+            "targetText": "They're useless.",
+            "meaningByLocale": null
+          },
+          {
             "responseId": "en:lesson-01:session-46:i15:r3",
-            "targetText": "It's weak.",
+            "targetText": "It's useful.",
             "meaningByLocale": null
           }
         ],
@@ -855,8 +1027,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть коротку фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useful`, а в этом варианте — `useless`.",
-              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `useless`."
+              "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
+              "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."
             }
           },
           {
@@ -864,8 +1036,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть коротку фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useful`, а в этом варианте — `weak`.",
-              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `weak`."
+              "ru": "В записи последнее слово — `useless`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `useless`, а в цьому варіанті — `useful`."
             }
           }
         ],
@@ -876,7 +1048,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -890,22 +1062,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-46:i16:p1",
-            "target": "useless",
-            "meaningByLocale": {
-              "ru": "не приносит пользы",
-              "uk": "не приносить користі"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-46:i16:p2",
-            "target": "useful",
-            "meaningByLocale": {
-              "ru": "приносит пользу",
-              "uk": "приносить користь"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-46:i16:p3",
             "target": "weak",
             "meaningByLocale": {
               "ru": "слабый",
@@ -913,25 +1069,41 @@
             }
           },
           {
-            "pairId": "en:lesson-01:session-46:i16:p4",
-            "target": "correct",
+            "pairId": "en:lesson-01:session-46:i16:p2",
+            "target": "missing",
             "meaningByLocale": {
-              "ru": "правильный",
-              "uk": "правильний"
+              "ru": "пропавший",
+              "uk": "зниклий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i16:p3",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готовый",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i16:p4",
+            "target": "packed",
+            "meaningByLocale": {
+              "ru": "упакованный",
+              "uk": "спакований"
             }
           }
         ],
         "leftColumn": [
-          "useless",
-          "useful",
           "weak",
-          "correct"
+          "missing",
+          "ready",
+          "packed"
         ],
         "rightColumn": [
-          "не приносить користі",
-          "приносить користь",
           "слабкий",
-          "правильний"
+          "зниклий",
+          "готовий",
+          "спакований"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,17 +1121,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-46:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На кухні відкривачка зламалася й більше не відкриває банки. Оцініть її користь для відкривання банки",
+      "prompt": "Мама на кухні намагається відкрити банку, а відкривачка зламалася й не чіпляє кришку. Скажіть мамі, що з відкривачки ніякої користі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-46:i17:audio"
       ],
-      "accessibilityLabel": "На кухні відкривачка зламалася й більше не відкриває банки. Оцініть її користь для відкривання банки",
+      "accessibilityLabel": "Мама на кухні намагається відкрити банку, а відкривачка зламалася й не чіпляє кришку. Скажіть мамі, що з відкривачки ніякої користі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "554eb1632f288ee3ad623461c6298fa0cfb5307c26a5f8fd35ea94b11caf126c"
+  "learnerFingerprint": "e4c7a0dc6b188563698f2e5e9c24bd9410d8bae0680b8306efdb5e26337dcf7a"
 }

@@ -5,21 +5,6 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-17:word:together",
-    "correctText": "together",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-17:word:grateful",
-    "correctText": "grateful",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-17:word:comfortable",
-    "correctText": "comfortable",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-17:i01",
     "correctText": "You are welcome.",
     "correctResponseId": null
@@ -40,8 +25,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-17:word:together",
+    "correctText": "together",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-17:i05",
     "correctText": "We are together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:grateful",
+    "correctText": "grateful",
     "correctResponseId": null
   },
   {
@@ -67,6 +62,11 @@
   {
     "interactionId": "en:lesson-01:session-17:i10",
     "correctText": "en:lesson-01:session-17:i10:p1=tall\nen:lesson-01:session-17:i10:p2=short\nen:lesson-01:session-17:i10:p3=young\nen:lesson-01:session-17:i10:p4=happy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:comfortable",
+    "correctText": "comfortable",
     "correctResponseId": null
   },
   {

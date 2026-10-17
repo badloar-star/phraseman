@@ -361,52 +361,9 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i07",
+      "interactionId": "en:lesson-01:session-04:i08",
       "ordinal": 10,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — free",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-04:i07:audio"
-      ],
-      "accessibilityLabel": "Картка слова — free",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-04:i07:audio",
-          "transcript": "free"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-04:i07:r1",
-            "targetText": "free",
-            "meaningByLocale": {
-              "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
-              "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "free",
-          "definitionByLocale": {
-            "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
-            "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-04:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
       "family": "sound_contrast",
       "inputMode": "single_choice",
       "prompt": "Послухайте два записи. Яке слово звучить у другому?",
@@ -452,6 +409,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i07",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — free",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i07:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i07:r1",
+            "targetText": "free",
+            "meaningByLocale": {
+              "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
+              "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "free",
+          "definitionByLocale": {
+            "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
+            "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -610,13 +610,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — Ліна питає, чи прийшли ви до початку зустрічі",
+      "prompt": "Скажіть уголос — керівниця питає, чи прийшли ви до початку зустрічі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-04:i11:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — Ліна питає, чи прийшли ви до початку зустрічі",
+      "accessibilityLabel": "Скажіть уголос — керівниця питає, чи прийшли ви до початку зустрічі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -695,7 +695,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виправте фразу Антона",
+      "prompt": "Виправте фразу наставника",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i13:r1",
@@ -712,12 +712,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виправте фразу Антона",
+      "accessibilityLabel": "Виправте фразу наставника",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "🗣 Антон признаёт свою ошибку и говорит: **«I wrong.»** Выберите слово, чтобы исправить его фразу.",
-          "uk": "🗣 Антон визнає свою помилку й каже: **«I wrong.»** Виберіть слово, щоб виправити його фразу."
+          "ru": "🗣 Наставник признаёт свою ошибку и говорит: **«I wrong.»** Выберите слово, чтобы исправить его фразу.",
+          "uk": "🗣 Наставник визнає свою помилку й каже: **«I wrong.»** Виберіть слово, щоб виправити його фразу."
         },
         "gappedTargetPhrase": "I ___ wrong.",
         "gapOptions": [
@@ -734,12 +734,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Виправте фразу Антона",
+        "testedDimension": "Виправте фразу наставника",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-04:i13:r2",
             "correct": false,
-            "testedDimension": "Виправте фразу Антона",
+            "testedDimension": "Виправте фразу наставника",
             "feedbackByLocale": {
               "ru": "В `I not wrong` пропущено `am`: после `I` нужна форма `am`; `not` не заменяет глагол.",
               "uk": "У `I not wrong` пропущено `am`: після `I` потрібна форма `am`; `not` не замінює дієслово."
@@ -748,7 +748,7 @@
           {
             "responseId": "en:lesson-01:session-04:i13:r3",
             "correct": false,
-            "testedDimension": "Виправте фразу Антона",
+            "testedDimension": "Виправте фразу наставника",
             "feedbackByLocale": {
               "ru": "С I нужна форма am; is употребляется с he, she или it.",
               "uk": "З I потрібна форма am; is вживається з he, she або it."
@@ -801,8 +801,8 @@
           "uk": ""
         },
         "localizedScene": {
-          "ru": "*(плитка `early` лишняя: Early означает «раньше времени»; вы пришли ровно к началу.)* **Лина спрашивает, задержала ли вас дорога. Вы пришли ровно к началу встречи и хотите сказать, что не опоздали.**",
-          "uk": "*(плитка `early` зайва: Early означає «раніше часу»; ви прийшли рівно на початок.)* **Ліна питає, чи затримала вас дорога. Ви прийшли рівно до початку зустрічі й хочете сказати, що не запізнилися.**"
+          "ru": "*(плитка `early` лишняя: Early означает «раньше времени»; вы пришли ровно к началу.)* **Начальница спрашивает, задержала ли вас дорога. Вы пришли ровно к началу встречи и хотите сказать, что не опоздали.**",
+          "uk": "*(плитка `early` зайва: Early означає «раніше часу»; ви прийшли рівно на початок.)* **Керівниця питає, чи затримала вас дорога. Ви прийшли рівно до початку зустрічі й хочете сказати, що не запізнилися.**"
         }
       },
       "scriptedAlternate": null
@@ -944,8 +944,8 @@
           "uk": ""
         },
         "localizedScene": {
-          "ru": "*(плитка `happy` лишняя: Happy описывает настроение, а здесь речь об усталости.)* **Мира спрашивает, нужна ли вам пауза после смены. Вы хорошо отдохнули и чувствуете себя бодро.**",
-          "uk": "*(плитка `happy` зайва: Happy описує настрій, а тут ідеться про втому.)* **Міра питає, чи потрібна вам перерва після зміни. Ви добре відпочили й почуваєтеся бадьоро.**"
+          "ru": "*(плитка `happy` лишняя: Happy описывает настроение, а здесь речь об усталости.)* **Коллега спрашивает, нужна ли вам пауза после смены. Вы хорошо отдохнули и чувствуете себя бодро.**",
+          "uk": "*(плитка `happy` зайва: Happy описує настрій, а тут ідеться про втому.)* **Колега питає, чи потрібна вам перерва після зміни. Ви добре відпочили й почуваєтеся бадьоро.**"
         }
       },
       "scriptedAlternate": null
@@ -1029,17 +1029,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — Ліна питає, чи можете ви підмінити колегу в п'ятницю",
+      "prompt": "Складіть фразу — керівниця питає, чи можете ви підмінити колегу в п'ятницю",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — Ліна питає, чи можете ви підмінити колегу в п'ятницю",
+      "accessibilityLabel": "Складіть фразу — керівниця питає, чи можете ви підмінити колегу в п'ятницю",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am free.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Лина спрашивает, можете ли вы подменить коллегу в пятницу",
-          "uk": "Складіть фразу — Ліна питає, чи можете ви підмінити колегу в п'ятницю"
+          "ru": "Соберите фразу — начальница спрашивает, можете ли вы подменить коллегу в пятницу",
+          "uk": "Складіть фразу — керівниця питає, чи можете ви підмінити колегу в п'ятницю"
         },
         "orderedTokens": [
           "I",
@@ -1053,7 +1053,7 @@
           {
             "responseId": "en:lesson-01:session-04:i19:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — Ліна питає, чи можете ви підмінити колегу в п'ятницю",
+            "testedDimension": "Складіть фразу — керівниця питає, чи можете ви підмінити колегу в п'ятницю",
             "feedbackByLocale": {
               "ru": "Busy означает «занят». Вы проверили именно пятницу: в этот день у вас есть время.",
               "uk": "Busy означає «зайнятий». Ви перевірили саме п’ятницю: цього дня у вас є час."
@@ -1065,8 +1065,8 @@
           "uk": ""
         },
         "localizedScene": {
-          "ru": "*(плитка `busy` лишняя: Busy означает «занят». Вы проверили именно пятницу: в этот день у вас есть время.)* **Лина просит вас подменить коллегу в пятницу. Вы проверили календарь — в этот день вы свободны.**",
-          "uk": "*(плитка `busy` зайва: Busy означає «зайнятий». Ви перевірили саме п’ятницю: цього дня у вас є час.)* **Ліна просить вас підмінити колегу в п'ятницю. Ви перевірили календар — цього дня ви вільні.**"
+          "ru": "*(плитка `busy` лишняя: Busy означает «занят». Вы проверили именно пятницу: в этот день у вас есть время.)* **Начальница просит вас подменить коллегу в пятницу. Вы проверили календарь — в этот день вы свободны.**",
+          "uk": "*(плитка `busy` зайва: Busy означає «зайнятий». Ви перевірили саме п’ятницю: цього дня у вас є час.)* **Керівниця просить вас підмінити колегу в п'ятницю. Ви перевірили календар — цього дня ви вільні.**"
         }
       },
       "scriptedAlternate": null
@@ -1114,8 +1114,8 @@
           "uk": ""
         },
         "localizedScene": {
-          "ru": "*(плитка `fine` лишняя: Fine означает, что всё хорошо; здесь важно, что рядом коллега.)* **Лина спрашивает, одни ли вы у стойки. Рядом с вами стоит коллега. Скажите, что вы не одни.**",
-          "uk": "*(плитка `fine` зайва: Fine означає, що все гаразд; тут важливо, що поруч колега.)* **Ліна питає, чи ви самі біля стійки. Поруч із вами стоїть колега. Скажіть, що ви не самі.**"
+          "ru": "*(плитка `fine` лишняя: Fine означает, что всё хорошо; здесь важно, что рядом коллега.)* **Начальница спрашивает, одни ли вы у стойки. Рядом с вами стоит коллега. Скажите, что вы не одни.**",
+          "uk": "*(плитка `fine` зайва: Fine означає, що все гаразд; тут важливо, що поруч колега.)* **Керівниця питає, чи ви самі біля стійки. Поруч із вами стоїть колега. Скажіть, що ви не самі.**"
         }
       },
       "scriptedAlternate": null
@@ -1244,5 +1244,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f0350b6d028b0e6056e35c2df28a38ce6e526dae2181cdfac8ee0ead585551e1"
+  "learnerFingerprint": "a3f80027242987dc9d19fc7cc482f8c2566ca8a0e43425aa628626649b3e6cd4"
 }

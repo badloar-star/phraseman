@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-37:i01",
+      "interactionId": "en:lesson-02:session-37:word:foggy",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — foggy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-37:word:foggy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — foggy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-37:word:foggy:audio",
+          "transcript": "foggy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-37:word:foggy:r1",
+            "targetText": "foggy",
+            "meaningByLocale": {
+              "ru": "туманный. It is foggy — «Стоит туман». О погоде, утре, дороге, береге. Пишется с одной g.",
+              "uk": "туманний. It is foggy — «Стоїть туман». Про погоду, ранок, дорогу, берег. Пишеться з однією g."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foggy",
+          "definitionByLocale": {
+            "ru": "туманный. It is foggy — «Стоит туман». О погоде, утре, дороге, береге. Пишется с одной g.",
+            "uk": "туманний. It is foggy — «Стоїть туман». Про погоду, ранок, дорогу, берег. Пишеться з однією g."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Организаторы подтвердили дату. Скажите полной фразой, что она официальная",
+      "prompt": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Организаторы подтвердили дату. Скажите полной фразой, что она официальная",
+      "accessibilityLabel": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is official.",
+        "targetPhrase": "It is foggy.",
         "localizedMeaning": {
-          "ru": "Организаторы подтвердили дату. Скажите полной фразой, что она официальная",
-          "uk": "Організатори підтвердили дату. Скажіть повною фразою, що вона офіційна"
+          "ru": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
+          "uk": "Брат їде трасою і чекає від вас відповіді. Напишіть йому повною фразою, що на дорозі туман."
         },
         "orderedTokens": [
           "It",
           "is",
-          "official"
+          "foggy"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-37:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Организаторы подтвердили дату. Скажите полной фразой, что она официальная",
+            "testedDimension": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is official.`",
-              "uk": "тут потрібно `is` — `It is official.`"
+              "ru": "здесь нужно `is` — `It is foggy.`",
+              "uk": "тут потрібно `is` — `It is foggy.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Послушайте, что диктор говорит о завтрашней погоде",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i02:r1",
-          "text": "He is lonely."
+          "text": "It is windy."
         },
         {
           "responseId": "en:lesson-02:session-37:i02:r2",
-          "text": "He is away."
+          "text": "It is cold."
         },
         {
           "responseId": "en:lesson-02:session-37:i02:r3",
-          "text": "He is active."
+          "text": "It is wet."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Послушайте, что диктор говорит о завтрашней погоде",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i02:audio",
-          "transcript": "He is lonely."
+          "transcript": "It is windy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-37:i02:r1",
-            "targetText": "He is lonely.",
+            "targetText": "It is windy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-37:i02:r2",
-            "targetText": "He is away.",
+            "targetText": "It is cold.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-37:i02:r3",
-            "targetText": "He is active.",
+            "targetText": "It is wet.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-37:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что диктор говорит о завтрашней погоде",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lonely`, а в этом варианте — `away`.",
-              "uk": "У записі останнє слово — `lonely`, а в цьому варіанті — `away`."
+              "ru": "В записи последнее слово — `windy`, а в этом варианте — `cold`.",
+              "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `cold`."
             }
           },
           {
             "responseId": "en:lesson-02:session-37:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что диктор говорит о завтрашней погоде",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lonely`, а в этом варианте — `active`.",
-              "uk": "У записі останнє слово — `lonely`, а в цьому варіанті — `active`."
+              "ru": "В записи последнее слово — `windy`, а в этом варианте — `wet`.",
+              "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `wet`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-37:word:stormy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stormy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-37:word:stormy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stormy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-37:word:stormy:audio",
+          "transcript": "stormy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-37:word:stormy:r1",
+            "targetText": "stormy",
+            "meaningByLocale": {
+              "ru": "штормовой, с грозой и сильным ветром. It's stormy — «Сегодня шторм». О погоде, ночи, море, озере.",
+              "uk": "штормовий, з грозою і сильним вітром. It's stormy — «Сьогодні шторм». Про погоду, ніч, море, озеро."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stormy",
+          "definitionByLocale": {
+            "ru": "штормовой, с грозой и сильным ветром. It's stormy — «Сегодня шторм». О погоде, ночи, море, озере.",
+            "uk": "штормовий, з грозою і сильним вітром. It's stormy — «Сьогодні шторм». Про погоду, ніч, море, озеро."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-37:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните, официальная ли информация о дате",
+      "prompt": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните, официальная ли информация о дате",
+      "accessibilityLabel": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, официальная ли информация о дате",
-          "uk": "Уточніть, чи офіційна інформація про дату"
+          "ru": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+          "uk": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз"
         },
-        "gappedTargetPhrase": "___ it official?",
+        "gappedTargetPhrase": "___ it stormy?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-37:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Уточните, официальная ли информация о дате",
+        "testedDimension": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-37:i03:r2",
             "correct": false,
-            "testedDimension": "Уточните, официальная ли информация о дате",
+            "testedDimension": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-37:i03:r3",
             "correct": false,
-            "testedDimension": "Уточните, официальная ли информация о дате",
+            "testedDimension": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it official?`.",
-              "uk": "Запитання — `Is it official?`."
+              "ru": "Вопрос — `Is it stormy?`.",
+              "uk": "Питання — `Is it stormy?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-37:i04:p1",
-            "target": "official",
+            "target": "foggy",
             "meaningByLocale": {
-              "ru": "официальный по статусу или источнику",
-              "uk": "офіційний за статусом чи джерелом"
+              "ru": "туманный",
+              "uk": "туманний"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i04:p2",
-            "target": "formal",
+            "target": "icy",
             "meaningByLocale": {
-              "ru": "официальный, строгий по стилю",
-              "uk": "офіційний, строгий за стилем"
+              "ru": "обледенелый",
+              "uk": "обледенілий"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i04:p3",
-            "target": "lonely",
+            "target": "stormy",
             "meaningByLocale": {
-              "ru": "одинокий",
-              "uk": "самотній"
+              "ru": "штормовой",
+              "uk": "штормовий"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i04:p4",
-            "target": "away",
+            "target": "cold",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "холодный",
+              "uk": "холодний"
             }
           }
         ],
         "leftColumn": [
-          "official",
-          "formal",
-          "lonely",
-          "away"
+          "foggy",
+          "icy",
+          "stormy",
+          "cold"
         ],
         "rightColumn": [
-          "официальный по статусу или источнику",
-          "официальный, строгий по стилю",
-          "одинокий",
-          "не здесь, в отъезде"
+          "туманный",
+          "обледенелый",
+          "штормовой",
+          "холодный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-37:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-37:word:icy",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — icy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-37:word:icy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — icy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-37:word:icy:audio",
+          "transcript": "icy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-37:word:icy:r1",
+            "targetText": "icy",
+            "meaningByLocale": {
+              "ru": "покрытый льдом, обледенелый. Is it icy? — «Там лёд?» О дорожке, лестнице, крыше, дороге.",
+              "uk": "вкритий кригою, обледенілий. Is it icy? — «Там лід?» Про доріжку, сходи, дах, дорогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "icy",
+          "definitionByLocale": {
+            "ru": "покрытый льдом, обледенелый. Is it icy? — «Там лёд?» О дорожке, лестнице, крыше, дороге.",
+            "uk": "вкритий кригою, обледенілий. Is it icy? — «Там лід?» Про доріжку, сходи, дах, дорогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Послушайте, что сосед говорит о дорожке, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Послушайте, что сосед говорит о дорожке, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i05:audio",
-          "transcript": "No, it is not."
+          "transcript": "It is not icy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "No, it is not.",
+        "hiddenTargetPhrase": "It is not icy.",
         "orderedTokens": [
-          "No,",
-          "it",
+          "It",
           "is",
-          "not"
+          "not",
+          "icy"
         ],
         "authoredDistractorTokens": [
-          "Yes,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-37:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Послушайте, что сосед говорит о дорожке, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `No,` — `No, it is not.`",
-              "uk": "тут потрібно `No,` — `No, it is not.`"
+              "ru": "здесь нужно `is` — `It is not icy.`",
+              "uk": "тут потрібно `is` — `It is not icy.`"
             }
           }
         ],
@@ -315,21 +444,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы знаете, что Олег уехал, но не знаете куда. Спросите Анну, где он",
+      "prompt": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы знаете, что Олег уехал, но не знаете куда. Спросите Анну, где он",
+      "accessibilityLabel": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where is he?",
         "localizedMeaning": {
-          "ru": "Вы знаете, что Олег уехал, но не знаете куда. Спросите Анну, где он",
-          "uk": "Ви знаєте, що Олег поїхав, але не знаєте куди. Запитайте Анну, де він"
+          "ru": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
+          "uk": "Сусід пішов чистити доріжку, але ви не знаєте, де він. Запитайте подругу, де він."
         },
         "orderedTokens": [
           "Where",
@@ -343,7 +472,7 @@
           {
             "responseId": "en:lesson-02:session-37:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы знаете, что Олег уехал, но не знаете куда. Спросите Анну, где он",
+            "testedDimension": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
             "feedbackByLocale": {
               "ru": "здесь нужно `Where` — `Where is he?`",
               "uk": "тут потрібно `Where` — `Where is he?`"
@@ -359,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На сайте организаторов подтвердили дату. Коротко сообщите, что она официальная",
+      "prompt": "Подруга спрашивает, какая погода у озера. Там гроза и сильный ветер. Скажите коротко, что там шторм.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i07:audio"
       ],
-      "accessibilityLabel": "На сайте организаторов подтвердили дату. Коротко сообщите, что она официальная",
+      "accessibilityLabel": "Подруга спрашивает, какая погода у озера. Там гроза и сильный ветер. Скажите коротко, что там шторм.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i07:audio",
-          "transcript": "It's official."
+          "transcript": "It's stormy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's official.",
+        "targetPhrase": "It's stormy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +521,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег всё ещё в поездке. На «Is he away?» дополните короткое «да»",
+      "prompt": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i08:r1",
@@ -413,14 +542,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег всё ещё в поездке. На «Is he away?» дополните короткое «да»",
+      "accessibilityLabel": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег всё ещё в поездке. На «Is he away?» дополните короткое «да»",
-          "uk": "Олег досі в поїздці. На «Is he away?» доповніть коротку відповідь «так»"
+          "ru": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+          "uk": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "Yes, he ___.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-37:i08:r1",
@@ -435,24 +564,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег всё ещё в поездке. На «Is he away?» дополните короткое «да»",
+        "testedDimension": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-37:i08:r2",
             "correct": false,
-            "testedDimension": "Олег всё ещё в поездке. На «Is he away?» дополните короткое «да»",
+            "testedDimension": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `he` нужно `is`.",
-              "uk": "З `he` потрібно `is`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-37:i08:r3",
             "correct": false,
-            "testedDimension": "Олег всё ещё в поездке. На «Is he away?» дополните короткое «да»",
+            "testedDimension": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Ответ — `Yes, he is`.",
-              "uk": "Відповідь — `Yes, he is`."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -461,51 +590,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте, что брат говорит о дороге",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i09:r1",
-          "text": "Is it formal?"
+          "text": "It is icy."
         },
         {
           "responseId": "en:lesson-02:session-37:i09:r2",
-          "text": "Is it official?"
+          "text": "It is foggy."
         },
         {
           "responseId": "en:lesson-02:session-37:i09:r3",
-          "text": "Is it unusual?"
+          "text": "It is stormy."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте, что брат говорит о дороге",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i09:audio",
-          "transcript": "Is it formal?"
+          "transcript": "It is icy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-37:i09:r1",
-            "targetText": "Is it formal?",
+            "targetText": "It is icy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-37:i09:r2",
-            "targetText": "Is it official?",
+            "targetText": "It is foggy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-37:i09:r3",
-            "targetText": "Is it unusual?",
+            "targetText": "It is stormy.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +643,19 @@
           {
             "responseId": "en:lesson-02:session-37:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте, что брат говорит о дороге",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `formal`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `formal`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `icy`, а в этом варианте — `foggy`.",
+              "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `foggy`."
             }
           },
           {
             "responseId": "en:lesson-02:session-37:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте, что брат говорит о дороге",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `formal`, а в этом варианте — `unusual`.",
-              "uk": "У записі останнє слово — `formal`, а в цьому варіанті — `unusual`."
+              "ru": "В записи последнее слово — `icy`, а в этом варианте — `stormy`.",
+              "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `stormy`."
             }
           }
         ],
@@ -537,7 +666,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -551,48 +680,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-37:i10:p1",
-            "target": "lonely",
+            "target": "icy",
             "meaningByLocale": {
-              "ru": "одинокий",
-              "uk": "самотній"
+              "ru": "обледенелый",
+              "uk": "обледенілий"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i10:p2",
-            "target": "away",
+            "target": "stormy",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "штормовой",
+              "uk": "штормовий"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i10:p3",
-            "target": "official",
+            "target": "wet",
             "meaningByLocale": {
-              "ru": "официальный по статусу или источнику",
-              "uk": "офіційний за статусом чи джерелом"
+              "ru": "мокрый",
+              "uk": "мокрий"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i10:p4",
-            "target": "formal",
+            "target": "cloudy",
             "meaningByLocale": {
-              "ru": "официальный, строгий по стилю",
-              "uk": "офіційний, строгий за стилем"
+              "ru": "облачный",
+              "uk": "хмарний"
             }
           }
         ],
         "leftColumn": [
-          "lonely",
-          "away",
-          "official",
-          "formal"
+          "icy",
+          "stormy",
+          "wet",
+          "cloudy"
         ],
         "rightColumn": [
-          "одинокий",
-          "не здесь, в отъезде",
-          "официальный по статусу или источнику",
-          "официальный, строгий по стилю"
+          "обледенелый",
+          "штормовой",
+          "мокрый",
+          "облачный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,30 +739,30 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте, что подруга говорит о ботинках, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте, что подруга говорит о ботинках, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i11:audio",
-          "transcript": "They are not away."
+          "transcript": "They are not wet."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not away.",
+        "hiddenTargetPhrase": "They are not wet.",
         "orderedTokens": [
           "They",
           "are",
           "not",
-          "away"
+          "wet"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -642,10 +771,10 @@
           {
             "responseId": "en:lesson-02:session-37:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте, что подруга говорит о ботинках, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not away.`",
-              "uk": "тут потрібно `are` — `They are not away.`"
+              "ru": "здесь нужно `are` — `They are not wet.`",
+              "uk": "тут потрібно `are` — `They are not wet.`"
             }
           }
         ],
@@ -657,27 +786,70 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-37:word:gloomy",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gloomy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-37:word:gloomy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gloomy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-37:word:gloomy:audio",
+          "transcript": "gloomy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-37:word:gloomy:r1",
+            "targetText": "gloomy",
+            "meaningByLocale": {
+              "ru": "мрачный, хмурый и безрадостный. It's gloomy — «Тут мрачно». О комнате, дне, погоде, настроении.",
+              "uk": "похмурий, безрадісний. It's gloomy — «Тут похмуро». Про кімнату, день, погоду, настрій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gloomy",
+          "definitionByLocale": {
+            "ru": "мрачный, хмурый и безрадостный. It's gloomy — «Тут мрачно». О комнате, дне, погоде, настроении.",
+            "uk": "похмурий, безрадісний. It's gloomy — «Тут похмуро». Про кімнату, день, погоду, настрій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-37:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна упомянула друга, которому одиноко. Спросите, кто чувствует себя одиноко",
+      "prompt": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна упомянула друга, которому одиноко. Спросите, кто чувствует себя одиноко",
+      "accessibilityLabel": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Who is lonely?",
+        "targetPhrase": "Who is gloomy?",
         "localizedMeaning": {
-          "ru": "Анна упомянула друга, которому одиноко. Спросите, кто чувствует себя одиноко",
-          "uk": "Анна згадала друга, якому самотньо. Запитайте, хто почувається самотнім"
+          "ru": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
+          "uk": "Брат написав, що один з ваших гостей з ранку похмурий. Запитайте в брата, хто похмурий."
         },
         "orderedTokens": [
           "Who",
           "is",
-          "lonely"
+          "gloomy"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -686,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-37:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна упомянула друга, которому одиноко. Спросите, кто чувствует себя одиноко",
+            "testedDimension": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Who` — `Who is lonely?`",
-              "uk": "тут потрібно `Who` — `Who is lonely?`"
+              "ru": "здесь нужно `Who` — `Who is gloomy?`",
+              "uk": "тут потрібно `Who` — `Who is gloomy?`"
             }
           }
         ],
@@ -702,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег уехал на неделю. Коротко сообщите, что он в отъезде",
+      "prompt": "Подруга спрашивает, как в комнате. Шторы закрыты, света мало. Скажите коротко, что там мрачно.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i13:audio"
       ],
-      "accessibilityLabel": "Олег уехал на неделю. Коротко сообщите, что он в отъезде",
+      "accessibilityLabel": "Подруга спрашивает, как в комнате. Шторы закрыты, света мало. Скажите коротко, что там мрачно.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i13:audio",
-          "transcript": "He's away."
+          "transcript": "It's gloomy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's away.",
+        "targetPhrase": "It's gloomy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дату придумали в чате; организаторы её не объявляли и не подтверждали. Скажите, что она неофициальная",
+      "prompt": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i14:r1",
@@ -756,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дату придумали в чате; организаторы её не объявляли и не подтверждали. Скажите, что она неофициальная",
+      "accessibilityLabel": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дату придумали в чате; организаторы её не объявляли и не подтверждали. Скажите, что она неофициальная",
-          "uk": "Дату вигадали в чаті; організатори її не оголошували й не підтверджували. Скажіть, що вона неофіційна"
+          "ru": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+          "uk": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла"
         },
-        "gappedTargetPhrase": "It ___ not official.",
+        "gappedTargetPhrase": "It ___ not icy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-37:i14:r1",
@@ -778,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Дату придумали в чате; организаторы её не объявляли и не подтверждали. Скажите, что она неофициальная",
+        "testedDimension": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-37:i14:r2",
             "correct": false,
-            "testedDimension": "Дату придумали в чате; организаторы её не объявляли и не подтверждали. Скажите, что она неофициальная",
+            "testedDimension": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -792,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-37:i14:r3",
             "correct": false,
-            "testedDimension": "Дату придумали в чате; организаторы её не объявляли и не подтверждали. Скажите, что она неофициальная",
+            "testedDimension": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not official`.",
-              "uk": "Фраза — `It is not official`."
+              "ru": "Фраза — `It is not icy`.",
+              "uk": "Фраза — `It is not icy`."
             }
           }
         ]
@@ -804,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i15:r1",
-          "text": "Are you lonely?"
+          "text": "Are they gloomy?"
         },
         {
           "responseId": "en:lesson-02:session-37:i15:r2",
-          "text": "Are you away?"
+          "text": "Are they quiet?"
         },
         {
           "responseId": "en:lesson-02:session-37:i15:r3",
-          "text": "Are you sleepy?"
+          "text": "Are they cold?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i15:audio",
-          "transcript": "Are you lonely?"
+          "transcript": "Are they gloomy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-37:i15:r1",
-            "targetText": "Are you lonely?",
+            "targetText": "Are they gloomy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-37:i15:r2",
-            "targetText": "Are you away?",
+            "targetText": "Are they quiet?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-37:i15:r3",
-            "targetText": "Are you sleepy?",
+            "targetText": "Are they cold?",
             "meaningByLocale": null
           }
         ],
@@ -857,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-37:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lonely`, а в этом варианте — `away`.",
-              "uk": "У записі останнє слово — `lonely`, а в цьому варіанті — `away`."
+              "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `quiet`.",
+              "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `quiet`."
             }
           },
           {
             "responseId": "en:lesson-02:session-37:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lonely`, а в этом варианте — `sleepy`.",
-              "uk": "У записі останнє слово — `lonely`, а в цьому варіанті — `sleepy`."
+              "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `cold`.",
+              "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `cold`."
             }
           }
         ],
@@ -880,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-37:i16:p1",
-            "target": "formal",
+            "target": "gloomy",
             "meaningByLocale": {
-              "ru": "официальный, строгий по стилю",
-              "uk": "офіційний, строгий за стилем"
+              "ru": "мрачный",
+              "uk": "похмурий"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i16:p2",
-            "target": "official",
+            "target": "foggy",
             "meaningByLocale": {
-              "ru": "официальный по статусу или источнику",
-              "uk": "офіційний за статусом чи джерелом"
+              "ru": "туманный",
+              "uk": "туманний"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i16:p3",
-            "target": "away",
+            "target": "quiet",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "тихий",
+              "uk": "тихий"
             }
           },
           {
             "pairId": "en:lesson-02:session-37:i16:p4",
-            "target": "lonely",
+            "target": "dangerous",
             "meaningByLocale": {
-              "ru": "одинокий",
-              "uk": "самотній"
+              "ru": "опасный",
+              "uk": "небезпечний"
             }
           }
         ],
         "leftColumn": [
-          "formal",
-          "official",
-          "away",
-          "lonely"
+          "gloomy",
+          "foggy",
+          "quiet",
+          "dangerous"
         ],
         "rightColumn": [
-          "официальный, строгий по стилю",
-          "официальный по статусу или источнику",
-          "не здесь, в отъезде",
-          "одинокий"
+          "мрачный",
+          "туманный",
+          "тихий",
+          "опасный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-37:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна прислала новое сообщение о празднике. Спросите, официальное ли оно",
+      "prompt": "Вы звоните брату, который уже в пути. Спросите, есть ли на трассе туман.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i17:audio"
       ],
-      "accessibilityLabel": "Анна прислала новое сообщение о празднике. Спросите, официальное ли оно",
+      "accessibilityLabel": "Вы звоните брату, который уже в пути. Спросите, есть ли на трассе туман.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-37:i17:audio",
-          "transcript": "Is it official?"
+          "transcript": "Is it foggy?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it official?",
+        "targetPhrase": "Is it foggy?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -993,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e7a0c586cf1715fc6f259983674361ecbec96e1b77cc8428c5a5bc0fc906053e"
+  "learnerFingerprint": "43e903d3ff36a4dd02367536171b6f7c04105ee3ddcfecd0a9f3d9c5a23281a6"
 }

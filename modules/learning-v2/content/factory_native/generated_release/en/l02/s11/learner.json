@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-11:i01",
+      "interactionId": "en:lesson-02:session-11:word:urgent",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — urgent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:word:urgent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — urgent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:word:urgent:audio",
+          "transcript": "urgent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-11:word:urgent:r1",
+            "targetText": "urgent",
+            "meaningByLocale": {
+              "ru": "срочный. Is it urgent? — «Это срочно?» О деле, звонке, письме, просьбе.",
+              "uk": "терміновий. Is it urgent? — «Це терміново?» Про справу, дзвінок, лист, прохання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "urgent",
+          "definitionByLocale": {
+            "ru": "срочный. Is it urgent? — «Это срочно?» О деле, звонке, письме, просьбе.",
+            "uk": "терміновий. Is it urgent? — «Це терміново?» Про справу, дзвінок, лист, прохання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг просит проверить список гостей. Спросите, срочно ли это",
+      "prompt": "Лена просит проверить список гостей выставки. Спросите, срочно ли это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг просит проверить список гостей. Спросите, срочно ли это",
+      "accessibilityLabel": "Лена просит проверить список гостей выставки. Спросите, срочно ли это",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Is it urgent?",
         "localizedMeaning": {
-          "ru": "Друг просит проверить список гостей. Спросите, срочно ли это",
-          "uk": "Друг просить перевірити список гостей. Запитайте, чи це терміново"
+          "ru": "Лена просит проверить список гостей выставки. Спросите, срочно ли это",
+          "uk": "Олена просить перевірити список гостей виставки. Запитайте, чи це терміново"
         },
         "orderedTokens": [
           "Is",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-11:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друг просит проверить список гостей. Спросите, срочно ли это",
+            "testedDimension": "Лена просит проверить список гостей выставки. Спросите, срочно ли это",
             "feedbackByLocale": {
               "ru": "здесь нужно `Is` — `Is it urgent?`",
               "uk": "тут потрібно `Is` — `Is it urgent?`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Анне",
+      "prompt": "Послушайте фразу о Лене",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-11:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Анне",
+      "accessibilityLabel": "Послушайте фразу о Лене",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте фразу о Лене",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `aware`, а в этом варианте — `convinced`.",
               "uk": "У записі останнє слово — `aware`, а в цьому варіанті — `convinced`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте фразу о Лене",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `aware`, а в этом варианте — `concerned`.",
               "uk": "У записі останнє слово — `aware`, а в цьому варіанті — `concerned`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Адрес нужно написать до приезда курьера через несколько минут. Дополните фразу о срочности этого дела",
+      "prompt": "Адрес на коробке нужно написать до приезда курьера. Дополните фразу об этом деле",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Адрес нужно написать до приезда курьера через несколько минут. Дополните фразу о срочности этого дела",
+      "accessibilityLabel": "Адрес на коробке нужно написать до приезда курьера. Дополните фразу об этом деле",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Адрес нужно написать до приезда курьера через несколько минут. Дополните фразу о срочности этого дела",
-          "uk": "Адресу потрібно написати до приїзду кур’єра за кілька хвилин. Доповніть фразу про терміновість цієї справи"
+          "ru": "Адрес на коробке нужно написать до приезда курьера. Дополните фразу об этом деле",
+          "uk": "Адресу на коробці треба написати до приїзду кур’єра. Доповніть фразу про цю справу"
         },
         "gappedTargetPhrase": "It ___ urgent.",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Адрес нужно написать до приезда курьера через несколько минут. Дополните фразу о срочности этого дела",
+        "testedDimension": "Адрес на коробке нужно написать до приезда курьера. Дополните фразу об этом деле",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-11:i03:r2",
             "correct": false,
-            "testedDimension": "Адрес нужно написать до приезда курьера через несколько минут. Дополните фразу о срочности этого дела",
+            "testedDimension": "Адрес на коробке нужно написать до приезда курьера. Дополните фразу об этом деле",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -182,10 +225,10 @@
           {
             "responseId": "en:lesson-02:session-11:i03:r3",
             "correct": false,
-            "testedDimension": "Адрес нужно написать до приезда курьера через несколько минут. Дополните фразу о срочности этого дела",
+            "testedDimension": "Адрес на коробке нужно написать до приезда курьера. Дополните фразу об этом деле",
             "feedbackByLocale": {
-              "ru": "Про это дело — `It is`.",
-              "uk": "Про цю справу — `It is`."
+              "ru": "Дело одно, поэтому `It is`.",
+              "uk": "Справа одна, тому `It is`."
             }
           }
         ]
@@ -194,15 +237,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -216,40 +259,40 @@
           },
           {
             "pairId": "en:lesson-02:session-11:i04:p2",
-            "target": "smart",
+            "target": "signed",
             "meaningByLocale": {
-              "ru": "умный",
-              "uk": "розумний"
+              "ru": "подписанный",
+              "uk": "підписаний"
             }
           },
           {
             "pairId": "en:lesson-02:session-11:i04:p3",
-            "target": "strong",
+            "target": "framed",
             "meaningByLocale": {
-              "ru": "сильный",
-              "uk": "сильний"
+              "ru": "в рамке",
+              "uk": "у рамці"
             }
           },
           {
             "pairId": "en:lesson-02:session-11:i04:p4",
-            "target": "quiet",
+            "target": "sealed",
             "meaningByLocale": {
-              "ru": "тихий",
-              "uk": "тихий"
+              "ru": "заклеенный",
+              "uk": "заклеєний"
             }
           }
         ],
         "leftColumn": [
           "urgent",
-          "smart",
-          "strong",
-          "quiet"
+          "signed",
+          "framed",
+          "sealed"
         ],
         "rightColumn": [
           "срочный",
-          "умный",
-          "сильный",
-          "тихий"
+          "подписанный",
+          "в рамке",
+          "заклеенный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,30 +309,73 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-11:word:sealed",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sealed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:word:sealed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sealed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:word:sealed:audio",
+          "transcript": "sealed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-11:word:sealed:r1",
+            "targetText": "sealed",
+            "meaningByLocale": {
+              "ru": "заклеенный, запечатанный. It's not sealed — «Она не заклеена». О коробке, конверте, банке.",
+              "uk": "заклеєний, запечатаний. It's not sealed — «Вона не заклеєна». Про коробку, конверт, банку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sealed",
+          "definitionByLocale": {
+            "ru": "заклеенный, запечатанный. It's not sealed — «Она не заклеена». О коробке, конверте, банке.",
+            "uk": "заклеєний, запечатаний. It's not sealed — «Вона не заклеєна». Про коробку, конверт, банку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-11:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Коробку для курьера ещё не заклеили скотчем. Послушайте и соберите фразу о ней",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-11:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Коробку для курьера ещё не заклеили скотчем. Послушайте и соберите фразу о ней",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-11:i05:audio",
-          "transcript": "It's not urgent."
+          "transcript": "It's not sealed."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's not urgent.",
+        "hiddenTargetPhrase": "It's not sealed.",
         "orderedTokens": [
           "It's",
           "not",
-          "urgent"
+          "sealed"
         ],
         "authoredDistractorTokens": [
           "They're"
@@ -298,10 +384,10 @@
           {
             "responseId": "en:lesson-02:session-11:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Коробку для курьера ещё не заклеили скотчем. Послушайте и соберите фразу о ней",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's not urgent.`",
-              "uk": "тут потрібно `It's` — `It's not urgent.`"
+              "ru": "здесь нужно `It's` — `It's not sealed.`",
+              "uk": "тут потрібно `It's` — `It's not sealed.`"
             }
           }
         ],
@@ -314,21 +400,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы обсуждаете ранний приезд курьера. Спросите друга, в курсе ли Анна и Олег",
+      "prompt": "Курьер приедет раньше. Спросите Лену, в курсе ли Анна и Олег",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы обсуждаете ранний приезд курьера. Спросите друга, в курсе ли Анна и Олег",
+      "accessibilityLabel": "Курьер приедет раньше. Спросите Лену, в курсе ли Анна и Олег",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are they aware?",
         "localizedMeaning": {
-          "ru": "Вы обсуждаете ранний приезд курьера. Спросите друга, в курсе ли Анна и Олег",
-          "uk": "Ви обговорюєте ранній приїзд кур’єра. Запитайте друга, чи Анна й Олег у курсі"
+          "ru": "Курьер приедет раньше. Спросите Лену, в курсе ли Анна и Олег",
+          "uk": "Кур’єр приїде раніше. Запитайте Олену, чи в курсі Анна й Олег"
         },
         "orderedTokens": [
           "Are",
@@ -342,7 +428,7 @@
           {
             "responseId": "en:lesson-02:session-11:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы обсуждаете ранний приезд курьера. Спросите друга, в курсе ли Анна и Олег",
+            "testedDimension": "Курьер приедет раньше. Спросите Лену, в курсе ли Анна и Олег",
             "feedbackByLocale": {
               "ru": "здесь нужно `Are` — `Are they aware?`",
               "uk": "тут потрібно `Are` — `Are they aware?`"
@@ -358,17 +444,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i07",
-      "ordinal": 10,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг предлагает упаковать рисунки без защиты. Его доводы вас не убедили. Скажите, что вы не убеждены",
+      "prompt": "Лена предлагает сложить рисунки в пакет без коробки. Вас это не убеждает. Скажите об этом полной фразой",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-11:i07:audio"
       ],
-      "accessibilityLabel": "Друг предлагает упаковать рисунки без защиты. Его доводы вас не убедили. Скажите, что вы не убеждены",
+      "accessibilityLabel": "Лена предлагает сложить рисунки в пакет без коробки. Вас это не убеждает. Скажите об этом полной фразой",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -391,11 +477,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег хочет нести тяжёлую коробку. Спросите Анну, сильный ли он",
+      "prompt": "Олег хочет нести тяжёлую коробку сам. Спросите Лену, сильный ли он",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i08:r1",
@@ -412,12 +498,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег хочет нести тяжёлую коробку. Спросите Анну, сильный ли он",
+      "accessibilityLabel": "Олег хочет нести тяжёлую коробку сам. Спросите Лену, сильный ли он",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег хочет нести тяжёлую коробку. Спросите Анну, сильный ли он",
-          "uk": "Олег хоче нести важку коробку. Запитайте Анну, чи він сильний"
+          "ru": "Олег хочет нести тяжёлую коробку сам. Спросите Лену, сильный ли он",
+          "uk": "Олег хоче нести важку коробку сам. Запитайте Олену, чи він сильний"
         },
         "gappedTargetPhrase": "___ he strong?",
         "gapOptions": [
@@ -434,12 +520,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Олег хочет нести тяжёлую коробку. Спросите Анну, сильный ли он",
+        "testedDimension": "Олег хочет нести тяжёлую коробку сам. Спросите Лену, сильный ли он",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-11:i08:r2",
             "correct": false,
-            "testedDimension": "Олег хочет нести тяжёлую коробку. Спросите Анну, сильный ли он",
+            "testedDimension": "Олег хочет нести тяжёлую коробку сам. Спросите Лену, сильный ли он",
             "feedbackByLocale": {
               "ru": "С `he` нужно `Is`.",
               "uk": "З `he` потрібно `Is`."
@@ -448,10 +534,10 @@
           {
             "responseId": "en:lesson-02:session-11:i08:r3",
             "correct": false,
-            "testedDimension": "Олег хочет нести тяжёлую коробку. Спросите Анну, сильный ли он",
+            "testedDimension": "Олег хочет нести тяжёлую коробку сам. Спросите Лену, сильный ли он",
             "feedbackByLocale": {
-              "ru": "Про него спрашиваем `Is he`.",
-              "uk": "Про нього запитуємо `Is he`."
+              "ru": "Про Олега спрашиваем `Is he`.",
+              "uk": "Про Олега питаємо `Is he`."
             }
           }
         ]
@@ -459,52 +545,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-11:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-11:word:signed",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос об Анне",
+      "prompt": "Карточка слова — signed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:word:signed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — signed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:word:signed:audio",
+          "transcript": "signed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-11:word:signed:r1",
+            "targetText": "signed",
+            "meaningByLocale": {
+              "ru": "подписанный. It's not signed — «Он не подписан». О рисунке, договоре, открытке.",
+              "uk": "підписаний. It's not signed — «Він не підписаний». Про малюнок, договір, листівку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "signed",
+          "definitionByLocale": {
+            "ru": "подписанный. It's not signed — «Он не подписан». О рисунке, договоре, открытке.",
+            "uk": "підписаний. It's not signed — «Він не підписаний». Про малюнок, договір, листівку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о рисунке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i09:r1",
-          "text": "Is she smart?"
+          "text": "Is it signed?"
         },
         {
           "responseId": "en:lesson-02:session-11:i09:r2",
-          "text": "Is she quiet?"
+          "text": "Is it sealed?"
         },
         {
           "responseId": "en:lesson-02:session-11:i09:r3",
-          "text": "Is she strong?"
+          "text": "Is it framed?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-11:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос об Анне",
+      "accessibilityLabel": "Послушайте вопрос о рисунке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-11:i09:audio",
-          "transcript": "Is she smart?"
+          "transcript": "Is it signed?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-11:i09:r1",
-            "targetText": "Is she smart?",
+            "targetText": "Is it signed?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-11:i09:r2",
-            "targetText": "Is she quiet?",
+            "targetText": "Is it sealed?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-11:i09:r3",
-            "targetText": "Is she strong?",
+            "targetText": "Is it framed?",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +642,19 @@
           {
             "responseId": "en:lesson-02:session-11:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об Анне",
+            "testedDimension": "Послушайте вопрос о рисунке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `smart`, а в этом варианте — `quiet`.",
-              "uk": "У записі останнє слово — `smart`, а в цьому варіанті — `quiet`."
+              "ru": "В записи последнее слово — `signed`, а в этом варианте — `sealed`.",
+              "uk": "У записі останнє слово — `signed`, а в цьому варіанті — `sealed`."
             }
           },
           {
             "responseId": "en:lesson-02:session-11:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об Анне",
+            "testedDimension": "Послушайте вопрос о рисунке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `smart`, а в этом варианте — `strong`.",
-              "uk": "У записі останнє слово — `smart`, а в цьому варіанті — `strong`."
+              "ru": "В записи последнее слово — `signed`, а в этом варианте — `framed`.",
+              "uk": "У записі останнє слово — `signed`, а в цьому варіанті — `framed`."
             }
           }
         ],
@@ -536,15 +665,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -574,10 +703,10 @@
           },
           {
             "pairId": "en:lesson-02:session-11:i10:p4",
-            "target": "urgent",
+            "target": "strong",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "сильный",
+              "uk": "сильний"
             }
           }
         ],
@@ -585,13 +714,13 @@
           "aware",
           "convinced",
           "concerned",
-          "urgent"
+          "strong"
         ],
         "rightColumn": [
           "в курсе",
           "убеждённый",
           "обеспокоенный",
-          "срочный"
+          "сильный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,17 +738,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Курьер опаздывает, и вы с Леной переглядываетесь. Послушайте и соберите фразу о вас",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-11:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Курьер опаздывает, и вы с Леной переглядываетесь. Послушайте и соберите фразу о вас",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -639,7 +768,7 @@
           {
             "responseId": "en:lesson-02:session-11:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Курьер опаздывает, и вы с Леной переглядываетесь. Послушайте и соберите фразу о вас",
             "feedbackByLocale": {
               "ru": "здесь нужно `We're` — `We're concerned.`",
               "uk": "тут потрібно `We're` — `We're concerned.`"
@@ -655,21 +784,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Выбор салфеток может подождать до завтра. Скажите, что это не срочно",
+      "prompt": "Выбор открыток для гостей может подождать до завтра. Скажите, что это не срочно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выбор салфеток может подождать до завтра. Скажите, что это не срочно",
+      "accessibilityLabel": "Выбор открыток для гостей может подождать до завтра. Скажите, что это не срочно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is not urgent.",
         "localizedMeaning": {
-          "ru": "Выбор салфеток может подождать до завтра. Скажите, что это не срочно",
-          "uk": "Вибір серветок може зачекати до завтра. Скажіть, що це не терміново"
+          "ru": "Выбор открыток для гостей может подождать до завтра. Скажите, что это не срочно",
+          "uk": "Вибір листівок для гостей може зачекати до завтра. Скажіть, що це не терміново"
         },
         "orderedTokens": [
           "It",
@@ -684,7 +813,7 @@
           {
             "responseId": "en:lesson-02:session-11:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Выбор салфеток может подождать до завтра. Скажите, что это не срочно",
+            "testedDimension": "Выбор открыток для гостей может подождать до завтра. Скажите, что это не срочно",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is not urgent.`",
               "uk": "тут потрібно `is` — `It is not urgent.`"
@@ -699,26 +828,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-11:word:framed",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — framed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:word:framed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — framed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:word:framed:audio",
+          "transcript": "framed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-11:word:framed:r1",
+            "targetText": "framed",
+            "meaningByLocale": {
+              "ru": "в рамке. They're not framed — «Они не в рамке». О рисунках, фотографиях, дипломах.",
+              "uk": "у рамці. They're not framed — «Вони не в рамці». Про малюнки, фотографії, дипломи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "framed",
+          "definitionByLocale": {
+            "ru": "в рамке. They're not framed — «Они не в рамке». О рисунках, фотографиях, дипломах.",
+            "uk": "у рамці. They're not framed — «Вони не в рамці». Про малюнки, фотографії, дипломи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-11:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна сегодня почти не разговаривает. Коротко скажите, что она тихая",
+      "prompt": "Олег спрашивает про три акварели на подоконнике, а рамок у них нет. Скажите ему коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-11:i13:audio"
       ],
-      "accessibilityLabel": "Анна сегодня почти не разговаривает. Коротко скажите, что она тихая",
+      "accessibilityLabel": "Олег спрашивает про три акварели на подоконнике, а рамок у них нет. Скажите ему коротко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-11:i13:audio",
-          "transcript": "She's quiet."
+          "transcript": "They're not framed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She's quiet.",
+        "targetPhrase": "They're not framed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -733,11 +905,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг ждёт курьера и смотрит на часы. Спросите его, обеспокоен ли он",
+      "prompt": "Лена ждёт курьера и смотрит на часы. Спросите её, беспокоится ли она",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i14:r1",
@@ -754,12 +926,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг ждёт курьера и смотрит на часы. Спросите его, обеспокоен ли он",
+      "accessibilityLabel": "Лена ждёт курьера и смотрит на часы. Спросите её, беспокоится ли она",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг ждёт курьера и смотрит на часы. Спросите его, обеспокоен ли он",
-          "uk": "Друг чекає кур’єра й дивиться на годинник. Запитайте його, чи він стурбований"
+          "ru": "Лена ждёт курьера и смотрит на часы. Спросите её, беспокоится ли она",
+          "uk": "Олена чекає на кур’єра й дивиться на годинник. Запитайте її, чи вона хвилюється"
         },
         "gappedTargetPhrase": "___ you concerned?",
         "gapOptions": [
@@ -776,12 +948,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Друг ждёт курьера и смотрит на часы. Спросите его, обеспокоен ли он",
+        "testedDimension": "Лена ждёт курьера и смотрит на часы. Спросите её, беспокоится ли она",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-11:i14:r2",
             "correct": false,
-            "testedDimension": "Друг ждёт курьера и смотрит на часы. Спросите его, обеспокоен ли он",
+            "testedDimension": "Лена ждёт курьера и смотрит на часы. Спросите её, беспокоится ли она",
             "feedbackByLocale": {
               "ru": "С `you` нужно `Are`.",
               "uk": "З `you` потрібно `Are`."
@@ -790,7 +962,7 @@
           {
             "responseId": "en:lesson-02:session-11:i14:r3",
             "correct": false,
-            "testedDimension": "Друг ждёт курьера и смотрит на часы. Спросите его, обеспокоен ли он",
+            "testedDimension": "Лена ждёт курьера и смотрит на часы. Спросите её, беспокоится ли она",
             "feedbackByLocale": {
               "ru": "К собеседнику — `Are you`.",
               "uk": "До співрозмовника — `Are you`."
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,15 +1050,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -916,10 +1088,10 @@
           },
           {
             "pairId": "en:lesson-02:session-11:i16:p4",
-            "target": "concerned",
+            "target": "narrow",
             "meaningByLocale": {
-              "ru": "обеспокоенный",
-              "uk": "стурбований"
+              "ru": "узкий",
+              "uk": "вузький"
             }
           }
         ],
@@ -927,13 +1099,13 @@
           "smart",
           "strong",
           "quiet",
-          "concerned"
+          "narrow"
         ],
         "rightColumn": [
           "умный",
           "сильный",
           "тихий",
-          "обеспокоенный"
+          "узкий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,17 +1123,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-11:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг просит вас отложить упаковку и посмотреть его сообщение. Вы не знаете, может ли это подождать. Спросите, срочно ли это",
+      "prompt": "Лена просит вас отложить упаковку и прочитать её сообщение. Вы не знаете, может ли это подождать. Спросите, срочно ли это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-11:i17:audio"
       ],
-      "accessibilityLabel": "Друг просит вас отложить упаковку и посмотреть его сообщение. Вы не знаете, может ли это подождать. Спросите, срочно ли это",
+      "accessibilityLabel": "Лена просит вас отложить упаковку и прочитать её сообщение. Вы не знаете, может ли это подождать. Спросите, срочно ли это",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4128fef01cf78066571baa74b1d6e4a6a4effbf6aa522601edc1204b2b662214"
+  "learnerFingerprint": "1fa2c532d961f394cda12a46f5c697e342c15fbc65285b6c69738876ffc06a68"
 }

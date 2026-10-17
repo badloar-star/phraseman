@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-47:intro1:r2": {
-          "ru": "`useful` — «полезно». Здесь вы предупреждаете об опасности: `dangerous`.",
-          "uk": "`useful` — «корисно». Тут ви попереджаєте про небезпеку: `dangerous`."
+          "ru": "okay — «нормально». Доски провалились, это не нормально: dangerous.",
+          "uk": "okay — «нормально». Дошки провалилися, це не нормально: dangerous."
         },
         "en:lesson-01:session-47:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "Так вы скажете, что опасен сам мальчик. О месте говорим It's.",
+          "uk": "Так ви скажете, що небезпечний сам хлопчик. Про місце кажемо It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-47:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "steep — «крутые». Вы предупреждаете про мокрый мох: slippery.",
+          "uk": "steep — «круті». Ви попереджаєте про мокрий мох: slippery."
         },
         "en:lesson-01:session-47:intro2:r3": {
-          "ru": "`brave` — «смелые». Проходы здесь опасны: `dangerous`.",
-          "uk": "`brave` — «сміливі». Проходи тут небезпечні: `dangerous`."
+          "ru": "It's — про одну вещь, а ступеней много: They're slippery.",
+          "uk": "It's — про одну річ, а сходинок багато: They're slippery."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-47:intro3:r2": {
-          "ru": "Это значит, что он опасен. Вы хвалите смелость: `brave`.",
-          "uk": "Це означає, що він небезпечний. Ви хвалите сміливість: `brave`."
+          "ru": "cold — «холодная». Вы предупреждаете, что дна не достать: deep.",
+          "uk": "cold — «холодна». Ви попереджаєте, що дна не дістати: deep."
         },
         "en:lesson-01:session-47:intro3:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "They're — про несколько вещей. О воде говорим It's deep.",
+          "uk": "They're — про кілька речей. Про воду кажемо It's deep."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "45a114627ca806d0c249b1eddcce4a9799f7d4bd6378c0c34010c6d1f48ef109"
+  "auxiliaryFingerprint": "54a501e9b9188284ce6aae106308b91b85a765bdec19fc423d0ffcea4413c9a7"
 }

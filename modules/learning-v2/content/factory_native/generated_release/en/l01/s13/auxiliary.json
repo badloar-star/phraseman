@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-13:intro2:r2": {
-          "ru": "Вы отмечаете силу Миры, обращаясь к ней: You are strong.",
-          "uk": "Ви відзначаєте силу Міри, звертаючись до неї: You are strong."
+          "ru": "Вы отмечаете силу подруги, обращаясь к ней: You are strong.",
+          "uk": "Ви відзначаєте силу подруги, звертаючись до неї: You are strong."
         },
         "en:lesson-01:session-13:intro2:r3": {
           "ru": "С you здесь нужно are, а не am.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-13:intro3:r2": {
-          "ru": "Виктор говорит о себе, а не о собеседнике: I am old.",
-          "uk": "Віктор говорить про себе, а не про співрозмовника: I am old."
+          "ru": "Сосед говорит о себе, а не о собеседнике: I am old.",
+          "uk": "Сусід говорить про себе, а не про співрозмовника: I am old."
         },
         "en:lesson-01:session-13:intro3:r3": {
           "ru": "Между I и old нужно am.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "b8b4e9e21eec42a02fda7f2358cff399960f838a5d850d764f217f996eb75e5b"
+  "auxiliaryFingerprint": "7b5a4b18aca78da96b94dd517881692f4d31658ccb0cb0d32e1428afa59d2873"
 }

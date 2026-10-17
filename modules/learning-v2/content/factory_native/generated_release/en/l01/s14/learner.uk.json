@@ -247,17 +247,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — скажіть Алексові: «Ти в безпеці»",
+      "prompt": "Складіть фразу — скажіть туристові: «Ти в безпеці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — скажіть Алексові: «Ти в безпеці»",
+      "accessibilityLabel": "Складіть фразу — скажіть туристові: «Ти в безпеці»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are safe.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — скажите Алексу: «Ты в безопасности»",
-          "uk": "Складіть фразу — скажіть Алексові: «Ти в безпеці»"
+          "ru": "Соберите фразу — скажите туристу: «Ты в безопасности»",
+          "uk": "Складіть фразу — скажіть туристові: «Ти в безпеці»"
         },
         "orderedTokens": [
           "You",
@@ -271,7 +271,7 @@
           {
             "responseId": "en:lesson-01:session-14:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — скажіть Алексові: «Ти в безпеці»",
+            "testedDimension": "Складіть фразу — скажіть туристові: «Ти в безпеці»",
             "feedbackByLocale": {
               "ru": "С `you` нельзя `am`: правильная фраза — `You are safe.`",
               "uk": "З `you` не можна `am`: правильна фраза — `You are safe`."
@@ -291,7 +291,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — Алекс заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
+      "prompt": "Вставте слово — турист заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-14:i06:r1",
@@ -308,12 +308,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Алекс заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
+      "accessibilityLabel": "Вставте слово — турист заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — Алекс заблудился и не знает, где вокзал; скажите ему, что он заблудился",
-          "uk": "Вставте слово — Алекс заблукав і не знає, де вокзал; скажіть йому, що він заблукав"
+          "ru": "Вставьте слово — турист заблудился и не знает, где вокзал; скажите ему, что он заблудился",
+          "uk": "Вставте слово — турист заблукав і не знає, де вокзал; скажіть йому, що він заблукав"
         },
         "gappedTargetPhrase": "You are ___ .",
         "gapOptions": [
@@ -330,24 +330,24 @@
             "text": "ready"
           }
         ],
-        "testedDimension": "Вставте слово — Алекс заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
+        "testedDimension": "Вставте слово — турист заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-14:i06:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — Алекс заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
+            "testedDimension": "Вставте слово — турист заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
             "feedbackByLocale": {
-              "ru": "`safe` значит «в безопасности», но Алекс не знает, где вокзал: он `lost`.",
-              "uk": "`safe` означає «у безпеці», але Алекс не знає, де вокзал: він `lost`."
+              "ru": "`safe` значит «в безопасности», но турист не знает, где вокзал: он `lost`.",
+              "uk": "`safe` означає «у безпеці», але турист не знає, де вокзал: він `lost`."
             }
           },
           {
             "responseId": "en:lesson-01:session-14:i06:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — Алекс заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
+            "testedDimension": "Вставте слово — турист заблукав і не знає, де вокзал; скажіть йому, що він заблукав",
             "feedbackByLocale": {
-              "ru": "Ready — «готов». В задании нужно сказать, что Алекс заблудился: lost.",
-              "uk": "Ready — «готовий». У завданні потрібно сказати, що Алекс заблукав: lost."
+              "ru": "Ready — «готов». В задании нужно сказать, что турист заблудился: lost.",
+              "uk": "Ready — «готовий». У завданні потрібно сказати, що турист заблукав: lost."
             }
           }
         ]
@@ -598,7 +598,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+      "prompt": "Скажіть туристові: «Ти в безпеці» — вставте пропущене слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-14:i11:r1",
@@ -615,12 +615,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+      "accessibilityLabel": "Скажіть туристові: «Ти в безпеці» — вставте пропущене слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите Алексу: «Ты в безопасности» — вставьте пропущенное слово",
-          "uk": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово"
+          "ru": "Скажите туристу: «Ты в безопасности» — вставьте пропущенное слово",
+          "uk": "Скажіть туристові: «Ти в безпеці» — вставте пропущене слово"
         },
         "gappedTargetPhrase": "You ___ safe.",
         "gapOptions": [
@@ -637,12 +637,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+        "testedDimension": "Скажіть туристові: «Ти в безпеці» — вставте пропущене слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-14:i11:r2",
             "correct": false,
-            "testedDimension": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+            "testedDimension": "Скажіть туристові: «Ти в безпеці» — вставте пропущене слово",
             "feedbackByLocale": {
               "ru": "`am` употребляется в `I am`; здесь обращение `you`, поэтому нужно `are`.",
               "uk": "`am` вживається в `I am`; тут звертаємося до `you`, тому потрібно `are`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-01:session-14:i11:r3",
             "correct": false,
-            "testedDimension": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+            "testedDimension": "Скажіть туристові: «Ти в безпеці» — вставте пропущене слово",
             "feedbackByLocale": {
               "ru": "`is` относится к `he/she/it`; здесь обращение `you`, поэтому нужно `are`.",
               "uk": "`is` стосується `he/she/it`; тут звертаємося до `you`, тому потрібно `are`."
@@ -714,17 +714,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — Алекс узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»",
+      "prompt": "Складіть фразу — турист узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — Алекс узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»",
+      "accessibilityLabel": "Складіть фразу — турист узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are ready.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Алекс взял сумку и сказал, что готов идти; скажите ему: «ты готов идти»",
-          "uk": "Складіть фразу — Алекс узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»"
+          "ru": "Соберите фразу — турист взял сумку и сказал, что готов идти; скажите ему: «ты готов идти»",
+          "uk": "Складіть фразу — турист узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»"
         },
         "orderedTokens": [
           "You",
@@ -738,7 +738,7 @@
           {
             "responseId": "en:lesson-01:session-14:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — Алекс узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»",
+            "testedDimension": "Складіть фразу — турист узяв сумку й сказав, що готовий іти; скажіть йому: «ти готовий іти»",
             "feedbackByLocale": {
               "ru": "`not` изменит смысл на «ты не готов». Нужна фраза `You are ready.`",
               "uk": "`not` змінить зміст на «ти не готовий». Потрібна фраза `You are ready`."
@@ -907,17 +907,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Автомобіль різко сигналить, Алекс злякався. Скажіть йому: «Ти злякався»",
+      "prompt": "Автомобіль різко сигналить, турист злякався. Скажіть йому: «Ти злякався»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Автомобіль різко сигналить, Алекс злякався. Скажіть йому: «Ти злякався»",
+      "accessibilityLabel": "Автомобіль різко сигналить, турист злякався. Скажіть йому: «Ти злякався»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are scared.",
         "localizedMeaning": {
-          "ru": "Машина резко сигналит, Алекс испугался. Скажите ему: «Ты испугался»",
-          "uk": "Автомобіль різко сигналить, Алекс злякався. Скажіть йому: «Ти злякався»"
+          "ru": "Машина резко сигналит, турист испугался. Скажите ему: «Ты испугался»",
+          "uk": "Автомобіль різко сигналить, турист злякався. Скажіть йому: «Ти злякався»"
         },
         "orderedTokens": [
           "You",
@@ -931,7 +931,7 @@
           {
             "responseId": "en:lesson-01:session-14:i16:tile:d1",
             "correct": false,
-            "testedDimension": "Автомобіль різко сигналить, Алекс злякався. Скажіть йому: «Ти злякався»",
+            "testedDimension": "Автомобіль різко сигналить, турист злякався. Скажіть йому: «Ти злякався»",
             "feedbackByLocale": {
               "ru": "После `you` нужно `are`, не `is`: `You are scared.`",
               "uk": "Після `you` потрібне `are`, не `is`: `You are scared`."
@@ -998,13 +998,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ліна прийшла без парасольки, її одяг промок. Скажіть їй: «Ти мокра»",
+      "prompt": "Подруга прийшла без парасольки, її одяг промок. Скажіть їй: «Ти мокра»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-14:i18:audio"
       ],
-      "accessibilityLabel": "Ліна прийшла без парасольки, її одяг промок. Скажіть їй: «Ти мокра»",
+      "accessibilityLabel": "Подруга прийшла без парасольки, її одяг промок. Скажіть їй: «Ти мокра»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1032,5 +1032,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4331fe84ea9a72c46c8a244ca4e7597f513645d1ef3d9b8b08782a7c61404de3"
+  "learnerFingerprint": "7e22d7d31ebaaf3c0d39b694c6cc54920f5bb8d22f4d3fcdc28303eb45dc197c"
 }

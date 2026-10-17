@@ -9,17 +9,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг признал, что случайно испортил вашу работу. Назовите его честным",
+      "prompt": "Друг признался, что случайно поцарапал вашу рамку. Назовите его честным",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг признал, что случайно испортил вашу работу. Назовите его честным",
+      "accessibilityLabel": "Друг признался, что случайно поцарапал вашу рамку. Назовите его честным",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is honest.",
         "localizedMeaning": {
-          "ru": "Друг признал, что случайно испортил вашу работу. Назовите его честным",
-          "uk": "Друг визнав, що випадково зіпсував вашу роботу. Назвіть його чесним"
+          "ru": "Друг признался, что случайно поцарапал вашу рамку. Назовите его честным",
+          "uk": "Друг зізнався, що випадково подряпав вашу рамку. Назвіть його чесним"
         },
         "orderedTokens": [
           "He",
@@ -33,7 +33,7 @@
           {
             "responseId": "en:lesson-01:session-48:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друг признал, что случайно испортил вашу работу. Назовите его честным",
+            "testedDimension": "Друг признался, что случайно поцарапал вашу рамку. Назовите его честным",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `He is honest.`",
               "uk": "тут потрібно `is` — `He is honest.`"
@@ -48,52 +48,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-48:i02",
+      "interactionId": "en:lesson-01:session-48:word:sharp",
       "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте оценку подруги и выберите услышанное",
+      "prompt": "Карточка слова — sharp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:sharp:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sharp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:sharp:audio",
+          "transcript": "sharp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:sharp:r1",
+            "targetText": "sharp",
+            "meaningByLocale": {
+              "ru": "острый. It's sharp — «Он острый». О ноже, ножницах, краях стекла.",
+              "uk": "гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sharp",
+          "definitionByLocale": {
+            "ru": "острый. It's sharp — «Он острый». О ноже, ножницах, краях стекла.",
+            "uk": "гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-48:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i02:r1",
-          "text": "She is polite."
+          "text": "They are sticky."
         },
         {
           "responseId": "en:lesson-01:session-48:i02:r2",
-          "text": "She is patient."
+          "text": "We are sticky."
         },
         {
           "responseId": "en:lesson-01:session-48:i02:r3",
-          "text": "She is curious."
+          "text": "They are sharp."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте оценку подруги и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i02:audio",
-          "transcript": "She is polite."
+          "transcript": "They are sticky."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-48:i02:r1",
-            "targetText": "She is polite.",
+            "targetText": "They are sticky.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r2",
-            "targetText": "She is patient.",
+            "targetText": "We are sticky.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r3",
-            "targetText": "She is curious.",
+            "targetText": "They are sharp.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-01:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте оценку подруги и выберите услышанное",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `polite`, а в этом варианте — `patient`.",
-              "uk": "У записі останнє слово — `polite`, а в цьому варіанті — `patient`."
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
             }
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте оценку подруги и выберите услышанное",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `polite`, а в этом варианте — `curious`.",
-              "uk": "У записі останнє слово — `polite`, а в цьому варіанті — `curious`."
+              "ru": "В записи последнее слово — `sticky`, а в этом варианте — `sharp`.",
+              "uk": "У записі останнє слово — `sticky`, а в цьому варіанті — `sharp`."
             }
           }
         ],
@@ -125,15 +168,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с другом спокойно ждёте, пока высохнет краска. Скажите о терпении вас обоих",
+      "prompt": "Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i03:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-01:session-48:i03:r2",
@@ -141,23 +184,23 @@
         },
         {
           "responseId": "en:lesson-01:session-48:i03:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с другом спокойно ждёте, пока высохнет краска. Скажите о терпении вас обоих",
+      "accessibilityLabel": "Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с другом спокойно ждёте, пока высохнет краска. Скажите о терпении вас обоих",
-          "uk": "Ви з другом спокійно чекаєте, поки висохне фарба. Скажіть про терплячість вас обох"
+          "ru": "Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней",
+          "uk": "Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї"
         },
-        "gappedTargetPhrase": "We ___ patient.",
+        "gappedTargetPhrase": "It ___ sharp.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-48:i03:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-01:session-48:i03:r2",
@@ -165,27 +208,27 @@
           },
           {
             "responseId": "en:lesson-01:session-48:i03:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вы с другом спокойно ждёте, пока высохнет краска. Скажите о терпении вас обоих",
+        "testedDimension": "Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-48:i03:r2",
             "correct": false,
-            "testedDimension": "Вы с другом спокойно ждёте, пока высохнет краска. Скажите о терпении вас обоих",
+            "testedDimension": "Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней",
             "feedbackByLocale": {
-              "ru": "После `We` нужно `are`.",
-              "uk": "Після `We` потрібно `are`."
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-01:session-48:i03:r3",
             "correct": false,
-            "testedDimension": "Вы с другом спокойно ждёте, пока высохнет краска. Скажите о терпении вас обоих",
+            "testedDimension": "Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней",
             "feedbackByLocale": {
-              "ru": "Про нас — `We are`.",
-              "uk": "Про нас — `We are`."
+              "ru": "Стамеска одна, поэтому `It is`.",
+              "uk": "Стамеска одна, тому `It is`."
             }
           }
         ]
@@ -194,62 +237,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините качества людей со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините качества людей со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-48:i04:p1",
-            "target": "honest",
+            "target": "sharp",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "острый",
+              "uk": "гострий"
             }
           },
           {
             "pairId": "en:lesson-01:session-48:i04:p2",
-            "target": "polite",
+            "target": "sticky",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "липкий",
+              "uk": "липкий"
             }
           },
           {
             "pairId": "en:lesson-01:session-48:i04:p3",
-            "target": "patient",
+            "target": "handmade",
             "meaningByLocale": {
-              "ru": "терпеливый",
-              "uk": "терплячий"
+              "ru": "сделан вручную",
+              "uk": "зроблений вручну"
             }
           },
           {
             "pairId": "en:lesson-01:session-48:i04:p4",
-            "target": "curious",
+            "target": "lovely",
             "meaningByLocale": {
-              "ru": "любопытный",
-              "uk": "допитливий"
+              "ru": "чудесный",
+              "uk": "чудовий"
             }
           }
         ],
         "leftColumn": [
-          "honest",
-          "polite",
-          "patient",
-          "curious"
+          "sharp",
+          "sticky",
+          "handmade",
+          "lovely"
         ],
         "rightColumn": [
-          "честный",
-          "вежливый",
-          "терпеливый",
-          "любопытный"
+          "острый",
+          "липкий",
+          "сделан вручную",
+          "чудесный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,8 +309,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-48:word:handmade",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — handmade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:handmade:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — handmade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:handmade:audio",
+          "transcript": "handmade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:handmade:r1",
+            "targetText": "handmade",
+            "meaningByLocale": {
+              "ru": "сделан вручную. It's handmade — «Это ручная работа». О чашке, свитере, открытке, которые сделал человек, а не фабрика.",
+              "uk": "зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handmade",
+          "definitionByLocale": {
+            "ru": "сделан вручную. It's handmade — «Это ручная работа». О чашке, свитере, открытке, которые сделал человек, а не фабрика.",
+            "uk": "зроблений вручну. It's handmade — «Це ручна робота». Про чашку, светр, листівку, які зробила людина, а не фабрика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-48:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -282,13 +368,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i05:audio",
-          "transcript": "I'm curious."
+          "transcript": "It's handmade."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I'm curious.",
+        "hiddenTargetPhrase": "It's handmade.",
         "orderedTokens": [
-          "I'm",
-          "curious"
+          "It's",
+          "handmade"
         ],
         "authoredDistractorTokens": [
           "He's"
@@ -299,8 +385,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `I'm` — `I'm curious.`",
-              "uk": "тут потрібно `I'm` — `I'm curious.`"
+              "ru": "здесь нужно `It's` — `It's handmade.`",
+              "uk": "тут потрібно `It's` — `It's handmade.`"
             }
           }
         ],
@@ -313,21 +399,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Две подписи помогают посетителям понять картины. Назовите подписи полезными",
+      "prompt": "Две таблички под работами подсказывают гостям, кто автор. Назовите таблички полезными",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Две подписи помогают посетителям понять картины. Назовите подписи полезными",
+      "accessibilityLabel": "Две таблички под работами подсказывают гостям, кто автор. Назовите таблички полезными",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are useful.",
         "localizedMeaning": {
-          "ru": "Две подписи помогают посетителям понять картины. Назовите подписи полезными",
-          "uk": "Два підписи допомагають відвідувачам зрозуміти картини. Назвіть підписи корисними"
+          "ru": "Две таблички под работами подсказывают гостям, кто автор. Назовите таблички полезными",
+          "uk": "Дві таблички під роботами підказують гостям, хто автор. Назвіть таблички корисними"
         },
         "orderedTokens": [
           "They",
@@ -341,7 +427,7 @@
           {
             "responseId": "en:lesson-01:session-48:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Две подписи помогают посетителям понять картины. Назовите подписи полезными",
+            "testedDimension": "Две таблички под работами подсказывают гостям, кто автор. Назовите таблички полезными",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `They are useful.`",
               "uk": "тут потрібно `are` — `They are useful.`"
@@ -356,26 +442,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-48:word:lovely",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lovely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:lovely:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lovely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:lovely:audio",
+          "transcript": "lovely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:lovely:r1",
+            "targetText": "lovely",
+            "meaningByLocale": {
+              "ru": "чудесный, очень милый. It's lovely — «Чудесно». Так хвалят вещь, место или человека.",
+              "uk": "чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lovely",
+          "definitionByLocale": {
+            "ru": "чудесный, очень милый. It's lovely — «Чудесно». Так хвалят вещь, место или человека.",
+            "uk": "чудовий, дуже милий. It's lovely — «Чудово». Так хвалять річ, місце чи людину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-48:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Неподходящий кабель совсем не помогает подключить лампу. Коротко оцените его как бесполезный для этой задачи",
+      "prompt": "Посетительница долго рассматривает скатерть, которую вышила подруга, и улыбается. Скажите подруге коротко, что скатерть чудесная",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i07:audio"
       ],
-      "accessibilityLabel": "Неподходящий кабель совсем не помогает подключить лампу. Коротко оцените его как бесполезный для этой задачи",
+      "accessibilityLabel": "Посетительница долго рассматривает скатерть, которую вышила подруга, и улыбается. Скажите подруге коротко, что скатерть чудесная",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i07:audio",
-          "transcript": "It's useless."
+          "transcript": "It's lovely."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's useless.",
+        "targetPhrase": "It's lovely.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -390,11 +519,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повреждённая лестница может обрушиться. Назовите именно опасность",
+      "prompt": "Старая стремянка в углу мастерской шатается под ногой. Назовите именно опасность",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i08:r1",
@@ -402,21 +531,21 @@
         },
         {
           "responseId": "en:lesson-01:session-48:i08:r2",
-          "text": "useful"
+          "text": "lovely"
         },
         {
           "responseId": "en:lesson-01:session-48:i08:r3",
-          "text": "useless"
+          "text": "handmade"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повреждённая лестница может обрушиться. Назовите именно опасность",
+      "accessibilityLabel": "Старая стремянка в углу мастерской шатается под ногой. Назовите именно опасность",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Повреждённая лестница может обрушиться. Назовите именно опасность",
-          "uk": "Пошкоджена драбина може обвалитися. Назвіть саме небезпеку"
+          "ru": "Старая стремянка в углу мастерской шатается под ногой. Назовите именно опасность",
+          "uk": "Стара драбина в кутку майстерні хитається під ногою. Назвіть саме небезпеку"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -426,31 +555,31 @@
           },
           {
             "responseId": "en:lesson-01:session-48:i08:r2",
-            "text": "useful"
+            "text": "lovely"
           },
           {
             "responseId": "en:lesson-01:session-48:i08:r3",
-            "text": "useless"
+            "text": "handmade"
           }
         ],
-        "testedDimension": "Повреждённая лестница может обрушиться. Назовите именно опасность",
+        "testedDimension": "Старая стремянка в углу мастерской шатается под ногой. Назовите именно опасность",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-48:i08:r2",
             "correct": false,
-            "testedDimension": "Повреждённая лестница может обрушиться. Назовите именно опасность",
+            "testedDimension": "Старая стремянка в углу мастерской шатается под ногой. Назовите именно опасность",
             "feedbackByLocale": {
-              "ru": "Нужно предупредить об опасности: `dangerous`.",
-              "uk": "Треба попередити про небезпеку: `dangerous`."
+              "ru": "`lovely` — «чудесная», это похвала. Здесь нужно предупредить: `dangerous`.",
+              "uk": "`lovely` — «чудова», це похвала. Тут потрібно попередити: `dangerous`."
             }
           },
           {
             "responseId": "en:lesson-01:session-48:i08:r3",
             "correct": false,
-            "testedDimension": "Повреждённая лестница может обрушиться. Назовите именно опасность",
+            "testedDimension": "Старая стремянка в углу мастерской шатается под ногой. Назовите именно опасность",
             "feedbackByLocale": {
-              "ru": "Это о бесполезности. В задании нужна опасность: `dangerous`.",
-              "uk": "Це про марність. У завданні потрібна небезпека: `dangerous`."
+              "ru": "`handmade` — «сделана вручную». Об опасности говорит `dangerous`.",
+              "uk": "`handmade` — «зроблена вручну». Про небезпеку каже `dangerous`."
             }
           }
         ]
@@ -458,52 +587,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-48:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-01:session-48:word:sticky",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о друге",
+      "prompt": "Карточка слова — sticky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:word:sticky:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sticky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-48:word:sticky:audio",
+          "transcript": "sticky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-48:word:sticky:r1",
+            "targetText": "sticky",
+            "meaningByLocale": {
+              "ru": "липкий. They're sticky — «Они липкие». О свежем лаке, клее, руках после варенья.",
+              "uk": "липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sticky",
+          "definitionByLocale": {
+            "ru": "липкий. They're sticky — «Они липкие». О свежем лаке, клее, руках после варенья.",
+            "uk": "липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-48:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i09:r1",
-          "text": "He is honest."
+          "text": "It is lovely."
         },
         {
           "responseId": "en:lesson-01:session-48:i09:r2",
-          "text": "He is polite."
+          "text": "She is lovely."
         },
         {
           "responseId": "en:lesson-01:session-48:i09:r3",
-          "text": "He is patient."
+          "text": "It is sticky."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о друге",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i09:audio",
-          "transcript": "He is honest."
+          "transcript": "It is lovely."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-48:i09:r1",
-            "targetText": "He is honest.",
+            "targetText": "It is lovely.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i09:r2",
-            "targetText": "He is polite.",
+            "targetText": "She is lovely.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i09:r3",
-            "targetText": "He is patient.",
+            "targetText": "It is sticky.",
             "meaningByLocale": null
           }
         ],
@@ -512,19 +684,19 @@
           {
             "responseId": "en:lesson-01:session-48:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `polite`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `polite`."
+              "ru": "В записи первое слово — `It`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `It`, а в цьому варіанті — `She`."
             }
           },
           {
             "responseId": "en:lesson-01:session-48:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `patient`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `patient`."
+              "ru": "В записи последнее слово — `lovely`, а в этом варианте — `sticky`.",
+              "uk": "У записі останнє слово — `lovely`, а в цьому варіанті — `sticky`."
             }
           }
         ],
@@ -535,15 +707,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова главы со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова главы со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -573,10 +745,10 @@
           },
           {
             "pairId": "en:lesson-01:session-48:i10:p4",
-            "target": "curious",
+            "target": "slippery",
             "meaningByLocale": {
-              "ru": "любопытный",
-              "uk": "допитливий"
+              "ru": "скользкий",
+              "uk": "слизький"
             }
           }
         ],
@@ -584,13 +756,13 @@
           "useful",
           "useless",
           "dangerous",
-          "curious"
+          "slippery"
         ],
         "rightColumn": [
           "полезный",
           "бесполезный",
           "опасный",
-          "любопытный"
+          "скользкий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -608,28 +780,28 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу о посетителях",
+      "prompt": "Послушайте и соберите короткую фразу о ложках подруги",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу о посетителях",
+      "accessibilityLabel": "Послушайте и соберите короткую фразу о ложках подруги",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i11:audio",
-          "transcript": "They're polite."
+          "transcript": "They're handmade."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They're polite.",
+        "hiddenTargetPhrase": "They're handmade.",
         "orderedTokens": [
           "They're",
-          "polite"
+          "handmade"
         ],
         "authoredDistractorTokens": [
           "We're"
@@ -638,10 +810,10 @@
           {
             "responseId": "en:lesson-01:session-48:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу о посетителях",
+            "testedDimension": "Послушайте и соберите короткую фразу о ложках подруги",
             "feedbackByLocale": {
-              "ru": "здесь нужно `They're` — `They're polite.`",
-              "uk": "тут потрібно `They're` — `They're polite.`"
+              "ru": "здесь нужно `They're` — `They're handmade.`",
+              "uk": "тут потрібно `They're` — `They're handmade.`"
             }
           }
         ],
@@ -654,26 +826,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вам хочется узнать, как друг сделал свою работу. Скажите о своём любопытстве",
+      "prompt": "Вы весь вечер помогали подруге и рады, как всё получилось. Скажите о себе, что гордитесь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вам хочется узнать, как друг сделал свою работу. Скажите о своём любопытстве",
+      "accessibilityLabel": "Вы весь вечер помогали подруге и рады, как всё получилось. Скажите о себе, что гордитесь",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am curious.",
+        "targetPhrase": "I am proud.",
         "localizedMeaning": {
-          "ru": "Вам хочется узнать, как друг сделал свою работу. Скажите о своём любопытстве",
-          "uk": "Вам хочеться дізнатися, як друг зробив свою роботу. Скажіть про свою допитливість"
+          "ru": "Вы весь вечер помогали подруге и рады, как всё получилось. Скажите о себе, что гордитесь",
+          "uk": "Ви весь вечір допомагали подрузі й раді, як усе вийшло. Скажіть про себе, що пишаєтеся"
         },
         "orderedTokens": [
           "I",
           "am",
-          "curious"
+          "proud"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -682,10 +854,10 @@
           {
             "responseId": "en:lesson-01:session-48:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вам хочется узнать, как друг сделал свою работу. Скажите о своём любопытстве",
+            "testedDimension": "Вы весь вечер помогали подруге и рады, как всё получилось. Скажите о себе, что гордитесь",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am curious.`",
-              "uk": "тут потрібно `am` — `I am curious.`"
+              "ru": "здесь нужно `am` — `I am proud.`",
+              "uk": "тут потрібно `am` — `I am proud.`"
             }
           }
         ],
@@ -698,17 +870,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спокойно ждёт, пока вы закончите. Обратитесь к нему: «Ты терпеливый»",
+      "prompt": "Друг спокойно ждёт, пока высохнет лак, и не торопит вас. Обратитесь к нему: «Ты терпеливый»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i13:audio"
       ],
-      "accessibilityLabel": "Друг спокойно ждёт, пока вы закончите. Обратитесь к нему: «Ты терпеливый»",
+      "accessibilityLabel": "Друг спокойно ждёт, пока высохнет лак, и не торопит вас. Обратитесь к нему: «Ты терпеливый»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -731,11 +903,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Два засохших маркера совсем не пишут. Скажите, что для подписей они бесполезны",
+      "prompt": "Два засохших маркера совсем не пишут. Скажите подруге, что для табличек они бесполезны",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i14:r1",
@@ -752,12 +924,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Два засохших маркера совсем не пишут. Скажите, что для подписей они бесполезны",
+      "accessibilityLabel": "Два засохших маркера совсем не пишут. Скажите подруге, что для табличек они бесполезны",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Два засохших маркера совсем не пишут. Скажите, что для подписей они бесполезны",
-          "uk": "Два засохлі маркери зовсім не пишуть. Скажіть, що для підписів вони марні"
+          "ru": "Два засохших маркера совсем не пишут. Скажите подруге, что для табличек они бесполезны",
+          "uk": "Два засохлі маркери зовсім не пишуть. Скажіть подрузі, що для табличок вони марні"
         },
         "gappedTargetPhrase": "They ___ useless.",
         "gapOptions": [
@@ -774,12 +946,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Два засохших маркера совсем не пишут. Скажите, что для подписей они бесполезны",
+        "testedDimension": "Два засохших маркера совсем не пишут. Скажите подруге, что для табличек они бесполезны",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-48:i14:r2",
             "correct": false,
-            "testedDimension": "Два засохших маркера совсем не пишут. Скажите, что для подписей они бесполезны",
+            "testedDimension": "Два засохших маркера совсем не пишут. Скажите подруге, что для табличек они бесполезны",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -788,10 +960,10 @@
           {
             "responseId": "en:lesson-01:session-48:i14:r3",
             "correct": false,
-            "testedDimension": "Два засохших маркера совсем не пишут. Скажите, что для подписей они бесполезны",
+            "testedDimension": "Два засохших маркера совсем не пишут. Скажите подруге, что для табличек они бесполезны",
             "feedbackByLocale": {
-              "ru": "Про два маркера — `They are`.",
-              "uk": "Про два маркери — `They are`."
+              "ru": "Маркеров два, поэтому `They are`.",
+              "uk": "Маркерів два, тому `They are`."
             }
           }
         ]
@@ -800,51 +972,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите короткую оценку",
+      "prompt": "Послушайте и выберите короткую фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i15:r1",
-          "text": "It's useful."
+          "text": "It's sharp."
         },
         {
           "responseId": "en:lesson-01:session-48:i15:r2",
-          "text": "It's useless."
+          "text": "They're sharp."
         },
         {
           "responseId": "en:lesson-01:session-48:i15:r3",
-          "text": "It's dangerous."
+          "text": "It's sticky."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите короткую оценку",
+      "accessibilityLabel": "Послушайте и выберите короткую фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i15:audio",
-          "transcript": "It's useful."
+          "transcript": "It's sharp."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-48:i15:r1",
-            "targetText": "It's useful.",
+            "targetText": "It's sharp.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i15:r2",
-            "targetText": "It's useless.",
+            "targetText": "They're sharp.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i15:r3",
-            "targetText": "It's dangerous.",
+            "targetText": "It's sticky.",
             "meaningByLocale": null
           }
         ],
@@ -853,19 +1025,19 @@
           {
             "responseId": "en:lesson-01:session-48:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите короткую оценку",
+            "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useful`, а в этом варианте — `useless`.",
-              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `useless`."
+              "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
+              "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."
             }
           },
           {
             "responseId": "en:lesson-01:session-48:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите короткую оценку",
+            "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useful`, а в этом варианте — `dangerous`.",
-              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `dangerous`."
+              "ru": "В записи последнее слово — `sharp`, а в этом варианте — `sticky`.",
+              "uk": "У записі останнє слово — `sharp`, а в цьому варіанті — `sticky`."
             }
           }
         ],
@@ -876,15 +1048,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините сокращения с полными началами",
+      "prompt": "Соедините короткие начала с полными",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините сокращения с полными началами",
+      "accessibilityLabel": "Соедините короткие начала с полными",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -949,25 +1121,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-48:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После выставки сестра сама призналась, что потеряла чужую кисть. Оцените именно её честность",
+      "prompt": "Дома племянница просит ваши ножницы для открытки. Предупредите её, что они острые",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i17:audio"
       ],
-      "accessibilityLabel": "После выставки сестра сама призналась, что потеряла чужую кисть. Оцените именно её честность",
+      "accessibilityLabel": "Дома племянница просит ваши ножницы для открытки. Предупредите её, что они острые",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i17:audio",
-          "transcript": "She is honest."
+          "transcript": "They are sharp."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is honest.",
+        "targetPhrase": "They are sharp.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5bd1367a8db125faed75f0ca55271ae055e6603eaff952fff92edfc3d8ca9fbf"
+  "learnerFingerprint": "5d5b83f8d8b457d6bdd6014841bbaeac8dc9c3b845ce370414797faa460b6af8"
 }

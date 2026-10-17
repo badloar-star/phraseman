@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-33",
   "learningOutcomeByLocale": {
-    "ru": "сократить знакомые I am, you are, he is и другие начала фраз",
-    "uk": "скоротити знайомі I am, you are, he is та інші початки фраз"
+    "ru": "говорить коротко: I'm, you're, he's, it's и другие сокращённые начала фраз",
+    "uk": "говорити коротко: I'm, you're, he's, it's та інші скорочені початки фраз"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Со мной всё нормально",
-        "uk": "Зі мною все гаразд"
+        "ru": "Только не первым",
+        "uk": "Тільки не першим"
       },
       "bodyByLocale": {
-        "ru": "`okay` — «в порядке», «нормально». `I am okay` можно сказать короче: `I'm okay`. Смысл тот же. В `I'm` знак `'` стоит вместо пропущенной буквы. Вы забыли реплику, но уже не переживаете: `I'm okay`. Текст пока помнит суфлёр — хоть кто-то.",
-        "uk": "`okay` — «у порядку», «гаразд». `I am okay` можна сказати коротше: `I'm okay`. Зміст той самий. У `I'm` знак `'` стоїть замість пропущеної літери. Ви забули репліку, але вже не хвилюєтеся: `I'm okay`. Текст поки пам’ятає суфлер — хоч хтось."
+        "ru": "Режиссёр спрашивает, кто выйдет на сцену первым. Вы краснеете и делаете шаг назад. shy — «застенчивый, стеснительный». I am shy можно сказать короче: I'm shy. Знак ' стоит вместо пропущенной буквы a. Смысл тот же: «Я стесняюсь».",
+        "uk": "Режисер питає, хто вийде на сцену першим. Ви червонієте й робите крок назад. shy — «сором’язливий». I am shy можна сказати коротше: I'm shy. Знак ' стоїть замість пропущеної літери a. Зміст той самий: «Я соромлюся»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-33:intro1:q",
         "promptByLocale": {
-          "ru": "После заминки вы успокоились. Выберите короткую фразу о себе: «Со мной всё нормально».",
-          "uk": "Після заминки ви заспокоїлися. Виберіть коротку фразу про себе: «Зі мною все гаразд»."
+          "ru": "Режиссёр предлагает вам открыть сценку. Объясните коротко, что вы стесняетесь.",
+          "uk": "Режисер пропонує вам відкрити сценку. Поясніть коротко, що ви соромитеся."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-33:intro1:r1",
-              "text": "I'm okay."
+              "text": "I'm shy."
             },
             {
               "responseId": "en:lesson-01:session-33:intro1:r2",
-              "text": "I okay."
+              "text": "I shy."
             },
             {
               "responseId": "en:lesson-01:session-33:intro1:r3",
-              "text": "He's okay."
+              "text": "He's shy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-33:intro1:r1",
-              "text": "I'm okay."
+              "text": "I'm shy."
             },
             {
               "responseId": "en:lesson-01:session-33:intro1:r2",
-              "text": "I okay."
+              "text": "I shy."
             },
             {
               "responseId": "en:lesson-01:session-33:intro1:r3",
-              "text": "He's okay."
+              "text": "He's shy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "После заминки вы успокоились. Выберите короткую фразу о себе: «Со мной всё нормально».",
-          "uk": "Після заминки ви заспокоїлися. Виберіть коротку фразу про себе: «Зі мною все гаразд»."
+          "ru": "Режиссёр предлагает вам открыть сценку. Объясните коротко, что вы стесняетесь.",
+          "uk": "Режисер пропонує вам відкрити сценку. Поясніть коротко, що ви соромитеся."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Он, она и это",
-        "uk": "Він, вона й це"
+        "ru": "Парик из коробки",
+        "uk": "Перука з коробки"
       },
       "bodyByLocale": {
-        "ru": "`He is` сокращается до `he's`, `She is` — до `she's`, `It is` — до `it's`. Например, `She's proud` — «Она гордится». Начало по-прежнему показывает, о ком речь. Полные формы тоже правильные: сейчас учимся узнавать и говорить короткие.",
-        "uk": "`He is` скорочується до `he's`, `She is` — до `she's`, `It is` — до `it's`. Наприклад, `She's proud` — «Вона пишається». Початок, як і раніше, показує, про кого йдеться. Повні форми теж правильні: зараз учимося впізнавати й вимовляти короткі."
+        "ru": "Привезли костюмы. Вы достаёте парик для роли короля: он мятый и потрёпанный. awful — «ужасный». It is awful сокращается до It's awful — «Это ужасно». Так же сокращаются He is — He's и She is — She's.",
+        "uk": "Привезли костюми. Ви дістаєте перуку для ролі короля: вона пом’ята й пошарпана. awful — «жахливий». It is awful скорочується до It's awful — «Це жахливо». Так само скорочуються He is — He's і She is — She's."
       },
       "question": {
         "interactionId": "en:lesson-01:session-33:intro2:q",
         "promptByLocale": {
-          "ru": "Подруга гордится своим выступлением. Выберите короткую фразу о ней.",
-          "uk": "Подруга пишається своїм виступом. Виберіть коротку фразу про неї."
+          "ru": "Подруга спрашивает, как выглядит парик. Скажите коротко, что он ужасный.",
+          "uk": "Подруга питає, який вигляд має перука. Скажіть коротко, що вона жахлива."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-33:intro2:r1",
-              "text": "She's proud."
+              "text": "It's awful."
             },
             {
               "responseId": "en:lesson-01:session-33:intro2:r2",
-              "text": "He's proud."
+              "text": "It awful."
             },
             {
               "responseId": "en:lesson-01:session-33:intro2:r3",
-              "text": "She's ashamed."
+              "text": "She's awful."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-33:intro2:r1",
-              "text": "She's proud."
+              "text": "It's awful."
             },
             {
               "responseId": "en:lesson-01:session-33:intro2:r2",
-              "text": "He's proud."
+              "text": "It awful."
             },
             {
               "responseId": "en:lesson-01:session-33:intro2:r3",
-              "text": "She's ashamed."
+              "text": "She's awful."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга гордится своим выступлением. Выберите короткую фразу о ней.",
-          "uk": "Подруга пишається своїм виступом. Виберіть коротку фразу про неї."
+          "ru": "Подруга спрашивает, как выглядит парик. Скажите коротко, что он ужасный.",
+          "uk": "Подруга питає, який вигляд має перука. Скажіть коротко, що вона жахлива."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ты, мы и они",
-        "uk": "Ти, ми й вони"
+        "ru": "Друг справился",
+        "uk": "Друг упорався"
       },
       "bodyByLocale": {
-        "ru": "`You are` — `you're`, `We are` — `we're`, `They are` — `they're`. Например, `We're surprised` — «Мы удивлены». `You're` подходит и одному собеседнику, и нескольким — как знакомое `you are`. Знак `'` нужен и на письме: `we're`, а не `were`.",
-        "uk": "`You are` — `you're`, `We are` — `we're`, `They are` — `they're`. Наприклад, `We're surprised` — «Ми здивовані». `You're` підходить і одному співрозмовнику, і кільком — як знайоме `you are`. Знак `'` потрібен і на письмі: `we're`, а не `were`."
+        "ru": "На втором прогоне друг вспомнил все реплики и даже рассмешил зал. Вы подходите к нему после сцены. great — «отличный». You are great сокращается до You're great — «Ты молодец». Так же: We are — We're, They are — They're. На письме знак ' нужен: we're, а не were.",
+        "uk": "На другому прогоні друг згадав усі репліки й навіть розсмішив залу. Ви підходите до нього після сцени. great — «чудовий». You are great скорочується до You're great — «Ти молодець». Так само: We are — We're, They are — They're. На письмі знак ' потрібен: we're, а не were."
       },
       "question": {
         "interactionId": "en:lesson-01:session-33:intro3:q",
         "promptByLocale": {
-          "ru": "Вы и друзья удивлены тем, как хорошо прошла репетиция. Выберите короткую фразу от всех вас.",
-          "uk": "Ви та друзі здивовані тим, як добре минула репетиція. Виберіть коротку фразу від усіх вас."
+          "ru": "Друг волнуется, как он сыграл. Скажите ему коротко, что он молодец.",
+          "uk": "Друг хвилюється, як він зіграв. Скажіть йому коротко, що він молодець."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-33:intro3:r1",
-              "text": "We're surprised."
+              "text": "You're great."
             },
             {
               "responseId": "en:lesson-01:session-33:intro3:r2",
-              "text": "They're surprised."
+              "text": "You great."
             },
             {
               "responseId": "en:lesson-01:session-33:intro3:r3",
-              "text": "We're ashamed."
+              "text": "They're great."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-33:intro3:r1",
-              "text": "We're surprised."
+              "text": "You're great."
             },
             {
               "responseId": "en:lesson-01:session-33:intro3:r2",
-              "text": "They're surprised."
+              "text": "You great."
             },
             {
               "responseId": "en:lesson-01:session-33:intro3:r3",
-              "text": "We're ashamed."
+              "text": "They're great."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы и друзья удивлены тем, как хорошо прошла репетиция. Выберите короткую фразу от всех вас.",
-          "uk": "Ви та друзі здивовані тим, як добре минула репетиція. Виберіть коротку фразу від усіх вас."
+          "ru": "Друг волнуется, как он сыграл. Скажите ему коротко, что он молодец.",
+          "uk": "Друг хвилюється, як він зіграв. Скажіть йому коротко, що він молодець."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e7730c29a36e58127b7a91cee5606c75b83dc18e3d28be707365a2a37653f08f"
+  "introFingerprint": "b160c77cdf450bc2c1d0cc95f889f92086d518eda770942eb4e84c8f9b0bf201"
 }

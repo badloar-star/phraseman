@@ -15,19 +15,9 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-03:i04",
-    "correctText": "sure",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-03:i05",
     "correctText": "sure",
     "correctResponseId": "en:lesson-01:session-03:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-03:i06",
-    "correctText": "alone",
-    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-03:i07",
@@ -43,6 +33,11 @@
     "interactionId": "en:lesson-01:session-03:i09",
     "correctText": "not",
     "correctResponseId": "en:lesson-01:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i04",
+    "correctText": "sure",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-03:i10",
@@ -93,6 +88,11 @@
     "interactionId": "en:lesson-01:session-03:i17:s02",
     "correctText": "I am not hungry.",
     "correctResponseId": "en:lesson-01:session-03:i17:s02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i06",
+    "correctText": "alone",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-03:i17:s03",

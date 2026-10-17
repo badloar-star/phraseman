@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-03:intro1:r2": {
-          "ru": "Это «Он в курсе». Здесь нужно `not` после `is`.",
-          "uk": "Це «Він у курсі». Тут потрібно `not` після `is`."
+          "ru": "Это «Он в курсе». Здесь нужно not после is.",
+          "uk": "Це «Він у курсі». Тут потрібно not після is."
         },
         "en:lesson-02:session-03:intro1:r3": {
-          "ru": "Нужна связка `is`: `He is not aware`.",
-          "uk": "Потрібна зв’язка `is`: `He is not aware`."
+          "ru": "Нужна связка is: He is not aware.",
+          "uk": "Потрібна зв’язка is: He is not aware."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-03:intro2:r2": {
-          "ru": "Без `not` получается «Я убеждён». Здесь нужно `I'm not convinced`.",
-          "uk": "Без `not` виходить «Я переконаний». Тут потрібно `I'm not convinced`."
+          "ru": "Без not получается «Я убеждён». Здесь нужно I'm not convinced.",
+          "uk": "Без not виходить «Я переконаний». Тут потрібно I'm not convinced."
         },
         "en:lesson-02:session-03:intro2:r3": {
-          "ru": "Нужно `I am not` или `I'm not`.",
-          "uk": "Потрібно `I am not` або `I'm not`."
+          "ru": "Нужно I am not или I'm not.",
+          "uk": "Потрібно I am not або I'm not."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-03:intro3:r2": {
-          "ru": "Это обеспокоенность. Здесь нужна форма с `not`.",
-          "uk": "Це стурбованість. Тут потрібна форма з `not`."
+          "ru": "Это обеспокоенность. Здесь нужна форма с not.",
+          "uk": "Це стурбованість. Тут потрібна форма з not."
         },
         "en:lesson-02:session-03:intro3:r3": {
-          "ru": "Это «Нас не убедили». Здесь речь об отсутствии тревоги: `concerned`.",
-          "uk": "Це «Нас не переконали». Тут ідеться про відсутність тривоги: `concerned`."
+          "ru": "Это «Нас не убедили». Здесь речь об отсутствии тревоги: concerned.",
+          "uk": "Це «Нас не переконали». Тут ідеться про відсутність тривоги: concerned."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e373894f8449a0f721274c974a5d611f6fb076d7b24635fedf79dff8cccdc2af"
+  "auxiliaryFingerprint": "b68df5591806c2a9b4984bf185091f6c03e43486a1eba21143f53efcee31c351"
 }

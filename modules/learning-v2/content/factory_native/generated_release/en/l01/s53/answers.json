@@ -1,27 +1,47 @@
 [
   {
+    "interactionId": "en:lesson-01:session-53:word:ripe",
+    "correctText": "ripe",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-53:i01",
-    "correctText": "It is full.",
+    "correctText": "They are ripe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:word:soggy",
+    "correctText": "soggy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i02",
-    "correctText": "It is full.",
+    "correctText": "It is soggy.",
     "correctResponseId": "en:lesson-01:session-53:i02:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-53:word:juicy",
+    "correctText": "juicy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-53:i03",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-53:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i04",
-    "correctText": "en:lesson-01:session-53:i04:p1=full\nen:lesson-01:session-53:i04:p2=useful\nen:lesson-01:session-53:i04:p3=heavy\nen:lesson-01:session-53:i04:p4=light",
+    "correctText": "en:lesson-01:session-53:i04:p1=ripe\nen:lesson-01:session-53:i04:p2=soggy\nen:lesson-01:session-53:i04:p3=delicious\nen:lesson-01:session-53:i04:p4=juicy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:word:delicious",
+    "correctText": "delicious",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i05",
-    "correctText": "It's full.",
+    "correctText": "It's delicious.",
     "correctResponseId": null
   },
   {
@@ -31,57 +51,57 @@
   },
   {
     "interactionId": "en:lesson-01:session-53:i07",
-    "correctText": "It's full.",
+    "correctText": "It's juicy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i08",
-    "correctText": "useful",
+    "correctText": "heavy",
     "correctResponseId": "en:lesson-01:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i09",
-    "correctText": "It is useful.",
+    "correctText": "They are juicy.",
     "correctResponseId": "en:lesson-01:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i10",
-    "correctText": "en:lesson-01:session-53:i10:p1=It's\nen:lesson-01:session-53:i10:p2=They're\nen:lesson-01:session-53:i10:p3=He's\nen:lesson-01:session-53:i10:p4=She's",
+    "correctText": "en:lesson-01:session-53:i10:p1=full\nen:lesson-01:session-53:i10:p2=useful\nen:lesson-01:session-53:i10:p3=heavy\nen:lesson-01:session-53:i10:p4=light",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i11",
-    "correctText": "They're full.",
+    "correctText": "They're ripe.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i12",
-    "correctText": "It is light.",
+    "correctText": "I am full.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i13",
-    "correctText": "They are useful.",
+    "correctText": "It is light.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i14",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-53:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i15",
-    "correctText": "It's full.",
+    "correctText": "It's delicious.",
     "correctResponseId": "en:lesson-01:session-53:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i16",
-    "correctText": "en:lesson-01:session-53:i16:p1=full\nen:lesson-01:session-53:i16:p2=useful\nen:lesson-01:session-53:i16:p3=heavy\nen:lesson-01:session-53:i16:p4=light",
+    "correctText": "en:lesson-01:session-53:i16:p1=It's\nen:lesson-01:session-53:i16:p2=They're\nen:lesson-01:session-53:i16:p3=I'm\nen:lesson-01:session-53:i16:p4=We're",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i17",
-    "correctText": "It is full.",
+    "correctText": "It is delicious.",
     "correctResponseId": null
   }
 ]

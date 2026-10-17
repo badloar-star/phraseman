@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-23:word:valid",
+    "correctText": "valid",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-23:i01",
     "correctText": "It is valid.",
     "correctResponseId": null
@@ -16,12 +21,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-23:i04",
-    "correctText": "en:lesson-02:session-23:i04:p1=valid\nen:lesson-02:session-23:i04:p2=married\nen:lesson-02:session-23:i04:p3=single\nen:lesson-02:session-23:i04:p4=different",
+    "correctText": "en:lesson-02:session-23:i04:p1=valid\nen:lesson-02:session-23:i04:p2=subtitled\nen:lesson-02:session-23:i04:p3=dubbed\nen:lesson-02:session-23:i04:p4=touching",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-23:word:dubbed",
+    "correctText": "dubbed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i05",
-    "correctText": "It is not valid.",
+    "correctText": "It is not dubbed.",
     "correctResponseId": null
   },
   {
@@ -40,13 +50,18 @@
     "correctResponseId": "en:lesson-02:session-23:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-23:word:subtitled",
+    "correctText": "subtitled",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-23:i09",
-    "correctText": "It is silent.",
+    "correctText": "It is subtitled.",
     "correctResponseId": "en:lesson-02:session-23:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-23:i10",
-    "correctText": "en:lesson-02:session-23:i10:p1=silent\nen:lesson-02:session-23:i10:p2=valid\nen:lesson-02:session-23:i10:p3=different\nen:lesson-02:session-23:i10:p4=married",
+    "correctText": "en:lesson-02:session-23:i10:p1=silent\nen:lesson-02:session-23:i10:p2=married\nen:lesson-02:session-23:i10:p3=single\nen:lesson-02:session-23:i10:p4=different",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-23:word:touching",
+    "correctText": "touching",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-23:i13",
-    "correctText": "It's valid.",
+    "correctText": "It's touching.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-23:i16",
-    "correctText": "en:lesson-02:session-23:i16:p1=single\nen:lesson-02:session-23:i16:p2=different\nen:lesson-02:session-23:i16:p3=silent\nen:lesson-02:session-23:i16:p4=valid",
+    "correctText": "en:lesson-02:session-23:i16:p1=dubbed\nen:lesson-02:session-23:i16:p2=touching\nen:lesson-02:session-23:i16:p3=silent\nen:lesson-02:session-23:i16:p4=different",
     "correctResponseId": null
   },
   {

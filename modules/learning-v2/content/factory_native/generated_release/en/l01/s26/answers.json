@@ -5,8 +5,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-26:word:exhausted",
-    "correctText": "exhausted",
+    "interactionId": "en:lesson-01:session-26:i01",
+    "correctText": "I am impatient.",
     "correctResponseId": null
   },
   {
@@ -15,19 +15,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-26:word:relaxed",
-    "correctText": "relaxed",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-26:i01",
-    "correctText": "I am impatient.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-26:i02",
     "correctText": "They are worried.",
     "correctResponseId": "en:lesson-01:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:word:exhausted",
+    "correctText": "exhausted",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i03",
@@ -37,6 +32,11 @@
   {
     "interactionId": "en:lesson-01:session-26:i04",
     "correctText": "en:lesson-01:session-26:i04:p1=impatient\nen:lesson-01:session-26:i04:p2=exhausted\nen:lesson-01:session-26:i04:p3=worried\nen:lesson-01:session-26:i04:p4=relaxed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:word:relaxed",
+    "correctText": "relaxed",
     "correctResponseId": null
   },
   {

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-21",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о поломке и дать короткий отрицательный ответ",
-    "uk": "повідомити про поломку й дати коротку заперечну відповідь"
+    "ru": "сообщить о поломке и коротко ответить «нет»",
+    "uk": "повідомити про поломку й коротко відповісти «ні»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сломано",
-        "uk": "Зламано"
+        "ru": "Вилка на полу",
+        "uk": "Вилка на підлозі"
       },
       "bodyByLocale": {
-        "ru": "`broken` — «сломанный, разбитый». `It is broken` — «Это сломано», коротко `It's broken`. Не всякая выключенная лампа сломана. Но у этой оторван провод: щёлкать выключателем ещё десять раз не поможет ему прирасти обратно.",
-        "uk": "`broken` — «зламаний, розбитий». `It is broken` — «Це зламано», коротко `It's broken`. Не кожна вимкнена лампа зламана. Але в цієї відірваний дріт: клацнути вимикачем ще десять разів не допоможе йому прирости назад."
+        "ru": "Вы щёлкаете выключателем лампы у входа, а она не горит. Друг уже собирается нести её в ремонт, но вы замечаете, что вилка лежит на полу рядом с розеткой. unplugged — «выключенный из розетки». It's unplugged — «Она не включена в розетку».",
+        "uk": "Ви клацаєте вимикачем лампи біля входу, а вона не світить. Друг уже збирається нести її в ремонт, але ви помічаєте, що вилка лежить на підлозі біля розетки. unplugged — «вимкнений з розетки». It's unplugged — «Вона не ввімкнена в розетку»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "У лампы повреждён провод, и она не работает. Коротко скажите, что она сломана.",
-          "uk": "У лампи пошкоджений дріт, і вона не працює. Коротко скажіть, що вона зламана."
+          "ru": "Друг спрашивает: Is it broken? Ответьте, что нет, она просто не включена в розетку.",
+          "uk": "Друг питає: Is it broken? Відповідайте, що ні, вона просто не ввімкнена в розетку."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-21:intro1:r1",
-              "text": "It's broken."
+              "text": "No, it's unplugged."
             },
             {
               "responseId": "en:lesson-02:session-21:intro1:r2",
-              "text": "It's not broken."
+              "text": "Yes, it's unplugged."
             },
             {
               "responseId": "en:lesson-02:session-21:intro1:r3",
-              "text": "They're broken."
+              "text": "No, it's broken."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-21:intro1:r1",
-              "text": "It's broken."
+              "text": "No, it's unplugged."
             },
             {
               "responseId": "en:lesson-02:session-21:intro1:r2",
-              "text": "It's not broken."
+              "text": "Yes, it's unplugged."
             },
             {
               "responseId": "en:lesson-02:session-21:intro1:r3",
-              "text": "They're broken."
+              "text": "No, it's broken."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У лампы повреждён провод, и она не работает. Коротко скажите, что она сломана.",
-          "uk": "У лампи пошкоджений дріт, і вона не працює. Коротко скажіть, що вона зламана."
+          "ru": "Друг спрашивает: Is it broken? Ответьте, что нет, она просто не включена в розетку.",
+          "uk": "Друг питає: Is it broken? Відповідайте, що ні, вона просто не ввімкнена в розетку."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нет — это no",
-        "uk": "Ні — це no"
+        "ru": "Фотография над лестницей",
+        "uk": "Фотографія над сходами"
       },
       "bodyByLocale": {
-        "ru": "`no` — «нет». Вы уже использовали его в ответах. На `Is it broken?` ответ `No, it is not` означает «Нет, не сломано». `No` начинает ответ, а `not` стоит после `is`. Одно не заменяет другое в этой полной короткой форме.",
-        "uk": "`no` — «ні». Ви вже використовували його у відповідях. На `Is it broken?` відповідь `No, it is not` означає «Ні, не зламано». `No` починає відповідь, а `not` стоїть після `is`. Одне не замінює інше в цій повній короткій формі."
+        "ru": "Друг вешает большую фотографию над лестницей и отходит посмотреть. Вы видите, что левый угол рамки заметно ниже правого. straight — «ровный, прямой». It's not straight — «Она висит неровно».",
+        "uk": "Друг вішає велику фотографію над сходами й відходить подивитися. Ви бачите, що лівий кут рамки помітно нижчий за правий. straight — «рівний, прямий». It's not straight — «Вона висить нерівно»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Запасная лампа исправна. Друг спрашивает: `Is it broken?` Ответьте коротким «нет».",
-          "uk": "Запасна лампа справна. Друг запитує: `Is it broken?` Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает, ровно ли висит фотография. Скажите коротко, что она висит неровно.",
+          "uk": "Друг питає, чи рівно висить фотографія. Скажіть коротко, що вона висить нерівно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-21:intro2:r1",
-              "text": "No, it is not."
+              "text": "It's not straight."
             },
             {
               "responseId": "en:lesson-02:session-21:intro2:r2",
-              "text": "No, it not."
+              "text": "It's straight."
             },
             {
               "responseId": "en:lesson-02:session-21:intro2:r3",
-              "text": "Yes, it is."
+              "text": "They're not straight."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-21:intro2:r1",
-              "text": "No, it is not."
+              "text": "It's not straight."
             },
             {
               "responseId": "en:lesson-02:session-21:intro2:r2",
-              "text": "No, it not."
+              "text": "It's straight."
             },
             {
               "responseId": "en:lesson-02:session-21:intro2:r3",
-              "text": "Yes, it is."
+              "text": "They're not straight."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Запасная лампа исправна. Друг спрашивает: `Is it broken?` Ответьте коротким «нет».",
-          "uk": "Запасна лампа справна. Друг запитує: `Is it broken?` Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает, ровно ли висит фотография. Скажите коротко, что она висит неровно.",
+          "uk": "Друг питає, чи рівно висить фотографія. Скажіть коротко, що вона висить нерівно."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Отвечаем про тех же людей",
-        "uk": "Відповідаємо про тих самих людей"
+        "ru": "Афиши в коробке",
+        "uk": "Афіші в коробці"
       },
       "bodyByLocale": {
-        "ru": "`Are they inside?` — «Они внутри?» Если Анна и Олег снаружи, ответьте `No, they are not`. А если внутри — `Yes, they are`. В коротком ответе можно не повторять `inside`, потому что место уже названо в вопросе.",
-        "uk": "`Are they inside?` — «Вони всередині?» Якщо Анна й Олег надворі, дайте відповідь `No, they are not`. А якщо всередині — `Yes, they are`. У короткій відповіді можна не повторювати `inside`, бо місце вже назване в запитанні."
+        "ru": "Вы достаёте из коробки две афиши выставки. Друг боялся, что они порвались в дороге. Вы разворачиваете обе: края целые, ни одной дырки. torn — «порванный». They're not torn — «Они не порваны».",
+        "uk": "Ви дістаєте з коробки дві афіші виставки. Друг боявся, що вони порвалися в дорозі. Ви розгортаєте обидві: краї цілі, жодної дірки. torn — «порваний». They're not torn — «Вони не порвані»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Анна и Олег во дворе. Друг спрашивает: `Are they inside?` Ответьте коротким «нет».",
-          "uk": "Анна й Олег на подвір’ї. Друг запитує: `Are they inside?` Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает: Are they torn? Ответьте коротко, что они не порваны.",
+          "uk": "Друг питає: Are they torn? Відповідайте коротко, що вони не порвані."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-21:intro3:r1",
-              "text": "No, they are not."
+              "text": "They're not torn."
             },
             {
               "responseId": "en:lesson-02:session-21:intro3:r2",
-              "text": "No, they is not."
+              "text": "They're torn."
             },
             {
               "responseId": "en:lesson-02:session-21:intro3:r3",
-              "text": "Yes, they are."
+              "text": "It's not torn."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-21:intro3:r1",
-              "text": "No, they are not."
+              "text": "They're not torn."
             },
             {
               "responseId": "en:lesson-02:session-21:intro3:r2",
-              "text": "No, they is not."
+              "text": "They're torn."
             },
             {
               "responseId": "en:lesson-02:session-21:intro3:r3",
-              "text": "Yes, they are."
+              "text": "It's not torn."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна и Олег во дворе. Друг спрашивает: `Are they inside?` Ответьте коротким «нет».",
-          "uk": "Анна й Олег на подвір’ї. Друг запитує: `Are they inside?` Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает: Are they torn? Ответьте коротко, что они не порваны.",
+          "uk": "Друг питає: Are they torn? Відповідайте коротко, що вони не порвані."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e978d7c24287c1332706f62650106d8111dfddddb03c33305f921fbd6c4cad16"
+  "introFingerprint": "1e8f40d737919ac6c14065fd18e17b37868ee6a6dc1d16479a046ef069aa54ea"
 }

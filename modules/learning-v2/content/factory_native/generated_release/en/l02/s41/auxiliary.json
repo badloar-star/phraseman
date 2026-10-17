@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-41:intro1:r2": {
-          "ru": "Между `It` и `accurate` нужно `is`.",
-          "uk": "Між `It` і `accurate` потрібно `is`."
+          "ru": "Речь о брате, нужно He: He is stubborn.",
+          "uk": "Мова про брата, потрібно He: He is stubborn."
         },
         "en:lesson-02:session-41:intro1:r3": {
-          "ru": "Это отрицает точность. По условию карту проверили, данные верны.",
-          "uk": "Це заперечує точність. За умовою карту перевірили, дані правильні."
+          "ru": "Между He и stubborn нужно is: He is stubborn.",
+          "uk": "Між He і stubborn потрібно is: He is stubborn."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-41:intro2:r2": {
-          "ru": "Вы говорите об Олеге: `He's`.",
-          "uk": "Ви говорите про Олега: `He's`."
+          "ru": "Так звучит утверждение «Он ласковый». Чтобы спросить, ставим Is вперёд: Is he gentle?",
+          "uk": "Так звучить твердження «Він лагідний». Щоб запитати, ставимо Is наперед: Is he gentle?"
         },
         "en:lesson-02:session-41:intro2:r3": {
-          "ru": "Это «Он активный». Здесь вы отмечаете честность.",
-          "uk": "Це «Він активний». Тут ви відзначаєте чесність."
+          "ru": "С he нужно is: Is he gentle?",
+          "uk": "З he потрібно is: Is he gentle?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-41:intro3:r2": {
-          "ru": "Это вопрос о точности. Вы спрашиваете, действует ли клуб.",
-          "uk": "Це запитання про точність. Ви запитуєте, чи діє клуб."
+          "ru": "Без not это «Они эгоистки». А девочки поделились: They're not selfish.",
+          "uk": "Без not це «Вони егоїстки». А дівчатка поділилися: They're not selfish."
         },
         "en:lesson-02:session-41:intro3:r3": {
-          "ru": "Это утверждение. Вы пока не знаете и хотите спросить.",
-          "uk": "Це твердження. Ви поки не знаєте й хочете запитати."
+          "ru": "Девочек две, нужно They're: They're not selfish.",
+          "uk": "Дівчаток дві, потрібно They're: They're not selfish."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f55f256725357154a9f0182699f23ddeabc08972665325b5272ad50f3724428e"
+  "auxiliaryFingerprint": "065652e43f2a1f54d645a17e9c87833042333b6c6a8b09963f852b62a0ee3b57"
 }

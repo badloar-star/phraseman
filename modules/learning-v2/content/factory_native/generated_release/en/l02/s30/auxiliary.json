@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-30:intro1:r2": {
-          "ru": "Между `It` и `elsewhere` нужно `is`.",
-          "uk": "Між `It` і `elsewhere` потрібно `is`."
+          "ru": "Между It и elsewhere нужно is: It is elsewhere.",
+          "uk": "Між It і elsewhere потрібно is: It is elsewhere."
         },
         "en:lesson-02:session-30:intro1:r3": {
-          "ru": "Это отрицает нахождение в другом месте. Лейку перенесли.",
-          "uk": "Це заперечує перебування в іншому місці. Лійку перенесли."
+          "ru": "С not выходит «Она не в другом месте». А здесь лейки нет: It is elsewhere.",
+          "uk": "Із not виходить «Вона не в іншому місці». А тут лійки немає: It is elsewhere."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-30:intro2:r2": {
-          "ru": "В условии вы отрицаете пропажу: место известно.",
-          "uk": "За умовою ви заперечуєте зникнення: місце відоме."
+          "ru": "Так звучит утверждение «Оно здоровое». Чтобы спросить, ставим Is вперёд: Is it healthy?",
+          "uk": "Так звучить твердження «Воно здорове». Щоб запитати, ставимо Is наперед: Is it healthy?"
         },
         "en:lesson-02:session-30:intro2:r3": {
-          "ru": "С `it` нужно `is`.",
-          "uk": "З `it` потрібно `is`."
+          "ru": "С it нужно is: Is it healthy?",
+          "uk": "З it потрібно is: Is it healthy?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-30:intro3:r2": {
-          "ru": "Это значит, что растение погибло. Здесь оно растёт.",
-          "uk": "Це означає, що рослина загинула. Тут вона росте."
+          "ru": "С not выходит «Он не увял». А листья повисли: It's wilted.",
+          "uk": "Із not виходить «Вона не зів’яла». А листки обвисли: It's wilted."
         },
         "en:lesson-02:session-30:intro3:r3": {
-          "ru": "Между `It` и `alive` нужно `is`.",
-          "uk": "Між `It` і `alive` потрібно `is`."
+          "ru": "They're — про несколько цветков, а у окна стоит один: It's wilted.",
+          "uk": "They're — про кілька квітів, а біля вікна стоїть одна: It's wilted."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dd0afe8f7f9f8170c20d74d65825508d6811876b2fb27c4a0b7d07bb88bcc493"
+  "auxiliaryFingerprint": "ada2a68874ac350b5dce912d8223b9cbf5ae2a58a434e359327f88662b9c2bcf"
 }

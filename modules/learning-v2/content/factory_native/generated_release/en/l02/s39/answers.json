@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-39:word:tasty",
+    "correctText": "tasty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-39:i01",
-    "correctText": "It is relevant.",
+    "correctText": "It is tasty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i02",
-    "correctText": "He is brave.",
+    "correctText": "It is fresh.",
     "correctResponseId": "en:lesson-02:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:word:lumpy",
+    "correctText": "lumpy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-39:i04",
-    "correctText": "en:lesson-02:session-39:i04:p1=relevant\nen:lesson-02:session-39:i04:p2=brave\nen:lesson-02:session-39:i04:p3=unusual\nen:lesson-02:session-39:i04:p4=weak",
+    "correctText": "en:lesson-02:session-39:i04:p1=tasty\nen:lesson-02:session-39:i04:p2=greasy\nen:lesson-02:session-39:i04:p3=lumpy\nen:lesson-02:session-39:i04:p4=salty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "No, it is not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i06",
-    "correctText": "What is relevant?",
+    "correctText": "What is tasty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:word:greasy",
+    "correctText": "greasy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i07",
-    "correctText": "It's relevant.",
+    "correctText": "They're greasy.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-39:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-39:word:tender",
+    "correctText": "tender",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-39:i09",
-    "correctText": "It is unusual.",
+    "correctText": "It is tender.",
     "correctResponseId": "en:lesson-02:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-39:i10",
-    "correctText": "en:lesson-02:session-39:i10:p1=unusual\nen:lesson-02:session-39:i10:p2=weak\nen:lesson-02:session-39:i10:p3=relevant\nen:lesson-02:session-39:i10:p4=brave",
+    "correctText": "en:lesson-02:session-39:i10:p1=tender\nen:lesson-02:session-39:i10:p2=lumpy\nen:lesson-02:session-39:i10:p3=fresh\nen:lesson-02:session-39:i10:p4=greasy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i11",
-    "correctText": "They are not relevant.",
+    "correctText": "They are not salty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i12",
-    "correctText": "Who is brave?",
+    "correctText": "What is lumpy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i13",
-    "correctText": "It's unusual.",
+    "correctText": "It's tender.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-39:i15",
-    "correctText": "Are they brave?",
+    "correctText": "Is it tender?",
     "correctResponseId": "en:lesson-02:session-39:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-39:i16",
-    "correctText": "en:lesson-02:session-39:i16:p1=brave\nen:lesson-02:session-39:i16:p2=relevant\nen:lesson-02:session-39:i16:p3=weak\nen:lesson-02:session-39:i16:p4=unusual",
+    "correctText": "en:lesson-02:session-39:i16:p1=tasty\nen:lesson-02:session-39:i16:p2=tender\nen:lesson-02:session-39:i16:p3=sweet\nen:lesson-02:session-39:i16:p4=hot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i17",
-    "correctText": "Is it relevant?",
+    "correctText": "Is it tasty?",
     "correctResponseId": null
   }
 ]

@@ -5,9 +5,19 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-43:word:stuck",
+    "correctText": "stuck",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-43:i02",
-    "correctText": "He is patient.",
+    "correctText": "He is stuck.",
     "correctResponseId": "en:lesson-01:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:word:annoyed",
+    "correctText": "annoyed",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i03",
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i04",
-    "correctText": "en:lesson-01:session-43:i04:p1=patient\nen:lesson-01:session-43:i04:p2=ill\nen:lesson-01:session-43:i04:p3=polite\nen:lesson-01:session-43:i04:p4=honest",
+    "correctText": "en:lesson-01:session-43:i04:p1=stuck\nen:lesson-01:session-43:i04:p2=annoyed\nen:lesson-01:session-43:i04:p3=soaked\nen:lesson-01:session-43:i04:p4=chilly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:word:soaked",
+    "correctText": "soaked",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i05",
-    "correctText": "We're patient.",
+    "correctText": "We're soaked.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i06",
-    "correctText": "They are patient.",
+    "correctText": "He is stuck.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:word:chilly",
+    "correctText": "chilly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i07",
-    "correctText": "You're patient.",
+    "correctText": "It's chilly.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i09",
-    "correctText": "She is ill.",
+    "correctText": "She's annoyed.",
     "correctResponseId": "en:lesson-01:session-43:i09:r1"
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i11",
-    "correctText": "He's patient.",
+    "correctText": "It's chilly.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i13",
-    "correctText": "I am ill.",
+    "correctText": "He's soaked.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i15",
-    "correctText": "They're patient.",
+    "correctText": "They're stuck.",
     "correctResponseId": "en:lesson-01:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-43:i16",
-    "correctText": "en:lesson-01:session-43:i16:p1=He's\nen:lesson-01:session-43:i16:p2=She's\nen:lesson-01:session-43:i16:p3=patient\nen:lesson-01:session-43:i16:p4=ill",
+    "correctText": "en:lesson-01:session-43:i16:p1=patient\nen:lesson-01:session-43:i16:p2=chilly\nen:lesson-01:session-43:i16:p3=soaked\nen:lesson-01:session-43:i16:p4=annoyed",
     "correctResponseId": null
   },
   {

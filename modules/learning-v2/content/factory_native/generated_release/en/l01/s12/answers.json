@@ -35,14 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-12:i08",
-    "correctText": "smart",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-12:i09",
     "correctText": "are",
     "correctResponseId": "en:lesson-01:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i08",
+    "correctText": "smart",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-12:i10",

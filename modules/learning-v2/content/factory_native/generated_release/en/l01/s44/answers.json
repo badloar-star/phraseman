@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-01:session-44:word:curious",
+    "correctText": "curious",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-44:i01",
     "correctText": "I am curious.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-44:word:weird",
+    "correctText": "weird",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-44:i02",
-    "correctText": "She is curious.",
+    "correctText": "It is ancient.",
     "correctResponseId": "en:lesson-01:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-44:word:complicated",
+    "correctText": "complicated",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i03",
@@ -16,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-44:i04",
-    "correctText": "en:lesson-01:session-44:i04:p1=curious\nen:lesson-01:session-44:i04:p2=sleepy\nen:lesson-01:session-44:i04:p3=patient\nen:lesson-01:session-44:i04:p4=polite",
+    "correctText": "en:lesson-01:session-44:i04:p1=curious\nen:lesson-01:session-44:i04:p2=weird\nen:lesson-01:session-44:i04:p3=ancient\nen:lesson-01:session-44:i04:p4=complicated",
     "correctResponseId": null
   },
   {
@@ -25,13 +40,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-44:word:ancient",
+    "correctText": "ancient",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-44:i06",
-    "correctText": "They are curious.",
+    "correctText": "They are ancient.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i07",
-    "correctText": "I'm curious.",
+    "correctText": "It's complicated.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-44:i09",
-    "correctText": "I am sleepy.",
+    "correctText": "It's weird.",
     "correctResponseId": "en:lesson-01:session-44:i09:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-44:i16",
-    "correctText": "en:lesson-01:session-44:i16:p1=We're\nen:lesson-01:session-44:i16:p2=They're\nen:lesson-01:session-44:i16:p3=curious\nen:lesson-01:session-44:i16:p4=sleepy",
+    "correctText": "en:lesson-01:session-44:i16:p1=They're\nen:lesson-01:session-44:i16:p2=It's\nen:lesson-01:session-44:i16:p3=curious\nen:lesson-01:session-44:i16:p4=complicated",
     "correctResponseId": null
   },
   {

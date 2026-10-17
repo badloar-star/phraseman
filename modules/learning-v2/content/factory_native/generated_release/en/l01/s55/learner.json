@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-55:i01",
+      "interactionId": "en:lesson-01:session-55:word:responsible",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — responsible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-55:word:responsible:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — responsible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-55:word:responsible:audio",
+          "transcript": "responsible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-55:word:responsible:r1",
+            "targetText": "responsible",
+            "meaningByLocale": {
+              "ru": "ответственный. He's responsible — «Он ответственный». О человеке, который держит слово и делает всё вовремя.",
+              "uk": "відповідальний. He's responsible — «Він відповідальний». Про людину, яка тримає слово й робить усе вчасно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "responsible",
+          "definitionByLocale": {
+            "ru": "ответственный. He's responsible — «Он ответственный». О человеке, который держит слово и делает всё вовремя.",
+            "uk": "відповідальний. He's responsible — «Він відповідальний». Про людину, яка тримає слово й робить усе вчасно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг выполняет обещания и серьёзно относится к обязанностям. Назовите его ответственным",
+      "prompt": "Брат сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг выполняет обещания и серьёзно относится к обязанностям. Назовите его ответственным",
+      "accessibilityLabel": "Брат сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is responsible.",
         "localizedMeaning": {
-          "ru": "Друг выполняет обещания и серьёзно относится к обязанностям. Назовите его ответственным",
-          "uk": "Друг виконує обіцянки й серйозно ставиться до обов’язків. Назвіть його відповідальним"
+          "ru": "Брат сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
+          "uk": "Брат сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний"
         },
         "orderedTokens": [
           "He",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-55:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друг выполняет обещания и серьёзно относится к обязанностям. Назовите его ответственным",
+            "testedDimension": "Брат сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `He is responsible.`",
               "uk": "тут потрібно `is` — `He is responsible.`"
@@ -48,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-55:word:forgetful",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — forgetful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-55:word:forgetful:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — forgetful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-55:word:forgetful:audio",
+          "transcript": "forgetful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-55:word:forgetful:r1",
+            "targetText": "forgetful",
+            "meaningByLocale": {
+              "ru": "забывчивый. He's forgetful — «Он забывчивый». О человеке, который вечно забывает ключи, зонт, зарядку.",
+              "uk": "забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "forgetful",
+          "definitionByLocale": {
+            "ru": "забывчивый. He's forgetful — «Он забывчивый». О человеке, который вечно забывает ключи, зонт, зарядку.",
+            "uk": "забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-55:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +143,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i02:r1",
-          "text": "She is independent."
+          "text": "He is forgetful."
         },
         {
           "responseId": "en:lesson-01:session-55:i02:r2",
-          "text": "She is dependent."
+          "text": "She is forgetful."
         },
         {
           "responseId": "en:lesson-01:session-55:i02:r3",
-          "text": "She is responsible."
+          "text": "He is responsible."
         }
       ],
       "mediaIds": [],
@@ -77,23 +163,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-55:i02:audio",
-          "transcript": "She is independent."
+          "transcript": "He is forgetful."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-55:i02:r1",
-            "targetText": "She is independent.",
+            "targetText": "He is forgetful.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-55:i02:r2",
-            "targetText": "She is dependent.",
+            "targetText": "She is forgetful.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-55:i02:r3",
-            "targetText": "She is responsible.",
+            "targetText": "He is responsible.",
             "meaningByLocale": null
           }
         ],
@@ -104,8 +190,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `independent`, а в этом варианте — `dependent`.",
-              "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `dependent`."
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
             }
           },
           {
@@ -113,8 +199,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `independent`, а в этом варианте — `responsible`.",
-              "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `responsible`."
+              "ru": "В записи последнее слово — `forgetful`, а в этом варианте — `responsible`.",
+              "uk": "У записі останнє слово — `forgetful`, а в цьому варіанті — `responsible`."
             }
           }
         ],
@@ -125,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Двое друзей внимательно выполняют свои обязанности. Назовите их ответственными",
+      "prompt": "Брат и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i03:r1",
@@ -146,12 +232,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двое друзей внимательно выполняют свои обязанности. Назовите их ответственными",
+      "accessibilityLabel": "Брат и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Двое друзей внимательно выполняют свои обязанности. Назовите их ответственными",
-          "uk": "Двоє друзів уважно виконують свої обов’язки. Назвіть їх відповідальними"
+          "ru": "Брат и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+          "uk": "Брат і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними"
         },
         "gappedTargetPhrase": "They ___ responsible.",
         "gapOptions": [
@@ -168,12 +254,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Двое друзей внимательно выполняют свои обязанности. Назовите их ответственными",
+        "testedDimension": "Брат и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-55:i03:r2",
             "correct": false,
-            "testedDimension": "Двое друзей внимательно выполняют свои обязанности. Назовите их ответственными",
+            "testedDimension": "Брат и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-01:session-55:i03:r3",
             "correct": false,
-            "testedDimension": "Двое друзей внимательно выполняют свои обязанности. Назовите их ответственными",
+            "testedDimension": "Брат и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
             "feedbackByLocale": {
-              "ru": "Про двоих — `They are`.",
-              "uk": "Про двох — `They are`."
+              "ru": "Их двое, поэтому `They are`.",
+              "uk": "Їх двоє, тому `They are`."
             }
           }
         ]
@@ -194,15 +280,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -232,10 +318,10 @@
           },
           {
             "pairId": "en:lesson-01:session-55:i04:p4",
-            "target": "dangerous",
+            "target": "forgetful",
             "meaningByLocale": {
-              "ru": "опасный",
-              "uk": "небезпечний"
+              "ru": "забывчивый",
+              "uk": "забудькуватий"
             }
           }
         ],
@@ -243,13 +329,13 @@
           "responsible",
           "independent",
           "dependent",
-          "dangerous"
+          "forgetful"
         ],
         "rightColumn": [
           "ответственный",
           "самостоятельный",
           "зависимый",
-          "опасный"
+          "забывчивый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,18 +352,61 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-55:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-01:session-55:word:dependent",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dependent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-55:word:dependent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dependent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-55:word:dependent:audio",
+          "transcript": "dependent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-55:word:dependent:r1",
+            "targetText": "dependent",
+            "meaningByLocale": {
+              "ru": "зависимый. He's dependent — «Он зависит от других». О малыше или больном, которому постоянно нужна помощь.",
+              "uk": "залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dependent",
+          "definitionByLocale": {
+            "ru": "зависимый. He's dependent — «Он зависит от других». О малыше или больном, которому постоянно нужна помощь.",
+            "uk": "залежний. He's dependent — «Він залежить від інших». Про малюка чи хворого, якому постійно потрібна допомога."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Послушайте и соберите короткую фразу о малыше",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Послушайте и соберите короткую фразу о малыше",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -297,7 +426,7 @@
           {
             "responseId": "en:lesson-01:session-55:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Послушайте и соберите короткую фразу о малыше",
             "feedbackByLocale": {
               "ru": "здесь нужно `He's` — `He's dependent.`",
               "uk": "тут потрібно `He's` — `He's dependent.`"
@@ -312,22 +441,65 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-55:word:independent",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — independent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-55:word:independent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — independent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-55:word:independent:audio",
+          "transcript": "independent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-55:word:independent:r1",
+            "targetText": "independent",
+            "meaningByLocale": {
+              "ru": "самостоятельный. She's independent — «Она самостоятельная». О человеке, который справляется сам.",
+              "uk": "самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "independent",
+          "definitionByLocale": {
+            "ru": "самостоятельный. She's independent — «Она самостоятельная». О человеке, который справляется сам.",
+            "uk": "самостійний. She's independent — «Вона самостійна». Про людину, яка дає собі раду сама."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-55:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сестра сама организует повседневные дела и принимает решения. Назовите её независимой",
+      "prompt": "Тётя сама нашла гостиницу и сама доберётся до неё. Скажите брату, что она справится и без него",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сестра сама организует повседневные дела и принимает решения. Назовите её независимой",
+      "accessibilityLabel": "Тётя сама нашла гостиницу и сама доберётся до неё. Скажите брату, что она справится и без него",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is independent.",
         "localizedMeaning": {
-          "ru": "Сестра сама организует повседневные дела и принимает решения. Назовите её независимой",
-          "uk": "Сестра сама організовує повсякденні справи й ухвалює рішення. Назвіть її незалежною"
+          "ru": "Тётя сама нашла гостиницу и сама доберётся до неё. Скажите брату, что она справится и без него",
+          "uk": "Тітка сама знайшла готель і сама до нього дістанеться. Скажіть братові, що вона впорається й без нього"
         },
         "orderedTokens": [
           "She",
@@ -341,7 +513,7 @@
           {
             "responseId": "en:lesson-01:session-55:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Сестра сама организует повседневные дела и принимает решения. Назовите её независимой",
+            "testedDimension": "Тётя сама нашла гостиницу и сама доберётся до неё. Скажите брату, что она справится и без него",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is independent.`",
               "uk": "тут потрібно `is` — `She is independent.`"
@@ -357,25 +529,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коротко скажите о себе: «Я ответственный»",
+      "prompt": "Папа в третий раз возвращается домой: сначала за телефоном, потом за очками, теперь за ключами. Скажите маме коротко, что он забывчивый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i07:audio"
       ],
-      "accessibilityLabel": "Коротко скажите о себе: «Я ответственный»",
+      "accessibilityLabel": "Папа в третий раз возвращается домой: сначала за телефоном, потом за очками, теперь за ключами. Скажите маме коротко, что он забывчивый",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-55:i07:audio",
-          "transcript": "I'm responsible."
+          "transcript": "He's forgetful."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm responsible.",
+        "targetPhrase": "He's forgetful.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -390,11 +562,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Речь о том, может ли малыш обходиться без взрослых: без постоянной заботы взрослых он пока не обходится. Назовите эту зависимость",
+      "prompt": "Малыш пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i08:r1",
@@ -406,17 +578,17 @@
         },
         {
           "responseId": "en:lesson-01:session-55:i08:r3",
-          "text": "dangerous"
+          "text": "forgetful"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Речь о том, может ли малыш обходиться без взрослых: без постоянной заботы взрослых он пока не обходится. Назовите эту зависимость",
+      "accessibilityLabel": "Малыш пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь о том, может ли малыш обходиться без взрослых: без постоянной заботы взрослых он пока не обходится. Назовите эту зависимость",
-          "uk": "Йдеться про те, чи може малюк обходитися без дорослих: без постійної турботи дорослих він поки не обходиться. Назвіть цю залежність"
+          "ru": "Малыш пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+          "uk": "Малюк поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -430,27 +602,27 @@
           },
           {
             "responseId": "en:lesson-01:session-55:i08:r3",
-            "text": "dangerous"
+            "text": "forgetful"
           }
         ],
-        "testedDimension": "Речь о том, может ли малыш обходиться без взрослых: без постоянной заботы взрослых он пока не обходится. Назовите эту зависимость",
+        "testedDimension": "Малыш пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-55:i08:r2",
             "correct": false,
-            "testedDimension": "Речь о том, может ли малыш обходиться без взрослых: без постоянной заботы взрослых он пока не обходится. Назовите эту зависимость",
+            "testedDimension": "Малыш пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
             "feedbackByLocale": {
-              "ru": "Это самостоятельность. Малышу постоянно нужна помощь: `dependent`.",
-              "uk": "Це самостійність. Малюкові постійно потрібна допомога: `dependent`."
+              "ru": "`independent` — «самостоятельный». А малыш без взрослых не справляется: `dependent`.",
+              "uk": "`independent` — «самостійний». А малюк без дорослих не дає собі ради: `dependent`."
             }
           },
           {
             "responseId": "en:lesson-01:session-55:i08:r3",
             "correct": false,
-            "testedDimension": "Речь о том, может ли малыш обходиться без взрослых: без постоянной заботы взрослых он пока не обходится. Назовите эту зависимость",
+            "testedDimension": "Малыш пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
             "feedbackByLocale": {
-              "ru": "Это опасность. Здесь нужно `dependent`.",
-              "uk": "Це небезпека. Тут потрібно `dependent`."
+              "ru": "`forgetful` — «забывчивый». Малышу нужна помощь во всём: `dependent`.",
+              "uk": "`forgetful` — «забудькуватий». Малюкові потрібна допомога в усьому: `dependent`."
             }
           }
         ]
@@ -459,11 +631,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о месте",
+      "prompt": "Послушайте фразу о крутой лестнице на перрон",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i09:r1",
@@ -482,7 +654,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-55:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о месте",
+      "accessibilityLabel": "Послушайте фразу о крутой лестнице на перрон",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -512,7 +684,7 @@
           {
             "responseId": "en:lesson-01:session-55:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о месте",
+            "testedDimension": "Послушайте фразу о крутой лестнице на перрон",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `familiar`.",
               "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `familiar`."
@@ -521,7 +693,7 @@
           {
             "responseId": "en:lesson-01:session-55:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о месте",
+            "testedDimension": "Послушайте фразу о крутой лестнице на перрон",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `unfamiliar`.",
               "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `unfamiliar`."
@@ -535,15 +707,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините знакомые слова со значениями",
+      "prompt": "Соедините слова прошлого занятия со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините знакомые слова со значениями",
+      "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -573,10 +745,10 @@
           },
           {
             "pairId": "en:lesson-01:session-55:i10:p4",
-            "target": "dangerous",
+            "target": "faded",
             "meaningByLocale": {
-              "ru": "опасный",
-              "uk": "небезпечний"
+              "ru": "выцветший",
+              "uk": "вицвілий"
             }
           }
         ],
@@ -584,13 +756,13 @@
           "familiar",
           "unfamiliar",
           "unknown",
-          "dangerous"
+          "faded"
         ],
         "rightColumn": [
           "знакомый",
           "незнакомый",
           "неизвестный",
-          "опасный"
+          "выцветший"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -608,17 +780,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Послушайте и соберите фразу о вас с сестрой: в дорогу вы собираетесь сами",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Послушайте и соберите фразу о вас с сестрой: в дорогу вы собираетесь сами",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -638,7 +810,7 @@
           {
             "responseId": "en:lesson-01:session-55:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Послушайте и соберите фразу о вас с сестрой: в дорогу вы собираетесь сами",
             "feedbackByLocale": {
               "ru": "здесь нужно `We're` — `We're independent.`",
               "uk": "тут потрібно `We're` — `We're independent.`"
@@ -654,21 +826,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На фотографии вы узнаёте вокзал, где часто бывали. Скажите, что место вам знакомо",
+      "prompt": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На фотографии вы узнаёте вокзал, где часто бывали. Скажите, что место вам знакомо",
+      "accessibilityLabel": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is familiar.",
         "localizedMeaning": {
-          "ru": "На фотографии вы узнаёте вокзал, где часто бывали. Скажите, что место вам знакомо",
-          "uk": "На фотографії ви впізнаєте вокзал, де часто бували. Скажіть, що місце вам знайоме"
+          "ru": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
+          "uk": "На фото з поїздки минулого літа ви впізнаєте вокзал. Скажіть, що він вам знайомий"
         },
         "orderedTokens": [
           "It",
@@ -682,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-55:i12:tile:d1",
             "correct": false,
-            "testedDimension": "На фотографии вы узнаёте вокзал, где часто бывали. Скажите, что место вам знакомо",
+            "testedDimension": "На фото из поездки прошлого лета вы узнаёте вокзал. Скажите, что он вам знаком",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is familiar.`",
               "uk": "тут потрібно `is` — `It is familiar.`"
@@ -698,17 +870,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Время отправления ещё не установлено. Вы с другом обсуждаете это время. Скажите, что оно неизвестно",
+      "prompt": "На табло у вашего поезда пока нет номера пути. Брат спрашивает, с какого пути отправление. Скажите, что путь неизвестен",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i13:audio"
       ],
-      "accessibilityLabel": "Время отправления ещё не установлено. Вы с другом обсуждаете это время. Скажите, что оно неизвестно",
+      "accessibilityLabel": "На табло у вашего поезда пока нет номера пути. Брат спрашивает, с какого пути отправление. Скажите, что путь неизвестен",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -731,67 +903,67 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с другом серьёзно относитесь к своим обязанностям. Назовите вас обоих ответственными",
+      "prompt": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i14:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-01:session-55:i14:r2",
           "text": "am"
         },
         {
-          "responseId": "en:lesson-01:session-55:i14:r3",
+          "responseId": "en:lesson-01:session-55:i14:r2",
           "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-55:i14:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с другом серьёзно относитесь к своим обязанностям. Назовите вас обоих ответственными",
+      "accessibilityLabel": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с другом серьёзно относитесь к своим обязанностям. Назовите вас обоих ответственными",
-          "uk": "Ви з другом серйозно ставитеся до своїх обов’язків. Назвіть вас обох відповідальними"
+          "ru": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
+          "uk": "Ви знову не пам’ятаєте, куди поклали окуляри. Зізнайтеся про себе: ви забудькуваті"
         },
-        "gappedTargetPhrase": "We ___ responsible.",
+        "gappedTargetPhrase": "I ___ forgetful.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-55:i14:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-01:session-55:i14:r2",
             "text": "am"
           },
           {
-            "responseId": "en:lesson-01:session-55:i14:r3",
+            "responseId": "en:lesson-01:session-55:i14:r2",
             "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i14:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вы с другом серьёзно относитесь к своим обязанностям. Назовите вас обоих ответственными",
+        "testedDimension": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-55:i14:r2",
             "correct": false,
-            "testedDimension": "Вы с другом серьёзно относитесь к своим обязанностям. Назовите вас обоих ответственными",
+            "testedDimension": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
             "feedbackByLocale": {
-              "ru": "После `We` нужно `are`.",
-              "uk": "Після `We` потрібно `are`."
+              "ru": "После `I` нужно `am`.",
+              "uk": "Після `I` потрібно `am`."
             }
           },
           {
             "responseId": "en:lesson-01:session-55:i14:r3",
             "correct": false,
-            "testedDimension": "Вы с другом серьёзно относитесь к своим обязанностям. Назовите вас обоих ответственными",
+            "testedDimension": "Вы снова не помните, куда положили очки. Признайтесь о себе: вы забывчивый",
             "feedbackByLocale": {
-              "ru": "Про нас — `We are`.",
-              "uk": "Про нас — `We are`."
+              "ru": "Вы говорите о себе: `I am`.",
+              "uk": "Ви кажете про себе: `I am`."
             }
           }
         ]
@@ -800,11 +972,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте короткую фразу и выберите её",
+      "prompt": "Послушайте короткую фразу о тёте и выберите её",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i15:r1",
@@ -823,7 +995,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-55:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте короткую фразу и выберите её",
+      "accessibilityLabel": "Послушайте короткую фразу о тёте и выберите её",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -853,7 +1025,7 @@
           {
             "responseId": "en:lesson-01:session-55:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте короткую фразу и выберите её",
+            "testedDimension": "Послушайте короткую фразу о тёте и выберите её",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `independent`, а в этом варианте — `dependent`.",
               "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `dependent`."
@@ -862,7 +1034,7 @@
           {
             "responseId": "en:lesson-01:session-55:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте короткую фразу и выберите её",
+            "testedDimension": "Послушайте короткую фразу о тёте и выберите её",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `independent`, а в этом варианте — `responsible`.",
               "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `responsible`."
@@ -876,15 +1048,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова о характере со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова о характере со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -898,40 +1070,40 @@
           },
           {
             "pairId": "en:lesson-01:session-55:i16:p2",
-            "target": "independent",
+            "target": "forgetful",
             "meaningByLocale": {
-              "ru": "независимый",
-              "uk": "незалежний"
+              "ru": "забывчивый",
+              "uk": "забудькуватий"
             }
           },
           {
             "pairId": "en:lesson-01:session-55:i16:p3",
-            "target": "dependent",
+            "target": "patient",
             "meaningByLocale": {
-              "ru": "зависимый",
-              "uk": "залежний"
+              "ru": "терпеливый",
+              "uk": "терплячий"
             }
           },
           {
             "pairId": "en:lesson-01:session-55:i16:p4",
-            "target": "unfamiliar",
+            "target": "honest",
             "meaningByLocale": {
-              "ru": "незнакомый",
-              "uk": "незнайомий"
+              "ru": "честный",
+              "uk": "чесний"
             }
           }
         ],
         "leftColumn": [
           "responsible",
-          "independent",
-          "dependent",
-          "unfamiliar"
+          "forgetful",
+          "patient",
+          "honest"
         ],
         "rightColumn": [
           "ответственный",
-          "независимый",
-          "зависимый",
-          "незнакомый"
+          "забывчивый",
+          "терпеливый",
+          "честный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,17 +1121,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-55:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В клубе новая организаторша вовремя выполняет обещания и внимательно относится к обязанностям. Назовите её ответственной",
+      "prompt": "В клубе новая организаторша всегда делает то, что пообещала, и ни разу не подвела. Назовите её ответственной",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i17:audio"
       ],
-      "accessibilityLabel": "В клубе новая организаторша вовремя выполняет обещания и внимательно относится к обязанностям. Назовите её ответственной",
+      "accessibilityLabel": "В клубе новая организаторша всегда делает то, что пообещала, и ни разу не подвела. Назовите её ответственной",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "74b5c32bb34c724e394ccd1490ebc3689a14bdb012366ab6dab138e7da04314b"
+  "learnerFingerprint": "a0cc30c583cf34a6fb75a734d6facc84020b73d5275c4fe8fd7c749ed91199fa"
 }

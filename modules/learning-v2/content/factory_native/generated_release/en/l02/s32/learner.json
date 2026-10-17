@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-32:i01",
+      "interactionId": "en:lesson-02:session-32:word:homemade",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — homemade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-32:word:homemade:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — homemade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-32:word:homemade:audio",
+          "transcript": "homemade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-32:word:homemade:r1",
+            "targetText": "homemade",
+            "meaningByLocale": {
+              "ru": "домашний, сделанный дома. It is homemade — «Это домашнее». О пироге, варенье, мыле, подарке.",
+              "uk": "домашній, зроблений удома. It is homemade — «Це домашнє». Про пиріг, варення, мило, подарунок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "homemade",
+          "definitionByLocale": {
+            "ru": "домашний, сделанный дома. It is homemade — «Это домашнее». О пироге, варенье, мыле, подарке.",
+            "uk": "домашній, зроблений удома. It is homemade — «Це домашнє». Про пиріг, варення, мило, подарунок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-32:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед началом работы вы хотите узнать, кого из соседей нет. Спросите, кто отсутствует",
+      "prompt": "Подруга принесла банку варенья, которое сварила сама. Скажите полной фразой, что оно домашнее",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед началом работы вы хотите узнать, кого из соседей нет. Спросите, кто отсутствует",
+      "accessibilityLabel": "Подруга принесла банку варенья, которое сварила сама. Скажите полной фразой, что оно домашнее",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Who is absent?",
+        "targetPhrase": "It is homemade.",
         "localizedMeaning": {
-          "ru": "Перед началом работы вы хотите узнать, кого из соседей нет. Спросите, кто отсутствует",
-          "uk": "Перед початком роботи ви хочете дізнатися, кого із сусідів немає. Запитайте, хто відсутній"
+          "ru": "Подруга принесла банку варенья, которое сварила сама. Скажите полной фразой, что оно домашнее",
+          "uk": "Подруга принесла банку варення, яке зварила сама. Скажіть повною фразою, що воно домашнє"
         },
         "orderedTokens": [
-          "Who",
+          "It",
           "is",
-          "absent"
+          "homemade"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-32:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Перед началом работы вы хотите узнать, кого из соседей нет. Спросите, кто отсутствует",
+            "testedDimension": "Подруга принесла банку варенья, которое сварила сама. Скажите полной фразой, что оно домашнее",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Who` — `Who is absent?`",
-              "uk": "тут потрібно `Who` — `Who is absent?`"
+              "ru": "здесь нужно `is` — `It is homemade.`",
+              "uk": "тут потрібно `is` — `It is homemade.`"
             }
           }
         ],
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Послушайте фразу об одном из соседей",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-32:i02:r1",
@@ -65,14 +108,14 @@
         },
         {
           "responseId": "en:lesson-02:session-32:i02:r3",
-          "text": "He is careless."
+          "text": "He is generous."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-32:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Послушайте фразу об одном из соседей",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -93,7 +136,7 @@
           },
           {
             "responseId": "en:lesson-02:session-32:i02:r3",
-            "targetText": "He is careless.",
+            "targetText": "He is generous.",
             "meaningByLocale": null
           }
         ],
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-32:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте фразу об одном из соседей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `away`, а в этом варианте — `absent`.",
               "uk": "У записі останнє слово — `away`, а в цьому варіанті — `absent`."
@@ -111,10 +154,10 @@
           {
             "responseId": "en:lesson-02:session-32:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте фразу об одном из соседей",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `away`, а в этом варианте — `careless`.",
-              "uk": "У записі останнє слово — `away`, а в цьому варіанті — `careless`."
+              "ru": "В записи последнее слово — `away`, а в этом варианте — `generous`.",
+              "uk": "У записі останнє слово — `away`, а в цьому варіанті — `generous`."
             }
           }
         ],
@@ -125,7 +168,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +251,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-32:i04:p1",
-            "target": "absent",
+            "target": "homemade",
             "meaningByLocale": {
-              "ru": "отсутствующий",
-              "uk": "відсутній"
+              "ru": "домашний",
+              "uk": "домашній"
             }
           },
           {
             "pairId": "en:lesson-02:session-32:i04:p2",
-            "target": "away",
+            "target": "lively",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "оживлённый",
+              "uk": "жвавий"
             }
           },
           {
             "pairId": "en:lesson-02:session-32:i04:p3",
-            "target": "elsewhere",
+            "target": "delayed",
             "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
+              "ru": "отложенный",
+              "uk": "відкладений"
             }
           },
           {
             "pairId": "en:lesson-02:session-32:i04:p4",
-            "target": "unusual",
+            "target": "cancelled",
             "meaningByLocale": {
-              "ru": "необычный",
-              "uk": "незвичайний"
+              "ru": "отменённый",
+              "uk": "скасований"
             }
           }
         ],
         "leftColumn": [
-          "absent",
-          "away",
-          "elsewhere",
-          "unusual"
+          "homemade",
+          "lively",
+          "delayed",
+          "cancelled"
         ],
         "rightColumn": [
-          "отсутствующий",
-          "не здесь, в отъезде",
-          "в другом месте",
-          "необычный"
+          "домашний",
+          "оживлённый",
+          "отложенный",
+          "отменённый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,7 +310,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -313,39 +356,82 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-32:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-02:session-32:word:lively",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lively",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-32:word:lively:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lively",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-32:word:lively:audio",
+          "transcript": "lively"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-32:word:lively:r1",
+            "targetText": "lively",
+            "meaningByLocale": {
+              "ru": "оживлённый, где шумно и весело. It is lively — «Здесь оживлённо». О дворе, улице, празднике, кафе.",
+              "uk": "жвавий, де гамірно й весело. It is lively — «Тут жваво». Про двір, вулицю, свято, кафе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lively",
+          "definitionByLocale": {
+            "ru": "оживлённый, где шумно и весело. It is lively — «Здесь оживлённо». О дворе, улице, празднике, кафе.",
+            "uk": "жвавий, де гамірно й весело. It is lively — «Тут жваво». Про двір, вулицю, свято, кафе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна охотно угостила всех за свой счёт. Скажите полной фразой, что она щедрая",
+      "prompt": "Ярмарка уже началась. Спросите подругу, оживлённо ли во дворе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна охотно угостила всех за свой счёт. Скажите полной фразой, что она щедрая",
+      "accessibilityLabel": "Ярмарка уже началась. Спросите подругу, оживлённо ли во дворе",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is generous.",
+        "targetPhrase": "Is it lively?",
         "localizedMeaning": {
-          "ru": "Анна охотно угостила всех за свой счёт. Скажите полной фразой, что она щедрая",
-          "uk": "Анна охоче пригостила всіх власним коштом. Скажіть повною фразою, що вона щедра"
+          "ru": "Ярмарка уже началась. Спросите подругу, оживлённо ли во дворе",
+          "uk": "Ярмарок уже почався. Запитайте подругу, чи жваво у дворі"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "generous"
+          "Is",
+          "it",
+          "lively"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-32:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна охотно угостила всех за свой счёт. Скажите полной фразой, что она щедрая",
+            "testedDimension": "Ярмарка уже началась. Спросите подругу, оживлённо ли во дворе",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is generous.`",
-              "uk": "тут потрібно `is` — `She is generous.`"
+              "ru": "здесь нужно `Is` — `Is it lively?`",
+              "uk": "тут потрібно `Is` — `Is it lively?`"
             }
           }
         ],
@@ -357,26 +443,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-32:word:delayed",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — delayed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-32:word:delayed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — delayed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-32:word:delayed:audio",
+          "transcript": "delayed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-32:word:delayed:r1",
+            "targetText": "delayed",
+            "meaningByLocale": {
+              "ru": "отложенный, задержанный. It is delayed — «Это задерживается». О начале, поезде, рейсе, ответе.",
+              "uk": "відкладений, затриманий. It is delayed — «Це затримується». Про початок, потяг, рейс, відповідь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delayed",
+          "definitionByLocale": {
+            "ru": "отложенный, задержанный. It is delayed — «Это задерживается». О начале, поезде, рейсе, ответе.",
+            "uk": "відкладений, затриманий. It is delayed — «Це затримується». Про початок, потяг, рейс, відповідь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-32:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вам подходит любое из предложенных времён начала. Коротко скажите, что вы готовы подстроиться",
+      "prompt": "Дождь закончился, но начало ярмарки сдвинули на час. Коротко скажите подруге, что оно задерживается",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-32:i07:audio"
       ],
-      "accessibilityLabel": "Вам подходит любое из предложенных времён начала. Коротко скажите, что вы готовы подстроиться",
+      "accessibilityLabel": "Дождь закончился, но начало ярмарки сдвинули на час. Коротко скажите подруге, что оно задерживается",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-32:i07:audio",
-          "transcript": "I'm flexible."
+          "transcript": "It's delayed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm flexible.",
+        "targetPhrase": "It's delayed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,11 +520,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сосед аккуратно убрал чайник подальше от края. На «Is he careless?» дополните короткое «нет»",
+      "prompt": "Сосед уехал на неделю. На «Is he away?» дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-32:i08:r1",
@@ -412,14 +541,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сосед аккуратно убрал чайник подальше от края. На «Is he careless?» дополните короткое «нет»",
+      "accessibilityLabel": "Сосед уехал на неделю. На «Is he away?» дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сосед аккуратно убрал чайник подальше от края. На «Is he careless?» дополните короткое «нет»",
-          "uk": "Сусід акуратно прибрав чайник подалі від краю. На «Is he careless?» доповніть коротку відповідь «ні»"
+          "ru": "Сосед уехал на неделю. На «Is he away?» дополните короткое «да»",
+          "uk": "Сусід поїхав на тиждень. На «Is he away?» доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "No, he ___ not.",
+        "gappedTargetPhrase": "Yes, he ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-32:i08:r1",
@@ -434,12 +563,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Сосед аккуратно убрал чайник подальше от края. На «Is he careless?» дополните короткое «нет»",
+        "testedDimension": "Сосед уехал на неделю. На «Is he away?» дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-32:i08:r2",
             "correct": false,
-            "testedDimension": "Сосед аккуратно убрал чайник подальше от края. На «Is he careless?» дополните короткое «нет»",
+            "testedDimension": "Сосед уехал на неделю. На «Is he away?» дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `he` нужно `is`.",
               "uk": "З `he` потрібно `is`."
@@ -448,10 +577,10 @@
           {
             "responseId": "en:lesson-02:session-32:i08:r3",
             "correct": false,
-            "testedDimension": "Сосед аккуратно убрал чайник подальше от края. На «Is he careless?» дополните короткое «нет»",
+            "testedDimension": "Сосед уехал на неделю. На «Is he away?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Ответ — `No, he is not`.",
-              "uk": "Відповідь — `No, he is not`."
+              "ru": "Ответ — `Yes, he is`.",
+              "uk": "Відповідь — `Yes, he is`."
             }
           }
         ]
@@ -460,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -468,15 +597,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-32:i09:r1",
-          "text": "Is she flexible?"
+          "text": "Who is generous?"
         },
         {
           "responseId": "en:lesson-02:session-32:i09:r2",
-          "text": "Is she generous?"
+          "text": "Who is absent?"
         },
         {
           "responseId": "en:lesson-02:session-32:i09:r3",
-          "text": "Is she careless?"
+          "text": "Who is away?"
         }
       ],
       "mediaIds": [],
@@ -488,23 +617,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-32:i09:audio",
-          "transcript": "Is she flexible?"
+          "transcript": "Who is generous?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-32:i09:r1",
-            "targetText": "Is she flexible?",
+            "targetText": "Who is generous?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-32:i09:r2",
-            "targetText": "Is she generous?",
+            "targetText": "Who is absent?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-32:i09:r3",
-            "targetText": "Is she careless?",
+            "targetText": "Who is away?",
             "meaningByLocale": null
           }
         ],
@@ -515,8 +644,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `flexible`, а в этом варианте — `generous`.",
-              "uk": "У записі останнє слово — `flexible`, а в цьому варіанті — `generous`."
+              "ru": "В записи последнее слово — `generous`, а в этом варианте — `absent`.",
+              "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `absent`."
             }
           },
           {
@@ -524,8 +653,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `flexible`, а в этом варианте — `careless`.",
-              "uk": "У записі останнє слово — `flexible`, а в цьому варіанті — `careless`."
+              "ru": "В записи последнее слово — `generous`, а в этом варианте — `away`.",
+              "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `away`."
             }
           }
         ],
@@ -536,7 +665,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -550,26 +679,26 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-32:i10:p1",
-            "target": "generous",
+            "target": "absent",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "отсутствующий",
+              "uk": "відсутній"
             }
           },
           {
             "pairId": "en:lesson-02:session-32:i10:p2",
-            "target": "careless",
+            "target": "away",
             "meaningByLocale": {
-              "ru": "неосторожный, небрежный",
-              "uk": "необережний, недбалий"
+              "ru": "в отъезде",
+              "uk": "у від’їзді"
             }
           },
           {
             "pairId": "en:lesson-02:session-32:i10:p3",
-            "target": "flexible",
+            "target": "elsewhere",
             "meaningByLocale": {
-              "ru": "гибкий",
-              "uk": "гнучкий"
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
             }
           },
           {
@@ -582,15 +711,15 @@
           }
         ],
         "leftColumn": [
-          "generous",
-          "careless",
-          "flexible",
+          "absent",
+          "away",
+          "elsewhere",
           "unusual"
         ],
         "rightColumn": [
-          "щедрый",
-          "неосторожный, небрежный",
-          "гибкий",
+          "отсутствующий",
+          "в отъезде",
+          "в другом месте",
           "необычный"
         ],
         "pairingKey": "pair_id",
@@ -608,9 +737,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-32:word:cancelled",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cancelled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-32:word:cancelled:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cancelled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-32:word:cancelled:audio",
+          "transcript": "cancelled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-32:word:cancelled:r1",
+            "targetText": "cancelled",
+            "meaningByLocale": {
+              "ru": "отменённый. It is cancelled — «Это отменено». О ярмарке, концерте, рейсе, встрече.",
+              "uk": "скасований. It is cancelled — «Це скасовано». Про ярмарок, концерт, рейс, зустріч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cancelled",
+          "definitionByLocale": {
+            "ru": "отменённый. It is cancelled — «Это отменено». О ярмарке, концерте, рейсе, встрече.",
+            "uk": "скасований. It is cancelled — «Це скасовано». Про ярмарок, концерт, рейс, зустріч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-32:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите вопрос",
@@ -624,14 +796,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-32:i11:audio",
-          "transcript": "Is he absent?"
+          "transcript": "Is it cancelled?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is he absent?",
+        "hiddenTargetPhrase": "Is it cancelled?",
         "orderedTokens": [
           "Is",
-          "he",
-          "absent"
+          "it",
+          "cancelled"
         ],
         "authoredDistractorTokens": [
           "Who"
@@ -642,8 +814,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите вопрос",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is he absent?`",
-              "uk": "тут потрібно `Is` — `Is he absent?`"
+              "ru": "здесь нужно `Is` — `Is it cancelled?`",
+              "uk": "тут потрібно `Is` — `Is it cancelled?`"
             }
           }
         ],
@@ -656,21 +828,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна принесла незнакомый предмет для украшения двора. Спросите, что это",
+      "prompt": "Подруга принесла незнакомый предмет для украшения двора. Спросите, что это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна принесла незнакомый предмет для украшения двора. Спросите, что это",
+      "accessibilityLabel": "Подруга принесла незнакомый предмет для украшения двора. Спросите, что это",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "What is it?",
         "localizedMeaning": {
-          "ru": "Анна принесла незнакомый предмет для украшения двора. Спросите, что это",
-          "uk": "Анна принесла незнайомий предмет для прикрашання двору. Запитайте, що це"
+          "ru": "Подруга принесла незнакомый предмет для украшения двора. Спросите, что это",
+          "uk": "Подруга принесла незнайомий предмет для прикрашання двору. Запитайте, що це"
         },
         "orderedTokens": [
           "What",
@@ -684,7 +856,7 @@
           {
             "responseId": "en:lesson-02:session-32:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна принесла незнакомый предмет для украшения двора. Спросите, что это",
+            "testedDimension": "Подруга принесла незнакомый предмет для украшения двора. Спросите, что это",
             "feedbackByLocale": {
               "ru": "здесь нужно `What` — `What is it?`",
               "uk": "тут потрібно `What` — `What is it?`"
@@ -700,17 +872,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Над входом висит вывеска в форме огромной чайной чашки. Коротко скажите, что она необычная",
+      "prompt": "Над входом висит вывеска в форме огромной чайной чашки. Коротко скажите подруге, что она необычная",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-32:i13:audio"
       ],
-      "accessibilityLabel": "Над входом висит вывеска в форме огромной чайной чашки. Коротко скажите, что она необычная",
+      "accessibilityLabel": "Над входом висит вывеска в форме огромной чайной чашки. Коротко скажите подруге, что она необычная",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Двое соседей вернулись из поездки и помогают вам. Скажите, что они не в отъезде",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -810,15 +982,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-32:i15:r1",
-          "text": "Who is generous?"
+          "text": "Where is she?"
         },
         {
           "responseId": "en:lesson-02:session-32:i15:r2",
-          "text": "Who is absent?"
+          "text": "Where is he?"
         },
         {
           "responseId": "en:lesson-02:session-32:i15:r3",
-          "text": "Who is careless?"
+          "text": "Who is she?"
         }
       ],
       "mediaIds": [],
@@ -830,23 +1002,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-32:i15:audio",
-          "transcript": "Who is generous?"
+          "transcript": "Where is she?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-32:i15:r1",
-            "targetText": "Who is generous?",
+            "targetText": "Where is she?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-32:i15:r2",
-            "targetText": "Who is absent?",
+            "targetText": "Where is he?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-32:i15:r3",
-            "targetText": "Who is careless?",
+            "targetText": "Who is she?",
             "meaningByLocale": null
           }
         ],
@@ -857,8 +1029,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `generous`, а в этом варианте — `absent`.",
-              "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `absent`."
+              "ru": "В записи последнее слово — `she`, а в этом варианте — `he`.",
+              "uk": "У записі останнє слово — `she`, а в цьому варіанті — `he`."
             }
           },
           {
@@ -866,8 +1038,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `generous`, а в этом варианте — `careless`.",
-              "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `careless`."
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
             }
           }
         ],
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,22 +1064,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-32:i16:p1",
-            "target": "elsewhere",
-            "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-32:i16:p2",
-            "target": "flexible",
-            "meaningByLocale": {
-              "ru": "гибкий",
-              "uk": "гнучкий"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-32:i16:p3",
             "target": "generous",
             "meaningByLocale": {
               "ru": "щедрый",
@@ -915,25 +1071,41 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-32:i16:p4",
-            "target": "careless",
+            "pairId": "en:lesson-02:session-32:i16:p2",
+            "target": "homemade",
             "meaningByLocale": {
-              "ru": "неосторожный, небрежный",
-              "uk": "необережний, недбалий"
+              "ru": "домашний",
+              "uk": "домашній"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-32:i16:p3",
+            "target": "cancelled",
+            "meaningByLocale": {
+              "ru": "отменённый",
+              "uk": "скасований"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-32:i16:p4",
+            "target": "delayed",
+            "meaningByLocale": {
+              "ru": "отложенный",
+              "uk": "відкладений"
             }
           }
         ],
         "leftColumn": [
-          "elsewhere",
-          "flexible",
           "generous",
-          "careless"
+          "homemade",
+          "cancelled",
+          "delayed"
         ],
         "rightColumn": [
-          "в другом месте",
-          "гибкий",
           "щедрый",
-          "неосторожный, небрежный"
+          "домашний",
+          "отменённый",
+          "отложенный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,17 +1123,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-32:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег сообщил, что уже вернулся из поездки, но во дворе его нет. Спросите Анну, где он",
+      "prompt": "Сосед сообщил, что уже вернулся, но во дворе его нет. Спросите подругу, где он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-32:i17:audio"
       ],
-      "accessibilityLabel": "Олег сообщил, что уже вернулся из поездки, но во дворе его нет. Спросите Анну, где он",
+      "accessibilityLabel": "Сосед сообщил, что уже вернулся, но во дворе его нет. Спросите подругу, где он",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "431694a4f44feb0b12802ceaf9b9c94d4bb6e04d6ca640a6578e921c97fb1eae"
+  "learnerFingerprint": "b9de890e2b76bfa969738c37a84c7a061f869e8430ab20df3faf346dec6c6ae9"
 }

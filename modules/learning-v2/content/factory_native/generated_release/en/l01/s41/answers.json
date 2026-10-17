@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-01:session-41:word:clumsy",
+    "correctText": "clumsy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-41:i01",
-    "correctText": "I am honest.",
+    "correctText": "I am clumsy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-41:word:upset",
+    "correctText": "upset",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-41:i02",
-    "correctText": "She is honest.",
+    "correctText": "She is upset.",
     "correctResponseId": "en:lesson-01:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-41:word:furious",
+    "correctText": "furious",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-41:i03",
@@ -16,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-41:i04",
-    "correctText": "en:lesson-01:session-41:i04:p1=I'm\nen:lesson-01:session-41:i04:p2=He's\nen:lesson-01:session-41:i04:p3=She's\nen:lesson-01:session-41:i04:p4=You're",
+    "correctText": "en:lesson-01:session-41:i04:p1=clumsy\nen:lesson-01:session-41:i04:p2=precious\nen:lesson-01:session-41:i04:p3=upset\nen:lesson-01:session-41:i04:p4=furious",
     "correctResponseId": null
   },
   {
@@ -25,8 +40,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-41:word:precious",
+    "correctText": "precious",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-41:i06",
-    "correctText": "They are honest.",
+    "correctText": "It is precious.",
     "correctResponseId": null
   },
   {
@@ -41,17 +61,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-41:i09",
-    "correctText": "We are honest.",
+    "correctText": "I'm clumsy.",
     "correctResponseId": "en:lesson-01:session-41:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-41:i10",
-    "correctText": "en:lesson-01:session-41:i10:p1=honest\nen:lesson-01:session-41:i10:p2=okay\nen:lesson-01:session-41:i10:p3=brave\nen:lesson-01:session-41:i10:p4=afraid",
+    "correctText": "en:lesson-01:session-41:i10:p1=honest\nen:lesson-01:session-41:i10:p2=okay\nen:lesson-01:session-41:i10:p3=brave\nen:lesson-01:session-41:i10:p4=calm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-41:i11",
-    "correctText": "He's okay.",
+    "correctText": "He's furious.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-41:i13",
-    "correctText": "We are honest.",
+    "correctText": "She is upset.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-41:i15",
-    "correctText": "She's honest.",
+    "correctText": "It's precious.",
     "correctResponseId": "en:lesson-01:session-41:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-41:i16",
-    "correctText": "en:lesson-01:session-41:i16:p1=We're\nen:lesson-01:session-41:i16:p2=They're\nen:lesson-01:session-41:i16:p3=honest\nen:lesson-01:session-41:i16:p4=okay",
+    "correctText": "en:lesson-01:session-41:i16:p1=She's\nen:lesson-01:session-41:i16:p2=It's\nen:lesson-01:session-41:i16:p3=upset\nen:lesson-01:session-41:i16:p4=furious",
     "correctResponseId": null
   },
   {

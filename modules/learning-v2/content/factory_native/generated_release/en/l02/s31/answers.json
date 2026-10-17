@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-02:session-31:word:antique",
+    "correctText": "antique",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-31:i01",
-    "correctText": "It is unusual.",
+    "correctText": "They are antique.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-31:word:unusual",
+    "correctText": "unusual",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i02",
-    "correctText": "They are similar.",
+    "correctText": "It is unusual.",
     "correctResponseId": "en:lesson-02:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-31:word:valuable",
+    "correctText": "valuable",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i03",
@@ -16,22 +31,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-31:i04",
-    "correctText": "en:lesson-02:session-31:i04:p1=unusual\nen:lesson-02:session-31:i04:p2=equal\nen:lesson-02:session-31:i04:p3=similar\nen:lesson-02:session-31:i04:p4=separate",
+    "correctText": "en:lesson-02:session-31:i04:p1=unusual\nen:lesson-02:session-31:i04:p2=antique\nen:lesson-02:session-31:i04:p3=painted\nen:lesson-02:session-31:i04:p4=valuable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-31:word:painted",
+    "correctText": "painted",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i05",
-    "correctText": "They are not equal.",
+    "correctText": "They are not painted.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i06",
-    "correctText": "They are separate.",
+    "correctText": "Where is she?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i07",
-    "correctText": "It's unusual.",
+    "correctText": "It's painted.",
     "correctResponseId": null
   },
   {
@@ -46,12 +66,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-31:i10",
-    "correctText": "en:lesson-02:session-31:i10:p1=valid\nen:lesson-02:session-31:i10:p2=unusual\nen:lesson-02:session-31:i10:p3=similar\nen:lesson-02:session-31:i10:p4=equal",
+    "correctText": "en:lesson-02:session-31:i10:p1=valid\nen:lesson-02:session-31:i10:p2=equal\nen:lesson-02:session-31:i10:p3=similar\nen:lesson-02:session-31:i10:p4=separate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i11",
-    "correctText": "Where are they?",
+    "correctText": "Is it unusual?",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-31:i15",
-    "correctText": "They are equal.",
+    "correctText": "They are valuable.",
     "correctResponseId": "en:lesson-02:session-31:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-31:i16",
-    "correctText": "en:lesson-02:session-31:i16:p1=separate\nen:lesson-02:session-31:i16:p2=valid\nen:lesson-02:session-31:i16:p3=equal\nen:lesson-02:session-31:i16:p4=unusual",
+    "correctText": "en:lesson-02:session-31:i16:p1=valuable\nen:lesson-02:session-31:i16:p2=separate\nen:lesson-02:session-31:i16:p3=unusual\nen:lesson-02:session-31:i16:p4=valid",
     "correctResponseId": null
   },
   {

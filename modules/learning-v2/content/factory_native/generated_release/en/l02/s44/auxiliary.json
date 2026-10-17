@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-44:intro1:r2": {
-          "ru": "Между `It` и `legal` нужно `is`.",
-          "uk": "Між `It` і `legal` потрібно `is`."
+          "ru": "С not выходит «Тут ровно». А вас подбрасывает на каждой кочке: It is bumpy.",
+          "uk": "З not виходить «Тут рівно». А вас підкидає на кожній вибоїні: It is bumpy."
         },
         "en:lesson-02:session-44:intro1:r3": {
-          "ru": "Это отрицает законность. В условии её подтвердили.",
-          "uk": "Це заперечує законність. За умовою її підтвердили."
+          "ru": "Между It и bumpy нужно is: It is bumpy.",
+          "uk": "Між It і bumpy потрібно is: It is bumpy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-44:intro2:r2": {
-          "ru": "Это вопрос об официальном статусе. Сейчас вы уточняете законность.",
-          "uk": "Це запитання про офіційний статус. Зараз ви уточнюєте законність."
+          "ru": "Так звучит утверждение «Это непросто». Чтобы спросить, ставим Is вперёд: Is it tricky?",
+          "uk": "Так звучить твердження «Це непросто». Щоб запитати, ставимо Is наперед: Is it tricky?"
         },
         "en:lesson-02:session-44:intro2:r3": {
-          "ru": "Это утверждение. Ответ вы ещё не получили.",
-          "uk": "Це твердження. Відповіді ви ще не отримали."
+          "ru": "С it нужно is: Is it tricky?",
+          "uk": "З it потрібно is: Is it tricky?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-44:intro3:r2": {
-          "ru": "Вы говорите об Олеге: `He's`.",
-          "uk": "Ви говорите про Олега: `He's`."
+          "ru": "С not выходит «Записка точная». А ни времени, ни места не указано: It's vague.",
+          "uk": "З not виходить «Записка точна». А ні часу, ні місця не вказано: It's vague."
         },
         "en:lesson-02:session-44:intro3:r3": {
-          "ru": "Это «Он терпеливый». Здесь вы отмечаете интерес.",
-          "uk": "Це «Він терплячий». Тут ви відзначаєте зацікавленість."
+          "ru": "Записка одна, нужно It's: It's vague.",
+          "uk": "Записка одна, потрібно It's: It's vague."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5354a1fde1f58c1a3ad4183a4ad187ff765770636cf0dde79bd5bbcfbe04abe1"
+  "auxiliaryFingerprint": "6f497866f0c5055bde56c7eb84780e257171556c124d0b4903d794d6bd821c8c"
 }

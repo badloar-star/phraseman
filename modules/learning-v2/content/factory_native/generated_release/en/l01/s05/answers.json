@@ -10,11 +10,6 @@
     "correctResponseId": "en:lesson-01:session-05:i02:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-05:i03",
-    "correctText": "sick",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-05:i04",
     "correctText": "I am hot.",
     "correctResponseId": null
@@ -30,14 +25,19 @@
     "correctResponseId": "en:lesson-01:session-05:i06:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-05:i07",
-    "correctText": "new",
+    "interactionId": "en:lesson-01:session-05:i03",
+    "correctText": "sick",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-05:i08",
     "correctText": "sick",
     "correctResponseId": "en:lesson-01:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i07",
+    "correctText": "new",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-05:i09",
@@ -80,13 +80,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-05:word:sorry",
-    "correctText": "sorry",
+    "interactionId": "en:lesson-01:session-05:i17",
+    "correctText": "en:lesson-01:session-05:i17:p1=fine\nen:lesson-01:session-05:i17:p2=sure\nen:lesson-01:session-05:i17:p3=ready\nen:lesson-01:session-05:i17:p4=sorry",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-05:i17",
-    "correctText": "en:lesson-01:session-05:i17:p1=fine\nen:lesson-01:session-05:i17:p2=sure\nen:lesson-01:session-05:i17:p3=ready\nen:lesson-01:session-05:i17:p4=sorry",
+    "interactionId": "en:lesson-01:session-05:word:sorry",
+    "correctText": "sorry",
     "correctResponseId": null
   },
   {

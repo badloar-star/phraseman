@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-01:session-37:word:lonely",
+    "correctText": "lonely",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-37:i01",
     "correctText": "I am lonely.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-37:word:homesick",
+    "correctText": "homesick",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-37:i02",
-    "correctText": "She is lonely.",
+    "correctText": "She is homesick.",
     "correctResponseId": "en:lesson-01:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:word:messy",
+    "correctText": "messy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i03",
@@ -16,17 +31,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-37:i04",
-    "correctText": "en:lesson-01:session-37:i04:p1=lonely\nen:lesson-01:session-37:i04:p2=local\nen:lesson-01:session-37:i04:p3=foreign\nen:lesson-01:session-37:i04:p4=online",
+    "correctText": "en:lesson-01:session-37:i04:p1=lonely\nen:lesson-01:session-37:i04:p2=homesick\nen:lesson-01:session-37:i04:p3=messy\nen:lesson-01:session-37:i04:p4=cozy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:word:cozy",
+    "correctText": "cozy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i05",
-    "correctText": "They are lonely.",
+    "correctText": "It is cozy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i06",
-    "correctText": "We are lonely.",
+    "correctText": "We are homesick.",
     "correctResponseId": null
   },
   {
@@ -46,12 +66,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-37:i10",
-    "correctText": "en:lesson-01:session-37:i10:p1=I'm\nen:lesson-01:session-37:i10:p2=She's\nen:lesson-01:session-37:i10:p3=We're\nen:lesson-01:session-37:i10:p4=They're",
+    "correctText": "en:lesson-01:session-37:i10:p1=I'm\nen:lesson-01:session-37:i10:p2=It's\nen:lesson-01:session-37:i10:p3=We're\nen:lesson-01:session-37:i10:p4=They're",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i11",
-    "correctText": "He's lonely.",
+    "correctText": "It's messy.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-37:i15",
-    "correctText": "We're lonely.",
+    "correctText": "It's cozy.",
     "correctResponseId": "en:lesson-01:session-37:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-37:i16",
-    "correctText": "en:lesson-01:session-37:i16:p1=online\nen:lesson-01:session-37:i16:p2=lonely\nen:lesson-01:session-37:i16:p3=foreign\nen:lesson-01:session-37:i16:p4=local",
+    "correctText": "en:lesson-01:session-37:i16:p1=cozy\nen:lesson-01:session-37:i16:p2=messy\nen:lesson-01:session-37:i16:p3=homesick\nen:lesson-01:session-37:i16:p4=local",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i17",
-    "correctText": "She is lonely.",
+    "correctText": "She is homesick.",
     "correctResponseId": null
   }
 ]

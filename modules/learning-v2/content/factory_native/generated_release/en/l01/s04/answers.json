@@ -30,14 +30,14 @@
     "correctResponseId": "en:lesson-01:session-04:i06:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-04:i07",
-    "correctText": "free",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-04:i08",
     "correctText": "wrong",
     "correctResponseId": "en:lesson-01:session-04:i08:r2"
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i07",
+    "correctText": "free",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i09",

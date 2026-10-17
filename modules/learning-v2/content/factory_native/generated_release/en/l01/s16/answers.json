@@ -1,25 +1,5 @@
 [
   {
-    "interactionId": "en:lesson-01:session-16:word:open",
-    "correctText": "open",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:word:big",
-    "correctText": "big",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:word:clean",
-    "correctText": "clean",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:word:closed",
-    "correctText": "closed",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-16:i01",
     "correctText": "I am kind.",
     "correctResponseId": null
@@ -40,8 +20,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-16:word:open",
+    "correctText": "open",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-16:i05",
     "correctText": "It is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:word:clean",
+    "correctText": "clean",
     "correctResponseId": null
   },
   {
@@ -70,8 +60,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-16:word:closed",
+    "correctText": "closed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-16:i11",
     "correctText": "It is closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:word:big",
+    "correctText": "big",
     "correctResponseId": null
   },
   {

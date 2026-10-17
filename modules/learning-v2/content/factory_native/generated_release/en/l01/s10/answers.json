@@ -50,11 +50,6 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-10:word:patient",
-    "correctText": "patient",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-10:i11",
     "correctText": "en:lesson-01:session-10:i11:p1=kind\nen:lesson-01:session-10:i11:p2=fast\nen:lesson-01:session-10:i11:p3=quiet\nen:lesson-01:session-10:i11:p4=patient",
     "correctResponseId": null
@@ -67,6 +62,11 @@
   {
     "interactionId": "en:lesson-01:session-10:i13",
     "correctText": "You are quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:word:patient",
+    "correctText": "patient",
     "correctResponseId": null
   },
   {

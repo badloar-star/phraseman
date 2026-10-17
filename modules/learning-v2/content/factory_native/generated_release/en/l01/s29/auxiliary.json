@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-29:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-29:intro1:r2": {
-          "ru": "После `I` нужно `am`.",
-          "uk": "Після `I` потрібно `am`."
+          "ru": "После I нужно am.",
+          "uk": "Після I потрібно am."
         },
         "en:lesson-01:session-29:intro1:r3": {
-          "ru": "С `I` ставим `am`, а `are` — с `You`, `We`, `They`.",
-          "uk": "Із `I` ставимо `am`, а `are` — із `You`, `We`, `They`."
+          "ru": "С I ставим am, а are — с you, we, they.",
+          "uk": "З I ставимо am, а are — з you, we, they."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-29:intro2:r2": {
-          "ru": "После `It` нужна форма `is`.",
-          "uk": "Після `It` потрібна форма `is`."
+          "ru": "После It нужна форма is.",
+          "uk": "Після It потрібна форма is."
         },
         "en:lesson-01:session-29:intro2:r3": {
-          "ru": "С `It` здесь ставим `is`, а не `are`.",
-          "uk": "Із `It` тут ставимо `is`, а не `are`."
+          "ru": "Фильм один, поэтому It is, а не are.",
+          "uk": "Фільм один, тому It is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-29:intro3:r2": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібно is."
         },
         "en:lesson-01:session-29:intro3:r3": {
-          "ru": "В этой фразе нельзя пропустить `is`.",
-          "uk": "У цій фразі не можна пропустити `is`."
+          "ru": "В этой фразе нельзя пропустить is.",
+          "uk": "У цій фразі не можна пропустити is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0e206f68c275f62587a54b22806736d03d654d23f4f69bec8f7edba529a910b2"
+  "auxiliaryFingerprint": "7a6abeb8de84b2f3b53b661fec9fc22ee583ba94c237037a516c9bc5766419d1"
 }

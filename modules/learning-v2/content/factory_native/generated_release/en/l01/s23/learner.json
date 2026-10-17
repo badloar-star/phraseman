@@ -47,8 +47,52 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-23:word:single",
+      "interactionId": "en:lesson-01:session-23:i01",
       "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is married.",
+        "localizedMeaning": {
+          "ru": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+          "uk": "Тітка розповіла, що нещодавно вийшла заміж. Складіть: «Вона заміжня»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "married"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is married.`",
+              "uk": "тут потрібно `is` — `She is married.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:word:single",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -90,138 +134,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-23:word:different",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — different",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-23:word:different:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — different",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-23:word:different:audio",
-          "transcript": "different"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-23:word:different:r1",
-            "targetText": "different",
-            "meaningByLocale": {
-              "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
-              "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "different",
-          "definitionByLocale": {
-            "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
-            "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-23:word:engaged",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — engaged",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-23:word:engaged:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — engaged",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-23:word:engaged:audio",
-          "transcript": "engaged"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-23:word:engaged:r1",
-            "targetText": "engaged",
-            "meaningByLocale": {
-              "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
-              "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "engaged",
-          "definitionByLocale": {
-            "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
-            "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-23:i01",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She is married.",
-        "localizedMeaning": {
-          "ru": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
-          "uk": "Анна розповіла, що нещодавно вийшла заміж. Складіть: «Вона заміжня»"
-        },
-        "orderedTokens": [
-          "She",
-          "is",
-          "married"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-23:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is married.`",
-              "uk": "тут потрібно `is` — `She is married.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-23:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-23:word:different",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — different",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:different:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — different",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:different:audio",
+          "transcript": "different"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:different:r1",
+            "targetText": "different",
+            "meaningByLocale": {
+              "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
+              "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "different",
+          "definitionByLocale": {
+            "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
+            "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-23:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -632,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,8 +665,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова и значения",
@@ -781,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -822,6 +779,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:word:engaged",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — engaged",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:engaged:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — engaged",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:engaged:audio",
+          "transcript": "engaged"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:engaged:r1",
+            "targetText": "engaged",
+            "meaningByLocale": {
+              "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
+              "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "engaged",
+          "definitionByLocale": {
+            "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
+            "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "35f39d2e96960270af7230b24a9e8862b8bdc56d368381a47ab99fa229e42940"
+  "learnerFingerprint": "fb7077fa64b765001fe838e82546e8d8cedd36f8fb9927cba9d77a011121c532"
 }

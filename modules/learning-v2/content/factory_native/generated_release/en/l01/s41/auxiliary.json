@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-41:intro1:r2": {
-          "ru": "После `I` нужно `am`: `I am honest`.",
-          "uk": "Після `I` потрібно `am`: `I am honest`."
+          "ru": "В короткой форме нужно 'm: I'm clumsy.",
+          "uk": "У короткій формі потрібно 'm: I'm clumsy."
         },
         "en:lesson-01:session-41:intro1:r3": {
-          "ru": "`okay` — «в порядке». Здесь нужно назвать честность: `honest`.",
-          "uk": "`okay` — «у порядку». Тут треба назвати чесність: `honest`."
+          "ru": "She's — про подругу. О себе говорим I'm.",
+          "uk": "She's — про подругу. Про себе кажемо I'm."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-41:intro2:r2": {
-          "ru": "Это про него. Про Машу нужно `She`.",
-          "uk": "Це про нього. Про Машу потрібно `She`."
+          "ru": "okay — «всё нормально». Здесь кружка очень дорога подруге: precious.",
+          "uk": "okay — «усе гаразд». Тут горнятко дуже дороге подрузі: precious."
         },
         "en:lesson-01:session-41:intro2:r3": {
-          "ru": "После `She` нужна форма `is`.",
-          "uk": "Після `She` потрібна форма `is`."
+          "ru": "He's — про человека. Про кружку говорим It's.",
+          "uk": "He's — про людину. Про горнятко кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-41:intro3:r2": {
-          "ru": "Это про честность. Здесь нужно сообщить, что с вами всё нормально: `okay`.",
-          "uk": "Це про чесність. Тут треба повідомити, що з вами все гаразд: `okay`."
+          "ru": "furious — «в ярости». Подруга не злится, она расстроена: upset.",
+          "uk": "furious — «у люті». Подруга не злиться, вона засмучена: upset."
         },
         "en:lesson-01:session-41:intro3:r3": {
-          "ru": "После `I` нужна форма `am`.",
-          "uk": "Після `I` потрібна форма `am`."
+          "ru": "В короткой форме нужно 's: She's upset.",
+          "uk": "У короткій формі потрібно 's: She's upset."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2e0dbf7af71f5748339a85903c65da51c923344c0c9ed62a5023bce18a0b9f95"
+  "auxiliaryFingerprint": "15909add8a8c86f705260011e372c719a95a50ffe053c8d4ce0128cc67463b59"
 }

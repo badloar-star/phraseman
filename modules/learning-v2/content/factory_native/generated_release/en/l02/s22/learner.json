@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-22:i01",
+      "interactionId": "en:lesson-02:session-22:word:complete",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — complete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-22:word:complete:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — complete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:word:complete:audio",
+          "transcript": "complete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-22:word:complete:r1",
+            "targetText": "complete",
+            "meaningByLocale": {
+              "ru": "полный, собранный целиком. It is complete — «Он собран полностью». О пазле, наборе, списке, коллекции.",
+              "uk": "повний, складений повністю. It is complete — «Він складений повністю». Про пазл, набір, список, колекцію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "complete",
+          "definitionByLocale": {
+            "ru": "полный, собранный целиком. It is complete — «Он собран полностью». О пазле, наборе, списке, коллекции.",
+            "uk": "повний, складений повністю. It is complete — «Він складений повністю». Про пазл, набір, список, колекцію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -19,7 +62,7 @@
         "targetPhrase": "It is complete.",
         "localizedMeaning": {
           "ru": "Все детали пазла на месте. Скажите полной фразой, что он собран полностью",
-          "uk": "Усі деталі пазла на місці. Скажіть повною фразою, що він повністю складений"
+          "uk": "Усі деталі пазла на місці. Скажіть повною фразою, що він складений повністю"
         },
         "orderedTokens": [
           "It",
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о короле на картинке",
+      "prompt": "Послушайте, что друг говорит о короле на картинке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-22:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-22:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о короле на картинке",
+      "accessibilityLabel": "Послушайте, что друг говорит о короле на картинке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-22:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о короле на картинке",
+            "testedDimension": "Послушайте, что друг говорит о короле на картинке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `rich`, а в этом варианте — `poor`.",
               "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `poor`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-22:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о короле на картинке",
+            "testedDimension": "Послушайте, что друг говорит о короле на картинке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `rich`, а в этом варианте — `famous`.",
               "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `famous`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите, собран ли пазл полностью",
+      "prompt": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-22:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, собран ли пазл полностью",
+      "accessibilityLabel": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, собран ли пазл полностью",
-          "uk": "Запитайте, чи пазл повністю складений"
+          "ru": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью",
+          "uk": "Друг закрив коробку, але ви не бачили готового пазла. Запитайте, чи складений він повністю"
         },
         "gappedTargetPhrase": "___ it complete?",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Спросите, собран ли пазл полностью",
+        "testedDimension": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-22:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите, собран ли пазл полностью",
+            "testedDimension": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-22:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите, собран ли пазл полностью",
+            "testedDimension": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью",
             "feedbackByLocale": {
               "ru": "Вопрос начинается с `Is it`.",
               "uk": "Запитання починається з `Is it`."
@@ -194,15 +237,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -210,46 +253,46 @@
             "pairId": "en:lesson-02:session-22:i04:p1",
             "target": "complete",
             "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
+              "ru": "полный, собранный целиком",
+              "uk": "повний, складений повністю"
             }
           },
           {
             "pairId": "en:lesson-02:session-22:i04:p2",
-            "target": "rich",
+            "target": "bent",
             "meaningByLocale": {
-              "ru": "богатый",
-              "uk": "багатий"
+              "ru": "погнутый",
+              "uk": "погнутий"
             }
           },
           {
             "pairId": "en:lesson-02:session-22:i04:p3",
-            "target": "poor",
+            "target": "extra",
             "meaningByLocale": {
-              "ru": "бедный",
-              "uk": "бідний"
+              "ru": "лишний",
+              "uk": "зайвий"
             }
           },
           {
             "pairId": "en:lesson-02:session-22:i04:p4",
-            "target": "famous",
+            "target": "square",
             "meaningByLocale": {
-              "ru": "знаменитый",
-              "uk": "знаменитий"
+              "ru": "квадратный",
+              "uk": "квадратний"
             }
           }
         ],
         "leftColumn": [
           "complete",
-          "rich",
-          "poor",
-          "famous"
+          "bent",
+          "extra",
+          "square"
         ],
         "rightColumn": [
-          "полный, завершённый",
-          "богатый",
-          "бедный",
-          "знаменитый"
+          "полный, собранный целиком",
+          "погнутый",
+          "лишний",
+          "квадратный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,31 +309,73 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-22:word:bent",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-22:word:bent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:word:bent:audio",
+          "transcript": "bent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-22:word:bent:r1",
+            "targetText": "bent",
+            "meaningByLocale": {
+              "ru": "погнутый. It is bent — «Она погнута». О детали, ложке, гвозде, ключе.",
+              "uk": "погнутий. It is bent — «Вона погнута». Про деталь, ложку, цвях, ключ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bent",
+          "definitionByLocale": {
+            "ru": "погнутый. It is bent — «Она погнута». О детали, ложке, гвозде, ключе.",
+            "uk": "погнутий. It is bent — «Вона погнута». Про деталь, ложку, цвях, ключ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-22:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Друг разглядывает деталь, которая не входит в башню. Послушайте его и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Друг разглядывает деталь, которая не входит в башню. Послушайте его и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-22:i05:audio",
-          "transcript": "It is not complete."
+          "transcript": "It is bent."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not complete.",
+        "hiddenTargetPhrase": "It is bent.",
         "orderedTokens": [
           "It",
           "is",
-          "not",
-          "complete"
+          "bent"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -299,10 +384,10 @@
           {
             "responseId": "en:lesson-02:session-22:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Друг разглядывает деталь, которая не входит в башню. Послушайте его и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not complete.`",
-              "uk": "тут потрібно `is` — `It is not complete.`"
+              "ru": "здесь нужно `is` — `It is bent.`",
+              "uk": "тут потрібно `is` — `It is bent.`"
             }
           }
         ],
@@ -315,21 +400,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы показываете на путника на картинке. Спросите, бедный ли он",
+      "prompt": "Вы показываете другу на путника на картинке. Спросите, бедный ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете на путника на картинке. Спросите, бедный ли он",
+      "accessibilityLabel": "Вы показываете другу на путника на картинке. Спросите, бедный ли он",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Is he poor?",
         "localizedMeaning": {
-          "ru": "Вы показываете на путника на картинке. Спросите, бедный ли он",
-          "uk": "Ви показуєте на подорожнього на малюнку. Запитайте, чи він бідний"
+          "ru": "Вы показываете другу на путника на картинке. Спросите, бедный ли он",
+          "uk": "Ви показуєте другові на мандрівника на картинці. Запитайте, чи він бідний"
         },
         "orderedTokens": [
           "Is",
@@ -343,7 +428,7 @@
           {
             "responseId": "en:lesson-02:session-22:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы показываете на путника на картинке. Спросите, бедный ли он",
+            "testedDimension": "Вы показываете другу на путника на картинке. Спросите, бедный ли он",
             "feedbackByLocale": {
               "ru": "здесь нужно `Is` — `Is he poor?`",
               "uk": "тут потрібно `Is` — `Is he poor?`"
@@ -358,26 +443,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-22:word:square",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — square",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-22:word:square:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — square",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:word:square:audio",
+          "transcript": "square"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-22:word:square:r1",
+            "targetText": "square",
+            "meaningByLocale": {
+              "ru": "квадратный. It's square — «Оно квадратное». Об окне, столе, коробке, фотографии.",
+              "uk": "квадратний. It's square — «Воно квадратне». Про вікно, стіл, коробку, фотографію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "square",
+          "definitionByLocale": {
+            "ru": "квадратный. It's square — «Оно квадратное». Об окне, столе, коробке, фотографии.",
+            "uk": "квадратний. It's square — «Воно квадратне». Про вікно, стіл, коробку, фотографію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-22:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Последняя деталь вставлена. Коротко сообщите, что пазл собран полностью",
+      "prompt": "Окно в башне на картинке с четырьмя равными сторонами. Скажите коротко, что оно квадратное",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i07:audio"
       ],
-      "accessibilityLabel": "Последняя деталь вставлена. Коротко сообщите, что пазл собран полностью",
+      "accessibilityLabel": "Окно в башне на картинке с четырьмя равными сторонами. Скажите коротко, что оно квадратное",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-22:i07:audio",
-          "transcript": "It's complete."
+          "transcript": "It's square."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's complete.",
+        "targetPhrase": "It's square.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +520,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+      "prompt": "Это известный во всём мире замок. Друг спрашивает: «Is it famous?» Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-22:i08:r1",
@@ -413,12 +541,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+      "accessibilityLabel": "Это известный во всём мире замок. Друг спрашивает: «Is it famous?» Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
-          "uk": "Це відомий у всьому світі замок. На «Is it famous?» доповніть коротку відповідь «так»"
+          "ru": "Это известный во всём мире замок. Друг спрашивает: «Is it famous?» Дополните короткое «да»",
+          "uk": "Це відомий на весь світ замок. Друг питає: «Is it famous?» Доповніть коротку відповідь «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -435,12 +563,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+        "testedDimension": "Это известный во всём мире замок. Друг спрашивает: «Is it famous?» Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-22:i08:r2",
             "correct": false,
-            "testedDimension": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+            "testedDimension": "Это известный во всём мире замок. Друг спрашивает: «Is it famous?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -449,7 +577,7 @@
           {
             "responseId": "en:lesson-02:session-22:i08:r3",
             "correct": false,
-            "testedDimension": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+            "testedDimension": "Это известный во всём мире замок. Друг спрашивает: «Is it famous?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Короткий ответ — `Yes, it is`.",
               "uk": "Коротка відповідь — `Yes, it is`."
@@ -460,52 +588,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-22:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-22:word:extra",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу",
+      "prompt": "Карточка слова — extra",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-22:word:extra:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — extra",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:word:extra:audio",
+          "transcript": "extra"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-22:word:extra:r1",
+            "targetText": "extra",
+            "meaningByLocale": {
+              "ru": "лишний, дополнительный. Are they extra? — «Они лишние?» О деталях, билете, стуле, подушке.",
+              "uk": "зайвий, додатковий. Are they extra? — «Вони зайві?» Про деталі, квиток, стілець, подушку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "extra",
+          "definitionByLocale": {
+            "ru": "лишний, дополнительный. Are they extra? — «Они лишние?» О деталях, билете, стуле, подушке.",
+            "uk": "зайвий, додатковий. Are they extra? — «Вони зайві?» Про деталі, квиток, стілець, подушку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что друг говорит о двух полосатых деталях",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-22:i09:r1",
-          "text": "It is obvious."
+          "text": "They are extra."
         },
         {
           "responseId": "en:lesson-02:session-22:i09:r2",
-          "text": "It is complete."
+          "text": "They are bent."
         },
         {
           "responseId": "en:lesson-02:session-22:i09:r3",
-          "text": "It is famous."
+          "text": "They are square."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу",
+      "accessibilityLabel": "Послушайте, что друг говорит о двух полосатых деталях",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-22:i09:audio",
-          "transcript": "It is obvious."
+          "transcript": "They are extra."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-22:i09:r1",
-            "targetText": "It is obvious.",
+            "targetText": "They are extra.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-22:i09:r2",
-            "targetText": "It is complete.",
+            "targetText": "They are bent.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-22:i09:r3",
-            "targetText": "It is famous.",
+            "targetText": "They are square.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +685,19 @@
           {
             "responseId": "en:lesson-02:session-22:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что друг говорит о двух полосатых деталях",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `complete`.",
-              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `complete`."
+              "ru": "В записи последнее слово — `extra`, а в этом варианте — `bent`.",
+              "uk": "У записі останнє слово — `extra`, а в цьому варіанті — `bent`."
             }
           },
           {
             "responseId": "en:lesson-02:session-22:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте, что друг говорит о двух полосатых деталях",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `famous`.",
-              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `famous`."
+              "ru": "В записи последнее слово — `extra`, а в этом варианте — `square`.",
+              "uk": "У записі останнє слово — `extra`, а в цьому варіанті — `square`."
             }
           }
         ],
@@ -537,15 +708,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -559,10 +730,10 @@
           },
           {
             "pairId": "en:lesson-02:session-22:i10:p2",
-            "target": "complete",
+            "target": "famous",
             "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
+              "ru": "знаменитый",
+              "uk": "знаменитий"
             }
           },
           {
@@ -584,13 +755,13 @@
         ],
         "leftColumn": [
           "obvious",
-          "complete",
+          "famous",
           "rich",
           "poor"
         ],
         "rightColumn": [
           "очевидный",
-          "полный, завершённый",
+          "знаменитый",
           "богатый",
           "бедный"
         ],
@@ -610,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткий ответ",
@@ -658,7 +829,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -672,7 +843,7 @@
         "targetPhrase": "No, it is not.",
         "localizedMeaning": {
           "ru": "Друг спрашивает про пазл: «Is it complete?» Одной детали нет. Ответьте коротким «нет»",
-          "uk": "Друг запитує про пазл: «Is it complete?» Однієї деталі немає. Дайте коротку відповідь «ні»"
+          "uk": "Друг питає про пазл: «Is it complete?» Однієї деталі немає. Дайте коротку відповідь «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -703,17 +874,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На картинке король с несметными сокровищами. Коротко скажите, что он богатый",
+      "prompt": "На картинке король с сундуком золота. Коротко скажите, что он богатый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i13:audio"
       ],
-      "accessibilityLabel": "На картинке король с несметными сокровищами. Коротко скажите, что он богатый",
+      "accessibilityLabel": "На картинке король с сундуком золота. Коротко скажите, что он богатый",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -736,8 +907,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно",
@@ -805,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос друга об окне в башне",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-22:i15:r1",
-          "text": "Is it complete?"
+          "text": "Is it square?"
         },
         {
           "responseId": "en:lesson-02:session-22:i15:r2",
-          "text": "Is it obvious?"
+          "text": "Is it bent?"
         },
         {
           "responseId": "en:lesson-02:session-22:i15:r3",
-          "text": "Is it famous?"
+          "text": "Is it complete?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос друга об окне в башне",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-22:i15:audio",
-          "transcript": "Is it complete?"
+          "transcript": "Is it square?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-22:i15:r1",
-            "targetText": "Is it complete?",
+            "targetText": "Is it square?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-22:i15:r2",
-            "targetText": "Is it obvious?",
+            "targetText": "Is it bent?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-22:i15:r3",
-            "targetText": "Is it famous?",
+            "targetText": "Is it complete?",
             "meaningByLocale": null
           }
         ],
@@ -858,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-22:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос друга об окне в башне",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complete`, а в этом варианте — `obvious`.",
-              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `obvious`."
+              "ru": "В записи последнее слово — `square`, а в этом варианте — `bent`.",
+              "uk": "У записі останнє слово — `square`, а в цьому варіанті — `bent`."
             }
           },
           {
             "responseId": "en:lesson-02:session-22:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос друга об окне в башне",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complete`, а в этом варианте — `famous`.",
-              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `famous`."
+              "ru": "В записи последнее слово — `square`, а в этом варианте — `complete`.",
+              "uk": "У записі останнє слово — `square`, а в цьому варіанті — `complete`."
             }
           }
         ],
@@ -881,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -895,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-22:i16:p1",
+            "target": "square",
+            "meaningByLocale": {
+              "ru": "квадратный",
+              "uk": "квадратний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i16:p2",
+            "target": "extra",
+            "meaningByLocale": {
+              "ru": "лишний",
+              "uk": "зайвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i16:p3",
+            "target": "broken",
+            "meaningByLocale": {
+              "ru": "сломанный",
+              "uk": "зламаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i16:p4",
             "target": "famous",
             "meaningByLocale": {
               "ru": "знаменитый",
               "uk": "знаменитий"
             }
-          },
-          {
-            "pairId": "en:lesson-02:session-22:i16:p2",
-            "target": "obvious",
-            "meaningByLocale": {
-              "ru": "очевидный",
-              "uk": "очевидний"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-22:i16:p3",
-            "target": "complete",
-            "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-22:i16:p4",
-            "target": "poor",
-            "meaningByLocale": {
-              "ru": "бедный",
-              "uk": "бідний"
-            }
           }
         ],
         "leftColumn": [
-          "famous",
-          "obvious",
-          "complete",
-          "poor"
+          "square",
+          "extra",
+          "broken",
+          "famous"
         ],
         "rightColumn": [
-          "знаменитый",
-          "очевидный",
-          "полный, завершённый",
-          "бедный"
+          "квадратный",
+          "лишний",
+          "сломанный",
+          "знаменитый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -954,7 +1125,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-22:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -994,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fe5b8211f2639d1e4fb59a9c4674f4237e0e711ee2f294d2fc1d19afdf49d3ce"
+  "learnerFingerprint": "8b1957d6e79a5cef7f2b8c1ef4514eabd1abb6390e9966d919ee87106bafb9be"
 }

@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-01:session-42:word:welcoming",
+    "correctText": "welcoming",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-42:i01",
-    "correctText": "She is polite.",
+    "correctText": "She is welcoming.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:word:chatty",
+    "correctText": "chatty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i02",
-    "correctText": "He is polite.",
+    "correctText": "He is chatty.",
     "correctResponseId": "en:lesson-01:session-42:i02:r1"
   },
   {
@@ -16,52 +26,62 @@
   },
   {
     "interactionId": "en:lesson-01:session-42:i04",
-    "correctText": "en:lesson-01:session-42:i04:p1=He's\nen:lesson-01:session-42:i04:p2=She's\nen:lesson-01:session-42:i04:p3=You're\nen:lesson-01:session-42:i04:p4=I'm",
+    "correctText": "en:lesson-01:session-42:i04:p1=welcoming\nen:lesson-01:session-42:i04:p2=chatty\nen:lesson-01:session-42:i04:p3=nosy\nen:lesson-01:session-42:i04:p4=elderly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i05",
-    "correctText": "They're polite.",
+    "correctText": "They're welcoming.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:word:elderly",
+    "correctText": "elderly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i06",
-    "correctText": "We are polite.",
+    "correctText": "He is elderly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i07",
-    "correctText": "You're polite.",
+    "correctText": "You're welcoming.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:word:nosy",
+    "correctText": "nosy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i08",
-    "correctText": "afraid",
+    "correctText": "shy",
     "correctResponseId": "en:lesson-01:session-42:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i09",
-    "correctText": "They are afraid.",
+    "correctText": "She's nosy.",
     "correctResponseId": "en:lesson-01:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i10",
-    "correctText": "en:lesson-01:session-42:i10:p1=polite\nen:lesson-01:session-42:i10:p2=afraid\nen:lesson-01:session-42:i10:p3=honest\nen:lesson-01:session-42:i10:p4=brave",
+    "correctText": "en:lesson-01:session-42:i10:p1=polite\nen:lesson-01:session-42:i10:p2=shy\nen:lesson-01:session-42:i10:p3=friendly\nen:lesson-01:session-42:i10:p4=honest",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i11",
-    "correctText": "She's polite.",
+    "correctText": "He's chatty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i12",
-    "correctText": "I am polite.",
+    "correctText": "We are polite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i13",
-    "correctText": "He is afraid.",
+    "correctText": "She is nosy.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-42:i15",
-    "correctText": "We're polite.",
+    "correctText": "She's elderly.",
     "correctResponseId": "en:lesson-01:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i16",
-    "correctText": "en:lesson-01:session-42:i16:p1=We're\nen:lesson-01:session-42:i16:p2=They're\nen:lesson-01:session-42:i16:p3=polite\nen:lesson-01:session-42:i16:p4=afraid",
+    "correctText": "en:lesson-01:session-42:i16:p1=They're\nen:lesson-01:session-42:i16:p2=You're\nen:lesson-01:session-42:i16:p3=welcoming\nen:lesson-01:session-42:i16:p4=nosy",
     "correctResponseId": null
   },
   {

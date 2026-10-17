@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-20:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-20:intro1:r2": {
-          "ru": "Это «Он виноват». В условии Олег не причастен.",
-          "uk": "Це «Він винний». За умовою Олег не причетний."
+          "ru": "Это «Он виноват». А его краска красная, пятно синее: He is innocent.",
+          "uk": "Це «Він винен». А його фарба червона, пляма синя: He is innocent."
         },
         "en:lesson-02:session-20:intro1:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "Нужно is: He is innocent.",
+          "uk": "Потрібно is: He is innocent."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-20:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-20:intro2:r2": {
-          "ru": "Это отрицало бы невиновность. Здесь подтвердите её.",
-          "uk": "Це заперечувало б невинуватість. Тут підтвердьте її."
+          "ru": "Это «нет». А на ярлычке тазик с водой: Yes, it is.",
+          "uk": "Це «ні». А на ярлику тазик із водою: Yes, it is."
         },
         "en:lesson-02:session-20:intro2:r3": {
-          "ru": "В ответе порядок `he is`, а не `is he`.",
-          "uk": "У відповіді порядок `he is`, а не `is he`."
+          "ru": "В ответе сначала it, потом is: Yes, it is.",
+          "uk": "У відповіді спочатку it, потім is: Yes, it is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-20:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-20:intro3:r2": {
-          "ru": "Это отрицает невиновность Анны. Здесь `not` не нужно.",
-          "uk": "Це заперечує невинуватість Анни. Тут `not` не потрібно."
+          "ru": "Это «Она не без пятен», то есть пятно осталось. А следа нет: It's spotless.",
+          "uk": "Це «Вона не без плям», тобто пляма залишилася. А сліду немає: It's spotless."
         },
         "en:lesson-02:session-20:intro3:r3": {
-          "ru": "Анна — `she`, а не `he`.",
-          "uk": "Анна — `she`, а не `he`."
+          "ru": "Скатерть одна, поэтому It's.",
+          "uk": "Скатертина одна, тому It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "37893d5bb689fd305b7f9a506543fd054eca49f539e17c473fd2e2672f05738f"
+  "auxiliaryFingerprint": "9bb185d6d592a2eeb3170d5558b5e202269f4f56c6d91ec983c9fcba2aa460ab"
 }

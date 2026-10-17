@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-01:session-50:word:expensive",
+    "correctText": "expensive",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-50:i01",
     "correctText": "It is expensive.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-50:word:perfect",
+    "correctText": "perfect",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-50:i02",
-    "correctText": "It is expensive.",
+    "correctText": "It is perfect.",
     "correctResponseId": "en:lesson-01:session-50:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-01:session-50:i04",
-    "correctText": "en:lesson-01:session-50:i04:p1=expensive\nen:lesson-01:session-50:i04:p2=cheap\nen:lesson-01:session-50:i04:p3=polite\nen:lesson-01:session-50:i04:p4=honest",
+    "correctText": "en:lesson-01:session-50:i04:p1=expensive\nen:lesson-01:session-50:i04:p2=perfect\nen:lesson-01:session-50:i04:p3=elegant\nen:lesson-01:session-50:i04:p4=wrapped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:word:wrapped",
+    "correctText": "wrapped",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-50:i05",
-    "correctText": "It's expensive.",
+    "correctText": "It's wrapped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:word:elegant",
+    "correctText": "elegant",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-50:i06",
-    "correctText": "They are expensive.",
+    "correctText": "She is elegant.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-50:i07",
-    "correctText": "It's expensive.",
+    "correctText": "It's elegant.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-50:i09",
-    "correctText": "She is polite.",
+    "correctText": "It's elegant.",
     "correctResponseId": "en:lesson-01:session-50:i09:r1"
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-50:i15",
-    "correctText": "It's expensive.",
+    "correctText": "They're wrapped.",
     "correctResponseId": "en:lesson-01:session-50:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-50:i16",
-    "correctText": "en:lesson-01:session-50:i16:p1=expensive\nen:lesson-01:session-50:i16:p2=cheap\nen:lesson-01:session-50:i16:p3=polite\nen:lesson-01:session-50:i16:p4=useful",
+    "correctText": "en:lesson-01:session-50:i16:p1=expensive\nen:lesson-01:session-50:i16:p2=cheap\nen:lesson-01:session-50:i16:p3=perfect\nen:lesson-01:session-50:i16:p4=polite",
     "correctResponseId": null
   },
   {

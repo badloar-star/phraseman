@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-09",
   "learningOutcomeByLocale": {
-    "ru": "как сказать о собеседнике с `You are + слово`",
-    "uk": "як сказати про співрозмовника з `You are + слово`"
+    "ru": "как сказать, какой человек или предмет, используя `he/she/it + is`.",
+    "uk": "як сказати, який вигляд має людина чи предмет, використовуючи `he/she/it + is`."
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "С `you` используется are",
-        "uk": "З you використовують are"
+        "ru": "Найдите высокого участника",
+        "uk": "Знайдіть високого учасника"
       },
       "bodyByLocale": {
-        "ru": "Про себя — `I am`. Про человека напротив — `You are`.\n\nПосле `you` ставят `are`; `am` используют только после `I`.\n\nПрилагательное после `are` не меняется в зависимости от собеседника. `tired` — «уставший/уставшая»: `I am tired`, `You are tired`.",
-        "uk": "Про себе — `I am`. Про людину навпроти — `You are`.\n\nПісля `you` ставлять `are`; `am` використовують лише після `I`.\n\nПрикметник після `are` не змінюється залежно від співрозмовника. `tired` — «втомлений/втомлена»: `I am tired`, `You are tired`."
+        "ru": "Фотограф ищет вашего брата среди участников съёмки. Он высокий, и это поможет его узнать. He — «он», tall — «высокий». Скажите He is tall — «Он высокий». Когда говорим о нём, после he здесь нужно is, а не знакомое am.",
+        "uk": "Фотографка шукає вашого брата серед учасників зйомки. Він високий, і це допоможе його впізнати. He — «він», tall — «високий». Скажіть He is tall — «Він високий». Коли говоримо про нього, після he тут потрібне is, а не знайоме am."
       },
       "question": {
         "interactionId": "en:lesson-01:session-09:intro1:q",
         "promptByLocale": {
-          "ru": "Мира зевает и говорит, что не выспалась. Скажите ей: «ты устала».",
-          "uk": "Міра позіхає і каже, що не виспалася. Скажіть їй: «ти втомлена»."
+          "ru": "Ваш брат высокий. Подскажите фотографу, как узнать его по росту.",
+          "uk": "Ваш брат високий. Підкажіть фотографці, як упізнати його за зростом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-09:intro1:r1",
-              "text": "You are tired."
+              "text": "He is tall."
             },
             {
               "responseId": "en:lesson-01:session-09:intro1:r2",
-              "text": "You am tired."
+              "text": "He tall."
             },
             {
               "responseId": "en:lesson-01:session-09:intro1:r3",
-              "text": "You tired."
+              "text": "He am tall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-09:intro1:r1",
-              "text": "You are tired."
+              "text": "He is tall."
             },
             {
               "responseId": "en:lesson-01:session-09:intro1:r2",
-              "text": "You am tired."
+              "text": "He tall."
             },
             {
               "responseId": "en:lesson-01:session-09:intro1:r3",
-              "text": "You tired."
+              "text": "He am tall."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мира зевает и говорит, что не выспалась. Скажите ей: «ты устала».",
-          "uk": "Міра позіхає і каже, що не виспалася. Скажіть їй: «ти втомлена»."
+          "ru": "Ваш брат высокий. Подскажите фотографу, как узнать его по росту.",
+          "uk": "Ваш брат високий. Підкажіть фотографці, як упізнати його за зростом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Слово, которым отвечают на «спасибо»",
-        "uk": "Слово, яким відповідають на «дякую»"
+        "ru": "Помогите выбрать место в первом ряду",
+        "uk": "Допоможіть вибрати місце в першому ряду"
       },
       "bodyByLocale": {
-        "ru": "`You are welcome` — это ответ на «спасибо», наше «да не за что».\n\nВ этой фразе `welcome` — обычный вежливый ответ на благодарность.\n\nВ этой ситуации `You are sorry` не подходит как ответ на благодарность.",
-        "uk": "`You are welcome` — це відповідь на «дякую», наше «нема за що».\n\nУ цій фразі `welcome` — звичайна ввічлива відповідь на подяку.\n\nУ цій ситуації `You are sorry` не підходить як відповідь на подяку."
+        "ru": "Фотограф расставляет участников общего снимка. Ваша сестра невысокая, и за другими её не будет видно. She — «она», short о росте — «невысокая». She is short — «Она невысокая». Так вы объясняете фотографу, почему сестре лучше встать впереди.",
+        "uk": "Фотографка розставляє учасників спільного знімка. Ваша сестра невисока, і за іншими її не буде видно. She — «вона», short про зріст — «невисока». She is short — «Вона невисока». Так ви пояснюєте фотографці, чому сестри краще стати попереду."
       },
       "question": {
         "interactionId": "en:lesson-01:session-09:intro2:q",
         "promptByLocale": {
-          "ru": "Вы поблагодарили Миру за кофе. Как она ответит?",
-          "uk": "Ви подякували Мірі за каву. Як вона відповість?"
+          "ru": "Ваша сестра невысокая. Сообщите об этом фотографу: она выбирает ей место на снимке.",
+          "uk": "Ваша сестра невисока. Повідомте про це фотографці, яка вибирає їй місце на знімку."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-09:intro2:r1",
-              "text": "You are welcome."
+              "text": "She is short."
             },
             {
               "responseId": "en:lesson-01:session-09:intro2:r2",
-              "text": "You are sorry."
+              "text": "He is short."
             },
             {
               "responseId": "en:lesson-01:session-09:intro2:r3",
-              "text": "You welcome."
+              "text": "She am short."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-09:intro2:r1",
-              "text": "You are welcome."
+              "text": "She is short."
             },
             {
               "responseId": "en:lesson-01:session-09:intro2:r2",
-              "text": "You are sorry."
+              "text": "He is short."
             },
             {
               "responseId": "en:lesson-01:session-09:intro2:r3",
-              "text": "You welcome."
+              "text": "She am short."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы поблагодарили Миру за кофе. Как она ответит?",
-          "uk": "Ви подякували Мірі за каву. Як вона відповість?"
+          "ru": "Ваша сестра невысокая. Сообщите об этом фотографу: она выбирает ей место на снимке.",
+          "uk": "Ваша сестра невисока. Повідомте про це фотографці, яка вибирає їй місце на знімку."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Реакция на шутку",
-        "uk": "Реакція на жарт"
+        "ru": "Подпись к портрету",
+        "uk": "Підпис до портрета"
       },
       "bodyByLocale": {
-        "ru": "`funny` — «смешной». `You are funny` — похвала шутке, а не диагноз.\n\n`kind` — «добрый». Оба слова про человека напротив, оба идут после `are`.\n\nПо-русски хочется сказать в два слова: «ты смешная». По-английски без `are` фраза не стоит.",
-        "uk": "`funny` — «смішний». `You are funny` — похвала жарту, а не діагноз.\n\n`kind` — «добрий». Обидва слова про людину навпроти, обидва йдуть після `are`.\n\nУкраїнською хочеться сказати двома словами: «ти смішна». Англійською без `are` фраза не стоїть."
+        "ru": "Фотограф развешивает семейные портреты и не может найти маленькую карточку с подписью к портрету племянника. Карточка лежит на столе прямо перед вами. Про вещь говорят it. It is here — «Она здесь». Между It и here стоит is.",
+        "uk": "Фотограф розвішує сімейні портрети й не може знайти маленьку картку з підписом до портрета племінника. Картка лежить на столі просто перед вами. Про річ кажуть it. It is here — «Вона тут». Між It і here стоїть is."
       },
       "question": {
         "interactionId": "en:lesson-01:session-09:intro3:q",
         "promptByLocale": {
-          "ru": "Мира пошутила, и вы засмеялись. Скажите ей: «ты смешная».",
-          "uk": "Міра пожартувала, і ви засміялися. Скажіть їй: «ти смішна»."
+          "ru": "Фотограф спрашивает, где карточка. Скажите, что она здесь.",
+          "uk": "Фотограф питає, де картка. Скажіть, що вона тут."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-09:intro3:r1",
-              "text": "You are funny."
+              "text": "It is here."
             },
             {
               "responseId": "en:lesson-01:session-09:intro3:r2",
-              "text": "You funny."
+              "text": "It here."
             },
             {
               "responseId": "en:lesson-01:session-09:intro3:r3",
-              "text": "You is funny."
+              "text": "She is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-09:intro3:r1",
-              "text": "You are funny."
+              "text": "It is here."
             },
             {
               "responseId": "en:lesson-01:session-09:intro3:r2",
-              "text": "You funny."
+              "text": "It here."
             },
             {
               "responseId": "en:lesson-01:session-09:intro3:r3",
-              "text": "You is funny."
+              "text": "She is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мира пошутила, и вы засмеялись. Скажите ей: «ты смешная».",
-          "uk": "Міра пожартувала, і ви засміялися. Скажіть їй: «ти смішна»."
+          "ru": "Фотограф спрашивает, где карточка. Скажите, что она здесь.",
+          "uk": "Фотограф питає, де картка. Скажіть, що вона тут."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3e76caf906009a8a7c238890668e0868f57107a5b728e4fe0bd3911c4cec0eb4"
+  "introFingerprint": "45254ca0ede9479a1587a5846050347a6ef8d3633aa61fa00559faf5b4c797e2"
 }

@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-02:session-17",
   "learningOutcomeByLocale": {
     "ru": "коротко ответить да или нет, не повторяя описание из вопроса",
-    "uk": "коротко відповісти так або ні, не повторюючи опис із запитання"
+    "uk": "коротко відповісти так чи ні, не повторюючи опис із запитання"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-02:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Как вы себя чувствуете",
-        "uk": "Як ви почуваєтеся"
+        "ru": "У двери",
+        "uk": "Біля дверей"
       },
       "bodyByLocale": {
-        "ru": "`well` здесь — «хорошо себя чувствующий». `I am well` — «Я хорошо себя чувствую». На `Are you well?` можно коротко ответить `Yes, I am`. Спрашивают о вас, поэтому вы отвечаете про себя: `I`, не `you`. Дорожная сумка выглядит уставшей, но вопрос всё-таки вам.",
-        "uk": "`well` тут — «той, хто добре почувається». `I am well` — «Я добре почуваюся». На `Are you well?` можна коротко відповісти `Yes, I am`. Запитують про вас, тому ви відповідаєте про себе: `I`, не `you`. Дорожня сумка має втомлений вигляд, але запитання все-таки до вас."
+        "ru": "Подруга открывает дверь и обнимает вас. Дорога была долгой, но вы чувствуете себя нормально. well здесь — «хорошо себя чувствующий». Она спрашивает: Are you well? Коротко отвечаем о себе: Yes, I am.",
+        "uk": "Подруга відчиняє двері й обіймає вас. Дорога була довгою, але ви почуваєтеся нормально. well тут — «який добре почувається». Вона питає: Are you well? Коротко відповідаємо про себе: Yes, I am."
       },
       "question": {
         "interactionId": "en:lesson-02:session-17:intro1:q",
         "promptByLocale": {
-          "ru": "Хозяин спрашивает: `Are you well?` Вы хорошо себя чувствуете. Ответьте коротким «да» с `I am`.",
-          "uk": "Господар запитує: `Are you well?` Ви добре почуваєтеся. Дайте коротку відповідь «так» з `I am`."
+          "ru": "Подруга спрашивает: Are you well? Ответьте коротким «да».",
+          "uk": "Подруга питає: Are you well? Відповідайте коротким «так»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Хозяин спрашивает: `Are you well?` Вы хорошо себя чувствуете. Ответьте коротким «да» с `I am`.",
-          "uk": "Господар запитує: `Are you well?` Ви добре почуваєтеся. Дайте коротку відповідь «так» з `I am`."
+          "ru": "Подруга спрашивает: Are you well? Ответьте коротким «да».",
+          "uk": "Подруга питає: Are you well? Відповідайте коротким «так»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нет — после is добавим not",
-        "uk": "Ні — після is додамо not"
+        "ru": "Сестра бледная",
+        "uk": "Сестра бліда"
       },
       "bodyByLocale": {
-        "ru": "Анне нехорошо. На вопрос `Is she well?` можно ответить `No, she is not`. Слово `well` уже прозвучало в вопросе, поэтому его можно не повторять. В ответе сначала `she`, затем `is`, потом `not`.",
-        "uk": "Анні недобре. На запитання `Is she well?` можна відповісти `No, she is not`. Слово `well` уже прозвучало в запитанні, тому його можна не повторювати. У відповіді спочатку `she`, потім `is`, далі `not`."
+        "ru": "Сестру укачало в автобусе: она бледная и сразу садится на диван. carsick — «которого укачало в дороге». Подруга тихо спрашивает вас: Is she carsick? Слово carsick в ответе можно не повторять: Yes, she is.",
+        "uk": "Сестру заколисало в автобусі: вона бліда й одразу сідає на диван. carsick — «якого заколисало в дорозі». Подруга тихо питає вас: Is she carsick? Слово carsick у відповіді можна не повторювати: Yes, she is."
       },
       "question": {
         "interactionId": "en:lesson-02:session-17:intro2:q",
         "promptByLocale": {
-          "ru": "Анна говорит, что плохо себя чувствует. Хозяин спрашивает: `Is she well?` Ответьте коротким «нет», не повторяя `well`.",
-          "uk": "Анна каже, що погано почувається. Господар запитує: `Is she well?` Дайте коротку відповідь «ні», не повторюючи `well`."
+          "ru": "Подруга спрашивает о сестре: Is she carsick? Ответьте коротким «да».",
+          "uk": "Подруга питає про сестру: Is she carsick? Відповідайте коротким «так»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-17:intro2:r1",
-              "text": "No, she is not."
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r2",
-              "text": "No, she not."
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r3",
-              "text": "No, is she not."
+              "text": "Yes, she's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-17:intro2:r1",
-              "text": "No, she is not."
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r2",
-              "text": "No, she not."
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r3",
-              "text": "No, is she not."
+              "text": "Yes, she's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна говорит, что плохо себя чувствует. Хозяин спрашивает: `Is she well?` Ответьте коротким «нет», не повторяя `well`.",
-          "uk": "Анна каже, що погано почувається. Господар запитує: `Is she well?` Дайте коротку відповідь «ні», не повторюючи `well`."
+          "ru": "Подруга спрашивает о сестре: Is she carsick? Ответьте коротким «да».",
+          "uk": "Подруга питає про сестру: Is she carsick? Відповідайте коротким «так»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Коротко, но с нужной формой",
-        "uk": "Коротко, але з потрібною формою"
+        "ru": "Сумки в прихожей",
+        "uk": "Сумки в передпокої"
       },
       "bodyByLocale": {
-        "ru": "`Is he well?` — `Yes, he is`; `Are they well?` — `Yes, they are`. Для себя: `Yes, I am`. Для «нет» сохраняем форму и добавляем `not`: `No, they are not`. Само по себе `Yes` тоже допустимо; здесь тренируем ответы с `am`, `is`, `are`.",
-        "uk": "`Is he well?` — `Yes, he is`; `Are they well?` — `Yes, they are`. Для себе: `Yes, I am`. Для «ні» зберігаємо форму й додаємо `not`: `No, they are not`. Саме по собі `Yes` теж допустиме; тут тренуємо відповіді з `am`, `is`, `are`."
+        "ru": "Ваши сумки стоят в прихожей застёгнутыми: вы ещё ничего из них не достали. unpacked — «распакованный». Подруга спрашивает: Are they unpacked? Для «нет» после are ставим not: No, they are not.",
+        "uk": "Ваші сумки стоять у передпокої застебнутими: ви ще нічого з них не дістали. unpacked — «розпакований». Подруга питає: Are they unpacked? Для «ні» після are ставимо not: No, they are not."
       },
       "question": {
         "interactionId": "en:lesson-02:session-17:intro3:q",
         "promptByLocale": {
-          "ru": "Анна и Олег оба хорошо себя чувствуют. Хозяин спрашивает: `Are they well?` Ответьте коротким «да» с `they are`.",
-          "uk": "Анна й Олег обоє добре почуваються. Господар запитує: `Are they well?` Дайте коротку відповідь «так» з `they are`."
+          "ru": "Подруга спрашивает про сумки: Are they unpacked? Ответьте коротким «нет».",
+          "uk": "Подруга питає про сумки: Are they unpacked? Відповідайте коротким «ні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-17:intro3:r1",
-              "text": "Yes, they are."
+              "text": "No, they are not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r2",
-              "text": "Yes, they is."
+              "text": "Yes, they are."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r3",
-              "text": "Yes, they're."
+              "text": "No, they not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-17:intro3:r1",
-              "text": "Yes, they are."
+              "text": "No, they are not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r2",
-              "text": "Yes, they is."
+              "text": "Yes, they are."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r3",
-              "text": "Yes, they're."
+              "text": "No, they not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна и Олег оба хорошо себя чувствуют. Хозяин спрашивает: `Are they well?` Ответьте коротким «да» с `they are`.",
-          "uk": "Анна й Олег обоє добре почуваються. Господар запитує: `Are they well?` Дайте коротку відповідь «так» з `they are`."
+          "ru": "Подруга спрашивает про сумки: Are they unpacked? Ответьте коротким «нет».",
+          "uk": "Подруга питає про сумки: Are they unpacked? Відповідайте коротким «ні»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "73ae56f451c041d61b4095920218ac81c70e8a4595ea7f19eb457e9a97baba88"
+  "introFingerprint": "81574c8e791154430d30154f7c4c34a212bae14ff79a22cf7f936045077446b3"
 }

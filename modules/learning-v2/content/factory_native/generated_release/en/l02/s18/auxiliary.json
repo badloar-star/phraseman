@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-18:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-18:intro1:r2": {
-          "ru": "Это хорошее самочувствие. Здесь нужно `unwell`.",
-          "uk": "Це добре самопочуття. Тут потрібно `unwell`."
+          "ru": "Это «Я хорошо себя чувствую». Вам плохо: I'm unwell.",
+          "uk": "Це «Я добре почуваюся». Вам погано: I'm unwell."
         },
         "en:lesson-02:session-18:intro1:r3": {
-          "ru": "Это про него. О себе — `I'm`.",
-          "uk": "Це про нього. Про себе — `I'm`."
+          "ru": "Это про него. О себе говорим I'm.",
+          "uk": "Це про нього. Про себе кажемо I'm."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-18:intro2:r2": {
-          "ru": "Это отрицало бы плохое самочувствие. Здесь подтвердите: `Yes, I am`.",
-          "uk": "Це заперечувало б погане самопочуття. Тут підтвердьте: `Yes, I am`."
+          "ru": "Это «нет». А он чихает от кота: Yes, he is.",
+          "uk": "Це «ні». А він чхає від кота: Yes, he is."
         },
         "en:lesson-02:session-18:intro2:r3": {
-          "ru": "Вопрос к вам. Ответ о себе — `I am`.",
-          "uk": "Запитання до вас. Відповідь про себе — `I am`."
+          "ru": "В ответе сначала he, потом is: Yes, he is.",
+          "uk": "У відповіді спочатку he, потім is: Yes, he is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-18:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-18:intro3:r2": {
-          "ru": "Так вы подтвердите плохое самочувствие, а Анне хорошо.",
-          "uk": "Так ви підтвердите погане самопочуття, а Анні добре."
+          "ru": "Это «да». А окна открыты и в зале свежо: No, it is not.",
+          "uk": "Це «так». А вікна відчинені й у залі свіжо: No, it is not."
         },
         "en:lesson-02:session-18:intro3:r3": {
-          "ru": "После `she` нужно `is`: `No, she is not`.",
-          "uk": "Після `she` потрібно `is`: `No, she is not`."
+          "ru": "Между it и not нужно is: No, it is not.",
+          "uk": "Між it і not потрібно is: No, it is not."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d0f47403d8a51ab44a95d88daeb6c4dcc75f1d2cfb79b1b7bde4b0759ce844c5"
+  "auxiliaryFingerprint": "00779fdf536ebcfa88c843fe1c5ed13b94d653ba9e90f4b2fb1a42f8919dd15d"
 }

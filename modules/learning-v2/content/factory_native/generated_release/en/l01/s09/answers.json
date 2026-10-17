@@ -1,107 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-01:session-09:word:tall",
+    "correctText": "tall",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-09:i01",
-    "correctText": "welcome",
+    "correctText": "He is tall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:word:short",
+    "correctText": "short",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i02",
-    "correctText": "welcome",
+    "correctText": "«она невысокая»",
     "correctResponseId": "en:lesson-01:session-09:i02:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-09:i03",
-    "correctText": "kind",
+    "interactionId": "en:lesson-01:session-09:word:young",
+    "correctText": "young",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-09:i03",
+    "correctText": "young",
+    "correctResponseId": "en:lesson-01:session-09:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-09:i04",
-    "correctText": "kind",
-    "correctResponseId": "en:lesson-01:session-09:i04:r1"
+    "correctText": "en:lesson-01:session-09:i04:p1=tall\nen:lesson-01:session-09:i04:p2=short\nen:lesson-01:session-09:i04:p3=young\nen:lesson-01:session-09:i04:p4=angry",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i05",
-    "correctText": "You are kind.",
+    "correctText": "He is tall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i06",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-09:i06:r1"
+    "correctText": "She is short.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i07",
-    "correctText": "right",
+    "correctText": "He is young.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i08",
-    "correctText": "right",
+    "correctText": "ready",
     "correctResponseId": "en:lesson-01:session-09:i08:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-09:i09",
-    "correctText": "You are welcome.",
+    "interactionId": "en:lesson-01:session-09:word:angry",
+    "correctText": "angry",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-09:i09",
+    "correctText": "«он сердится»",
+    "correctResponseId": "en:lesson-01:session-09:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-09:i10",
-    "correctText": "funny",
+    "correctText": "en:lesson-01:session-09:i10:p1=angry\nen:lesson-01:session-09:i10:p2=scared\nen:lesson-01:session-09:i10:p3=calm\nen:lesson-01:session-09:i10:p4=bored",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i11",
-    "correctText": "funny",
-    "correctResponseId": "en:lesson-01:session-09:i11:r1"
+    "correctText": "He is fine.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i12",
-    "correctText": "You are right.",
+    "correctText": "It is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i13",
-    "correctText": "You are right.",
+    "correctText": "He is calm.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i14",
-    "correctText": "You are early.",
-    "correctResponseId": null
+    "correctText": "happy",
+    "correctResponseId": "en:lesson-01:session-09:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-09:i15",
-    "correctText": "en:lesson-01:session-09:i15:p1=welcome\nen:lesson-01:session-09:i15:p2=kind\nen:lesson-01:session-09:i15:p3=right\nen:lesson-01:session-09:i15:p4=funny",
-    "correctResponseId": null
+    "correctText": "Он испуган.",
+    "correctResponseId": "en:lesson-01:session-09:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-09:i16",
-    "correctText": "I am not sure.",
+    "correctText": "en:lesson-01:session-09:i16:p1=here\nen:lesson-01:session-09:i16:p2=ready\nen:lesson-01:session-09:i16:p3=fine\nen:lesson-01:session-09:i16:p4=happy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i17",
-    "correctText": "sorry",
-    "correctResponseId": "en:lesson-01:session-09:i17:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-09:i18:s01",
-    "correctText": "You are right.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-09:i18:s02",
-    "correctText": "I am new.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-09:i18:s03",
-    "correctText": "I am not tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-09:i18:s04",
-    "correctText": "You are kind.",
+    "correctText": "She is angry.",
     "correctResponseId": null
   }
 ]

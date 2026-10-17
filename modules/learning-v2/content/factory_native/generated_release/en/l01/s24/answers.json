@@ -1,25 +1,5 @@
 [
   {
-    "interactionId": "en:lesson-01:session-24:word:dim",
-    "correctText": "dim",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-24:word:bright",
-    "correctText": "bright",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-24:word:heavy",
-    "correctText": "heavy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-24:word:fragile",
-    "correctText": "fragile",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-24:i01",
     "correctText": "You are welcome.",
     "correctResponseId": null
@@ -35,8 +15,18 @@
     "correctResponseId": "en:lesson-01:session-24:i03:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-24:word:dim",
+    "correctText": "dim",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-24:i04",
     "correctText": "en:lesson-01:session-24:i04:p1=dim\nen:lesson-01:session-24:i04:p2=bright\nen:lesson-01:session-24:i04:p3=heavy\nen:lesson-01:session-24:i04:p4=fragile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:bright",
+    "correctText": "bright",
     "correctResponseId": null
   },
   {
@@ -45,8 +35,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-24:word:heavy",
+    "correctText": "heavy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-24:i06",
     "correctText": "It is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:fragile",
+    "correctText": "fragile",
     "correctResponseId": null
   },
   {

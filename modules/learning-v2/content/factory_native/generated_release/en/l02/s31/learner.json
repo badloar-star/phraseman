@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-31:i01",
+      "interactionId": "en:lesson-02:session-31:word:antique",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — antique",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-31:word:antique:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — antique",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-31:word:antique:audio",
+          "transcript": "antique"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-31:word:antique:r1",
+            "targetText": "antique",
+            "meaningByLocale": {
+              "ru": "старинный. It is antique — «Она старинная». О чашке, часах, мебели, монете.",
+              "uk": "старовинний. It is antique — «Вона старовинна». Про чашку, годинник, меблі, монету."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "antique",
+          "definitionByLocale": {
+            "ru": "старинный. It is antique — «Она старинная». О чашке, часах, мебели, монете.",
+            "uk": "старовинний. It is antique — «Вона старовинна». Про чашку, годинник, меблі, монету."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-31:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы впервые видите чайник с двумя носиками. Скажите полной фразой, что он необычный",
+      "prompt": "Две чашки на витрине сделаны почти двести лет назад. Скажите полной фразой, что они старинные",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы впервые видите чайник с двумя носиками. Скажите полной фразой, что он необычный",
+      "accessibilityLabel": "Две чашки на витрине сделаны почти двести лет назад. Скажите полной фразой, что они старинные",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is unusual.",
+        "targetPhrase": "They are antique.",
         "localizedMeaning": {
-          "ru": "Вы впервые видите чайник с двумя носиками. Скажите полной фразой, что он необычный",
-          "uk": "Ви вперше бачите чайник із двома носиками. Скажіть повною фразою, що він незвичайний"
+          "ru": "Две чашки на витрине сделаны почти двести лет назад. Скажите полной фразой, что они старинные",
+          "uk": "Дві чашки на вітрині зроблено майже двісті років тому. Скажіть повною фразою, що вони старовинні"
         },
         "orderedTokens": [
-          "It",
-          "is",
-          "unusual"
+          "They",
+          "are",
+          "antique"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-31:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы впервые видите чайник с двумя носиками. Скажите полной фразой, что он необычный",
+            "testedDimension": "Две чашки на витрине сделаны почти двести лет назад. Скажите полной фразой, что они старинные",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is unusual.`",
-              "uk": "тут потрібно `is` — `It is unusual.`"
+              "ru": "здесь нужно `are` — `They are antique.`",
+              "uk": "тут потрібно `are` — `They are antique.`"
             }
           }
         ],
@@ -48,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-31:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-02:session-31:word:unusual",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу",
+      "prompt": "Карточка слова — unusual",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-31:word:unusual:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unusual",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-31:word:unusual:audio",
+          "transcript": "unusual"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-31:word:unusual:r1",
+            "targetText": "unusual",
+            "meaningByLocale": {
+              "ru": "необычный, не такой, как все. It is unusual — «Он необычный». О форме, цвете, вкусе, идее.",
+              "uk": "незвичайний, не такий, як усі. It is unusual — «Він незвичайний». Про форму, колір, смак, ідею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unusual",
+          "definitionByLocale": {
+            "ru": "необычный, не такой, как все. It is unusual — «Он необычный». О форме, цвете, вкусе, идее.",
+            "uk": "незвичайний, не такий, як усі. It is unusual — «Він незвичайний». Про форму, колір, смак, ідею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-31:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу о чайнике",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-31:i02:r1",
-          "text": "They are similar."
+          "text": "It is unusual."
         },
         {
           "responseId": "en:lesson-02:session-31:i02:r2",
-          "text": "They are equal."
+          "text": "It is valid."
         },
         {
           "responseId": "en:lesson-02:session-31:i02:r3",
-          "text": "They are separate."
+          "text": "It is separate."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-31:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу",
+      "accessibilityLabel": "Послушайте фразу о чайнике",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-31:i02:audio",
-          "transcript": "They are similar."
+          "transcript": "It is unusual."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-31:i02:r1",
-            "targetText": "They are similar.",
+            "targetText": "It is unusual.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-31:i02:r2",
-            "targetText": "They are equal.",
+            "targetText": "It is valid.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-31:i02:r3",
-            "targetText": "They are separate.",
+            "targetText": "It is separate.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +188,19 @@
           {
             "responseId": "en:lesson-02:session-31:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте фразу о чайнике",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `similar`, а в этом варианте — `equal`.",
-              "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `equal`."
+              "ru": "В записи последнее слово — `unusual`, а в этом варианте — `valid`.",
+              "uk": "У записі останнє слово — `unusual`, а в цьому варіанті — `valid`."
             }
           },
           {
             "responseId": "en:lesson-02:session-31:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте фразу о чайнике",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `similar`, а в этом варианте — `separate`.",
-              "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `separate`."
+              "ru": "В записи последнее слово — `unusual`, а в этом варианте — `separate`.",
+              "uk": "У записі останнє слово — `unusual`, а в цьому варіанті — `separate`."
             }
           }
         ],
@@ -124,12 +210,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-31:word:valuable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — valuable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-31:word:valuable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — valuable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-31:word:valuable:audio",
+          "transcript": "valuable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-31:word:valuable:r1",
+            "targetText": "valuable",
+            "meaningByLocale": {
+              "ru": "ценный, дорогой. It is valuable — «Она ценная». О старой вещи, картине, документе.",
+              "uk": "цінний, дорогий. It is valuable — «Вона цінна». Про стару річ, картину, документ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "valuable",
+          "definitionByLocale": {
+            "ru": "ценный, дорогой. It is valuable — «Она ценная». О старой вещи, картине, документе.",
+            "uk": "цінний, дорогий. It is valuable — «Вона цінна». Про стару річ, картину, документ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-31:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите Анну, необычный ли этот чайник",
+      "prompt": "Спросите подругу, ценная ли эта чашка",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-31:i03:r1",
@@ -146,14 +275,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите Анну, необычный ли этот чайник",
+      "accessibilityLabel": "Спросите подругу, ценная ли эта чашка",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите Анну, необычный ли этот чайник",
-          "uk": "Запитайте Анну, чи незвичайний цей чайник"
+          "ru": "Спросите подругу, ценная ли эта чашка",
+          "uk": "Запитайте подругу, чи цінна ця чашка"
         },
-        "gappedTargetPhrase": "___ it unusual?",
+        "gappedTargetPhrase": "___ it valuable?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-31:i03:r1",
@@ -168,12 +297,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Спросите Анну, необычный ли этот чайник",
+        "testedDimension": "Спросите подругу, ценная ли эта чашка",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите Анну, необычный ли этот чайник",
+            "testedDimension": "Спросите подругу, ценная ли эта чашка",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +311,10 @@
           {
             "responseId": "en:lesson-02:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите Анну, необычный ли этот чайник",
+            "testedDimension": "Спросите подругу, ценная ли эта чашка",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it unusual?`.",
-              "uk": "Запитання — `Is it unusual?`."
+              "ru": "Вопрос — `Is it valuable?`.",
+              "uk": "Запитання — `Is it valuable?`."
             }
           }
         ]
@@ -194,7 +323,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -216,40 +345,40 @@
           },
           {
             "pairId": "en:lesson-02:session-31:i04:p2",
-            "target": "equal",
+            "target": "antique",
             "meaningByLocale": {
-              "ru": "равный",
-              "uk": "рівний"
+              "ru": "старинный",
+              "uk": "старовинний"
             }
           },
           {
             "pairId": "en:lesson-02:session-31:i04:p3",
-            "target": "similar",
+            "target": "painted",
             "meaningByLocale": {
-              "ru": "похожий",
-              "uk": "схожий"
+              "ru": "расписной",
+              "uk": "розписний"
             }
           },
           {
             "pairId": "en:lesson-02:session-31:i04:p4",
-            "target": "separate",
+            "target": "valuable",
             "meaningByLocale": {
-              "ru": "отдельный",
-              "uk": "окремий"
+              "ru": "ценный",
+              "uk": "цінний"
             }
           }
         ],
         "leftColumn": [
           "unusual",
-          "equal",
-          "similar",
-          "separate"
+          "antique",
+          "painted",
+          "valuable"
         ],
         "rightColumn": [
           "необычный",
-          "равный",
-          "похожий",
-          "отдельный"
+          "старинный",
+          "расписной",
+          "ценный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,9 +395,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-31:word:painted",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — painted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-31:word:painted:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — painted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-31:word:painted:audio",
+          "transcript": "painted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-31:word:painted:r1",
+            "targetText": "painted",
+            "meaningByLocale": {
+              "ru": "расписной, раскрашенный. It is painted — «Она расписная». О чашке, тарелке, двери, стене.",
+              "uk": "розписний, розфарбований. It is painted — «Вона розписна». Про чашку, тарілку, двері, стіну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "painted",
+          "definitionByLocale": {
+            "ru": "расписной, раскрашенный. It is painted — «Она расписная». О чашке, тарелке, двери, стене.",
+            "uk": "розписний, розфарбований. It is painted — «Вона розписна». Про чашку, тарілку, двері, стіну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-31:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -282,15 +454,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-31:i05:audio",
-          "transcript": "They are not equal."
+          "transcript": "They are not painted."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not equal.",
+        "hiddenTargetPhrase": "They are not painted.",
         "orderedTokens": [
           "They",
           "are",
           "not",
-          "equal"
+          "painted"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -301,8 +473,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not equal.`",
-              "uk": "тут потрібно `are` — `They are not equal.`"
+              "ru": "здесь нужно `are` — `They are not painted.`",
+              "uk": "тут потрібно `are` — `They are not painted.`"
             }
           }
         ],
@@ -315,38 +487,38 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Для двух залов выдали два отдельных билета. Скажите полной фразой, что они отдельные",
+      "prompt": "Подруга отошла к другой витрине, и вы её не видите. Спросите смотрительницу, где она",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Для двух залов выдали два отдельных билета. Скажите полной фразой, что они отдельные",
+      "accessibilityLabel": "Подруга отошла к другой витрине, и вы её не видите. Спросите смотрительницу, где она",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are separate.",
+        "targetPhrase": "Where is she?",
         "localizedMeaning": {
-          "ru": "Для двух залов выдали два отдельных билета. Скажите полной фразой, что они отдельные",
-          "uk": "Для двох зал видали два окремі квитки. Скажіть повною фразою, що вони окремі"
+          "ru": "Подруга отошла к другой витрине, и вы её не видите. Спросите смотрительницу, где она",
+          "uk": "Подруга відійшла до іншої вітрини, і ви її не бачите. Запитайте наглядачку, де вона"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "separate"
+          "Where",
+          "is",
+          "she"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-31:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Для двух залов выдали два отдельных билета. Скажите полной фразой, что они отдельные",
+            "testedDimension": "Подруга отошла к другой витрине, и вы её не видите. Спросите смотрительницу, где она",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are separate.`",
-              "uk": "тут потрібно `are` — `They are separate.`"
+              "ru": "здесь нужно `Where` — `Where is she?`",
+              "uk": "тут потрібно `Where` — `Where is she?`"
             }
           }
         ],
@@ -359,25 +531,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У чашки ручка в форме огромного уха. Коротко скажите, что она необычная",
+      "prompt": "У чашки на витрине красные птицы по краю, нарисованные вручную. Коротко скажите подруге, что она расписная",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-31:i07:audio"
       ],
-      "accessibilityLabel": "У чашки ручка в форме огромного уха. Коротко скажите, что она необычная",
+      "accessibilityLabel": "У чашки на витрине красные птицы по краю, нарисованные вручную. Коротко скажите подруге, что она расписная",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-31:i07:audio",
-          "transcript": "It's unusual."
+          "transcript": "It's painted."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unusual.",
+        "targetPhrase": "It's painted.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +564,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»",
+      "prompt": "Одна чашка стоит вдвое дороже другой. На вопрос подруги «Are they equal?» дополните короткое «нет»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-31:i08:r1",
@@ -413,12 +585,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»",
+      "accessibilityLabel": "Одна чашка стоит вдвое дороже другой. На вопрос подруги «Are they equal?» дополните короткое «нет»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»",
-          "uk": "Одна чашка коштує вдвічі дорожче за іншу. На запитання про ціни «Are they equal?» доповніть коротку відповідь «ні»"
+          "ru": "Одна чашка стоит вдвое дороже другой. На вопрос подруги «Are they equal?» дополните короткое «нет»",
+          "uk": "Одна чашка коштує вдвічі дорожче за іншу. На запитання подруги «Are they equal?» доповніть коротке «ні»"
         },
         "gappedTargetPhrase": "No, they ___ not.",
         "gapOptions": [
@@ -435,12 +607,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»",
+        "testedDimension": "Одна чашка стоит вдвое дороже другой. На вопрос подруги «Are they equal?» дополните короткое «нет»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-31:i08:r2",
             "correct": false,
-            "testedDimension": "Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»",
+            "testedDimension": "Одна чашка стоит вдвое дороже другой. На вопрос подруги «Are they equal?» дополните короткое «нет»",
             "feedbackByLocale": {
               "ru": "С `they` нужно `are`.",
               "uk": "З `they` потрібно `are`."
@@ -449,7 +621,7 @@
           {
             "responseId": "en:lesson-02:session-31:i08:r3",
             "correct": false,
-            "testedDimension": "Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»",
+            "testedDimension": "Одна чашка стоит вдвое дороже другой. На вопрос подруги «Are they equal?» дополните короткое «нет»",
             "feedbackByLocale": {
               "ru": "Ответ — `No, they are not`.",
               "uk": "Відповідь — `No, they are not`."
@@ -461,7 +633,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -473,11 +645,11 @@
         },
         {
           "responseId": "en:lesson-02:session-31:i09:r2",
-          "text": "Is it unusual?"
+          "text": "Is it valuable?"
         },
         {
           "responseId": "en:lesson-02:session-31:i09:r3",
-          "text": "Is it separate?"
+          "text": "Is it antique?"
         }
       ],
       "mediaIds": [],
@@ -500,12 +672,12 @@
           },
           {
             "responseId": "en:lesson-02:session-31:i09:r2",
-            "targetText": "Is it unusual?",
+            "targetText": "Is it valuable?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-31:i09:r3",
-            "targetText": "Is it separate?",
+            "targetText": "Is it antique?",
             "meaningByLocale": null
           }
         ],
@@ -516,8 +688,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `valid`, а в этом варианте — `unusual`.",
-              "uk": "У записі останнє слово — `valid`, а в цьому варіанті — `unusual`."
+              "ru": "В записи последнее слово — `valid`, а в этом варианте — `valuable`.",
+              "uk": "У записі останнє слово — `valid`, а в цьому варіанті — `valuable`."
             }
           },
           {
@@ -525,8 +697,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `valid`, а в этом варианте — `separate`.",
-              "uk": "У записі останнє слово — `valid`, а в цьому варіанті — `separate`."
+              "ru": "В записи последнее слово — `valid`, а в этом варианте — `antique`.",
+              "uk": "У записі останнє слово — `valid`, а в цьому варіанті — `antique`."
             }
           }
         ],
@@ -537,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -559,10 +731,10 @@
           },
           {
             "pairId": "en:lesson-02:session-31:i10:p2",
-            "target": "unusual",
+            "target": "equal",
             "meaningByLocale": {
-              "ru": "необычный",
-              "uk": "незвичайний"
+              "ru": "равный",
+              "uk": "рівний"
             }
           },
           {
@@ -575,24 +747,24 @@
           },
           {
             "pairId": "en:lesson-02:session-31:i10:p4",
-            "target": "equal",
+            "target": "separate",
             "meaningByLocale": {
-              "ru": "равный",
-              "uk": "рівний"
+              "ru": "отдельный",
+              "uk": "окремий"
             }
           }
         ],
         "leftColumn": [
           "valid",
-          "unusual",
+          "equal",
           "similar",
-          "equal"
+          "separate"
         ],
         "rightColumn": [
           "действительный",
-          "необычный",
+          "равный",
           "похожий",
-          "равный"
+          "отдельный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,8 +782,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите вопрос",
@@ -625,17 +797,17 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-31:i11:audio",
-          "transcript": "Where are they?"
+          "transcript": "Is it unusual?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where are they?",
+        "hiddenTargetPhrase": "Is it unusual?",
         "orderedTokens": [
-          "Where",
-          "are",
-          "they"
+          "Is",
+          "it",
+          "unusual"
         ],
         "authoredDistractorTokens": [
-          "Who"
+          "Are"
         ],
         "slotFeedback": [
           {
@@ -643,8 +815,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите вопрос",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where are they?`",
-              "uk": "тут потрібно `Where` — `Where are they?`"
+              "ru": "здесь нужно `Is` — `Is it unusual?`",
+              "uk": "тут потрібно `Is` — `Is it unusual?`"
             }
           }
         ],
@@ -657,21 +829,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "В витрине стоит предмет непонятного назначения. Спросите, что это",
+      "prompt": "В витрине лежит предмет непонятного назначения. Спросите смотрительницу, что это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В витрине стоит предмет непонятного назначения. Спросите, что это",
+      "accessibilityLabel": "В витрине лежит предмет непонятного назначения. Спросите смотрительницу, что это",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "What is it?",
         "localizedMeaning": {
-          "ru": "В витрине стоит предмет непонятного назначения. Спросите, что это",
-          "uk": "У вітрині стоїть предмет незрозумілого призначення. Запитайте, що це"
+          "ru": "В витрине лежит предмет непонятного назначения. Спросите смотрительницу, что это",
+          "uk": "У вітрині лежить предмет незрозумілого призначення. Запитайте наглядачку, що це"
         },
         "orderedTokens": [
           "What",
@@ -685,7 +857,7 @@
           {
             "responseId": "en:lesson-02:session-31:i12:tile:d1",
             "correct": false,
-            "testedDimension": "В витрине стоит предмет непонятного назначения. Спросите, что это",
+            "testedDimension": "В витрине лежит предмет непонятного назначения. Спросите смотрительницу, что это",
             "feedbackByLocale": {
               "ru": "здесь нужно `What` — `What is it?`",
               "uk": "тут потрібно `What` — `What is it?`"
@@ -701,17 +873,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У двух чашек похожие узоры. Коротко скажите, что чашки похожи",
+      "prompt": "У двух чашек почти одинаковые узоры. Коротко скажите подруге, что они похожи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-31:i13:audio"
       ],
-      "accessibilityLabel": "У двух чашек похожие узоры. Коротко скажите, что чашки похожи",
+      "accessibilityLabel": "У двух чашек почти одинаковые узоры. Коротко скажите подруге, что они похожи",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -734,11 +906,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен",
+      "prompt": "Билет был только на вчерашний день. Скажите кассиру, что сегодня он недействителен",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-31:i14:r1",
@@ -755,12 +927,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен",
+      "accessibilityLabel": "Билет был только на вчерашний день. Скажите кассиру, что сегодня он недействителен",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен",
-          "uk": "Квиток був лише на вчорашню виставку. Скажіть, що сьогодні він недійсний"
+          "ru": "Билет был только на вчерашний день. Скажите кассиру, что сегодня он недействителен",
+          "uk": "Квиток був лише на вчорашній день. Скажіть касирові, що сьогодні він недійсний"
         },
         "gappedTargetPhrase": "It ___ not valid.",
         "gapOptions": [
@@ -777,12 +949,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен",
+        "testedDimension": "Билет был только на вчерашний день. Скажите кассиру, что сегодня он недействителен",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-31:i14:r2",
             "correct": false,
-            "testedDimension": "Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен",
+            "testedDimension": "Билет был только на вчерашний день. Скажите кассиру, что сегодня он недействителен",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -791,7 +963,7 @@
           {
             "responseId": "en:lesson-02:session-31:i14:r3",
             "correct": false,
-            "testedDimension": "Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен",
+            "testedDimension": "Билет был только на вчерашний день. Скажите кассиру, что сегодня он недействителен",
             "feedbackByLocale": {
               "ru": "Фраза — `It is not valid`.",
               "uk": "Фраза — `It is not valid`."
@@ -803,51 +975,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о ценах",
+      "prompt": "Послушайте фразу о чашках",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-31:i15:r1",
-          "text": "They are equal."
+          "text": "They are valuable."
         },
         {
           "responseId": "en:lesson-02:session-31:i15:r2",
-          "text": "They are similar."
+          "text": "They are antique."
         },
         {
           "responseId": "en:lesson-02:session-31:i15:r3",
-          "text": "They are separate."
+          "text": "They are painted."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-31:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о ценах",
+      "accessibilityLabel": "Послушайте фразу о чашках",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-31:i15:audio",
-          "transcript": "They are equal."
+          "transcript": "They are valuable."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-31:i15:r1",
-            "targetText": "They are equal.",
+            "targetText": "They are valuable.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-31:i15:r2",
-            "targetText": "They are similar.",
+            "targetText": "They are antique.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-31:i15:r3",
-            "targetText": "They are separate.",
+            "targetText": "They are painted.",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1028,19 @@
           {
             "responseId": "en:lesson-02:session-31:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о ценах",
+            "testedDimension": "Послушайте фразу о чашках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `equal`, а в этом варианте — `similar`.",
-              "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `similar`."
+              "ru": "В записи последнее слово — `valuable`, а в этом варианте — `antique`.",
+              "uk": "У записі останнє слово — `valuable`, а в цьому варіанті — `antique`."
             }
           },
           {
             "responseId": "en:lesson-02:session-31:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о ценах",
+            "testedDimension": "Послушайте фразу о чашках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `equal`, а в этом варианте — `separate`.",
-              "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `separate`."
+              "ru": "В записи последнее слово — `valuable`, а в этом варианте — `painted`.",
+              "uk": "У записі останнє слово — `valuable`, а в цьому варіанті — `painted`."
             }
           }
         ],
@@ -879,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,6 +1065,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-31:i16:p1",
+            "target": "valuable",
+            "meaningByLocale": {
+              "ru": "ценный",
+              "uk": "цінний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-31:i16:p2",
             "target": "separate",
             "meaningByLocale": {
               "ru": "отдельный",
@@ -900,41 +1080,33 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-31:i16:p2",
-            "target": "valid",
-            "meaningByLocale": {
-              "ru": "действительный",
-              "uk": "дійсний"
-            }
-          },
-          {
             "pairId": "en:lesson-02:session-31:i16:p3",
-            "target": "equal",
-            "meaningByLocale": {
-              "ru": "равный",
-              "uk": "рівний"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-31:i16:p4",
             "target": "unusual",
             "meaningByLocale": {
               "ru": "необычный",
               "uk": "незвичайний"
             }
+          },
+          {
+            "pairId": "en:lesson-02:session-31:i16:p4",
+            "target": "valid",
+            "meaningByLocale": {
+              "ru": "действительный",
+              "uk": "дійсний"
+            }
           }
         ],
         "leftColumn": [
+          "valuable",
           "separate",
-          "valid",
-          "equal",
-          "unusual"
+          "unusual",
+          "valid"
         ],
         "rightColumn": [
+          "ценный",
           "отдельный",
-          "действительный",
-          "равный",
-          "необычный"
+          "необычный",
+          "действительный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-31:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Кассир упомянул билеты для двух залов. Спросите, отдельные ли они",
+      "prompt": "Кассир выдал вам и подруге по билету в разные залы. Спросите кассира, отдельные ли они",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-31:i17:audio"
       ],
-      "accessibilityLabel": "Кассир упомянул билеты для двух залов. Спросите, отдельные ли они",
+      "accessibilityLabel": "Кассир выдал вам и подруге по билету в разные залы. Спросите кассира, отдельные ли они",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "00e60e077c90b6c08ccbdef1370106b17ed0dff78db6fe2571f98eb8902b8f7d"
+  "learnerFingerprint": "ff55d709dac91d3e7a92adddf130cf8f1263b9af06975a670707bc120715dec8"
 }

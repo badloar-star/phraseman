@@ -10,13 +10,13 @@
     "correctResponseId": "en:lesson-01:session-13:i02:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-13:i03",
-    "correctText": "old",
+    "interactionId": "en:lesson-01:session-13:i04",
+    "correctText": "You are young.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-13:i04",
-    "correctText": "You are young.",
+    "interactionId": "en:lesson-01:session-13:i03",
+    "correctText": "old",
     "correctResponseId": null
   },
   {

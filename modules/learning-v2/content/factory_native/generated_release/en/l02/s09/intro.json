@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-09",
   "learningOutcomeByLocale": {
-    "ru": "спросить о возможности и состоянии, поставив am, is или are перед тем, о ком спрашиваем",
-    "uk": "запитати про можливість і стан, поставивши am, is або are перед тим, про кого запитуємо"
+    "ru": "спросить о возможности, о месте и о человеке, поставив am, is или are в начало",
+    "uk": "запитати про можливість, про місце й про людину, поставивши am, is або are на початок"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-02:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Возможно?",
-        "uk": "Можливо?"
+        "ru": "Свободный третий ряд",
+        "uk": "Вільний третій ряд"
       },
       "bodyByLocale": {
-        "ru": "`possible` — «возможный». `It is possible` — «Это возможно». Чтобы спросить, поменяйте начало местами: `Is it possible?` — «Это возможно?» Вы уточняете, можно ли пересесть. Вопрос ещё не даёт разрешения: кресло у сцены не становится вашим от одного вопросительного знака.",
-        "uk": "`possible` — «можливий». `It is possible` — «Це можливо». Щоб запитати, поміняйте початок місцями: `Is it possible?` — «Це можливо?» Ви уточнюєте, чи можна пересісти. Запитання ще не дає дозволу: крісло біля сцени не стає вашим від одного знака питання."
+        "ru": "Свет в зале ещё не погас. Вы замечаете в третьем ряду два свободных места, гораздо ближе к сцене, и подходите к билетёрше Вере. possible — «возможный». It is possible — «Это возможно». Чтобы спросить, ставим is вперёд: Is it possible? — «Это возможно?»",
+        "uk": "Світло в залі ще не згасло. Ви помічаєте в третьому ряду два вільні місця, набагато ближче до сцени, і підходите до білетерки Віри. possible — «можливий». It is possible — «Це можливо». Щоб запитати, ставимо is наперед: Is it possible? — «Це можливо?»"
       },
       "question": {
         "interactionId": "en:lesson-02:session-09:intro1:q",
         "promptByLocale": {
-          "ru": "Вы хотите пересесть ближе к сцене. Сотрудник уже знает о вашем желании. Спросите, возможно ли это.",
-          "uk": "Ви хочете пересісти ближче до сцени. Працівник уже знає про ваше бажання. Запитайте, чи це можливо."
+          "ru": "Вы показываете Вере на третий ряд. Спросите её, возможно ли пересесть.",
+          "uk": "Ви показуєте Вірі на третій ряд. Запитайте її, чи можливо пересісти."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,7 +32,7 @@
             },
             {
               "responseId": "en:lesson-02:session-09:intro1:r2",
-              "text": "Is possible it?"
+              "text": "It is possible."
             },
             {
               "responseId": "en:lesson-02:session-09:intro1:r3",
@@ -46,7 +46,7 @@
             },
             {
               "responseId": "en:lesson-02:session-09:intro1:r2",
-              "text": "Is possible it?"
+              "text": "It is possible."
             },
             {
               "responseId": "en:lesson-02:session-09:intro1:r3",
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы хотите пересесть ближе к сцене. Сотрудник уже знает о вашем желании. Спросите, возможно ли это.",
-          "uk": "Ви хочете пересісти ближче до сцени. Працівник уже знає про ваше бажання. Запитайте, чи це можливо."
+          "ru": "Вы показываете Вере на третий ряд. Спросите её, возможно ли пересесть.",
+          "uk": "Ви показуєте Вірі на третій ряд. Запитайте її, чи можливо пересісти."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спросите собеседника",
-        "uk": "Запитайте співрозмовника"
+        "ru": "Пустое кресло рядом",
+        "uk": "Порожнє крісло поруч"
       },
       "bodyByLocale": {
-        "ru": "`You are sure` — «Вы уверены». В обычном вопросе `are` выходит вперёд: `Are you sure?` — «Вы уверены?» Так же: `Are you comfortable?` — «Вам удобно?» Здесь учимся спрашивать, а не утверждать.",
-        "uk": "`You are sure` — «Ви впевнені». У звичайному запитанні `are` виходить уперед: `Are you sure?` — «Ви впевнені?» Так само: `Are you comfortable?` — «Вам зручно?» Тут вчимося запитувати, а не стверджувати."
+        "ru": "Вы пересели. Рядом с вами пустое кресло: ни сумки, ни куртки, никто не возвращается. taken — «занятый», когда речь о месте. It is not taken, коротко It's not taken — «Оно не занято».",
+        "uk": "Ви пересіли. Поруч із вами порожнє крісло: ні сумки, ні куртки, ніхто не повертається. taken — «зайнятий», коли йдеться про місце. It is not taken, коротко It's not taken — «Воно не зайняте»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-09:intro2:q",
         "promptByLocale": {
-          "ru": "Друг говорит, что на другом ряду будет лучше. Спросите, уверен ли он.",
-          "uk": "Друг каже, що в іншому ряду буде краще. Запитайте, чи він упевнений."
+          "ru": "Пётр Ильич из соседнего ряда спрашивает, занято ли кресло рядом с вами. Ответьте коротко, что оно не занято.",
+          "uk": "Петро Ілліч із сусіднього ряду питає, чи зайняте крісло поруч із вами. Відповідайте коротко, що воно не зайняте."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-09:intro2:r1",
-              "text": "Are you sure?"
+              "text": "It's not taken."
             },
             {
               "responseId": "en:lesson-02:session-09:intro2:r2",
-              "text": "Is you sure?"
+              "text": "It's taken."
             },
             {
               "responseId": "en:lesson-02:session-09:intro2:r3",
-              "text": "Are sure you?"
+              "text": "He's not taken."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-09:intro2:r1",
-              "text": "Are you sure?"
+              "text": "It's not taken."
             },
             {
               "responseId": "en:lesson-02:session-09:intro2:r2",
-              "text": "Is you sure?"
+              "text": "It's taken."
             },
             {
               "responseId": "en:lesson-02:session-09:intro2:r3",
-              "text": "Are sure you?"
+              "text": "He's not taken."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг говорит, что на другом ряду будет лучше. Спросите, уверен ли он.",
-          "uk": "Друг каже, що в іншому ряду буде краще. Запитайте, чи він упевнений."
+          "ru": "Пётр Ильич из соседнего ряда спрашивает, занято ли кресло рядом с вами. Ответьте коротко, что оно не занято.",
+          "uk": "Петро Ілліч із сусіднього ряду питає, чи зайняте крісло поруч із вами. Відповідайте коротко, що воно не зайняте."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "О себе и о других",
-        "uk": "Про себе та інших"
+        "ru": "Костя машет из темноты",
+        "uk": "Костя махає з темряви"
       },
       "bodyByLocale": {
-        "ru": "Форма остаётся знакомой: с `I` — `am`, с `he` или `she` — `is`, с `we` или `they` — `are`. Меняется место: `Am I tall?` — «Я высокий?», `Is she interested?` — «Ей интересно?», `Are they comfortable?` — «Им удобно?»",
-        "uk": "Форма залишається знайомою: з `I` — `am`, з `he` або `she` — `is`, з `we` або `they` — `are`. Змінюється місце: `Am I tall?` — «Я високий?», `Is she interested?` — «Їй цікаво?», `Are they comfortable?` — «Їм зручно?»"
+        "ru": "Друг Костя нашёл ещё два места и машет вам рукой, но в полутьме не видно, какой это ряд. close — «близкий», «рядом». Are they close? — «Они близко?» С they вопрос начинается с Are.",
+        "uk": "Друг Костя знайшов ще два місця й махає вам рукою, але в напівтемряві не видно, який це ряд. close — «близький», «поруч». Are they close? — «Вони близько?» З they запитання починається з Are."
       },
       "question": {
         "interactionId": "en:lesson-02:session-09:intro3:q",
         "promptByLocale": {
-          "ru": "Анна разглядывает афишу. Вы не знаете, заинтересовал ли её спектакль. Спросите друга, интересно ли ей.",
-          "uk": "Анна розглядає афішу. Ви не знаєте, чи зацікавила її вистава. Запитайте друга, чи їй цікаво."
+          "ru": "Спросите Костю, близко ли эти места к сцене.",
+          "uk": "Запитайте Костю, чи близько ці місця до сцени."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-09:intro3:r1",
-              "text": "Is she interested?"
+              "text": "Are they close?"
             },
             {
               "responseId": "en:lesson-02:session-09:intro3:r2",
-              "text": "Are she interested?"
+              "text": "Is they close?"
             },
             {
               "responseId": "en:lesson-02:session-09:intro3:r3",
-              "text": "Is he interested?"
+              "text": "Are they taken?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-09:intro3:r1",
-              "text": "Is she interested?"
+              "text": "Are they close?"
             },
             {
               "responseId": "en:lesson-02:session-09:intro3:r2",
-              "text": "Are she interested?"
+              "text": "Is they close?"
             },
             {
               "responseId": "en:lesson-02:session-09:intro3:r3",
-              "text": "Is he interested?"
+              "text": "Are they taken?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна разглядывает афишу. Вы не знаете, заинтересовал ли её спектакль. Спросите друга, интересно ли ей.",
-          "uk": "Анна розглядає афішу. Ви не знаєте, чи зацікавила її вистава. Запитайте друга, чи їй цікаво."
+          "ru": "Спросите Костю, близко ли эти места к сцене.",
+          "uk": "Запитайте Костю, чи близько ці місця до сцени."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "305e554970feb77b5508d76fe8028b5839f8ed64784b95b75942fcd242e7c3c9"
+  "introFingerprint": "414e09f7810a783340760d7eada7a8fdb633b3f11332bf8dfeb12eeb039b5ac7"
 }

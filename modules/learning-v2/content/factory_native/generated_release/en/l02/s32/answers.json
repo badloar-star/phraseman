@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-02:session-32:word:homemade",
+    "correctText": "homemade",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-32:i01",
-    "correctText": "Who is absent?",
+    "correctText": "It is homemade.",
     "correctResponseId": null
   },
   {
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-32:i04",
-    "correctText": "en:lesson-02:session-32:i04:p1=absent\nen:lesson-02:session-32:i04:p2=away\nen:lesson-02:session-32:i04:p3=elsewhere\nen:lesson-02:session-32:i04:p4=unusual",
+    "correctText": "en:lesson-02:session-32:i04:p1=homemade\nen:lesson-02:session-32:i04:p2=lively\nen:lesson-02:session-32:i04:p3=delayed\nen:lesson-02:session-32:i04:p4=cancelled",
     "correctResponseId": null
   },
   {
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-32:word:lively",
+    "correctText": "lively",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-32:i06",
-    "correctText": "She is generous.",
+    "correctText": "Is it lively?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:word:delayed",
+    "correctText": "delayed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i07",
-    "correctText": "I'm flexible.",
+    "correctText": "It's delayed.",
     "correctResponseId": null
   },
   {
@@ -41,17 +56,22 @@
   },
   {
     "interactionId": "en:lesson-02:session-32:i09",
-    "correctText": "Is she flexible?",
+    "correctText": "Who is generous?",
     "correctResponseId": "en:lesson-02:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-32:i10",
-    "correctText": "en:lesson-02:session-32:i10:p1=generous\nen:lesson-02:session-32:i10:p2=careless\nen:lesson-02:session-32:i10:p3=flexible\nen:lesson-02:session-32:i10:p4=unusual",
+    "correctText": "en:lesson-02:session-32:i10:p1=absent\nen:lesson-02:session-32:i10:p2=away\nen:lesson-02:session-32:i10:p3=elsewhere\nen:lesson-02:session-32:i10:p4=unusual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:word:cancelled",
+    "correctText": "cancelled",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i11",
-    "correctText": "Is he absent?",
+    "correctText": "Is it cancelled?",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-32:i15",
-    "correctText": "Who is generous?",
+    "correctText": "Where is she?",
     "correctResponseId": "en:lesson-02:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-32:i16",
-    "correctText": "en:lesson-02:session-32:i16:p1=elsewhere\nen:lesson-02:session-32:i16:p2=flexible\nen:lesson-02:session-32:i16:p3=generous\nen:lesson-02:session-32:i16:p4=careless",
+    "correctText": "en:lesson-02:session-32:i16:p1=generous\nen:lesson-02:session-32:i16:p2=homemade\nen:lesson-02:session-32:i16:p3=cancelled\nen:lesson-02:session-32:i16:p4=delayed",
     "correctResponseId": null
   },
   {

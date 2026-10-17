@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-17:word:together",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — together",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-17:word:together:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — together",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-17:word:together:audio",
-          "transcript": "together"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-17:word:together:r1",
-            "targetText": "together",
-            "meaningByLocale": {
-              "ru": "вместе. We are together — «Мы вместе»: например, приехали одной компанией.",
-              "uk": "разом. We are together — «Ми разом»: наприклад, приїхали однією компанією."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "together",
-          "definitionByLocale": {
-            "ru": "вместе. We are together — «Мы вместе»: например, приехали одной компанией.",
-            "uk": "разом. We are together — «Ми разом»: наприклад, приїхали однією компанією."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-17:word:grateful",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — grateful",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-17:word:grateful:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — grateful",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-17:word:grateful:audio",
-          "transcript": "grateful"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-17:word:grateful:r1",
-            "targetText": "grateful",
-            "meaningByLocale": {
-              "ru": "благодарный за помощь или доброе дело. They are grateful — «Они благодарны».",
-              "uk": "вдячний за допомогу або добру справу. They are grateful — «Вони вдячні»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "grateful",
-          "definitionByLocale": {
-            "ru": "благодарный за помощь или доброе дело. They are grateful — «Они благодарны».",
-            "uk": "вдячний за допомогу або добру справу. They are grateful — «Вони вдячні»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-17:word:comfortable",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — comfortable",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-17:word:comfortable:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — comfortable",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-17:word:comfortable:audio",
-          "transcript": "comfortable"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-17:word:comfortable:r1",
-            "targetText": "comfortable",
-            "meaningByLocale": {
-              "ru": "чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.",
-              "uk": "той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "comfortable",
-          "definitionByLocale": {
-            "ru": "чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.",
-            "uk": "той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-17:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -221,7 +92,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i02",
-      "ordinal": 9,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +168,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i03",
-      "ordinal": 10,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +237,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова и значения",
@@ -438,9 +309,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-17:word:together",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — together",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:word:together:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — together",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:word:together:audio",
+          "transcript": "together"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:word:together:r1",
+            "targetText": "together",
+            "meaningByLocale": {
+              "ru": "вместе. We are together — «Мы вместе»: например, приехали одной компанией.",
+              "uk": "разом. We are together — «Ми разом»: наприклад, приїхали однією компанією."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "together",
+          "definitionByLocale": {
+            "ru": "вместе. We are together — «Мы вместе»: например, приехали одной компанией.",
+            "uk": "разом. We are together — «Ми разом»: наприклад, приїхали однією компанією."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-17:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите сообщение одной компании",
@@ -485,8 +399,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-17:word:grateful",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grateful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:word:grateful:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grateful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:word:grateful:audio",
+          "transcript": "grateful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:word:grateful:r1",
+            "targetText": "grateful",
+            "meaningByLocale": {
+              "ru": "благодарный за помощь или доброе дело. They are grateful — «Они благодарны».",
+              "uk": "вдячний за допомогу або добру справу. They are grateful — «Вони вдячні»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grateful",
+          "definitionByLocale": {
+            "ru": "благодарный за помощь или доброе дело. They are grateful — «Они благодарны».",
+            "uk": "вдячний за допомогу або добру справу. They are grateful — «Вони вдячні»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-17:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -632,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,8 +665,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова с их значениями",
@@ -776,6 +733,49 @@
           "accuracy",
           "personal_best"
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:word:comfortable",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — comfortable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:word:comfortable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — comfortable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:word:comfortable:audio",
+          "transcript": "comfortable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:word:comfortable:r1",
+            "targetText": "comfortable",
+            "meaningByLocale": {
+              "ru": "чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.",
+              "uk": "той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "comfortable",
+          "definitionByLocale": {
+            "ru": "чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.",
+            "uk": "той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a5acc6daeca5df6b41d421e3b1fe671110006b0ae28b1f24a5c7a18e63b8f4d7"
+  "learnerFingerprint": "2d8709c9921eac9f39dd3b402f7185c688b886c84ec95366799245b7e459e959"
 }

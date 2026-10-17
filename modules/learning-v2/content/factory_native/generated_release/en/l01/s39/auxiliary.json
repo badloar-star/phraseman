@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro1:r2": {
-          "ru": "После `You` нужно `are`, даже если обращаетесь к одному человеку.",
-          "uk": "Після `You` потрібно `are`, навіть якщо звертаєтеся до однієї людини."
+          "ru": "shy — «стеснительный». Друг смешит весь зал — hilarious.",
+          "uk": "shy — «сором’язливий». Друг смішить усю залу — hilarious."
         },
         "en:lesson-01:session-39:intro1:r3": {
-          "ru": "Это про страх. Здесь вы отмечаете смелость: `brave`.",
-          "uk": "Це про страх. Тут ви відзначаєте сміливість: `brave`."
+          "ru": "She's — про женщину. Про друга говорим He's.",
+          "uk": "She's — про жінку. Про друга кажемо He's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro2:r2": {
-          "ru": "Это про неё. Про Олега нужно `He`.",
-          "uk": "Це про неї. Про Олега потрібно `He`."
+          "ru": "ashamed — стыдно за плохой поступок. Подруге просто неловко — embarrassed.",
+          "uk": "ashamed — соромно за поганий вчинок. Подрузі просто ніяково — embarrassed."
         },
         "en:lesson-01:session-39:intro2:r3": {
-          "ru": "После `He` нужна форма `is`.",
-          "uk": "Після `He` потрібна форма `is`."
+          "ru": "He's — про мужчину. Про подругу говорим She's.",
+          "uk": "He's — про чоловіка. Про подругу кажемо She's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro3:r2": {
-          "ru": "`similar` говорит о сходстве. Здесь указана точно равная длительность: `equal`.",
-          "uk": "`similar` говорить про схожість. Тут указано точно рівну тривалість: `equal`."
+          "ru": "nervous — «волнуюсь». Так было до выхода. Сейчас у вас нет слов — speechless.",
+          "uk": "nervous — «хвилююся». Так було до виходу. Зараз у вас немає слів — speechless."
         },
         "en:lesson-01:session-39:intro3:r3": {
-          "ru": "`separate` — «отдельные». Здесь нужно назвать равенство времени: `equal`.",
-          "uk": "`separate` — «окремі». Тут треба назвати рівність часу: `equal`."
+          "ru": "You're — про собеседника. О себе говорим I'm.",
+          "uk": "You're — про співрозмовника. Про себе кажемо I'm."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "334a68c3628c80677d2310d2fb64d9425324dc512150c3e6bed06946ed5b579b"
+  "auxiliaryFingerprint": "a52b263c25a2cf0fdf4058ce4bc555c991081f4b90040fbf520bc40f9497ad7a"
 }

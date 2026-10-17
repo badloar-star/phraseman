@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-03:i01",
+      "interactionId": "en:lesson-02:session-03:word:aware",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — aware",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:word:aware:audio"
+      ],
+      "accessibilityLabel": "Картка слова — aware",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:word:aware:audio",
+          "transcript": "aware"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:word:aware:r1",
+            "targetText": "aware",
+            "meaningByLocale": {
+              "ru": "в курсе, знает о чём-то. He is aware — «Он в курсе». He is not aware — «Он не в курсе».",
+              "uk": "у курсі, знає про щось. He is aware — «Він у курсі». He is not aware — «Він не в курсі»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aware",
+          "definitionByLocale": {
+            "ru": "в курсе, знает о чём-то. He is aware — «Он в курсе». He is not aware — «Он не в курсе».",
+            "uk": "у курсі, знає про щось. He is aware — «Він у курсі». He is not aware — «Він не в курсі»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,8 +92,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-03:word:convinced",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — convinced",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:word:convinced:audio"
+      ],
+      "accessibilityLabel": "Картка слова — convinced",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:word:convinced:audio",
+          "transcript": "convinced"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:word:convinced:r1",
+            "targetText": "convinced",
+            "meaningByLocale": {
+              "ru": "убеждён, доводы подействовали. I'm convinced — «Я убеждён». I'm not convinced — «Меня не убедили».",
+              "uk": "переконаний, аргументи подіяли. I'm convinced — «Я переконаний». I'm not convinced — «Мене не переконали»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "convinced",
+          "definitionByLocale": {
+            "ru": "убеждён, доводы подействовали. I'm convinced — «Я убеждён». I'm not convinced — «Меня не убедили».",
+            "uk": "переконаний, аргументи подіяли. I'm convinced — «Я переконаний». I'm not convinced — «Мене не переконали»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-03:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,8 +211,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-03:word:concerned",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — concerned",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:word:concerned:audio"
+      ],
+      "accessibilityLabel": "Картка слова — concerned",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:word:concerned:audio",
+          "transcript": "concerned"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:word:concerned:r1",
+            "targetText": "concerned",
+            "meaningByLocale": {
+              "ru": "обеспокоен, тревожится. We're concerned — «Мы обеспокоены». We're not concerned — «Нас это не тревожит».",
+              "uk": "стурбований, тривожиться. We're concerned — «Ми стурбовані». We're not concerned — «Нас це не турбує»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "concerned",
+          "definitionByLocale": {
+            "ru": "обеспокоен, тревожится. We're concerned — «Мы обеспокоены». We're not concerned — «Нас это не тревожит».",
+            "uk": "стурбований, тривожиться. We're concerned — «Ми стурбовані». We're not concerned — «Нас це не турбує»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-03:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -195,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -233,10 +362,10 @@
           },
           {
             "pairId": "en:lesson-02:session-03:i04:p4",
-            "target": "confident",
+            "target": "postponed",
             "meaningByLocale": {
-              "ru": "уверенный в себе",
-              "uk": "впевнений у собі"
+              "ru": "перенесён",
+              "uk": "перенесений"
             }
           }
         ],
@@ -244,13 +373,13 @@
           "aware",
           "convinced",
           "concerned",
-          "confident"
+          "postponed"
         ],
         "rightColumn": [
           "у курсі",
           "переконаний",
           "стурбований",
-          "впевнений у собі"
+          "перенесений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -268,8 +397,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -315,8 +444,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Анна ще не знає про нове місце зустрічі. Скажіть, що вона не в курсі обговорюваної зміни",
@@ -360,7 +489,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -393,7 +522,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -462,7 +591,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -538,7 +667,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -611,8 +740,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -658,7 +787,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -702,26 +831,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-03:word:postponed",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — postponed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:word:postponed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — postponed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:word:postponed:audio",
+          "transcript": "postponed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:word:postponed:r1",
+            "targetText": "postponed",
+            "meaningByLocale": {
+              "ru": "перенесён на другое время. It is postponed — «Это перенесли». It is not postponed — «Это не перенесли».",
+              "uk": "перенесений на інший час. It is postponed — «Це перенесли». It is not postponed — «Це не перенесли»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "postponed",
+          "definitionByLocale": {
+            "ru": "перенесён на другое время. It is postponed — «Это перенесли». It is not postponed — «Это не перенесли».",
+            "uk": "перенесений на інший час. It is postponed — «Це перенесли». It is not postponed — «Це не перенесли»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-03:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сумка з речами для зустрічі мало важить. Скажіть, що вона не важка",
+      "prompt": "Маша питає, чи перенесли ще й похід у кіно. Ні, кіно в силі. Скажіть їй, що його не перенесли",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-03:i13:audio"
       ],
-      "accessibilityLabel": "Сумка з речами для зустрічі мало важить. Скажіть, що вона не важка",
+      "accessibilityLabel": "Маша питає, чи перенесли ще й похід у кіно. Ні, кіно в силі. Скажіть їй, що його не перенесли",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-03:i13:audio",
-          "transcript": "It is not heavy."
+          "transcript": "It is not postponed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is not heavy.",
+        "targetPhrase": "It is not postponed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,8 +908,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Аргументи поки не переконали Олега. Доповніть фразу про нього",
@@ -805,7 +977,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -881,7 +1053,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -954,7 +1126,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-03:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -994,11 +1166,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bc0e2364d20f57efe6c70e7db28b22b1643357b967b28184c17b70e67961fe9e"
+  "learnerFingerprint": "6f6ea49612d1decbeb1b36d40db78002e2fe0cb17adaf82f04ef989afd5953e4"
 }

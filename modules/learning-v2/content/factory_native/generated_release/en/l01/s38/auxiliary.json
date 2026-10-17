@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-38:intro1:r2": {
-          "ru": "После `I` нужно `am`: `I am weak`.",
-          "uk": "Після `I` потрібно `am`: `I am weak`."
+          "ru": "thirsty — «хочется пить». Про сильный голод — starving.",
+          "uk": "thirsty — «хочеться пити». Про сильний голод — starving."
         },
         "en:lesson-01:session-38:intro1:r3": {
-          "ru": "`missing` — «пропавший». Вы дома; сейчас речь о слабости: `weak`.",
-          "uk": "`missing` — «зниклий». Ви вдома; зараз ідеться про слабкість: `weak`."
+          "ru": "В короткой форме остаётся 'm: I'm starving.",
+          "uk": "У короткій формі лишається 'm: I'm starving."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-38:intro2:r2": {
-          "ru": "`He` — про него, человека. Здесь про сигнал: `It is weak`.",
-          "uk": "`He` — про нього, людину. Тут про сигнал: `It is weak`."
+          "ru": "wet — «мокрый». Серый налёт на сухой полке — dusty.",
+          "uk": "wet — «мокрий». Сірий наліт на сухій полиці — dusty."
         },
         "en:lesson-01:session-38:intro2:r3": {
-          "ru": "После `It` нужна форма `is`.",
-          "uk": "Після `It` потрібна форма `is`."
+          "ru": "She's — про женщину. Про полку говорим It's.",
+          "uk": "She's — про жінку. Про полицю кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-38:intro3:r2": {
-          "ru": "`dead` означает, что растение погибло. Здесь оно живое: `alive`.",
-          "uk": "`dead` означає, що рослина загинула. Тут вона жива: `alive`."
+          "ru": "hot — «ему жарко». Красная кожа после солнца — sunburned.",
+          "uk": "hot — «йому спекотно». Червона шкіра після сонця — sunburned."
         },
         "en:lesson-01:session-38:intro3:r3": {
-          "ru": "Растение перед вами. Нужно сообщить, что оно живое: `alive`.",
-          "uk": "Рослина перед вами. Треба повідомити, що вона жива: `alive`."
+          "ru": "I'm — про вас. Про брата говорим He's.",
+          "uk": "I'm — про вас. Про брата кажемо He's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "952acd4eb6b2b268098d17c3d3db4c5f77c8a0ae6cfad739f296a88af221d62b"
+  "auxiliaryFingerprint": "644c308ff74042c619f9d4f11db7315335b82653e8e9e456e3bbb7fe86de655a"
 }

@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-14:intro2:r2": {
-          "ru": "Cold — «тебе холодно». В задании нужно сказать, что Алекс сухой: dry.",
-          "uk": "Cold — «тобі холодно». У завданні потрібно сказати, що Алекс сухий: dry."
+          "ru": "Cold — «тебе холодно». В задании нужно сказать, что турист сухой: dry.",
+          "uk": "Cold — «тобі холодно». У завданні потрібно сказати, що турист сухий: dry."
         },
         "en:lesson-01:session-14:intro2:r3": {
           "ru": "В этой фразе после you нужно are.",
@@ -36,11 +36,11 @@
           "uk": "Cold означає, що йому холодно, але за умовою він уже зігрівся."
         },
         "en:lesson-01:session-14:intro3:r3": {
-          "ru": "Вы обращаетесь к Алексу о его состоянии: You are warm.",
-          "uk": "Ви звертаєтеся до Алекса про його стан: You are warm."
+          "ru": "Вы обращаетесь к туристу о его состоянии: You are warm.",
+          "uk": "Ви звертаєтеся до туриста про його стан: You are warm."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bd887a5a67e80dc9e45d94adbaeb0d80c9babb68385128f13d7cf79987e6a5c7"
+  "auxiliaryFingerprint": "7fbe135da6f2af3db81345845de04127f2ac3b57468b9b3c6f55a64c65961506"
 }

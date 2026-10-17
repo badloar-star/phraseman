@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Спрашиваем или сообщаем",
-        "uk": "Запитуємо чи повідомляємо"
+        "ru": "Гостям рано вставать",
+        "uk": "Гостям рано вставати"
       },
       "bodyByLocale": {
-        "ru": "`It is possible` — «Это возможно». `Is it possible?` — «Это возможно?» В обычном вопросе `is` стоит перед `it`. Так вы можете уточнить, можно ли перенести показ, не обещая ничего гостям заранее.",
-        "uk": "`It is possible` — «Це можливо». `Is it possible?` — «Це можливо?» У звичайному запитанні `is` стоїть перед `it`. Так ви можете уточнити, чи можна перенести показ, нічого не обіцяючи гостям заздалегідь."
+        "ru": "Друг выбрал фильм, но вы не знаете, сколько он идёт. Соседям завтра рано на работу, и в десять все хотят разойтись. long — «длинный», «долгий». Is it long? — «Он длинный?»",
+        "uk": "Друг обрав фільм, але ви не знаєте, скільки він триває. Сусідам завтра рано на роботу, і о десятій усі хочуть розійтися. long — «довгий». Is it long? — «Він довгий?»"
       },
       "question": {
         "interactionId": "en:lesson-02:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "Вы уже объяснили администратору, что хотите перенести показ на час. Спросите, возможно ли это.",
-          "uk": "Ви вже пояснили адміністратору, що хочете перенести показ на годину. Запитайте, чи це можливо."
+          "ru": "Спросите друга, длинный ли фильм.",
+          "uk": "Запитайте друга, чи довгий фільм."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-16:intro1:r1",
-              "text": "Is it possible?"
+              "text": "Is it long?"
             },
             {
               "responseId": "en:lesson-02:session-16:intro1:r2",
-              "text": "Are it possible?"
+              "text": "It is long."
             },
             {
               "responseId": "en:lesson-02:session-16:intro1:r3",
-              "text": "Is possible it?"
+              "text": "Are it long?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-16:intro1:r1",
-              "text": "Is it possible?"
+              "text": "Is it long?"
             },
             {
               "responseId": "en:lesson-02:session-16:intro1:r2",
-              "text": "Are it possible?"
+              "text": "It is long."
             },
             {
               "responseId": "en:lesson-02:session-16:intro1:r3",
-              "text": "Is possible it?"
+              "text": "Are it long?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже объяснили администратору, что хотите перенести показ на час. Спросите, возможно ли это.",
-          "uk": "Ви вже пояснили адміністратору, що хочете перенести показ на годину. Запитайте, чи це можливо."
+          "ru": "Спросите друга, длинный ли фильм.",
+          "uk": "Запитайте друга, чи довгий фільм."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кому можно приходить",
-        "uk": "Хто може приходити"
+        "ru": "Соседка с сыном",
+        "uk": "Сусідка із сином"
       },
       "bodyByLocale": {
-        "ru": "`public` — «общедоступный», `private` — «частный, не для всех». Частный показ только для приглашённых можно описать так: `It is not public`. А если приглашение лежит на виду, оно не превращается в приглашение для всего города.",
-        "uk": "`public` — «загальнодоступний», `private` — «приватний, не для всіх». Приватний показ лише для запрошених можна описати так: `It is not public`. А якщо запрошення лежить на видноті, воно не перетворюється на запрошення для всього міста."
+        "ru": "Соседка хочет прийти с семилетним сыном и волнуется, не испугается ли он. Фильм — комедия про собаку, которая потерялась в большом городе. scary — «страшный». It is not scary, коротко It's not scary — «Он не страшный».",
+        "uk": "Сусідка хоче прийти із семирічним сином і хвилюється, чи він не злякається. Фільм — комедія про собаку, яка загубилася у великому місті. scary — «страшний». It is not scary, коротко It's not scary — «Він не страшний»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "На показ можно прийти только по личному приглашению. Скажите, что он не общедоступный.",
-          "uk": "На показ можна прийти лише за особистим запрошенням. Скажіть, що він не загальнодоступний."
+          "ru": "Соседка спрашивает, страшный ли фильм. Коротко ответьте, что он не страшный.",
+          "uk": "Сусідка питає, чи страшний фільм. Коротко відповідайте, що він не страшний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-16:intro2:r1",
-              "text": "It is not public."
+              "text": "It's not scary."
             },
             {
               "responseId": "en:lesson-02:session-16:intro2:r2",
-              "text": "It is public."
+              "text": "It's scary."
             },
             {
               "responseId": "en:lesson-02:session-16:intro2:r3",
-              "text": "It not public."
+              "text": "He's not scary."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-16:intro2:r1",
-              "text": "It is not public."
+              "text": "It's not scary."
             },
             {
               "responseId": "en:lesson-02:session-16:intro2:r2",
-              "text": "It is public."
+              "text": "It's scary."
             },
             {
               "responseId": "en:lesson-02:session-16:intro2:r3",
-              "text": "It not public."
+              "text": "He's not scary."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На показ можно прийти только по личному приглашению. Скажите, что он не общедоступный.",
-          "uk": "На показ можна прийти лише за особистим запрошенням. Скажіть, що він не загальнодоступний."
+          "ru": "Соседка спрашивает, страшный ли фильм. Коротко ответьте, что он не страшный.",
+          "uk": "Сусідка питає, чи страшний фільм. Коротко відповідайте, що він не страшний."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что именно вы отрицаете",
-        "uk": "Що саме ви заперечуєте"
+        "ru": "Гости зевают",
+        "uk": "Гості позіхають"
       },
       "bodyByLocale": {
-        "ru": "`It is not urgent` — «Это не срочно». `It is not impossible` — «Это не невозможно»: возможность есть. `Not` стоит после `is`, а смысл зависит от следующего слова. Читайте всю фразу, а не только знакомое начало.",
-        "uk": "`It is not urgent` — «Це не терміново». `It is not impossible` — «Це не неможливо»: можливість є. `Not` стоїть після `is`, а зміст залежить від наступного слова. Читайте всю фразу, а не лише знайомий початок."
+        "ru": "Прошло полчаса. Двое гостей зевают и смотрят в телефоны. Друг тихо спрашивает вас, как вам фильм. boring — «скучный». It is boring, коротко It's boring — «Он скучный».",
+        "uk": "Минуло пів години. Двоє гостей позіхають і дивляться в телефони. Друг тихо питає вас, як вам фільм. boring — «нудний». It is boring, коротко It's boring — «Він нудний»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "Выбрать музыку для следующего показа можно на неделе. Коротко скажите, что это не срочно.",
-          "uk": "Вибрати музику для наступного показу можна протягом тижня. Коротко скажіть, що це не терміново."
+          "ru": "Коротко скажите другу, что фильм скучный.",
+          "uk": "Коротко скажіть другові, що фільм нудний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-16:intro3:r1",
-              "text": "It's not urgent."
+              "text": "It's boring."
             },
             {
               "responseId": "en:lesson-02:session-16:intro3:r2",
-              "text": "It's urgent."
+              "text": "It's not boring."
             },
             {
               "responseId": "en:lesson-02:session-16:intro3:r3",
-              "text": "It's not possible."
+              "text": "They're boring."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-16:intro3:r1",
-              "text": "It's not urgent."
+              "text": "It's boring."
             },
             {
               "responseId": "en:lesson-02:session-16:intro3:r2",
-              "text": "It's urgent."
+              "text": "It's not boring."
             },
             {
               "responseId": "en:lesson-02:session-16:intro3:r3",
-              "text": "It's not possible."
+              "text": "They're boring."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Выбрать музыку для следующего показа можно на неделе. Коротко скажите, что это не срочно.",
-          "uk": "Вибрати музику для наступного показу можна протягом тижня. Коротко скажіть, що це не терміново."
+          "ru": "Коротко скажите другу, что фильм скучный.",
+          "uk": "Коротко скажіть другові, що фільм нудний."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d6244e4b64bb9e91840d0f5c906ddd0cfb45d10ffe951a17bcef01cd8efc46cd"
+  "introFingerprint": "3d47e8dbd5acf738477c050f13ce67f441a38ef7995195a61519e879be347a30"
 }

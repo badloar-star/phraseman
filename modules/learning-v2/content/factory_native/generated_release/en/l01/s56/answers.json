@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-01:session-56:word:locked",
+    "correctText": "locked",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-56:i01",
-    "correctText": "It is cheap.",
+    "correctText": "It is locked.",
     "correctResponseId": null
   },
   {
@@ -16,27 +21,37 @@
   },
   {
     "interactionId": "en:lesson-01:session-56:i04",
-    "correctText": "en:lesson-01:session-56:i04:p1=cheap\nen:lesson-01:session-56:i04:p2=expensive\nen:lesson-01:session-56:i04:p3=heavy\nen:lesson-01:session-56:i04:p4=light",
+    "correctText": "en:lesson-01:session-56:i04:p1=locked\nen:lesson-01:session-56:i04:p2=expired\nen:lesson-01:session-56:i04:p3=tight\nen:lesson-01:session-56:i04:p4=cracked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:word:cracked",
+    "correctText": "cracked",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i05",
-    "correctText": "It's full.",
+    "correctText": "It's cracked.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i06",
-    "correctText": "It is familiar.",
+    "correctText": "I am ready.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i07",
-    "correctText": "It's unfamiliar.",
+    "correctText": "It's cracked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:word:expired",
+    "correctText": "expired",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i08",
-    "correctText": "unknown",
+    "correctText": "expired",
     "correctResponseId": "en:lesson-01:session-56:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-01:session-56:i10",
-    "correctText": "en:lesson-01:session-56:i10:p1=familiar\nen:lesson-01:session-56:i10:p2=unfamiliar\nen:lesson-01:session-56:i10:p3=unknown\nen:lesson-01:session-56:i10:p4=full",
+    "correctText": "en:lesson-01:session-56:i10:p1=hungry\nen:lesson-01:session-56:i10:p2=tired\nen:lesson-01:session-56:i10:p3=lost\nen:lesson-01:session-56:i10:p4=late",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i11",
-    "correctText": "We're independent.",
+    "correctText": "We're late.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i12",
-    "correctText": "He is dependent.",
+    "correctText": "He is forgetful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i13",
-    "correctText": "I am responsible.",
+    "correctText": "It's delicious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:word:tight",
+    "correctText": "tight",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-56:i15",
-    "correctText": "They're full.",
+    "correctText": "They're tight.",
     "correctResponseId": "en:lesson-01:session-56:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-56:i16",
-    "correctText": "en:lesson-01:session-56:i16:p1=responsible\nen:lesson-01:session-56:i16:p2=independent\nen:lesson-01:session-56:i16:p3=dependent\nen:lesson-01:session-56:i16:p4=full",
+    "correctText": "en:lesson-01:session-56:i16:p1=responsible\nen:lesson-01:session-56:i16:p2=independent\nen:lesson-01:session-56:i16:p3=familiar\nen:lesson-01:session-56:i16:p4=full",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i17",
-    "correctText": "She is independent.",
+    "correctText": "It is locked.",
     "correctResponseId": null
   }
 ]

@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-41:i01",
+      "interactionId": "en:lesson-01:session-41:word:clumsy",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clumsy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:word:clumsy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clumsy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:word:clumsy:audio",
+          "transcript": "clumsy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:word:clumsy:r1",
+            "targetText": "clumsy",
+            "meaningByLocale": {
+              "ru": "неуклюжий, неловкий. I'm clumsy — «Я такой неуклюжий»: часто что-то роняю или задеваю.",
+              "uk": "незграбний. I'm clumsy — «Я такий незграбний»: часто щось упускаю чи зачіпаю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clumsy",
+          "definitionByLocale": {
+            "ru": "неуклюжий, неловкий. I'm clumsy — «Я такой неуклюжий»: часто что-то роняю или задеваю.",
+            "uk": "незграбний. I'm clumsy — «Я такий незграбний»: часто щось упускаю чи зачіпаю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы говорите о себе как о человеке, который не обманывает. Соберите фразу",
+      "prompt": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы говорите о себе как о человеке, который не обманывает. Соберите фразу",
+      "accessibilityLabel": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am honest.",
+        "targetPhrase": "I am clumsy.",
         "localizedMeaning": {
-          "ru": "Вы говорите о себе как о человеке, который не обманывает. Соберите фразу",
-          "uk": "Ви говорите про себе як про людину, яка не обманює. Складіть фразу"
+          "ru": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
+          "uk": "Ви зачепили горнятко ліктем. Складіть фразу про себе: «Я незграбний»"
         },
         "orderedTokens": [
           "I",
           "am",
-          "honest"
+          "clumsy"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-01:session-41:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы говорите о себе как о человеке, который не обманывает. Соберите фразу",
+            "testedDimension": "Вы задели кружку локтем. Соберите фразу о себе: «Я неуклюжий»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am honest.`",
-              "uk": "тут потрібно `am` — `I am honest.`"
+              "ru": "здесь нужно `am` — `I am clumsy.`",
+              "uk": "тут потрібно `am` — `I am clumsy.`"
             }
           }
         ],
@@ -48,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-41:word:upset",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — upset",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:word:upset:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — upset",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:word:upset:audio",
+          "transcript": "upset"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:word:upset:r1",
+            "targetText": "upset",
+            "meaningByLocale": {
+              "ru": "расстроен, огорчён. She's upset — «Она расстроена».",
+              "uk": "засмучений. She's upset — «Вона засмучена»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upset",
+          "definitionByLocale": {
+            "ru": "расстроен, огорчён. She's upset — «Она расстроена».",
+            "uk": "засмучений. She's upset — «Вона засмучена»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-41:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,11 +143,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-41:i02:r1",
-          "text": "She is honest."
+          "text": "She is upset."
         },
         {
           "responseId": "en:lesson-01:session-41:i02:r2",
-          "text": "He is honest."
+          "text": "He is upset."
         },
         {
           "responseId": "en:lesson-01:session-41:i02:r3",
@@ -77,18 +163,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-41:i02:audio",
-          "transcript": "She is honest."
+          "transcript": "She is upset."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-41:i02:r1",
-            "targetText": "She is honest.",
+            "targetText": "She is upset.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-41:i02:r2",
-            "targetText": "He is honest.",
+            "targetText": "He is upset.",
             "meaningByLocale": null
           },
           {
@@ -113,8 +199,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `okay`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `okay`."
+              "ru": "В записи последнее слово — `upset`, а в этом варианте — `okay`.",
+              "uk": "У записі останнє слово — `upset`, а в цьому варіанті — `okay`."
             }
           }
         ],
@@ -124,12 +210,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-41:word:furious",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — furious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:word:furious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — furious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:word:furious:audio",
+          "transcript": "furious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:word:furious:r1",
+            "targetText": "furious",
+            "meaningByLocale": {
+              "ru": "в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.",
+              "uk": "у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "furious",
+          "definitionByLocale": {
+            "ru": "в ярости, очень злой. He's furious — «Он в ярости». Сильнее, чем angry.",
+            "uk": "у люті, дуже злий. He's furious — «Він у люті». Сильніше, ніж angry."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-41:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег говорит правду. Дополните описание его честности",
+      "prompt": "Брат подруги кричит и стучит кулаком по столу: соседи поцарапали его машину. Дополните фразу о нём",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-41:i03:r1",
@@ -146,14 +275,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег говорит правду. Дополните описание его честности",
+      "accessibilityLabel": "Брат подруги кричит и стучит кулаком по столу: соседи поцарапали его машину. Дополните фразу о нём",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег говорит правду. Дополните описание его честности",
-          "uk": "Олег каже правду. Доповніть опис його чесності"
+          "ru": "Брат подруги кричит и стучит кулаком по столу: соседи поцарапали его машину. Дополните фразу о нём",
+          "uk": "Брат подруги кричить і стукає кулаком по столу: сусіди подряпали його машину. Доповніть фразу про нього"
         },
-        "gappedTargetPhrase": "He ___ honest.",
+        "gappedTargetPhrase": "He ___ furious.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-41:i03:r1",
@@ -168,12 +297,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег говорит правду. Дополните описание его честности",
+        "testedDimension": "Брат подруги кричит и стучит кулаком по столу: соседи поцарапали его машину. Дополните фразу о нём",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-41:i03:r2",
             "correct": false,
-            "testedDimension": "Олег говорит правду. Дополните описание его честности",
+            "testedDimension": "Брат подруги кричит и стучит кулаком по столу: соседи поцарапали его машину. Дополните фразу о нём",
             "feedbackByLocale": {
               "ru": "После `He` нужно `is`.",
               "uk": "Після `He` потрібно `is`."
@@ -182,10 +311,10 @@
           {
             "responseId": "en:lesson-01:session-41:i03:r3",
             "correct": false,
-            "testedDimension": "Олег говорит правду. Дополните описание его честности",
+            "testedDimension": "Брат подруги кричит и стучит кулаком по столу: соседи поцарапали его машину. Дополните фразу о нём",
             "feedbackByLocale": {
-              "ru": "Здесь `He is honest`.",
-              "uk": "Тут `He is honest`."
+              "ru": "Про брата здесь `He is`.",
+              "uk": "Про брата тут `He is`."
             }
           }
         ]
@@ -194,62 +323,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините короткие начала с полными",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините короткие начала с полными",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-41:i04:p1",
-            "target": "I'm",
+            "target": "clumsy",
             "meaningByLocale": {
-              "ru": "I am",
-              "uk": "I am"
+              "ru": "неуклюжий",
+              "uk": "незграбний"
             }
           },
           {
             "pairId": "en:lesson-01:session-41:i04:p2",
-            "target": "He's",
+            "target": "precious",
             "meaningByLocale": {
-              "ru": "He is",
-              "uk": "He is"
+              "ru": "очень дорогой для человека",
+              "uk": "дуже дорогий для людини"
             }
           },
           {
             "pairId": "en:lesson-01:session-41:i04:p3",
-            "target": "She's",
+            "target": "upset",
             "meaningByLocale": {
-              "ru": "She is",
-              "uk": "She is"
+              "ru": "расстроен",
+              "uk": "засмучений"
             }
           },
           {
             "pairId": "en:lesson-01:session-41:i04:p4",
-            "target": "You're",
+            "target": "furious",
             "meaningByLocale": {
-              "ru": "You are",
-              "uk": "You are"
+              "ru": "в ярости",
+              "uk": "у люті"
             }
           }
         ],
         "leftColumn": [
-          "I'm",
-          "He's",
-          "She's",
-          "You're"
+          "clumsy",
+          "precious",
+          "upset",
+          "furious"
         ],
         "rightColumn": [
-          "I am",
-          "He is",
-          "She is",
-          "You are"
+          "неуклюжий",
+          "очень дорогой для человека",
+          "расстроен",
+          "в ярости"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +396,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -312,39 +441,82 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-41:word:precious",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — precious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:word:precious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — precious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:word:precious:audio",
+          "transcript": "precious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:word:precious:r1",
+            "targetText": "precious",
+            "meaningByLocale": {
+              "ru": "очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.",
+              "uk": "дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "precious",
+          "definitionByLocale": {
+            "ru": "очень дорогой, ценный для человека. It's precious — «Это очень дорого мне». Обычно о памяти, а не о цене.",
+            "uk": "дуже дорогий, цінний для людини. It's precious — «Це дуже дороге мені». Зазвичай про пам’ять, а не про ціну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-41:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Двое друзей всегда честно признают свои ошибки. Вы рассказываете о них. Назовите их честными",
+      "prompt": "Подруга показывает старый фотоальбом, где эта кружка стоит на бабушкином столе. Соберите фразу об альбоме: «Он очень дорог ей»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двое друзей всегда честно признают свои ошибки. Вы рассказываете о них. Назовите их честными",
+      "accessibilityLabel": "Подруга показывает старый фотоальбом, где эта кружка стоит на бабушкином столе. Соберите фразу об альбоме: «Он очень дорог ей»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are honest.",
+        "targetPhrase": "It is precious.",
         "localizedMeaning": {
-          "ru": "Двое друзей всегда честно признают свои ошибки. Вы рассказываете о них. Назовите их честными",
-          "uk": "Двоє друзів завжди чесно визнають свої помилки. Ви розповідаєте про них. Назвіть їх чесними"
+          "ru": "Подруга показывает старый фотоальбом, где эта кружка стоит на бабушкином столе. Соберите фразу об альбоме: «Он очень дорог ей»",
+          "uk": "Подруга показує старий фотоальбом, де це горнятко стоїть на бабусиному столі. Складіть фразу про альбом: «Він дуже дорогий їй»"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "honest"
+          "It",
+          "is",
+          "precious"
         ],
         "authoredDistractorTokens": [
-          "We"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-41:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Двое друзей всегда честно признают свои ошибки. Вы рассказываете о них. Назовите их честными",
+            "testedDimension": "Подруга показывает старый фотоальбом, где эта кружка стоит на бабушкином столе. Соберите фразу об альбоме: «Он очень дорог ей»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `They` — `They are honest.`",
-              "uk": "тут потрібно `They` — `They are honest.`"
+              "ru": "здесь нужно `is` — `It is precious.`",
+              "uk": "тут потрібно `is` — `It is precious.`"
             }
           }
         ],
@@ -357,17 +529,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коротко скажите о своей честности",
+      "prompt": "Вы сразу признались, что кружку разбили вы. Скажите коротко о своей честности",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-41:i07:audio"
       ],
-      "accessibilityLabel": "Коротко скажите о своей честности",
+      "accessibilityLabel": "Вы сразу признались, что кружку разбили вы. Скажите коротко о своей честности",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -390,11 +562,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы не пострадали, с вами всё нормально. Сообщите именно об этом",
+      "prompt": "Подруга уже не грустит, с ней всё нормально. Сообщите именно об этом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-41:i08:r1",
@@ -402,23 +574,23 @@
         },
         {
           "responseId": "en:lesson-01:session-41:i08:r2",
-          "text": "honest"
+          "text": "upset"
         },
         {
           "responseId": "en:lesson-01:session-41:i08:r3",
-          "text": "ill"
+          "text": "furious"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы не пострадали, с вами всё нормально. Сообщите именно об этом",
+      "accessibilityLabel": "Подруга уже не грустит, с ней всё нормально. Сообщите именно об этом",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы не пострадали, с вами всё нормально. Сообщите именно об этом",
-          "uk": "Ви не постраждали, з вами все гаразд. Повідомте саме про це"
+          "ru": "Подруга уже не грустит, с ней всё нормально. Сообщите именно об этом",
+          "uk": "Подруга вже не сумує, з нею все гаразд. Повідомте саме про це"
         },
-        "gappedTargetPhrase": "I am ___ .",
+        "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-41:i08:r1",
@@ -426,31 +598,31 @@
           },
           {
             "responseId": "en:lesson-01:session-41:i08:r2",
-            "text": "honest"
+            "text": "upset"
           },
           {
             "responseId": "en:lesson-01:session-41:i08:r3",
-            "text": "ill"
+            "text": "furious"
           }
         ],
-        "testedDimension": "Вы не пострадали, с вами всё нормально. Сообщите именно об этом",
+        "testedDimension": "Подруга уже не грустит, с ней всё нормально. Сообщите именно об этом",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-41:i08:r2",
             "correct": false,
-            "testedDimension": "Вы не пострадали, с вами всё нормально. Сообщите именно об этом",
+            "testedDimension": "Подруга уже не грустит, с ней всё нормально. Сообщите именно об этом",
             "feedbackByLocale": {
-              "ru": "Это «честный». О состоянии здесь скажите `okay`.",
-              "uk": "Це «чесний». Про стан тут скажіть `okay`."
+              "ru": "Это «расстроена». Здесь с ней уже всё нормально: `okay`.",
+              "uk": "Це «засмучена». Тут із нею вже все гаразд: `okay`."
             }
           },
           {
             "responseId": "en:lesson-01:session-41:i08:r3",
             "correct": false,
-            "testedDimension": "Вы не пострадали, с вами всё нормально. Сообщите именно об этом",
+            "testedDimension": "Подруга уже не грустит, с ней всё нормально. Сообщите именно об этом",
             "feedbackByLocale": {
-              "ru": "`ill` — «болею». Здесь с вами всё нормально: `okay`.",
-              "uk": "`ill` — «хворію». Тут з вами все гаразд: `okay`."
+              "ru": "`furious` — «в ярости». Здесь всё нормально: `okay`.",
+              "uk": "`furious` — «у люті». Тут усе гаразд: `okay`."
             }
           }
         ]
@@ -459,7 +631,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -467,15 +639,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-41:i09:r1",
-          "text": "We are honest."
+          "text": "I'm clumsy."
         },
         {
           "responseId": "en:lesson-01:session-41:i09:r2",
-          "text": "They are honest."
+          "text": "He's clumsy."
         },
         {
           "responseId": "en:lesson-01:session-41:i09:r3",
-          "text": "We are okay."
+          "text": "I'm sorry."
         }
       ],
       "mediaIds": [],
@@ -487,23 +659,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-41:i09:audio",
-          "transcript": "We are honest."
+          "transcript": "I'm clumsy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-41:i09:r1",
-            "targetText": "We are honest.",
+            "targetText": "I'm clumsy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-41:i09:r2",
-            "targetText": "They are honest.",
+            "targetText": "He's clumsy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-41:i09:r3",
-            "targetText": "We are okay.",
+            "targetText": "I'm sorry.",
             "meaningByLocale": null
           }
         ],
@@ -514,8 +686,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              "ru": "В записи первое слово — `I'm`, а в этом варианте — `He's`.",
+              "uk": "У записі перше слово — `I'm`, а в цьому варіанті — `He's`."
             }
           },
           {
@@ -523,8 +695,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `okay`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `okay`."
+              "ru": "В записи последнее слово — `clumsy`, а в этом варианте — `sorry`.",
+              "uk": "У записі останнє слово — `clumsy`, а в цьому варіанті — `sorry`."
             }
           }
         ],
@@ -535,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -573,10 +745,10 @@
           },
           {
             "pairId": "en:lesson-01:session-41:i10:p4",
-            "target": "afraid",
+            "target": "calm",
             "meaningByLocale": {
-              "ru": "боится",
-              "uk": "боїться"
+              "ru": "спокойный",
+              "uk": "спокійний"
             }
           }
         ],
@@ -584,13 +756,13 @@
           "honest",
           "okay",
           "brave",
-          "afraid"
+          "calm"
         ],
         "rightColumn": [
           "честный",
           "в порядке",
           "смелый",
-          "боится"
+          "спокойный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -608,8 +780,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -623,13 +795,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-41:i11:audio",
-          "transcript": "He's okay."
+          "transcript": "He's furious."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "He's okay.",
+        "hiddenTargetPhrase": "He's furious.",
         "orderedTokens": [
           "He's",
-          "okay"
+          "furious"
         ],
         "authoredDistractorTokens": [
           "She's"
@@ -640,8 +812,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `He's` — `He's okay.`",
-              "uk": "тут потрібно `He's` — `He's okay.`"
+              "ru": "здесь нужно `He's` — `He's furious.`",
+              "uk": "тут потрібно `He's` — `He's furious.`"
             }
           }
         ],
@@ -654,21 +826,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Обратитесь к подруге и отметьте её честность",
+      "prompt": "Подруга благодарит вас за то, что вы сразу признались. Соберите её ответ вам: «Ты честный»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Обратитесь к подруге и отметьте её честность",
+      "accessibilityLabel": "Подруга благодарит вас за то, что вы сразу признались. Соберите её ответ вам: «Ты честный»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are honest.",
         "localizedMeaning": {
-          "ru": "Обратитесь к подруге и отметьте её честность",
-          "uk": "Зверніться до подруги й відзначте її чесність"
+          "ru": "Подруга благодарит вас за то, что вы сразу признались. Соберите её ответ вам: «Ты честный»",
+          "uk": "Подруга дякує вам за те, що ви одразу зізналися. Складіть її відповідь вам: «Ти чесний»"
         },
         "orderedTokens": [
           "You",
@@ -682,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-41:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Обратитесь к подруге и отметьте её честность",
+            "testedDimension": "Подруга благодарит вас за то, что вы сразу признались. Соберите её ответ вам: «Ты честный»",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `You are honest.`",
               "uk": "тут потрібно `are` — `You are honest.`"
@@ -698,25 +870,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы с братом не скрываете своих ошибок. Назовите вас обоих честными",
+      "prompt": "Вы рассказываете маме вечером, как подруга переживала из-за кружки. Скажите, что она расстроена",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-41:i13:audio"
       ],
-      "accessibilityLabel": "Вы с братом не скрываете своих ошибок. Назовите вас обоих честными",
+      "accessibilityLabel": "Вы рассказываете маме вечером, как подруга переживала из-за кружки. Скажите, что она расстроена",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-41:i13:audio",
-          "transcript": "We are honest."
+          "transcript": "She is upset."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are honest.",
+        "targetPhrase": "She is upset.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -731,11 +903,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите двух друзей честными. Вставьте слово",
+      "prompt": "Вы с братом часто что-то роняете. Назовите вас обоих неуклюжими. Вставьте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-41:i14:r1",
@@ -752,14 +924,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите двух друзей честными. Вставьте слово",
+      "accessibilityLabel": "Вы с братом часто что-то роняете. Назовите вас обоих неуклюжими. Вставьте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите двух друзей честными. Вставьте слово",
-          "uk": "Назвіть двох друзів чесними. Вставте слово"
+          "ru": "Вы с братом часто что-то роняете. Назовите вас обоих неуклюжими. Вставьте слово",
+          "uk": "Ви з братом часто щось упускаєте. Назвіть вас обох незграбними. Вставте слово"
         },
-        "gappedTargetPhrase": "They ___ honest.",
+        "gappedTargetPhrase": "We ___ clumsy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-41:i14:r1",
@@ -774,24 +946,24 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Назовите двух друзей честными. Вставьте слово",
+        "testedDimension": "Вы с братом часто что-то роняете. Назовите вас обоих неуклюжими. Вставьте слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-41:i14:r2",
             "correct": false,
-            "testedDimension": "Назовите двух друзей честными. Вставьте слово",
+            "testedDimension": "Вы с братом часто что-то роняете. Назовите вас обоих неуклюжими. Вставьте слово",
             "feedbackByLocale": {
-              "ru": "После `They` нужно `are`.",
-              "uk": "Після `They` потрібно `are`."
+              "ru": "После `We` нужно `are`.",
+              "uk": "Після `We` потрібно `are`."
             }
           },
           {
             "responseId": "en:lesson-01:session-41:i14:r3",
             "correct": false,
-            "testedDimension": "Назовите двух друзей честными. Вставьте слово",
+            "testedDimension": "Вы с братом часто что-то роняете. Назовите вас обоих неуклюжими. Вставьте слово",
             "feedbackByLocale": {
-              "ru": "Здесь `They are honest`.",
-              "uk": "Тут `They are honest`."
+              "ru": "Вас двое, поэтому `We are`.",
+              "uk": "Вас двоє, тому `We are`."
             }
           }
         ]
@@ -800,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -808,15 +980,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-41:i15:r1",
-          "text": "She's honest."
+          "text": "It's precious."
         },
         {
           "responseId": "en:lesson-01:session-41:i15:r2",
-          "text": "He's honest."
+          "text": "It's okay."
         },
         {
           "responseId": "en:lesson-01:session-41:i15:r3",
-          "text": "She's okay."
+          "text": "He's precious."
         }
       ],
       "mediaIds": [],
@@ -828,23 +1000,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-41:i15:audio",
-          "transcript": "She's honest."
+          "transcript": "It's precious."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-41:i15:r1",
-            "targetText": "She's honest.",
+            "targetText": "It's precious.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-41:i15:r2",
-            "targetText": "He's honest.",
+            "targetText": "It's okay.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-41:i15:r3",
-            "targetText": "She's okay.",
+            "targetText": "He's precious.",
             "meaningByLocale": null
           }
         ],
@@ -855,8 +1027,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
-              "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              "ru": "В записи последнее слово — `precious`, а в этом варианте — `okay`.",
+              "uk": "У записі останнє слово — `precious`, а в цьому варіанті — `okay`."
             }
           },
           {
@@ -864,8 +1036,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `okay`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `okay`."
+              "ru": "В записи первое слово — `It's`, а в этом варианте — `He's`.",
+              "uk": "У записі перше слово — `It's`, а в цьому варіанті — `He's`."
             }
           }
         ],
@@ -876,7 +1048,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -890,48 +1062,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-41:i16:p1",
-            "target": "We're",
+            "target": "She's",
             "meaningByLocale": {
-              "ru": "We are",
-              "uk": "We are"
+              "ru": "She is",
+              "uk": "She is"
             }
           },
           {
             "pairId": "en:lesson-01:session-41:i16:p2",
-            "target": "They're",
+            "target": "It's",
             "meaningByLocale": {
-              "ru": "They are",
-              "uk": "They are"
+              "ru": "It is",
+              "uk": "It is"
             }
           },
           {
             "pairId": "en:lesson-01:session-41:i16:p3",
-            "target": "honest",
+            "target": "upset",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "расстроен",
+              "uk": "засмучений"
             }
           },
           {
             "pairId": "en:lesson-01:session-41:i16:p4",
-            "target": "okay",
+            "target": "furious",
             "meaningByLocale": {
-              "ru": "в порядке",
-              "uk": "у порядку"
+              "ru": "в ярости",
+              "uk": "у люті"
             }
           }
         ],
         "leftColumn": [
-          "We're",
-          "They're",
-          "honest",
-          "okay"
+          "She's",
+          "It's",
+          "upset",
+          "furious"
         ],
         "rightColumn": [
-          "We are",
-          "They are",
-          "честный",
-          "в порядке"
+          "She is",
+          "It is",
+          "расстроен",
+          "в ярости"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,7 +1121,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-41:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "11ae31628de33eda5f0de11042bdc379fd79045e1fe5bfb254215c71d25888f6"
+  "learnerFingerprint": "f7a2a682dd17ede14e0760373b56b2447d3b55c3c1166ad835d15c1cde48ebad"
 }

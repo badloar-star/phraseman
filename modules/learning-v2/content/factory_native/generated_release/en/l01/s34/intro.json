@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-34",
   "learningOutcomeByLocale": {
-    "ru": "назвать страх и отличить его от знакомых состояний, используя полные и короткие формы",
-    "uk": "назвати страх і відрізнити його від знайомих станів, використовуючи повні та короткі форми"
+    "ru": "назвать страх и то, что его вызывает, полной и короткой формой: I'm, he's, it's, they're",
+    "uk": "назвати страх і те, що його викликає, повною й короткою формою: I'm, he's, it's, they're"
   },
   "pages": [
     {
@@ -11,24 +11,24 @@
       "pageId": "en:lesson-01:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мне страшно",
-        "uk": "Мені страшно"
+        "ru": "У самой двери",
+        "uk": "Біля самих дверей"
       },
       "bodyByLocale": {
-        "ru": "`afraid` — «боится», «испытывает страх». `I am afraid` — «Мне страшно» или «Я боюсь». Коротко: `I'm afraid`. После `I` форма `am` остаётся даже тогда, когда по-русски хочется начать с «мне». За дверью завывает страшный голос. Голос записанный, а боитесь вы по-настоящему.",
-        "uk": "`afraid` — «боїться», «відчуває страх». `I am afraid` — «Мені страшно» або «Я боюся». Коротко: `I'm afraid`. Після `I` форма `am` залишається навіть тоді, коли українською хочеться почати з «мені». За дверима завиває страшний голос. Голос записаний, а боїтеся ви по-справжньому."
+        "ru": "Вы стоите перед чёрной дверью с надписью «Комната страха». Подруга уже держится за ручку, а вы делаете шаг назад. afraid — «боится, ему страшно». I am afraid, коротко I'm afraid — «Мне страшно». По-русски начинаем с «мне», а по-английски всё равно с I и am.",
+        "uk": "Ви стоїте перед чорними дверима з написом «Кімната страху». Подруга вже тримається за ручку, а ви робите крок назад. afraid — «боїться, йому страшно». I am afraid, коротко I'm afraid — «Мені страшно». Українською починаємо з «мені», а англійською все одно з I та am."
       },
       "question": {
         "interactionId": "en:lesson-01:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "Перед входом вам страшно. Скажите о себе полной фразой.",
-          "uk": "Перед входом вам страшно. Скажіть про себе повною фразою."
+          "ru": "Подруга торопит вас войти первым. Скажите коротко, что вам страшно.",
+          "uk": "Подруга квапить вас зайти першим. Скажіть коротко, що вам страшно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-34:intro1:r1",
-              "text": "I am afraid."
+              "text": "I'm afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r2",
@@ -36,13 +36,13 @@
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r3",
-              "text": "I am bored."
+              "text": "She's afraid."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-34:intro1:r1",
-              "text": "I am afraid."
+              "text": "I'm afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r2",
@@ -50,13 +50,13 @@
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r3",
-              "text": "I am bored."
+              "text": "She's afraid."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Перед входом вам страшно. Скажите о себе полной фразой.",
-          "uk": "Перед входом вам страшно. Скажіть про себе повною фразою."
+          "ru": "Подруга торопит вас войти первым. Скажите коротко, что вам страшно.",
+          "uk": "Подруга квапить вас зайти першим. Скажіть коротко, що вам страшно."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ему страшно",
-        "uk": "Йому страшно"
+        "ru": "Что за дверью",
+        "uk": "Що за дверима"
       },
       "bodyByLocale": {
-        "ru": "Про Олега: `He is afraid`. Про Машу: `She is afraid`. Страх не обязан быть опасностью: можно бояться даже безопасного аттракциона. Слово `afraid` описывает чувство человека, а не то, насколько страшно он выглядит.",
-        "uk": "Про Олега: `He is afraid`. Про Машу: `She is afraid`. Страх не обов’язково означає небезпеку: можна боятися навіть безпечного атракціону. Слово `afraid` описує почуття людини, а не те, наскільки страшний вона має вигляд."
+        "ru": "Дверь приоткрылась. Внутри полумрак, с потолка свисает паутина, где-то медленно скрипит кресло-качалка, хотя в нём никого нет. creepy — «жуткий, от него мурашки». It is creepy, коротко It's creepy — «Здесь жутко». Это про место или вещь, а не про ваше чувство.",
+        "uk": "Двері прочинилися. Усередині напівтемрява, зі стелі звисає павутиння, десь повільно скрипить крісло-гойдалка, хоча в ньому нікого немає. creepy — «моторошний, від нього мурашки». It is creepy, коротко It's creepy — «Тут моторошно». Це про місце чи річ, а не про ваше відчуття."
       },
       "question": {
         "interactionId": "en:lesson-01:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "Олег боится входить. Назовите его чувство.",
-          "uk": "Олег боїться заходити. Назвіть його почуття."
+          "ru": "Друг спрашивает, что там внутри. Скажите коротко, что там жутко.",
+          "uk": "Друг питає, що там усередині. Скажіть коротко, що там моторошно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-34:intro2:r1",
-              "text": "He is afraid."
+              "text": "It's creepy."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r2",
-              "text": "He are afraid."
+              "text": "I'm creepy."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r3",
-              "text": "He is confused."
+              "text": "It's afraid."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-34:intro2:r1",
-              "text": "He is afraid."
+              "text": "It's creepy."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r2",
-              "text": "He are afraid."
+              "text": "I'm creepy."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r3",
-              "text": "He is confused."
+              "text": "It's afraid."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Олег боится входить. Назовите его чувство.",
-          "uk": "Олег боїться заходити. Назвіть його почуття."
+          "ru": "Друг спрашивает, что там внутри. Скажите коротко, что там жутко.",
+          "uk": "Друг питає, що там усередині. Скажіть коротко, що там моторошно."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что именно мы чувствуем",
-        "uk": "Що саме ми відчуваємо"
+        "ru": "Подруга вышла первой",
+        "uk": "Подруга вийшла першою"
       },
       "bodyByLocale": {
-        "ru": "`worried` — «беспокоится», `afraid` — «боится». Эти чувства могут быть вместе: человек и переживает, и боится. Если нужно назвать именно страх, выбираем `afraid`. Про нас: `We are afraid`, про других: `They are afraid`.",
-        "uk": "`worried` — «непокоїться», `afraid` — «боїться». Ці почуття можуть бути разом: людина і хвилюється, і боїться. Якщо треба назвати саме страх, вибираємо `afraid`. Про нас: `We are afraid`, про інших: `They are afraid`."
+        "ru": "Через пять минут подруга выходит из комнаты. Она молчит, а лицо белое, как лист бумаги. pale — «бледный». She is pale, коротко She's pale — «Она бледная».",
+        "uk": "За п’ять хвилин подруга виходить із кімнати. Вона мовчить, а обличчя біле, як аркуш паперу. pale — «блідий». She is pale, коротко She's pale — «Вона бліда»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "Вы и Олег оба боитесь входить. Скажите от вас двоих именно о страхе.",
-          "uk": "Ви та Олег обоє боїтеся заходити. Скажіть від вас двох саме про страх."
+          "ru": "Друг спрашивает, как выглядит подруга после комнаты. Скажите коротко, что она бледная.",
+          "uk": "Друг питає, який вигляд має подруга після кімнати. Скажіть коротко, що вона бліда."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-34:intro3:r1",
-              "text": "We are afraid."
+              "text": "She's pale."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r2",
-              "text": "They are afraid."
+              "text": "He's pale."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r3",
-              "text": "We are bored."
+              "text": "She pale."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-34:intro3:r1",
-              "text": "We are afraid."
+              "text": "She's pale."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r2",
-              "text": "They are afraid."
+              "text": "He's pale."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r3",
-              "text": "We are bored."
+              "text": "She pale."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы и Олег оба боитесь входить. Скажите от вас двоих именно о страхе.",
-          "uk": "Ви та Олег обоє боїтеся заходити. Скажіть від вас двох саме про страх."
+          "ru": "Друг спрашивает, как выглядит подруга после комнаты. Скажите коротко, что она бледная.",
+          "uk": "Друг питає, який вигляд має подруга після кімнати. Скажіть коротко, що вона бліда."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ccab7a8c5ffc8be7cfcd62ffe52cc7af0bb1ce68762d5d62b4d00efc102ca498"
+  "introFingerprint": "af65f6f6ba2725037ffa4999eda35ff577b825507fa33a35a0feccf57c7f9e11"
 }

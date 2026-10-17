@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-20:i01",
+      "interactionId": "en:lesson-02:session-20:word:innocent",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — innocent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:word:innocent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — innocent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:word:innocent:audio",
+          "transcript": "innocent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:word:innocent:r1",
+            "targetText": "innocent",
+            "meaningByLocale": {
+              "ru": "невиновный. He is innocent — «Он невиновен». О том, кого подозревали напрасно.",
+              "uk": "невинний. He is innocent — «Він невинний». Про того, кого підозрювали даремно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "innocent",
+          "definitionByLocale": {
+            "ru": "невиновный. He is innocent — «Он невиновен». О том, кого подозревали напрасно.",
+            "uk": "невинний. He is innocent — «Він невинний». Про того, кого підозрювали даремно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег пришёл после того, как появилась краска на скатерти. Он не причастен. Скажите, что он невиновен",
+      "prompt": "Пятно синее, а краска у брата красная. Скажите маме, что он невиновен",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег пришёл после того, как появилась краска на скатерти. Он не причастен. Скажите, что он невиновен",
+      "accessibilityLabel": "Пятно синее, а краска у брата красная. Скажите маме, что он невиновен",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is innocent.",
         "localizedMeaning": {
-          "ru": "Олег пришёл после того, как появилась краска на скатерти. Он не причастен. Скажите, что он невиновен",
-          "uk": "Олег прийшов після того, як на скатертині з’явилася фарба. Він не причетний. Скажіть, що він невинний"
+          "ru": "Пятно синее, а краска у брата красная. Скажите маме, что он невиновен",
+          "uk": "Пляма синя, а фарба в брата червона. Скажіть мамі, що він невинний"
         },
         "orderedTokens": [
           "He",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-20:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Олег пришёл после того, как появилась краска на скатерти. Он не причастен. Скажите, что он невиновен",
+            "testedDimension": "Пятно синее, а краска у брата красная. Скажите маме, что он невиновен",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `He is innocent.`",
               "uk": "тут потрібно `is` — `He is innocent.`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос об Анне",
+      "prompt": "Послушайте вопрос мамы о сестре",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-20:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-20:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос об Анне",
+      "accessibilityLabel": "Послушайте вопрос мамы о сестре",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-20:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об Анне",
+            "testedDimension": "Послушайте вопрос мамы о сестре",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `prepared`, а в этом варианте — `careful`.",
               "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `careful`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-20:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об Анне",
+            "testedDimension": "Послушайте вопрос мамы о сестре",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `prepared`, а в этом варианте — `lost`.",
               "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `lost`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег невиновен. На «Is he innocent?» дополните короткое «да»",
+      "prompt": "Брат невиновен. Мама спрашивает: «Is he innocent?» Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-20:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег невиновен. На «Is he innocent?» дополните короткое «да»",
+      "accessibilityLabel": "Брат невиновен. Мама спрашивает: «Is he innocent?» Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег невиновен. На «Is he innocent?» дополните короткое «да»",
-          "uk": "Олег невинний. На «Is he innocent?» доповніть коротку відповідь «так»"
+          "ru": "Брат невиновен. Мама спрашивает: «Is he innocent?» Дополните короткое «да»",
+          "uk": "Брат невинний. Мама питає: «Is he innocent?» Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, he ___.",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег невиновен. На «Is he innocent?» дополните короткое «да»",
+        "testedDimension": "Брат невиновен. Мама спрашивает: «Is he innocent?» Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-20:i03:r2",
             "correct": false,
-            "testedDimension": "Олег невиновен. На «Is he innocent?» дополните короткое «да»",
+            "testedDimension": "Брат невиновен. Мама спрашивает: «Is he innocent?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `he` нужно `is`.",
               "uk": "З `he` потрібно `is`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-20:i03:r3",
             "correct": false,
-            "testedDimension": "Олег невиновен. На «Is he innocent?» дополните короткое «да»",
+            "testedDimension": "Брат невиновен. Мама спрашивает: «Is he innocent?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, he is`.",
               "uk": "Відповідь — `Yes, he is`."
@@ -194,28 +237,20 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-20:i04:p1",
-            "target": "yes",
-            "meaningByLocale": {
-              "ru": "да",
-              "uk": "так"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-20:i04:p2",
             "target": "innocent",
             "meaningByLocale": {
               "ru": "невиновный",
@@ -223,33 +258,41 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-20:i04:p3",
-            "target": "prepared",
+            "pairId": "en:lesson-02:session-20:i04:p2",
+            "target": "suspicious",
             "meaningByLocale": {
-              "ru": "подготовленный",
-              "uk": "підготовлений"
+              "ru": "подозрительный",
+              "uk": "підозрілий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-20:i04:p3",
+            "target": "spotless",
+            "meaningByLocale": {
+              "ru": "без единого пятна",
+              "uk": "без жодної плями"
             }
           },
           {
             "pairId": "en:lesson-02:session-20:i04:p4",
-            "target": "careful",
+            "target": "washable",
             "meaningByLocale": {
-              "ru": "осторожный",
-              "uk": "обережний"
+              "ru": "который можно стирать",
+              "uk": "який можна прати"
             }
           }
         ],
         "leftColumn": [
-          "yes",
           "innocent",
-          "prepared",
-          "careful"
+          "suspicious",
+          "spotless",
+          "washable"
         ],
         "rightColumn": [
-          "да",
           "невиновный",
-          "подготовленный",
-          "осторожный"
+          "подозрительный",
+          "без единого пятна",
+          "который можно стирать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,17 +310,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Брат и сестра не трогали синюю краску. Мама спрашивает: «Are they guilty?» Послушайте и соберите ваш ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-20:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Брат и сестра не трогали синюю краску. Мама спрашивает: «Are they guilty?» Послушайте и соберите ваш ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -299,7 +342,7 @@
           {
             "responseId": "en:lesson-02:session-20:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Брат и сестра не трогали синюю краску. Мама спрашивает: «Are they guilty?» Послушайте и соберите ваш ответ",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, they are not.`",
               "uk": "тут потрібно `No,` — `No, they are not.`"
@@ -315,21 +358,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег невиновен. На «Is he guilty?» ответьте коротким «нет»",
+      "prompt": "Брат невиновен. Мама спрашивает: «Is he guilty?» Ответьте коротким «нет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег невиновен. На «Is he guilty?» ответьте коротким «нет»",
+      "accessibilityLabel": "Брат невиновен. Мама спрашивает: «Is he guilty?» Ответьте коротким «нет»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "No, he is not.",
         "localizedMeaning": {
-          "ru": "Олег невиновен. На «Is he guilty?» ответьте коротким «нет»",
-          "uk": "Олег невинний. На «Is he guilty?» дайте коротку відповідь «ні»"
+          "ru": "Брат невиновен. Мама спрашивает: «Is he guilty?» Ответьте коротким «нет»",
+          "uk": "Брат невинний. Мама питає: «Is he guilty?» Відповідайте коротким «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -344,7 +387,7 @@
           {
             "responseId": "en:lesson-02:session-20:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Олег невиновен. На «Is he guilty?» ответьте коротким «нет»",
+            "testedDimension": "Брат невиновен. Мама спрашивает: «Is he guilty?» Ответьте коротким «нет»",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, he is not.`",
               "uk": "тут потрібно `No,` — `No, he is not.`"
@@ -360,17 +403,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i07",
-      "ordinal": 10,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна не проливала краску. Коротко скажите, что она невиновна",
+      "prompt": "Сестра синюю краску даже не открывала. Коротко скажите маме, что она невиновна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-20:i07:audio"
       ],
-      "accessibilityLabel": "Анна не проливала краску. Коротко скажите, что она невиновна",
+      "accessibilityLabel": "Сестра синюю краску даже не открывала. Коротко скажите маме, что она невиновна",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -393,11 +436,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i08",
-      "ordinal": 11,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На встречу пускают только приглашённых. На «Is it private?» дополните короткое «да»",
+      "prompt": "На встречу пускают только приглашённых. Мама спрашивает: «Is it private?» Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-20:i08:r1",
@@ -414,12 +457,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На встречу пускают только приглашённых. На «Is it private?» дополните короткое «да»",
+      "accessibilityLabel": "На встречу пускают только приглашённых. Мама спрашивает: «Is it private?» Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "На встречу пускают только приглашённых. На «Is it private?» дополните короткое «да»",
-          "uk": "На зустріч пускають лише запрошених. На «Is it private?» доповніть коротку відповідь «так»"
+          "ru": "На встречу пускают только приглашённых. Мама спрашивает: «Is it private?» Дополните короткое «да»",
+          "uk": "На зустріч пускають лише запрошених. Мама питає: «Is it private?» Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -436,12 +479,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "На встречу пускают только приглашённых. На «Is it private?» дополните короткое «да»",
+        "testedDimension": "На встречу пускают только приглашённых. Мама спрашивает: «Is it private?» Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-20:i08:r2",
             "correct": false,
-            "testedDimension": "На встречу пускают только приглашённых. На «Is it private?» дополните короткое «да»",
+            "testedDimension": "На встречу пускают только приглашённых. Мама спрашивает: «Is it private?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -450,7 +493,7 @@
           {
             "responseId": "en:lesson-02:session-20:i08:r3",
             "correct": false,
-            "testedDimension": "На встречу пускают только приглашённых. На «Is it private?» дополните короткое «да»",
+            "testedDimension": "На встречу пускают только приглашённых. Мама спрашивает: «Is it private?» Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Про встречу — `it is`.",
               "uk": "Про зустріч — `it is`."
@@ -461,52 +504,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-20:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-20:word:suspicious",
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Карточка слова — suspicious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:word:suspicious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — suspicious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:word:suspicious:audio",
+          "transcript": "suspicious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:word:suspicious:r1",
+            "targetText": "suspicious",
+            "meaningByLocale": {
+              "ru": "подозрительный. He is suspicious — «Он подозрительный». О человеке, который ведёт себя странно, или о странном звонке.",
+              "uk": "підозрілий. He is suspicious — «Він підозрілий». Про людину, яка поводиться дивно, або про дивний дзвінок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suspicious",
+          "definitionByLocale": {
+            "ru": "подозрительный. He is suspicious — «Он подозрительный». О человеке, который ведёт себя странно, или о странном звонке.",
+            "uk": "підозрілий. He is suspicious — «Він підозрілий». Про людину, яка поводиться дивно, або про дивний дзвінок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-20:i09:r1",
-          "text": "He is not lost."
+          "text": "He is suspicious."
         },
         {
           "responseId": "en:lesson-02:session-20:i09:r2",
-          "text": "He is not prepared."
+          "text": "He is prepared."
         },
         {
           "responseId": "en:lesson-02:session-20:i09:r3",
-          "text": "He is not innocent."
+          "text": "He is innocent."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-20:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-20:i09:audio",
-          "transcript": "He is not lost."
+          "transcript": "He is suspicious."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-20:i09:r1",
-            "targetText": "He is not lost.",
+            "targetText": "He is suspicious.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-20:i09:r2",
-            "targetText": "He is not prepared.",
+            "targetText": "He is prepared.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-20:i09:r3",
-            "targetText": "He is not innocent.",
+            "targetText": "He is innocent.",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +601,19 @@
           {
             "responseId": "en:lesson-02:session-20:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lost`, а в этом варианте — `prepared`.",
-              "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `prepared`."
+              "ru": "В записи последнее слово — `suspicious`, а в этом варианте — `prepared`.",
+              "uk": "У записі останнє слово — `suspicious`, а в цьому варіанті — `prepared`."
             }
           },
           {
             "responseId": "en:lesson-02:session-20:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lost`, а в этом варианте — `innocent`.",
-              "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `innocent`."
+              "ru": "В записи последнее слово — `suspicious`, а в этом варианте — `innocent`.",
+              "uk": "У записі останнє слово — `suspicious`, а в цьому варіанті — `innocent`."
             }
           }
         ],
@@ -538,15 +624,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -555,7 +641,7 @@
             "target": "lost",
             "meaningByLocale": {
               "ru": "заблудившийся",
-              "uk": "той, хто заблукав"
+              "uk": "який заблукав"
             }
           },
           {
@@ -568,32 +654,32 @@
           },
           {
             "pairId": "en:lesson-02:session-20:i10:p3",
-            "target": "innocent",
+            "target": "prepared",
             "meaningByLocale": {
-              "ru": "невиновный",
-              "uk": "невинний"
+              "ru": "подготовленный",
+              "uk": "підготовлений"
             }
           },
           {
             "pairId": "en:lesson-02:session-20:i10:p4",
-            "target": "yes",
+            "target": "careful",
             "meaningByLocale": {
-              "ru": "да",
-              "uk": "так"
+              "ru": "осторожный",
+              "uk": "обережний"
             }
           }
         ],
         "leftColumn": [
           "lost",
           "private",
-          "innocent",
-          "yes"
+          "prepared",
+          "careful"
         ],
         "rightColumn": [
           "заблудившийся",
           "частный, не для всех",
-          "невиновный",
-          "да"
+          "подготовленный",
+          "осторожный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,41 +696,84 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-20:i11",
-      "ordinal": 14,
+      "interactionId": "en:lesson-02:session-20:word:spotless",
+      "ordinal": 16,
       "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spotless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:word:spotless:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spotless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:word:spotless:audio",
+          "transcript": "spotless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:word:spotless:r1",
+            "targetText": "spotless",
+            "meaningByLocale": {
+              "ru": "без единого пятна, безупречно чистый. It's spotless — «На ней ни пятнышка». О скатерти, рубашке, кухне.",
+              "uk": "без жодної плями, бездоганно чистий. It's spotless — «На ній ані плямки». Про скатертину, сорочку, кухню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spotless",
+          "definitionByLocale": {
+            "ru": "без единого пятна, безупречно чистый. It's spotless — «На ней ни пятнышка». О скатерти, рубашке, кухне.",
+            "uk": "без жодної плями, бездоганно чистий. It's spotless — «На ній ані плямки». Про скатертину, сорочку, кухню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Мама снимает скатерть с сушилки. Послушайте и соберите, что она говорит",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-20:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Мама снимает скатерть с сушилки. Послушайте и соберите, что она говорит",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-20:i11:audio",
-          "transcript": "We're prepared."
+          "transcript": "It's spotless."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We're prepared.",
+        "hiddenTargetPhrase": "It's spotless.",
         "orderedTokens": [
-          "We're",
-          "prepared"
+          "It's",
+          "spotless"
         ],
         "authoredDistractorTokens": [
-          "He's"
+          "They're"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-20:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Мама снимает скатерть с сушилки. Послушайте и соберите, что она говорит",
             "feedbackByLocale": {
-              "ru": "здесь нужно `We're` — `We're prepared.`",
-              "uk": "тут потрібно `We're` — `We're prepared.`"
+              "ru": "здесь нужно `It's` — `It's spotless.`",
+              "uk": "тут потрібно `It's` — `It's spotless.`"
             }
           }
         ],
@@ -657,21 +786,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна и Олег уже всё подготовили. На «Are they prepared?» ответьте коротким «да»",
+      "prompt": "Брат и сестра уже накрыли на стол. Мама спрашивает: «Are they prepared?» Ответьте коротким «да»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна и Олег уже всё подготовили. На «Are they prepared?» ответьте коротким «да»",
+      "accessibilityLabel": "Брат и сестра уже накрыли на стол. Мама спрашивает: «Are they prepared?» Ответьте коротким «да»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Yes, they are.",
         "localizedMeaning": {
-          "ru": "Анна и Олег уже всё подготовили. На «Are they prepared?» ответьте коротким «да»",
-          "uk": "Анна й Олег уже все підготували. На «Are they prepared?» дайте коротку відповідь «так»"
+          "ru": "Брат и сестра уже накрыли на стол. Мама спрашивает: «Are they prepared?» Ответьте коротким «да»",
+          "uk": "Брат і сестра вже накрили на стіл. Мама питає: «Are they prepared?» Відповідайте коротким «так»"
         },
         "orderedTokens": [
           "Yes,",
@@ -685,7 +814,7 @@
           {
             "responseId": "en:lesson-02:session-20:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна и Олег уже всё подготовили. На «Are they prepared?» ответьте коротким «да»",
+            "testedDimension": "Брат и сестра уже накрыли на стол. Мама спрашивает: «Are they prepared?» Ответьте коротким «да»",
             "feedbackByLocale": {
               "ru": "здесь нужно `Yes,` — `Yes, they are.`",
               "uk": "тут потрібно `Yes,` — `Yes, they are.`"
@@ -701,17 +830,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы знаете дорогу к месту встречи. Друг спрашивает: «Are you lost?» Ответьте коротким «нет»",
+      "prompt": "Вы едете в магазин за новой краской и знаете дорогу. Мама звонит и спрашивает: «Are you lost?» Ответьте коротким «нет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-20:i13:audio"
       ],
-      "accessibilityLabel": "Вы знаете дорогу к месту встречи. Друг спрашивает: «Are you lost?» Ответьте коротким «нет»",
+      "accessibilityLabel": "Вы едете в магазин за новой краской и знаете дорогу. Мама звонит и спрашивает: «Are you lost?» Ответьте коротким «нет»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -733,16 +862,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-20:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-02:session-20:word:washable",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — washable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:word:washable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — washable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:word:washable:audio",
+          "transcript": "washable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:word:washable:r1",
+            "targetText": "washable",
+            "meaningByLocale": {
+              "ru": "который можно стирать. Is it washable? — «Это можно стирать?» О скатерти, куртке, ковре.",
+              "uk": "який можна прати. Is it washable? — «Це можна прати?» Про скатертину, куртку, килим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "washable",
+          "definitionByLocale": {
+            "ru": "который можно стирать. Is it washable? — «Это можно стирать?» О скатерти, куртке, ковре.",
+            "uk": "який можна прати. Is it washable? — «Це можна прати?» Про скатертину, куртку, килим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг берётся нести открытую банку краски. Спросите, осторожен ли он",
+      "prompt": "Краска попала и на салфетку. Спросите маму, можно ли её стирать",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-20:i14:r1",
-          "text": "Are"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-02:session-20:i14:r2",
@@ -750,23 +922,23 @@
         },
         {
           "responseId": "en:lesson-02:session-20:i14:r3",
-          "text": "Is"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг берётся нести открытую банку краски. Спросите, осторожен ли он",
+      "accessibilityLabel": "Краска попала и на салфетку. Спросите маму, можно ли её стирать",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг берётся нести открытую банку краски. Спросите, осторожен ли он",
-          "uk": "Друг береться нести відкриту банку фарби. Запитайте, чи він обережний"
+          "ru": "Краска попала и на салфетку. Спросите маму, можно ли её стирать",
+          "uk": "Фарба потрапила й на серветку. Запитайте маму, чи її можна прати"
         },
-        "gappedTargetPhrase": "___ you careful?",
+        "gappedTargetPhrase": "___ it washable?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-20:i14:r1",
-            "text": "Are"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-02:session-20:i14:r2",
@@ -774,27 +946,27 @@
           },
           {
             "responseId": "en:lesson-02:session-20:i14:r3",
-            "text": "Is"
+            "text": "Are"
           }
         ],
-        "testedDimension": "Друг берётся нести открытую банку краски. Спросите, осторожен ли он",
+        "testedDimension": "Краска попала и на салфетку. Спросите маму, можно ли её стирать",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-20:i14:r2",
             "correct": false,
-            "testedDimension": "Друг берётся нести открытую банку краски. Спросите, осторожен ли он",
+            "testedDimension": "Краска попала и на салфетку. Спросите маму, можно ли её стирать",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `Are`.",
-              "uk": "З `you` потрібно `Are`."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-20:i14:r3",
             "correct": false,
-            "testedDimension": "Друг берётся нести открытую банку краски. Спросите, осторожен ли он",
+            "testedDimension": "Краска попала и на салфетку. Спросите маму, можно ли её стирать",
             "feedbackByLocale": {
-              "ru": "К собеседнику — `Are you`.",
-              "uk": "До співрозмовника — `Are you`."
+              "ru": "Про одну салфетку — `Is it`.",
+              "uk": "Про одну серветку — `Is it`."
             }
           }
         ]
@@ -803,11 +975,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Анне",
+      "prompt": "Послушайте, что брат говорит о сестре",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-20:i15:r1",
@@ -826,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-20:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Анне",
+      "accessibilityLabel": "Послушайте, что брат говорит о сестре",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -856,7 +1028,7 @@
           {
             "responseId": "en:lesson-02:session-20:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте, что брат говорит о сестре",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `innocent`, а в этом варианте — `prepared`.",
               "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `prepared`."
@@ -865,7 +1037,7 @@
           {
             "responseId": "en:lesson-02:session-20:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте, что брат говорит о сестре",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `innocent`, а в этом варианте — `careful`.",
               "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `careful`."
@@ -879,62 +1051,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова прошлого занятия со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-20:i16:p1",
-            "target": "prepared",
+            "target": "guilty",
             "meaningByLocale": {
-              "ru": "подготовленный",
-              "uk": "підготовлений"
+              "ru": "виноватый",
+              "uk": "винний"
             }
           },
           {
             "pairId": "en:lesson-02:session-20:i16:p2",
-            "target": "careful",
+            "target": "gone",
             "meaningByLocale": {
-              "ru": "осторожный",
-              "uk": "обережний"
+              "ru": "пропавший",
+              "uk": "зниклий"
             }
           },
           {
             "pairId": "en:lesson-02:session-20:i16:p3",
-            "target": "lost",
+            "target": "greedy",
             "meaningByLocale": {
-              "ru": "заблудившийся",
-              "uk": "той, хто заблукав"
+              "ru": "жадный",
+              "uk": "жадібний"
             }
           },
           {
             "pairId": "en:lesson-02:session-20:i16:p4",
-            "target": "private",
+            "target": "sneaky",
             "meaningByLocale": {
-              "ru": "частный, не для всех",
-              "uk": "приватний, не для всіх"
+              "ru": "хитрый",
+              "uk": "хитрий"
             }
           }
         ],
         "leftColumn": [
-          "prepared",
-          "careful",
-          "lost",
-          "private"
+          "guilty",
+          "gone",
+          "greedy",
+          "sneaky"
         ],
         "rightColumn": [
-          "подготовленный",
-          "осторожный",
-          "заблудившийся",
-          "частный, не для всех"
+          "виноватый",
+          "пропавший",
+          "жадный",
+          "хитрый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-20:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы не проливали краску. Друг спрашивает: «Are you innocent?» Ответьте коротким «да», не повторяя innocent",
+      "prompt": "Вы не проливали краску. Мама спрашивает: «Are you innocent?» Ответьте коротким «да», не повторяя innocent",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-20:i17:audio"
       ],
-      "accessibilityLabel": "Вы не проливали краску. Друг спрашивает: «Are you innocent?» Ответьте коротким «да», не повторяя innocent",
+      "accessibilityLabel": "Вы не проливали краску. Мама спрашивает: «Are you innocent?» Ответьте коротким «да», не повторяя innocent",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cd28692840450a74af5ec59e5f9d12586379eb06f395c5a52ce70c5a42da2c3c"
+  "learnerFingerprint": "20867b4cf84ea20d0c736b500d23fa3917a111a911ef447e2874f3cd03cfe9eb"
 }

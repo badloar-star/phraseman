@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-52",
   "learningOutcomeByLocale": {
-    "ru": "назвать вещь лёгкой по весу и сказать о любопытстве человека",
-    "uk": "назвати річ легкою за вагою й сказати про допитливість людини"
+    "ru": "коротко описать вещь при покупке: it's, they're, she's, I'm",
+    "uk": "коротко описати річ під час купівлі: it's, they're, she's, I'm"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Лёгкий по весу",
-        "uk": "Легкий за вагою"
+        "ru": "Одним пальцем",
+        "uk": "Одним пальцем"
       },
       "bodyByLocale": {
-        "ru": "`light` — «лёгкий» по весу. `It is light` — «Он лёгкий», если речь о рюкзаке. Вы поднимаете его и на секунду проверяете: он точно у вас в руке? В этом занятии `light` означает малый вес.",
-        "uk": "`light` — «легкий» за вагою. `It is light` — «Він легкий», якщо йдеться про наплічник. Ви піднімаєте його й на секунду перевіряєте: він точно у вас у руці? У цьому занятті `light` означає малу вагу."
+        "ru": "Подруга снимает с полки большой синий рюкзак и поднимает его одним пальцем за петлю. light — «лёгкий по весу». It is light, коротко It's light — «Он лёгкий». Противоположность — знакомое heavy.",
+        "uk": "Подруга знімає з полиці великий синій рюкзак і піднімає його одним пальцем за петлю. light — «легкий за вагою». It is light, коротко It's light — «Він легкий». Протилежність — знайоме heavy."
       },
       "question": {
         "interactionId": "en:lesson-01:session-52:intro1:q",
         "promptByLocale": {
-          "ru": "Рюкзак мало весит. Скажите именно о его весе.",
-          "uk": "Наплічник мало важить. Скажіть саме про його вагу."
+          "ru": "Продавец спрашивает, как вам рюкзак на вес. Скажите коротко, что он лёгкий.",
+          "uk": "Продавець питає, як вам рюкзак на вагу. Скажіть коротко, що він легкий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-52:intro1:r1",
-              "text": "It is light."
+              "text": "It's light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r2",
-              "text": "It is heavy."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r3",
-              "text": "It are light."
+              "text": "It's bulky."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-52:intro1:r1",
-              "text": "It is light."
+              "text": "It's light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r2",
-              "text": "It is heavy."
+              "text": "It's heavy."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r3",
-              "text": "It are light."
+              "text": "It's bulky."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Рюкзак мало весит. Скажите именно о его весе.",
-          "uk": "Наплічник мало важить. Скажіть саме про його вагу."
+          "ru": "Продавец спрашивает, как вам рюкзак на вес. Скажите коротко, что он лёгкий.",
+          "uk": "Продавець питає, як вам рюкзак на вагу. Скажіть коротко, що він легкий."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Размер не равен весу",
-        "uk": "Розмір не дорівнює вазі"
+        "ru": "Вода из бутылки",
+        "uk": "Вода з пляшки"
       },
       "bodyByLocale": {
-        "ru": "Большая вещь может мало весить, маленькая — много. Выбирайте `light` или `heavy` по весу, а не только по размеру. Про две лёгкие сумки — `They are light`, коротко `They're light`.",
-        "uk": "Велика річ може мало важити, маленька — багато. Вибирайте `light` або `heavy` за вагою, а не лише за розміром. Про дві легкі сумки — `They are light`, коротко `They're light`."
+        "ru": "Продавец выливает на рюкзак полбутылки воды, расстёгивает молнию и показывает: внутри всё сухое. waterproof — «непромокаемый, не пропускает воду». It is waterproof, коротко It's waterproof — «Он непромокаемый».",
+        "uk": "Продавець виливає на рюкзак пів пляшки води, розстібає блискавку й показує: усередині все сухе. waterproof — «непромокальний, не пропускає воду». It is waterproof, коротко It's waterproof — «Він непромокальний»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-52:intro2:q",
         "promptByLocale": {
-          "ru": "Обе сумки мало весят. Назовите их лёгкими.",
-          "uk": "Обидві сумки мало важать. Назвіть їх легкими."
+          "ru": "Подруга не видела, что сделал продавец, и спрашивает, зачем он поливал рюкзак. Объясните коротко, что рюкзак непромокаемый.",
+          "uk": "Подруга не бачила, що зробив продавець, і питає, навіщо він поливав рюкзак. Поясніть коротко, що рюкзак непромокальний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-52:intro2:r1",
-              "text": "They are light."
+              "text": "It's waterproof."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r2",
-              "text": "They is light."
+              "text": "It's useful."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r3",
-              "text": "They are heavy."
+              "text": "It waterproof."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-52:intro2:r1",
-              "text": "They are light."
+              "text": "It's waterproof."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r2",
-              "text": "They is light."
+              "text": "It's useful."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r3",
-              "text": "They are heavy."
+              "text": "It waterproof."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Обе сумки мало весят. Назовите их лёгкими.",
-          "uk": "Обидві сумки мало важать. Назвіть їх легкими."
+          "ru": "Подруга не видела, что сделал продавец, и спрашивает, зачем он поливал рюкзак. Объясните коротко, что рюкзак непромокаемый.",
+          "uk": "Подруга не бачила, що зробив продавець, і питає, навіщо він поливав рюкзак. Поясніть коротко, що рюкзак непромокальний."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Хочется узнать",
-        "uk": "Хочеться дізнатися"
+        "ru": "Жёлтые рюкзаки в парке",
+        "uk": "Жовті рюкзаки в парку"
       },
       "bodyByLocale": {
-        "ru": "`curious` — «любопытный», когда человеку хочется что-то узнать. Подруга рассматривает материал и спрашивает, как сделан рюкзак: `She is curious`. Это о её интересе, а не о весе рюкзака.",
-        "uk": "`curious` — «допитливий», коли людині хочеться щось дізнатися. Подруга розглядає матеріал і запитує, як зроблений наплічник: `She is curious`. Це про її інтерес, а не про вагу наплічника."
+        "ru": "По дороге в магазин вы видели в парке десяток ярко-жёлтых рюкзаков, и на полке стоит точно такой же. trendy — «модный, сейчас в моде». It is trendy, коротко It's trendy — «Он модный».",
+        "uk": "Дорогою до крамниці ви бачили в парку десяток яскраво-жовтих рюкзаків, і на полиці стоїть точнісінько такий самий. trendy — «модний, зараз у моді». It is trendy, коротко It's trendy — «Він модний»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-52:intro3:q",
         "promptByLocale": {
-          "ru": "Подруге хочется узнать, как изготовили рюкзак. Назовите её любопытной.",
-          "uk": "Подрузі хочеться дізнатися, як виготовили наплічник. Назвіть її допитливою."
+          "ru": "Подруга спрашивает, почему у всех вокруг такие жёлтые рюкзаки. Скажите коротко, что этот рюкзак модный.",
+          "uk": "Подруга питає, чому в усіх довкола такі жовті рюкзаки. Скажіть коротко, що цей рюкзак модний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-52:intro3:r1",
-              "text": "She is curious."
+              "text": "It's trendy."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r2",
-              "text": "She is light."
+              "text": "It's cheap."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r3",
-              "text": "She are curious."
+              "text": "She's trendy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-52:intro3:r1",
-              "text": "She is curious."
+              "text": "It's trendy."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r2",
-              "text": "She is light."
+              "text": "It's cheap."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r3",
-              "text": "She are curious."
+              "text": "She's trendy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруге хочется узнать, как изготовили рюкзак. Назовите её любопытной.",
-          "uk": "Подрузі хочеться дізнатися, як виготовили наплічник. Назвіть її допитливою."
+          "ru": "Подруга спрашивает, почему у всех вокруг такие жёлтые рюкзаки. Скажите коротко, что этот рюкзак модный.",
+          "uk": "Подруга питає, чому в усіх довкола такі жовті рюкзаки. Скажіть коротко, що цей рюкзак модний."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fd39528bcad63afc0e56169c4c78ae7b9241c37b069a3ad595a691ca5cf54b39"
+  "introFingerprint": "77421c823162610b7b78b90153c2fe3ea0d4b33eb833f6a62450085002ef0140"
 }

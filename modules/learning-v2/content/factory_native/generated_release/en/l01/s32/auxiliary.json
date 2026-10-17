@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-32:intro1:r2": {
-          "ru": "После `I` нужна форма `am`.",
-          "uk": "Після `I` потрібна форма `am`."
+          "ru": "Рамка одна, поэтому It is.",
+          "uk": "Рамка одна, тому It is."
         },
         "en:lesson-01:session-32:intro1:r3": {
-          "ru": "Это за вас и других людей. Здесь нужно сказать о себе: `I am proud`.",
-          "uk": "Це за вас та інших людей. Тут треба сказати про себе: `I am proud`."
+          "ru": "Между It и crooked нужно is.",
+          "uk": "Між It і crooked потрібно is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-32:intro2:r2": {
-          "ru": "`bored` — «скучает». Здесь речь о непонимании: `confused`.",
-          "uk": "`bored` — «нудьгує». Тут ідеться про нерозуміння: `confused`."
+          "ru": "crooked — «висит криво». Нечёткий снимок — blurry.",
+          "uk": "crooked — «висить криво». Нечіткий знімок — blurry."
         },
         "en:lesson-01:session-32:intro2:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "После It нужно is; am ставим после I.",
+          "uk": "Після It потрібно is; am ставимо після I."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-32:intro3:r2": {
-          "ru": "Это «Они отдельные». Здесь нужно назвать сходство: `similar`.",
-          "uk": "Це «Вони окремі». Тут треба назвати схожість: `similar`."
+          "ru": "tiny — «крошечный». Плакат не проходит в дверь: huge.",
+          "uk": "tiny — «крихітний». Плакат не проходить у двері: huge."
         },
         "en:lesson-01:session-32:intro3:r3": {
-          "ru": "После `They` ставим `are`.",
-          "uk": "Після `They` ставимо `are`."
+          "ru": "Плакат один, поэтому It is.",
+          "uk": "Плакат один, тому It is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c2e6613f3736be3d27e8ea262035ad1e5ec425a25020ac6ee1c4547fe77eb8b5"
+  "auxiliaryFingerprint": "4810a6f0cebe38984b404ace8f6f2f87a6a54359a1c8399c266c4cd5936d7cb0"
 }

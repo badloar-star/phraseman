@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-45:intro1:r2": {
-          "ru": "Здесь речь о списке, а не о мужчине: `It is useful`.",
-          "uk": "Тут ідеться про список, а не про чоловіка: `It is useful`."
+          "ru": "heavy — «тяжёлый». Маркер лёгкий, а пользу передаёт useful.",
+          "uk": "heavy — «важкий». Маркер легкий, а користь передає useful."
         },
         "en:lesson-01:session-45:intro1:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "He's — про человека. Про маркер говорим It's.",
+          "uk": "He's — про людину. Про маркер кажемо It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-45:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "empty — «пустые». Книги уже лежат в коробках: packed.",
+          "uk": "empty — «порожні». Книжки вже лежать у коробках: packed."
         },
         "en:lesson-01:session-45:intro2:r3": {
-          "ru": "К `useful` не добавляем `s`.",
-          "uk": "До `useful` не додаємо `s`."
+          "ru": "It's — про одну вещь. Книг много: They're packed.",
+          "uk": "It's — про одну річ. Книжок багато: They're packed."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-45:intro3:r2": {
-          "ru": "Это про пользу человека, а здесь нужно назвать одиночество: `lonely`.",
-          "uk": "Це про користь людини, а тут треба назвати самотність: `lonely`."
+          "ru": "small — «маленькая», это наоборот. Много места — spacious.",
+          "uk": "small — «маленька», це навпаки. Багато місця — spacious."
         },
         "en:lesson-01:session-45:intro3:r3": {
-          "ru": "Это про неё. Про друга нужно `He`.",
-          "uk": "Це про неї. Про друга потрібно `He`."
+          "ru": "She's — про женщину. Про комнату говорим It's.",
+          "uk": "She's — про жінку. Про кімнату кажемо It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0af0ace475aaae47ec9a6c211f7f3069df0e215a6f24b251a311f16f76dc5c31"
+  "auxiliaryFingerprint": "839fc690435e985095d0c5e47eebbeeb859362147cab795bdfdcd4ad525e28ec"
 }

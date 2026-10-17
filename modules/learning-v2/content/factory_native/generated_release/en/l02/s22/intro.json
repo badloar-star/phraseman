@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-02:session-22",
   "learningOutcomeByLocale": {
     "ru": "сказать, что всё собрано, и уточнить это вопросом",
-    "uk": "сказати, що все складено, й уточнити це запитанням"
+    "uk": "сказати, що все складено, і уточнити це запитанням"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ничего не пропущено",
-        "uk": "Нічого не пропущено"
+        "ru": "Деталь не входит",
+        "uk": "Деталь не входить"
       },
       "bodyByLocale": {
-        "ru": "`complete` — «полный, завершённый»: всё, что нужно, на месте. Вы вставили последнюю деталь пазла: `It is complete` — «Он собран полностью». Пока в стене замка была дырка, пазл не был `complete`. Даже если назвать эту дырку дополнительным окном.",
-        "uk": "`complete` — «повний, завершений»: усе потрібне на місці. Ви вставили останню деталь пазла: `It is complete` — «Він повністю складений». Поки у стіні замку була дірка, пазл не був `complete`. Навіть якщо назвати цю дірку додатковим вікном."
+        "ru": "Друг уже минуту пытается вставить деталь в башню замка, но она не встаёт на место. Вам со своей стороны стола не видно, ровная она или нет. bent — «погнутый». Is it bent? — «Она погнута?»",
+        "uk": "Друг уже хвилину намагається вставити деталь у вежу замку, але вона не стає на місце. Вам зі свого боку столу не видно, рівна вона чи ні. bent — «погнутий». Is it bent? — «Вона погнута?»"
       },
       "question": {
         "interactionId": "en:lesson-02:session-22:intro1:q",
         "promptByLocale": {
-          "ru": "Последняя деталь встала на место. Скажите полной фразой, что пазл собран полностью.",
-          "uk": "Остання деталь стала на місце. Скажіть повною фразою, що пазл повністю складений."
+          "ru": "Спросите друга, погнута ли деталь.",
+          "uk": "Запитайте друга, чи погнута деталь."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-22:intro1:r1",
-              "text": "It is complete."
+              "text": "Is it bent?"
             },
             {
               "responseId": "en:lesson-02:session-22:intro1:r2",
-              "text": "It complete."
+              "text": "It is bent."
             },
             {
               "responseId": "en:lesson-02:session-22:intro1:r3",
-              "text": "It is not complete."
+              "text": "Are it bent?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-22:intro1:r1",
-              "text": "It is complete."
+              "text": "Is it bent?"
             },
             {
               "responseId": "en:lesson-02:session-22:intro1:r2",
-              "text": "It complete."
+              "text": "It is bent."
             },
             {
               "responseId": "en:lesson-02:session-22:intro1:r3",
-              "text": "It is not complete."
+              "text": "Are it bent?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Последняя деталь встала на место. Скажите полной фразой, что пазл собран полностью.",
-          "uk": "Остання деталь стала на місце. Скажіть повною фразою, що пазл повністю складений."
+          "ru": "Спросите друга, погнута ли деталь.",
+          "uk": "Запитайте друга, чи погнута деталь."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "А всё ли на месте?",
-        "uk": "А все на місці?"
+        "ru": "Две чужие детали",
+        "uk": "Дві чужі деталі"
       },
       "bodyByLocale": {
-        "ru": "`It is complete` сообщает результат. `Is it complete?` спрашивает: «Всё собрано?» Для вопроса `is` ставим перед `it`. Слово `complete` остаётся в конце.",
-        "uk": "`It is complete` повідомляє результат. `Is it complete?` запитує: «Усе складено?» Для запитання `is` ставимо перед `it`. Слово `complete` залишається в кінці."
+        "ru": "Пазл почти готов, а на столе лежат ещё две детали в синюю и жёлтую полоску. На вашей картинке таких цветов нет. extra — «лишний». Are they extra? — «Они лишние?» Деталей две, поэтому they и Are.",
+        "uk": "Пазл майже готовий, а на столі лежать ще дві деталі в синю й жовту смужку. На вашій картинці таких кольорів немає. extra — «зайвий». Are they extra? — «Вони зайві?» Деталей дві, тому they і Are."
       },
       "question": {
         "interactionId": "en:lesson-02:session-22:intro2:q",
         "promptByLocale": {
-          "ru": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью.",
-          "uk": "Друг закрив коробку, але ви не бачили готового пазла. Запитайте, чи він повністю складений."
+          "ru": "Спросите друга, лишние ли эти две детали.",
+          "uk": "Запитайте друга, чи зайві ці дві деталі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-22:intro2:r1",
-              "text": "Is it complete?"
+              "text": "Are they extra?"
             },
             {
               "responseId": "en:lesson-02:session-22:intro2:r2",
-              "text": "It is complete."
+              "text": "Is they extra?"
             },
             {
               "responseId": "en:lesson-02:session-22:intro2:r3",
-              "text": "Are it complete?"
+              "text": "Is it extra?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-22:intro2:r1",
-              "text": "Is it complete?"
+              "text": "Are they extra?"
             },
             {
               "responseId": "en:lesson-02:session-22:intro2:r2",
-              "text": "It is complete."
+              "text": "Is they extra?"
             },
             {
               "responseId": "en:lesson-02:session-22:intro2:r3",
-              "text": "Are it complete?"
+              "text": "Is it extra?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью.",
-          "uk": "Друг закрив коробку, але ви не бачили готового пазла. Запитайте, чи він повністю складений."
+          "ru": "Спросите друга, лишние ли эти две детали.",
+          "uk": "Запитайте друга, чи зайві ці дві деталі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Короткий ответ",
-        "uk": "Коротка відповідь"
+        "ru": "Небо над замком",
+        "uk": "Небо над замком"
       },
       "bodyByLocale": {
-        "ru": "На `Is it complete?` можно ответить `Yes, it is` — «Да» или `No, it is not` — «Нет». Если вы сами сообщаете результат, удобно `It's complete`. Но короткое «да» заканчивается полным `is`: `Yes, it is`, не `Yes, it's`.",
-        "uk": "На `Is it complete?` можна відповісти `Yes, it is` — «Так» або `No, it is not` — «Ні». Якщо ви самі повідомляєте результат, зручно `It's complete`. Але коротке «так» закінчується повним `is`: `Yes, it is`, не `Yes, it's`."
+        "ru": "Вы вставляете последнюю деталь в небо над замком, и пустых мест больше нет. complete — «полный, собранный целиком». It is complete — «Он собран полностью».",
+        "uk": "Ви вставляєте останню деталь у небо над замком, і порожніх місць більше немає. complete — «повний, складений повністю». It is complete — «Він складений повністю»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-22:intro3:q",
         "promptByLocale": {
-          "ru": "Друг спрашивает: `Is it complete?` Вы видите пустое место в углу. Ответьте коротким «нет».",
-          "uk": "Друг запитує: `Is it complete?` Ви бачите порожнє місце в кутку. Дайте коротку відповідь «ні»."
+          "ru": "Друг вернулся с кухни и смотрит на стол. Скажите полной фразой, что пазл собран полностью.",
+          "uk": "Друг повернувся з кухні й дивиться на стіл. Скажіть повною фразою, що пазл складений повністю."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-22:intro3:r1",
-              "text": "No, it is not."
+              "text": "It is complete."
             },
             {
               "responseId": "en:lesson-02:session-22:intro3:r2",
-              "text": "Yes, it is."
+              "text": "It is not complete."
             },
             {
               "responseId": "en:lesson-02:session-22:intro3:r3",
-              "text": "No, it not."
+              "text": "It complete."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-22:intro3:r1",
-              "text": "No, it is not."
+              "text": "It is complete."
             },
             {
               "responseId": "en:lesson-02:session-22:intro3:r2",
-              "text": "Yes, it is."
+              "text": "It is not complete."
             },
             {
               "responseId": "en:lesson-02:session-22:intro3:r3",
-              "text": "No, it not."
+              "text": "It complete."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг спрашивает: `Is it complete?` Вы видите пустое место в углу. Ответьте коротким «нет».",
-          "uk": "Друг запитує: `Is it complete?` Ви бачите порожнє місце в кутку. Дайте коротку відповідь «ні»."
+          "ru": "Друг вернулся с кухни и смотрит на стол. Скажите полной фразой, что пазл собран полностью.",
+          "uk": "Друг повернувся з кухні й дивиться на стіл. Скажіть повною фразою, що пазл складений повністю."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "97efbfa446c19523c9fcd78078cf25b127f5003b2387d7e8c2aca164f5088f6a"
+  "introFingerprint": "8f9ef6a58cd1aaa5ee8ee8d008194b28fb598287f6e579e2fb4fd5d8924787fd"
 }

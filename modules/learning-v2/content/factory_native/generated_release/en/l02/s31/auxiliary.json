@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-31:intro1:r2": {
-          "ru": "Между `It` и `unusual` нужно `is`.",
-          "uk": "Між `It` і `unusual` потрібно `is`."
+          "ru": "Между It и unusual нужно is: It is unusual.",
+          "uk": "Між It і unusual потрібно is: It is unusual."
         },
         "en:lesson-02:session-31:intro1:r3": {
-          "ru": "Это отрицает необычность. В условии нужно её отметить.",
-          "uk": "Це заперечує незвичайність. За умовою потрібно її відзначити."
+          "ru": "С not выходит «Он обычный». А такой чайник вы видите впервые: It is unusual.",
+          "uk": "Із not виходить «Він звичайний». А такий чайник ви бачите вперше: It is unusual."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-31:intro2:r2": {
-          "ru": "Это «Они похожи». Здесь нужно сказать точнее: цены равны.",
-          "uk": "Це «Вони схожі». Тут потрібно сказати точніше: ціни рівні."
+          "ru": "Так звучит утверждение «Она старинная». Чтобы спросить, ставим Is вперёд: Is it antique?",
+          "uk": "Так звучить твердження «Вона старовинна». Щоб запитати, ставимо Is наперед: Is it antique?"
         },
         "en:lesson-02:session-31:intro2:r3": {
-          "ru": "С `They` нужно `are`.",
-          "uk": "З `They` потрібно `are`."
+          "ru": "С it нужно is: Is it antique?",
+          "uk": "З it потрібно is: Is it antique?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-31:intro3:r2": {
-          "ru": "Так вы скажете, что билет не действует. Кассир подтвердил обратное.",
-          "uk": "Так ви скажете, що квиток не діє. Касир підтвердив протилежне."
+          "ru": "С not выходит «Она не ценная». А витрина под замком: It's valuable.",
+          "uk": "Із not виходить «Вона не цінна». А вітрина під замком: It's valuable."
         },
         "en:lesson-02:session-31:intro3:r3": {
-          "ru": "С `it` нужно `is`.",
-          "uk": "З `it` потрібно `is`."
+          "ru": "They're — про несколько вещей, а чашка одна: It's valuable.",
+          "uk": "They're — про кілька речей, а чашка одна: It's valuable."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e4c18a2b990d5675839809c08161f82f235f67366959c0e3047643b7c9355b03"
+  "auxiliaryFingerprint": "5db1fa8238db4dab69c3e1effe2bfe029dbe219d448078b70ae73c4e2565267b"
 }

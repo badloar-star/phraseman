@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-23:word:single",
-    "correctText": "single",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-23:word:different",
-    "correctText": "different",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-23:word:engaged",
-    "correctText": "engaged",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-23:i01",
     "correctText": "She is married.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:word:single",
+    "correctText": "single",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i02",
     "correctText": "He is single.",
     "correctResponseId": "en:lesson-01:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:word:different",
+    "correctText": "different",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i03",
@@ -72,6 +67,11 @@
   {
     "interactionId": "en:lesson-01:session-23:i11",
     "correctText": "She is single.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:word:engaged",
+    "correctText": "engaged",
     "correctResponseId": null
   },
   {

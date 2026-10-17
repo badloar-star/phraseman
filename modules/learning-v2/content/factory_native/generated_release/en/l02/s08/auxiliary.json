@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-08:intro1:r2": {
-          "ru": "Перед `not` нужно `am`: `I am not sure`.",
-          "uk": "Перед `not` потрібно `am`: `I am not sure`."
+          "ru": "Без not выходит «Он сломан». А меч целый: It's not broken.",
+          "uk": "Без not виходить «Він зламаний». А меч цілий: It's not broken."
         },
         "en:lesson-02:session-08:intro1:r3": {
-          "ru": "Без `not` это уверенность. В условии вы сомневаетесь.",
-          "uk": "Без `not` це впевненість. За умовою ви сумніваєтеся."
+          "ru": "He's — о мужчине. Про меч говорим It's.",
+          "uk": "He's — про чоловіка. Про меч кажемо It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-08:intro2:r2": {
-          "ru": "Без `not` получается «Нам удобно».",
-          "uk": "Без `not` виходить «Нам зручно»."
+          "ru": "Без not выходит «Мы закончили». А вторая стена ещё серая: We are not finished.",
+          "uk": "Без not виходить «Ми закінчили». А друга стіна ще сіра: We are not finished."
         },
         "en:lesson-02:session-08:intro2:r3": {
-          "ru": "Это про неё. Про вас обоих — `We're`.",
-          "uk": "Це про неї. Про вас обох — `We're`."
+          "ru": "They — о других людях. О вас с Пашей говорим We.",
+          "uk": "They — про інших людей. Про вас із Пашею кажемо We."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-08:intro3:r2": {
-          "ru": "Это «Не настоящий», а букет настоящий. Нужно `not fake`.",
-          "uk": "Це «Не справжній», а букет справжній. Потрібно `not fake`."
+          "ru": "Без not выходит «Это разрешено». А на двери табличка: It's not allowed.",
+          "uk": "Без not виходить «Це дозволено». А на дверях табличка: It's not allowed."
         },
         "en:lesson-02:session-08:intro3:r3": {
-          "ru": "Это искусственный букет. Здесь требуется отрицание.",
-          "uk": "Це штучний букет. Тут потрібне заперечення."
+          "ru": "necessary — «нужный». Выйдет «Это не нужно», а снимать запрещено: allowed.",
+          "uk": "necessary — «потрібний». Вийде «Це не потрібно», а знімати заборонено: allowed."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e5489923b6757d46d1430b2fa52c512e6c9923a667a59feb82ea4a8313859cdc"
+  "auxiliaryFingerprint": "743cea19a0ae4cacb233ec6f251ec937927c391d9c8b0b746bc5eedbffed3ffd"
 }

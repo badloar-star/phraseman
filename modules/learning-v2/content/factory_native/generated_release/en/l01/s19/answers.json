@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-19:word:outside",
-    "correctText": "outside",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:word:upstairs",
-    "correctText": "upstairs",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:word:nearby",
-    "correctText": "nearby",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-19:i01",
     "correctText": "We are inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:word:outside",
+    "correctText": "outside",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i02",
     "correctText": "I am outside.",
     "correctResponseId": "en:lesson-01:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:word:upstairs",
+    "correctText": "upstairs",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i03",
@@ -47,6 +42,11 @@
   {
     "interactionId": "en:lesson-01:session-19:i06",
     "correctText": "He is outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:word:nearby",
+    "correctText": "nearby",
     "correctResponseId": null
   },
   {

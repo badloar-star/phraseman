@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-18:i01",
+      "interactionId": "en:lesson-02:session-18:word:unwell",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unwell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:word:unwell:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unwell",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:word:unwell:audio",
+          "transcript": "unwell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:word:unwell:r1",
+            "targetText": "unwell",
+            "meaningByLocale": {
+              "ru": "плохо себя чувствующий. I'm unwell — «Мне нездоровится». Не называет болезнь, просто говорит, что человеку плохо.",
+              "uk": "який погано почувається. I'm unwell — «Мені зле». Не називає хворобу, просто каже, що людині погано."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unwell",
+          "definitionByLocale": {
+            "ru": "плохо себя чувствующий. I'm unwell — «Мне нездоровится». Не называет болезнь, просто говорит, что человеку плохо.",
+            "uk": "який погано почувається. I'm unwell — «Мені зле». Не називає хворобу, просто каже, що людині погано."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вам нездужається. Скажіть про це повною фразою",
+      "prompt": "Вам зле. Скажіть про це керівниці повною фразою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вам нездужається. Скажіть про це повною фразою",
+      "accessibilityLabel": "Вам зле. Скажіть про це керівниці повною фразою",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am unwell.",
         "localizedMeaning": {
-          "ru": "Вам нездоровится. Скажите об этом полной фразой",
-          "uk": "Вам нездужається. Скажіть про це повною фразою"
+          "ru": "Вам нездоровится. Скажите об этом руководительнице полной фразой",
+          "uk": "Вам зле. Скажіть про це керівниці повною фразою"
         },
         "orderedTokens": [
           "I",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-18:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вам нездужається. Скажіть про це повною фразою",
+            "testedDimension": "Вам зле. Скажіть про це керівниці повною фразою",
             "feedbackByLocale": {
               "ru": "здесь нужно `am` — `I am unwell.`",
               "uk": "тут потрібно `am` — `I am unwell.`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про Олега",
+      "prompt": "Послухайте запитання керівниці про партнера по сцені",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-18:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-18:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про Олега",
+      "accessibilityLabel": "Послухайте запитання керівниці про партнера по сцені",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-18:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про Олега",
+            "testedDimension": "Послухайте запитання керівниці про партнера по сцені",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `unwell`, а в этом варианте — `early`.",
               "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `early`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-18:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про Олега",
+            "testedDimension": "Послухайте запитання керівниці про партнера по сцені",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `unwell`, а в этом варианте — `lucky`.",
               "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `lucky`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вам недобре. На «Are you unwell?» доповніть коротку відповідь «так»",
+      "prompt": "Вам погано. Керівниця питає: «Are you unwell?» Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-18:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вам недобре. На «Are you unwell?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Вам погано. Керівниця питає: «Are you unwell?» Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вам плохо. На «Are you unwell?» дополните короткое «да»",
-          "uk": "Вам недобре. На «Are you unwell?» доповніть коротку відповідь «так»"
+          "ru": "Вам плохо. Руководительница спрашивает: «Are you unwell?» Дополните короткое «да»",
+          "uk": "Вам погано. Керівниця питає: «Are you unwell?» Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, I ___.",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вам недобре. На «Are you unwell?» доповніть коротку відповідь «так»",
+        "testedDimension": "Вам погано. Керівниця питає: «Are you unwell?» Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-18:i03:r2",
             "correct": false,
-            "testedDimension": "Вам недобре. На «Are you unwell?» доповніть коротку відповідь «так»",
+            "testedDimension": "Вам погано. Керівниця питає: «Are you unwell?» Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "Про себя — `I am`.",
               "uk": "Про себе — `I am`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-18:i03:r3",
             "correct": false,
-            "testedDimension": "Вам недобре. На «Are you unwell?» доповніть коротку відповідь «так»",
+            "testedDimension": "Вам погано. Керівниця питає: «Are you unwell?» Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "В ответе о себе нужно `I am`, хотя вопрос начинается с `Are you`.",
               "uk": "У відповіді про себе потрібно `I am`, хоча запитання починається з `Are you`."
@@ -194,15 +237,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова про людей зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова про людей зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -211,45 +254,45 @@
             "target": "unwell",
             "meaningByLocale": {
               "ru": "плохо себя чувствующий",
-              "uk": "той, хто погано почувається"
+              "uk": "який погано почувається"
             }
           },
           {
             "pairId": "en:lesson-02:session-18:i04:p2",
-            "target": "wrong",
+            "target": "allergic",
             "meaningByLocale": {
-              "ru": "неправый, ошибающийся",
-              "uk": "неправий, той, хто помиляється"
+              "ru": "с аллергией",
+              "uk": "з алергією"
             }
           },
           {
             "pairId": "en:lesson-02:session-18:i04:p3",
-            "target": "early",
+            "target": "feverish",
             "meaningByLocale": {
-              "ru": "пришедший раньше времени",
-              "uk": "той, хто прийшов завчасно"
+              "ru": "с температурой",
+              "uk": "з температурою"
             }
           },
           {
             "pairId": "en:lesson-02:session-18:i04:p4",
-            "target": "lucky",
+            "target": "stuffy",
             "meaningByLocale": {
-              "ru": "удачливый",
-              "uk": "щасливий, кому щастить"
+              "ru": "душный",
+              "uk": "задушливий"
             }
           }
         ],
         "leftColumn": [
           "unwell",
-          "wrong",
-          "early",
-          "lucky"
+          "allergic",
+          "feverish",
+          "stuffy"
         ],
         "rightColumn": [
-          "той, хто погано почувається",
-          "неправий, той, хто помиляється",
-          "той, хто прийшов завчасно",
-          "щасливий, кому щастить"
+          "який погано почувається",
+          "з алергією",
+          "з температурою",
+          "задушливий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,17 +310,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Костюмерка вчора хворіла, але вже добре почувається. Керівниця питає: «Is she unwell?» Послухайте й складіть вашу відповідь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-18:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Костюмерка вчора хворіла, але вже добре почувається. Керівниця питає: «Is she unwell?» Послухайте й складіть вашу відповідь",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -299,7 +342,7 @@
           {
             "responseId": "en:lesson-02:session-18:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Костюмерка вчора хворіла, але вже добре почувається. Керівниця питає: «Is she unwell?» Послухайте й складіть вашу відповідь",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, she is not.`",
               "uk": "тут потрібно `No,` — `No, she is not.`"
@@ -315,21 +358,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег прийшов за пів години до зустрічі. На «Is he early?» дайте коротку відповідь «так»",
+      "prompt": "Партнер по сцені прийшов за пів години до початку. Керівниця питає: «Is he early?» Відповідайте коротким «так»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег прийшов за пів години до зустрічі. На «Is he early?» дайте коротку відповідь «так»",
+      "accessibilityLabel": "Партнер по сцені прийшов за пів години до початку. Керівниця питає: «Is he early?» Відповідайте коротким «так»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Yes, he is.",
         "localizedMeaning": {
-          "ru": "Олег пришёл за полчаса до встречи. На «Is he early?» ответьте коротким «да»",
-          "uk": "Олег прийшов за пів години до зустрічі. На «Is he early?» дайте коротку відповідь «так»"
+          "ru": "Партнёр по сцене пришёл за полчаса до начала. Руководительница спрашивает: «Is he early?» Ответьте коротким «да»",
+          "uk": "Партнер по сцені прийшов за пів години до початку. Керівниця питає: «Is he early?» Відповідайте коротким «так»"
         },
         "orderedTokens": [
           "Yes,",
@@ -343,7 +386,7 @@
           {
             "responseId": "en:lesson-02:session-18:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Олег прийшов за пів години до зустрічі. На «Is he early?» дайте коротку відповідь «так»",
+            "testedDimension": "Партнер по сцені прийшов за пів години до початку. Керівниця питає: «Is he early?» Відповідайте коротким «так»",
             "feedbackByLocale": {
               "ru": "здесь нужно `Yes,` — `Yes, he is.`",
               "uk": "тут потрібно `Yes,` — `Yes, he is.`"
@@ -358,26 +401,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-18:word:feverish",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — feverish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:word:feverish:audio"
+      ],
+      "accessibilityLabel": "Картка слова — feverish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:word:feverish:audio",
+          "transcript": "feverish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:word:feverish:r1",
+            "targetText": "feverish",
+            "meaningByLocale": {
+              "ru": "с температурой. She's feverish — «У неё температура». Когда лоб горячий и человека знобит.",
+              "uk": "з температурою. She's feverish — «У неї температура». Коли лоб гарячий і людину морозить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "feverish",
+          "definitionByLocale": {
+            "ru": "с температурой. She's feverish — «У неё температура». Когда лоб горячий и человека знобит.",
+            "uk": "з температурою. She's feverish — «У неї температура». Коли лоб гарячий і людину морозить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-18:i07",
-      "ordinal": 10,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анні нездужається. Коротко скажіть про це другові",
+      "prompt": "Ви торкаєтеся лоба наймолодшої акторки: він гарячий. Коротко скажіть керівниці, що в неї температура",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Анні нездужається. Коротко скажіть про це другові",
+      "accessibilityLabel": "Ви торкаєтеся лоба наймолодшої акторки: він гарячий. Коротко скажіть керівниці, що в неї температура",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-18:i07:audio",
-          "transcript": "She's unwell."
+          "transcript": "She's feverish."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She's unwell.",
+        "targetPhrase": "She's feverish.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +478,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перенести репетицію можна. На «Is it impossible?» доповніть коротку відповідь «ні»",
+      "prompt": "Перенести репетицію можна. Керівниця питає: «Is it impossible?» Доповніть коротке «ні»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-18:i08:r1",
@@ -413,12 +499,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перенести репетицію можна. На «Is it impossible?» доповніть коротку відповідь «ні»",
+      "accessibilityLabel": "Перенести репетицію можна. Керівниця питає: «Is it impossible?» Доповніть коротке «ні»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перенести репетицию можно. На «Is it impossible?» дополните короткое «нет»",
-          "uk": "Перенести репетицію можна. На «Is it impossible?» доповніть коротку відповідь «ні»"
+          "ru": "Перенести репетицию можно. Руководительница спрашивает: «Is it impossible?» Дополните короткое «нет»",
+          "uk": "Перенести репетицію можна. Керівниця питає: «Is it impossible?» Доповніть коротке «ні»"
         },
         "gappedTargetPhrase": "No, it ___ not.",
         "gapOptions": [
@@ -435,12 +521,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Перенести репетицію можна. На «Is it impossible?» доповніть коротку відповідь «ні»",
+        "testedDimension": "Перенести репетицію можна. Керівниця питає: «Is it impossible?» Доповніть коротке «ні»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Перенести репетицію можна. На «Is it impossible?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Перенести репетицію можна. Керівниця питає: «Is it impossible?» Доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -449,7 +535,7 @@
           {
             "responseId": "en:lesson-02:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Перенести репетицію можна. На «Is it impossible?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Перенести репетицію можна. Керівниця питає: «Is it impossible?» Доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "Ответ: `No, it is not`.",
               "uk": "Відповідь: `No, it is not`."
@@ -461,11 +547,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Анну",
+      "prompt": "Партнер по сцені сперечається з керівницею про час. Послухайте, що ви кажете про неї",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-18:i09:r1",
@@ -484,7 +570,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-18:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Анну",
+      "accessibilityLabel": "Партнер по сцені сперечається з керівницею про час. Послухайте, що ви кажете про неї",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -514,7 +600,7 @@
           {
             "responseId": "en:lesson-02:session-18:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну",
+            "testedDimension": "Партнер по сцені сперечається з керівницею про час. Послухайте, що ви кажете про неї",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `wrong`, а в этом варианте — `early`.",
               "uk": "У записі останнє слово — `wrong`, а в цьому варіанті — `early`."
@@ -523,7 +609,7 @@
           {
             "responseId": "en:lesson-02:session-18:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну",
+            "testedDimension": "Партнер по сцені сперечається з керівницею про час. Послухайте, що ви кажете про неї",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `wrong`, а в этом варианте — `unwell`.",
               "uk": "У записі останнє слово — `wrong`, а в цьому варіанті — `unwell`."
@@ -537,15 +623,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -559,18 +645,18 @@
           },
           {
             "pairId": "en:lesson-02:session-18:i10:p2",
-            "target": "unwell",
+            "target": "wrong",
             "meaningByLocale": {
-              "ru": "плохо себя чувствующий",
-              "uk": "той, хто погано почувається"
+              "ru": "неправый, ошибающийся",
+              "uk": "неправий, який помиляється"
             }
           },
           {
             "pairId": "en:lesson-02:session-18:i10:p3",
-            "target": "wrong",
+            "target": "early",
             "meaningByLocale": {
-              "ru": "неправый, ошибающийся",
-              "uk": "неправий, той, хто помиляється"
+              "ru": "пришедший раньше времени",
+              "uk": "який прийшов раніше"
             }
           },
           {
@@ -578,21 +664,21 @@
             "target": "lucky",
             "meaningByLocale": {
               "ru": "удачливый",
-              "uk": "щасливий, кому щастить"
+              "uk": "щасливий, якому щастить"
             }
           }
         ],
         "leftColumn": [
           "impossible",
-          "unwell",
           "wrong",
+          "early",
           "lucky"
         ],
         "rightColumn": [
           "неможливий",
-          "той, хто погано почувається",
-          "неправий, той, хто помиляється",
-          "щасливий, кому щастить"
+          "неправий, який помиляється",
+          "який прийшов раніше",
+          "щасливий, якому щастить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,17 +696,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу",
+      "prompt": "Ви з партнером приходите рівно до початку. Послухайте й складіть, що ви кажете",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-18:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "accessibilityLabel": "Ви з партнером приходите рівно до початку. Послухайте й складіть, що ви кажете",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -641,7 +727,7 @@
           {
             "responseId": "en:lesson-02:session-18:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу",
+            "testedDimension": "Ви з партнером приходите рівно до початку. Послухайте й складіть, що ви кажете",
             "feedbackByLocale": {
               "ru": "здесь нужно `We're` — `We're not early.`",
               "uk": "тут потрібно `We're` — `We're not early.`"
@@ -657,21 +743,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви добре почуваєтеся. На «Are you unwell?» дайте коротку відповідь «ні»",
+      "prompt": "Ви добре почуваєтеся. Керівниця питає: «Are you unwell?» Відповідайте коротким «ні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви добре почуваєтеся. На «Are you unwell?» дайте коротку відповідь «ні»",
+      "accessibilityLabel": "Ви добре почуваєтеся. Керівниця питає: «Are you unwell?» Відповідайте коротким «ні»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "No, I am not.",
         "localizedMeaning": {
-          "ru": "Вы хорошо себя чувствуете. На «Are you unwell?» ответьте коротким «нет»",
-          "uk": "Ви добре почуваєтеся. На «Are you unwell?» дайте коротку відповідь «ні»"
+          "ru": "Вы хорошо себя чувствуете. Руководительница спрашивает: «Are you unwell?» Ответьте коротким «нет»",
+          "uk": "Ви добре почуваєтеся. Керівниця питає: «Are you unwell?» Відповідайте коротким «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -686,7 +772,7 @@
           {
             "responseId": "en:lesson-02:session-18:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви добре почуваєтеся. На «Are you unwell?» дайте коротку відповідь «ні»",
+            "testedDimension": "Ви добре почуваєтеся. Керівниця питає: «Are you unwell?» Відповідайте коротким «ні»",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, I am not.`",
               "uk": "тут потрібно `No,` — `No, I am not.`"
@@ -702,17 +788,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i13",
-      "ordinal": 16,
+      "ordinal": 18,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вам із другом дісталися два останні квитки на виставу. Він запитує за вас обох: «Are we lucky?» Дайте коротку відповідь «так» за двох",
+      "prompt": "Вам із партнером дісталися головні ролі. Він питає за вас обох: «Are we lucky?» Відповідайте коротким «так» за двох",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-18:i13:audio"
       ],
-      "accessibilityLabel": "Вам із другом дісталися два останні квитки на виставу. Він запитує за вас обох: «Are we lucky?» Дайте коротку відповідь «так» за двох",
+      "accessibilityLabel": "Вам із партнером дісталися головні ролі. Він питає за вас обох: «Are we lucky?» Відповідайте коротким «так» за двох",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -734,12 +820,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-18:word:allergic",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — allergic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:word:allergic:audio"
+      ],
+      "accessibilityLabel": "Картка слова — allergic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:word:allergic:audio",
+          "transcript": "allergic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:word:allergic:r1",
+            "targetText": "allergic",
+            "meaningByLocale": {
+              "ru": "с аллергией. Is he allergic? — «У него аллергия?» На кошек, пыль, цветы, орехи.",
+              "uk": "з алергією. Is he allergic? — «У нього алергія?» На котів, пил, квіти, горіхи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "allergic",
+          "definitionByLocale": {
+            "ru": "с аллергией. Is he allergic? — «У него аллергия?» На кошек, пыль, цветы, орехи.",
+            "uk": "з алергією. Is he allergic? — «У нього алергія?» На котів, пил, квіти, горіхи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-18:i14",
-      "ordinal": 17,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна й Олег добре почуваються. Доповніть фразу, яка заперечує, що їм нездужається",
+      "prompt": "Дві акторки чхають поруч із котом. Доповніть фразу про те, що в них алергія",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-18:i14:r1",
@@ -756,14 +885,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна й Олег добре почуваються. Доповніть фразу, яка заперечує, що їм нездужається",
+      "accessibilityLabel": "Дві акторки чхають поруч із котом. Доповніть фразу про те, що в них алергія",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна и Олег хорошо себя чувствуют. Дополните фразу, которая отрицает плохое самочувствие",
-          "uk": "Анна й Олег добре почуваються. Доповніть фразу, яка заперечує, що їм нездужається"
+          "ru": "Две актрисы чихают рядом с котом. Дополните фразу о том, что у них аллергия",
+          "uk": "Дві акторки чхають поруч із котом. Доповніть фразу про те, що в них алергія"
         },
-        "gappedTargetPhrase": "They ___ not unwell.",
+        "gappedTargetPhrase": "They ___ allergic.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-18:i14:r1",
@@ -778,12 +907,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Анна й Олег добре почуваються. Доповніть фразу, яка заперечує, що їм нездужається",
+        "testedDimension": "Дві акторки чхають поруч із котом. Доповніть фразу про те, що в них алергія",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-18:i14:r2",
             "correct": false,
-            "testedDimension": "Анна й Олег добре почуваються. Доповніть фразу, яка заперечує, що їм нездужається",
+            "testedDimension": "Дві акторки чхають поруч із котом. Доповніть фразу про те, що в них алергія",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -792,10 +921,10 @@
           {
             "responseId": "en:lesson-02:session-18:i14:r3",
             "correct": false,
-            "testedDimension": "Анна й Олег добре почуваються. Доповніть фразу, яка заперечує, що їм нездужається",
+            "testedDimension": "Дві акторки чхають поруч із котом. Доповніть фразу про те, що в них алергія",
             "feedbackByLocale": {
-              "ru": "Про двоих — `They are not`.",
-              "uk": "Про двох — `They are not`."
+              "ru": "Про двоих — `They are`.",
+              "uk": "Про двох — `They are`."
             }
           }
         ]
@@ -803,16 +932,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-18:i15",
-      "ordinal": 18,
+      "interactionId": "en:lesson-02:session-18:word:stuffy",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Картка слова — stuffy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:word:stuffy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stuffy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:word:stuffy:audio",
+          "transcript": "stuffy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:word:stuffy:r1",
+            "targetText": "stuffy",
+            "meaningByLocale": {
+              "ru": "душный. Is it stuffy? — «Там душно?» О зале, комнате, автобусе.",
+              "uk": "задушливий. Is it stuffy? — «Там задушливо?» Про зал, кімнату, автобус."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stuffy",
+          "definitionByLocale": {
+            "ru": "душный. Is it stuffy? — «Там душно?» О зале, комнате, автобусе.",
+            "uk": "задушливий. Is it stuffy? — «Там задушливо?» Про зал, кімнату, автобус."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Керівниця заходить до зали з вулиці. Послухайте її запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-18:i15:r1",
-          "text": "Is it impossible?"
+          "text": "Is it stuffy?"
         },
         {
           "responseId": "en:lesson-02:session-18:i15:r2",
@@ -827,18 +999,18 @@
       "audioTargetIds": [
         "en:lesson-02:session-18:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Керівниця заходить до зали з вулиці. Послухайте її запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-18:i15:audio",
-          "transcript": "Is it impossible?"
+          "transcript": "Is it stuffy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-18:i15:r1",
-            "targetText": "Is it impossible?",
+            "targetText": "Is it stuffy?",
             "meaningByLocale": null
           },
           {
@@ -857,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-18:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Керівниця заходить до зали з вулиці. Послухайте її запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `impossible`, а в этом варианте — `possible`.",
-              "uk": "У записі останнє слово — `impossible`, а в цьому варіанті — `possible`."
+              "ru": "В записи последнее слово — `stuffy`, а в этом варианте — `possible`.",
+              "uk": "У записі останнє слово — `stuffy`, а в цьому варіанті — `possible`."
             }
           },
           {
             "responseId": "en:lesson-02:session-18:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Керівниця заходить до зали з вулиці. Послухайте її запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `impossible`, а в этом варианте — `urgent`.",
-              "uk": "У записі останнє слово — `impossible`, а в цьому варіанті — `urgent`."
+              "ru": "В записи последнее слово — `stuffy`, а в этом варианте — `urgent`.",
+              "uk": "У записі останнє слово — `stuffy`, а в цьому варіанті — `urgent`."
             }
           }
         ],
@@ -880,15 +1052,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте слова минулого заняття зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте слова минулого заняття зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -897,45 +1069,45 @@
             "target": "well",
             "meaningByLocale": {
               "ru": "хорошо себя чувствующий",
-              "uk": "той, хто добре почувається"
+              "uk": "який добре почувається"
             }
           },
           {
             "pairId": "en:lesson-02:session-18:i16:p2",
-            "target": "unwell",
+            "target": "carsick",
             "meaningByLocale": {
-              "ru": "плохо себя чувствующий",
-              "uk": "той, хто погано почувається"
+              "ru": "укачанный в дороге",
+              "uk": "заколисаний у дорозі"
             }
           },
           {
             "pairId": "en:lesson-02:session-18:i16:p3",
-            "target": "early",
+            "target": "stiff",
             "meaningByLocale": {
-              "ru": "пришедший раньше времени",
-              "uk": "той, хто прийшов завчасно"
+              "ru": "затёкший",
+              "uk": "затерплий"
             }
           },
           {
             "pairId": "en:lesson-02:session-18:i16:p4",
-            "target": "impossible",
+            "target": "unpacked",
             "meaningByLocale": {
-              "ru": "невозможный",
-              "uk": "неможливий"
+              "ru": "распакованный",
+              "uk": "розпакований"
             }
           }
         ],
         "leftColumn": [
           "well",
-          "unwell",
-          "early",
-          "impossible"
+          "carsick",
+          "stiff",
+          "unpacked"
         ],
         "rightColumn": [
-          "той, хто добре почувається",
-          "той, хто погано почувається",
-          "той, хто прийшов завчасно",
-          "неможливий"
+          "який добре почувається",
+          "заколисаний у дорозі",
+          "затерплий",
+          "розпакований"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,17 +1125,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-18:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вам нездужається, і ви хочете скасувати участь у репетиції. Друг запитує: «Are you unwell?» Дайте коротку відповідь «так», не повторюючи unwell",
+      "prompt": "Вам зле, і ви хочете пропустити репетицію. Керівниця питає: «Are you unwell?» Відповідайте коротким «так», не повторюючи unwell",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-18:i17:audio"
       ],
-      "accessibilityLabel": "Вам нездужається, і ви хочете скасувати участь у репетиції. Друг запитує: «Are you unwell?» Дайте коротку відповідь «так», не повторюючи unwell",
+      "accessibilityLabel": "Вам зле, і ви хочете пропустити репетицію. Керівниця питає: «Are you unwell?» Відповідайте коротким «так», не повторюючи unwell",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -993,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b1a376d64efdb48d2c37ce06717f4183768fd6bf4d3a12d9109893d895b0eb74"
+  "learnerFingerprint": "4a803b81d0b2e939ace04df96084b3969fb25abe3e8f410ddeb4d450d6ac3d5f"
 }

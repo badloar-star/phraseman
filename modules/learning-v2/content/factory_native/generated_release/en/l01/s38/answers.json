@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-01:session-38:word:starving",
+    "correctText": "starving",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-38:i01",
-    "correctText": "I am weak.",
+    "correctText": "I am starving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:word:sunburned",
+    "correctText": "sunburned",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i02",
-    "correctText": "He is weak.",
+    "correctText": "He is sunburned.",
     "correctResponseId": "en:lesson-01:session-38:i02:r1"
   },
   {
@@ -16,17 +26,27 @@
   },
   {
     "interactionId": "en:lesson-01:session-38:i04",
-    "correctText": "en:lesson-01:session-38:i04:p1=weak\nen:lesson-01:session-38:i04:p2=alive\nen:lesson-01:session-38:i04:p3=dead\nen:lesson-01:session-38:i04:p4=missing",
+    "correctText": "en:lesson-01:session-38:i04:p1=starving\nen:lesson-01:session-38:i04:p2=dusty\nen:lesson-01:session-38:i04:p3=sunburned\nen:lesson-01:session-38:i04:p4=sore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:word:dusty",
+    "correctText": "dusty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i05",
-    "correctText": "It is weak.",
+    "correctText": "It is dusty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:word:sore",
+    "correctText": "sore",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i06",
-    "correctText": "We are weak.",
+    "correctText": "We are sore.",
     "correctResponseId": null
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-38:i11",
-    "correctText": "She's weak.",
+    "correctText": "I'm sore.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-38:i15",
-    "correctText": "We're weak.",
+    "correctText": "We're starving.",
     "correctResponseId": "en:lesson-01:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-38:i16",
-    "correctText": "en:lesson-01:session-38:i16:p1=missing\nen:lesson-01:session-38:i16:p2=weak\nen:lesson-01:session-38:i16:p3=dead\nen:lesson-01:session-38:i16:p4=alive",
+    "correctText": "en:lesson-01:session-38:i16:p1=sore\nen:lesson-01:session-38:i16:p2=weak\nen:lesson-01:session-38:i16:p3=dusty\nen:lesson-01:session-38:i16:p4=alive",
     "correctResponseId": null
   },
   {

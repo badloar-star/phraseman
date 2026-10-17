@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-41:word:stubborn",
+    "correctText": "stubborn",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-41:i01",
-    "correctText": "It is accurate.",
+    "correctText": "He is stubborn.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i02",
-    "correctText": "He is honest.",
+    "correctText": "They are tired.",
     "correctResponseId": "en:lesson-02:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-41:word:selfish",
+    "correctText": "selfish",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-41:i04",
-    "correctText": "en:lesson-02:session-41:i04:p1=accurate\nen:lesson-02:session-41:i04:p2=honest\nen:lesson-02:session-41:i04:p3=active\nen:lesson-02:session-41:i04:p4=relevant",
+    "correctText": "en:lesson-02:session-41:i04:p1=stubborn\nen:lesson-02:session-41:i04:p2=gentle\nen:lesson-02:session-41:i04:p3=selfish\nen:lesson-02:session-41:i04:p4=kind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-41:word:gentle",
+    "correctText": "gentle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i05",
-    "correctText": "Yes, they are.",
+    "correctText": "Is he gentle?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i06",
-    "correctText": "What is accurate?",
+    "correctText": "Is he selfish?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i07",
-    "correctText": "It's accurate.",
+    "correctText": "They're not selfish.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-41:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-41:word:naughty",
+    "correctText": "naughty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-41:i09",
-    "correctText": "It is active.",
+    "correctText": "He is naughty.",
     "correctResponseId": "en:lesson-02:session-41:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i10",
-    "correctText": "en:lesson-02:session-41:i10:p1=honest\nen:lesson-02:session-41:i10:p2=relevant\nen:lesson-02:session-41:i10:p3=accurate\nen:lesson-02:session-41:i10:p4=active",
+    "correctText": "en:lesson-02:session-41:i10:p1=naughty\nen:lesson-02:session-41:i10:p2=selfish\nen:lesson-02:session-41:i10:p3=gentle\nen:lesson-02:session-41:i10:p4=polite",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i11",
-    "correctText": "They are not accurate.",
+    "correctText": "They are not stubborn.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i12",
-    "correctText": "Is he honest?",
+    "correctText": "Who is naughty?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i13",
-    "correctText": "It's active.",
+    "correctText": "He's naughty.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-41:i15",
-    "correctText": "Are they accurate?",
+    "correctText": "Are they naughty?",
     "correctResponseId": "en:lesson-02:session-41:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i16",
-    "correctText": "en:lesson-02:session-41:i16:p1=active\nen:lesson-02:session-41:i16:p2=accurate\nen:lesson-02:session-41:i16:p3=relevant\nen:lesson-02:session-41:i16:p4=honest",
+    "correctText": "en:lesson-02:session-41:i16:p1=stubborn\nen:lesson-02:session-41:i16:p2=naughty\nen:lesson-02:session-41:i16:p3=selfish\nen:lesson-02:session-41:i16:p4=polite",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i17",
-    "correctText": "Is it accurate?",
+    "correctText": "Is he gentle?",
     "correctResponseId": null
   }
 ]

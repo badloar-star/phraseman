@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Билетом можно пользоваться",
-        "uk": "Квитком можна користуватися"
+        "ru": "Билет купили вчера",
+        "uk": "Квиток купили вчора"
       },
       "bodyByLocale": {
-        "ru": "`valid` — «действительный». Про билет это значит, что им можно воспользоваться по его условиям: `It is valid` — «Он действителен». У вас билет только на вчерашний сеанс. Сегодня он уже не `valid`, даже если вчера вы очень хотели пойти.",
-        "uk": "`valid` — «дійсний». Про квиток це означає, що ним можна скористатися за його умовами: `It is valid` — «Він дійсний». У вас квиток лише на вчорашній сеанс. Сьогодні він уже не `valid`, навіть якщо вчора ви дуже хотіли піти."
+        "ru": "Вы купили билет на фестиваль ещё вчера, а сегодня у кассы висит объявление, что расписание поменяли. valid — «действительный», когда речь о билете. Is it valid? — «Он действителен?»",
+        "uk": "Ви купили квиток на фестиваль ще вчора, а сьогодні біля каси висить оголошення, що розклад змінили. valid — «дійсний», коли йдеться про квиток. Is it valid? — «Він дійсний?»"
       },
       "question": {
         "interactionId": "en:lesson-02:session-23:intro1:q",
         "promptByLocale": {
-          "ru": "Кассир подтвердил, что ваш билет подходит на сегодняшний сеанс. Сообщите это полной фразой.",
-          "uk": "Касир підтвердив, що ваш квиток підходить на сьогоднішній сеанс. Повідомте це повною фразою."
+          "ru": "Вы протягиваете билет контролёру у входа в зал. Спросите его, действителен ли билет.",
+          "uk": "Ви простягаєте квиток контролерові біля входу до зали. Запитайте його, чи дійсний квиток."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-23:intro1:r1",
-              "text": "It is valid."
+              "text": "Is it valid?"
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r2",
-              "text": "It valid."
+              "text": "It is valid."
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r3",
-              "text": "It is not valid."
+              "text": "Are it valid?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-23:intro1:r1",
-              "text": "It is valid."
+              "text": "Is it valid?"
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r2",
-              "text": "It valid."
+              "text": "It is valid."
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r3",
-              "text": "It is not valid."
+              "text": "Are it valid?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кассир подтвердил, что ваш билет подходит на сегодняшний сеанс. Сообщите это полной фразой.",
-          "uk": "Касир підтвердив, що ваш квиток підходить на сьогоднішній сеанс. Повідомте це повною фразою."
+          "ru": "Вы протягиваете билет контролёру у входа в зал. Спросите его, действителен ли билет.",
+          "uk": "Ви простягаєте квиток контролерові біля входу до зали. Запитайте його, чи дійсний квиток."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уточнить у кассира",
-        "uk": "Уточнити в касира"
+        "ru": "Фильм на французском",
+        "uk": "Фільм французькою"
       },
       "bodyByLocale": {
-        "ru": "Вы не уверены, подходит ли билет: `Is it valid?` — «Он действителен?» Если показываете два билета, спросите `Are they valid?`. Здесь `they` — билеты, и с ним нужно `are`.",
-        "uk": "Ви не впевнені, чи підходить квиток: `Is it valid?` — «Він дійсний?» Якщо показуєте два квитки, запитайте `Are they valid?`. Тут `they` — квитки, і з ним потрібно `are`."
+        "ru": "Вы с подругой выбрали французский фильм. Подруга французского не знает и боится, что ничего не поймёт. В программке под названием написано, что показ с субтитрами. subtitled — «с субтитрами». It's subtitled — «Он с субтитрами».",
+        "uk": "Ви з подругою обрали французький фільм. Подруга французької не знає й боїться, що нічого не зрозуміє. У програмці під назвою написано, що показ із субтитрами. subtitled — «із субтитрами». It's subtitled — «Він із субтитрами»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Вы показываете кассиру два билета. Спросите, действительны ли они.",
-          "uk": "Ви показуєте касиру два квитки. Запитайте, чи вони дійсні."
+          "ru": "Подруга спрашивает, поймёт ли она фильм. Скажите коротко, что он с субтитрами.",
+          "uk": "Подруга питає, чи зрозуміє вона фільм. Скажіть коротко, що він із субтитрами."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-23:intro2:r1",
-              "text": "Are they valid?"
+              "text": "It's subtitled."
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r2",
-              "text": "Is they valid?"
+              "text": "It's not subtitled."
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r3",
-              "text": "They are valid."
+              "text": "They're subtitled."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-23:intro2:r1",
-              "text": "Are they valid?"
+              "text": "It's subtitled."
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r2",
-              "text": "Is they valid?"
+              "text": "It's not subtitled."
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r3",
-              "text": "They are valid."
+              "text": "They're subtitled."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы показываете кассиру два билета. Спросите, действительны ли они.",
-          "uk": "Ви показуєте касиру два квитки. Запитайте, чи вони дійсні."
+          "ru": "Подруга спрашивает, поймёт ли она фильм. Скажите коротко, что он с субтитрами.",
+          "uk": "Подруга питає, чи зрозуміє вона фільм. Скажіть коротко, що він із субтитрами."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ответ про свой билет",
-        "uk": "Відповідь про свій квиток"
+        "ru": "Мультфильм для племянника",
+        "uk": "Мультфільм для племінника"
       },
       "bodyByLocale": {
-        "ru": "На `Is it valid?` можно ответить `Yes, it is` — «Да» или `No, it is not` — «Нет». А сообщить о билете без вопроса можно коротко: `It's valid`. В коротком ответе «да» остаётся полное `is`: `Yes, it is`.",
-        "uk": "На `Is it valid?` можна відповісти `Yes, it is` — «Так» або `No, it is not` — «Ні». А повідомити про квиток без запитання можна коротко: `It's valid`. У короткій відповіді «так» залишається повне `is`: `Yes, it is`."
+        "ru": "Друг хочет сводить на мультфильм племянника. Мальчику шесть лет, читать он ещё не умеет, поэтому субтитры ему не помогут. dubbed — «дублированный», переозвученный на другой язык. В программке у этого мультфильма указаны только субтитры.",
+        "uk": "Друг хоче повести на мультфільм племінника. Хлопчикові шість років, читати він ще не вміє, тому субтитри йому не допоможуть. dubbed — «дубльований», переозвучений іншою мовою. У програмці в цього мультфільму вказані тільки субтитри."
       },
       "question": {
         "interactionId": "en:lesson-02:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Друг спрашивает: `Is it valid?` Ваш билет действует только на вчерашний сеанс. Ответьте коротким «нет».",
-          "uk": "Друг запитує: `Is it valid?` Ваш квиток діє лише на вчорашній сеанс. Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает: Is it dubbed? Скажите коротко, что мультфильм не дублирован.",
+          "uk": "Друг питає: Is it dubbed? Скажіть коротко, що мультфільм не дубльований."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-23:intro3:r1",
-              "text": "No, it is not."
+              "text": "It's not dubbed."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r2",
-              "text": "Yes, it is."
+              "text": "It's dubbed."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r3",
-              "text": "No, it not."
+              "text": "It's not subtitled."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-23:intro3:r1",
-              "text": "No, it is not."
+              "text": "It's not dubbed."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r2",
-              "text": "Yes, it is."
+              "text": "It's dubbed."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r3",
-              "text": "No, it not."
+              "text": "It's not subtitled."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг спрашивает: `Is it valid?` Ваш билет действует только на вчерашний сеанс. Ответьте коротким «нет».",
-          "uk": "Друг запитує: `Is it valid?` Ваш квиток діє лише на вчорашній сеанс. Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает: Is it dubbed? Скажите коротко, что мультфильм не дублирован.",
+          "uk": "Друг питає: Is it dubbed? Скажіть коротко, що мультфільм не дубльований."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "592cc1bc785e49c35bae93f790759e80fc4a2496a2239c60979670be6a042edb"
+  "introFingerprint": "4f4a39bc5de19eec54c6e6f09ec9bed578dceb603dc429d1a3b91c3dbc51b111"
 }

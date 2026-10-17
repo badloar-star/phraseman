@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-42:word:queasy",
+    "correctText": "queasy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-42:i01",
-    "correctText": "It is inaccurate.",
+    "correctText": "I am queasy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i02",
-    "correctText": "He is polite.",
+    "correctText": "She is pale.",
     "correctResponseId": "en:lesson-02:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:word:swollen",
+    "correctText": "swollen",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i03",
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-42:i04",
-    "correctText": "en:lesson-02:session-42:i04:p1=inaccurate\nen:lesson-02:session-42:i04:p2=accurate\nen:lesson-02:session-42:i04:p3=polite\nen:lesson-02:session-42:i04:p4=inactive",
+    "correctText": "en:lesson-02:session-42:i04:p1=queasy\nen:lesson-02:session-42:i04:p2=itchy\nen:lesson-02:session-42:i04:p3=swollen\nen:lesson-02:session-42:i04:p4=pale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:word:itchy",
+    "correctText": "itchy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "Is it itchy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:word:shaky",
+    "correctText": "shaky",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i06",
-    "correctText": "What is inaccurate?",
+    "correctText": "Is he shaky?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i07",
-    "correctText": "It's inaccurate.",
+    "correctText": "I'm queasy.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-02:session-42:i09",
-    "correctText": "It is inactive.",
+    "correctText": "It is itchy.",
     "correctResponseId": "en:lesson-02:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-42:i10",
-    "correctText": "en:lesson-02:session-42:i10:p1=polite\nen:lesson-02:session-42:i10:p2=inactive\nen:lesson-02:session-42:i10:p3=accurate\nen:lesson-02:session-42:i10:p4=inaccurate",
+    "correctText": "en:lesson-02:session-42:i10:p1=shaky\nen:lesson-02:session-42:i10:p2=queasy\nen:lesson-02:session-42:i10:p3=calm\nen:lesson-02:session-42:i10:p4=tired",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i11",
-    "correctText": "They are not accurate.",
+    "correctText": "They are not swollen.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i12",
-    "correctText": "Is he polite?",
+    "correctText": "Are they itchy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i13",
-    "correctText": "It's inactive.",
+    "correctText": "It's swollen.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i14",
-    "correctText": "is",
+    "correctText": "am",
     "correctResponseId": "en:lesson-02:session-42:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-42:i15",
-    "correctText": "Are they inaccurate?",
+    "correctText": "Are you queasy?",
     "correctResponseId": "en:lesson-02:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-42:i16",
-    "correctText": "en:lesson-02:session-42:i16:p1=inactive\nen:lesson-02:session-42:i16:p2=inaccurate\nen:lesson-02:session-42:i16:p3=polite\nen:lesson-02:session-42:i16:p4=accurate",
+    "correctText": "en:lesson-02:session-42:i16:p1=itchy\nen:lesson-02:session-42:i16:p2=swollen\nen:lesson-02:session-42:i16:p3=pale\nen:lesson-02:session-42:i16:p4=calm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-42:i17",
-    "correctText": "Is it inaccurate?",
+    "correctText": "Are you queasy?",
     "correctResponseId": null
   }
 ]

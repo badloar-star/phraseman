@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-15:intro1:r2": {
-          "ru": "После `He` нужно `is`: `He is silent`.",
-          "uk": "Після `He` потрібно `is`: `He is silent`."
+          "ru": "С not выходит «Он не молчит». А брат не говорит ни слова: He is silent.",
+          "uk": "З not виходить «Він не мовчить». А брат не каже ні слова: He is silent."
         },
         "en:lesson-02:session-15:intro1:r3": {
-          "ru": "С `not` получается, что он не молчит. В условии он не говорит.",
-          "uk": "З `not` виходить, що він не мовчить. За умовою він не говорить."
+          "ru": "Нужно is: He is silent.",
+          "uk": "Потрібно is: He is silent."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-15:intro2:r2": {
-          "ru": "С `it` нужно `is`: `Is it silent?`.",
-          "uk": "З `it` потрібно `is`: `Is it silent?`."
+          "ru": "Это «Это нелегко». А там всего три слова: It's easy.",
+          "uk": "Це «Це нелегко». А там лише три слова: It's easy."
         },
         "en:lesson-02:session-15:intro2:r3": {
-          "ru": "После `Is` ставим `it`, затем `silent`.",
-          "uk": "Після `Is` ставимо `it`, потім `silent`."
+          "ru": "Фраза одна, поэтому It's.",
+          "uk": "Фраза одна, тому It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-15:intro3:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "easy — «лёгкий». Вы спрашиваете, трудное ли оно: difficult.",
+          "uk": "easy — «легкий». Ви питаєте, чи він складний: difficult."
         },
         "en:lesson-02:session-15:intro3:r3": {
-          "ru": "Без `not` это молчание. В условии они разговаривают.",
-          "uk": "Без `not` це мовчання. За умовою вони розмовляють."
+          "ru": "Со словом it нужно is: Is it difficult?",
+          "uk": "Зі словом it потрібно is: Is it difficult?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f82dc6bca67af523c094216b629e854e14ff3007a7505c0e2b77d1aae15f188b"
+  "auxiliaryFingerprint": "8aa68b9b1e4f75bb718843fcaded97bbff56d5e3a9c271be191d2a37babedde0"
 }

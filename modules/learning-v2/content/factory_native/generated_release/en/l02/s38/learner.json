@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-38:i01",
+      "interactionId": "en:lesson-02:session-38:word:leaky",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — leaky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:word:leaky:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — leaky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:word:leaky:audio",
+          "transcript": "leaky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:word:leaky:r1",
+            "targetText": "leaky",
+            "meaningByLocale": {
+              "ru": "протекающий, с течью. It is leaky — «Он течёт». О кране, трубе, крыше, лодке.",
+              "uk": "що протікає, з течею. It is leaky — «Він тече». Про кран, трубу, дах, човен."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leaky",
+          "definitionByLocale": {
+            "ru": "протекающий, с течью. It is leaky — «Он течёт». О кране, трубе, крыше, лодке.",
+            "uk": "що протікає, з течею. It is leaky — «Він тече». Про кран, трубу, дах, човен."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сосед составил расписание от себя, без утверждения организаторами. Скажите полной фразой, что оно неофициальное",
+      "prompt": "Мастер ждёт ответа по телефону. Скажите ему полной фразой, что кран течёт.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сосед составил расписание от себя, без утверждения организаторами. Скажите полной фразой, что оно неофициальное",
+      "accessibilityLabel": "Мастер ждёт ответа по телефону. Скажите ему полной фразой, что кран течёт.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is unofficial.",
+        "targetPhrase": "It is leaky.",
         "localizedMeaning": {
-          "ru": "Сосед составил расписание от себя, без утверждения организаторами. Скажите полной фразой, что оно неофициальное",
-          "uk": "Сусід склав розклад від себе, без затвердження організаторами. Скажіть повною фразою, що він неофіційний"
+          "ru": "Мастер ждёт ответа по телефону. Скажите ему полной фразой, что кран течёт.",
+          "uk": "Майстер чекає відповіді по телефону. Скажіть йому повною фразою, що кран тече."
         },
         "orderedTokens": [
           "It",
           "is",
-          "unofficial"
+          "leaky"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-38:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Сосед составил расписание от себя, без утверждения организаторами. Скажите полной фразой, что оно неофициальное",
+            "testedDimension": "Мастер ждёт ответа по телефону. Скажите ему полной фразой, что кран течёт.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is unofficial.`",
-              "uk": "тут потрібно `is` — `It is unofficial.`"
+              "ru": "здесь нужно `is` — `It is leaky.`",
+              "uk": "тут потрібно `is` — `It is leaky.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Анне",
+      "prompt": "Послушайте, что мастер говорит о замке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i02:r1",
-          "text": "She is weak."
+          "text": "It is broken."
         },
         {
           "responseId": "en:lesson-02:session-38:i02:r2",
-          "text": "She is elsewhere."
+          "text": "It is old."
         },
         {
           "responseId": "en:lesson-02:session-38:i02:r3",
-          "text": "She is active."
+          "text": "It is open."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Анне",
+      "accessibilityLabel": "Послушайте, что мастер говорит о замке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i02:audio",
-          "transcript": "She is weak."
+          "transcript": "It is broken."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-38:i02:r1",
-            "targetText": "She is weak.",
+            "targetText": "It is broken.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i02:r2",
-            "targetText": "She is elsewhere.",
+            "targetText": "It is old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i02:r3",
-            "targetText": "She is active.",
+            "targetText": "It is open.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте, что мастер говорит о замке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `weak`, а в этом варианте — `elsewhere`.",
-              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `elsewhere`."
+              "ru": "В записи последнее слово — `broken`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `broken`, а в цьому варіанті — `old`."
             }
           },
           {
             "responseId": "en:lesson-02:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте, что мастер говорит о замке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `weak`, а в этом варианте — `active`.",
-              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `active`."
+              "ru": "В записи последнее слово — `broken`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `broken`, а в цьому варіанті — `open`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-38:word:dented",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dented",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:word:dented:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dented",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:word:dented:audio",
+          "transcript": "dented"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:word:dented:r1",
+            "targetText": "dented",
+            "meaningByLocale": {
+              "ru": "помятый, с вмятиной. Is it dented? — «Она помята?» О кастрюле, банке, двери, бампере.",
+              "uk": "пом’ятий, з вм’ятиною. Is it dented? — «Вона пом’ята?» Про каструлю, банку, двері, бампер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dented",
+          "definitionByLocale": {
+            "ru": "помятый, с вмятиной. Is it dented? — «Она помята?» О кастрюле, банке, двери, бампере.",
+            "uk": "пом’ятий, з вм’ятиною. Is it dented? — «Вона пом’ята?» Про каструлю, банку, двері, бампер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-38:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните, неофициальное ли это расписание",
+      "prompt": "Соседка вернула вам ещё и крышку. Спросите её, помята ли крышка",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните, неофициальное ли это расписание",
+      "accessibilityLabel": "Соседка вернула вам ещё и крышку. Спросите её, помята ли крышка",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, неофициальное ли это расписание",
-          "uk": "Уточніть, чи цей розклад неофіційний"
+          "ru": "Соседка вернула вам ещё и крышку. Спросите её, помята ли крышка",
+          "uk": "Сусідка повернула вам ще й накривку. Запитайте її, чи пом’ята накривка"
         },
-        "gappedTargetPhrase": "___ it unofficial?",
+        "gappedTargetPhrase": "___ it dented?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-38:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Уточните, неофициальное ли это расписание",
+        "testedDimension": "Соседка вернула вам ещё и крышку. Спросите её, помята ли крышка",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i03:r2",
             "correct": false,
-            "testedDimension": "Уточните, неофициальное ли это расписание",
+            "testedDimension": "Соседка вернула вам ещё и крышку. Спросите её, помята ли крышка",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-38:i03:r3",
             "correct": false,
-            "testedDimension": "Уточните, неофициальное ли это расписание",
+            "testedDimension": "Соседка вернула вам ещё и крышку. Спросите её, помята ли крышка",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it unofficial?`.",
-              "uk": "Запитання — `Is it unofficial?`."
+              "ru": "Вопрос — `Is it dented?`.",
+              "uk": "Питання — `Is it dented?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-38:i04:p1",
-            "target": "unofficial",
+            "target": "leaky",
             "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
+              "ru": "протекающий",
+              "uk": "що протікає"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i04:p2",
-            "target": "official",
+            "target": "dented",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "помятый",
+              "uk": "пом’ятий"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i04:p3",
-            "target": "weak",
+            "target": "creaky",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "скрипучий",
+              "uk": "скрипучий"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i04:p4",
-            "target": "elsewhere",
+            "target": "broken",
             "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
+              "ru": "сломанный",
+              "uk": "зламаний"
             }
           }
         ],
         "leftColumn": [
-          "unofficial",
-          "official",
-          "weak",
-          "elsewhere"
+          "leaky",
+          "dented",
+          "creaky",
+          "broken"
         ],
         "rightColumn": [
-          "неофициальный",
-          "официальный",
-          "слабый",
-          "в другом месте"
+          "протекающий",
+          "помятый",
+          "скрипучий",
+          "сломанный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-38:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-38:word:creaky",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — creaky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:word:creaky:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — creaky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:word:creaky:audio",
+          "transcript": "creaky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:word:creaky:r1",
+            "targetText": "creaky",
+            "meaningByLocale": {
+              "ru": "скрипучий. They're creaky — «Они скрипят». О ступеньках, полу, двери, кровати.",
+              "uk": "скрипучий. They're creaky — «Вони скриплять». Про сходинки, підлогу, двері, ліжко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "creaky",
+          "definitionByLocale": {
+            "ru": "скрипучий. They're creaky — «Они скрипят». О ступеньках, полу, двери, кровати.",
+            "uk": "скрипучий. They're creaky — «Вони скриплять». Про сходинки, підлогу, двері, ліжко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Послушайте, что мастер говорит о новых ступеньках, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Послушайте, что мастер говорит о новых ступеньках, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i05:audio",
-          "transcript": "No, it is not."
+          "transcript": "They are not creaky."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "No, it is not.",
+        "hiddenTargetPhrase": "They are not creaky.",
         "orderedTokens": [
-          "No,",
-          "it",
-          "is",
-          "not"
+          "They",
+          "are",
+          "not",
+          "creaky"
         ],
         "authoredDistractorTokens": [
-          "Yes,"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Послушайте, что мастер говорит о новых ступеньках, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `No,` — `No, it is not.`",
-              "uk": "тут потрібно `No,` — `No, it is not.`"
+              "ru": "здесь нужно `are` — `They are not creaky.`",
+              "uk": "тут потрібно `are` — `They are not creaky.`"
             }
           }
         ],
@@ -315,21 +444,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Организаторы сейчас в другом месте. Спросите Анну, где они",
+      "prompt": "Мастер с помощником должны были приехать к десяти, но их ещё нет. Спросите хозяйку, где они.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Организаторы сейчас в другом месте. Спросите Анну, где они",
+      "accessibilityLabel": "Мастер с помощником должны были приехать к десяти, но их ещё нет. Спросите хозяйку, где они.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where are they?",
         "localizedMeaning": {
-          "ru": "Организаторы сейчас в другом месте. Спросите Анну, где они",
-          "uk": "Організатори зараз в іншому місці. Запитайте Анну, де вони"
+          "ru": "Мастер с помощником должны были приехать к десяти, но их ещё нет. Спросите хозяйку, где они.",
+          "uk": "Майстер з помічником мали приїхати о десятій, але їх ще нема. Запитайте господиню, де вони."
         },
         "orderedTokens": [
           "Where",
@@ -343,7 +472,7 @@
           {
             "responseId": "en:lesson-02:session-38:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Организаторы сейчас в другом месте. Спросите Анну, где они",
+            "testedDimension": "Мастер с помощником должны были приехать к десяти, но их ещё нет. Спросите хозяйку, где они.",
             "feedbackByLocale": {
               "ru": "здесь нужно `Where` — `Where are they?`",
               "uk": "тут потрібно `Where` — `Where are they?`"
@@ -359,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы показываете расписание соседа. Коротко сообщите, что оно неофициальное",
+      "prompt": "Мастер спрашивает про лестницу. Ночью каждая ступенька скрипела. Скажите коротко, что они скрипучие.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i07:audio"
       ],
-      "accessibilityLabel": "Вы показываете расписание соседа. Коротко сообщите, что оно неофициальное",
+      "accessibilityLabel": "Мастер спрашивает про лестницу. Ночью каждая ступенька скрипела. Скажите коротко, что они скрипучие.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i07:audio",
-          "transcript": "It's unofficial."
+          "transcript": "They're creaky."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unofficial.",
+        "targetPhrase": "They're creaky.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +521,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Расписание неофициальное. На «Is it unofficial?» дополните короткое «да»",
+      "prompt": "Мастер спросил: «Is it leaky?» Кран и правда течёт. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i08:r1",
@@ -413,12 +542,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расписание неофициальное. На «Is it unofficial?» дополните короткое «да»",
+      "accessibilityLabel": "Мастер спросил: «Is it leaky?» Кран и правда течёт. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Расписание неофициальное. На «Is it unofficial?» дополните короткое «да»",
-          "uk": "Розклад неофіційний. На «Is it unofficial?» доповніть коротку відповідь «так»"
+          "ru": "Мастер спросил: «Is it leaky?» Кран и правда течёт. Дополните короткое «да»",
+          "uk": "Майстер спитав: «Is it leaky?» Кран і справді тече. Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -435,12 +564,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Расписание неофициальное. На «Is it unofficial?» дополните короткое «да»",
+        "testedDimension": "Мастер спросил: «Is it leaky?» Кран и правда течёт. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Расписание неофициальное. На «Is it unofficial?» дополните короткое «да»",
+            "testedDimension": "Мастер спросил: «Is it leaky?» Кран и правда течёт. Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -449,7 +578,7 @@
           {
             "responseId": "en:lesson-02:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Расписание неофициальное. На «Is it unofficial?» дополните короткое «да»",
+            "testedDimension": "Мастер спросил: «Is it leaky?» Кран и правда течёт. Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, it is`.",
               "uk": "Відповідь — `Yes, it is`."
@@ -460,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-38:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-38:word:wobbly",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение об организаторах",
+      "prompt": "Карточка слова — wobbly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:word:wobbly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wobbly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:word:wobbly:audio",
+          "transcript": "wobbly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:word:wobbly:r1",
+            "targetText": "wobbly",
+            "meaningByLocale": {
+              "ru": "шаткий, качающийся. It is wobbly — «Он шатается». О стуле, столе, лестнице, зубе.",
+              "uk": "хиткий, що гойдається. It is wobbly — «Він хитається». Про стілець, стіл, драбину, зуб."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wobbly",
+          "definitionByLocale": {
+            "ru": "шаткий, качающийся. It is wobbly — «Он шатается». О стуле, столе, лестнице, зубе.",
+            "uk": "хиткий, що гойдається. It is wobbly — «Він хитається». Про стілець, стіл, драбину, зуб."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что соседка говорит о стуле",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i09:r1",
-          "text": "They are elsewhere."
+          "text": "It is wobbly."
         },
         {
           "responseId": "en:lesson-02:session-38:i09:r2",
-          "text": "They are weak."
+          "text": "It is broken."
         },
         {
           "responseId": "en:lesson-02:session-38:i09:r3",
-          "text": "They are away."
+          "text": "It is heavy."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение об организаторах",
+      "accessibilityLabel": "Послушайте, что соседка говорит о стуле",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i09:audio",
-          "transcript": "They are elsewhere."
+          "transcript": "It is wobbly."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-38:i09:r1",
-            "targetText": "They are elsewhere.",
+            "targetText": "It is wobbly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i09:r2",
-            "targetText": "They are weak.",
+            "targetText": "It is broken.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i09:r3",
-            "targetText": "They are away.",
+            "targetText": "It is heavy.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-38:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об организаторах",
+            "testedDimension": "Послушайте, что соседка говорит о стуле",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `elsewhere`, а в этом варианте — `weak`.",
-              "uk": "У записі останнє слово — `elsewhere`, а в цьому варіанті — `weak`."
+              "ru": "В записи последнее слово — `wobbly`, а в этом варианте — `broken`.",
+              "uk": "У записі останнє слово — `wobbly`, а в цьому варіанті — `broken`."
             }
           },
           {
             "responseId": "en:lesson-02:session-38:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об организаторах",
+            "testedDimension": "Послушайте, что соседка говорит о стуле",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `elsewhere`, а в этом варианте — `away`.",
-              "uk": "У записі останнє слово — `elsewhere`, а в цьому варіанті — `away`."
+              "ru": "В записи последнее слово — `wobbly`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `wobbly`, а в цьому варіанті — `heavy`."
             }
           }
         ],
@@ -537,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -551,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-38:i10:p1",
-            "target": "elsewhere",
+            "target": "wobbly",
             "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
+              "ru": "шаткий",
+              "uk": "хиткий"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i10:p2",
-            "target": "weak",
+            "target": "leaky",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "протекающий",
+              "uk": "що протікає"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i10:p3",
-            "target": "official",
+            "target": "dented",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "помятый",
+              "uk": "пом’ятий"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i10:p4",
-            "target": "unofficial",
+            "target": "old",
             "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
+              "ru": "старый",
+              "uk": "старий"
             }
           }
         ],
         "leftColumn": [
-          "elsewhere",
-          "weak",
-          "official",
-          "unofficial"
+          "wobbly",
+          "leaky",
+          "dented",
+          "old"
         ],
         "rightColumn": [
-          "в другом месте",
-          "слабый",
-          "официальный",
-          "неофициальный"
+          "шаткий",
+          "протекающий",
+          "помятый",
+          "старый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,30 +782,30 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте, что мастер говорит о тазе, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте, что мастер говорит о тазе, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i11:audio",
-          "transcript": "It is not official."
+          "transcript": "It is not dented."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not official.",
+        "hiddenTargetPhrase": "It is not dented.",
         "orderedTokens": [
           "It",
           "is",
           "not",
-          "official"
+          "dented"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -642,10 +814,10 @@
           {
             "responseId": "en:lesson-02:session-38:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте, что мастер говорит о тазе, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not official.`",
-              "uk": "тут потрібно `is` — `It is not official.`"
+              "ru": "здесь нужно `is` — `It is not dented.`",
+              "uk": "тут потрібно `is` — `It is not dented.`"
             }
           }
         ],
@@ -658,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна получила сообщение о слабости, но вы не видите имени отправителя. Спросите Анну, кто чувствует слабость",
+      "prompt": "Мастер говорит, что в комнате шатается один предмет мебели, но не называет какой. Спросите его, что шаткое.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна получила сообщение о слабости, но вы не видите имени отправителя. Спросите Анну, кто чувствует слабость",
+      "accessibilityLabel": "Мастер говорит, что в комнате шатается один предмет мебели, но не называет какой. Спросите его, что шаткое.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Who is weak?",
+        "targetPhrase": "What is wobbly?",
         "localizedMeaning": {
-          "ru": "Анна получила сообщение о слабости, но вы не видите имени отправителя. Спросите Анну, кто чувствует слабость",
-          "uk": "Анна отримала повідомлення про слабкість, але ви не бачите імені відправника. Запитайте Анну, хто відчуває слабкість"
+          "ru": "Мастер говорит, что в комнате шатается один предмет мебели, но не называет какой. Спросите его, что шаткое.",
+          "uk": "Майстер каже, що в кімнаті хитається один предмет меблів, але не називає який. Запитайте його, що хитке."
         },
         "orderedTokens": [
-          "Who",
+          "What",
           "is",
-          "weak"
+          "wobbly"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -686,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-38:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна получила сообщение о слабости, но вы не видите имени отправителя. Спросите Анну, кто чувствует слабость",
+            "testedDimension": "Мастер говорит, что в комнате шатается один предмет мебели, но не называет какой. Спросите его, что шаткое.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Who` — `Who is weak?`",
-              "uk": "тут потрібно `Who` — `Who is weak?`"
+              "ru": "здесь нужно `What` — `What is wobbly?`",
+              "uk": "тут потрібно `What` — `What is wobbly?`"
             }
           }
         ],
@@ -702,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна написала, что у неё нет сил. Коротко сообщите, что она чувствует слабость",
+      "prompt": "Мастер просит проверить стул. Вы садитесь, и он качается. Скажите коротко, что он шаткий.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i13:audio"
       ],
-      "accessibilityLabel": "Анна написала, что у неё нет сил. Коротко сообщите, что она чувствует слабость",
+      "accessibilityLabel": "Мастер просит проверить стул. Вы садитесь, и он качается. Скажите коротко, что он шаткий.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i13:audio",
-          "transcript": "She's weak."
+          "transcript": "It's wobbly."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She's weak.",
+        "targetPhrase": "It's wobbly.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,15 +907,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Организаторы уже вернулись к площадке. Отрицанием скажите, что они не в другом месте",
+      "prompt": "Мастер спрашивает про кастрюлю: вмятин на ней нет. Скажите, что она не помята",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i14:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-38:i14:r2",
@@ -751,23 +923,23 @@
         },
         {
           "responseId": "en:lesson-02:session-38:i14:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Организаторы уже вернулись к площадке. Отрицанием скажите, что они не в другом месте",
+      "accessibilityLabel": "Мастер спрашивает про кастрюлю: вмятин на ней нет. Скажите, что она не помята",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Организаторы уже вернулись к площадке. Отрицанием скажите, что они не в другом месте",
-          "uk": "Організатори вже повернулися до майданчика. Запереченням скажіть, що вони не в іншому місці"
+          "ru": "Мастер спрашивает про кастрюлю: вмятин на ней нет. Скажите, что она не помята",
+          "uk": "Майстер питає про каструлю: вм’ятин на ній немає. Скажіть, що вона не пом’ята"
         },
-        "gappedTargetPhrase": "They ___ not elsewhere.",
+        "gappedTargetPhrase": "It ___ not dented.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-38:i14:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-38:i14:r2",
@@ -775,27 +947,27 @@
           },
           {
             "responseId": "en:lesson-02:session-38:i14:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "Организаторы уже вернулись к площадке. Отрицанием скажите, что они не в другом месте",
+        "testedDimension": "Мастер спрашивает про кастрюлю: вмятин на ней нет. Скажите, что она не помята",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i14:r2",
             "correct": false,
-            "testedDimension": "Организаторы уже вернулись к площадке. Отрицанием скажите, что они не в другом месте",
+            "testedDimension": "Мастер спрашивает про кастрюлю: вмятин на ней нет. Скажите, что она не помята",
             "feedbackByLocale": {
-              "ru": "С `They` нужно `are`.",
-              "uk": "З `They` потрібно `are`."
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-38:i14:r3",
             "correct": false,
-            "testedDimension": "Организаторы уже вернулись к площадке. Отрицанием скажите, что они не в другом месте",
+            "testedDimension": "Мастер спрашивает про кастрюлю: вмятин на ней нет. Скажите, что она не помята",
             "feedbackByLocale": {
-              "ru": "Фраза — `They are not elsewhere`.",
-              "uk": "Фраза — `They are not elsewhere`."
+              "ru": "Фраза — `It is not dented`.",
+              "uk": "Фраза — `It is not dented`."
             }
           }
         ]
@@ -804,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос мастера",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i15:r1",
-          "text": "Is it unofficial?"
+          "text": "Are they leaky?"
         },
         {
           "responseId": "en:lesson-02:session-38:i15:r2",
-          "text": "Is it official?"
+          "text": "Are they dented?"
         },
         {
           "responseId": "en:lesson-02:session-38:i15:r3",
-          "text": "Is it informal?"
+          "text": "Are they creaky?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос мастера",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i15:audio",
-          "transcript": "Is it unofficial?"
+          "transcript": "Are they leaky?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-38:i15:r1",
-            "targetText": "Is it unofficial?",
+            "targetText": "Are they leaky?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i15:r2",
-            "targetText": "Is it official?",
+            "targetText": "Are they dented?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i15:r3",
-            "targetText": "Is it informal?",
+            "targetText": "Are they creaky?",
             "meaningByLocale": null
           }
         ],
@@ -857,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-38:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос мастера",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `leaky`, а в этом варианте — `dented`.",
+              "uk": "У записі останнє слово — `leaky`, а в цьому варіанті — `dented`."
             }
           },
           {
             "responseId": "en:lesson-02:session-38:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос мастера",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `informal`.",
-              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `informal`."
+              "ru": "В записи последнее слово — `leaky`, а в этом варианте — `creaky`.",
+              "uk": "У записі останнє слово — `leaky`, а в цьому варіанті — `creaky`."
             }
           }
         ],
@@ -880,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-38:i16:p1",
-            "target": "weak",
+            "target": "creaky",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "скрипучий",
+              "uk": "скрипучий"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i16:p2",
-            "target": "unofficial",
+            "target": "wobbly",
             "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
+              "ru": "шаткий",
+              "uk": "хиткий"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i16:p3",
-            "target": "elsewhere",
+            "target": "broken",
             "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
+              "ru": "сломанный",
+              "uk": "зламаний"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i16:p4",
-            "target": "official",
+            "target": "old",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "старый",
+              "uk": "старий"
             }
           }
         ],
         "leftColumn": [
-          "weak",
-          "unofficial",
-          "elsewhere",
-          "official"
+          "creaky",
+          "wobbly",
+          "broken",
+          "old"
         ],
         "rightColumn": [
-          "слабый",
-          "неофициальный",
-          "в другом месте",
-          "официальный"
+          "скрипучий",
+          "шаткий",
+          "сломанный",
+          "старый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-38:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вам прислали другой вариант расписания. Спросите, неофициальный ли он",
+      "prompt": "Вы показываете мастеру кухонный кран. Спросите его, течёт ли он.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i17:audio"
       ],
-      "accessibilityLabel": "Вам прислали другой вариант расписания. Спросите, неофициальный ли он",
+      "accessibilityLabel": "Вы показываете мастеру кухонный кран. Спросите его, течёт ли он.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i17:audio",
-          "transcript": "Is it unofficial?"
+          "transcript": "Is it leaky?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it unofficial?",
+        "targetPhrase": "Is it leaky?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -993,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "78e8d9c6597a45e4415a7093f9872ffa53be5976e6127d9c6e503177bda5e2df"
+  "learnerFingerprint": "cd305ae62c1fce1019a95d873ca58b9e6f2c575bcd4e15c294201153c2a46853"
 }

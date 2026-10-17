@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-01:session-35:word:ill",
+    "correctText": "ill",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-35:i01",
     "correctText": "I am ill.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-35:word:contagious",
+    "correctText": "contagious",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-35:i02",
-    "correctText": "He is ill.",
+    "correctText": "He is contagious.",
     "correctResponseId": "en:lesson-01:session-35:i02:r1"
   },
   {
@@ -16,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-35:i04",
-    "correctText": "en:lesson-01:session-35:i04:p1=ill\nen:lesson-01:session-35:i04:p2=awake\nen:lesson-01:session-35:i04:p3=asleep\nen:lesson-01:session-35:i04:p4=available",
+    "correctText": "en:lesson-01:session-35:i04:p1=ill\nen:lesson-01:session-35:i04:p2=contagious\nen:lesson-01:session-35:i04:p3=hoarse\nen:lesson-01:session-35:i04:p4=dizzy",
     "correctResponseId": null
   },
   {
@@ -40,8 +50,13 @@
     "correctResponseId": "en:lesson-01:session-35:i08:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-35:word:hoarse",
+    "correctText": "hoarse",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-35:i09",
-    "correctText": "She is awake.",
+    "correctText": "She's hoarse.",
     "correctResponseId": "en:lesson-01:session-35:i09:r1"
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-35:word:dizzy",
+    "correctText": "dizzy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-35:i13",
-    "correctText": "We are ill.",
+    "correctText": "I'm dizzy.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-35:i16",
-    "correctText": "en:lesson-01:session-35:i16:p1=available\nen:lesson-01:session-35:i16:p2=ill\nen:lesson-01:session-35:i16:p3=asleep\nen:lesson-01:session-35:i16:p4=awake",
+    "correctText": "en:lesson-01:session-35:i16:p1=dizzy\nen:lesson-01:session-35:i16:p2=contagious\nen:lesson-01:session-35:i16:p3=available\nen:lesson-01:session-35:i16:p4=asleep",
     "correctResponseId": null
   },
   {

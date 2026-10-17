@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-28:word:flexible",
+    "correctText": "flexible",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-28:i01",
     "correctText": "I am flexible.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-28:i04",
-    "correctText": "en:lesson-02:session-28:i04:p1=flexible\nen:lesson-02:session-28:i04:p2=correct\nen:lesson-02:session-28:i04:p3=certain\nen:lesson-02:session-28:i04:p4=serious",
+    "correctText": "en:lesson-02:session-28:i04:p1=flexible\nen:lesson-02:session-28:i04:p2=thick\nen:lesson-02:session-28:i04:p3=overdue\nen:lesson-02:session-28:i04:p4=confusing",
     "correctResponseId": null
   },
   {
@@ -30,8 +35,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-28:word:confusing",
+    "correctText": "confusing",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-28:i07",
-    "correctText": "I'm certain.",
+    "correctText": "It's confusing.",
     "correctResponseId": null
   },
   {
@@ -40,8 +50,13 @@
     "correctResponseId": "en:lesson-02:session-28:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-28:word:thick",
+    "correctText": "thick",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-28:i09",
-    "correctText": "She is innocent.",
+    "correctText": "It is thick.",
     "correctResponseId": "en:lesson-02:session-28:i09:r1"
   },
   {
@@ -55,8 +70,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-28:word:overdue",
+    "correctText": "overdue",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-28:i12",
-    "correctText": "She is innocent.",
+    "correctText": "They are overdue.",
     "correctResponseId": null
   },
   {

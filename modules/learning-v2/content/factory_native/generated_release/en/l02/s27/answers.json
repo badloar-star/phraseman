@@ -16,7 +16,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-27:i04",
-    "correctText": "en:lesson-02:session-27:i04:p1=generous\nen:lesson-02:session-27:i04:p2=awake\nen:lesson-02:session-27:i04:p3=asleep\nen:lesson-02:session-27:i04:p4=available",
+    "correctText": "en:lesson-02:session-27:i04:p1=burnt\nen:lesson-02:session-27:i04:p2=spicy\nen:lesson-02:session-27:i04:p3=bitter\nen:lesson-02:session-27:i04:p4=crispy",
     "correctResponseId": null
   },
   {
@@ -40,8 +40,13 @@
     "correctResponseId": "en:lesson-02:session-27:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-27:word:burnt",
+    "correctText": "burnt",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-27:i09",
-    "correctText": "Who is guilty?",
+    "correctText": "It is burnt.",
     "correctResponseId": "en:lesson-02:session-27:i09:r1"
   },
   {
@@ -50,13 +55,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-27:word:crispy",
+    "correctText": "crispy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-27:i11",
-    "correctText": "They are asleep.",
+    "correctText": "They are crispy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:word:bitter",
+    "correctText": "bitter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i12",
-    "correctText": "I am guilty.",
+    "correctText": "It is bitter.",
     "correctResponseId": null
   },
   {
@@ -70,8 +85,13 @@
     "correctResponseId": "en:lesson-02:session-27:i14:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-27:word:spicy",
+    "correctText": "spicy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-27:i15",
-    "correctText": "Is it available?",
+    "correctText": "Is it spicy?",
     "correctResponseId": "en:lesson-02:session-27:i15:r1"
   },
   {

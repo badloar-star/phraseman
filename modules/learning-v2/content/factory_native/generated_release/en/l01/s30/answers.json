@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-01:session-30:word:alive",
+    "correctText": "alive",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-30:i01",
     "correctText": "He is alive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:word:missing",
+    "correctText": "missing",
     "correctResponseId": null
   },
   {
@@ -10,13 +20,18 @@
     "correctResponseId": "en:lesson-01:session-30:i02:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-30:word:dead",
+    "correctText": "dead",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-30:i03",
     "correctText": "are",
     "correctResponseId": "en:lesson-01:session-30:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-30:i04",
-    "correctText": "en:lesson-01:session-30:i04:p1=alive\nen:lesson-01:session-30:i04:p2=dead\nen:lesson-01:session-30:i04:p3=missing\nen:lesson-01:session-30:i04:p4=famous",
+    "correctText": "en:lesson-01:session-30:i04:p1=alive\nen:lesson-01:session-30:i04:p2=dead\nen:lesson-01:session-30:i04:p3=missing\nen:lesson-01:session-30:i04:p4=injured",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-30:word:injured",
+    "correctText": "injured",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-30:i13",
-    "correctText": "He is poor.",
+    "correctText": "He is injured.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-30:i16",
-    "correctText": "en:lesson-01:session-30:i16:p1=poor\nen:lesson-01:session-30:i16:p2=alive\nen:lesson-01:session-30:i16:p3=dead\nen:lesson-01:session-30:i16:p4=missing",
+    "correctText": "en:lesson-01:session-30:i16:p1=injured\nen:lesson-01:session-30:i16:p2=alive\nen:lesson-01:session-30:i16:p3=dead\nen:lesson-01:session-30:i16:p4=missing",
     "correctResponseId": null
   },
   {

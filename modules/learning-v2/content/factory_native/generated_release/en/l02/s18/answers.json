@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-18:word:unwell",
+    "correctText": "unwell",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-18:i01",
     "correctText": "I am unwell.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-18:i04",
-    "correctText": "en:lesson-02:session-18:i04:p1=unwell\nen:lesson-02:session-18:i04:p2=wrong\nen:lesson-02:session-18:i04:p3=early\nen:lesson-02:session-18:i04:p4=lucky",
+    "correctText": "en:lesson-02:session-18:i04:p1=unwell\nen:lesson-02:session-18:i04:p2=allergic\nen:lesson-02:session-18:i04:p3=feverish\nen:lesson-02:session-18:i04:p4=stuffy",
     "correctResponseId": null
   },
   {
@@ -30,8 +35,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-18:word:feverish",
+    "correctText": "feverish",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-18:i07",
-    "correctText": "She's unwell.",
+    "correctText": "She's feverish.",
     "correctResponseId": null
   },
   {
@@ -46,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-18:i10",
-    "correctText": "en:lesson-02:session-18:i10:p1=impossible\nen:lesson-02:session-18:i10:p2=unwell\nen:lesson-02:session-18:i10:p3=wrong\nen:lesson-02:session-18:i10:p4=lucky",
+    "correctText": "en:lesson-02:session-18:i10:p1=impossible\nen:lesson-02:session-18:i10:p2=wrong\nen:lesson-02:session-18:i10:p3=early\nen:lesson-02:session-18:i10:p4=lucky",
     "correctResponseId": null
   },
   {
@@ -65,18 +75,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-18:word:allergic",
+    "correctText": "allergic",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-18:i14",
     "correctText": "are",
     "correctResponseId": "en:lesson-02:session-18:i14:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-18:word:stuffy",
+    "correctText": "stuffy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-18:i15",
-    "correctText": "Is it impossible?",
+    "correctText": "Is it stuffy?",
     "correctResponseId": "en:lesson-02:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-18:i16",
-    "correctText": "en:lesson-02:session-18:i16:p1=well\nen:lesson-02:session-18:i16:p2=unwell\nen:lesson-02:session-18:i16:p3=early\nen:lesson-02:session-18:i16:p4=impossible",
+    "correctText": "en:lesson-02:session-18:i16:p1=well\nen:lesson-02:session-18:i16:p2=carsick\nen:lesson-02:session-18:i16:p3=stiff\nen:lesson-02:session-18:i16:p4=unpacked",
     "correctResponseId": null
   },
   {

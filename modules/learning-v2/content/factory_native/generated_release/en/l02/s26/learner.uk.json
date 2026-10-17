@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-26:i01",
+      "interactionId": "en:lesson-02:session-26:word:careless",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — careless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:word:careless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — careless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:word:careless:audio",
+          "transcript": "careless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:word:careless:r1",
+            "targetText": "careless",
+            "meaningByLocale": {
+              "ru": "неосторожный, небрежный. He is careless — «Он неосторожен». О человеке за рулём, с краской, с посудой.",
+              "uk": "необережний, недбалий. He is careless — «Він необережний». Про людину за кермом, із фарбою, з посудом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "careless",
+          "definitionByLocale": {
+            "ru": "неосторожный, небрежный. He is careless — «Он неосторожен». О человеке за рулём, с краской, с посудой.",
+            "uk": "необережний, недбалий. He is careless — «Він необережний». Про людину за кермом, із фарбою, з посудом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
+      "prompt": "Друг не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
+      "accessibilityLabel": "Друг не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is careless.",
         "localizedMeaning": {
-          "ru": "Олег не следит, куда ставит открытую краску. Скажите полной фразой, что он неосторожен",
-          "uk": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний"
+          "ru": "Друг не следит, куда ставит открытую краску. Скажите полной фразой, что он неосторожен",
+          "uk": "Друг не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний"
         },
         "orderedTokens": [
           "He",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-26:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
+            "testedDimension": "Друг не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `He is careless.`",
               "uk": "тут потрібно `is` — `He is careless.`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Анну",
+      "prompt": "Послухайте фразу про подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-26:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-26:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Анну",
+      "accessibilityLabel": "Послухайте фразу про подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-26:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну",
+            "testedDimension": "Послухайте фразу про подругу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `confused`, а в этом варианте — `worried`.",
               "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `worried`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-26:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Анну",
+            "testedDimension": "Послухайте фразу про подругу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `confused`, а в этом варианте — `bored`.",
               "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `bored`."
@@ -125,7 +168,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -216,40 +259,40 @@
           },
           {
             "pairId": "en:lesson-02:session-26:i04:p2",
-            "target": "bored",
+            "target": "smooth",
             "meaningByLocale": {
-              "ru": "скучающий",
-              "uk": "той, кому нудно"
+              "ru": "гладкий",
+              "uk": "гладкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-26:i04:p3",
-            "target": "confused",
+            "target": "glossy",
             "meaningByLocale": {
-              "ru": "растерянный, запутавшийся",
-              "uk": "розгублений, спантеличений"
+              "ru": "блестящий, глянцевый",
+              "uk": "блискучий, глянцевий"
             }
           },
           {
             "pairId": "en:lesson-02:session-26:i04:p4",
-            "target": "worried",
+            "target": "ugly",
             "meaningByLocale": {
-              "ru": "обеспокоенный",
-              "uk": "стурбований"
+              "ru": "некрасивый, уродливый",
+              "uk": "негарний, потворний"
             }
           }
         ],
         "leftColumn": [
           "careless",
-          "bored",
-          "confused",
-          "worried"
+          "smooth",
+          "glossy",
+          "ugly"
         ],
         "rightColumn": [
           "необережний, недбалий",
-          "той, кому нудно",
-          "розгублений, спантеличений",
-          "стурбований"
+          "гладкий",
+          "блискучий, глянцевий",
+          "негарний, потворний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,7 +310,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -313,27 +356,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-26:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-02:session-26:word:ugly",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ugly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:word:ugly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ugly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:word:ugly:audio",
+          "transcript": "ugly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:word:ugly:r1",
+            "targetText": "ugly",
+            "meaningByLocale": {
+              "ru": "некрасивый, уродливый. It's not ugly — «Он не уродливый». О вещи, рисунке, здании, свитере.",
+              "uk": "негарний, потворний. It's not ugly — «Він не потворний». Про річ, малюнок, будівлю, светр."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ugly",
+          "definitionByLocale": {
+            "ru": "некрасивый, уродливый. It's not ugly — «Он не уродливый». О вещи, рисунке, здании, свитере.",
+            "uk": "негарний, потворний. It's not ugly — «Він не потворний». Про річ, малюнок, будівлю, светр."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре",
+      "prompt": "Друг розфарбував іграшкову машинку одразу в сім кольорів. Запитайте подругу, чи вона не потворна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре",
+      "accessibilityLabel": "Друг розфарбував іграшкову машинку одразу в сім кольорів. Запитайте подругу, чи вона не потворна",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is he unwell?",
+        "targetPhrase": "Is it ugly?",
         "localizedMeaning": {
-          "ru": "Олег говорит о плохом самочувствии. Уточните у Анны, нездоровится ли ему",
-          "uk": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре"
+          "ru": "Друг раскрасил игрушечную машинку сразу в семь цветов. Спросите подругу, не уродливая ли она",
+          "uk": "Друг розфарбував іграшкову машинку одразу в сім кольорів. Запитайте подругу, чи вона не потворна"
         },
         "orderedTokens": [
           "Is",
-          "he",
-          "unwell"
+          "it",
+          "ugly"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -342,10 +428,10 @@
           {
             "responseId": "en:lesson-02:session-26:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре",
+            "testedDimension": "Друг розфарбував іграшкову машинку одразу в сім кольорів. Запитайте подругу, чи вона не потворна",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is he unwell?`",
-              "uk": "тут потрібно `Is` — `Is he unwell?`"
+              "ru": "здесь нужно `Is` — `Is it ugly?`",
+              "uk": "тут потрібно `Is` — `Is it ugly?`"
             }
           }
         ],
@@ -358,7 +444,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i07",
-      "ordinal": 10,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,11 +477,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+      "prompt": "Подруга уважно закриває банки й прибирає їх із краю. Друг питає: «Is she careless?» Доповніть коротку відповідь «ні»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-26:i08:r1",
@@ -412,12 +498,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+      "accessibilityLabel": "Подруга уважно закриває банки й прибирає їх із краю. Друг питає: «Is she careless?» Доповніть коротку відповідь «ні»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна внимательно закрывает банки и убирает их с края. На «Is she careless?» дополните короткое «нет»",
-          "uk": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»"
+          "ru": "Подруга внимательно закрывает банки и убирает их с края. Друг спрашивает: «Is she careless?» Дополните короткое «нет»",
+          "uk": "Подруга уважно закриває банки й прибирає їх із краю. Друг питає: «Is she careless?» Доповніть коротку відповідь «ні»"
         },
         "gappedTargetPhrase": "No, she ___ not.",
         "gapOptions": [
@@ -434,12 +520,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+        "testedDimension": "Подруга уважно закриває банки й прибирає їх із краю. Друг питає: «Is she careless?» Доповніть коротку відповідь «ні»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-26:i08:r2",
             "correct": false,
-            "testedDimension": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Подруга уважно закриває банки й прибирає їх із краю. Друг питає: «Is she careless?» Доповніть коротку відповідь «ні»",
             "feedbackByLocale": {
               "ru": "С `she` нужно `is`.",
               "uk": "З `she` потрібно `is`."
@@ -448,7 +534,7 @@
           {
             "responseId": "en:lesson-02:session-26:i08:r3",
             "correct": false,
-            "testedDimension": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Подруга уважно закриває банки й прибирає їх із краю. Друг питає: «Is she careless?» Доповніть коротку відповідь «ні»",
             "feedbackByLocale": {
               "ru": "Ответ — `No, she is not`.",
               "uk": "Відповідь — `No, she is not`."
@@ -459,52 +545,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-26:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-26:word:glossy",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олега",
+      "prompt": "Картка слова — glossy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:word:glossy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glossy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:word:glossy:audio",
+          "transcript": "glossy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:word:glossy:r1",
+            "targetText": "glossy",
+            "meaningByLocale": {
+              "ru": "блестящий, глянцевый. It's glossy — «Она блестит». О краске, журнале, фотографии, волосах.",
+              "uk": "блискучий, глянцевий. It's glossy — «Вона блищить». Про фарбу, журнал, фотографію, волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glossy",
+          "definitionByLocale": {
+            "ru": "блестящий, глянцевый. It's glossy — «Она блестит». О краске, журнале, фотографии, волосах.",
+            "uk": "блискучий, глянцевий. It's glossy — «Вона блищить». Про фарбу, журнал, фотографію, волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Фарба на конячці висохла. Послухайте, що каже подруга",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-26:i09:r1",
-          "text": "He is unwell."
+          "text": "It is glossy."
         },
         {
           "responseId": "en:lesson-02:session-26:i09:r2",
-          "text": "He is careless."
+          "text": "It is ugly."
         },
         {
           "responseId": "en:lesson-02:session-26:i09:r3",
-          "text": "He is bored."
+          "text": "It is wooden."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-26:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олега",
+      "accessibilityLabel": "Фарба на конячці висохла. Послухайте, що каже подруга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-26:i09:audio",
-          "transcript": "He is unwell."
+          "transcript": "It is glossy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-26:i09:r1",
-            "targetText": "He is unwell.",
+            "targetText": "It is glossy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-26:i09:r2",
-            "targetText": "He is careless.",
+            "targetText": "It is ugly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-26:i09:r3",
-            "targetText": "He is bored.",
+            "targetText": "It is wooden.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +642,19 @@
           {
             "responseId": "en:lesson-02:session-26:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Фарба на конячці висохла. Послухайте, що каже подруга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unwell`, а в этом варианте — `careless`.",
-              "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `careless`."
+              "ru": "В записи последнее слово — `glossy`, а в этом варианте — `ugly`.",
+              "uk": "У записі останнє слово — `glossy`, а в цьому варіанті — `ugly`."
             }
           },
           {
             "responseId": "en:lesson-02:session-26:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Фарба на конячці висохла. Послухайте, що каже подруга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unwell`, а в этом варианте — `bored`.",
-              "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `bored`."
+              "ru": "В записи последнее слово — `glossy`, а в этом варианте — `wooden`.",
+              "uk": "У записі останнє слово — `glossy`, а в цьому варіанті — `wooden`."
             }
           }
         ],
@@ -536,7 +665,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -608,31 +737,73 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-26:word:smooth",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — smooth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:word:smooth:audio"
+      ],
+      "accessibilityLabel": "Картка слова — smooth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:word:smooth:audio",
+          "transcript": "smooth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:word:smooth:r1",
+            "targetText": "smooth",
+            "meaningByLocale": {
+              "ru": "гладкий. It's smooth — «Она гладкая». О доске, коже, дороге, ткани.",
+              "uk": "гладкий. It's smooth — «Вона гладка». Про дошку, шкіру, дорогу, тканину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smooth",
+          "definitionByLocale": {
+            "ru": "гладкий. It's smooth — «Она гладкая». О доске, коже, дороге, ткани.",
+            "uk": "гладкий. It's smooth — «Вона гладка». Про дошку, шкіру, дорогу, тканину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-26:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Друг зачистив наждачкою двох дерев’яних качок. Послухайте його й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-26:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Друг зачистив наждачкою двох дерев’яних качок. Послухайте його й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-26:i11:audio",
-          "transcript": "They are not worried."
+          "transcript": "They are smooth."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not worried.",
+        "hiddenTargetPhrase": "They are smooth.",
         "orderedTokens": [
           "They",
           "are",
-          "not",
-          "worried"
+          "smooth"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -641,10 +812,10 @@
           {
             "responseId": "en:lesson-02:session-26:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Друг зачистив наждачкою двох дерев’яних качок. Послухайте його й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not worried.`",
-              "uk": "тут потрібно `are` — `They are not worried.`"
+              "ru": "здесь нужно `are` — `They are smooth.`",
+              "uk": "тут потрібно `are` — `They are smooth.`"
             }
           }
         ],
@@ -657,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -701,17 +872,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна заплуталася в інструкції. Коротко скажіть, що вона розгублена",
+      "prompt": "Подруга заплуталася в інструкції. Коротко скажіть, що вона розгублена",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-26:i13:audio"
       ],
-      "accessibilityLabel": "Анна заплуталася в інструкції. Коротко скажіть, що вона розгублена",
+      "accessibilityLabel": "Подруга заплуталася в інструкції. Коротко скажіть, що вона розгублена",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -734,11 +905,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+      "prompt": "Подруга з братом акуратно прибрали всі банки. Скажіть, що вони не недбалі",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-26:i14:r1",
@@ -755,12 +926,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+      "accessibilityLabel": "Подруга з братом акуратно прибрали всі банки. Скажіть, що вони не недбалі",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Двое друзей аккуратно убрали все банки. Отрицайте, что они небрежны",
-          "uk": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі"
+          "ru": "Подруга с братом аккуратно убрали все банки. Скажите, что они не небрежны",
+          "uk": "Подруга з братом акуратно прибрали всі банки. Скажіть, що вони не недбалі"
         },
         "gappedTargetPhrase": "They ___ not careless.",
         "gapOptions": [
@@ -777,12 +948,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+        "testedDimension": "Подруга з братом акуратно прибрали всі банки. Скажіть, що вони не недбалі",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-26:i14:r2",
             "correct": false,
-            "testedDimension": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+            "testedDimension": "Подруга з братом акуратно прибрали всі банки. Скажіть, що вони не недбалі",
             "feedbackByLocale": {
               "ru": "С `They` нужно `are`.",
               "uk": "З `They` потрібно `are`."
@@ -791,7 +962,7 @@
           {
             "responseId": "en:lesson-02:session-26:i14:r3",
             "correct": false,
-            "testedDimension": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+            "testedDimension": "Подруга з братом акуратно прибрали всі банки. Скажіть, що вони не недбалі",
             "feedbackByLocale": {
               "ru": "Фраза — `They are not careless`.",
               "uk": "Фраза — `They are not careless`."
@@ -803,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -879,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -952,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-26:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -992,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4d0c281fedaebcf27326100c96374711c5f4b068af39378762d983510583bc90"
+  "learnerFingerprint": "35c7556c5ba8a0109a74ee76725aa3015bb8ac90bf82f9a7adc26db05965587c"
 }

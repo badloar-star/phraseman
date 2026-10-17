@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-20:word:innocent",
+    "correctText": "innocent",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-20:i01",
     "correctText": "He is innocent.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-20:i04",
-    "correctText": "en:lesson-02:session-20:i04:p1=yes\nen:lesson-02:session-20:i04:p2=innocent\nen:lesson-02:session-20:i04:p3=prepared\nen:lesson-02:session-20:i04:p4=careful",
+    "correctText": "en:lesson-02:session-20:i04:p1=innocent\nen:lesson-02:session-20:i04:p2=suspicious\nen:lesson-02:session-20:i04:p3=spotless\nen:lesson-02:session-20:i04:p4=washable",
     "correctResponseId": null
   },
   {
@@ -40,18 +45,28 @@
     "correctResponseId": "en:lesson-02:session-20:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-20:word:suspicious",
+    "correctText": "suspicious",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-20:i09",
-    "correctText": "He is not lost.",
+    "correctText": "He is suspicious.",
     "correctResponseId": "en:lesson-02:session-20:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-20:i10",
-    "correctText": "en:lesson-02:session-20:i10:p1=lost\nen:lesson-02:session-20:i10:p2=private\nen:lesson-02:session-20:i10:p3=innocent\nen:lesson-02:session-20:i10:p4=yes",
+    "correctText": "en:lesson-02:session-20:i10:p1=lost\nen:lesson-02:session-20:i10:p2=private\nen:lesson-02:session-20:i10:p3=prepared\nen:lesson-02:session-20:i10:p4=careful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:word:spotless",
+    "correctText": "spotless",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i11",
-    "correctText": "We're prepared.",
+    "correctText": "It's spotless.",
     "correctResponseId": null
   },
   {
@@ -65,8 +80,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-20:word:washable",
+    "correctText": "washable",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-20:i14",
-    "correctText": "Are",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-02:session-20:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-20:i16",
-    "correctText": "en:lesson-02:session-20:i16:p1=prepared\nen:lesson-02:session-20:i16:p2=careful\nen:lesson-02:session-20:i16:p3=lost\nen:lesson-02:session-20:i16:p4=private",
+    "correctText": "en:lesson-02:session-20:i16:p1=guilty\nen:lesson-02:session-20:i16:p2=gone\nen:lesson-02:session-20:i16:p3=greedy\nen:lesson-02:session-20:i16:p4=sneaky",
     "correctResponseId": null
   },
   {

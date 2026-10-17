@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro1:r2": {
-          "ru": "После `I` нужно `am`: `I am curious`.",
-          "uk": "Після `I` потрібно `am`: `I am curious`."
+          "ru": "В короткой форме нужно 'm: I'm curious.",
+          "uk": "У короткій формі потрібно 'm: I'm curious."
         },
         "en:lesson-01:session-44:intro1:r3": {
-          "ru": "`sleepy` — «хочется спать». Здесь речь о любопытстве: `curious`.",
-          "uk": "`sleepy` — «хочеться спати». Тут ідеться про цікавість: `curious`."
+          "ru": "sleepy — «хочется спать». Вам интересно: curious.",
+          "uk": "sleepy — «хочеться спати». Вам цікаво: curious."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro2:r2": {
-          "ru": "Это про него. Про Машу нужно `She`.",
-          "uk": "Це про нього. Про Машу потрібно `She`."
+          "ru": "He's — про человека. Про прибор — It's.",
+          "uk": "He's — про людину. Про прилад — It's."
         },
         "en:lesson-01:session-44:intro2:r3": {
-          "ru": "После `She` ставим `is`.",
-          "uk": "Після `She` ставимо `is`."
+          "ru": "В короткой форме нужно 's: It's weird.",
+          "uk": "У короткій формі потрібно 's: It's weird."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro3:r2": {
-          "ru": "Это про них. Вы включаете себя: `We are curious`.",
-          "uk": "Це про них. Ви включаєте себе: `We are curious`."
+          "ru": "new — «новый». Телефону почти сто пятьдесят лет: ancient.",
+          "uk": "new — «новий». Телефону майже сто п’ятдесят років: ancient."
         },
         "en:lesson-01:session-44:intro3:r3": {
-          "ru": "Это про желание спать. Сейчас нужно назвать любопытство: `curious`.",
-          "uk": "Це про бажання спати. Зараз треба назвати цікавість: `curious`."
+          "ru": "weird — «странный». Здесь речь о возрасте: ancient.",
+          "uk": "weird — «дивний». Тут ідеться про вік: ancient."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8559d27239b66a6415db3b96b7f1c1fdd8f73be774a689f1819bf6f06b12590a"
+  "auxiliaryFingerprint": "9166e056f3f5bf8c3022eaa3f3ea733609a234500010223fb8f116175fd6f6c6"
 }

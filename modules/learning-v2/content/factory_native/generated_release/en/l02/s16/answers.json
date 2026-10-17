@@ -16,7 +16,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-16:i04",
-    "correctText": "en:lesson-02:session-16:i04:p1=possible\nen:lesson-02:session-16:i04:p2=impossible\nen:lesson-02:session-16:i04:p3=urgent\nen:lesson-02:session-16:i04:p4=private",
+    "correctText": "en:lesson-02:session-16:i04:p1=long\nen:lesson-02:session-16:i04:p2=scary\nen:lesson-02:session-16:i04:p3=boring\nen:lesson-02:session-16:i04:p4=romantic",
     "correctResponseId": null
   },
   {
@@ -40,18 +40,28 @@
     "correctResponseId": "en:lesson-02:session-16:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-16:word:scary",
+    "correctText": "scary",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-16:i09",
-    "correctText": "Is it obvious?",
+    "correctText": "Is it scary?",
     "correctResponseId": "en:lesson-02:session-16:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-16:i10",
-    "correctText": "en:lesson-02:session-16:i10:p1=public\nen:lesson-02:session-16:i10:p2=private\nen:lesson-02:session-16:i10:p3=obvious\nen:lesson-02:session-16:i10:p4=silent",
+    "correctText": "en:lesson-02:session-16:i10:p1=possible\nen:lesson-02:session-16:i10:p2=urgent\nen:lesson-02:session-16:i10:p3=private\nen:lesson-02:session-16:i10:p4=public",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:word:boring",
+    "correctText": "boring",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-16:i11",
-    "correctText": "It's not impossible.",
+    "correctText": "It's boring.",
     "correctResponseId": null
   },
   {
@@ -60,8 +70,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-16:word:romantic",
+    "correctText": "romantic",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-16:i13",
-    "correctText": "It's not obvious.",
+    "correctText": "It's romantic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:word:long",
+    "correctText": "long",
     "correctResponseId": null
   },
   {
@@ -76,12 +96,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-16:i16",
-    "correctText": "en:lesson-02:session-16:i16:p1=urgent\nen:lesson-02:session-16:i16:p2=obvious\nen:lesson-02:session-16:i16:p3=impossible\nen:lesson-02:session-16:i16:p4=silent",
+    "correctText": "en:lesson-02:session-16:i16:p1=silent\nen:lesson-02:session-16:i16:p2=easy\nen:lesson-02:session-16:i16:p3=difficult\nen:lesson-02:session-16:i16:p4=awkward",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-16:i17",
-    "correctText": "Is it urgent?",
+    "correctText": "Is it scary?",
     "correctResponseId": null
   }
 ]

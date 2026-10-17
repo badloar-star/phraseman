@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-25:intro1:r2": {
-          "ru": "Это вопрос, отсутствует ли она. Вы пока не знаете, кого нет.",
-          "uk": "Це запитання, чи вона відсутня. Ви поки не знаєте, кого немає."
+          "ru": "Это вопрос «Её нет?» про конкретную женщину. А вы пока не знаете, кого не хватает: Who is missing?",
+          "uk": "Це запитання «Її немає?» про конкретну жінку. А ви поки не знаєте, кого бракує: Who is missing?"
         },
         "en:lesson-02:session-25:intro1:r3": {
-          "ru": "После `Who` здесь нужно `is`.",
-          "uk": "Після `Who` тут потрібно `is`."
+          "ru": "После Who нужно is: Who is missing?",
+          "uk": "Після Who потрібно is: Who is missing?"
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-25:intro2:r2": {
-          "ru": "В этом вопросе `is` ставим перед `he`.",
-          "uk": "У цьому запитанні `is` ставимо перед `he`."
+          "ru": "В вопросе is стоит перед he: Where is he?",
+          "uk": "У запитанні is стоїть перед he: Where is he?"
         },
         "en:lesson-02:session-25:intro2:r3": {
-          "ru": "Это «Кто он?», а вы спрашиваете, где Олег.",
-          "uk": "Це «Хто він?», а ви запитуєте, де Олег."
+          "ru": "Это «Кто он?». А вы знаете друга и спрашиваете, где он: Where is he?",
+          "uk": "Це «Хто він?». А ви знаєте друга й питаєте, де він: Where is he?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-25:intro3:r2": {
-          "ru": "Это «Где это?» Предмет перед вами; вы хотите понять, что он такое.",
-          "uk": "Це «Де це?» Предмет перед вами; ви хочете зрозуміти, що він таке."
+          "ru": "Это «Где это?». Предмет перед вами, вы хотите понять, что он такое: What is it?",
+          "uk": "Це «Де це?». Предмет перед вами, ви хочете зрозуміти, що він таке: What is it?"
         },
         "en:lesson-02:session-25:intro3:r3": {
-          "ru": "Для этого вопроса нужен порядок `What is it?`.",
-          "uk": "Для цього запитання потрібен порядок `What is it?`."
+          "ru": "В вопросе is стоит перед it: What is it?",
+          "uk": "У запитанні is стоїть перед it: What is it?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "89668c8edef3713adbdcbc0c6b82cea63dbc9590cf0c6dea5b1ee444646aa6f0"
+  "auxiliaryFingerprint": "ffb0ff6c84a116868af710e8dd43445f0942033823e94830aa50c75d68e0fa0d"
 }

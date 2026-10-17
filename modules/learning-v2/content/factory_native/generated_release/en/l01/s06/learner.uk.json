@@ -286,52 +286,9 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-06:i06",
+      "interactionId": "en:lesson-01:session-06:word:okay",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — done",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-06:i06:audio"
-      ],
-      "accessibilityLabel": "Картка слова — done",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-06:i06:audio",
-          "transcript": "done"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-06:i06:r1",
-            "targetText": "done",
-            "meaningByLocale": {
-              "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
-              "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "done",
-          "definitionByLocale": {
-            "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
-            "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-06:word:okay",
-      "ordinal": 10,
-      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — okay",
@@ -353,8 +310,8 @@
             "responseId": "en:lesson-01:session-06:word:okay:r1",
             "targetText": "okay",
             "meaningByLocale": {
-              "ru": "«в порядке» в I am okay. Дима беспокоится после вашей долгой дороги, а вы сообщаете, что с вами всё хорошо.",
-              "uk": "«гаразд» у I am okay. Діма хвилюється після вашої довгої дороги, а ви повідомляєте, що з вами все добре."
+              "ru": "«в порядке» в I am okay. Друг беспокоится после вашей долгой дороги, а вы сообщаете, что с вами всё хорошо.",
+              "uk": "«гаразд» у I am okay. Друг хвилюється після вашої довгої дороги, а ви повідомляєте, що з вами все добре."
             }
           }
         ],
@@ -364,8 +321,8 @@
         "wordCard": {
           "word": "okay",
           "definitionByLocale": {
-            "ru": "«в порядке» в I am okay. Дима беспокоится после вашей долгой дороги, а вы сообщаете, что с вами всё хорошо.",
-            "uk": "«гаразд» у I am okay. Діма хвилюється після вашої довгої дороги, а ви повідомляєте, що з вами все добре."
+            "ru": "«в порядке» в I am okay. Друг беспокоится после вашей долгой дороги, а вы сообщаете, что с вами всё хорошо.",
+            "uk": "«гаразд» у I am okay. Друг хвилюється після вашої довгої дороги, а ви повідомляєте, що з вами все добре."
           }
         }
       },
@@ -373,7 +330,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-06:i07",
-      "ordinal": 11,
+      "ordinal": 10,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -421,6 +378,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — done",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — done",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i06:audio",
+          "transcript": "done"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-06:i06:r1",
+            "targetText": "done",
+            "meaningByLocale": {
+              "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
+              "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "done",
+          "definitionByLocale": {
+            "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
+            "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
+          }
         }
       },
       "scriptedAlternate": null
@@ -718,17 +718,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — ви пишете Дмитрові, що знову тут",
+      "prompt": "Зберіть фразу — ви пишете другові, що знову тут",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — ви пишете Дмитрові, що знову тут",
+      "accessibilityLabel": "Зберіть фразу — ви пишете другові, що знову тут",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am back.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы пишете Диме, что снова здесь",
-          "uk": "Зберіть фразу — ви пишете Дмитрові, що знову тут"
+          "ru": "Соберите фразу — вы пишете другу, что снова здесь",
+          "uk": "Зберіть фразу — ви пишете другові, що знову тут"
         },
         "orderedTokens": [
           "I",
@@ -744,7 +744,7 @@
           {
             "responseId": "en:lesson-01:session-06:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — ви пишете Дмитрові, що знову тут",
+            "testedDimension": "Зберіть фразу — ви пишете другові, що знову тут",
             "feedbackByLocale": {
               "ru": "с `I` нужна форма `am`",
               "uk": "з `I` потрібна форма `am`"
@@ -753,7 +753,7 @@
           {
             "responseId": "en:lesson-01:session-06:i12:tile:d2",
             "correct": false,
-            "testedDimension": "Зберіть фразу — ви пишете Дмитрові, що знову тут",
+            "testedDimension": "Зберіть фразу — ви пишете другові, що знову тут",
             "feedbackByLocale": {
               "ru": "с `I` нужна форма `am`",
               "uk": "з `I` потрібна форма `am`"
@@ -762,10 +762,10 @@
           {
             "responseId": "en:lesson-01:session-06:i12:tile:d3",
             "correct": false,
-            "testedDimension": "Зберіть фразу — ви пишете Дмитрові, що знову тут",
+            "testedDimension": "Зберіть фразу — ви пишете другові, що знову тут",
             "feedbackByLocale": {
-              "ru": "она меняет смысл на «возвращение ещё не состоялось», а по условию вы уже здесь",
-              "uk": "вона змінює зміст на «повернення ще не відбулося», а за умовою ви вже тут"
+              "ru": "с ней вышло бы «я ещё не вернулся», а вы уже здесь",
+              "uk": "з нею вийшло б «я ще не повернувся», а ви вже тут"
             }
           }
         ],
@@ -854,8 +854,8 @@
           "INVALID_AUDIO_OR_SYSTEM"
         ],
         "localizedScene": {
-          "ru": "Дима снова вас слышит и уточняет, на связи ли вы.",
-          "uk": "Діма знову вас чує й уточнює, чи ви на зв'язку."
+          "ru": "Друг снова вас слышит и уточняет, на связи ли вы.",
+          "uk": "Друг знову вас чує й уточнює, чи ви на зв'язку."
         }
       },
       "scriptedAlternate": null
@@ -899,13 +899,13 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — ви відповідаєте Олегу, що завтра можете піти гуляти",
+      "prompt": "Послухайте й складіть — ви відповідаєте братові, що завтра можете піти гуляти",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-06:i16:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть — ви відповідаєте Олегу, що завтра можете піти гуляти",
+      "accessibilityLabel": "Послухайте й складіть — ви відповідаєте братові, що завтра можете піти гуляти",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -927,7 +927,7 @@
           {
             "responseId": "en:lesson-01:session-06:i16:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть — ви відповідаєте Олегу, що завтра можете піти гуляти",
+            "testedDimension": "Послухайте й складіть — ви відповідаєте братові, що завтра можете піти гуляти",
             "feedbackByLocale": {
               "ru": "после `I` нужна форма `am`: `I am free`",
               "uk": "після `I` потрібна форма `am`: `I am free`"
@@ -936,10 +936,10 @@
           {
             "responseId": "en:lesson-01:session-06:i16:tile:d2",
             "correct": false,
-            "testedDimension": "Послухайте й складіть — ви відповідаєте Олегу, що завтра можете піти гуляти",
+            "testedDimension": "Послухайте й складіть — ви відповідаєте братові, що завтра можете піти гуляти",
             "feedbackByLocale": {
-              "ru": "`I am not free` отрицает именно `free`; по условию вы завтра можете пойти гулять, поэтому нужно `I am free`",
-              "uk": "`I am not free` заперечує саме `free`; за умовою ви завтра можете піти гуляти, тому потрібно `I am free`"
+              "ru": "`I am not free` значит «я не свободен», а завтра вы как раз можете пойти гулять",
+              "uk": "`I am not free` означає «я не вільний», а завтра ви якраз можете піти гуляти"
             }
           }
         ],
@@ -1093,13 +1093,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — Діма питає, де ви",
+      "prompt": "Скажіть уголос — друг питає, де ви",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-06:i19:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — Діма питає, де ви",
+      "accessibilityLabel": "Скажіть уголос — друг питає, де ви",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7270a4ef2cc895a3574633f36247e3766f38754f431244aa632b27e57ccee6bc"
+  "learnerFingerprint": "d1ddf1c33c2104eb402c49920653c13fd0a9d0735ce02ed226501ec0e15bbab1"
 }

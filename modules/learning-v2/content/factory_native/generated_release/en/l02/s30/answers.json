@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-02:session-30:word:elsewhere",
+    "correctText": "elsewhere",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-30:i01",
-    "correctText": "It is elsewhere.",
+    "correctText": "They are elsewhere.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:word:healthy",
+    "correctText": "healthy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i02",
-    "correctText": "It is alive.",
+    "correctText": "It is healthy.",
     "correctResponseId": "en:lesson-02:session-30:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-30:i04",
-    "correctText": "en:lesson-02:session-30:i04:p1=elsewhere\nen:lesson-02:session-30:i04:p2=alive\nen:lesson-02:session-30:i04:p3=dead\nen:lesson-02:session-30:i04:p4=missing",
+    "correctText": "en:lesson-02:session-30:i04:p1=elsewhere\nen:lesson-02:session-30:i04:p2=healthy\nen:lesson-02:session-30:i04:p3=wilted\nen:lesson-02:session-30:i04:p4=damp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:word:damp",
+    "correctText": "damp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i05",
-    "correctText": "It is not complete.",
+    "correctText": "It is not damp.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i06",
-    "correctText": "They are elsewhere.",
+    "correctText": "What is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:word:wilted",
+    "correctText": "wilted",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i07",
-    "correctText": "It's missing.",
+    "correctText": "It's wilted.",
     "correctResponseId": null
   },
   {
@@ -41,17 +61,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-30:i09",
-    "correctText": "It is complete.",
+    "correctText": "Is it wilted?",
     "correctResponseId": "en:lesson-02:session-30:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-30:i10",
-    "correctText": "en:lesson-02:session-30:i10:p1=complete\nen:lesson-02:session-30:i10:p2=elsewhere\nen:lesson-02:session-30:i10:p3=missing\nen:lesson-02:session-30:i10:p4=alive",
+    "correctText": "en:lesson-02:session-30:i10:p1=alive\nen:lesson-02:session-30:i10:p2=dead\nen:lesson-02:session-30:i10:p3=dry\nen:lesson-02:session-30:i10:p4=damp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i11",
-    "correctText": "They are dead.",
+    "correctText": "They are healthy.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-30:i15",
-    "correctText": "Is it dead?",
+    "correctText": "Where is it?",
     "correctResponseId": "en:lesson-02:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-30:i16",
-    "correctText": "en:lesson-02:session-30:i16:p1=dead\nen:lesson-02:session-30:i16:p2=alive\nen:lesson-02:session-30:i16:p3=complete\nen:lesson-02:session-30:i16:p4=elsewhere",
+    "correctText": "en:lesson-02:session-30:i16:p1=healthy\nen:lesson-02:session-30:i16:p2=elsewhere\nen:lesson-02:session-30:i16:p3=missing\nen:lesson-02:session-30:i16:p4=complete",
     "correctResponseId": null
   },
   {

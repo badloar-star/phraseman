@@ -25,11 +25,6 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-06:i06",
-    "correctText": "done",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-06:word:okay",
     "correctText": "okay",
     "correctResponseId": null
@@ -37,6 +32,11 @@
   {
     "interactionId": "en:lesson-01:session-06:i07",
     "correctText": "I am okay.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-06:i06",
+    "correctText": "done",
     "correctResponseId": null
   },
   {

@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-37:word:foggy",
+    "correctText": "foggy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-37:i01",
-    "correctText": "It is official.",
+    "correctText": "It is foggy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i02",
-    "correctText": "He is lonely.",
+    "correctText": "It is windy.",
     "correctResponseId": "en:lesson-02:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-37:word:stormy",
+    "correctText": "stormy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i03",
@@ -16,12 +26,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-37:i04",
-    "correctText": "en:lesson-02:session-37:i04:p1=official\nen:lesson-02:session-37:i04:p2=formal\nen:lesson-02:session-37:i04:p3=lonely\nen:lesson-02:session-37:i04:p4=away",
+    "correctText": "en:lesson-02:session-37:i04:p1=foggy\nen:lesson-02:session-37:i04:p2=icy\nen:lesson-02:session-37:i04:p3=stormy\nen:lesson-02:session-37:i04:p4=cold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-37:word:icy",
+    "correctText": "icy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i05",
-    "correctText": "No, it is not.",
+    "correctText": "It is not icy.",
     "correctResponseId": null
   },
   {
@@ -31,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-37:i07",
-    "correctText": "It's official.",
+    "correctText": "It's stormy.",
     "correctResponseId": null
   },
   {
@@ -41,27 +56,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-37:i09",
-    "correctText": "Is it formal?",
+    "correctText": "It is icy.",
     "correctResponseId": "en:lesson-02:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-37:i10",
-    "correctText": "en:lesson-02:session-37:i10:p1=lonely\nen:lesson-02:session-37:i10:p2=away\nen:lesson-02:session-37:i10:p3=official\nen:lesson-02:session-37:i10:p4=formal",
+    "correctText": "en:lesson-02:session-37:i10:p1=icy\nen:lesson-02:session-37:i10:p2=stormy\nen:lesson-02:session-37:i10:p3=wet\nen:lesson-02:session-37:i10:p4=cloudy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i11",
-    "correctText": "They are not away.",
+    "correctText": "They are not wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-37:word:gloomy",
+    "correctText": "gloomy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i12",
-    "correctText": "Who is lonely?",
+    "correctText": "Who is gloomy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i13",
-    "correctText": "He's away.",
+    "correctText": "It's gloomy.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-37:i15",
-    "correctText": "Are you lonely?",
+    "correctText": "Are they gloomy?",
     "correctResponseId": "en:lesson-02:session-37:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-37:i16",
-    "correctText": "en:lesson-02:session-37:i16:p1=formal\nen:lesson-02:session-37:i16:p2=official\nen:lesson-02:session-37:i16:p3=away\nen:lesson-02:session-37:i16:p4=lonely",
+    "correctText": "en:lesson-02:session-37:i16:p1=gloomy\nen:lesson-02:session-37:i16:p2=foggy\nen:lesson-02:session-37:i16:p3=quiet\nen:lesson-02:session-37:i16:p4=dangerous",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i17",
-    "correctText": "Is it official?",
+    "correctText": "Is it foggy?",
     "correctResponseId": null
   }
 ]

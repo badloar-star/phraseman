@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-35:intro1:r2": {
-          "ru": "Между `It` и `formal` нужно `is`.",
-          "uk": "Між `It` і `formal` потрібно `is`."
+          "ru": "С not выходит «Нас не пригласили». А карточка с вашими именами лежит в конверте: We're invited.",
+          "uk": "Із not виходить «Нас не запросили». А картка з вашими іменами лежить у конверті: We're invited."
         },
         "en:lesson-02:session-35:intro1:r3": {
-          "ru": "Это отрицает официальный формат. Организатор подтвердил обратное.",
-          "uk": "Це заперечує офіційний формат. Організатор підтвердив протилежне."
+          "ru": "I'm — это только вы, а приглашены вы оба: We're invited.",
+          "uk": "I'm — це лише ви, а запрошені ви обоє: We're invited."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-35:intro2:r2": {
-          "ru": "Это сообщение, а нужно уточнить вопросом.",
-          "uk": "Це повідомлення, а потрібно уточнити запитанням."
+          "ru": "Так звучит утверждение «Это обязательно». Чтобы спросить, ставим Is вперёд: Is it required?",
+          "uk": "Так звучить твердження «Це обов’язково». Щоб запитати, ставимо Is наперед: Is it required?"
         },
         "en:lesson-02:session-35:intro2:r3": {
-          "ru": "Вопрос начинается с `Is it`, а `formal` идёт после них.",
-          "uk": "Запитання починається з `Is it`, а `formal` іде після них."
+          "ru": "С it нужно is: Is it required?",
+          "uk": "З it потрібно is: Is it required?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-35:intro3:r2": {
-          "ru": "Это вопрос о щедрости, а нужно узнать, кто заболел.",
-          "uk": "Це запитання про щедрість, а потрібно дізнатися, хто захворів."
+          "ru": "Между It и optional нужно is: It is optional.",
+          "uk": "Між It і optional потрібно is: It is optional."
         },
         "en:lesson-02:session-35:intro3:r3": {
-          "ru": "После `Who` здесь нужно `is`.",
-          "uk": "Після `Who` тут потрібно `is`."
+          "ru": "Так вы скажете, что галстук обязателен. В письме написано обратное: It is optional.",
+          "uk": "Так ви скажете, що краватка обов’язкова. У листі написано протилежне: It is optional."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d841c176e95eb366581ba74f0aa10beaf8a21537cbb816c26e972fbc232844cb"
+  "auxiliaryFingerprint": "e754dd29d1de6f52070f303fd39c25067598e73667846a2d79f924debaf805a3"
 }

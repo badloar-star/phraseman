@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-33:intro1:r2": {
-          "ru": "В короткой форме остаётся `'m`: `I'm okay`.",
-          "uk": "У короткій формі залишається `'m`: `I'm okay`."
+          "ru": "В короткой форме остаётся 'm: I'm shy.",
+          "uk": "У короткій формі лишається 'm: I'm shy."
         },
         "en:lesson-01:session-33:intro1:r3": {
-          "ru": "Это про него, а вы говорите о себе: `I'm`.",
-          "uk": "Це про нього, а ви говорите про себе: `I'm`."
+          "ru": "Это про него, а вы говорите о себе: I'm.",
+          "uk": "Це про нього, а ви говорите про себе: I'm."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-33:intro2:r2": {
-          "ru": "`He's` — про него; про подругу нужно `She's`.",
-          "uk": "`He's` — про нього; про подругу потрібно `She's`."
+          "ru": "В короткой форме нужно 's: It's awful.",
+          "uk": "У короткій формі потрібно 's: It's awful."
         },
         "en:lesson-01:session-33:intro2:r3": {
-          "ru": "`ashamed` — «стыдно». Здесь подруга гордится: `proud`.",
-          "uk": "`ashamed` — «соромно». Тут подруга пишається: `proud`."
+          "ru": "She's — про женщину. Про парик говорим It's.",
+          "uk": "She's — про жінку. Про перуку кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-33:intro3:r2": {
-          "ru": "Это про них. Вы говорите за себя и друзей: `We're`.",
-          "uk": "Це про них. Ви говорите за себе та друзів: `We're`."
+          "ru": "В короткой форме остаётся 're: You're great.",
+          "uk": "У короткій формі лишається 're: You're great."
         },
         "en:lesson-01:session-33:intro3:r3": {
-          "ru": "`ashamed` означает, что вам стыдно. Здесь нужно назвать удивление: `surprised`.",
-          "uk": "`ashamed` означає, що вам соромно. Тут треба назвати здивування: `surprised`."
+          "ru": "They're — про них. Другу говорим You're.",
+          "uk": "They're — про них. Другові кажемо You're."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5557afcc3c5656e5ed0cf8d3a9f8b99789589d7b13c2ab01143146d7fc9ea283"
+  "auxiliaryFingerprint": "09367135fea1aab03445a1d109316b51e7a525c22d11d222b575c85eccf65111"
 }

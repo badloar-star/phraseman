@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-42:intro1:r2": {
-          "ru": "Это «точная». В записи есть ошибка.",
-          "uk": "Це «точний». У записі є помилка."
+          "ru": "С not выходит «Меня не тошнит». А вам нехорошо: I am queasy.",
+          "uk": "З not виходить «Мене не нудить». А вам недобре: I am queasy."
         },
         "en:lesson-02:session-42:intro1:r3": {
-          "ru": "Между `It` и `inaccurate` нужно `is`.",
-          "uk": "Між `It` і `inaccurate` потрібно `is`."
+          "ru": "Между I и queasy нужно am: I am queasy.",
+          "uk": "Між I і queasy потрібно am: I am queasy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-42:intro2:r2": {
-          "ru": "Это отрицает неточность, а адрес действительно неверный.",
-          "uk": "Це заперечує неточність, а адреса справді неправильна."
+          "ru": "Так звучит утверждение «Оно чешется». Чтобы спросить, ставим Is вперёд: Is it itchy?",
+          "uk": "Так звучить твердження «Воно свербить». Щоб запитати, ставимо Is наперед: Is it itchy?"
         },
         "en:lesson-02:session-42:intro2:r3": {
-          "ru": "С `it` нужно `is`: `Yes, it is`.",
-          "uk": "З `it` потрібно `is`: `Yes, it is`."
+          "ru": "С it нужно is: Is it itchy?",
+          "uk": "З it потрібно is: Is it itchy?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-42:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-42:intro3:r2": {
-          "ru": "Это о бездействии, а нужно отметить вежливость.",
-          "uk": "Це про бездіяльність, а потрібно відзначити ввічливість."
+          "ru": "С not выходит «Она не опухла». А ботинок не снимается: It's swollen.",
+          "uk": "З not виходить «Вона не опухла». А черевик не знімається: It's swollen."
         },
         "en:lesson-02:session-42:intro3:r3": {
-          "ru": "Речь об Олеге: `He's`.",
-          "uk": "Йдеться про Олега: `He's`."
+          "ru": "Нога одна, нужно It's: It's swollen.",
+          "uk": "Нога одна, потрібно It's: It's swollen."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9c95cc99e5b1b4934a03b1a41664bcb393f169f3c50a478d8dcbbd85b8aacd2d"
+  "auxiliaryFingerprint": "9450fb5ec31810bf436f7af419f9bc4c5baf7dce4447be5cc2158c45f63add2a"
 }

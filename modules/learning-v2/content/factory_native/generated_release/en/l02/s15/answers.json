@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-15:word:silent",
+    "correctText": "silent",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-15:i01",
     "correctText": "She is silent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:word:easy",
+    "correctText": "easy",
     "correctResponseId": null
   },
   {
@@ -16,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-15:i04",
-    "correctText": "en:lesson-02:session-15:i04:p1=silent\nen:lesson-02:session-15:i04:p2=easy\nen:lesson-02:session-15:i04:p3=difficult\nen:lesson-02:session-15:i04:p4=important",
+    "correctText": "en:lesson-02:session-15:i04:p1=silent\nen:lesson-02:session-15:i04:p2=easy\nen:lesson-02:session-15:i04:p3=difficult\nen:lesson-02:session-15:i04:p4=awkward",
     "correctResponseId": null
   },
   {
@@ -35,6 +45,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-15:word:difficult",
+    "correctText": "difficult",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-15:i08",
     "correctText": "is",
     "correctResponseId": "en:lesson-02:session-15:i08:r1"
@@ -46,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-15:i10",
-    "correctText": "en:lesson-02:session-15:i10:p1=necessary\nen:lesson-02:session-15:i10:p2=silent\nen:lesson-02:session-15:i10:p3=easy\nen:lesson-02:session-15:i10:p4=difficult",
+    "correctText": "en:lesson-02:session-15:i10:p1=necessary\nen:lesson-02:session-15:i10:p2=important\nen:lesson-02:session-15:i10:p3=simple\nen:lesson-02:session-15:i10:p4=ready",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-15:word:awkward",
+    "correctText": "awkward",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-15:i13",
-    "correctText": "It's not necessary.",
+    "correctText": "It's awkward.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-15:i16",
-    "correctText": "en:lesson-02:session-15:i16:p1=easy\nen:lesson-02:session-15:i16:p2=difficult\nen:lesson-02:session-15:i16:p3=important\nen:lesson-02:session-15:i16:p4=necessary",
+    "correctText": "en:lesson-02:session-15:i16:p1=obvious\nen:lesson-02:session-15:i16:p2=dirty\nen:lesson-02:session-15:i16:p3=shiny\nen:lesson-02:session-15:i16:p4=neat",
     "correctResponseId": null
   },
   {

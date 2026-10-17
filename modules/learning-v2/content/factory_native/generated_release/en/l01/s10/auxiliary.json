@@ -10,8 +10,8 @@
           "uk": "Після you потрібне are; am вживається з I."
         },
         "en:lesson-01:session-10:intro1:r3": {
-          "ru": "Вы отмечаете доброту Миры, а не свою: You are kind.",
-          "uk": "Ви відзначаєте доброту Міри, а не свою: You are kind."
+          "ru": "Вы отмечаете доброту коллеги, а не свою: You are kind.",
+          "uk": "Ви відзначаєте доброту колеги, а не свою: You are kind."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "fd645f372de7bdac3babd8c1febaa0651953afe079376fb51a06b86d481cfa08"
+  "auxiliaryFingerprint": "b14a2df559bdc292dceb1f8f3aadbf57ce6d752c79f54c44f336006a0e2317b7"
 }

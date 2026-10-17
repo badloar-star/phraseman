@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-33:intro1:r2": {
-          "ru": "Между `She` и `active` нужно `is`.",
-          "uk": "Між `She` і `active` потрібно `is`."
+          "ru": "Между She и active нужно is: She is active.",
+          "uk": "Між She і active потрібно is: She is active."
         },
         "en:lesson-02:session-33:intro1:r3": {
-          "ru": "Это отрицает активность. В условии Анна активная.",
-          "uk": "Це заперечує активність. За умовою Анна активна."
+          "ru": "С not выходит «Она не активная». А подруга бегает уже час: She is active.",
+          "uk": "Із not виходить «Вона не активна». А подруга бігає вже годину: She is active."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-33:intro2:r2": {
-          "ru": "Это вопрос об активности, а вы спрашиваете о состоянии сейчас.",
-          "uk": "Це запитання про активність, а ви питаєте про стан зараз."
+          "ru": "С not выходит «Я не запыхался». А вы еле дышите: I'm breathless.",
+          "uk": "Із not виходить «Я не захекався». А ви ледве дихаєте: I'm breathless."
         },
         "en:lesson-02:session-33:intro2:r3": {
-          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `you`.",
-          "uk": "Це повідомлення. Для запитання поставте `Are` перед `you`."
+          "ru": "Нужна связка: I am или I'm breathless.",
+          "uk": "Потрібна зв’язка: I am або I'm breathless."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-33:intro3:r2": {
-          "ru": "Это «Где он?» Вы пока хотите узнать, кого нет.",
-          "uk": "Це «Де він?» Ви поки хочете дізнатися, кого немає."
+          "ru": "Так звучит утверждение «Он энергичный». Чтобы спросить, ставим Is вперёд: Is he energetic?",
+          "uk": "Так звучить твердження «Він енергійний». Щоб запитати, ставимо Is наперед: Is he energetic?"
         },
         "en:lesson-02:session-33:intro3:r3": {
-          "ru": "После `Who` здесь нужно `is`.",
-          "uk": "Після `Who` тут потрібно `is`."
+          "ru": "С he нужно is: Is he energetic?",
+          "uk": "З he потрібно is: Is he energetic?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "412805b44241f0a1b6de13903ef3bcd98a09194b2481bb4690ccafec2288e742"
+  "auxiliaryFingerprint": "d1b8ad0e690167325b98b124d14c89bb30c217d95f37d119b14d3276fd580d39"
 }

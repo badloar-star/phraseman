@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-16:intro1:r2": {
-          "ru": "С `it` нужно `is`.",
-          "uk": "З `it` потрібно `is`."
+          "ru": "Это утверждение «Он длинный». Чтобы спросить, ставим Is вперёд: Is it long?",
+          "uk": "Це твердження «Він довгий». Щоб запитати, ставимо Is наперед: Is it long?"
         },
         "en:lesson-02:session-16:intro1:r3": {
-          "ru": "После `Is` идёт `it`, затем `possible`.",
-          "uk": "Після `Is` йде `it`, потім `possible`."
+          "ru": "Со словом it нужно is: Is it long?",
+          "uk": "Зі словом it потрібно is: Is it long?"
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-16:intro2:r2": {
-          "ru": "Это показ для всех. Здесь нужен `not public`.",
-          "uk": "Це показ для всіх. Тут потрібно `not public`."
+          "ru": "Без not выходит «Он страшный». А это комедия: It's not scary.",
+          "uk": "Без not виходить «Він страшний». А це комедія: It's not scary."
         },
         "en:lesson-02:session-16:intro2:r3": {
-          "ru": "После `It` сохраняем `is`.",
-          "uk": "Після `It` зберігаємо `is`."
+          "ru": "He's — про мальчика. Про фильм говорим It's.",
+          "uk": "He's — про хлопчика. Про фільм кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-16:intro3:r2": {
-          "ru": "Это «Срочно». Здесь можно подождать.",
-          "uk": "Це «Терміново». Тут можна зачекати."
+          "ru": "Это «Он не скучный». А гости зевают: It's boring.",
+          "uk": "Це «Він не нудний». А гості позіхають: It's boring."
         },
         "en:lesson-02:session-16:intro3:r3": {
-          "ru": "Это «Невозможно». В условии речь о срочности.",
-          "uk": "Це «Неможливо». За умовою йдеться про терміновість."
+          "ru": "They're boring — «Они скучные», так можно обидеть гостей. Про фильм: It's boring.",
+          "uk": "They're boring — «Вони нудні», так можна образити гостей. Про фільм: It's boring."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b5c017dd7fbf3959fad6091fd26edf69783051e01a78b494203900776ce14663"
+  "auxiliaryFingerprint": "0a0fe8ce102327da7cd24d938e8e5dc567c3cbe7e276477227c8369d25abb30d"
 }

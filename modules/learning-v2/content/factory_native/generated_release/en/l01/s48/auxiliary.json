@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-48:intro1:r2": {
-          "ru": "Это о любопытстве. Здесь нужно назвать терпение: `patient`.",
-          "uk": "Це про допитливість. Тут потрібно назвати терплячість: `patient`."
+          "ru": "loose — «болтается». Вы предупреждаете про лезвие: sharp.",
+          "uk": "loose — «хитається». Ви попереджаєте про лезо: sharp."
         },
         "en:lesson-01:session-48:intro1:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "He's — про человека. Про нож говорим It's.",
+          "uk": "He's — про людину. Про ніж кажемо It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-48:intro2:r2": {
-          "ru": "Эта карта помогает: `useful`.",
-          "uk": "Ця карта допомагає: `useful`."
+          "ru": "sturdy — «крепкие». Лак не высох и липнет к пальцам: sticky.",
+          "uk": "sturdy — «міцні». Лак не висох і липне до пальців: sticky."
         },
         "en:lesson-01:session-48:intro2:r3": {
-          "ru": "Здесь одна карта: `It is`.",
-          "uk": "Тут одна карта: `It is`."
+          "ru": "It's — про одну вещь, а рамок несколько: They're sticky.",
+          "uk": "It's — про одну річ, а рамок кілька: They're sticky."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-48:intro3:r2": {
-          "ru": "Речь об одной лестнице: `It's`.",
-          "uk": "Йдеться про одну драбину: `It's`."
+          "ru": "new — «новая». Вы говорите, что чашку сделали руками: handmade.",
+          "uk": "new — «нова». Ви кажете, що чашку зробили руками: handmade."
         },
         "en:lesson-01:session-48:intro3:r3": {
-          "ru": "Это о бесполезности. Сейчас нужно предупредить об опасности: `dangerous`.",
-          "uk": "Це про марність. Зараз треба попередити про небезпеку: `dangerous`."
+          "ru": "She's — про женщину. Про чашку говорим It's.",
+          "uk": "She's — про жінку. Про чашку кажемо It's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5db60c6b3c258ef660046de2189b115024abef169bd1ffb5d4fa11452f51a697"
+  "auxiliaryFingerprint": "164c02df5174c806629aeb4710666db3d2bb8f182f790df9eb36e8f74f83173c"
 }

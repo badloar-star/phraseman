@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-13:intro1:r2": {
-          "ru": "Это частный сад с ограниченным доступом. В условии сад для всех.",
-          "uk": "Це приватний сад з обмеженим доступом. За умовою сад для всіх."
+          "ru": "Так звучит утверждение «Там тень». Чтобы спросить, ставим Is вперёд: Is it shady?",
+          "uk": "Так звучить твердження «Там тінь». Щоб запитати, ставимо Is наперед: Is it shady?"
         },
         "en:lesson-02:session-13:intro1:r3": {
-          "ru": "После `It` нужно `is`: `It is public`.",
-          "uk": "Після `It` потрібно `is`: `It is public`."
+          "ru": "Со словом it нужно is: Is it shady?",
+          "uk": "Зі словом it потрібно is: Is it shady?"
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-13:intro2:r2": {
-          "ru": "С `it` нужно `is`, в вопросе — `Is it`.",
-          "uk": "З `it` потрібно `is`, у запитанні — `Is it`."
+          "ru": "Без not выходит «Он огорожен». А ограды там нет: It's not fenced.",
+          "uk": "Без not виходить «Воно огороджене». А огорожі там немає: It's not fenced."
         },
         "en:lesson-02:session-13:intro2:r3": {
-          "ru": "После `Is` ставим `it`, затем `public`.",
-          "uk": "Після `Is` ставимо `it`, потім `public`."
+          "ru": "Двор один, поэтому It's, а не They're.",
+          "uk": "Подвір’я одне, тому It's, а не They're."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-13:intro3:r2": {
-          "ru": "Это «Общедоступный». Здесь нужен `not`.",
-          "uk": "Це «Загальнодоступне». Тут потрібно `not`."
+          "ru": "Это «Там ветрено». А ветки не шевелятся: It is not windy.",
+          "uk": "Це «Там вітряно». А гілки не ворушаться: It is not windy."
         },
         "en:lesson-02:session-13:intro3:r3": {
-          "ru": "Обсуждаем один двор: `It's`, а не `They're`.",
-          "uk": "Обговорюємо одне подвір’я: `It's`, а не `They're`."
+          "ru": "Нужно is: It is not windy.",
+          "uk": "Потрібно is: It is not windy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "984ce6efa2167d132eb14c647f623a293a56be0321e776deced3a7b5f11a86c1"
+  "auxiliaryFingerprint": "112d2321109176e937d551c841bf766a59e34a8f8b605ffc470023eda30de940"
 }

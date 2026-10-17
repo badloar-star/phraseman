@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-03:intro3:r2": {
-          "ru": "Not опять сбежал в конец. Его место — сразу после am, перед sure.",
-          "uk": "Not знову втік у кінець. Його місце — одразу після am, перед sure."
+          "ru": "Not стоит не там. Его место — сразу после am, перед sure.",
+          "uk": "Not стоїть не там. Його місце — одразу після am, перед sure."
         },
         "en:lesson-01:session-03:intro3:r3": {
           "ru": "После I нужно am: I am not sure.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9ecaf39181fb18764b8fcb16363c10dfe1e9f30345f8b53eb8edc1c98e2a70e9"
+  "auxiliaryFingerprint": "426c4fd09ee927e6f554cf00c1240570b50ac3c3221e5b4c71463db0081fda9f"
 }

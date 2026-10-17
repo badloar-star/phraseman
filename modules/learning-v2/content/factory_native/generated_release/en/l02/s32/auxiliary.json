@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-32:intro1:r2": {
-          "ru": "Это вопрос, кого нет. Вы уже знаете, что нет Олега.",
-          "uk": "Це запитання, кого немає. Ви вже знаєте, що немає Олега."
+          "ru": "Между They и homemade нужно are: They are homemade.",
+          "uk": "Між They і homemade потрібно are: They are homemade."
         },
         "en:lesson-02:session-32:intro1:r3": {
-          "ru": "В этом вопросе `is` ставим перед `he`.",
-          "uk": "У цьому запитанні `is` ставимо перед `he`."
+          "ru": "С They нужно are: They are homemade.",
+          "uk": "З They потрібно are: They are homemade."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-32:intro2:r2": {
-          "ru": "Это «Она неосторожна». Здесь речь о щедрости.",
-          "uk": "Це «Вона необережна». Тут ідеться про щедрість."
+          "ru": "Так звучит утверждение «Это отложено». Чтобы спросить, ставим Is вперёд: Is it delayed?",
+          "uk": "Так звучить твердження «Це відкладено». Щоб запитати, ставимо Is наперед: Is it delayed?"
         },
         "en:lesson-02:session-32:intro2:r3": {
-          "ru": "Речь об Анне: `She's`.",
-          "uk": "Йдеться про Анну: `She's`."
+          "ru": "С it нужно is: Is it delayed?",
+          "uk": "З it потрібно is: Is it delayed?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-32:intro3:r2": {
-          "ru": "С `I` нужно `am`.",
-          "uk": "З `I` потрібно `am`."
+          "ru": "С not выходит «Здесь не оживлённо». А во дворе полно людей: It's lively.",
+          "uk": "Із not виходить «Тут не жваво». А у дворі повно людей: It's lively."
         },
         "en:lesson-02:session-32:intro3:r3": {
-          "ru": "Это отрицает готовность подстроиться. Вы готовы изменить время.",
-          "uk": "Це заперечує готовність підлаштуватися. Ви готові змінити час."
+          "ru": "They're — про несколько мест, а двор один: It's lively.",
+          "uk": "They're — про кілька місць, а двір один: It's lively."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4da4b90a7236fc8170c31cc8203c1b8a85b07f80dc7ac182f9b3ff68a7aa5035"
+  "auxiliaryFingerprint": "6c938828fde4b5a45e44dd39f1ddfd2abcb2103cbb87664ee544ec05b56f2694"
 }

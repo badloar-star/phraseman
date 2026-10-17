@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-29:i01",
+      "interactionId": "en:lesson-02:session-29:word:away",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — away",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-29:word:away:audio"
+      ],
+      "accessibilityLabel": "Картка слова — away",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-29:word:away:audio",
+          "transcript": "away"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-29:word:away:r1",
+            "targetText": "away",
+            "meaningByLocale": {
+              "ru": "в отъезде, не на месте. He is away — «Он в отъезде». О человеке, которого нет несколько дней: хозяине, враче, соседе.",
+              "uk": "у від’їзді, не на місці. He is away — «Він у від’їзді». Про людину, якої немає кілька днів: господаря, лікаря, сусіда."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "away",
+          "definitionByLocale": {
+            "ru": "в отъезде, не на месте. He is away — «Он в отъезде». О человеке, которого нет несколько дней: хозяине, враче, соседе.",
+            "uk": "у від’їзді, не на місці. He is away — «Він у від’їзді». Про людину, якої немає кілька днів: господаря, лікаря, сусіда."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Господар поїхав на кілька днів. Повідомте про це повною фразою",
+      "prompt": "Господар із дружиною поїхали на кілька днів. Скажіть повною фразою, що вони у від’їзді",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Господар поїхав на кілька днів. Повідомте про це повною фразою",
+      "accessibilityLabel": "Господар із дружиною поїхали на кілька днів. Скажіть повною фразою, що вони у від’їзді",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He is away.",
+        "targetPhrase": "They are away.",
         "localizedMeaning": {
-          "ru": "Хозяин уехал на несколько дней. Сообщите об этом полной фразой",
-          "uk": "Господар поїхав на кілька днів. Повідомте про це повною фразою"
+          "ru": "Хозяин с женой уехали на несколько дней. Скажите полной фразой, что они в отъезде",
+          "uk": "Господар із дружиною поїхали на кілька днів. Скажіть повною фразою, що вони у від’їзді"
         },
         "orderedTokens": [
-          "He",
-          "is",
+          "They",
+          "are",
           "away"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-29:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Господар поїхав на кілька днів. Повідомте про це повною фразою",
+            "testedDimension": "Господар із дружиною поїхали на кілька днів. Скажіть повною фразою, що вони у від’їзді",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is away.`",
-              "uk": "тут потрібно `is` — `He is away.`"
+              "ru": "здесь нужно `are` — `They are away.`",
+              "uk": "тут потрібно `are` — `They are away.`"
             }
           }
         ],
@@ -48,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-29:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-02:session-29:word:fixed",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про виріб",
+      "prompt": "Картка слова — fixed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-29:word:fixed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fixed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-29:word:fixed:audio",
+          "transcript": "fixed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-29:word:fixed:r1",
+            "targetText": "fixed",
+            "meaningByLocale": {
+              "ru": "починенный, исправленный. It is fixed — «Она починена». О лампе, часах, замке, велосипеде.",
+              "uk": "полагоджений, виправлений. It is fixed — «Вона полагоджена». Про лампу, годинник, замок, велосипед."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fixed",
+          "definitionByLocale": {
+            "ru": "починенный, исправленный. It is fixed — «Она починена». О лампе, часах, замке, велосипеде.",
+            "uk": "полагоджений, виправлений. It is fixed — «Вона полагоджена». Про лампу, годинник, замок, велосипед."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про лампу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i02:r1",
-          "text": "It is local."
+          "text": "It is fixed."
         },
         {
           "responseId": "en:lesson-02:session-29:i02:r2",
-          "text": "It is foreign."
+          "text": "It is broken."
         },
         {
           "responseId": "en:lesson-02:session-29:i02:r3",
-          "text": "It is broken."
+          "text": "It is local."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-29:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про виріб",
+      "accessibilityLabel": "Послухайте фразу про лампу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-29:i02:audio",
-          "transcript": "It is local."
+          "transcript": "It is fixed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-29:i02:r1",
-            "targetText": "It is local.",
+            "targetText": "It is fixed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-29:i02:r2",
-            "targetText": "It is foreign.",
+            "targetText": "It is broken.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-29:i02:r3",
-            "targetText": "It is broken.",
+            "targetText": "It is local.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +188,19 @@
           {
             "responseId": "en:lesson-02:session-29:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про виріб",
+            "testedDimension": "Послухайте фразу про лампу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `local`, а в этом варианте — `foreign`.",
-              "uk": "У записі останнє слово — `local`, а в цьому варіанті — `foreign`."
+              "ru": "В записи последнее слово — `fixed`, а в этом варианте — `broken`.",
+              "uk": "У записі останнє слово — `fixed`, а в цьому варіанті — `broken`."
             }
           },
           {
             "responseId": "en:lesson-02:session-29:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про виріб",
+            "testedDimension": "Послухайте фразу про лампу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `local`, а в этом варианте — `broken`.",
-              "uk": "У записі останнє слово — `local`, а в цьому варіанті — `broken`."
+              "ru": "В записи последнее слово — `fixed`, а в этом варианте — `local`.",
+              "uk": "У записі останнє слово — `fixed`, а в цьому варіанті — `local`."
             }
           }
         ],
@@ -125,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, чи господар у мережі",
+      "prompt": "Запитайте помічника, чи господар у від’їзді",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, чи господар у мережі",
+      "accessibilityLabel": "Запитайте помічника, чи господар у від’їзді",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, в сети ли хозяин",
-          "uk": "Запитайте, чи господар у мережі"
+          "ru": "Спросите помощника, в отъезде ли хозяин",
+          "uk": "Запитайте помічника, чи господар у від’їзді"
         },
-        "gappedTargetPhrase": "___ he online?",
+        "gappedTargetPhrase": "___ he away?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-29:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Запитайте, чи господар у мережі",
+        "testedDimension": "Запитайте помічника, чи господар у від’їзді",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-29:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте, чи господар у мережі",
+            "testedDimension": "Запитайте помічника, чи господар у від’їзді",
             "feedbackByLocale": {
               "ru": "С `he` нужно `Is`.",
               "uk": "З `he` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-29:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте, чи господар у мережі",
+            "testedDimension": "Запитайте помічника, чи господар у від’їзді",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is he online?`.",
-              "uk": "Запитання — `Is he online?`."
+              "ru": "Вопрос — `Is he away?`.",
+              "uk": "Запитання — `Is he away?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -210,46 +296,46 @@
             "pairId": "en:lesson-02:session-29:i04:p1",
             "target": "away",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "в отъезде",
+              "uk": "у від’їзді"
             }
           },
           {
             "pairId": "en:lesson-02:session-29:i04:p2",
-            "target": "local",
+            "target": "fixed",
             "meaningByLocale": {
-              "ru": "местный",
-              "uk": "місцевий"
+              "ru": "починенный",
+              "uk": "полагоджений"
             }
           },
           {
             "pairId": "en:lesson-02:session-29:i04:p3",
-            "target": "foreign",
+            "target": "scratched",
             "meaningByLocale": {
-              "ru": "иностранный",
-              "uk": "іноземний"
+              "ru": "поцарапанный",
+              "uk": "подряпаний"
             }
           },
           {
             "pairId": "en:lesson-02:session-29:i04:p4",
-            "target": "online",
+            "target": "worn",
             "meaningByLocale": {
-              "ru": "в сети",
-              "uk": "у мережі"
+              "ru": "потёртый",
+              "uk": "потертий"
             }
           }
         ],
         "leftColumn": [
           "away",
-          "local",
-          "foreign",
-          "online"
+          "fixed",
+          "scratched",
+          "worn"
         ],
         "rightColumn": [
-          "не тут, у від’їзді",
-          "місцевий",
-          "іноземний",
-          "у мережі"
+          "у від’їзді",
+          "полагоджений",
+          "подряпаний",
+          "потертий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,9 +352,52 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-29:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-29:word:scratched",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scratched",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-29:word:scratched:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scratched",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-29:word:scratched:audio",
+          "transcript": "scratched"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-29:word:scratched:r1",
+            "targetText": "scratched",
+            "meaningByLocale": {
+              "ru": "поцарапанный. It is scratched — «Она поцарапана». О лампе, столе, очках, экране.",
+              "uk": "подряпаний. It is scratched — «Вона подряпана». Про лампу, стіл, окуляри, екран."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scratched",
+          "definitionByLocale": {
+            "ru": "поцарапанный. It is scratched — «Она поцарапана». О лампе, столе, очках, экране.",
+            "uk": "подряпаний. It is scratched — «Вона подряпана». Про лампу, стіл, окуляри, екран."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -282,18 +411,18 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-29:i05:audio",
-          "transcript": "They are not online."
+          "transcript": "It is not scratched."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not online.",
+        "hiddenTargetPhrase": "It is not scratched.",
         "orderedTokens": [
-          "They",
-          "are",
+          "It",
+          "is",
           "not",
-          "online"
+          "scratched"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
@@ -301,8 +430,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not online.`",
-              "uk": "тут потрібно `are` — `They are not online.`"
+              "ru": "здесь нужно `is` — `It is not scratched.`",
+              "uk": "тут потрібно `is` — `It is not scratched.`"
             }
           }
         ],
@@ -315,21 +444,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знаєте господаря, але не знаєте, куди він поїхав. Запитайте, де він",
+      "prompt": "Ви не знаєте, куди поїхав господар. Запитайте помічника, де він",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знаєте господаря, але не знаєте, куди він поїхав. Запитайте, де він",
+      "accessibilityLabel": "Ви не знаєте, куди поїхав господар. Запитайте помічника, де він",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where is he?",
         "localizedMeaning": {
-          "ru": "Вы знаете хозяина, но не знаете, куда он уехал. Спросите, где он",
-          "uk": "Ви знаєте господаря, але не знаєте, куди він поїхав. Запитайте, де він"
+          "ru": "Вы не знаете, куда уехал хозяин. Спросите помощника, где он",
+          "uk": "Ви не знаєте, куди поїхав господар. Запитайте помічника, де він"
         },
         "orderedTokens": [
           "Where",
@@ -343,7 +472,7 @@
           {
             "responseId": "en:lesson-02:session-29:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви знаєте господаря, але не знаєте, куди він поїхав. Запитайте, де він",
+            "testedDimension": "Ви не знаєте, куди поїхав господар. Запитайте помічника, де він",
             "feedbackByLocale": {
               "ru": "здесь нужно `Where` — `Where is he?`",
               "uk": "тут потрібно `Where` — `Where is he?`"
@@ -358,26 +487,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-29:word:worn",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — worn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-29:word:worn:audio"
+      ],
+      "accessibilityLabel": "Картка слова — worn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-29:word:worn:audio",
+          "transcript": "worn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-29:word:worn:r1",
+            "targetText": "worn",
+            "meaningByLocale": {
+              "ru": "потёртый, изношенный. It is worn — «Он потёрт». О проводе, обуви, ковре, ручке.",
+              "uk": "потертий, зношений. It is worn — «Він потертий». Про дріт, взуття, килим, ручку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worn",
+          "definitionByLocale": {
+            "ru": "потёртый, изношенный. It is worn — «Он потёрт». О проводе, обуви, ковре, ручке.",
+            "uk": "потертий, зношений. It is worn — «Він потертий». Про дріт, взуття, килим, ручку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-29:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Господар із дружиною поїхали на кілька днів. Коротко повідомте про це",
+      "prompt": "Дріт у лампи потертий: видно, що ним давно користуються. Коротко скажіть помічнику, що він потертий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-29:i07:audio"
       ],
-      "accessibilityLabel": "Господар із дружиною поїхали на кілька днів. Коротко повідомте про це",
+      "accessibilityLabel": "Дріт у лампи потертий: видно, що ним давно користуються. Коротко скажіть помічнику, що він потертий",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-29:i07:audio",
-          "transcript": "They're away."
+          "transcript": "It's worn."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're away.",
+        "targetPhrase": "It's worn.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +564,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Лампу полагодили. На «Is it broken?» доповніть коротку відповідь «ні»",
+      "prompt": "Помічник питає: «Is it broken?» Лампа світить. Доповніть коротке «ні»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i08:r1",
@@ -413,12 +585,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Лампу полагодили. На «Is it broken?» доповніть коротку відповідь «ні»",
+      "accessibilityLabel": "Помічник питає: «Is it broken?» Лампа світить. Доповніть коротке «ні»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Лампу починили. На «Is it broken?» дополните короткое «нет»",
-          "uk": "Лампу полагодили. На «Is it broken?» доповніть коротку відповідь «ні»"
+          "ru": "Помощник спрашивает: «Is it broken?» Лампа горит. Дополните короткое «нет»",
+          "uk": "Помічник питає: «Is it broken?» Лампа світить. Доповніть коротке «ні»"
         },
         "gappedTargetPhrase": "No, it ___ not.",
         "gapOptions": [
@@ -435,12 +607,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Лампу полагодили. На «Is it broken?» доповніть коротку відповідь «ні»",
+        "testedDimension": "Помічник питає: «Is it broken?» Лампа світить. Доповніть коротке «ні»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-29:i08:r2",
             "correct": false,
-            "testedDimension": "Лампу полагодили. На «Is it broken?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Помічник питає: «Is it broken?» Лампа світить. Доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -449,7 +621,7 @@
           {
             "responseId": "en:lesson-02:session-29:i08:r3",
             "correct": false,
-            "testedDimension": "Лампу полагодили. На «Is it broken?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Помічник питає: «Is it broken?» Лампа світить. Доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "Ответ — `No, it is not`.",
               "uk": "Відповідь — `No, it is not`."
@@ -461,51 +633,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про виріб",
+      "prompt": "Послухайте запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i09:r1",
-          "text": "It is foreign."
+          "text": "Is it scratched?"
         },
         {
           "responseId": "en:lesson-02:session-29:i09:r2",
-          "text": "It is local."
+          "text": "Is it fixed?"
         },
         {
           "responseId": "en:lesson-02:session-29:i09:r3",
-          "text": "It is broken."
+          "text": "Is it worn?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-29:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про виріб",
+      "accessibilityLabel": "Послухайте запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-29:i09:audio",
-          "transcript": "It is foreign."
+          "transcript": "Is it scratched?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-29:i09:r1",
-            "targetText": "It is foreign.",
+            "targetText": "Is it scratched?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-29:i09:r2",
-            "targetText": "It is local.",
+            "targetText": "Is it fixed?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-29:i09:r3",
-            "targetText": "It is broken.",
+            "targetText": "Is it worn?",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-29:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про виріб",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `foreign`, а в этом варианте — `local`.",
-              "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `local`."
+              "ru": "В записи последнее слово — `scratched`, а в этом варианте — `fixed`.",
+              "uk": "У записі останнє слово — `scratched`, а в цьому варіанті — `fixed`."
             }
           },
           {
             "responseId": "en:lesson-02:session-29:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про виріб",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `foreign`, а в этом варианте — `broken`.",
-              "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `broken`."
+              "ru": "В записи последнее слово — `scratched`, а в этом варианте — `worn`.",
+              "uk": "У записі останнє слово — `scratched`, а в цьому варіанті — `worn`."
             }
           }
         ],
@@ -537,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -551,6 +723,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-29:i10:p1",
+            "target": "away",
+            "meaningByLocale": {
+              "ru": "в отъезде",
+              "uk": "у від’їзді"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-29:i10:p2",
             "target": "broken",
             "meaningByLocale": {
               "ru": "сломанный",
@@ -558,19 +738,11 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-29:i10:p2",
-            "target": "no",
-            "meaningByLocale": {
-              "ru": "нет",
-              "uk": "ні"
-            }
-          },
-          {
             "pairId": "en:lesson-02:session-29:i10:p3",
-            "target": "away",
+            "target": "fixed",
             "meaningByLocale": {
-              "ru": "не здесь, в отъезде",
-              "uk": "не тут, у від’їзді"
+              "ru": "починенный",
+              "uk": "полагоджений"
             }
           },
           {
@@ -578,21 +750,21 @@
             "target": "online",
             "meaningByLocale": {
               "ru": "в сети",
-              "uk": "у мережі"
+              "uk": "в мережі"
             }
           }
         ],
         "leftColumn": [
-          "broken",
-          "no",
           "away",
+          "broken",
+          "fixed",
           "online"
         ],
         "rightColumn": [
+          "у від’їзді",
           "зламаний",
-          "ні",
-          "не тут, у від’їзді",
-          "у мережі"
+          "полагоджений",
+          "в мережі"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,8 +782,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть запитання",
@@ -657,26 +829,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дві вази виготовлені у вашому місті. Скажіть повною фразою, що вони місцеві",
+      "prompt": "Дві лампи в кутку привезли з-за кордону. Скажіть повною фразою, що вони іноземні",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дві вази виготовлені у вашому місті. Скажіть повною фразою, що вони місцеві",
+      "accessibilityLabel": "Дві лампи в кутку привезли з-за кордону. Скажіть повною фразою, що вони іноземні",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are local.",
+        "targetPhrase": "They are foreign.",
         "localizedMeaning": {
-          "ru": "Две вазы изготовлены в вашем городе. Скажите полной фразой, что они местные",
-          "uk": "Дві вази виготовлені у вашому місті. Скажіть повною фразою, що вони місцеві"
+          "ru": "Две лампы в углу привезли из-за границы. Скажите полной фразой, что они иностранные",
+          "uk": "Дві лампи в кутку привезли з-за кордону. Скажіть повною фразою, що вони іноземні"
         },
         "orderedTokens": [
           "They",
           "are",
-          "local"
+          "foreign"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -685,10 +857,10 @@
           {
             "responseId": "en:lesson-02:session-29:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Дві вази виготовлені у вашому місті. Скажіть повною фразою, що вони місцеві",
+            "testedDimension": "Дві лампи в кутку привезли з-за кордону. Скажіть повною фразою, що вони іноземні",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are local.`",
-              "uk": "тут потрібно `are` — `They are local.`"
+              "ru": "здесь нужно `are` — `They are foreign.`",
+              "uk": "тут потрібно `are` — `They are foreign.`"
             }
           }
         ],
@@ -701,25 +873,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Помічник увімкнув відремонтовану лампу, вона працює. Коротко скажіть, що вона не зламана",
+      "prompt": "Господар відповів на ваше повідомлення: він зараз у мережі. Коротко скажіть про це подрузі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-29:i13:audio"
       ],
-      "accessibilityLabel": "Помічник увімкнув відремонтовану лампу, вона працює. Коротко скажіть, що вона не зламана",
+      "accessibilityLabel": "Господар відповів на ваше повідомлення: він зараз у мережі. Коротко скажіть про це подрузі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-29:i13:audio",
-          "transcript": "It's not broken."
+          "transcript": "He's online."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's not broken.",
+        "targetPhrase": "He's online.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +906,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, де зараз господар і його дружина",
+      "prompt": "Запитайте помічника, де зараз господар із дружиною",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i14:r1",
@@ -755,12 +927,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, де зараз господар і його дружина",
+      "accessibilityLabel": "Запитайте помічника, де зараз господар із дружиною",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, где сейчас хозяин и его жена",
-          "uk": "Запитайте, де зараз господар і його дружина"
+          "ru": "Спросите помощника, где сейчас хозяин с женой",
+          "uk": "Запитайте помічника, де зараз господар із дружиною"
         },
         "gappedTargetPhrase": "Where ___ they?",
         "gapOptions": [
@@ -777,12 +949,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Запитайте, де зараз господар і його дружина",
+        "testedDimension": "Запитайте помічника, де зараз господар із дружиною",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-29:i14:r2",
             "correct": false,
-            "testedDimension": "Запитайте, де зараз господар і його дружина",
+            "testedDimension": "Запитайте помічника, де зараз господар із дружиною",
             "feedbackByLocale": {
               "ru": "С `they` нужно `are`.",
               "uk": "З `they` потрібно `are`."
@@ -791,7 +963,7 @@
           {
             "responseId": "en:lesson-02:session-29:i14:r3",
             "correct": false,
-            "testedDimension": "Запитайте, де зараз господар і його дружина",
+            "testedDimension": "Запитайте помічника, де зараз господар із дружиною",
             "feedbackByLocale": {
               "ru": "Вопрос о двоих — `Where are they?`.",
               "uk": "Запитання про двох — `Where are they?`."
@@ -803,7 +975,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -811,11 +983,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i15:r1",
-          "text": "Who is online?"
+          "text": "Who is away?"
         },
         {
           "responseId": "en:lesson-02:session-29:i15:r2",
-          "text": "Who is away?"
+          "text": "Who is online?"
         },
         {
           "responseId": "en:lesson-02:session-29:i15:r3",
@@ -831,18 +1003,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-29:i15:audio",
-          "transcript": "Who is online?"
+          "transcript": "Who is away?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-29:i15:r1",
-            "targetText": "Who is online?",
+            "targetText": "Who is away?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-29:i15:r2",
-            "targetText": "Who is away?",
+            "targetText": "Who is online?",
             "meaningByLocale": null
           },
           {
@@ -858,8 +1030,8 @@
             "correct": false,
             "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `online`, а в этом варианте — `away`.",
-              "uk": "У записі останнє слово — `online`, а в цьому варіанті — `away`."
+              "ru": "В записи последнее слово — `away`, а в этом варианте — `online`.",
+              "uk": "У записі останнє слово — `away`, а в цьому варіанті — `online`."
             }
           },
           {
@@ -867,8 +1039,8 @@
             "correct": false,
             "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `online`, а в этом варианте — `local`.",
-              "uk": "У записі останнє слово — `online`, а в цьому варіанті — `local`."
+              "ru": "В записи последнее слово — `away`, а в этом варианте — `local`.",
+              "uk": "У записі останнє слово — `away`, а в цьому варіанті — `local`."
             }
           }
         ],
@@ -879,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,6 +1065,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-29:i16:p1",
+            "target": "scratched",
+            "meaningByLocale": {
+              "ru": "поцарапанный",
+              "uk": "подряпаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-29:i16:p2",
+            "target": "worn",
+            "meaningByLocale": {
+              "ru": "потёртый",
+              "uk": "потертий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-29:i16:p3",
             "target": "local",
             "meaningByLocale": {
               "ru": "местный",
@@ -900,41 +1088,25 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-29:i16:p2",
+            "pairId": "en:lesson-02:session-29:i16:p4",
             "target": "foreign",
             "meaningByLocale": {
               "ru": "иностранный",
               "uk": "іноземний"
             }
-          },
-          {
-            "pairId": "en:lesson-02:session-29:i16:p3",
-            "target": "broken",
-            "meaningByLocale": {
-              "ru": "сломанный",
-              "uk": "зламаний"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-29:i16:p4",
-            "target": "no",
-            "meaningByLocale": {
-              "ru": "нет",
-              "uk": "ні"
-            }
           }
         ],
         "leftColumn": [
+          "scratched",
+          "worn",
           "local",
-          "foreign",
-          "broken",
-          "no"
+          "foreign"
         ],
         "rightColumn": [
+          "подряпаний",
+          "потертий",
           "місцевий",
-          "іноземний",
-          "зламаний",
-          "ні"
+          "іноземний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-29:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "За тиждень ви знову прийшли до майстерні й не бачите господаря. Запитайте помічника, чи він у від’їзді",
+      "prompt": "Через тиждень ви знову прийшли до майстерні, а господаря немає. Запитайте помічника, чи він у від’їзді",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-29:i17:audio"
       ],
-      "accessibilityLabel": "За тиждень ви знову прийшли до майстерні й не бачите господаря. Запитайте помічника, чи він у від’їзді",
+      "accessibilityLabel": "Через тиждень ви знову прийшли до майстерні, а господаря немає. Запитайте помічника, чи він у від’їзді",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6be817f60065b3308704707c2d082c3471bd35ec9ba2f74be13559663fdafc43"
+  "learnerFingerprint": "add9c3116162162d0177f2f94b65f72df51f409a8c68bac952e83979a282f887"
 }

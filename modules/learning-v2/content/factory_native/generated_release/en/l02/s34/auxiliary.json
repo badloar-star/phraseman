@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-34:intro1:r2": {
-          "ru": "Между `It` и `inactive` нужно `is`.",
-          "uk": "Між `It` і `inactive` потрібно `is`."
+          "ru": "Между It и inactive нужно is: It is inactive.",
+          "uk": "Між It і inactive потрібно is: It is inactive."
         },
         "en:lesson-02:session-34:intro1:r3": {
-          "ru": "Это значит, что клуб активен. В условии деятельность не ведётся.",
-          "uk": "Це означає, що клуб активний. За умовою діяльність не ведеться."
+          "ru": "Так вы скажете, что клуб работает. На сайте нет ни одной встречи: It is inactive.",
+          "uk": "Так ви скажете, що клуб працює. На сайті немає жодної зустрічі: It is inactive."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-34:intro2:r2": {
-          "ru": "Это вопрос о неактивности, а вы уточняете, страшно ли ей.",
-          "uk": "Це запитання про неактивність, а ви уточнюєте, чи їй страшно."
+          "ru": "Так звучит утверждение «Оно устарело». Чтобы спросить, ставим Is вперёд: Is it outdated?",
+          "uk": "Так звучить твердження «Воно застаріло». Щоб запитати, ставимо Is наперед: Is it outdated?"
         },
         "en:lesson-02:session-34:intro2:r3": {
-          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `you`.",
-          "uk": "Це повідомлення. Для запитання поставте `Are` перед `you`."
+          "ru": "С it нужно is: Is it outdated?",
+          "uk": "З it потрібно is: Is it outdated?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-34:intro3:r2": {
-          "ru": "Это «Где он?», вопрос о месте.",
-          "uk": "Це «Де він?», запитання про місце."
+          "ru": "Так вы скажете, что безопасно. Фонарей нет, поэтому: It's unsafe.",
+          "uk": "Так ви скажете, що безпечно. Ліхтарів немає, тому: It's unsafe."
         },
         "en:lesson-02:session-34:intro3:r3": {
-          "ru": "После `Who` здесь нужно `is`.",
-          "uk": "Після `Who` тут потрібно `is`."
+          "ru": "They're — про несколько мест, а тропинка одна: It's unsafe.",
+          "uk": "They're — про кілька місць, а стежка одна: It's unsafe."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bdff3a5971c92ba6504baf30ae869f774db41585f79831d706c4230ca8aa9ff2"
+  "auxiliaryFingerprint": "2702594a2e0c535fa002f3c3d4c242f94867b09f9fc9b9c7da0497d5b6b407bb"
 }

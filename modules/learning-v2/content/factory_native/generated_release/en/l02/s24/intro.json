@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Отвечаем на сам вопрос",
-        "uk": "Відповідаємо на саме запитання"
+        "ru": "Капли на стекле",
+        "uk": "Краплі на склі"
       },
       "bodyByLocale": {
-        "ru": "`well` — «хорошо себя чувствующий», `unwell` — «плохо себя чувствующий». Вам нехорошо. На `Are you well?` ответьте `No, I am not`. Но на `Are you unwell?` — `Yes, I am`: вы подтверждаете плохое самочувствие. `Yes` не обещает, что всё хорошо: оно подтверждает то, о чём спросили.",
-        "uk": "`well` — «той, хто добре почувається», `unwell` — «той, хто погано почувається». Вам недобре. На `Are you well?` дайте відповідь `No, I am not`. Але на `Are you unwell?` — `Yes, I am`: ви підтверджуєте погане самопочуття. `Yes` не обіцяє, що все добре: воно підтверджує те, про що запитали."
+        "ru": "Подруга уже в куртке и спрашивает, брать ли зонт. Вы смотрите в окно: по стеклу текут капли, прохожие идут под зонтами. rainy — «дождливый». It's rainy — «На улице дождь».",
+        "uk": "Подруга вже в куртці й питає, чи брати парасольку. Ви дивитеся у вікно: по склу стікають краплі, перехожі йдуть під парасольками. rainy — «дощовий». It's rainy — «Надворі дощ»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Анне нехорошо. Олег спрашивает вас: `Is she unwell?` Ответьте коротким «да».",
-          "uk": "Анні недобре. Олег запитує вас: `Is she unwell?` Дайте коротку відповідь «так»."
+          "ru": "Подруга спрашивает, какая на улице погода. Скажите коротко, что идёт дождь.",
+          "uk": "Подруга питає, яка надворі погода. Скажіть коротко, що йде дощ."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-24:intro1:r1",
-              "text": "Yes, she is."
+              "text": "It's rainy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r2",
-              "text": "No, she is not."
+              "text": "It's not rainy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r3",
-              "text": "Yes, she are."
+              "text": "They're rainy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-24:intro1:r1",
-              "text": "Yes, she is."
+              "text": "It's rainy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r2",
-              "text": "No, she is not."
+              "text": "It's not rainy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r3",
-              "text": "Yes, she are."
+              "text": "They're rainy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анне нехорошо. Олег спрашивает вас: `Is she unwell?` Ответьте коротким «да».",
-          "uk": "Анні недобре. Олег запитує вас: `Is she unwell?` Дайте коротку відповідь «так»."
+          "ru": "Подруга спрашивает, какая на улице погода. Скажите коротко, что идёт дождь.",
+          "uk": "Подруга питає, яка надворі погода. Скажіть коротко, що йде дощ."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Проверяем вещи",
-        "uk": "Перевіряємо речі"
+        "ru": "Печенье без сахара",
+        "uk": "Печиво без цукру"
       },
       "bodyByLocale": {
-        "ru": "`broken` — «сломанный», `complete` — «полный, завершённый», `valid` — «действительный». Пазл со всеми деталями — `complete`, билет на нужный сеанс — `valid`. Пазл с дыркой ещё не собран полностью. Ковёр, который виден в этой дырке, за последнюю деталь не считается.",
-        "uk": "`broken` — «зламаний», `complete` — «повний, завершений», `valid` — «дійсний». Пазл з усіма деталями — `complete`, квиток на потрібний сеанс — `valid`. Пазл із діркою ще не повністю складений. Килим, який видно в цій дірці, за останню деталь не рахується."
+        "ru": "Друг испёк печенье в дорогу и даёт вам попробовать. Вы откусываете: вкус как у обычного хлеба. Похоже, друг забыл положить сахар. sweet — «сладкий». It's not sweet — «Оно не сладкое».",
+        "uk": "Друг спік печиво в дорогу й дає вам скуштувати. Ви відкушуєте: смак як у звичайного хліба. Схоже, друг забув покласти цукор. sweet — «солодкий». It's not sweet — «Воно не солодке»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "В пазле не хватает детали. Друг спрашивает: `Is it complete?` Ответьте коротким «нет».",
-          "uk": "У пазлі бракує деталі. Друг запитує: `Is it complete?` Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает: Is it sweet? Ответьте коротко, что печенье не сладкое.",
+          "uk": "Друг питає: Is it sweet? Відповідайте коротко, що печиво не солодке."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-24:intro2:r1",
-              "text": "No, it is not."
+              "text": "It's not sweet."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r2",
-              "text": "Yes, it is."
+              "text": "It's sweet."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r3",
-              "text": "No, it are not."
+              "text": "It's not crunchy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-24:intro2:r1",
-              "text": "No, it is not."
+              "text": "It's not sweet."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r2",
-              "text": "Yes, it is."
+              "text": "It's sweet."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r3",
-              "text": "No, it are not."
+              "text": "It's not crunchy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В пазле не хватает детали. Друг спрашивает: `Is it complete?` Ответьте коротким «нет».",
-          "uk": "У пазлі бракує деталі. Друг запитує: `Is it complete?` Дайте коротку відповідь «ні»."
+          "ru": "Друг спрашивает: Is it sweet? Ответьте коротко, что печенье не сладкое.",
+          "uk": "Друг питає: Is it sweet? Відповідайте коротко, що печиво не солодке."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто виноват",
-        "uk": "Хто винен"
+        "ru": "Хлебцы в открытой пачке",
+        "uk": "Хлібці у відкритій пачці"
       },
       "bodyByLocale": {
-        "ru": "`guilty` — «виноватый», `innocent` — «невиновный». Анна не трогала печенье: `She is innocent`. Олег нарушил договорённость и съел его без спроса: `He is guilty`. Сокращённо — `He's guilty`. Чтобы спросить, поставьте `is` перед `he`: `Is he guilty?`.",
-        "uk": "`guilty` — «винний», `innocent` — «невинний». Анна не чіпала печиво: `She is innocent`. Олег порушив домовленість і з’їв його без дозволу: `He is guilty`. Скорочено — `He's guilty`. Щоб запитати, поставте `is` перед `he`: `Is he guilty?`."
+        "ru": "Подруга со вчерашнего дня держит в сумке открытую пачку хлебцев и боится, что они размокли. Вы пробуете один: он громко хрустит. crunchy — «хрустящий». They're crunchy — «Они хрустящие». Хлебцев много, поэтому They're.",
+        "uk": "Подруга з учорашнього дня тримає в сумці відкриту пачку хлібців і боїться, що вони розмокли. Ви куштуєте один: він голосно хрумтить. crunchy — «хрусткий». They're crunchy — «Вони хрусткі». Хлібців багато, тому They're."
       },
       "question": {
         "interactionId": "en:lesson-02:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Вы узнали, что печенье без спроса съел Олег, а Анна его не трогала. Коротко скажите, что она невиновна.",
-          "uk": "Ви дізналися, що печиво без дозволу з’їв Олег, а Анна його не чіпала. Коротко скажіть, що вона невинна."
+          "ru": "Подруга спрашивает, не размокли ли хлебцы. Скажите коротко, что они хрустящие.",
+          "uk": "Подруга питає, чи не розмокли хлібці. Скажіть коротко, що вони хрусткі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-24:intro3:r1",
-              "text": "She's innocent."
+              "text": "They're crunchy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r2",
-              "text": "She's guilty."
+              "text": "They're not crunchy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r3",
-              "text": "He's innocent."
+              "text": "It's crunchy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-24:intro3:r1",
-              "text": "She's innocent."
+              "text": "They're crunchy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r2",
-              "text": "She's guilty."
+              "text": "They're not crunchy."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r3",
-              "text": "He's innocent."
+              "text": "It's crunchy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы узнали, что печенье без спроса съел Олег, а Анна его не трогала. Коротко скажите, что она невиновна.",
-          "uk": "Ви дізналися, що печиво без дозволу з’їв Олег, а Анна його не чіпала. Коротко скажіть, що вона невинна."
+          "ru": "Подруга спрашивает, не размокли ли хлебцы. Скажите коротко, что они хрустящие.",
+          "uk": "Подруга питає, чи не розмокли хлібці. Скажіть коротко, що вони хрусткі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f6ddd608cc658a94eaa8516c388e918dc7e88c8c217af301ce623a2f1a7384c9"
+  "introFingerprint": "d6781003ef90c9abe08ec20b90a0c26dd148594385cb5e8b3c5ec1c2be4961a6"
 }

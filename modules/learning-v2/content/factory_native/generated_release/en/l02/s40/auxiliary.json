@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-40:intro1:r2": {
-          "ru": "Это «Он действует». В условии клуб больше не работает.",
-          "uk": "Це «Він діє». За умовою клуб більше не працює."
+          "ru": "С not выходит «Тут не тесно». А пройти можно только боком: It is cramped.",
+          "uk": "З not виходить «Тут не тісно». А пройти можна тільки боком: It is cramped."
         },
         "en:lesson-02:session-40:intro1:r3": {
-          "ru": "Между `It` и `inactive` нужно `is`.",
-          "uk": "Між `It` і `inactive` потрібно `is`."
+          "ru": "Между It и cramped нужно is: It is cramped.",
+          "uk": "Між It і cramped потрібно is: It is cramped."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-40:intro2:r2": {
-          "ru": "Это про строгий стиль, а нужно назвать статус объявления.",
-          "uk": "Це про строгий стиль, а потрібно назвати статус оголошення."
+          "ru": "Это «Тесно», а вам хорошо и тепло: It's snug.",
+          "uk": "Це «Тісно», а вам добре й тепло: It's snug."
         },
         "en:lesson-02:session-40:intro2:r3": {
-          "ru": "Это «неофициальное». Клуб уже объявил встречу официально.",
-          "uk": "Це «неофіційне». Клуб уже оголосив зустріч офіційно."
+          "ru": "С not выходит «Неуютно». А вам тепло под пледом: It's snug.",
+          "uk": "З not виходить «Нетепло». А вам тепло під пледом: It's snug."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-40:intro3:r2": {
-          "ru": "Это вопрос о месте. Нужно узнать, что относится к теме.",
-          "uk": "Це запитання про місце. Потрібно з’ясувати, що стосується теми."
+          "ru": "Речь о кошке, нужно She: She is fluffy.",
+          "uk": "Мова про кішку, потрібно She: She is fluffy."
         },
         "en:lesson-02:session-40:intro3:r3": {
-          "ru": "Это утверждение об одном материале. Сейчас вы выбираете и спрашиваете.",
-          "uk": "Це твердження про один матеріал. Зараз ви вибираєте й запитуєте."
+          "ru": "Между She и fluffy нужно is: She is fluffy.",
+          "uk": "Між She і fluffy потрібно is: She is fluffy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "537e480fdc0e8ce5f4d0c8da9d6a2798eac83a4bf2c5ffef456d23cc3b2633bc"
+  "auxiliaryFingerprint": "8075aa60491127f499b3102011737fd3ecec893d032674dd7c4e7f6c6d3c3d70"
 }

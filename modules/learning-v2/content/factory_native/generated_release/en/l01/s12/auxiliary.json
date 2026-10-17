@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-12:intro2:r2": {
-          "ru": "I am — о себе. Вы обращаетесь к Лине: You are brave.",
-          "uk": "I am — про себе. Ви звертаєтеся до Ліни: You are brave."
+          "ru": "I am — о себе. Вы обращаетесь к подруге: You are brave.",
+          "uk": "I am — про себе. Ви звертаєтеся до подруги: You are brave."
         },
         "en:lesson-01:session-12:intro2:r3": {
           "ru": "Здесь нужна положительная оценка. В отрицании not стояло бы после are, а не в конце.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-12:intro3:r2": {
-          "ru": "Честно поступил Никита; вы говорите ему You are honest.",
-          "uk": "Чесно вчинив Микита; ви кажете йому You are honest."
+          "ru": "Честно поступил коллега; вы говорите ему You are honest.",
+          "uk": "Чесно вчинив колега; ви кажете йому You are honest."
         },
         "en:lesson-01:session-12:intro3:r3": {
           "ru": "Перед honest в этой фразе нужно are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "2f238d4b62ea43cc52d25f66b26516430c957903c6fcaa087384f47ab10745c2"
+  "auxiliaryFingerprint": "a1e5aca7c6bde5aca8d75a22c298d449dead200b3aca84d043d8ce91e6107696"
 }

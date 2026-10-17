@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-25:i01",
+      "interactionId": "en:lesson-02:session-25:word:who",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — who",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:word:who:audio"
+      ],
+      "accessibilityLabel": "Картка слова — who",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:word:who:audio",
+          "transcript": "who"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:word:who:r1",
+            "targetText": "who",
+            "meaningByLocale": {
+              "ru": "кто. Who is missing? — «Кого нет?» Спрашиваем о человеке.",
+              "uk": "хто. Who is missing? — «Кого немає?» Питаємо про людину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "who",
+          "definitionByLocale": {
+            "ru": "кто. Who is missing? — «Кого нет?» Спрашиваем о человеке.",
+            "uk": "хто. Who is missing? — «Кого немає?» Питаємо про людину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -48,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-25:word:where",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — where",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:word:where:audio"
+      ],
+      "accessibilityLabel": "Картка слова — where",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:word:where:audio",
+          "transcript": "where"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:word:where:r1",
+            "targetText": "where",
+            "meaningByLocale": {
+              "ru": "где. Where is he? — «Где он?» Спрашиваем о месте.",
+              "uk": "де. Where is he? — «Де він?» Питаємо про місце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "where",
+          "definitionByLocale": {
+            "ru": "где. Where is he? — «Где он?» Спрашиваем о месте.",
+            "uk": "де. Where is he? — «Де він?» Питаємо про місце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-25:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви шукаєте Анну й Олега. Запитайте, де вони",
+      "prompt": "Ви шукаєте подругу й друга. Запитайте, де вони",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i03:r1",
@@ -146,12 +232,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви шукаєте Анну й Олега. Запитайте, де вони",
+      "accessibilityLabel": "Ви шукаєте подругу й друга. Запитайте, де вони",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы ищете Анну и Олега. Спросите, где они",
-          "uk": "Ви шукаєте Анну й Олега. Запитайте, де вони"
+          "ru": "Вы ищете подругу и друга. Спросите, где они",
+          "uk": "Ви шукаєте подругу й друга. Запитайте, де вони"
         },
         "gappedTargetPhrase": "Where ___ they?",
         "gapOptions": [
@@ -168,12 +254,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Ви шукаєте Анну й Олега. Запитайте, де вони",
+        "testedDimension": "Ви шукаєте подругу й друга. Запитайте, де вони",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-25:i03:r2",
             "correct": false,
-            "testedDimension": "Ви шукаєте Анну й Олега. Запитайте, де вони",
+            "testedDimension": "Ви шукаєте подругу й друга. Запитайте, де вони",
             "feedbackByLocale": {
               "ru": "С `they` нужно `are`.",
               "uk": "З `they` потрібно `are`."
@@ -182,7 +268,7 @@
           {
             "responseId": "en:lesson-02:session-25:i03:r3",
             "correct": false,
-            "testedDimension": "Ви шукаєте Анну й Олега. Запитайте, де вони",
+            "testedDimension": "Ви шукаєте подругу й друга. Запитайте, де вони",
             "feedbackByLocale": {
               "ru": "Про двоих — `Where are they?`.",
               "uk": "Про двох — `Where are they?`."
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-25:i04:p1",
+            "target": "who",
+            "meaningByLocale": {
+              "ru": "кто",
+              "uk": "хто"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i04:p2",
+            "target": "where",
+            "meaningByLocale": {
+              "ru": "где",
+              "uk": "де"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i04:p3",
+            "target": "what",
+            "meaningByLocale": {
+              "ru": "что",
+              "uk": "що"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i04:p4",
             "target": "absent",
             "meaningByLocale": {
               "ru": "отсутствующий",
               "uk": "відсутній"
             }
-          },
-          {
-            "pairId": "en:lesson-02:session-25:i04:p2",
-            "target": "proud",
-            "meaningByLocale": {
-              "ru": "гордый",
-              "uk": "гордий"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-25:i04:p3",
-            "target": "ashamed",
-            "meaningByLocale": {
-              "ru": "испытывающий стыд",
-              "uk": "той, кому соромно"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-25:i04:p4",
-            "target": "surprised",
-            "meaningByLocale": {
-              "ru": "удивлённый",
-              "uk": "здивований"
-            }
           }
         ],
         "leftColumn": [
-          "absent",
-          "proud",
-          "ashamed",
-          "surprised"
+          "who",
+          "where",
+          "what",
+          "absent"
         ],
         "rightColumn": [
-          "відсутній",
-          "гордий",
-          "той, кому соромно",
-          "здивований"
+          "хто",
+          "де",
+          "що",
+          "відсутній"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,7 +353,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -313,22 +399,65 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-25:word:absent",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — absent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:word:absent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — absent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:word:absent:audio",
+          "transcript": "absent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:word:absent:r1",
+            "targetText": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий. She is absent — «Её нет», о человеке, которого ждали. На репетиции, уроке, собрании.",
+              "uk": "відсутній. She is absent — «Її немає», про людину, яку чекали. На репетиції, уроці, зборах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "absent",
+          "definitionByLocale": {
+            "ru": "отсутствующий. She is absent — «Её нет», о человеке, которого ждали. На репетиции, уроке, собрании.",
+            "uk": "відсутній. She is absent — «Її немає», про людину, яку чекали. На репетиції, уроці, зборах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-25:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анни немає на репетиції. Повідомте повною фразою, що вона відсутня",
+      "prompt": "Подруги немає на репетиції. Повідомте повною фразою, що вона відсутня",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анни немає на репетиції. Повідомте повною фразою, що вона відсутня",
+      "accessibilityLabel": "Подруги немає на репетиції. Повідомте повною фразою, що вона відсутня",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is absent.",
         "localizedMeaning": {
-          "ru": "Анны нет на репетиции. Сообщите полной фразой, что она отсутствует",
-          "uk": "Анни немає на репетиції. Повідомте повною фразою, що вона відсутня"
+          "ru": "Подруги нет на репетиции. Сообщите полной фразой, что она отсутствует",
+          "uk": "Подруги немає на репетиції. Повідомте повною фразою, що вона відсутня"
         },
         "orderedTokens": [
           "She",
@@ -342,7 +471,7 @@
           {
             "responseId": "en:lesson-02:session-25:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анни немає на репетиції. Повідомте повною фразою, що вона відсутня",
+            "testedDimension": "Подруги немає на репетиції. Повідомте повною фразою, що вона відсутня",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is absent.`",
               "uk": "тут потрібно `is` — `She is absent.`"
@@ -358,17 +487,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег вийшов із кімнати. Запитайте, де він",
+      "prompt": "Друг вийшов із кімнати. Запитайте, де він",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-25:i07:audio"
       ],
-      "accessibilityLabel": "Олег вийшов із кімнати. Запитайте, де він",
+      "accessibilityLabel": "Друг вийшов із кімнати. Запитайте, де він",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -390,8 +519,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-25:word:what",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — what",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:word:what:audio"
+      ],
+      "accessibilityLabel": "Картка слова — what",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:word:what:audio",
+          "transcript": "what"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:word:what:r1",
+            "targetText": "what",
+            "meaningByLocale": {
+              "ru": "что. What is it? — «Что это?» Спрашиваем о вещи.",
+              "uk": "що. What is it? — «Що це?» Питаємо про річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "what",
+          "definitionByLocale": {
+            "ru": "что. What is it? — «Что это?» Спрашиваем о вещи.",
+            "uk": "що. What is it? — «Що це?» Питаємо про річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-25:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,11 +632,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олега",
+      "prompt": "Послухайте фразу про друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i09:r1",
@@ -483,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-25:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олега",
+      "accessibilityLabel": "Послухайте фразу про друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -513,7 +685,7 @@
           {
             "responseId": "en:lesson-02:session-25:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте фразу про друга",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `proud`, а в этом варианте — `ashamed`.",
               "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`."
@@ -522,7 +694,7 @@
           {
             "responseId": "en:lesson-02:session-25:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте фразу про друга",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `proud`, а в этом варианте — `surprised`.",
               "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `surprised`."
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -550,22 +722,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-25:i10:p1",
-            "target": "well",
-            "meaningByLocale": {
-              "ru": "хорошо себя чувствующий",
-              "uk": "той, хто добре почувається"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-25:i10:p2",
-            "target": "absent",
-            "meaningByLocale": {
-              "ru": "отсутствующий",
-              "uk": "відсутній"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-25:i10:p3",
             "target": "proud",
             "meaningByLocale": {
               "ru": "гордый",
@@ -573,25 +729,41 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-25:i10:p4",
+            "pairId": "en:lesson-02:session-25:i10:p2",
             "target": "ashamed",
             "meaningByLocale": {
               "ru": "испытывающий стыд",
               "uk": "той, кому соромно"
             }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i10:p3",
+            "target": "surprised",
+            "meaningByLocale": {
+              "ru": "удивлённый",
+              "uk": "здивований"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i10:p4",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
           }
         ],
         "leftColumn": [
-          "well",
-          "absent",
           "proud",
-          "ashamed"
+          "ashamed",
+          "surprised",
+          "well"
         ],
         "rightColumn": [
-          "той, хто добре почувається",
-          "відсутній",
           "гордий",
-          "той, кому соромно"
+          "той, кому соромно",
+          "здивований",
+          "той, хто добре почувається"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -656,21 +828,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна й Олег досі не повернулися. Запитайте, де вони",
+      "prompt": "Подруга й друг досі не повернулися. Запитайте, де вони",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна й Олег досі не повернулися. Запитайте, де вони",
+      "accessibilityLabel": "Подруга й друг досі не повернулися. Запитайте, де вони",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where are they?",
         "localizedMeaning": {
-          "ru": "Анна и Олег всё ещё не вернулись. Спросите, где они",
-          "uk": "Анна й Олег досі не повернулися. Запитайте, де вони"
+          "ru": "Подруга и друг всё ещё не вернулись. Спросите, где они",
+          "uk": "Подруга й друг досі не повернулися. Запитайте, де вони"
         },
         "orderedTokens": [
           "Where",
@@ -684,7 +856,7 @@
           {
             "responseId": "en:lesson-02:session-25:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна й Олег досі не повернулися. Запитайте, де вони",
+            "testedDimension": "Подруга й друг досі не повернулися. Запитайте, де вони",
             "feedbackByLocale": {
               "ru": "здесь нужно `Where` — `Where are they?`",
               "uk": "тут потрібно `Where` — `Where are they?`"
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,11 +905,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна повідомила, що добре почувається. Передайте це повною фразою",
+      "prompt": "Подруга повідомила, що добре почувається. Передайте це режисерові повною фразою",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i14:r1",
@@ -754,12 +926,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна повідомила, що добре почувається. Передайте це повною фразою",
+      "accessibilityLabel": "Подруга повідомила, що добре почувається. Передайте це режисерові повною фразою",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна сообщила, что хорошо себя чувствует. Передайте это полной фразой",
-          "uk": "Анна повідомила, що добре почувається. Передайте це повною фразою"
+          "ru": "Подруга сообщила, что хорошо себя чувствует. Передайте это режиссёру полной фразой",
+          "uk": "Подруга повідомила, що добре почувається. Передайте це режисерові повною фразою"
         },
         "gappedTargetPhrase": "She ___ well.",
         "gapOptions": [
@@ -776,12 +948,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Анна повідомила, що добре почувається. Передайте це повною фразою",
+        "testedDimension": "Подруга повідомила, що добре почувається. Передайте це режисерові повною фразою",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-25:i14:r2",
             "correct": false,
-            "testedDimension": "Анна повідомила, що добре почувається. Передайте це повною фразою",
+            "testedDimension": "Подруга повідомила, що добре почувається. Передайте це режисерові повною фразою",
             "feedbackByLocale": {
               "ru": "После `She` нужно `is`.",
               "uk": "Після `She` потрібно `is`."
@@ -790,10 +962,10 @@
           {
             "responseId": "en:lesson-02:session-25:i14:r3",
             "correct": false,
-            "testedDimension": "Анна повідомила, що добре почувається. Передайте це повною фразою",
+            "testedDimension": "Подруга повідомила, що добре почувається. Передайте це режисерові повною фразою",
             "feedbackByLocale": {
-              "ru": "Фраза об Анне — `She is well`.",
-              "uk": "Фраза про Анну — `She is well`."
+              "ru": "Фраза о подруге — `She is well`.",
+              "uk": "Фраза про подругу — `She is well`."
             }
           }
         ]
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -951,17 +1123,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег приніс дивний предмет для вистави й тримає його перед вами. Запитайте, що це",
+      "prompt": "Друг приніс дивний предмет для вистави й тримає його перед вами. Запитайте, що це",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-25:i17:audio"
       ],
-      "accessibilityLabel": "Олег приніс дивний предмет для вистави й тримає його перед вами. Запитайте, що це",
+      "accessibilityLabel": "Друг приніс дивний предмет для вистави й тримає його перед вами. Запитайте, що це",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c9db52e3403db2d16fb75e7ab8ba11ca0ee4161f28de6f8294346373ad763f23"
+  "learnerFingerprint": "9342d4617fd1fa687573ce7618367f63782e24eed91527389fad56f8e9a36d60"
 }

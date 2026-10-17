@@ -57,6 +57,12 @@ try_acquire(){
   fi
   if [ "$(held)" -ge "$SLOTS" ]; then return 1; fi
   if mkdir "$DIR/slot.$ME.d" 2>/dev/null; then
+    # зачем (координатор 18.10 00:01): две сессии могли одновременно пройти проверку held() и обе создать слоты —
+    # повторная проверка после mkdir; лишний захват откатываем и ждём дальше.
+    if [ "$(held)" -gt "$SLOTS" ]; then
+      rm -rf "$DIR/slot.$ME.d"
+      return 1
+    fi
     now > "$DIR/slot.$ME.d/born"
     printf '%s' "$why" > "$DIR/slot.$ME.d/why"
     echo "GO  слот $(held)/$SLOTS · $why"
@@ -121,19 +127,41 @@ run(){
   [ "${1:-}" = "--" ] || { echo "usage: slot.sh run [--wait[=СЕК]] \"зачем\" -- команда…"; return 2; }
   shift
   [ $# -gt 0 ] || { echo "usage: slot.sh run [--wait[=СЕК]] \"зачем\" -- команда…"; return 2; }
-  local out; out="$(acquire "$wopt" "${why:-работа}")" || { echo "$out"; echo "run: слот не получен — команда НЕ запущена"; return 1; }
+  # зачем (координатор 18.10 00:01): два `run` одной сессии подряд оба получали «GO (слот уже был у этой сессии)»
+  # и шли параллельно — два tsc по 4,6 ГБ, на ПК оставалось 94 МБ. Прогоны `run` одной сессии — строго по одному.
+  local run_wait_s=${PM_SLOT_WAIT:-600}
+  case "$wopt" in --wait=*) run_wait_s="${wopt#--wait=}" ;; esac
+  case "$run_wait_s" in ''|*[!0-9]*) run_wait_s=600 ;; esac
+  local run_deadline=$(( $(now) + run_wait_s ))
+  local run_lock="$DIR/run.$ME.d"
+  # протухший замок прогона (сессия умерла посреди run) снимаем по тому же TTL
+  if [ -d "$run_lock" ]; then
+    local rborn; rborn=$(cat "$run_lock/born" 2>/dev/null || echo 0)
+    [ $(( $(now) - rborn )) -gt $TTL ] && rm -rf "$run_lock"
+  fi
+  until mkdir "$run_lock" 2>/dev/null; do
+    if [ "$(now)" -ge "$run_deadline" ]; then
+      echo "WAIT  у этой сессии уже идёт другой run · НЕ запускай тяжёлое (код выхода 1)"
+      echo "run: слот не получен — команда НЕ запущена"
+      return 1
+    fi
+    sleep 3
+  done
+  now > "$run_lock/born"
+  local out; out="$(acquire "$wopt" "${why:-работа}")" || { rm -rf "$run_lock"; echo "$out"; echo "run: слот не получен — команда НЕ запущена"; return 1; }
   echo "$out"
   local had_slot=0
   # слот был у сессии до run — после команды его не отдаём (его держит вызвавший)
   case "$out" in "GO (слот уже был"*) had_slot=1 ;; esac
   # продление в фоне: слот живёт ровно пока жива команда
-  ( while sleep "$RENEW_EVERY"; do now > "$DIR/slot.$ME.d/born" 2>/dev/null || exit 0; done ) &
+  ( while sleep "$RENEW_EVERY"; do now > "$DIR/slot.$ME.d/born" 2>/dev/null || exit 0; now > "$run_lock/born" 2>/dev/null; done ) &
   local renewer=$!
   "$@"
   local rc=$?
   kill "$renewer" 2>/dev/null
   wait "$renewer" 2>/dev/null
   [ "$had_slot" -eq 1 ] || release >/dev/null
+  rm -rf "$run_lock"
   echo "run: команда завершилась с кодом $rc"
   return $rc
 }

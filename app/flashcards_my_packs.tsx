@@ -889,8 +889,8 @@ export default function FlashcardsMyPacksScreen() {
         ? 'loading'
         : 'empty';
   const labelFor = useCallback((pack: FlashcardMarketPack): string => {
-    const displayTitle = packTitleForInterface(pack, lang);
-    return pack.isCommunityUgc && displayTitle.trim().length > 0 ? displayTitle.trim() : packHubCodeName(pack);
+    // зачем (координатор 17.10): код набора людям не показываем — у наборов из видео и официальных та же цепочка названий, что везде
+    return packTitleForInterface(pack, lang).trim() || packHubCodeName(pack);
   }, [lang]);
   const trainFromPack = useCallback((pack: FlashcardMarketPack) => {
     // зачем (cards-v2, круглая «играть» стопки): тренировка стартует именно с ЭТИМ набором — тот же вход, что у «Тренировать» внутри набора

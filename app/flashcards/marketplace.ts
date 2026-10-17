@@ -76,6 +76,8 @@ export type FlashcardMarketPack = {
   titleId?: string;
   titleTr?: string;
   titlePl?: string;
+  /** R110: английское название (наборы из видео, автоназвание) — для интерфейса en и как запасное. */
+  titleEn?: string;
   descriptionRu: string;
   descriptionUk: string;
   descriptionEs: string;
@@ -463,16 +465,52 @@ function communityPackAuthoredTitle(pack: FlashcardMarketPack): string {
  * фолбэки в проекте, вместо того чтобы патчить каждый call site отдельно.
  */
 export function packTitleForInterface(pack: FlashcardMarketPack, lang: Lang | PlannedInterfaceLang): string {
-  const contentLang = lang === 'en' ? 'ru' : lang;
-  const titleField = PACK_TITLE_FIELD_BY_LANG[contentLang];
-  const requestedTitle = trimmedMarketString(pack[titleField]);
-  if (requestedTitle) return formatPackTitleForDisplay(requestedTitle);
-  // зачем: правило «своя локаль → код» верно для официальных паков (у них есть
-  // codeName-бренд), но для UGC код бессмысленен — показываем язык автора.
-  if (pack.isCommunityUgc) {
-    return formatPackTitleForDisplay(communityPackAuthoredTitle(pack)) || packHubCodeName(pack);
+  return resolvePackTitle(pack, lang).title;
+}
+
+export type PackTitleSource = 'interface' | 'en' | 'ru' | 'authored' | 'video' | 'code';
+const packTitleFallbackLogged = new Set<string>();
+
+/**
+ * Название набора: язык интерфейса → en → [официальный встроенный: имя-бренд] → ru → любое заполненное (язык автора) → название ролика →
+ * (только если пусто всё) код.
+ *
+ * зачем (координатор 17.10, правило «без системных текстов»): у наборов из видео заполнены только ru/uk/es, и людям на
+ * pt-BR/vi/id/tr/pl витрина показывала КОД набора вместо названия. Код людям не показываем: реальный набор без единого
+ * названия маппер каталога вообще отбрасывает (communityFirestore), так что ветка 'code' — страховка с предупреждением в логе.
+ * Хвост файла («….docx») срезает formatPackTitleForDisplay на любой ветке. Лог [PACK-TITLE] — раз на набор и язык, без спама в рендере.
+ */
+export function resolvePackTitle(pack: FlashcardMarketPack, lang: Lang | PlannedInterfaceLang): Readonly<{ title: string; source: PackTitleSource }> {
+  const interfaceTitle = lang === 'en' ? trimmedMarketString(pack.titleEn) : trimmedMarketString(pack[PACK_TITLE_FIELD_BY_LANG[lang]]);
+  // Официальный встроенный набор (не из видео, не UGC): его codeName — придуманное латинское имя-бренд, а не системный код;
+  // в pt-BR/vi/… оно читается лучше русского названия (сторож marketplace_interface_locale: без кириллицы в planned-локалях).
+  const officialBrand = !pack.isCommunityUgc && !trimmedMarketString(pack.videoId) && trimmedMarketString(pack.codeName)
+    ? packHubCodeName(pack) : '';
+  const chain: ReadonlyArray<readonly [PackTitleSource, string]> = [
+    ['interface', interfaceTitle],
+    ['en', trimmedMarketString(pack.titleEn)],
+    ['code', officialBrand],
+    ['ru', trimmedMarketString(pack.titleRu)],
+    ['authored', communityPackAuthoredTitle(pack)],
+    ['video', trimmedMarketString(pack.videoTitle)],
+  ];
+  for (const [source, raw] of chain) {
+    const title = raw ? formatPackTitleForDisplay(raw) : '';
+    if (!title) continue;
+    if (source !== 'interface' && source !== 'code') logPackTitleFallback(pack.id, lang, source);
+    return { title, source };
   }
-  return packHubCodeName(pack);
+  logPackTitleFallback(pack.id, lang, 'code');
+  return { title: packHubCodeName(pack), source: 'code' };
+}
+
+function logPackTitleFallback(packId: string, lang: string, source: PackTitleSource): void {
+  const key = `${packId}:${lang}`;
+  if (packTitleFallbackLogged.has(key)) return;
+  packTitleFallbackLogged.add(key);
+  const line = `[PACK-TITLE] ${packId} lang=${lang}: своего названия нет → ${source}`;
+  if (source === 'code') console.warn(line); // guard-ok: настоящий набор сюда не доходит — если дошёл, это баг данных
+  else console.log(line); // guard-ok: раз на набор и язык
 }
 
 /**

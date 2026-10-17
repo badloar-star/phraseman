@@ -113,6 +113,8 @@ export function mapCommunityPackDocToMarket(
   const titleId = packTitleField(data.titleId);
   const titleTr = packTitleField(data.titleTr);
   const titlePl = packTitleField(data.titlePl);
+  // R110: наборы из видео пишут и английское название
+  const titleEn = packTitleField(data.titleEn);
   if (!titleRu && !titleUk && !titleEs && !titlePtBr && !titleVi && !titleId && !titleTr && !titlePl) return null;
   const codeNameRaw = String(data.codeName ?? '').trim();
   const cat = (data.category as FlashcardPackCategory) ?? 'slang';
@@ -129,6 +131,7 @@ export function mapCommunityPackDocToMarket(
     titleId,
     titleTr,
     titlePl,
+    ...(titleEn ? { titleEn } : {}),
     descriptionRu: String(data.descriptionRu ?? ''),
     descriptionUk: String(data.descriptionUk ?? ''),
     descriptionEs: String(data.descriptionEs ?? ''),

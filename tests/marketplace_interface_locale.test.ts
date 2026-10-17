@@ -119,6 +119,38 @@ describe('packTitleForInterface', () => {
   });
 });
 
+// зачем (координатор 17.10): наборы из видео заполнены только на ru/uk/es — в pt-BR/vi/id/tr/pl витрина показывала КОД набора.
+// Теперь цепочка: язык интерфейса → en → ru → язык автора → название ролика; хвост «.docx» срезается; код людям не показываем.
+describe('video pack titles never fall back to the pack code', () => {
+  const videoPack = (p: Partial<FlashcardMarketPack>) => basePack({
+    id: 'video_cnrVN_uz7Sg', codeName: 'video_cnrvn', videoId: 'cnrVN_uz7Sg', isOfficial: true, isCommunityUgc: undefined,
+    titleRu: 'Английский по-человечески — 500 фраз.docx', titleUk: 'Английский по-человечески — 500 фраз.docx', titleEs: 'Английский по-человечески — 500 фраз.docx',
+    ...p,
+  });
+
+  it('pt-BR with empty titlePtBr shows the English title when there is one', () => {
+    expect(packTitleForInterface(videoPack({ titleEn: 'You know, kinda' }), 'pt-BR')).toBe('You know, kinda');
+  });
+
+  it('pt-BR / vi / tr without en fall back to the Russian title (without .docx), never the code', () => {
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      const title = packTitleForInterface(videoPack({}), lang);
+      expect(title).toBe('Английский по-человечески — 500 фраз');
+      expect(title).not.toBe(packHubCodeName(videoPack({})));
+    }
+  });
+
+  it('en interface reads titleEn first, then Russian', () => {
+    expect(packTitleForInterface(videoPack({ titleEn: 'Small talk' }), 'en')).toBe('Small talk');
+    expect(packTitleForInterface(videoPack({}), 'en')).toBe('Английский по-человечески — 500 фраз');
+  });
+
+  it('all titles empty → the video name, still not the code', () => {
+    expect(packTitleForInterface(videoPack({ titleRu: '', titleUk: '', titleEs: '', videoTitle: 'Думай на итальянском — 38 фраз.docx' }), 'pl'))
+      .toBe('Думай на итальянском — 38 фраз');
+  });
+});
+
 describe('packHubLabelForInterface', () => {
   it('keeps community tiles on their localized title and unknown official tiles on codeName', () => {
     const communityPack = basePack({

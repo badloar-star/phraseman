@@ -54,6 +54,9 @@ import {
   type LinkedAuth,
 } from './auth_provider';
 import { useAppSnapshotSelector } from './app_snapshot_store';
+import { syncSnapshotProfileNameFromStorage } from './profile_name_snapshot_sync';
+import { onAppEvent } from './events';
+import { captureAccountGeneration } from './account_generation';
 import { animateNextLayoutTransition } from './smooth_layout';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
@@ -104,11 +107,34 @@ export default function AccountDetailsScreen() {
 
   // ── Синхронная гидрация (нулевой сетевой трафик на первый кадр) ────────────
   const snapshotName = useAppSnapshotSelector((s) => s.profile?.name ?? '', (a, b) => a === b);
+  const snapshotNameRef = useRef(snapshotName);
+  snapshotNameRef.current = snapshotName;
   const [userName, setUserName] = useState(() => snapshotName);
   useEffect(() => {
     // Снапшот — источник истины между экранами (настройки тоже пишут в него).
+    // зачем (координатор 17.10, логи до починки): после выхода/входа экран держал «Не задано» — видно, когда пришло имя.
+    console.log('[ACC-NAME]', JSON.stringify({ step: 'snapshot', present: Boolean(snapshotName), owner: (captureAccountGeneration().stableId ?? '').slice(0, 8) || null })); // guard-ok: без имени
     setUserName(snapshotName);
   }, [snapshotName]);
+  // зачем (координатор 17.10, Сверка 501558120): после входа восстановление кладёт user_name на диск и шлёт
+  // cloud_profile_hydrated, но снимок перестраивает только Главная — экран «Аккаунт» ≥45 с показывал «Не задано».
+  // Подхватываем имя из хранилища по событию и при открытии, если имени нет (событие могло прийти раньше).
+  useEffect(() => {
+    let alive = true;
+    const pull = (reason: string) => {
+      void syncSnapshotProfileNameFromStorage(reason).then((result) => {
+        if (!alive || !result.name) return;
+        const pulled = result.name;
+        setUserName((current) => (current ? current : pulled));
+      });
+    };
+    if (!snapshotNameRef.current) pull('account_open_empty');
+    const sub = onAppEvent('cloud_profile_hydrated', () => pull('cloud_profile_hydrated'));
+    return () => {
+      alive = false;
+      sub.remove();
+    };
+  }, []);
   // зачем (прогон Сверки 11.10): модули стирания подгружены до тапа «Выйти» — выход не зависит от ленивой подгрузки.
   useEffect(() => { prewarmAccountWipeModules('account_details'); }, []);
   // зачем ([ACC-SPEED], координатор 14.10): функции входа будим уже при открытии экрана аккаунта — к тапу «Войти»/«Сменить»

@@ -445,3 +445,51 @@ test('shot_at: свежий кадр из журнала съёмки прини
   assert.deepEqual([shot.verdict, shot.source, shot.shot_at], ['accepted', 'bare_run_dir', new Date(T0 + 5 * MINUTE).toISOString()]);
   assert.equal(shot.code_changed_at, new Date(T0).toISOString());
 });
+
+// ── пересборка не теряет строк и полей ──────────────────────────────────────────────────────────────────────────────────────────────────
+// зачем (координатор 17.10): 306 строк жили вне матрицы, а полная пересборка их стирала вместе с полями release / emulator / triage /
+// note / added_reason у ВСЕХ строк — после неё гейт `--release=r1` обнулялся. Теперь прежние поля идут первыми, строки вне матрицы
+// переносятся с origin: 'carried'.
+test('пересборка: прежние поля строки матрицы и строки вне матрицы переживают её', () => {
+  const scan = { practice: [{ n: 1, label: 'Сессия', animations: [], replay: false }] };
+  const matrix = [{ section: 'practice.html', n: 1, screen: 'Сессия', state: 'Сессия', files: ['app/x.tsx'], matrixStatus: '✅' }];
+  const inMatrix = { id: 'practice-001', status: 'pending', release: 'r1', emulator: { link: 'phraseman://x' }, triage: { bucket: 'b' }, note: 'n', added_reason: 'a', screen: 'старое' };
+  const outside = { id: 'cards-gap-001', source: 'COORDINATOR_AUDIT_2026-10-12', status: 'pending', release: 'r1', code: [], mockup: { file: null } };
+  const rows = buildRows(matrix, scan, [inMatrix, outside]);
+  assert.equal(rows.length, 2);
+  const [fromMatrix, carried] = rows;
+  for (const key of ['release', 'emulator', 'triage', 'note', 'added_reason', 'status']) assert.deepEqual(fromMatrix[key], inMatrix[key], `поле ${key} стёрто`);
+  assert.equal(fromMatrix.screen, 'Сессия', 'описание из матрицы обновляется');
+  assert.equal(fromMatrix.origin, undefined);
+  assert.deepEqual(carried, { ...outside, origin: 'carried' });
+});
+
+test('пересборка на текущем реестре: те же строки, r1 считает столько же, cards-v2 ≥ 44, ни одно поле не потеряно', () => {
+  // макеты «сканируются» из самого реестра — проверяем перенос строк и полей, а не playwright
+  const scan = {};
+  for (const row of registry.rows) {
+    const file = row.mockup?.file;
+    if (!file || !Number.isInteger(row.mockup.phone) || row.mockup.phone < 1) continue;
+    const page = path.basename(file, '.html');
+    scan[page] ??= [];
+    scan[page][row.mockup.phone - 1] ??= { n: row.mockup.phone, label: row.mockup.label ?? '', animations: [], replay: false };
+  }
+  for (const phones of Object.values(scan)) for (let i = 0; i < phones.length; i += 1) phones[i] ??= { n: i + 1, label: '', animations: [], replay: false };
+  const rebuilt = buildRows(parseMatrix(matrixText), scan, registry.rows);
+  assert.equal(rebuilt.length, registry.rows.length, 'число строк изменилось');
+  assert.ok(rebuilt.length >= 1151, `строк ${rebuilt.length} < 1151`);
+  assert.equal(new Set(rebuilt.map((row) => row.id)).size, rebuilt.length, 'id повторяются');
+  const byId = new Map(rebuilt.map((row) => [row.id, row]));
+  for (const old of registry.rows) {
+    const row = byId.get(old.id);
+    assert.ok(row, `${old.id}: строка выпала`);
+    for (const key of Object.keys(old)) assert.ok(key in row, `${old.id}: поле ${key} выпало`);
+    for (const key of ['release', 'status', 'emulator', 'triage', 'note', 'added_reason', 'evidence', 'reviewed_by', 'removed_reason', 'release_surface_proof']) {
+      if (key in old) assert.deepEqual(row[key], old[key], `${old.id}: поле ${key} изменилось`);
+    }
+  }
+  // то, что считает `--release=r1`: строки выпуска R1 по статусам
+  const r1 = (rows) => rows.filter((row) => row.release === 'r1').reduce((acc, row) => ({ ...acc, [row.status]: (acc[row.status] ?? 0) + 1 }), {});
+  assert.deepEqual(r1(rebuilt), r1(registry.rows));
+  assert.ok(rebuilt.filter((row) => row.id.startsWith('cards-v2-')).length >= 44, 'строки cards-v2 (OWNER_PIN_54) выпали');
+});

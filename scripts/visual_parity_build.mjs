@@ -28,6 +28,8 @@ const EXTRA_MOCKUPS = ['mistakes-panel', 'themes-gradient', 'cards-section', 'pa
 const SYMBOLS = ['✅', '🟠', '❌', '🏠', '➖'];
 
 const useHead = process.argv.includes('--head');
+// зачем (координатор 17.10): «сухой» прогон — посчитать потери строк и полей, ничего не записывая
+const dryRun = process.argv.includes('--dry');
 
 export function parseMatrix(text) {
   const rows = [];
@@ -101,8 +103,11 @@ export function buildRows(matrixRows, scan, existingRows) {
   const rows = [];
   const addRow = (fresh) => {
     const old = byId.get(fresh.id);
+    // зачем (координатор 17.10): прежние поля строки идут ПЕРВЫМИ — release / emulator / triage / note / added_reason и любые
+    // будущие ручные поля переживают пересборку; матрица обновляет только свои поля (описание, код, макет, анимации).
     // зачем (владелец 04.10): строка, переведённая на новый макет вручную (mockup_pinned), не возвращается к макету матрицы при пересборке
     rows.push({
+      ...(old ?? {}),
       ...fresh,
       ...(old?.mockup_pinned ? { mockup: old.mockup, mockup_pinned: old.mockup_pinned } : {}),
       ...(old?.blocked_reason ? { blocked_reason: old.blocked_reason } : {}),
@@ -157,6 +162,15 @@ export function buildRows(matrixRows, scan, existingRows) {
       });
     }
   }
+  // зачем: 306 строк жили вне матрицы (аудиты 12.10, решения владельца, Моменты v3, голос…), полная пересборка их стирала.
+  // Строка прежнего реестра без пары в матрице и EXTRA_MOCKUPS переносится как есть с пометкой origin: 'carried'.
+  // Убрать строку из реестра теперь можно только явно: статусом removed_by_owner или удалением из реестра руками.
+  const built = new Set(rows.map((row) => row.id));
+  for (const old of existingRows) {
+    if (built.has(old.id)) continue;
+    rows.push({ ...old, origin: 'carried' });
+    built.add(old.id);
+  }
   return rows;
 }
 
@@ -173,6 +187,15 @@ async function main() {
   const ids = new Set(rows.map((row) => row.id));
   const dropped = existing.rows.filter((row) => !ids.has(row.id)).map((row) => row.id);
   if (dropped.length > 0) console.warn(`${LOG} rows_dropped_from_matrix count=${dropped.length} ids=${dropped.slice(0, 10).join(',')}`);
+  const carried = rows.filter((row) => row.origin === 'carried').length;
+  console.log(`${LOG} carried_outside_matrix count=${carried}`);
+  const byIdNew = new Map(rows.map((row) => [row.id, row]));
+  const lostFields = existing.rows.flatMap((row) => Object.keys(row).filter((key) => !(key in (byIdNew.get(row.id) ?? {}))).map((key) => `${row.id}.${key}`));
+  console.log(`${LOG} loss_check rows_before=${existing.rows.length} rows_after=${rows.length} dropped=${dropped.length} lost_fields=${lostFields.length}${lostFields.length ? ` first=${lostFields.slice(0, 10).join(',')}` : ''}`);
+  if (dryRun) {
+    console.log(`${LOG} dry_run: реестр НЕ записан`);
+    return;
+  }
   const registry = {
     schemaVersion: 'visual-parity.v1',
     rule: 'CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»: релиз запрещён, пока каждая строка не match (склейка + ревью координатора, анимации записаны).',

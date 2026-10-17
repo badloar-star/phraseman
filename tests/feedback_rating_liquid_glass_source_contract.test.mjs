@@ -20,7 +20,9 @@ const DEPENDENCY_HASHES = {
   // 10.10: осознанные правки 0e7e610d2 (обрезка параметров Firebase), 33636dd55 (D136–D140), edea8fec7 (PM-229).
   'app/analytics.ts': '00301b11c671af37fc9ee39c0d92b9b611f8feb3b0e34f0af95343408a298dfe',
   // 10.10: account-authority S2c/S2d (5c0c5e234, ebc1a860d) и PM-229 (1c6ba0f4e).
-  'app/stable_id.ts': 'ac879721fd8fbcebf9e3ca3e68dadcedf6f50e5d149ad81c292164eeb5b61cc2',
+  // 17.10 перепин (Ядро, проверено по диффу): 41fc3b013 — только замер стадий сброса при выходе [STABLE-ID-CLEAR]; порядок
+  // удаления, проверки stable_id_*_clear_mismatch и событие cleared прежние, catch пробрасывает ошибку — логика ID не менялась.
+  'app/stable_id.ts': '6d8e455460a235ad1d10af2dd23ce332fa34c26fbad41a43ec86ee15cb264750',
   'hooks/use-haptics.ts': 'fbb8366e985889400c4736f097ed12532cd06e3d5b6e2a997129e776e66ab208',
   // зачем (30.09): +контракт диагностики PM-226 (DiagnosticErrorInput, [DIAG]) в efe19ae9d — только добавление, путь доставки отзыва не тронут.
   // 10.10: PM-228 (лимит журнала, 0d6609bd2) и PM-229 (c0b7e4b1e).

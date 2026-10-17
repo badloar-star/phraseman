@@ -14,6 +14,7 @@ import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { legacyBonusTotalLabel } from '../../modules/legacy_bonus/legacy_bonus_strings';
 import MomentCoin from '../moments/MomentCoin';
 import LegacyBonusTotalCounter, { type LegacyBonusTotalCounterHandle } from './LegacyBonusTotalCounter';
+import { MOMENT_ART } from '../../constants/momentArtPalette';
 
 export const LEGACY_BONUS_COIN_SIZE = 64;
 const EASE_POP = Easing.bezier(0.34, 1.56, 0.64, 1);
@@ -89,7 +90,7 @@ const LegacyBonusHero = forwardRef<LegacyBonusHeroHandle, Props>(function Legacy
         <Animated.View pointerEvents="none" style={[s.ring, { boxShadow: `0 0 0 2px ${glass.accent}8C, 0 0 24px 6px ${glass.accent}59` }, ringStyle]} />
         <View pointerEvents="none" style={s.mask}>
           <Animated.View style={[s.sweep, sweepStyle]}>
-            <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.75)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={StyleSheet.absoluteFill} />
+            <LinearGradient colors={[MOMENT_ART.coinGlintClear, MOMENT_ART.coinGlintPeak, MOMENT_ART.coinGlintClear]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={StyleSheet.absoluteFill} />
           </Animated.View>
         </View>
       </Animated.View>

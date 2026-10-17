@@ -13,4 +13,10 @@ export const MOMENT_ART = Object.freeze({
   crownGem: '#fff',
   /** MomentCoin: тень монеты (drop-shadow эталона 0 14px 24px rgba(0,0,0,.5)). */
   coinDropShadow: 'rgba(0,0,0,0.5)',
+  /**
+   * LegacyBonusHero: блик, пробегающий по монете (эталон whats-new-coins.html, `.sweep`). Рисуется только внутри маски монеты —
+   * поверх одинакового во всех темах арта, поэтому не токен темы: в светлой и тёмной теме блик одинаков, как сама монета.
+   */
+  coinGlintClear: 'rgba(255,255,255,0)',
+  coinGlintPeak: 'rgba(255,255,255,0.75)',
 });

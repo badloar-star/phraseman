@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подсказка про напоминания</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* зачем (координатор 18.10, решение (б)): у подсказки «Без практики: N дней» эталона не было — рисую по коду
+   components/NotificationPermissionModalHybrid.tsx (тексты app/notif_nudge_copy.ts). Утвердить владельцу.
+   Карточка r26, отступы 20/26; значок 55×55 r14 на opaqueControl; заголовок 21/27 700; текст 16/21 secondary;
+   три пункта с галочкой 18 (gap 10); кнопка-пилюля 48 r24 акцентом; «Позже» — 48 без фона, 16/700. Без обводок. */
+.ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --sheet: #FCFCFF; --sel: rgba(95,92,177,.13); --ctl: #E4E5F3; --cta: #1D1D2F; --cti: #FFFFFF; --scrim: rgba(23,24,30,.38); --plate: rgba(255,255,255,.72); --sb: #111; }
+.ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --sheet: #002027; --sel: rgba(92,207,235,.14); --ctl: #123037; --cta: #D0EAED; --cti: #010708; --scrim: rgba(0,6,9,.55); --plate: rgba(0,32,39,.86); --sb: #fff; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.nn-home { padding: 6px 16px 0; filter: blur(1.5px); }
+.nn-home .r { height: 44px; border-radius: 22px; background: var(--plate); margin-top: 10px; }
+.nn-home .c { height: 104px; border-radius: 22px; background: var(--plate); margin-top: 14px; }
+.nn-home .t { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; } .nn-home .t i { aspect-ratio: 1; border-radius: 16px; background: var(--plate); }
+.nn-scrim { position: absolute; inset: 0; z-index: 40; background: var(--scrim); display: flex; align-items: center; justify-content: center; padding: 0 22px; }
+.nn-card { position: relative; width: 100%; border-radius: 26px; padding: 26px 20px 18px; background: linear-gradient(135deg, var(--sel), transparent 80%), var(--sheet); box-shadow: 0 26px 40px -14px rgba(0,0,0,.45); }
+.nn-ic { width: 55px; height: 55px; border-radius: 14px; background: var(--ctl); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
+.nn-ic svg { width: 24px; height: 24px; fill: none; stroke: var(--tx); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nn-h { font-size: 21px; line-height: 27px; font-weight: 700; text-align: center; margin-bottom: 10px; }
+.nn-p { font-size: 16px; line-height: 21px; color: var(--sec); text-align: center; margin-bottom: 16px; }
+.nn-pts { display: flex; flex-direction: column; gap: 10px; margin: 6px 0 20px; }
+.nn-pts div { display: flex; align-items: center; gap: 8px; font-size: 16px; line-height: 21px; }
+.nn-pts svg { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--tx); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nn-cta { min-height: 48px; border-radius: 24px; background: var(--cta); color: var(--cti); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; box-shadow: 0 5px 8px rgba(0,0,0,.22); }
+.nn-later { min-height: 48px; margin-top: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Подсказка про напоминания — «Без практики: N дней»</h1>
+  <p class="page-lead">Эталон нарисован по коду (NotificationPermissionModalHybrid, тексты notif_nudge_copy) — утвердить владельцу. Показывается на Главной после пропущенных дней; «Позже» закрывает, «Включить напоминания» просит разрешение.</p>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { phone, col, block } = K;
+const BELL = '<svg viewBox="0 0 24 24"><path d="M6 10a6 6 0 0112 0c0 5 2 6.5 2 6.5H4S6 15 6 10z"/><path d="M10 19.5a2 2 0 004 0"/></svg>';
+const CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg>';
+const POINTS = ['Напоминания в нужное время', 'Поддержка цепочки и прогресса', 'Отключается в любой момент'];
+const home = '<div class="nn-home"><div style="display:flex;gap:8px"><div class="r" style="flex:1"></div><div class="r" style="flex:1"></div><div class="r" style="width:44px"></div></div><div class="c"></div><div class="t"><i></i><i></i><i></i><i></i></div><div class="c" style="height:180px"></div></div>';
+const card = `<div class="nn-scrim"><div class="nn-card"><div class="nn-ic">${BELL}</div><div class="nn-h">Без практики: 3 дня</div><div class="nn-p">Чтобы не срывать серию, включи напоминания. Мы напомним вовремя и без спама.</div><div class="nn-pts">${POINTS.map((p) => `<div>${CHECK}<span>${p}</span></div>`).join('')}</div><div class="nn-cta">Включить напоминания</div><div class="nn-later">Позже</div></div></div>`;
+const themed = (th) => phone(home, { time: '9:41', overlay: card }).replace('class="ph"', `class="ph ${th}"`);
+document.getElementById('root').innerHTML = block('nudge', 'Подсказка «Без практики: 3 дня»', 'По коду гибридного окна: карточка r26 по центру поверх затемнённой Главной, значок-колокольчик на плашке 55×55, три пункта с галочкой, кнопка-пилюля и «Позже» без фона.', [
+  col('Подсказка · «Сумерки»', themed('th-ink')), col('Подсказка · «Океан»', themed('th-marine'))]);
+</script>
+</body>
+</html>

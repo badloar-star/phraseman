@@ -583,8 +583,8 @@ export default function LearningV2SessionIntro({
 
           <View style={sx.stageMeta}>
             {/* зачем (Сверка df455f92d, кадр 12; координатор 15.10): подпись этапа переносилась по буквам («СМЫС»/«Л») — рядом с «1 / 3» и тремя плашками (сердца, энергия, монеты) ей не хватало ширины. Теперь метка не сжимается (flexShrink 0, ширина по содержимому), «N / 3» — отдельной строкой под ней; сжатие и обрезка текста запрещены сторожем, поэтому место берётся высотой, а не шириной. */}
-            {/* зачем (Ревизор по 37f546656): ширина метки = экран 360 dp (320) − «×» 42 − зазоры 20 − плашки сердец и энергии ≈ 139 = ≈ 119 dp; самая длинная метка (pt-BR «ARMADILHA») при 12/1,2 ≈ 85 dp — помещается в одну строку.
-                maxFontSizeMultiplier 1,2 не даёт крупному системному шрифту раздуть метку сверх этого запаса (85 × 1,2 ≈ 102 < 119): слово не рвётся посреди; сжатия и обрезки нет. */}
+            {/* зачем (Ревизор по 37f546656): ширина метки = экран 360 dp (320) − «×» 42 − зазоры 20 − плашки сердец и энергии ≈ 139 = ≈ 119 dp; самая длинная метка (pt-BR «ARMADILHA») при 13/1,0 ≈ 91 dp — помещается в одну строку.
+                maxFontSizeMultiplier 1,2 не даёт крупному системному шрифту раздуть метку сверх этого запаса (91 × 1,2 ≈ 109 < 119): слово не рвётся посреди; сжатия и обрезки нет. */}
             <Text maxFontSizeMultiplier={1.2} style={[sx.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}>
               {stageLabel}
             </Text>
@@ -858,12 +858,13 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
   },
+  // зачем (ратчет typography_two_sizes, D145): ниже заголовка допустимы только 13 и 16 — метка этапа 13 (макет 12) с трекингом 1,0; запас ширины см. комментарий у метки
   stageLabel: {
     flexShrink: 0,
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 13,
+    lineHeight: 17,
     fontWeight: "700",
-    letterSpacing: 1.2,
+    letterSpacing: 1,
   },
   pageCounter: { flexShrink: 0, fontSize: 13, lineHeight: 18, fontWeight: "700", fontVariant: ["tabular-nums"] },
   headerAccessory: { flexShrink: 0 },

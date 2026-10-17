@@ -27,116 +27,53 @@ Contain: каждая красная строка — чей-то долг; чи
 ## Rollback
 Откат документа.
 
-## Красные файлы (40)
-- tests/accent_text_on_light_card_contract.test.mjs
-- tests/achievement_modals_liquid_glass_source_contract.test.mjs
-- tests/action_toast_liquid_glass_source_contract.test.mjs
-- tests/admin_message_modals_liquid_glass_source_contract.test.mjs
-- tests/cards_free_limit_variants_contract.test.mjs
-- tests/feedback_rating_liquid_glass_source_contract.test.mjs
-- tests/flashcards_speaking_liquid_glass_source_contract.test.mjs
-- tests/flashcards_training_setup_liquid_glass_source_contract.test.mjs
-- tests/friend_study_invite_liquid_glass.test.mjs
-- tests/home_last_lesson_notepad_asset_contract.test.mjs
-- tests/home_v2_feature_tiles_text_integrity_source_contract.test.mjs
-- tests/home_v2_glass_coin_contract.test.cjs
-- tests/home_v2_video_rail_contract.test.cjs
-- tests/i18n_design_zone_ratchet.test.mjs
-- tests/informal_address_ru_uk_guard.test.mjs
-- tests/learning_v1_active_header_and_summary_contract.test.mjs
-- tests/learning_v2_mockup_readiness_evidence.test.mjs
-- tests/learning_v2_mockup_session_quality.test.mjs
-- tests/learning_v2_release_parity_released_scope.test.mjs
-- tests/learning_v2_release_parity_route.test.mjs
-- tests/manage_subscription_liquid_glass_source_contract.test.mjs
-- tests/manage_subscription_overlays_liquid_glass.test.mjs
-- tests/mistake_list_detail_liquid_glass_source_contract.test.mjs
-- tests/moment_titles_font_cap_contract.test.mjs
-- tests/moments_dev_preview_release_guard.test.mjs
-- tests/privacy_settings_liquid_glass_source_contract.test.mjs
-- tests/release_precheck_learning_v2_failure_classification.test.mjs
-- tests/render_daily_phrase_content_preview.test.mjs
-- tests/review_prompt_bottom_sheet_source_contract.test.mjs
-- tests/saved_packs_completion.test.cjs
-- tests/settings_notifications_liquid_glass.test.mjs
-- tests/shadow_style_no_container_borders.test.mjs
-- tests/spire_design_layer_contract.test.mjs
-- tests/store_release_gate_levers.test.mjs
-- tests/survey_unavailable_liquid_glass_source_contract.test.mjs
-- tests/theme_hardcoded_colors_ratchet.test.mjs
-- tests/typography_two_sizes_ratchet.test.mjs
-- tests/update_modals_liquid_glass_source_contract.test.mjs
-- tests/v2_palette_theme_levels.test.cjs
-- tests/video_market_loader_error_contract.test.cjs
+## Красные сторожа: причина, чей файл, вердикт (прогон 17.10 ~21:00; ✅ — уже починено)
 
-## Красные названия (70)
-- AchievementModal (achievements_screen) is an opaque glass dossier without gradients or hex colors
-- ActionToast applies one active Liquid Glass material to all five real tones without changing behavior
-- COM-04 invite uses the approved opaque Liquid Glass geometry, typography, and localized copy
-- Home header renders stats left and a non-shrinking bell-avatar action group right without changing stat semantics
-- Learning V2 parity failure cannot masquerade as a missing EAS secret
-- V2 home identity and balance use one real coin-rank asset, never the hex avatar or rune
-- a cached catalog for another target is never returned after a failed query
-- a failed local consent write rolls the switch back and skips the cloud record
-- a nonempty same-target cache remains usable when a forced refresh fails
-- a successful catalog is cached for the same target
-- a successful remote query with no documents remains a legitimate empty catalog
-- accent keeps the calm background and glass, colours CTA and progress
-- active V2 feature tiles retain left-aligned art and never clip their copy
-- active mistake list and detail use Liquid Glass without text truncation
-- actual close, legal navigation, and delete open/close callbacks keep their original behavior
-- actual switches preserve independent state, local-before-cloud order, and one haptic per action
-- all locale shells render and disclosures, dynamic strings, semantic delete color, and uncapped typography stay intact
-- all saved contours include legacy French storage with explicit language
-- an index failure without a usable cache rejects instead of reporting an empty catalog
-- bounds the absolute overlay to ordinary safe-area content instead of the SafeAreaView itself
-- broadcast keeps claim/review-promo behaviour and busy guard
-- business AST and shared dependencies stay at the pre-edit baseline
-- containers get no borders or inner rims in new code — the count only shrinks (стиль «Тень», 12.10)
-- continue-learning card has no differently colored half-panel
-- continue-learning card receives the approved notepad art from the real producer chain
-- continue-learning card uses the supplied notepad asset for every selectable tint
-- does not double-compensate resized Android viewports or alter iOS KeyboardAvoidingView behavior
-- drafts follow the requested pack language without losing another language
-- every mockup session displays its own exact release-quality counts
-- every moment window title (accessibilityRole="header") is capped by MOMENT_TITLE_MAX_FONT_SCALE
-- every rendered row and local switch has the approved geometry, wrapping, glass, and accessibility
-- failing tests:
-- forceRemote bypasses a warm cache and retries the Firestore query
-- front speech uses the explicit French/German language
-- hardcoded colors in screens never grow — they come from the selected theme tokens
-- hides host accessibility if and only if any overlay is active
-- identity, handoff, day-boundary, once-close, shared-sheet, messages, and protected source files remain byte-exact
-- keeps loading, monthly, yearly, lifetime, absent-store-data, and busy controls behaviorally distinct
-- keeps real renewal dates and lifetime notes hidden while store data is loading
-- keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchanged
-- keeps the six reason callbacks, English reason copy, Other text, and one-haptic Continue flow
-- lifts and bounds the Android panel by keyboard overlap minus the SafeAreaView bottom inset
-- max tints background and glass, boosts smoke; light flips to light surfaces
-- measures the keyboard-reduced inner viewport and updates the numeric bound after resize
-- no local alias of an accent fill token paints text or icons
-- preserves stay, decline, restore-close, and both close-before-support callback flows
-- production code never imports the moments preview route
-- protected scheduling, permission, and modal AST nodes remain byte-identical
-- protected snapshots normalize only checkout CRLF to LF
-- protects feedback delivery AST, dependencies, and unchanged legacy presentations
-- renders canonical-pass diagnostic quizzes only, deterministically, and holds every other locale block
-- renders empty restore with support and Close while preserving close-before-push and one haptic
-- renders progress and support retention with reachable visible decline actions and original callbacks
-- renders reasons, Other input, selected state, and disabled Continue for every palette
-- renders reasons, progress, support, and empty restore in all nine retained locales
-- renders the bounded Liquid Glass host across all 13 palettes with normalized full-wrap typography
-- saved cards: limit pill and the Plus button replace the hidden-cards section
-- spire screens: type scale, line-height, borders
-- tests\learning_v2_mockup_readiness_evidence.test.mjs
-- tests\review_prompt_bottom_sheet_source_contract.test.mjs
-- tests\update_modals_liquid_glass_source_contract.test.mjs
-- text sizes other than 16/13 (below title size) never grow — D145
-- the Liquid Glass catalogue background is scoped to active Learning V1 only
-- the packaged EAS gate emits a deliberate release-quality block without omitted authorities
-- the routed production gate blocks on release-quality evidence
-- uses passive host surfaces without container borders
-- зона Дизайна: число текстов вне переводов и неполных переводов не растёт (храповик)
-- интерфейс ru/uk обращается на «ты»: нет новых «вы/Нажмите/Перевірте» вне осознанных исключений
-- каждые ворота Learning V2 в eas-build-post-install и release:precheck пропускаются в стор-режиме
-- невыпущенное не влияет, выпущенное с замечанием — красное, общий файл — красное
+Вердикты: **устарел** — тест отстал от намеренной правки кода; **код** — сломан код; **заглушка** — в тесте нет заглушки нового импорта.
+
+| # | Тест | Причина одной строкой | Чей | Вердикт |
+|---|------|-----------------------|-----|---------|
+| 1 | accent_text_on_light_card_contract | псевдоним токена заливки красит текст/значок — нужен accentText | Темы | код |
+| 2 | achievement_modals_liquid_glass_source_contract | ожидание «непрозрачное досье без градиентов/hex» не выполнено | Темы/Достижения | устарел |
+| 3 | action_toast_liquid_glass_source_contract | «toast surface uses translucent glass» — поверхность тоста стала другой | Темы | устарел |
+| 4 | admin_message_modals_liquid_glass_source_contract | нет claimAndDismissGlobalBroadcastModal в слепке | Рассылки | устарел |
+| 5 | cards_free_limit_variants_contract | регулярка `savedLimitReached = …` не находит строку (формула лимита переписана) | Карточки | устарел |
+| 6 | feedback_rating_liquid_glass_source_contract | хэш защищённого `app/stable_id.ts` разошёлся | Ядро | устарел |
+| 7 | flashcards_speaking_liquid_glass_source_contract | слепок deep-equal разошёлся | Карточки | устарел |
+| 8 | flashcards_training_setup_liquid_glass_source_contract | слепок разметки (число 28, хэш) разошёлся | Карточки | устарел |
+| 9 | friend_study_invite_liquid_glass | нет «одобренного текста» «Пять минут на английский?» | Друзья/Переводчик | устарел |
+| 10 | home_last_lesson_notepad_asset_contract | искал `<Image source={art}>` — ✅ починен 121c28dd6 | Макеты/Дизайн | устарел ✅ |
+| 11 | home_v2_feature_tiles_text_integrity_source_contract | искал contentFit="contain" — ✅ починен 516ca26fd | Макеты/Дизайн | устарел ✅ |
+| 12 | home_v2_glass_coin_contract | нет testID home-hero-avatar-button (шапка Главной перестроена) | Макеты/Дизайн | устарел |
+| 13 | home_v2_video_rail_contract | TypeError: render_cause_probe не в заглушках теста | Макеты/Дизайн | заглушка |
+| 14 | i18n_design_zone_ratchet | скрипт scan_i18n_design_zone завершился с ошибкой (число текстов вне переводов растёт) | Переводчик | код |
+| 15 | informal_address_ru_uk_guard | в ru/uk новые «вы/Нажмите» вне исключений | Переводчик | код |
+| 16 | learning_v1_active_header_and_summary_contract | искал градиент без прозрачного слоя R69 — ✅ перепин 047099aa3 | Дизайн | устарел ✅ |
+| 17 | learning_v2_mockup_readiness_evidence | нет файла content/learning-v2-course/pipeline/session_readiness.mjs | Курс V2 | код |
+| 18 | learning_v2_mockup_session_quality | в макете нет встроенного JSON #session-audio-evidence | Курс V2/Макеты | устарел |
+| 19 | learning_v2_release_parity_released_scope | число/состав выпущенных занятий не совпал (strict equal) | Курс V2 | устарел |
+| 20 | learning_v2_release_parity_route | не нашёл `const qualityResult = validateReleaseQuality()` в скрипте | Курс V2 | устарел |
+| 21 | manage_subscription_liquid_glass_source_contract | не было заглушки BackGlyph — ✅ 3b742cb2d | Дизайн | заглушка ✅ |
+| 22 | manage_subscription_overlays_liquid_glass | то же + регулярка g.opaque… — ✅ | Дизайн | заглушка ✅ |
+| 23 | mistake_list_detail_liquid_glass_source_contract | регулярка `g.opaque(Card\|Control\|Sheet)\|glassButtonFill(g)` не находит | Ошибки/Темы | устарел |
+| 24 | moment_titles_font_cap_contract | слепок deep-equal разошёлся | Моменты | устарел |
+| 25 | moments_dev_preview_release_guard | слепок deep-equal разошёлся | Моменты | устарел |
+| 26 | privacy_settings_liquid_glass_source_contract | нет заглушек ThemedArt/privacyAiStateArt и значок 27 — ✅ 047099aa3 | Приватность/Дизайн | заглушка ✅ |
+| 27 | release_precheck_learning_v2_failure_classification | не нашёл «ОТКАЗ: не прошло гейтов — 1» (текст релизного предпроверочного скрипта) | Курс V2/Сайт | устарел |
+| 28 | render_daily_phrase_content_preview | strict equal на предпросмотре фразы дня | Фраза дня | устарел |
+| 29 | review_prompt_bottom_sheet_source_contract | «rate/store actions must remain unchanged» — слепок | Отзывы | устарел |
+| 30 | saved_packs_completion | strict equal в 3 случаях (завершение сохранённых паков) | Карточки | устарел |
+| 31 | settings_notifications_liquid_glass | хэши persistPrefs/persistSchedule (откат на диск 15.10) — ✅ перепин 047099aa3 | Дизайн | устарел ✅ |
+| 32 | shadow_style_no_container_borders | новые обводки: MomentDown.tsx, mode_feedback_v1.tsx | Моменты/Курс V2 | код |
+| 33 | spire_design_layer_contract | ✅ уже зелёный (чужая правка) | Моменты | ✅ |
+| 34 | store_release_gate_levers | в learning_v2_ceiling_committed_gate.mjs нет пропуска в стор-режиме | Сайт/Курс V2 | код |
+| 35 | survey_unavailable_liquid_glass_source_contract | хэш SurveySheetModal.tsx (пин 12.10) — ✅ перепин 047099aa3 | Дизайн | устарел ✅ |
+| 36 | theme_hardcoded_colors_ratchet | новые hex в ComboMomentLayer, LegacyBonusHero, моментах | Моменты/Темы | код |
+| 37 | typography_two_sizes_ratchet | новые размеры текста вне 16/13: HomeV2FeatureTiles (2), SpireWeekMomentHost (1); моя метка этапа 12→13 — ✅ | Макеты/Моменты | код |
+| 38 | update_modals_liquid_glass_source_contract | «failed store opening must restore the modal through the existing callback» | Обновления | устарел |
+| 39 | v2_palette_theme_levels | strict equal в уровнях палитры тем | Темы | устарел |
+| 40 | video_market_loader_error_contract | Transform failed: тест не собирает TS-исходник (синтаксис/путь) | Видео | код |
+
+Мои правки новых красных не добавили; пересчёт «было 69 → стало N» — по `node --test tests/*.test.mjs tests/*.test.cjs` после коммитов владельцев.
+
+Замечание: столбец «Чей» — по имени теста и зоне файла (предположение), «Вердикт» — по первой ошибке прогона; перед правкой проверь первую ошибку командой `node --test tests/<файл>`.

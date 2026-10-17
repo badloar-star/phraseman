@@ -1,0 +1,53 @@
+10-18 00:11:37.654 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":234333,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:37.654 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":234334,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:37.655 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":234335,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:37.847 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#7Hfpt8*]","atMs":234527
+10-18 00:11:37.849 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#7Hfpt8*]","atMs":234529
+10-18 00:11:37.850 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#7Hfpt8*]","atMs":234529
+10-18 00:11:38.102 I/ReactNativeJS(17813): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/today_tasks tab=/(tabs)/home routeIsTab=false"}
+10-18 00:11:38.105 I/ReactNativeJS(17813): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/today_tasks tab=/(tabs)/home routeIsTab=false"}
+10-18 00:11:38.340 W/ReactNativeJS(17813): [NAV-PAINT] group=screen route=/today_tasks ms=427
+10-18 00:11:39.513 I/ReactNativeJS(17813): '[MEM-TICK]', '{"tSec":235,"route":"/today_tasks","heapMb":156,"gc":"12gc/167ms","intervals":2,"intervalsByCaller":{"onAppState <- anonymous":1,"anonymous <- react-stack-bottom-frame":1},
+10-18 00:11:42.341 I/ReactNativeJS(17813): [BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:11:42.342 W/ReactNativeJS(17813): '[NAV-BACK] candidate:reset', '{"reason":"leaving_no_section","leaving":"/today_tasks","leavingSection":null,"candidate":null,"candidateSection":null}', { [Stack] name: 'Stack' }
+10-18 00:11:42.342 W/ReactNativeJS(17813): '[NAV-BACK] decision', '{"leaving":"/today_tasks","leavingSection":null,"candidate":null,"chosen":"/(tabs)/home","fallback":"/(tabs)/home","method":"dismiss_to"}', { [Stack] name: 'Stack'
+10-18 00:11:42.353 I/ReactNativeJS(17813): [BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":12}
+10-18 00:11:42.823 I/ReactNativeJS(17813): [BACK-BTN] frame {"seq":2,"screen":"today_tasks","ms":481}
+10-18 00:11:42.825 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":234,"sinceTapMs":484}
+10-18 00:11:43.445 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":370,"sinceTapMs":1104}
+10-18 00:11:45.530 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":242209,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:45.530 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":242210,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:45.531 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":242211,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:45.731 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#QfaAmg*]","atMs":242411
+10-18 00:11:45.732 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#QfaAmg*]","atMs":242412
+10-18 00:11:45.733 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#QfaAmg*]","atMs":242413
+10-18 00:11:45.906 I/ReactNativeJS(17813): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/today_tasks tab=/(tabs)/home routeIsTab=false"}
+10-18 00:11:45.909 I/ReactNativeJS(17813): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/today_tasks tab=/(tabs)/home routeIsTab=false"}
+10-18 00:11:45.982 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":429,"sinceTapMs":3641}
+10-18 00:11:46.060 W/ReactNativeJS(17813): [NAV-PAINT] group=screen route=/today_tasks ms=322
+10-18 00:11:49.555 I/ReactNativeJS(17813): '[MEM-TICK]', '{"tSec":246,"route":"/today_tasks","heapMb":156,"gc":"10gc/100ms","intervals":2,"intervalsByCaller":{"onAppState <- anonymous":1,"anonymous <- react-stack-bottom-frame":1},
+10-18 00:11:50.238 I/ReactNativeJS(17813): [BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:11:50.239 W/ReactNativeJS(17813): '[NAV-BACK] candidate:reset', '{"reason":"leaving_no_section","leaving":"/today_tasks","leavingSection":null,"candidate":null,"candidateSection":null}', { [Stack] name: 'Stack' }
+10-18 00:11:50.257 W/ReactNativeJS(17813): '[NAV-BACK] decision', '{"leaving":"/today_tasks","leavingSection":null,"candidate":null,"chosen":"/(tabs)/home","fallback":"/(tabs)/home","method":"dismiss_to"}', { [Stack] name: 'Stack'
+10-18 00:11:50.268 I/ReactNativeJS(17813): [BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":30}
+10-18 00:11:50.699 I/ReactNativeJS(17813): [BACK-BTN] frame {"seq":3,"screen":"today_tasks","ms":461}
+10-18 00:11:50.700 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":212,"sinceTapMs":462}
+10-18 00:11:51.250 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":300,"sinceTapMs":1012}
+10-18 00:11:53.389 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":250068,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:53.390 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":250069,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:53.391 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"today_tasks","noop":false,"atMs":250070,"stack":"anonymous@148231:34 | forEach | anonymous@148231:25 | anonymous@145547:19 | appl
+10-18 00:11:53.567 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#fLZVcu*]","atMs":250246
+10-18 00:11:53.570 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#fLZVcu*]","atMs":250249
+10-18 00:11:53.571 I/ReactNativeJS(17813): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#wlcyKM*[(tabs)#YtY7D8,dev_moments_preview#Ixr6bw,motion_showcase#NZrFZS,(tabs)#k-iQvZ,(tabs)#3WHg0c,today_tasks#fLZVcu*]","atMs":250251
+10-18 00:11:53.685 I/ReactNativeJS(17813): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/today_tasks tab=/(tabs)/home routeIsTab=false"}
+10-18 00:11:53.687 I/ReactNativeJS(17813): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/today_tasks tab=/(tabs)/home routeIsTab=false"}
+10-18 00:11:53.700 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":247,"sinceTapMs":3462}
+10-18 00:11:53.842 W/ReactNativeJS(17813): [NAV-PAINT] group=screen route=/today_tasks ms=244
+10-18 00:11:54.578 I/ReactNativeJS(17813): '[MEM-TICK]', '{"tSec":251,"route":"/today_tasks","heapMb":156,"gc":"22gc/203ms","intervals":2,"intervalsByCaller":{"onAppState <- anonymous":1,"anonymous <- react-stack-bottom-frame":1},
+10-18 00:11:57.952 I/ReactNativeJS(17813): [BACK-BTN] tap {"seq":4,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:11:57.955 W/ReactNativeJS(17813): '[NAV-BACK] candidate:reset', '{"reason":"leaving_no_section","leaving":"/today_tasks","leavingSection":null,"candidate":null,"candidateSection":null}', { [Stack] name: 'Stack' }
+10-18 00:11:57.957 W/ReactNativeJS(17813): '[NAV-BACK] decision', '{"leaving":"/today_tasks","leavingSection":null,"candidate":null,"chosen":"/(tabs)/home","fallback":"/(tabs)/home","method":"dismiss_to"}', { [Stack] name: 'Stack'
+10-18 00:11:57.978 I/ReactNativeJS(17813): [BACK-BTN] interactions-free {"seq":4,"screen":"today_tasks","ms":26}
+10-18 00:11:58.368 I/ReactNativeJS(17813): [BACK-BTN] frame {"seq":4,"screen":"today_tasks","ms":417}
+10-18 00:11:58.394 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":4,"screen":"today_tasks","driftMs":191,"sinceTapMs":442}
+10-18 00:11:59.038 I/ReactNativeJS(17813): [BACK-BTN] js-blocked {"seq":4,"screen":"today_tasks","driftMs":394,"sinceTapMs":1086}

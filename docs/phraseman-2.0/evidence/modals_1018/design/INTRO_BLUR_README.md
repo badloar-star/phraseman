@@ -4,3 +4,6 @@
 Журнал `intro_blur.txt` (grep «INTRO-BLUR|entering done»): `page 0 entering:true reducedMotion:false title fontSize 26 fontWeight 700 opacity null transform null textShadowRadius null boxShadow no`, `layout slide 411×796 y=118`, `layout card 371×201 y=60`, `entering done page 0 finished:true` через ~250 мс после показа.
 Кадры: intro_s1_t3s.png (3 с) и intro_s1_t12s.png (12 с, анимация давно завершена) — заголовок и текст читаются чётко, размытия на кадре нет; заголовок светло-серый, не чисто белый (opacity в журнале null — цвет задан токеном).
 Кнопки на кадре: «Дальше» неактивна до ответа; снизу dev-кнопка «DEV · К УСТНО» (только dev).
+
+# [BACK-BTN] — «Сегодня» (18.10 00:11–00:12)
+Главная → «Сегодня · Смотреть все» → круглая «назад» ×3: все три раза возврат на Главную (кадры b6_today_1..3, b6_today_after). Журнал `back_btn_today.txt` ([PERF-R1-NAV] PUSH today_tasks, [SECTION-LANG] pathname=/today_tasks): метки [BACK-BTN] на экране «Сегодня» НЕТ — по коду она стоит только в `app/(tabs)/lessons.tsx` (карта V2/вкладка «Обучение») и `components/v2/BackButton.tsx`, на today_tasks BackButton события не пишет. Не снято: «Все уроки» и старый (классический) список вкладки уроков — мои тапы по классическому курсу не дошли (раскладка Главной сдвигается из-за карточки «Продолжить»); нужна подсказка Дизайна, где именно кнопка «Все уроки».

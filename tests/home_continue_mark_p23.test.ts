@@ -81,7 +81,8 @@ describe('P23 · подключение экранов', () => {
     const home = read('app/(tabs)/home.tsx');
     expect(home).toContain('const continueChoice = pickHomeContinue(continueInput);');
     expect(home).toContain('void launchHomeContinueV2(continueV2.route, {');
-    expect(home).toContain('v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED ? continueMarks.v2 : null');
+    // зачем (R92, 17.10): занятие V2 в карточке — только при языке интерфейса с пояснениями курса
+    expect(home).toContain("v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED && isLearningV2OpenForUiLangV1(lang, 'home_continue') ? continueMarks.v2 : null");
     expect(home).toContain('logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));');
     // прогресс — при показе, на каждый возврат на Главную
     expect(home).toContain('useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive)');

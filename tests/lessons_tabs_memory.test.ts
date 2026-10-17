@@ -17,8 +17,8 @@ describe('вкладка «Обучение»: карта V2 по умолчан
   });
 
   it('стартовая страница: вкладка + курс доступен → V2; отдельный маршрут старого списка остаётся старым; журнал [LESSONS-TABS]', () => {
-    expect(src).toContain('useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation))');
-    expect(src).toContain('initial === "lessons" && presentation === "tab" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "v2" : initial');
+    expect(src).toContain('useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation, learningV2CanOpen))');
+    expect(src).toContain('initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2" : initial');
     expect(src).toContain('[LESSONS-TABS] вход: presentation=');
   });
 
@@ -27,8 +27,8 @@ describe('вкладка «Обучение»: карта V2 по умолчан
     expect(src).toContain('[LESSONS-TABS] назад с карты V2 → Главная');
     expect(src).toContain('[LESSONS-TABS] назад из старого списка → карта V2');
     // в корневой вкладке у старого списка есть стрелка «назад», чип «Новые уроки» там снят (остался в push-маршруте)
-    expect(src).toContain('{!isRetainedTab || LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (');
-    expect(src).toContain('{!isRetainedTab && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (');
+    expect(src).toContain('{!isRetainedTab || learningV2CanOpen ? (');
+    expect(src).toContain('{!isRetainedTab && learningV2CanOpen ? (');
   });
 
   it('кнопка «Классический курс» на карте: 9 языков, без слова «старые», открывает список через то же вводное окно; заголовок списка остаётся «Обучение»', () => {

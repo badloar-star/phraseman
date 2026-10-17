@@ -12,11 +12,35 @@
 // Сторож: tests/learning_v2_visibility_switch_contract.test.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import { peekResolvedUiLang } from './ui_lang_resolved';
+
 export const LEARNING_V2_HIDDEN: boolean = false;
 
-/** Синхронно, без сети: вход в V2 виден/закрыт уже в первом кадре. */
+// зачем (R92, координатор 17.10): у выпуска курса пояснения есть только на ru и uk (intro.json / learner.uk.json); для остальных
+// языков интерфейса показ подставлял РУССКИЙ (FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1). Решение: курс виден только там, где он
+// на языке человека; для es/pt-BR/vi/id/tr/pl/en вкладка «Обучение» открывает классический курс, входов в V2 нет.
+// Перевод выпуска на остальные языки — после релиза; появился перевод — язык добавляется сюда.
+export const LEARNING_V2_EXPLANATION_UI_LANGS: readonly string[] = Object.freeze(['ru', 'uk']);
+
+let lastLocaleGateLogKey: string | null = null;
+function logLocaleGate(lang: string | null, open: boolean, from: string): void {
+  const key = `${String(lang)}:${String(open)}`;
+  if (lastLocaleGateLogKey === key) return;
+  lastLocaleGateLogKey = key;
+  console.log(`[V2-LOCALE-GATE] uiLang=${String(lang)} decision=${open ? 'open' : 'hidden'} from=${from}${lang == null ? ' (язык ещё не известен — проверит маршрут)' : ''}`); // guard-ok: одна строка на смену языка
+}
+
+/** Есть ли у курса V2 пояснения на этом языке интерфейса. null — язык ещё не известен: вход не режем, его перепроверит маршрут. */
+export function isLearningV2OpenForUiLangV1(lang: string | null | undefined, from = 'check'): boolean {
+  const open = lang == null || LEARNING_V2_EXPLANATION_UI_LANGS.includes(lang);
+  logLocaleGate(lang ?? null, open, from);
+  return open;
+}
+
+/** Синхронно, без сети: вход в V2 виден/закрыт уже в первом кадре (рубильник + язык интерфейса). */
 export function isLearningV2Hidden(): boolean {
-  return LEARNING_V2_HIDDEN;
+  if (LEARNING_V2_HIDDEN) return true;
+  return !isLearningV2OpenForUiLangV1(peekResolvedUiLang(), 'resolved_ui_lang');
 }
 
 /** Единая строка журнала для каждого закрытого входа: какой вход и куда увели. */

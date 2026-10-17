@@ -37,6 +37,8 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
   const lessons = read('app', '(tabs)', 'lessons.tsx');
 
   test('ручное открытие курса выражено одной константой (открыт с 2026-09-19)', () => {
+    // зачем (R92, 17.10): внутри вкладки условие — learningV2CanOpen = константа + язык интерфейса с пояснениями курса (ru/uk)
+    expect(lessons).toContain('const learningV2CanOpen = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY && isLearningV2OpenForUiLangV1(lang, "lessons_tab");');
     // зачем (владелец 11.10: «столько, сколько доступно»): вход есть, только если хоть одно занятие реально открывается.
     expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = (true|ENABLE_DEV_TOOLS|!IS_STORE_RELEASE|LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS|!LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\));$/m);
     // зачем (10.10, релизный пол): в стор-сборке маршруты V2 вырезаны из роутера, чип «Новые уроки» там скрыт — иначе тупик «неизвестный маршрут».
@@ -58,7 +60,7 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
     // Раньше обработчик был безусловным `onPress={() => { setPage("v2"); }}`.
     expect(lessons).toContain('onPress={openNewLessons}');
     expect(lessons).toContain(
-      'if (!LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {',
+      'if (!learningV2CanOpen) {',
     );
   });
 
@@ -76,13 +78,13 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
     expect(unconditionalSwitches).toHaveLength(3);
     // зачем (координатор 23:25, practice-027): прежний сторож только считал вызовы и не заметил, что 1d70c8fc5 снял
     // условие с кнопки «V2» — в стор-сборке она вела в вырезанный маршрут. Теперь проверяем само условие у кнопки.
-    expect(lessons).toMatch(/\{LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY \? \(\s*<TabUnderlineButton\s+label="V2"/);
+    expect(lessons).toMatch(/\{learningV2CanOpen \? \(\s*<TabUnderlineButton\s+label="V2"/);
     expect(lessons).not.toMatch(/\{\(\s*<TabUnderlineButton\s+label="V2"/);
   });
 
   test('недоступность показана тоном, а не обводкой (запрет владельца)', () => {
     expect(lessons).toContain(
-      'opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,',
+      'opacity: learningV2CanOpen ? 1 : 0.45,',
     );
   });
 

@@ -48,13 +48,15 @@ describe('рубильник «Learning V2 скрыт»', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
     expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);$/m);
     // кнопка «V2» и чип «Новые уроки» рендерятся только под константой (чип — ещё и только в push-маршруте старого списка, владелец 17.10)
-    expect(lessons.match(/\{LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY \? \(/g)?.length ?? 0).toBeGreaterThanOrEqual(1);
-    expect(lessons).toContain('{!isRetainedTab && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (');
+    // зачем (R92, 17.10): внутри вкладки константа дополнена языком интерфейса — learningV2CanOpen
+    expect(lessons).toContain('const learningV2CanOpen = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY && isLearningV2OpenForUiLangV1(lang, "lessons_tab");');
+    expect(lessons.match(/\{learningV2CanOpen \? \(/g)?.length ?? 0).toBeGreaterThanOrEqual(1);
+    expect(lessons).toContain('{!isRetainedTab && learningV2CanOpen ? (');
     // прямой маршрут курса (initialPage="v2") и старт вкладки на карте — только при доступном курсе (памяти выбора больше нет)
-    expect(lessons).toContain('if (initial === "v2" && !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {');
-    expect(lessons).toContain('initial === "lessons" && presentation === "tab" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "v2" : initial');
+    expect(lessons).toContain('if (initial === "v2" && !learningV2CanOpen) {');
+    expect(lessons).toContain('initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2" : initial');
     // прогрев каталога V2 при скрытом V2 не взводится
-    expect(lessons).toContain('if (!LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY || learningV2WarmupArmed || page !== "lessons") return undefined;');
+    expect(lessons).toContain('if (!learningV2CanOpen || learningV2WarmupArmed || page !== "lessons") return undefined;');
   });
 
   it('маршруты курса и занятия при «скрыт» уводят на Главную с [V2-HIDDEN]', () => {

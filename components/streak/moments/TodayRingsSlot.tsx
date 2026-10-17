@@ -1,4 +1,4 @@
-// TodayRingsSlot.tsx — кольца дня внутри блока «Сегодня» Главной: показываются только за флагом moments_v3 (выключен → null, ничего не стоит).
+// TodayRingsSlot.tsx — кольца дня на экране «Сегодня» (/today_tasks; с 17.10 — не на Главной): показываются только за флагом moments_v3 (выключен → null, ничего не стоит).
 // зачем (координатор 14.10): кольца = три задачи блока «Сегодня» (урок, ступени Пика, карточки), монета ранга в центре; числа берутся из тех же задач, что строки блока —
 // ничего не пишется и не начисляется. Монета и язык читаются только когда флаг включён (внутренний компонент), чтобы выключенный флаг не добавлял подписок на Главной.
 import React, { memo, useEffect } from 'react';
@@ -9,8 +9,9 @@ import TodayRings from './TodayRings';
 import { useMomentsV3Enabled } from './use_moments_v3_flag';
 
 export type TodayRingsTask = Readonly<{ progress: number; target: number }>;
+type SlotProps = Readonly<{ tasks: readonly TodayRingsTask[]; fromProgress?: readonly [number, number, number] }>;
 
-const Inner = memo(function Inner({ tasks }: Readonly<{ tasks: readonly TodayRingsTask[] }>) {
+const Inner = memo(function Inner({ tasks, fromProgress }: SlotProps) {
   const { lang } = useLang();
   const rank = useMyCoinRank();
   // зачем (координатор 15.10, сценарий Сверки моментов v3): что нарисовали кольца m11 — одна строка на смену чисел
@@ -24,15 +25,16 @@ const Inner = memo(function Inner({ tasks }: Readonly<{ tasks: readonly TodayRin
     <TodayRings
       lang={lang}
       progress={[t[0].progress, t[1].progress, t[2].progress]}
+      fromProgress={fromProgress}
       targets={[Math.max(1, t[0].target), Math.max(1, t[1].target), Math.max(1, t[2].target)]}
       coinRank={isValidCoinRank(rank) ? rank : null}
     />
   );
 });
 
-function TodayRingsSlot({ tasks }: Readonly<{ tasks: readonly TodayRingsTask[] }>) {
+function TodayRingsSlot({ tasks, fromProgress }: SlotProps) {
   const on = useMomentsV3Enabled();
-  return on ? <Inner tasks={tasks} /> : null;
+  return on ? <Inner tasks={tasks} fromProgress={fromProgress} /> : null;
 }
 
 export default memo(TodayRingsSlot);

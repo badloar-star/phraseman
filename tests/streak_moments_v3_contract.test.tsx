@@ -236,6 +236,8 @@ describe('рубежи серии — флаг, подключение, исхо
     'components/completion/V2DoneChain.tsx', 'components/completion/done_chain_strings.ts',
     // зачем (координатор 15.10, m04 A за moments_v3): карточка «Итог недели» читает только лёгкий флаг (use_moments_v3_flag) — экран Пика правит другая сессия, проп не протянуть
     'components/spire/SpireWeekResultCard.tsx',
+    // зачем (владелец 17.10): кольца дня ушли с Главной на экран «Сегодня» (/today_tasks) — флаг, цвета колец и ленивый слот колец
+    'app/today_tasks.tsx',
     // зачем (владелец 15.10, m08 «Молния» за moments_v3): слой поверх урока берёт второй цвет темы для холодной виньетки (use_streak_colors); грузится require'ом при флаге
     'components/feedback/ComboMomentLayer.tsx',
     // зачем (координатор 15.10, кадры Сверки): dev_state `moments=v3|off|inherit` — dev-переключатель флага (только __DEV__), импорт ленивый

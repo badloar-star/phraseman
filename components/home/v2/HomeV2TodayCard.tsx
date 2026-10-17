@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
@@ -8,7 +8,6 @@ import { V2IconTile } from '../../v2/V2Glass';
 import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
-import { todayRingColors, useStreakColors } from '../../streak/moments/use_streak_colors';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -21,36 +20,48 @@ const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['na
 };
 
 type Props = {
-  title: string;
+  /** Заголовок блока; null — блок внутри экрана «Сегодня», где заголовок уже в шапке. */
+  title: string | null;
   tasks: readonly TodayTask[];
   onOpenTask: (task: TodayTask) => void;
   /** Q90 (координатор 01.10): активный опрос — строка ПОД заданиями, тем же видом; null/нет — не рисуется. */
   surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void }> | null;
+  /** «Смотреть все» справа от заголовка → экран «Сегодня» с кольцом дня (владелец 17.10); видна только за флагом moments_v3, нет — ссылки нет. */
+  seeAll?: Readonly<{ label: string; onPress: () => void }> | null;
+  /** Цвет отметки выполненной строки по индексу (цвета колец на экране «Сегодня»); нет — нейтральный. */
+  doneColors?: readonly string[] | null;
 };
 
 /**
  * «СЕГОДНЯ» новой Главной (референс 2.0, D49): три задачи дня. Строка =
  * кружок-отметка, значок активности, название с подписью, счётчик progress/target.
- * «Показать все» владелец убрал: тап по задаче сразу ведёт в активность.
+ * Тап по задаче сразу ведёт в активность. Владелец 17.10: кольца дня — не здесь, а на экране «Сегодня»
+ * по ссылке «Смотреть все» (app/today_tasks.tsx); тот экран рисует эти же строки (title=null, doneColors — цвета колец).
  */
-export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }: Props) {
-  useRenderCause('home:today', () => ({ title, tasks, onOpenTask, surveyRow }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow, seeAll, doneColors }: Props) {
+  useRenderCause('home:today', () => ({ title, tasks, onOpenTask, surveyRow, seeAll, doneColors }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);
-  // зачем (координатор 14.10, момент m11): за флагом moments_v3 над списком — три кольца дня, а отметка выполненной строки красится в цвет её кольца; флаг выключен — блок как был
-  const ringsOn = useMomentsV3Enabled();
-  // зачем (скорость холодного старта, 14.10): при выключенном флаге ни TodayRings, ни MomentCoin, ни слот колец не загружаются — слот подключается require'ом только когда флаг включён
-  const streakColors = useStreakColors(ringsOn);
-  const ringColors = streakColors ? todayRingColors(streakColors) : null;
-  const TodayRingsSlot = ringsOn ? (require('../../streak/moments/TodayRingsSlot') as typeof import('../../streak/moments/TodayRingsSlot')).default : null;
+  // зачем: экран «Сегодня» с кольцами живёт за moments_v3 — без флага ссылки нет, Главная как была (лёгкий хук флага, кольца карточка не грузит)
+  const ringsScreenOn = useMomentsV3Enabled();
+  const seeAllShown = ringsScreenOn ? seeAll : null;
   return (
-    <View testID="home-v2-today" style={s.card}>
-      <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
-      {TodayRingsSlot ? <TodayRingsSlot tasks={tasks} /> : null}
+    <View testID="home-v2-today" style={[s.card, title === null ? s.cardBare : null]}>
+      {title !== null ? (
+        <View style={s.headerRow}>
+          <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
+          {seeAllShown ? (
+            <Pressable testID="home-v2-today-see-all" accessibilityRole="button" accessibilityLabel={seeAllShown.label} onPress={seeAllShown.onPress} hitSlop={8} style={({ pressed }) => [s.seeAll, pressed ? s.seeAllPressed : null]}>
+              <Text style={[s.seeAllText, { color: p.link }]}>{seeAllShown.label}</Text>
+              <Ionicons name="chevron-forward" size={15} color={p.link} />
+            </Pressable>
+          ) : null}
+        </View>
+      ) : null}
       <View style={s.list}>
         {tasks.map((task, index) => {
-          const doneColor = ringColors && index < 3 ? ringColors[index] : p.iconTint;
+          const doneColor = doneColors?.[index] ?? p.iconTint;
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
           return (
             <V2Pressable
@@ -118,7 +129,13 @@ const s = StyleSheet.create({
     paddingBottom: 6,
     paddingTop: 16,
   },
-  header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6, marginLeft: 12, marginBottom: 12 },
+  cardBare: { paddingTop: 0 },
+  // зачем (17.10): заголовок и «Смотреть все» в одну строку — та же ссылка, что у ленты видео (HomeV2VideoRail: 13/18, 600, link, шеврон 15)
+  headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginLeft: 12, marginRight: 8, marginBottom: 12, minHeight: 17 },
+  header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6 },
+  seeAll: { minHeight: 36, marginVertical: -10, flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'flex-end' },
+  seeAllPressed: { opacity: 0.6 },
+  seeAllText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
   // зачем («Тень» 12.10): между строками-плашками ≥ 10, иначе тени слипаются
   list: { gap: 10 },
   row: {

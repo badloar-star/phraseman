@@ -47,7 +47,9 @@ describe('Главная: плашки с фоном 50 %', () => {
 
   it('«Сегодня»: у внешней карточки нет фона, тени и блика; остальные компоненты Главной без V2GlassSheen и общего useV2GlassStyle', () => {
     const today = read('components', 'home', 'v2', 'HomeV2TodayCard.tsx');
-    expect(today).toMatch(/testID="home-v2-today" style=\{s\.card\}/);
+    // зачем (17.10): та же карточка без заголовка внутри экрана «Сегодня» — только убирает верхний отступ (cardBare), фона/тени по-прежнему нет
+    expect(today).toMatch(/testID="home-v2-today" style=\{\[s\.card, title === null \? s\.cardBare : null\]\}/);
+    expect(/cardBare: \{[^}]*\}/s.exec(today)?.[0] ?? '').not.toMatch(/backgroundColor|boxShadow|shadow/);
     expect(today).not.toMatch(/V2GlassSheen|useV2GlassStyle/);
     const card = /card: \{[^}]*\}/s.exec(today)?.[0] ?? '';
     expect(card).not.toMatch(/backgroundColor|boxShadow|shadow/);

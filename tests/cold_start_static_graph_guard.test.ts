@@ -39,8 +39,7 @@ describe('холодный старт: новые модули моментов 
 
   it('граф карточки не пуст (проверка не вхолостую)', () => {
     expect(rel.length).toBeGreaterThan(10);
-    expect(rel).toContain('components/streak/moments/use_streak_colors.ts');
-    expect(rel).toContain('components/streak/moments/use_moments_v3_flag.ts');
+    expect(rel).toContain('components/v2/V2Pressable.tsx');
   });
 
   it('тяжёлых модулей колец и монеты в статическом графе нет', () => {
@@ -49,9 +48,12 @@ describe('холодный старт: новые модули моментов 
     }
   });
 
-  it('слот колец подключается лениво (require внутри компонента, только при включённом флаге)', () => {
+  // зачем (владелец 17.10): кольца дня ушли с Главной на экран «Сегодня» — карточка их не грузит вовсе, экран — лениво, только при включённом флаге
+  it('карточка «Сегодня» не тянет кольца; экран «Сегодня» подключает слот колец лениво', () => {
     const card = normalizeEol(fs.readFileSync(`${ROOT}components/home/v2/HomeV2TodayCard.tsx`, 'utf8'));
-    expect(card).toContain("ringsOn ? (require('../../streak/moments/TodayRingsSlot')");
-    expect(card).not.toMatch(/^import .*TodayRingsSlot/m);
+    expect(card).not.toMatch(/TodayRingsSlot|TodayRings'|todayRingColors/);
+    const screen = normalizeEol(fs.readFileSync(`${ROOT}app/today_tasks.tsx`, 'utf8'));
+    expect(screen).toContain("ringsOn ? (require('../components/streak/moments/TodayRingsSlot')");
+    expect(screen).not.toMatch(/^import .*TodayRingsSlot/m);
   });
 });

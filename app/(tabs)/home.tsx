@@ -2551,6 +2551,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               tasks={homeV2Tasks}
               onOpenTask={(task) => go(task.route)}
               surveyRow={homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : null}
+              // зачем (владелец 17.10): кольца дня живут на экране «Сегодня» (/today_tasks); ссылку карточка показывает сама только за флагом moments_v3
+              seeAll={{
+                label: triLang(lang, { ru: 'Смотреть все', uk: 'Дивитися всі', en: 'See all', es: 'Ver todos', 'pt-BR': 'Ver todos', vi: 'Xem tất cả', id: 'Lihat semua', tr: 'Tümünü gör', pl: 'Zobacz wszystkie' }),
+                onPress: () => {
+                  console.log('[TODAY-RING] open', JSON.stringify({ from: 'home_see_all', tasks: homeV2Tasks.map((task) => `${task.kind}:${task.progress}/${task.target}`) })); // guard-ok: одна строка на тап
+                  go('/today_tasks');
+                },
+              }}
             />
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
             {homeDailyPhraseVisible ? (

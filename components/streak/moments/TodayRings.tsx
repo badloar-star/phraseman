@@ -40,10 +40,11 @@ export function todayRingFraction(done: number, target: number): number {
   return target > 0 ? Math.min(1, Math.max(0, done / target)) : 0;
 }
 
-type RingProps = Readonly<{ index: number; value: number; color: string; instant: boolean }>;
-const Ring = memo(function Ring({ index, value, color, instant }: RingProps) {
+type RingProps = Readonly<{ index: number; value: number; from: number; color: string; instant: boolean }>;
+const Ring = memo(function Ring({ index, value, from, color, instant }: RingProps) {
   const { r, len } = todayRingGeometry(index);
-  const v = useSharedValue(value);
+  // зачем (экран «Сегодня», координатор 17.10): кольцо стартует с того, что человек видел в прошлый раз, и докручивается до текущего; reduceMotion — сразу финал
+  const v = useSharedValue(instant ? value : from);
   useEffect(() => {
     if (instant) { v.value = value; return; }
     v.value = withTiming(value, { duration: 900, easing: value >= 1 ? EASE_OVERSHOOT : EASE });
@@ -66,11 +67,13 @@ export type TodayRingsProps = Readonly<{
   targets?: readonly [number, number, number];
   /** Сколько выполнено по трём задачам (урок, ступени Пика, карточки). */
   progress: readonly [number, number, number];
+  /** С какого прогресса начинать заполнение («до» с прошлого открытия). Нет — кольца сразу на месте, как раньше. */
+  fromProgress?: readonly [number, number, number];
   coinRank: number | null;
   testID?: string;
 }>;
 
-function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, testID = 'today-rings' }: TodayRingsProps) {
+function TodayRings({ lang, progress, fromProgress, targets = TODAY_RING_TARGETS, coinRank, testID = 'today-rings' }: TodayRingsProps) {
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
@@ -78,7 +81,9 @@ function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, te
   const colors = todayRingColors(streakColors);
   const values = progress.map((n, i) => todayRingFraction(n, targets[i]));
   const allClosed = values.every((x) => x >= 1);
-  const prev = useRef<readonly number[] | null>(null);
+  const fromValues = fromProgress ? fromProgress.map((n, i) => todayRingFraction(n, targets[i])) : values;
+  // зачем: при «до → после» вспышка, звук и «День выполнен» срабатывают на кольцах, закрытых с прошлого открытия
+  const prev = useRef<readonly number[] | null>(fromProgress ? fromValues : null);
   const [sparkKey, setSparkKey] = useState(0);
   const [sparkRing, setSparkRing] = useState(0);
   const flash = useSharedValue(0);
@@ -115,7 +120,7 @@ function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, te
       <View style={s.rw}>
         <Animated.View pointerEvents="none" style={[s.flash, { backgroundColor: colors[sparkRing] }, flashStyle]} />
         <Svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} style={s.svg}>
-          {values.map((x, i) => <Ring key={i} /* guard-ok: три кольца фиксированного порядка */ index={i} value={x} color={colors[i]} instant={reduceMotion} />)}
+          {values.map((x, i) => <Ring key={i} /* guard-ok: три кольца фиксированного порядка */ index={i} value={x} from={fromValues[i] ?? x} color={colors[i]} instant={reduceMotion} />)}
         </Svg>
         <MomentCoin rank={coinRank} size={58} mood={allClosed && !reduceMotion ? 'jump' : 'idle'} shadow={false} />
         <MomentFirework x={SIZE / 2} y={SIZE / 2} r={68 - sparkRing * 16 + 28} n={10} fire={sparkKey > 0} key={sparkKey} />

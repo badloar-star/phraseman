@@ -1467,7 +1467,7 @@ export default function FlashcardsScreen() {
   // зачем (координатор 12.10, cards-005): в одобренном образце экран называется «Сохранённые 64», а не «Карточки» — так же названа плитка в хабе; общий s.title («Карточки») остаётся названием раздела.
   const savedScreenTitle = triLang(lang, {
     ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
-    vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
+    vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kayıtlı', pl: 'Zapisane', // зачем (LABEL-FIT 18.10): то же слово, что на плитке хаба
   });
   const expandedOverline = savedSurface ? savedScreenTitle : packBadge === 'in_you' && packAuthorName ? `${packTitleText} · ${packAuthorName}` : packTitleText;
 

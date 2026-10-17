@@ -12,7 +12,7 @@ describe('Cards defects from the mockup parity registry', () => {
     const at = src.indexOf('const savedScreenTitle = triLang(lang, {');
     expect(at).toBeGreaterThan(-1);
     const block = src.slice(at, at + 400);
-    for (const word of ['Сохранённые', 'Збережені', "en: 'Saved'", 'Guardadas', 'Salvos', 'Đã lưu', 'Tersimpan', 'Kaydedilenler', 'Zapisane']) expect(block).toContain(word);
+    for (const word of ['Сохранённые', 'Збережені', "en: 'Saved'", 'Guardadas', 'Salvos', 'Đã lưu', 'Tersimpan', 'Kayıtlı', 'Zapisane']) expect(block).toContain(word);
     expect(src).toMatch(/<CollectionTitleBlock\s+lang=\{lang\}\s+title=\{savedScreenTitle\}/);
     expect(src).toMatch(/expandedOverline = savedSurface \? savedScreenTitle/);
   });

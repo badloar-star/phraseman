@@ -314,7 +314,7 @@ export default function FlashcardsHubScreen() {
     }),
     communitySegment: triLang(lang, {
       ru: 'Сообщество', uk: 'Спільнота', en: 'Community', es: 'Comunidad',
-      'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Społeczność',
+      'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Od innych', // зачем (LABEL-FIT 18.10): «Społeczność» шире плитки 122 dp и ломалось посреди слова
     }),
     library: triLang(lang, {
       ru: 'Твои карточки', uk: 'Твої картки', en: 'Your cards', es: 'Tus tarjetas',
@@ -322,7 +322,7 @@ export default function FlashcardsHubScreen() {
     }),
     saved: triLang(lang, {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
-      vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
+      vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kayıtlı', pl: 'Zapisane', // зачем (LABEL-FIT 18.10): «Kaydedilenler» ломалось посреди слова на плитке 122 dp
     }),
     savedSub: triLang(lang, {
       ru: 'Личная коллекция', uk: 'Особиста колекція', en: 'Personal collection', es: 'Colección personal',

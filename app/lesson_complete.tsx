@@ -126,11 +126,12 @@ const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
 // хотя следующий урок открыт с 60 %. Медаль остаётся для достижений и уведомлений.
 const EMPTY_MISTAKE_IDS: readonly string[] = [];
 // «Добить: Ещё учу (N)» — подпись под главной кнопкой итога урока (learn.html E; 9 языков, число — в скобках).
+// зачем (координатор 17.10): «Добить: Ещё учу» не говорило, что N — ошибки; на языках кроме ru — «Исправить ошибки (N)». ru — как в макете, решает владелец.
 const finishMistakesLabels = (n: number) => ({
-  ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish the rest (${n})`, es: `Terminar: Aún aprendo (${n})`,
-  'pt-BR': `Finalizar: Aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Belajar (${n})`,
+  ru: `Добить: Ещё учу (${n})`, uk: `Виправити помилки (${n})`, en: `Fix mistakes (${n})`, es: `Corregir errores (${n})`,
+  'pt-BR': `Corrigir erros (${n})`, vi: `Sửa lỗi (${n})`, id: `Perbaiki kesalahan (${n})`,
   // зачем (Сверка, R1_LONG_TRANSLATIONS 13.10): pt-BR/pl/id/tr были длиннее en (30–34 знака) — кнопка переносилась; теперь ≤ en.
-  tr: `Bitir: Öğreniyorum (${n})`, pl: `Dokończ: Uczę się (${n})`,
+  tr: `Hataları düzelt (${n})`, pl: `Popraw błędy (${n})`,
 });
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';

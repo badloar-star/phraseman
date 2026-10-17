@@ -135,10 +135,10 @@ const ELEMENTS = [
   { id: 'Итог урока: «Добить (N)» + метка Plus', file: 'app/lesson_complete.tsx', get: () => finishMistakes(12), size: 16, weight: 600, avail: SCREEN - 40 - 56, mode: 'wrap', note: 'quietRow: метка Plus xs ≈ 40 + gap 8 справа, N=12; minHeight 22' },
   { id: 'Итог урока: «Повторить ошибки»', file: 'components/completion/V2DoneScreen.tsx', get: () => byRu('components/completion/V2DoneScreen.tsx', 'Повторить ошибки'), size: 16, weight: 600, avail: SCREEN - 40 - 36 - 26 - 56, mode: 'wrap', note: 'ghost в панели: поля 20+18, значок 18+gap 8, метка Plus ≈ 56; minHeight 44' },
   { id: 'Итог: «Закрыть»', file: 'components/completion/V2DoneScreen.tsx', get: () => byRu('components/completion/V2DoneScreen.tsx', 'Закрыть'), size: 16, weight: 600, avail: SCREEN - 40, mode: 'wrap', note: 'тихая кнопка' },
-  { id: 'Главная: плитка «Диалоги»', file: 'app/(tabs)/home.tsx', get: () => byRu('app/(tabs)/home.tsx', 'Диалоги'), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, mode: 'tile', note: '4 плитки: (360−40−3·10)/4 = 72,5; перенос допустим, слово не должно ломаться' },
-  { id: 'Главная: плитка «Уроки»', file: 'app/(tabs)/home.tsx', get: () => byRu('app/(tabs)/home.tsx', 'Уроки'), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, mode: 'tile', note: 'то же' },
-  { id: 'Главная: плитка «Карточки»', file: 'app/vip_survey_content.ts', get: () => cardsTab(), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, mode: 'tile', note: 'то же' },
-  { id: 'Главная: плитка «Пик»', file: 'app/(tabs)/home.tsx', get: () => byRu('app/(tabs)/home.tsx', 'Пик'), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, mode: 'tile', note: 'то же' },
+  { id: 'Главная: плитка «Диалоги»', file: 'app/(tabs)/home.tsx', get: () => byRu('app/(tabs)/home.tsx', 'Диалоги'), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, capScale: 1.15, mode: 'tile', note: '4 плитки: (360−40−3·10)/4 = 72,5; перенос допустим, слово не должно ломаться' },
+  { id: 'Главная: плитка «Уроки»', file: 'app/(tabs)/home.tsx', get: () => byRu('app/(tabs)/home.tsx', 'Уроки'), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, capScale: 1.15, mode: 'tile', note: 'то же' },
+  { id: 'Главная: плитка «Карточки»', file: 'app/vip_survey_content.ts', get: () => cardsTab(), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, capScale: 1.15, mode: 'tile', note: 'то же' },
+  { id: 'Главная: плитка «Пик»', file: 'app/(tabs)/home.tsx', get: () => byRu('app/(tabs)/home.tsx', 'Пик'), size: 13, weight: 700, avail: (SCREEN - 40 - 30) / 4, capScale: 1.15, mode: 'tile', note: 'то же' },
   { id: 'Хаб Карточек: кнопка «Тренироваться»', file: 'app/flashcards/FlashcardsHubScreen.tsx', get: () => byRu('app/flashcards/FlashcardsHubScreen.tsx', 'Тренироваться с карточками'), size: 16, weight: 700, avail: SCREEN - 40 - 72, mode: 'wrap', note: 'CTA: поля 20, справа стрелка 12+20, слева симметрично' },
   { id: 'Хаб Карточек: плитка «Сохранённые»', file: 'app/flashcards/FlashcardsHubScreen.tsx', get: () => byRu('app/flashcards/FlashcardsHubScreen.tsx', 'Сохранённые'), size: 19, weight: 700, avail: (SCREEN - 40 - 12) / 2 - 32, mode: 'tile', note: 'плитка 154 − padding 32 = 122; до 18.10 numberOfLines=1 (обрезка), теперь 2 строки + перенос; слово шире 122 ломается посреди слова' },
   { id: 'Хаб Карточек: плитка «Мои наборы»', file: 'app/flashcards/FlashcardsHubScreen.tsx', get: () => byRu('app/flashcards/FlashcardsHubScreen.tsx', 'Мои наборы'), size: 19, weight: 700, avail: (SCREEN - 40 - 12) / 2 - 32, mode: 'tile', note: 'то же' },
@@ -160,7 +160,7 @@ for (const el of ELEMENTS) {
   for (const lang of LANGS) {
     const per = {};
     for (const sc of SCALES) {
-      const size = el.size * sc;
+      const size = el.size * (el.capScale ? Math.min(sc, el.capScale) : sc); // maxFontSizeMultiplier: потолок роста кегля
       const w = textWidth(vals[lang], size, el.weight);
       const avail = el.avail; // ширина контейнера в dp не растёт с fontScale
       const wr = wrap(vals[lang], size, el.weight, avail);

@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 24 — Всё для поездки
+# Английский · Урок 3 · Занятие 24 — Принимаем доставку окончательно
 
-**Ситуация.** Вы с Анной собираете вещи для выездной встречи клуба. На столе книги, карты, ручки, чашки и билеты, рядом сумки и коробки. Олег отмечает, что уже упаковано. Вы называете вещи и спрашиваете, где нужные наборы.
+**Ситуация.** Курьер ушёл, и вы с братом и подругой принимаете доставку окончательно: проверяете конверты, бирки на коробках и ленты на подарках. Один предмет называете с a или an, несколько предметов — с s.
 
-**Что вы освоите:** повторить названия нескольких предметов и вопросы об их месте
-**Новые слова:** —
+**Что вы освоите:** выбирать между одним предметом с a или an и несколькими предметами с s
+**Новые слова:** envelope, label, ribbon, sticker
+**Возвращаются:** card, ticket, pen, box
 
 ---
 
 ## Интро 1
 
-### Собираем несколько вещей
+### Бумаги на подпись
 
-Повторим знакомые слова: `books` — «книги», `bags` — «сумки», `maps` — «карты местности». Для нескольких предметов: `They are books` — «Это книги». Для одной книги: `It is a book` — «Это книга». Перед `books` не ставим `a`. Олег собирался взять одну книгу на весь клуб. Читать можно хором, но переворачивать страницу придётся по команде. Положим несколько — `books`.
+Перед уходом курьер отдаёт вам стопку плотных конвертов с накладными: их нужно подписать. Подруга заглядывает через плечо и спрашивает, что это за стопка. envelope — «конверт». Один конверт — an envelope, несколько — envelopes. They are envelopes — «Это конверты».
 
-**Вы кладёте в сумку несколько книг. Назовите их полной фразой: «Это книги».**
+**Подруга смотрит на стопку. Скажите ей полной фразой: это конверты.**
 
-- ✅ **They are books.**
-- ❌ They are a book. — *Книг несколько: `books`, без `a`.*
-- ❌ They is books. — *С `They` нужно `are`.*
+- ✅ **They are envelopes.**
+- ❌ They are an envelopes. — *Перед несколькими предметами an не ставим: They are envelopes.*
+- ❌ They are envelope. — *Конвертов несколько, поэтому нужно envelopes с s.*
 
 ---
 
 ## Интро 2
 
-### Коробки и чашки
+### Бирки на коробки
 
-`boxes` — «коробки», `cups` — «чашки», `pens` — «ручки». Написание `boxes` заканчивается на `es`; вспоминаем его целиком. `The boxes are here` — «Коробки здесь». `the boxes` — коробки, которые вы сейчас собираете. `Where are the cups?` — «Где чашки?» Чашек несколько, поэтому спрашиваем с `are`.
+Брат наклеивает на коробки белые бирки с адресом, а одну бирку без клея кладёт на край стола. Подруга берёт её в руки и просит вас уточнить у брата, что это. Остальные бирки уже на коробках у стены. label — «бирка». Одна бирка — a label. Is it a label? — «Это бирка?»
 
-**Анна знает, какие чашки вы берёте на встречу. Спросите, где чашки.**
+**Подруга держит одну бирку. Спросите брата, бирка ли это.**
 
-- ✅ **Where are the cups?**
-- ❌ Where is the cups? — *Чашек несколько: нужно `are`.*
-- ❌ What are the cups? — *О месте спрашиваем `Where`.*
+- ✅ **Is it a label?**
+- ❌ Is it labels? — *Бирка одна, поэтому нужно a label.*
+- ❌ Are it a label? — *С it нужно Is: Is it a label?*
 
 ---
 
 ## Интро 3
 
-### Билеты перед выходом
+### Подарок для соседки
 
-`tickets` — «билеты». `The tickets are valid` — «Билеты действительны». `Where are the tickets?` — «Где билеты?» Вопрос начинается с `Where are`, затем называем билеты: `the tickets`. Так же можно спросить о приготовленных сумках: `Where are the bags?` — «Где сумки?»
+Подруга перевязывает подарок для соседки: на столе лежат несколько лент, и она выбирает подходящую по цвету. Все они длинные, их хватит и на второй подарок. ribbon — «лента». Лент несколько — ribbons. The ribbons are long — «Ленты длинные».
 
-**Анна приготовила билеты для поездки. Спросите, где билеты.**
+**Подруга спрашивает, хватит ли лент. Скажите ей, что ленты длинные.**
 
-- ✅ **Where are the tickets?**
-- ❌ Where is the tickets? — *Билетов несколько: нужно `are`.*
-- ❌ What are the tickets? — *Чтобы узнать место, начинаем с `Where`.*
+- ✅ **The ribbons are long.**
+- ❌ The ribbons is long. — *Лент несколько, поэтому нужно are: The ribbons are long.*
+- ❌ The ribbon are long. — *Лент несколько, поэтому нужно ribbons с s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Олег спрашивает, что лежит в открытой сумке. Назовите несколько книг**
+**1 · Карточка слова — envelope**
+<!-- interaction_id: en:lesson-03:session-24:word:envelope; family: word_card -->
+> **envelope** — конверт. They are envelopes — «Это конверты». О бумажном конверте для письма или документов.
+
+**2 · Курьер оставил стопку конвертов. Скажите подруге полной фразой: это конверты.**
 <!-- interaction_id: en:lesson-03:session-24:i01; family: phrase_builder -->
-Плитки: `books` `are` `They` `is` → **They are books.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are books.`)*
+Плитки: `envelopes` `are` `They` `envelope` → **They are envelopes.**
+*(плитка `envelope` лишняя: здесь нужно `envelopes` — `They are envelopes.`)*
 
-**2 · Послушайте сообщение о коробках**
+**3 · Карточка слова — label**
+<!-- interaction_id: en:lesson-03:session-24:word:label; family: word_card -->
+> **label** — бирка или этикетка. Is it a label? — «Это бирка?» О бирке на коробке, на одежде, на банке.
+
+**4 · Послушайте вопрос подруги о бирке**
 <!-- interaction_id: en:lesson-03:session-24:i02; family: listen_choose -->
-🔊 *The boxes are here.* → **The boxes are here.** · The boxes are outside. · The boxes are upstairs.
-- The boxes are outside. — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
-- The boxes are upstairs. — *В записи последнее слово — `here`, а в этом варианте — `upstairs`.*
+🔊 *Is it a label?* → **Is it a label?** · Are they labels? · Is it a card?
+- Are they labels? — *В записи последнее слово — `label`, а в этом варианте — `labels`.*
+- Is it a card? — *В записи последнее слово — `label`, а в этом варианте — `card`.*
 
-**3 · Вы показываете несколько карт местности. Назовите их**
+**5 · Карточка слова — ribbon**
+<!-- interaction_id: en:lesson-03:session-24:word:ribbon; family: word_card -->
+> **ribbon** — лента. The ribbons are long — «Ленты длинные». О ленте для подарка или волос.
+
+**6 · Подруга выбирает ленты для подарка. Дополните её фразу**
 <!-- interaction_id: en:lesson-03:session-24:i03; family: context_gap_grammar -->
-They are ___. → **maps** · map · a maps
-- map — *Карт несколько: `maps`.*
-- a maps — *Перед `maps` не ставим `a`.*
+The ___ are long. → **ribbons** · ribbon · a ribbons
+- ribbon — *Лент несколько, поэтому нужно ribbons с s.*
+- a ribbons — *Перед несколькими предметами a не ставим: The ribbons are long.*
 
-**4 · Соедините названия со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-24:i04; family: speed_match -->
-books — книги · boxes — коробки · bags — сумки · maps — карты местности
+envelopes — конверты · labels — бирки, этикетки · ribbons — ленты · card — открытка, карточка
 
-**5 · Послушайте и соберите сообщение**
+**8 · Карточка слова — sticker**
+<!-- interaction_id: en:lesson-03:session-24:word:sticker; family: word_card -->
+> **sticker** — наклейка. They are stickers — «Это наклейки». О маленькой наклейке с рисунком.
+
+**9 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-24:i05; family: listen_build_dictation -->
-🔊 *The pens are inside.* Плитки: `inside` `are` `pens` `The` `is` → **The pens are inside.**
-*(плитка `is` лишняя: здесь нужно `are` — `The pens are inside.`)*
+🔊 *They are stickers.* Плитки: `stickers` `are` `They` `sticker` → **They are stickers.**
+*(плитка `sticker` лишняя: здесь нужно `stickers` — `They are stickers.`)*
 
-**6 · Анна знает, какие чашки вы берёте. Спросите, где чашки**
+**10 · Брат держит одну бирку. Спросите подругу, бирка ли это.**
 <!-- interaction_id: en:lesson-03:session-24:i06; family: phrase_builder -->
-Плитки: `cups` `the` `are` `Where` `What` → **Where are the cups?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the cups?`)*
+Плитки: `label` `it` `Is` `a` `Are` → **Is it a label?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it a label?`)*
 
-**7 · Олег показывает на несколько дорожных сумок и спрашивает их название. Скажите полную фразу «Это сумки»**
+**11 · Брат держит один конверт. Скажите коротко, что это конверт.**
 <!-- interaction_id: en:lesson-03:session-24:i07; family: scripted_repeat_compare -->
-🎙 **They are bags.**
+🎙 **It is an envelope.**
 
-**8 · Вы проверили билеты на поездку: они действительны**
+**12 · Подруга достала из пачки один конверт. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-24:i08; family: context_gap_grammar -->
-The tickets ___ valid. → **are** · is · am
-- is — *Билетов несколько: `The tickets are valid`.*
-- am — *С `the tickets` здесь нужно `are`.*
+It is ___ envelope. → **an** · a · is
+- a — *Слово envelope начинается с гласного звука, поэтому здесь an.*
+- is — *Слово is уже стоит перед пропуском. Перед envelope нужно an.*
 
-**9 · Послушайте название вещей из коробки**
+**13 · Послушайте, что говорит брат**
 <!-- interaction_id: en:lesson-03:session-24:i09; family: listen_choose -->
-🔊 *They are cups.* → **They are cups.** · They are pens. · They are maps.
-- They are pens. — *В записи последнее слово — `cups`, а в этом варианте — `pens`.*
-- They are maps. — *В записи последнее слово — `cups`, а в этом варианте — `maps`.*
+🔊 *They are tickets.* → **They are tickets.** · It is a ticket. · They are pens.
+- It is a ticket. — *В записи последнее слово — `tickets`, а в этом варианте — `ticket`.*
+- They are pens. — *В записи последнее слово — `tickets`, а в этом варианте — `pens`.*
 
-**10 · Соедините названия со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-24:i10; family: speed_match -->
-pens — ручки · cups — чашки · tickets — билеты · boxes — коробки
+tickets — билеты · pens — ручки · watches — наручные часы (несколько) · stories — рассказы, сказки
 
-**11 · Послушайте и соберите сообщение**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-24:i11; family: listen_build_dictation -->
-🔊 *The bags are here.* Плитки: `here` `are` `bags` `The` `is` → **The bags are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bags are here.`)*
+🔊 *The stickers are new.* Плитки: `new` `stickers` `are` `The` `is` → **The stickers are new.**
+*(плитка `is` лишняя: здесь нужно `are` — `The stickers are new.`)*
 
-**12 · Перед выходом вы ищете приготовленные карты местности. Спросите Анну, где карты**
+**16 · Подруга достала из пакета ленты. Скажите ей полной фразой: это ленты.**
 <!-- interaction_id: en:lesson-03:session-24:i12; family: phrase_builder -->
-Плитки: `maps` `the` `are` `Where` `What` → **Where are the maps?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the maps?`)*
+Плитки: `ribbons` `are` `They` `ribbon` → **They are ribbons.**
+*(плитка `ribbon` лишняя: здесь нужно `ribbons` — `They are ribbons.`)*
 
-**13 · Вы достали несколько ручек. Олег спрашивает, что это. Назовите их полной фразой**
+**17 · Брат держит одну открытку. Скажите коротко, что это открытка.**
 <!-- interaction_id: en:lesson-03:session-24:i13; family: scripted_repeat_compare -->
-🎙 **They are pens.**
+🎙 **It is a card.**
 
-**14 · Вы называете одну книгу, оставшуюся на столе**
+**18 · Брат клеит бирки на коробки. Дополните вопрос подруги**
 <!-- interaction_id: en:lesson-03:session-24:i14; family: context_gap_grammar -->
-It is ___ book. → **a** · an · are
-- an — *Перед `book` в этой фразе нужно `a`: `a book`.*
-- are — *Для названия одной книги здесь нужно `a book`.*
+Are they ___? → **labels** · label · are
+- label — *В вопросе о нескольких бирках тоже нужно labels с s.*
+- are — *Слово Are уже стоит в начале. В пропуск нужно название бирок: labels.*
 
-**15 · Послушайте сообщение о билетах**
+**19 · Послушайте вопрос подруги**
 <!-- interaction_id: en:lesson-03:session-24:i15; family: listen_choose -->
-🔊 *The tickets are valid.* → **The tickets are valid.** · The tickets are different. · The tickets are lost.
-- The tickets are different. — *В записи последнее слово — `valid`, а в этом варианте — `different`.*
-- The tickets are lost. — *В записи последнее слово — `valid`, а в этом варианте — `lost`.*
+🔊 *Are they cities?* → **Are they cities?** · Is it a city? · Are they bottles?
+- Is it a city? — *В записи последнее слово — `cities`, а в этом варианте — `city`.*
+- Are they bottles? — *В записи последнее слово — `cities`, а в этом варианте — `bottles`.*
 
-**16 · Соедините названия со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-24:i16; family: speed_match -->
-books — книги · maps — карты местности · cups — чашки · tickets — билеты
+bowls — миски · plates — тарелки · cups — чашки · box — коробка
 
-**17 · Вы приехали на место встречи. Олег знает, какие сумки вы привезли. Спросите, где сумки**
+**21 · Курьер ушёл. Спросите подругу, здесь ли все конверты.**
 <!-- interaction_id: en:lesson-03:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the bags?**
-
+🎙 **Are the envelopes here?**

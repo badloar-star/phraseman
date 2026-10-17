@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-21:intro1:r2": {
-          "ru": "`pen` — одна ручка; здесь несколько: `pens`.",
-          "uk": "`pen` — одна ручка; тут кілька: `pens`."
+          "ru": "Перед несколькими предметами a не ставим: They are towels.",
+          "uk": "Перед кількома предметами a не ставимо: They are towels."
         },
         "en:lesson-03:session-21:intro1:r3": {
-          "ru": "Перед названием нескольких ручек не ставим `a`.",
-          "uk": "Перед назвою кількох ручок не ставимо `a`."
+          "ru": "Полотенец несколько, поэтому нужно towels с s.",
+          "uk": "Рушників кілька, тому потрібно towels з s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-21:intro2:r2": {
-          "ru": "Ручек несколько, поэтому нужно `are`.",
-          "uk": "Ручок кілька, тому потрібно `are`."
+          "ru": "Занавеска одна, поэтому перед curtain нужно a.",
+          "uk": "Завіса одна, тому перед curtain потрібно a."
         },
         "en:lesson-03:session-21:intro2:r3": {
-          "ru": "О месте спрашиваем `Where` — «Где».",
-          "uk": "Про місце запитуємо `Where` — «Де»."
+          "ru": "Занавеска одна, поэтому curtains с s не нужно.",
+          "uk": "Завіса одна, тому curtains з s не потрібно."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-21:intro3:r2": {
-          "ru": "`Yes` — «Да», а здесь нужен ответ «Нет»: `No`.",
-          "uk": "`Yes` — «Так», а тут потрібна відповідь «Ні»: `No`."
+          "ru": "Перед несколькими предметами a не ставим: Are they sponges?",
+          "uk": "Перед кількома предметами a не ставимо: Are they sponges?"
         },
         "en:lesson-03:session-21:intro3:r3": {
-          "ru": "Отдельный ответ «Нет» — `No`, а не `Not`.",
-          "uk": "Окрема відповідь «Ні» — `No`, а не `Not`."
+          "ru": "Губок несколько, поэтому нужно sponges с s.",
+          "uk": "Губок кілька, тому потрібно sponges з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1f13f154f1cc642f36c38b777e640c672f8cd871535e70ffa9752233ec29cbcf"
+  "auxiliaryFingerprint": "6dcd752cbe6963f7a1f9a26c3e7babcc1f9c27938f340f485aaf88d3a5720ff5"
 }

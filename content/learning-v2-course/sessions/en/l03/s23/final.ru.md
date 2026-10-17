@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 23 — Билеты на вечер в клубе
+# Английский · Урок 3 · Занятие 23 — Раскладываем кухонные вещи
 
-**Ситуация.** Вы с Анной встречаете гостей на платном вечере в клубе. Олег принёс билеты для друзей, но один билет выглядит иначе. Пока вы сверяете билеты и ищете пальто гостя, Анна рассказывает о знакомых.
+**Ситуация.** Вы с братом и подругой раскладываете кухонные вещи: ложки в один ящик, вилки в другой, чашки на полку. Всё, что вынимаете, называете сразу. Один предмет называем с a, несколько предметов — с s.
 
-**Что вы освоите:** назвать несколько билетов, спросить, где они, и сообщить, что они действительны
-**Новые слова:** tickets
+**Что вы освоите:** быстро называть один предмет и несколько предметов на кухне
+**Новые слова:** spoon, fork, cup, pot
+**Возвращаются:** box, jar
 
 ---
 
 ## Интро 1
 
-### На всех по билету
+### Верхний ящик
 
-`ticket` — «билет», `tickets` — «билеты». `They are tickets` — «Это билеты». Для нескольких билетов добавляем `s`, а перед `tickets` не ставим `a`. Олег купил один билет и привёл троих друзей. Компания большая, но билет от этого не размножился. Для всей компании нужны `tickets`.
+Брат выдвигает верхний ящик нового кухонного стола и достаёт горсть блестящих ложек, которые звенят друг о друга. Подруга стоит рядом со списком в руках и просит назвать их. spoon — «ложка». Ложек несколько — spoons. They are spoons — «Это ложки».
 
-**Олег показывает несколько билетов. Назовите их одним английским словом.**
+**Брат держит ложки в руке. Скажите ему полной фразой: это ложки.**
 
-- ✅ **tickets**
-- ❌ ticket — *`ticket` — один билет; несколько — `tickets`.*
-- ❌ a tickets — *Перед названием нескольких билетов не ставим `a`.*
+- ✅ **They are spoons.**
+- ❌ They are spoon. — *Ложек несколько, поэтому нужно spoons с s.*
+- ❌ They is spoons. — *С They нужно are: They are spoons.*
 
 ---
 
 ## Интро 2
 
-### Разные, но действительные
+### Второй ящик
 
-`The tickets are valid` — «Билеты действительны»: по ним можно пройти на этот вечер. `different` — «разный, другой». `The tickets are different` — «Билеты разные». Разный цвет ещё не означает, что билет недействителен. Если нужно найти приготовленные билеты, спросите `Where are the tickets?` — «Где билеты?»
+Подруга достаёт из второго ящика ещё одну горсть блестящих предметов с острыми зубцами на конце. Она не уверена, как они называются, и хочет сверить с вами, пока брат моет руки. fork — «вилка». Вилок несколько — forks. Are they forks? — «Это вилки?»
 
-**Вы проверили билеты: по всем можно пройти на этот вечер. Сообщите «Билеты действительны».**
+**Подруга держит предметы с зубцами. Спросите её, вилки ли это.**
 
-- ✅ **The tickets are valid.**
-- ❌ The tickets is valid. — *Билетов несколько: нужно `are`.*
-- ❌ The tickets are different. — *Здесь нужно сообщить, что билеты действительны: `valid`.*
+- ✅ **Are they forks?**
+- ❌ Are they fork? — *Вилок несколько, поэтому нужно forks с s.*
+- ❌ Is they forks? — *В вопросе с they нужно Are: Are they forks?*
 
 ---
 
 ## Интро 3
 
-### Знакомые среди гостей
+### Чашки после чая
 
-Анна представляет друзей: `He is married` — «Он женат», `She is single` — «Она не состоит в отношениях». В этом разговоре `single` описывает отношения, а не количество людей в комнате. Олег тем временем ищет пальто гостя: `Where is the coat?` — «Где пальто?» Пальто одно — `is`; билетов несколько — `Where are the tickets?`.
+Вы пьёте чай после работы, и подруга ополаскивает чашки в раковине горячей водой. Брат хочет сразу вытереть их и взять в руки: от чашек идёт пар. cup — «чашка». Чашек несколько — cups. The cups are hot — «Чашки горячие». Лучше вовремя предупредить брата.
 
-**Анна знает, какие билеты приготовлены для друзей. Спросите, где билеты.**
+**Брат тянется к чашкам в раковине. Предупредите его: чашки горячие.**
 
-- ✅ **Where are the tickets?**
-- ❌ Where is the tickets? — *Билетов несколько: нужно `are`.*
-- ❌ What are the tickets? — *О месте спрашиваем `Where` — «Где».*
+- ✅ **The cups are hot.**
+- ❌ The cups is hot. — *Чашек несколько, поэтому нужно are: The cups are hot.*
+- ❌ The cup are hot. — *Чашек несколько, поэтому нужно cups с s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Гость спрашивает о нескольких бумажках у вас в руке. Назовите их: «Это билеты»**
+**1 · Карточка слова — spoon**
+<!-- interaction_id: en:lesson-03:session-23:word:spoon; family: word_card -->
+> **spoon** — ложка. They are spoons — «Это ложки». О ложке для супа, чая, десерта.
+
+**2 · Брат достал из ящика ложки. Скажите подруге полной фразой: это ложки.**
 <!-- interaction_id: en:lesson-03:session-23:i01; family: phrase_builder -->
-Плитки: `tickets` `are` `They` `is` → **They are tickets.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are tickets.`)*
+Плитки: `spoons` `are` `They` `spoon` → **They are spoons.**
+*(плитка `spoon` лишняя: здесь нужно `spoons` — `They are spoons.`)*
 
-**2 · Послушайте сообщение о билетах**
+**3 · Карточка слова — fork**
+<!-- interaction_id: en:lesson-03:session-23:word:fork; family: word_card -->
+> **fork** — вилка. Are they forks? — «Это вилки?» О вилке, которой едят.
+
+**4 · Послушайте вопрос подруги о втором ящике**
 <!-- interaction_id: en:lesson-03:session-23:i02; family: listen_choose -->
-🔊 *The tickets are valid.* → **The tickets are valid.** · The tickets are different. · The tickets are here.
-- The tickets are different. — *В записи последнее слово — `valid`, а в этом варианте — `different`.*
-- The tickets are here. — *В записи последнее слово — `valid`, а в этом варианте — `here`.*
+🔊 *Are they forks?* → **Are they forks?** · Is it a fork? · Are they spoons?
+- Is it a fork? — *В записи последнее слово — `forks`, а в этом варианте — `fork`.*
+- Are they spoons? — *В записи последнее слово — `forks`, а в этом варианте — `spoons`.*
 
-**3 · Вы называете несколько билетов**
+**5 · Карточка слова — cup**
+<!-- interaction_id: en:lesson-03:session-23:word:cup; family: word_card -->
+> **cup** — чашка. The cups are hot — «Чашки горячие». О чашке для чая и кофе.
+
+**6 · Чашки только что из горячей воды. Дополните предупреждение**
 <!-- interaction_id: en:lesson-03:session-23:i03; family: context_gap_grammar -->
-They are ___. → **tickets** · ticket · a tickets
-- ticket — *Билетов несколько: `tickets`.*
-- a tickets — *Перед `tickets` не ставим `a`.*
+The ___ are hot. → **cups** · cup · a cups
+- cup — *Чашек несколько, поэтому нужно cups с s.*
+- a cups — *Перед несколькими предметами a не ставим: The cups are hot.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-23:i04; family: speed_match -->
-tickets — билеты · valid — действительный · different — разный, другой · coat — пальто
+spoons — ложки · forks — вилки · cups — чашки · box — коробка
 
-**5 · Послушайте и соберите сообщение**
+**8 · Карточка слова — pot**
+<!-- interaction_id: en:lesson-03:session-23:word:pot; family: word_card -->
+> **pot** — кастрюля. They are pots — «Это кастрюли». О посуде для варки супа и каши.
+
+**9 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-23:i05; family: listen_build_dictation -->
-🔊 *The coat is here.* Плитки: `here` `is` `coat` `The` `are` → **The coat is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The coat is here.`)*
+🔊 *They are pots.* Плитки: `pots` `are` `They` `pot` → **They are pots.**
+*(плитка `pot` лишняя: здесь нужно `pots` — `They are pots.`)*
 
-**6 · Анна знает, какие билеты нужны. Спросите, где билеты**
+**10 · Подруга достала из ящика вилки. Спросите её, вилки ли это.**
 <!-- interaction_id: en:lesson-03:session-23:i06; family: phrase_builder -->
-Плитки: `tickets` `the` `are` `Where` `What` → **Where are the tickets?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the tickets?`)*
+Плитки: `forks` `they` `Are` `Is` → **Are they forks?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are they forks?`)*
 
-**7 · Анна рассказала, что Олег женат. Скажите о нём «Он женат» с сокращением**
+**11 · Подруга спрашивает, где ложки. Скажите ей, что ложки здесь.**
 <!-- interaction_id: en:lesson-03:session-23:i07; family: scripted_repeat_compare -->
-🎙 **He's married.**
+🎙 **The spoons are here.**
 
-**8 · Вы проверили билеты: по ним можно пройти на сегодняшний вечер**
+**12 · Кастрюли стоят на плите. Дополните фразу брата**
 <!-- interaction_id: en:lesson-03:session-23:i08; family: context_gap_grammar -->
-The tickets are ___. → **valid** · married · single
-- married — *`married` описывает человека в браке. О билетах здесь нужно `valid`.*
-- single — *Действительные билеты — `valid`. Слово `single` этого не означает.*
+The pots ___ hot. → **are** · is · am
+- is — *Кастрюль несколько: The pots are hot.*
+- am — *С The pots нужно are: The pots are hot.*
 
-**9 · Послушайте, что Анна рассказывает о подруге**
+**13 · Послушайте, что подруга говорит о посуде**
 <!-- interaction_id: en:lesson-03:session-23:i09; family: listen_choose -->
-🔊 *She is single.* → **She is single.** · She is married. · She is famous.
-- She is married. — *В записи последнее слово — `single`, а в этом варианте — `married`.*
-- She is famous. — *В записи последнее слово — `single`, а в этом варианте — `famous`.*
+🔊 *They are cups.* → **They are cups.** · It is a cup. · They are pots.
+- It is a cup. — *В записи последнее слово — `cups`, а в этом варианте — `cup`.*
+- They are pots. — *В записи последнее слово — `cups`, а в этом варианте — `pots`.*
 
-**10 · Соедините слова со значениями в разговоре о гостях и билетах**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-23:i10; family: speed_match -->
-married — состоящий в браке · single — не состоящий в отношениях · tickets — билеты · different — разный, другой
+spoon — ложка · spoons — ложки · fork — вилка · forks — вилки
 
-**11 · Послушайте и соберите сообщение**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-23:i11; family: listen_build_dictation -->
-🔊 *The tickets are different.* Плитки: `different` `are` `tickets` `The` `is` → **The tickets are different.**
-*(плитка `is` лишняя: здесь нужно `are` — `The tickets are different.`)*
+🔊 *The forks are clean.* Плитки: `clean` `forks` `are` `The` `is` → **The forks are clean.**
+*(плитка `is` лишняя: здесь нужно `are` — `The forks are clean.`)*
 
-**12 · Анна уточняет, можно ли пройти по этим билетам. Сообщите «Билеты действительны»**
+**16 · Подруга достала из шкафа чашки. Скажите ей полной фразой: это чашки.**
 <!-- interaction_id: en:lesson-03:session-23:i12; family: phrase_builder -->
-Плитки: `valid` `are` `tickets` `The` `is` → **The tickets are valid.**
-*(плитка `is` лишняя: здесь нужно `are` — `The tickets are valid.`)*
+Плитки: `cups` `are` `They` `cup` → **They are cups.**
+*(плитка `cup` лишняя: здесь нужно `cups` — `They are cups.`)*
 
-**13 · Подруга Анны сейчас не состоит в отношениях. Скажите об этом с сокращением, начните с «Она»**
+**17 · Брат поднимает с плиты кастрюли. Скажите коротко, что это кастрюли.**
 <!-- interaction_id: en:lesson-03:session-23:i13; family: scripted_repeat_compare -->
-🎙 **She's single.**
+🎙 **They are pots.**
 
-**14 · Вы спрашиваете, где несколько билетов**
+**18 · Брат вынимает из ящика ложки. Дополните вопрос подруги**
 <!-- interaction_id: en:lesson-03:session-23:i14; family: context_gap_grammar -->
-Where ___ the tickets? → **are** · is · am
-- is — *Билетов несколько, поэтому `are`.*
-- am — *С `the tickets` здесь нужно `are`.*
+Are they ___? → **spoons** · spoon · are
+- spoon — *В вопросе о нескольких ложках тоже нужно spoons с s.*
+- are — *Слово Are уже стоит в начале. В пропуск нужно название ложек: spoons.*
 
-**15 · Послушайте сообщение об Олеге**
+**19 · Послушайте вопрос брата**
 <!-- interaction_id: en:lesson-03:session-23:i15; family: listen_choose -->
-🔊 *He is married.* → **He is married.** · He is single. · He is famous.
-- He is single. — *В записи последнее слово — `married`, а в этом варианте — `single`.*
-- He is famous. — *В записи последнее слово — `married`, а в этом варианте — `famous`.*
+🔊 *Are they cups?* → **Are they cups?** · Is it a pot? · Are they forks?
+- Is it a pot? — *В записи последнее слово — `cups`, а в этом варианте — `pot`.*
+- Are they forks? — *В записи последнее слово — `cups`, а в этом варианте — `forks`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-23:i16; family: speed_match -->
-married — состоящий в браке · single — не состоящий в отношениях · valid — действительный · coat — пальто
+cups — чашки · pots — кастрюли · forks — вилки · jar — банка
 
-**17 · Перед следующим вечером Анна снова приготовила билеты для друзей. Спросите, где билеты**
+**21 · Подруга раскладывает вещи по ящикам. Спросите её, ложки ли это.**
 <!-- interaction_id: en:lesson-03:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the tickets?**
-
+🎙 **Are they spoons?**

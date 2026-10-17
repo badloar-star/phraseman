@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 21 — Ручки для гостей
+# Английский · Урок 3 · Занятие 21 — Исправляем накладную
 
-**Ситуация.** Перед встречей в клубе Анна ищет ручки для гостей. Олег оставил их наверху, а гости ждут снаружи. Вы помогаете разобраться, где люди и вещи; заодно замечаете разбитое окно.
+**Ситуация.** Курьер оставил накладную, но в ней много неточностей, и вы с братом и подругой исправляете её по строчкам. Один предмет называем с a, а несколько предметов называем без a, только с s.
 
-**Что вы освоите:** назвать несколько ручек и уточнить, где они находятся
-**Новые слова:** pens
+**Что вы освоите:** различать один предмет с a и несколько предметов без a
+**Новые слова:** towel, curtain, sponge, comb
+**Возвращаются:** box, lamp
 
 ---
 
 ## Интро 1
 
-### Одной ручки мало
+### Первая строка накладной
 
-`pen` — «ручка», `pens` — «ручки». `They are pens` — «Это ручки». Для нескольких ручек нужны `pens` и `are`; `a` перед `pens` не ставим. Анна приготовила одну ручку на всех гостей. Очередь за автографом получилась, хотя писателя никто не приглашал. Лучше принести `pens` — несколько ручек.
+В накладной напечатано «a towels», но подруга заглядывает в открытую коробку и видит стопку мягких полотенец в голубую полоску. towel — «полотенце». Для одного ставим a, а для нескольких a не нужно, добавляем только s: towels. They are towels — «Это полотенца».
 
-**На столе лежат несколько ручек. Назовите их одним английским словом.**
+**Подруга показывает на стопку полотенец. Скажите ей полной фразой: это полотенца.**
 
-- ✅ **pens**
-- ❌ pen — *`pen` — одна ручка; здесь несколько: `pens`.*
-- ❌ a pens — *Перед названием нескольких ручек не ставим `a`.*
+- ✅ **They are towels.**
+- ❌ They are a towels. — *Перед несколькими предметами a не ставим: They are towels.*
+- ❌ They are towel. — *Полотенец несколько, поэтому нужно towels с s.*
 
 ---
 
 ## Интро 2
 
-### Снаружи или внутри
+### Вторая строка
 
-`inside` — «внутри», `outside` — «снаружи». `The pens are inside` — «Ручки внутри». `the pens` — те ручки, которые вы сейчас ищете. `Where are the pens?` — «Где ручки?» После `Where` ставим `are`: ручек несколько.
+Во второй строке написано «curtains», а в коробке на самом дне лежит только одна занавеска для ванной, аккуратно сложенная вчетверо. Брат достаёт её, разворачивает и показывает вам. curtain — «занавеска». Одну занавеску называем с a: It is a curtain — «Это занавеска».
 
-**Анна знает, какие ручки нужны гостям. Спросите, где ручки.**
+**Брат держит одну занавеску. Скажите ему полной фразой: это занавеска.**
 
-- ✅ **Where are the pens?**
-- ❌ Where is the pens? — *Ручек несколько, поэтому нужно `are`.*
-- ❌ What are the pens? — *О месте спрашиваем `Where` — «Где».*
+- ✅ **It is a curtain.**
+- ❌ It is curtain. — *Занавеска одна, поэтому перед curtain нужно a.*
+- ❌ It is curtains. — *Занавеска одна, поэтому curtains с s не нужно.*
 
 ---
 
 ## Интро 3
 
-### Они наверху
+### Третья строка
 
-`upstairs` — «наверху, на верхнем этаже». `The pens are upstairs` — «Ручки наверху». Олег спрашивает, лежат ли они снаружи. Вы знаете, что они наверху в здании, и отвечаете `No` — «Нет». Рядом с дверью вы замечаете окно: `The window is broken` — «Окно разбито». Окно одно, поэтому здесь `is`.
+В третьей строке курьер не уверен и спешит к следующему заказу: он приложил к накладной упаковку с жёлтыми губками для посуды. Подруга показывает вам на неё и ждёт уточнения. sponge — «губка». Несколько губок — sponges, без a. Are they sponges? — «Это губки?»
 
-**Олег спрашивает, лежат ли ручки снаружи. Они внутри здания. Ответьте одним словом «Нет».**
+**Подруга показывает на упаковку. Спросите курьера, губки ли это.**
 
-- ✅ **No.**
-- ❌ Yes. — *`Yes` — «Да», а здесь нужен ответ «Нет»: `No`.*
-- ❌ Not. — *Отдельный ответ «Нет» — `No`, а не `Not`.*
+- ✅ **Are they sponges?**
+- ❌ Are they a sponges? — *Перед несколькими предметами a не ставим: Are they sponges?*
+- ❌ Are they sponge? — *Губок несколько, поэтому нужно sponges с s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Анна спрашивает про несколько предметов в коробке. Это ручки. Назовите их полной фразой**
+**1 · Карточка слова — towel**
+<!-- interaction_id: en:lesson-03:session-21:word:towel; family: word_card -->
+> **towel** — полотенце. They are towels — «Это полотенца». О полотенце для рук, лица, ванной.
+
+**2 · Брат достал из коробки стопку полотенец. Подруга спрашивает, что это. Скажите: это полотенца.**
 <!-- interaction_id: en:lesson-03:session-21:i01; family: phrase_builder -->
-Плитки: `pens` `are` `They` `is` → **They are pens.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are pens.`)*
+Плитки: `towels` `are` `They` `towel` → **They are towels.**
+*(плитка `towel` лишняя: здесь нужно `towels` — `They are towels.`)*
 
-**2 · Послушайте сообщение о ручках**
+**3 · Карточка слова — curtain**
+<!-- interaction_id: en:lesson-03:session-21:word:curtain; family: word_card -->
+> **curtain** — занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.
+
+**4 · Послушайте брата: он говорит о второй строке накладной**
 <!-- interaction_id: en:lesson-03:session-21:i02; family: listen_choose -->
-🔊 *The pens are inside.* → **The pens are inside.** · The pens are outside. · The pens are upstairs.
-- The pens are outside. — *В записи последнее слово — `inside`, а в этом варианте — `outside`.*
-- The pens are upstairs. — *В записи последнее слово — `inside`, а в этом варианте — `upstairs`.*
+🔊 *It is a curtain.* → **It is a curtain.** · They are curtains. · It is a towel.
+- They are curtains. — *В записи последнее слово — `curtain`, а в этом варианте — `curtains`.*
+- It is a towel. — *В записи последнее слово — `curtain`, а в этом варианте — `towel`.*
 
-**3 · Вы называете несколько ручек для гостей**
+**5 · Карточка слова — sponge**
+<!-- interaction_id: en:lesson-03:session-21:word:sponge; family: word_card -->
+> **sponge** — губка для мытья. Are they sponges? — «Это губки?» О губке для посуды или для ванной.
+
+**6 · Подруга достала из упаковки одну губку. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-21:i03; family: context_gap_grammar -->
-They are ___. → **pens** · pen · a pens
-- pen — *Ручек несколько: `pens`.*
-- a pens — *Перед `pens` не ставим `a`.*
+It is ___ sponge. → **a** · an · is
+- an — *Слово sponge начинается с согласного звука, поэтому здесь a.*
+- is — *Слово is уже стоит перед пропуском. Перед sponge нужно a.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-21:i04; family: speed_match -->
-pens — ручки · inside — внутри · outside — снаружи · upstairs — наверху, на верхнем этаже
+towels — полотенца · curtains — занавески · sponges — губки · box — коробка
 
-**5 · Послушайте и соберите сообщение об окне**
+**8 · Карточка слова — comb**
+<!-- interaction_id: en:lesson-03:session-21:word:comb; family: word_card -->
+> **comb** — расчёска. It is a comb — «Это расчёска». О расчёске для волос.
+
+**9 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-21:i05; family: listen_build_dictation -->
-🔊 *The window is broken.* Плитки: `broken` `is` `window` `The` `are` → **The window is broken.**
-*(плитка `are` лишняя: здесь нужно `is` — `The window is broken.`)*
+🔊 *It is a comb.* Плитки: `comb` `a` `is` `It` `combs` → **It is a comb.**
+*(плитка `combs` лишняя: здесь нужно `comb` — `It is a comb.`)*
 
-**6 · Анна ищет нужные для встречи ручки. Спросите, где ручки**
+**10 · Подруга держит одно полотенце. Скажите брату полной фразой: это полотенце.**
 <!-- interaction_id: en:lesson-03:session-21:i06; family: phrase_builder -->
-Плитки: `pens` `the` `are` `Where` `What` → **Where are the pens?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the pens?`)*
+Плитки: `towel` `is` `It` `a` `are` → **It is a towel.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is a towel.`)*
 
-**7 · Олег спрашивает про ручки. Они на верхнем этаже. Скажите «Они наверху» с сокращением**
+**11 · Курьер показывает одну занавеску. Скажите коротко, что это занавеска.**
 <!-- interaction_id: en:lesson-03:session-21:i07; family: scripted_repeat_compare -->
-🎙 **They're upstairs.**
+🎙 **It is a curtain.**
 
-**8 · Олег спрашивает, лежат ли ручки снаружи. Они внутри. Ответьте одним словом «Нет»**
+**12 · Курьер приложил к накладной несколько губок. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-21:i08; family: context_gap_grammar -->
-___. → **No** · Yes · Not
-- Yes — *`Yes` — «Да», а здесь нужно «Нет»: `No`.*
-- Not — *Отдельный ответ «Нет» — `No`.*
+They are ___. → **sponges** · a sponges · sponge
+- a sponges — *Перед несколькими предметами a не ставим: They are sponges.*
+- sponge — *Губок несколько, поэтому нужно sponges с s.*
 
-**9 · Послушайте сообщение о гостях**
+**13 · Послушайте подругу: она читает накладную**
 <!-- interaction_id: en:lesson-03:session-21:i09; family: listen_choose -->
-🔊 *They are outside.* → **They are outside.** · They are inside. · They are upstairs.
-- They are inside. — *В записи последнее слово — `outside`, а в этом варианте — `inside`.*
-- They are upstairs. — *В записи последнее слово — `outside`, а в этом варианте — `upstairs`.*
+🔊 *They are towels.* → **They are towels.** · It is a towel. · They are combs.
+- It is a towel. — *В записи последнее слово — `towels`, а в этом варианте — `towel`.*
+- They are combs. — *В записи последнее слово — `towels`, а в этом варианте — `combs`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-21:i10; family: speed_match -->
-broken — разбитый, сломанный · window — окно · no — нет · pens — ручки
+comb — расчёска · combs — расчёски · curtain — занавеска · curtains — занавески
 
-**11 · Послушайте и соберите сообщение**
+**15 · Послушайте брата и соберите вопрос**
 <!-- interaction_id: en:lesson-03:session-21:i11; family: listen_build_dictation -->
-🔊 *The pens are upstairs.* Плитки: `upstairs` `are` `pens` `The` `is` → **The pens are upstairs.**
-*(плитка `is` лишняя: здесь нужно `are` — `The pens are upstairs.`)*
+🔊 *Are they curtains?* Плитки: `curtains` `they` `Are` `Is` → **Are they curtains?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are they curtains?`)*
 
-**12 · Анна ищет ручки во дворе, но они в здании. Сообщите «Ручки внутри»**
+**16 · Подруга показывает на одну губку. Спросите курьера, губка ли это.**
 <!-- interaction_id: en:lesson-03:session-21:i12; family: phrase_builder -->
-Плитки: `inside` `are` `pens` `The` `is` → **The pens are inside.**
-*(плитка `is` лишняя: здесь нужно `are` — `The pens are inside.`)*
+Плитки: `sponge` `it` `Is` `a` `Are` → **Is it a sponge?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it a sponge?`)*
 
-**13 · Олег показывает на окно с разбитым стеклом. Скажите об окне «Оно разбито» с сокращением**
+**17 · Брат нашёл в коробке расчёски. Скажите коротко, что это расчёски.**
 <!-- interaction_id: en:lesson-03:session-21:i13; family: scripted_repeat_compare -->
-🎙 **It's broken.**
+🎙 **They are combs.**
 
-**14 · Вы спрашиваете, где несколько нужных ручек**
+**18 · Подруга держит одно полотенце. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-21:i14; family: context_gap_grammar -->
-Where ___ the pens? → **are** · is · am
-- is — *Ручек несколько: `Where are the pens?`.*
-- am — *С `the pens` здесь нужно `are`.*
+It is ___ towel. → **a** · an · is
+- an — *Слово towel начинается с согласного звука, поэтому здесь a.*
+- is — *Слово is уже стоит перед пропуском. Перед towel нужно a.*
 
-**15 · Послушайте сообщение о другом окне**
+**19 · Послушайте вопрос курьера**
 <!-- interaction_id: en:lesson-03:session-21:i15; family: listen_choose -->
-🔊 *The window is open.* → **The window is open.** · The window is broken. · The window is closed.
-- The window is broken. — *В записи последнее слово — `open`, а в этом варианте — `broken`.*
-- The window is closed. — *В записи последнее слово — `open`, а в этом варианте — `closed`.*
+🔊 *Are they sponges?* → **Are they sponges?** · Is it a sponge? · Are they curtains?
+- Is it a sponge? — *В записи последнее слово — `sponges`, а в этом варианте — `sponge`.*
+- Are they curtains? — *В записи последнее слово — `sponges`, а в этом варианте — `curtains`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-21:i16; family: speed_match -->
-outside — снаружи · upstairs — наверху, на верхнем этаже · no — нет · window — окно
+sponges — губки · combs — расчёски · towels — полотенца · lamp — лампа
 
-**17 · На другой встрече гостям нужно заполнить анкеты. Анна знает, какие ручки вы приготовили. Спросите, где ручки**
+**21 · Курьер сомневается, что написано в накладной. Спросите его, занавески ли это.**
 <!-- interaction_id: en:lesson-03:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the pens?**
-
+🎙 **Are they curtains?**

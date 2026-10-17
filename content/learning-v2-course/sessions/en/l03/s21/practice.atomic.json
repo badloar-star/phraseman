@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-21:word:towel",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — towel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:towel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — towel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:towel:audio",
+            "transcript": "towel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:towel:r1",
+              "targetText": "towel",
+              "meaningByLocale": {
+                "ru": "полотенце. They are towels — «Это полотенца». О полотенце для рук, лица, ванной.",
+                "uk": "рушник. They are towels — «Це рушники». Про рушник для рук, обличчя, ванної."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "towel",
+            "definitionByLocale": {
+              "ru": "полотенце. They are towels — «Это полотенца». О полотенце для рук, лица, ванной.",
+              "uk": "рушник. They are towels — «Це рушники». Про рушник для рук, обличчя, ванної."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат достал из коробки стопку полотенец. Подруга спрашивает, что это. Скажите: это полотенца.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат достал из коробки стопку полотенец. Подруга спрашивает, что это. Скажите: это полотенца.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are towels.",
+          "localizedMeaning": {
+            "ru": "Брат достал из коробки стопку полотенец. Подруга спрашивает, что это. Скажите: это полотенца.",
+            "uk": "Брат дістав із коробки стос рушників. Подруга питає, що це. Скажіть: це рушники."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "towels"
+          ],
+          "authoredDistractorTokens": [
+            "towel"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат достал из коробки стопку полотенец. Подруга спрашивает, что это. Скажите: это полотенца.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `towels` — `They are towels.`",
+                "uk": "тут потрібно `towels` — `They are towels.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:word:curtain",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — curtain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:curtain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — curtain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:curtain:audio",
+            "transcript": "curtain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:curtain:r1",
+              "targetText": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.",
+                "uk": "завіса. It is a curtain — «Це завіса». Про завісу на вікні або у ванній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curtain",
+            "definitionByLocale": {
+              "ru": "занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.",
+              "uk": "завіса. It is a curtain — «Це завіса». Про завісу на вікні або у ванній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата: он говорит о второй строке накладной",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i02:r1",
+            "text": "It is a curtain."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i02:r2",
+            "text": "They are curtains."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i02:r3",
+            "text": "It is a towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата: он говорит о второй строке накладной",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i02:audio",
+            "transcript": "It is a curtain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:i02:r1",
+              "targetText": "It is a curtain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i02:r2",
+              "targetText": "They are curtains.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i02:r3",
+              "targetText": "It is a towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата: он говорит о второй строке накладной",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `curtain`, а в этом варианте — `curtains`.",
+                "uk": "У записі останнє слово — `curtain`, а в цьому варіанті — `curtains`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата: он говорит о второй строке накладной",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `curtain`, а в этом варианте — `towel`.",
+                "uk": "У записі останнє слово — `curtain`, а в цьому варіанті — `towel`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:word:sponge",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sponge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:sponge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sponge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:sponge:audio",
+            "transcript": "sponge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:sponge:r1",
+              "targetText": "sponge",
+              "meaningByLocale": {
+                "ru": "губка для мытья. Are they sponges? — «Это губки?» О губке для посуды или для ванной.",
+                "uk": "губка для миття. Are they sponges? — «Це губки?» Про губку для посуду або для ванної."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sponge",
+            "definitionByLocale": {
+              "ru": "губка для мытья. Are they sponges? — «Это губки?» О губке для посуды или для ванной.",
+              "uk": "губка для миття. Are they sponges? — «Це губки?» Про губку для посуду або для ванної."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга достала из упаковки одну губку. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достала из упаковки одну губку. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга достала из упаковки одну губку. Дополните фразу",
+            "uk": "Подруга дістала з упаковки одну губку. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ sponge.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-21:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга достала из упаковки одну губку. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга достала из упаковки одну губку. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово sponge начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово sponge починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга достала из упаковки одну губку. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед sponge нужно a.",
+                "uk": "Слово is вже стоїть перед пропуском. Перед sponge потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-21:i04:p1",
+              "target": "towels",
+              "meaningByLocale": {
+                "ru": "полотенца",
+                "uk": "рушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i04:p2",
+              "target": "curtains",
+              "meaningByLocale": {
+                "ru": "занавески",
+                "uk": "завіси"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i04:p3",
+              "target": "sponges",
+              "meaningByLocale": {
+                "ru": "губки",
+                "uk": "губки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "towels",
+            "curtains",
+            "sponges",
+            "box"
+          ],
+          "rightColumn": [
+            "полотенца",
+            "занавески",
+            "губки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:word:comb",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — comb",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:comb:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — comb",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:comb:audio",
+            "transcript": "comb"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:comb:r1",
+              "targetText": "comb",
+              "meaningByLocale": {
+                "ru": "расчёска. It is a comb — «Это расчёска». О расчёске для волос.",
+                "uk": "гребінець. It is a comb — «Це гребінець». Про гребінець для волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "comb",
+            "definitionByLocale": {
+              "ru": "расчёска. It is a comb — «Это расчёска». О расчёске для волос.",
+              "uk": "гребінець. It is a comb — «Це гребінець». Про гребінець для волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i05:audio",
+            "transcript": "It is a comb."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a comb.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "comb"
+          ],
+          "authoredDistractorTokens": [
+            "combs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `comb` — `It is a comb.`",
+                "uk": "тут потрібно `comb` — `It is a comb.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга держит одно полотенце. Скажите брату полной фразой: это полотенце.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга держит одно полотенце. Скажите брату полной фразой: это полотенце.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a towel.",
+          "localizedMeaning": {
+            "ru": "Подруга держит одно полотенце. Скажите брату полной фразой: это полотенце.",
+            "uk": "Подруга тримає один рушник. Скажіть братові повною фразою: це рушник."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "towel"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга держит одно полотенце. Скажите брату полной фразой: это полотенце.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a towel.`",
+                "uk": "тут потрібно `is` — `It is a towel.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Курьер показывает одну занавеску. Скажите коротко, что это занавеска.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Курьер показывает одну занавеску. Скажите коротко, что это занавеска.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i07:audio",
+            "transcript": "It is a curtain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is a curtain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Курьер приложил к накладной несколько губок. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i08:r1",
+            "text": "sponges"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i08:r2",
+            "text": "a sponges"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i08:r3",
+            "text": "sponge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Курьер приложил к накладной несколько губок. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер приложил к накладной несколько губок. Дополните фразу",
+            "uk": "Кур’єр доклав до накладної кілька губок. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "They are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-21:i08:r1",
+              "text": "sponges"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i08:r2",
+              "text": "a sponges"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i08:r3",
+              "text": "sponge"
+            }
+          ],
+          "testedDimension": "Курьер приложил к накладной несколько губок. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Курьер приложил к накладной несколько губок. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими предметами a не ставим: They are sponges.",
+                "uk": "Перед кількома предметами a не ставимо: They are sponges."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Курьер приложил к накладной несколько губок. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Губок несколько, поэтому нужно sponges с s.",
+                "uk": "Губок кілька, тому потрібно sponges з s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу: она читает накладную",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i09:r1",
+            "text": "They are towels."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i09:r2",
+            "text": "It is a towel."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i09:r3",
+            "text": "They are combs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу: она читает накладную",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i09:audio",
+            "transcript": "They are towels."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:i09:r1",
+              "targetText": "They are towels.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i09:r2",
+              "targetText": "It is a towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i09:r3",
+              "targetText": "They are combs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу: она читает накладную",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `towels`, а в этом варианте — `towel`.",
+                "uk": "У записі останнє слово — `towels`, а в цьому варіанті — `towel`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу: она читает накладную",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `towels`, а в этом варианте — `combs`.",
+                "uk": "У записі останнє слово — `towels`, а в цьому варіанті — `combs`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-21:i10:p1",
+              "target": "comb",
+              "meaningByLocale": {
+                "ru": "расчёска",
+                "uk": "гребінець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i10:p2",
+              "target": "combs",
+              "meaningByLocale": {
+                "ru": "расчёски",
+                "uk": "гребінці"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i10:p3",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i10:p4",
+              "target": "curtains",
+              "meaningByLocale": {
+                "ru": "занавески",
+                "uk": "завіси"
+              }
+            }
+          ],
+          "leftColumn": [
+            "comb",
+            "combs",
+            "curtain",
+            "curtains"
+          ],
+          "rightColumn": [
+            "расчёска",
+            "расчёски",
+            "занавеска",
+            "занавески"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i11:audio",
+            "transcript": "Are they curtains?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they curtains?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they curtains?`",
+                "uk": "тут потрібно `Are` — `Are they curtains?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на одну губку. Спросите курьера, губка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на одну губку. Спросите курьера, губка ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a sponge?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на одну губку. Спросите курьера, губка ли это.",
+            "uk": "Подруга показує на одну губку. Запитайте кур’єра, чи це губка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "sponge"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на одну губку. Спросите курьера, губка ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a sponge?`",
+                "uk": "тут потрібно `Is` — `Is it a sponge?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат нашёл в коробке расчёски. Скажите коротко, что это расчёски.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Брат нашёл в коробке расчёски. Скажите коротко, что это расчёски.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i13:audio",
+            "transcript": "They are combs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are combs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга держит одно полотенце. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i14:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i14:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга держит одно полотенце. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга держит одно полотенце. Дополните фразу",
+            "uk": "Подруга тримає один рушник. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ towel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-21:i14:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i14:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга держит одно полотенце. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга держит одно полотенце. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово towel начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово towel починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга держит одно полотенце. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед towel нужно a.",
+                "uk": "Слово is вже стоїть перед пропуском. Перед towel потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос курьера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i15:r1",
+            "text": "Are they sponges?"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i15:r2",
+            "text": "Is it a sponge?"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i15:r3",
+            "text": "Are they curtains?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос курьера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i15:audio",
+            "transcript": "Are they sponges?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:i15:r1",
+              "targetText": "Are they sponges?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i15:r2",
+              "targetText": "Is it a sponge?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i15:r3",
+              "targetText": "Are they curtains?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос курьера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sponges`, а в этом варианте — `sponge`.",
+                "uk": "У записі останнє слово — `sponges`, а в цьому варіанті — `sponge`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос курьера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sponges`, а в этом варианте — `curtains`.",
+                "uk": "У записі останнє слово — `sponges`, а в цьому варіанті — `curtains`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-21:i16:p1",
+              "target": "sponges",
+              "meaningByLocale": {
+                "ru": "губки",
+                "uk": "губки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i16:p2",
+              "target": "combs",
+              "meaningByLocale": {
+                "ru": "расчёски",
+                "uk": "гребінці"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i16:p3",
+              "target": "towels",
+              "meaningByLocale": {
+                "ru": "полотенца",
+                "uk": "рушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i16:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sponges",
+            "combs",
+            "towels",
+            "lamp"
+          ],
+          "rightColumn": [
+            "губки",
+            "расчёски",
+            "полотенца",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Курьер сомневается, что написано в накладной. Спросите его, занавески ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Курьер сомневается, что написано в накладной. Спросите его, занавески ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i17:audio",
+            "transcript": "Are they curtains?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they curtains?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-21:word:towel",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — towel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:towel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — towel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:towel:audio",
+            "transcript": "towel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:towel:r1",
+              "targetText": "towel",
+              "meaningByLocale": {
+                "ru": "полотенце. They are towels — «Это полотенца». О полотенце для рук, лица, ванной.",
+                "uk": "рушник. They are towels — «Це рушники». Про рушник для рук, обличчя, ванної."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "towel",
+            "definitionByLocale": {
+              "ru": "полотенце. They are towels — «Это полотенца». О полотенце для рук, лица, ванной.",
+              "uk": "рушник. They are towels — «Це рушники». Про рушник для рук, обличчя, ванної."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат дістав із коробки стос рушників. Подруга питає, що це. Скажіть: це рушники.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат дістав із коробки стос рушників. Подруга питає, що це. Скажіть: це рушники.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are towels.",
+          "localizedMeaning": {
+            "ru": "Брат достал из коробки стопку полотенец. Подруга спрашивает, что это. Скажите: это полотенца.",
+            "uk": "Брат дістав із коробки стос рушників. Подруга питає, що це. Скажіть: це рушники."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "towels"
+          ],
+          "authoredDistractorTokens": [
+            "towel"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат дістав із коробки стос рушників. Подруга питає, що це. Скажіть: це рушники.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `towels` — `They are towels.`",
+                "uk": "тут потрібно `towels` — `They are towels.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:word:curtain",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — curtain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:curtain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — curtain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:curtain:audio",
+            "transcript": "curtain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:curtain:r1",
+              "targetText": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.",
+                "uk": "завіса. It is a curtain — «Це завіса». Про завісу на вікні або у ванній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curtain",
+            "definitionByLocale": {
+              "ru": "занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.",
+              "uk": "завіса. It is a curtain — «Це завіса». Про завісу на вікні або у ванній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата: він говорить про другий рядок накладної",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i02:r1",
+            "text": "It is a curtain."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i02:r2",
+            "text": "They are curtains."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i02:r3",
+            "text": "It is a towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата: він говорить про другий рядок накладної",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i02:audio",
+            "transcript": "It is a curtain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:i02:r1",
+              "targetText": "It is a curtain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i02:r2",
+              "targetText": "They are curtains.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i02:r3",
+              "targetText": "It is a towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата: він говорить про другий рядок накладної",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `curtain`, а в этом варианте — `curtains`.",
+                "uk": "У записі останнє слово — `curtain`, а в цьому варіанті — `curtains`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата: він говорить про другий рядок накладної",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `curtain`, а в этом варианте — `towel`.",
+                "uk": "У записі останнє слово — `curtain`, а в цьому варіанті — `towel`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:word:sponge",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sponge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:sponge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sponge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:sponge:audio",
+            "transcript": "sponge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:sponge:r1",
+              "targetText": "sponge",
+              "meaningByLocale": {
+                "ru": "губка для мытья. Are they sponges? — «Это губки?» О губке для посуды или для ванной.",
+                "uk": "губка для миття. Are they sponges? — «Це губки?» Про губку для посуду або для ванної."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sponge",
+            "definitionByLocale": {
+              "ru": "губка для мытья. Are they sponges? — «Это губки?» О губке для посуды или для ванной.",
+              "uk": "губка для миття. Are they sponges? — «Це губки?» Про губку для посуду або для ванної."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга дістала з упаковки одну губку. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістала з упаковки одну губку. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга достала из упаковки одну губку. Дополните фразу",
+            "uk": "Подруга дістала з упаковки одну губку. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ sponge.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-21:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга дістала з упаковки одну губку. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга дістала з упаковки одну губку. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово sponge начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово sponge починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга дістала з упаковки одну губку. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед sponge нужно a.",
+                "uk": "Слово is вже стоїть перед пропуском. Перед sponge потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-21:i04:p1",
+              "target": "towels",
+              "meaningByLocale": {
+                "ru": "полотенца",
+                "uk": "рушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i04:p2",
+              "target": "curtains",
+              "meaningByLocale": {
+                "ru": "занавески",
+                "uk": "завіси"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i04:p3",
+              "target": "sponges",
+              "meaningByLocale": {
+                "ru": "губки",
+                "uk": "губки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "towels",
+            "curtains",
+            "sponges",
+            "box"
+          ],
+          "rightColumn": [
+            "рушники",
+            "завіси",
+            "губки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:word:comb",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — comb",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:word:comb:audio"
+        ],
+        "accessibilityLabel": "Картка слова — comb",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:word:comb:audio",
+            "transcript": "comb"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:word:comb:r1",
+              "targetText": "comb",
+              "meaningByLocale": {
+                "ru": "расчёска. It is a comb — «Это расчёска». О расчёске для волос.",
+                "uk": "гребінець. It is a comb — «Це гребінець». Про гребінець для волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "comb",
+            "definitionByLocale": {
+              "ru": "расчёска. It is a comb — «Это расчёска». О расчёске для волос.",
+              "uk": "гребінець. It is a comb — «Це гребінець». Про гребінець для волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i05:audio",
+            "transcript": "It is a comb."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a comb.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "comb"
+          ],
+          "authoredDistractorTokens": [
+            "combs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `comb` — `It is a comb.`",
+                "uk": "тут потрібно `comb` — `It is a comb.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга тримає один рушник. Скажіть братові повною фразою: це рушник.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга тримає один рушник. Скажіть братові повною фразою: це рушник.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a towel.",
+          "localizedMeaning": {
+            "ru": "Подруга держит одно полотенце. Скажите брату полной фразой: это полотенце.",
+            "uk": "Подруга тримає один рушник. Скажіть братові повною фразою: це рушник."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "towel"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга тримає один рушник. Скажіть братові повною фразою: це рушник.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a towel.`",
+                "uk": "тут потрібно `is` — `It is a towel.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кур’єр показує одну завісу. Скажіть коротко, що це завіса.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Кур’єр показує одну завісу. Скажіть коротко, що це завіса.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i07:audio",
+            "transcript": "It is a curtain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is a curtain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кур’єр доклав до накладної кілька губок. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i08:r1",
+            "text": "sponges"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i08:r2",
+            "text": "a sponges"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i08:r3",
+            "text": "sponge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кур’єр доклав до накладної кілька губок. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер приложил к накладной несколько губок. Дополните фразу",
+            "uk": "Кур’єр доклав до накладної кілька губок. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "They are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-21:i08:r1",
+              "text": "sponges"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i08:r2",
+              "text": "a sponges"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i08:r3",
+              "text": "sponge"
+            }
+          ],
+          "testedDimension": "Кур’єр доклав до накладної кілька губок. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Кур’єр доклав до накладної кілька губок. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими предметами a не ставим: They are sponges.",
+                "uk": "Перед кількома предметами a не ставимо: They are sponges."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Кур’єр доклав до накладної кілька губок. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Губок несколько, поэтому нужно sponges с s.",
+                "uk": "Губок кілька, тому потрібно sponges з s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу: вона читає накладну",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i09:r1",
+            "text": "They are towels."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i09:r2",
+            "text": "It is a towel."
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i09:r3",
+            "text": "They are combs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу: вона читає накладну",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i09:audio",
+            "transcript": "They are towels."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:i09:r1",
+              "targetText": "They are towels.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i09:r2",
+              "targetText": "It is a towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i09:r3",
+              "targetText": "They are combs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу: вона читає накладну",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `towels`, а в этом варианте — `towel`.",
+                "uk": "У записі останнє слово — `towels`, а в цьому варіанті — `towel`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу: вона читає накладну",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `towels`, а в этом варианте — `combs`.",
+                "uk": "У записі останнє слово — `towels`, а в цьому варіанті — `combs`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-21:i10:p1",
+              "target": "comb",
+              "meaningByLocale": {
+                "ru": "расчёска",
+                "uk": "гребінець"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i10:p2",
+              "target": "combs",
+              "meaningByLocale": {
+                "ru": "расчёски",
+                "uk": "гребінці"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i10:p3",
+              "target": "curtain",
+              "meaningByLocale": {
+                "ru": "занавеска",
+                "uk": "завіса"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i10:p4",
+              "target": "curtains",
+              "meaningByLocale": {
+                "ru": "занавески",
+                "uk": "завіси"
+              }
+            }
+          ],
+          "leftColumn": [
+            "comb",
+            "combs",
+            "curtain",
+            "curtains"
+          ],
+          "rightColumn": [
+            "гребінець",
+            "гребінці",
+            "завіса",
+            "завіси"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i11:audio",
+            "transcript": "Are they curtains?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they curtains?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they curtains?`",
+                "uk": "тут потрібно `Are` — `Are they curtains?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на одну губку. Запитайте кур’єра, чи це губка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на одну губку. Запитайте кур’єра, чи це губка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a sponge?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на одну губку. Спросите курьера, губка ли это.",
+            "uk": "Подруга показує на одну губку. Запитайте кур’єра, чи це губка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "sponge"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на одну губку. Запитайте кур’єра, чи це губка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a sponge?`",
+                "uk": "тут потрібно `Is` — `Is it a sponge?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат знайшов у коробці гребінці. Скажіть коротко, що це гребінці.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Брат знайшов у коробці гребінці. Скажіть коротко, що це гребінці.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i13:audio",
+            "transcript": "They are combs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are combs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга тримає один рушник. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i14:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i14:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга тримає один рушник. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга держит одно полотенце. Дополните фразу",
+            "uk": "Подруга тримає один рушник. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ towel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-21:i14:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i14:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга тримає один рушник. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга тримає один рушник. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово towel начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово towel починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга тримає один рушник. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед towel нужно a.",
+                "uk": "Слово is вже стоїть перед пропуском. Перед towel потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання кур’єра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i15:r1",
+            "text": "Are they sponges?"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i15:r2",
+            "text": "Is it a sponge?"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i15:r3",
+            "text": "Are they curtains?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання кур’єра",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i15:audio",
+            "transcript": "Are they sponges?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-21:i15:r1",
+              "targetText": "Are they sponges?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i15:r2",
+              "targetText": "Is it a sponge?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i15:r3",
+              "targetText": "Are they curtains?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання кур’єра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sponges`, а в этом варианте — `sponge`.",
+                "uk": "У записі останнє слово — `sponges`, а в цьому варіанті — `sponge`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання кур’єра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sponges`, а в этом варианте — `curtains`.",
+                "uk": "У записі останнє слово — `sponges`, а в цьому варіанті — `curtains`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-21:i16:p1",
+              "target": "sponges",
+              "meaningByLocale": {
+                "ru": "губки",
+                "uk": "губки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i16:p2",
+              "target": "combs",
+              "meaningByLocale": {
+                "ru": "расчёски",
+                "uk": "гребінці"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i16:p3",
+              "target": "towels",
+              "meaningByLocale": {
+                "ru": "полотенца",
+                "uk": "рушники"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-21:i16:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sponges",
+            "combs",
+            "towels",
+            "lamp"
+          ],
+          "rightColumn": [
+            "губки",
+            "гребінці",
+            "рушники",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кур’єр сумнівається, що написано в накладній. Запитайте його, чи це завіси.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Кур’єр сумнівається, що написано в накладній. Запитайте його, чи це завіси.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i17:audio",
+            "transcript": "Are they curtains?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they curtains?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-21:word:towel",
+      "correctText": "towel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i01",
+      "correctText": "They are towels.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:word:curtain",
+      "correctText": "curtain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i02",
+      "correctText": "It is a curtain.",
+      "correctResponseId": "en:lesson-03:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:word:sponge",
+      "correctText": "sponge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-21:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:word:comb",
+      "correctText": "comb",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i05",
+      "correctText": "It is a comb.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i06",
+      "correctText": "It is a towel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i07",
+      "correctText": "It is a curtain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i08",
+      "correctText": "sponges",
+      "correctResponseId": "en:lesson-03:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i09",
+      "correctText": "They are towels.",
+      "correctResponseId": "en:lesson-03:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i11",
+      "correctText": "Are they curtains?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i12",
+      "correctText": "Is it a sponge?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i13",
+      "correctText": "They are combs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i14",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-21:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i15",
+      "correctText": "Are they sponges?",
+      "correctResponseId": "en:lesson-03:session-21:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i17",
+      "correctText": "Are they curtains?",
+      "correctResponseId": null
+    }
+  ]
+}

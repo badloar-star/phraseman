@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-03:session-22:word:bottle",
+    "correctText": "bottle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-22:i01",
-    "correctText": "They are cups.",
+    "correctText": "They are bottles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:word:bowl",
+    "correctText": "bowl",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i02",
-    "correctText": "The cups are here.",
+    "correctText": "Where are the bowls?",
     "correctResponseId": "en:lesson-03:session-22:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-22:word:plate",
+    "correctText": "plate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-22:i03",
-    "correctText": "cups",
+    "correctText": "plates",
     "correctResponseId": "en:lesson-03:session-22:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-22:i04",
-    "correctText": "en:lesson-03:session-22:i04:p1=cups\nen:lesson-03:session-22:i04:p2=rich\nen:lesson-03:session-22:i04:p3=poor\nen:lesson-03:session-22:i04:p4=picture",
+    "correctText": "en:lesson-03:session-22:i04:p1=bottles\nen:lesson-03:session-22:i04:p2=bowls\nen:lesson-03:session-22:i04:p3=plates\nen:lesson-03:session-22:i04:p4=box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:word:jar",
+    "correctText": "jar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i05",
-    "correctText": "The picture is complete.",
+    "correctText": "They are jars.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i06",
-    "correctText": "Where are the cups?",
+    "correctText": "Are they bowls?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i07",
-    "correctText": "He's famous.",
+    "correctText": "The bottles are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i08",
-    "correctText": "complete",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-22:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-22:i09",
-    "correctText": "He is rich.",
+    "correctText": "They are bottles.",
     "correctResponseId": "en:lesson-03:session-22:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-22:i10",
-    "correctText": "en:lesson-03:session-22:i10:p1=famous\nen:lesson-03:session-22:i10:p2=complete\nen:lesson-03:session-22:i10:p3=cups\nen:lesson-03:session-22:i10:p4=picture",
+    "correctText": "en:lesson-03:session-22:i10:p1=bowl\nen:lesson-03:session-22:i10:p2=bowls\nen:lesson-03:session-22:i10:p3=plate\nen:lesson-03:session-22:i10:p4=plates",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i11",
-    "correctText": "The cups are inside.",
+    "correctText": "The plates are clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i12",
-    "correctText": "They are cups.",
+    "correctText": "They are bowls.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i13",
-    "correctText": "It's complete.",
+    "correctText": "They are jars.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i14",
-    "correctText": "are",
+    "correctText": "bottles",
     "correctResponseId": "en:lesson-03:session-22:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-22:i15",
-    "correctText": "He is poor.",
+    "correctText": "Are they plates?",
     "correctResponseId": "en:lesson-03:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-22:i16",
-    "correctText": "en:lesson-03:session-22:i16:p1=rich\nen:lesson-03:session-22:i16:p2=poor\nen:lesson-03:session-22:i16:p3=famous\nen:lesson-03:session-22:i16:p4=complete",
+    "correctText": "en:lesson-03:session-22:i16:p1=jars\nen:lesson-03:session-22:i16:p2=bottles\nen:lesson-03:session-22:i16:p3=bowls\nen:lesson-03:session-22:i16:p4=lamp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-22:i17",
-    "correctText": "Where are the cups?",
+    "correctText": "Are the plates here?",
     "correctResponseId": null
   }
 ]

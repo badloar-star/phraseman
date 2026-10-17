@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-24",
   "learningOutcomeByLocale": {
-    "ru": "повторить названия нескольких предметов и вопросы об их месте",
-    "uk": "повторити назви кількох предметів і запитання про їхнє місце"
+    "ru": "выбирать между одним предметом с a или an и несколькими предметами с s",
+    "uk": "обирати між одним предметом з a або an і кількома предметами з s"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Собираем несколько вещей",
-        "uk": "Збираємо кілька речей"
+        "ru": "Бумаги на подпись",
+        "uk": "Папери на підпис"
       },
       "bodyByLocale": {
-        "ru": "Повторим знакомые слова: `books` — «книги», `bags` — «сумки», `maps` — «карты местности». Для нескольких предметов: `They are books` — «Это книги». Для одной книги: `It is a book` — «Это книга». Перед `books` не ставим `a`. Олег собирался взять одну книгу на весь клуб. Читать можно хором, но переворачивать страницу придётся по команде. Положим несколько — `books`.",
-        "uk": "Повторимо знайомі слова: `books` — «книжки», `bags` — «сумки», `maps` — «карти місцевості». Для кількох предметів: `They are books` — «Це книжки». Для однієї книжки: `It is a book` — «Це книжка». Перед `books` не ставимо `a`. Олег збирався взяти одну книжку на весь клуб. Читати можна хором, але перегортати сторінку доведеться за командою. Покладемо кілька — `books`."
+        "ru": "Перед уходом курьер отдаёт вам стопку плотных конвертов с накладными: их нужно подписать. Подруга заглядывает через плечо и спрашивает, что это за стопка. envelope — «конверт». Один конверт — an envelope, несколько — envelopes. They are envelopes — «Это конверты».",
+        "uk": "Перед відходом кур’єр віддає вам стос щільних конвертів із накладними: їх потрібно підписати. Подруга зазирає через плече й питає, що це за стос. envelope — «конверт». Один конверт — an envelope, кілька — envelopes. They are envelopes — «Це конверти»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Вы кладёте в сумку несколько книг. Назовите их полной фразой: «Это книги».",
-          "uk": "Ви кладете в сумку кілька книжок. Назвіть їх повною фразою: «Це книжки»."
+          "ru": "Подруга смотрит на стопку. Скажите ей полной фразой: это конверты.",
+          "uk": "Подруга дивиться на стос. Скажіть їй повною фразою: це конверти."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-24:intro1:r1",
-              "text": "They are books."
+              "text": "They are envelopes."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r2",
-              "text": "They are a book."
+              "text": "They are an envelopes."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r3",
-              "text": "They is books."
+              "text": "They are envelope."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-24:intro1:r1",
-              "text": "They are books."
+              "text": "They are envelopes."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r2",
-              "text": "They are a book."
+              "text": "They are an envelopes."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r3",
-              "text": "They is books."
+              "text": "They are envelope."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы кладёте в сумку несколько книг. Назовите их полной фразой: «Это книги».",
-          "uk": "Ви кладете в сумку кілька книжок. Назвіть їх повною фразою: «Це книжки»."
+          "ru": "Подруга смотрит на стопку. Скажите ей полной фразой: это конверты.",
+          "uk": "Подруга дивиться на стос. Скажіть їй повною фразою: це конверти."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Коробки и чашки",
-        "uk": "Коробки й чашки"
+        "ru": "Бирки на коробки",
+        "uk": "Бирки на коробки"
       },
       "bodyByLocale": {
-        "ru": "`boxes` — «коробки», `cups` — «чашки», `pens` — «ручки». Написание `boxes` заканчивается на `es`; вспоминаем его целиком. `The boxes are here` — «Коробки здесь». `the boxes` — коробки, которые вы сейчас собираете. `Where are the cups?` — «Где чашки?» Чашек несколько, поэтому спрашиваем с `are`.",
-        "uk": "`boxes` — «коробки», `cups` — «чашки», `pens` — «ручки». Написання `boxes` закінчується на `es`; пригадуємо його цілком. `The boxes are here` — «Коробки тут». `the boxes` — коробки, які ви зараз збираєте. `Where are the cups?` — «Де чашки?» Чашок кілька, тому запитуємо з `are`."
+        "ru": "Брат наклеивает на коробки белые бирки с адресом, а одну бирку без клея кладёт на край стола. Подруга берёт её в руки и просит вас уточнить у брата, что это. Остальные бирки уже на коробках у стены. label — «бирка». Одна бирка — a label. Is it a label? — «Это бирка?»",
+        "uk": "Брат наклеює на коробки білі бирки з адресою, а одну бирку без клею кладе на край столу. Подруга бере її в руки й просить вас уточнити в брата, що це. Решта бирок уже на коробках біля стіни. label — «бирка». Одна бирка — a label. Is it a label? — «Це бирка?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Анна знает, какие чашки вы берёте на встречу. Спросите, где чашки.",
-          "uk": "Анна знає, які чашки ви берете на зустріч. Запитайте, де чашки."
+          "ru": "Подруга держит одну бирку. Спросите брата, бирка ли это.",
+          "uk": "Подруга тримає одну бирку. Запитайте брата, чи це бирка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-24:intro2:r1",
-              "text": "Where are the cups?"
+              "text": "Is it a label?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r2",
-              "text": "Where is the cups?"
+              "text": "Is it labels?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r3",
-              "text": "What are the cups?"
+              "text": "Are it a label?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-24:intro2:r1",
-              "text": "Where are the cups?"
+              "text": "Is it a label?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r2",
-              "text": "Where is the cups?"
+              "text": "Is it labels?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r3",
-              "text": "What are the cups?"
+              "text": "Are it a label?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна знает, какие чашки вы берёте на встречу. Спросите, где чашки.",
-          "uk": "Анна знає, які чашки ви берете на зустріч. Запитайте, де чашки."
+          "ru": "Подруга держит одну бирку. Спросите брата, бирка ли это.",
+          "uk": "Подруга тримає одну бирку. Запитайте брата, чи це бирка."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Билеты перед выходом",
-        "uk": "Квитки перед виходом"
+        "ru": "Подарок для соседки",
+        "uk": "Подарунок для сусідки"
       },
       "bodyByLocale": {
-        "ru": "`tickets` — «билеты». `The tickets are valid` — «Билеты действительны». `Where are the tickets?` — «Где билеты?» Вопрос начинается с `Where are`, затем называем билеты: `the tickets`. Так же можно спросить о приготовленных сумках: `Where are the bags?` — «Где сумки?»",
-        "uk": "`tickets` — «квитки». `The tickets are valid` — «Квитки дійсні». `Where are the tickets?` — «Де квитки?» Запитання починається з `Where are`, потім називаємо квитки: `the tickets`. Так само можна запитати про підготовлені сумки: `Where are the bags?` — «Де сумки?»"
+        "ru": "Подруга перевязывает подарок для соседки: на столе лежат несколько лент, и она выбирает подходящую по цвету. Все они длинные, их хватит и на второй подарок. ribbon — «лента». Лент несколько — ribbons. The ribbons are long — «Ленты длинные».",
+        "uk": "Подруга перев’язує подарунок для сусідки: на столі лежать кілька стрічок, і вона вибирає підходящу за кольором. Усі вони довгі, їх вистачить і на другий подарунок. ribbon — «стрічка». Стрічок кілька — ribbons. The ribbons are long — «Стрічки довгі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Анна приготовила билеты для поездки. Спросите, где билеты.",
-          "uk": "Анна підготувала квитки для поїздки. Запитайте, де квитки."
+          "ru": "Подруга спрашивает, хватит ли лент. Скажите ей, что ленты длинные.",
+          "uk": "Подруга питає, чи вистачить стрічок. Скажіть їй, що стрічки довгі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-24:intro3:r1",
-              "text": "Where are the tickets?"
+              "text": "The ribbons are long."
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r2",
-              "text": "Where is the tickets?"
+              "text": "The ribbons is long."
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r3",
-              "text": "What are the tickets?"
+              "text": "The ribbon are long."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-24:intro3:r1",
-              "text": "Where are the tickets?"
+              "text": "The ribbons are long."
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r2",
-              "text": "Where is the tickets?"
+              "text": "The ribbons is long."
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r3",
-              "text": "What are the tickets?"
+              "text": "The ribbon are long."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна приготовила билеты для поездки. Спросите, где билеты.",
-          "uk": "Анна підготувала квитки для поїздки. Запитайте, де квитки."
+          "ru": "Подруга спрашивает, хватит ли лент. Скажите ей, что ленты длинные.",
+          "uk": "Подруга питає, чи вистачить стрічок. Скажіть їй, що стрічки довгі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f3d659627959f2e04f4bfadde5d72f5728b32864403b3c4271944fd877003a09"
+  "introFingerprint": "789f7f181a989def67ac1da39cfb733c71a122e780e15bc19b40168a71d016fd"
 }

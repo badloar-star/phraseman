@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-18:i01",
+      "interactionId": "en:lesson-03:session-18:word:bus",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:word:bus:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:word:bus:audio",
+          "transcript": "bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:word:bus:r1",
+            "targetText": "bus",
+            "meaningByLocale": {
+              "ru": "автобус. They are buses — «Это автобусы». О городском или игрушечном автобусе.",
+              "uk": "автобус. They are buses — «Це автобуси». Про міський або іграшковий автобус."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus",
+          "definitionByLocale": {
+            "ru": "автобус. They are buses — «Это автобусы». О городском или игрушечном автобусе.",
+            "uk": "автобус. They are buses — «Це автобуси». Про міський або іграшковий автобус."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна принесла кілька складених коробок. Олег запитує, що це. Назвіть їх повною фразою",
+      "prompt": "Брат відкрив маленьку коробку, там два автобуси. Скажіть подрузі повною фразою: це автобуси.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна принесла кілька складених коробок. Олег запитує, що це. Назвіть їх повною фразою",
+      "accessibilityLabel": "Брат відкрив маленьку коробку, там два автобуси. Скажіть подрузі повною фразою: це автобуси.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are boxes.",
+        "targetPhrase": "They are buses.",
         "localizedMeaning": {
-          "ru": "Анна принесла несколько сложенных коробок. Олег спрашивает, что это. Назовите их полной фразой",
-          "uk": "Анна принесла кілька складених коробок. Олег запитує, що це. Назвіть їх повною фразою"
+          "ru": "Брат открыл маленькую коробку, там два автобуса. Скажите подруге полной фразой: это автобусы.",
+          "uk": "Брат відкрив маленьку коробку, там два автобуси. Скажіть подрузі повною фразою: це автобуси."
         },
         "orderedTokens": [
           "They",
           "are",
-          "boxes"
+          "buses"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "bus"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна принесла кілька складених коробок. Олег запитує, що це. Назвіть їх повною фразою",
+            "testedDimension": "Брат відкрив маленьку коробку, там два автобуси. Скажіть подрузі повною фразою: це автобуси.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are boxes.`",
-              "uk": "тут потрібно `are` — `They are boxes.`"
+              "ru": "здесь нужно `buses` — `They are buses.`",
+              "uk": "тут потрібно `buses` — `They are buses.`"
             }
           }
         ],
@@ -48,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-18:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-18:word:dish",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що Олег сказав вам під час зустрічі",
+      "prompt": "Картка слова — dish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:word:dish:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:word:dish:audio",
+          "transcript": "dish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:word:dish:r1",
+            "targetText": "dish",
+            "meaningByLocale": {
+              "ru": "блюдо или глубокая тарелка. Are they dishes? — «Это глубокие тарелки?» О посуде, из которой едят суп.",
+              "uk": "страва або глибока таріль. Are they dishes? — «Це глибокі тарілки?» Про посуд, з якого їдять суп."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dish",
+          "definitionByLocale": {
+            "ru": "блюдо или глубокая тарелка. Are they dishes? — «Это глубокие тарелки?» О посуде, из которой едят суп.",
+            "uk": "страва або глибока таріль. Are they dishes? — «Це глибокі тарілки?» Про посуд, з якого їдять суп."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання подруги про посуд",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-18:i02:r1",
-          "text": "You are early."
+          "text": "Are they dishes?"
         },
         {
           "responseId": "en:lesson-03:session-18:i02:r2",
-          "text": "You are late."
+          "text": "Is it a dish?"
         },
         {
           "responseId": "en:lesson-03:session-18:i02:r3",
-          "text": "You are lucky."
+          "text": "Are they buses?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що Олег сказав вам під час зустрічі",
+      "accessibilityLabel": "Послухайте запитання подруги про посуд",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i02:audio",
-          "transcript": "You are early."
+          "transcript": "Are they dishes?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-18:i02:r1",
-            "targetText": "You are early.",
+            "targetText": "Are they dishes?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-18:i02:r2",
-            "targetText": "You are late.",
+            "targetText": "Is it a dish?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-18:i02:r3",
-            "targetText": "You are lucky.",
+            "targetText": "Are they buses?",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +188,19 @@
           {
             "responseId": "en:lesson-03:session-18:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що Олег сказав вам під час зустрічі",
+            "testedDimension": "Послухайте запитання подруги про посуд",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+              "ru": "В записи последнее слово — `dishes`, а в этом варианте — `dish`.",
+              "uk": "У записі останнє слово — `dishes`, а в цьому варіанті — `dish`."
             }
           },
           {
             "responseId": "en:lesson-03:session-18:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що Олег сказав вам під час зустрічі",
+            "testedDimension": "Послухайте запитання подруги про посуд",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `lucky`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `lucky`."
+              "ru": "В записи последнее слово — `dishes`, а в этом варианте — `buses`.",
+              "uk": "У записі останнє слово — `dishes`, а в цьому варіанті — `buses`."
             }
           }
         ],
@@ -124,68 +210,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-18:word:watch",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — watch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:word:watch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — watch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:word:watch:audio",
+          "transcript": "watch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:word:watch:r1",
+            "targetText": "watch",
+            "meaningByLocale": {
+              "ru": "наручные часы. The watches are old — «Часы старые». О часах, которые носят на руке.",
+              "uk": "наручний годинник. The watches are old — «Годинники старі». Про годинник, який носять на руці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watch",
+          "definitionByLocale": {
+            "ru": "наручные часы. The watches are old — «Часы старые». О часах, которые носят на руке.",
+            "uk": "наручний годинник. The watches are old — «Годинники старі». Про годинник, який носять на руці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-18:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви називаєте три коробки біля стіни",
+      "prompt": "Брат дістав із пласкої коробки годинники. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-18:i03:r1",
-          "text": "boxes"
+          "text": "watches"
         },
         {
           "responseId": "en:lesson-03:session-18:i03:r2",
-          "text": "box"
+          "text": "watch"
         },
         {
           "responseId": "en:lesson-03:session-18:i03:r3",
-          "text": "boxs"
+          "text": "watchs"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви називаєте три коробки біля стіни",
+      "accessibilityLabel": "Брат дістав із пласкої коробки годинники. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы называете три коробки у стены",
-          "uk": "Ви називаєте три коробки біля стіни"
+          "ru": "Брат достал из плоской коробки часы. Дополните фразу",
+          "uk": "Брат дістав із пласкої коробки годинники. Доповніть фразу"
         },
         "gappedTargetPhrase": "They are ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-18:i03:r1",
-            "text": "boxes"
+            "text": "watches"
           },
           {
             "responseId": "en:lesson-03:session-18:i03:r2",
-            "text": "box"
+            "text": "watch"
           },
           {
             "responseId": "en:lesson-03:session-18:i03:r3",
-            "text": "boxs"
+            "text": "watchs"
           }
         ],
-        "testedDimension": "Ви називаєте три коробки біля стіни",
+        "testedDimension": "Брат дістав із пласкої коробки годинники. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i03:r2",
             "correct": false,
-            "testedDimension": "Ви називаєте три коробки біля стіни",
+            "testedDimension": "Брат дістав із пласкої коробки годинники. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "`box` — одна коробка, а здесь нужны `boxes`.",
-              "uk": "`box` — одна коробка, а тут потрібне `boxes`."
+              "ru": "Часов несколько, поэтому нужно watches с es.",
+              "uk": "Годинників кілька, тому потрібно watches з es."
             }
           },
           {
             "responseId": "en:lesson-03:session-18:i03:r3",
             "correct": false,
-            "testedDimension": "Ви називаєте три коробки біля стіни",
+            "testedDimension": "Брат дістав із пласкої коробки годинники. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "К `box` добавляем `es`: `boxes`.",
-              "uk": "До `box` додаємо `es`: `boxes`."
+              "ru": "После ch для нескольких нужно es: watches.",
+              "uk": "Після ch для кількох потрібно es: watches."
             }
           }
         ]
@@ -194,62 +323,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями в цій сцені",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями в цій сцені",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-18:i04:p1",
-            "target": "boxes",
+            "target": "buses",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "автобусы",
+              "uk": "автобуси"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i04:p2",
-            "target": "early",
+            "target": "dishes",
             "meaningByLocale": {
-              "ru": "пришедший раньше времени",
-              "uk": "той, хто прийшов завчасно"
+              "ru": "блюда, глубокие тарелки",
+              "uk": "страви, глибокі тарілі"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i04:p3",
-            "target": "lucky",
+            "target": "watches",
             "meaningByLocale": {
-              "ru": "тот, кому повезло",
-              "uk": "той, кому пощастило"
+              "ru": "наручные часы (несколько)",
+              "uk": "наручні годинники"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i04:p4",
-            "target": "lock",
+            "target": "box",
             "meaningByLocale": {
-              "ru": "замок",
-              "uk": "замок"
+              "ru": "коробка",
+              "uk": "коробка"
             }
           }
         ],
         "leftColumn": [
-          "boxes",
-          "early",
-          "lucky",
-          "lock"
+          "buses",
+          "dishes",
+          "watches",
+          "box"
         ],
         "rightColumn": [
-          "коробки",
-          "той, хто прийшов завчасно",
-          "той, кому пощастило",
-          "замок"
+          "автобуси",
+          "страви, глибокі тарілі",
+          "наручні годинники",
+          "коробка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +395,85 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-18:word:dress",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dress",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:word:dress:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dress",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:word:dress:audio",
+          "transcript": "dress"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:word:dress:r1",
+            "targetText": "dress",
+            "meaningByLocale": {
+              "ru": "платье. They are dresses — «Это платья». О женской одежде.",
+              "uk": "сукня. They are dresses — «Це сукні». Про жіночий одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dress",
+          "definitionByLocale": {
+            "ru": "платье. They are dresses — «Это платья». О женской одежде.",
+            "uk": "сукня. They are dresses — «Це сукні». Про жіночий одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-18:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i05:audio",
-          "transcript": "The lock is here."
+          "transcript": "They are dresses."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The lock is here.",
+        "hiddenTargetPhrase": "They are dresses.",
         "orderedTokens": [
-          "The",
-          "lock",
-          "is",
-          "here"
+          "They",
+          "are",
+          "dresses"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "dress"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The lock is here.`",
-              "uk": "тут потрібно `is` — `The lock is here.`"
+              "ru": "здесь нужно `dresses` — `They are dresses.`",
+              "uk": "тут потрібно `dresses` — `They are dresses.`"
             }
           }
         ],
@@ -315,26 +486,26 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви бачите кілька складених предметів. Запитайте, чи це коробки",
+      "prompt": "Подруга дістала з коробки сукні. Запитайте її, чи це сукні.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви бачите кілька складених предметів. Запитайте, чи це коробки",
+      "accessibilityLabel": "Подруга дістала з коробки сукні. Запитайте її, чи це сукні.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Are they boxes?",
+        "targetPhrase": "Are they dresses?",
         "localizedMeaning": {
-          "ru": "Вы видите несколько сложенных предметов. Спросите, коробки ли это",
-          "uk": "Ви бачите кілька складених предметів. Запитайте, чи це коробки"
+          "ru": "Подруга достала из коробки платья. Спросите её, платья ли это.",
+          "uk": "Подруга дістала з коробки сукні. Запитайте її, чи це сукні."
         },
         "orderedTokens": [
           "Are",
           "they",
-          "boxes"
+          "dresses"
         ],
         "authoredDistractorTokens": [
           "Is"
@@ -343,10 +514,10 @@
           {
             "responseId": "en:lesson-03:session-18:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви бачите кілька складених предметів. Запитайте, чи це коробки",
+            "testedDimension": "Подруга дістала з коробки сукні. Запитайте її, чи це сукні.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Are` — `Are they boxes?`",
-              "uk": "тут потрібно `Are` — `Are they boxes?`"
+              "ru": "здесь нужно `Are` — `Are they dresses?`",
+              "uk": "тут потрібно `Are` — `Are they dresses?`"
             }
           }
         ],
@@ -359,25 +530,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна безплатно отримала потрібні коробки. Скажіть їй зі скороченням «Тобі пощастило»",
+      "prompt": "Подруга питає, де коробки. Скажіть їй, що коробки тут.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Анна безплатно отримала потрібні коробки. Скажіть їй зі скороченням «Тобі пощастило»",
+      "accessibilityLabel": "Подруга питає, де коробки. Скажіть їй, що коробки тут.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i07:audio",
-          "transcript": "You're lucky."
+          "transcript": "The boxes are here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You're lucky.",
+        "targetPhrase": "The boxes are here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +563,11 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви показуєте Олегу коробки, які ви обоє шукали. Доповніть «Коробки тут»",
+      "prompt": "Годинники лежать на столі. Доповніть фразу брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-18:i08:r1",
@@ -413,14 +584,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте Олегу коробки, які ви обоє шукали. Доповніть «Коробки тут»",
+      "accessibilityLabel": "Годинники лежать на столі. Доповніть фразу брата",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы показываете Олегу коробки, которые вы оба искали. Дополните «Коробки здесь»",
-          "uk": "Ви показуєте Олегу коробки, які ви обоє шукали. Доповніть «Коробки тут»"
+          "ru": "Часы лежат на столе. Дополните фразу брата",
+          "uk": "Годинники лежать на столі. Доповніть фразу брата"
         },
-        "gappedTargetPhrase": "The boxes ___ here.",
+        "gappedTargetPhrase": "The watches ___ old.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-18:i08:r1",
@@ -435,24 +606,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Ви показуєте Олегу коробки, які ви обоє шукали. Доповніть «Коробки тут»",
+        "testedDimension": "Годинники лежать на столі. Доповніть фразу брата",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Ви показуєте Олегу коробки, які ви обоє шукали. Доповніть «Коробки тут»",
+            "testedDimension": "Годинники лежать на столі. Доповніть фразу брата",
             "feedbackByLocale": {
-              "ru": "Коробок несколько: `The boxes are here`.",
-              "uk": "Коробок кілька: `The boxes are here`."
+              "ru": "Часов несколько: The watches are old.",
+              "uk": "Годинників кілька: The watches are old."
             }
           },
           {
             "responseId": "en:lesson-03:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Ви показуєте Олегу коробки, які ви обоє шукали. Доповніть «Коробки тут»",
+            "testedDimension": "Годинники лежать на столі. Доповніть фразу брата",
             "feedbackByLocale": {
-              "ru": "С `The boxes` здесь нужно `are`.",
-              "uk": "З `The boxes` тут потрібно `are`."
+              "ru": "С The watches нужно are: The watches are old.",
+              "uk": "З The watches потрібно are: The watches are old."
             }
           }
         ]
@@ -461,51 +632,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте відповідь Олега на ваше припущення",
+      "prompt": "Послухайте брата: він говорить про автобуси",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-18:i09:r1",
-          "text": "You are wrong."
+          "text": "The buses are new."
         },
         {
           "responseId": "en:lesson-03:session-18:i09:r2",
-          "text": "You are right."
+          "text": "The buses are old."
         },
         {
           "responseId": "en:lesson-03:session-18:i09:r3",
-          "text": "You are lucky."
+          "text": "The buses are here."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте відповідь Олега на ваше припущення",
+      "accessibilityLabel": "Послухайте брата: він говорить про автобуси",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i09:audio",
-          "transcript": "You are wrong."
+          "transcript": "The buses are new."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-18:i09:r1",
-            "targetText": "You are wrong.",
+            "targetText": "The buses are new.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-18:i09:r2",
-            "targetText": "You are right.",
+            "targetText": "The buses are old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-18:i09:r3",
-            "targetText": "You are lucky.",
+            "targetText": "The buses are here.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +685,19 @@
           {
             "responseId": "en:lesson-03:session-18:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте відповідь Олега на ваше припущення",
+            "testedDimension": "Послухайте брата: він говорить про автобуси",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wrong`, а в этом варианте — `right`.",
-              "uk": "У записі останнє слово — `wrong`, а в цьому варіанті — `right`."
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
             }
           },
           {
             "responseId": "en:lesson-03:session-18:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте відповідь Олега на ваше припущення",
+            "testedDimension": "Послухайте брата: він говорить про автобуси",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wrong`, а в этом варианте — `lucky`.",
-              "uk": "У записі останнє слово — `wrong`, а в цьому варіанті — `lucky`."
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `here`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `here`."
             }
           }
         ],
@@ -537,62 +708,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями в цій сцені",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями в цій сцені",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-18:i10:p1",
-            "target": "wrong",
+            "target": "dress",
             "meaningByLocale": {
-              "ru": "неправ",
-              "uk": "не має рації"
+              "ru": "платье",
+              "uk": "сукня"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i10:p2",
-            "target": "unwell",
+            "target": "dresses",
             "meaningByLocale": {
-              "ru": "плохо себя чувствующий",
-              "uk": "той, хто погано почувається"
+              "ru": "платья",
+              "uk": "сукні"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i10:p3",
-            "target": "boxes",
+            "target": "pen",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "ручка",
+              "uk": "ручка"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i10:p4",
-            "target": "books",
+            "target": "pens",
             "meaningByLocale": {
-              "ru": "книги",
-              "uk": "книжки"
+              "ru": "ручки",
+              "uk": "ручки"
             }
           }
         ],
         "leftColumn": [
-          "wrong",
-          "unwell",
-          "boxes",
-          "books"
+          "dress",
+          "dresses",
+          "pen",
+          "pens"
         ],
         "rightColumn": [
-          "не має рації",
-          "той, хто погано почувається",
-          "коробки",
-          "книжки"
+          "сукня",
+          "сукні",
+          "ручка",
+          "ручки"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,30 +781,30 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i11:audio",
-          "transcript": "The boxes are here."
+          "transcript": "The dishes are clean."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The boxes are here.",
+        "hiddenTargetPhrase": "The dishes are clean.",
         "orderedTokens": [
           "The",
-          "boxes",
+          "dishes",
           "are",
-          "here"
+          "clean"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -642,10 +813,10 @@
           {
             "responseId": "en:lesson-03:session-18:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The boxes are here.`",
-              "uk": "тут потрібно `are` — `The boxes are here.`"
+              "ru": "здесь нужно `are` — `The dishes are clean.`",
+              "uk": "тут потрібно `are` — `The dishes are clean.`"
             }
           }
         ],
@@ -658,38 +829,38 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна запитує про кілька предметів у кутку. Це коробки. Назвіть їх повною фразою",
+      "prompt": "Подруга дістала з коробки глибокі тарілки. Скажіть їй, що це глибокі тарілки.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна запитує про кілька предметів у кутку. Це коробки. Назвіть їх повною фразою",
+      "accessibilityLabel": "Подруга дістала з коробки глибокі тарілки. Скажіть їй, що це глибокі тарілки.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are boxes.",
+        "targetPhrase": "They are dishes.",
         "localizedMeaning": {
-          "ru": "Анна спрашивает про несколько предметов в углу. Это коробки. Назовите их полной фразой",
-          "uk": "Анна запитує про кілька предметів у кутку. Це коробки. Назвіть їх повною фразою"
+          "ru": "Подруга достала из коробки глубокие тарелки. Скажите ей, что это глубокие тарелки.",
+          "uk": "Подруга дістала з коробки глибокі тарілки. Скажіть їй, що це глибокі тарілки."
         },
         "orderedTokens": [
           "They",
           "are",
-          "boxes"
+          "dishes"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "dish"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна запитує про кілька предметів у кутку. Це коробки. Назвіть їх повною фразою",
+            "testedDimension": "Подруга дістала з коробки глибокі тарілки. Скажіть їй, що це глибокі тарілки.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are boxes.`",
-              "uk": "тут потрібно `are` — `They are boxes.`"
+              "ru": "здесь нужно `dishes` — `They are dishes.`",
+              "uk": "тут потрібно `dishes` — `They are dishes.`"
             }
           }
         ],
@@ -702,25 +873,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг Олега сьогодні погано почувається. Повідомте це зі скороченням, почавши з «Він»",
+      "prompt": "Брат показує старі наручні годинники. Скажіть коротко, що це годинники.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i13:audio"
       ],
-      "accessibilityLabel": "Друг Олега сьогодні погано почувається. Повідомте це зі скороченням, почавши з «Він»",
+      "accessibilityLabel": "Брат показує старі наручні годинники. Скажіть коротко, що це годинники.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i13:audio",
-          "transcript": "He's unwell."
+          "transcript": "They are watches."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's unwell.",
+        "targetPhrase": "They are watches.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,11 +906,11 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви запитуєте про кілька складених предметів: чи це коробки",
+      "prompt": "Подруга перераховує коробки. Доповніть її запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-18:i14:r1",
@@ -751,17 +922,17 @@
         },
         {
           "responseId": "en:lesson-03:session-18:i14:r3",
-          "text": "a boxes"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви запитуєте про кілька складених предметів: чи це коробки",
+      "accessibilityLabel": "Подруга перераховує коробки. Доповніть її запитання",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы спрашиваете о нескольких сложенных предметах: коробки ли это",
-          "uk": "Ви запитуєте про кілька складених предметів: чи це коробки"
+          "ru": "Подруга пересчитывает коробки. Дополните её вопрос",
+          "uk": "Подруга перераховує коробки. Доповніть її запитання"
         },
         "gappedTargetPhrase": "Are they ___?",
         "gapOptions": [
@@ -775,27 +946,27 @@
           },
           {
             "responseId": "en:lesson-03:session-18:i14:r3",
-            "text": "a boxes"
+            "text": "are"
           }
         ],
-        "testedDimension": "Ви запитуєте про кілька складених предметів: чи це коробки",
+        "testedDimension": "Подруга перераховує коробки. Доповніть її запитання",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i14:r2",
             "correct": false,
-            "testedDimension": "Ви запитуєте про кілька складених предметів: чи це коробки",
+            "testedDimension": "Подруга перераховує коробки. Доповніть її запитання",
             "feedbackByLocale": {
-              "ru": "Вопрос о нескольких коробках требует формы `boxes`.",
-              "uk": "Запитання про кілька коробок потребує форми `boxes`."
+              "ru": "В вопросе о нескольких коробках тоже нужно boxes с es.",
+              "uk": "У запитанні про кілька коробок теж потрібно boxes з es."
             }
           },
           {
             "responseId": "en:lesson-03:session-18:i14:r3",
             "correct": false,
-            "testedDimension": "Ви запитуєте про кілька складених предметів: чи це коробки",
+            "testedDimension": "Подруга перераховує коробки. Доповніть її запитання",
             "feedbackByLocale": {
-              "ru": "Перед названием нескольких коробок не ставим `a`.",
-              "uk": "Перед назвою кількох коробок не ставимо `a`."
+              "ru": "Слово Are уже стоит в начале. В пропуск нужно название коробок: boxes.",
+              "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва коробок: boxes."
             }
           }
         ]
@@ -804,51 +975,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис замка",
+      "prompt": "Послухайте, що брат каже про знахідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-18:i15:r1",
-          "text": "The lock is old."
+          "text": "They are watches."
         },
         {
           "responseId": "en:lesson-03:session-18:i15:r2",
-          "text": "The lock is new."
+          "text": "They are dresses."
         },
         {
           "responseId": "en:lesson-03:session-18:i15:r3",
-          "text": "The lock is open."
+          "text": "They are dishes."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте опис замка",
+      "accessibilityLabel": "Послухайте, що брат каже про знахідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i15:audio",
-          "transcript": "The lock is old."
+          "transcript": "They are watches."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-18:i15:r1",
-            "targetText": "The lock is old.",
+            "targetText": "They are watches.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-18:i15:r2",
-            "targetText": "The lock is new.",
+            "targetText": "They are dresses.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-18:i15:r3",
-            "targetText": "The lock is open.",
+            "targetText": "They are dishes.",
             "meaningByLocale": null
           }
         ],
@@ -857,19 +1028,19 @@
           {
             "responseId": "en:lesson-03:session-18:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис замка",
+            "testedDimension": "Послухайте, що брат каже про знахідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
-              "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              "ru": "В записи последнее слово — `watches`, а в этом варианте — `dresses`.",
+              "uk": "У записі останнє слово — `watches`, а в цьому варіанті — `dresses`."
             }
           },
           {
             "responseId": "en:lesson-03:session-18:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис замка",
+            "testedDimension": "Послухайте, що брат каже про знахідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `old`, а в этом варианте — `open`.",
-              "uk": "У записі останнє слово — `old`, а в цьому варіанті — `open`."
+              "ru": "В записи последнее слово — `watches`, а в этом варианте — `dishes`.",
+              "uk": "У записі останнє слово — `watches`, а в цьому варіанті — `dishes`."
             }
           }
         ],
@@ -880,62 +1051,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями в цій сцені",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями в цій сцені",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-18:i16:p1",
-            "target": "wrong",
+            "target": "dishes",
             "meaningByLocale": {
-              "ru": "неправ",
-              "uk": "не має рації"
+              "ru": "блюда, глубокие тарелки",
+              "uk": "страви, глибокі тарілі"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i16:p2",
-            "target": "early",
+            "target": "watches",
             "meaningByLocale": {
-              "ru": "пришедший раньше времени",
-              "uk": "той, хто прийшов завчасно"
+              "ru": "наручные часы (несколько)",
+              "uk": "наручні годинники"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i16:p3",
-            "target": "lucky",
+            "target": "dresses",
             "meaningByLocale": {
-              "ru": "тот, кому повезло",
-              "uk": "той, кому пощастило"
+              "ru": "платья",
+              "uk": "сукні"
             }
           },
           {
             "pairId": "en:lesson-03:session-18:i16:p4",
-            "target": "unwell",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "плохо себя чувствующий",
-              "uk": "той, хто погано почувається"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           }
         ],
         "leftColumn": [
-          "wrong",
-          "early",
-          "lucky",
-          "unwell"
+          "dishes",
+          "watches",
+          "dresses",
+          "bag"
         ],
         "rightColumn": [
-          "не має рації",
-          "той, хто прийшов завчасно",
-          "той, кому пощастило",
-          "той, хто погано почувається"
+          "страви, глибокі тарілі",
+          "наручні годинники",
+          "сукні",
+          "сумка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,25 +1124,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-18:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншій кімнаті Анна знайшла кілька складених картонних предметів. Ви припускаєте, що це коробки. Запитайте про це",
+      "prompt": "Кур’єр залишив біля дверей іграшкові автобуси. Запитайте брата, чи це автобуси.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i17:audio"
       ],
-      "accessibilityLabel": "В іншій кімнаті Анна знайшла кілька складених картонних предметів. Ви припускаєте, що це коробки. Запитайте про це",
+      "accessibilityLabel": "Кур’єр залишив біля дверей іграшкові автобуси. Запитайте брата, чи це автобуси.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-18:i17:audio",
-          "transcript": "Are they boxes?"
+          "transcript": "Are they buses?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are they boxes?",
+        "targetPhrase": "Are they buses?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -993,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8df5e771c738fd6c375d217c5d66c84c5cdad35943c7670a4990632ce0551d57"
+  "learnerFingerprint": "fe610e5f6b0e8bc45a7918766415f9fc352b5c99773a7528b5bbb70fb3938634"
 }

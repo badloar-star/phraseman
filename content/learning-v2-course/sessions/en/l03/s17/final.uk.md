@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 17 — Книжки для клубу
+# Англійська · Урок 3 · Заняття 17 — Квитки, монети та листівки
 
-**Ситуація.** Анна принесла кілька книжок на зустріч клубу. Ви з Олегом розбираєте їх і готуєтеся зустрічати гостей. Книжки встигли прибрати від дощу. Анна після хвороби знову добре почувається.
+**Ситуація.** Кур’єр приносить вам із подругою посилку з дрібними речами. Ви перевіряєте, що саме він привіз, і називаєте все групами. Коли предметів кілька, до слова додається s.
 
-**Що ви опануєте:** назвати кілька книжок з books і узгодити назву з are
-**Нові слова:** books
+**Що ви опануєте:** називати кілька предметів, додаючи s, і говорити про них з are
+**Нові слова:** ticket, coin, card, pen
+**Повертаються:** key, lamp, bag
 
 ---
 
 ## Інтро 1
 
-### Одна книжка й кілька
+### Кур’єр на порозі
 
-`book` — «книжка», `books` — «книжки». Для кількох книжок додаємо до знайомого слова `s`. Так утворюються багато назв кількох предметів, але не всі: в інших слів можуть бути свої правила. Сьогодні працюємо з `books`. Анна обіцяла принести книжку, а принесла цілу стопку. Книжок побільшало значно, літер у назві — лише на одну.
+Кур’єр дзвонить у двері й віддає вам кілька паперових прямокутників із печаткою. Подруга чекає в кімнаті: ви замовляли квитки в кіно на вечір. ticket — «квиток». Якщо квитків кілька, до слова додаємо s: tickets. They are tickets — «Це квитки».
 
-**Анна принесла кілька книжок. Виберіть назву всієї групи одним словом.**
+**Подруга з кімнати питає, що привіз кур’єр. Скажіть повною фразою: це квитки.**
 
-- ✅ **books**
-- ❌ book — *`book` називає одну книжку. Тут книжок кілька: `books`.*
-- ❌ a book — *`a book` теж називає одну книжку, а не всю групу.*
+- ✅ **They are tickets.**
+- ❌ They are ticket. — *Квитків кілька, тому потрібно tickets з s.*
+- ❌ They is tickets. — *З They потрібно are: They are tickets.*
 
 ---
 
 ## Інтро 2
 
-### Повна фраза про кілька предметів
+### Решта на ґанку
 
-`They are books` — «Це книжки». Тут `they` стосується кількох предметів, а після нього потрібно `are`. Маленьке `a` перед `books` не ставимо: `a book` — одна книжка, `books` — кілька. Про конкретні книжки, які ви обоє бачите, можна сказати `The books are here` — «Книжки тут».
+Кур’єр просить розписатися й замість решти висипає вам у долоню жменю блискучих кружечків. Ви не впевнені, що це справжні гроші, а не жетони. coin — «монета», coins — «монети». У запитанні слово Are йде перед they: Are they coins? — «Це монети?»
 
-**Олег показує на стопку предметів у паперовій обгортці. Ви знаєте, що це книжки. Назвіть їх повною фразою.**
+**Ви дивитеся на свою долоню. Запитайте кур’єра, чи це монети.**
 
-- ✅ **They are books.**
-- ❌ They are book. — *Книжок кілька, тому потрібно `books` з `s`.*
-- ❌ They is books. — *З `They` тут потрібно `are`.*
+- ✅ **Are they coins?**
+- ❌ Is they coins? — *У запитанні з they потрібно Are: Are they coins?*
+- ❌ Are they coin? — *Монет кілька, тому потрібно coins з s.*
 
 ---
 
 ## Інтро 3
 
-### Уточнити, що у згортку
+### Коробка від сусідки
 
-`Are they books?` — «Це книжки?» Для запитання ставимо `Are` перед `they`; назва `books` залишається з `s`. Повторимо: `safe` — «у безпеці», `right` — «має рацію», `well` — «добре почувається», `welcome` — «бажаний, той, кому раді». Гостю можна сказати `You are welcome` — «Вам тут раді».
+Сусідка передала з кур’єром коробку. Брат відкриває її й дістає стос щільних аркушиків: на кожному кольоровий малюнок і кілька слів, а подруга заглядає йому через плече. card — «листівка». Листівок кілька — cards. Вони нові: The cards are new — «Листівки нові».
 
-**Анна показує кілька загорнутих предметів. Запитайте, чи це книжки.**
+**Брат тримає стос у руках. Скажіть йому, що листівки нові.**
 
-- ✅ **Are they books?**
-- ❌ Is they books? — *Запитання з `they` тут починається з `Are`.*
-- ❌ Are they book? — *Запитуємо про кілька предметів: потрібно `books`.*
+- ✅ **The cards are new.**
+- ❌ The cards is new. — *Листівок кілька, тому потрібно are: The cards are new.*
+- ❌ The card are new. — *Листівок кілька, тому потрібно cards з s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна принесла кілька загорнутих книжок. Олег запитує, що це. Назвіть їх повною фразою**
+**1 · Картка слова — ticket**
+<!-- interaction_id: en:lesson-03:session-17:word:ticket; family: word_card -->
+> **ticket** — квиток. They are tickets — «Це квитки». Про квиток у кіно, в театр, на потяг.
+
+**2 · Кур’єр віддає вам стос квитків. Подруга питає, що це. Скажіть їй повною фразою: це квитки.**
 <!-- interaction_id: en:lesson-03:session-17:i01; family: phrase_builder -->
-Плитки: `books` `are` `They` `is` → **They are books.**
-*(плитка `is` зайва: тут потрібно `are` — `They are books.`)*
+Плитки: `tickets` `are` `They` `ticket` → **They are tickets.**
+*(плитка `ticket` зайва: тут потрібно `tickets` — `They are tickets.`)*
 
-**2 · Послухайте відповідь Олега на ваше припущення**
+**3 · Картка слова — coin**
+<!-- interaction_id: en:lesson-03:session-17:word:coin; family: word_card -->
+> **coin** — монета. Are they coins? — «Це монети?» Про металеві гроші.
+
+**4 · Послухайте, що кур’єр каже про решту**
 <!-- interaction_id: en:lesson-03:session-17:i02; family: listen_choose -->
-🔊 *You are right.* → **You are right.** · You are welcome. · You are safe.
-- You are welcome. — *У записі останнє слово — `right`, а в цьому варіанті — `welcome`.*
-- You are safe. — *У записі останнє слово — `right`, а в цьому варіанті — `safe`.*
+🔊 *They are coins.* → **They are coins.** · It is a coin. · They are tickets.
+- It is a coin. — *У записі останнє слово — `coins`, а в цьому варіанті — `coin`.*
+- They are tickets. — *У записі останнє слово — `coins`, а в цьому варіанті — `tickets`.*
 
-**3 · Ви називаєте кілька книжок, які принесла Анна**
+**5 · Картка слова — card**
+<!-- interaction_id: en:lesson-03:session-17:word:card; family: word_card -->
+> **card** — листівка або картка з малюнком. The cards are new — «Листівки нові». Про вітальну листівку.
+
+**6 · Брат дістав із коробки стос листівок. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-17:i03; family: context_gap_grammar -->
-They are ___. → **books** · book · a books
-- book — *Для кількох книжок потрібно `books`, з `s`.*
-- a books — *Перед назвою кількох книжок `a` не ставимо: `They are books`.*
+They are ___. → **cards** · card · are
+- card — *Листівок кілька, тому потрібно cards з s.*
+- are — *Слово are вже стоїть перед пропуском. У пропуск потрібна назва листівок: cards.*
 
-**4 · З’єднайте слова зі значеннями в цій сцені**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-17:i04; family: speed_match -->
-books — книжки · welcome — той, кому раді · safe — у безпеці · right — має рацію
+tickets — квитки · coins — монети · cards — листівки, картки · key — ключ
 
-**5 · Послухайте й складіть повідомлення**
+**8 · Картка слова — pen**
+<!-- interaction_id: en:lesson-03:session-17:word:pen; family: word_card -->
+> **pen** — ручка, якою пишуть. Are they pens? — «Це ручки?» Про кулькову ручку на столі або в сумці.
+
+**9 · Послухайте подругу й складіть запитання**
 <!-- interaction_id: en:lesson-03:session-17:i05; family: listen_build_dictation -->
-🔊 *The books are here.* Плитки: `here` `are` `books` `The` `is` → **The books are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The books are here.`)*
+🔊 *Are they pens?* Плитки: `pens` `they` `Are` `pen` → **Are they pens?**
+*(плитка `pen` зайва: тут потрібно `pens` — `Are they pens?`)*
 
-**6 · Анна показує кілька загорнутих предметів. Запитайте, чи це книжки**
+**10 · Кур’єр показує на жменю дрібних грошей. Запитайте його, чи це монети.**
 <!-- interaction_id: en:lesson-03:session-17:i06; family: phrase_builder -->
-Плитки: `books` `they` `Are` `Is` → **Are they books?**
-*(плитка `Is` зайва: тут потрібно `Are` — `Are they books?`)*
+Плитки: `coins` `they` `Are` `Is` → **Are they coins?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are they coins?`)*
 
-**7 · Новий гість сумнівається, чи раді йому на зустрічі. Скажіть йому повною фразою «Вам тут раді»**
+**11 · Подруга просить квитки. Скажіть їй, що квитки тут.**
 <!-- interaction_id: en:lesson-03:session-17:i07; family: scripted_repeat_compare -->
-🎙 **You are welcome.**
+🎙 **The tickets are here.**
 
-**8 · Книжки прибрали від дощу. Повідомте, що ці книжки в безпеці**
+**12 · Ручки лежать на столі. Повідомте подрузі, що вони тут**
 <!-- interaction_id: en:lesson-03:session-17:i08; family: context_gap_grammar -->
-The books ___ safe. → **are** · is · am
-- is — *Книжок кілька: `The books are safe`.*
-- am — *З `The books` тут потрібно `are`.*
+The pens ___ here. → **are** · is · am
+- is — *Ручок кілька: The pens are here.*
+- am — *З The pens потрібно are: The pens are here.*
 
-**9 · Послухайте відповідь про самопочуття Анни**
+**13 · Послухайте брата: він говорить про квитки**
 <!-- interaction_id: en:lesson-03:session-17:i09; family: listen_choose -->
-🔊 *She is well.* → **She is well.** · She is tired. · She is sick.
-- She is tired. — *У записі останнє слово — `well`, а в цьому варіанті — `tired`.*
-- She is sick. — *У записі останнє слово — `well`, а в цьому варіанті — `sick`.*
+🔊 *The tickets are new.* → **The tickets are new.** · The tickets are old. · The tickets are here.
+- The tickets are old. — *У записі останнє слово — `new`, а в цьому варіанті — `old`.*
+- The tickets are here. — *У записі останнє слово — `new`, а в цьому варіанті — `here`.*
 
-**10 · З’єднайте слова зі значеннями; well тут про здоров’я**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-17:i10; family: speed_match -->
-well — той, хто добре почувається · door — двері · book — книжка · books — книжки
+pens — ручки · pen — ручка · lamp — лампа · coins — монети
 
-**11 · Послухайте й складіть повідомлення про двері**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-17:i11; family: listen_build_dictation -->
-🔊 *The door is open.* Плитки: `open` `is` `door` `The` `are` → **The door is open.**
-*(плитка `are` зайва: тут потрібно `is` — `The door is open.`)*
+🔊 *The cards are old.* Плитки: `old` `cards` `are` `The` `is` → **The cards are old.**
+*(плитка `is` зайва: тут потрібно `are` — `The cards are old.`)*
 
-**12 · Олег сприйняв кілька загорнутих книжок за інші предмети. Назвіть їх: «Це книжки»**
+**16 · Брат дістав із коробки щільні аркушики з малюнками. Подруга питає, що це. Скажіть: це листівки.**
 <!-- interaction_id: en:lesson-03:session-17:i12; family: phrase_builder -->
-Плитки: `books` `are` `They` `is` → **They are books.**
-*(плитка `is` зайва: тут потрібно `are` — `They are books.`)*
+Плитки: `cards` `are` `They` `card` → **They are cards.**
+*(плитка `card` зайва: тут потрібно `cards` — `They are cards.`)*
 
-**13 · Анна після хвороби добре почувається. Скажіть це зі скороченням, почавши з «Вона»**
+**17 · Брат знайшов на столі ручки. Скажіть коротко, що це ручки.**
 <!-- interaction_id: en:lesson-03:session-17:i13; family: scripted_repeat_compare -->
-🎙 **She's well.**
+🎙 **They are pens.**
 
-**14 · Ви вказуєте на кілька предметів в обгортці й запитуєте, чи це книжки**
+**18 · Кур’єр привіз квитки. Доповніть запитання подруги**
 <!-- interaction_id: en:lesson-03:session-17:i14; family: context_gap_grammar -->
-Are they ___? → **books** · book · a books
-- book — *У запитанні про кілька книжок теж потрібно `books`.*
-- a books — *Перед `books` не потрібно `a`: `Are they books?`.*
+Are they ___? → **tickets** · ticket · are
+- ticket — *У запитанні про кілька квитків теж потрібно tickets з s.*
+- are — *Слово Are вже стоїть на початку. У пропуск потрібна назва квитків: tickets.*
 
-**15 · Послухайте повідомлення про книжки**
+**19 · Послухайте запитання подруги**
 <!-- interaction_id: en:lesson-03:session-17:i15; family: listen_choose -->
-🔊 *The books are safe.* → **The books are safe.** · The books are here. · The books are old.
-- The books are here. — *У записі останнє слово — `safe`, а в цьому варіанті — `here`.*
-- The books are old. — *У записі останнє слово — `safe`, а в цьому варіанті — `old`.*
+🔊 *Are they coins?* → **Are they coins?** · Are they cards? · Are they pens?
+- Are they cards? — *У записі останнє слово — `coins`, а в цьому варіанті — `cards`.*
+- Are they pens? — *У записі останнє слово — `coins`, а в цьому варіанті — `pens`.*
 
-**16 · З’єднайте слова зі значеннями в цій сцені**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-17:i16; family: speed_match -->
-welcome — той, кому раді · safe — у безпеці · right — має рацію · door — двері
+cards — листівки, картки · tickets — квитки · pens — ручки · bag — сумка
 
-**17 · Перед наступною зустріччю Олег приніс кілька предметів в обгортці. Ви припускаєте, що це книжки. Запитайте про це**
+**21 · Кур’єр віддає вам пакет. Ви думаєте, що там квитки. Запитайте про це.**
 <!-- interaction_id: en:lesson-03:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Are they books?**
-
+🎙 **Are they tickets?**

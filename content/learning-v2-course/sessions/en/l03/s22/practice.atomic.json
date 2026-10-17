@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-22:word:bottle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bottle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:bottle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bottle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:bottle:audio",
+            "transcript": "bottle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:bottle:r1",
+              "targetText": "bottle",
+              "meaningByLocale": {
+                "ru": "бутылка. They are bottles — «Это бутылки». О бутылке для масла, воды, молока.",
+                "uk": "пляшка. They are bottles — «Це пляшки». Про пляшку для олії, води, молока."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle",
+            "definitionByLocale": {
+              "ru": "бутылка. They are bottles — «Это бутылки». О бутылке для масла, воды, молока.",
+              "uk": "пляшка. They are bottles — «Це пляшки». Про пляшку для олії, води, молока."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат ставит в ряд стеклянные бутылки. Скажите подруге полной фразой: это бутылки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат ставит в ряд стеклянные бутылки. Скажите подруге полной фразой: это бутылки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are bottles.",
+          "localizedMeaning": {
+            "ru": "Брат ставит в ряд стеклянные бутылки. Скажите подруге полной фразой: это бутылки.",
+            "uk": "Брат ставить у ряд скляні пляшки. Скажіть подрузі повною фразою: це пляшки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "bottles"
+          ],
+          "authoredDistractorTokens": [
+            "bottle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат ставит в ряд стеклянные бутылки. Скажите подруге полной фразой: это бутылки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `bottles` — `They are bottles.`",
+                "uk": "тут потрібно `bottles` — `They are bottles.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:word:bowl",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bowl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:bowl:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bowl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:bowl:audio",
+            "transcript": "bowl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:bowl:r1",
+              "targetText": "bowl",
+              "meaningByLocale": {
+                "ru": "миска, глубокая посуда для салата и супа. Where are the bowls? — «Где миски?» О миске на кухне.",
+                "uk": "миска, глибокий посуд для салату й супу. Where are the bowls? — «Де миски?» Про миску на кухні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bowl",
+            "definitionByLocale": {
+              "ru": "миска, глубокая посуда для салата и супа. Where are the bowls? — «Где миски?» О миске на кухне.",
+              "uk": "миска, глибокий посуд для салату й супу. Where are the bowls? — «Де миски?» Про миску на кухні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i02:r1",
+            "text": "Where are the bowls?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i02:r2",
+            "text": "Where is the bowl?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i02:r3",
+            "text": "Where are the plates?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i02:audio",
+            "transcript": "Where are the bowls?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:i02:r1",
+              "targetText": "Where are the bowls?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i02:r2",
+              "targetText": "Where is the bowl?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i02:r3",
+              "targetText": "Where are the plates?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bowls`, а в этом варианте — `bowl`.",
+                "uk": "У записі останнє слово — `bowls`, а в цьому варіанті — `bowl`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bowls`, а в этом варианте — `plates`.",
+                "uk": "У записі останнє слово — `bowls`, а в цьому варіанті — `plates`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:word:plate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — plate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:plate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — plate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:plate:audio",
+            "transcript": "plate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:plate:r1",
+              "targetText": "plate",
+              "meaningByLocale": {
+                "ru": "тарелка. Are the plates here? — «Тарелки здесь?» О плоской тарелке для еды.",
+                "uk": "тарілка. Are the plates here? — «Тарілки тут?» Про пласку тарілку для їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plate",
+            "definitionByLocale": {
+              "ru": "тарелка. Are the plates here? — «Тарелки здесь?» О плоской тарелке для еды.",
+              "uk": "тарілка. Are the plates here? — «Тарілки тут?» Про пласку тарілку для їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Соседка проверяет, не разбилась ли посуда. Дополните её вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i03:r1",
+            "text": "plates"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i03:r2",
+            "text": "plate"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка проверяет, не разбилась ли посуда. Дополните её вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка проверяет, не разбилась ли посуда. Дополните её вопрос",
+            "uk": "Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Are the ___ here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-22:i03:r1",
+              "text": "plates"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i03:r2",
+              "text": "plate"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Соседка проверяет, не разбилась ли посуда. Дополните её вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Соседка проверяет, не разбилась ли посуда. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "Тарелок несколько, поэтому нужно plates с s.",
+                "uk": "Тарілок кілька, тому потрібно plates з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Соседка проверяет, не разбилась ли посуда. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название тарелок: plates.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва тарілок: plates."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-22:i04:p1",
+              "target": "bottles",
+              "meaningByLocale": {
+                "ru": "бутылки",
+                "uk": "пляшки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i04:p2",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i04:p3",
+              "target": "plates",
+              "meaningByLocale": {
+                "ru": "тарелки",
+                "uk": "тарілки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bottles",
+            "bowls",
+            "plates",
+            "box"
+          ],
+          "rightColumn": [
+            "бутылки",
+            "миски",
+            "тарелки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:word:jar",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:jar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:jar:audio",
+            "transcript": "jar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:jar:r1",
+              "targetText": "jar",
+              "meaningByLocale": {
+                "ru": "банка из стекла. Are they jars? — «Это банки?» О банке для варенья, огурцов, круп.",
+                "uk": "банка зі скла. Are they jars? — «Це банки?» Про банку для варення, огірків, круп."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jar",
+            "definitionByLocale": {
+              "ru": "банка из стекла. Are they jars? — «Это банки?» О банке для варенья, огурцов, круп.",
+              "uk": "банка зі скла. Are they jars? — «Це банки?» Про банку для варення, огірків, круп."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i05:audio",
+            "transcript": "They are jars."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are jars.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "jars"
+          ],
+          "authoredDistractorTokens": [
+            "jar"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `jars` — `They are jars.`",
+                "uk": "тут потрібно `jars` — `They are jars.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга достаёт из коробки миски. Спросите её, миски ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достаёт из коробки миски. Спросите её, миски ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they bowls?",
+          "localizedMeaning": {
+            "ru": "Подруга достаёт из коробки миски. Спросите её, миски ли это.",
+            "uk": "Подруга дістає з коробки миски. Запитайте її, чи це миски."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "bowls"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга достаёт из коробки миски. Спросите её, миски ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they bowls?`",
+                "uk": "тут потрібно `Are` — `Are they bowls?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат спрашивает, где бутылки. Скажите ему, что бутылки здесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Брат спрашивает, где бутылки. Скажите ему, что бутылки здесь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i07:audio",
+            "transcript": "The bottles are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bottles are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Банки стоят на подоконнике. Дополните фразу подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Банки стоят на подоконнике. Дополните фразу подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Банки стоят на подоконнике. Дополните фразу подруги",
+            "uk": "Банки стоять на підвіконні. Доповніть фразу подруги"
+          },
+          "gappedTargetPhrase": "The jars ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-22:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Банки стоят на подоконнике. Дополните фразу подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Банки стоят на подоконнике. Дополните фразу подруги",
+              "feedbackByLocale": {
+                "ru": "Банок несколько: The jars are here.",
+                "uk": "Банок кілька: The jars are here."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Банки стоят на подоконнике. Дополните фразу подруги",
+              "feedbackByLocale": {
+                "ru": "С The jars нужно are: The jars are here.",
+                "uk": "З The jars потрібно are: The jars are here."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что брат говорит о находке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i09:r1",
+            "text": "They are bottles."
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i09:r2",
+            "text": "It is a bottle."
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i09:r3",
+            "text": "They are jars."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что брат говорит о находке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i09:audio",
+            "transcript": "They are bottles."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:i09:r1",
+              "targetText": "They are bottles.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i09:r2",
+              "targetText": "It is a bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i09:r3",
+              "targetText": "They are jars.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о находке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bottles`, а в этом варианте — `bottle`.",
+                "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `bottle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о находке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bottles`, а в этом варианте — `jars`.",
+                "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `jars`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-22:i10:p1",
+              "target": "bowl",
+              "meaningByLocale": {
+                "ru": "миска",
+                "uk": "миска"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i10:p2",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i10:p3",
+              "target": "plate",
+              "meaningByLocale": {
+                "ru": "тарелка",
+                "uk": "тарілка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i10:p4",
+              "target": "plates",
+              "meaningByLocale": {
+                "ru": "тарелки",
+                "uk": "тарілки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bowl",
+            "bowls",
+            "plate",
+            "plates"
+          ],
+          "rightColumn": [
+            "миска",
+            "миски",
+            "тарелка",
+            "тарелки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i11:audio",
+            "transcript": "The plates are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The plates are clean.",
+          "orderedTokens": [
+            "The",
+            "plates",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The plates are clean.`",
+                "uk": "тут потрібно `are` — `The plates are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат достал из коробки миски для салата. Скажите ему полной фразой: это миски.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат достал из коробки миски для салата. Скажите ему полной фразой: это миски.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are bowls.",
+          "localizedMeaning": {
+            "ru": "Брат достал из коробки миски для салата. Скажите ему полной фразой: это миски.",
+            "uk": "Брат дістав із коробки миски для салату. Скажіть йому повною фразою: це миски."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "bowls"
+          ],
+          "authoredDistractorTokens": [
+            "bowl"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат достал из коробки миски для салата. Скажите ему полной фразой: это миски.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `bowls` — `They are bowls.`",
+                "uk": "тут потрібно `bowls` — `They are bowls.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает стеклянные банки. Скажите коротко, что это банки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает стеклянные банки. Скажите коротко, что это банки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i13:audio",
+            "transcript": "They are jars."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are jars.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Курьер оставил в коробке стеклянные бутылки. Дополните вопрос брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i14:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i14:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Курьер оставил в коробке стеклянные бутылки. Дополните вопрос брата",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер оставил в коробке стеклянные бутылки. Дополните вопрос брата",
+            "uk": "Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-22:i14:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i14:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Курьер оставил в коробке стеклянные бутылки. Дополните вопрос брата",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Курьер оставил в коробке стеклянные бутылки. Дополните вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких бутылках тоже нужно bottles с s.",
+                "uk": "У запитанні про кілька пляшок теж потрібно bottles з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Курьер оставил в коробке стеклянные бутылки. Дополните вопрос брата",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название бутылок: bottles.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва пляшок: bottles."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос соседки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i15:r1",
+            "text": "Are they plates?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i15:r2",
+            "text": "Is it a plate?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i15:r3",
+            "text": "Are they bowls?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос соседки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i15:audio",
+            "transcript": "Are they plates?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:i15:r1",
+              "targetText": "Are they plates?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i15:r2",
+              "targetText": "Is it a plate?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i15:r3",
+              "targetText": "Are they bowls?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос соседки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plates`, а в этом варианте — `plate`.",
+                "uk": "У записі останнє слово — `plates`, а в цьому варіанті — `plate`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос соседки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plates`, а в этом варианте — `bowls`.",
+                "uk": "У записі останнє слово — `plates`, а в цьому варіанті — `bowls`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-22:i16:p1",
+              "target": "jars",
+              "meaningByLocale": {
+                "ru": "банки",
+                "uk": "банки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i16:p2",
+              "target": "bottles",
+              "meaningByLocale": {
+                "ru": "бутылки",
+                "uk": "пляшки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i16:p3",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i16:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jars",
+            "bottles",
+            "bowls",
+            "lamp"
+          ],
+          "rightColumn": [
+            "банки",
+            "бутылки",
+            "миски",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка заглянула на кухню. Спросите её, здесь ли тарелки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Соседка заглянула на кухню. Спросите её, здесь ли тарелки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i17:audio",
+            "transcript": "Are the plates here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are the plates here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-22:word:bottle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bottle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:bottle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bottle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:bottle:audio",
+            "transcript": "bottle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:bottle:r1",
+              "targetText": "bottle",
+              "meaningByLocale": {
+                "ru": "бутылка. They are bottles — «Это бутылки». О бутылке для масла, воды, молока.",
+                "uk": "пляшка. They are bottles — «Це пляшки». Про пляшку для олії, води, молока."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle",
+            "definitionByLocale": {
+              "ru": "бутылка. They are bottles — «Это бутылки». О бутылке для масла, воды, молока.",
+              "uk": "пляшка. They are bottles — «Це пляшки». Про пляшку для олії, води, молока."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат ставить у ряд скляні пляшки. Скажіть подрузі повною фразою: це пляшки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат ставить у ряд скляні пляшки. Скажіть подрузі повною фразою: це пляшки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are bottles.",
+          "localizedMeaning": {
+            "ru": "Брат ставит в ряд стеклянные бутылки. Скажите подруге полной фразой: это бутылки.",
+            "uk": "Брат ставить у ряд скляні пляшки. Скажіть подрузі повною фразою: це пляшки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "bottles"
+          ],
+          "authoredDistractorTokens": [
+            "bottle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат ставить у ряд скляні пляшки. Скажіть подрузі повною фразою: це пляшки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `bottles` — `They are bottles.`",
+                "uk": "тут потрібно `bottles` — `They are bottles.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:word:bowl",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bowl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:bowl:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bowl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:bowl:audio",
+            "transcript": "bowl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:bowl:r1",
+              "targetText": "bowl",
+              "meaningByLocale": {
+                "ru": "миска, глубокая посуда для салата и супа. Where are the bowls? — «Где миски?» О миске на кухне.",
+                "uk": "миска, глибокий посуд для салату й супу. Where are the bowls? — «Де миски?» Про миску на кухні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bowl",
+            "definitionByLocale": {
+              "ru": "миска, глубокая посуда для салата и супа. Where are the bowls? — «Где миски?» О миске на кухне.",
+              "uk": "миска, глибокий посуд для салату й супу. Where are the bowls? — «Де миски?» Про миску на кухні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i02:r1",
+            "text": "Where are the bowls?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i02:r2",
+            "text": "Where is the bowl?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i02:r3",
+            "text": "Where are the plates?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i02:audio",
+            "transcript": "Where are the bowls?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:i02:r1",
+              "targetText": "Where are the bowls?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i02:r2",
+              "targetText": "Where is the bowl?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i02:r3",
+              "targetText": "Where are the plates?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bowls`, а в этом варианте — `bowl`.",
+                "uk": "У записі останнє слово — `bowls`, а в цьому варіанті — `bowl`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bowls`, а в этом варианте — `plates`.",
+                "uk": "У записі останнє слово — `bowls`, а в цьому варіанті — `plates`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:word:plate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — plate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:plate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — plate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:plate:audio",
+            "transcript": "plate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:plate:r1",
+              "targetText": "plate",
+              "meaningByLocale": {
+                "ru": "тарелка. Are the plates here? — «Тарелки здесь?» О плоской тарелке для еды.",
+                "uk": "тарілка. Are the plates here? — «Тарілки тут?» Про пласку тарілку для їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plate",
+            "definitionByLocale": {
+              "ru": "тарелка. Are the plates here? — «Тарелки здесь?» О плоской тарелке для еды.",
+              "uk": "тарілка. Are the plates here? — «Тарілки тут?» Про пласку тарілку для їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i03:r1",
+            "text": "plates"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i03:r2",
+            "text": "plate"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка проверяет, не разбилась ли посуда. Дополните её вопрос",
+            "uk": "Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Are the ___ here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-22:i03:r1",
+              "text": "plates"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i03:r2",
+              "text": "plate"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "Тарелок несколько, поэтому нужно plates с s.",
+                "uk": "Тарілок кілька, тому потрібно plates з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название тарелок: plates.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва тарілок: plates."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-22:i04:p1",
+              "target": "bottles",
+              "meaningByLocale": {
+                "ru": "бутылки",
+                "uk": "пляшки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i04:p2",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i04:p3",
+              "target": "plates",
+              "meaningByLocale": {
+                "ru": "тарелки",
+                "uk": "тарілки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bottles",
+            "bowls",
+            "plates",
+            "box"
+          ],
+          "rightColumn": [
+            "пляшки",
+            "миски",
+            "тарілки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:word:jar",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:word:jar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:word:jar:audio",
+            "transcript": "jar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:word:jar:r1",
+              "targetText": "jar",
+              "meaningByLocale": {
+                "ru": "банка из стекла. Are they jars? — «Это банки?» О банке для варенья, огурцов, круп.",
+                "uk": "банка зі скла. Are they jars? — «Це банки?» Про банку для варення, огірків, круп."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jar",
+            "definitionByLocale": {
+              "ru": "банка из стекла. Are they jars? — «Это банки?» О банке для варенья, огурцов, круп.",
+              "uk": "банка зі скла. Are they jars? — «Це банки?» Про банку для варення, огірків, круп."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i05:audio",
+            "transcript": "They are jars."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are jars.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "jars"
+          ],
+          "authoredDistractorTokens": [
+            "jar"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `jars` — `They are jars.`",
+                "uk": "тут потрібно `jars` — `They are jars.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дістає з коробки миски. Запитайте її, чи це миски.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістає з коробки миски. Запитайте її, чи це миски.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they bowls?",
+          "localizedMeaning": {
+            "ru": "Подруга достаёт из коробки миски. Спросите её, миски ли это.",
+            "uk": "Подруга дістає з коробки миски. Запитайте її, чи це миски."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "bowls"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дістає з коробки миски. Запитайте її, чи це миски.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they bowls?`",
+                "uk": "тут потрібно `Are` — `Are they bowls?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат питає, де пляшки. Скажіть йому, що пляшки тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Брат питає, де пляшки. Скажіть йому, що пляшки тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i07:audio",
+            "transcript": "The bottles are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bottles are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Банки стоять на підвіконні. Доповніть фразу подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Банки стоять на підвіконні. Доповніть фразу подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Банки стоят на подоконнике. Дополните фразу подруги",
+            "uk": "Банки стоять на підвіконні. Доповніть фразу подруги"
+          },
+          "gappedTargetPhrase": "The jars ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-22:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Банки стоять на підвіконні. Доповніть фразу подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Банки стоять на підвіконні. Доповніть фразу подруги",
+              "feedbackByLocale": {
+                "ru": "Банок несколько: The jars are here.",
+                "uk": "Банок кілька: The jars are here."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Банки стоять на підвіконні. Доповніть фразу подруги",
+              "feedbackByLocale": {
+                "ru": "С The jars нужно are: The jars are here.",
+                "uk": "З The jars потрібно are: The jars are here."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що брат каже про знахідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i09:r1",
+            "text": "They are bottles."
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i09:r2",
+            "text": "It is a bottle."
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i09:r3",
+            "text": "They are jars."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що брат каже про знахідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i09:audio",
+            "transcript": "They are bottles."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:i09:r1",
+              "targetText": "They are bottles.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i09:r2",
+              "targetText": "It is a bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i09:r3",
+              "targetText": "They are jars.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про знахідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bottles`, а в этом варианте — `bottle`.",
+                "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `bottle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про знахідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bottles`, а в этом варианте — `jars`.",
+                "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `jars`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-22:i10:p1",
+              "target": "bowl",
+              "meaningByLocale": {
+                "ru": "миска",
+                "uk": "миска"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i10:p2",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i10:p3",
+              "target": "plate",
+              "meaningByLocale": {
+                "ru": "тарелка",
+                "uk": "тарілка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i10:p4",
+              "target": "plates",
+              "meaningByLocale": {
+                "ru": "тарелки",
+                "uk": "тарілки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bowl",
+            "bowls",
+            "plate",
+            "plates"
+          ],
+          "rightColumn": [
+            "миска",
+            "миски",
+            "тарілка",
+            "тарілки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i11:audio",
+            "transcript": "The plates are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The plates are clean.",
+          "orderedTokens": [
+            "The",
+            "plates",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The plates are clean.`",
+                "uk": "тут потрібно `are` — `The plates are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат дістав із коробки миски для салату. Скажіть йому повною фразою: це миски.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат дістав із коробки миски для салату. Скажіть йому повною фразою: це миски.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are bowls.",
+          "localizedMeaning": {
+            "ru": "Брат достал из коробки миски для салата. Скажите ему полной фразой: это миски.",
+            "uk": "Брат дістав із коробки миски для салату. Скажіть йому повною фразою: це миски."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "bowls"
+          ],
+          "authoredDistractorTokens": [
+            "bowl"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат дістав із коробки миски для салату. Скажіть йому повною фразою: це миски.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `bowls` — `They are bowls.`",
+                "uk": "тут потрібно `bowls` — `They are bowls.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує скляні банки. Скажіть коротко, що це банки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга показує скляні банки. Скажіть коротко, що це банки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i13:audio",
+            "transcript": "They are jars."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are jars.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i14:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i14:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер оставил в коробке стеклянные бутылки. Дополните вопрос брата",
+            "uk": "Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-22:i14:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i14:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких бутылках тоже нужно bottles с s.",
+                "uk": "У запитанні про кілька пляшок теж потрібно bottles з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название бутылок: bottles.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва пляшок: bottles."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання сусідки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i15:r1",
+            "text": "Are they plates?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i15:r2",
+            "text": "Is it a plate?"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i15:r3",
+            "text": "Are they bowls?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання сусідки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i15:audio",
+            "transcript": "Are they plates?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-22:i15:r1",
+              "targetText": "Are they plates?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i15:r2",
+              "targetText": "Is it a plate?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i15:r3",
+              "targetText": "Are they bowls?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сусідки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plates`, а в этом варианте — `plate`.",
+                "uk": "У записі останнє слово — `plates`, а в цьому варіанті — `plate`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сусідки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plates`, а в этом варианте — `bowls`.",
+                "uk": "У записі останнє слово — `plates`, а в цьому варіанті — `bowls`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-22:i16:p1",
+              "target": "jars",
+              "meaningByLocale": {
+                "ru": "банки",
+                "uk": "банки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i16:p2",
+              "target": "bottles",
+              "meaningByLocale": {
+                "ru": "бутылки",
+                "uk": "пляшки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i16:p3",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-22:i16:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jars",
+            "bottles",
+            "bowls",
+            "lamp"
+          ],
+          "rightColumn": [
+            "банки",
+            "пляшки",
+            "миски",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-22:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка зазирнула на кухню. Запитайте її, чи тарілки тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Сусідка зазирнула на кухню. Запитайте її, чи тарілки тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-22:i17:audio",
+            "transcript": "Are the plates here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are the plates here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-22:word:bottle",
+      "correctText": "bottle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i01",
+      "correctText": "They are bottles.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:word:bowl",
+      "correctText": "bowl",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i02",
+      "correctText": "Where are the bowls?",
+      "correctResponseId": "en:lesson-03:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:word:plate",
+      "correctText": "plate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i03",
+      "correctText": "plates",
+      "correctResponseId": "en:lesson-03:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:word:jar",
+      "correctText": "jar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i05",
+      "correctText": "They are jars.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i06",
+      "correctText": "Are they bowls?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i07",
+      "correctText": "The bottles are here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-03:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i09",
+      "correctText": "They are bottles.",
+      "correctResponseId": "en:lesson-03:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i11",
+      "correctText": "The plates are clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i12",
+      "correctText": "They are bowls.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i13",
+      "correctText": "They are jars.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i14",
+      "correctText": "bottles",
+      "correctResponseId": "en:lesson-03:session-22:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i15",
+      "correctText": "Are they plates?",
+      "correctResponseId": "en:lesson-03:session-22:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i17",
+      "correctText": "Are the plates here?",
+      "correctResponseId": null
+    }
+  ]
+}

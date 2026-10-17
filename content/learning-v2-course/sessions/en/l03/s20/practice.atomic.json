@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-20",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-20:word:glass",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — glass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:glass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — glass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:glass:audio",
+            "transcript": "glass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:glass:r1",
+              "targetText": "glass",
+              "meaningByLocale": {
+                "ru": "стакан. They are glasses — «Это стаканы». О стеклянном стакане для воды.",
+                "uk": "склянка. They are glasses — «Це склянки». Про скляну склянку для води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glass",
+            "definitionByLocale": {
+              "ru": "стакан. They are glasses — «Это стаканы». О стеклянном стакане для воды.",
+              "uk": "склянка. They are glasses — «Це склянки». Про скляну склянку для води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are glasses.",
+          "localizedMeaning": {
+            "ru": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
+            "uk": "Кур’єр диктує по телефону: у посилці склянки. Скажіть подрузі повною фразою: це склянки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "glasses"
+          ],
+          "authoredDistractorTokens": [
+            "glass"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `glasses` — `They are glasses.`",
+                "uk": "тут потрібно `glasses` — `They are glasses.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:word:brush",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:brush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:brush:audio",
+            "transcript": "brush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:brush:r1",
+              "targetText": "brush",
+              "meaningByLocale": {
+                "ru": "щётка или кисть. Are they brushes? — «Это щётки?» О щётке для уборки, для одежды, для волос.",
+                "uk": "щітка або пензлик. Are they brushes? — «Це щітки?» Про щітку для прибирання, для одягу, для волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brush",
+            "definitionByLocale": {
+              "ru": "щётка или кисть. Are they brushes? — «Это щётки?» О щётке для уборки, для одежды, для волос.",
+              "uk": "щітка або пензлик. Are they brushes? — «Це щітки?» Про щітку для прибирання, для одягу, для волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте курьера: что он диктует сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i02:r1",
+            "text": "They are brushes."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i02:r2",
+            "text": "It is a brush."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i02:r3",
+            "text": "They are benches."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте курьера: что он диктует сейчас",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i02:audio",
+            "transcript": "They are brushes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:i02:r1",
+              "targetText": "They are brushes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i02:r2",
+              "targetText": "It is a brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i02:r3",
+              "targetText": "They are benches.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте курьера: что он диктует сейчас",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `brushes`, а в этом варианте — `brush`.",
+                "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `brush`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте курьера: что он диктует сейчас",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `brushes`, а в этом варианте — `benches`.",
+                "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `benches`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:word:bench",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bench",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:bench:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bench",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:bench:audio",
+            "transcript": "bench"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:bench:r1",
+              "targetText": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка. The benches are here — «Скамейки здесь». О скамейке в саду, в парке, у дома.",
+                "uk": "лавка. The benches are here — «Лавки тут». Про лавку в саду, в парку, біля дому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bench",
+            "definitionByLocale": {
+              "ru": "скамейка. The benches are here — «Скамейки здесь». О скамейке в саду, в парке, у дома.",
+              "uk": "лавка. The benches are here — «Лавки тут». Про лавку в саду, в парку, біля дому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i03:r1",
+            "text": "benches"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i03:r2",
+            "text": "bench"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i03:r3",
+            "text": "benchs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+            "uk": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "The ___ are here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-20:i03:r1",
+              "text": "benches"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i03:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i03:r3",
+              "text": "benchs"
+            }
+          ],
+          "testedDimension": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Скамеек несколько, поэтому нужно benches с es.",
+                "uk": "Лавок кілька, тому потрібно benches з es."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "После ch для нескольких нужно es: benches.",
+                "uk": "Після ch для кількох потрібно es: benches."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-20:i04:p1",
+              "target": "glasses",
+              "meaningByLocale": {
+                "ru": "стаканы",
+                "uk": "склянки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i04:p2",
+              "target": "brushes",
+              "meaningByLocale": {
+                "ru": "щётки, кисти",
+                "uk": "щітки, пензлики"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i04:p3",
+              "target": "benches",
+              "meaningByLocale": {
+                "ru": "скамейки",
+                "uk": "лавки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glasses",
+            "brushes",
+            "benches",
+            "box"
+          ],
+          "rightColumn": [
+            "стаканы",
+            "щётки, кисти",
+            "скамейки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:word:peach",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — peach",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:peach:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — peach",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:peach:audio",
+            "transcript": "peach"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:peach:r1",
+              "targetText": "peach",
+              "meaningByLocale": {
+                "ru": "персик. Are they peaches? — «Это персики?» О сладком мягком фрукте.",
+                "uk": "персик. Are they peaches? — «Це персики?» Про солодкий м’який фрукт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peach",
+            "definitionByLocale": {
+              "ru": "персик. Are they peaches? — «Это персики?» О сладком мягком фрукте.",
+              "uk": "персик. Are they peaches? — «Це персики?» Про солодкий м’який фрукт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте курьера и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте курьера и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i05:audio",
+            "transcript": "Are they peaches?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they peaches?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "peaches"
+          ],
+          "authoredDistractorTokens": [
+            "peach"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте курьера и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `peaches` — `Are they peaches?`",
+                "uk": "тут потрібно `peaches` — `Are they peaches?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they brushes?",
+          "localizedMeaning": {
+            "ru": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
+            "uk": "Кур’єр продиктував щітки, але ви не розчули. Запитайте його, чи це щітки."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "brushes"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they brushes?`",
+                "uk": "тут потрібно `Are` — `Are they brushes?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Курьер спрашивает, где стаканы. Скажите ему, что стаканы здесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i07:audio"
+        ],
+        "accessibilityLabel": "Курьер спрашивает, где стаканы. Скажите ему, что стаканы здесь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i07:audio",
+            "transcript": "The glasses are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The glasses are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Персики лежат в пакете. Дополните фразу подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Персики лежат в пакете. Дополните фразу подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Персики лежат в пакете. Дополните фразу подруги",
+            "uk": "Персики лежать у пакеті. Доповніть фразу подруги"
+          },
+          "gappedTargetPhrase": "The peaches ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-20:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Персики лежат в пакете. Дополните фразу подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Персики лежат в пакете. Дополните фразу подруги",
+              "feedbackByLocale": {
+                "ru": "Персиков несколько: The peaches are here.",
+                "uk": "Персиків кілька: The peaches are here."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Персики лежат в пакете. Дополните фразу подруги",
+              "feedbackByLocale": {
+                "ru": "С The peaches нужно are: The peaches are here.",
+                "uk": "З The peaches потрібно are: The peaches are here."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте курьера: он называет скамейку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i09:r1",
+            "text": "It is a bench."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i09:r2",
+            "text": "They are benches."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i09:r3",
+            "text": "It is a peach."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте курьера: он называет скамейку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i09:audio",
+            "transcript": "It is a bench."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:i09:r1",
+              "targetText": "It is a bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i09:r2",
+              "targetText": "They are benches.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i09:r3",
+              "targetText": "It is a peach.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте курьера: он называет скамейку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bench`, а в этом варианте — `benches`.",
+                "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `benches`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте курьера: он называет скамейку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bench`, а в этом варианте — `peach`.",
+                "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `peach`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-20:i10:p1",
+              "target": "glass",
+              "meaningByLocale": {
+                "ru": "стакан",
+                "uk": "склянка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i10:p2",
+              "target": "glasses",
+              "meaningByLocale": {
+                "ru": "стаканы",
+                "uk": "склянки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i10:p3",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i10:p4",
+              "target": "benches",
+              "meaningByLocale": {
+                "ru": "скамейки",
+                "uk": "лавки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glass",
+            "glasses",
+            "bench",
+            "benches"
+          ],
+          "rightColumn": [
+            "стакан",
+            "стаканы",
+            "скамейка",
+            "скамейки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i11:audio",
+            "transcript": "The brushes are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The brushes are clean.",
+          "orderedTokens": [
+            "The",
+            "brushes",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The brushes are clean.`",
+                "uk": "тут потрібно `are` — `The brushes are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are peaches.",
+          "localizedMeaning": {
+            "ru": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
+            "uk": "Подруга дістала з пакета персики. Скажіть їй повною фразою: це персики."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "peaches"
+          ],
+          "authoredDistractorTokens": [
+            "peach"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `peaches` — `They are peaches.`",
+                "uk": "тут потрібно `peaches` — `They are peaches.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Курьер уточняет, что стоит у стены. Скажите коротко, что это скамейки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i13:audio"
+        ],
+        "accessibilityLabel": "Курьер уточняет, что стоит у стены. Скажите коротко, что это скамейки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i13:audio",
+            "transcript": "They are benches."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are benches.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Курьер диктует дальше. Дополните вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i14:r1",
+            "text": "glasses"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i14:r2",
+            "text": "glass"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Курьер диктует дальше. Дополните вопрос подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер диктует дальше. Дополните вопрос подруги",
+            "uk": "Кур’єр диктує далі. Доповніть запитання подруги"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-20:i14:r1",
+              "text": "glasses"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i14:r2",
+              "text": "glass"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Курьер диктует дальше. Дополните вопрос подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i14:r2",
+              "correct": false,
+              "testedDimension": "Курьер диктует дальше. Дополните вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких стаканах тоже нужно glasses.",
+                "uk": "У запитанні про кілька склянок теж потрібно glasses."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i14:r3",
+              "correct": false,
+              "testedDimension": "Курьер диктует дальше. Дополните вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название стаканов: glasses.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва склянок: glasses."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i15:r1",
+            "text": "Are they peaches?"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i15:r2",
+            "text": "Is it a peach?"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i15:r3",
+            "text": "Are they benches?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i15:audio",
+            "transcript": "Are they peaches?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:i15:r1",
+              "targetText": "Are they peaches?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i15:r2",
+              "targetText": "Is it a peach?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i15:r3",
+              "targetText": "Are they benches?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `peaches`, а в этом варианте — `peach`.",
+                "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `peach`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `peaches`, а в этом варианте — `benches`.",
+                "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `benches`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-20:i16:p1",
+              "target": "brushes",
+              "meaningByLocale": {
+                "ru": "щётки, кисти",
+                "uk": "щітки, пензлики"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i16:p2",
+              "target": "peaches",
+              "meaningByLocale": {
+                "ru": "персики",
+                "uk": "персики"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i16:p3",
+              "target": "glasses",
+              "meaningByLocale": {
+                "ru": "стаканы",
+                "uk": "склянки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i16:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brushes",
+            "peaches",
+            "glasses",
+            "bag"
+          ],
+          "rightColumn": [
+            "щётки, кисти",
+            "персики",
+            "стаканы",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Курьер диктует, что лежит в пакете. Вы не расслышали. Спросите, стаканы ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Курьер диктует, что лежит в пакете. Вы не расслышали. Спросите, стаканы ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i17:audio",
+            "transcript": "Are they glasses?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they glasses?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-20:word:glass",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — glass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:glass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — glass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:glass:audio",
+            "transcript": "glass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:glass:r1",
+              "targetText": "glass",
+              "meaningByLocale": {
+                "ru": "стакан. They are glasses — «Это стаканы». О стеклянном стакане для воды.",
+                "uk": "склянка. They are glasses — «Це склянки». Про скляну склянку для води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glass",
+            "definitionByLocale": {
+              "ru": "стакан. They are glasses — «Это стаканы». О стеклянном стакане для воды.",
+              "uk": "склянка. They are glasses — «Це склянки». Про скляну склянку для води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кур’єр диктує по телефону: у посилці склянки. Скажіть подрузі повною фразою: це склянки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кур’єр диктує по телефону: у посилці склянки. Скажіть подрузі повною фразою: це склянки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are glasses.",
+          "localizedMeaning": {
+            "ru": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
+            "uk": "Кур’єр диктує по телефону: у посилці склянки. Скажіть подрузі повною фразою: це склянки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "glasses"
+          ],
+          "authoredDistractorTokens": [
+            "glass"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Кур’єр диктує по телефону: у посилці склянки. Скажіть подрузі повною фразою: це склянки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `glasses` — `They are glasses.`",
+                "uk": "тут потрібно `glasses` — `They are glasses.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:word:brush",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:brush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:brush:audio",
+            "transcript": "brush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:brush:r1",
+              "targetText": "brush",
+              "meaningByLocale": {
+                "ru": "щётка или кисть. Are they brushes? — «Это щётки?» О щётке для уборки, для одежды, для волос.",
+                "uk": "щітка або пензлик. Are they brushes? — «Це щітки?» Про щітку для прибирання, для одягу, для волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brush",
+            "definitionByLocale": {
+              "ru": "щётка или кисть. Are they brushes? — «Это щётки?» О щётке для уборки, для одежды, для волос.",
+              "uk": "щітка або пензлик. Are they brushes? — «Це щітки?» Про щітку для прибирання, для одягу, для волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте кур’єра: що він диктує зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i02:r1",
+            "text": "They are brushes."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i02:r2",
+            "text": "It is a brush."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i02:r3",
+            "text": "They are benches."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте кур’єра: що він диктує зараз",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i02:audio",
+            "transcript": "They are brushes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:i02:r1",
+              "targetText": "They are brushes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i02:r2",
+              "targetText": "It is a brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i02:r3",
+              "targetText": "They are benches.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте кур’єра: що він диктує зараз",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `brushes`, а в этом варианте — `brush`.",
+                "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `brush`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте кур’єра: що він диктує зараз",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `brushes`, а в этом варианте — `benches`.",
+                "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `benches`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:word:bench",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bench",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:bench:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bench",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:bench:audio",
+            "transcript": "bench"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:bench:r1",
+              "targetText": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка. The benches are here — «Скамейки здесь». О скамейке в саду, в парке, у дома.",
+                "uk": "лавка. The benches are here — «Лавки тут». Про лавку в саду, в парку, біля дому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bench",
+            "definitionByLocale": {
+              "ru": "скамейка. The benches are here — «Скамейки здесь». О скамейке в саду, в парке, у дома.",
+              "uk": "лавка. The benches are here — «Лавки тут». Про лавку в саду, в парку, біля дому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i03:r1",
+            "text": "benches"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i03:r2",
+            "text": "bench"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i03:r3",
+            "text": "benchs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+            "uk": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "The ___ are here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-20:i03:r1",
+              "text": "benches"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i03:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i03:r3",
+              "text": "benchs"
+            }
+          ],
+          "testedDimension": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Скамеек несколько, поэтому нужно benches с es.",
+                "uk": "Лавок кілька, тому потрібно benches з es."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "После ch для нескольких нужно es: benches.",
+                "uk": "Після ch для кількох потрібно es: benches."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-20:i04:p1",
+              "target": "glasses",
+              "meaningByLocale": {
+                "ru": "стаканы",
+                "uk": "склянки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i04:p2",
+              "target": "brushes",
+              "meaningByLocale": {
+                "ru": "щётки, кисти",
+                "uk": "щітки, пензлики"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i04:p3",
+              "target": "benches",
+              "meaningByLocale": {
+                "ru": "скамейки",
+                "uk": "лавки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glasses",
+            "brushes",
+            "benches",
+            "box"
+          ],
+          "rightColumn": [
+            "склянки",
+            "щітки, пензлики",
+            "лавки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:word:peach",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — peach",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:word:peach:audio"
+        ],
+        "accessibilityLabel": "Картка слова — peach",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:word:peach:audio",
+            "transcript": "peach"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:word:peach:r1",
+              "targetText": "peach",
+              "meaningByLocale": {
+                "ru": "персик. Are they peaches? — «Это персики?» О сладком мягком фрукте.",
+                "uk": "персик. Are they peaches? — «Це персики?» Про солодкий м’який фрукт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peach",
+            "definitionByLocale": {
+              "ru": "персик. Are they peaches? — «Это персики?» О сладком мягком фрукте.",
+              "uk": "персик. Are they peaches? — «Це персики?» Про солодкий м’який фрукт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте кур’єра й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте кур’єра й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i05:audio",
+            "transcript": "Are they peaches?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they peaches?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "peaches"
+          ],
+          "authoredDistractorTokens": [
+            "peach"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте кур’єра й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `peaches` — `Are they peaches?`",
+                "uk": "тут потрібно `peaches` — `Are they peaches?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кур’єр продиктував щітки, але ви не розчули. Запитайте його, чи це щітки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кур’єр продиктував щітки, але ви не розчули. Запитайте його, чи це щітки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they brushes?",
+          "localizedMeaning": {
+            "ru": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
+            "uk": "Кур’єр продиктував щітки, але ви не розчули. Запитайте його, чи це щітки."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "brushes"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Кур’єр продиктував щітки, але ви не розчули. Запитайте його, чи це щітки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they brushes?`",
+                "uk": "тут потрібно `Are` — `Are they brushes?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кур’єр питає, де склянки. Скажіть йому, що склянки тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i07:audio"
+        ],
+        "accessibilityLabel": "Кур’єр питає, де склянки. Скажіть йому, що склянки тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i07:audio",
+            "transcript": "The glasses are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The glasses are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Персики лежать у пакеті. Доповніть фразу подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Персики лежать у пакеті. Доповніть фразу подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Персики лежат в пакете. Дополните фразу подруги",
+            "uk": "Персики лежать у пакеті. Доповніть фразу подруги"
+          },
+          "gappedTargetPhrase": "The peaches ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-20:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Персики лежать у пакеті. Доповніть фразу подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Персики лежать у пакеті. Доповніть фразу подруги",
+              "feedbackByLocale": {
+                "ru": "Персиков несколько: The peaches are here.",
+                "uk": "Персиків кілька: The peaches are here."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Персики лежать у пакеті. Доповніть фразу подруги",
+              "feedbackByLocale": {
+                "ru": "С The peaches нужно are: The peaches are here.",
+                "uk": "З The peaches потрібно are: The peaches are here."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте кур’єра: він називає лавку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i09:r1",
+            "text": "It is a bench."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i09:r2",
+            "text": "They are benches."
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i09:r3",
+            "text": "It is a peach."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте кур’єра: він називає лавку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i09:audio",
+            "transcript": "It is a bench."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:i09:r1",
+              "targetText": "It is a bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i09:r2",
+              "targetText": "They are benches.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i09:r3",
+              "targetText": "It is a peach.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте кур’єра: він називає лавку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bench`, а в этом варианте — `benches`.",
+                "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `benches`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте кур’єра: він називає лавку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bench`, а в этом варианте — `peach`.",
+                "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `peach`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-20:i10:p1",
+              "target": "glass",
+              "meaningByLocale": {
+                "ru": "стакан",
+                "uk": "склянка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i10:p2",
+              "target": "glasses",
+              "meaningByLocale": {
+                "ru": "стаканы",
+                "uk": "склянки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i10:p3",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i10:p4",
+              "target": "benches",
+              "meaningByLocale": {
+                "ru": "скамейки",
+                "uk": "лавки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glass",
+            "glasses",
+            "bench",
+            "benches"
+          ],
+          "rightColumn": [
+            "склянка",
+            "склянки",
+            "лавка",
+            "лавки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i11:audio",
+            "transcript": "The brushes are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The brushes are clean.",
+          "orderedTokens": [
+            "The",
+            "brushes",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The brushes are clean.`",
+                "uk": "тут потрібно `are` — `The brushes are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дістала з пакета персики. Скажіть їй повною фразою: це персики.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістала з пакета персики. Скажіть їй повною фразою: це персики.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are peaches.",
+          "localizedMeaning": {
+            "ru": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
+            "uk": "Подруга дістала з пакета персики. Скажіть їй повною фразою: це персики."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "peaches"
+          ],
+          "authoredDistractorTokens": [
+            "peach"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дістала з пакета персики. Скажіть їй повною фразою: це персики.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `peaches` — `They are peaches.`",
+                "uk": "тут потрібно `peaches` — `They are peaches.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кур’єр уточнює, що стоїть біля стіни. Скажіть коротко, що це лавки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i13:audio"
+        ],
+        "accessibilityLabel": "Кур’єр уточнює, що стоїть біля стіни. Скажіть коротко, що це лавки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i13:audio",
+            "transcript": "They are benches."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are benches.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кур’єр диктує далі. Доповніть запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i14:r1",
+            "text": "glasses"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i14:r2",
+            "text": "glass"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кур’єр диктує далі. Доповніть запитання подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Курьер диктует дальше. Дополните вопрос подруги",
+            "uk": "Кур’єр диктує далі. Доповніть запитання подруги"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-20:i14:r1",
+              "text": "glasses"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i14:r2",
+              "text": "glass"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Кур’єр диктує далі. Доповніть запитання подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i14:r2",
+              "correct": false,
+              "testedDimension": "Кур’єр диктує далі. Доповніть запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких стаканах тоже нужно glasses.",
+                "uk": "У запитанні про кілька склянок теж потрібно glasses."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i14:r3",
+              "correct": false,
+              "testedDimension": "Кур’єр диктує далі. Доповніть запитання подруги",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название стаканов: glasses.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва склянок: glasses."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i15:r1",
+            "text": "Are they peaches?"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i15:r2",
+            "text": "Is it a peach?"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i15:r3",
+            "text": "Are they benches?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i15:audio",
+            "transcript": "Are they peaches?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-20:i15:r1",
+              "targetText": "Are they peaches?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i15:r2",
+              "targetText": "Is it a peach?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i15:r3",
+              "targetText": "Are they benches?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-20:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `peaches`, а в этом варианте — `peach`.",
+                "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `peach`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-20:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `peaches`, а в этом варианте — `benches`.",
+                "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `benches`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-20:i16:p1",
+              "target": "brushes",
+              "meaningByLocale": {
+                "ru": "щётки, кисти",
+                "uk": "щітки, пензлики"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i16:p2",
+              "target": "peaches",
+              "meaningByLocale": {
+                "ru": "персики",
+                "uk": "персики"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i16:p3",
+              "target": "glasses",
+              "meaningByLocale": {
+                "ru": "стаканы",
+                "uk": "склянки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-20:i16:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brushes",
+            "peaches",
+            "glasses",
+            "bag"
+          ],
+          "rightColumn": [
+            "щітки, пензлики",
+            "персики",
+            "склянки",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кур’єр диктує, що лежить у пакеті. Ви не розчули. Запитайте, чи це склянки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Кур’єр диктує, що лежить у пакеті. Ви не розчули. Запитайте, чи це склянки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-20:i17:audio",
+            "transcript": "Are they glasses?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they glasses?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-20:word:glass",
+      "correctText": "glass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i01",
+      "correctText": "They are glasses.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:word:brush",
+      "correctText": "brush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i02",
+      "correctText": "They are brushes.",
+      "correctResponseId": "en:lesson-03:session-20:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:word:bench",
+      "correctText": "bench",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i03",
+      "correctText": "benches",
+      "correctResponseId": "en:lesson-03:session-20:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:word:peach",
+      "correctText": "peach",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i05",
+      "correctText": "Are they peaches?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i06",
+      "correctText": "Are they brushes?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i07",
+      "correctText": "The glasses are here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-03:session-20:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i09",
+      "correctText": "It is a bench.",
+      "correctResponseId": "en:lesson-03:session-20:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i11",
+      "correctText": "The brushes are clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i12",
+      "correctText": "They are peaches.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i13",
+      "correctText": "They are benches.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i14",
+      "correctText": "glasses",
+      "correctResponseId": "en:lesson-03:session-20:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i15",
+      "correctText": "Are they peaches?",
+      "correctResponseId": "en:lesson-03:session-20:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i17",
+      "correctText": "Are they glasses?",
+      "correctResponseId": null
+    }
+  ]
+}

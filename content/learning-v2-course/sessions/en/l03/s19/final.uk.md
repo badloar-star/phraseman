@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 19 — Сумки разом
+# Англійська · Урок 3 · Заняття 19 — Написи на упаковках
 
-**Ситуація.** Ви з Анною зустрічаєте гостей у майстерні. Гості залишили кілька сумок у сусідній кімнаті. Олег переставив їх і забув попередити вас. Тепер ви шукаєте речі й уточнюєте, чи всі сумки лежать разом.
+**Ситуація.** Кур’єр залишив упаковки з англійськими написами, і ви з братом та подругою читаєте їх. Якщо слово закінчується на y після приголосної, то для кількох предметів y змінюється на ies.
 
-**Що ви опануєте:** назвати кілька сумок і запитати, де вони розташовані
-**Нові слова:** bags
+**Що ви опануєте:** називати кілька предметів, змінюючи y на ies, і запитувати про них
+**Нові слова:** battery, country, story, city
+**Повертаються:** box, lamp
 
 ---
 
 ## Інтро 1
 
-### Одна сумка й кілька
+### Упаковка ліхтарика
 
-`bag` — «сумка», `bags` — «сумки». До назви однієї сумки додаємо `s`. `They are bags` — «Це сумки». Слово `a` перед `bags` не потрібне: сумок кілька. Олег обіцяв принести одну сумку, а прийшов із трьома. Для такого уточнення англійській вистачило однієї додаткової літери.
+До нового ліхтарика в упаковці додано два металеві циліндри. Брат крутить їх у руках і читає напис на коробці. battery — «батарейка». Слово закінчується на y після приголосної, тому y змінюємо на ies: batteries. They are batteries — «Це батарейки».
 
-**Гості залишили кілька сумок. Назвіть усю групу одним англійським словом.**
+**Брат тримає два циліндри. Скажіть йому повною фразою: це батарейки.**
 
-- ✅ **bags**
-- ❌ bag — *`bag` називає одну сумку, а тут потрібне `bags`.*
-- ❌ a bags — *Перед назвою кількох сумок не ставимо `a`.*
+- ✅ **They are batteries.**
+- ❌ They are batterys. — *У слові battery y змінюється на ies: batteries.*
+- ❌ They are battery. — *Батарейок кілька, тому потрібно batteries.*
 
 ---
 
 ## Інтро 2
 
-### Усі в одному місці
+### Коробка шоколаду
 
-`The bags are together` — «Сумки разом». Ви обоє знаєте, про які сумки йдеться; тут `together` означає, що вони розташовані в одному місці. Для кількох сумок потрібно `are`. `alone` — «сам, без компанії», а `nearby` — «поблизу». `The room is nearby` — «Кімната поблизу»: кімната одна, тому `is`.
+На коробці шоколаду надруковано три назви: Італія, Іспанія та Польща. Подруга читає їх уголос і просить вас допомогти із запитанням. country — «країна». Слово закінчується на y після приголосної, тому y змінюємо на ies: countries. Are they countries? — «Це країни?»
 
-**Ви з Анною знайшли всі гостьові сумки в одному місці. Повідомте «Сумки разом».**
+**Подруга показує на написи на коробці. Запитайте її, чи це країни.**
 
-- ✅ **The bags are together.**
-- ❌ The bags is together. — *Сумок кілька, тому тут потрібно `are`.*
-- ❌ The bags together. — *Після `The bags` потрібно `are`.*
+- ✅ **Are they countries?**
+- ❌ Are they countrys? — *У слові country y змінюється на ies: countries.*
+- ❌ Is they countries? — *У запитанні з they потрібно Are: Are they countries?*
 
 ---
 
 ## Інтро 3
 
-### Запитати про місце
+### Книга для дітей
 
-`Where are the bags?` — «Де сумки?» Починаємо з `Where are`, бо сумок кілька. Потім іде `the bags`: співрозмовник розуміє, які речі ви шукаєте. `guilty` — «винен». Олег сам визнає, що заплутав усіх, переставивши сумки без попередження: `He is guilty` — «Він винен».
+У посилці лежить книга для дітей. Подруга хоче почитати з неї ввечері дітям, але зверху книги не видно: брат сховав її на дно коробки. story — «оповідання, казка». Слово закінчується на y після приголосної: stories. Where are the stories? — «Де казки?»
 
-**Олег знає, які сумки ви шукаєте. Запитайте, де сумки.**
+**Подруга шукає книгу з казками. Запитайте брата, де казки.**
 
-- ✅ **Where are the bags?**
-- ❌ Where is the bags? — *Сумок кілька: потрібне запитання з `are`.*
-- ❌ What are the bags? — *`What` запитує, що це. Про місце запитуємо `Where`.*
+- ✅ **Where are the stories?**
+- ❌ Where are the storys? — *У слові story y змінюється на ies: stories.*
+- ❌ Where is the stories? — *Казок кілька, тому потрібно are: Where are the stories?*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Олег показує кілька загорнутих речей. Це сумки. Назвіть їх повною фразою**
+**1 · Картка слова — battery**
+<!-- interaction_id: en:lesson-03:session-19:word:battery; family: word_card -->
+> **battery** — батарейка. They are batteries — «Це батарейки». Про батарейки для ліхтарика, пульта, годинника.
+
+**2 · Брат знайшов в упаковці ліхтарика два циліндри. Скажіть подрузі повною фразою: це батарейки.**
 <!-- interaction_id: en:lesson-03:session-19:i01; family: phrase_builder -->
-Плитки: `bags` `are` `They` `is` → **They are bags.**
-*(плитка `is` зайва: тут потрібно `are` — `They are bags.`)*
+Плитки: `batteries` `are` `They` `battery` → **They are batteries.**
+*(плитка `battery` зайва: тут потрібно `batteries` — `They are batteries.`)*
 
-**2 · Послухайте повідомлення про сумки**
+**3 · Картка слова — country**
+<!-- interaction_id: en:lesson-03:session-19:word:country; family: word_card -->
+> **country** — країна. Are they countries? — «Це країни?» Про країну на мапі.
+
+**4 · Послухайте запитання подруги про написи на коробці**
 <!-- interaction_id: en:lesson-03:session-19:i02; family: listen_choose -->
-🔊 *The bags are together.* → **The bags are together.** · The bags are here. · The bags are nearby.
-- The bags are here. — *У записі останнє слово — `together`, а в цьому варіанті — `here`.*
-- The bags are nearby. — *У записі останнє слово — `together`, а в цьому варіанті — `nearby`.*
+🔊 *Are they countries?* → **Are they countries?** · Is it a country? · Are they batteries?
+- Is it a country? — *У записі останнє слово — `countries`, а в цьому варіанті — `country`.*
+- Are they batteries? — *У записі останнє слово — `countries`, а в цьому варіанті — `batteries`.*
 
-**3 · Ви називаєте кілька сумок гостей**
+**5 · Картка слова — story**
+<!-- interaction_id: en:lesson-03:session-19:word:story; family: word_card -->
+> **story** — оповідання або казка. Where are the stories? — «Де казки?» Про короткий текст у книзі.
+
+**6 · Подруга шукає книгу з казками. Доповніть її запитання**
 <!-- interaction_id: en:lesson-03:session-19:i03; family: context_gap_grammar -->
-They are ___. → **bags** · bag · a bags
-- bag — *Сумок кілька, тому потрібно `bags`.*
-- a bags — *Перед назвою кількох сумок не ставимо `a`.*
+Where are the ___? → **stories** · story · storys
+- story — *Казок кілька, тому потрібно stories.*
+- storys — *У слові story y змінюється на ies: stories.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-19:i04; family: speed_match -->
-bags — сумки · together — разом · alone — сам, без компанії · room — кімната
+batteries — батарейки · countries — країни · stories — оповідання, казки · box — коробка
 
-**5 · Послухайте й складіть повідомлення**
+**8 · Картка слова — city**
+<!-- interaction_id: en:lesson-03:session-19:word:city; family: word_card -->
+> **city** — місто. They are cities — «Це міста». Про велике місто, де живе багато людей.
+
+**9 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-19:i05; family: listen_build_dictation -->
-🔊 *The room is nearby.* Плитки: `nearby` `is` `room` `The` `are` → **The room is nearby.**
-*(плитка `are` зайва: тут потрібно `is` — `The room is nearby.`)*
+🔊 *They are cities.* Плитки: `cities` `are` `They` `city` → **They are cities.**
+*(плитка `city` зайва: тут потрібно `cities` — `They are cities.`)*
 
-**6 · Олег знає, які гостьові сумки ви шукаєте. Запитайте, де сумки**
+**10 · Подруга показує на мапі два великі міста. Запитайте її, чи це міста.**
 <!-- interaction_id: en:lesson-03:session-19:i06; family: phrase_builder -->
-Плитки: `bags` `the` `are` `Where` `What` → **Where are the bags?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where are the bags?`)*
+Плитки: `cities` `they` `Are` `Is` → **Are they cities?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are they cities?`)*
 
-**7 · Анна вийшла, інших людей поруч немає. Скажіть про себе «Я сам» зі скороченням**
+**11 · Подруга питає, де батарейки. Скажіть їй, що батарейки тут.**
 <!-- interaction_id: en:lesson-03:session-19:i07; family: scripted_repeat_compare -->
-🎙 **I'm alone.**
+🎙 **The batteries are here.**
 
-**8 · Усі потрібні сумки розташовані в одному місці. Доповніть повідомлення**
+**12 · Казки лежать на дні коробки. Доповніть фразу брата**
 <!-- interaction_id: en:lesson-03:session-19:i08; family: context_gap_grammar -->
-The bags ___ together. → **are** · is · am
-- is — *З кількома сумками тут потрібно `are`.*
-- am — *З `The bags` потрібно `are`.*
+The stories ___ here. → **are** · is · am
+- is — *Казок кілька: The stories are here.*
+- am — *З The stories потрібно are: The stories are here.*
 
-**9 · Послухайте повідомлення про Олега після його зізнання**
+**13 · Послухайте подругу: вона говорить про міста**
 <!-- interaction_id: en:lesson-03:session-19:i09; family: listen_choose -->
-🔊 *He is guilty.* → **He is guilty.** · He is lucky. · He is alone.
-- He is lucky. — *У записі останнє слово — `guilty`, а в цьому варіанті — `lucky`.*
-- He is alone. — *У записі останнє слово — `guilty`, а в цьому варіанті — `alone`.*
+🔊 *The cities are big.* → **The cities are big.** · The cities are old. · The cities are here.
+- The cities are old. — *У записі останнє слово — `big`, а в цьому варіанті — `old`.*
+- The cities are here. — *У записі останнє слово — `big`, а в цьому варіанті — `here`.*
 
-**10 · З’єднайте слова зі значеннями в цій сцені**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-19:i10; family: speed_match -->
-nearby — поблизу · guilty — винен · bags — сумки · room — кімната
+country — країна · countries — країни · city — місто · cities — міста
 
-**11 · Послухайте й складіть повідомлення**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-19:i11; family: listen_build_dictation -->
-🔊 *The bags are here.* Плитки: `here` `are` `bags` `The` `is` → **The bags are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The bags are here.`)*
+🔊 *The stories are short.* Плитки: `short` `stories` `are` `The` `is` → **The stories are short.**
+*(плитка `is` зайва: тут потрібно `are` — `The stories are short.`)*
 
-**12 · Ви знайшли всі гостьові сумки в одному місці. Повідомте «Сумки разом»**
+**16 · Подруга питає, що надруковано на коробці шоколаду. Скажіть їй: це країни.**
 <!-- interaction_id: en:lesson-03:session-19:i12; family: phrase_builder -->
-Плитки: `together` `are` `bags` `The` `is` → **The bags are together.**
-*(плитка `is` зайва: тут потрібно `are` — `The bags are together.`)*
+Плитки: `countries` `are` `They` `country` → **They are countries.**
+*(плитка `country` зайва: тут потрібно `countries` — `They are countries.`)*
 
-**13 · Олег визнав, що саме він спричинив плутанину із сумками. Скажіть «Він винен» зі скороченням**
+**17 · Брат дістав із ліхтарика батарейки. Скажіть коротко, що це батарейки.**
 <!-- interaction_id: en:lesson-03:session-19:i13; family: scripted_repeat_compare -->
-🎙 **He's guilty.**
+🎙 **They are batteries.**
 
-**14 · Ви запитуєте, де кілька сумок, про які обоє знаєте**
+**18 · Подруга показує на мапі міста. Доповніть її запитання**
 <!-- interaction_id: en:lesson-03:session-19:i14; family: context_gap_grammar -->
-Where ___ the bags? → **are** · is · am
-- is — *Сумок кілька: `Where are the bags?`.*
-- am — *З `the bags` тут потрібно `are`.*
+Are they ___? → **cities** · city · are
+- city — *У запитанні про кілька міст теж потрібно cities.*
+- are — *Слово Are вже стоїть на початку. У пропуск потрібна назва міст: cities.*
 
-**15 · Послухайте ще одне повідомлення про сумки**
+**19 · Послухайте, що каже брат**
 <!-- interaction_id: en:lesson-03:session-19:i15; family: listen_choose -->
-🔊 *The bags are nearby.* → **The bags are nearby.** · The bags are here. · The bags are together.
-- The bags are here. — *У записі останнє слово — `nearby`, а в цьому варіанті — `here`.*
-- The bags are together. — *У записі останнє слово — `nearby`, а в цьому варіанті — `together`.*
+🔊 *They are stories.* → **They are stories.** · They are batteries. · They are cities.
+- They are batteries. — *У записі останнє слово — `stories`, а в цьому варіанті — `batteries`.*
+- They are cities. — *У записі останнє слово — `stories`, а в цьому варіанті — `cities`.*
 
-**16 · З’єднайте слова зі значеннями в цій сцені**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-19:i16; family: speed_match -->
-together — разом · alone — сам, без компанії · nearby — поблизу · guilty — винен
+stories — оповідання, казки · cities — міста · batteries — батарейки · lamp — лампа
 
-**17 · Гості збираються йти. Їхні сумки знову переставили, й Анна знає куди. Запитайте, де сумки**
+**21 · Подруга показує на назви на коробці шоколаду. Запитайте її, чи це країни.**
 <!-- interaction_id: en:lesson-03:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the bags?**
-
+🎙 **Are they countries?**

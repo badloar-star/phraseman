@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-19",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько сумок и спросить, где они находятся",
-    "uk": "назвати кілька сумок і запитати, де вони розташовані"
+    "ru": "называть несколько предметов, меняя y на ies, и спрашивать о них",
+    "uk": "називати кілька предметів, змінюючи y на ies, і запитувати про них"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна сумка и несколько",
-        "uk": "Одна сумка й кілька"
+        "ru": "Упаковка фонарика",
+        "uk": "Упаковка ліхтарика"
       },
       "bodyByLocale": {
-        "ru": "`bag` — «сумка», `bags` — «сумки». К названию одной сумки добавляем `s`. `They are bags` — «Это сумки». Слово `a` перед `bags` не нужно: сумок несколько. Олег обещал принести одну сумку, а пришёл с тремя. Для такого уточнения английскому хватило одной дополнительной буквы.",
-        "uk": "`bag` — «сумка», `bags` — «сумки». До назви однієї сумки додаємо `s`. `They are bags` — «Це сумки». Слово `a` перед `bags` не потрібне: сумок кілька. Олег обіцяв принести одну сумку, а прийшов із трьома. Для такого уточнення англійській вистачило однієї додаткової літери."
+        "ru": "К новому фонарику в упаковке приложены два металлических цилиндра. Брат вертит их в руках и читает надпись на коробке. battery — «батарейка». Слово кончается на y после согласной, поэтому y меняем на ies: batteries. They are batteries — «Это батарейки».",
+        "uk": "До нового ліхтарика в упаковці додано два металеві циліндри. Брат крутить їх у руках і читає напис на коробці. battery — «батарейка». Слово закінчується на y після приголосної, тому y змінюємо на ies: batteries. They are batteries — «Це батарейки»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-19:intro1:q",
         "promptByLocale": {
-          "ru": "Гости оставили несколько сумок. Назовите всю группу одним английским словом.",
-          "uk": "Гості залишили кілька сумок. Назвіть усю групу одним англійським словом."
+          "ru": "Брат держит два цилиндра. Скажите ему полной фразой: это батарейки.",
+          "uk": "Брат тримає два циліндри. Скажіть йому повною фразою: це батарейки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-19:intro1:r1",
-              "text": "bags"
+              "text": "They are batteries."
             },
             {
               "responseId": "en:lesson-03:session-19:intro1:r2",
-              "text": "bag"
+              "text": "They are batterys."
             },
             {
               "responseId": "en:lesson-03:session-19:intro1:r3",
-              "text": "a bags"
+              "text": "They are battery."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-19:intro1:r1",
-              "text": "bags"
+              "text": "They are batteries."
             },
             {
               "responseId": "en:lesson-03:session-19:intro1:r2",
-              "text": "bag"
+              "text": "They are batterys."
             },
             {
               "responseId": "en:lesson-03:session-19:intro1:r3",
-              "text": "a bags"
+              "text": "They are battery."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Гости оставили несколько сумок. Назовите всю группу одним английским словом.",
-          "uk": "Гості залишили кілька сумок. Назвіть усю групу одним англійським словом."
+          "ru": "Брат держит два цилиндра. Скажите ему полной фразой: это батарейки.",
+          "uk": "Брат тримає два циліндри. Скажіть йому повною фразою: це батарейки."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Все в одном месте",
-        "uk": "Усі в одному місці"
+        "ru": "Коробка шоколада",
+        "uk": "Коробка шоколаду"
       },
       "bodyByLocale": {
-        "ru": "`The bags are together` — «Сумки вместе». Вы оба знаете, о каких сумках речь; здесь `together` означает, что они находятся в одном месте. Для нескольких сумок нужно `are`. `alone` — «один, без компании», а `nearby` — «поблизости». `The room is nearby` — «Комната поблизости»: комната одна, поэтому `is`.",
-        "uk": "`The bags are together` — «Сумки разом». Ви обоє знаєте, про які сумки йдеться; тут `together` означає, що вони розташовані в одному місці. Для кількох сумок потрібно `are`. `alone` — «сам, без компанії», а `nearby` — «поблизу». `The room is nearby` — «Кімната поблизу»: кімната одна, тому `is`."
+        "ru": "На коробке шоколада напечатаны три названия: Италия, Испания и Польша. Подруга читает их вслух и просит вас помочь с вопросом. country — «страна». Слово кончается на y после согласной, поэтому y меняем на ies: countries. Are they countries? — «Это страны?»",
+        "uk": "На коробці шоколаду надруковано три назви: Італія, Іспанія та Польща. Подруга читає їх уголос і просить вас допомогти із запитанням. country — «країна». Слово закінчується на y після приголосної, тому y змінюємо на ies: countries. Are they countries? — «Це країни?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-19:intro2:q",
         "promptByLocale": {
-          "ru": "Вы с Анной нашли все гостевые сумки в одном месте. Сообщите «Сумки вместе».",
-          "uk": "Ви з Анною знайшли всі гостьові сумки в одному місці. Повідомте «Сумки разом»."
+          "ru": "Подруга показывает на надписи на коробке. Спросите её, страны ли это.",
+          "uk": "Подруга показує на написи на коробці. Запитайте її, чи це країни."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-19:intro2:r1",
-              "text": "The bags are together."
+              "text": "Are they countries?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro2:r2",
-              "text": "The bags is together."
+              "text": "Are they countrys?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro2:r3",
-              "text": "The bags together."
+              "text": "Is they countries?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-19:intro2:r1",
-              "text": "The bags are together."
+              "text": "Are they countries?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro2:r2",
-              "text": "The bags is together."
+              "text": "Are they countrys?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro2:r3",
-              "text": "The bags together."
+              "text": "Is they countries?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с Анной нашли все гостевые сумки в одном месте. Сообщите «Сумки вместе».",
-          "uk": "Ви з Анною знайшли всі гостьові сумки в одному місці. Повідомте «Сумки разом»."
+          "ru": "Подруга показывает на надписи на коробке. Спросите её, страны ли это.",
+          "uk": "Подруга показує на написи на коробці. Запитайте її, чи це країни."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Спросить о месте",
-        "uk": "Запитати про місце"
+        "ru": "Книга для детей",
+        "uk": "Книга для дітей"
       },
       "bodyByLocale": {
-        "ru": "`Where are the bags?` — «Где сумки?» Начинаем с `Where are`, потому что сумок несколько. Затем идёт `the bags`: собеседник понимает, какие вещи вы ищете. `guilty` — «виноват». Олег сам признаёт, что запутал всех, переставив сумки без предупреждения: `He is guilty` — «Он виноват».",
-        "uk": "`Where are the bags?` — «Де сумки?» Починаємо з `Where are`, бо сумок кілька. Потім іде `the bags`: співрозмовник розуміє, які речі ви шукаєте. `guilty` — «винен». Олег сам визнає, що заплутав усіх, переставивши сумки без попередження: `He is guilty` — «Він винен»."
+        "ru": "В посылке лежит книга для детей. Подруга хочет почитать из неё вечером детям, но сверху книги не видно: брат убрал её на дно коробки. story — «рассказ, сказка». Слово кончается на y после согласной: stories. Where are the stories? — «Где сказки?»",
+        "uk": "У посилці лежить книга для дітей. Подруга хоче почитати з неї ввечері дітям, але зверху книги не видно: брат сховав її на дно коробки. story — «оповідання, казка». Слово закінчується на y після приголосної: stories. Where are the stories? — «Де казки?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-19:intro3:q",
         "promptByLocale": {
-          "ru": "Олег знает, какие сумки вы ищете. Спросите, где сумки.",
-          "uk": "Олег знає, які сумки ви шукаєте. Запитайте, де сумки."
+          "ru": "Подруга ищет книгу со сказками. Спросите брата, где сказки.",
+          "uk": "Подруга шукає книгу з казками. Запитайте брата, де казки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-19:intro3:r1",
-              "text": "Where are the bags?"
+              "text": "Where are the stories?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro3:r2",
-              "text": "Where is the bags?"
+              "text": "Where are the storys?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro3:r3",
-              "text": "What are the bags?"
+              "text": "Where is the stories?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-19:intro3:r1",
-              "text": "Where are the bags?"
+              "text": "Where are the stories?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro3:r2",
-              "text": "Where is the bags?"
+              "text": "Where are the storys?"
             },
             {
               "responseId": "en:lesson-03:session-19:intro3:r3",
-              "text": "What are the bags?"
+              "text": "Where is the stories?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Олег знает, какие сумки вы ищете. Спросите, где сумки.",
-          "uk": "Олег знає, які сумки ви шукаєте. Запитайте, де сумки."
+          "ru": "Подруга ищет книгу со сказками. Спросите брата, где сказки.",
+          "uk": "Подруга шукає книгу з казками. Запитайте брата, де казки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "228939f8a72ef671551c748ea716986d95c5bc7790d8dd14f0b89c9bc8aec7c4"
+  "introFingerprint": "05021f64a258aad5f9aa064ce6ccfe7de4504fd4b40b169e81f0439894a2758e"
 }

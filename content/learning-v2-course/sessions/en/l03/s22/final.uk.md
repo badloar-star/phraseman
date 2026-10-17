@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 22 — Чашки для виставки
+# Англійська · Урок 3 · Заняття 22 — Кухонна коробка за списком
 
-**Ситуація.** У клубі готують невелику виставку. Анна закінчила картину, Олег привіз чашки для чаювання. Серед гостей буде відомий художник; ви обговорюєте його й допомагаєте розставити посуд.
+**Ситуація.** Ви з братом та подругою перевіряєте кухонну коробку за списком доставки. Кожен рядок списку читаєте вголос: пляшки, миски, тарілки, банки. Предметів у рядку кілька, тому до слова додається s.
 
-**Що ви опануєте:** назвати кілька чашок і запитати про їхнє місце
-**Нові слова:** cups
+**Що ви опануєте:** називати кілька предметів зі списку доставки й питати, де вони
+**Нові слова:** bottle, bowl, plate, jar
+**Повертаються:** box, lamp
 
 ---
 
 ## Інтро 1
 
-### Чашка й чашки
+### Перший рядок списку
 
-`cup` — «чашка», `cups` — «чашки». Для кількох чашок додаємо `s`: `They are cups` — «Це чашки». Перед `cups` не ставимо `a`. Олег приніс одну чашку для всіх гостей. Економія посуду чудова, але чаювання доведеться проводити по черзі. Потрібні `cups` — чашки.
+У списку доставки перший рядок — «bottles». Брат дістає з кухонної коробки скляні пляшки з олією та оцтом і ставить їх у ряд на столі. Подруга водить пальцем по списку й відмічає рядки. bottle — «пляшка». Пляшок кілька — bottles. They are bottles — «Це пляшки».
 
-**Ви дістали з коробки кілька чашок. Назвіть їх одним англійським словом.**
+**Подруга звіряє коробку зі списком. Скажіть їй повною фразою: це пляшки.**
 
-- ✅ **cups**
-- ❌ cup — *`cup` — одна чашка; кілька — `cups`.*
-- ❌ a cups — *Перед назвою кількох чашок не ставимо `a`.*
+- ✅ **They are bottles.**
+- ❌ They are bottle. — *Пляшок кілька, тому потрібно bottles з s.*
+- ❌ They are a bottles. — *Перед кількома предметами a не ставимо: They are bottles.*
 
 ---
 
 ## Інтро 2
 
-### Знайти потрібні чашки
+### Миски не знайшлися
 
-`Where are the cups?` — «Де чашки?» `the cups` — чашки, про які ви з Анною вже говорили. Чашок кілька, тому в запитанні потрібно `are`. Можна відповісти: `The cups are here` — «Чашки тут».
+Наступний рядок списку — миски для салату, але в коробці їх не видно. Подруга перебирає газети, якими все перекладено, і нічого не знаходить. Брат стоїть поруч: він розбирав цю коробку першим. bowl — «миска». Мисок кілька — bowls. Where are the bowls? — «Де миски?»
 
-**Анна знає, які чашки потрібні для чаювання. Запитайте, де чашки.**
+**Подруга не знайшла в коробці миски. Запитайте брата, де миски.**
 
-- ✅ **Where are the cups?**
-- ❌ Where is the cups? — *Чашок кілька: потрібно `are`.*
-- ❌ What are the cups? — *Про місце запитуємо `Where` — «Де».*
+- ✅ **Where are the bowls?**
+- ❌ Where is the bowls? — *Мисок кілька, тому потрібно are: Where are the bowls?*
+- ❌ Where are the bowl? — *Мисок кілька, тому потрібно bowls з s.*
 
 ---
 
 ## Інтро 3
 
-### Картина закінчена
+### Дзвінок у двері
 
-`The picture is complete` — «Картина закінчена». У цій сцені `complete` означає, що роботу над нею завершено. `famous` — «відомий», `rich` — «багатий», `poor` — «бідний». Ці слова не замінюють одне одного: відомий художник не обов’язково багатий. Про гостя, якого знає багато людей, скажемо `He is famous` — «Він відомий».
+Сусідка зазирає дізнатися, чи не розбилося щось у дорозі. Кур’єр перед відходом казав, що крихкий посуд зверху, і просив перевірити саме його. Ви стоїте поруч із братом. plate — «тарілка». Тарілок кілька — plates. Are the plates here? — «Тарілки тут?»
 
-**Анна закінчила роботу над картиною. Повідомте «Картина закінчена».**
+**Сусідка хоче переконатися, що тарілки на місці. Запитайте брата, чи тарілки тут.**
 
-- ✅ **The picture is complete.**
-- ❌ The picture is famous. — *`famous` — «відома», а тут важливо, що роботу закінчено: `complete`.*
-- ❌ The picture is poor. — *Тут потрібне `complete` — «закінчена». Слово `poor` цього не означає.*
+- ✅ **Are the plates here?**
+- ❌ Is the plates here? — *Тарілок кілька, тому потрібно Are: Are the plates here?*
+- ❌ Are the plate here? — *Тарілок кілька, тому потрібно plates з s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Олег запитує про кілька предметів у коробці. Назвіть їх: «Це чашки»**
+**1 · Картка слова — bottle**
+<!-- interaction_id: en:lesson-03:session-22:word:bottle; family: word_card -->
+> **bottle** — пляшка. They are bottles — «Це пляшки». Про пляшку для олії, води, молока.
+
+**2 · Брат ставить у ряд скляні пляшки. Скажіть подрузі повною фразою: це пляшки.**
 <!-- interaction_id: en:lesson-03:session-22:i01; family: phrase_builder -->
-Плитки: `cups` `are` `They` `is` → **They are cups.**
-*(плитка `is` зайва: тут потрібно `are` — `They are cups.`)*
+Плитки: `bottles` `are` `They` `bottle` → **They are bottles.**
+*(плитка `bottle` зайва: тут потрібно `bottles` — `They are bottles.`)*
 
-**2 · Послухайте повідомлення про чашки**
+**3 · Картка слова — bowl**
+<!-- interaction_id: en:lesson-03:session-22:word:bowl; family: word_card -->
+> **bowl** — миска, глибокий посуд для салату й супу. Where are the bowls? — «Де миски?» Про миску на кухні.
+
+**4 · Послухайте запитання подруги**
 <!-- interaction_id: en:lesson-03:session-22:i02; family: listen_choose -->
-🔊 *The cups are here.* → **The cups are here.** · The cups are outside. · The cups are upstairs.
-- The cups are outside. — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
-- The cups are upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Where are the bowls?* → **Where are the bowls?** · Where is the bowl? · Where are the plates?
+- Where is the bowl? — *У записі останнє слово — `bowls`, а в цьому варіанті — `bowl`.*
+- Where are the plates? — *У записі останнє слово — `bowls`, а в цьому варіанті — `plates`.*
 
-**3 · Ви називаєте кілька чашок**
+**5 · Картка слова — plate**
+<!-- interaction_id: en:lesson-03:session-22:word:plate; family: word_card -->
+> **plate** — тарілка. Are the plates here? — «Тарілки тут?» Про пласку тарілку для їжі.
+
+**6 · Сусідка перевіряє, чи не розбився посуд. Доповніть її запитання**
 <!-- interaction_id: en:lesson-03:session-22:i03; family: context_gap_grammar -->
-They are ___. → **cups** · cup · a cups
-- cup — *Чашок кілька: `cups`.*
-- a cups — *Перед `cups` не ставимо `a`.*
+Are the ___ here? → **plates** · plate · are
+- plate — *Тарілок кілька, тому потрібно plates з s.*
+- are — *Слово Are вже стоїть на початку. У пропуск потрібна назва тарілок: plates.*
 
-**4 · З’єднайте слова зі значеннями в цій сцені**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-22:i04; family: speed_match -->
-cups — чашки · rich — багатий · poor — бідний · picture — картина
+bottles — пляшки · bowls — миски · plates — тарілки · box — коробка
 
-**5 · Послухайте й складіть повідомлення**
+**8 · Картка слова — jar**
+<!-- interaction_id: en:lesson-03:session-22:word:jar; family: word_card -->
+> **jar** — банка зі скла. Are they jars? — «Це банки?» Про банку для варення, огірків, круп.
+
+**9 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-22:i05; family: listen_build_dictation -->
-🔊 *The picture is complete.* Плитки: `complete` `is` `picture` `The` `are` → **The picture is complete.**
-*(плитка `are` зайва: тут потрібно `is` — `The picture is complete.`)*
+🔊 *They are jars.* Плитки: `jars` `are` `They` `jar` → **They are jars.**
+*(плитка `jar` зайва: тут потрібно `jars` — `They are jars.`)*
 
-**6 · Олег знає, які чашки ви шукаєте. Запитайте, де чашки**
+**10 · Подруга дістає з коробки миски. Запитайте її, чи це миски.**
 <!-- interaction_id: en:lesson-03:session-22:i06; family: phrase_builder -->
-Плитки: `cups` `the` `are` `Where` `What` → **Where are the cups?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where are the cups?`)*
+Плитки: `bowls` `they` `Are` `Is` → **Are they bowls?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are they bowls?`)*
 
-**7 · Гостя-художника знає багато людей. Скажіть «Він відомий» зі скороченням**
+**11 · Брат питає, де пляшки. Скажіть йому, що пляшки тут.**
 <!-- interaction_id: en:lesson-03:session-22:i07; family: scripted_repeat_compare -->
-🎙 **He's famous.**
+🎙 **The bottles are here.**
 
-**8 · Роботу над картиною закінчено. Повідомте про це**
+**12 · Банки стоять на підвіконні. Доповніть фразу подруги**
 <!-- interaction_id: en:lesson-03:session-22:i08; family: context_gap_grammar -->
-The picture is ___. → **complete** · rich · poor
-- rich — *Про завершену роботу тут кажемо `complete`.*
-- poor — *`poor` не означає «закінчена». Потрібне `complete`.*
+The jars ___ here. → **are** · is · am
+- is — *Банок кілька: The jars are here.*
+- am — *З The jars потрібно are: The jars are here.*
 
-**9 · Послухайте опис відвідувача**
+**13 · Послухайте, що брат каже про знахідку**
 <!-- interaction_id: en:lesson-03:session-22:i09; family: listen_choose -->
-🔊 *He is rich.* → **He is rich.** · He is poor. · He is famous.
-- He is poor. — *У записі останнє слово — `rich`, а в цьому варіанті — `poor`.*
-- He is famous. — *У записі останнє слово — `rich`, а в цьому варіанті — `famous`.*
+🔊 *They are bottles.* → **They are bottles.** · It is a bottle. · They are jars.
+- It is a bottle. — *У записі останнє слово — `bottles`, а в цьому варіанті — `bottle`.*
+- They are jars. — *У записі останнє слово — `bottles`, а в цьому варіанті — `jars`.*
 
-**10 · З’єднайте слова зі значеннями в цій сцені**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-22:i10; family: speed_match -->
-famous — відомий · complete — закінчений · cups — чашки · picture — картина
+bowl — миска · bowls — миски · plate — тарілка · plates — тарілки
 
-**11 · Послухайте й складіть повідомлення**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-22:i11; family: listen_build_dictation -->
-🔊 *The cups are inside.* Плитки: `inside` `are` `cups` `The` `is` → **The cups are inside.**
-*(плитка `is` зайва: тут потрібно `are` — `The cups are inside.`)*
+🔊 *The plates are clean.* Плитки: `clean` `plates` `are` `The` `is` → **The plates are clean.**
+*(плитка `is` зайва: тут потрібно `are` — `The plates are clean.`)*
 
-**12 · Гість запитує, що ви дістали з пакування. Назвіть кілька чашок повною фразою**
+**16 · Брат дістав із коробки миски для салату. Скажіть йому повною фразою: це миски.**
 <!-- interaction_id: en:lesson-03:session-22:i12; family: phrase_builder -->
-Плитки: `cups` `are` `They` `is` → **They are cups.**
-*(плитка `is` зайва: тут потрібно `are` — `They are cups.`)*
+Плитки: `bowls` `are` `They` `bowl` → **They are bowls.**
+*(плитка `bowl` зайва: тут потрібно `bowls` — `They are bowls.`)*
 
-**13 · Олег запитує, чи закінчена картина. Вона закінчена. Скажіть «Вона закінчена» зі скороченням**
+**17 · Подруга показує скляні банки. Скажіть коротко, що це банки.**
 <!-- interaction_id: en:lesson-03:session-22:i13; family: scripted_repeat_compare -->
-🎙 **It's complete.**
+🎙 **They are jars.**
 
-**14 · Ви запитуєте про місце кількох чашок**
+**18 · Кур’єр залишив у коробці скляні пляшки. Доповніть запитання брата**
 <!-- interaction_id: en:lesson-03:session-22:i14; family: context_gap_grammar -->
-Where ___ the cups? → **are** · is · am
-- is — *Чашок кілька, потрібно `are`.*
-- am — *З `the cups` тут потрібно `are`.*
+Are they ___? → **bottles** · bottle · are
+- bottle — *У запитанні про кілька пляшок теж потрібно bottles з s.*
+- are — *Слово Are вже стоїть на початку. У пропуск потрібна назва пляшок: bottles.*
 
-**15 · Послухайте інший опис відвідувача**
+**19 · Послухайте запитання сусідки**
 <!-- interaction_id: en:lesson-03:session-22:i15; family: listen_choose -->
-🔊 *He is poor.* → **He is poor.** · He is rich. · He is famous.
-- He is rich. — *У записі останнє слово — `poor`, а в цьому варіанті — `rich`.*
-- He is famous. — *У записі останнє слово — `poor`, а в цьому варіанті — `famous`.*
+🔊 *Are they plates?* → **Are they plates?** · Is it a plate? · Are they bowls?
+- Is it a plate? — *У записі останнє слово — `plates`, а в цьому варіанті — `plate`.*
+- Are they bowls? — *У записі останнє слово — `plates`, а в цьому варіанті — `bowls`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-22:i16; family: speed_match -->
-rich — багатий · poor — бідний · famous — відомий · complete — закінчений
+jars — банки · bottles — пляшки · bowls — миски · lamp — лампа
 
-**17 · Після іншої виставки ви прибираєте посуд. Анна знає, які чашки ви шукаєте. Запитайте, де чашки**
+**21 · Сусідка зазирнула на кухню. Запитайте її, чи тарілки тут.**
 <!-- interaction_id: en:lesson-03:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the cups?**
-
+🎙 **Are the plates here?**

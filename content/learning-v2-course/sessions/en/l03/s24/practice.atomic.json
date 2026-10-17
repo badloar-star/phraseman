@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-24:word:envelope",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — envelope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:envelope:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — envelope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:envelope:audio",
+            "transcript": "envelope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:envelope:r1",
+              "targetText": "envelope",
+              "meaningByLocale": {
+                "ru": "конверт. They are envelopes — «Это конверты». О бумажном конверте для письма или документов.",
+                "uk": "конверт. They are envelopes — «Це конверти». Про паперовий конверт для листа або документів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "envelope",
+            "definitionByLocale": {
+              "ru": "конверт. They are envelopes — «Это конверты». О бумажном конверте для письма или документов.",
+              "uk": "конверт. They are envelopes — «Це конверти». Про паперовий конверт для листа або документів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Курьер оставил стопку конвертов. Скажите подруге полной фразой: это конверты.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Курьер оставил стопку конвертов. Скажите подруге полной фразой: это конверты.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are envelopes.",
+          "localizedMeaning": {
+            "ru": "Курьер оставил стопку конвертов. Скажите подруге полной фразой: это конверты.",
+            "uk": "Кур’єр залишив стос конвертів. Скажіть подрузі повною фразою: це конверти."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "envelopes"
+          ],
+          "authoredDistractorTokens": [
+            "envelope"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Курьер оставил стопку конвертов. Скажите подруге полной фразой: это конверты.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `envelopes` — `They are envelopes.`",
+                "uk": "тут потрібно `envelopes` — `They are envelopes.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:word:label",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — label",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:label:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — label",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:label:audio",
+            "transcript": "label"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:label:r1",
+              "targetText": "label",
+              "meaningByLocale": {
+                "ru": "бирка или этикетка. Is it a label? — «Это бирка?» О бирке на коробке, на одежде, на банке.",
+                "uk": "бирка або етикетка. Is it a label? — «Це бирка?» Про бирку на коробці, на одязі, на банці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "label",
+            "definitionByLocale": {
+              "ru": "бирка или этикетка. Is it a label? — «Это бирка?» О бирке на коробке, на одежде, на банке.",
+              "uk": "бирка або етикетка. Is it a label? — «Це бирка?» Про бирку на коробці, на одязі, на банці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги о бирке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i02:r1",
+            "text": "Is it a label?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i02:r2",
+            "text": "Are they labels?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i02:r3",
+            "text": "Is it a card?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги о бирке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i02:audio",
+            "transcript": "Is it a label?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:i02:r1",
+              "targetText": "Is it a label?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i02:r2",
+              "targetText": "Are they labels?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i02:r3",
+              "targetText": "Is it a card?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о бирке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `label`, а в этом варианте — `labels`.",
+                "uk": "У записі останнє слово — `label`, а в цьому варіанті — `labels`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о бирке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `label`, а в этом варианте — `card`.",
+                "uk": "У записі останнє слово — `label`, а в цьому варіанті — `card`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:word:ribbon",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ribbon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:ribbon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ribbon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:ribbon:audio",
+            "transcript": "ribbon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:ribbon:r1",
+              "targetText": "ribbon",
+              "meaningByLocale": {
+                "ru": "лента. The ribbons are long — «Ленты длинные». О ленте для подарка или волос.",
+                "uk": "стрічка. The ribbons are long — «Стрічки довгі». Про стрічку для подарунка або волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ribbon",
+            "definitionByLocale": {
+              "ru": "лента. The ribbons are long — «Ленты длинные». О ленте для подарка или волос.",
+              "uk": "стрічка. The ribbons are long — «Стрічки довгі». Про стрічку для подарунка або волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга выбирает ленты для подарка. Дополните её фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i03:r1",
+            "text": "ribbons"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i03:r2",
+            "text": "ribbon"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i03:r3",
+            "text": "a ribbons"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга выбирает ленты для подарка. Дополните её фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга выбирает ленты для подарка. Дополните её фразу",
+            "uk": "Подруга вибирає стрічки для подарунка. Доповніть її фразу"
+          },
+          "gappedTargetPhrase": "The ___ are long.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-24:i03:r1",
+              "text": "ribbons"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i03:r2",
+              "text": "ribbon"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i03:r3",
+              "text": "a ribbons"
+            }
+          ],
+          "testedDimension": "Подруга выбирает ленты для подарка. Дополните её фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга выбирает ленты для подарка. Дополните её фразу",
+              "feedbackByLocale": {
+                "ru": "Лент несколько, поэтому нужно ribbons с s.",
+                "uk": "Стрічок кілька, тому потрібно ribbons з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга выбирает ленты для подарка. Дополните её фразу",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими предметами a не ставим: The ribbons are long.",
+                "uk": "Перед кількома предметами a не ставимо: The ribbons are long."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-24:i04:p1",
+              "target": "envelopes",
+              "meaningByLocale": {
+                "ru": "конверты",
+                "uk": "конверти"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i04:p2",
+              "target": "labels",
+              "meaningByLocale": {
+                "ru": "бирки, этикетки",
+                "uk": "бирки, етикетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i04:p3",
+              "target": "ribbons",
+              "meaningByLocale": {
+                "ru": "ленты",
+                "uk": "стрічки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i04:p4",
+              "target": "card",
+              "meaningByLocale": {
+                "ru": "открытка, карточка",
+                "uk": "листівка, картка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "envelopes",
+            "labels",
+            "ribbons",
+            "card"
+          ],
+          "rightColumn": [
+            "конверты",
+            "бирки, этикетки",
+            "ленты",
+            "открытка, карточка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:word:sticker",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sticker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:sticker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sticker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:sticker:audio",
+            "transcript": "sticker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:sticker:r1",
+              "targetText": "sticker",
+              "meaningByLocale": {
+                "ru": "наклейка. They are stickers — «Это наклейки». О маленькой наклейке с рисунком.",
+                "uk": "наліпка. They are stickers — «Це наліпки». Про маленьку наліпку з малюнком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sticker",
+            "definitionByLocale": {
+              "ru": "наклейка. They are stickers — «Это наклейки». О маленькой наклейке с рисунком.",
+              "uk": "наліпка. They are stickers — «Це наліпки». Про маленьку наліпку з малюнком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i05:audio",
+            "transcript": "They are stickers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are stickers.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "stickers"
+          ],
+          "authoredDistractorTokens": [
+            "sticker"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `stickers` — `They are stickers.`",
+                "uk": "тут потрібно `stickers` — `They are stickers.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат держит одну бирку. Спросите подругу, бирка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат держит одну бирку. Спросите подругу, бирка ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a label?",
+          "localizedMeaning": {
+            "ru": "Брат держит одну бирку. Спросите подругу, бирка ли это.",
+            "uk": "Брат тримає одну бирку. Запитайте подругу, чи це бирка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "label"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат держит одну бирку. Спросите подругу, бирка ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a label?`",
+                "uk": "тут потрібно `Is` — `Is it a label?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат держит один конверт. Скажите коротко, что это конверт.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i07:audio"
+        ],
+        "accessibilityLabel": "Брат держит один конверт. Скажите коротко, что это конверт.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i07:audio",
+            "transcript": "It is an envelope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is an envelope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга достала из пачки один конверт. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i08:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i08:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достала из пачки один конверт. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга достала из пачки один конверт. Дополните фразу",
+            "uk": "Подруга дістала з пачки один конверт. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ envelope.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-24:i08:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i08:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга достала из пачки один конверт. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга достала из пачки один конверт. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово envelope начинается с гласного звука, поэтому здесь an.",
+                "uk": "Слово envelope починається з голосного звуку, тому тут an."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга достала из пачки один конверт. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед envelope нужно an.",
+                "uk": "Слово is вже стоїть перед пропуском. Перед envelope потрібне an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит брат",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i09:r1",
+            "text": "They are tickets."
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i09:r2",
+            "text": "It is a ticket."
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i09:r3",
+            "text": "They are pens."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит брат",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i09:audio",
+            "transcript": "They are tickets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:i09:r1",
+              "targetText": "They are tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i09:r2",
+              "targetText": "It is a ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i09:r3",
+              "targetText": "They are pens.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tickets`, а в этом варианте — `ticket`.",
+                "uk": "У записі останнє слово — `tickets`, а в цьому варіанті — `ticket`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tickets`, а в этом варианте — `pens`.",
+                "uk": "У записі останнє слово — `tickets`, а в цьому варіанті — `pens`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-24:i10:p1",
+              "target": "tickets",
+              "meaningByLocale": {
+                "ru": "билеты",
+                "uk": "квитки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i10:p2",
+              "target": "pens",
+              "meaningByLocale": {
+                "ru": "ручки",
+                "uk": "ручки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i10:p3",
+              "target": "watches",
+              "meaningByLocale": {
+                "ru": "наручные часы (несколько)",
+                "uk": "наручні годинники"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i10:p4",
+              "target": "stories",
+              "meaningByLocale": {
+                "ru": "рассказы, сказки",
+                "uk": "оповідання, казки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tickets",
+            "pens",
+            "watches",
+            "stories"
+          ],
+          "rightColumn": [
+            "билеты",
+            "ручки",
+            "наручные часы (несколько)",
+            "рассказы, сказки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i11:audio",
+            "transcript": "The stickers are new."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The stickers are new.",
+          "orderedTokens": [
+            "The",
+            "stickers",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The stickers are new.`",
+                "uk": "тут потрібно `are` — `The stickers are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга достала из пакета ленты. Скажите ей полной фразой: это ленты.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достала из пакета ленты. Скажите ей полной фразой: это ленты.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are ribbons.",
+          "localizedMeaning": {
+            "ru": "Подруга достала из пакета ленты. Скажите ей полной фразой: это ленты.",
+            "uk": "Подруга дістала з пакета стрічки. Скажіть їй повною фразою: це стрічки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "ribbons"
+          ],
+          "authoredDistractorTokens": [
+            "ribbon"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга достала из пакета ленты. Скажите ей полной фразой: это ленты.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ribbons` — `They are ribbons.`",
+                "uk": "тут потрібно `ribbons` — `They are ribbons.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат держит одну открытку. Скажите коротко, что это открытка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i13:audio"
+        ],
+        "accessibilityLabel": "Брат держит одну открытку. Скажите коротко, что это открытка.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i13:audio",
+            "transcript": "It is a card."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is a card.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат клеит бирки на коробки. Дополните вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i14:r1",
+            "text": "labels"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i14:r2",
+            "text": "label"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат клеит бирки на коробки. Дополните вопрос подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат клеит бирки на коробки. Дополните вопрос подруги",
+            "uk": "Брат клеїть бирки на коробки. Доповніть запитання подруги"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-24:i14:r1",
+              "text": "labels"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i14:r2",
+              "text": "label"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат клеит бирки на коробки. Дополните вопрос подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат клеит бирки на коробки. Дополните вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких бирках тоже нужно labels с s.",
+                "uk": "У запитанні про кілька бирок теж потрібно labels з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат клеит бирки на коробки. Дополните вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название бирок: labels.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва бирок: labels."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i15:r1",
+            "text": "Are they cities?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i15:r2",
+            "text": "Is it a city?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i15:r3",
+            "text": "Are they bottles?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i15:audio",
+            "transcript": "Are they cities?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:i15:r1",
+              "targetText": "Are they cities?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i15:r2",
+              "targetText": "Is it a city?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i15:r3",
+              "targetText": "Are they bottles?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cities`, а в этом варианте — `city`.",
+                "uk": "У записі останнє слово — `cities`, а в цьому варіанті — `city`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cities`, а в этом варианте — `bottles`.",
+                "uk": "У записі останнє слово — `cities`, а в цьому варіанті — `bottles`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-24:i16:p1",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i16:p2",
+              "target": "plates",
+              "meaningByLocale": {
+                "ru": "тарелки",
+                "uk": "тарілки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i16:p3",
+              "target": "cups",
+              "meaningByLocale": {
+                "ru": "чашки",
+                "uk": "чашки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i16:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bowls",
+            "plates",
+            "cups",
+            "box"
+          ],
+          "rightColumn": [
+            "миски",
+            "тарелки",
+            "чашки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Курьер ушёл. Спросите подругу, здесь ли все конверты.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Курьер ушёл. Спросите подругу, здесь ли все конверты.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i17:audio",
+            "transcript": "Are the envelopes here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are the envelopes here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-24:word:envelope",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — envelope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:envelope:audio"
+        ],
+        "accessibilityLabel": "Картка слова — envelope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:envelope:audio",
+            "transcript": "envelope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:envelope:r1",
+              "targetText": "envelope",
+              "meaningByLocale": {
+                "ru": "конверт. They are envelopes — «Это конверты». О бумажном конверте для письма или документов.",
+                "uk": "конверт. They are envelopes — «Це конверти». Про паперовий конверт для листа або документів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "envelope",
+            "definitionByLocale": {
+              "ru": "конверт. They are envelopes — «Это конверты». О бумажном конверте для письма или документов.",
+              "uk": "конверт. They are envelopes — «Це конверти». Про паперовий конверт для листа або документів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кур’єр залишив стос конвертів. Скажіть подрузі повною фразою: це конверти.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кур’єр залишив стос конвертів. Скажіть подрузі повною фразою: це конверти.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are envelopes.",
+          "localizedMeaning": {
+            "ru": "Курьер оставил стопку конвертов. Скажите подруге полной фразой: это конверты.",
+            "uk": "Кур’єр залишив стос конвертів. Скажіть подрузі повною фразою: це конверти."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "envelopes"
+          ],
+          "authoredDistractorTokens": [
+            "envelope"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Кур’єр залишив стос конвертів. Скажіть подрузі повною фразою: це конверти.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `envelopes` — `They are envelopes.`",
+                "uk": "тут потрібно `envelopes` — `They are envelopes.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:word:label",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — label",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:label:audio"
+        ],
+        "accessibilityLabel": "Картка слова — label",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:label:audio",
+            "transcript": "label"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:label:r1",
+              "targetText": "label",
+              "meaningByLocale": {
+                "ru": "бирка или этикетка. Is it a label? — «Это бирка?» О бирке на коробке, на одежде, на банке.",
+                "uk": "бирка або етикетка. Is it a label? — «Це бирка?» Про бирку на коробці, на одязі, на банці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "label",
+            "definitionByLocale": {
+              "ru": "бирка или этикетка. Is it a label? — «Это бирка?» О бирке на коробке, на одежде, на банке.",
+              "uk": "бирка або етикетка. Is it a label? — «Це бирка?» Про бирку на коробці, на одязі, на банці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги про бирку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i02:r1",
+            "text": "Is it a label?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i02:r2",
+            "text": "Are they labels?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i02:r3",
+            "text": "Is it a card?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги про бирку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i02:audio",
+            "transcript": "Is it a label?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:i02:r1",
+              "targetText": "Is it a label?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i02:r2",
+              "targetText": "Are they labels?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i02:r3",
+              "targetText": "Is it a card?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про бирку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `label`, а в этом варианте — `labels`.",
+                "uk": "У записі останнє слово — `label`, а в цьому варіанті — `labels`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про бирку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `label`, а в этом варианте — `card`.",
+                "uk": "У записі останнє слово — `label`, а в цьому варіанті — `card`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:word:ribbon",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ribbon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:ribbon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ribbon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:ribbon:audio",
+            "transcript": "ribbon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:ribbon:r1",
+              "targetText": "ribbon",
+              "meaningByLocale": {
+                "ru": "лента. The ribbons are long — «Ленты длинные». О ленте для подарка или волос.",
+                "uk": "стрічка. The ribbons are long — «Стрічки довгі». Про стрічку для подарунка або волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ribbon",
+            "definitionByLocale": {
+              "ru": "лента. The ribbons are long — «Ленты длинные». О ленте для подарка или волос.",
+              "uk": "стрічка. The ribbons are long — «Стрічки довгі». Про стрічку для подарунка або волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга вибирає стрічки для подарунка. Доповніть її фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i03:r1",
+            "text": "ribbons"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i03:r2",
+            "text": "ribbon"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i03:r3",
+            "text": "a ribbons"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга вибирає стрічки для подарунка. Доповніть її фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга выбирает ленты для подарка. Дополните её фразу",
+            "uk": "Подруга вибирає стрічки для подарунка. Доповніть її фразу"
+          },
+          "gappedTargetPhrase": "The ___ are long.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-24:i03:r1",
+              "text": "ribbons"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i03:r2",
+              "text": "ribbon"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i03:r3",
+              "text": "a ribbons"
+            }
+          ],
+          "testedDimension": "Подруга вибирає стрічки для подарунка. Доповніть її фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга вибирає стрічки для подарунка. Доповніть її фразу",
+              "feedbackByLocale": {
+                "ru": "Лент несколько, поэтому нужно ribbons с s.",
+                "uk": "Стрічок кілька, тому потрібно ribbons з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга вибирає стрічки для подарунка. Доповніть її фразу",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими предметами a не ставим: The ribbons are long.",
+                "uk": "Перед кількома предметами a не ставимо: The ribbons are long."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-24:i04:p1",
+              "target": "envelopes",
+              "meaningByLocale": {
+                "ru": "конверты",
+                "uk": "конверти"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i04:p2",
+              "target": "labels",
+              "meaningByLocale": {
+                "ru": "бирки, этикетки",
+                "uk": "бирки, етикетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i04:p3",
+              "target": "ribbons",
+              "meaningByLocale": {
+                "ru": "ленты",
+                "uk": "стрічки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i04:p4",
+              "target": "card",
+              "meaningByLocale": {
+                "ru": "открытка, карточка",
+                "uk": "листівка, картка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "envelopes",
+            "labels",
+            "ribbons",
+            "card"
+          ],
+          "rightColumn": [
+            "конверти",
+            "бирки, етикетки",
+            "стрічки",
+            "листівка, картка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:word:sticker",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sticker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:word:sticker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sticker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:word:sticker:audio",
+            "transcript": "sticker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:word:sticker:r1",
+              "targetText": "sticker",
+              "meaningByLocale": {
+                "ru": "наклейка. They are stickers — «Это наклейки». О маленькой наклейке с рисунком.",
+                "uk": "наліпка. They are stickers — «Це наліпки». Про маленьку наліпку з малюнком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sticker",
+            "definitionByLocale": {
+              "ru": "наклейка. They are stickers — «Это наклейки». О маленькой наклейке с рисунком.",
+              "uk": "наліпка. They are stickers — «Це наліпки». Про маленьку наліпку з малюнком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i05:audio",
+            "transcript": "They are stickers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are stickers.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "stickers"
+          ],
+          "authoredDistractorTokens": [
+            "sticker"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `stickers` — `They are stickers.`",
+                "uk": "тут потрібно `stickers` — `They are stickers.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат тримає одну бирку. Запитайте подругу, чи це бирка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат тримає одну бирку. Запитайте подругу, чи це бирка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a label?",
+          "localizedMeaning": {
+            "ru": "Брат держит одну бирку. Спросите подругу, бирка ли это.",
+            "uk": "Брат тримає одну бирку. Запитайте подругу, чи це бирка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "label"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат тримає одну бирку. Запитайте подругу, чи це бирка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a label?`",
+                "uk": "тут потрібно `Is` — `Is it a label?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат тримає один конверт. Скажіть коротко, що це конверт.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i07:audio"
+        ],
+        "accessibilityLabel": "Брат тримає один конверт. Скажіть коротко, що це конверт.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i07:audio",
+            "transcript": "It is an envelope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is an envelope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга дістала з пачки один конверт. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i08:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i08:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістала з пачки один конверт. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга достала из пачки один конверт. Дополните фразу",
+            "uk": "Подруга дістала з пачки один конверт. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ envelope.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-24:i08:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i08:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга дістала з пачки один конверт. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга дістала з пачки один конверт. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово envelope начинается с гласного звука, поэтому здесь an.",
+                "uk": "Слово envelope починається з голосного звуку, тому тут an."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга дістала з пачки один конверт. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед envelope нужно an.",
+                "uk": "Слово is вже стоїть перед пропуском. Перед envelope потрібне an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже брат",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i09:r1",
+            "text": "They are tickets."
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i09:r2",
+            "text": "It is a ticket."
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i09:r3",
+            "text": "They are pens."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже брат",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i09:audio",
+            "transcript": "They are tickets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:i09:r1",
+              "targetText": "They are tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i09:r2",
+              "targetText": "It is a ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i09:r3",
+              "targetText": "They are pens.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tickets`, а в этом варианте — `ticket`.",
+                "uk": "У записі останнє слово — `tickets`, а в цьому варіанті — `ticket`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tickets`, а в этом варианте — `pens`.",
+                "uk": "У записі останнє слово — `tickets`, а в цьому варіанті — `pens`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-24:i10:p1",
+              "target": "tickets",
+              "meaningByLocale": {
+                "ru": "билеты",
+                "uk": "квитки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i10:p2",
+              "target": "pens",
+              "meaningByLocale": {
+                "ru": "ручки",
+                "uk": "ручки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i10:p3",
+              "target": "watches",
+              "meaningByLocale": {
+                "ru": "наручные часы (несколько)",
+                "uk": "наручні годинники"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i10:p4",
+              "target": "stories",
+              "meaningByLocale": {
+                "ru": "рассказы, сказки",
+                "uk": "оповідання, казки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tickets",
+            "pens",
+            "watches",
+            "stories"
+          ],
+          "rightColumn": [
+            "квитки",
+            "ручки",
+            "наручні годинники",
+            "оповідання, казки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i11:audio",
+            "transcript": "The stickers are new."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The stickers are new.",
+          "orderedTokens": [
+            "The",
+            "stickers",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The stickers are new.`",
+                "uk": "тут потрібно `are` — `The stickers are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дістала з пакета стрічки. Скажіть їй повною фразою: це стрічки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістала з пакета стрічки. Скажіть їй повною фразою: це стрічки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are ribbons.",
+          "localizedMeaning": {
+            "ru": "Подруга достала из пакета ленты. Скажите ей полной фразой: это ленты.",
+            "uk": "Подруга дістала з пакета стрічки. Скажіть їй повною фразою: це стрічки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "ribbons"
+          ],
+          "authoredDistractorTokens": [
+            "ribbon"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дістала з пакета стрічки. Скажіть їй повною фразою: це стрічки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ribbons` — `They are ribbons.`",
+                "uk": "тут потрібно `ribbons` — `They are ribbons.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат тримає одну листівку. Скажіть коротко, що це листівка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i13:audio"
+        ],
+        "accessibilityLabel": "Брат тримає одну листівку. Скажіть коротко, що це листівка.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i13:audio",
+            "transcript": "It is a card."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is a card.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат клеїть бирки на коробки. Доповніть запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i14:r1",
+            "text": "labels"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i14:r2",
+            "text": "label"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат клеїть бирки на коробки. Доповніть запитання подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат клеит бирки на коробки. Дополните вопрос подруги",
+            "uk": "Брат клеїть бирки на коробки. Доповніть запитання подруги"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-24:i14:r1",
+              "text": "labels"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i14:r2",
+              "text": "label"
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат клеїть бирки на коробки. Доповніть запитання подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат клеїть бирки на коробки. Доповніть запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких бирках тоже нужно labels с s.",
+                "uk": "У запитанні про кілька бирок теж потрібно labels з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат клеїть бирки на коробки. Доповніть запитання подруги",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название бирок: labels.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва бирок: labels."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-24:i15:r1",
+            "text": "Are they cities?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i15:r2",
+            "text": "Is it a city?"
+          },
+          {
+            "responseId": "en:lesson-03:session-24:i15:r3",
+            "text": "Are they bottles?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i15:audio",
+            "transcript": "Are they cities?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-24:i15:r1",
+              "targetText": "Are they cities?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i15:r2",
+              "targetText": "Is it a city?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i15:r3",
+              "targetText": "Are they bottles?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-24:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cities`, а в этом варианте — `city`.",
+                "uk": "У записі останнє слово — `cities`, а в цьому варіанті — `city`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-24:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cities`, а в этом варианте — `bottles`.",
+                "uk": "У записі останнє слово — `cities`, а в цьому варіанті — `bottles`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-24:i16:p1",
+              "target": "bowls",
+              "meaningByLocale": {
+                "ru": "миски",
+                "uk": "миски"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i16:p2",
+              "target": "plates",
+              "meaningByLocale": {
+                "ru": "тарелки",
+                "uk": "тарілки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i16:p3",
+              "target": "cups",
+              "meaningByLocale": {
+                "ru": "чашки",
+                "uk": "чашки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-24:i16:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bowls",
+            "plates",
+            "cups",
+            "box"
+          ],
+          "rightColumn": [
+            "миски",
+            "тарілки",
+            "чашки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кур’єр пішов. Запитайте подругу, чи всі конверти тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Кур’єр пішов. Запитайте подругу, чи всі конверти тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-24:i17:audio",
+            "transcript": "Are the envelopes here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are the envelopes here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-24:word:envelope",
+      "correctText": "envelope",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i01",
+      "correctText": "They are envelopes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:word:label",
+      "correctText": "label",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i02",
+      "correctText": "Is it a label?",
+      "correctResponseId": "en:lesson-03:session-24:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:word:ribbon",
+      "correctText": "ribbon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i03",
+      "correctText": "ribbons",
+      "correctResponseId": "en:lesson-03:session-24:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:word:sticker",
+      "correctText": "sticker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i05",
+      "correctText": "They are stickers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i06",
+      "correctText": "Is it a label?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i07",
+      "correctText": "It is an envelope.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i08",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-03:session-24:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i09",
+      "correctText": "They are tickets.",
+      "correctResponseId": "en:lesson-03:session-24:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i11",
+      "correctText": "The stickers are new.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i12",
+      "correctText": "They are ribbons.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i13",
+      "correctText": "It is a card.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i14",
+      "correctText": "labels",
+      "correctResponseId": "en:lesson-03:session-24:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i15",
+      "correctText": "Are they cities?",
+      "correctResponseId": "en:lesson-03:session-24:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i17",
+      "correctText": "Are the envelopes here?",
+      "correctResponseId": null
+    }
+  ]
+}

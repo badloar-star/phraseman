@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-20:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-20:intro1:r2": {
-          "ru": "`map` называет одну карту, а здесь нужны `maps`.",
-          "uk": "`map` називає одну карту, а тут потрібне `maps`."
+          "ru": "Стаканов несколько, поэтому нужно glasses.",
+          "uk": "Склянок кілька, тому потрібно glasses."
         },
         "en:lesson-03:session-20:intro1:r3": {
-          "ru": "Перед названием нескольких карт не ставим `a`.",
-          "uk": "Перед назвою кількох карт не ставимо `a`."
+          "ru": "После ss для нескольких нужно es: glasses.",
+          "uk": "Після ss для кількох потрібно es: glasses."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-20:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-20:intro2:r2": {
-          "ru": "Карт несколько: нужно `are`.",
-          "uk": "Карт кілька: потрібно `are`."
+          "ru": "Щёток несколько, поэтому нужно brushes.",
+          "uk": "Щіток кілька, тому потрібно brushes."
         },
         "en:lesson-03:session-20:intro2:r3": {
-          "ru": "О месте спрашиваем `Where`, а не `What`.",
-          "uk": "Про місце запитуємо `Where`, а не `What`."
+          "ru": "В вопросе с they нужно Are: Are they brushes?",
+          "uk": "У запитанні з they потрібно Are: Are they brushes?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-20:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-20:intro3:r2": {
-          "ru": "`No` означает «Нет», а вы готовы и отвечаете «Да».",
-          "uk": "`No` означає «Ні», а ви готові й відповідаєте «Так»."
+          "ru": "После ch для нескольких нужно es: benches.",
+          "uk": "Після ch для кількох потрібно es: benches."
         },
         "en:lesson-03:session-20:intro3:r3": {
-          "ru": "`Not` — слово для отрицания внутри фразы; здесь нужен ответ `Yes`.",
-          "uk": "`Not` — слово для заперечення всередині фрази; тут потрібна відповідь `Yes`."
+          "ru": "Скамеек несколько, поэтому нужно are: The benches are here.",
+          "uk": "Лавок кілька, тому потрібно are: The benches are here."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "81d935d5913c7ad3f3eb49de57636250238beb2f26df732376c1052a1f4e7c07"
+  "auxiliaryFingerprint": "8557fa04ab6ced6b3e013ebbc1c3e2fabb888851adb9b8d9bdc1d3d0aa5dd4f1"
 }

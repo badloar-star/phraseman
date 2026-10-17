@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-24:intro1:r2": {
-          "ru": "Книг несколько: `books`, без `a`.",
-          "uk": "Книжок кілька: `books`, без `a`."
+          "ru": "Перед несколькими предметами an не ставим: They are envelopes.",
+          "uk": "Перед кількома предметами an не ставимо: They are envelopes."
         },
         "en:lesson-03:session-24:intro1:r3": {
-          "ru": "С `They` нужно `are`.",
-          "uk": "З `They` потрібно `are`."
+          "ru": "Конвертов несколько, поэтому нужно envelopes с s.",
+          "uk": "Конвертів кілька, тому потрібно envelopes з s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-24:intro2:r2": {
-          "ru": "Чашек несколько: нужно `are`.",
-          "uk": "Чашок кілька: потрібно `are`."
+          "ru": "Бирка одна, поэтому нужно a label.",
+          "uk": "Бирка одна, тому потрібно a label."
         },
         "en:lesson-03:session-24:intro2:r3": {
-          "ru": "О месте спрашиваем `Where`.",
-          "uk": "Про місце запитуємо `Where`."
+          "ru": "С it нужно Is: Is it a label?",
+          "uk": "З it потрібно Is: Is it a label?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-24:intro3:r2": {
-          "ru": "Билетов несколько: нужно `are`.",
-          "uk": "Квитків кілька: потрібно `are`."
+          "ru": "Лент несколько, поэтому нужно are: The ribbons are long.",
+          "uk": "Стрічок кілька, тому потрібно are: The ribbons are long."
         },
         "en:lesson-03:session-24:intro3:r3": {
-          "ru": "Чтобы узнать место, начинаем с `Where`.",
-          "uk": "Щоб дізнатися місце, починаємо з `Where`."
+          "ru": "Лент несколько, поэтому нужно ribbons с s.",
+          "uk": "Стрічок кілька, тому потрібно ribbons з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "096c727bec63d145bc33aa5455e06471edb86dbb580337e4315fa91283d51872"
+  "auxiliaryFingerprint": "bec266d62802978717209b7c5df92e2add8a67ab68fd892127a8845cc1430891"
 }

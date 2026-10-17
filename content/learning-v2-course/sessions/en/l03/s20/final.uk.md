@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 20 — Де карти для прогулянки
+# Англійська · Урок 3 · Заняття 20 — Кур’єр диктує по телефону
 
-**Ситуація.** Ви з Анною готуєте прогулянку для гостей клубу. Олег шукає кілька карт. Спочатку він думає, що Анна поклала їх не туди, але потім згадує, що сам замкнув їх у шафі. Ви перевіряєте, чи все готове до виходу.
+**Ситуація.** Кур’єр дзвонить із машини й диктує, що лежить у посилці. Ви з подругою слухаєте й повторюєте за ним. Слова на ss, sh і ch для кількох предметів звучать із зайвим складом наприкінці: es.
 
-**Що ви опануєте:** назвати кілька карт і запитати про їхнє місце або стан
-**Нові слова:** maps
+**Що ви опануєте:** розрізняти на слух один предмет і кілька, називати кілька предметів з es
+**Нові слова:** glass, brush, bench, peach
+**Повертаються:** box, bag
 
 ---
 
 ## Інтро 1
 
-### Карта для кожного
+### Перший рядок диктовки
 
-`map` — «карта», `maps` — «карти». Для кількох карт додаємо `s`. `They are maps` — «Це карти». Початок `They are` підходить для кількох предметів; `a` перед `maps` не ставимо. Тут ідеться про карти місцевості, які допоможуть гостям орієнтуватися.
+Кур’єр дзвонить із машини й диктує вміст посилки. Перший рядок — склянки: наприкінці чути зайвий склад. glass — «склянка». Слово закінчується на ss, тому для кількох додаємо es: glasses. They are glasses — «Це склянки». Подруга просить повторити.
 
-**Анна принесла кілька карт місцевості. Назвіть їх одним англійським словом.**
+**Подруга просить повторити за кур’єром. Скажіть повною фразою: це склянки.**
 
-- ✅ **maps**
-- ❌ map — *`map` називає одну карту, а тут потрібне `maps`.*
-- ❌ a maps — *Перед назвою кількох карт не ставимо `a`.*
+- ✅ **They are glasses.**
+- ❌ They are glass. — *Склянок кілька, тому потрібно glasses.*
+- ❌ They are glasss. — *Після ss для кількох потрібно es: glasses.*
 
 ---
 
 ## Інтро 2
 
-### Карти загубилися
+### Другий рядок
 
-`The maps are lost` — «Карти загубилися». У цьому контексті `lost` означає, що карти не можуть знайти. Карти допомагають знайти дорогу, але зараз спочатку потрібно знайти самі карти. Олег пропонує намалювати карту до місця, де вони лежать. Залишилося згадати це місце. `Where are the maps?` — «Де карти?»
+Наступне слово в слухавці звучить нечітко: чи то одна щітка, чи то кілька. Кур’єр повторює його по складах, і ви чуєте зайвий склад наприкінці. brush — «щітка». Слово закінчується на sh, тому додаємо es: brushes. Are they brushes? — «Це щітки?»
 
-**Ви з Олегом шукаєте потрібні для прогулянки карти. Запитайте, де карти.**
+**Кур’єр у слухавці називає кілька щіток. Запитайте його, чи це щітки.**
 
-- ✅ **Where are the maps?**
-- ❌ Where is the maps? — *Карт кілька: потрібно `are`.*
-- ❌ What are the maps? — *Про місце запитуємо `Where`, а не `What`.*
+- ✅ **Are they brushes?**
+- ❌ Are they brush? — *Щіток кілька, тому потрібно brushes.*
+- ❌ Is they brushes? — *У запитанні з they потрібно Are: Are they brushes?*
 
 ---
 
 ## Інтро 3
 
-### Готові йти
+### Останній рядок
 
-`prepared` — «підготовлений», `careful` — «уважний, обережний», `innocent` — «невинний». Анна не винна у плутанині з картами: `She is innocent`. Перед виходом Олег запитує, чи ви готові. Якщо готові, можна відповісти одним словом `Yes` — «Так», або повною фразою `I am prepared` — «Я підготовлений».
+Кур’єр диктує останній рядок: садові лавки, які замовив брат. Подруга визирає у двір і бачить, що їх уже поставили біля паркану, поки ви розмовляли. bench — «лавка». Слово закінчується на ch, тому додаємо es: benches. The benches are here — «Лавки тут».
 
-**Олег запитує, чи ви готові до прогулянки. Ви готові. Дайте відповідь одним словом «Так».**
+**Кур’єр питає по телефону, чи привезли лавки. Дайте йому відповідь: лавки тут.**
 
-- ✅ **Yes.**
-- ❌ No. — *`No` означає «Ні», а ви готові й відповідаєте «Так».*
-- ❌ Not. — *`Not` — слово для заперечення всередині фрази; тут потрібна відповідь `Yes`.*
+- ✅ **The benches are here.**
+- ❌ The benchs are here. — *Після ch для кількох потрібно es: benches.*
+- ❌ The benches is here. — *Лавок кілька, тому потрібно are: The benches are here.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Олег запитує про кілька складених аркушів. Це карти місцевості. Назвіть їх повною фразою**
+**1 · Картка слова — glass**
+<!-- interaction_id: en:lesson-03:session-20:word:glass; family: word_card -->
+> **glass** — склянка. They are glasses — «Це склянки». Про скляну склянку для води.
+
+**2 · Кур’єр диктує по телефону: у посилці склянки. Скажіть подрузі повною фразою: це склянки.**
 <!-- interaction_id: en:lesson-03:session-20:i01; family: phrase_builder -->
-Плитки: `maps` `are` `They` `is` → **They are maps.**
-*(плитка `is` зайва: тут потрібно `are` — `They are maps.`)*
+Плитки: `glasses` `are` `They` `glass` → **They are glasses.**
+*(плитка `glass` зайва: тут потрібно `glasses` — `They are glasses.`)*
 
-**2 · Послухайте повідомлення про карти**
+**3 · Картка слова — brush**
+<!-- interaction_id: en:lesson-03:session-20:word:brush; family: word_card -->
+> **brush** — щітка або пензлик. Are they brushes? — «Це щітки?» Про щітку для прибирання, для одягу, для волосся.
+
+**4 · Послухайте кур’єра: що він диктує зараз**
 <!-- interaction_id: en:lesson-03:session-20:i02; family: listen_choose -->
-🔊 *The maps are lost.* → **The maps are lost.** · The maps are here. · The maps are nearby.
-- The maps are here. — *У записі останнє слово — `lost`, а в цьому варіанті — `here`.*
-- The maps are nearby. — *У записі останнє слово — `lost`, а в цьому варіанті — `nearby`.*
+🔊 *They are brushes.* → **They are brushes.** · It is a brush. · They are benches.
+- It is a brush. — *У записі останнє слово — `brushes`, а в цьому варіанті — `brush`.*
+- They are benches. — *У записі останнє слово — `brushes`, а в цьому варіанті — `benches`.*
 
-**3 · Ви називаєте кілька карт для гостей**
+**5 · Картка слова — bench**
+<!-- interaction_id: en:lesson-03:session-20:word:bench; family: word_card -->
+> **bench** — лавка. The benches are here — «Лавки тут». Про лавку в саду, в парку, біля дому.
+
+**6 · Кур’єр повідомляє, що привіз лавки. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-20:i03; family: context_gap_grammar -->
-They are ___. → **maps** · map · a maps
-- map — *Карт кілька, тому потрібно `maps`.*
-- a maps — *Перед назвою кількох карт не ставимо `a`.*
+The ___ are here. → **benches** · bench · benchs
+- bench — *Лавок кілька, тому потрібно benches з es.*
+- benchs — *Після ch для кількох потрібно es: benches.*
 
-**4 · З’єднайте слова зі значеннями в цій сцені**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-20:i04; family: speed_match -->
-maps — карти місцевості · lost — загублений · prepared — підготовлений · table — стіл
+glasses — склянки · brushes — щітки, пензлики · benches — лавки · box — коробка
 
-**5 · Послухайте й складіть повідомлення**
+**8 · Картка слова — peach**
+<!-- interaction_id: en:lesson-03:session-20:word:peach; family: word_card -->
+> **peach** — персик. Are they peaches? — «Це персики?» Про солодкий м’який фрукт.
+
+**9 · Послухайте кур’єра й складіть запитання**
 <!-- interaction_id: en:lesson-03:session-20:i05; family: listen_build_dictation -->
-🔊 *The table is here.* Плитки: `here` `is` `table` `The` `are` → **The table is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The table is here.`)*
+🔊 *Are they peaches?* Плитки: `peaches` `they` `Are` `peach` → **Are they peaches?**
+*(плитка `peach` зайва: тут потрібно `peaches` — `Are they peaches?`)*
 
-**6 · Олег знає, які карти потрібні гостям. Запитайте, де карти**
+**10 · Кур’єр продиктував щітки, але ви не розчули. Запитайте його, чи це щітки.**
 <!-- interaction_id: en:lesson-03:session-20:i06; family: phrase_builder -->
-Плитки: `maps` `the` `are` `Where` `What` → **Where are the maps?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where are the maps?`)*
+Плитки: `brushes` `they` `Are` `Is` → **Are they brushes?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are they brushes?`)*
 
-**7 · Ви завершили підготовку до прогулянки. Скажіть «Я підготовлений» зі скороченням**
+**11 · Кур’єр питає, де склянки. Скажіть йому, що склянки тут.**
 <!-- interaction_id: en:lesson-03:session-20:i07; family: scripted_repeat_compare -->
-🎙 **I'm prepared.**
+🎙 **The glasses are here.**
 
-**8 · Олег запитує, чи все у вас готове. Усе готове. Дайте відповідь одним словом «Так»**
+**12 · Персики лежать у пакеті. Доповніть фразу подруги**
 <!-- interaction_id: en:lesson-03:session-20:i08; family: context_gap_grammar -->
-___. → **Yes** · No · Not
-- No — *`No` означає «Ні», а тут потрібна відповідь «Так»: `Yes`.*
-- Not — *Для відповіді «Так» потрібне `Yes`, а не слово заперечення `Not`.*
+The peaches ___ here. → **are** · is · am
+- is — *Персиків кілька: The peaches are here.*
+- am — *З The peaches потрібно are: The peaches are here.*
 
-**9 · Послухайте опис Анни**
+**13 · Послухайте кур’єра: він називає лавку**
 <!-- interaction_id: en:lesson-03:session-20:i09; family: listen_choose -->
-🔊 *She is careful.* → **She is careful.** · She is tired. · She is prepared.
-- She is tired. — *У записі останнє слово — `careful`, а в цьому варіанті — `tired`.*
-- She is prepared. — *У записі останнє слово — `careful`, а в цьому варіанті — `prepared`.*
+🔊 *It is a bench.* → **It is a bench.** · They are benches. · It is a peach.
+- They are benches. — *У записі останнє слово — `bench`, а в цьому варіанті — `benches`.*
+- It is a peach. — *У записі останнє слово — `bench`, а в цьому варіанті — `peach`.*
 
-**10 · З’єднайте слова зі значеннями в цій сцені**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-20:i10; family: speed_match -->
-careful — уважний, обережний · yes — так · innocent — невинний · maps — карти місцевості
+glass — склянка · glasses — склянки · bench — лавка · benches — лавки
 
-**11 · Послухайте й складіть повідомлення**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-20:i11; family: listen_build_dictation -->
-🔊 *The maps are here.* Плитки: `here` `are` `maps` `The` `is` → **The maps are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The maps are here.`)*
+🔊 *The brushes are clean.* Плитки: `clean` `brushes` `are` `The` `is` → **The brushes are clean.**
+*(плитка `is` зайва: тут потрібно `are` — `The brushes are clean.`)*
 
-**12 · Ви з Анною не можете знайти потрібні карти. Повідомте «Карти загубилися»**
+**16 · Подруга дістала з пакета персики. Скажіть їй повною фразою: це персики.**
 <!-- interaction_id: en:lesson-03:session-20:i12; family: phrase_builder -->
-Плитки: `lost` `are` `maps` `The` `is` → **The maps are lost.**
-*(плитка `is` зайва: тут потрібно `are` — `The maps are lost.`)*
+Плитки: `peaches` `are` `They` `peach` → **They are peaches.**
+*(плитка `peach` зайва: тут потрібно `peaches` — `They are peaches.`)*
 
-**13 · Ви дізналися, що Анна не винна у плутанині: карти прибрав Олег. Скажіть «Вона невинна» зі скороченням**
+**17 · Кур’єр уточнює, що стоїть біля стіни. Скажіть коротко, що це лавки.**
 <!-- interaction_id: en:lesson-03:session-20:i13; family: scripted_repeat_compare -->
-🎙 **She's innocent.**
+🎙 **They are benches.**
 
-**14 · Ви запитуєте, де кілька потрібних карт**
+**18 · Кур’єр диктує далі. Доповніть запитання подруги**
 <!-- interaction_id: en:lesson-03:session-20:i14; family: context_gap_grammar -->
-Where ___ the maps? → **are** · is · am
-- is — *Карт кілька: `Where are the maps?`.*
-- am — *З `the maps` тут потрібно `are`.*
+Are they ___? → **glasses** · glass · are
+- glass — *У запитанні про кілька склянок теж потрібно glasses.*
+- are — *Слово Are вже стоїть на початку. У пропуск потрібна назва склянок: glasses.*
 
-**15 · Послухайте повідомлення про Анну після з’ясування плутанини**
+**19 · Послухайте запитання подруги**
 <!-- interaction_id: en:lesson-03:session-20:i15; family: listen_choose -->
-🔊 *She is innocent.* → **She is innocent.** · She is guilty. · She is alone.
-- She is guilty. — *У записі останнє слово — `innocent`, а в цьому варіанті — `guilty`.*
-- She is alone. — *У записі останнє слово — `innocent`, а в цьому варіанті — `alone`.*
+🔊 *Are they peaches?* → **Are they peaches?** · Is it a peach? · Are they benches?
+- Is it a peach? — *У записі останнє слово — `peaches`, а в цьому варіанті — `peach`.*
+- Are they benches? — *У записі останнє слово — `peaches`, а в цьому варіанті — `benches`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-20:i16; family: speed_match -->
-prepared — підготовлений · careful — уважний, обережний · yes — так · table — стіл
+brushes — щітки, пензлики · peaches — персики · glasses — склянки · bag — сумка
 
-**17 · Перед іншою прогулянкою гостям знову потрібні карти. Анна знає, які саме. Запитайте, де карти**
+**21 · Кур’єр диктує, що лежить у пакеті. Ви не розчули. Запитайте, чи це склянки.**
 <!-- interaction_id: en:lesson-03:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the maps?**
-
+🎙 **Are they glasses?**

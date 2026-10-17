@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-23:word:spoon",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spoon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:spoon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spoon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:spoon:audio",
+            "transcript": "spoon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:spoon:r1",
+              "targetText": "spoon",
+              "meaningByLocale": {
+                "ru": "ложка. They are spoons — «Это ложки». О ложке для супа, чая, десерта.",
+                "uk": "ложка. They are spoons — «Це ложки». Про ложку для супу, чаю, десерту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spoon",
+            "definitionByLocale": {
+              "ru": "ложка. They are spoons — «Это ложки». О ложке для супа, чая, десерта.",
+              "uk": "ложка. They are spoons — «Це ложки». Про ложку для супу, чаю, десерту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат достал из ящика ложки. Скажите подруге полной фразой: это ложки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат достал из ящика ложки. Скажите подруге полной фразой: это ложки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are spoons.",
+          "localizedMeaning": {
+            "ru": "Брат достал из ящика ложки. Скажите подруге полной фразой: это ложки.",
+            "uk": "Брат дістав із шухляди ложки. Скажіть подрузі повною фразою: це ложки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "spoons"
+          ],
+          "authoredDistractorTokens": [
+            "spoon"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат достал из ящика ложки. Скажите подруге полной фразой: это ложки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `spoons` — `They are spoons.`",
+                "uk": "тут потрібно `spoons` — `They are spoons.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:word:fork",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fork",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:fork:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fork",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:fork:audio",
+            "transcript": "fork"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:fork:r1",
+              "targetText": "fork",
+              "meaningByLocale": {
+                "ru": "вилка. Are they forks? — «Это вилки?» О вилке, которой едят.",
+                "uk": "виделка. Are they forks? — «Це виделки?» Про виделку, якою їдять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fork",
+            "definitionByLocale": {
+              "ru": "вилка. Are they forks? — «Это вилки?» О вилке, которой едят.",
+              "uk": "виделка. Are they forks? — «Це виделки?» Про виделку, якою їдять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги о втором ящике",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i02:r1",
+            "text": "Are they forks?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i02:r2",
+            "text": "Is it a fork?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i02:r3",
+            "text": "Are they spoons?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги о втором ящике",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i02:audio",
+            "transcript": "Are they forks?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:i02:r1",
+              "targetText": "Are they forks?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i02:r2",
+              "targetText": "Is it a fork?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i02:r3",
+              "targetText": "Are they spoons?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о втором ящике",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `forks`, а в этом варианте — `fork`.",
+                "uk": "У записі останнє слово — `forks`, а в цьому варіанті — `fork`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о втором ящике",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `forks`, а в этом варианте — `spoons`.",
+                "uk": "У записі останнє слово — `forks`, а в цьому варіанті — `spoons`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:word:cup",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:cup:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:cup:audio",
+            "transcript": "cup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:cup:r1",
+              "targetText": "cup",
+              "meaningByLocale": {
+                "ru": "чашка. The cups are hot — «Чашки горячие». О чашке для чая и кофе.",
+                "uk": "чашка. The cups are hot — «Чашки гарячі». Про чашку для чаю й кави."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cup",
+            "definitionByLocale": {
+              "ru": "чашка. The cups are hot — «Чашки горячие». О чашке для чая и кофе.",
+              "uk": "чашка. The cups are hot — «Чашки гарячі». Про чашку для чаю й кави."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Чашки только что из горячей воды. Дополните предупреждение",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i03:r1",
+            "text": "cups"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i03:r2",
+            "text": "cup"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i03:r3",
+            "text": "a cups"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Чашки только что из горячей воды. Дополните предупреждение",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Чашки только что из горячей воды. Дополните предупреждение",
+            "uk": "Чашки щойно з гарячої води. Доповніть застереження"
+          },
+          "gappedTargetPhrase": "The ___ are hot.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-23:i03:r1",
+              "text": "cups"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i03:r2",
+              "text": "cup"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i03:r3",
+              "text": "a cups"
+            }
+          ],
+          "testedDimension": "Чашки только что из горячей воды. Дополните предупреждение",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Чашки только что из горячей воды. Дополните предупреждение",
+              "feedbackByLocale": {
+                "ru": "Чашек несколько, поэтому нужно cups с s.",
+                "uk": "Чашок кілька, тому потрібно cups з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Чашки только что из горячей воды. Дополните предупреждение",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими предметами a не ставим: The cups are hot.",
+                "uk": "Перед кількома предметами a не ставимо: The cups are hot."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-23:i04:p1",
+              "target": "spoons",
+              "meaningByLocale": {
+                "ru": "ложки",
+                "uk": "ложки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i04:p2",
+              "target": "forks",
+              "meaningByLocale": {
+                "ru": "вилки",
+                "uk": "виделки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i04:p3",
+              "target": "cups",
+              "meaningByLocale": {
+                "ru": "чашки",
+                "uk": "чашки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spoons",
+            "forks",
+            "cups",
+            "box"
+          ],
+          "rightColumn": [
+            "ложки",
+            "вилки",
+            "чашки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:word:pot",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pot",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:pot:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pot",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:pot:audio",
+            "transcript": "pot"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:pot:r1",
+              "targetText": "pot",
+              "meaningByLocale": {
+                "ru": "кастрюля. They are pots — «Это кастрюли». О посуде для варки супа и каши.",
+                "uk": "каструля. They are pots — «Це каструлі». Про посуд для варіння супу й каші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pot",
+            "definitionByLocale": {
+              "ru": "кастрюля. They are pots — «Это кастрюли». О посуде для варки супа и каши.",
+              "uk": "каструля. They are pots — «Це каструлі». Про посуд для варіння супу й каші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i05:audio",
+            "transcript": "They are pots."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are pots.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "pots"
+          ],
+          "authoredDistractorTokens": [
+            "pot"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `pots` — `They are pots.`",
+                "uk": "тут потрібно `pots` — `They are pots.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга достала из ящика вилки. Спросите её, вилки ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достала из ящика вилки. Спросите её, вилки ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they forks?",
+          "localizedMeaning": {
+            "ru": "Подруга достала из ящика вилки. Спросите её, вилки ли это.",
+            "uk": "Подруга дістала з шухляди виделки. Запитайте її, чи це виделки."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "forks"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга достала из ящика вилки. Спросите её, вилки ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they forks?`",
+                "uk": "тут потрібно `Are` — `Are they forks?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, где ложки. Скажите ей, что ложки здесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, где ложки. Скажите ей, что ложки здесь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i07:audio",
+            "transcript": "The spoons are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The spoons are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кастрюли стоят на плите. Дополните фразу брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кастрюли стоят на плите. Дополните фразу брата",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кастрюли стоят на плите. Дополните фразу брата",
+            "uk": "Каструлі стоять на плиті. Доповніть фразу брата"
+          },
+          "gappedTargetPhrase": "The pots ___ hot.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-23:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Кастрюли стоят на плите. Дополните фразу брата",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Кастрюли стоят на плите. Дополните фразу брата",
+              "feedbackByLocale": {
+                "ru": "Кастрюль несколько: The pots are hot.",
+                "uk": "Каструль кілька: The pots are hot."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Кастрюли стоят на плите. Дополните фразу брата",
+              "feedbackByLocale": {
+                "ru": "С The pots нужно are: The pots are hot.",
+                "uk": "З The pots потрібно are: The pots are hot."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о посуде",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i09:r1",
+            "text": "They are cups."
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i09:r2",
+            "text": "It is a cup."
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i09:r3",
+            "text": "They are pots."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о посуде",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i09:audio",
+            "transcript": "They are cups."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:i09:r1",
+              "targetText": "They are cups.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i09:r2",
+              "targetText": "It is a cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i09:r3",
+              "targetText": "They are pots.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о посуде",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `cup`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `cup`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о посуде",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `pots`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `pots`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-23:i10:p1",
+              "target": "spoon",
+              "meaningByLocale": {
+                "ru": "ложка",
+                "uk": "ложка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i10:p2",
+              "target": "spoons",
+              "meaningByLocale": {
+                "ru": "ложки",
+                "uk": "ложки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i10:p3",
+              "target": "fork",
+              "meaningByLocale": {
+                "ru": "вилка",
+                "uk": "виделка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i10:p4",
+              "target": "forks",
+              "meaningByLocale": {
+                "ru": "вилки",
+                "uk": "виделки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spoon",
+            "spoons",
+            "fork",
+            "forks"
+          ],
+          "rightColumn": [
+            "ложка",
+            "ложки",
+            "вилка",
+            "вилки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i11:audio",
+            "transcript": "The forks are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The forks are clean.",
+          "orderedTokens": [
+            "The",
+            "forks",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The forks are clean.`",
+                "uk": "тут потрібно `are` — `The forks are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга достала из шкафа чашки. Скажите ей полной фразой: это чашки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достала из шкафа чашки. Скажите ей полной фразой: это чашки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are cups.",
+          "localizedMeaning": {
+            "ru": "Подруга достала из шкафа чашки. Скажите ей полной фразой: это чашки.",
+            "uk": "Подруга дістала з шафи чашки. Скажіть їй повною фразою: це чашки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "cups"
+          ],
+          "authoredDistractorTokens": [
+            "cup"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга достала из шкафа чашки. Скажите ей полной фразой: это чашки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cups` — `They are cups.`",
+                "uk": "тут потрібно `cups` — `They are cups.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат поднимает с плиты кастрюли. Скажите коротко, что это кастрюли.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Брат поднимает с плиты кастрюли. Скажите коротко, что это кастрюли.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i13:audio",
+            "transcript": "They are pots."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are pots.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат вынимает из ящика ложки. Дополните вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i14:r1",
+            "text": "spoons"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i14:r2",
+            "text": "spoon"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат вынимает из ящика ложки. Дополните вопрос подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат вынимает из ящика ложки. Дополните вопрос подруги",
+            "uk": "Брат виймає з шухляди ложки. Доповніть запитання подруги"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-23:i14:r1",
+              "text": "spoons"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i14:r2",
+              "text": "spoon"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат вынимает из ящика ложки. Дополните вопрос подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат вынимает из ящика ложки. Дополните вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких ложках тоже нужно spoons с s.",
+                "uk": "У запитанні про кілька ложок теж потрібно spoons з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат вынимает из ящика ложки. Дополните вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название ложек: spoons.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва ложок: spoons."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i15:r1",
+            "text": "Are they cups?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i15:r2",
+            "text": "Is it a pot?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i15:r3",
+            "text": "Are they forks?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i15:audio",
+            "transcript": "Are they cups?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:i15:r1",
+              "targetText": "Are they cups?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i15:r2",
+              "targetText": "Is it a pot?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i15:r3",
+              "targetText": "Are they forks?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `pot`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `pot`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `forks`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `forks`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-23:i16:p1",
+              "target": "cups",
+              "meaningByLocale": {
+                "ru": "чашки",
+                "uk": "чашки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i16:p2",
+              "target": "pots",
+              "meaningByLocale": {
+                "ru": "кастрюли",
+                "uk": "каструлі"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i16:p3",
+              "target": "forks",
+              "meaningByLocale": {
+                "ru": "вилки",
+                "uk": "виделки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i16:p4",
+              "target": "jar",
+              "meaningByLocale": {
+                "ru": "банка",
+                "uk": "банка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cups",
+            "pots",
+            "forks",
+            "jar"
+          ],
+          "rightColumn": [
+            "чашки",
+            "кастрюли",
+            "вилки",
+            "банка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга раскладывает вещи по ящикам. Спросите её, ложки ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга раскладывает вещи по ящикам. Спросите её, ложки ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i17:audio",
+            "transcript": "Are they spoons?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they spoons?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-23:word:spoon",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spoon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:spoon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spoon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:spoon:audio",
+            "transcript": "spoon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:spoon:r1",
+              "targetText": "spoon",
+              "meaningByLocale": {
+                "ru": "ложка. They are spoons — «Это ложки». О ложке для супа, чая, десерта.",
+                "uk": "ложка. They are spoons — «Це ложки». Про ложку для супу, чаю, десерту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spoon",
+            "definitionByLocale": {
+              "ru": "ложка. They are spoons — «Это ложки». О ложке для супа, чая, десерта.",
+              "uk": "ложка. They are spoons — «Це ложки». Про ложку для супу, чаю, десерту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат дістав із шухляди ложки. Скажіть подрузі повною фразою: це ложки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат дістав із шухляди ложки. Скажіть подрузі повною фразою: це ложки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are spoons.",
+          "localizedMeaning": {
+            "ru": "Брат достал из ящика ложки. Скажите подруге полной фразой: это ложки.",
+            "uk": "Брат дістав із шухляди ложки. Скажіть подрузі повною фразою: це ложки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "spoons"
+          ],
+          "authoredDistractorTokens": [
+            "spoon"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат дістав із шухляди ложки. Скажіть подрузі повною фразою: це ложки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `spoons` — `They are spoons.`",
+                "uk": "тут потрібно `spoons` — `They are spoons.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:word:fork",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fork",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:fork:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fork",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:fork:audio",
+            "transcript": "fork"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:fork:r1",
+              "targetText": "fork",
+              "meaningByLocale": {
+                "ru": "вилка. Are they forks? — «Это вилки?» О вилке, которой едят.",
+                "uk": "виделка. Are they forks? — «Це виделки?» Про виделку, якою їдять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fork",
+            "definitionByLocale": {
+              "ru": "вилка. Are they forks? — «Это вилки?» О вилке, которой едят.",
+              "uk": "виделка. Are they forks? — «Це виделки?» Про виделку, якою їдять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги про другу шухляду",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i02:r1",
+            "text": "Are they forks?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i02:r2",
+            "text": "Is it a fork?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i02:r3",
+            "text": "Are they spoons?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги про другу шухляду",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i02:audio",
+            "transcript": "Are they forks?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:i02:r1",
+              "targetText": "Are they forks?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i02:r2",
+              "targetText": "Is it a fork?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i02:r3",
+              "targetText": "Are they spoons?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про другу шухляду",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `forks`, а в этом варианте — `fork`.",
+                "uk": "У записі останнє слово — `forks`, а в цьому варіанті — `fork`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про другу шухляду",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `forks`, а в этом варианте — `spoons`.",
+                "uk": "У записі останнє слово — `forks`, а в цьому варіанті — `spoons`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:word:cup",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:cup:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:cup:audio",
+            "transcript": "cup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:cup:r1",
+              "targetText": "cup",
+              "meaningByLocale": {
+                "ru": "чашка. The cups are hot — «Чашки горячие». О чашке для чая и кофе.",
+                "uk": "чашка. The cups are hot — «Чашки гарячі». Про чашку для чаю й кави."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cup",
+            "definitionByLocale": {
+              "ru": "чашка. The cups are hot — «Чашки горячие». О чашке для чая и кофе.",
+              "uk": "чашка. The cups are hot — «Чашки гарячі». Про чашку для чаю й кави."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Чашки щойно з гарячої води. Доповніть застереження",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i03:r1",
+            "text": "cups"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i03:r2",
+            "text": "cup"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i03:r3",
+            "text": "a cups"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Чашки щойно з гарячої води. Доповніть застереження",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Чашки только что из горячей воды. Дополните предупреждение",
+            "uk": "Чашки щойно з гарячої води. Доповніть застереження"
+          },
+          "gappedTargetPhrase": "The ___ are hot.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-23:i03:r1",
+              "text": "cups"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i03:r2",
+              "text": "cup"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i03:r3",
+              "text": "a cups"
+            }
+          ],
+          "testedDimension": "Чашки щойно з гарячої води. Доповніть застереження",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Чашки щойно з гарячої води. Доповніть застереження",
+              "feedbackByLocale": {
+                "ru": "Чашек несколько, поэтому нужно cups с s.",
+                "uk": "Чашок кілька, тому потрібно cups з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Чашки щойно з гарячої води. Доповніть застереження",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими предметами a не ставим: The cups are hot.",
+                "uk": "Перед кількома предметами a не ставимо: The cups are hot."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-23:i04:p1",
+              "target": "spoons",
+              "meaningByLocale": {
+                "ru": "ложки",
+                "uk": "ложки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i04:p2",
+              "target": "forks",
+              "meaningByLocale": {
+                "ru": "вилки",
+                "uk": "виделки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i04:p3",
+              "target": "cups",
+              "meaningByLocale": {
+                "ru": "чашки",
+                "uk": "чашки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spoons",
+            "forks",
+            "cups",
+            "box"
+          ],
+          "rightColumn": [
+            "ложки",
+            "виделки",
+            "чашки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:word:pot",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pot",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:word:pot:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pot",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:word:pot:audio",
+            "transcript": "pot"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:word:pot:r1",
+              "targetText": "pot",
+              "meaningByLocale": {
+                "ru": "кастрюля. They are pots — «Это кастрюли». О посуде для варки супа и каши.",
+                "uk": "каструля. They are pots — «Це каструлі». Про посуд для варіння супу й каші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pot",
+            "definitionByLocale": {
+              "ru": "кастрюля. They are pots — «Это кастрюли». О посуде для варки супа и каши.",
+              "uk": "каструля. They are pots — «Це каструлі». Про посуд для варіння супу й каші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i05:audio",
+            "transcript": "They are pots."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are pots.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "pots"
+          ],
+          "authoredDistractorTokens": [
+            "pot"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `pots` — `They are pots.`",
+                "uk": "тут потрібно `pots` — `They are pots.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дістала з шухляди виделки. Запитайте її, чи це виделки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістала з шухляди виделки. Запитайте її, чи це виделки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they forks?",
+          "localizedMeaning": {
+            "ru": "Подруга достала из ящика вилки. Спросите её, вилки ли это.",
+            "uk": "Подруга дістала з шухляди виделки. Запитайте її, чи це виделки."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "forks"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дістала з шухляди виделки. Запитайте її, чи це виделки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they forks?`",
+                "uk": "тут потрібно `Are` — `Are they forks?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, де ложки. Скажіть їй, що ложки тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, де ложки. Скажіть їй, що ложки тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i07:audio",
+            "transcript": "The spoons are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The spoons are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Каструлі стоять на плиті. Доповніть фразу брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Каструлі стоять на плиті. Доповніть фразу брата",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Кастрюли стоят на плите. Дополните фразу брата",
+            "uk": "Каструлі стоять на плиті. Доповніть фразу брата"
+          },
+          "gappedTargetPhrase": "The pots ___ hot.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-23:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Каструлі стоять на плиті. Доповніть фразу брата",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Каструлі стоять на плиті. Доповніть фразу брата",
+              "feedbackByLocale": {
+                "ru": "Кастрюль несколько: The pots are hot.",
+                "uk": "Каструль кілька: The pots are hot."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Каструлі стоять на плиті. Доповніть фразу брата",
+              "feedbackByLocale": {
+                "ru": "С The pots нужно are: The pots are hot.",
+                "uk": "З The pots потрібно are: The pots are hot."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про посуд",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i09:r1",
+            "text": "They are cups."
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i09:r2",
+            "text": "It is a cup."
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i09:r3",
+            "text": "They are pots."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про посуд",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i09:audio",
+            "transcript": "They are cups."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:i09:r1",
+              "targetText": "They are cups.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i09:r2",
+              "targetText": "It is a cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i09:r3",
+              "targetText": "They are pots.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про посуд",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `cup`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `cup`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про посуд",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `pots`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `pots`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-23:i10:p1",
+              "target": "spoon",
+              "meaningByLocale": {
+                "ru": "ложка",
+                "uk": "ложка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i10:p2",
+              "target": "spoons",
+              "meaningByLocale": {
+                "ru": "ложки",
+                "uk": "ложки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i10:p3",
+              "target": "fork",
+              "meaningByLocale": {
+                "ru": "вилка",
+                "uk": "виделка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i10:p4",
+              "target": "forks",
+              "meaningByLocale": {
+                "ru": "вилки",
+                "uk": "виделки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spoon",
+            "spoons",
+            "fork",
+            "forks"
+          ],
+          "rightColumn": [
+            "ложка",
+            "ложки",
+            "виделка",
+            "виделки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i11:audio",
+            "transcript": "The forks are clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The forks are clean.",
+          "orderedTokens": [
+            "The",
+            "forks",
+            "are",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The forks are clean.`",
+                "uk": "тут потрібно `are` — `The forks are clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дістала з шафи чашки. Скажіть їй повною фразою: це чашки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістала з шафи чашки. Скажіть їй повною фразою: це чашки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are cups.",
+          "localizedMeaning": {
+            "ru": "Подруга достала из шкафа чашки. Скажите ей полной фразой: это чашки.",
+            "uk": "Подруга дістала з шафи чашки. Скажіть їй повною фразою: це чашки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "cups"
+          ],
+          "authoredDistractorTokens": [
+            "cup"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дістала з шафи чашки. Скажіть їй повною фразою: це чашки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cups` — `They are cups.`",
+                "uk": "тут потрібно `cups` — `They are cups.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат піднімає з плити каструлі. Скажіть коротко, що це каструлі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Брат піднімає з плити каструлі. Скажіть коротко, що це каструлі.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i13:audio",
+            "transcript": "They are pots."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are pots.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат виймає з шухляди ложки. Доповніть запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i14:r1",
+            "text": "spoons"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i14:r2",
+            "text": "spoon"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат виймає з шухляди ложки. Доповніть запитання подруги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат вынимает из ящика ложки. Дополните вопрос подруги",
+            "uk": "Брат виймає з шухляди ложки. Доповніть запитання подруги"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-23:i14:r1",
+              "text": "spoons"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i14:r2",
+              "text": "spoon"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат виймає з шухляди ложки. Доповніть запитання подруги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат виймає з шухляди ложки. Доповніть запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких ложках тоже нужно spoons с s.",
+                "uk": "У запитанні про кілька ложок теж потрібно spoons з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат виймає з шухляди ложки. Доповніть запитання подруги",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название ложек: spoons.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва ложок: spoons."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i15:r1",
+            "text": "Are they cups?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i15:r2",
+            "text": "Is it a pot?"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i15:r3",
+            "text": "Are they forks?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i15:audio",
+            "transcript": "Are they cups?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-23:i15:r1",
+              "targetText": "Are they cups?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i15:r2",
+              "targetText": "Is it a pot?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i15:r3",
+              "targetText": "Are they forks?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `pot`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `pot`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cups`, а в этом варианте — `forks`.",
+                "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `forks`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-23:i16:p1",
+              "target": "cups",
+              "meaningByLocale": {
+                "ru": "чашки",
+                "uk": "чашки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i16:p2",
+              "target": "pots",
+              "meaningByLocale": {
+                "ru": "кастрюли",
+                "uk": "каструлі"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i16:p3",
+              "target": "forks",
+              "meaningByLocale": {
+                "ru": "вилки",
+                "uk": "виделки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-23:i16:p4",
+              "target": "jar",
+              "meaningByLocale": {
+                "ru": "банка",
+                "uk": "банка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cups",
+            "pots",
+            "forks",
+            "jar"
+          ],
+          "rightColumn": [
+            "чашки",
+            "каструлі",
+            "виделки",
+            "банка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга розкладає речі по шухлядах. Запитайте її, чи це ложки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга розкладає речі по шухлядах. Запитайте її, чи це ложки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-23:i17:audio",
+            "transcript": "Are they spoons?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they spoons?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-23:word:spoon",
+      "correctText": "spoon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i01",
+      "correctText": "They are spoons.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:word:fork",
+      "correctText": "fork",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i02",
+      "correctText": "Are they forks?",
+      "correctResponseId": "en:lesson-03:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:word:cup",
+      "correctText": "cup",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i03",
+      "correctText": "cups",
+      "correctResponseId": "en:lesson-03:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:word:pot",
+      "correctText": "pot",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i05",
+      "correctText": "They are pots.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i06",
+      "correctText": "Are they forks?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i07",
+      "correctText": "The spoons are here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-03:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i09",
+      "correctText": "They are cups.",
+      "correctResponseId": "en:lesson-03:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i11",
+      "correctText": "The forks are clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i12",
+      "correctText": "They are cups.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i13",
+      "correctText": "They are pots.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i14",
+      "correctText": "spoons",
+      "correctResponseId": "en:lesson-03:session-23:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i15",
+      "correctText": "Are they cups?",
+      "correctResponseId": "en:lesson-03:session-23:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i17",
+      "correctText": "Are they spoons?",
+      "correctResponseId": null
+    }
+  ]
+}

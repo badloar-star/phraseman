@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-19:word:battery",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — battery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:battery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — battery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:battery:audio",
+            "transcript": "battery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:battery:r1",
+              "targetText": "battery",
+              "meaningByLocale": {
+                "ru": "батарейка. They are batteries — «Это батарейки». О батарейках для фонарика, пульта, часов.",
+                "uk": "батарейка. They are batteries — «Це батарейки». Про батарейки для ліхтарика, пульта, годинника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "battery",
+            "definitionByLocale": {
+              "ru": "батарейка. They are batteries — «Это батарейки». О батарейках для фонарика, пульта, часов.",
+              "uk": "батарейка. They are batteries — «Це батарейки». Про батарейки для ліхтарика, пульта, годинника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат нашёл в упаковке фонарика два цилиндра. Скажите подруге полной фразой: это батарейки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат нашёл в упаковке фонарика два цилиндра. Скажите подруге полной фразой: это батарейки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are batteries.",
+          "localizedMeaning": {
+            "ru": "Брат нашёл в упаковке фонарика два цилиндра. Скажите подруге полной фразой: это батарейки.",
+            "uk": "Брат знайшов в упаковці ліхтарика два циліндри. Скажіть подрузі повною фразою: це батарейки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "batteries"
+          ],
+          "authoredDistractorTokens": [
+            "battery"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат нашёл в упаковке фонарика два цилиндра. Скажите подруге полной фразой: это батарейки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `batteries` — `They are batteries.`",
+                "uk": "тут потрібно `batteries` — `They are batteries.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:word:country",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — country",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:country:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — country",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:country:audio",
+            "transcript": "country"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:country:r1",
+              "targetText": "country",
+              "meaningByLocale": {
+                "ru": "страна. Are they countries? — «Это страны?» О стране на карте.",
+                "uk": "країна. Are they countries? — «Це країни?» Про країну на мапі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "country",
+            "definitionByLocale": {
+              "ru": "страна. Are they countries? — «Это страны?» О стране на карте.",
+              "uk": "країна. Are they countries? — «Це країни?» Про країну на мапі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги о надписях на коробке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i02:r1",
+            "text": "Are they countries?"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i02:r2",
+            "text": "Is it a country?"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i02:r3",
+            "text": "Are they batteries?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги о надписях на коробке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i02:audio",
+            "transcript": "Are they countries?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:i02:r1",
+              "targetText": "Are they countries?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i02:r2",
+              "targetText": "Is it a country?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i02:r3",
+              "targetText": "Are they batteries?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о надписях на коробке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `countries`, а в этом варианте — `country`.",
+                "uk": "У записі останнє слово — `countries`, а в цьому варіанті — `country`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги о надписях на коробке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `countries`, а в этом варианте — `batteries`.",
+                "uk": "У записі останнє слово — `countries`, а в цьому варіанті — `batteries`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:word:story",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — story",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:story:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — story",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:story:audio",
+            "transcript": "story"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:story:r1",
+              "targetText": "story",
+              "meaningByLocale": {
+                "ru": "рассказ или сказка. Where are the stories? — «Где сказки?» О коротком тексте в книге.",
+                "uk": "оповідання або казка. Where are the stories? — «Де казки?» Про короткий текст у книзі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "story",
+            "definitionByLocale": {
+              "ru": "рассказ или сказка. Where are the stories? — «Где сказки?» О коротком тексте в книге.",
+              "uk": "оповідання або казка. Where are the stories? — «Де казки?» Про короткий текст у книзі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга ищет книгу со сказками. Дополните её вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i03:r1",
+            "text": "stories"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i03:r2",
+            "text": "story"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i03:r3",
+            "text": "storys"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет книгу со сказками. Дополните её вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга ищет книгу со сказками. Дополните её вопрос",
+            "uk": "Подруга шукає книгу з казками. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Where are the ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-19:i03:r1",
+              "text": "stories"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i03:r2",
+              "text": "story"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i03:r3",
+              "text": "storys"
+            }
+          ],
+          "testedDimension": "Подруга ищет книгу со сказками. Дополните её вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга ищет книгу со сказками. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "Сказок несколько, поэтому нужно stories.",
+                "uk": "Казок кілька, тому потрібно stories."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга ищет книгу со сказками. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "В слове story y меняется на ies: stories.",
+                "uk": "У слові story y змінюється на ies: stories."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-19:i04:p1",
+              "target": "batteries",
+              "meaningByLocale": {
+                "ru": "батарейки",
+                "uk": "батарейки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i04:p2",
+              "target": "countries",
+              "meaningByLocale": {
+                "ru": "страны",
+                "uk": "країни"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i04:p3",
+              "target": "stories",
+              "meaningByLocale": {
+                "ru": "рассказы, сказки",
+                "uk": "оповідання, казки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "batteries",
+            "countries",
+            "stories",
+            "box"
+          ],
+          "rightColumn": [
+            "батарейки",
+            "страны",
+            "рассказы, сказки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:word:city",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — city",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:city:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — city",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:city:audio",
+            "transcript": "city"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:city:r1",
+              "targetText": "city",
+              "meaningByLocale": {
+                "ru": "город. They are cities — «Это города». О большом городе, где живёт много людей.",
+                "uk": "місто. They are cities — «Це міста». Про велике місто, де живе багато людей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "city",
+            "definitionByLocale": {
+              "ru": "город. They are cities — «Это города». О большом городе, где живёт много людей.",
+              "uk": "місто. They are cities — «Це міста». Про велике місто, де живе багато людей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i05:audio",
+            "transcript": "They are cities."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are cities.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "cities"
+          ],
+          "authoredDistractorTokens": [
+            "city"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cities` — `They are cities.`",
+                "uk": "тут потрібно `cities` — `They are cities.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на карте два больших города. Спросите её, города ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на карте два больших города. Спросите её, города ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they cities?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на карте два больших города. Спросите её, города ли это.",
+            "uk": "Подруга показує на мапі два великі міста. Запитайте її, чи це міста."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "cities"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на карте два больших города. Спросите её, города ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they cities?`",
+                "uk": "тут потрібно `Are` — `Are they cities?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, где батарейки. Скажите ей, что батарейки здесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, где батарейки. Скажите ей, что батарейки здесь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i07:audio",
+            "transcript": "The batteries are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The batteries are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сказки лежат на дне коробки. Дополните фразу брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сказки лежат на дне коробки. Дополните фразу брата",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сказки лежат на дне коробки. Дополните фразу брата",
+            "uk": "Казки лежать на дні коробки. Доповніть фразу брата"
+          },
+          "gappedTargetPhrase": "The stories ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-19:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Сказки лежат на дне коробки. Дополните фразу брата",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Сказки лежат на дне коробки. Дополните фразу брата",
+              "feedbackByLocale": {
+                "ru": "Сказок несколько: The stories are here.",
+                "uk": "Казок кілька: The stories are here."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Сказки лежат на дне коробки. Дополните фразу брата",
+              "feedbackByLocale": {
+                "ru": "С The stories нужно are: The stories are here.",
+                "uk": "З The stories потрібно are: The stories are here."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу: она говорит о городах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i09:r1",
+            "text": "The cities are big."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i09:r2",
+            "text": "The cities are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i09:r3",
+            "text": "The cities are here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу: она говорит о городах",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i09:audio",
+            "transcript": "The cities are big."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:i09:r1",
+              "targetText": "The cities are big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i09:r2",
+              "targetText": "The cities are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i09:r3",
+              "targetText": "The cities are here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу: она говорит о городах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `old`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу: она говорит о городах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `here`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `here`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-19:i10:p1",
+              "target": "country",
+              "meaningByLocale": {
+                "ru": "страна",
+                "uk": "країна"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i10:p2",
+              "target": "countries",
+              "meaningByLocale": {
+                "ru": "страны",
+                "uk": "країни"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i10:p3",
+              "target": "city",
+              "meaningByLocale": {
+                "ru": "город",
+                "uk": "місто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i10:p4",
+              "target": "cities",
+              "meaningByLocale": {
+                "ru": "города",
+                "uk": "міста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "country",
+            "countries",
+            "city",
+            "cities"
+          ],
+          "rightColumn": [
+            "страна",
+            "страны",
+            "город",
+            "города"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i11:audio",
+            "transcript": "The stories are short."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The stories are short.",
+          "orderedTokens": [
+            "The",
+            "stories",
+            "are",
+            "short"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The stories are short.`",
+                "uk": "тут потрібно `are` — `The stories are short.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что напечатано на коробке шоколада. Скажите ей: это страны.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что напечатано на коробке шоколада. Скажите ей: это страны.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are countries.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что напечатано на коробке шоколада. Скажите ей: это страны.",
+            "uk": "Подруга питає, що надруковано на коробці шоколаду. Скажіть їй: це країни."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "countries"
+          ],
+          "authoredDistractorTokens": [
+            "country"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, что напечатано на коробке шоколада. Скажите ей: это страны.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `countries` — `They are countries.`",
+                "uk": "тут потрібно `countries` — `They are countries.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат достал из фонарика батарейки. Скажите коротко, что это батарейки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Брат достал из фонарика батарейки. Скажите коротко, что это батарейки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i13:audio",
+            "transcript": "They are batteries."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are batteries.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на карте города. Дополните её вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i14:r1",
+            "text": "cities"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i14:r2",
+            "text": "city"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на карте города. Дополните её вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на карте города. Дополните её вопрос",
+            "uk": "Подруга показує на мапі міста. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-19:i14:r1",
+              "text": "cities"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i14:r2",
+              "text": "city"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга показывает на карте города. Дополните её вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на карте города. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких городах тоже нужно cities.",
+                "uk": "У запитанні про кілька міст теж потрібно cities."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на карте города. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название городов: cities.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва міст: cities."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит брат",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i15:r1",
+            "text": "They are stories."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i15:r2",
+            "text": "They are batteries."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i15:r3",
+            "text": "They are cities."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит брат",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i15:audio",
+            "transcript": "They are stories."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:i15:r1",
+              "targetText": "They are stories.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i15:r2",
+              "targetText": "They are batteries.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i15:r3",
+              "targetText": "They are cities.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `stories`, а в этом варианте — `batteries`.",
+                "uk": "У записі останнє слово — `stories`, а в цьому варіанті — `batteries`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `stories`, а в этом варианте — `cities`.",
+                "uk": "У записі останнє слово — `stories`, а в цьому варіанті — `cities`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-19:i16:p1",
+              "target": "stories",
+              "meaningByLocale": {
+                "ru": "рассказы, сказки",
+                "uk": "оповідання, казки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i16:p2",
+              "target": "cities",
+              "meaningByLocale": {
+                "ru": "города",
+                "uk": "міста"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i16:p3",
+              "target": "batteries",
+              "meaningByLocale": {
+                "ru": "батарейки",
+                "uk": "батарейки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i16:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stories",
+            "cities",
+            "batteries",
+            "lamp"
+          ],
+          "rightColumn": [
+            "рассказы, сказки",
+            "города",
+            "батарейки",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на названия на коробке шоколада. Спросите её, страны ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на названия на коробке шоколада. Спросите её, страны ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i17:audio",
+            "transcript": "Are they countries?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they countries?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-19:word:battery",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — battery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:battery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — battery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:battery:audio",
+            "transcript": "battery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:battery:r1",
+              "targetText": "battery",
+              "meaningByLocale": {
+                "ru": "батарейка. They are batteries — «Это батарейки». О батарейках для фонарика, пульта, часов.",
+                "uk": "батарейка. They are batteries — «Це батарейки». Про батарейки для ліхтарика, пульта, годинника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "battery",
+            "definitionByLocale": {
+              "ru": "батарейка. They are batteries — «Это батарейки». О батарейках для фонарика, пульта, часов.",
+              "uk": "батарейка. They are batteries — «Це батарейки». Про батарейки для ліхтарика, пульта, годинника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат знайшов в упаковці ліхтарика два циліндри. Скажіть подрузі повною фразою: це батарейки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат знайшов в упаковці ліхтарика два циліндри. Скажіть подрузі повною фразою: це батарейки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are batteries.",
+          "localizedMeaning": {
+            "ru": "Брат нашёл в упаковке фонарика два цилиндра. Скажите подруге полной фразой: это батарейки.",
+            "uk": "Брат знайшов в упаковці ліхтарика два циліндри. Скажіть подрузі повною фразою: це батарейки."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "batteries"
+          ],
+          "authoredDistractorTokens": [
+            "battery"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат знайшов в упаковці ліхтарика два циліндри. Скажіть подрузі повною фразою: це батарейки.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `batteries` — `They are batteries.`",
+                "uk": "тут потрібно `batteries` — `They are batteries.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:word:country",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — country",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:country:audio"
+        ],
+        "accessibilityLabel": "Картка слова — country",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:country:audio",
+            "transcript": "country"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:country:r1",
+              "targetText": "country",
+              "meaningByLocale": {
+                "ru": "страна. Are they countries? — «Это страны?» О стране на карте.",
+                "uk": "країна. Are they countries? — «Це країни?» Про країну на мапі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "country",
+            "definitionByLocale": {
+              "ru": "страна. Are they countries? — «Это страны?» О стране на карте.",
+              "uk": "країна. Are they countries? — «Це країни?» Про країну на мапі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги про написи на коробці",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i02:r1",
+            "text": "Are they countries?"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i02:r2",
+            "text": "Is it a country?"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i02:r3",
+            "text": "Are they batteries?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги про написи на коробці",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i02:audio",
+            "transcript": "Are they countries?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:i02:r1",
+              "targetText": "Are they countries?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i02:r2",
+              "targetText": "Is it a country?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i02:r3",
+              "targetText": "Are they batteries?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про написи на коробці",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `countries`, а в этом варианте — `country`.",
+                "uk": "У записі останнє слово — `countries`, а в цьому варіанті — `country`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про написи на коробці",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `countries`, а в этом варианте — `batteries`.",
+                "uk": "У записі останнє слово — `countries`, а в цьому варіанті — `batteries`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:word:story",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — story",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:story:audio"
+        ],
+        "accessibilityLabel": "Картка слова — story",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:story:audio",
+            "transcript": "story"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:story:r1",
+              "targetText": "story",
+              "meaningByLocale": {
+                "ru": "рассказ или сказка. Where are the stories? — «Где сказки?» О коротком тексте в книге.",
+                "uk": "оповідання або казка. Where are the stories? — «Де казки?» Про короткий текст у книзі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "story",
+            "definitionByLocale": {
+              "ru": "рассказ или сказка. Where are the stories? — «Где сказки?» О коротком тексте в книге.",
+              "uk": "оповідання або казка. Where are the stories? — «Де казки?» Про короткий текст у книзі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга шукає книгу з казками. Доповніть її запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i03:r1",
+            "text": "stories"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i03:r2",
+            "text": "story"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i03:r3",
+            "text": "storys"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає книгу з казками. Доповніть її запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга ищет книгу со сказками. Дополните её вопрос",
+            "uk": "Подруга шукає книгу з казками. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Where are the ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-19:i03:r1",
+              "text": "stories"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i03:r2",
+              "text": "story"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i03:r3",
+              "text": "storys"
+            }
+          ],
+          "testedDimension": "Подруга шукає книгу з казками. Доповніть її запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга шукає книгу з казками. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "Сказок несколько, поэтому нужно stories.",
+                "uk": "Казок кілька, тому потрібно stories."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга шукає книгу з казками. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "В слове story y меняется на ies: stories.",
+                "uk": "У слові story y змінюється на ies: stories."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-19:i04:p1",
+              "target": "batteries",
+              "meaningByLocale": {
+                "ru": "батарейки",
+                "uk": "батарейки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i04:p2",
+              "target": "countries",
+              "meaningByLocale": {
+                "ru": "страны",
+                "uk": "країни"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i04:p3",
+              "target": "stories",
+              "meaningByLocale": {
+                "ru": "рассказы, сказки",
+                "uk": "оповідання, казки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i04:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "batteries",
+            "countries",
+            "stories",
+            "box"
+          ],
+          "rightColumn": [
+            "батарейки",
+            "країни",
+            "оповідання, казки",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:word:city",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — city",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:word:city:audio"
+        ],
+        "accessibilityLabel": "Картка слова — city",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:word:city:audio",
+            "transcript": "city"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:word:city:r1",
+              "targetText": "city",
+              "meaningByLocale": {
+                "ru": "город. They are cities — «Это города». О большом городе, где живёт много людей.",
+                "uk": "місто. They are cities — «Це міста». Про велике місто, де живе багато людей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "city",
+            "definitionByLocale": {
+              "ru": "город. They are cities — «Это города». О большом городе, где живёт много людей.",
+              "uk": "місто. They are cities — «Це міста». Про велике місто, де живе багато людей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i05:audio",
+            "transcript": "They are cities."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are cities.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "cities"
+          ],
+          "authoredDistractorTokens": [
+            "city"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cities` — `They are cities.`",
+                "uk": "тут потрібно `cities` — `They are cities.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на мапі два великі міста. Запитайте її, чи це міста.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на мапі два великі міста. Запитайте її, чи це міста.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they cities?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на карте два больших города. Спросите её, города ли это.",
+            "uk": "Подруга показує на мапі два великі міста. Запитайте її, чи це міста."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "cities"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на мапі два великі міста. Запитайте її, чи це міста.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they cities?`",
+                "uk": "тут потрібно `Are` — `Are they cities?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, де батарейки. Скажіть їй, що батарейки тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, де батарейки. Скажіть їй, що батарейки тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i07:audio",
+            "transcript": "The batteries are here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The batteries are here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Казки лежать на дні коробки. Доповніть фразу брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Казки лежать на дні коробки. Доповніть фразу брата",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сказки лежат на дне коробки. Дополните фразу брата",
+            "uk": "Казки лежать на дні коробки. Доповніть фразу брата"
+          },
+          "gappedTargetPhrase": "The stories ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-19:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Казки лежать на дні коробки. Доповніть фразу брата",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Казки лежать на дні коробки. Доповніть фразу брата",
+              "feedbackByLocale": {
+                "ru": "Сказок несколько: The stories are here.",
+                "uk": "Казок кілька: The stories are here."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Казки лежать на дні коробки. Доповніть фразу брата",
+              "feedbackByLocale": {
+                "ru": "С The stories нужно are: The stories are here.",
+                "uk": "З The stories потрібно are: The stories are here."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу: вона говорить про міста",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i09:r1",
+            "text": "The cities are big."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i09:r2",
+            "text": "The cities are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i09:r3",
+            "text": "The cities are here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу: вона говорить про міста",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i09:audio",
+            "transcript": "The cities are big."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:i09:r1",
+              "targetText": "The cities are big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i09:r2",
+              "targetText": "The cities are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i09:r3",
+              "targetText": "The cities are here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу: вона говорить про міста",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `old`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу: вона говорить про міста",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `here`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `here`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-19:i10:p1",
+              "target": "country",
+              "meaningByLocale": {
+                "ru": "страна",
+                "uk": "країна"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i10:p2",
+              "target": "countries",
+              "meaningByLocale": {
+                "ru": "страны",
+                "uk": "країни"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i10:p3",
+              "target": "city",
+              "meaningByLocale": {
+                "ru": "город",
+                "uk": "місто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i10:p4",
+              "target": "cities",
+              "meaningByLocale": {
+                "ru": "города",
+                "uk": "міста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "country",
+            "countries",
+            "city",
+            "cities"
+          ],
+          "rightColumn": [
+            "країна",
+            "країни",
+            "місто",
+            "міста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i11:audio",
+            "transcript": "The stories are short."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The stories are short.",
+          "orderedTokens": [
+            "The",
+            "stories",
+            "are",
+            "short"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The stories are short.`",
+                "uk": "тут потрібно `are` — `The stories are short.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що надруковано на коробці шоколаду. Скажіть їй: це країни.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що надруковано на коробці шоколаду. Скажіть їй: це країни.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are countries.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что напечатано на коробке шоколада. Скажите ей: это страны.",
+            "uk": "Подруга питає, що надруковано на коробці шоколаду. Скажіть їй: це країни."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "countries"
+          ],
+          "authoredDistractorTokens": [
+            "country"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, що надруковано на коробці шоколаду. Скажіть їй: це країни.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `countries` — `They are countries.`",
+                "uk": "тут потрібно `countries` — `They are countries.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат дістав із ліхтарика батарейки. Скажіть коротко, що це батарейки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Брат дістав із ліхтарика батарейки. Скажіть коротко, що це батарейки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i13:audio",
+            "transcript": "They are batteries."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are batteries.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на мапі міста. Доповніть її запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i14:r1",
+            "text": "cities"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i14:r2",
+            "text": "city"
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на мапі міста. Доповніть її запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на карте города. Дополните её вопрос",
+            "uk": "Подруга показує на мапі міста. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Are they ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-19:i14:r1",
+              "text": "cities"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i14:r2",
+              "text": "city"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга показує на мапі міста. Доповніть її запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на мапі міста. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "В вопросе о нескольких городах тоже нужно cities.",
+                "uk": "У запитанні про кілька міст теж потрібно cities."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на мапі міста. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "Слово Are уже стоит в начале. В пропуск нужно название городов: cities.",
+                "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва міст: cities."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже брат",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-19:i15:r1",
+            "text": "They are stories."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i15:r2",
+            "text": "They are batteries."
+          },
+          {
+            "responseId": "en:lesson-03:session-19:i15:r3",
+            "text": "They are cities."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже брат",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i15:audio",
+            "transcript": "They are stories."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-19:i15:r1",
+              "targetText": "They are stories.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i15:r2",
+              "targetText": "They are batteries.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i15:r3",
+              "targetText": "They are cities.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `stories`, а в этом варианте — `batteries`.",
+                "uk": "У записі останнє слово — `stories`, а в цьому варіанті — `batteries`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `stories`, а в этом варианте — `cities`.",
+                "uk": "У записі останнє слово — `stories`, а в цьому варіанті — `cities`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-19:i16:p1",
+              "target": "stories",
+              "meaningByLocale": {
+                "ru": "рассказы, сказки",
+                "uk": "оповідання, казки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i16:p2",
+              "target": "cities",
+              "meaningByLocale": {
+                "ru": "города",
+                "uk": "міста"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i16:p3",
+              "target": "batteries",
+              "meaningByLocale": {
+                "ru": "батарейки",
+                "uk": "батарейки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-19:i16:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stories",
+            "cities",
+            "batteries",
+            "lamp"
+          ],
+          "rightColumn": [
+            "оповідання, казки",
+            "міста",
+            "батарейки",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на назви на коробці шоколаду. Запитайте її, чи це країни.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на назви на коробці шоколаду. Запитайте її, чи це країни.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-19:i17:audio",
+            "transcript": "Are they countries?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they countries?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-19:word:battery",
+      "correctText": "battery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i01",
+      "correctText": "They are batteries.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:word:country",
+      "correctText": "country",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i02",
+      "correctText": "Are they countries?",
+      "correctResponseId": "en:lesson-03:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:word:story",
+      "correctText": "story",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i03",
+      "correctText": "stories",
+      "correctResponseId": "en:lesson-03:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:word:city",
+      "correctText": "city",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i05",
+      "correctText": "They are cities.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i06",
+      "correctText": "Are they cities?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i07",
+      "correctText": "The batteries are here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-03:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i09",
+      "correctText": "The cities are big.",
+      "correctResponseId": "en:lesson-03:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i11",
+      "correctText": "The stories are short.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i12",
+      "correctText": "They are countries.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i13",
+      "correctText": "They are batteries.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i14",
+      "correctText": "cities",
+      "correctResponseId": "en:lesson-03:session-19:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i15",
+      "correctText": "They are stories.",
+      "correctResponseId": "en:lesson-03:session-19:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:i17",
+      "correctText": "Are they countries?",
+      "correctResponseId": null
+    }
+  ]
+}

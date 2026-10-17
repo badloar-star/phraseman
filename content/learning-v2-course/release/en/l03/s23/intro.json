@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-23",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько билетов, спросить, где они, и сообщить, что они действительны",
-    "uk": "назвати кілька квитків, запитати, де вони, й повідомити, що вони дійсні"
+    "ru": "быстро называть один предмет и несколько предметов на кухне",
+    "uk": "швидко називати один предмет і кілька предметів на кухні"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "На всех по билету",
-        "uk": "Для кожного по квитку"
+        "ru": "Верхний ящик",
+        "uk": "Верхня шухляда"
       },
       "bodyByLocale": {
-        "ru": "`ticket` — «билет», `tickets` — «билеты». `They are tickets` — «Это билеты». Для нескольких билетов добавляем `s`, а перед `tickets` не ставим `a`. Олег купил один билет и привёл троих друзей. Компания большая, но билет от этого не размножился. Для всей компании нужны `tickets`.",
-        "uk": "`ticket` — «квиток», `tickets` — «квитки». `They are tickets` — «Це квитки». Для кількох квитків додаємо `s`, а перед `tickets` не ставимо `a`. Олег купив один квиток і привів трьох друзів. Компанія велика, але квиток від цього не розмножився. Для всієї компанії потрібні `tickets`."
+        "ru": "Брат выдвигает верхний ящик нового кухонного стола и достаёт горсть блестящих ложек, которые звенят друг о друга. Подруга стоит рядом со списком в руках и просит назвать их. spoon — «ложка». Ложек несколько — spoons. They are spoons — «Это ложки».",
+        "uk": "Брат висуває верхню шухляду нового кухонного столу й дістає жменю блискучих ложок, які дзвенять одна об одну. Подруга стоїть поруч зі списком у руках і просить назвати їх. spoon — «ложка». Ложок кілька — spoons. They are spoons — «Це ложки»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-23:intro1:q",
         "promptByLocale": {
-          "ru": "Олег показывает несколько билетов. Назовите их одним английским словом.",
-          "uk": "Олег показує кілька квитків. Назвіть їх одним англійським словом."
+          "ru": "Брат держит ложки в руке. Скажите ему полной фразой: это ложки.",
+          "uk": "Брат тримає ложки в руці. Скажіть йому повною фразою: це ложки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-23:intro1:r1",
-              "text": "tickets"
+              "text": "They are spoons."
             },
             {
               "responseId": "en:lesson-03:session-23:intro1:r2",
-              "text": "ticket"
+              "text": "They are spoon."
             },
             {
               "responseId": "en:lesson-03:session-23:intro1:r3",
-              "text": "a tickets"
+              "text": "They is spoons."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-23:intro1:r1",
-              "text": "tickets"
+              "text": "They are spoons."
             },
             {
               "responseId": "en:lesson-03:session-23:intro1:r2",
-              "text": "ticket"
+              "text": "They are spoon."
             },
             {
               "responseId": "en:lesson-03:session-23:intro1:r3",
-              "text": "a tickets"
+              "text": "They is spoons."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Олег показывает несколько билетов. Назовите их одним английским словом.",
-          "uk": "Олег показує кілька квитків. Назвіть їх одним англійським словом."
+          "ru": "Брат держит ложки в руке. Скажите ему полной фразой: это ложки.",
+          "uk": "Брат тримає ложки в руці. Скажіть йому повною фразою: це ложки."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Разные, но действительные",
-        "uk": "Різні, але дійсні"
+        "ru": "Второй ящик",
+        "uk": "Друга шухляда"
       },
       "bodyByLocale": {
-        "ru": "`The tickets are valid` — «Билеты действительны»: по ним можно пройти на этот вечер. `different` — «разный, другой». `The tickets are different` — «Билеты разные». Разный цвет ещё не означает, что билет недействителен. Если нужно найти приготовленные билеты, спросите `Where are the tickets?` — «Где билеты?»",
-        "uk": "`The tickets are valid` — «Квитки дійсні»: за ними можна пройти на цей вечір. `different` — «різний, інший». `The tickets are different` — «Квитки різні». Різний колір ще не означає, що квиток недійсний. Якщо потрібно знайти підготовлені квитки, запитайте `Where are the tickets?` — «Де квитки?»"
+        "ru": "Подруга достаёт из второго ящика ещё одну горсть блестящих предметов с острыми зубцами на конце. Она не уверена, как они называются, и хочет сверить с вами, пока брат моет руки. fork — «вилка». Вилок несколько — forks. Are they forks? — «Это вилки?»",
+        "uk": "Подруга дістає з другої шухляди ще одну жменю блискучих предметів із гострими зубцями на кінці. Вона не впевнена, як вони називаються, і хоче звірити з вами, поки брат миє руки. fork — «виделка». Виделок кілька — forks. Are they forks? — «Це виделки?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Вы проверили билеты: по всем можно пройти на этот вечер. Сообщите «Билеты действительны».",
-          "uk": "Ви перевірили квитки: за всіма можна пройти на цей вечір. Повідомте «Квитки дійсні»."
+          "ru": "Подруга держит предметы с зубцами. Спросите её, вилки ли это.",
+          "uk": "Подруга тримає предмети із зубцями. Запитайте її, чи це виделки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-23:intro2:r1",
-              "text": "The tickets are valid."
+              "text": "Are they forks?"
             },
             {
               "responseId": "en:lesson-03:session-23:intro2:r2",
-              "text": "The tickets is valid."
+              "text": "Are they fork?"
             },
             {
               "responseId": "en:lesson-03:session-23:intro2:r3",
-              "text": "The tickets are different."
+              "text": "Is they forks?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-23:intro2:r1",
-              "text": "The tickets are valid."
+              "text": "Are they forks?"
             },
             {
               "responseId": "en:lesson-03:session-23:intro2:r2",
-              "text": "The tickets is valid."
+              "text": "Are they fork?"
             },
             {
               "responseId": "en:lesson-03:session-23:intro2:r3",
-              "text": "The tickets are different."
+              "text": "Is they forks?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы проверили билеты: по всем можно пройти на этот вечер. Сообщите «Билеты действительны».",
-          "uk": "Ви перевірили квитки: за всіма можна пройти на цей вечір. Повідомте «Квитки дійсні»."
+          "ru": "Подруга держит предметы с зубцами. Спросите её, вилки ли это.",
+          "uk": "Подруга тримає предмети із зубцями. Запитайте її, чи це виделки."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Знакомые среди гостей",
-        "uk": "Знайомі серед гостей"
+        "ru": "Чашки после чая",
+        "uk": "Чашки після чаю"
       },
       "bodyByLocale": {
-        "ru": "Анна представляет друзей: `He is married` — «Он женат», `She is single` — «Она не состоит в отношениях». В этом разговоре `single` описывает отношения, а не количество людей в комнате. Олег тем временем ищет пальто гостя: `Where is the coat?` — «Где пальто?» Пальто одно — `is`; билетов несколько — `Where are the tickets?`.",
-        "uk": "Анна представляє друзів: `He is married` — «Він одружений», `She is single` — «Вона не перебуває у стосунках». У цій розмові `single` описує стосунки, а не кількість людей у кімнаті. Олег тим часом шукає пальто гостя: `Where is the coat?` — «Де пальто?» Пальто одне — `is`; квитків кілька — `Where are the tickets?`."
+        "ru": "Вы пьёте чай после работы, и подруга ополаскивает чашки в раковине горячей водой. Брат хочет сразу вытереть их и взять в руки: от чашек идёт пар. cup — «чашка». Чашек несколько — cups. The cups are hot — «Чашки горячие». Лучше вовремя предупредить брата.",
+        "uk": "Ви п’єте чай після роботи, і подруга ополіскує чашки в раковині гарячою водою. Брат хоче одразу витерти їх і взяти в руки: від чашок іде пара. cup — «чашка». Чашок кілька — cups. The cups are hot — «Чашки гарячі». Краще вчасно попередити брата."
       },
       "question": {
         "interactionId": "en:lesson-03:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Анна знает, какие билеты приготовлены для друзей. Спросите, где билеты.",
-          "uk": "Анна знає, які квитки підготовлені для друзів. Запитайте, де квитки."
+          "ru": "Брат тянется к чашкам в раковине. Предупредите его: чашки горячие.",
+          "uk": "Брат тягнеться до чашок у раковині. Попередьте його: чашки гарячі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-23:intro3:r1",
-              "text": "Where are the tickets?"
+              "text": "The cups are hot."
             },
             {
               "responseId": "en:lesson-03:session-23:intro3:r2",
-              "text": "Where is the tickets?"
+              "text": "The cups is hot."
             },
             {
               "responseId": "en:lesson-03:session-23:intro3:r3",
-              "text": "What are the tickets?"
+              "text": "The cup are hot."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-23:intro3:r1",
-              "text": "Where are the tickets?"
+              "text": "The cups are hot."
             },
             {
               "responseId": "en:lesson-03:session-23:intro3:r2",
-              "text": "Where is the tickets?"
+              "text": "The cups is hot."
             },
             {
               "responseId": "en:lesson-03:session-23:intro3:r3",
-              "text": "What are the tickets?"
+              "text": "The cup are hot."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна знает, какие билеты приготовлены для друзей. Спросите, где билеты.",
-          "uk": "Анна знає, які квитки підготовлені для друзів. Запитайте, де квитки."
+          "ru": "Брат тянется к чашкам в раковине. Предупредите его: чашки горячие.",
+          "uk": "Брат тягнеться до чашок у раковині. Попередьте його: чашки гарячі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "14df392505e97bfa4710232914e6440bc0702fed6b9f9995f8f76ecec0d5c4c8"
+  "introFingerprint": "bae30400082222fc634f4099cff13e3c148d47162731a90a513474292d8ce353"
 }

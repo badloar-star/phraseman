@@ -8,6 +8,7 @@ import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
 import { publishResolvedUiLang } from '../app/ui_lang_resolved';
 import { peekDevUiLang, subscribeDevUiLang, type DevUiLangRequest } from '../app/dev_ui_lang';
 import { persistPortablePreference, readPortablePreference } from '../app/phone_state_preference_bridge';
+import { migrateUiLangForExistingInstallOnce } from '../app/ui_lang_migration';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { actionToastTri, emitAppEvent } from '../app/events';
 
@@ -1265,8 +1266,19 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
           if (typeof v === 'string') {
             persistPortablePreference('app_lang', 'ru').catch(noteSwallowedHandler('LangContext:promise_2'));
             setLangState('ru');
+            return;
           }
-          return;
+          // зачем (R119, координатор 17.10): явного выбора языка не было. Существующая установка сохраняет язык прежнего
+          // правила (до открытия английского) — интерфейс не меняется сам с русского на английский; новая — новое правило.
+          return migrateUiLangForExistingInstallOnce().then((result) => {
+            if (!result.lang) return;
+            if (userChangedLangRef.current) {
+              console.log(`[UI-LANG-MIGRATE] apply_skipped lang=${result.lang} reason=user_changed_during_migration`); // guard-ok: ранний выход, один раз
+              return;
+            }
+            writePeekAppLang(result.lang);
+            setLangState(result.lang);
+          });
         }
         setLangState(storedLang);
         if (STUDY_TARGET_RESET_LANGS.has(storedLang)) {

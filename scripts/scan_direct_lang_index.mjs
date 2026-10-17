@@ -29,6 +29,9 @@ const ALLOWED = new Map([
   ['constants/lessons.ts', 'чтение защищено запасным списком названий'],
   ['constants/avatars.ts', 'чтение защищено `||` и необязательным обращением'],
   ['components/spire/moments/moments_strings.ts', 'LEAGUE_LOCATIVE[lang] читается только после сужения lang до ru/uk/pl (падеж; в en падежа нет — имя как есть)'],
+  // зачем (Ядро 17.10, предполётка английского): c2c707eb1 — en отдельной веткой `lang === 'en' ? pack.titleEn : …`,
+  // сканер ветку не видит; поле названия набора для en — titleEn, а не ключ словаря.
+  ['app/flashcards/marketplace.ts', 'PACK_TITLE_FIELD_BY_LANG[lang] читается только в ветке lang !== \'en\' (en — pack.titleEn)'],
 ]);
 
 function listFiles() {

@@ -71,6 +71,8 @@ function normalizeInterfaceLangCandidate(value: string): InterfaceLanguageOption
   const lower = raw.replace(/_/g, '-').toLowerCase();
   if (lower === 'pt' || lower === 'pt-br') return 'pt-BR';
   const base = lower.split('-')[0];
+  // зачем (R119): pt-PT и прочие pt-* — тот же португальский; интерфейс у нас один, pt-BR (раньше pt-PT уходил в запасной язык)
+  if (base === 'pt') return 'pt-BR';
   if (base === 'ru') return 'ru';
   if (base === 'uk') return 'uk';
   if (base === 'en') return 'en';
@@ -91,7 +93,8 @@ export function coerceInterfaceLang(value: unknown): Lang | null {
 // зачем (координатор 17.10, после открытия английского): телефон на языке, которого у нас нет (немецкий, французский…),
 // стартует на английском — человеку из Германии английский понятнее русского. Русский остаётся запасным только для
 // русскоязычных регионов (белорусский, казахский, киргизский интерфейс телефона). Пока английский закрыт — прежний ru.
-const RU_FALLBACK_DEVICE_LANG_BASES: ReadonlySet<string> = new Set(['ru', 'be', 'kk', 'ky']);
+// зачем (координатор 17.10, R119): регион, где русский понятнее английского, — шире: + uz, az, hy, ka, tg, tk (ro — en).
+const RU_FALLBACK_DEVICE_LANG_BASES: ReadonlySet<string> = new Set(['ru', 'be', 'kk', 'ky', 'uz', 'az', 'hy', 'ka', 'tg', 'tk']);
 
 export type BootstrapLocaleReason =
   | 'device_supported'
@@ -111,6 +114,17 @@ export function resolveBootstrapLocaleDecision(deviceLocale: unknown): { lang: L
   const base = raw.replace(/_/g, '-').toLowerCase().split('-')[0] ?? '';
   if (RU_FALLBACK_DEVICE_LANG_BASES.has(base)) return { lang: 'ru', reason: 'ru_region' };
   return enOpen ? { lang: 'en', reason: 'unknown_to_en' } : { lang: 'ru', reason: 'unknown_to_ru_en_closed' };
+}
+
+/**
+ * Правило выбора языка ДО открытия английского (67fc0e3ec): наш язык телефона (кроме en) — он, иначе ru.
+ * зачем (R119): существующая установка без ручного выбора жила на этом языке; при обновлении он сохраняется
+ * (app/ui_lang_migration.ts), чтобы интерфейс человека не сменился сам с русского на английский.
+ */
+export function resolveLegacyBootstrapLocaleV1(deviceLocale: unknown): Lang {
+  const raw = typeof deviceLocale === 'string' ? deviceLocale.trim() : '';
+  const normalized = raw ? normalizeInterfaceLangCandidate(raw) : null;
+  return normalized && normalized !== 'en' && isInterfaceLangEnabled(normalized) ? normalized : 'ru';
 }
 
 export function resolveBootstrapLocaleFromDeviceLocale(deviceLocale: unknown): Lang {

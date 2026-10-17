@@ -283,23 +283,23 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           res.reason === 'pending_guard_persist_failed'
             ? L({
             ru: 'Не удалось подготовить удаление. Аккаунт и данные не изменены. Освободи место на телефоне и попробуй снова.',
-            uk: 'Не вдалося підготувати видалення. Акаунт і дані не змінено. Звільни місце на пристрої або перезапусти телефон і спробуй знову.', en: "Couldn't prepare the deletion. Your account and data weren't changed. Free up some space on your phone and try again.",
-            es: 'No pudimos preparar la eliminación de forma segura. La cuenta y los datos no cambiaron. Libera espacio o reinicia el teléfono e inténtalo de nuevo.',
-            'pt-BR': 'Não foi possível preparar a exclusão com segurança. A conta e os dados não foram alterados. Libere espaço ou reinicie o telefone e tente novamente.',
-            vi: 'Không thể chuẩn bị xóa một cách an toàn. Tài khoản và dữ liệu chưa thay đổi. Hãy giải phóng dung lượng hoặc khởi động lại điện thoại rồi thử lại.',
-            id: 'Penghapusan belum dapat disiapkan dengan aman. Akun dan data tidak berubah. Kosongkan ruang atau mulai ulang ponsel lalu coba lagi.',
-            tr: 'Silme işlemi güvenli biçimde hazırlanamadı. Hesap ve veriler değişmedi. Yer aç veya telefonu yeniden başlatıp tekrar dene.',
-            pl: 'Nie udało się bezpiecznie przygotować usunięcia. Konto i dane nie zostały zmienione. Zwolnij miejsce lub uruchom telefon ponownie i spróbuj jeszcze raz.',
+            uk: 'Не вдалося підготувати видалення. Акаунт і дані не змінено. Звільни місце на телефоні й спробуй знову.', en: "Couldn't prepare the deletion. Your account and data weren't changed. Free up some space on your phone and try again.",
+            es: 'No se pudo preparar la eliminación. Tu cuenta y tus datos no cambiaron. Libera espacio en el teléfono e inténtalo de nuevo.',
+            'pt-BR': 'Não deu para preparar a exclusão. Sua conta e seus dados não mudaram. Libere espaço no celular e tente de novo.',
+            vi: 'Chưa chuẩn bị xóa được. Tài khoản và dữ liệu vẫn giữ nguyên. Hãy giải phóng dung lượng điện thoại rồi thử lại.',
+            id: 'Penghapusan belum bisa disiapkan. Akun dan datamu tidak berubah. Kosongkan ruang di ponsel lalu coba lagi.',
+            tr: 'Silme hazırlanamadı. Hesabın ve verilerin değişmedi. Telefonda yer aç ve tekrar dene.',
+            pl: 'Nie udało się przygotować usunięcia. Konto i dane się nie zmieniły. Zwolnij miejsce w telefonie i spróbuj ponownie.',
           })
             : L({
             ru: 'Выход не завершился. Аккаунт под защитой — перезапусти приложение и попробуй снова.',
             uk: 'Вихід не завершився. Акаунт під захистом — перезапусти застосунок і спробуй знову.', en: "Sign-out didn't finish. Your account is protected — restart the app and try again.",
-            es: 'La salida local segura no terminó. La cuenta permanece protegida; reinicia la aplicación e inténtalo de nuevo.',
-            'pt-BR': 'A saída local segura não foi concluída. A conta permanece protegida; reinicie o aplicativo e tente novamente.',
-            vi: 'Quá trình thoát an toàn trên thiết bị chưa hoàn tất. Tài khoản vẫn được bảo vệ; hãy khởi động lại ứng dụng và thử lại.',
-            id: 'Proses keluar lokal yang aman belum selesai. Akun tetap dilindungi; mulai ulang aplikasi lalu coba lagi.',
-            tr: 'Güvenli yerel çıkış tamamlanmadı. Hesap korumalı durumda; uygulamayı yeniden başlatıp tekrar dene.',
-            pl: 'Bezpieczne lokalne wyjście nie zostało ukończone. Konto pozostaje chronione; uruchom aplikację ponownie i spróbuj jeszcze raz.',
+            es: 'No se pudo cerrar la sesión. Tu cuenta está protegida: reinicia la app e inténtalo de nuevo.',
+            'pt-BR': 'A saída não terminou. Sua conta está protegida — reinicie o app e tente de novo.',
+            vi: 'Chưa đăng xuất xong. Tài khoản vẫn được bảo vệ — hãy mở lại ứng dụng rồi thử lại.',
+            id: 'Keluar akun belum selesai. Akunmu tetap aman — mulai ulang aplikasi lalu coba lagi.',
+            tr: 'Çıkış tamamlanmadı. Hesabın korunuyor — uygulamayı yeniden başlat ve tekrar dene.',
+            pl: 'Wylogowanie nie dobiegło końca. Konto pozostaje chronione — uruchom aplikację ponownie i spróbuj jeszcze raz.',
           }),
         );
         deleteInFlightRef.current = false;

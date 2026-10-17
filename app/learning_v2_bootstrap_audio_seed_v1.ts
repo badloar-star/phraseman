@@ -1,7 +1,7 @@
 import { Asset } from "expo-asset";
 import { File } from "expo-file-system";
 
-import { LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1 } from "./learning_v2_bootstrap_audio_assets_v1.generated";
+import type { LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1 } from "./learning_v2_bootstrap_audio_assets_v1.generated";
 import { learningV2NativeDecoderIdentityForAudioFileV1 } from "./learning_v2_audio_identity_v1";
 import { learningV2FactoryRemoteAudioFilesForContentHashesV1 } from "./learning_v2_factory_production_audio_v1";
 import {
@@ -12,14 +12,36 @@ import {
 import type { LearningV2NativeDecoderIdentityV1 } from "../modules/learning-v2/runtime/voice_native_decoder_observer_v1";
 
 type LearningV2BootstrapAudioEntryV1 = (typeof LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1)[number];
-const entryByContentHash = new Map<string, LearningV2BootstrapAudioEntryV1>(
-  LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry]),
-);
+/**
+ * зачем (координатор 17.10, [COLD-START]): _layout импортирует этот модуль статически, а набор — 1,2 МБ и 3801 require(mp3):
+ * при прежнем импорте все ассеты регистрировались и набор дважды обходился (Map + filter) ДО первого кадра, хотя посев идёт
+ * только после первого кадра Главной. Теперь набор подключается при первом обращении (посев, поиск файла занятия).
+ */
+let bootstrapEntriesCache: readonly LearningV2BootstrapAudioEntryV1[] | null = null;
+function bootstrapAudioEntries(): readonly LearningV2BootstrapAudioEntryV1[] {
+  if (!bootstrapEntriesCache) {
+    const startedAt = Date.now();
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- зачем: ленивая загрузка тяжёлого набора, не в холодный старт
+    const mod = require("./learning_v2_bootstrap_audio_assets_v1.generated") as typeof import("./learning_v2_bootstrap_audio_assets_v1.generated");
+    bootstrapEntriesCache = mod.LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1;
+    console.log(`[COLD-START] bootstrap_audio_map:loaded ${JSON.stringify({ entries: bootstrapEntriesCache.length, ms: Date.now() - startedAt })}`);
+  }
+  return bootstrapEntriesCache;
+}
+let entryByContentHashCache: Map<string, LearningV2BootstrapAudioEntryV1> | null = null;
+function entryByContentHash(): Map<string, LearningV2BootstrapAudioEntryV1> {
+  if (!entryByContentHashCache) entryByContentHashCache = new Map(bootstrapAudioEntries().map((entry) => [entry.contentHash, entry]));
+  return entryByContentHashCache;
+}
 // зачем (координатор 15.10, урок 1 целиком в сборку): в наборе теперь все занятия до потолка (до 1120 файлов),
 // а посев при запуске считает sha256 каждого тела в JS (~1 с на 140 файлов, профили Сверки 13.10). Сеем только
 // первые занятия (флаг launchSeed от генератора); остальные файлы занятие готовит само по запросу через
 // resolveLearningV2BootstrapAudioOfflineFileV1 — набор для поиска остаётся полным.
-const launchSeedEntries = LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.filter((entry) => entry.launchSeed);
+let launchSeedEntriesCache: readonly LearningV2BootstrapAudioEntryV1[] | null = null;
+function launchSeedEntries(): readonly LearningV2BootstrapAudioEntryV1[] {
+  if (!launchSeedEntriesCache) launchSeedEntriesCache = bootstrapAudioEntries().filter((entry) => entry.launchSeed);
+  return launchSeedEntriesCache;
+}
 let assetPrewarm: Promise<void> | null = null;
 let durableSeed: Promise<void> | null = null;
 
@@ -85,7 +107,7 @@ export function preloadLearningV2BootstrapAudioAssetsV1(): Promise<void> {
   // озвучки на всё время жизни приложения. Срок на пачку больше, чем на файл.
   assetPrewarm = Promise.race([
     Asset.loadAsync(
-      launchSeedEntries.map((entry) => entry.assetModule),
+      launchSeedEntries().map((entry) => entry.assetModule),
     ).then(() => undefined),
     new Promise<never>((_, reject) => {
       setTimeout(
@@ -107,7 +129,7 @@ export function seedLearningV2BootstrapAudioCacheV1(): Promise<void> {
   durableSeed = preloadLearningV2BootstrapAudioAssetsV1()
     .then(async () => {
       const files = learningV2FactoryRemoteAudioFilesForContentHashesV1(
-        launchSeedEntries.map((entry) => entry.contentHash),
+        launchSeedEntries().map((entry) => entry.contentHash),
       );
       // зачем: раньше ЛЮБОЙ упавший файл рвал весь посев, и остальные записи
       // не попадали в кэш вовсе. С появлением сроков это стало бы обычным
@@ -143,7 +165,7 @@ export function seedLearningV2BootstrapAudioCacheV1(): Promise<void> {
 export async function resolveLearningV2BootstrapAudioOfflineFileV1(
   identity: LearningV2NativeDecoderIdentityV1,
 ): Promise<LearningV2VoiceAudioOfflineCacheHandleV1 | null> {
-  const entry = entryByContentHash.get(identity.contentHash);
+  const entry = entryByContentHash().get(identity.contentHash);
   if (!entry || entry.byteSize !== identity.byteSize) return null;
   const existing = await resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity);
   if (existing) return existing;

@@ -77,7 +77,15 @@ function redirectSystemPathInner({
   // (задача диплинка s56 — отдельно). Неканонический id (например en-l01-s01) давал «Сессия недоступна» — ведём на карту курса.
   const sessionLink = raw.match(/^\/?learning-v2\/session\/([^?#/]+)/i);
   if (sessionLink) {
-    const linkId = decodeURIComponent(sessionLink[1]);
+    // зачем (Ревизор 3.29, 🔴): битая ссылка (%E0%A4%A) — decodeURIComponent бросает URIError на старте навигации = краш.
+    // Не разобрали — как неканонический id: на карту курса, с причиной в журнале.
+    let linkId: string;
+    try {
+      linkId = decodeURIComponent(sessionLink[1]);
+    } catch (error: unknown) {
+      console.warn('[V2-HANDOFF] deep_link decode_failed', JSON.stringify({ raw: sessionLink[1].slice(0, 80), error: error instanceof Error ? error.message : String(error), action: 'course_map' })); // guard-ok: catch называет причину
+      return '/learning-v2/course';
+    }
     const canonical = /^lesson-\d{2}:session:\d{2}$/.test(linkId);
     console.log('[V2-HANDOFF] deep_link', JSON.stringify({ id: linkId, canonical, hasLocator: canonical, hasRunId: /[?&]sessionRunId=/.test(raw), action: canonical ? 'pass_to_player' : 'course_map' })); // guard-ok: строка на каждый внешний вход в занятие
     if (!canonical) return '/learning-v2/course';

@@ -27,6 +27,14 @@ describe('[V2-HANDOFF] внешняя ссылка в занятие V2 (не с
     expect(out).toContain('/learning-v2/session/lesson-01:session:07');
   });
 
+  // зачем (Ревизор 3.29): битая %-последовательность не должна ронять навигацию
+  it('битая ссылка (%E0%A4%A) — не бросает, ведёт на карту курса с журналом decode_failed', () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    expect(() => redirectSystemPath({ path: '/learning-v2/session/%E0%A4%A', initial: true })).not.toThrow();
+    expect(redirectSystemPath({ path: '/learning-v2/session/%E0%A4%A', initial: true })).toBe('/learning-v2/course');
+    expect(warn.mock.calls.some((c) => c[0] === '[V2-HANDOFF] deep_link decode_failed')).toBe(true);
+  });
+
   it('журнал [V2-HANDOFF] deep_link с решением', () => {
     const spy = jest.spyOn(console, 'log').mockImplementation(() => undefined);
     redirectSystemPath({ path: '/learning-v2/session/en-l01-s01', initial: true });

@@ -12,7 +12,10 @@ test('active mistake list and detail use Liquid Glass without text truncation', 
     assert.match(source, /useLv2Glass\(\)/);
     // 05.10 (Сверка mistakes-panel-007, cards-glass.css .ph .rb): круглые кнопки без текста — стекло 7 % (glassButtonFill);
     // правило «непрозрачное стекло» — для поверхностей с текстом, оно по-прежнему проверяется (opaque*).
-    assert.match(source, /g\.opaque(Card|Control|Sheet)|glassButtonFill\(g\)/);
+    // 18.10 (Сайт, red-tests): №35 (05198c295, «кнопки не сливаются») заменил в списке g.opaqueControl на g.buttonFill — это тоже
+    // непрозрачный цвет #RRGGBB (constants/liquidGlassButtonTokens.ts secondaryFill: ≥ 1,6 : 1 к фону, текст на нём ≥ 4,6 : 1), правило прежнее.
+    assert.match(source, /g\.opaque(Card|Control|Sheet)|g\.buttonFill\b|glassButtonFill\(g\)/);
+    assert.doesNotMatch(source, /glassFill\b/);
     assert.doesNotMatch(source, /numberOfLines/);
   }
 });

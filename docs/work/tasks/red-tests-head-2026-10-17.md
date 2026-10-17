@@ -126,3 +126,20 @@ Contain: каждая красная строка — чей-то долг; чи
 | Моменты | theme_hardcoded_colors_ratchet | 3 захардкоженных цвета в `components/legacy_bonus/LegacyBonusHero.tsx` | код (токены темы или «theme-exempt») |
 
 Мои сироты закрыты: у Дизайна красных не осталось.
+
+## Сайт 18.10 ~00:30: 9 → 4 (взяты строки, чьих владельцев этой ночью нет: Карточки, Ошибки, Фраза дня)
+
+Метод: чинить причину, сторож не ослаблять; где тест просто отстал от одобренной правки — перепин под код с проверкой, что смысл
+сторожа сохранён (а где можно — усилен).
+
+| Тест | Почему был красным | Что сделано |
+|---|---|---|
+| cards_hub_large_font_contract | R109 (0b974b1d9) перенёс число плитки вправо от иконки: строка `lh(19)` ушла, появились `lh(28)` и `lh(30)`; масштабирование не сломано | список под текущую разметку + **новая** проверка: каждая строка `<Text … style=…>` хаба идёт через `lh()` (≥ 8 подписей) |
+| flashcards_my_packs_review_p1_contract | 799956929 добавил единицу для скринридера (`t.unit`: «Из видео. наборов: 6») | регулярка с единицей; правило «неизвестное число не озвучивается» сохранено |
+| flashcards_deck_picker_liquid_glass_source_contract | пин `b0e5…` не совпадал ни с одной закоммиченной версией DeckPickerSheet (05198c295~1 → fc19…, 05198c295 = HEAD → 367a…) — снят с незакоммиченной копии | перепин на 367a… ; diff 05198c295 в разметке — ровно две замены `opaqueControl → buttonFill` (как и сказано в комментарии пина) |
+| mistake_list_detail_liquid_glass_source_contract | №35 (05198c295) заменил в списке `g.opaqueControl` на `g.buttonFill` | `g.buttonFill` принят как непрозрачный (#RRGGBB, ≥ 1,6:1 к фону, текст ≥ 4,6:1); **добавлен** запрет полупрозрачного `glassFill` |
+| render_daily_phrase_content_preview | source-bank.json (es) обновлён 11.10 (146f889c2), REVIEW_PREVIEW.md не пересобран с 30.09 | превью пересобрано тем же рендером `scripts/render_daily_phrase_content_preview.mjs` (детерминированно, 176/176) |
+
+Остались 4 — у владельцев, активных этой ночью или с решением владельца: `cards_section_locked` (Макеты, фиксация макета),
+`action_toast_liquid_glass_source_contract` (Темы), `shadow_style_no_container_borders` (Курс V2, обводка в mode_feedback_v1),
+`theme_hardcoded_colors_ratchet` (LegacyBonusHero у Моментов).

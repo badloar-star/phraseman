@@ -9,7 +9,12 @@ const source = fs.readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8').replace(
 
 test('line heights scale with the system font; at 1.0 they stay as in the mockup', () => {
   assert.match(source, /const lh = \(n: number\) => \(fs === 1 \? n : Math\.round\(n \* fs\)\)/);
-  for (const n of [20, 46, 22, 44, 25, 19]) assert.ok(source.includes(`lineHeight: lh(${n})`), `lineHeight: lh(${n})`);
+  // зачем (координатор 18.10, red-tests): R109 (0b974b1d9) перенёс число плитки вправо от иконки (28) и убрал строку 19; список — по
+  // текущей разметке. Главное — ни одна подпись хаба не держит фиксированный lineHeight: каждая строка <Text … style=…> идёт через lh().
+  for (const n of [20, 46, 22, 30, 44, 28, 25]) assert.ok(source.includes(`lineHeight: lh(${n})`), `lineHeight: lh(${n})`);
+  const textLines = source.split('\n').filter((line) => /<Text\b[^>]*style=/.test(line));
+  assert.ok(textLines.length >= 8, `подписей хаба найдено ${textLines.length}`);
+  for (const line of textLines) assert.ok(line.includes('lineHeight: lh('), `подпись без масштаба строки: ${line.trim().slice(0, 120)}`);
 });
 
 test('fixed header/pill heights become minHeight and labels wrap at large fonts', () => {

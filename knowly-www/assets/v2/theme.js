@@ -20,6 +20,21 @@
     ['Коралл', '#FF645A', '#FFA046', '#FFB0A0', '#4A0F0A'],
     ['Сирень', '#A78BFA', '#60A5FA', '#D4C8FF', '#24164A']
   ];
+  // зачем (координатор 18.10, en-режим сайта): подписи шторки темы на языке сайта — тот же выбор, что у ds.js
+  // (?lang= в адресе или knowly_site_locale_v1), плюс смена по событию pm:lang. Имена тем — как в приложении (en).
+  var THEME_EN = ['Graphite', 'Aurora', 'Iris', 'Magma', 'Midnight', 'Champagne', 'Jade', 'Orchid', 'Ice', 'Coral', 'Lilac'];
+  var COPY = {
+    ru: { site: 'Тема сайта', app: 'Тема приложения', themes: 'Темы', look: 'Оформление', dark: 'Тёмная', light: 'Светлая', k: 'Насыщенность', theme: function (n) { return 'Тема ' + n; } },
+    en: { site: 'Site theme', app: 'App theme', themes: 'Themes', look: 'Appearance', dark: 'Dark', light: 'Light', k: 'Intensity', theme: function (n) { return n + ' theme'; } }
+  };
+  function siteLang() {
+    try {
+      var q = new URLSearchParams(location.search).get('lang');
+      var v = q || localStorage.getItem('knowly_site_locale_v1') || 'ru';
+      return v === 'en' ? 'en' : 'ru';
+    } catch (e) { console.warn(TAG, 'язык сайта не прочитан, ru:', e && e.message); return 'ru'; }
+  }
+  function themeName(i, lang) { return lang === 'en' ? THEME_EN[i] : THEMES[i][0]; }
   var root = document.documentElement;
   var state = { mode: 'dark', theme: 1, k: 0.6 };
 
@@ -65,22 +80,23 @@
   function mount() {
     var actions = document.querySelector('.site-header .nav-actions');
     if (!actions) { console.log(TAG, 'на странице нет шапки сайта — кнопка темы не добавлена'); return; }
+    var c = COPY[siteLang()];
     var btn = document.createElement('button');
-    btn.type = 'button'; btn.className = 'v2-theme-btn'; btn.setAttribute('aria-label', 'Тема сайта'); btn.setAttribute('aria-expanded', 'false');
+    btn.type = 'button'; btn.className = 'v2-theme-btn'; btn.setAttribute('aria-label', c.site); btn.setAttribute('aria-expanded', 'false');
     btn.innerHTML = '<i aria-hidden="true"></i>';
     var lang = actions.querySelector('#site-language');
     actions.insertBefore(btn, lang ? lang.nextSibling : actions.firstChild);
 
     var pop = document.createElement('div');
-    pop.className = 'v2-theme-pop'; pop.hidden = true; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', 'Тема сайта');
-    pop.innerHTML = '<span class="v2-pop-label">Тема приложения</span><div class="v2-swatches" role="group" aria-label="Темы"></div>' +
-      '<div class="v2-seg" role="group" aria-label="Оформление"><button type="button" data-v2-mode="dark">' + ICON_MOON + 'Тёмная</button><button type="button" data-v2-mode="light">' + ICON_SUN + 'Светлая</button></div>' +
-      '<div class="v2-range"><label for="v2-k">Насыщенность</label><input id="v2-k" type="range" min="0" max="100" step="5"><b class="v2-kval"></b></div>';
+    pop.className = 'v2-theme-pop'; pop.hidden = true; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', c.site);
+    pop.innerHTML = '<span class="v2-pop-label">' + c.app + '</span><div class="v2-swatches" role="group" aria-label="' + c.themes + '"></div>' +
+      '<div class="v2-seg" role="group" aria-label="' + c.look + '"><button type="button" data-v2-mode="dark">' + ICON_MOON + '<span class="v2-mode-t">' + c.dark + '</span></button><button type="button" data-v2-mode="light">' + ICON_SUN + '<span class="v2-mode-t">' + c.light + '</span></button></div>' +
+      '<div class="v2-range"><label for="v2-k">' + c.k + '</label><input id="v2-k" type="range" min="0" max="100" step="5"><b class="v2-kval"></b></div>';
     document.body.appendChild(pop);
     var sw = pop.querySelector('.v2-swatches');
     THEMES.forEach(function (t, i) {
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'v2-sw'; b.title = t[0]; b.setAttribute('aria-label', 'Тема ' + t[0]);
+      b.type = 'button'; b.className = 'v2-sw'; b.title = themeName(i, siteLang()); b.setAttribute('aria-label', c.theme(themeName(i, siteLang())));
       b.style.background = t[1] ? 'linear-gradient(135deg,' + t[1] + ',' + t[2] + ')' : '#2A2A2C';
       b.addEventListener('click', function () { state.theme = i; apply(); sync(pop); save(); });
       sw.appendChild(b);
@@ -96,6 +112,21 @@
     pop.addEventListener('click', function (e) { e.stopPropagation(); });
     document.addEventListener('click', close);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) { close(); btn.focus(); } });
+
+    // смена языка без перезагрузки (ds.js шлёт pm:lang) — переписываем только подписи, обработчики остаются
+    document.addEventListener('pm:lang', function (e) {
+      var lang = e && e.detail && e.detail.lang === 'en' ? 'en' : 'ru';
+      var cc = COPY[lang];
+      btn.setAttribute('aria-label', cc.site); pop.setAttribute('aria-label', cc.site);
+      pop.querySelector('.v2-pop-label').textContent = cc.app;
+      pop.querySelector('.v2-swatches').setAttribute('aria-label', cc.themes);
+      pop.querySelector('.v2-seg').setAttribute('aria-label', cc.look);
+      pop.querySelector('[data-v2-mode="dark"] .v2-mode-t').textContent = cc.dark;
+      pop.querySelector('[data-v2-mode="light"] .v2-mode-t').textContent = cc.light;
+      pop.querySelector('label[for="v2-k"]').textContent = cc.k;
+      [].forEach.call(pop.querySelectorAll('.v2-sw'), function (b, i) { b.title = themeName(i, lang); b.setAttribute('aria-label', cc.theme(themeName(i, lang))); });
+      console.log(TAG, 'подписи шторки темы на языке', lang);
+    });
 
     // зачем: старая кнопка «Светлая / тёмная тема» в меню языка остаётся и переключает новую тему
     var legacy = document.getElementById('theme-toggle');

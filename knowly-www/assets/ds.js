@@ -65,6 +65,13 @@
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       autoRuPlaceholder[el.getAttribute('data-i18n-placeholder')] = el.getAttribute('placeholder');
     });
+    /* зачем (координатор 18.10, en-режим сайта 2.0): подписи для экранного диктора (aria-label) и заголовок вкладки
+       тоже переводятся — тем же способом, что placeholder: русский берётся из разметки, английский из словаря страницы. */
+    var autoRuAria = {};
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      autoRuAria[el.getAttribute('data-i18n-aria')] = el.getAttribute('aria-label');
+    });
+    var autoRuTitle = document.title;
 
     window.I18N = window.I18N || {};
     window.I18N.ru = Object.assign({}, autoRu, window.I18N.ru || {});
@@ -88,6 +95,13 @@
         var value = dict[key] !== undefined ? dict[key] : autoRuPlaceholder[key];
         if (value !== undefined) el.setAttribute('placeholder', value);
       });
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria');
+        var value = dict[key] !== undefined ? dict[key] : autoRuAria[key];
+        if (value !== undefined) el.setAttribute('aria-label', value);
+      });
+      var title = dict['doc.title'] !== undefined && language !== 'ru' ? dict['doc.title'] : autoRuTitle;
+      if (title) document.title = title;
       document.documentElement.setAttribute('lang', language);
       if (toggle) toggle.setAttribute('data-active', language);
       buttons.forEach(function (b) {

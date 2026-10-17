@@ -353,10 +353,11 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
           onPress={() => { if (props.primaryBusy) return; hapticTap(); props.onPrimary(); }}
           accessibilityState={{ busy: props.primaryBusy === true, disabled: props.primaryBusy === true }}
           // зачем (аудит Optimistic UI Уроков, 13.10): пока идут проверки перед переходом, кнопка держит нажатый вид (масштаб и приглушение) — тап не выглядит потерянным
-          style={({ pressed }) => [s.cta, { backgroundColor: g.cta, transform: [{ scale: pressed || props.primaryBusy ? 0.98 : 1 }], opacity: props.primaryBusy ? 0.72 : 1 }]}
+          // зачем (аудит контраста 17.10, «кнопки нигде не сливаются»): заливка основной кнопки — ctaFill/ctaFillInk (пара с гарантией ≥3:1 к фону и ≥4,5:1 подписи во всех темах); яркий cta на светлых градиентных темах (ползунок ≥0,75) давал 1,0–2,5:1 к подложке итога
+          style={({ pressed }) => [s.cta, { backgroundColor: g.ctaFill, transform: [{ scale: pressed || props.primaryBusy ? 0.98 : 1 }], opacity: props.primaryBusy ? 0.72 : 1 }]}
         >
-          <Text style={[s.ctaText, { color: g.ctaInk }]}>{props.primaryLabel}</Text>
-          <Ionicons name="arrow-forward" size={20} color={g.ctaInk} style={s.ctaArrow} />
+          <Text style={[s.ctaText, { color: g.ctaFillInk }]}>{props.primaryLabel}</Text>
+          <Ionicons name="arrow-forward" size={20} color={g.ctaFillInk} style={s.ctaArrow} />
         </Pressable>
         {props.secondaryLabel && props.onSecondary ? (
           <Pressable

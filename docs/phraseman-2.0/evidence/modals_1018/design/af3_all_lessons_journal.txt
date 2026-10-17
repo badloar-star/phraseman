@@ -1,0 +1,8 @@
+10-18 00:49:29.682 I/ReactNativeJS(  744): [BACK-BTN] tap {"seq":5,"screen":"v2_all_lessons","handler":"header_back_button"}
+10-18 00:49:29.683 I/ReactNativeJS(  744): [BACK-BTN] decision {"seq":5,"screen":"v2_all_lessons","decision":"all_lessons → map","ms":3}
+10-18 00:49:29.690 I/ReactNativeJS(  744): [BACK-BTN] interactions-free {"seq":5,"screen":"v2_all_lessons","ms":8}
+10-18 00:49:30.099 I/ReactNativeJS(  744): [BACK-BTN] arrived {"seq":5,"tapScreen":"v2_all_lessons","handler":"header_back_button","arrivedAt":"v2_map","via":"all_lessons_closed","ms":418}
+10-18 00:49:44.295 I/ReactNativeJS(  744): [BACK-BTN] tap {"seq":6,"screen":"v2_all_lessons","handler":"header_back_button"}
+10-18 00:49:44.296 I/ReactNativeJS(  744): [BACK-BTN] decision {"seq":6,"screen":"v2_all_lessons","decision":"all_lessons → map","ms":2}
+10-18 00:49:44.299 I/ReactNativeJS(  744): [BACK-BTN] interactions-free {"seq":6,"screen":"v2_all_lessons","ms":4}
+10-18 00:49:44.804 I/ReactNativeJS(  744): [BACK-BTN] arrived {"seq":6,"tapScreen":"v2_all_lessons","handler":"header_back_button","arrivedAt":"v2_map","via":"all_lessons_closed","ms":509}

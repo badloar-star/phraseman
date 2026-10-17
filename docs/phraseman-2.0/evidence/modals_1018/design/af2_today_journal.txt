@@ -1,0 +1,121 @@
+10-18 00:48:17.422 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":1,"changed":["homeRuntimeActive"],"atMs":0}'
+10-18 00:48:17.425 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:17.430 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:17.431 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:17.476 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-18 00:48:17.539 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":14,"window":5,"renderToEffectsMs":107,"ownEffectsMs":10}'
+10-18 00:48:21.531 I/ReactNativeJS(  744): [BACK-BTN] tap {"seq":1,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:48:21.542 I/ReactNativeJS(  744): [BACK-BTN] interactions-free {"seq":1,"screen":"today_tasks","ms":11}
+10-18 00:48:21.602 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#1","count":1,"byCause":{"homeRuntimeActive":1},"ms":4180}'
+10-18 00:48:21.603 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#2","n":1,"changed":["homeRuntimeActive"],"atMs":0}'
+10-18 00:48:21.607 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#1","count":1,"byCause":{"bellSlot":1,"avatarSlot":1,"stats":1},"ms":4182}'
+10-18 00:48:21.608 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#2","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:21.615 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#1","count":1,"byCause":{"tiles":1},"ms":4185}'
+10-18 00:48:21.615 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#2","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:21.616 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#1","count":1,"byCause":{"ownerActive":1},"ms":4185}'
+10-18 00:48:21.616 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#2","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:21.733 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","stage":"renders_window","window":"cold","count":1,"byCause":{"mount":1},"ms":4256}'
+10-18 00:48:21.751 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":15,"window":6,"renderToEffectsMs":142,"ownEffectsMs":7}'
+10-18 00:48:21.782 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#2","n":2,"changed":["focusTick"],"atMs":178}'
+10-18 00:48:21.784 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#2","n":2,"changed":["bellSlot","avatarSlot","stats"],"atMs":177}'
+10-18 00:48:21.789 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#2","n":2,"changed":["tiles"],"atMs":173}'
+10-18 00:48:21.790 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#2","n":2,"changed":["parent_or_unlisted"],"atMs":174}'
+10-18 00:48:21.863 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":16,"window":6,"renderToEffectsMs":76,"ownEffectsMs":5}'
+10-18 00:48:21.883 I/ReactNativeJS(  744): [BACK-BTN] frame {"seq":1,"screen":"today_tasks","ms":352}
+10-18 00:48:22.573 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":1,"screen":"today_tasks","driftMs":434,"sinceTapMs":1043}
+10-18 00:48:25.756 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#2","count":2,"byCause":{"homeRuntimeActive":1,"focusTick":1},"ms":4153}'
+10-18 00:48:25.758 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#3","n":1,"changed":["homeRuntimeActive"],"atMs":0}'
+10-18 00:48:25.760 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#2","count":2,"byCause":{"bellSlot":2,"avatarSlot":2,"stats":2},"ms":4153}'
+10-18 00:48:25.761 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#3","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:25.766 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#2","count":2,"byCause":{"tiles":2},"ms":4150}'
+10-18 00:48:25.776 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#3","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:25.778 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#2","count":2,"byCause":{"ownerActive":1,"parent_or_unlisted":1},"ms":4161}'
+10-18 00:48:25.778 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#3","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:25.843 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-18 00:48:25.901 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":17,"window":7,"renderToEffectsMs":142,"ownEffectsMs":3}'
+10-18 00:48:26.033 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":1,"screen":"today_tasks","driftMs":263,"sinceTapMs":4502}
+10-18 00:48:29.770 W/ReactNativeJS(  744): [BACK-BTN] no-arrival {"seq":1,"screen":"today_tasks","handler":"BackButton","ms":8240}
+10-18 00:48:30.074 I/ReactNativeJS(  744): [BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:48:30.091 I/ReactNativeJS(  744): [BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":18}
+10-18 00:48:30.186 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#3","count":1,"byCause":{"homeRuntimeActive":1},"ms":4428}'
+10-18 00:48:30.187 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#4","n":1,"changed":["homeRuntimeActive"],"atMs":1}'
+10-18 00:48:30.190 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#3","count":1,"byCause":{"bellSlot":1,"avatarSlot":1,"stats":1},"ms":4430}'
+10-18 00:48:30.192 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#4","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:30.201 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#3","count":1,"byCause":{"tiles":1},"ms":4435}'
+10-18 00:48:30.201 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#4","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:30.203 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#3","count":1,"byCause":{"ownerActive":1},"ms":4425}'
+10-18 00:48:30.205 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#4","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:30.349 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","stage":"renders_window","window":"cold","count":1,"byCause":{"mount":1},"ms":4506}'
+10-18 00:48:30.379 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":18,"window":8,"renderToEffectsMs":168,"ownEffectsMs":21}'
+10-18 00:48:30.430 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#4","n":2,"changed":["focusTick"],"atMs":243}'
+10-18 00:48:30.432 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#4","n":2,"changed":["bellSlot","avatarSlot","stats"],"atMs":241}'
+10-18 00:48:30.440 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#4","n":2,"changed":["tiles"],"atMs":238}'
+10-18 00:48:30.441 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#4","n":2,"changed":["parent_or_unlisted"],"atMs":237}'
+10-18 00:48:30.556 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":19,"window":8,"renderToEffectsMs":111,"ownEffectsMs":15}'
+10-18 00:48:30.578 I/ReactNativeJS(  744): [BACK-BTN] frame {"seq":2,"screen":"today_tasks","ms":505}
+10-18 00:48:30.583 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":258,"sinceTapMs":509}
+10-18 00:48:31.193 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":357,"sinceTapMs":1116}
+10-18 00:48:34.366 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#4","count":2,"byCause":{"homeRuntimeActive":1,"focusTick":1},"ms":4179}'
+10-18 00:48:34.366 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#5","n":1,"changed":["homeRuntimeActive"],"atMs":0}'
+10-18 00:48:34.378 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#4","count":2,"byCause":{"bellSlot":2,"avatarSlot":2,"stats":2},"ms":4186}'
+10-18 00:48:34.378 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#5","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:34.383 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#4","count":2,"byCause":{"tiles":2},"ms":4182}'
+10-18 00:48:34.383 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#5","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:34.386 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#4","count":2,"byCause":{"ownerActive":1,"parent_or_unlisted":1},"ms":4180}'
+10-18 00:48:34.386 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#5","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:34.453 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-18 00:48:34.511 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":20,"window":9,"renderToEffectsMs":143,"ownEffectsMs":3}'
+10-18 00:48:34.675 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":305,"sinceTapMs":4602}
+10-18 00:48:38.157 W/ReactNativeJS(  744): [BACK-BTN] no-arrival {"seq":2,"screen":"today_tasks","handler":"BackButton","ms":8083}
+10-18 00:48:38.555 I/ReactNativeJS(  744): [BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:48:38.571 I/ReactNativeJS(  744): [BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":17}
+10-18 00:48:38.658 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#5","count":1,"byCause":{"homeRuntimeActive":1},"ms":4291}'
+10-18 00:48:38.659 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#6","n":1,"changed":["homeRuntimeActive"],"atMs":0}'
+10-18 00:48:38.663 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#5","count":1,"byCause":{"bellSlot":1,"avatarSlot":1,"stats":1},"ms":4285}'
+10-18 00:48:38.664 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#6","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:38.671 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#5","count":1,"byCause":{"tiles":1},"ms":4288}'
+10-18 00:48:38.672 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#6","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:38.674 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#5","count":1,"byCause":{"ownerActive":1},"ms":4287}'
+10-18 00:48:38.674 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#6","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:38.811 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","stage":"renders_window","window":"cold","count":1,"byCause":{"mount":1},"ms":4358}'
+10-18 00:48:38.829 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":21,"window":10,"renderToEffectsMs":157,"ownEffectsMs":12}'
+10-18 00:48:38.874 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#6","n":2,"changed":["focusTick"],"atMs":215}'
+10-18 00:48:38.877 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#6","n":2,"changed":["bellSlot","avatarSlot","stats"],"atMs":213}'
+10-18 00:48:38.884 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#6","n":2,"changed":["tiles"],"atMs":212}'
+10-18 00:48:38.886 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#6","n":2,"changed":["parent_or_unlisted"],"atMs":211}'
+10-18 00:48:38.984 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":22,"window":10,"renderToEffectsMs":95,"ownEffectsMs":16}'
+10-18 00:48:38.998 I/ReactNativeJS(  744): [BACK-BTN] frame {"seq":3,"screen":"today_tasks","ms":444}
+10-18 00:48:39.002 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":192,"sinceTapMs":447}
+10-18 00:48:39.478 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":227,"sinceTapMs":924}
+10-18 00:48:42.849 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#6","count":2,"byCause":{"homeRuntimeActive":1,"focusTick":1},"ms":4190}'
+10-18 00:48:42.850 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#7","n":1,"changed":["homeRuntimeActive"],"atMs":0}'
+10-18 00:48:42.854 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#6","count":2,"byCause":{"bellSlot":2,"avatarSlot":2,"stats":2},"ms":4189}'
+10-18 00:48:42.854 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#7","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:42.860 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#6","count":2,"byCause":{"tiles":2},"ms":4188}'
+10-18 00:48:42.861 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#7","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:42.863 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#6","count":2,"byCause":{"ownerActive":1,"parent_or_unlisted":1},"ms":4189}'
+10-18 00:48:42.864 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#7","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:42.944 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-18 00:48:43.008 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":23,"window":11,"renderToEffectsMs":158,"ownEffectsMs":2}'
+10-18 00:48:43.206 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":235,"sinceTapMs":4651}
+10-18 00:48:46.692 W/ReactNativeJS(  744): [BACK-BTN] no-arrival {"seq":3,"screen":"today_tasks","handler":"BackButton","ms":8137}
+10-18 00:48:47.037 I/ReactNativeJS(  744): [BACK-BTN] tap {"seq":4,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:48:47.071 I/ReactNativeJS(  744): [BACK-BTN] interactions-free {"seq":4,"screen":"today_tasks","ms":34}
+10-18 00:48:47.163 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#7","count":1,"byCause":{"homeRuntimeActive":1},"ms":4313}'
+10-18 00:48:47.165 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#8","n":1,"changed":["homeRuntimeActive"],"atMs":0}'
+10-18 00:48:47.168 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#7","count":1,"byCause":{"bellSlot":1,"avatarSlot":1,"stats":1},"ms":4314}'
+10-18 00:48:47.170 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#8","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-18 00:48:47.189 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#7","count":1,"byCause":{"tiles":1},"ms":4328}'
+10-18 00:48:47.189 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#8","n":1,"changed":["tiles"],"atMs":0}'
+10-18 00:48:47.190 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#7","count":1,"byCause":{"ownerActive":1},"ms":4325}'
+10-18 00:48:47.192 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#8","n":1,"changed":["ownerActive"],"atMs":0}'
+10-18 00:48:47.373 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:today","stage":"renders_window","window":"cold","count":1,"byCause":{"mount":1},"ms":4426}'
+10-18 00:48:47.418 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":24,"window":12,"renderToEffectsMs":216,"ownEffectsMs":39}'
+10-18 00:48:47.464 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#8","n":2,"changed":["focusTick"],"atMs":300}'
+10-18 00:48:47.467 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#8","n":2,"changed":["bellSlot","avatarSlot","stats"],"atMs":296}'
+10-18 00:48:47.472 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#8","n":2,"changed":["tiles"],"atMs":282}'
+10-18 00:48:47.473 I/ReactNativeJS(  744): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#8","n":2,"changed":["parent_or_unlisted"],"atMs":282}'
+10-18 00:48:47.629 I/ReactNativeJS(  744): '[HOME-FOCUS-COST]', '{"tag":"home","n":25,"window":12,"renderToEffectsMs":140,"ownEffectsMs":22}'
+10-18 00:48:47.646 I/ReactNativeJS(  744): [BACK-BTN] frame {"seq":4,"screen":"today_tasks","ms":609}
+10-18 00:48:47.649 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":4,"screen":"today_tasks","driftMs":362,"sinceTapMs":612}
+10-18 00:48:48.136 I/ReactNativeJS(  744): [BACK-BTN] js-blocked {"seq":4,"screen":"today_tasks","driftMs":236,"sinceTapMs":1098}

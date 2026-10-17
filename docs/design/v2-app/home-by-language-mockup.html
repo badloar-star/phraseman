@@ -84,6 +84,47 @@
 .cov td, .cov th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); color: #D6D6D8; }
 .cov th { color: var(--sec); font-weight: 600; }
 .yes { color: #fff; font-weight: 700; } .no { color: #6B6B70; }
+/* ── зачем (владелец 17.10 через координатора): «На Главной должен быть Пик тоже — кнопка-иконка; 4 плитки у тех, у кого всё доступно».
+   Варианты ряда из 4 плиток (Уроки, Диалоги, Карточки, Пик). Свои классы h4-*, чтобы не пересечься с kit.css; токены тем — как в voice-limit-session-start.html.
+   Ширины 360 и 430 dp; «Сумерки» — светлая тема, «Океан» — её тёмная пара (так в components/ThemeContext.tsx). */
+.h4ph { position: relative; height: 640px; border-radius: 46px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 9px #161618, 0 0 0 10px #2A2A2C, 0 30px 80px rgba(0,0,0,.6); }
+.h4ph.w360 { width: 360px; } .h4ph.w430 { width: 430px; }
+.h4ph::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(180deg, transparent, var(--fade)); pointer-events: none; }
+.h4ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --fade: #ECE4F7; --tx: #17181E; --sec: #595A63; --raised: #FFFFFF; --plate: rgba(255,255,255,.72); --ctl: #E4E5F3;
+  --acc: #5F5CB1; --acc-ink: #FFFFFF; --track: #DCDDEE; --sh: 0 10px 26px -14px rgba(51,51,87,.30), inset 0 1px 0 rgba(255,255,255,.9); }
+.h4ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --fade: #001B17; --tx: #F6FBFD; --sec: #B8CFD6; --raised: #06303A; --plate: rgba(0,32,39,.86); --ctl: #123037;
+  --acc: #5CCFEB; --acc-ink: #00151B; --track: #0E3B46; --sh: 0 12px 28px -14px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06); }
+.h4ph .h4sb { height: 50px; padding: 18px 28px 0; display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; }
+.h4ph .h4in { padding: 6px 16px 0; }
+.h4hd { display: flex; align-items: center; gap: 8px; }
+.h4pl { flex: 1; min-width: 0; height: 44px; padding: 0 12px; border-radius: 22px; background: var(--plate); box-shadow: var(--sh); display: flex; align-items: center; gap: 8px; }
+.h4pl b { display: block; font-size: 15px; line-height: 18px; } .h4pl .lb { display: block; font-size: 12px; line-height: 15px; color: var(--sec); }
+.h4pl img { width: 22px; height: 22px; } .h4pl .fl { color: var(--acc); display: flex; }
+.h4ci { width: 44px; height: 44px; border-radius: 22px; background: var(--plate); box-shadow: var(--sh); flex: none; }
+.h4lp { margin-top: 14px; min-height: 96px; border-radius: 22px; background: var(--raised); box-shadow: var(--sh); display: flex; align-items: center; gap: 12px; padding: 14px 12px 14px 18px; }
+.h4lp .cp { flex: 1; min-width: 0; } .h4lp .tt { font-size: 18px; line-height: 23px; font-weight: 700; }
+.h4lp .pr { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 13px; color: var(--sec); font-weight: 600; font-variant-numeric: tabular-nums; }
+.h4lp .tk { flex: 1; height: 6px; border-radius: 3px; background: var(--track); } .h4lp .tk i { display: block; height: 100%; width: 24%; border-radius: 3px; background: var(--tx); }
+.h4lp img { width: 64px; height: 64px; object-fit: contain; flex: none; }
+/* (а) 4 в ряд: та же квадратная плашка с артом, название под плашкой — у 360 dp в плашке 74 dp на название места нет, а ужимать шрифт запрещено */
+.h4ra { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+.h4ra .it { display: flex; flex-direction: column; align-items: center; gap: 7px; min-width: 0; }
+.h4ra .pt { position: relative; width: 100%; aspect-ratio: 1; border-radius: 16px; background: var(--plate); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; }
+.h4ra .pt img { width: 72%; height: 72%; object-fit: contain; }
+.h4ra .nm { font-size: 14px; line-height: 18px; font-weight: 700; text-align: center; white-space: nowrap; }
+/* (б) 2×2: широкие низкие плашки, название слева, арт справа */
+.h4rb { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.h4rb .pt { min-height: 72px; border-radius: 16px; background: var(--plate); box-shadow: var(--sh); display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 14px; }
+.h4rb .nm { flex: 1; min-width: 0; font-size: 16px; line-height: 21px; font-weight: 700; }
+.h4rb .pt img { width: 52px; height: 52px; object-fit: contain; flex: none; }
+.h4rb .lv { display: block; font-size: 13px; line-height: 17px; font-weight: 600; color: var(--sec); }
+/* (в) кнопки-иконки + живая цифра Пика: место в лиге на плашке, как бейдж у иконки приложения */
+.h4ra .lv { position: absolute; right: -4px; top: -6px; min-width: 24px; height: 22px; padding: 0 7px; border-radius: 11px; background: var(--acc); color: var(--acc-ink);
+  font-size: 12px; line-height: 22px; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; box-shadow: 0 4px 10px -4px rgba(0,0,0,.5); }
+.h4td { margin-top: 20px; } .h4td .k { font-size: 18px; font-weight: 700; }
+.h4td .rw { margin-top: 10px; min-height: 58px; border-radius: 14px; background: var(--raised); box-shadow: var(--sh); display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 16px; font-weight: 700; }
+.h4td .rw i { width: 22px; height: 22px; border-radius: 11px; background: var(--ctl); flex: none; } .h4td .rw em { margin-left: auto; font-style: normal; color: var(--sec); font-size: 14px; }
 </style>
 </head>
 <body>
@@ -151,10 +192,32 @@ const PLACES = {
 };
 const homeLast = (k) => { const L = LANGS.en; return phone(`${header(L)}${lastPlace(PLACES[k])}<div class="tiles">${['lessons', 'dialogues', 'cards'].map(tile).join('')}</div>${rail()}${today(L)}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(ALL_TABS) }); };
 
+// ── 4 плитки с Пиком (владелец 17.10): варианты а / б / в, 360 и 430 dp, «Сумерки» и «Океан» ──
+const H4_TILES = [['lessons', 'Уроки'], ['dialogs', 'Диалоги'], ['cards', 'Карточки'], ['spire_tile', 'Пик']];
+const h4art = (th, k) => img(`v2art/${th === 'th-ink' ? 'light' : 'dark'}/${k}.webp`);
+const h4head = () => `<div class="h4hd"><span class="h4pl"><span class="fl">${icon('flame', 's18')}</span><span><b>5 дней</b><span class="lb">Серия</span></span></span><span class="h4pl"><img src="${coin}" alt=""><span><b>6 854</b><span class="lb">Монеты</span></span></span><span class="h4ci"></span></div>`;
+const h4last = (th) => `<div class="h4lp"><div class="cp"><div class="tt">Местоимения и глагол To Be</div><div class="pr"><span class="tk"><i></i></span>12 / 50</div></div><img src="${h4art(th, 'continue')}" alt=""></div>`;
+const h4rowA = (th, live) => `<div class="h4ra">${H4_TILES.map(([k, t]) => `<div class="it"><div class="pt"><img src="${h4art(th, k)}" alt="">${live && k === 'spire_tile' ? '<span class="lv">3 место</span>' : ''}</div><div class="nm">${t}</div></div>`).join('')}</div>`;
+const h4rowB = (th) => `<div class="h4rb">${H4_TILES.map(([k, t]) => `<div class="pt"><span class="nm">${t}${k === 'spire_tile' ? '<span class="lv">3 место</span>' : ''}</span><img src="${h4art(th, k)}" alt=""></div>`).join('')}</div>`;
+const h4today = () => `<div class="h4td"><div class="k">Сегодня</div><div class="rw"><i></i>Потренировать диалог<em>0/1</em></div><div class="rw"><i></i>Повторить карточки<em>2/10</em></div></div>`;
+const h4phone = (th, w, row) => `<div class="h4ph ${th} w${w}"><div class="h4sb"><span>9:41</span><span></span></div><div class="h4in">${h4head()}${h4last(th)}${row}${h4today()}</div></div>`;
+const h4set = (name, rowFn) => [['th-ink', 360, '«Сумерки»'], ['th-ink', 430, '«Сумерки»'], ['th-marine', 360, '«Океан»'], ['th-marine', 430, '«Океан»']]
+  .map(([th, w, tn]) => col(`${name} · ${tn} · ${w} dp`, h4phone(th, w, rowFn(th))));
+const H4_RULE = 'Правило показа: 4 плитки — только в языковом контуре, где доступны все четыре раздела (сейчас английский). Нет хотя бы одного — остаётся ряд из 3 по D136 (блок «Главная по языкам» ниже). Тап по «Пику» открывает вкладку Пика. Арт «Пика» — корона-вершина из той же системы, что у остальных плиток (assets/v2art/*/spire_tile), целиком в кадре.';
+
 document.getElementById('cov').innerHTML = `<tr><th>Язык</th><th>Уроки + «Обучение»</th><th>Диалоги</th><th>Карточки</th><th>Видео</th><th>Фраза дня</th><th>Пик</th></tr>` +
   Object.values(LANGS).map((L) => `<tr><td>${L.name}</td>${['lessons', 'dialogues', 'cards', 'videos', 'phrase', 'spire'].map((k) => `<td class="${L[k] ? 'yes' : 'no'}">${L[k] ? 'есть' : 'нет'}</td>`).join('')}</tr>`).join('');
 
 document.getElementById('root').innerHTML =
+  block('four-tiles', 'Четыре плитки с Пиком — (а) 4 в ряд (17.10)', H4_RULE + ' Вариант (а): те же квадратные плашки, только уже; название под плашкой — внутри 74 dp на 360 dp оно не помещается, а ужимать шрифт нельзя.', [
+    ...h4set('(а) 4 в ряд', (th) => h4rowA(th, false)),
+  ]) +
+  block('four-tiles-b', '(б) Сетка 2×2', 'Широкие низкие плашки, название слева, арт справа; у Пика под названием — место в лиге. Ряд вдвое выше — «Сегодня» уходит ниже первого экрана.', [
+    ...h4set('(б) 2×2', (th) => h4rowB(th)),
+  ]) +
+  block('four-tiles-c', '(в) Рекомендую: кнопки-иконки + живая цифра Пика', 'Как (а), но на плашке Пика — место в лиге бейджем, как у иконки приложения. Ряд почти той же высоты, что сейчас у трёх плиток; цифра — повод зайти. Нет места в лиге (новичок) — бейджа нет.', [
+    ...h4set('(в) иконки + место в лиге', (th) => h4rowA(th, true)),
+  ]) +
   block('last-place', 'Карточка «Продолжить: последнее место» (17.10)', 'Над плитками — то, где человек остановился в последний раз: занятие V2, урок классического курса, диалог или набор карточек. Без надзаголовка; у урока и занятия — полоса прогресса со счётом, у диалога и набора — только стрелка. Справа арт раздела и метка. Меток нет совсем (первый запуск) — «Начать урок 1».', [
     col('Занятие V2', homeLast('v2')), col('Классический урок', homeLast('legacy')), col('Диалог', homeLast('dialog')), col('Набор карточек', homeLast('cards')), col('Первый запуск — «Начать урок 1»', homeLast('start')),
   ]) +

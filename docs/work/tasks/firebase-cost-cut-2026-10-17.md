@@ -276,6 +276,7 @@
 Общее для каждой строки:
 - Перед первой: `git pull` не нужен — общее дерево. `npm --prefix functions run build` идёт сам (predeploy вместе со сторожем `functions_runtime_parity_gate`).
 - Команда: `firebase deploy --only functions:<имя> --project phraseman-ea0b3` — без `--force`, по одной.
+- ⚠️ **Предусловие — чистый код функций.** `firebase deploy` собирает и выгружает весь `functions/` (и общий `modules/`) из РАБОЧЕГО дерева, а оно общее для всех сессий: 17.10 вечером там чужие незакоммиченные правки `functions/src/auth_recovery.ts`, `content_factory/*`, `modules/learning-v2/.../factory_native_*.generated.ts`. Перед выкладкой: `git status --short functions/ modules/` пусто. Если не пусто — собрать из `git archive HEAD functions modules firebase.json …` в отдельную папку в C:\Temp и выкладывать оттуда (это не worktree и не ветка), чтобы в прод не уехал чужой недоделанный код.
 - После каждой: `gcloud functions describe <имя> --gen2 --region us-central1 --project phraseman-ea0b3 --format="value(state,updateTime,serviceConfig.availableCpu)"` → ACTIVE и свежее время. Плюс `gcloud logging read 'resource.labels.service_name="<имя в нижнем регистре>" AND severity>=ERROR' --freshness=15m --project phraseman-ea0b3` — пусто.
 - Откат: исходник прежней версии лежит в `gs://gcf-v2-sources-…/<имя>/function-source.zip` (generation в §10 и tsv) — пересборка как в шаге 2 (`gcloud functions deploy … --source gs://…`).
 
@@ -290,6 +291,12 @@
 | 7 | `communityAuthorRemoveCard` | автор удаляет карточку из опубликованного набора → через 6 неудач она возвращается с тостом «нет связи» | журнал без ошибок | низкий/средний (правка опубликованного) |
 
 Не в этом списке (отдельно, не ночью): восстановление аккаунта по коду (п. 2 таблицы выше — сначала правка кода Входа и security-review Ревизора); ИИ-диалоги — ниже.
+
+### R103-Пик — неделя W43 с 19.10 (проверено 17.10, только чтение)
+- `config/spire_v1` в проде: поля `rankBy` нет (ключи: coins, enabled, integrity, residents, schemaVersion, timer, updatedAtMs, updatedByUid; обновлён 11.10). Правило `spireEffectiveRankBy` (functions/src/spire_config_contract.ts:174-175, клиент modules/spire/config_contract.ts) даёт «монеты» только при `rankBy==='coins'` и неделе ≥ W43. Значит и клиент 2.0, и прод-крон считают **по ступеням** — расхождения нет.
+- **Решение: ничего не делать — ни деплоя, ни отката.** Откатывать нечего. Главное — НЕ ставить `rankBy='coins'`, пока не выложены из HEAD `spireFinalizeCron`, `spireJoinRoom`, `spireReportSteps`, `adminSpireConfigSet` (прод от 11.10, кода `rankBy` в нём нет). Иначе игрок увидит места по монетам, а итог и награды (300/200/150 монет за места, 100 за повышение) посчитаются по ступеням.
+- ⚠️ Прод `adminSpireConfigSet` перезаписывает документ целиком: тумблер Пика в админке сотрёт `rankBy`, если его поставить скриптом до выкладки.
+- Режим монет включать после выкладки этих четырёх, с ещё не начатой недели.
 
 ### R103-AI — `premiumDialogSend` / `premiumDialogTranslate` / `premiumDialogStream` (перепроверено Ревизором)
 - Прод: Send выложен 17.09, Translate 14.09, Stream — код того же времени (17.10 только пересборка доли ядра из своего архива).

@@ -867,6 +867,13 @@
 | 18 | Материалы и состояния | rose | 🟠 | `constants/liquidGlassThemePalette.ts` (00d854736); `components/ThemeContext.tsx` (00d854736) — материалы/opaque-fallback через liquidGlassTokens — [04.10 🟠 не сверено глазами: нет снимка «эмулятор | макет»] |
 | 19 | Материалы и состояния | opaque fallback · slate | 🟠 | `constants/liquidGlassThemePalette.ts` (00d854736); `components/ThemeContext.tsx` (00d854736) — материалы/opaque-fallback через liquidGlassTokens — [04.10 🟠 не сверено глазами: нет снимка «эмулятор | макет»] |
 
+## voice-limit-session-start.html
+
+| # | Раздел | Состояние | Статус | Файл / коммит |
+|---|---|---|---|---|
+| 1 | Старт занятия · голосовой лимит | Шторка · «Сумерки» | ✅ | `components/learning-v2/LearningV2VoiceHeadsupSheet.tsx`, `app/learning_v2_voice_headsup_v1.ts`, `app/learning_v2_direct_session_player_v1.tsx` (1c2823b95) — шторка снизу при старте занятия, если остатка голоса меньше, чем голосовых заданий (вариант 1 владельца, D194) |
+| 2 | Старт занятия · голосовой лимит | Шторка · «Океан» | ✅ | `components/learning-v2/LearningV2VoiceHeadsupSheet.tsx`, `app/learning_v2_voice_headsup_v1.ts`, `app/learning_v2_direct_session_player_v1.tsx` (1c2823b95) — та же шторка в тёмной паре «Океан» |
+
 ## Итог сверки
 
 > **Пересчёт 2026-10-04 («Дизайн-QA и реестр», замечание REVIEW_UI_11 к PM-034-A1).** Прежняя таблица и «Топ блоков» ниже были сняты 30.09 до переноса экранов и противоречили строкам матрицы. Таблица ниже пересчитана скриптом по столбцу «Статус» каждой строки матрицы. Это **самопроверка по исходникам**: проход в эмуляторе «ни один старый экран не спрятан за фасадом» (PM-034-A2) по-прежнему не сделан.

@@ -39461,6 +39461,7 @@
       "screen": "Шпиль · Ступень",
       "state": "Задание — найди пары",
       "code": [
+        "components/spire/SpirePairsBoard.tsx",
         "components/spire/SpireTaskView.tsx"
       ],
       "matrix_status": null,
@@ -39494,7 +39495,8 @@
         "two_robots_window_note_2026_10_13": "окно двух роботов 13.10 (00:22–00:31 UTC по _runs, разбор Ядра CORE_ZONES_DIFF_ROWS_R1_2026-10-13.md), кадр недействителен: вердикт сброшен в pending, нужна пересъёмка (Сверка). Список от Сверки через координатора."
       },
       "shot_at": "2026-10-13T00:22:59.295Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "note": "макет перерисован 17.10 по 8ab7d49e0: две колонки, 6 пар, плитка от 48 dp, зазор 8; состояния выбрано / неверно / пара найдена — полоса под телефоном"
     },
     {
       "id": "spire-gap-007",
@@ -45343,6 +45345,90 @@
       },
       "added_reason": "владелец D194 15.10 через координатора",
       "note": "остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f), снять — lv2voice=off; цифру на микрофоне в плеер курса вешает Дизайн (решение координатора 15.10); эталон пейвола = ai_voice_input (кадр assets/d194/paywall_ai_voice_input_now.png)"
+    },
+    {
+      "id": "voice-limit-session-start-001",
+      "source": "STATE_CHECKLIST",
+      "mockup": {
+        "file": "docs/design/v2-app/voice-limit-session-start.html",
+        "phone": 1,
+        "label": "Шторка · «Сумерки»",
+        "mapping": "label_match"
+      },
+      "mockup_pinned": "Координатор 17.10: владелец выбрал вариант 1 (#sheet, шторка снизу); код 1c2823b95 — LearningV2VoiceHeadsupSheet",
+      "screen": "Курс V2 · старт занятия — предупреждение о голосовом лимите",
+      "state": "шторка снизу «голоса на всё занятие не хватит», тема Сумерки",
+      "code": [
+        "components/learning-v2/LearningV2VoiceHeadsupSheet.tsx",
+        "app/learning_v2_voice_headsup_v1.ts",
+        "app/learning_v2_direct_session_player_v1.tsx"
+      ],
+      "matrix_status": "✅",
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает снизу, затемнение"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&theme=ink&lv2voice=1&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "открыть занятие — шторка при старте (до первого задания)",
+        "log": "[VOICE-HEADSUP] decision=show"
+      },
+      "added_reason": "координатор 17.10: строка под шторку 1c2823b95",
+      "note": "шторка показывается, если остаток голоса меньше числа голосовых заданий занятия; lv2voice=1 (если в занятии одно голосовое — lv2voice=0); плашка в окне старта (#plate, телефоны 3–4) владелец не выбрал — строк нет"
+    },
+    {
+      "id": "voice-limit-session-start-002",
+      "source": "STATE_CHECKLIST",
+      "mockup": {
+        "file": "docs/design/v2-app/voice-limit-session-start.html",
+        "phone": 2,
+        "label": "Шторка · «Океан»",
+        "mapping": "label_match"
+      },
+      "mockup_pinned": "Координатор 17.10: владелец выбрал вариант 1 (#sheet, шторка снизу); код 1c2823b95 — LearningV2VoiceHeadsupSheet",
+      "screen": "Курс V2 · старт занятия — предупреждение о голосовом лимите",
+      "state": "шторка снизу «голоса на всё занятие не хватит», тема Океан",
+      "code": [
+        "components/learning-v2/LearningV2VoiceHeadsupSheet.tsx",
+        "app/learning_v2_voice_headsup_v1.ts",
+        "app/learning_v2_direct_session_player_v1.tsx"
+      ],
+      "matrix_status": "✅",
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает снизу, затемнение"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&theme=marine&lv2voice=1&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "открыть занятие — шторка при старте (до первого задания)",
+        "log": "[VOICE-HEADSUP] decision=show"
+      },
+      "added_reason": "координатор 17.10: строка под шторку 1c2823b95",
+      "note": "шторка показывается, если остаток голоса меньше числа голосовых заданий занятия; lv2voice=1 (если в занятии одно голосовое — lv2voice=0); плашка в окне старта (#plate, телефоны 3–4) владелец не выбрал — строк нет"
     },
     {
       "id": "streak-milestone-d0001",

@@ -70,18 +70,23 @@ Firebase Console → Hosting → нужный сайт (knowlyapps / phraseman-e
 `npm run legal:sync`, перепин хэшей, коммит, затем выкладка сайта. Политика ведётся только на английском (legal/*.json — один
 канонический текст, его показывают все 9 языков интерфейса), поэтому абзац — EN; RU — для чтения владельцем.
 
-> **EN (канон):** To protect account recovery from abuse, the App also keeps short-lived counters of recovery requests and
-> incorrect codes. They are keyed to a one-way, keyed hash of your sign-in account identifier and of the IP address the request
-> came from; we do not store the IP address itself. The counters contain only a number and timestamps, are used only to limit
-> repeated attempts, and are deleted automatically within one day.
+**ИТОГ (решение координатора 17.10: HMAC с существующим секретом кодов, expireAt по окну, TTL-политику включает владелец в R103).**
+Сверено с рабочим деревом Входа (auth_recovery.ts, ещё не закоммичено на момент записи): ключи счётчиков — `createHmac('sha256',
+secret)` от вида и значения; `expireAt` = начало окна + окно (1 ч для запросов, 24 ч для неверных кодов) — то есть не дольше суток.
 
-> **RU (для чтения):** Чтобы защитить восстановление доступа от злоупотреблений, приложение также хранит краткосрочные счётчики
-> запросов на восстановление и неверных кодов. Они привязаны к одностороннему хэшу с секретным ключом от идентификатора вашего
-> аккаунта входа и IP-адреса, с которого пришёл запрос; сам IP-адрес мы не храним. Счётчики содержат только число и отметки
-> времени, используются только для ограничения повторных попыток и удаляются автоматически в течение суток.
+> **EN (канон, финал):** To protect account recovery against code guessing and other abuse, the App keeps short-lived counters of
+> recovery requests and incorrect codes. Each counter is identified by a keyed hash (made with a secret key) of your sign-in account
+> identifier or of the IP address the request came from; we do not store the IP address itself. A counter contains only a number and
+> timestamps, is used only to limit repeated attempts, and is kept for no longer than one day.
 
-Формулировки «keyed hash» и «within one day» верны только после пп. 1–2. Если их не сделают — заменить на «a one-way hash» и
-«kept only as long as needed to prevent abuse» и пометить риск.
+> **RU (для владельца):** Чтобы защитить восстановление доступа от подбора кода и других злоупотреблений, приложение хранит
+> краткосрочные счётчики запросов на восстановление и неверных кодов. Каждый счётчик обозначен хэшем с секретным ключом от
+> идентификатора вашего аккаунта входа или IP-адреса, с которого пришёл запрос; сам IP-адрес мы не храним. Счётчик содержит только
+> число и отметки времени, используется только для ограничения повторных попыток и хранится не дольше суток.
+
+Условия, при которых абзац верен (проверить утром перед правкой политики): (1) коммит Входа с HMAC и expireAt есть в HEAD;
+(2) TTL-политика Firestore на `auth_recovery_rate_limits.expireAt` включена (R103, владелец) — без неё «не дольше суток» держится
+только на логике окна, а документы физически остаются; (3) выкладка функций R111 — не раньше выкладки сайта с этим абзацем.
 
 ## 4. Автоназвание наборов из видео (R110) — что уходит в OpenAI
 

@@ -1,0 +1,133 @@
+--------- beginning of main
+10-17 19:09:13.275 I/ReactNativeJS(11437): [INFO] [SPIRE]: rankBy=steps dev=none week=none config=есть (смена решения)
+10-17 19:09:13.313 I/ReactNativeJS(11437): [SPIRE-DOCK] energy-pill {"shown":true,"reason":"игрок без Plus","ownerActive":true}
+10-17 19:09:13.468 E/ReactNativeJS(11437): 'Text strings must be rendered within a <Text> component.', { [Stack] name: 'Stack' }
+10-17 19:09:13.503 I/ReactNativeJS(11437): [SPIRE-DOCK] button {"ready":false,"busy":false,"enabled":false,"dis":true,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=game.starting"}
+10-17 19:09:13.651 I/ReactNativeJS(11437): '[FEATURE-INTRO] entry', '{"id":"friends_first_visit","enabled":false,"active":false,"hasDef":true,"introVisible":false,"shown":false}'
+10-17 19:09:13.663 I/ReactNativeJS(11437): '[TAB-PILL]', '{"bottomInset":24,"screenH":914.2857142857143,"uiScale":0.9916483516483516,"oldTabBarHeight":56,"pillHeight":66,"pillTop":96}'
+10-17 19:09:13.667 I/ReactNativeJS(11437): '[TAB-PILL]', '{"bottomInset":24,"screenH":914.2857142857143,"uiScale":0.9916483516483516,"oldTabBarHeight":56,"pillHeight":66,"pillTop":96}'
+10-17 19:09:13.672 I/ReactNativeJS(11437): '[PM-214] spire first_frame', '{"source":"memory","enabled":true}'
+10-17 19:09:13.676 I/ReactNativeJS(11437): [INFO] [SPIRE]: home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: да (enabled=true)
+10-17 19:09:13.681 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'screen:enter', '{"sinceEnterMs":0,"config":"memory"}'
+10-17 19:09:13.688 I/ReactNativeJS(11437): '[SPIRE-GATE] screen', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","locked":false,"previous":null,"preview":false,"config":"enabled","result":"screen_allowed"}'
+10-17 19:09:13.694 I/ReactNativeJS(11437): '[SPIRE-RULES] home', '{"unlocked":true,"langLocked":false,"lang":"ru","config":"enabled","preview":false,"weekFloor":null,"tier":null,"rendered":"home"}'
+10-17 19:09:13.702 I/ReactNativeJS(11437): '[SPIRE-RIVALS]', '{"source":"нет загрузки","roomId":null,"live":null,"botFaces":null,"rows":null,"rivalsByFloor":{},"myFloor":null,"why":"комнаты нет"}'
+10-17 19:09:13.706 I/ReactNativeJS(11437): [INFO] [SPIRE]: friends: слежение выключено (gate=есть ids=нет lang=en)
+10-17 19:09:13.711 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":30,"play":"disabled","because":["tier=null (нет комнаты и недели)"],"people":null,"room":"none"}'
+10-17 19:09:13.715 I/ReactNativeJS(11437): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":null,"myFloor":null,"selected":null,"shownFloor":1,"rows":null,"tier":null,"live":true,"startBlock":"none","notReadyBecause":"tier=null","premium":false,"towerWillScrollTo":"низ башни (этажа нет; выбран 1)"}
+10-17 19:09:13.719 I/ReactNativeJS(11437): [SPIRE-LAYOUT] clearance {"floor":1,"myFloor":null,"dockH":0,"bottomPad":112,"pillTop":96,"dockBottom":108,"tailFloor":120,"tailFromDock":0,"tailUsed":120,"endClearance":124,"minClearance":16,"source":"живые данные","outcome":"none","startBlock":"none"}
+10-17 19:09:13.855 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'identity', '{"sinceEnterMs":177,"ms":157}'
+10-17 19:09:13.862 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll {"viewportH":806.1,"bottomPad":112,"paddingBottom":232}
+10-17 19:09:13.863 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll.content {"contentH":1151.2}
+10-17 19:09:13.864 I/ReactNativeJS(11437): [SPIRE-DOCK] energy-pill.layout {"w":72,"h":37,"x":299}
+10-17 19:09:13.866 I/ReactNativeJS(11437): '[SPIRE-SCROLL] размер содержимого', '{"h":0,"pending":null}'
+10-17 19:09:13.869 I/ReactNativeJS(11437): [SPIRE-LAYOUT] friends+podium {"y":919.2,"h":0,"bottom":919.2,"friends":0,"startBlock":"none"}
+10-17 19:09:13.871 I/ReactNativeJS(11437): [SPIRE-LAYOUT] dock.wrap {"y":646.1,"h":52.2,"bottomOffset":108,"pillTop":96}
+10-17 19:09:13.874 I/ReactNativeJS(11437): [SPIRE-LAYOUT] dock {"block":"none","h":52.2,"w":371}
+10-17 19:09:13.878 I/ReactNativeJS(11437): [SPIRE-LAYOUT] dock.cta {"y":0,"h":52.2}
+10-17 19:09:14.500 I/ReactNativeJS(11437): '[SPIRE-DOCK-INSET] top', '{"why":"окно-изменило-высоту","floor":null,"windowH":120,"contentTop":0,"sceneTopY":104.6,"requestedY":972.1,"devTop":false,"maxScroll":1025.3,"topReachable":"да (содержимое начинается с запаса над кровлей)","floor1Bottom":1054,"contentH":1145.3,"floor1Reachable":"да"}'
+10-17 19:09:14.502 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll-req#окно-изменило-высоту {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":0,"needH":1145.3,"ready":"нет → отложено","animated":"нет"}
+10-17 19:09:14.506 I/ReactNativeJS(11437): '[SPIRE-DOCK-INSET] top', '{"why":"нет-этажа","floor":null,"windowH":120,"contentTop":0,"sceneTopY":104.6,"requestedY":972.1,"devTop":false,"maxScroll":1025.3,"topReachable":"да (содержимое начинается с запаса над кровлей)","floor1Bottom":1054,"contentH":1145.3,"floor1Reachable":"да"}'
+10-17 19:09:14.507 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll-req#нет-этажа {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":0,"needH":1145.3,"ready":"нет → отложено","animated":"нет"}
+10-17 19:09:14.515 I/ReactNativeJS(11437): [SPIRE-RISE-QUEUE] позиционные окна свободны: причина=нет (итог=false ступень=false старт=false) решение Ядра: rise=— overtake=— lastChance=—
+10-17 19:09:14.532 I/ReactNativeJS(11437): '[SPIRE-RIVALS]', '{"source":"нет загрузки","roomId":null,"live":null,"botFaces":null,"rows":null,"rivalsByFloor":{},"myFloor":null,"why":"комнаты нет"}'
+10-17 19:09:14.534 I/ReactNativeJS(11437): [INFO] [SPIRE]: friends: слежу за набором друзей (сейчас 0)
+10-17 19:09:14.536 I/ReactNativeJS(11437): [SPIRE-LAYOUT] clearance {"floor":1,"myFloor":null,"dockH":52.2,"bottomPad":112,"pillTop":96,"dockBottom":108,"tailFloor":120,"tailFromDock":65,"tailUsed":120,"endClearance":71.8,"minClearance":16,"source":"живые данные","outcome":"none","startBlock":"none"}
+10-17 19:09:14.537 I/ReactNativeJS(11437): '[SPIRE-BUDGET]', '{"towerTop":435,"towerSavedAtMeasure":0,"fullTowerTop":435,"dockTop":646,"gap":16,"infoH":84,"fullInfoH":84,"rawFit":111,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":120,"podiumColumns":true,"limits":[180,140,48]}'
+10-17 19:09:14.538 I/ReactNativeJS(11437): [INFO] [SPIRE]: friends: друзей нет — ряд скрыт, 0 вызовов
+10-17 19:09:14.560 I/ReactNativeJS(11437): [INFO] [SPIRE-CONFIG]: loadSpireConfig: из кэша (возраст=1261538мс)
+10-17 19:09:14.562 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'config:load', '{"sinceEnterMs":884,"enabled":true,"alive":true}'
+10-17 19:09:14.567 I/ReactNativeJS(11437): [INFO] [SPIRE]: home: config.enabled=true
+10-17 19:09:14.569 I/ReactNativeJS(11437): [INFO] [SPIRE-FIRSTFRAME]: первый кадр: экран из памяти, конфиг пришёл через 901 мс
+10-17 19:09:14.577 I/ReactNativeJS(11437): [INFO] [SPIRE]: home: локальная неделя ok (tier=0 floor=1 stepInFloor=0 steps=0) из AsyncStorage
+10-17 19:09:14.580 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'room:first_frame', '{"sinceEnterMs":902,"source":"disk","ageMs":898395,"members":6,"tier":0,"readMs":723}'
+10-17 19:09:14.669 I/ReactNativeJS(11437): [INFO] [SPIRE]: rankBy=steps dev=none week=2026-W42 config=есть (смена решения)
+10-17 19:09:15.058 I/ReactNativeJS(11437): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=game.starting"}
+10-17 19:09:15.177 I/ReactNativeJS(11437): [INFO] [SPIRE-REPORT]: flush: spire_week_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519:en уже отправляется — trigger=screen_leave присоединяется к текущей
+10-17 19:09:15.215 I/ReactNativeJS(11437): '[SPIRE-DOCK-INSET] top', '{"why":"первый-показ","floor":1,"windowH":120,"contentTop":0,"sceneTopY":104.6,"requestedY":972.1,"devTop":false,"maxScroll":1025.3,"topReachable":"да (содержимое начинается с запаса над кровлей)","floor1Bottom":1054,"contentH":1145.3,"floor1Reachable":"да"}'
+10-17 19:09:15.219 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll-req#первый-показ {"floor":1,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":0,"needH":1145.3,"ready":"нет → отложено","animated":"нет"}
+10-17 19:09:15.220 I/ReactNativeJS(11437): '[SPIRE-RULES] home', '{"unlocked":true,"langLocked":false,"lang":"ru","config":"enabled","preview":false,"weekFloor":1,"tier":0,"rendered":"home"}'
+10-17 19:09:15.223 I/ReactNativeJS(11437): [INFO] [SPIRE]: room: синхронизация en уже идёт — присоединяемся
+10-17 19:09:15.226 I/ReactNativeJS(11437): [INFO] [SPIRE-REPORT]: flush: spire_week_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519:en уже отправляется — trigger=app_start присоединяется к текущей
+10-17 19:09:15.228 I/ReactNativeJS(11437): '[SPIRE-RIVALS]', '{"source":"cache/disk_first_frame","roomId":"2026-W42_en_t0_d3_1792071550177_e64a07ba-5ee","live":6,"botFaces":29,"rows":30,"rivalsByFloor":{"1":10,"2":10,"3":8,"4":1},"myFloor":1,"why":"ok"}'
+10-17 19:09:15.231 I/ReactNativeJS(11437): [INFO] [SPIRE]: friends: слежу за набором друзей (сейчас 0)
+10-17 19:09:15.234 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":1554,"play":"enabled","because":null,"people":30,"room":"cache/disk_first_frame"}'
+10-17 19:09:15.237 I/ReactNativeJS(11437): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":1,"myFloor":1,"selected":1,"shownFloor":1,"rows":30,"tier":0,"live":true,"startBlock":"none","notReadyBecause":"готово","premium":false,"towerWillScrollTo":"свой этаж 1"}
+10-17 19:09:15.239 I/ReactNativeJS(11437): [SPIRE-LAYOUT] clearance {"floor":1,"myFloor":1,"dockH":52.2,"bottomPad":112,"pillTop":96,"dockBottom":108,"tailFloor":120,"tailFromDock":65,"tailUsed":120,"endClearance":71.8,"minClearance":16,"source":"живые данные","outcome":"none","startBlock":"none"}
+10-17 19:09:15.426 I/ReactNativeJS(11437): [INFO] [SPIRE]: friends: друзей нет — ряд скрыт, 0 вызовов
+10-17 19:09:15.428 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'identity', '{"sinceEnterMs":1751,"ms":208}'
+10-17 19:09:15.430 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'room:first_frame', '{"sinceEnterMs":1752,"source":"memory","members":6,"tier":0}'
+10-17 19:09:15.569 I/ReactNativeJS(11437): [INFO] [SPIRE-REPORT]: flush: spire_week_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519:en уже отправляется — trigger=screen_leave присоединяется к текущей
+10-17 19:09:15.571 I/ReactNativeJS(11437): [INFO] [SPIRE]: room: синхронизация en уже идёт — присоединяемся
+10-17 19:09:15.576 I/ReactNativeJS(11437): [INFO] [SPIRE-REPORT]: flush: spire_week_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519:en уже отправляется — trigger=app_start присоединяется к текущей
+10-17 19:09:15.580 I/ReactNativeJS(11437): '[SPIRE-RIVALS]', '{"source":"cache/disk_first_frame","roomId":"2026-W42_en_t0_d3_1792071550177_e64a07ba-5ee","live":6,"botFaces":29,"rows":30,"rivalsByFloor":{"1":10,"2":10,"3":8,"4":1},"myFloor":1,"why":"ok"}'
+10-17 19:09:15.583 I/ReactNativeJS(11437): [INFO] [SPIRE]: friends: слежу за набором друзей (сейчас 0)
+10-17 19:09:15.702 I/ReactNativeJS(11437): [SPIRE-MOMENT-TRIGGER] rise skip: свой рост не менялся (ступени 0→0, монеты 0→0)
+10-17 19:09:15.757 I/ReactNativeJS(11437): [INFO] [SPIRE]: friends: друзей нет — ряд скрыт, 0 вызовов
+10-17 19:09:15.789 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll.content {"contentH":810.3}
+10-17 19:09:15.792 I/ReactNativeJS(11437): '[SPIRE-SCROLL] размер содержимого', '{"h":1145.5,"pending":{"floor":1}}'
+10-17 19:09:15.792 I/ReactNativeJS(11437): '[SPIRE-DOCK-INSET] top', '{"why":"после-layout","floor":1,"windowH":120,"contentTop":0,"sceneTopY":104.6,"requestedY":972.1,"devTop":false,"maxScroll":1025.3,"topReachable":"да (содержимое начинается с запаса над кровлей)","floor1Bottom":1054,"contentH":1145.3,"floor1Reachable":"да"}'
+10-17 19:09:15.793 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll-req#после-layout {"floor":1,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":1145.5,"needH":1145.3,"ready":"да","animated":"нет"}
+10-17 19:09:15.794 I/ReactNativeJS(11437): '[SPIRE-RIVALS] window', '{"why":"после-layout","floor":1,"requestedY":972.1,"rivalsInWindow":20,"floorsWithRivals":2,"total":4}'
+10-17 19:09:15.799 I/ReactNativeJS(11437): [SPIRE-LAYOUT] friends+podium {"y":578.3,"h":0,"bottom":578.3,"friends":0,"startBlock":"none"}
+10-17 19:09:15.914 I/ReactNativeJS(11437): '[SPIRE-DOCK-INSET] top', '{"why":"окно-изменило-высоту","floor":1,"windowH":172,"contentTop":0,"sceneTopY":104.6,"requestedY":946.1,"devTop":false,"maxScroll":973.3,"topReachable":"да (содержимое начинается с запаса над кровлей)","floor1Bottom":1054,"contentH":1145.3,"floor1Reachable":"да"}'
+10-17 19:09:15.918 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll-req#окно-изменило-высоту {"floor":1,"scale":1,"cy":1032.1,"requestedY":946.1,"contentH":1145.5,"needH":1145.3,"ready":"да","animated":"нет"}
+10-17 19:09:15.922 I/ReactNativeJS(11437): '[SPIRE-RIVALS] window', '{"why":"окно-изменило-высоту","floor":1,"requestedY":946.1,"rivalsInWindow":20,"floorsWithRivals":2,"total":4}'
+10-17 19:09:15.936 I/ReactNativeJS(11437): '[SPIRE-BUDGET]', '{"towerTop":406,"towerSavedAtMeasure":40,"fullTowerTop":446,"dockTop":646,"gap":16,"infoH":52,"fullInfoH":84,"rawFit":100,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":172,"podiumColumns":true,"limits":[180,140,48]}'
+10-17 19:09:15.939 I/ReactNativeJS(11437): [INFO] [SPIRE]: room: вход lang=en week=2026-W42 force=false кэш=есть (возраст 898336мс)
+10-17 19:09:15.940 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'room:sync', '{"sinceEnterMs":2262,"status":"cache","reason":"cache_fresh","members":6,"ms":1424,"alive":false}'
+10-17 19:09:15.941 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'room:sync', '{"sinceEnterMs":2263,"status":"cache","reason":"cache_fresh","members":6,"ms":720,"alive":false}'
+10-17 19:09:15.943 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'room:sync', '{"sinceEnterMs":2265,"status":"cache","reason":"cache_fresh","members":6,"ms":371,"alive":true}'
+10-17 19:09:15.943 I/ReactNativeJS(11437): [INFO] [SPIRE]: game: комната status=cache reason=cache_fresh group=2026-W42_en_t0_d3_1792071550177_e64a07ba-5ee
+10-17 19:09:15.947 I/ReactNativeJS(11437): [INFO] [SPIRE]: pack: нужен lang=en tier=0 week=2026-W42
+10-17 19:09:15.957 I/ReactNativeJS(11437): [SPIRE-MOMENT-TRIGGER] overtake: экран ушёл до решения
+10-17 19:09:15.960 I/ReactNativeJS(11437): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=spire weekId=2026-W41 lang=en skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-17 19:09:15.961 I/ReactNativeJS(11437): [INFO] [SPIRE]: game: итог недели пришёл после ухода с экрана — не показываю
+10-17 19:09:16.083 I/ReactNativeJS(11437): [INFO] [SPIRE-REPORT]: flush: отправка trigger=app_start строк=1 первая=2026-W42:en:t0:f1:s0:1792259752048 последняя=2026-W42:en:t0:f1:s0:1792259752048
+10-17 19:09:16.088 I/ReactNativeJS(11437): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=spire weekId=2026-W41 lang=en skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-17 19:09:16.089 I/ReactNativeJS(11437): [INFO] [SPIRE]: game: итог недели пришёл после ухода с экрана — не показываю
+10-17 19:09:16.090 I/ReactNativeJS(11437): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=spire weekId=2026-W41 lang=en skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-17 19:09:16.090 I/ReactNativeJS(11437): [INFO] [SPIRE]: game: итога недели нет (null) — карточки не будет
+10-17 19:09:16.254 I/ReactNativeJS(11437): [INFO] [SPIRE]: pack: с диска hash=sp1_Q76daQPtWayiQoeVMxxGPTQBaAKPQRk1
+10-17 19:09:16.255 I/ReactNativeJS(11437): [INFO] [SPIRE]: game: прогрев пакета status=ok source=disk
+10-17 19:09:16.297 I/ReactNativeJS(11437): [SPIRE-LAYOUT] scroll.content {"contentH":862.1}
+10-17 19:09:16.300 I/ReactNativeJS(11437): [SPIRE-LAYOUT] friends+podium {"y":630.1,"h":0,"bottom":630.1,"friends":0,"startBlock":"none"}
+10-17 19:09:16.304 I/ReactNativeJS(11437): '[SPIRE-SCROLL] получено', '{"why":"окно-изменило-высоту","gotY":972.2}'
+10-17 19:09:16.309 I/ReactNativeJS(11437): [SPIRE-MOMENT-TRIGGER] lastChance skip: не воскресенье (день 6)
+10-17 19:09:16.313 I/ReactNativeJS(11437): '[SPIRE-RIVALS]', '{"source":"cache/cache_fresh","roomId":"2026-W42_en_t0_d3_1792071550177_e64a07ba-5ee","live":6,"botFaces":29,"rows":30,"rivalsByFloor":{"1":10,"2":10,"3":8,"4":1},"myFloor":1,"why":"ok"}'
+10-17 19:09:16.317 I/ReactNativeJS(11437): '[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":2637,"play":"enabled","because":null,"people":30,"room":"cache/cache_fresh"}'
+10-17 19:09:16.499 I/ReactNativeJS(11437): [SPIRE-MOMENT-TRIGGER] rise skip: свой рост не менялся (ступени 0→0, монеты 0→0)
+10-17 19:09:16.503 I/ReactNativeJS(11437): [SPIRE-MOMENT-TRIGGER] lastChance skip: не воскресенье (день 6)
+10-17 19:09:16.538 I/ReactNativeJS(11437): '[MEM-TICK]', '{"tSec":210,"route":"/community","heapMb":112,"gc":"38gc/538ms","intervals":3,"intervalsByCaller":{"anonymous <- react-stack-bottom-frame":2,"onAppState <- anonymous":1},"timeoutsCreated":33,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":16,"pollQuiet <- apply (native)":10,"anonymous <- anonymous":2,"verifyScroll <- anonymous":2,"tick <- apply (native)":1},"pendingTimeouts":3,"firestoreReads":{},"firestoreReadsByCaller":{"users|doc|?anon_0_ <- next (native)":{"pending":6},"query|query|apply (native) <- anonymous":{"pending":3}}}'
+10-17 19:09:16.540 I/ReactNativeJS(11437): '[SPIRE-SCROLL] проверка ok', '{"why":"окно-изменило-высоту","requestedY":946.1,"gotY":972.2,"attempt":0}'
+10-17 19:09:16.540 I/ReactNativeJS(11437): '[SPIRE-SCROLL] проверка ok', '{"why":"окно-изменило-высоту","requestedY":946.1,"gotY":972.2,"attempt":0}'
+10-17 19:09:16.744 I/ReactNativeJS(11437): [SUPPORT-DIAG] сброс журнала reason=timer_30s записано=4 отброшено=0 байт=396 мс=205
+10-17 19:09:17.759 W/ReactNativeJS(11437): '[SETTINGS-PERF] first_render sinceModuleMs=211712', { [Stack] name: 'Stack' }
+10-17 19:09:17.761 I/ReactNativeJS(11437): [SETTINGS-PEEK] read owner=set hit=yes auth=linked notif=false
+10-17 19:09:17.762 I/ReactNativeJS(11437): [SETTINGS-PEEK] read owner=set hit=yes auth=linked notif=false
+10-17 19:09:17.767 I/ReactNativeJS(11437): [SETTINGS-POLL] экран: выбор при монтировании (peek) top=нет bottom=нет owner=…e519(36)
+10-17 19:09:17.768 I/ReactNativeJS(11437): [SETTINGS-PEEK] read owner=set hit=yes auth=linked notif=false
+10-17 19:09:17.770 I/ReactNativeJS(11437): [SETTINGS-PEEK] read owner=set hit=yes auth=linked notif=false
+10-17 19:09:17.771 I/ReactNativeJS(11437): [LANG-SWITCH] settings study_target=en previous=none source=context
+10-17 19:09:18.279 W/ReactNativeJS(11437): '[SETTINGS-PERF] profile id=settings_body phase=mount actualMs=307', { [Stack] name: 'Stack' }
+10-17 19:09:18.323 I/ReactNativeJS(11437): '[FRIEND-ADD-SHEET]', 'lift', '{"keyboardHeight":0,"rootBase":null,"rootHeight":null,"shrunkBy":0,"safeBottom":24,"lift":0}'
+10-17 19:09:18.348 W/ReactNativeJS(11437): '[SETTINGS-PERF] commit renderToCommitMs=573', { [Stack] name: 'Stack' }
+10-17 19:09:18.353 I/ReactNativeJS(11437): '[TAB-PILL]', '{"bottomInset":24,"screenH":914.2857142857143,"uiScale":0.9916483516483516,"oldTabBarHeight":56,"pillHeight":66,"pillTop":96}'
+10-17 19:09:18.357 I/ReactNativeJS(11437): '[DEEPLINK-SETTINGS] screen:mount', '{"at":1792260558353}'
+10-17 19:09:18.360 I/ReactNativeJS(11437): [SETTINGS-ACCOUNT-CARD] t=58358 focus active=false dirty=true authReady=true shown=google focusTick=1
+10-17 19:09:18.391 I/ReactNativeJS(11437): '[SETTINGS-NAME]', '{"step":"snapshot","owner":"3ca0ca0e","profileSource":"storage","snapshotPresent":true,"currentPresent":true,"decision":"set_snapshot"}'
+10-17 19:09:18.625 W/ReactNativeJS(11437): '[SETTINGS-PERF] first_focus sinceRenderMs=865 sinceCommitMs=292 premounted=нет', { [Stack] name: 'Stack' }
+10-17 19:09:18.646 W/ReactNativeJS(11437): '[SETTINGS-PERF] header_layout sinceRenderMs=886', { [Stack] name: 'Stack' }
+10-17 19:09:18.647 I/ReactNativeJS(11437): [SETTINGS-LAYOUT] шапка «Настройки» y=10 h=46 | верхний отступ безопасной зоны=50 нижний=24 | шрифт заголовка 40/46
+10-17 19:09:18.658 I/ReactNativeJS(11437): '[SETTINGS-NAME]', '{"step":"storage","owner":"3ca0ca0e","storedPresent":true,"hydratedPresent":true,"ms":297}'
+10-17 19:09:19.123 W/ReactNativeJS(11437): '[SETTINGS-PERF] profile id=settings_auth_modal phase=mount actualMs=20', { [Stack] name: 'Stack' }
+10-17 19:09:19.218 I/ReactNativeJS(11437): '[SETTINGS-NAME]', '{"step":"snapshot","owner":"3ca0ca0e","profileSource":"storage","snapshotPresent":true,"currentPresent":true,"decision":"set_snapshot"}'
+10-17 19:09:19.302 I/ReactNativeJS(11437): '[SETTINGS-NAME]', '{"step":"snapshot","owner":"3ca0ca0e","profileSource":"storage","snapshotPresent":true,"currentPresent":true,"decision":"set_snapshot"}'
+10-17 19:09:20.045 I/ReactNativeJS(11437): [INFO] [SPIRE-REPORT]: flush: ответ ok=true reason=- serverSteps=0 localSteps=0 снято=1 отвергнуто=0 за 3954мс
+10-17 19:09:20.250 I/ReactNativeJS(11437): '[TABS-PREMOUNT] step', '{"idx":4,"outcome":"mounted","queuedMs":19220,"totalMs":11272,"quietReason":"ceiling","quietWaitMs":8113,"cleanTicks":0,"lastLagMs":953,"maxLagMs":1878,"sinceTouchMs":4017,"idleWaitMs":2,"prewarmMs":0,"commitMs":2389}'
+10-17 19:09:20.254 I/ReactNativeJS(11437): '[SPIRE-RULES] home', '{"unlocked":true,"langLocked":false,"lang":"ru","config":"enabled","preview":false,"weekFloor":1,"tier":0,"rendered":"home"}'
+10-17 19:09:20.256 I/ReactNativeJS(11437): '[SPIRE-RIVALS]', '{"source":"cache/cache_fresh","roomId":"2026-W42_en_t0_d3_1792071550177_e64a07ba-5ee","live":6,"botFaces":29,"rows":30,"rivalsByFloor":{"1":10,"2":10,"3":8,"4":1},"myFloor":1,"why":"ok"}'
+10-17 19:09:20.339 I/ReactNativeJS(11437): [SPIRE-MOMENT-TRIGGER] rise skip: свой рост не менялся (ступени 0→0, монеты 0→0)
+10-17 19:09:20.343 I/ReactNativeJS(11437): [SPIRE-MOMENT-TRIGGER] lastChance skip: не воскресенье (день 6)
+10-17 19:09:21.601 I/ReactNativeJS(11437): '[MEM-TICK]', '{"tSec":215,"route":"/community","heapMb":112,"gc":"27gc/319ms","intervals":3,"intervalsByCaller":{"anonymous <- react-stack-bottom-frame":2,"onAppState <- anonymous":1},"timeoutsCreated":14,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":12,"tick <- apply (native)":1,"anonymous <- RN$rafFn (native)":1},"pendingTimeouts":1,"firestoreReads":{},"firestoreReadsByCaller":{"users|doc|?anon_0_ <- next (native)":{"pending":6},"query|query|apply (native) <- anonymous":{"pending":3}}}'
+10-17 19:09:26.679 I/ReactNativeJS(11437): '[MEM-TICK]', '{"tSec":220,"route":"/community","heapMb":112,"gc":"24gc/315ms","intervals":3,"intervalsByCaller":{"anonymous <- react-stack-bottom-frame":2,"onAppState <- anonymous":1},"timeoutsCreated":17,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":16,"tick <- apply (native)":1},"pendingTimeouts":1,"firestoreReads":{},"firestoreReadsByCaller":{"users|doc|?anon_0_ <- next (native)":{"pending":6},"query|query|apply (native) <- anonymous":{"pending":3}}}'

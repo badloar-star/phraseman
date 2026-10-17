@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-03:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-06:session-03:intro1:r3": {
+          "ru": "Одна посылка: `is this`.",
+          "uk": "Одна посилка: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-03:intro2:r2": {
+          "ru": "Здесь действие: `I work`, без `am`.",
+          "uk": "Тут дія: `I work`, без `am`."
+        },
+        "en:lesson-06:session-03:intro2:r3": {
+          "ru": "`library` — библиотека; банк — `bank`.",
+          "uk": "`library` — бібліотека; банк — `bank`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-03:intro3:r2": {
+          "ru": "Здесь состояние: нужно `I am aware`.",
+          "uk": "Тут стан: потрібно `I am aware`."
+        },
+        "en:lesson-06:session-03:intro3:r3": {
+          "ru": "Это «Я обеспокоен», а нужно сообщить, что вы в курсе: `aware`.",
+          "uk": "Це «Я стурбований», а потрібно повідомити, що ви в курсі: `aware`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "18320edc6662d45e70fac232c634cb926fa4e6e23ee40fa1827a7480376f0ce2"
+}

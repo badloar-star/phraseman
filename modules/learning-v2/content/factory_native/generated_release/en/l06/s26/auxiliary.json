@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-26:intro1:r2": {
+          "ru": "После `she` — `jogs`, с `s`.",
+          "uk": "Після `she` — `jogs`, з `s`."
+        },
+        "en:lesson-06:session-26:intro1:r3": {
+          "ru": "Говорим `She jogs`, без `is`.",
+          "uk": "Кажемо `She jogs`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-26:intro2:r2": {
+          "ru": "После `he` — `smiles`, с `s`.",
+          "uk": "Після `he` — `smiles`, з `s`."
+        },
+        "en:lesson-06:session-26:intro2:r3": {
+          "ru": "Говорим `He smiles`, без `is`.",
+          "uk": "Кажемо `He smiles`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-26:intro3:r2": {
+          "ru": "Здесь нужно `He is careless`.",
+          "uk": "Тут потрібно `He is careless`."
+        },
+        "en:lesson-06:session-26:intro3:r3": {
+          "ru": "С `he` — `is`, не `are`.",
+          "uk": "З `he` — `is`, не `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c23d53e9f05c35cf0f28c981fc98b989aa514758a5e2bbc1bfc701b39c719acc"
+}

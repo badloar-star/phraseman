@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-28:intro1:r2": {
+          "ru": "После `I` — `stretch`, без окончания.",
+          "uk": "Після `I` — `stretch`, без закінчення."
+        },
+        "en:lesson-06:session-28:intro1:r3": {
+          "ru": "Говорим `I stretch`, без `am`.",
+          "uk": "Кажемо `I stretch`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-28:intro2:r2": {
+          "ru": "После `she` — `stretches`, с `es`.",
+          "uk": "Після `she` — `stretches`, з `es`."
+        },
+        "en:lesson-06:session-28:intro2:r3": {
+          "ru": "Говорим `She stretches`, без `is`.",
+          "uk": "Кажемо `She stretches`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-28:intro3:r2": {
+          "ru": "После `he` — `cooks`, с `s`.",
+          "uk": "Після `he` — `cooks`, з `s`."
+        },
+        "en:lesson-06:session-28:intro3:r3": {
+          "ru": "Говорим `He cooks`, без `is`.",
+          "uk": "Кажемо `He cooks`, без `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a45471ea3604b3d55b9ff8a962a4042e45d4d3722c5ac4e711de2910d9325d0e"
+}

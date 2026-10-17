@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, кто обычно убирает, и уточнить, где лежат вещи",
+    "uk": "розповісти, хто зазвичай прибирає, й уточнити, де лежать речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто убирает",
+        "uk": "Хто прибирає"
+      },
+      "bodyByLocale": {
+        "ru": "`clean` — «убирать», наводить чистоту. `I clean my room` — «Я убираю свою комнату». `She cleans her room` — «Она убирает свою комнату»: после `she` добавляем `s`. Если просто убрать всё под кровать, комната выглядит чище, но это ещё не совсем `clean`.",
+        "uk": "`clean` — «прибирати», наводити чистоту. `I clean my room` — «Я прибираю свою кімнату». `She cleans her room` — «Вона прибирає свою кімнату»: після `she` додаємо `s`. Якщо просто сховати все під ліжко, кімната має чистіший вигляд, але це ще не зовсім `clean`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она убирает свою комнату».",
+          "uk": "Скажіть «Вона прибирає свою кімнату»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-30:intro1:r1",
+              "text": "She cleans her room."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro1:r2",
+              "text": "She clean her room."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro1:r3",
+              "text": "She is cleans her room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-30:intro1:r1",
+              "text": "She cleans her room."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro1:r2",
+              "text": "She clean her room."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro1:r3",
+              "text": "She is cleans her room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она убирает свою комнату».",
+          "uk": "Скажіть «Вона прибирає свою кімнату»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "В другом месте",
+        "uk": "В іншому місці"
+      },
+      "bodyByLocale": {
+        "ru": "`elsewhere` — «в другом месте». `My headphones are elsewhere` — «Мои наушники в другом месте». `headphones` — «наушники»: с этим словом используем `are`. Само `elsewhere` уже означает место, поэтому перед ним не нужны `in` или `at`.",
+        "uk": "`elsewhere` — «в іншому місці». `My headphones are elsewhere` — «Мої навушники в іншому місці». `headphones` — «навушники»: із цим словом використовуємо `are`. Саме `elsewhere` уже означає місце, тому перед ним не потрібні `in` або `at`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мои наушники в другом месте».",
+          "uk": "Скажіть «Мої навушники в іншому місці»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-30:intro2:r1",
+              "text": "My headphones are elsewhere."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro2:r2",
+              "text": "My headphones is elsewhere."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro2:r3",
+              "text": "My headphones are in elsewhere."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-30:intro2:r1",
+              "text": "My headphones are elsewhere."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro2:r2",
+              "text": "My headphones is elsewhere."
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro2:r3",
+              "text": "My headphones are in elsewhere."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мои наушники в другом месте».",
+          "uk": "Скажіть «Мої навушники в іншому місці»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Указатель у двери",
+        "uk": "Вказівник біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`signpost` — «указатель», обычно на столбе. `This signpost is new` — «Этот указатель новый». `read` — «читать»: `He reads here` — «Он читает здесь». Это может быть его привычное место для чтения; фраза не обязательно описывает эту секунду. `Whose headphones are these?` — «Чьи это наушники?»",
+        "uk": "`signpost` — «вказівник», зазвичай на стовпі. `This signpost is new` — «Цей вказівник новий». `read` — «читати»: `He reads here` — «Він читає тут». Це може бути його звичне місце для читання; фраза не обов’язково описує цю секунду. `Whose headphones are these?` — «Чиї це навушники?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чьи это наушники?»",
+          "uk": "Запитайте «Чиї це навушники?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-30:intro3:r1",
+              "text": "Whose headphones are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro3:r2",
+              "text": "Whose headphones is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro3:r3",
+              "text": "Who headphones are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-30:intro3:r1",
+              "text": "Whose headphones are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro3:r2",
+              "text": "Whose headphones is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-30:intro3:r3",
+              "text": "Who headphones are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чьи это наушники?»",
+          "uk": "Запитайте «Чиї це навушники?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1d2b41fe8ed31660148fc80f43441a87c19410834fa571688bffe860b4fb4c16"
+}

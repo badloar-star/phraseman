@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "повторить рассказ о привычках и вопросы о владельцах вещей",
+    "uk": "повторити розповідь про звички й запитання про власників речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Здесь мы встречаемся",
+        "uk": "Тут ми зустрічаємося"
+      },
+      "bodyByLocale": {
+        "ru": "Новый сосед спрашивает, где жильцы обычно общаются. `We chat here` — «Мы беседуем здесь». `community kitchen` — «общая кухня»; `We share a community kitchen` — «Мы пользуемся общей кухней». После `we` действия `chat` и `share` идут без `s`. Общая кухня не означает, что ваша кружка тоже автоматически стала общей.",
+        "uk": "Новий сусід запитує, де мешканці зазвичай спілкуються. `We chat here` — «Ми розмовляємо тут». `community kitchen` — «спільна кухня»; `We share a community kitchen` — «Ми користуємося спільною кухнею». Після `we` дії `chat` та `share` йдуть без `s`. Спільна кухня не означає, що ваш кухоль теж автоматично став спільним."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Объясните соседу «Мы пользуемся общей кухней».",
+          "uk": "Поясніть сусідові «Ми користуємося спільною кухнею»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-48:intro1:r1",
+              "text": "We share a community kitchen."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro1:r2",
+              "text": "We shares a community kitchen."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro1:r3",
+              "text": "We are share a community kitchen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-48:intro1:r1",
+              "text": "We share a community kitchen."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro1:r2",
+              "text": "We shares a community kitchen."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro1:r3",
+              "text": "We are share a community kitchen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните соседу «Мы пользуемся общей кухней».",
+          "uk": "Поясніть сусідові «Ми користуємося спільною кухнею»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "На каком языке обратиться",
+        "uk": "Якою мовою звернутися"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед хочет поговорить с Анной и уточняет язык. `She speaks English` — «Она говорит по-английски». После `she` у `speak` появляется `s`; `Anna speaks English` — тот же смысл с именем. Здесь речь о языке, которым она владеет, а не о том, говорит ли она в эту секунду.",
+        "uk": "Сусід хоче поговорити з Анною й уточнює мову. `She speaks English` — «Вона говорить англійською». Після `she` у `speak` з’являється `s`; `Anna speaks English` — той самий зміст з ім’ям. Тут ідеться про мову, якою вона володіє, а не про те, чи говорить вона цієї секунди."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте соседу об Анне «Она говорит по-английски».",
+          "uk": "Дайте сусідові відповідь про Анну «Вона говорить англійською»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-48:intro2:r1",
+              "text": "She speaks English."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro2:r2",
+              "text": "She speak English."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro2:r3",
+              "text": "She is speaks English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-48:intro2:r1",
+              "text": "She speaks English."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro2:r2",
+              "text": "She speak English."
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro2:r3",
+              "text": "She is speaks English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте соседу об Анне «Она говорит по-английски».",
+          "uk": "Дайте сусідові відповідь про Анну «Вона говорить англійською»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перчатки остались",
+        "uk": "Рукавички залишилися"
+      },
+      "bodyByLocale": {
+        "ru": "После встречи на стуле лежит пара перчаток. `Whose gloves are these?` — «Чьи это перчатки?» Одна перчатка — `glove`, несколько — `gloves`. Для пары используем `are these`; для одной было бы `Whose glove is this?` — «Чья это перчатка?»",
+        "uk": "Після зустрічі на стільці лежить пара рукавичок. `Whose gloves are these?` — «Чиї це рукавички?» Одна рукавичка — `glove`, кілька — `gloves`. Для пари використовуємо `are these`; для однієї було б `Whose glove is this?` — «Чия це рукавичка?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите соседей о паре «Чьи это перчатки?»",
+          "uk": "Запитайте сусідів про пару «Чиї це рукавички?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-48:intro3:r1",
+              "text": "Whose gloves are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro3:r2",
+              "text": "Whose gloves is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro3:r3",
+              "text": "Who gloves are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-48:intro3:r1",
+              "text": "Whose gloves are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro3:r2",
+              "text": "Whose gloves is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:intro3:r3",
+              "text": "Who gloves are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите соседей о паре «Чьи это перчатки?»",
+          "uk": "Запитайте сусідів про пару «Чиї це рукавички?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6b4e0481d94524ef74f99f6abbd68590216a90b302ff4a310c76d958229921b0"
+}

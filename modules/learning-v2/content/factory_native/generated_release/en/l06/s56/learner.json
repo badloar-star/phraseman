@@ -1,0 +1,969 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о работе Тома «Он доставляет газеты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о работе Тома «Он доставляет газеты»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He delivers newspapers.",
+        "localizedMeaning": {
+          "ru": "Скажите о работе Тома «Он доставляет газеты»",
+          "uk": "Скажіть про роботу Тома «Він доставляє газети»"
+        },
+        "orderedTokens": [
+          "He",
+          "delivers",
+          "newspapers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто чинит форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-56:i02:r1",
+          "text": "They repair uniforms."
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i02:r2",
+          "text": "We repair uniforms."
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i02:r3",
+          "text": "You repair uniforms."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто чинит форму",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i02:audio",
+          "transcript": "They repair uniforms."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-56:i02:r1",
+            "targetText": "They repair uniforms.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i02:r2",
+            "targetText": "We repair uniforms.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i02:r3",
+            "targetText": "You repair uniforms.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто чинит форму",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто чинит форму",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите о работе «Анна продаёт газеты»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-56:i03:r1",
+          "text": "sells"
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i03:r2",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i03:r3",
+          "text": "is sells"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о работе «Анна продаёт газеты»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите о работе «Анна продаёт газеты»",
+          "uk": "Скажіть про роботу «Анна продає газети»"
+        },
+        "gappedTargetPhrase": "Anna ___ newspapers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i03:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i03:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i03:r3",
+            "text": "is sells"
+          }
+        ],
+        "testedDimension": "Скажите о работе «Анна продаёт газеты»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите о работе «Анна продаёт газеты»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `sells`.",
+              "uk": "Анна — вона: `sells`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите о работе «Анна продаёт газеты»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna sells`, без `is`.",
+              "uk": "Потрібно `Anna sells`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-56:i04:p1",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i04:p2",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i04:p3",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i04:p4",
+            "target": "corner shop",
+            "meaningByLocale": {
+              "ru": "магазин у дома",
+              "uk": "магазин біля дому"
+            }
+          }
+        ],
+        "leftColumn": [
+          "newspaper",
+          "deliver",
+          "sell",
+          "corner shop"
+        ],
+        "rightColumn": [
+          "газета",
+          "доставлять",
+          "продавать",
+          "магазин у дома"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i05:audio",
+          "transcript": "They repair uniforms."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They repair uniforms.",
+        "orderedTokens": [
+          "They",
+          "repair",
+          "uniforms"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назовите профессию Анны «Она художница»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите профессию Анны «Она художница»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is an artist.",
+        "localizedMeaning": {
+          "ru": "Назовите профессию Анны «Она художница»",
+          "uk": "Назвіть професію Анни «Вона художниця»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "an",
+          "artist"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Назовите профессию Анны «Она художница»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is an artist.`",
+              "uk": "тут потрібно `is` — `She is an artist.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На стуле лежит форма. Спросите «Чья это форма?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "На стуле лежит форма. Спросите «Чья это форма?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i07:audio",
+          "transcript": "Whose uniform is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose uniform is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите о своей рабочей одежде «Мы носим форму»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-56:i08:r1",
+          "text": "wear"
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i08:r2",
+          "text": "wears"
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i08:r3",
+          "text": "are wear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о своей рабочей одежде «Мы носим форму»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о своей рабочей одежде «Мы носим форму»",
+          "uk": "Розкажіть про свій робочий одяг «Ми носимо форму»"
+        },
+        "gappedTargetPhrase": "We ___ uniforms.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i08:r1",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i08:r2",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i08:r3",
+            "text": "are wear"
+          }
+        ],
+        "testedDimension": "Расскажите о своей рабочей одежде «Мы носим форму»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Расскажите о своей рабочей одежде «Мы носим форму»",
+            "feedbackByLocale": {
+              "ru": "После `we` нужно `wear`.",
+              "uk": "Після `we` потрібне `wear`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Расскажите о своей рабочей одежде «Мы носим форму»",
+            "feedbackByLocale": {
+              "ru": "Нужно `We wear`, без `are`.",
+              "uk": "Потрібно `We wear`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о ком рассказывает сосед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-56:i09:r1",
+          "text": "He delivers newspapers."
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i09:r2",
+          "text": "She delivers newspapers."
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i09:r3",
+          "text": "Anna delivers newspapers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о ком рассказывает сосед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i09:audio",
+          "transcript": "He delivers newspapers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-56:i09:r1",
+            "targetText": "He delivers newspapers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i09:r2",
+            "targetText": "She delivers newspapers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i09:r3",
+            "targetText": "Anna delivers newspapers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `He`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-56:i10:p1",
+            "target": "wear",
+            "meaningByLocale": {
+              "ru": "носить одежду на себе",
+              "uk": "носити одяг на собі"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i10:p2",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i10:p3",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i10:p4",
+            "target": "artist",
+            "meaningByLocale": {
+              "ru": "художник",
+              "uk": "художник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wear",
+          "uniform",
+          "repair",
+          "artist"
+        ],
+        "rightColumn": [
+          "носить одежду на себе",
+          "униформа",
+          "ремонтировать",
+          "художник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i11:audio",
+          "transcript": "Whose newspaper is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose newspaper is this?",
+        "orderedTokens": [
+          "Whose",
+          "newspaper",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите на карте «Магазин у дома здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите на карте «Магазин у дома здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The corner shop is here.",
+        "localizedMeaning": {
+          "ru": "Покажите на карте «Магазин у дома здесь»",
+          "uk": "Покажіть на карті «Магазин біля дому тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "corner",
+          "shop",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Покажите на карте «Магазин у дома здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The corner shop is here.`",
+              "uk": "тут потрібно `is` — `The corner shop is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Новый сосед спрашивает о вашей рабочей одежде. Скажите «Я ношу форму»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Новый сосед спрашивает о вашей рабочей одежде. Скажите «Я ношу форму»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i13:audio",
+          "transcript": "I wear a uniform."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wear a uniform.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На столе несколько газет. Спросите «Чьи это газеты?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-56:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столе несколько газет. Спросите «Чьи это газеты?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На столе несколько газет. Спросите «Чьи это газеты?»",
+          "uk": "На столі кілька газет. Запитайте «Чиї це газети?»"
+        },
+        "gappedTargetPhrase": "Whose newspapers ___ these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-56:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "На столе несколько газет. Спросите «Чьи это газеты?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i14:r2",
+            "correct": false,
+            "testedDimension": "На столе несколько газет. Спросите «Чьи это газеты?»",
+            "feedbackByLocale": {
+              "ru": "Несколько газет: `are these`.",
+              "uk": "Кілька газет: `are these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i14:r3",
+            "correct": false,
+            "testedDimension": "На столе несколько газет. Спросите «Чьи это газеты?»",
+            "feedbackByLocale": {
+              "ru": "`Am` подходит к `I`; здесь нужно `are`.",
+              "uk": "`Am` підходить до `I`; тут потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто занимается искусством",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-56:i15:r1",
+          "text": "She is an artist."
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i15:r2",
+          "text": "He is an artist."
+        },
+        {
+          "responseId": "en:lesson-06:session-56:i15:r3",
+          "text": "Tom is an artist."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто занимается искусством",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i15:audio",
+          "transcript": "She is an artist."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-56:i15:r1",
+            "targetText": "She is an artist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i15:r2",
+            "targetText": "He is an artist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i15:r3",
+            "targetText": "Tom is an artist.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-56:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто занимается искусством",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-56:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто занимается искусством",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Tom`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Tom`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-56:i16:p1",
+            "target": "artist",
+            "meaningByLocale": {
+              "ru": "художник",
+              "uk": "художник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i16:p2",
+            "target": "corner shop",
+            "meaningByLocale": {
+              "ru": "магазин у дома",
+              "uk": "магазин біля дому"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i16:p3",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-56:i16:p4",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "artist",
+          "corner shop",
+          "deliver",
+          "repair"
+        ],
+        "rightColumn": [
+          "художник",
+          "магазин у дома",
+          "доставлять",
+          "ремонтировать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега порвал рабочую форму. Вы советуете обратиться к Анне. Расскажите о её работе «Она ремонтирует униформу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега порвал рабочую форму. Вы советуете обратиться к Анне. Расскажите о её работе «Она ремонтирует униформу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-56:i17:audio",
+          "transcript": "She repairs uniforms."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She repairs uniforms.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9c2df10c52bc5f01fe72c52559f94c4e2c1e0a9a8da284d6cfec5c344366d33f"
+}

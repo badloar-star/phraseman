@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-48:i01",
+    "correctText": "We share a community kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i02",
+    "correctText": "She speaks English.",
+    "correctResponseId": "en:lesson-06:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i03",
+    "correctText": "chats",
+    "correctResponseId": "en:lesson-06:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i04",
+    "correctText": "en:lesson-06:session-48:i04:p1=chat\nen:lesson-06:session-48:i04:p2=speak\nen:lesson-06:session-48:i04:p3=mug\nen:lesson-06:session-48:i04:p4=glove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i05",
+    "correctText": "This mug is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i06",
+    "correctText": "Whose hat is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i07",
+    "correctText": "This pencil is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i08",
+    "correctText": "share",
+    "correctResponseId": "en:lesson-06:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i09",
+    "correctText": "This glove is mine.",
+    "correctResponseId": "en:lesson-06:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i10",
+    "correctText": "en:lesson-06:session-48:i10:p1=community kitchen\nen:lesson-06:session-48:i10:p2=share\nen:lesson-06:session-48:i10:p3=hat\nen:lesson-06:session-48:i10:p4=pencil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i11",
+    "correctText": "We chat here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i12",
+    "correctText": "Whose gloves are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i13",
+    "correctText": "I speak English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i14",
+    "correctText": "shares",
+    "correctResponseId": "en:lesson-06:session-48:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i15",
+    "correctText": "This hat is mine.",
+    "correctResponseId": "en:lesson-06:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i16",
+    "correctText": "en:lesson-06:session-48:i16:p1=mug\nen:lesson-06:session-48:i16:p2=pencil\nen:lesson-06:session-48:i16:p3=glove\nen:lesson-06:session-48:i16:p4=community kitchen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:i17",
+    "correctText": "She speaks English.",
+    "correctResponseId": null
+  }
+]

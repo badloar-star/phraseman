@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-12:i01",
+    "correctText": "I paint at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i02",
+    "correctText": "paint",
+    "correctResponseId": "en:lesson-06:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i03",
+    "correctText": "paint",
+    "correctResponseId": "en:lesson-06:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i04",
+    "correctText": "en:lesson-06:session-12:i04:p1=paint\nen:lesson-06:session-12:i04:p2=private\nen:lesson-06:session-12:i04:p3=notebook\nen:lesson-06:session-12:i04:p4=receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i05",
+    "correctText": "They paint at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i06",
+    "correctText": "Whose notebook is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i07",
+    "correctText": "This notebook is private.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i08",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-06:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i09",
+    "correctText": "My notebook is here.",
+    "correctResponseId": "en:lesson-06:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i10",
+    "correctText": "en:lesson-06:session-12:i10:p1=paint\nen:lesson-06:session-12:i10:p2=platform\nen:lesson-06:session-12:i10:p3=private\nen:lesson-06:session-12:i10:p4=notebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i11",
+    "correctText": "They are on the platform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i12",
+    "correctText": "The receipt is in my pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i13",
+    "correctText": "You paint here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i14",
+    "correctText": "paint",
+    "correctResponseId": "en:lesson-06:session-12:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i15",
+    "correctText": "The platform is empty.",
+    "correctResponseId": "en:lesson-06:session-12:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i16",
+    "correctText": "en:lesson-06:session-12:i16:p1=paint\nen:lesson-06:session-12:i16:p2=private\nen:lesson-06:session-12:i16:p3=platform\nen:lesson-06:session-12:i16:p4=receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-12:i17",
+    "correctText": "We paint here.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-47:intro1:r2": {
+          "ru": "В конце без названия вещи нужно `mine`, не `my`.",
+          "uk": "У кінці без назви речі потрібне `mine`, не `my`."
+        },
+        "en:lesson-06:session-47:intro1:r3": {
+          "ru": "Одна перчатка: `is`.",
+          "uk": "Одна рукавичка: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-47:intro2:r2": {
+          "ru": "Несколько перчаток: `are these`.",
+          "uk": "Кілька рукавичок: `are these`."
+        },
+        "en:lesson-06:session-47:intro2:r3": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-47:intro3:r2": {
+          "ru": "После `he` — `cycles`.",
+          "uk": "Після `he` — `cycles`."
+        },
+        "en:lesson-06:session-47:intro3:r3": {
+          "ru": "Нужно `He cycles`, без `is`.",
+          "uk": "Потрібно `He cycles`, без `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8aee6f8258dac8cc470ca4b004c2b3f87d0513b8fcedafb74c6d385b37639d9b"
+}

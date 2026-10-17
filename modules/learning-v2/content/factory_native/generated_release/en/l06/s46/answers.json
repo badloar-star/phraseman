@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-46:i01",
+    "correctText": "This mug is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i02",
+    "correctText": "mug",
+    "correctResponseId": "en:lesson-06:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i03",
+    "correctText": "mug",
+    "correctResponseId": "en:lesson-06:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i04",
+    "correctText": "en:lesson-06:session-46:i04:p1=mug\nen:lesson-06:session-46:i04:p2=appropriate\nen:lesson-06:session-46:i04:p3=pantry\nen:lesson-06:session-46:i04:p4=ferry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i05",
+    "correctText": "My mug is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i06",
+    "correctText": "She rests here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i07",
+    "correctText": "The pantry is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i08",
+    "correctText": "rest",
+    "correctResponseId": "en:lesson-06:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i09",
+    "correctText": "This ferry is new.",
+    "correctResponseId": "en:lesson-06:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i10",
+    "correctText": "en:lesson-06:session-46:i10:p1=mug\nen:lesson-06:session-46:i10:p2=rest\nen:lesson-06:session-46:i10:p3=ferry\nen:lesson-06:session-46:i10:p4=appropriate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i11",
+    "correctText": "The pantry is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i12",
+    "correctText": "Whose mug is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i13",
+    "correctText": "We rest here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i14",
+    "correctText": "rests",
+    "correctResponseId": "en:lesson-06:session-46:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i15",
+    "correctText": "This mug is mine.",
+    "correctResponseId": "en:lesson-06:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i16",
+    "correctText": "en:lesson-06:session-46:i16:p1=mug\nen:lesson-06:session-46:i16:p2=pantry\nen:lesson-06:session-46:i16:p3=appropriate\nen:lesson-06:session-46:i16:p4=rest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:i17",
+    "correctText": "This mug is mine.",
+    "correctResponseId": null
+  }
+]

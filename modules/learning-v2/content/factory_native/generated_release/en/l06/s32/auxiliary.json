@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-32:intro1:r2": {
+          "ru": "После `she` — `jogs`.",
+          "uk": "Після `she` — `jogs`."
+        },
+        "en:lesson-06:session-32:intro1:r3": {
+          "ru": "Нужно `She jogs`, без `is`.",
+          "uk": "Потрібно `She jogs`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-32:intro2:r2": {
+          "ru": "После `we` — `clean`, без `s`.",
+          "uk": "Після `we` — `clean`, без `s`."
+        },
+        "en:lesson-06:session-32:intro2:r3": {
+          "ru": "Нужно `We clean our room`, без `are`.",
+          "uk": "Потрібно `We clean our room`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-32:intro3:r2": {
+          "ru": "После `she` — `stretches`.",
+          "uk": "Після `she` — `stretches`."
+        },
+        "en:lesson-06:session-32:intro3:r3": {
+          "ru": "Пишем `stretches`, с `es`.",
+          "uk": "Пишемо `stretches`, з `es`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dd1b9ebec57baac0a7d9a5e5c84060cdd6ec5ef66958a8484304b9737f816570"
+}

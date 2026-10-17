@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о привычке беседовать и повторить формы chats и studies",
+    "uk": "розповісти про звичку розмовляти й повторити форми chats та studies"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Здесь мы болтаем",
+        "uk": "Тут ми балакаємо"
+      },
+      "bodyByLocale": {
+        "ru": "Новый ученик спрашивает, зачем вы собираетесь у этой скамейки. `chat` — «беседовать», «болтать». `We chat here` — «Мы беседуем здесь». После `we` — `chat`, без `s` и без `are`. Это обычный разговор: обещали обсудить урок пять минут, а потом вспомнили ещё одну историю.",
+        "uk": "Новий учень запитує, навіщо ви збираєтеся біля цієї лавки. `chat` — «розмовляти», «балакати». `We chat here` — «Ми розмовляємо тут». Після `we` — `chat`, без `s` і без `are`. Це звичайна розмова: обіцяли обговорити урок п’ять хвилин, а потім згадали ще одну історію."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Объясните ученику «Мы беседуем здесь».",
+          "uk": "Поясніть учневі «Ми розмовляємо тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-41:intro1:r1",
+              "text": "We chat here."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro1:r2",
+              "text": "We chats here."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro1:r3",
+              "text": "We are chat here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-41:intro1:r1",
+              "text": "We chat here."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro1:r2",
+              "text": "We chats here."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro1:r3",
+              "text": "We are chat here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните ученику «Мы беседуем здесь».",
+          "uk": "Поясніть учневі «Ми розмовляємо тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Том беседует с Анной",
+        "uk": "Том розмовляє з Анною"
+      },
+      "bodyByLocale": {
+        "ru": "Ученику интересно, с кем Том обычно разговаривает. `He chats with Anna` — «Он беседует с Анной». После `he` добавляем `s`: `chat → chats`. Слово `with` означает «с»: `with Anna` — «с Анной». Речь о привычке Тома, а не обязательно о разговоре прямо сейчас.",
+        "uk": "Учневі цікаво, з ким Том зазвичай розмовляє. `He chats with Anna` — «Він розмовляє з Анною». Після `he` додаємо `s`: `chat → chats`. Слово `with` означає «з»: `with Anna` — «з Анною». Ідеться про звичку Тома, а не обов’язково про розмову просто зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите о Томе «Он беседует с Анной».",
+          "uk": "Розкажіть про Тома «Він розмовляє з Анною»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-41:intro2:r1",
+              "text": "He chats with Anna."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro2:r2",
+              "text": "He chat with Anna."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro2:r3",
+              "text": "He is chats with Anna."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-41:intro2:r1",
+              "text": "He chats with Anna."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro2:r2",
+              "text": "He chat with Anna."
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro2:r3",
+              "text": "He is chats with Anna."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о Томе «Он беседует с Анной».",
+          "uk": "Розкажіть про Тома «Він розмовляє з Анною»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шкафчик нового ученика",
+        "uk": "Шафка нового учня"
+      },
+      "bodyByLocale": {
+        "ru": "Ученик хочет убрать вещи и показывает на шкафчик. `locker` — «шкафчик». Чтобы уточнить, кому он принадлежит, спросите: `Whose locker is this?` — «Чей это шкафчик?» Один шкафчик: `is this`; `whose` спрашивает о владельце.",
+        "uk": "Учень хоче покласти речі й показує на шафку. `locker` — «шафка». Щоб уточнити, кому вона належить, запитайте: `Whose locker is this?` — «Чия це шафка?» Одна шафка: `is this`; `whose` запитує про власника."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чей это шкафчик?»",
+          "uk": "Запитайте «Чия це шафка?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-41:intro3:r1",
+              "text": "Whose locker is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro3:r2",
+              "text": "Who locker is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro3:r3",
+              "text": "Whose locker are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-41:intro3:r1",
+              "text": "Whose locker is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro3:r2",
+              "text": "Who locker is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:intro3:r3",
+              "text": "Whose locker are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чей это шкафчик?»",
+          "uk": "Запитайте «Чия це шафка?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1afb8a395807b75a4a61d5edcd567982fd57270620a35508f6db31b95fb8afd2"
+}

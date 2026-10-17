@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-42:intro1:r2": {
+          "ru": "После `we` — `share`, без `s`.",
+          "uk": "Після `we` — `share`, без `s`."
+        },
+        "en:lesson-06:session-42:intro1:r3": {
+          "ru": "Нужно `We share`, без `are`.",
+          "uk": "Потрібно `We share`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-42:intro2:r2": {
+          "ru": "После `she` — `shares`.",
+          "uk": "Після `she` — `shares`."
+        },
+        "en:lesson-06:session-42:intro2:r3": {
+          "ru": "Нужно `She shares`, без `is`.",
+          "uk": "Потрібно `She shares`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-42:intro3:r2": {
+          "ru": "После `they` — `share`, без `s`.",
+          "uk": "Після `they` — `share`, без `s`."
+        },
+        "en:lesson-06:session-42:intro3:r3": {
+          "ru": "Нужно `They share`, без `are`.",
+          "uk": "Потрібно `They share`, без `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "eea7aade1d6a56825201527c4054ca85480e817e9828bddf1c55ab3b1e9d4db7"
+}

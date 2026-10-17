@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-12:intro1:r2": {
+          "ru": "Перед `paint` здесь не нужно `am`.",
+          "uk": "Перед `paint` тут не потрібно `am`."
+        },
+        "en:lesson-06:session-12:intro1:r3": {
+          "ru": "После `I` — `paint`, без `s`.",
+          "uk": "Після `I` — `paint`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-12:intro2:r2": {
+          "ru": "Одна тетрадь: `is`.",
+          "uk": "Один зошит: `is`."
+        },
+        "en:lesson-06:session-12:intro2:r3": {
+          "ru": "`empty` — пустая; личная — `private`.",
+          "uk": "`empty` — порожній; особистий — `private`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-12:intro3:r2": {
+          "ru": "После `they` — `paint`, без `s`.",
+          "uk": "Після `they` — `paint`, без `s`."
+        },
+        "en:lesson-06:session-12:intro3:r3": {
+          "ru": "Говорим `They paint`, без `are`.",
+          "uk": "Кажемо `They paint`, без `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "debaa462682f591867a4245e11462f0e37a7189369fc1d7fb8d209f30375f8ba"
+}

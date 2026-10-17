@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-34:intro1:r2": {
+          "ru": "Говорим `I drink`, без `am`.",
+          "uk": "Кажемо `I drink`, без `am`."
+        },
+        "en:lesson-06:session-34:intro1:r3": {
+          "ru": "После `I` — `drink`, без `s`.",
+          "uk": "Після `I` — `drink`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-34:intro2:r2": {
+          "ru": "После `she` — `drinks`.",
+          "uk": "Після `she` — `drinks`."
+        },
+        "en:lesson-06:session-34:intro2:r3": {
+          "ru": "Нужно `She drinks`, без `is`.",
+          "uk": "Потрібно `She drinks`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-34:intro3:r2": {
+          "ru": "О владельце спрашиваем `Whose`, не `Who`.",
+          "uk": "Про власника запитуємо `Whose`, не `Who`."
+        },
+        "en:lesson-06:session-34:intro3:r3": {
+          "ru": "Одно кольцо: `is this`.",
+          "uk": "Одна каблучка: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "238b4755ff05703007a471c55dbf18e5bcc60e479931f5cb088c3979158c4fa6"
+}

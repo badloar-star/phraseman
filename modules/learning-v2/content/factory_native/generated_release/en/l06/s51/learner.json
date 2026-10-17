@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Они продают лампы»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они продают лампы»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They sell lamps.",
+        "localizedMeaning": {
+          "ru": "Скажите «Они продают лампы»",
+          "uk": "Скажіть «Вони продають лампи»"
+        },
+        "orderedTokens": [
+          "They",
+          "sell",
+          "lamps"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-51:i02:r1",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i02:r2",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i02:r3",
+          "text": "stadium"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i02:audio",
+          "transcript": "sell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-51:i02:r1",
+            "targetText": "sell",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i02:r2",
+            "targetText": "speak",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i02:r3",
+            "targetText": "stadium",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sell`, а в этом варианте — `speak`.",
+              "uk": "У записі перше слово — `sell`, а в цьому варіанті — `speak`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sell`, а в этом варианте — `stadium`.",
+              "uk": "У записі перше слово — `sell`, а в цьому варіанті — `stadium`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она продаёт лампы»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-51:i03:r1",
+          "text": "sells"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i03:r2",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i03:r3",
+          "text": "is sells"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она продаёт лампы»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она продаёт лампы»",
+          "uk": "Скажіть «Вона продає лампи»"
+        },
+        "gappedTargetPhrase": "She ___ lamps.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i03:r1",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i03:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i03:r3",
+            "text": "is sells"
+          }
+        ],
+        "testedDimension": "Скажите «Она продаёт лампы»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она продаёт лампы»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `sells`.",
+              "uk": "Після `she` потрібне `sells`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она продаёт лампы»",
+            "feedbackByLocale": {
+              "ru": "Нужно `She sells`, без `is`.",
+              "uk": "Потрібно `She sells`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-51:i04:p1",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i04:p2",
+            "target": "ineffective",
+            "meaningByLocale": {
+              "ru": "недейственный",
+              "uk": "недієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i04:p3",
+            "target": "community centre",
+            "meaningByLocale": {
+              "ru": "общественный центр",
+              "uk": "громадський центр"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i04:p4",
+            "target": "stadium",
+            "meaningByLocale": {
+              "ru": "стадион",
+              "uk": "стадіон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sell",
+          "ineffective",
+          "community centre",
+          "stadium"
+        ],
+        "rightColumn": [
+          "продавать",
+          "недейственный",
+          "общественный центр",
+          "стадион"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i05:audio",
+          "transcript": "They sell lamps."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They sell lamps.",
+        "orderedTokens": [
+          "They",
+          "sell",
+          "lamps"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Она продаёт лампы»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она продаёт лампы»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She sells lamps.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она продаёт лампы»",
+          "uk": "Скажіть «Вона продає лампи»"
+        },
+        "orderedTokens": [
+          "She",
+          "sells",
+          "lamps"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Лампа стоит у входа. Спросите «Чья это лампа?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Лампа стоит у входа. Спросите «Чья это лампа?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i07:audio",
+          "transcript": "Whose lamp is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose lamp is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Мы продаём лампы»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-51:i08:r1",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i08:r2",
+          "text": "sells"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i08:r3",
+          "text": "are sell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мы продаём лампы»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Мы продаём лампы»",
+          "uk": "Скажіть «Ми продаємо лампи»"
+        },
+        "gappedTargetPhrase": "We ___ lamps.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i08:r1",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i08:r2",
+            "text": "sells"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i08:r3",
+            "text": "are sell"
+          }
+        ],
+        "testedDimension": "Скажите «Мы продаём лампы»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Мы продаём лампы»",
+            "feedbackByLocale": {
+              "ru": "После `we` нужно `sell`.",
+              "uk": "Після `we` потрібне `sell`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Мы продаём лампы»",
+            "feedbackByLocale": {
+              "ru": "Нужно `We sell`, без `are`.",
+              "uk": "Потрібно `We sell`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о ком рассказывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-51:i09:r1",
+          "text": "She sells lamps."
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i09:r2",
+          "text": "He sells lamps."
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i09:r3",
+          "text": "Anna sells lamps."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о ком рассказывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i09:audio",
+          "transcript": "She sells lamps."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-51:i09:r1",
+            "targetText": "She sells lamps.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i09:r2",
+            "targetText": "He sells lamps.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i09:r3",
+            "targetText": "Anna sells lamps.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-51:i10:p1",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i10:p2",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i10:p3",
+            "target": "stadium",
+            "meaningByLocale": {
+              "ru": "стадион",
+              "uk": "стадіон"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i10:p4",
+            "target": "ineffective",
+            "meaningByLocale": {
+              "ru": "недейственный",
+              "uk": "недієвий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "speak",
+          "sell",
+          "stadium",
+          "ineffective"
+        ],
+        "rightColumn": [
+          "говорить",
+          "продавать",
+          "стадион",
+          "недейственный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i11:audio",
+          "transcript": "Whose lamp is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose lamp is this?",
+        "orderedTokens": [
+          "Whose",
+          "lamp",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об Аннином коллеге «Он говорит по-английски»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об Аннином коллеге «Он говорит по-английски»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He speaks English.",
+        "localizedMeaning": {
+          "ru": "Расскажите об Аннином коллеге «Он говорит по-английски»",
+          "uk": "Розкажіть про Анниного колегу «Він говорить англійською»"
+        },
+        "orderedTokens": [
+          "He",
+          "speaks",
+          "English"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите другу на карте «Стадион здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите другу на карте «Стадион здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i13:audio",
+          "transcript": "The stadium is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The stadium is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рядом стоят две лампы. Спросите «Чьи это лампы?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-51:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рядом стоят две лампы. Спросите «Чьи это лампы?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рядом стоят две лампы. Спросите «Чьи это лампы?»",
+          "uk": "Поруч стоять дві лампи. Запитайте «Чиї це лампи?»"
+        },
+        "gappedTargetPhrase": "Whose lamps ___ these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-51:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Рядом стоят две лампы. Спросите «Чьи это лампы?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Рядом стоят две лампы. Спросите «Чьи это лампы?»",
+            "feedbackByLocale": {
+              "ru": "Несколько ламп: `are these`.",
+              "uk": "Кілька ламп: `are these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i14:r3",
+            "correct": false,
+            "testedDimension": "Рядом стоят две лампы. Спросите «Чьи это лампы?»",
+            "feedbackByLocale": {
+              "ru": "`Am` подходит к `I`; здесь нужно `are`.",
+              "uk": "`Am` підходить до `I`; тут потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто продаёт лампы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-51:i15:r1",
+          "text": "They sell lamps."
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i15:r2",
+          "text": "We sell lamps."
+        },
+        {
+          "responseId": "en:lesson-06:session-51:i15:r3",
+          "text": "You sell lamps."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто продаёт лампы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i15:audio",
+          "transcript": "They sell lamps."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-51:i15:r1",
+            "targetText": "They sell lamps.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i15:r2",
+            "targetText": "We sell lamps.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i15:r3",
+            "targetText": "You sell lamps.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-51:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто продаёт лампы",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-51:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто продаёт лампы",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-51:i16:p1",
+            "target": "community centre",
+            "meaningByLocale": {
+              "ru": "общественный центр",
+              "uk": "громадський центр"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i16:p2",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i16:p3",
+            "target": "sell",
+            "meaningByLocale": {
+              "ru": "продавать",
+              "uk": "продавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-51:i16:p4",
+            "target": "ineffective",
+            "meaningByLocale": {
+              "ru": "недейственный",
+              "uk": "недієвий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community centre",
+          "speak",
+          "sell",
+          "ineffective"
+        ],
+        "rightColumn": [
+          "общественный центр",
+          "говорить",
+          "продавать",
+          "недейственный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сосед ищет, у кого купить газету. Подскажите «Анна продаёт газеты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Сосед ищет, у кого купить газету. Подскажите «Анна продаёт газеты»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-51:i17:audio",
+          "transcript": "Anna sells newspapers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna sells newspapers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "980a41eb59efcf3718b137a8b5d769515d37238d087a1f310713379447dd2ad6"
+}

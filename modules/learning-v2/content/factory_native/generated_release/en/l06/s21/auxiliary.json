@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-21:intro1:r2": {
+          "ru": "После `she` — `writes`, с `s`.",
+          "uk": "Після `she` — `writes`, з `s`."
+        },
+        "en:lesson-06:session-21:intro1:r3": {
+          "ru": "Говорим `She writes`, без `is`.",
+          "uk": "Кажемо `She writes`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-21:intro2:r2": {
+          "ru": "После `he` — `swims`, с `s`.",
+          "uk": "Після `he` — `swims`, з `s`."
+        },
+        "en:lesson-06:session-21:intro2:r3": {
+          "ru": "Говорим `He swims`, без `is`.",
+          "uk": "Кажемо `He swims`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-21:intro3:r2": {
+          "ru": "Одно ожерелье: `is`.",
+          "uk": "Одне намисто: `is`."
+        },
+        "en:lesson-06:session-21:intro3:r3": {
+          "ru": "`new` — новое; сломано — `broken`.",
+          "uk": "`new` — нове; зламане — `broken`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0d844cf71902a9ee113d5467b52430a44626ca98eb441b0f5b6c72d834bf1c85"
+}

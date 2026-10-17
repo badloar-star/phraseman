@@ -1,0 +1,982 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите об Анне «Она художница»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите об Анне «Она художница»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is an artist.",
+        "localizedMeaning": {
+          "ru": "Скажите об Анне «Она художница»",
+          "uk": "Скажіть про Анну «Вона художниця»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "an",
+          "artist"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите об Анне «Она художница»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is an artist.`",
+              "uk": "тут потрібно `is` — `She is an artist.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-55:i02:r1",
+          "text": "artist"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i02:r2",
+          "text": "glove"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i02:r3",
+          "text": "mural"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i02:audio",
+          "transcript": "artist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-55:i02:r1",
+            "targetText": "artist",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i02:r2",
+            "targetText": "glove",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i02:r3",
+            "targetText": "mural",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `artist`, а в этом варианте — `glove`.",
+              "uk": "У записі перше слово — `artist`, а в цьому варіанті — `glove`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `artist`, а в этом варианте — `mural`.",
+              "uk": "У записі перше слово — `artist`, а в цьому варіанті — `mural`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-55:i03:r1",
+          "text": "paints"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i03:r2",
+          "text": "paint"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i03:r3",
+          "text": "is paints"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+          "uk": "Розкажіть про Анну «Ця художниця створює настінні розписи»"
+        },
+        "gappedTargetPhrase": "This artist ___ murals.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i03:r1",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i03:r2",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i03:r3",
+            "text": "is paints"
+          }
+        ],
+        "testedDimension": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+            "feedbackByLocale": {
+              "ru": "Одна художница: `paints`.",
+              "uk": "Одна художниця: `paints`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+            "feedbackByLocale": {
+              "ru": "Нужно `This artist paints`, без `is`.",
+              "uk": "Потрібно `This artist paints`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-55:i04:p1",
+            "target": "artist",
+            "meaningByLocale": {
+              "ru": "художник",
+              "uk": "художник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i04:p2",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i04:p3",
+            "target": "shortcut",
+            "meaningByLocale": {
+              "ru": "короткий путь",
+              "uk": "короткий шлях"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i04:p4",
+            "target": "mural",
+            "meaningByLocale": {
+              "ru": "настенная роспись",
+              "uk": "настінний розпис"
+            }
+          }
+        ],
+        "leftColumn": [
+          "artist",
+          "unreliable",
+          "shortcut",
+          "mural"
+        ],
+        "rightColumn": [
+          "художник",
+          "ненадёжный",
+          "короткий путь",
+          "настенная роспись"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i05:audio",
+          "transcript": "She is an artist."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is an artist.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "an",
+          "artist"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is an artist.`",
+              "uk": "тут потрібно `is` — `She is an artist.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This artist paints murals.",
+        "localizedMeaning": {
+          "ru": "Расскажите об Анне «Эта художница создаёт настенные росписи»",
+          "uk": "Розкажіть про Анну «Ця художниця створює настінні розписи»"
+        },
+        "orderedTokens": [
+          "This",
+          "artist",
+          "paints",
+          "murals"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У стены лежит перчатка. Спросите «Чья это перчатка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "У стены лежит перчатка. Спросите «Чья это перчатка?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i07:audio",
+          "transcript": "Whose glove is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose glove is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она художница»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-55:i08:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i08:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она художница»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она художница»",
+          "uk": "Скажіть «Вона художниця»"
+        },
+        "gappedTargetPhrase": "She is ___ artist.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i08:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i08:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Скажите «Она художница»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она художница»",
+            "feedbackByLocale": {
+              "ru": "В начале `artist` гласный звук: `an artist`.",
+              "uk": "На початку `artist` голосний звук: `an artist`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она художница»",
+            "feedbackByLocale": {
+              "ru": "Для профессии здесь нужно `an artist`.",
+              "uk": "Для професії тут потрібне `an artist`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о ком рассказывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-55:i09:r1",
+          "text": "She is an artist."
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i09:r2",
+          "text": "He is an artist."
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i09:r3",
+          "text": "Tom is an artist."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о ком рассказывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i09:audio",
+          "transcript": "She is an artist."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-55:i09:r1",
+            "targetText": "She is an artist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i09:r2",
+            "targetText": "He is an artist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i09:r3",
+            "targetText": "Tom is an artist.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Tom`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Tom`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-55:i10:p1",
+            "target": "glove",
+            "meaningByLocale": {
+              "ru": "перчатка",
+              "uk": "рукавичка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i10:p2",
+            "target": "artist",
+            "meaningByLocale": {
+              "ru": "художник",
+              "uk": "художник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i10:p3",
+            "target": "mural",
+            "meaningByLocale": {
+              "ru": "настенная роспись",
+              "uk": "настінний розпис"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i10:p4",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "glove",
+          "artist",
+          "mural",
+          "unreliable"
+        ],
+        "rightColumn": [
+          "перчатка",
+          "художник",
+          "настенная роспись",
+          "ненадёжный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i11:audio",
+          "transcript": "This artist paints murals."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This artist paints murals.",
+        "orderedTokens": [
+          "This",
+          "artist",
+          "paints",
+          "murals"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите другу на карте «Короткий путь здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите другу на карте «Короткий путь здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shortcut is here.",
+        "localizedMeaning": {
+          "ru": "Покажите другу на карте «Короткий путь здесь»",
+          "uk": "Покажіть другові на карті «Короткий шлях тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "shortcut",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Покажите другу на карте «Короткий путь здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The shortcut is here.`",
+              "uk": "тут потрібно `is` — `The shortcut is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите другу «Настенная роспись здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите другу «Настенная роспись здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i13:audio",
+          "transcript": "The mural is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The mural is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите о знакомых художниках «Они создают настенные росписи»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-55:i14:r1",
+          "text": "paint"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i14:r2",
+          "text": "paints"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i14:r3",
+          "text": "are paint"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о знакомых художниках «Они создают настенные росписи»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о знакомых художниках «Они создают настенные росписи»",
+          "uk": "Розкажіть про знайомих художників «Вони створюють настінні розписи»"
+        },
+        "gappedTargetPhrase": "They ___ murals.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-55:i14:r1",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i14:r2",
+            "text": "paints"
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i14:r3",
+            "text": "are paint"
+          }
+        ],
+        "testedDimension": "Расскажите о знакомых художниках «Они создают настенные росписи»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i14:r2",
+            "correct": false,
+            "testedDimension": "Расскажите о знакомых художниках «Они создают настенные росписи»",
+            "feedbackByLocale": {
+              "ru": "После `they` нужно `paint`.",
+              "uk": "Після `they` потрібне `paint`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i14:r3",
+            "correct": false,
+            "testedDimension": "Расскажите о знакомых художниках «Они создают настенные росписи»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They paint`, без `are`.",
+              "uk": "Потрібно `They paint`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о перчатке",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-55:i15:r1",
+          "text": "Whose glove is this?"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i15:r2",
+          "text": "Whose glove is that?"
+        },
+        {
+          "responseId": "en:lesson-06:session-55:i15:r3",
+          "text": "Whose glove is it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о перчатке",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i15:audio",
+          "transcript": "Whose glove is this?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-55:i15:r1",
+            "targetText": "Whose glove is this?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i15:r2",
+            "targetText": "Whose glove is that?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i15:r3",
+            "targetText": "Whose glove is it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-55:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о перчатке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-55:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о перчатке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `this`, а в этом варианте — `it`.",
+              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `it`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-55:i16:p1",
+            "target": "artist",
+            "meaningByLocale": {
+              "ru": "художник",
+              "uk": "художник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i16:p2",
+            "target": "shortcut",
+            "meaningByLocale": {
+              "ru": "короткий путь",
+              "uk": "короткий шлях"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i16:p3",
+            "target": "glove",
+            "meaningByLocale": {
+              "ru": "перчатка",
+              "uk": "рукавичка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-55:i16:p4",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "artist",
+          "shortcut",
+          "glove",
+          "unreliable"
+        ],
+        "rightColumn": [
+          "художник",
+          "короткий путь",
+          "перчатка",
+          "ненадёжный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знакомите коллегу с Томом. Назовите его профессию: «Том художник»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Вы знакомите коллегу с Томом. Назовите его профессию: «Том художник»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-55:i17:audio",
+          "transcript": "Tom is an artist."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom is an artist.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5b98fa1b26d99d8deea82cd6dde4ae66233081e1d645c6318ff34bbfb7b61014"
+}

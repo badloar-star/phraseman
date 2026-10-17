@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-44:i01",
+    "correctText": "This hat is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i02",
+    "correctText": "hat",
+    "correctResponseId": "en:lesson-06:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i03",
+    "correctText": "hat",
+    "correctResponseId": "en:lesson-06:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i04",
+    "correctText": "en:lesson-06:session-44:i04:p1=hat\nen:lesson-06:session-44:i04:p2=legal\nen:lesson-06:session-44:i04:p3=freezer\nen:lesson-06:session-44:i04:p4=bicycle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i05",
+    "correctText": "My hat is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i06",
+    "correctText": "She lives here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i07",
+    "correctText": "This freezer is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i08",
+    "correctText": "live",
+    "correctResponseId": "en:lesson-06:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i09",
+    "correctText": "This bicycle is mine.",
+    "correctResponseId": "en:lesson-06:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i10",
+    "correctText": "en:lesson-06:session-44:i10:p1=hat\nen:lesson-06:session-44:i10:p2=live\nen:lesson-06:session-44:i10:p3=bicycle\nen:lesson-06:session-44:i10:p4=legal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i11",
+    "correctText": "The freezer is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i12",
+    "correctText": "Whose bicycle is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i13",
+    "correctText": "We live here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i14",
+    "correctText": "lives",
+    "correctResponseId": "en:lesson-06:session-44:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i15",
+    "correctText": "This hat is mine.",
+    "correctResponseId": "en:lesson-06:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i16",
+    "correctText": "en:lesson-06:session-44:i16:p1=hat\nen:lesson-06:session-44:i16:p2=freezer\nen:lesson-06:session-44:i16:p3=legal\nen:lesson-06:session-44:i16:p4=live",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:i17",
+    "correctText": "Whose hat is this?",
+    "correctResponseId": null
+  }
+]

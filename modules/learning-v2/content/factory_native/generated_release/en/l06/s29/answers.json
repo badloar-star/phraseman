@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-29:i01",
+    "correctText": "I call my mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i02",
+    "correctText": "call",
+    "correctResponseId": "en:lesson-06:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i03",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-06:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i04",
+    "correctText": "en:lesson-06:session-29:i04:p1=call\nen:lesson-06:session-29:i04:p2=away\nen:lesson-06:session-29:i04:p3=bus stop\nen:lesson-06:session-29:i04:p4=skateboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i05",
+    "correctText": "Anna calls her mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i06",
+    "correctText": "He writes at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i07",
+    "correctText": "My mother is away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i08",
+    "correctText": "call",
+    "correctResponseId": "en:lesson-06:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i09",
+    "correctText": "My skateboard is here.",
+    "correctResponseId": "en:lesson-06:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i10",
+    "correctText": "en:lesson-06:session-29:i10:p1=call\nen:lesson-06:session-29:i10:p2=write\nen:lesson-06:session-29:i10:p3=skateboard\nen:lesson-06:session-29:i10:p4=away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i11",
+    "correctText": "We are at the bus stop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i12",
+    "correctText": "Whose skateboard is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i13",
+    "correctText": "They write here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i14",
+    "correctText": "writes",
+    "correctResponseId": "en:lesson-06:session-29:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i15",
+    "correctText": "The bus stop is here.",
+    "correctResponseId": "en:lesson-06:session-29:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i16",
+    "correctText": "en:lesson-06:session-29:i16:p1=call\nen:lesson-06:session-29:i16:p2=bus stop\nen:lesson-06:session-29:i16:p3=away\nen:lesson-06:session-29:i16:p4=write",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-29:i17",
+    "correctText": "She calls her mother.",
+    "correctResponseId": null
+  }
+]

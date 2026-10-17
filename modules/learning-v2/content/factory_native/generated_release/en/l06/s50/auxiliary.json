@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-50:intro1:r2": {
+          "ru": "После `I` нужно `deliver`, без `s`.",
+          "uk": "Після `I` потрібне `deliver`, без `s`."
+        },
+        "en:lesson-06:session-50:intro1:r3": {
+          "ru": "Здесь действие: `I deliver`, без `am`.",
+          "uk": "Тут дія: `I deliver`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-50:intro2:r2": {
+          "ru": "После `he` нужно `delivers`.",
+          "uk": "Після `he` потрібне `delivers`."
+        },
+        "en:lesson-06:session-50:intro2:r3": {
+          "ru": "Нужно `He delivers`, без `is`.",
+          "uk": "Потрібно `He delivers`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-50:intro3:r2": {
+          "ru": "После `we` нужно `share`.",
+          "uk": "Після `we` потрібне `share`."
+        },
+        "en:lesson-06:session-50:intro3:r3": {
+          "ru": "Нужно `We share`, без `are`.",
+          "uk": "Потрібно `We share`, без `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7fec4c3418bf991fe12897ed5d20d047578f6a683ed0ab9dc9e7d3b5bd518045"
+}

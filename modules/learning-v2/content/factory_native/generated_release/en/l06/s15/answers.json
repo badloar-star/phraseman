@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-15:i01",
+    "correctText": "I sing at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i02",
+    "correctText": "sing",
+    "correctResponseId": "en:lesson-06:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i03",
+    "correctText": "sing",
+    "correctResponseId": "en:lesson-06:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i04",
+    "correctText": "en:lesson-06:session-15:i04:p1=sing\nen:lesson-06:session-15:i04:p2=silent\nen:lesson-06:session-15:i04:p3=gym\nen:lesson-06:session-15:i04:p4=helmet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i05",
+    "correctText": "They sing at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i06",
+    "correctText": "They are silent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i07",
+    "correctText": "We are at the gym.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i08",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-06:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i09",
+    "correctText": "My calendar is here.",
+    "correctResponseId": "en:lesson-06:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i10",
+    "correctText": "en:lesson-06:session-15:i10:p1=sing\nen:lesson-06:session-15:i10:p2=silent\nen:lesson-06:session-15:i10:p3=helmet\nen:lesson-06:session-15:i10:p4=calendar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i11",
+    "correctText": "The calendar is on the wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i12",
+    "correctText": "Whose helmet is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i13",
+    "correctText": "You sing here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i14",
+    "correctText": "sing",
+    "correctResponseId": "en:lesson-06:session-15:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i15",
+    "correctText": "The gym is open.",
+    "correctResponseId": "en:lesson-06:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i16",
+    "correctText": "en:lesson-06:session-15:i16:p1=sing\nen:lesson-06:session-15:i16:p2=silent\nen:lesson-06:session-15:i16:p3=gym\nen:lesson-06:session-15:i16:p4=calendar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:i17",
+    "correctText": "We sing here.",
+    "correctResponseId": null
+  }
+]

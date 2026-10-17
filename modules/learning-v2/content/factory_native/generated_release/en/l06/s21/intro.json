@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, кто пишет и плавает, и назвать сломанную вещь",
+    "uk": "розповісти, хто пише й плаває, та назвати зламану річ"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Писать",
+        "uk": "Писати"
+      },
+      "bodyByLocale": {
+        "ru": "`write` — «писать». `I write in my notebook` — «Я пишу в своей тетради». Первая буква `w` в `write` не произносится. Она как ручка, которую взяли на встречу, но так и не открыли: присутствует, а в работе не участвует. `She writes at home` — «Она пишет дома»: после `she` добавляем `s`.",
+        "uk": "`write` — «писати». `I write in my notebook` — «Я пишу у своєму зошиті». Перша літера `w` у `write` не вимовляється. Вона як ручка, яку взяли на зустріч, але так і не відкрили: присутня, а в роботі не бере участі. `She writes at home` — «Вона пише вдома»: після `she` додаємо `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она пишет дома».",
+          "uk": "Скажіть «Вона пише вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-21:intro1:r1",
+              "text": "She writes at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro1:r2",
+              "text": "She write at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro1:r3",
+              "text": "She is writes at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-21:intro1:r1",
+              "text": "She writes at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro1:r2",
+              "text": "She write at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro1:r3",
+              "text": "She is writes at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она пишет дома».",
+          "uk": "Скажіть «Вона пише вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Плавание и записи",
+        "uk": "Плавання й записи"
+      },
+      "bodyByLocale": {
+        "ru": "`swim` — «плавать». `He swims here` — «Он плавает здесь». `They swim here` — «Они плавают здесь»: после `they` окончания `s` нет. `Anna writes here` — «Анна пишет здесь»: здесь `Anna` соответствует `she`, поэтому `writes`.",
+        "uk": "`swim` — «плавати». `He swims here` — «Він плаває тут». `They swim here` — «Вони плавають тут»: після `they` закінчення `s` немає. `Anna writes here` — «Анна пише тут»: тут `Anna` відповідає `she`, тому `writes`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он плавает здесь».",
+          "uk": "Скажіть «Він плаває тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-21:intro2:r1",
+              "text": "He swims here."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro2:r2",
+              "text": "He swim here."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro2:r3",
+              "text": "He is swims here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-21:intro2:r1",
+              "text": "He swims here."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro2:r2",
+              "text": "He swim here."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro2:r3",
+              "text": "He is swims here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он плавает здесь».",
+          "uk": "Скажіть «Він плаває тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сломанная застёжка",
+        "uk": "Зламана застібка"
+      },
+      "bodyByLocale": {
+        "ru": "`necklace` — «ожерелье», `broken` — «сломанный». `My necklace is broken` — «Моё ожерелье сломано», например не работает застёжка. Здесь состояние, поэтому нужно `is`. `juice` — «сок». `The juice is cold` — «Сок холодный». `no` — «нет»: отрицательный ответ, например на предложение ещё сока.",
+        "uk": "`necklace` — «намисто», `broken` — «зламаний». `My necklace is broken` — «Моє намисто зламане», наприклад не працює застібка. Тут стан, тому потрібно `is`. `juice` — «сік». `The juice is cold` — «Сік холодний». `no` — «ні»: заперечна відповідь, наприклад на пропозицію ще соку."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Моё ожерелье сломано».",
+          "uk": "Скажіть «Моє намисто зламане»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-21:intro3:r1",
+              "text": "My necklace is broken."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro3:r2",
+              "text": "My necklace are broken."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro3:r3",
+              "text": "My necklace is new."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-21:intro3:r1",
+              "text": "My necklace is broken."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro3:r2",
+              "text": "My necklace are broken."
+            },
+            {
+              "responseId": "en:lesson-06:session-21:intro3:r3",
+              "text": "My necklace is new."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Моё ожерелье сломано».",
+          "uk": "Скажіть «Моє намисто зламане»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "579f031f211f66e24d6b2dea0d7667a17e9a4e4be316a1937a03b6e43a5dbdc3"
+}

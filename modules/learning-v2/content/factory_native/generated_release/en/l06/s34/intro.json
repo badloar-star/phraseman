@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, что человек обычно пьёт, и повторить знакомые слова",
+    "uk": "розповісти, що людина зазвичай п’є, й повторити знайомі слова"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что вы пьёте",
+        "uk": "Що ви п’єте"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете, что обычно пьёте после пробежки. `drink` — «пить». `I drink water` — «Я пью воду». Слово `drink` уже называет действие, поэтому `am` перед ним не нужно. Держать бутылку для спортивного вида — ещё не пить: `drink` означает, что вода всё-таки попадает внутрь.",
+        "uk": "Ви обговорюєте, що зазвичай п’єте після пробіжки. `drink` — «пити». `I drink water` — «Я п’ю воду». Слово `drink` уже називає дію, тому `am` перед ним не потрібне. Тримати пляшку для спортивного вигляду — ще не пити: `drink` означає, що вода таки потрапляє всередину."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о своей привычке «Я пью воду».",
+          "uk": "Скажіть про свою звичку «Я п’ю воду»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-34:intro1:r1",
+              "text": "I drink water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro1:r2",
+              "text": "I am drink water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro1:r3",
+              "text": "I drinks water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-34:intro1:r1",
+              "text": "I drink water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro1:r2",
+              "text": "I am drink water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro1:r3",
+              "text": "I drinks water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о своей привычке «Я пью воду».",
+          "uk": "Скажіть про свою звичку «Я п’ю воду»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Привычка Анны",
+        "uk": "Звичка Анни"
+      },
+      "bodyByLocale": {
+        "ru": "Том спрашивает, что Анна обычно пьёт после пробежки. `She drinks water` — «Она пьёт воду». После `she` добавляем `s`: `drink → drinks`. Можно назвать Анну по имени: `Anna drinks water`. Сейчас её бутылка может быть закрыта: мы рассказываем о привычке.",
+        "uk": "Том запитує, що Анна зазвичай п’є після пробіжки. `She drinks water` — «Вона п’є воду». Після `she` додаємо `s`: `drink → drinks`. Можна назвати Анну на ім’я: `Anna drinks water`. Зараз її пляшка може бути закрита: ми розповідаємо про звичку."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте Тому об Анне: «Она пьёт воду».",
+          "uk": "Дайте Тому відповідь про Анну: «Вона п’є воду»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-34:intro2:r1",
+              "text": "She drinks water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro2:r2",
+              "text": "She drink water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro2:r3",
+              "text": "She is drinks water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-34:intro2:r1",
+              "text": "She drinks water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro2:r2",
+              "text": "She drink water."
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro2:r3",
+              "text": "She is drinks water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте Тому об Анне: «Она пьёт воду».",
+          "uk": "Дайте Тому відповідь про Анну: «Вона п’є воду»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нашли кольцо",
+        "uk": "Знайшли каблучку"
+      },
+      "bodyByLocale": {
+        "ru": "На лестнице лежит кольцо. Вы хотите найти владельца: `Whose ring is this?` — «Чьё это кольцо?» `ring` — «кольцо», `whose` — «чьё». Одно кольцо: `is this`. Этот вопрос пригодится, чтобы вернуть находку, а не гадать, кто её потерял.",
+        "uk": "На сходах лежить каблучка. Ви хочете знайти власника: `Whose ring is this?` — «Чия це каблучка?» `ring` — «каблучка», `whose` — «чия». Одна каблучка: `is this`. Це запитання допоможе повернути знахідку, а не гадати, хто її загубив."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите у соседей «Чьё это кольцо?»",
+          "uk": "Запитайте в сусідів «Чия це каблучка?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-34:intro3:r1",
+              "text": "Whose ring is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro3:r2",
+              "text": "Who ring is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro3:r3",
+              "text": "Whose ring are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-34:intro3:r1",
+              "text": "Whose ring is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro3:r2",
+              "text": "Who ring is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-34:intro3:r3",
+              "text": "Whose ring are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите у соседей «Чьё это кольцо?»",
+          "uk": "Запитайте в сусідів «Чия це каблучка?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed773573b21750e9e1597e20d23585281dfe6b2860e63ebab64f70bcd251f6c5"
+}

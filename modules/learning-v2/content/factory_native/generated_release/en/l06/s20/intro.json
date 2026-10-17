@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, кто готовит еду и рисует красками",
+    "uk": "розповісти, хто готує їжу й малює фарбами"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Готовить еду",
+        "uk": "Готувати їжу"
+      },
+      "bodyByLocale": {
+        "ru": "`cook` — «готовить еду», обычно с нагреванием. `I cook at home` — «Я готовлю дома». `She cooks at home` — «Она готовит дома». После `she` добавляем `s`: `cooks`. Просто открыть пакет печенья — ещё не `cook`, даже если выложить печенье на красивую тарелку.",
+        "uk": "`cook` — «готувати їжу», зазвичай із нагріванням. `I cook at home` — «Я готую вдома». `She cooks at home` — «Вона готує вдома». Після `she` додаємо `s`: `cooks`. Просто відкрити пакет печива — ще не `cook`, навіть якщо викласти печиво на гарну тарілку."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она готовит дома».",
+          "uk": "Скажіть «Вона готує вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-20:intro1:r1",
+              "text": "She cooks at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro1:r2",
+              "text": "She cook at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro1:r3",
+              "text": "She is cooks at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-20:intro1:r1",
+              "text": "She cooks at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro1:r2",
+              "text": "She cook at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro1:r3",
+              "text": "She is cooks at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она готовит дома».",
+          "uk": "Скажіть «Вона готує вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Картины и обед",
+        "uk": "Картини й обід"
+      },
+      "bodyByLocale": {
+        "ru": "`paint` — «рисовать красками». `He paints at home` — «Он рисует красками дома». `They paint here` — «Они рисуют красками здесь»: после `they` окончания `s` нет. `mushroom` — «гриб». `The mushroom is in the soup` — «Гриб в супе». `yes` — «да», ответ согласия или подтверждения.",
+        "uk": "`paint` — «малювати фарбами». `He paints at home` — «Він малює фарбами вдома». `They paint here` — «Вони малюють фарбами тут»: після `they` закінчення `s` немає. `mushroom` — «гриб». `The mushroom is in the soup` — «Гриб у супі». `yes` — «так», відповідь згоди або підтвердження."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он рисует красками дома».",
+          "uk": "Скажіть «Він малює фарбами вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-20:intro2:r1",
+              "text": "He paints at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro2:r2",
+              "text": "He paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro2:r3",
+              "text": "He is paints at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-20:intro2:r1",
+              "text": "He paints at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro2:r2",
+              "text": "He paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro2:r3",
+              "text": "He is paints at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он рисует красками дома».",
+          "uk": "Скажіть «Він малює фарбами вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Том не виноват",
+        "uk": "Том не винний"
+      },
+      "bodyByLocale": {
+        "ru": "`scarf` — «шарф». `innocent` — «невиновный»: человек не совершил того, в чём его обвиняют. `He is innocent` — «Он невиновен»: Том не испортил шарф. Здесь состояние, поэтому нужно `is`. `Whose scarf is this?` — «Чей это шарф?»",
+        "uk": "`scarf` — «шарф». `innocent` — «невинний»: людина не зробила того, у чому її звинувачують. `He is innocent` — «Він невинний»: Том не зіпсував шарф. Тут стан, тому потрібно `is`. `Whose scarf is this?` — «Чий це шарф?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он невиновен».",
+          "uk": "Скажіть «Він невинний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-20:intro3:r1",
+              "text": "He is innocent."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro3:r2",
+              "text": "He innocent."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro3:r3",
+              "text": "He are innocent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-20:intro3:r1",
+              "text": "He is innocent."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro3:r2",
+              "text": "He innocent."
+            },
+            {
+              "responseId": "en:lesson-06:session-20:intro3:r3",
+              "text": "He are innocent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он невиновен».",
+          "uk": "Скажіть «Він невинний»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4459e1d5ce107416c65a4e82571804bcb088c077060e5e1d11bedba6c59ec2a4"
+}

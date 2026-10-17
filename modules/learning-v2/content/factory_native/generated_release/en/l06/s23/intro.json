@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о преподавании и использовать teaches",
+    "uk": "розповісти про викладання й використати teaches"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учиться и учить других",
+        "uk": "Вчитися й навчати інших"
+      },
+      "bodyByLocale": {
+        "ru": "`teach` — «преподавать», «обучать других». `I teach English` — «Я преподаю английский». Знакомое `learn` — учиться самому, получать знания. Можно учиться и преподавать, но купить учебник ещё не значит `teach`: ученики сами из пакета не появятся.",
+        "uk": "`teach` — «викладати», «навчати інших». `I teach English` — «Я викладаю англійську». Знайоме `learn` — вчитися самому, здобувати знання. Можна вчитися й викладати, але купити підручник ще не означає `teach`: учні самі з пакета не з’являться."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я преподаю английский».",
+          "uk": "Скажіть «Я викладаю англійську»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-23:intro1:r1",
+              "text": "I teach English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro1:r2",
+              "text": "I teaches English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro1:r3",
+              "text": "I am teach English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-23:intro1:r1",
+              "text": "I teach English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro1:r2",
+              "text": "I teaches English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro1:r3",
+              "text": "I am teach English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я преподаю английский».",
+          "uk": "Скажіть «Я викладаю англійську»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она преподаёт",
+        "uk": "Вона викладає"
+      },
+      "bodyByLocale": {
+        "ru": "`She teaches English` — «Она преподаёт английский». Здесь после `she` добавляем `es`: `teach → teaches`, потому что слово заканчивается на `ch`. В `teaches` появляется дополнительный слог. `Anna teaches here` — «Анна преподаёт здесь». `He sings here` — «Он поёт здесь»: у `sing` обычное `s`.",
+        "uk": "`She teaches English` — «Вона викладає англійську». Тут після `she` додаємо `es`: `teach → teaches`, бо слово закінчується на `ch`. У `teaches` з’являється додатковий склад. `Anna teaches here` — «Анна викладає тут». `He sings here` — «Він співає тут»: у `sing` звичайне `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она преподаёт английский».",
+          "uk": "Скажіть «Вона викладає англійську»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-23:intro2:r1",
+              "text": "She teaches English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro2:r2",
+              "text": "She teach English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro2:r3",
+              "text": "She is teaches English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-23:intro2:r1",
+              "text": "She teaches English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro2:r2",
+              "text": "She teach English."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro2:r3",
+              "text": "She is teaches English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она преподаёт английский».",
+          "uk": "Скажіть «Вона викладає англійську»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Билет ещё действует",
+        "uk": "Квиток ще діє"
+      },
+      "bodyByLocale": {
+        "ru": "`valid` — «действительный», имеющий силу. `The ticket is valid` — «Билет действителен»: им ещё можно воспользоваться по его условиям. `camera` — «камера», `cheese` — «сыр». `Whose camera is this?` — «Чья это камера?» `The cheese is in the fridge` — «Сыр в холодильнике».",
+        "uk": "`valid` — «дійсний», чинний. `The ticket is valid` — «Квиток дійсний»: ним ще можна скористатися за його умовами. `camera` — «камера», `cheese` — «сир». `Whose camera is this?` — «Чия це камера?» `The cheese is in the fridge` — «Сир у холодильнику»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Билет действителен».",
+          "uk": "Скажіть «Квиток дійсний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-23:intro3:r1",
+              "text": "The ticket is valid."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro3:r2",
+              "text": "The ticket are valid."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro3:r3",
+              "text": "The ticket is expensive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-23:intro3:r1",
+              "text": "The ticket is valid."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro3:r2",
+              "text": "The ticket are valid."
+            },
+            {
+              "responseId": "en:lesson-06:session-23:intro3:r3",
+              "text": "The ticket is expensive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Билет действителен».",
+          "uk": "Скажіть «Квиток дійсний»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b21473914e0724081c831cb3943ef58bc7132f2a36e590f602139d46bad1705a"
+}

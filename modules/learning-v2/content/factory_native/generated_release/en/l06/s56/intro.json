@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно рассказать о работе людей и спросить о владельце вещей",
+    "uk": "самостійно розповісти про роботу людей і запитати про власника речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Газеты по утрам",
+        "uk": "Газети вранці"
+      },
+      "bodyByLocale": {
+        "ru": "Новый сосед спрашивает, чем занимается Том. `He delivers newspapers` — «Он доставляет газеты». После `he` нужно `delivers`. Здесь слово `delivers` уже называет действие: `He delivers`, без `is`.",
+        "uk": "Новий сусід запитує, чим займається Том. `He delivers newspapers` — «Він доставляє газети». Після `he` потрібне `delivers`. Тут слово `delivers` уже називає дію: `He delivers`, без `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите о Томе «Он доставляет газеты».",
+          "uk": "Розкажіть про Тома «Він доставляє газети»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-56:intro1:r1",
+              "text": "He delivers newspapers."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro1:r2",
+              "text": "He deliver newspapers."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro1:r3",
+              "text": "He is delivers newspapers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-56:intro1:r1",
+              "text": "He delivers newspapers."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro1:r2",
+              "text": "He deliver newspapers."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro1:r3",
+              "text": "He is delivers newspapers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о Томе «Он доставляет газеты».",
+          "uk": "Розкажіть про Тома «Він доставляє газети»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мастерская в районе",
+        "uk": "Майстерня в районі"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед ищет, где починить рабочую форму. Вы рассказываете о знакомых мастерах. `They repair uniforms` — «Они ремонтируют униформу». Здесь это значит, что они чинят одежду, например зашивают порванные места. После `they` — `repair`, без `s`. Порванный рукав — ещё не повод менять профессию: можно сначала починить форму.",
+        "uk": "Сусід шукає, де полагодити робочу форму. Ви розповідаєте про знайомих майстрів. `They repair uniforms` — «Вони ремонтують уніформу». Тут це означає, що вони лагодять одяг, наприклад зашивають порвані місця. Після `they` — `repair`, без `s`. Порваний рукав — ще не привід змінювати професію: можна спочатку полагодити форму."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите о мастерах «Они ремонтируют униформу».",
+          "uk": "Розкажіть про майстрів «Вони ремонтують уніформу»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-56:intro2:r1",
+              "text": "They repair uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro2:r2",
+              "text": "They repairs uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro2:r3",
+              "text": "They are repair uniforms."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-56:intro2:r1",
+              "text": "They repair uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro2:r2",
+              "text": "They repairs uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro2:r3",
+              "text": "They are repair uniforms."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о мастерах «Они ремонтируют униформу».",
+          "uk": "Розкажіть про майстрів «Вони ремонтують уніформу»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Форма без имени",
+        "uk": "Форма без імені"
+      },
+      "bodyByLocale": {
+        "ru": "На стуле у входа лежит комплект формы. `Whose uniform is this?` — «Чья это форма?» `Whose` спрашивает о владельце; один комплект — `is this`. Не нужно угадывать владельца по цвету формы: спросите людей рядом.",
+        "uk": "На стільці біля входу лежить комплект форми. `Whose uniform is this?` — «Чия це форма?» `Whose` запитує про власника; один комплект — `is this`. Не потрібно вгадувати власника за кольором форми: запитайте людей поруч."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Узнайте «Чья это форма?»",
+          "uk": "Дізнайтеся «Чия це форма?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-56:intro3:r1",
+              "text": "Whose uniform is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro3:r2",
+              "text": "Where is this uniform?"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro3:r3",
+              "text": "Whose uniform are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-56:intro3:r1",
+              "text": "Whose uniform is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro3:r2",
+              "text": "Where is this uniform?"
+            },
+            {
+              "responseId": "en:lesson-06:session-56:intro3:r3",
+              "text": "Whose uniform are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте «Чья это форма?»",
+          "uk": "Дізнайтеся «Чия це форма?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "30f9fe2ef643489552971ec71292a7eb169a38301b2b55bd5bff8cbaea3dc127"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-13:intro1:r2": {
+          "ru": "После `we` — `swim`, без `s`.",
+          "uk": "Після `we` — `swim`, без `s`."
+        },
+        "en:lesson-06:session-13:intro1:r3": {
+          "ru": "Говорим `We swim`, без `are`.",
+          "uk": "Кажемо `We swim`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-13:intro2:r2": {
+          "ru": "Один бассейн: `This is`.",
+          "uk": "Один басейн: `This is`."
+        },
+        "en:lesson-06:session-13:intro2:r3": {
+          "ru": "`private` — частный; общественный — `public`.",
+          "uk": "`private` — приватний; громадський — `public`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-13:intro3:r2": {
+          "ru": "Это вопрос о месте; о владельце — `Whose`.",
+          "uk": "Це запитання про місце; про власника — `Whose`."
+        },
+        "en:lesson-06:session-13:intro3:r3": {
+          "ru": "Один брелок: `is this`.",
+          "uk": "Один брелок: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b1412a4f733797ddd629cd194f1f85bf1177ec046bcdcfc593801f8fb2ecce2b"
+}

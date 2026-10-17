@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-41:intro1:r2": {
+          "ru": "После `we` — `chat`, без `s`.",
+          "uk": "Після `we` — `chat`, без `s`."
+        },
+        "en:lesson-06:session-41:intro1:r3": {
+          "ru": "Нужно `We chat`, без `are`.",
+          "uk": "Потрібно `We chat`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-41:intro2:r2": {
+          "ru": "После `he` — `chats`.",
+          "uk": "Після `he` — `chats`."
+        },
+        "en:lesson-06:session-41:intro2:r3": {
+          "ru": "Нужно `He chats`, без `is`.",
+          "uk": "Потрібно `He chats`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-41:intro3:r2": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-41:intro3:r3": {
+          "ru": "Один шкафчик: `is this`.",
+          "uk": "Одна шафка: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "02c9506e6b6e8f5c87807ce8f178a15600a6c80cd8898203f67f9fd7b11178fa"
+}

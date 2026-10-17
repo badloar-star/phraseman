@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-10:i01",
+    "correctText": "I practice English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i02",
+    "correctText": "practice",
+    "correctResponseId": "en:lesson-06:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i03",
+    "correctText": "practice",
+    "correctResponseId": "en:lesson-06:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i04",
+    "correctText": "en:lesson-06:session-10:i04:p1=practice\nen:lesson-06:session-10:i04:p2=hotel\nen:lesson-06:session-10:i04:p3=pocket\nen:lesson-06:session-10:i04:p4=folder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i05",
+    "correctText": "They practice English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i06",
+    "correctText": "We work in a hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i07",
+    "correctText": "The key is in my pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i08",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-06:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i09",
+    "correctText": "It is impossible.",
+    "correctResponseId": "en:lesson-06:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i10",
+    "correctText": "en:lesson-06:session-10:i10:p1=practice\nen:lesson-06:session-10:i10:p2=impossible\nen:lesson-06:session-10:i10:p3=pocket\nen:lesson-06:session-10:i10:p4=folder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i11",
+    "correctText": "The folder is on the desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i12",
+    "correctText": "Whose folder is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i13",
+    "correctText": "You practice here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i14",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-06:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i15",
+    "correctText": "My pocket is empty.",
+    "correctResponseId": "en:lesson-06:session-10:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i16",
+    "correctText": "en:lesson-06:session-10:i16:p1=practice\nen:lesson-06:session-10:i16:p2=impossible\nen:lesson-06:session-10:i16:p3=hotel\nen:lesson-06:session-10:i16:p4=folder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-10:i17",
+    "correctText": "We practice English.",
+    "correctResponseId": null
+  }
+]

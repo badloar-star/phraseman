@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-23:intro1:r2": {
+          "ru": "После `I` — `teach`, без окончания.",
+          "uk": "Після `I` — `teach`, без закінчення."
+        },
+        "en:lesson-06:session-23:intro1:r3": {
+          "ru": "Говорим `I teach`, без `am`.",
+          "uk": "Кажемо `I teach`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-23:intro2:r2": {
+          "ru": "После `she` нужно `teaches`.",
+          "uk": "Після `she` потрібно `teaches`."
+        },
+        "en:lesson-06:session-23:intro2:r3": {
+          "ru": "Говорим `She teaches`, без `is`.",
+          "uk": "Кажемо `She teaches`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-23:intro3:r2": {
+          "ru": "Один билет: `is`.",
+          "uk": "Один квиток: `is`."
+        },
+        "en:lesson-06:session-23:intro3:r3": {
+          "ru": "`expensive` — дорогой; действителен — `valid`.",
+          "uk": "`expensive` — дорогий; дійсний — `valid`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d1e4496c9436ce74f385b3c81162098da178dacc895983231e2fa3ebfa48b5dc"
+}

@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Представьтесь вместе с Томом: «Мы живём здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Представьтесь вместе с Томом: «Мы живём здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We live here.",
+        "localizedMeaning": {
+          "ru": "Представьтесь вместе с Томом: «Мы живём здесь»",
+          "uk": "Представтеся разом із Томом: «Ми живемо тут»"
+        },
+        "orderedTokens": [
+          "We",
+          "live",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-40:i02:r1",
+          "text": "She studies at home."
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i02:r2",
+          "text": "He studies at home."
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i02:r3",
+          "text": "Anna studies at home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i02:audio",
+          "transcript": "She studies at home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-40:i02:r1",
+            "targetText": "She studies at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i02:r2",
+            "targetText": "He studies at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i02:r3",
+            "targetText": "Anna studies at home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Анна пьёт воду»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-40:i03:r1",
+          "text": "drinks"
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i03:r2",
+          "text": "drink"
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i03:r3",
+          "text": "is drinks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна пьёт воду»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна пьёт воду»",
+          "uk": "Скажіть «Анна п’є воду»"
+        },
+        "gappedTargetPhrase": "Anna ___ water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i03:r1",
+            "text": "drinks"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i03:r2",
+            "text": "drink"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i03:r3",
+            "text": "is drinks"
+          }
+        ],
+        "testedDimension": "Скажите «Анна пьёт воду»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Анна пьёт воду»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna drinks`.",
+              "uk": "Анна — вона: `Anna drinks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Анна пьёт воду»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna drinks`, без `is`.",
+              "uk": "Потрібно `Anna drinks`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините знакомые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-40:i04:p1",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "учитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i04:p2",
+            "target": "drink",
+            "meaningByLocale": {
+              "ru": "пить",
+              "uk": "пити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i04:p3",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i04:p4",
+            "target": "live",
+            "meaningByLocale": {
+              "ru": "жить",
+              "uk": "жити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "study",
+          "drink",
+          "sleep",
+          "live"
+        ],
+        "rightColumn": [
+          "учиться",
+          "пить",
+          "спать",
+          "жить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i05:audio",
+          "transcript": "He cycles to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He cycles to work.",
+        "orderedTokens": [
+          "He",
+          "cycles",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Она делает покупки здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она делает покупки здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She shops here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она делает покупки здесь»",
+          "uk": "Скажіть «Вона робить покупки тут»"
+        },
+        "orderedTokens": [
+          "She",
+          "shops",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите любимое место кота: «Кот спит здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i07:audio"
+      ],
+      "accessibilityLabel": "Покажите любимое место кота: «Кот спит здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i07:audio",
+          "transcript": "The cat sleeps here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cat sleeps here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они отдыхают здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-40:i08:r1",
+          "text": "rest"
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i08:r2",
+          "text": "rests"
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i08:r3",
+          "text": "are rest"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они отдыхают здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они отдыхают здесь»",
+          "uk": "Скажіть «Вони відпочивають тут»"
+        },
+        "gappedTargetPhrase": "They ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i08:r1",
+            "text": "rest"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i08:r2",
+            "text": "rests"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i08:r3",
+            "text": "are rest"
+          }
+        ],
+        "testedDimension": "Скажите «Они отдыхают здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они отдыхают здесь»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `rest`, без `s`.",
+              "uk": "Після `they` — `rest`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они отдыхают здесь»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They rest`, без `are`.",
+              "uk": "Потрібно `They rest`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какой этот термостат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-40:i09:r1",
+          "text": "This thermostat is new."
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i09:r2",
+          "text": "This thermostat is old."
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i09:r3",
+          "text": "This thermostat is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой этот термостат",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i09:audio",
+          "transcript": "This thermostat is new."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-40:i09:r1",
+            "targetText": "This thermostat is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i09:r2",
+            "targetText": "This thermostat is old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i09:r3",
+            "targetText": "This thermostat is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какой этот термостат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какой этот термостат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-40:i10:p1",
+            "target": "shop",
+            "meaningByLocale": {
+              "ru": "делать покупки",
+              "uk": "робити покупки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i10:p2",
+            "target": "rest",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i10:p3",
+            "target": "cycle",
+            "meaningByLocale": {
+              "ru": "ездить на велосипеде",
+              "uk": "їздити велосипедом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i10:p4",
+            "target": "thermostat",
+            "meaningByLocale": {
+              "ru": "термостат",
+              "uk": "термостат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shop",
+          "rest",
+          "cycle",
+          "thermostat"
+        ],
+        "rightColumn": [
+          "делать покупки",
+          "отдыхать",
+          "ездить на велосипеде",
+          "термостат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i11:audio",
+          "transcript": "I drink water."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I drink water.",
+        "orderedTokens": [
+          "I",
+          "drink",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В общей комнате оставили ноутбук. Спросите «Чей это ноутбук?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В общей комнате оставили ноутбук. Спросите «Чей это ноутбук?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose laptop is this?",
+        "localizedMeaning": {
+          "ru": "В общей комнате оставили ноутбук. Спросите «Чей это ноутбук?»",
+          "uk": "У спільній кімнаті залишили ноутбук. Запитайте «Чий це ноутбук?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "laptop",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Они занимаются дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Они занимаются дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i13:audio",
+          "transcript": "They study at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They study at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Том живёт здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-40:i14:r1",
+          "text": "lives"
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i14:r2",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i14:r3",
+          "text": "is lives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Том живёт здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том живёт здесь»",
+          "uk": "Скажіть «Том живе тут»"
+        },
+        "gappedTargetPhrase": "Tom ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i14:r1",
+            "text": "lives"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i14:r2",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i14:r3",
+            "text": "is lives"
+          }
+        ],
+        "testedDimension": "Скажите «Том живёт здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-40:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Том живёт здесь»",
+            "feedbackByLocale": {
+              "ru": "Том — он: `Tom lives`.",
+              "uk": "Том — він: `Tom lives`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Том живёт здесь»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Tom lives`, без `is`.",
+              "uk": "Потрібно `Tom lives`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где Анна и Том делают покупки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-40:i15:r1",
+          "text": "We shop here."
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i15:r2",
+          "text": "We shop there."
+        },
+        {
+          "responseId": "en:lesson-06:session-40:i15:r3",
+          "text": "We shop nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где Анна и Том делают покупки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i15:audio",
+          "transcript": "We shop here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-40:i15:r1",
+            "targetText": "We shop here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i15:r2",
+            "targetText": "We shop there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i15:r3",
+            "targetText": "We shop nearby.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-40:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где Анна и Том делают покупки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где Анна и Том делают покупки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-40:i16:p1",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i16:p2",
+            "target": "cycle",
+            "meaningByLocale": {
+              "ru": "ездить на велосипеде",
+              "uk": "їздити велосипедом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i16:p3",
+            "target": "rest",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-40:i16:p4",
+            "target": "thermostat",
+            "meaningByLocale": {
+              "ru": "термостат",
+              "uk": "термостат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sleep",
+          "cycle",
+          "rest",
+          "thermostat"
+        ],
+        "rightColumn": [
+          "спать",
+          "ездить на велосипеде",
+          "отдыхать",
+          "термостат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Новый сосед спрашивает, где обычно занимается Анна. Ответьте «Она занимается дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Новый сосед спрашивает, где обычно занимается Анна. Ответьте «Она занимается дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-40:i17:audio",
+          "transcript": "She studies at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She studies at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3672dce0f85247fd935b4d1f2968e2ed42d13456571ffb2df22aa20e21611ae1"
+}

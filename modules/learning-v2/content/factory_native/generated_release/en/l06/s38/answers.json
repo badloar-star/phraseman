@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-38:i01",
+    "correctText": "I rest here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i02",
+    "correctText": "rest",
+    "correctResponseId": "en:lesson-06:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i03",
+    "correctText": "rests",
+    "correctResponseId": "en:lesson-06:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i04",
+    "correctText": "en:lesson-06:session-38:i04:p1=rest\nen:lesson-06:session-38:i04:p2=unofficial\nen:lesson-06:session-38:i04:p3=bike shed\nen:lesson-06:session-38:i04:p4=laptop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i05",
+    "correctText": "Anna rests here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i06",
+    "correctText": "He cleans his room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i07",
+    "correctText": "This bike shed is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i08",
+    "correctText": "rest",
+    "correctResponseId": "en:lesson-06:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i09",
+    "correctText": "This laptop is mine.",
+    "correctResponseId": "en:lesson-06:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i10",
+    "correctText": "en:lesson-06:session-38:i10:p1=rest\nen:lesson-06:session-38:i10:p2=clean\nen:lesson-06:session-38:i10:p3=laptop\nen:lesson-06:session-38:i10:p4=unofficial",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i11",
+    "correctText": "The bike shed is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i12",
+    "correctText": "Whose laptop is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i13",
+    "correctText": "They clean their room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i14",
+    "correctText": "rests",
+    "correctResponseId": "en:lesson-06:session-38:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i15",
+    "correctText": "They rest here.",
+    "correctResponseId": "en:lesson-06:session-38:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i16",
+    "correctText": "en:lesson-06:session-38:i16:p1=rest\nen:lesson-06:session-38:i16:p2=bike shed\nen:lesson-06:session-38:i16:p3=unofficial\nen:lesson-06:session-38:i16:p4=clean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:i17",
+    "correctText": "She rests here.",
+    "correctResponseId": null
+  }
+]

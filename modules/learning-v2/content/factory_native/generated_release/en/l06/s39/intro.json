@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о поездках на велосипеде и о привычке другого человека",
+    "uk": "розповісти про поїздки велосипедом і про звичку іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Велосипед вместо машины",
+        "uk": "Велосипед замість машини"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега спрашивает, как вы добираетесь на работу. `cycle` — «ездить на велосипеде». `I cycle to work` — «Я езжу на работу на велосипеде». Перед `cycle` не нужно `am`. Велосипед сам по себе не считается тренировкой: если он всё время стоит в коридоре, вы ещё не `cycle`.",
+        "uk": "Колега запитує, як ви дістаєтеся на роботу. `cycle` — «їздити велосипедом». `I cycle to work` — «Я їжджу на роботу велосипедом». Перед `cycle` не потрібне `am`. Сам велосипед не вважається тренуванням: якщо він увесь час стоїть у коридорі, ви ще не `cycle`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте коллеге «Я езжу на работу на велосипеде».",
+          "uk": "Дайте колезі відповідь «Я їжджу на роботу велосипедом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-39:intro1:r1",
+              "text": "I cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro1:r2",
+              "text": "I am cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro1:r3",
+              "text": "I cycles to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-39:intro1:r1",
+              "text": "I cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro1:r2",
+              "text": "I am cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro1:r3",
+              "text": "I cycles to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте коллеге «Я езжу на работу на велосипеде».",
+          "uk": "Дайте колезі відповідь «Я їжджу на роботу велосипедом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как добирается Том",
+        "uk": "Як дістається Том"
+      },
+      "bodyByLocale": {
+        "ru": "Анна спрашивает о дороге Тома на работу. `He cycles to work` — «Он ездит на работу на велосипеде». После `he` добавляем `s`: `cycle → cycles`. `Tom cycles to work` — тот же рассказ с именем. Фраза описывает привычку Тома; он может сейчас сидеть рядом с вами.",
+        "uk": "Анна запитує про дорогу Тома на роботу. `He cycles to work` — «Він їздить на роботу велосипедом». Після `he` додаємо `s`: `cycle → cycles`. `Tom cycles to work` — та сама розповідь з ім’ям. Фраза описує звичку Тома; він може зараз сидіти поруч із вами."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите Анне о Томе: «Он ездит на работу на велосипеде».",
+          "uk": "Розкажіть Анні про Тома: «Він їздить на роботу велосипедом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-39:intro2:r1",
+              "text": "He cycles to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro2:r2",
+              "text": "He cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro2:r3",
+              "text": "He is cycles to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-39:intro2:r1",
+              "text": "He cycles to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro2:r2",
+              "text": "He cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro2:r3",
+              "text": "He is cycles to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите Анне о Томе: «Он ездит на работу на велосипеде».",
+          "uk": "Розкажіть Анні про Тома: «Він їздить на роботу велосипедом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Душ после дороги",
+        "uk": "Душ після дороги"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега спрашивает, где Том обычно принимает душ после поездки. `shower` — «принимать душ». `He showers at work` — «Он принимает душ на работе». После `he` — `showers`, с `s`; `at work` означает «на работе». Здесь мы рассказываем о его обычном порядке дня.",
+        "uk": "Колега запитує, де Том зазвичай приймає душ після поїздки. `shower` — «приймати душ». `He showers at work` — «Він приймає душ на роботі». Після `he` — `showers`, з `s`; `at work` означає «на роботі». Тут ми розповідаємо про його звичний розпорядок дня."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте коллеге «Он принимает душ на работе».",
+          "uk": "Дайте колезі відповідь «Він приймає душ на роботі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-39:intro3:r1",
+              "text": "He showers at work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro3:r2",
+              "text": "He shower at work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro3:r3",
+              "text": "He is showers at work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-39:intro3:r1",
+              "text": "He showers at work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro3:r2",
+              "text": "He shower at work."
+            },
+            {
+              "responseId": "en:lesson-06:session-39:intro3:r3",
+              "text": "He is showers at work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте коллеге «Он принимает душ на работе».",
+          "uk": "Дайте колезі відповідь «Він приймає душ на роботі»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2cf85ddece5e7b49034ffad75b68aaeb644a53d784cba12efea76c5f323a36b0"
+}

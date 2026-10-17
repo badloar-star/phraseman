@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я доставляю газеты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я доставляю газеты»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I deliver newspapers.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я доставляю газеты»",
+          "uk": "Скажіть «Я доставляю газети»"
+        },
+        "orderedTokens": [
+          "I",
+          "deliver",
+          "newspapers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-50:i02:r1",
+          "text": "deliver"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i02:r2",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i02:r3",
+          "text": "river"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i02:audio",
+          "transcript": "deliver"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-50:i02:r1",
+            "targetText": "deliver",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i02:r2",
+            "targetText": "share",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i02:r3",
+            "targetText": "river",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `deliver`, а в этом варианте — `share`.",
+              "uk": "У записі перше слово — `deliver`, а в цьому варіанті — `share`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `deliver`, а в этом варианте — `river`.",
+              "uk": "У записі перше слово — `deliver`, а в цьому варіанті — `river`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Он доставляет газеты»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-50:i03:r1",
+          "text": "delivers"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i03:r2",
+          "text": "deliver"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i03:r3",
+          "text": "is delivers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он доставляет газеты»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он доставляет газеты»",
+          "uk": "Скажіть «Він доставляє газети»"
+        },
+        "gappedTargetPhrase": "He ___ newspapers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-50:i03:r1",
+            "text": "delivers"
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i03:r2",
+            "text": "deliver"
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i03:r3",
+            "text": "is delivers"
+          }
+        ],
+        "testedDimension": "Скажите «Он доставляет газеты»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Он доставляет газеты»",
+            "feedbackByLocale": {
+              "ru": "После `he` нужно `delivers`.",
+              "uk": "Після `he` потрібне `delivers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Он доставляет газеты»",
+            "feedbackByLocale": {
+              "ru": "Нужно `He delivers`, без `is`.",
+              "uk": "Потрібно `He delivers`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-50:i04:p1",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i04:p2",
+            "target": "effective",
+            "meaningByLocale": {
+              "ru": "действенный",
+              "uk": "дієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i04:p3",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i04:p4",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "deliver",
+          "effective",
+          "river",
+          "share"
+        ],
+        "rightColumn": [
+          "доставлять",
+          "действенный",
+          "река",
+          "пользоваться вместе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i05:audio",
+          "transcript": "I deliver newspapers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I deliver newspapers.",
+        "orderedTokens": [
+          "I",
+          "deliver",
+          "newspapers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Он доставляет газеты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он доставляет газеты»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He delivers newspapers.",
+        "localizedMeaning": {
+          "ru": "Скажите «Он доставляет газеты»",
+          "uk": "Скажіть «Він доставляє газети»"
+        },
+        "orderedTokens": [
+          "He",
+          "delivers",
+          "newspapers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите коллеге «Мы пользуемся одной комнатой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Расскажите коллеге «Мы пользуемся одной комнатой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i07:audio",
+          "transcript": "We share a room."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We share a room.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они доставляют газеты»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-50:i08:r1",
+          "text": "deliver"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i08:r2",
+          "text": "delivers"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i08:r3",
+          "text": "are deliver"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они доставляют газеты»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они доставляют газеты»",
+          "uk": "Скажіть «Вони доставляють газети»"
+        },
+        "gappedTargetPhrase": "They ___ newspapers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-50:i08:r1",
+            "text": "deliver"
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i08:r2",
+            "text": "delivers"
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i08:r3",
+            "text": "are deliver"
+          }
+        ],
+        "testedDimension": "Скажите «Они доставляют газеты»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они доставляют газеты»",
+            "feedbackByLocale": {
+              "ru": "После `they` нужно `deliver`.",
+              "uk": "Після `they` потрібне `deliver`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они доставляют газеты»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They deliver`, без `are`.",
+              "uk": "Потрібно `They deliver`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о ком рассказывает сосед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-50:i09:r1",
+          "text": "He delivers newspapers."
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i09:r2",
+          "text": "She delivers newspapers."
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i09:r3",
+          "text": "Anna delivers newspapers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о ком рассказывает сосед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i09:audio",
+          "transcript": "He delivers newspapers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-50:i09:r1",
+            "targetText": "He delivers newspapers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i09:r2",
+            "targetText": "She delivers newspapers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i09:r3",
+            "targetText": "Anna delivers newspapers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `He`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-50:i10:p1",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i10:p2",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i10:p3",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i10:p4",
+            "target": "effective",
+            "meaningByLocale": {
+              "ru": "действенный",
+              "uk": "дієвий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "share",
+          "river",
+          "deliver",
+          "effective"
+        ],
+        "rightColumn": [
+          "пользоваться вместе",
+          "река",
+          "доставлять",
+          "действенный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i11:audio",
+          "transcript": "We share a room."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We share a room.",
+        "orderedTokens": [
+          "We",
+          "share",
+          "a",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На столе лежит газета. Спросите «Чья это газета?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столе лежит газета. Спросите «Чья это газета?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose newspaper is this?",
+        "localizedMeaning": {
+          "ru": "На столе лежит газета. Спросите «Чья это газета?»",
+          "uk": "На столі лежить газета. Запитайте «Чия це газета?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "newspaper",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите другу на карте «Река здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите другу на карте «Река здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i13:audio",
+          "transcript": "The river is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The river is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Анна доставляет газеты»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-50:i14:r1",
+          "text": "delivers"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i14:r2",
+          "text": "deliver"
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i14:r3",
+          "text": "is delivers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна доставляет газеты»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна доставляет газеты»",
+          "uk": "Скажіть «Анна доставляє газети»"
+        },
+        "gappedTargetPhrase": "Anna ___ newspapers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-50:i14:r1",
+            "text": "delivers"
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i14:r2",
+            "text": "deliver"
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i14:r3",
+            "text": "is delivers"
+          }
+        ],
+        "testedDimension": "Скажите «Анна доставляет газеты»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-50:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Анна доставляет газеты»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna delivers`.",
+              "uk": "Анна — вона: `Anna delivers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Анна доставляет газеты»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna delivers`, без `is`.",
+              "uk": "Потрібно `Anna delivers`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто пользуется комнатой вместе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-50:i15:r1",
+          "text": "We share a room."
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i15:r2",
+          "text": "They share a room."
+        },
+        {
+          "responseId": "en:lesson-06:session-50:i15:r3",
+          "text": "You share a room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто пользуется комнатой вместе",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i15:audio",
+          "transcript": "We share a room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-50:i15:r1",
+            "targetText": "We share a room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i15:r2",
+            "targetText": "They share a room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i15:r3",
+            "targetText": "You share a room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-50:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто пользуется комнатой вместе",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-50:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто пользуется комнатой вместе",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-50:i16:p1",
+            "target": "effective",
+            "meaningByLocale": {
+              "ru": "действенный",
+              "uk": "дієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i16:p2",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i16:p3",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-50:i16:p4",
+            "target": "river",
+            "meaningByLocale": {
+              "ru": "река",
+              "uk": "річка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "effective",
+          "deliver",
+          "share",
+          "river"
+        ],
+        "rightColumn": [
+          "действенный",
+          "доставлять",
+          "пользоваться вместе",
+          "река"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-50:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Новый сосед спрашивает о вашей работе. Ответьте «Я доставляю газеты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Новый сосед спрашивает о вашей работе. Ответьте «Я доставляю газеты»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-50:i17:audio",
+          "transcript": "I deliver newspapers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I deliver newspapers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cc36af01d6e674c220b2ceb7ef40441af84af3c496e6a7736e702c14cbcbe6f5"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-28:i01",
+    "correctText": "I stretch at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i02",
+    "correctText": "stretch",
+    "correctResponseId": "en:lesson-06:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i03",
+    "correctText": "stretches",
+    "correctResponseId": "en:lesson-06:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i04",
+    "correctText": "en:lesson-06:session-28:i04:p1=stretch\nen:lesson-06:session-28:i04:p2=flexible\nen:lesson-06:session-28:i04:p3=alley\nen:lesson-06:session-28:i04:p4=keycard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i05",
+    "correctText": "Anna stretches here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i06",
+    "correctText": "He cooks at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i07",
+    "correctText": "She is flexible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i08",
+    "correctText": "stretch",
+    "correctResponseId": "en:lesson-06:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i09",
+    "correctText": "My keycard is here.",
+    "correctResponseId": "en:lesson-06:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i10",
+    "correctText": "en:lesson-06:session-28:i10:p1=stretch\nen:lesson-06:session-28:i10:p2=cook\nen:lesson-06:session-28:i10:p3=keycard\nen:lesson-06:session-28:i10:p4=flexible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i11",
+    "correctText": "The alley is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i12",
+    "correctText": "Whose keycard is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i13",
+    "correctText": "They cook at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i14",
+    "correctText": "cooks",
+    "correctResponseId": "en:lesson-06:session-28:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i15",
+    "correctText": "The alley is narrow.",
+    "correctResponseId": "en:lesson-06:session-28:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i16",
+    "correctText": "en:lesson-06:session-28:i16:p1=stretch\nen:lesson-06:session-28:i16:p2=alley\nen:lesson-06:session-28:i16:p3=flexible\nen:lesson-06:session-28:i16:p4=cook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-28:i17",
+    "correctText": "She stretches at home.",
+    "correctResponseId": null
+  }
+]

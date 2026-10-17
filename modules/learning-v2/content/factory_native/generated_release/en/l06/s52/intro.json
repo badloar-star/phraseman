@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, что человек носит, и спросить, кому принадлежит головной убор",
+    "uk": "розповісти, що людина носить, і запитати, кому належить головний убір"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что обычно носит Анна",
+        "uk": "Що зазвичай носить Анна"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, как обычно одевается Анна. `wear` — «носить» одежду на себе. `She wears a hat` — «Она носит шляпу». Здесь речь о её привычке. После `she` к `wear` добавляем `s`: `wears`. Если шляпа лежит в сумке, это ещё не значит, что Анна её носит на голове.",
+        "uk": "Друг запитує, як зазвичай одягається Анна. `wear` — «носити» одяг на собі. `She wears a hat` — «Вона носить капелюх». Тут ідеться про її звичку. Після `she` до `wear` додаємо `s`: `wears`. Якщо капелюх лежить у сумці, це ще не означає, що Анна носить його на голові."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите о привычке Анны «Она носит шляпу».",
+          "uk": "Розкажіть про звичку Анни «Вона носить капелюх»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-52:intro1:r1",
+              "text": "She wears a hat."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro1:r2",
+              "text": "She wear a hat."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro1:r3",
+              "text": "She is wears a hat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-52:intro1:r1",
+              "text": "She wears a hat."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro1:r2",
+              "text": "She wear a hat."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro1:r3",
+              "text": "She is wears a hat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о привычке Анны «Она носит шляпу».",
+          "uk": "Розкажіть про звичку Анни «Вона носить капелюх»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У нас похожий вкус",
+        "uk": "У нас схожий смак"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает, что вы с Томом любите шляпы. `We wear hats` — «Мы носим шляпы». После `we` нужно `wear`, без `s`. А в слове `hats` добавляем `s`, потому что шляп несколько.",
+        "uk": "Друг помічає, що ви з Томом любите капелюхи. `We wear hats` — «Ми носимо капелюхи». Після `we` потрібне `wear`, без `s`. А в слові `hats` додаємо `s`, бо капелюхів кілька."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите о себе и Томе «Мы носим шляпы».",
+          "uk": "Розкажіть про себе й Тома «Ми носимо капелюхи»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-52:intro2:r1",
+              "text": "We wear hats."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro2:r2",
+              "text": "We wears hats."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro2:r3",
+              "text": "We are wear hats."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-52:intro2:r1",
+              "text": "We wear hats."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro2:r2",
+              "text": "We wears hats."
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro2:r3",
+              "text": "We are wear hats."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о себе и Томе «Мы носим шляпы».",
+          "uk": "Розкажіть про себе й Тома «Ми носимо капелюхи»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шляпа на скамейке",
+        "uk": "Капелюх на лавці"
+      },
+      "bodyByLocale": {
+        "ru": "У бассейна вы нашли шляпу на скамейке. `Whose hat is this?` — «Чья это шляпа?» `Whose` спрашивает о владельце. Шляпа одна, поэтому `is this`.",
+        "uk": "Біля басейну ви знайшли капелюх на лавці. `Whose hat is this?` — «Чий це капелюх?» `Whose` запитує про власника. Капелюх один, тому `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Обратитесь к людям рядом: «Чья это шляпа?»",
+          "uk": "Зверніться до людей поруч: «Чий це капелюх?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-52:intro3:r1",
+              "text": "Whose hat is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro3:r2",
+              "text": "Where is this hat?"
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro3:r3",
+              "text": "Whose hat are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-52:intro3:r1",
+              "text": "Whose hat is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro3:r2",
+              "text": "Where is this hat?"
+            },
+            {
+              "responseId": "en:lesson-06:session-52:intro3:r3",
+              "text": "Whose hat are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Обратитесь к людям рядом: «Чья это шляпа?»",
+          "uk": "Зверніться до людей поруч: «Чий це капелюх?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f63ba8d90cd44e4a010d7d7dd99ad686dae860b3764386fc7f0716c3fc03e1fc"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "назвать головной убор, найти владельца вещи и рассказать, где он живёт",
+    "uk": "назвати головний убір, знайти власника речі й розповісти, де він живе"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чья это шляпа",
+        "uk": "Чий це капелюх"
+      },
+      "bodyByLocale": {
+        "ru": "На вешалке у двери осталась шляпа. `hat` — «головной убор», например шляпа или шапка. Здесь это шляпа: `Whose hat is this?` — «Чья это шляпа?» Слово `whose` спрашивает о владельце. Примерить находку можно, но от этого она вашей не становится.",
+        "uk": "На вішалці біля дверей залишився капелюх. `hat` — «головний убір», наприклад капелюх або шапка. Тут це капелюх: `Whose hat is this?` — «Чий це капелюх?» Слово `whose` запитує про власника. Приміряти знахідку можна, але від цього вона вашою не стає."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите гостей «Чья это шляпа?»",
+          "uk": "Запитайте гостей «Чий це капелюх?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-44:intro1:r1",
+              "text": "Whose hat is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro1:r2",
+              "text": "Who hat is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro1:r3",
+              "text": "Whose hat are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-44:intro1:r1",
+              "text": "Whose hat is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro1:r2",
+              "text": "Who hat is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro1:r3",
+              "text": "Whose hat are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите гостей «Чья это шляпа?»",
+          "uk": "Запитайте гостей «Чий це капелюх?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вот моя шляпа",
+        "uk": "Ось мій капелюх"
+      },
+      "bodyByLocale": {
+        "ru": "Том показывает на шляпу, и вы узнаёте свою. `This hat is mine` — «Эта шляпа моя». После `mine` не повторяем `hat`: это слово уже означает «моя» без названия вещи. `My hat` — «моя шляпа», а `This hat is mine` — готовое сообщение о владельце.",
+        "uk": "Том показує на капелюх, і ви впізнаєте свій. `This hat is mine` — «Цей капелюх мій». Після `mine` не повторюємо `hat`: це слово вже означає «мій» без назви речі. `My hat` — «мій капелюх», а `This hat is mine` — готове повідомлення про власника."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите Тому «Эта шляпа моя».",
+          "uk": "Скажіть Тому «Цей капелюх мій»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-44:intro2:r1",
+              "text": "This hat is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro2:r2",
+              "text": "This hat is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro2:r3",
+              "text": "This hat are mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-44:intro2:r1",
+              "text": "This hat is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro2:r2",
+              "text": "This hat is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro2:r3",
+              "text": "This hat are mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите Тому «Эта шляпа моя».",
+          "uk": "Скажіть Тому «Цей капелюх мій»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где живёт Анна",
+        "uk": "Де живе Анна"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спрашивает, здесь ли живёт Анна. `She lives here` — «Она живёт здесь». После `she` у `live` появляется `s`: `lives`. Можно назвать имя: `Anna lives here`. Вы сообщаете её место жительства; быть в комнате прямо сейчас ей необязательно.",
+        "uk": "Гість запитує, чи тут живе Анна. `She lives here` — «Вона живе тут». Після `she` у `live` з’являється `s`: `lives`. Можна назвати ім’я: `Anna lives here`. Ви повідомляєте її місце проживання; бути в кімнаті просто зараз їй необов’язково."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте гостю об Анне «Она живёт здесь».",
+          "uk": "Дайте гостеві відповідь про Анну «Вона живе тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-44:intro3:r1",
+              "text": "She lives here."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro3:r2",
+              "text": "She live here."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro3:r3",
+              "text": "She is lives here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-44:intro3:r1",
+              "text": "She lives here."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro3:r2",
+              "text": "She live here."
+            },
+            {
+              "responseId": "en:lesson-06:session-44:intro3:r3",
+              "text": "She is lives here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте гостю об Анне «Она живёт здесь».",
+          "uk": "Дайте гостеві відповідь про Анну «Вона живе тут»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8d9d133e44b495ba088fc732987b078f19a6d726b6b85cfbb5d290eca3d13304"
+}

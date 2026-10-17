@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я говорю по-английски»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я говорю по-английски»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I speak English.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я говорю по-английски»",
+          "uk": "Скажіть «Я говорю англійською»"
+        },
+        "orderedTokens": [
+          "I",
+          "speak",
+          "English"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-43:i02:r1",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i02:r2",
+          "text": "sleep"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i02:r3",
+          "text": "share"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i02:audio",
+          "transcript": "speak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-43:i02:r1",
+            "targetText": "speak",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i02:r2",
+            "targetText": "sleep",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i02:r3",
+            "targetText": "share",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `speak`, а в этом варианте — `sleep`.",
+              "uk": "У записі перше слово — `speak`, а в цьому варіанті — `sleep`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `speak`, а в этом варианте — `share`.",
+              "uk": "У записі перше слово — `speak`, а в цьому варіанті — `share`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она говорит по-английски»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-43:i03:r1",
+          "text": "speaks"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i03:r2",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i03:r3",
+          "text": "is speaks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она говорит по-английски»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она говорит по-английски»",
+          "uk": "Скажіть «Вона говорить англійською»"
+        },
+        "gappedTargetPhrase": "She ___ English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-43:i03:r1",
+            "text": "speaks"
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i03:r2",
+            "text": "speak"
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i03:r3",
+            "text": "is speaks"
+          }
+        ],
+        "testedDimension": "Скажите «Она говорит по-английски»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она говорит по-английски»",
+            "feedbackByLocale": {
+              "ru": "После `she` — `speaks`.",
+              "uk": "Після `she` — `speaks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она говорит по-английски»",
+            "feedbackByLocale": {
+              "ru": "Нужно `She speaks`, без `is`.",
+              "uk": "Потрібно `She speaks`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями; uncertain — о человеке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями; uncertain — о человеке",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-43:i04:p1",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i04:p2",
+            "target": "uncertain",
+            "meaningByLocale": {
+              "ru": "неуверенный",
+              "uk": "невпевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i04:p3",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i04:p4",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "speak",
+          "uncertain",
+          "recycling bin",
+          "sleep"
+        ],
+        "rightColumn": [
+          "говорить",
+          "неуверенный",
+          "контейнер для переработки",
+          "спать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i05:audio",
+          "transcript": "Anna speaks English."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Anna speaks English.",
+        "orderedTokens": [
+          "Anna",
+          "speaks",
+          "English"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Кот спит здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Кот спит здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cat sleeps here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Кот спит здесь»",
+          "uk": "Скажіть «Кіт спить тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "cat",
+          "sleeps",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы не знаете точного времени встречи. Скажите «Я не уверен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Вы не знаете точного времени встречи. Скажите «Я не уверен»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i07:audio",
+          "transcript": "I am uncertain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am uncertain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-43:i08:r1",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i08:r2",
+          "text": "speaks"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i08:r3",
+          "text": "are speak"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+          "uk": "Сусід запитує, чи знають Анна й Том англійську. Дайте відповідь «Вони говорять англійською»"
+        },
+        "gappedTargetPhrase": "They ___ English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-43:i08:r1",
+            "text": "speak"
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i08:r2",
+            "text": "speaks"
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i08:r3",
+            "text": "are speak"
+          }
+        ],
+        "testedDimension": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `speak`, без `s`.",
+              "uk": "Після `they` — `speak`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They speak`, без `are`.",
+              "uk": "Потрібно `They speak`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какой этот контейнер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-43:i09:r1",
+          "text": "This recycling bin is new."
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i09:r2",
+          "text": "This recycling bin is old."
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i09:r3",
+          "text": "This recycling bin is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой этот контейнер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i09:audio",
+          "transcript": "This recycling bin is new."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-43:i09:r1",
+            "targetText": "This recycling bin is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i09:r2",
+            "targetText": "This recycling bin is old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i09:r3",
+            "targetText": "This recycling bin is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какой этот контейнер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какой этот контейнер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями; uncertain — о человеке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями; uncertain — о человеке",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-43:i10:p1",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i10:p2",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i10:p3",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i10:p4",
+            "target": "uncertain",
+            "meaningByLocale": {
+              "ru": "неуверенный",
+              "uk": "невпевнений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "speak",
+          "sleep",
+          "recycling bin",
+          "uncertain"
+        ],
+        "rightColumn": [
+          "говорить",
+          "спать",
+          "контейнер для переработки",
+          "неуверенный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i11:audio",
+          "transcript": "The recycling bin is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The recycling bin is here.",
+        "orderedTokens": [
+          "The",
+          "recycling",
+          "bin",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The recycling bin is here.`",
+              "uk": "тут потрібно `is` — `The recycling bin is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "После встречи остался ноутбук. Спросите «Чей это ноутбук?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После встречи остался ноутбук. Спросите «Чей это ноутбук?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose laptop is this?",
+        "localizedMeaning": {
+          "ru": "После встречи остался ноутбук. Спросите «Чей это ноутбук?»",
+          "uk": "Після зустрічі залишився ноутбук. Запитайте «Чий це ноутбук?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "laptop",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Они спят здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Они спят здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i13:audio",
+          "transcript": "They sleep here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They sleep here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Том говорит по-английски»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-43:i14:r1",
+          "text": "speaks"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i14:r2",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i14:r3",
+          "text": "is speaks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Том говорит по-английски»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том говорит по-английски»",
+          "uk": "Скажіть «Том говорить англійською»"
+        },
+        "gappedTargetPhrase": "Tom ___ English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-43:i14:r1",
+            "text": "speaks"
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i14:r2",
+            "text": "speak"
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i14:r3",
+            "text": "is speaks"
+          }
+        ],
+        "testedDimension": "Скажите «Том говорит по-английски»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Том говорит по-английски»",
+            "feedbackByLocale": {
+              "ru": "Том — он: `Tom speaks`.",
+              "uk": "Том — він: `Tom speaks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Том говорит по-английски»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Tom speaks`, без `is`.",
+              "uk": "Потрібно `Tom speaks`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-43:i15:r1",
+          "text": "We speak English."
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i15:r2",
+          "text": "They speak English."
+        },
+        {
+          "responseId": "en:lesson-06:session-43:i15:r3",
+          "text": "You speak English."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i15:audio",
+          "transcript": "We speak English."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-43:i15:r1",
+            "targetText": "We speak English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i15:r2",
+            "targetText": "They speak English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i15:r3",
+            "targetText": "You speak English.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями; uncertain — о человеке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями; uncertain — о человеке",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-43:i16:p1",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i16:p2",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i16:p3",
+            "target": "uncertain",
+            "meaningByLocale": {
+              "ru": "неуверенный",
+              "uk": "невпевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-43:i16:p4",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "speak",
+          "recycling bin",
+          "uncertain",
+          "sleep"
+        ],
+        "rightColumn": [
+          "говорить",
+          "контейнер для переработки",
+          "неуверенный",
+          "спать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сосед спрашивает, на каком языке можно обратиться к Анне. Ответьте «Она говорит по-английски»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Сосед спрашивает, на каком языке можно обратиться к Анне. Ответьте «Она говорит по-английски»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:i17:audio",
+          "transcript": "She speaks English."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She speaks English.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f8c175785678411e2424e09a3df8d7a5e3a66c23d63345967df8f14861e337ee"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, какой язык вы изучаете, уточнить владельца вещи и срочность дела",
+    "uk": "сказати, яку мову ви вивчаєте, уточнити власника речі й терміновість справи"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учиться и узнавать",
+        "uk": "Вчитися й дізнаватися"
+      },
+      "bodyByLocale": {
+        "ru": "`learn` — «учиться», «изучать», получать новые знания или навыки. `I learn English` — «Я изучаю английский». Знакомое `practice` — практиковаться, упражняться: эти действия могут идти вместе. Узнали новое слово — уже чему-то научились. Вспомнили его без подсказки — есть повод гордиться, даже если это всего лишь «рюкзак».",
+        "uk": "`learn` — «вчитися», «вивчати», здобувати нові знання чи навички. `I learn English` — «Я вивчаю англійську». Знайоме `practice` — практикуватися, вправлятися: ці дії можуть відбуватися разом. Дізналися нове слово — вже чогось навчилися. Згадали його без підказки — є привід пишатися, навіть якщо це лише «рюкзак»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я изучаю английский».",
+          "uk": "Скажіть «Я вивчаю англійську»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-11:intro1:r1",
+              "text": "I learn English."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro1:r2",
+              "text": "I am learn English."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro1:r3",
+              "text": "I learns English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-11:intro1:r1",
+              "text": "I learn English."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro1:r2",
+              "text": "I am learn English."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro1:r3",
+              "text": "I learns English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я изучаю английский».",
+          "uk": "Скажіть «Я вивчаю англійську»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мы и они",
+        "uk": "Ми й вони"
+      },
+      "bodyByLocale": {
+        "ru": "`We learn English` — «Мы изучаем английский». После `I`, `you`, `we`, `they` используем `learn`, без `s`. `tram` — «трамвай», `backpack` — «рюкзак». `We are on the tram` — «Мы в трамвае»: так говорим, когда едем в нём. Здесь место, а не действие `learn`, поэтому нужно `are`.",
+        "uk": "`We learn English` — «Ми вивчаємо англійську». Після `I`, `you`, `we`, `they` використовуємо `learn`, без `s`. `tram` — «трамвай», `backpack` — «рюкзак». `We are on the tram` — «Ми в трамваї»: так кажемо, коли їдемо в ньому. Тут місце, а не дія `learn`, тому потрібно `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мы в трамвае».",
+          "uk": "Скажіть «Ми в трамваї»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-11:intro2:r1",
+              "text": "We are on the tram."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro2:r2",
+              "text": "We on the tram."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro2:r3",
+              "text": "We is on the tram."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-11:intro2:r1",
+              "text": "We are on the tram."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro2:r2",
+              "text": "We on the tram."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro2:r3",
+              "text": "We is on the tram."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мы в трамвае».",
+          "uk": "Скажіть «Ми в трамваї»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Срочное дело",
+        "uk": "Термінова справа"
+      },
+      "bodyByLocale": {
+        "ru": "`parcel` — «посылка», `urgent` — «срочный», требующий быстрого действия. `It is urgent` — «Это срочно». `Whose backpack is this?` — «Чей это рюкзак?» `That parcel is yours` — «Та посылка твоя».",
+        "uk": "`parcel` — «посилка», `urgent` — «терміновий», що потребує швидкої дії. `It is urgent` — «Це терміново». `Whose backpack is this?` — «Чий це рюкзак?» `That parcel is yours` — «Та посилка твоя»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Это срочно».",
+          "uk": "Скажіть «Це терміново»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-11:intro3:r1",
+              "text": "It is urgent."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro3:r2",
+              "text": "It are urgent."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro3:r3",
+              "text": "It is impossible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-11:intro3:r1",
+              "text": "It is urgent."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro3:r2",
+              "text": "It are urgent."
+            },
+            {
+              "responseId": "en:lesson-06:session-11:intro3:r3",
+              "text": "It is impossible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Это срочно».",
+          "uk": "Скажіть «Це терміново»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "94aeae762781028e08c8ec6aa3a2fc7dddd2f76f53f8fe8fd02dce46d41b9cf8"
+}

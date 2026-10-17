@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "назвать газету, спросить о владельце и повторить рассказ о привычке беседовать",
+    "uk": "назвати газету, запитати про власника й повторити розповідь про звичку розмовляти"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто оставил газету",
+        "uk": "Хто залишив газету"
+      },
+      "bodyByLocale": {
+        "ru": "На скамейке лежит газета. `newspaper` — «газета». `Whose newspaper is this?` — «Чья это газета?» Одна газета: `is this`. Страниц может быть двадцать, но газета всё равно одна — пересчитывать каждую перед вопросом не нужно.",
+        "uk": "На лавці лежить газета. `newspaper` — «газета». `Whose newspaper is this?` — «Чия це газета?» Одна газета: `is this`. Сторінок може бути двадцять, але газета все одно одна — перераховувати кожну перед запитанням не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите людей рядом «Чья это газета?»",
+          "uk": "Запитайте людей поруч «Чия це газета?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-49:intro1:r1",
+              "text": "Whose newspaper is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro1:r2",
+              "text": "Who newspaper is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro1:r3",
+              "text": "Whose newspaper are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-49:intro1:r1",
+              "text": "Whose newspaper is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro1:r2",
+              "text": "Who newspaper is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro1:r3",
+              "text": "Whose newspaper are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите людей рядом «Чья это газета?»",
+          "uk": "Запитайте людей поруч «Чия це газета?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я узнаю свою газету",
+        "uk": "Я впізнаю свою газету"
+      },
+      "bodyByLocale": {
+        "ru": "Том показывает вам газету, и вы узнаёте свою. `This newspaper is mine` — «Эта газета моя». `Mine` означает «моя» без повторения названия вещи. Если название идёт следом, нужно `my`: `my newspaper` — «моя газета».",
+        "uk": "Том показує вам газету, і ви впізнаєте свою. `This newspaper is mine` — «Ця газета моя». `Mine` означає «моя» без повторення назви речі. Якщо назва йде далі, потрібне `my`: `my newspaper` — «моя газета»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите Тому «Эта газета моя».",
+          "uk": "Скажіть Тому «Ця газета моя»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-49:intro2:r1",
+              "text": "This newspaper is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro2:r2",
+              "text": "This newspaper is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro2:r3",
+              "text": "This newspaper are mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-49:intro2:r1",
+              "text": "This newspaper is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro2:r2",
+              "text": "This newspaper is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro2:r3",
+              "text": "This newspaper are mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите Тому «Эта газета моя».",
+          "uk": "Скажіть Тому «Ця газета моя»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Место для разговоров",
+        "uk": "Місце для розмов"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, почему Анна и Том часто встречаются у этой скамейки. `They chat here` — «Они беседуют здесь». После `they` — `chat`, без `s`. Если рассказываете только о Томе: `He chats here` — «Он беседует здесь». Теперь после `he` нужно `s`.",
+        "uk": "Друг запитує, чому Анна й Том часто зустрічаються біля цієї лавки. `They chat here` — «Вони розмовляють тут». Після `they` — `chat`, без `s`. Якщо розповідаєте лише про Тома: `He chats here` — «Він розмовляє тут». Тепер після `he` потрібне `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу об Анне и Томе «Они беседуют здесь».",
+          "uk": "Розкажіть другові про Анну й Тома «Вони розмовляють тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-49:intro3:r1",
+              "text": "They chat here."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro3:r2",
+              "text": "They chats here."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro3:r3",
+              "text": "They are chat here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-49:intro3:r1",
+              "text": "They chat here."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro3:r2",
+              "text": "They chats here."
+            },
+            {
+              "responseId": "en:lesson-06:session-49:intro3:r3",
+              "text": "They are chat here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу об Анне и Томе «Они беседуют здесь».",
+          "uk": "Розкажіть другові про Анну й Тома «Вони розмовляють тут»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0bf539c3ddd03b6335d4dbe7b943b3fe8ed9ddd60e54f587954ffd711f54f6cd"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать об улыбке, привычном занятии и самочувствии",
+    "uk": "розповісти про усмішку, звичне заняття й самопочуття"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Улыбаться",
+        "uk": "Усміхатися"
+      },
+      "bodyByLocale": {
+        "ru": "`smile` — «улыбаться». `I smile a lot` — «Я часто улыбаюсь». `She smiles a lot` — «Она часто улыбается». Улыбаться можно молча; `laugh` — смеяться, обычно со звуком. Для `smile` не нужен смех на всю комнату: соседи даже не узнают, что шутка удалась.",
+        "uk": "`smile` — «усміхатися». `I smile a lot` — «Я часто усміхаюся». `She smiles a lot` — «Вона часто усміхається». Усміхатися можна мовчки; `laugh` — сміятися, зазвичай зі звуком. Для `smile` не потрібен сміх на всю кімнату: сусіди навіть не дізнаються, що жарт удався."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она часто улыбается».",
+          "uk": "Скажіть «Вона часто усміхається»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-18:intro1:r1",
+              "text": "She smiles a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro1:r2",
+              "text": "She smile a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro1:r3",
+              "text": "She is smiles a lot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-18:intro1:r1",
+              "text": "She smiles a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro1:r2",
+              "text": "She smile a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro1:r3",
+              "text": "She is smiles a lot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она часто улыбается».",
+          "uk": "Скажіть «Вона часто усміхається»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она практикуется",
+        "uk": "Вона практикується"
+      },
+      "bodyByLocale": {
+        "ru": "`practice` — «практиковаться». `We practice English` — «Мы практикуем английский». `He practices English` — «Он практикует английский». В принятом здесь американском написании к `practice` добавляем `s`: `practices`. `Anna smiles` — «Анна улыбается»: здесь `Anna` соответствует `she`.",
+        "uk": "`practice` — «практикуватися». `We practice English` — «Ми практикуємо англійську». `He practices English` — «Він практикує англійську». У прийнятому тут американському написанні до `practice` додаємо `s`: `practices`. `Anna smiles` — «Анна усміхається»: тут `Anna` відповідає `she`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он практикует английский».",
+          "uk": "Скажіть «Він практикує англійську»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-18:intro2:r1",
+              "text": "He practices English."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro2:r2",
+              "text": "He practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro2:r3",
+              "text": "He is practices English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-18:intro2:r1",
+              "text": "He practices English."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro2:r2",
+              "text": "He practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro2:r3",
+              "text": "He is practices English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он практикует английский».",
+          "uk": "Скажіть «Він практикує англійську»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как Том себя чувствует",
+        "uk": "Як Том почувається"
+      },
+      "bodyByLocale": {
+        "ru": "`unwell` — «плохо себя чувствующий», нездоровый. `He is unwell` — «Он плохо себя чувствует». Здесь состояние, поэтому нужно `is`. Улыбка не доказывает, что человек здоров. `milk` — «молоко», `gloves` — «перчатки». `The milk is on the table` — «Молоко на столе». `These gloves are mine` — «Эти перчатки мои».",
+        "uk": "`unwell` — «той, хто погано почувається», нездоровий. `He is unwell` — «Він погано почувається». Тут стан, тому потрібно `is`. Усмішка не доводить, що людина здорова. `milk` — «молоко», `gloves` — «рукавички». `The milk is on the table` — «Молоко на столі». `These gloves are mine` — «Ці рукавички мої»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он плохо себя чувствует».",
+          "uk": "Скажіть «Він погано почувається»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-18:intro3:r1",
+              "text": "He is unwell."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro3:r2",
+              "text": "He unwell."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro3:r3",
+              "text": "He are unwell."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-18:intro3:r1",
+              "text": "He is unwell."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro3:r2",
+              "text": "He unwell."
+            },
+            {
+              "responseId": "en:lesson-06:session-18:intro3:r3",
+              "text": "He are unwell."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он плохо себя чувствует».",
+          "uk": "Скажіть «Він погано почувається»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7673585cf28ef8c2e7ff0c479b1a2b1ee3553c66a60ca63171286e3c11b59213"
+}

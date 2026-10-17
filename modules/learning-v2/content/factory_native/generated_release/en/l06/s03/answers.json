@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-03:i01",
+    "correctText": "I work in a bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i02",
+    "correctText": "parcel",
+    "correctResponseId": "en:lesson-06:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i03",
+    "correctText": "parcel",
+    "correctResponseId": "en:lesson-06:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i04",
+    "correctText": "en:lesson-06:session-03:i04:p1=parcel\nen:lesson-06:session-03:i04:p2=aware\nen:lesson-06:session-03:i04:p3=convinced\nen:lesson-06:session-03:i04:p4=concerned",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i05",
+    "correctText": "This is my parcel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i06",
+    "correctText": "Whose parcel is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i07",
+    "correctText": "I am aware.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i08",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-06:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i09",
+    "correctText": "That parcel is yours.",
+    "correctResponseId": "en:lesson-06:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i10",
+    "correctText": "en:lesson-06:session-03:i10:p1=parcel\nen:lesson-06:session-03:i10:p2=bank\nen:lesson-06:session-03:i10:p3=desk\nen:lesson-06:session-03:i10:p4=stadium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i11",
+    "correctText": "The parcel is on the desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i12",
+    "correctText": "The bank is near the stadium.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i13",
+    "correctText": "I am convinced.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i14",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-06:session-03:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i15",
+    "correctText": "The parcel is mine.",
+    "correctResponseId": "en:lesson-06:session-03:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i16",
+    "correctText": "en:lesson-06:session-03:i16:p1=parcel\nen:lesson-06:session-03:i16:p2=aware\nen:lesson-06:session-03:i16:p3=convinced\nen:lesson-06:session-03:i16:p4=concerned",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-03:i17",
+    "correctText": "Whose parcel is this?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о привычке: «Я бегаю трусцой здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о привычке: «Я бегаю трусцой здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I jog here.",
+        "localizedMeaning": {
+          "ru": "Расскажите о привычке: «Я бегаю трусцой здесь»",
+          "uk": "Розкажіть про звичку: «Я бігаю підтюпцем тут»"
+        },
+        "orderedTokens": [
+          "I",
+          "jog",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто здесь тренируется",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-32:i02:r1",
+          "text": "She exercises here."
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i02:r2",
+          "text": "He exercises here."
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i02:r3",
+          "text": "Anna exercises here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто здесь тренируется",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i02:audio",
+          "transcript": "She exercises here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-32:i02:r1",
+            "targetText": "She exercises here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i02:r2",
+            "targetText": "He exercises here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i02:r3",
+            "targetText": "Anna exercises here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто здесь тренируется",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто здесь тренируется",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Том принимает душ дома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-32:i03:r1",
+          "text": "showers"
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i03:r2",
+          "text": "shower"
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i03:r3",
+          "text": "is showers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Том принимает душ дома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том принимает душ дома»",
+          "uk": "Скажіть «Том приймає душ удома»"
+        },
+        "gappedTargetPhrase": "Tom ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i03:r1",
+            "text": "showers"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i03:r2",
+            "text": "shower"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i03:r3",
+            "text": "is showers"
+          }
+        ],
+        "testedDimension": "Скажите «Том принимает душ дома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Том принимает душ дома»",
+            "feedbackByLocale": {
+              "ru": "Том — он: `Tom showers`.",
+              "uk": "Том — він: `Tom showers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Том принимает душ дома»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Tom showers`, без `is`.",
+              "uk": "Потрібно `Tom showers`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините знакомые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-32:i04:p1",
+            "target": "jog",
+            "meaningByLocale": {
+              "ru": "бегать трусцой",
+              "uk": "бігати підтюпцем"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i04:p2",
+            "target": "exercise",
+            "meaningByLocale": {
+              "ru": "тренироваться",
+              "uk": "тренуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i04:p3",
+            "target": "stretch",
+            "meaningByLocale": {
+              "ru": "делать растяжку",
+              "uk": "робити розтяжку"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i04:p4",
+            "target": "fountain",
+            "meaningByLocale": {
+              "ru": "фонтан",
+              "uk": "фонтан"
+            }
+          }
+        ],
+        "leftColumn": [
+          "jog",
+          "exercise",
+          "stretch",
+          "fountain"
+        ],
+        "rightColumn": [
+          "бегать трусцой",
+          "тренироваться",
+          "делать растяжку",
+          "фонтан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i05:audio",
+          "transcript": "She calls her mother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She calls her mother.",
+        "orderedTokens": [
+          "She",
+          "calls",
+          "her",
+          "mother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Мы убираем свою комнату»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мы убираем свою комнату»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We clean our room.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мы убираем свою комнату»",
+          "uk": "Скажіть «Ми прибираємо свою кімнату»"
+        },
+        "orderedTokens": [
+          "We",
+          "clean",
+          "our",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Этот фонтан красивый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Этот фонтан красивый»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i07:audio",
+          "transcript": "This fountain is beautiful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This fountain is beautiful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она делает здесь растяжку»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-32:i08:r1",
+          "text": "stretches"
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i08:r2",
+          "text": "stretch"
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i08:r3",
+          "text": "stretchs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она делает здесь растяжку»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она делает здесь растяжку»",
+          "uk": "Скажіть «Вона робить тут розтяжку»"
+        },
+        "gappedTargetPhrase": "She ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i08:r1",
+            "text": "stretches"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i08:r2",
+            "text": "stretch"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i08:r3",
+            "text": "stretchs"
+          }
+        ],
+        "testedDimension": "Скажите «Она делает здесь растяжку»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она делает здесь растяжку»",
+            "feedbackByLocale": {
+              "ru": "После `she` — `stretches`.",
+              "uk": "Після `she` — `stretches`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она делает здесь растяжку»",
+            "feedbackByLocale": {
+              "ru": "Нужно `stretches`, с `es`.",
+              "uk": "Потрібно `stretches`, з `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где он ходит пешком",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-32:i09:r1",
+          "text": "He walks here."
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i09:r2",
+          "text": "He walks there."
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i09:r3",
+          "text": "He walks home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где он ходит пешком",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i09:audio",
+          "transcript": "He walks here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-32:i09:r1",
+            "targetText": "He walks here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i09:r2",
+            "targetText": "He walks there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i09:r3",
+            "targetText": "He walks home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где он ходит пешком",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где он ходит пешком",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `home`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `home`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-32:i10:p1",
+            "target": "call",
+            "meaningByLocale": {
+              "ru": "звонить по телефону",
+              "uk": "телефонувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i10:p2",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "убирать",
+              "uk": "прибирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i10:p3",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i10:p4",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "call",
+          "clean",
+          "shower",
+          "walk"
+        ],
+        "rightColumn": [
+          "звонить по телефону",
+          "убирать",
+          "принимать душ",
+          "ходить пешком"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i11:audio",
+          "transcript": "They exercise here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They exercise here.",
+        "orderedTokens": [
+          "They",
+          "exercise",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У фонтана осталась гитара. Спросите «Чья это гитара?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У фонтана осталась гитара. Спросите «Чья это гитара?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose guitar is this?",
+        "localizedMeaning": {
+          "ru": "У фонтана осталась гитара. Спросите «Чья это гитара?»",
+          "uk": "Біля фонтана залишилася гітара. Запитайте «Чия це гітара?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "guitar",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я принимаю душ дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я принимаю душ дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i13:audio",
+          "transcript": "I shower at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I shower at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они бегают трусцой здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-32:i14:r1",
+          "text": "jog"
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i14:r2",
+          "text": "jogs"
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i14:r3",
+          "text": "are jog"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они бегают трусцой здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они бегают трусцой здесь»",
+          "uk": "Скажіть «Вони бігають підтюпцем тут»"
+        },
+        "gappedTargetPhrase": "They ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-32:i14:r1",
+            "text": "jog"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i14:r2",
+            "text": "jogs"
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i14:r3",
+            "text": "are jog"
+          }
+        ],
+        "testedDimension": "Скажите «Они бегают трусцой здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-32:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они бегают трусцой здесь»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `jog`, без `s`.",
+              "uk": "Після `they` — `jog`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они бегают трусцой здесь»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They jog`, без `are`.",
+              "uk": "Потрібно `They jog`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какой этот фонтан",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-32:i15:r1",
+          "text": "This fountain is beautiful."
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i15:r2",
+          "text": "This fountain is small."
+        },
+        {
+          "responseId": "en:lesson-06:session-32:i15:r3",
+          "text": "This fountain is old."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой этот фонтан",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i15:audio",
+          "transcript": "This fountain is beautiful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-32:i15:r1",
+            "targetText": "This fountain is beautiful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i15:r2",
+            "targetText": "This fountain is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i15:r3",
+            "targetText": "This fountain is old.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-32:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какой этот фонтан",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `beautiful`, а в этом варианте — `small`.",
+              "uk": "У записі останнє слово — `beautiful`, а в цьому варіанті — `small`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-32:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какой этот фонтан",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `beautiful`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `beautiful`, а в цьому варіанті — `old`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-32:i16:p1",
+            "target": "stretch",
+            "meaningByLocale": {
+              "ru": "делать растяжку",
+              "uk": "робити розтяжку"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i16:p2",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i16:p3",
+            "target": "call",
+            "meaningByLocale": {
+              "ru": "звонить по телефону",
+              "uk": "телефонувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-32:i16:p4",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "убирать",
+              "uk": "прибирати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "stretch",
+          "shower",
+          "call",
+          "clean"
+        ],
+        "rightColumn": [
+          "делать растяжку",
+          "принимать душ",
+          "звонить по телефону",
+          "убирать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-32:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите другу о привычке Анны: «Она бегает трусцой здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Расскажите другу о привычке Анны: «Она бегает трусцой здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-32:i17:audio",
+          "transcript": "She jogs here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She jogs here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "38bf97ece447c8d4ef3ce4915067d75bbb0a83c8b29235cf8a9ba17ee0ed08ec"
+}

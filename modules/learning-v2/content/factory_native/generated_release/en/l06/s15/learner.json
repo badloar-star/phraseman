@@ -1,0 +1,971 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я пою дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я пою дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I sing at home.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я пою дома»",
+          "uk": "Скажіть «Я співаю вдома»"
+        },
+        "orderedTokens": [
+          "I",
+          "sing",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-15:i02:r1",
+          "text": "sing"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i02:r2",
+          "text": "swim"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i02:r3",
+          "text": "work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i02:audio",
+          "transcript": "sing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-15:i02:r1",
+            "targetText": "sing",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i02:r2",
+            "targetText": "swim",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i02:r3",
+            "targetText": "work",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sing`, а в этом варианте — `swim`.",
+              "uk": "У записі перше слово — `sing`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sing`, а в этом варианте — `work`.",
+              "uk": "У записі перше слово — `sing`, а в цьому варіанті — `work`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Мы поём здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-15:i03:r1",
+          "text": "sing"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i03:r2",
+          "text": "sings"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i03:r3",
+          "text": "are sing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мы поём здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Мы поём здесь»",
+          "uk": "Скажіть «Ми співаємо тут»"
+        },
+        "gappedTargetPhrase": "We ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-15:i03:r1",
+            "text": "sing"
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i03:r2",
+            "text": "sings"
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i03:r3",
+            "text": "are sing"
+          }
+        ],
+        "testedDimension": "Скажите «Мы поём здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Мы поём здесь»",
+            "feedbackByLocale": {
+              "ru": "После `we` — `sing`, без `s`.",
+              "uk": "Після `we` — `sing`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Мы поём здесь»",
+            "feedbackByLocale": {
+              "ru": "Говорим `We sing`, без `are`.",
+              "uk": "Кажемо `We sing`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-15:i04:p1",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i04:p2",
+            "target": "silent",
+            "meaningByLocale": {
+              "ru": "беззвучный",
+              "uk": "беззвучний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i04:p3",
+            "target": "gym",
+            "meaningByLocale": {
+              "ru": "тренажёрный зал",
+              "uk": "тренажерний зал"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i04:p4",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sing",
+          "silent",
+          "gym",
+          "helmet"
+        ],
+        "rightColumn": [
+          "петь",
+          "беззвучный",
+          "тренажёрный зал",
+          "шлем"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i05:audio",
+          "transcript": "They sing at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They sing at home.",
+        "orderedTokens": [
+          "They",
+          "sing",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Они молчат»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они молчат»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are silent.",
+        "localizedMeaning": {
+          "ru": "Скажите «Они молчат»",
+          "uk": "Скажіть «Вони мовчать»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "silent"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Они молчат»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are silent.`",
+              "uk": "тут потрібно `are` — `They are silent.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Мы в тренажёрном зале»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Мы в тренажёрном зале»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i07:audio",
+          "transcript": "We are at the gym."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are at the gym.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Тот шлем твой»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-15:i08:r1",
+          "text": "yours"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i08:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i08:r3",
+          "text": "you"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Тот шлем твой»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Тот шлем твой»",
+          "uk": "Скажіть «Той шолом твій»"
+        },
+        "gappedTargetPhrase": "That helmet is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-15:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i08:r3",
+            "text": "you"
+          }
+        ],
+        "testedDimension": "Скажите «Тот шлем твой»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Тот шлем твой»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи после «твой» нужно `yours`.",
+              "uk": "Без назви речі після «твій» потрібно `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Тот шлем твой»",
+            "feedbackByLocale": {
+              "ru": "`you` — ты или вы; здесь «твой» — `yours`.",
+              "uk": "`you` — ти або ви; тут «твій» — `yours`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей календарь здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-15:i09:r1",
+          "text": "My calendar is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i09:r2",
+          "text": "Your calendar is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i09:r3",
+          "text": "His calendar is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей календарь здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i09:audio",
+          "transcript": "My calendar is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-15:i09:r1",
+            "targetText": "My calendar is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i09:r2",
+            "targetText": "Your calendar is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i09:r3",
+            "targetText": "His calendar is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей календарь здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей календарь здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-15:i10:p1",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i10:p2",
+            "target": "silent",
+            "meaningByLocale": {
+              "ru": "беззвучный",
+              "uk": "беззвучний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i10:p3",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i10:p4",
+            "target": "calendar",
+            "meaningByLocale": {
+              "ru": "календарь",
+              "uk": "календар"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sing",
+          "silent",
+          "helmet",
+          "calendar"
+        ],
+        "rightColumn": [
+          "петь",
+          "беззвучный",
+          "шлем",
+          "календарь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i11:audio",
+          "transcript": "The calendar is on the wall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The calendar is on the wall.",
+        "orderedTokens": [
+          "The",
+          "calendar",
+          "is",
+          "on",
+          "the",
+          "wall"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The calendar is on the wall.`",
+              "uk": "тут потрібно `is` — `The calendar is on the wall.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чей это шлем?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чей это шлем?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose helmet is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это шлем?»",
+          "uk": "Запитайте «Чий це шолом?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "helmet",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите другу место для выступления: «Ты поёшь здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите другу место для выступления: «Ты поёшь здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i13:audio",
+          "transcript": "You sing here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You sing here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я пою здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-15:i14:r1",
+          "text": "sing"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i14:r2",
+          "text": "sings"
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i14:r3",
+          "text": "am sing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я пою здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я пою здесь»",
+          "uk": "Скажіть «Я співаю тут»"
+        },
+        "gappedTargetPhrase": "I ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-15:i14:r1",
+            "text": "sing"
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i14:r2",
+            "text": "sings"
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i14:r3",
+            "text": "am sing"
+          }
+        ],
+        "testedDimension": "Скажите «Я пою здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я пою здесь»",
+            "feedbackByLocale": {
+              "ru": "После `I` — `sing`, без `s`.",
+              "uk": "Після `I` — `sing`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я пою здесь»",
+            "feedbackByLocale": {
+              "ru": "Говорим `I sing`, без `am`.",
+              "uk": "Кажемо `I sing`, без `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что Том говорит о тренажёрном зале",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-15:i15:r1",
+          "text": "The gym is open."
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i15:r2",
+          "text": "The gym is closed."
+        },
+        {
+          "responseId": "en:lesson-06:session-15:i15:r3",
+          "text": "The gym is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что Том говорит о тренажёрном зале",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i15:audio",
+          "transcript": "The gym is open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-15:i15:r1",
+            "targetText": "The gym is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i15:r2",
+            "targetText": "The gym is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i15:r3",
+            "targetText": "The gym is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-15:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что Том говорит о тренажёрном зале",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-15:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что Том говорит о тренажёрном зале",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `empty`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `empty`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-15:i16:p1",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i16:p2",
+            "target": "silent",
+            "meaningByLocale": {
+              "ru": "беззвучный",
+              "uk": "беззвучний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i16:p3",
+            "target": "gym",
+            "meaningByLocale": {
+              "ru": "тренажёрный зал",
+              "uk": "тренажерний зал"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-15:i16:p4",
+            "target": "calendar",
+            "meaningByLocale": {
+              "ru": "календарь",
+              "uk": "календар"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sing",
+          "silent",
+          "gym",
+          "calendar"
+        ],
+        "rightColumn": [
+          "петь",
+          "беззвучный",
+          "тренажёрный зал",
+          "календарь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите другу комнату, где вы с Анной занимаетесь пением. Скажите «Мы поём здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Покажите другу комнату, где вы с Анной занимаетесь пением. Скажите «Мы поём здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-15:i17:audio",
+          "transcript": "We sing here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We sing here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "86630904dfa57919ccec41f632ec972d1db60fcd10846144d5f0fed0e80cc40a"
+}

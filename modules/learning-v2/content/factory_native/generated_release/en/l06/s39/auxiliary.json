@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-39:intro1:r2": {
+          "ru": "Говорим `I cycle`, без `am`.",
+          "uk": "Кажемо `I cycle`, без `am`."
+        },
+        "en:lesson-06:session-39:intro1:r3": {
+          "ru": "После `I` — `cycle`, без `s`.",
+          "uk": "Після `I` — `cycle`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-39:intro2:r2": {
+          "ru": "После `he` — `cycles`.",
+          "uk": "Після `he` — `cycles`."
+        },
+        "en:lesson-06:session-39:intro2:r3": {
+          "ru": "Нужно `He cycles`, без `is`.",
+          "uk": "Потрібно `He cycles`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-39:intro3:r2": {
+          "ru": "После `he` — `showers`.",
+          "uk": "Після `he` — `showers`."
+        },
+        "en:lesson-06:session-39:intro3:r3": {
+          "ru": "Нужно `He showers`, без `is`.",
+          "uk": "Потрібно `He showers`, без `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a1601520e77a141b83aefeef37c407e6c84444b39cc67a673c27ceb39efa31f9"
+}

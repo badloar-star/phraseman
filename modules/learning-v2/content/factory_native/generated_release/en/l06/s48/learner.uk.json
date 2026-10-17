@@ -1,0 +1,946 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Ми користуємося спільною кухнею»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Ми користуємося спільною кухнею»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We share a community kitchen.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мы пользуемся общей кухней»",
+          "uk": "Скажіть «Ми користуємося спільною кухнею»"
+        },
+        "orderedTokens": [
+          "We",
+          "share",
+          "a",
+          "community",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-48:i02:r1",
+          "text": "She speaks English."
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i02:r2",
+          "text": "He speaks English."
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i02:r3",
+          "text": "Anna speaks English."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i02:audio",
+          "transcript": "She speaks English."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-48:i02:r1",
+            "targetText": "She speaks English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i02:r2",
+            "targetText": "He speaks English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i02:r3",
+            "targetText": "Anna speaks English.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Том розмовляє з Анною»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-48:i03:r1",
+          "text": "chats"
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i03:r2",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i03:r3",
+          "text": "is chats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Том розмовляє з Анною»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том беседует с Анной»",
+          "uk": "Скажіть «Том розмовляє з Анною»"
+        },
+        "gappedTargetPhrase": "Tom ___ with Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i03:r1",
+            "text": "chats"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i03:r2",
+            "text": "chat"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i03:r3",
+            "text": "is chats"
+          }
+        ],
+        "testedDimension": "Скажіть «Том розмовляє з Анною»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Том розмовляє з Анною»",
+            "feedbackByLocale": {
+              "ru": "Том — он: `Tom chats`.",
+              "uk": "Том — він: `Tom chats`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Том розмовляє з Анною»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Tom chats`, без `is`.",
+              "uk": "Потрібно `Tom chats`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-48:i04:p1",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i04:p2",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i04:p3",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i04:p4",
+            "target": "glove",
+            "meaningByLocale": {
+              "ru": "перчатка",
+              "uk": "рукавичка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chat",
+          "speak",
+          "mug",
+          "glove"
+        ],
+        "rightColumn": [
+          "розмовляти",
+          "говорити",
+          "кухоль",
+          "рукавичка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i05:audio",
+          "transcript": "This mug is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This mug is mine.",
+        "orderedTokens": [
+          "This",
+          "mug",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На вішалці залишився капелюх. Запитайте «Чий це капелюх?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На вішалці залишився капелюх. Запитайте «Чий це капелюх?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose hat is this?",
+        "localizedMeaning": {
+          "ru": "На вешалке осталась шляпа. Спросите «Чья это шляпа?»",
+          "uk": "На вішалці залишився капелюх. Запитайте «Чий це капелюх?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "hat",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви впізнали свій олівець. Скажіть «Цей олівець мій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Ви впізнали свій олівець. Скажіть «Цей олівець мій»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i07:audio",
+          "transcript": "This pencil is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This pencil is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вони живуть в одній кімнаті»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-48:i08:r1",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i08:r2",
+          "text": "shares"
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i08:r3",
+          "text": "are share"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вони живуть в одній кімнаті»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они живут в одной комнате»",
+          "uk": "Скажіть «Вони живуть в одній кімнаті»"
+        },
+        "gappedTargetPhrase": "They ___ a room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i08:r1",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i08:r2",
+            "text": "shares"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i08:r3",
+            "text": "are share"
+          }
+        ],
+        "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `share`, без `s`.",
+              "uk": "Після `they` — `share`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They share`, без `are`.",
+              "uk": "Потрібно `They share`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить рукавичка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-48:i09:r1",
+          "text": "This glove is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i09:r2",
+          "text": "This glove is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i09:r3",
+          "text": "This glove is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить рукавичка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i09:audio",
+          "transcript": "This glove is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-48:i09:r1",
+            "targetText": "This glove is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i09:r2",
+            "targetText": "This glove is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i09:r3",
+            "targetText": "This glove is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить рукавичка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить рукавичка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-48:i10:p1",
+            "target": "community kitchen",
+            "meaningByLocale": {
+              "ru": "общая кухня",
+              "uk": "спільна кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i10:p2",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i10:p3",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "головной убор",
+              "uk": "головний убір"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i10:p4",
+            "target": "pencil",
+            "meaningByLocale": {
+              "ru": "карандаш",
+              "uk": "олівець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community kitchen",
+          "share",
+          "hat",
+          "pencil"
+        ],
+        "rightColumn": [
+          "спільна кухня",
+          "користуватися разом",
+          "головний убір",
+          "олівець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i11:audio",
+          "transcript": "We chat here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We chat here.",
+        "orderedTokens": [
+          "We",
+          "chat",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На стільці пара рукавичок. Запитайте «Чиї це рукавички?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На стільці пара рукавичок. Запитайте «Чиї це рукавички?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose gloves are these?",
+        "localizedMeaning": {
+          "ru": "На стуле пара перчаток. Спросите «Чьи это перчатки?»",
+          "uk": "На стільці пара рукавичок. Запитайте «Чиї це рукавички?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "gloves",
+          "are",
+          "these"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Допоможіть сусідові обрати мову: «Я говорю англійською»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Допоможіть сусідові обрати мову: «Я говорю англійською»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i13:audio",
+          "transcript": "I speak English."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I speak English.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Анна живе в одній кімнаті з Томом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-48:i14:r1",
+          "text": "shares"
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i14:r2",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i14:r3",
+          "text": "is shares"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Анна живе в одній кімнаті з Томом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна живёт в одной комнате с Томом»",
+          "uk": "Скажіть «Анна живе в одній кімнаті з Томом»"
+        },
+        "gappedTargetPhrase": "Anna ___ a room with Tom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i14:r1",
+            "text": "shares"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i14:r2",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i14:r3",
+            "text": "is shares"
+          }
+        ],
+        "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-48:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna shares`.",
+              "uk": "Анна — вона: `Anna shares`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna shares`, без `is`.",
+              "uk": "Потрібно `Anna shares`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить капелюх",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-48:i15:r1",
+          "text": "This hat is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i15:r2",
+          "text": "This hat is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-48:i15:r3",
+          "text": "This hat is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить капелюх",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i15:audio",
+          "transcript": "This hat is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-48:i15:r1",
+            "targetText": "This hat is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i15:r2",
+            "targetText": "This hat is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i15:r3",
+            "targetText": "This hat is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-48:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить капелюх",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить капелюх",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-48:i16:p1",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i16:p2",
+            "target": "pencil",
+            "meaningByLocale": {
+              "ru": "карандаш",
+              "uk": "олівець"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i16:p3",
+            "target": "glove",
+            "meaningByLocale": {
+              "ru": "перчатка",
+              "uk": "рукавичка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-48:i16:p4",
+            "target": "community kitchen",
+            "meaningByLocale": {
+              "ru": "общая кухня",
+              "uk": "спільна кухня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mug",
+          "pencil",
+          "glove",
+          "community kitchen"
+        ],
+        "rightColumn": [
+          "кухоль",
+          "олівець",
+          "рукавичка",
+          "спільна кухня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сусід хоче звернутися до Анни. Підкажіть «Вона говорить англійською»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Сусід хоче звернутися до Анни. Підкажіть «Вона говорить англійською»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-48:i17:audio",
+          "transcript": "She speaks English."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She speaks English.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "eefe61449421abc05cb04694a84bc1a30598895ed4eedd9dc434bccaa84a28bb"
+}

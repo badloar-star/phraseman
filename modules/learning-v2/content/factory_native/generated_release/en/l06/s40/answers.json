@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-40:i01",
+    "correctText": "We live here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i02",
+    "correctText": "She studies at home.",
+    "correctResponseId": "en:lesson-06:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i03",
+    "correctText": "drinks",
+    "correctResponseId": "en:lesson-06:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i04",
+    "correctText": "en:lesson-06:session-40:i04:p1=study\nen:lesson-06:session-40:i04:p2=drink\nen:lesson-06:session-40:i04:p3=sleep\nen:lesson-06:session-40:i04:p4=live",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i05",
+    "correctText": "He cycles to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i06",
+    "correctText": "She shops here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i07",
+    "correctText": "The cat sleeps here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i08",
+    "correctText": "rest",
+    "correctResponseId": "en:lesson-06:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i09",
+    "correctText": "This thermostat is new.",
+    "correctResponseId": "en:lesson-06:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i10",
+    "correctText": "en:lesson-06:session-40:i10:p1=shop\nen:lesson-06:session-40:i10:p2=rest\nen:lesson-06:session-40:i10:p3=cycle\nen:lesson-06:session-40:i10:p4=thermostat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i11",
+    "correctText": "I drink water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i12",
+    "correctText": "Whose laptop is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i13",
+    "correctText": "They study at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i14",
+    "correctText": "lives",
+    "correctResponseId": "en:lesson-06:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i15",
+    "correctText": "We shop here.",
+    "correctResponseId": "en:lesson-06:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i16",
+    "correctText": "en:lesson-06:session-40:i16:p1=sleep\nen:lesson-06:session-40:i16:p2=cycle\nen:lesson-06:session-40:i16:p3=rest\nen:lesson-06:session-40:i16:p4=thermostat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:i17",
+    "correctText": "She studies at home.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-46:intro1:r2": {
+          "ru": "В конце без названия вещи нужно `mine`, не `my`.",
+          "uk": "У кінці без назви речі потрібне `mine`, не `my`."
+        },
+        "en:lesson-06:session-46:intro1:r3": {
+          "ru": "Одна кружка: `is`.",
+          "uk": "Один кухоль: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-46:intro2:r2": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-46:intro2:r3": {
+          "ru": "Одна кружка: `is this`.",
+          "uk": "Один кухоль: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-46:intro3:r2": {
+          "ru": "После `she` — `rests`.",
+          "uk": "Після `she` — `rests`."
+        },
+        "en:lesson-06:session-46:intro3:r3": {
+          "ru": "Нужно `She rests`, без `is`.",
+          "uk": "Потрібно `She rests`, без `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e130aae0bbf98d8b22d9742daeae584cf2d15e1d5e98605c54edc56755ee1aca"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "назвать кружку, спросить о владельце и рассказать о привычном месте отдыха",
+    "uk": "назвати кухоль, запитати про власника й розповісти про звичне місце відпочинку"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вот моя кружка",
+        "uk": "Ось мій кухоль"
+      },
+      "bodyByLocale": {
+        "ru": "На общей кухне Том тянется к вашей кружке. `mug` — «кружка». `This mug is mine` — «Эта кружка моя». После `mine` не повторяем название вещи. Кружки могут быть одинаковыми, но чай в вашей вы уже успели подсластить по-своему.",
+        "uk": "На спільній кухні Том тягнеться до вашого кухля. `mug` — «кухоль». `This mug is mine` — «Цей кухоль мій». Після `mine` не повторюємо назву речі. Кухлі можуть бути однаковими, але чай у своєму ви вже встигли підсолодити по-своєму."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите Тому «Эта кружка моя».",
+          "uk": "Скажіть Тому «Цей кухоль мій»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-46:intro1:r1",
+              "text": "This mug is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro1:r2",
+              "text": "This mug is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro1:r3",
+              "text": "This mug are mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-46:intro1:r1",
+              "text": "This mug is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro1:r2",
+              "text": "This mug is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro1:r3",
+              "text": "This mug are mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите Тому «Эта кружка моя».",
+          "uk": "Скажіть Тому «Цей кухоль мій»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто оставил кружку",
+        "uk": "Хто залишив кухоль"
+      },
+      "bodyByLocale": {
+        "ru": "После перерыва на столе осталась кружка. `Whose mug is this?` — «Чья это кружка?» `Whose` спрашивает о владельце. Если кружек несколько, спросите `Whose mugs are these?` — «Чьи это кружки?» Сейчас вы держите одну, поэтому `is this`.",
+        "uk": "Після перерви на столі залишився кухоль. `Whose mug is this?` — «Чий це кухоль?» `Whose` запитує про власника. Якщо кухлів кілька, запитайте `Whose mugs are these?` — «Чиї це кухлі?» Зараз ви тримаєте один, тому `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег «Чья это кружка?»",
+          "uk": "Запитайте колег «Чий це кухоль?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-46:intro2:r1",
+              "text": "Whose mug is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro2:r2",
+              "text": "Who mug is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro2:r3",
+              "text": "Whose mug are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-46:intro2:r1",
+              "text": "Whose mug is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro2:r2",
+              "text": "Who mug is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro2:r3",
+              "text": "Whose mug are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег «Чья это кружка?»",
+          "uk": "Запитайте колег «Чий це кухоль?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где отдыхает Анна",
+        "uk": "Де відпочиває Анна"
+      },
+      "bodyByLocale": {
+        "ru": "Новый коллега спрашивает, куда Анна обычно уходит на перерыв. Вы показываете на тихое место: `She rests here` — «Она отдыхает здесь». После `she` у `rest` появляется `s`. `Anna rests here` сообщает то же самое с именем. Это привычное место, даже если сейчас Анна ещё работает.",
+        "uk": "Новий колега запитує, куди Анна зазвичай іде на перерву. Ви показуєте на тихе місце: `She rests here` — «Вона відпочиває тут». Після `she` у `rest` з’являється `s`. `Anna rests here` повідомляє те саме з ім’ям. Це звичне місце, навіть якщо зараз Анна ще працює."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте коллеге об Анне «Она отдыхает здесь».",
+          "uk": "Дайте колезі відповідь про Анну «Вона відпочиває тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-46:intro3:r1",
+              "text": "She rests here."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro3:r2",
+              "text": "She rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro3:r3",
+              "text": "She is rests here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-46:intro3:r1",
+              "text": "She rests here."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro3:r2",
+              "text": "She rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-46:intro3:r3",
+              "text": "She is rests here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте коллеге об Анне «Она отдыхает здесь».",
+          "uk": "Дайте колезі відповідь про Анну «Вона відпочиває тут»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f6365463a45aa2a976559c2049b608e08ce172fa1a29323854c7a637496c9f6"
+}

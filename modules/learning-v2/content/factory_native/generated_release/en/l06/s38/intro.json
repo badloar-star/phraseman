@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, где вы отдыхаете, и описать привычку другого человека",
+    "uk": "розповісти, де ви відпочиваєте, й описати звичку іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Здесь можно передохнуть",
+        "uk": "Тут можна перепочити"
+      },
+      "bodyByLocale": {
+        "ru": "Том спрашивает, почему вы любите эту скамейку. `rest` — «отдыхать». `I rest here` — «Я отдыхаю здесь». Вы рассказываете о своём обычном месте отдыха. Перед `rest` не нужно `am`. Чтобы отдыхать, необязательно уснуть: можно просто сидеть, а список дел пусть немного подождёт.",
+        "uk": "Том запитує, чому ви любите цю лавку. `rest` — «відпочивати». `I rest here` — «Я відпочиваю тут». Ви розповідаєте про своє звичне місце відпочинку. Перед `rest` не потрібне `am`. Щоб відпочивати, необов’язково заснути: можна просто сидіти, а список справ нехай трохи зачекає."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Объясните Тому «Я отдыхаю здесь».",
+          "uk": "Поясніть Тому «Я відпочиваю тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-38:intro1:r1",
+              "text": "I rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro1:r2",
+              "text": "I am rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro1:r3",
+              "text": "I rests here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-38:intro1:r1",
+              "text": "I rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro1:r2",
+              "text": "I am rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro1:r3",
+              "text": "I rests here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните Тому «Я отдыхаю здесь».",
+          "uk": "Поясніть Тому «Я відпочиваю тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Любимая скамейка Анны",
+        "uk": "Улюблена лавка Анни"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, где Анна обычно отдыхает. `She rests here` — «Она отдыхает здесь». После `she` добавляем `s`: `rest → rests`. `Anna rests here` означает то же самое, только вместо `she` называем имя. Она не обязана сидеть на скамейке сейчас: вы описываете привычку.",
+        "uk": "Сусід запитує, де Анна зазвичай відпочиває. `She rests here` — «Вона відпочиває тут». Після `she` додаємо `s`: `rest → rests`. `Anna rests here` означає те саме, тільки замість `she` називаємо ім’я. Вона не зобов’язана сидіти на лавці зараз: ви описуєте звичку."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте соседу об Анне: «Она отдыхает здесь».",
+          "uk": "Дайте сусідові відповідь про Анну: «Вона відпочиває тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-38:intro2:r1",
+              "text": "She rests here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro2:r2",
+              "text": "She rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro2:r3",
+              "text": "She is rests here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-38:intro2:r1",
+              "text": "She rests here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro2:r2",
+              "text": "She rest here."
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro2:r3",
+              "text": "She is rests here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте соседу об Анне: «Она отдыхает здесь».",
+          "uk": "Дайте сусідові відповідь про Анну: «Вона відпочиває тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Забытый ноутбук",
+        "uk": "Забутий ноутбук"
+      },
+      "bodyByLocale": {
+        "ru": "На скамейке остался ноутбук. `laptop` — «ноутбук». Чтобы найти владельца, спросите людей рядом: `Whose laptop is this?` — «Чей это ноутбук?» Один ноутбук: `is this`. Слово `whose` помогает спросить именно о владельце находки.",
+        "uk": "На лавці залишився ноутбук. `laptop` — «ноутбук». Щоб знайти власника, запитайте людей поруч: `Whose laptop is this?` — «Чий це ноутбук?» Один ноутбук: `is this`. Слово `whose` допомагає запитати саме про власника знахідки."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите у людей рядом «Чей это ноутбук?»",
+          "uk": "Запитайте в людей поруч «Чий це ноутбук?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-38:intro3:r1",
+              "text": "Whose laptop is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro3:r2",
+              "text": "Who laptop is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro3:r3",
+              "text": "Whose laptop are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-38:intro3:r1",
+              "text": "Whose laptop is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro3:r2",
+              "text": "Who laptop is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-38:intro3:r3",
+              "text": "Whose laptop are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите у людей рядом «Чей это ноутбук?»",
+          "uk": "Запитайте в людей поруч «Чий це ноутбук?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2a6a4814ab7678d44bb38e58996f56b24d55c9b11cd76b32e63d03663ffaf555"
+}

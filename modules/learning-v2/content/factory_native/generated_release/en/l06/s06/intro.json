@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "назвать закладку, уточнить владельца и рассказать о работе",
+    "uk": "назвати закладку, уточнити власника й розповісти про роботу"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чтобы не потерять страницу",
+        "uk": "Щоб не загубити сторінку"
+      },
+      "bodyByLocale": {
+        "ru": "`bookmark` — «закладка»; здесь полоска бумаги или другой предмет, которым отмечают страницу книги. `This is my bookmark` — «Это моя закладка». `Whose bookmark is this?` — «Чья это закладка?» `The bookmark is in the book` — «Закладка в книге». Закладка помнит страницу, даже если читатель уже забыл сюжет.",
+        "uk": "`bookmark` — «закладка»; тут смужка паперу або інший предмет, яким позначають сторінку книжки. `This is my bookmark` — «Це моя закладка». `Whose bookmark is this?` — «Чия це закладка?» `The bookmark is in the book` — «Закладка в книжці». Закладка пам’ятає сторінку, навіть якщо читач уже забув сюжет."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце закладки.",
+          "uk": "Запитайте про власника закладки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-06:intro1:r1",
+              "text": "Whose bookmark is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro1:r2",
+              "text": "Where is the bookmark?"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro1:r3",
+              "text": "Whose bookmark are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-06:intro1:r1",
+              "text": "Whose bookmark is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro1:r2",
+              "text": "Where is the bookmark?"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro1:r3",
+              "text": "Whose bookmark are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце закладки.",
+          "uk": "Запитайте про власника закладки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Настоящее и поддельное",
+        "uk": "Справжнє й підроблене"
+      },
+      "bodyByLocale": {
+        "ru": "`fake` — «поддельный», не настоящий. `This is a fake ring` — «Это поддельное кольцо», например имитация, выдаваемая за подлинное изделие. Это не просто «дешёвое»: цена сама по себе не делает вещь поддельной. `That bookmark is yours` — «Та закладка твоя»: `that` указывает на вещь дальше от говорящего.",
+        "uk": "`fake` — «підроблений», не справжній. `This is a fake ring` — «Це підроблена каблучка», наприклад імітація, яку видають за справжній виріб. Це не просто «дешеве»: ціна сама собою не робить річ підробленою. `That bookmark is yours` — «Та закладка твоя»: `that` указує на річ далі від мовця."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Это поддельное кольцо».",
+          "uk": "Скажіть «Це підроблена каблучка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-06:intro2:r1",
+              "text": "This is a fake ring."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro2:r2",
+              "text": "This are a fake ring."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro2:r3",
+              "text": "This is a real ring."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-06:intro2:r1",
+              "text": "This is a fake ring."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro2:r2",
+              "text": "This are a fake ring."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro2:r3",
+              "text": "This is a real ring."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Это поддельное кольцо».",
+          "uk": "Скажіть «Це підроблена каблучка»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Комната в клинике",
+        "uk": "Кімната в клініці"
+      },
+      "bodyByLocale": {
+        "ru": "`clinic` — «клиника», `ceiling` — «потолок», `kiosk` — «киоск». `I work in a clinic` — «Я работаю в клинике», без `am` перед `work`. `The ceiling is white` — «Потолок белый». `The clinic is near the kiosk` — «Клиника возле киоска».",
+        "uk": "`clinic` — «клініка», `ceiling` — «стеля», `kiosk` — «кіоск». `I work in a clinic` — «Я працюю в клініці», без `am` перед `work`. `The ceiling is white` — «Стеля біла». `The clinic is near the kiosk` — «Клініка біля кіоску»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю в клинике».",
+          "uk": "Скажіть «Я працюю в клініці»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-06:intro3:r1",
+              "text": "I work in a clinic."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro3:r2",
+              "text": "I am work in a clinic."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro3:r3",
+              "text": "I work in a bank."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-06:intro3:r1",
+              "text": "I work in a clinic."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro3:r2",
+              "text": "I am work in a clinic."
+            },
+            {
+              "responseId": "en:lesson-06:session-06:intro3:r3",
+              "text": "I work in a bank."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю в клинике».",
+          "uk": "Скажіть «Я працюю в клініці»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6ef5eb87c74212dd01ec652b99733a7adb34c908aaa939e303f84240b21cac9b"
+}

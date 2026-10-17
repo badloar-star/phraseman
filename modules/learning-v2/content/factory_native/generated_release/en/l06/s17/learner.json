@@ -1,0 +1,958 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я езжу на работу за рулём»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я езжу на работу за рулём»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I drive to work.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я езжу на работу за рулём»",
+          "uk": "Скажіть «Я їжджу на роботу за кермом»"
+        },
+        "orderedTokens": [
+          "I",
+          "drive",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-17:i02:r1",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i02:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i02:r3",
+          "text": "swim"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i02:audio",
+          "transcript": "drive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-17:i02:r1",
+            "targetText": "drive",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i02:r2",
+            "targetText": "start",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i02:r3",
+            "targetText": "swim",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `drive`, а в этом варианте — `start`.",
+              "uk": "У записі перше слово — `drive`, а в цьому варіанті — `start`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `drive`, а в этом варианте — `swim`.",
+              "uk": "У записі перше слово — `drive`, а в цьому варіанті — `swim`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она ездит на работу за рулём»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-17:i03:r1",
+          "text": "drives"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i03:r2",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i03:r3",
+          "text": "is drives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она ездит на работу за рулём»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она ездит на работу за рулём»",
+          "uk": "Скажіть «Вона їздить на роботу за кермом»"
+        },
+        "gappedTargetPhrase": "She ___ to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-17:i03:r1",
+            "text": "drives"
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i03:r2",
+            "text": "drive"
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i03:r3",
+            "text": "is drives"
+          }
+        ],
+        "testedDimension": "Скажите «Она ездит на работу за рулём»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она ездит на работу за рулём»",
+            "feedbackByLocale": {
+              "ru": "После `she` — `drives`, с `s`.",
+              "uk": "Після `she` — `drives`, з `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она ездит на работу за рулём»",
+            "feedbackByLocale": {
+              "ru": "Говорим `She drives`, без `is`.",
+              "uk": "Кажемо `She drives`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями; well — о самочувствии",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями; well — о самочувствии",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-17:i04:p1",
+            "target": "drive",
+            "meaningByLocale": {
+              "ru": "водить машину",
+              "uk": "водити машину"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i04:p2",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i04:p3",
+            "target": "jacket",
+            "meaningByLocale": {
+              "ru": "куртка",
+              "uk": "куртка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i04:p4",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drive",
+          "well",
+          "jacket",
+          "berry"
+        ],
+        "rightColumn": [
+          "водить машину",
+          "хорошо себя чувствующий",
+          "куртка",
+          "ягода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i05:audio",
+          "transcript": "Anna drives to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Anna drives to work.",
+        "orderedTokens": [
+          "Anna",
+          "drives",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Он начинает в девять»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он начинает в девять»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He starts at nine.",
+        "localizedMeaning": {
+          "ru": "Скажите «Он начинает в девять»",
+          "uk": "Скажіть «Він починає о дев’ятій»"
+        },
+        "orderedTokens": [
+          "He",
+          "starts",
+          "at",
+          "nine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Она хорошо себя чувствует»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Она хорошо себя чувствует»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i07:audio",
+          "transcript": "She is well."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is well.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Он работает здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-17:i08:r1",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i08:r2",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i08:r3",
+          "text": "is works"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он работает здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он работает здесь»",
+          "uk": "Скажіть «Він працює тут»"
+        },
+        "gappedTargetPhrase": "He ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-17:i08:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i08:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i08:r3",
+            "text": "is works"
+          }
+        ],
+        "testedDimension": "Скажите «Он работает здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Он работает здесь»",
+            "feedbackByLocale": {
+              "ru": "После `he` — `works`, с `s`.",
+              "uk": "Після `he` — `works`, з `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Он работает здесь»",
+            "feedbackByLocale": {
+              "ru": "Говорим `He works`, без `is`.",
+              "uk": "Кажемо `He works`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, во сколько она начинает",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-17:i09:r1",
+          "text": "She starts at eight."
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i09:r2",
+          "text": "She starts at nine."
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i09:r3",
+          "text": "She starts at ten."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, во сколько она начинает",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i09:audio",
+          "transcript": "She starts at eight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-17:i09:r1",
+            "targetText": "She starts at eight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i09:r2",
+            "targetText": "She starts at nine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i09:r3",
+            "targetText": "She starts at ten.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, во сколько она начинает",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `eight`, а в этом варианте — `nine`.",
+              "uk": "У записі останнє слово — `eight`, а в цьому варіанті — `nine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, во сколько она начинает",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `eight`, а в этом варианте — `ten`.",
+              "uk": "У записі останнє слово — `eight`, а в цьому варіанті — `ten`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-17:i10:p1",
+            "target": "drive",
+            "meaningByLocale": {
+              "ru": "водить машину",
+              "uk": "водити машину"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i10:p2",
+            "target": "start",
+            "meaningByLocale": {
+              "ru": "начинать",
+              "uk": "починати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i10:p3",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i10:p4",
+            "target": "jacket",
+            "meaningByLocale": {
+              "ru": "куртка",
+              "uk": "куртка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drive",
+          "start",
+          "berry",
+          "jacket"
+        ],
+        "rightColumn": [
+          "водить машину",
+          "начинать",
+          "ягода",
+          "куртка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i11:audio",
+          "transcript": "The berry is red."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The berry is red.",
+        "orderedTokens": [
+          "The",
+          "berry",
+          "is",
+          "red"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The berry is red.`",
+              "uk": "тут потрібно `is` — `The berry is red.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Они ездят на работу за рулём»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они ездят на работу за рулём»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They drive to work.",
+        "localizedMeaning": {
+          "ru": "Скажите «Они ездят на работу за рулём»",
+          "uk": "Скажіть «Вони їздять на роботу за кермом»"
+        },
+        "orderedTokens": [
+          "They",
+          "drive",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я хорошо себя чувствую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я хорошо себя чувствую»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i13:audio",
+          "transcript": "I am well."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am well.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Анна работает здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-17:i14:r1",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i14:r2",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i14:r3",
+          "text": "is works"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна работает здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна работает здесь»",
+          "uk": "Скажіть «Анна працює тут»"
+        },
+        "gappedTargetPhrase": "Anna ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-17:i14:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i14:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i14:r3",
+            "text": "is works"
+          }
+        ],
+        "testedDimension": "Скажите «Анна работает здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Анна работает здесь»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna works`, с `s`.",
+              "uk": "Анна — вона: `Anna works`, з `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Анна работает здесь»",
+            "feedbackByLocale": {
+              "ru": "Говорим `Anna works`, без `is`.",
+              "uk": "Кажемо `Anna works`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чья куртка здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-17:i15:r1",
+          "text": "My jacket is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i15:r2",
+          "text": "Your jacket is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-17:i15:r3",
+          "text": "His jacket is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чья куртка здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i15:audio",
+          "transcript": "My jacket is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-17:i15:r1",
+            "targetText": "My jacket is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i15:r2",
+            "targetText": "Your jacket is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i15:r3",
+            "targetText": "His jacket is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-17:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чья куртка здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-17:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чья куртка здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями; well — о самочувствии",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями; well — о самочувствии",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-17:i16:p1",
+            "target": "drive",
+            "meaningByLocale": {
+              "ru": "водить машину",
+              "uk": "водити машину"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i16:p2",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i16:p3",
+            "target": "start",
+            "meaningByLocale": {
+              "ru": "начинать",
+              "uk": "починати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-17:i16:p4",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drive",
+          "well",
+          "start",
+          "berry"
+        ],
+        "rightColumn": [
+          "водить машину",
+          "хорошо себя чувствующий",
+          "начинать",
+          "ягода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-17:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, как Анна добирается на работу. Скажите «Она ездит на работу за рулём»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, как Анна добирается на работу. Скажите «Она ездит на работу за рулём»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-17:i17:audio",
+          "transcript": "She drives to work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She drives to work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "da364cc34b8de1e2d9e56c6ce5de35aac57ad0ef01dbff8f4b8a7b2c470a558e"
+}

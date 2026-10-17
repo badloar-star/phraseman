@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-53:i01",
+    "correctText": "They wear uniforms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i02",
+    "correctText": "uniform",
+    "correctResponseId": "en:lesson-06:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-06:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i04",
+    "correctText": "en:lesson-06:session-53:i04:p1=uniform\nen:lesson-06:session-53:i04:p2=unfair\nen:lesson-06:session-53:i04:p3=police station\nen:lesson-06:session-53:i04:p4=court",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i05",
+    "correctText": "They wear uniforms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i06",
+    "correctText": "She wears a uniform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i07",
+    "correctText": "Whose uniform is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i08",
+    "correctText": "wears",
+    "correctResponseId": "en:lesson-06:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i09",
+    "correctText": "She wears a uniform.",
+    "correctResponseId": "en:lesson-06:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i10",
+    "correctText": "en:lesson-06:session-53:i10:p1=pencil\nen:lesson-06:session-53:i10:p2=uniform\nen:lesson-06:session-53:i10:p3=court\nen:lesson-06:session-53:i10:p4=unfair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i11",
+    "correctText": "Whose uniform is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i12",
+    "correctText": "Whose pencil is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i13",
+    "correctText": "The police station is near the court.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-06:session-53:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i15",
+    "correctText": "They wear uniforms.",
+    "correctResponseId": "en:lesson-06:session-53:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i16",
+    "correctText": "en:lesson-06:session-53:i16:p1=uniform\nen:lesson-06:session-53:i16:p2=police station\nen:lesson-06:session-53:i16:p3=pencil\nen:lesson-06:session-53:i16:p4=unfair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-53:i17",
+    "correctText": "I wear a uniform.",
+    "correctResponseId": null
+  }
+]

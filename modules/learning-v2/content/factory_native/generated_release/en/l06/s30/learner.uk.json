@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про звичку: «Я прибираю свою кімнату»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про звичку: «Я прибираю свою кімнату»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I clean my room.",
+        "localizedMeaning": {
+          "ru": "Расскажите о привычке: «Я убираю свою комнату»",
+          "uk": "Розкажіть про звичку: «Я прибираю свою кімнату»"
+        },
+        "orderedTokens": [
+          "I",
+          "clean",
+          "my",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-30:i02:r1",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i02:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i02:r3",
+          "text": "read"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i02:audio",
+          "transcript": "clean"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-30:i02:r1",
+            "targetText": "clean",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i02:r2",
+            "targetText": "call",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i02:r3",
+            "targetText": "read",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `clean`, а в этом варианте — `call`.",
+              "uk": "У записі перше слово — `clean`, а в цьому варіанті — `call`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `clean`, а в этом варианте — `read`.",
+              "uk": "У записі перше слово — `clean`, а в цьому варіанті — `read`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона прибирає свою кімнату»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-30:i03:r1",
+          "text": "cleans"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i03:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i03:r3",
+          "text": "is cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона прибирає свою кімнату»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она убирает свою комнату»",
+          "uk": "Скажіть «Вона прибирає свою кімнату»"
+        },
+        "gappedTargetPhrase": "She ___ her room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i03:r1",
+            "text": "cleans"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i03:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i03:r3",
+            "text": "is cleans"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона прибирає свою кімнату»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона прибирає свою кімнату»",
+            "feedbackByLocale": {
+              "ru": "После `she` — `cleans`.",
+              "uk": "Після `she` — `cleans`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона прибирає свою кімнату»",
+            "feedbackByLocale": {
+              "ru": "Нужно `She cleans`, без `is`.",
+              "uk": "Потрібно `She cleans`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-30:i04:p1",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "убирать",
+              "uk": "прибирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i04:p2",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i04:p3",
+            "target": "signpost",
+            "meaningByLocale": {
+              "ru": "указатель",
+              "uk": "вказівник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i04:p4",
+            "target": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clean",
+          "elsewhere",
+          "signpost",
+          "headphones"
+        ],
+        "rightColumn": [
+          "прибирати",
+          "в іншому місці",
+          "вказівник",
+          "навушники"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i05:audio",
+          "transcript": "Tom cleans his room."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom cleans his room.",
+        "orderedTokens": [
+          "Tom",
+          "cleans",
+          "his",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Він читає тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Він читає тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He reads here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Он читает здесь»",
+          "uk": "Скажіть «Він читає тут»"
+        },
+        "orderedTokens": [
+          "He",
+          "reads",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Мої навушники в іншому місці»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Мої навушники в іншому місці»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i07:audio",
+          "transcript": "My headphones are elsewhere."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My headphones are elsewhere.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Ми прибираємо свою кімнату»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-30:i08:r1",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i08:r2",
+          "text": "cleans"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i08:r3",
+          "text": "are clean"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Ми прибираємо свою кімнату»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Мы убираем свою комнату»",
+          "uk": "Скажіть «Ми прибираємо свою кімнату»"
+        },
+        "gappedTargetPhrase": "We ___ our room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i08:r1",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i08:r2",
+            "text": "cleans"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i08:r3",
+            "text": "are clean"
+          }
+        ],
+        "testedDimension": "Скажіть «Ми прибираємо свою кімнату»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Ми прибираємо свою кімнату»",
+            "feedbackByLocale": {
+              "ru": "После `we` — `clean`, без `s`.",
+              "uk": "Після `we` — `clean`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Ми прибираємо свою кімнату»",
+            "feedbackByLocale": {
+              "ru": "Действие: `We clean our room`, без `are`.",
+              "uk": "Дія: `We clean our room`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, який цей вказівник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-30:i09:r1",
+          "text": "This signpost is new."
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i09:r2",
+          "text": "This signpost is old."
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i09:r3",
+          "text": "This signpost is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який цей вказівник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i09:audio",
+          "transcript": "This signpost is new."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-30:i09:r1",
+            "targetText": "This signpost is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i09:r2",
+            "targetText": "This signpost is old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i09:r3",
+            "targetText": "This signpost is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, який цей вказівник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, який цей вказівник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-30:i10:p1",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "убирать",
+              "uk": "прибирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i10:p2",
+            "target": "read",
+            "meaningByLocale": {
+              "ru": "читать",
+              "uk": "читати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i10:p3",
+            "target": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i10:p4",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clean",
+          "read",
+          "headphones",
+          "elsewhere"
+        ],
+        "rightColumn": [
+          "прибирати",
+          "читати",
+          "навушники",
+          "в іншому місці"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i11:audio",
+          "transcript": "These headphones are mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These headphones are mine.",
+        "orderedTokens": [
+          "These",
+          "headphones",
+          "are",
+          "mine"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-30:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These headphones are mine.`",
+              "uk": "тут потрібно `are` — `These headphones are mine.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Чиї це навушники?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Чиї це навушники?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose headphones are these?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чьи это наушники?»",
+          "uk": "Запитайте «Чиї це навушники?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "headphones",
+          "are",
+          "these"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Вони читають в іншому місці»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Вони читають в іншому місці»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i13:audio",
+          "transcript": "They read elsewhere."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They read elsewhere.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Анна читає тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-30:i14:r1",
+          "text": "reads"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i14:r2",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i14:r3",
+          "text": "is reads"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Анна читає тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна читает здесь»",
+          "uk": "Скажіть «Анна читає тут»"
+        },
+        "gappedTargetPhrase": "Anna ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-30:i14:r1",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i14:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i14:r3",
+            "text": "is reads"
+          }
+        ],
+        "testedDimension": "Скажіть «Анна читає тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-30:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна читає тут»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna reads`.",
+              "uk": "Анна — вона: `Anna reads`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна читає тут»",
+            "feedbackByLocale": {
+              "ru": "Говорим `Anna reads`, без `is`.",
+              "uk": "Кажемо `Anna reads`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чиї навушники тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-30:i15:r1",
+          "text": "Your headphones are here."
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i15:r2",
+          "text": "My headphones are here."
+        },
+        {
+          "responseId": "en:lesson-06:session-30:i15:r3",
+          "text": "His headphones are here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чиї навушники тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i15:audio",
+          "transcript": "Your headphones are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-30:i15:r1",
+            "targetText": "Your headphones are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i15:r2",
+            "targetText": "My headphones are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i15:r3",
+            "targetText": "His headphones are here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-30:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чиї навушники тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-30:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чиї навушники тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-30:i16:p1",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "убирать",
+              "uk": "прибирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i16:p2",
+            "target": "signpost",
+            "meaningByLocale": {
+              "ru": "указатель",
+              "uk": "вказівник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i16:p3",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-30:i16:p4",
+            "target": "read",
+            "meaningByLocale": {
+              "ru": "читать",
+              "uk": "читати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clean",
+          "signpost",
+          "elsewhere",
+          "read"
+        ],
+        "rightColumn": [
+          "прибирати",
+          "вказівник",
+          "в іншому місці",
+          "читати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть про звичку Анни: «Вона прибирає свою кімнату»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Розкажіть про звичку Анни: «Вона прибирає свою кімнату»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-30:i17:audio",
+          "transcript": "She cleans her room."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She cleans her room.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "55b417c42b800a9c02e54974856db02e2a36a081017d2da6424d11ac6c07f05b"
+}

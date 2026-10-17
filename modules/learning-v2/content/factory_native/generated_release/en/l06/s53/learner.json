@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Они носят форму»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они носят форму»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They wear uniforms.",
+        "localizedMeaning": {
+          "ru": "Скажите «Они носят форму»",
+          "uk": "Скажіть «Вони носять форму»"
+        },
+        "orderedTokens": [
+          "They",
+          "wear",
+          "uniforms"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-53:i02:r1",
+          "text": "uniform"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i02:r2",
+          "text": "pencil"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i02:r3",
+          "text": "court"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i02:audio",
+          "transcript": "uniform"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-53:i02:r1",
+            "targetText": "uniform",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i02:r2",
+            "targetText": "pencil",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i02:r3",
+            "targetText": "court",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `uniform`, а в этом варианте — `pencil`.",
+              "uk": "У записі перше слово — `uniform`, а в цьому варіанті — `pencil`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `uniform`, а в этом варианте — `court`.",
+              "uk": "У записі перше слово — `uniform`, а в цьому варіанті — `court`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она носит форму»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-53:i03:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она носит форму»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она носит форму»",
+          "uk": "Скажіть «Вона носить форму»"
+        },
+        "gappedTargetPhrase": "She wears ___ uniform.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Скажите «Она носит форму»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она носит форму»",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `uniform` — «й», поэтому `a`.",
+              "uk": "Перший звук в `uniform` — «й», тому `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она носит форму»",
+            "feedbackByLocale": {
+              "ru": "Перед названием одного комплекта здесь нужно `a`.",
+              "uk": "Перед назвою одного комплекту тут потрібне `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-53:i04:p1",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i04:p2",
+            "target": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый",
+              "uk": "несправедливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i04:p3",
+            "target": "police station",
+            "meaningByLocale": {
+              "ru": "полицейский участок",
+              "uk": "поліцейський відділок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i04:p4",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "uniform",
+          "unfair",
+          "police station",
+          "court"
+        ],
+        "rightColumn": [
+          "униформа",
+          "несправедливый",
+          "полицейский участок",
+          "корт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i05:audio",
+          "transcript": "They wear uniforms."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They wear uniforms.",
+        "orderedTokens": [
+          "They",
+          "wear",
+          "uniforms"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите об одежде Анны на работе «Она носит форму»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите об одежде Анны на работе «Она носит форму»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She wears a uniform.",
+        "localizedMeaning": {
+          "ru": "Скажите об одежде Анны на работе «Она носит форму»",
+          "uk": "Скажіть про одяг Анни на роботі «Вона носить форму»"
+        },
+        "orderedTokens": [
+          "She",
+          "wears",
+          "a",
+          "uniform"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На стуле лежит форма. Спросите коллег «Чья это форма?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "На стуле лежит форма. Спросите коллег «Чья это форма?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i07:audio",
+          "transcript": "Whose uniform is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose uniform is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Он носит форму»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-53:i08:r1",
+          "text": "wears"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i08:r2",
+          "text": "wear"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i08:r3",
+          "text": "is wears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он носит форму»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он носит форму»",
+          "uk": "Скажіть «Він носить форму»"
+        },
+        "gappedTargetPhrase": "He ___ a uniform.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i08:r1",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i08:r2",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i08:r3",
+            "text": "is wears"
+          }
+        ],
+        "testedDimension": "Скажите «Он носит форму»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Он носит форму»",
+            "feedbackByLocale": {
+              "ru": "После `he` нужно `wears`.",
+              "uk": "Після `he` потрібне `wears`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Он носит форму»",
+            "feedbackByLocale": {
+              "ru": "Нужно `He wears`, без `is`.",
+              "uk": "Потрібно `He wears`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о ком рассказывает коллега",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-53:i09:r1",
+          "text": "She wears a uniform."
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i09:r2",
+          "text": "He wears a uniform."
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i09:r3",
+          "text": "Anna wears a uniform."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о ком рассказывает коллега",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i09:audio",
+          "transcript": "She wears a uniform."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-53:i09:r1",
+            "targetText": "She wears a uniform.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i09:r2",
+            "targetText": "He wears a uniform.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i09:r3",
+            "targetText": "Anna wears a uniform.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает коллега",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает коллега",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-53:i10:p1",
+            "target": "pencil",
+            "meaningByLocale": {
+              "ru": "карандаш",
+              "uk": "олівець"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i10:p2",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i10:p3",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i10:p4",
+            "target": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый",
+              "uk": "несправедливий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pencil",
+          "uniform",
+          "court",
+          "unfair"
+        ],
+        "rightColumn": [
+          "карандаш",
+          "униформа",
+          "корт",
+          "несправедливый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i11:audio",
+          "transcript": "Whose uniform is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose uniform is this?",
+        "orderedTokens": [
+          "Whose",
+          "uniform",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На рабочем столе остался карандаш. Спросите «Чей это карандаш?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На рабочем столе остался карандаш. Спросите «Чей это карандаш?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose pencil is this?",
+        "localizedMeaning": {
+          "ru": "На рабочем столе остался карандаш. Спросите «Чей это карандаш?»",
+          "uk": "На робочому столі залишився олівець. Запитайте «Чий це олівець?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "pencil",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите на карте «Полицейский участок возле корта»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите на карте «Полицейский участок возле корта»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i13:audio",
+          "transcript": "The police station is near the court."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The police station is near the court.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В раздевалке два комплекта формы. Спросите, чьи они",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-53:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В раздевалке два комплекта формы. Спросите, чьи они",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В раздевалке два комплекта формы. Спросите, чьи они",
+          "uk": "У роздягальні два комплекти форми. Запитайте, чиї вони"
+        },
+        "gappedTargetPhrase": "Whose uniforms ___ these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-53:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "В раздевалке два комплекта формы. Спросите, чьи они",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "В раздевалке два комплекта формы. Спросите, чьи они",
+            "feedbackByLocale": {
+              "ru": "Несколько комплектов: `are these`.",
+              "uk": "Кілька комплектів: `are these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "В раздевалке два комплекта формы. Спросите, чьи они",
+            "feedbackByLocale": {
+              "ru": "`Am` подходит к `I`; здесь нужно `are`.",
+              "uk": "`Am` підходить до `I`; тут потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто носит форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-53:i15:r1",
+          "text": "They wear uniforms."
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i15:r2",
+          "text": "We wear uniforms."
+        },
+        {
+          "responseId": "en:lesson-06:session-53:i15:r3",
+          "text": "You wear uniforms."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто носит форму",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i15:audio",
+          "transcript": "They wear uniforms."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-53:i15:r1",
+            "targetText": "They wear uniforms.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i15:r2",
+            "targetText": "We wear uniforms.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i15:r3",
+            "targetText": "You wear uniforms.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-53:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто носит форму",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-53:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто носит форму",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-53:i16:p1",
+            "target": "uniform",
+            "meaningByLocale": {
+              "ru": "униформа",
+              "uk": "уніформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i16:p2",
+            "target": "police station",
+            "meaningByLocale": {
+              "ru": "полицейский участок",
+              "uk": "поліцейський відділок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i16:p3",
+            "target": "pencil",
+            "meaningByLocale": {
+              "ru": "карандаш",
+              "uk": "олівець"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-53:i16:p4",
+            "target": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый",
+              "uk": "несправедливий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "uniform",
+          "police station",
+          "pencil",
+          "unfair"
+        ],
+        "rightColumn": [
+          "униформа",
+          "полицейский участок",
+          "карандаш",
+          "несправедливый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о вашей одежде на новой работе. Ответьте «Я ношу форму»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о вашей одежде на новой работе. Ответьте «Я ношу форму»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-53:i17:audio",
+          "transcript": "I wear a uniform."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wear a uniform.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9c4f80d6bc8baa14a67e04531e7f7a619bcb3bcbe2ed431cafd0f228b6697251"
+}

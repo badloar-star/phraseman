@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "назвать посылку, спросить о владельце и описать своё отношение к новости",
+    "uk": "назвати посилку, запитати про власника й описати своє ставлення до новини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что принесли?",
+        "uk": "Що принесли?"
+      },
+      "bodyByLocale": {
+        "ru": "`parcel` — «посылка». `This is my parcel` — «Это моя посылка». `Whose parcel is this?` — «Чья это посылка?» `The parcel is mine` — «Посылка моя». Посылка уже добралась до стола, хотя сама адреса не читает.",
+        "uk": "`parcel` — «посилка». `This is my parcel` — «Це моя посилка». `Whose parcel is this?` — «Чия це посилка?» `The parcel is mine` — «Посилка моя». Посилка вже дісталася столу, хоча сама адреси не читає."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце посылки.",
+          "uk": "Запитайте про власника посилки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-03:intro1:r1",
+              "text": "Whose parcel is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro1:r2",
+              "text": "Where is the parcel?"
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro1:r3",
+              "text": "Whose parcel are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-03:intro1:r1",
+              "text": "Whose parcel is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro1:r2",
+              "text": "Where is the parcel?"
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro1:r3",
+              "text": "Whose parcel are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце посылки.",
+          "uk": "Запитайте про власника посилки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Место работы и вещи",
+        "uk": "Місце роботи й речі"
+      },
+      "bodyByLocale": {
+        "ru": "`bank` — «банк», `desk` — «письменный стол», `stadium` — «стадион». `I work in a bank` — «Я работаю в банке». `The parcel is on the desk` — «Посылка на письменном столе». `The bank is near the stadium` — «Банк возле стадиона». Перед `work` в этой фразе не нужно `am`.",
+        "uk": "`bank` — «банк», `desk` — «письмовий стіл», `stadium` — «стадіон». `I work in a bank` — «Я працюю в банку». `The parcel is on the desk` — «Посилка на письмовому столі». `The bank is near the stadium` — «Банк біля стадіону». Перед `work` у цій фразі не потрібне `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю в банке».",
+          "uk": "Скажіть «Я працюю в банку»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-03:intro2:r1",
+              "text": "I work in a bank."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro2:r2",
+              "text": "I am work in a bank."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro2:r3",
+              "text": "I work in a library."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-03:intro2:r1",
+              "text": "I work in a bank."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro2:r2",
+              "text": "I am work in a bank."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro2:r3",
+              "text": "I work in a library."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю в банке».",
+          "uk": "Скажіть «Я працюю в банку»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Знать, верить, беспокоиться",
+        "uk": "Знати, вірити, непокоїтися"
+      },
+      "bodyByLocale": {
+        "ru": "`aware` — «осведомлён»: `I am aware` — «Я в курсе», когда понятно, о чём речь. `convinced` — «убеждён»: `I am convinced` — «Я убеждён / убеждена», когда понятно, в чём. `concerned` — «обеспокоен»: `I am concerned` — «Я обеспокоен / обеспокоена». Знать о новости, верить утверждению и беспокоиться — разные состояния. Во всех трёх фразах с `I` нужно `am`.",
+        "uk": "`aware` — «обізнаний»: `I am aware` — «Я в курсі», коли зрозуміло, про що йдеться. `convinced` — «переконаний»: `I am convinced` — «Я переконаний / переконана», коли зрозуміло, у чому. `concerned` — «стурбований»: `I am concerned` — «Я стурбований / стурбована». Знати про новину, вірити твердженню й непокоїтися — різні стани. У всіх трьох фразах з `I` потрібне `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы уже знаете о задержке. Скажите «Я в курсе» без сокращения.",
+          "uk": "Ви вже знаєте про затримку. Скажіть «Я в курсі» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-03:intro3:r1",
+              "text": "I am aware."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro3:r2",
+              "text": "I aware."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro3:r3",
+              "text": "I am concerned."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-03:intro3:r1",
+              "text": "I am aware."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro3:r2",
+              "text": "I aware."
+            },
+            {
+              "responseId": "en:lesson-06:session-03:intro3:r3",
+              "text": "I am concerned."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы уже знаете о задержке. Скажите «Я в курсе» без сокращения.",
+          "uk": "Ви вже знаєте про затримку. Скажіть «Я в курсі» без скорочення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d990c2ce044d096c15c8e264267340e323fa360ec10d5a12a8b539749efce0d2"
+}

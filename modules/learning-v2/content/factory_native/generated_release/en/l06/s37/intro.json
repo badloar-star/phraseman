@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, где вы обычно делаете покупки, и описать привычку другого человека",
+    "uk": "розповісти, де ви зазвичай робите покупки, й описати звичку іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я здесь покупаю",
+        "uk": "Я тут купую"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проходите мимо знакомого магазина. `shop` как действие означает «делать покупки». `I shop here` — «Я делаю покупки здесь». Это не название магазина в этой фразе, а ваше действие: перед `shop` не нужно `am`. Продавец вас уже узнаёт, даже когда вы зашли «только посмотреть».",
+        "uk": "Ви проходите повз знайомий магазин. `shop` як дія означає «робити покупки». `I shop here` — «Я роблю покупки тут». У цій фразі це не назва магазину, а ваша дія: перед `shop` не потрібне `am`. Продавець вас уже впізнає, навіть коли ви зайшли «тільки подивитися»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите Тому «Я делаю покупки здесь».",
+          "uk": "Розкажіть Тому «Я роблю покупки тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-37:intro1:r1",
+              "text": "I shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro1:r2",
+              "text": "I am shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro1:r3",
+              "text": "I shops here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-37:intro1:r1",
+              "text": "I shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro1:r2",
+              "text": "I am shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro1:r3",
+              "text": "I shops here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите Тому «Я делаю покупки здесь».",
+          "uk": "Розкажіть Тому «Я роблю покупки тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Анна выбирает этот магазин",
+        "uk": "Анна обирає цей магазин"
+      },
+      "bodyByLocale": {
+        "ru": "Том спрашивает, где обычно покупает продукты Анна. `She shops here` — «Она делает покупки здесь». После `she` добавляем `s`: `shop → shops`. Можно сказать `Anna shops here`. Фраза описывает её привычку; сейчас она может просто проходить мимо.",
+        "uk": "Том запитує, де Анна зазвичай купує продукти. `She shops here` — «Вона робить покупки тут». Після `she` додаємо `s`: `shop → shops`. Можна сказати `Anna shops here`. Фраза описує її звичку; зараз вона може просто проходити повз."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте Тому об Анне: «Она делает покупки здесь».",
+          "uk": "Дайте Тому відповідь про Анну: «Вона робить покупки тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-37:intro2:r1",
+              "text": "She shops here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro2:r2",
+              "text": "She shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro2:r3",
+              "text": "She is shops here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-37:intro2:r1",
+              "text": "She shops here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro2:r2",
+              "text": "She shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro2:r3",
+              "text": "She is shops here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте Тому об Анне: «Она делает покупки здесь».",
+          "uk": "Дайте Тому відповідь про Анну: «Вона робить покупки тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Серьги на прилавке",
+        "uk": "Сережки на прилавку"
+      },
+      "bodyByLocale": {
+        "ru": "Покупатель оставил серьги на прилавке. `earrings` — «серьги». Чтобы найти владельца, спросите: `Whose earrings are these?` — «Чьи это серьги?» Здесь несколько серёг, поэтому `are these`; `whose` спрашивает, кому они принадлежат.",
+        "uk": "Покупець залишив сережки на прилавку. `earrings` — «сережки». Щоб знайти власника, запитайте: `Whose earrings are these?` — «Чиї це сережки?» Тут кілька сережок, тому `are these`; `whose` запитує, кому вони належать."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите покупателей «Чьи это серьги?»",
+          "uk": "Запитайте покупців «Чиї це сережки?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-37:intro3:r1",
+              "text": "Whose earrings are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro3:r2",
+              "text": "Whose earrings is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro3:r3",
+              "text": "Who earrings are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-37:intro3:r1",
+              "text": "Whose earrings are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro3:r2",
+              "text": "Whose earrings is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-37:intro3:r3",
+              "text": "Who earrings are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите покупателей «Чьи это серьги?»",
+          "uk": "Запитайте покупців «Чиї це сережки?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f74f3a897b0ad94b4c9b71c951a6b38ea878a835e0eeadf8a494e95cba2d53db"
+}

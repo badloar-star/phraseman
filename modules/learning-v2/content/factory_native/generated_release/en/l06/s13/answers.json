@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-13:i01",
+    "correctText": "I swim in this pool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i02",
+    "correctText": "swim",
+    "correctResponseId": "en:lesson-06:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i03",
+    "correctText": "swim",
+    "correctResponseId": "en:lesson-06:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i04",
+    "correctText": "en:lesson-06:session-13:i04:p1=swim\nen:lesson-06:session-13:i04:p2=public\nen:lesson-06:session-13:i04:p3=taxi\nen:lesson-06:session-13:i04:p4=umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i05",
+    "correctText": "They swim here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i06",
+    "correctText": "This is a public pool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i07",
+    "correctText": "The umbrella is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i08",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-06:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i09",
+    "correctText": "My keychain is here.",
+    "correctResponseId": "en:lesson-06:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i10",
+    "correctText": "en:lesson-06:session-13:i10:p1=swim\nen:lesson-06:session-13:i10:p2=keychain\nen:lesson-06:session-13:i10:p3=umbrella\nen:lesson-06:session-13:i10:p4=public",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i11",
+    "correctText": "They are in the taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i12",
+    "correctText": "Whose keychain is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i13",
+    "correctText": "You swim in this pool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i14",
+    "correctText": "swim",
+    "correctResponseId": "en:lesson-06:session-13:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i15",
+    "correctText": "The taxi is here.",
+    "correctResponseId": "en:lesson-06:session-13:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i16",
+    "correctText": "en:lesson-06:session-13:i16:p1=swim\nen:lesson-06:session-13:i16:p2=public\nen:lesson-06:session-13:i16:p3=taxi\nen:lesson-06:session-13:i16:p4=keychain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-13:i17",
+    "correctText": "We swim here.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-11:i01",
+    "correctText": "I learn English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i02",
+    "correctText": "learn",
+    "correctResponseId": "en:lesson-06:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i03",
+    "correctText": "learn",
+    "correctResponseId": "en:lesson-06:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i04",
+    "correctText": "en:lesson-06:session-11:i04:p1=learn\nen:lesson-06:session-11:i04:p2=tram\nen:lesson-06:session-11:i04:p3=backpack\nen:lesson-06:session-11:i04:p4=parcel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i05",
+    "correctText": "They learn English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i06",
+    "correctText": "We are on the tram.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i07",
+    "correctText": "It is urgent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i08",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-06:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i09",
+    "correctText": "My backpack is here.",
+    "correctResponseId": "en:lesson-06:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i10",
+    "correctText": "en:lesson-06:session-11:i10:p1=learn\nen:lesson-06:session-11:i10:p2=urgent\nen:lesson-06:session-11:i10:p3=backpack\nen:lesson-06:session-11:i10:p4=parcel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i11",
+    "correctText": "The parcel is in my backpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i12",
+    "correctText": "Whose backpack is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i13",
+    "correctText": "You learn English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i14",
+    "correctText": "learn",
+    "correctResponseId": "en:lesson-06:session-11:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i15",
+    "correctText": "The tram is full.",
+    "correctResponseId": "en:lesson-06:session-11:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i16",
+    "correctText": "en:lesson-06:session-11:i16:p1=learn\nen:lesson-06:session-11:i16:p2=urgent\nen:lesson-06:session-11:i16:p3=tram\nen:lesson-06:session-11:i16:p4=parcel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-11:i17",
+    "correctText": "We learn English.",
+    "correctResponseId": null
+  }
+]

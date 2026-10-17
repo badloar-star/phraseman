@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-22:i01",
+    "correctText": "I read at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i02",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-06:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i03",
+    "correctText": "reads",
+    "correctResponseId": "en:lesson-06:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i04",
+    "correctText": "en:lesson-06:session-22:i04:p1=read\nen:lesson-06:session-22:i04:p2=complete\nen:lesson-06:session-22:i04:p3=carrot\nen:lesson-06:session-22:i04:p4=boots",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i05",
+    "correctText": "Anna reads here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i06",
+    "correctText": "He laughs a lot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i07",
+    "correctText": "The list is complete.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i08",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-06:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i09",
+    "correctText": "These boots are mine.",
+    "correctResponseId": "en:lesson-06:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i10",
+    "correctText": "en:lesson-06:session-22:i10:p1=read\nen:lesson-06:session-22:i10:p2=laugh\nen:lesson-06:session-22:i10:p3=boots\nen:lesson-06:session-22:i10:p4=complete",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i11",
+    "correctText": "The carrot is in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i12",
+    "correctText": "Whose boots are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i13",
+    "correctText": "They laugh a lot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i14",
+    "correctText": "laughs",
+    "correctResponseId": "en:lesson-06:session-22:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i15",
+    "correctText": "The carrot is fresh.",
+    "correctResponseId": "en:lesson-06:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i16",
+    "correctText": "en:lesson-06:session-22:i16:p1=read\nen:lesson-06:session-22:i16:p2=carrot\nen:lesson-06:session-22:i16:p3=complete\nen:lesson-06:session-22:i16:p4=laugh",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-22:i17",
+    "correctText": "She reads at home.",
+    "correctResponseId": null
+  }
+]

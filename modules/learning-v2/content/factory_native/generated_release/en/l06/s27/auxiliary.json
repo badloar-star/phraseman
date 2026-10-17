@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-27:intro1:r2": {
+          "ru": "После `I` — `exercise`, без `s`.",
+          "uk": "Після `I` — `exercise`, без `s`."
+        },
+        "en:lesson-06:session-27:intro1:r3": {
+          "ru": "Говорим `I exercise`, без `am`.",
+          "uk": "Кажемо `I exercise`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-27:intro2:r2": {
+          "ru": "После `she` — `exercises`.",
+          "uk": "Після `she` — `exercises`."
+        },
+        "en:lesson-06:session-27:intro2:r3": {
+          "ru": "Говорим `She exercises`, без `is`.",
+          "uk": "Кажемо `She exercises`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-27:intro3:r2": {
+          "ru": "Здесь нужно `He is generous`.",
+          "uk": "Тут потрібно `He is generous`."
+        },
+        "en:lesson-06:session-27:intro3:r3": {
+          "ru": "С `he` — `is`, не `are`.",
+          "uk": "З `he` — `is`, не `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "19248fe9c2e3dbf830578a837c8db8acb92ce4a49c1f646dc9e02ad3ee5af1e8"
+}

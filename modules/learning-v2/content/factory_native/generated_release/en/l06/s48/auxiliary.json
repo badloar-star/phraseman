@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-48:intro1:r2": {
+          "ru": "После `we` — `share`, без `s`.",
+          "uk": "Після `we` — `share`, без `s`."
+        },
+        "en:lesson-06:session-48:intro1:r3": {
+          "ru": "Нужно `We share`, без `are`.",
+          "uk": "Потрібно `We share`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-48:intro2:r2": {
+          "ru": "После `she` — `speaks`.",
+          "uk": "Після `she` — `speaks`."
+        },
+        "en:lesson-06:session-48:intro2:r3": {
+          "ru": "Нужно `She speaks`, без `is`.",
+          "uk": "Потрібно `She speaks`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-48:intro3:r2": {
+          "ru": "Несколько перчаток: `are these`.",
+          "uk": "Кілька рукавичок: `are these`."
+        },
+        "en:lesson-06:session-48:intro3:r3": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "68c65fe2c943a6b11269930e2db60e0e645527aee510caec237feb1fbd58aecd"
+}

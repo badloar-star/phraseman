@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о привычке бегать трусцой и описать неосторожность",
+    "uk": "розповісти про звичку бігати підтюпцем і описати необережність"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Бегать трусцой",
+        "uk": "Бігати підтюпцем"
+      },
+      "bodyByLocale": {
+        "ru": "`jog` — «бегать трусцой», в спокойном темпе. `I jog in the park` — «Я бегаю трусцой в парке». Это рассказ о привычке: его можно произнести за завтраком, не бегая вокруг стола. `She jogs in the park` — «Она бегает трусцой в парке»: после `she` добавляем `s`.",
+        "uk": "`jog` — «бігати підтюпцем», у спокійному темпі. `I jog in the park` — «Я бігаю підтюпцем у парку». Це розповідь про звичку: її можна вимовити за сніданком, не бігаючи навколо столу. `She jogs in the park` — «Вона бігає підтюпцем у парку»: після `she` додаємо `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она бегает трусцой в парке».",
+          "uk": "Скажіть «Вона бігає підтюпцем у парку»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-26:intro1:r1",
+              "text": "She jogs in the park."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro1:r2",
+              "text": "She jog in the park."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro1:r3",
+              "text": "She is jogs in the park."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-26:intro1:r1",
+              "text": "She jogs in the park."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro1:r2",
+              "text": "She jog in the park."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro1:r3",
+              "text": "She is jogs in the park."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она бегает трусцой в парке».",
+          "uk": "Скажіть «Вона бігає підтюпцем у парку»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Улыбка после пробежки",
+        "uk": "Усмішка після пробіжки"
+      },
+      "bodyByLocale": {
+        "ru": "`smile` — «улыбаться». `He smiles a lot` — «Он часто улыбается». `They smile a lot` — «Они часто улыбаются»: после `they` окончания `s` нет. `Anna jogs here` — «Анна бегает трусцой здесь»: здесь `Anna` соответствует `she`.",
+        "uk": "`smile` — «усміхатися». `He smiles a lot` — «Він часто усміхається». `They smile a lot` — «Вони часто усміхаються»: після `they` закінчення `s` немає. `Anna jogs here` — «Анна бігає підтюпцем тут»: тут `Anna` відповідає `she`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он часто улыбается».",
+          "uk": "Скажіть «Він часто усміхається»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-26:intro2:r1",
+              "text": "He smiles a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro2:r2",
+              "text": "He smile a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro2:r3",
+              "text": "He is smiles a lot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-26:intro2:r1",
+              "text": "He smiles a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro2:r2",
+              "text": "He smile a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro2:r3",
+              "text": "He is smiles a lot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он часто улыбается».",
+          "uk": "Скажіть «Він часто усміхається»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Значок на краю",
+        "uk": "Значок на краю"
+      },
+      "bodyByLocale": {
+        "ru": "`worktop` — «кухонная столешница», `badge` — «значок», в этой сцене рабочий значок сотрудника. `The badge is on the worktop` — «Значок на столешнице». `careless` — «неосторожный», невнимательный к последствиям. `He is careless` — «Он неосторожен»: например, постоянно оставляет важные вещи там, где их легко задеть. Здесь качество, поэтому нужно `is`.",
+        "uk": "`worktop` — «кухонна стільниця», `badge` — «значок», у цій сцені робочий значок працівника. `The badge is on the worktop` — «Значок на стільниці». `careless` — «необережний», неуважний до наслідків. `He is careless` — «Він необережний»: наприклад, постійно залишає важливі речі там, де їх легко зачепити. Тут риса, тому потрібно `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он неосторожен».",
+          "uk": "Скажіть «Він необережний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-26:intro3:r1",
+              "text": "He is careless."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro3:r2",
+              "text": "He careless."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro3:r3",
+              "text": "He are careless."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-26:intro3:r1",
+              "text": "He is careless."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro3:r2",
+              "text": "He careless."
+            },
+            {
+              "responseId": "en:lesson-06:session-26:intro3:r3",
+              "text": "He are careless."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он неосторожен».",
+          "uk": "Скажіть «Він необережний»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "445416f3c730bcd8e492f33a40955f65f080bc2bc37ba9a9957b88be993d1c40"
+}

@@ -1,0 +1,985 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о месте работы: «Я работаю в супермаркете»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о месте работы: «Я работаю в супермаркете»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I work in a supermarket.",
+        "localizedMeaning": {
+          "ru": "Расскажите о месте работы: «Я работаю в супермаркете»",
+          "uk": "Розкажіть про місце роботи: «Я працюю в супермаркеті»"
+        },
+        "orderedTokens": [
+          "I",
+          "work",
+          "in",
+          "a",
+          "supermarket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-05:i02:r1",
+          "text": "keychain"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i02:r2",
+          "text": "receipt"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i02:r3",
+          "text": "drawer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i02:audio",
+          "transcript": "keychain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-05:i02:r1",
+            "targetText": "keychain",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i02:r2",
+            "targetText": "receipt",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i02:r3",
+            "targetText": "drawer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `keychain`, а в этом варианте — `receipt`.",
+              "uk": "У записі перше слово — `keychain`, а в цьому варіанті — `receipt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `keychain`, а в этом варианте — `drawer`.",
+              "uk": "У записі перше слово — `keychain`, а в цьому варіанті — `drawer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите брелок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-05:i03:r1",
+          "text": "keychain"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i03:r2",
+          "text": "receipt"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i03:r3",
+          "text": "drawer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите брелок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите брелок",
+          "uk": "Назвіть брелок"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i03:r1",
+            "text": "keychain"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i03:r2",
+            "text": "receipt"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i03:r3",
+            "text": "drawer"
+          }
+        ],
+        "testedDimension": "Назовите брелок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите брелок",
+            "feedbackByLocale": {
+              "ru": "`receipt` — чек; брелок — `keychain`.",
+              "uk": "`receipt` — чек; брелок — `keychain`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите брелок",
+            "feedbackByLocale": {
+              "ru": "`drawer` — ящик мебели; брелок — `keychain`.",
+              "uk": "`drawer` — шухляда; брелок — `keychain`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-05:i04:p1",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i04:p2",
+            "target": "real",
+            "meaningByLocale": {
+              "ru": "настоящий",
+              "uk": "справжній"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i04:p3",
+            "target": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i04:p4",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "ящик мебели",
+              "uk": "шухляда"
+            }
+          }
+        ],
+        "leftColumn": [
+          "keychain",
+          "real",
+          "supermarket",
+          "drawer"
+        ],
+        "rightColumn": [
+          "брелок",
+          "настоящий",
+          "супермаркет",
+          "ящик мебели"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i05:audio",
+          "transcript": "This is my keychain."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is my keychain.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "keychain"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is my keychain.`",
+              "uk": "тут потрібно `is` — `This is my keychain.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чей это брелок?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чей это брелок?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose keychain is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это брелок?»",
+          "uk": "Запитайте «Чий це брелок?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "keychain",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед вами настоящий ключ, не игрушка. Скажите «Это настоящий ключ»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Перед вами настоящий ключ, не игрушка. Скажите «Это настоящий ключ»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i07:audio",
+          "transcript": "This is a real key."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a real key.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брелок внутри ящика. Выберите предлог",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-05:i08:r1",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i08:r2",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i08:r3",
+          "text": "behind"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брелок внутри ящика. Выберите предлог",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брелок внутри ящика. Выберите предлог",
+          "uk": "Брелок усередині шухляди. Виберіть прийменник"
+        },
+        "gappedTargetPhrase": "The keychain is ___ the drawer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i08:r1",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i08:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i08:r3",
+            "text": "behind"
+          }
+        ],
+        "testedDimension": "Брелок внутри ящика. Выберите предлог",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Брелок внутри ящика. Выберите предлог",
+            "feedbackByLocale": {
+              "ru": "Внутри — `in`; `under` — под ящиком.",
+              "uk": "Усередині — `in`; `under` — під шухлядою."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Брелок внутри ящика. Выберите предлог",
+            "feedbackByLocale": {
+              "ru": "Внутри — `in`; `behind` — за ящиком.",
+              "uk": "Усередині — `in`; `behind` — за шухлядою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит тот брелок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-05:i09:r1",
+          "text": "That keychain is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i09:r2",
+          "text": "That keychain is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i09:r3",
+          "text": "That keychain is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит тот брелок",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i09:audio",
+          "transcript": "That keychain is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-05:i09:r1",
+            "targetText": "That keychain is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i09:r2",
+            "targetText": "That keychain is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i09:r3",
+            "targetText": "That keychain is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит тот брелок",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит тот брелок",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-05:i10:p1",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i10:p2",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i10:p3",
+            "target": "real",
+            "meaningByLocale": {
+              "ru": "настоящий",
+              "uk": "справжній"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i10:p4",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "ящик мебели",
+              "uk": "шухляда"
+            }
+          }
+        ],
+        "leftColumn": [
+          "keychain",
+          "court",
+          "real",
+          "drawer"
+        ],
+        "rightColumn": [
+          "брелок",
+          "корт",
+          "настоящий",
+          "ящик мебели"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i11:audio",
+          "transcript": "The supermarket is near the court."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The supermarket is near the court.",
+        "orderedTokens": [
+          "The",
+          "supermarket",
+          "is",
+          "near",
+          "the",
+          "court"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The supermarket is near the court.`",
+              "uk": "тут потрібно `is` — `The supermarket is near the court.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брелок принадлежит вам. Скажите «Брелок мой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брелок принадлежит вам. Скажите «Брелок мой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The keychain is mine.",
+        "localizedMeaning": {
+          "ru": "Брелок принадлежит вам. Скажите «Брелок мой»",
+          "uk": "Брелок належить вам. Скажіть «Брелок мій»"
+        },
+        "orderedTokens": [
+          "The",
+          "keychain",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Брелок принадлежит вам. Скажите «Брелок мой»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The keychain is mine.`",
+              "uk": "тут потрібно `is` — `The keychain is mine.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «У меня есть брелок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «У меня есть брелок»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i13:audio",
+          "transcript": "I have a keychain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have a keychain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я работаю здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-05:i14:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i14:r2",
+          "text": "am work"
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i14:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я работаю здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я работаю здесь»",
+          "uk": "Скажіть «Я працюю тут»"
+        },
+        "gappedTargetPhrase": "I ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i14:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i14:r2",
+            "text": "am work"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i14:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Скажите «Я работаю здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я работаю здесь»",
+            "feedbackByLocale": {
+              "ru": "Здесь действие: `I work`, без `am`.",
+              "uk": "Тут дія: `I work`, без `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я работаю здесь»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `I work`, без `is`.",
+              "uk": "Тут потрібно `I work`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей брелок здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-05:i15:r1",
+          "text": "My keychain is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i15:r2",
+          "text": "Your keychain is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-05:i15:r3",
+          "text": "His keychain is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей брелок здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i15:audio",
+          "transcript": "My keychain is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-05:i15:r1",
+            "targetText": "My keychain is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i15:r2",
+            "targetText": "Your keychain is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i15:r3",
+            "targetText": "His keychain is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-05:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей брелок здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей брелок здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-05:i16:p1",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i16:p2",
+            "target": "real",
+            "meaningByLocale": {
+              "ru": "настоящий",
+              "uk": "справжній"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i16:p3",
+            "target": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-05:i16:p4",
+            "target": "court",
+            "meaningByLocale": {
+              "ru": "корт",
+              "uk": "корт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "keychain",
+          "real",
+          "supermarket",
+          "court"
+        ],
+        "rightColumn": [
+          "брелок",
+          "настоящий",
+          "супермаркет",
+          "корт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В ящике лежит брелок. Спросите коллегу «Чей это брелок?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "В ящике лежит брелок. Спросите коллегу «Чей это брелок?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-05:i17:audio",
+          "transcript": "Whose keychain is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose keychain is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "61a263d9773eecef1552acf5e36124ffecef5f2a8b3cee1a8e3bf528b6aa7a92"
+}

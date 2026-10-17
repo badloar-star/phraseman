@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о привычном действии другого человека",
+    "uk": "розповісти про звичну дію іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Водить машину",
+        "uk": "Водити машину"
+      },
+      "bodyByLocale": {
+        "ru": "`drive` — «водить машину». `I drive to work` — «Я езжу на работу за рулём». Это не просто ехать пассажиром: `drive` говорит, что вы управляете машиной. Можно всю дорогу советовать водителю, куда повернуть, но от этого пассажир водителем не становится.",
+        "uk": "`drive` — «водити машину». `I drive to work` — «Я їжджу на роботу за кермом». Це не просто їхати пасажиром: `drive` означає, що ви керуєте машиною. Можна всю дорогу радити водієві, куди повернути, але від цього пасажир водієм не стає."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я езжу на работу за рулём».",
+          "uk": "Скажіть «Я їжджу на роботу за кермом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-17:intro1:r1",
+              "text": "I drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro1:r2",
+              "text": "I am drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro1:r3",
+              "text": "I drives to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-17:intro1:r1",
+              "text": "I drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro1:r2",
+              "text": "I am drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro1:r3",
+              "text": "I drives to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я езжу на работу за рулём».",
+          "uk": "Скажіть «Я їжджу на роботу за кермом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она водит, он работает",
+        "uk": "Вона водить, він працює"
+      },
+      "bodyByLocale": {
+        "ru": "После `he`, `she`, `it` у обычных действий в таких фразах появляется окончание. В наших примерах добавляем `s`: `drive → drives`, `work → works`, `start → starts`. `She drives to work` — «Она ездит на работу за рулём». `He starts at nine` — «Он начинает в девять». Имя тоже подходит: `Anna drives to work`. Перед этими действиями не нужно `is`.",
+        "uk": "Після `he`, `she`, `it` у звичайних діях у таких фразах з’являється закінчення. У наших прикладах додаємо `s`: `drive → drives`, `work → works`, `start → starts`. `She drives to work` — «Вона їздить на роботу за кермом». `He starts at nine` — «Він починає о дев’ятій». Ім’я теж підходить: `Anna drives to work`. Перед цими діями не потрібно `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она ездит на работу за рулём».",
+          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-17:intro2:r1",
+              "text": "She drives to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro2:r2",
+              "text": "She drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro2:r3",
+              "text": "She is drives to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-17:intro2:r1",
+              "text": "She drives to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro2:r2",
+              "text": "She drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro2:r3",
+              "text": "She is drives to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она ездит на работу за рулём».",
+          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как себя чувствует Анна",
+        "uk": "Як почувається Анна"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега спрашивает, как себя чувствует Анна. `She is well` — «Она хорошо себя чувствует». Здесь `well` описывает самочувствие, а не действие: поэтому после `she` нужно `is`. Если спрашивают о вас, ответьте `I am well` — «Я хорошо себя чувствую»: с `I` используем `am`.",
+        "uk": "Колега запитує, як почувається Анна. `She is well` — «Вона добре почувається». Тут `well` описує самопочуття, а не дію: тому після `she` потрібно `is`. Якщо запитують про вас, дайте відповідь `I am well` — «Я добре почуваюся»: з `I` використовуємо `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега спрашивает о самочувствии Анны. Скажите «Она хорошо себя чувствует».",
+          "uk": "Колега запитує про самопочуття Анни. Скажіть «Вона добре почувається»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-17:intro3:r1",
+              "text": "She is well."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro3:r2",
+              "text": "She well."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro3:r3",
+              "text": "She are well."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-17:intro3:r1",
+              "text": "She is well."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro3:r2",
+              "text": "She well."
+            },
+            {
+              "responseId": "en:lesson-06:session-17:intro3:r3",
+              "text": "She are well."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега спрашивает о самочувствии Анны. Скажите «Она хорошо себя чувствует».",
+          "uk": "Колега запитує про самопочуття Анни. Скажіть «Вона добре почувається»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "72b5814f805aede1c5ed748b15622666446a6887461d2765e238423fa41cd64f"
+}

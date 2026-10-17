@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-51:intro1:r2": {
+          "ru": "После `they` нужно `sell`.",
+          "uk": "Після `they` потрібне `sell`."
+        },
+        "en:lesson-06:session-51:intro1:r3": {
+          "ru": "Нужно `They sell`, без `are`.",
+          "uk": "Потрібно `They sell`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-51:intro2:r2": {
+          "ru": "После `she` нужно `sells`.",
+          "uk": "Після `she` потрібне `sells`."
+        },
+        "en:lesson-06:session-51:intro2:r3": {
+          "ru": "Нужно `She sells`, без `is`.",
+          "uk": "Потрібно `She sells`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-51:intro3:r2": {
+          "ru": "Это «Где эта лампа?», а нужен владелец.",
+          "uk": "Це «Де ця лампа?», а потрібен власник."
+        },
+        "en:lesson-06:session-51:intro3:r3": {
+          "ru": "Одна лампа: `is this`.",
+          "uk": "Одна лампа: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ebc874927c903fd69e61fdf2e4438923ae3293f6aeaffc917306dae511c84125"
+}

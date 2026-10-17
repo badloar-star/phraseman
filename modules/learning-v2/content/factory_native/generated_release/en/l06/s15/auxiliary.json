@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-15:intro1:r2": {
+          "ru": "После `we` — `sing`, без `s`.",
+          "uk": "Після `we` — `sing`, без `s`."
+        },
+        "en:lesson-06:session-15:intro1:r3": {
+          "ru": "Говорим `We sing`, без `are`.",
+          "uk": "Кажемо `We sing`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-15:intro2:r2": {
+          "ru": "Здесь состояние: `They are silent`.",
+          "uk": "Тут стан: `They are silent`."
+        },
+        "en:lesson-06:session-15:intro2:r3": {
+          "ru": "С `they` — `are`, не `is`.",
+          "uk": "З `they` — `are`, не `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-15:intro3:r2": {
+          "ru": "Это вопрос о месте; о владельце — `Whose`.",
+          "uk": "Це запитання про місце; про власника — `Whose`."
+        },
+        "en:lesson-06:session-15:intro3:r3": {
+          "ru": "Один шлем: `is this`.",
+          "uk": "Один шолом: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7986aa3a83441df58418236bb10af85a644a522842a314fd2ab3fac810d4c4fb"
+}

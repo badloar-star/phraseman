@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-32:i01",
+    "correctText": "I jog here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i02",
+    "correctText": "She exercises here.",
+    "correctResponseId": "en:lesson-06:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i03",
+    "correctText": "showers",
+    "correctResponseId": "en:lesson-06:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i04",
+    "correctText": "en:lesson-06:session-32:i04:p1=jog\nen:lesson-06:session-32:i04:p2=exercise\nen:lesson-06:session-32:i04:p3=stretch\nen:lesson-06:session-32:i04:p4=fountain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i05",
+    "correctText": "She calls her mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i06",
+    "correctText": "We clean our room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i07",
+    "correctText": "This fountain is beautiful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i08",
+    "correctText": "stretches",
+    "correctResponseId": "en:lesson-06:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i09",
+    "correctText": "He walks here.",
+    "correctResponseId": "en:lesson-06:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i10",
+    "correctText": "en:lesson-06:session-32:i10:p1=call\nen:lesson-06:session-32:i10:p2=clean\nen:lesson-06:session-32:i10:p3=shower\nen:lesson-06:session-32:i10:p4=walk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i11",
+    "correctText": "They exercise here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i12",
+    "correctText": "Whose guitar is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i13",
+    "correctText": "I shower at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i14",
+    "correctText": "jog",
+    "correctResponseId": "en:lesson-06:session-32:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i15",
+    "correctText": "This fountain is beautiful.",
+    "correctResponseId": "en:lesson-06:session-32:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i16",
+    "correctText": "en:lesson-06:session-32:i16:p1=stretch\nen:lesson-06:session-32:i16:p2=shower\nen:lesson-06:session-32:i16:p3=call\nen:lesson-06:session-32:i16:p4=clean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-32:i17",
+    "correctText": "She jogs here.",
+    "correctResponseId": null
+  }
+]

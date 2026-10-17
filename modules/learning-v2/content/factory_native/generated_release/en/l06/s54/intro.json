@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о работе мастеров и повторить вопрос о владельце вещи",
+    "uk": "розповісти про роботу майстрів і повторити запитання про власника речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нужны мастера",
+        "uk": "Потрібні майстри"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, чем занимается бригада Анны и Тома. `repair` — «ремонтировать». `They repair roofs` — «Они ремонтируют крыши». `Roofs` — несколько крыш. После `they` нужно `repair`, без `s`.",
+        "uk": "Сусід запитує, чим займається бригада Анни й Тома. `repair` — «ремонтувати». `They repair roofs` — «Вони ремонтують дахи». `Roofs` — кілька дахів. Після `they` потрібне `repair`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите соседу «Они ремонтируют крыши».",
+          "uk": "Розкажіть сусідові «Вони ремонтують дахи»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-54:intro1:r1",
+              "text": "They repair roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro1:r2",
+              "text": "They repairs roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro1:r3",
+              "text": "They are repair roofs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-54:intro1:r1",
+              "text": "They repair roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro1:r2",
+              "text": "They repairs roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro1:r3",
+              "text": "They are repair roofs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите соседу «Они ремонтируют крыши».",
+          "uk": "Розкажіть сусідові «Вони ремонтують дахи»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работа Анны",
+        "uk": "Робота Анни"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед уточняет, чем занимается Анна. `She repairs roofs` — «Она ремонтирует крыши». После `she` к `repair` добавляем `s`: `repairs`. Это рассказ о её обычной работе. Ремонтировать крыши — профессия, а не обещание прямо сейчас забраться на соседский дом.",
+        "uk": "Сусід уточнює, чим займається Анна. `She repairs roofs` — «Вона ремонтує дахи». Після `she` до `repair` додаємо `s`: `repairs`. Це розповідь про її звичайну роботу. Ремонтувати дахи — професія, а не обіцянка просто зараз видертися на сусідський будинок."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте соседу «Она ремонтирует крыши».",
+          "uk": "Дайте відповідь сусідові «Вона ремонтує дахи»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-54:intro2:r1",
+              "text": "She repairs roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro2:r2",
+              "text": "She repair roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro2:r3",
+              "text": "She is repairs roofs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-54:intro2:r1",
+              "text": "She repairs roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro2:r2",
+              "text": "She repair roofs."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro2:r3",
+              "text": "She is repairs roofs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте соседу «Она ремонтирует крыши».",
+          "uk": "Дайте відповідь сусідові «Вона ремонтує дахи»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где встретиться",
+        "uk": "Де зустрітися"
+      },
+      "bodyByLocale": {
+        "ru": "Мастера договорились встретиться с вами у киоска. Вы объясняете соседу, где он находится. `The kiosk is next to the petrol station` — «Киоск рядом с заправочной станцией». `Next to` показывает, что места находятся рядом. Здесь описываем место киоска, поэтому нужно `is`.",
+        "uk": "Майстри домовилися зустрітися з вами біля кіоску. Ви пояснюєте сусідові, де він розташований. `The kiosk is next to the petrol station` — «Кіоск поруч із заправною станцією». `Next to` показує, що місця розташовані поруч. Тут описуємо місце кіоску, тому потрібне `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Объясните соседу «Киоск рядом с заправочной станцией».",
+          "uk": "Поясніть сусідові «Кіоск поруч із заправною станцією»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-54:intro3:r1",
+              "text": "The kiosk is next to the petrol station."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro3:r2",
+              "text": "The kiosk are next to the petrol station."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro3:r3",
+              "text": "The kiosk next to the petrol station."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-54:intro3:r1",
+              "text": "The kiosk is next to the petrol station."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro3:r2",
+              "text": "The kiosk are next to the petrol station."
+            },
+            {
+              "responseId": "en:lesson-06:session-54:intro3:r3",
+              "text": "The kiosk next to the petrol station."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните соседу «Киоск рядом с заправочной станцией».",
+          "uk": "Поясніть сусідові «Кіоск поруч із заправною станцією»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "50e299b7aa177218b0d626ffc66477e2c192ad0c87bf31df070187502afc1c0c"
+}

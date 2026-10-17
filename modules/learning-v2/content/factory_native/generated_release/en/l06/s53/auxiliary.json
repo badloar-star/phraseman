@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-53:intro1:r2": {
+          "ru": "После `they` нужно `wear`.",
+          "uk": "Після `they` потрібне `wear`."
+        },
+        "en:lesson-06:session-53:intro1:r3": {
+          "ru": "Нужно `They wear`, без `are`.",
+          "uk": "Потрібно `They wear`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-53:intro2:r2": {
+          "ru": "После `she` нужно `wears`.",
+          "uk": "Після `she` потрібне `wears`."
+        },
+        "en:lesson-06:session-53:intro2:r3": {
+          "ru": "Перед `uniform` нужно `a`, потому что первый звук — «й».",
+          "uk": "Перед `uniform` потрібне `a`, бо перший звук — «й»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-53:intro3:r2": {
+          "ru": "Это вопрос о месте, а нужен владелец: `Whose`.",
+          "uk": "Це запитання про місце, а потрібен власник: `Whose`."
+        },
+        "en:lesson-06:session-53:intro3:r3": {
+          "ru": "Один комплект формы: `is this`.",
+          "uk": "Один комплект форми: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "07c00378bf8ebfbc99b523171cb19d72a67ca367be0e63b62725327ad58e3d34"
+}

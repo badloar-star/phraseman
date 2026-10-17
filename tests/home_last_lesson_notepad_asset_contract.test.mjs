@@ -16,7 +16,8 @@ test('continue-learning card uses the supplied notepad asset for every selectabl
   assert.doesNotMatch(source, /home-last-lesson-(?:aurora|ember|forest|gold|indigo|midnight|olive|sagePorcelain|volt)\.webp/);
   assert.match(home, /<HomeV2ContinueCard[\s\S]{0,900}art=\{priorityCardImage\}/);
   assert.match(continueCard, /art: ImageSourcePropType/);
-  assert.match(continueCard, /<Image source=\{art\}/);
+  // зачем (17.10): карточка рисует тот же переданный арт через ThemedArtLayers (основа + слой акцента темы), а не голым <Image>
+  assert.match(continueCard, /<(?:Image|ThemedArtLayers) source=\{art\}/);
   assert.doesNotMatch(continueCard, /spiral_notepad\.png/);
   assert.doesNotMatch(continueCard, /numberOfLines=/);
 });

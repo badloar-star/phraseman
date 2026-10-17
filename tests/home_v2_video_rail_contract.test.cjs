@@ -28,6 +28,8 @@ function renderHeader({ bellSlot, avatarSlot, stats }) {
     // зачем (координатор 12.10): шапка с 9ffbfb41a берёт плашки из homePlate (useHomePlateStyle/useHomePlateLog) и спиннер кита; песочница теста о них не знала → красный тест с 11.10
     './homePlate': { useHomePlateStyle: () => ({ plateFill: '#000', plateShadow: [] }), useHomePlateLog: () => undefined },
     '../../v2/KitSpinner': { __esModule: true, default: 'KitSpinner' },
+    // зачем (17.10): шапка пишет причины перерисовок (render_cause_probe) — в песочнице это пустые заглушки
+    '../../../app/render_cause_probe': { useRenderCause: () => undefined, renderWindowEpoch: () => 0 },
   };
   const output = ts.transpileModule(source, {
     compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },

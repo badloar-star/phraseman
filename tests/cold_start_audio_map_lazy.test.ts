@@ -11,7 +11,7 @@ describe('[COLD-START] набор озвучки V2 не грузится при
   it('набор импортируется только как тип, значение — require внутри функции', () => {
     expect(seed).not.toMatch(/^import \{[^}]*LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1[^}]*\} from "\.\/learning_v2_bootstrap_audio_assets_v1\.generated";/m);
     expect(seed).toContain('import type { LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1 } from "./learning_v2_bootstrap_audio_assets_v1.generated";');
-    expect(seed).toMatch(/function bootstrapAudioEntries\(\)[\s\S]*require\("\.\/learning_v2_bootstrap_audio_assets_v1\.generated"\)/);
+    expect(seed).toMatch(/function bootstrapAudioEntries\([^)]*\)[\s\S]*require\("\.\/learning_v2_bootstrap_audio_assets_v1\.generated"\)/);
   });
 
   it('на верхнем уровне модуля нет обхода набора (Map/filter строятся при первом обращении)', () => {

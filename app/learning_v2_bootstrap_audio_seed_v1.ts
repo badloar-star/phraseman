@@ -17,20 +17,28 @@ type LearningV2BootstrapAudioEntryV1 = (typeof LEARNING_V2_BOOTSTRAP_AUDIO_ENTRI
  * при прежнем импорте все ассеты регистрировались и набор дважды обходился (Map + filter) ДО первого кадра, хотя посев идёт
  * только после первого кадра Главной. Теперь набор подключается при первом обращении (посев, поиск файла занятия).
  */
+/** Построчный журнал поиска — только в разработке (в тестовой среде __DEV__ может отсутствовать). */
+const AUDIO_MAP_TRACE = typeof __DEV__ !== "undefined" && __DEV__;
 let bootstrapEntriesCache: readonly LearningV2BootstrapAudioEntryV1[] | null = null;
-function bootstrapAudioEntries(): readonly LearningV2BootstrapAudioEntryV1[] {
-  if (!bootstrapEntriesCache) {
-    const startedAt = Date.now();
+function bootstrapAudioEntries(caller: string): readonly LearningV2BootstrapAudioEntryV1[] {
+  if (bootstrapEntriesCache) return bootstrapEntriesCache;
+  // зачем (координатор 17.10, проверка регрессии «Материал занятия не собрался»): каждая ветка ленивой карты — в журнал [V2-AUDIO-MAP].
+  // Загрузка синхронная: первый же вызов возвращает полный набор, «ещё не готово» не бывает; сбой require — в журнал и дальше вызывающему.
+  const startedAt = Date.now();
+  try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports -- зачем: ленивая загрузка тяжёлого набора, не в холодный старт
     const mod = require("./learning_v2_bootstrap_audio_assets_v1.generated") as typeof import("./learning_v2_bootstrap_audio_assets_v1.generated");
     bootstrapEntriesCache = mod.LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1;
-    console.log(`[COLD-START] bootstrap_audio_map:loaded ${JSON.stringify({ entries: bootstrapEntriesCache.length, ms: Date.now() - startedAt })}`);
+    console.log(`[V2-AUDIO-MAP] first_load ${JSON.stringify({ caller, entries: bootstrapEntriesCache.length, launchSeed: bootstrapEntriesCache.filter((e) => e.launchSeed).length, ms: Date.now() - startedAt })}`);
+    return bootstrapEntriesCache;
+  } catch (error: unknown) {
+    console.warn(`[V2-AUDIO-MAP] first_load_failed ${JSON.stringify({ caller, ms: Date.now() - startedAt, error: error instanceof Error ? error.message : String(error) })}`);
+    throw error;
   }
-  return bootstrapEntriesCache;
 }
 let entryByContentHashCache: Map<string, LearningV2BootstrapAudioEntryV1> | null = null;
 function entryByContentHash(): Map<string, LearningV2BootstrapAudioEntryV1> {
-  if (!entryByContentHashCache) entryByContentHashCache = new Map(bootstrapAudioEntries().map((entry) => [entry.contentHash, entry]));
+  if (!entryByContentHashCache) entryByContentHashCache = new Map(bootstrapAudioEntries("resolve_offline_file").map((entry) => [entry.contentHash, entry]));
   return entryByContentHashCache;
 }
 // зачем (координатор 15.10, урок 1 целиком в сборку): в наборе теперь все занятия до потолка (до 1120 файлов),
@@ -39,7 +47,7 @@ function entryByContentHash(): Map<string, LearningV2BootstrapAudioEntryV1> {
 // resolveLearningV2BootstrapAudioOfflineFileV1 — набор для поиска остаётся полным.
 let launchSeedEntriesCache: readonly LearningV2BootstrapAudioEntryV1[] | null = null;
 function launchSeedEntries(): readonly LearningV2BootstrapAudioEntryV1[] {
-  if (!launchSeedEntriesCache) launchSeedEntriesCache = bootstrapAudioEntries().filter((entry) => entry.launchSeed);
+  if (!launchSeedEntriesCache) launchSeedEntriesCache = bootstrapAudioEntries("launch_seed").filter((entry) => entry.launchSeed);
   return launchSeedEntriesCache;
 }
 let assetPrewarm: Promise<void> | null = null;
@@ -166,7 +174,11 @@ export async function resolveLearningV2BootstrapAudioOfflineFileV1(
   identity: LearningV2NativeDecoderIdentityV1,
 ): Promise<LearningV2VoiceAudioOfflineCacheHandleV1 | null> {
   const entry = entryByContentHash().get(identity.contentHash);
-  if (!entry || entry.byteSize !== identity.byteSize) return null;
+  if (!entry || entry.byteSize !== identity.byteSize) {
+    if (AUDIO_MAP_TRACE) console.log(`[V2-AUDIO-MAP] lookup ${JSON.stringify({ hash: identity.contentHash.slice(0, 12), result: entry ? "size_mismatch" : "not_in_set", wantBytes: identity.byteSize, setBytes: entry?.byteSize ?? null })}`); // guard-ok: ранний выход — файла нет в наборе сборки, вызывающий берёт другой источник
+    return null;
+  }
+  if (AUDIO_MAP_TRACE) console.log(`[V2-AUDIO-MAP] lookup ${JSON.stringify({ hash: identity.contentHash.slice(0, 12), result: "hit" })}`); // guard-ok: ветка поиска
   const existing = await resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity);
   if (existing) return existing;
   const asset = Asset.fromModule(entry.assetModule);

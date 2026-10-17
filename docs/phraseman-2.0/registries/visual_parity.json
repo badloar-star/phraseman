@@ -44836,16 +44836,21 @@
       "anim_notes": [
         "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r5/r5-whatsnew-demo_b.png",
+      "evidence_at": "2026-10-17T21:02:30.000Z",
+      "evidence_sha256": "ffd2dc0b683ffbb06bc6cdd1fc417e56bd5e74fc18237abf79a766fcc0fc4779",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Заголовок «Встречайте PhraseMan 2.0»: в эталоне одна строка ~18–20, в приложении две строки ~26 (крупнее).",
+        "Строки бонусов: в эталоне внутри одной карточки, слева квадратная отметка-галочка (заливка акцента); в приложении каждая строка на своей плашке, слева контурный значок (искра / круг / мишень).",
+        "Суммы: в эталоне — сколько монет дал бонус («+106 / +860 / +260», цвет акцента); в приложении — исходное количество бонуса белым («8 362 / 120 / 1», «81»).",
+        "Итого: в приложении «0 монет» при показанных бонусах — пересчёт в монеты не выполнен (ср. R103: legacyBonusConvertMine нет в проде); в эталоне итог = сумма строк."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:09:45.115Z",
       "blocked_reason": null,
       "release": "r1",
       "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
@@ -44853,7 +44858,9 @@
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=marine&appearance=dark&legacybonus=demo&next=/(tabs)/home",
         "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
         "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
-      }
+      },
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Кадр в теме «Аврора», эталон — «Океан»: цвета (заливка шторки, кнопка, монета) не сверялись — переснять в «Океане» и «Сумерках» (whats-new-001…006)."
     },
     {
       "id": "whats-new-003",
@@ -44918,16 +44925,21 @@
       "anim_notes": [
         "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r5/r5-whatsnew-pearls_b.png",
+      "evidence_at": "2026-10-17T21:02:30.000Z",
+      "evidence_sha256": "6078c97920f6cdb726a97c17d5b0f316d0ad276c67e2fe0cc5c111db1767d8ea",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Заголовок «Встречайте PhraseMan 2.0»: в эталоне одна строка ~18–20, в приложении две строки ~26 (крупнее).",
+        "Строки бонусов: в эталоне внутри одной карточки, слева квадратная отметка-галочка (заливка акцента); в приложении каждая строка на своей плашке, слева контурный значок (искра / круг / мишень).",
+        "Суммы: в эталоне — сколько монет дал бонус («+106 / +860 / +260», цвет акцента); в приложении — исходное количество бонуса белым («8 362 / 120 / 1», «81»).",
+        "Итого: в приложении «0 монет» при показанных бонусах — пересчёт в монеты не выполнен (ср. R103: legacyBonusConvertMine нет в проде); в эталоне итог = сумма строк."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:09:45.117Z",
       "blocked_reason": null,
       "release": "r1",
       "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
@@ -44935,7 +44947,9 @@
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=marine&appearance=dark&legacybonus=pearls&next=/(tabs)/home",
         "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
         "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
-      }
+      },
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Кадр в теме «Аврора», эталон — «Океан»: цвета (заливка шторки, кнопка, монета) не сверялись — переснять в «Океане» и «Сумерках» (whats-new-001…006)."
     },
     {
       "id": "whats-new-005",
@@ -45000,16 +45014,18 @@
       "anim_notes": [
         "шторка выезжает; заголовок проявляется"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r5/r5-whatsnew-nothing_b.png",
+      "evidence_at": "2026-10-17T21:02:30.000Z",
+      "evidence_sha256": "8a720ec72f25ffaa72d83dcea5419a4084290a8eb2f4681ced128f44090dd9eb",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Заголовок «Встречайте PhraseMan 2.0»: в эталоне одна строка ~18–20, в приложении две строки ~26 (крупнее)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:09:45.117Z",
       "blocked_reason": null,
       "release": "r1",
       "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
@@ -45017,7 +45033,9 @@
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=marine&appearance=dark&legacybonus=nothing&next=/(tabs)/home",
         "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
         "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
-      }
+      },
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Кадр в теме «Аврора», эталон — «Океан»: цвета (заливка шторки, кнопка, монета) не сверялись — переснять в «Океане» и «Сумерках» (whats-new-001…006)."
     },
     {
       "id": "moments-v3-m04-a",
@@ -45081,16 +45099,16 @@
       "anim_notes": [
         "кольцо «Искра/Молния/Гроза»; плашка emPop 400 мс; на 10 — встряска, молния 420 мс и вспышка; обрыв — виньетка 1,6 с; монета ранга выглядывает 1,8 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-combo_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "c8ac7ed8aabe56ada63d43641327cc808a7761a1f66dbb7a0d18538fc2f680fc",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45099,7 +45117,9 @@
         "log": "прямой dev-ссылки нет — запрошена у сессии моментов"
       },
       "added_reason": "код d0ce00931 (за moments_v3)",
-      "note": "по решению владельца эффекты на кольце серии в шапке, а не на полосе; «вспышка выбранного ответа» (burn) не перенесена — заменена общей вспышкой"
+      "note": "по решению владельца эффекты на кольце серии в шапке, а не на полосе; «вспышка выбранного ответа» (burn) не перенесена — заменена общей вспышкой",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "ПЕРЕСНЯТЬ: Кадр не показывает момент: на экране заглушка урока («Lesson 1» и вопрос), нет вариантов ответа и «Молнии». Переснять в настоящем уроке по тайм-листу 3 → 5 → 10 → ошибка."
     },
     {
       "id": "moments-v3-m10-a",
@@ -45123,16 +45143,22 @@
       "anim_notes": [
         "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-donechain_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "0ddccdea4c12d3fd3aaad846f4dbc7e514c3e5e99a6ecdd407114b5cbaffe1b5",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Лишний крестик закрытия слева сверху — в эталоне его нет.",
+        "Счётчики «верно / ошибок / точность»: в приложении цифры крупнее (~28 против 20) и с вертикальными разделителями; в эталоне без разделителей.",
+        "Строка «Пройти урок»: в эталоне текст по центру между значком и «1/1»; в приложении слева.",
+        "«Разобрать 3 ошибки»: в эталоне серая кнопка; в приложении текстовая ссылка.",
+        "«Следующий урок»: в эталоне стрелка сразу за текстом; в приложении стрелка у правого края."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45140,7 +45166,9 @@
         "taps": "пройти урок до конца; видео итога",
         "log": "строки серии и «Сегодня» есть только если переход сделал этот урок; прямой dev-ссылки нет — запрошена у сессии моментов"
       },
-      "added_reason": "код bb55a3c2c (за moments_v3)"
+      "added_reason": "код bb55a3c2c (за moments_v3)",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Монеты «7 004 / 1 240» — данные."
     },
     {
       "id": "moments-v3-m18-a",
@@ -45163,16 +45191,21 @@
       "anim_notes": [
         "думает… с 0,2 с; реакция не раньше 1,0 с и ответа; цели каскадом по 300 мс с +0,6 с; reduced-motion — без задержек"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-dlgchain_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "0606804e4e5f818615253fc3b44ace4a53e2777c596fa1f45bb513be40a57c1a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Заголовок / подпись: в эталоне «Эмма довольна» / «Закажи кофе · 3 цели из 3»; в приложении «Эмма: отлично!» / «Закажи кофе · 5 из 5».",
+        "Список целей: в эталоне строки с разделителями, в приложении без разделителей.",
+        "«+30 монет»: в эталоне серая плашка-строка с монетой; в приложении крупная надпись «+30» без плашки.",
+        "Кнопки «Следующий сценарий» и «Разобрать 2 фразы» на кадре отсутствуют (каскад ещё идёт или их нет) — нужен кадр после ~4 с."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45181,7 +45214,603 @@
         "log": "прямой dev-ссылки нет — запрошена у сессии моментов"
       },
       "added_reason": "код 525653c66 (за moments_v3)",
-      "note": "тексты реакции без рода («{Имя}: отлично!») — вариант (б), ждёт «да» владельца (docs/work/tasks/moments-v3-m18-strings.md)"
+      "note": "тексты реакции без рода («{Имя}: отлично!») — вариант (б), ждёт «да» владельца (docs/work/tasks/moments-v3-m18-strings.md)",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону."
+    },
+    {
+      "id": "moments-v3-m01-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m01-A · Три акта за 10 с",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · повышение лиги",
+      "state": "m01-A · Три акта за 10 с",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-promo_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "63969094a74e9a715160344c1b3560e7195cf27a869bd4e2fd9352b86e668def",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "coordinator (решение 18.10 ночью, вердикт Макетов)",
+      "reviewed_at": "2026-10-17T21:10:53.522Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "MATCH: координатор 18.10 — все элементы совпали. Башня, монета на 1 этаже, «Этаж 1», «Базальт», «+100 монет за повышение», «Играть» — совпадают."
+    },
+    {
+      "id": "moments-v3-m01-b",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m01-B · Короткая: для повторных повышений",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · повторное повышение",
+      "state": "m01-B · Короткая: для повторных повышений",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-promoshort_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "a700480d61d057d0f2bc9bd0b5fdf4ca4db834b5a3c1de5e5a38a263814cfffc",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Свечение за героем: в эталоне мягкое зелёное пятно за монетой / кольцом, в приложении его нет."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Лига «Мрамор» вместо «Базальт» — параметр tier предпросмотра (данные); для сверки текста переснять с &tier=Базальт. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка."
+    },
+    {
+      "id": "moments-v3-m02-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m02-A · Кивок + «до топ-5 — 240 монет»",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · удержался в лиге",
+      "state": "m02-A · Кивок + «до топ-5 — 240 монет»",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-stay_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "8ebd69931b9006d6ee7dfd768169100fd1049be5e79078c9344f87507deeb388",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Карточка: в приложении поля по бокам ~20 dp, в эталоне ~28 dp (карточка шире)."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Подложка (Главная / Пик) на кадре служебного экрана предпросмотра отсутствует — не сверялась. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка."
+    },
+    {
+      "id": "moments-v3-m03-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m03-A · Туман → тап → новая неделя",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · понижение — новая неделя",
+      "state": "m03-A · Туман → тап → новая неделя",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-downawake_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "37047db04d5dd4292c2c289a7ce6e73a0c0afaf9cec9d187fdb9a3cdde627e39",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Фон: в эталоне тёмный градиент; в приложении плоский светло-серый (#2B2C2E), как будто слой тумана не ушёл."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка. Кадр до тапа (m-down, «Неделя закончилась: Гранит») — акт тумана; по неподвижному эталону не сверить, нужна запись анимации."
+    },
+    {
+      "id": "moments-v3-m05-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m05-A · +1 через линию ТОП-5",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · позиция выросла",
+      "state": "m05-A · +1 через линию ТОП-5",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-rise_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "7bda0322f1b5f19a0c92e395c38e40c3c80b5bfa3d55aa40a15a86a46670a29f",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Имена в строках: в эталоне по центру строки, в приложении слева у монеты.",
+        "Строка «Ты»: в эталоне отметка «↑ +1» перед числом; в приложении её нет (число 455 вместо 440 — счёт, не вёрстка)."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону."
+    },
+    {
+      "id": "moments-v3-m05-b",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m05-B · Тост «Ира обгоняет тебя»",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · тебя обгоняют",
+      "state": "m05-B · Тост «Ира обгоняет тебя»",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-overtake_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "867cc13d556da34623165d41dcd5a6a5eaa022e695fc51d73b5910afe98ef54b",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "ПЕРЕСНЯТЬ ПОДЛОЖКУ (координатор 18.10): тост совпадает, но под ним нет живого экрана Пика (служебный экран предпросмотра, монета по центру — заглушка). Match — только после живого кадра."
+    },
+    {
+      "id": "moments-v3-m05-c",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m05-C · Последний шанс: отсчёт + док без энергии",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · последний шанс",
+      "state": "m05-C · Последний шанс: отсчёт + док без энергии",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-lastchance_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "c952e0c5bfd21fa382e6ce5fe2c9bd0ee7897de61ca83d3113167a1ef84c09e5",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Шторка: в эталоне надзаголовок, таймер и текст выровнены по левому краю; в приложении по центру.",
+        "Надзаголовок «Воскресенье · до итога»: в эталоне серый, в приложении мятный.",
+        "Таймер: в приложении крупнее (~40 против 28) и по центру."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Подложка (Главная / Пик) на кадре служебного экрана предпросмотра отсутствует — не сверялась. «До топ-5 — 40 / 60 монет», время — данные."
+    },
+    {
+      "id": "moments-v3-m06-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m06-A · «Чисто!» — 10 из 10",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · ступень пройдена",
+      "state": "m06-A · «Чисто!» — 10 из 10",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-steppass_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "e4428820a6c3cca7225fddda1d0cee7541ad5272727a83cfc1258580bf67fcaf",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Свечение за героем: в эталоне мягкое зелёное пятно за монетой / кольцом, в приложении его нет."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка."
+    },
+    {
+      "id": "moments-v3-m06-b",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m06-B · 3 ошибки — «Ещё раз»",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · ступень не пройдена",
+      "state": "m06-B · 3 ошибки — «Ещё раз»",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-stepfail_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "a237a9a77e96c1dc4e9a957bdf3dfca3378f1ac1434f47e35e7495ab260b2045",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Облачко «Ещё раз?»: в приложении по бокам лишние серые фигуры («ушки»); в эталоне простое облачко с хвостиком вниз.",
+        "Подпись: в эталоне «7 из 10. Остаёшься на 4 этаже, ступени не сгорают.»; в приложении «Остаёшься на 4 этаже. Новый набор из 10 заданий»."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка."
+    },
+    {
+      "id": "moments-v3-m07-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m07-A · Этаж: +40, окна 5-го",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · этаж пройден",
+      "state": "m07-A · Этаж: +40, окна 5-го",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-floor_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "2eb10ef07c96f1ec033ea8985709c526346068586b4fd28c81b541190b245fc1",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Башня: в эталоне крупный фрагмент (этажи 2–8, подписи этажей слева, горят окна 5-го); в приложении маленькая башня целиком со шпилем.",
+        "Заголовок / подпись: в эталоне «5 этаж — Страж» / «На нём уже Ира и Олег.»; в приложении «Впереди Страж» / «5 этаж — смешанный набор, монеты ×2»."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": ""
+    },
+    {
+      "id": "moments-v3-m07-b",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m07-B · Вершина: 3 залпа, +200",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Пик · вершина",
+      "state": "m07-B · Вершина: 3 залпа, +200",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-summit_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "67c6ccfe766322e77e2a49dac467e4806f79e535cf17898f48aa70812b5b1f4c",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Свечение за героем: в эталоне мягкое зелёное пятно за монетой / кольцом, в приложении его нет."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка."
+    },
+    {
+      "id": "moments-v3-m09-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m09-A · Штамп → стоп-кадр → дрожь",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Урок · идеальный",
+      "state": "m09-A · Штамп → стоп-кадр → дрожь",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-perfect_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "b1e77153c4589ac9dbc79b0701c4a3d065f5fbc25f27f2e70f81d3304dbce8b2",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Свечение за героем: в эталоне мягкое зелёное пятно за монетой / кольцом, в приложении его нет."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка."
+    },
+    {
+      "id": "moments-v3-m11-b",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m11-B · Все три — «День выполнен»",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Главная · кольца «Сегодня»",
+      "state": "m11-B · Все три — «День выполнен»",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-rings_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "98396bab8ef33b1c5c133d115895992c04f3103889b22c7c081871c27b68653a",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Третье (внутреннее) кольцо: в эталоне жёлтое, в приложении серебристое."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Строки задач и Главная под кольцами на кадре предпросмотра отсутствуют — не сверялись."
+    },
+    {
+      "id": "moments-v3-m14-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m14-A · «Хватает на ранг 6» — окно",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Ранг монеты · хватает",
+      "state": "m14-A · «Хватает на ранг 6» — окно",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-rankenough_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "78171612bc8ae1fd9cd724ff3b2d19589f71fc7b034b4dd6cd8b63e09809c29d",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Плашка окна: в эталоне светлее (серо-бирюзовый градиент), в приложении заметно темнее."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Подложка (Главная / Пик) на кадре служебного экрана предпросмотра отсутствует — не сверялась."
+    },
+    {
+      "id": "moments-v3-m17-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m17-A · «Первый разговор — есть!»",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Диалоги · первый разговор",
+      "state": "m17-A · «Первый разговор — есть!»",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-firstdialog_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "06a0b1bdf6d5b0ae96b96d2076e92fc141e579b1025856b7f9728457f94439f0",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Надзаголовок «Первый диалог»: в эталоне серый, в приложении мятный.",
+        "Облачко «Получилось!»: в эталоне с хвостиком вниз к монете, в приложении без хвостика.",
+        "Свечение за героем: в эталоне мягкое зелёное пятно за монетой / кольцом, в приложении его нет."
+      ],
+      "status": "diff",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка. Вес заголовков 800: на эмуляторе до нативной сборки рисуется как 700 (0b61ac198) — не считаю отличием."
+    },
+    {
+      "id": "moments-v3-m21-a",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m21-A · Спит → «!» → cheer",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Возвращение",
+      "state": "m21-A · Спит → «!» → cheer",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-back_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "21dd93ad4c8df4165e6467e51916dd5cd957e30e1c8f672d6a14e5a52985fba2",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "ПРЕДЛОЖЕНИЕ match (Макеты 18.10): поэлементно совпадает — решение координатора. Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка. Вес заголовков 800: на эмуляторе до нативной сборки рисуется как 700 (0b61ac198) — не считаю отличием. Монета, «С возвращением», подпись, «5 карточек — 1 минута», «На Главную» — совпадают."
+    },
+    {
+      "id": "moments-v3-m21-b",
+      "source": "MAKETY_VERDICT_2026-10-18",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m21-B · Карточек на повтор нет — одна кнопка «На Главную»",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 17.10: эталон окон Моментов — v3 (одобрен владельцем)",
+      "screen": "Возвращение",
+      "state": "m21-B · Карточек на повтор нет — одна кнопка «На Главную»",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r4/x-welcomeback8_b.png",
+      "evidence_at": "2026-10-17T20:17:00.000Z",
+      "evidence_sha256": "b353fe1bfe6925df49495f60be3459fbbe7c22891009fb815da02102af030c91",
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-17T21:08:30.585Z",
+      "blocked_reason": null,
+      "added_reason": "вердикты ночных снимков Сверки 18.10 — у окна не было строки",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "ПРЕДЛОЖЕНИЕ match (Макеты 18.10): живой сценарий r4 x-welcomeback8 — монета, «С возвращением», подпись, одна кнопка «На Главную», положение блока — по эталону. «8 дней — … энергия полная» вместо «9 дней — 412 фраз, ранг 5» — данные аккаунта. Лицо монеты (бронза) — ранг профиля."
     },
     {
       "id": "moments-v3-m22-a",
@@ -45644,16 +46273,20 @@
       "anim_notes": [
         "рубеж 3 · малый — тост без блокировки касаний, ≤1,5 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-streak3_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "c40ad57446c8f2ebb7237304758861f7b8f0bbaeeec03072713ddbd1e4c9fd31",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Огонь в тосте: в эталоне залитый светло-мятный с тёмной сердцевиной (заливка 3/10 мягким градиентом по всему силуэту), в приложении контур с заливкой только нижней четверти.",
+        "Искра: в эталоне точка вылетает над огнём справа сверху; в приложении неподвижная точка на середине высоты между огнём и текстом.",
+        "Плашка тоста: в эталоне светлее, серо-бирюзовое стекло; в приложении темнее и зеленее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45663,7 +46296,9 @@
         "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=3&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка. Подложка (Главная / Пик) на кадре служебного экрана предпросмотра отсутствует — не сверялась."
     },
     {
       "id": "streak-milestone-d0007",
@@ -45687,16 +46322,16 @@
       "anim_notes": [
         "рубеж 7 · большой — сцена в Modal, ≈5 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-streak7_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "a706b03c0be5d86ba5e95c0e4a88c0995b38d8ecba101fb3a1643ff284d7f89d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "match",
+      "reviewed_by": "coordinator (решение 18.10 ночью, вердикт Макетов)",
+      "reviewed_at": "2026-10-17T21:10:53.522Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45706,7 +46341,9 @@
         "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "MATCH: координатор 18.10 — все элементы совпали. Вес заголовков 800: на эмуляторе до нативной сборки рисуется как 700 (0b61ac198) — не считаю отличием. Огонь «7», монета, «Серия · 7 дней», «Первая неделя», подпись, ачивка «7 дней», «Дальше», зелёное свечение — совпадают."
     },
     {
       "id": "streak-milestone-d0014",
@@ -45730,16 +46367,19 @@
       "anim_notes": [
         "рубеж 14 · малый — тост без блокировки касаний, ≤1,5 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-streak14_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "05ad4395f0596488096b0df1f79ae3cb9f7e2acf822c756649143b4fa6fe3546",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Искра: в приложении неподвижная точка на середине высоты между огнём и текстом; в эталоне в этом кадре искры нет (вылетает и гаснет над огнём).",
+        "Плашка тоста: в приложении темнее и зеленее эталонной серо-бирюзовой."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45749,7 +46389,9 @@
         "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=14&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка. Подложка (Главная / Пик) на кадре служебного экрана предпросмотра отсутствует — не сверялась."
     },
     {
       "id": "streak-milestone-d0030",
@@ -45773,16 +46415,19 @@
       "anim_notes": [
         "рубеж 30 · большой — сцена в Modal, ≈5 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-streak30_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "4a5005e56ccd750b0b782a8e9d46437b8b2ba6f66bbb617c401def56aca02805",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Свечение фона: в эталоне мягкое тёмно-зелёное за огнём; в приложении яркое фиолетовое во весь экран (цвет стадии огня — StreakMilestoneScreen glowColor).",
+        "Календарь 30 дней (5×7, 30 клеток залито) на кадре отсутствует — в коде он появляется на такте «extra»; кадр снят раньше. Нужен кадр после ~5 с."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45792,7 +46437,9 @@
         "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=30&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Сдвиг блока вверх на кадре служебного экрана предпросмотра — не считаю отличием: в живом сценарии (r4 x-welcomeback8) тот же блок стоит по эталону. Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка. Вес заголовков 800: на эмуляторе до нативной сборки рисуется как 700 (0b61ac198) — не считаю отличием."
     },
     {
       "id": "streak-milestone-d0050",
@@ -45859,16 +46506,18 @@
       "anim_notes": [
         "рубеж 100 · большой — сцена в Modal, ≈5 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-streak100_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "42cf055eec1f4a6ad983011ead4207404f8dd9751591fcaece5d7d44932b3855",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Свечение фона: в эталоне слабое тёмно-зелёное; в приложении яркое белое пятно вокруг огня (цвет стадии)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -45878,7 +46527,9 @@
         "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=100&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Лицо монеты (серебро / бронза) — ранг профиля в данных предпросмотра, не вёрстка. Вес заголовков 800: на эмуляторе до нативной сборки рисуется как 700 (0b61ac198) — не считаю отличием."
     },
     {
       "id": "streak-milestone-d0150",
@@ -46074,16 +46725,19 @@
       "anim_notes": [
         "рубеж 365 · огромный · Год — сцена в Modal, ≈8–9 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-streak365_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "bf3198334763e728fe583c73f4df5dfeb2b65bf4a2fb3a7390798d7323e18f19",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Свечение фона: в эталоне его нет (тёмный фон); в приложении яркое лавандовое пятно.",
+        "Искры вокруг огня (4–5 белых точек) в эталоне есть, в приложении нет."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -46093,7 +46747,9 @@
         "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=365&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Вес заголовков 800: на эмуляторе до нативной сборки рисуется как 700 (0b61ac198) — не считаю отличием."
     },
     {
       "id": "streak-milestone-d0400",
@@ -46375,16 +47031,19 @@
       "anim_notes": [
         "рубеж 1000 · легенда — сцена в Modal, ≈8–9 с"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/modals_1018/r1/m-streak1000_b.png",
+      "evidence_at": "2026-10-17T19:30:00.000Z",
+      "evidence_sha256": "d9304e84de5abfa204845d6b786d123da2a109fd9af2e562f4b4734fb16e3592",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "Огонь финальной стадии: в эталоне золотой, в приложении белый.",
+        "Свечение фона: в эталоне нет; в приложении яркое белое пятно вокруг огня."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
@@ -46394,7 +47053,9 @@
         "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=1000&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
+      "verdict_by": "Макеты 18.10",
+      "verdict_note": "Вес заголовков 800: на эмуляторе до нативной сборки рисуется как 700 (0b61ac198) — не считаю отличием."
     },
     {
       "id": "moments-v3-m19",
